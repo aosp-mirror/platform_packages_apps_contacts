@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Strings for ContactsActivity and tabs -->
+    <string name="contactsList">Contacts</string>
+    <string name="shortcutContact">Contact</string>
+    <string name="starredList">Starred</string>
+    <string name="frequentList">Frequent</string>
+    <string name="strequentList">Favorites</string>
+
+    <!-- The title bar when viewing the contact details activity -->
+    <string name="viewContactTitle">Contact details</string>
+    
+    <!-- Individual contact context menu item -->
+    <string name="viewContactDesription">View contact</string>
+    
+    <!-- Individual contact context menu item. The description of the activity that edits a contact -->
+    <string name="editContactDescription">Edit contact</string>
+
+    <!-- The description of the activity that creates a contact -->
+    <string name="insertContactDescription">Create contact</string>
+    <!-- title of drop-down menu after user presses the Search key -->
+    <string name="searchHint">Search contacts</string>
+
+    <!-- Menu item to create a new contact -->
+    <string name="menu_newContact">New contact</string>
+    <!-- Menu item to create a new contact that is a "favorite" contact -->
+    <string name="menu_newFavortie">New favorite</string>
+    <string name="menu_dialer">Dialer</string>
+    <!-- Individual contact context menu item. -->
+    <string name="menu_viewContact">View contact</string>
+    <string name="menu_callNumber">Call <xliff:g id="contact">%s</xliff:g></string>
+    <string name="menu_editNumberBeforeCall">Edit number before call</string>
+    <!-- Individual contact context menu item. -->
+    <string name="menu_addStar">Add to favorites</string>
+    <!-- Individual contact context menu item. -->
+    <string name="menu_removeStar">Remove from favorites</string>
+
+    <!-- Strings for ViewContactActivity. -->
+    <string name="menu_editContact">Edit contact</string>
+    <!-- Individual contact context menu item & View contact screen menu item. -->
+    <string name="menu_deleteContact">Delete contact</string>
+    <string name="menu_call">Call</string>
+    <string name="menu_sendSMS">Send SMS/MMS</string>
+    <!-- Email address context menu item. -->
+    <string name="menu_sendEmail">Send email</string>
+    <!-- Physical address context menu item. -->
+    <string name="menu_viewAddress">Map address</string>
+    <!-- Phone number context menu item. -->
+    <string name="menu_makeDefaultNumber">Make default number</string>
+    <!-- Confirmation dialog after users selects to delete a contact. -->
+    <string name="deleteConfirmation_title">Delete</string>
+    <string name="deleteConfirmation">This contact will be deleted.</string>
+    <string name="yesButton">OK</string>
+    <string name="noButton">Cancel</string>
+
+    <!-- The label next to phone numbers in the contact details screen when clicking the number
+         will send an SMS to it. 
+    -->
+    <string name="sms_entry_label">Send SMS/MMS</string>
+
+    <!-- Strings for EditContact screen -->
+    <string name="menu_done">Save</string>
+    <string name="menu_doNotSave">Discard changes</string>
+
+    <string name="button_save">Save</string>
+    <string name="button_discard">Discard changes</string>
+
+    <string name="editContact_title_edit">Edit contact</string>
+    <string name="editContact_title_insert">New contact</string>
+
+    <string name="menu_addItem">More info</string>
+
+    <string name="label_company">Company</string>
+    <string name="label_title">Job title</string>
+    <string name="label_notes">Notes</string>
+    <string name="label_ringtone">Ringtone</string>
+    <!-- Ghost data that appears in the field by default in light font. -->
+    <string name="ghostData_name">First and Last</string>
+    <string name="ghostData_company">Company</string>
+    <string name="ghostData_title">Position</string>
+    <string name="ghostData_im">IM name</string>
+    <string name="ghostData_notes">My note</string>
+    <string name="ghostData_phone">Phone number</string>
+    <string name="ghostData_email">Email address</string>
+    <string name="ghostData_postal">Postal address</string>
+
+    <!-- Message displayed in a toast when you try to view the details of a contact that
+         for some reason doesn't exist anymore. -->
+    <string name="invalidContactMessage">The contact does not exist.</string>
+
+    <string name="pickerNewContactHeader">Create new contact</string>
+    <!-- New contact screen, dialog title when you select a label. -->
+    <string name="selectLabel">Select label</string>
+
+    <string name="phoneLabelsGroup">Phone</string>
+    <string name="emailLabelsGroup">Email</string>
+    <string name="imLabelsGroup">IM</string>
+    <string name="postalLabelsGroup">Postal address</string>
+    <string name="otherLabelsGroup">Other</string>
+
+    <string-array name="otherLabels">
+        <!-- The order of these is important, don't reorder without changing EditContactActivity.java -->
+        <item>Organization</item>
+        <item>Note</item>
+    </string-array>
+
+
+    <!-- Dialog that appears if there are no pictures from which to create an icon -->
+    <string name="errorDialogTitle">No pictures</string>
+    <string name="photoPickerNotFoundText">No pictures are available on the phone.</string>
+    <string name="okButtonText">OK</string>
+    <string name="cancelButtonText">Cancel</string>
+
+    <!-- Strings for AttachImage. -->
+    <string name="attachToContact">Contact icon</string>
+
+    <!-- unreviewed strings -->
+    <string name="customLabelPickerTitle">Custom label</string>
+    <!-- The menu item to open the preferences -->
+    <string name="menu_preferences">Settings</string>
+    <!-- The menu item to open the list of groups to display -->
+    <string name="menu_displayGroup">Display group</string>
+
+    <!-- The title of the preference to display which groups to sync -->
+    <string name="syncGroupPreference">Sync groups</string>
+    <!-- The summary of the preference to choose sync groups. -->
+    <string name="syncGroupPreference_summary">Select groups to synchronize</string>
+    
+    <!-- The description of the preference that launches the SIM import activity -->
+    <string name="importFromSim">SIM contacts importer</string>
+
+    <!-- Characters that are used for each of the fast-scroll widget that skips directly
+         to names starting with this letter.  If your language sorts differently than this,
+         please rearrange the alphabet here to be whatever is correct (e.g. Norwegian
+         has the three additional letters at the end). -->
+    <string name="alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <!-- New contact screen, check box label. -->
+    <string name="send_to_voicemail_checkbox">Send calls directly to voicemail.</string>
+    <!-- View contact screen, string identifying state. -->
+    <string name="send_to_voicemail_view">Calls are sent directly to voicemail.</string>
+    <!-- New contact screen, default ringtone value. -->
+    <string name="default_ringtone">Default</string>
+
+    <!-- The button/menu item that allows you to add a picture to a contact -->
+    <string name="addPicture">Add icon</string>
+
+    <!-- The menu item that allows you to remove a picture from a contact -->
+    <string name="removePicture">Remove icon</string>
+
+    <!-- The text displayed when the contacts list is empty while displaying all contacts -->
+    <string name="noContacts">No contacts.</string>
+
+    <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
+    <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
+
+    <!-- The text displayed when the contacts list is empty while displaying favorite contacts -->
+    <string name="noFavorites">No favorites.</string>
+
+    <!-- Title for group selection menu -->
+    <string name="select_group_title">Select group to display</string>
+    
+    <!-- Group name for all contacts -->
+    <string name="allContacts">All contacts</string>
+    
+    <!-- Title for Contacts group that is currently showing -->
+    <string name="showingGroupTitle"><xliff:g id="groupName">%s</xliff:g></string>
+    
+    <!-- The text displayed when the contacts list is empty while displaying a single group -->
+    <string name="groupEmpty">Your \"<xliff:g id="groupName">%s</xliff:g>\" group is empty.</string>
+
+    <!-- The description of all groups when asking the user what they want to display -->
+    <string name="showAllGroups">All contacts</string>
+
+    <!-- The setting to sync all contacts from the server -->
+    <string name="syncAllGroups">Sync all contacts</string>
+
+    <!-- The name of the system "My Contacts" group. This should be kept in sync with the web UI -->
+    <string name="groupNameMyContacts">My Contacts</string>
+    
+    <!-- The group type that displays only contacts with phone numbers -->
+    <string name="groupNameWithPhones">Contacts with phone numbers</string>
+    
+    <!-- Title of the dialog the user uses to choose which contacts groups to sync from the server -->
+    <string name="syncGroupChooserTitle">Select groups to sync</string>
+
+    <!-- The menu item allowing you to select which groups you want to sync. -->
+    <string name="selectGroupsToSync">Sync groups</string>
+
+    <!-- Toast displayed when a contact is created -->
+    <string name="contactCreatedToast">Contact created.</string>
+    
+    <!-- Toast displayed when a contact is saved -->
+    <string name="contactSavedToast">Contact saved.</string>
+
+    <!-- Separator in the contact details list describing that the items below it will place a call when clicked -->
+    <string name="listSeparatorCallNumber">Dial number</string>
+    
+    <!-- Separator in the contact details list describing that the items below it will send an SMS/MMS to a phone number -->
+    <string name="listSeparatorSendSmsMms">Send SMS/MMS</string>
+
+    <!-- Separator in the contact details list describing that the items below it will send an email -->
+    <string name="listSeparatorSendEmail">Send email</string>
+
+    <!-- Separator in the contact details list describing that the items below it will send an IM -->
+    <string name="listSeparatorSendIm">Send instant message</string>
+
+    <!-- Separator in the contact details list describing that the items below it will open maps with the given address -->
+    <string name="listSeparatorMapAddress">Map address</string>
+
+    <!-- Separator in the contact details list describing that the items below are non-actionable organization information -->
+    <string name="listSeparatorOrganizations">Organizations</string>
+
+    <!-- Separator in the contact details list describing that the items below are random other non-actionable information about a contact -->
+    <string name="listSeparatorOtherInformation">Other information</string>
+
+
+
+    <!-- Launcher tab labels -->
+    <string name="contactsIconLabel">Contacts</string>
+    <string name="contactsFavoritesLabel">Favorites</string>
+    <string name="dialerIconLabel">Dialer</string>
+    <string name="phoneIconLabel">Phone</string>
+    <string name="recentCallsIconLabel">Call log</string>
+
+    <!-- menu items for Dialer  -->
+    <string name="menu_sendTextMessage">Send SMS message</string>
+
+    <!-- Recent calls strings -->
+    <string name="recentCalls_callNumber">Call <xliff:g id="who">%s</xliff:g></string>
+    <string name="recentCalls_editNumberBeforeCall">Edit number before call</string>
+    <string name="recentCalls_addToContact">Add to contacts</string>
+    <string name="recentCalls_removeFromRecentList">Remove from call log</string>
+    <string name="recentCalls_deleteAll">Clear call log</string>
+    <string name="recentCalls_empty">Call log is empty.</string>
+
+    <!-- IMEI strings -->
+    <string name="imei">IMEI</string>
+    <string name="no_imei">Unknown IMEI</string>
+
+    <string name="doneButton">Done</string>
+
+    <string name="ok">OK</string>
+
+    <string name="voicemail">Voicemail</string>
+    <string name="unknown">Unknown</string>
+    <string name="private_num">Private number</string>
+
+    <!-- Displayed in the text entry box in the dialer when in landscape mode to guide the user
+         to dial using the physical keyboard -->
+    <string name="dialerKeyboardHintText">Use keyboard to dial</string>
+
+    <!-- ADN related strings -->
+    <string name="simContacts_emptyLoading">Loading from SIM card\u2026</string>
+    <string name="simContacts_title">SIM card contacts</string>
+</resources>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:scrollbarStyle="insideInset"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+    >
+
+        <LinearLayout android:id="@+id/banner"
+            android:layout_width="fill_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:orientation="horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:padding="0dip"
+            android:gravity="center_vertical"
+            android:baselineAligned="false"
+        >
+
+            <FrameLayout
+                android:layout_width="58dip"
+                android:layout_height="58dip"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="10dip"
+            >
+                <Button android:id="@+id/photoButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/addPicture"
+                    android:gravity="center"
+                />
+
+                <ImageView android:id="@+id/photoImage"
+                    style="?android:attr/imageWellStyle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/border"
+                />
+            </FrameLayout>
+
+            <EditText android:id="@+id/name"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dip"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:capitalize="words"
+                android:hint="@string/ghostData_name"
+                android:nextFocusDown="@id/data"
+            />
+
+            <ImageView android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="?android:attr/listDivider"
+        />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="vertical"
+        >
+
+            <!-- The edit items -->
+            <LinearLayout android:id="@+id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+            />
+
+            <!-- Send to voicemail checkbox -->
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="?android:attr/listPreferredItemHeight"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dip"
+                    android:text="@string/send_to_voicemail_checkbox"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+                <CheckBox android:id="@+id/send_to_voicemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:nextFocusDown="@+id/saveButton"
+                />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="?android:attr/listDivider"
+            />
+
+            <!-- The add more button -->
+            <Button android:id="@+id/addMore"
+                android:layout_width="fill_parent"
+                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_marginTop="3dip"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/menu_addItem"
+                android:gravity="left|center_vertical"
+                android:drawableLeft="@android:drawable/ic_input_add"
+            />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:layout_marginTop="1dip"
+            android:background="@android:drawable/bottom_bar"
+        >
+            <Button android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="@string/button_save"
+                android:minWidth="120dip"
+                android:minHeight="48dip"
+            />
+
+            <Button android:id="@+id/discardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/button_discard"
+                android:minWidth="120dip"
+                android:minHeight="48dip"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
