@@ -713,7 +713,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     case OTHER_ORGANIZATION:
                         entry = EditEntry.newOrganizationEntry(EditContactActivity.this,
                                 Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY),
-                                ContactMethods.TYPE_WORK);
+                                Organizations.TYPE_WORK);
                         mOtherEntries.add(entry);
                         break;
 
