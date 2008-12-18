@@ -86,6 +86,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -144,12 +145,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public static final int MENU_ITEM_ADD = 5;
     public static final int MENU_ITEM_PHOTO = 6;
     
-    // Key listener types
-    final static int INPUT_TEXT = 1;
-    final static int INPUT_TEXT_WORDS = 2;
-    final static int INPUT_TEXT_SENTENCES = 3;
-    final static int INPUT_DIALER = 4;
-
     /** Used to represent an invalid type for a contact entry */
     private static final int INVALID_TYPE = -1;
     
@@ -171,7 +166,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     
     private EditText mNameView;
     private ImageView mPhotoImageView;
-    private Button mPhotoButton;
+    private View mPhotoButton;
     private CheckBox mSendToVoicemailCheckBox;
     private LinearLayout mLayout;
     private LayoutInflater mInflater;
@@ -258,7 +253,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 mPhotoMenuItem.setIcon(android.R.drawable.ic_menu_delete);
             } else {
                 mPhotoMenuItem.setTitle(R.string.addPicture);
-                mPhotoMenuItem.setIcon(android.R.drawable.ic_menu_add);
+                mPhotoMenuItem.setIcon(R.drawable.ic_menu_add_picture);
             }
         }
     }
@@ -310,7 +305,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mPhotoImageView = (ImageView) findViewById(R.id.photoImage);
         mPhotoImageView.setOnClickListener(this);
         mPhotoImageView.setVisibility(View.GONE);
-        mPhotoButton = (Button) findViewById(R.id.photoButton);
+        mPhotoButton = findViewById(R.id.photoButton);
         mPhotoButton.setOnClickListener(this);
         mSendToVoicemailCheckBox = (CheckBox) findViewById(R.id.send_to_voicemail);
 
@@ -532,7 +527,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             new AlertDialog.Builder(EditContactActivity.this)
                 .setTitle(R.string.errorDialogTitle)
                 .setMessage(R.string.photoPickerNotFoundText)
-                .setPositiveButton(R.string.okButtonText, null)
+                .setPositiveButton(android.R.string.ok, null)
                 .show();
         }
     }
@@ -607,8 +602,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(R.string.noButton, null)
-                        .setPositiveButton(R.string.yesButton, mDeleteContactDialogListener)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, mDeleteContactDialogListener)
                         .setCancelable(false)
                         .create();
         }
@@ -713,7 +708,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     case OTHER_ORGANIZATION:
                         entry = EditEntry.newOrganizationEntry(EditContactActivity.this,
                                 Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY),
-                                ContactMethods.TYPE_WORK);
+                                Organizations.TYPE_WORK);
                         mOtherEntries.add(entry);
                         break;
 
@@ -874,7 +869,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         new AlertDialog.Builder(this)
                 .setView(label)
                 .setTitle(R.string.customLabelPickerTitle)
-                .setPositiveButton(R.string.okButtonText, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         entry.setLabel(EditContactActivity.this, ContactMethods.TYPE_CUSTOM,
                                 label.getText().toString());
@@ -885,7 +880,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                         }
                     }
                 })
-                .setNegativeButton(R.string.cancelButtonText, null)
+                .setNegativeButton(android.R.string.cancel, null)
                 .show();
     }
     
@@ -1004,10 +999,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Add the contact to the group that is being displayed in the contact list
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int displayType = prefs.getInt(ContactsPreferenceActivity.PREF_DISPLAY_TYPE,
-                ContactsPreferenceActivity.DISPLAY_TYPE_UNKNOWN);
-        if (displayType == ContactsPreferenceActivity.DISPLAY_TYPE_USER_GROUP) {
-            String displayGroup = prefs.getString(ContactsPreferenceActivity.PREF_DISPLAY_INFO,
+        int displayType = prefs.getInt(ContactsListActivity.PREF_DISPLAY_TYPE,
+                ContactsListActivity.DISPLAY_TYPE_UNKNOWN);
+        if (displayType == ContactsListActivity.DISPLAY_TYPE_USER_GROUP) {
+            String displayGroup = prefs.getString(ContactsListActivity.PREF_DISPLAY_INFO,
                     null);
             if (!TextUtils.isEmpty(displayGroup)) {
                 People.addToGroup(mResolver, ContentUris.parseId(contactUri), displayGroup);
@@ -1311,42 +1306,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         }
 
         // Email entries from extras
-        CharSequence email = extras.getCharSequence(Insert.EMAIL);
-        int emailType = extras.getInt(Insert.EMAIL_TYPE, INVALID_TYPE);
-        if (!TextUtils.isEmpty(email) && emailType == INVALID_TYPE) {
-            emailType = DEFAULT_EMAIL_TYPE;
-            mPrimaryEmailAdded = true;
-        }
+        addEmailFromExtras(extras, methodsUri, Insert.EMAIL, Insert.EMAIL_TYPE,
+                Insert.EMAIL_ISPRIMARY);
+        addEmailFromExtras(extras, methodsUri, Insert.SECONDARY_EMAIL, Insert.SECONDARY_EMAIL_TYPE,
+                null);
+        addEmailFromExtras(extras, methodsUri, Insert.TERTIARY_EMAIL, Insert.TERTIARY_EMAIL_TYPE,
+                null);
    
-        if (emailType != INVALID_TYPE) {
-            entry = EditEntry.newEmailEntry(this, null, emailType, email.toString(), methodsUri, 0);
-            entry.isPrimary = extras.getBoolean(Insert.EMAIL_ISPRIMARY);
-            mEmailEntries.add(entry);
-
-            // Keep track of which primary types have been added
-            if (entry.isPrimary) {
-                mPrimaryEmailAdded = true;
-            }
-        }
-   
-        // Phone entries from extras 
-        CharSequence phoneNumber = extras.getCharSequence(Insert.PHONE);
-        int phoneType = extras.getInt(Insert.PHONE_TYPE, INVALID_TYPE);
-        if (!TextUtils.isEmpty(phoneNumber) && phoneType == INVALID_TYPE) {
-            phoneType = DEFAULT_PHONE_TYPE;
-        }
-   
-        if (phoneType != INVALID_TYPE) {
-            entry = EditEntry.newPhoneEntry(this, null, phoneType,
-                    phoneNumber.toString(), phonesUri, 0);
-            entry.isPrimary = extras.getBoolean(Insert.PHONE_ISPRIMARY);
-            mPhoneEntries.add(entry);
-
-            // Keep track of which primary types have been added
-            if (phoneType == Phones.TYPE_MOBILE) {
-                mMobilePhoneAdded = true;
-            }
-        }
+        // Phone entries from extras
+        addPhoneFromExtras(extras, phonesUri, Insert.PHONE, Insert.PHONE_TYPE,
+                Insert.PHONE_ISPRIMARY);
+        addPhoneFromExtras(extras, phonesUri, Insert.SECONDARY_PHONE, Insert.SECONDARY_PHONE_TYPE,
+                null);
+        addPhoneFromExtras(extras, phonesUri, Insert.TERTIARY_PHONE, Insert.TERTIARY_PHONE_TYPE,
+                null);
 
         // IM entries from extras
         CharSequence imHandle = extras.getCharSequence(Insert.IM_HANDLE);
@@ -1365,6 +1338,49 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             }
             entry.isPrimary = extras.getBoolean(Insert.IM_ISPRIMARY);
             mImEntries.add(entry);
+        }
+    }
+
+    private void addEmailFromExtras(Bundle extras, Uri methodsUri, String emailField,
+            String typeField, String primaryField) {
+        CharSequence email = extras.getCharSequence(emailField);
+        int emailType = extras.getInt(typeField, INVALID_TYPE);
+        if (!TextUtils.isEmpty(email) && emailType == INVALID_TYPE) {
+            emailType = DEFAULT_EMAIL_TYPE;
+            mPrimaryEmailAdded = true;
+        }
+
+        if (emailType != INVALID_TYPE) {
+            EditEntry entry = EditEntry.newEmailEntry(this, null, emailType, email.toString(),
+                    methodsUri, 0);
+            entry.isPrimary = (primaryField == null) ? false : extras.getBoolean(primaryField);
+            mEmailEntries.add(entry);
+
+            // Keep track of which primary types have been added
+            if (entry.isPrimary) {
+                mPrimaryEmailAdded = true;
+            }
+        }
+    }
+
+    private void addPhoneFromExtras(Bundle extras, Uri phonesUri, String phoneField,
+            String typeField, String primaryField) {
+        CharSequence phoneNumber = extras.getCharSequence(phoneField);
+        int phoneType = extras.getInt(typeField, INVALID_TYPE);
+        if (!TextUtils.isEmpty(phoneNumber) && phoneType == INVALID_TYPE) {
+            phoneType = DEFAULT_PHONE_TYPE;
+        }
+
+        if (phoneType != INVALID_TYPE) {
+            EditEntry entry = EditEntry.newPhoneEntry(this, null, phoneType,
+                    phoneNumber.toString(), phonesUri, 0);
+            entry.isPrimary = (primaryField == null) ? false : extras.getBoolean(primaryField);
+            mPhoneEntries.add(entry);
+
+            // Keep track of which primary types have been added
+            if (phoneType == Phones.TYPE_MOBILE) {
+                mMobilePhoneAdded = true;
+            }
         }
     }
 
@@ -1475,42 +1491,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 data2.setLines(entry.lines);
                 data2.setMaxLines(entry.maxLines);
             }
-        } else if (entry.lines >= 0) {
-            data.setSingleLine();
-            if (data2 != null) {
-                data2.setSingleLine();
-            }
         }
-        switch (entry.keyListener) {
-            case INPUT_TEXT:
-                data.setKeyListener(TextKeyListener.getInstance());
-                if (data2 != null) {
-                    data2.setKeyListener(TextKeyListener.getInstance());
-                }
-                break;
-                
-            case INPUT_TEXT_WORDS:
-                data.setKeyListener(TextKeyListener.getInstance(true, Capitalize.WORDS));
-                if (data2 != null) {
-                    data2.setKeyListener(TextKeyListener.getInstance(true, Capitalize.WORDS));
-                }
-                break;
-                
-            case INPUT_TEXT_SENTENCES:
-                data.setKeyListener(TextKeyListener.getInstance(true, Capitalize.SENTENCES));
-                if (data2 != null) {
-                    data2.setKeyListener(TextKeyListener.getInstance(true, Capitalize.SENTENCES));
-                }
-                break;
-                
-            case INPUT_DIALER:
-                data.setKeyListener(DialerKeyListener.getInstance());
+        int contentType = entry.contentType;
+        if (contentType != EditorInfo.TYPE_NULL) {
+            data.setInputType(contentType);
+            if (data2 != null) {
+                data2.setInputType(contentType);
+            }
+            if ((contentType&EditorInfo.TYPE_MASK_CLASS)
+                    == EditorInfo.TYPE_CLASS_PHONE) {
                 data.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
                 if (data2 != null) {
-                    data2.setKeyListener(DialerKeyListener.getInstance());
                     data2.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
                 }
-                break;
+            }
         }
 
         // Hook up the delete button
@@ -1569,7 +1563,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         public String column;
         public String contentDirectory;
         public String data2;
-        public int keyListener;
+        public int contentType;
         public int type;
         /**
          * If 0 or 1, setSingleLine will be called. If negative, setSingleLine
@@ -1614,7 +1608,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             parcel.writeString(column);
             parcel.writeString(contentDirectory);
             parcel.writeString(data2);
-            parcel.writeInt(keyListener);
+            parcel.writeInt(contentType);
             parcel.writeInt(type);
             parcel.writeInt(lines);
             parcel.writeInt(isPrimary ? 1 : 0);
@@ -1637,7 +1631,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 entry.column = in.readString();
                 entry.contentDirectory = in.readString();
                 entry.data2 = in.readString();
-                entry.keyListener = in.readInt();
+                entry.contentType = in.readInt();
                 entry.type = in.readInt();
                 entry.lines = in.readInt();
                 entry.isPrimary = in.readInt() == 1;
@@ -1834,7 +1828,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = Organizations.COMPANY;
             entry.contentDirectory = Organizations.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_ORGANIZATION;
-            entry.keyListener = INPUT_TEXT_WORDS;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT
+                    | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
             return entry;
         }
 
@@ -1853,7 +1848,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.lines = 2;
             entry.id = 0;
             entry.kind = KIND_CONTACT;
-            entry.keyListener = INPUT_TEXT_SENTENCES;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT
+                    | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES
+                    | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
             entry.isStaticLabel = true;
             return entry;
         }
@@ -1894,7 +1891,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = People.Phones.NUMBER;
             entry.contentDirectory = People.Phones.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_PHONE;
-            entry.keyListener = INPUT_DIALER;
+            entry.contentType = EditorInfo.TYPE_CLASS_PHONE;
             return entry;
         }
 
@@ -1917,7 +1914,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = ContactMethods.DATA;
             entry.contentDirectory = People.ContactMethods.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_EMAIL;
-            entry.keyListener = INPUT_TEXT;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT
+                    | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
             return entry;
         }
 
@@ -1946,7 +1944,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = ContactMethods.DATA;
             entry.contentDirectory = People.ContactMethods.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_POSTAL;
-            entry.keyListener = INPUT_TEXT_WORDS;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT
+                    | EditorInfo.TYPE_TEXT_VARIATION_POSTAL_ADDRESS
+                    | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS
+                    | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
             entry.maxLines = 4;
             entry.lines = 2;
             return entry;
@@ -1969,7 +1970,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = ContactMethods.DATA;
             entry.contentDirectory = People.ContactMethods.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_IM;
-            entry.keyListener = INPUT_TEXT;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT;
             return entry;
         }
     }

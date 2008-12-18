@@ -28,8 +28,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.CharArrayBuffer;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,10 +43,10 @@ import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.Contacts.Presence;
 import android.provider.Contacts.Intents.UI;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,11 +55,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AlphabetIndexer;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
+import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.lang.ref.WeakReference;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -125,6 +128,31 @@ public final class ContactsListActivity extends ListActivity
 
     static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
 
+    /**
+     * The type of data to display in the main contacts list. 
+     */
+    static final String PREF_DISPLAY_TYPE = "display_system_group";
+
+    /** Unknown display type. */
+    static final int DISPLAY_TYPE_UNKNOWN = -1;
+    /** Display all contacts */
+    static final int DISPLAY_TYPE_ALL = 0;
+    /** Display all contacts that have phone numbers */
+    static final int DISPLAY_TYPE_ALL_WITH_PHONES = 1;
+    /** Display a system group */
+    static final int DISPLAY_TYPE_SYSTEM_GROUP = 2;
+    /** Display a user group */
+    static final int DISPLAY_TYPE_USER_GROUP = 3;
+
+    /**
+     * Info about what to display. If {@link #PREF_DISPLAY_TYPE}
+     * is {@link #DISPLAY_TYPE_SYSTEM_GROUP} then this will be the system id.
+     * If {@link #PREF_DISPLAY_TYPE} is {@link #DISPLAY_TYPE_USER_GROUP} then this will
+     * be the group name.
+     */ 
+    static final String PREF_DISPLAY_INFO = "display_group";
+
+    
     static final String NAME_COLUMN = People.DISPLAY_NAME;
     
     static final String[] CONTACTS_PROJECTION = new String[] {
@@ -244,9 +272,6 @@ public final class ContactsListActivity extends ListActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        // Make sure the preferences are setup
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
         // Resolve the intent
         final Intent intent = getIntent();
 
@@ -255,7 +280,7 @@ public final class ContactsListActivity extends ListActivity
         if (title != null) {
             setTitle(title);
         }
-
+        
         final String action = intent.getAction();
         mMode = MODE_UNKNOWN;
         
@@ -355,12 +380,6 @@ public final class ContactsListActivity extends ListActivity
             mMode = DEFAULT_MODE;
         }
 
-/*
-        if (!mDefaultMode) {
-            findViewById(R.id.contact_group).banner.setVisibility(View.GONE);
-        }
-*/
-
         // Setup the UI
         final ListView list = getListView();
         list.setFocusable(true);
@@ -392,12 +411,14 @@ public final class ContactsListActivity extends ListActivity
     }
 
     private void setEmptyText() {
-        TextView empty = (TextView) findViewById(android.R.id.empty);
+        TextView empty = (TextView) findViewById(R.id.emptyText);
+        // Center the text by default
+        int gravity = Gravity.CENTER;
         switch (mMode) {
             case MODE_GROUP:
                 if (Groups.GROUP_MY_CONTACTS.equals(mDisplayInfo)) {
-                    empty.setText(getString(R.string.groupEmpty,
-                            getText(R.string.groupNameMyContacts)));
+                    empty.setText(getText(R.string.noContactsHelpText));
+                    gravity = Gravity.NO_GRAVITY;
                 } else {
                     empty.setText(getString(R.string.groupEmpty, mDisplayInfo));
                 }
@@ -417,6 +438,7 @@ public final class ContactsListActivity extends ListActivity
                 empty.setText(getText(R.string.noContacts));
                 break;
         }
+        empty.setGravity(gravity);
     }
 
     /**
@@ -449,18 +471,17 @@ public final class ContactsListActivity extends ListActivity
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
         // Lookup the group to display
-        mDisplayType = prefs.getInt(ContactsPreferenceActivity.PREF_DISPLAY_TYPE,
-                ContactsPreferenceActivity.DISPLAY_TYPE_UNKNOWN);
+        mDisplayType = prefs.getInt(PREF_DISPLAY_TYPE, DISPLAY_TYPE_UNKNOWN);
         switch (mDisplayType) {
-            case ContactsPreferenceActivity.DISPLAY_TYPE_ALL_WITH_PHONES: {
+            case DISPLAY_TYPE_ALL_WITH_PHONES: {
                 mMode = MODE_WITH_PHONES;
                 mDisplayInfo = null;
                 break;
             }
 
-            case ContactsPreferenceActivity.DISPLAY_TYPE_SYSTEM_GROUP: {
+            case DISPLAY_TYPE_SYSTEM_GROUP: {
                 String systemId = prefs.getString(
-                        ContactsPreferenceActivity.PREF_DISPLAY_INFO, null);
+                        PREF_DISPLAY_INFO, null);
                 if (!TextUtils.isEmpty(systemId)) {
                     // Display the selected system group
                     mMode = MODE_GROUP;
@@ -470,14 +491,14 @@ public final class ContactsListActivity extends ListActivity
                     // No valid group is present, display everything
                     mMode = MODE_WITH_PHONES;
                     mDisplayInfo = null;
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_ALL;
+                    mDisplayType = DISPLAY_TYPE_ALL;
                 }
                 break;
             }
 
-            case ContactsPreferenceActivity.DISPLAY_TYPE_USER_GROUP: {
+            case DISPLAY_TYPE_USER_GROUP: {
                 String displayGroup = prefs.getString(
-                        ContactsPreferenceActivity.PREF_DISPLAY_INFO, null);
+                        PREF_DISPLAY_INFO, null);
                 if (!TextUtils.isEmpty(displayGroup)) {
                     // Display the selected user group
                     mMode = MODE_GROUP;
@@ -487,12 +508,12 @@ public final class ContactsListActivity extends ListActivity
                     // No valid group is present, display everything
                     mMode = MODE_WITH_PHONES;
                     mDisplayInfo = null;
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_ALL;
+                    mDisplayType = DISPLAY_TYPE_ALL;
                 }
                 break;
             }
 
-            case ContactsPreferenceActivity.DISPLAY_TYPE_ALL: {
+            case DISPLAY_TYPE_ALL: {
                 mMode = MODE_ALL_CONTACTS;
                 mDisplayInfo = null;
                 break;
@@ -501,7 +522,7 @@ public final class ContactsListActivity extends ListActivity
             default: {
                 // We don't know what to display, default to My Contacts
                 mMode = MODE_GROUP;
-                mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_SYSTEM_GROUP;
+                mDisplayType = DISPLAY_TYPE_SYSTEM_GROUP;
                 buildSystemGroupUris(Groups.GROUP_MY_CONTACTS);
                 mDisplayInfo = Groups.GROUP_MY_CONTACTS;
                 break;
@@ -596,19 +617,33 @@ public final class ContactsListActivity extends ListActivity
             return false;
         }
 
+        // New contact
         menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact)
                 .setIcon(android.R.drawable.ic_menu_add)
                 .setIntent(new Intent(Intents.Insert.ACTION, People.CONTENT_URI))
                 .setAlphabeticShortcut('n');
-        if (isChild()) {
-            menu.add(0, 0, 0, R.string.menu_preferences)
-                    .setIcon(android.R.drawable.ic_menu_preferences)
-                    .setIntent(new Intent(this, ContactsPreferenceActivity.class));
-        }
+
+        // Display group
         if (mDefaultMode) {
             menu.add(0, MENU_DISPLAY_GROUP, 0, R.string.menu_displayGroup)
                     .setIcon(R.drawable.ic_menu_allfriends);
         }
+
+        // Sync settings
+        Intent syncIntent = new Intent(Intent.ACTION_VIEW);
+        syncIntent.setClass(this, ContactsGroupSyncSelector.class);
+        menu.add(0, 0, 0, R.string.syncGroupPreference)
+                .setIcon(R.drawable.ic_menu_refresh)
+                .setIntent(syncIntent);
+        
+        // SIM import
+        Intent importIntent = new Intent(Intent.ACTION_VIEW);
+        importIntent.setType("vnd.android.cursor.item/sim-contact");
+        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
+        menu.add(0, 0, 0, R.string.importFromSim)
+                .setIcon(R.drawable.ic_menu_import_contact)
+                .setIntent(importIntent);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -622,27 +657,27 @@ public final class ContactsListActivity extends ListActivity
                 // Set the group to display
                 if (mDisplayGroupCurrentSelection == DISPLAY_GROUP_INDEX_ALL_CONTACTS) {
                     // Display all
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_ALL;
+                    mDisplayType = DISPLAY_TYPE_ALL;
                     mDisplayInfo = null;
                 } else if (mDisplayGroupCurrentSelection
                         == DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES) {
                     // Display all with phone numbers
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_ALL_WITH_PHONES;
+                    mDisplayType = DISPLAY_TYPE_ALL_WITH_PHONES;
                     mDisplayInfo = null;
                 } else if (mDisplayGroupsIncludesMyContacts &&
                         mDisplayGroupCurrentSelection == DISPLAY_GROUP_INDEX_MY_CONTACTS) {
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_SYSTEM_GROUP;
+                    mDisplayType = DISPLAY_TYPE_SYSTEM_GROUP;
                     mDisplayInfo = Groups.GROUP_MY_CONTACTS;
                 } else {
-                    mDisplayType = ContactsPreferenceActivity.DISPLAY_TYPE_USER_GROUP;
+                    mDisplayType = DISPLAY_TYPE_USER_GROUP;
                     mDisplayInfo = mDisplayGroups[mDisplayGroupCurrentSelection].toString();
                 }
 
                 // Save the changes to the preferences
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 prefs.edit()
-                        .putInt(ContactsPreferenceActivity.PREF_DISPLAY_TYPE, mDisplayType)
-                        .putString(ContactsPreferenceActivity.PREF_DISPLAY_INFO, mDisplayInfo)
+                        .putInt(PREF_DISPLAY_TYPE, mDisplayType)
+                        .putString(PREF_DISPLAY_INFO, mDisplayInfo)
                         .commit();
 
                 // Update the display state
@@ -778,8 +813,8 @@ public final class ContactsListActivity extends ListActivity
                     .setTitle(R.string.deleteConfirmation_title)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(R.string.deleteConfirmation)
-                    .setNegativeButton(R.string.noButton, null)
-                    .setPositiveButton(R.string.yesButton, new DeleteClickListener(uri))
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, new DeleteClickListener(uri))
                     .setCancelable(false)
                     .show();
                 return true;
@@ -810,8 +845,8 @@ public final class ContactsListActivity extends ListActivity
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(R.string.noButton, null)
-                        .setPositiveButton(R.string.yesButton, new DeleteClickListener(uri))
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(uri))
                         .setCancelable(false)
                         .show();
                     return true;
@@ -1159,7 +1194,7 @@ public final class ContactsListActivity extends ListActivity
                     // The My Contacts group
                     groups.add(DISPLAY_GROUP_INDEX_MY_CONTACTS,
                             getString(R.string.groupNameMyContacts));
-                    if (mDisplayType == ContactsPreferenceActivity.DISPLAY_TYPE_SYSTEM_GROUP
+                    if (mDisplayType == DISPLAY_TYPE_SYSTEM_GROUP
                             && Groups.GROUP_MY_CONTACTS.equals(mDisplayInfo)) {
                         currentIndex = DISPLAY_GROUP_INDEX_MY_CONTACTS;
                     }
@@ -1180,25 +1215,29 @@ public final class ContactsListActivity extends ListActivity
         }
     }
 
-    private final class QueryHandler extends AsyncQueryHandler {
+    private static final class QueryHandler extends AsyncQueryHandler {
+        private final WeakReference<ContactsListActivity> mActivity;
+
         public QueryHandler(Context context) {
             super(context.getContentResolver());
+            mActivity = new WeakReference<ContactsListActivity>((ContactsListActivity) context);
         }
 
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            if (!isFinishing()) {
-                mAdapter.setLoading(false);
-                mAdapter.changeCursor(cursor);
+            final ContactsListActivity activity = mActivity.get();
+            if (activity != null && !activity.isFinishing()) {
+                activity.mAdapter.setLoading(false);
+                activity.mAdapter.changeCursor(cursor);
     
                 // Now that the cursor is populated again, it's possible to restore the list state
-                if (mListState != null) {
-                    mList.onRestoreInstanceState(mListState);
-                    if (mListHasFocus) {
-                        mList.requestFocus();
+                if (activity.mListState != null) {
+                    activity.mList.onRestoreInstanceState(activity.mListState);
+                    if (activity.mListHasFocus) {
+                        activity.mList.requestFocus();
                     }
-                    mListHasFocus = false;
-                    mListState = null;
+                    activity.mListHasFocus = false;
+                    activity.mListState = null;
                 }
             } else {
                 cursor.close();
@@ -1216,20 +1255,22 @@ public final class ContactsListActivity extends ListActivity
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter 
-            implements FastScrollView.SectionIndexer {
+            implements SectionIndexer {
         
-        private String [] mAlphabet;
         private AlphabetIndexer mIndexer;
+        private String mAlphabet;
         private boolean mLoading = true;
         private CharSequence mUnknownNameText;
         private CharSequence[] mLocalizedLabels;
 
         public ContactItemListAdapter(Context context, int resource, Cursor cursor) {
             super(context, resource, cursor);
-            getAlphabet(context);
+            
+            mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
             if (cursor != null) {
                 mIndexer = new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
             }
+            
             mUnknownNameText = context.getText(android.R.string.unknownName);
             switch (mMode) {
                 case MODE_PICK_POSTAL:
@@ -1249,22 +1290,20 @@ public final class ContactsListActivity extends ListActivity
 
         @Override
         public boolean isEmpty() {
-            if (mLoading) {
-                // We don't want the empty state to show when loading.
+            if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW) {
+                // This mode mask adds a header and we always want it to show up, even
+                // if the list is empty, so always claim the list is not empty.
                 return false;
             } else {
-                return super.isEmpty();
+                if (mLoading) {
+                    // We don't want the empty state to show when loading.
+                    return false;
+                } else {
+                    return super.isEmpty();
+                }
             }
         }
         
-        private void getAlphabet(Context context) {
-            String alphabetString = context.getResources().getString(R.string.alphabet);
-            mAlphabet = new String[alphabetString.length()];
-            for (int i = 0; i < mAlphabet.length; i++) {
-                mAlphabet[i] = String.valueOf(alphabetString.charAt(i));
-            }
-        }
-
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             final View view = super.newView(context, cursor, parent);
@@ -1377,8 +1416,8 @@ public final class ContactsListActivity extends ListActivity
             if (mMode == MODE_STREQUENT) {
                 return new String[] { " " };
             } else {
-                return mAlphabet;
-            }
+                return mIndexer.getSections();
+           }
         }
         
         public int getPositionForSection(int sectionIndex) {
@@ -1395,7 +1434,7 @@ public final class ContactsListActivity extends ListActivity
                 mIndexer = new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
             }
 
-            return mIndexer.indexOf(sectionIndex);
+            return mIndexer.getPositionForSection(sectionIndex);
         }
         
         public int getSectionForPosition(int position) {

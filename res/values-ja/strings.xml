@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="contactsList">"連絡先"</string>
+    <string name="shortcutContact">"連絡先"</string>
+    <string name="starredList">"スター付き"</string>
+    <string name="frequentList">"よく連絡する連絡先"</string>
+    <string name="strequentList">"お気に入り"</string>
+    <string name="viewContactTitle">"連絡先情報"</string>
+    <string name="viewContactDesription">"連絡先を表示"</string>
+    <string name="editContactDescription">"連絡先を編集"</string>
+    <string name="insertContactDescription">"連絡先を作成"</string>
+    <string name="searchHint">"連絡先を検索"</string>
+    <string name="menu_newContact">"新しい連絡先"</string>
+    <string name="menu_viewContact">"連絡先を表示"</string>
+    <string name="menu_callNumber">"<xliff:g id="NAME">%s</xliff:g>さんに発信"</string>
+    <!-- no translation found for menu_addStar (2908478235715404876) -->
+    <skip />
+    <!-- no translation found for menu_removeStar (5844227078364227030) -->
+    <skip />
+    <!-- no translation found for menu_showBarcode (309973637178814132) -->
+    <skip />
+    <string name="menu_editContact">"連絡先を編集"</string>
+    <string name="menu_deleteContact">"連絡先を削除"</string>
+    <string name="menu_call">"発信"</string>
+    <string name="menu_sendSMS">"SMS/MMSを送信"</string>
+    <string name="menu_sendEmail">"メールを送信"</string>
+    <string name="menu_viewAddress">"地図の住所"</string>
+    <string name="menu_makeDefaultNumber">"デフォルトの番号に設定"</string>
+    <string name="deleteConfirmation_title">"削除"</string>
+    <string name="deleteConfirmation">"この連絡先を削除します。"</string>
+    <string name="menu_done">"保存"</string>
+    <string name="menu_doNotSave">"変更を破棄"</string>
+    <string name="button_save">"保存"</string>
+    <string name="button_discard">"変更を破棄"</string>
+    <string name="editContact_title_edit">"連絡先を編集"</string>
+    <string name="editContact_title_insert">"新しい連絡先"</string>
+    <string name="menu_addItem">"詳細情報"</string>
+    <string name="label_notes">"メモ"</string>
+    <string name="label_ringtone">"着信音"</string>
+    <string name="ghostData_name">"氏名を入力してください"</string>
+    <string name="ghostData_company">"会社"</string>
+    <string name="ghostData_title">"役職"</string>
+    <string name="ghostData_im">"IM名"</string>
+    <string name="ghostData_notes">"メモ"</string>
+    <string name="ghostData_phone">"電話番号"</string>
+    <string name="ghostData_email">"メールアドレス"</string>
+    <string name="ghostData_postal">"住所"</string>
+    <string name="invalidContactMessage">"連絡先が存在しません。"</string>
+    <string name="pickerNewContactHeader">"新しい連絡先を登録"</string>
+    <string name="selectLabel">"ラベルを選択"</string>
+    <string name="phoneLabelsGroup">"電話番号"</string>
+    <string name="emailLabelsGroup">"メール"</string>
+    <string name="imLabelsGroup">"IM"</string>
+    <string name="postalLabelsGroup">"住所"</string>
+    <string name="otherLabelsGroup">"その他"</string>
+  <string-array name="otherLabels">
+    <item>"組織"</item>
+    <item>"メモ"</item>
+  </string-array>
+    <string name="errorDialogTitle">"写真なし"</string>
+    <string name="photoPickerNotFoundText">"使用できる写真が携帯電話にありません。"</string>
+    <string name="attachToContact">"連絡先のアイコン"</string>
+    <!-- no translation found for customLabelPickerTitle (1081475101983255212) -->
+    <skip />
+    <string name="menu_displayGroup">"グループを表示"</string>
+    <string name="syncGroupPreference">"同期グループを編集"</string>
+    <string name="importFromSim">"連絡先をインポート"</string>
+    <string name="alphabet">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="send_to_voicemail_checkbox">"着信を直接ボイスメールに転送する"</string>
+    <string name="send_to_voicemail_view">"着信はボイスメールに直接転送されます。"</string>
+    <string name="default_ringtone">"デフォルト"</string>
+    <string name="addPicture">"アイコンを追加"</string>
+    <string name="removePicture">"アイコンを削除"</string>
+    <string name="noContacts">"連絡先がありません。"</string>
+    <string name="noContactsWithPhoneNumbers">"電話番号のある連絡先がありません。"</string>
+    <string name="noFavorites">"お気に入りがありません。"</string>
+    <!-- no translation found for select_group_title (7955698611959835612) -->
+    <skip />
+    <string name="groupEmpty">"「<xliff:g id="GROUPNAME">%s</xliff:g>」グループには何も登録されていません。"</string>
+    <string name="showAllGroups">"すべての連絡先"</string>
+    <string name="syncAllGroups">"全連絡先の同期を取る"</string>
+    <string name="groupNameMyContacts">"連絡先リスト"</string>
+    <string name="groupNameWithPhones">"電話番号のある連絡先"</string>
+    <string name="contactCreatedToast">"連絡先を作成しました。"</string>
+    <string name="contactSavedToast">"連絡先を保存しました。"</string>
+    <string name="listSeparatorCallNumber">"電話をかける"</string>
+    <string name="listSeparatorSendSmsMms">"SMS/MMSを送信"</string>
+    <string name="listSeparatorSendEmail">"メールを送信"</string>
+    <string name="listSeparatorSendIm">"インスタントメッセージを送信"</string>
+    <string name="listSeparatorMapAddress">"地図の住所"</string>
+    <string name="listSeparatorOrganizations">"組織"</string>
+    <string name="listSeparatorOtherInformation">"その他の情報"</string>
+    <string name="contactsIconLabel">"連絡先"</string>
+    <string name="contactsFavoritesLabel">"お気に入り"</string>
+    <string name="dialerIconLabel">"ダイヤラ"</string>
+    <string name="recentCallsIconLabel">"通話ログ"</string>
+    <!-- no translation found for liveFolderAll (4789010460767506206) -->
+    <skip />
+    <!-- no translation found for liveFolderFavorites (3100957542927222282) -->
+    <skip />
+    <!-- no translation found for liveFolderPhone (3739376066610926780) -->
+    <skip />
+    <string name="menu_sendTextMessage">"SMSメッセージを送信"</string>
+    <string name="recentCalls_callNumber">"<xliff:g id="NAME">%s</xliff:g>さんに発信"</string>
+    <string name="recentCalls_editNumberBeforeCall">"番号を編集して発信"</string>
+    <string name="recentCalls_addToContact">"連絡先に追加"</string>
+    <string name="recentCalls_removeFromRecentList">"通話ログを削除"</string>
+    <string name="recentCalls_deleteAll">"すべてのログをクリア"</string>
+    <string name="recentCalls_empty">"通話ログはありません。"</string>
+    <string name="imei">"IMEI"</string>
+    <string name="voicemail">"ボイスメール"</string>
+    <string name="unknown">"不明"</string>
+    <string name="private_num">"非通知番号"</string>
+    <string name="dialerKeyboardHintText">"番号をキーボードから入力してください"</string>
+    <!-- no translation found for dialerDialpadHintText (5824490365898349041) -->
+    <skip />
+    <string name="simContacts_emptyLoading">"SIMカードからロードしています..."</string>
+    <string name="simContacts_title">"SIMカードの連絡先"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleコンタクトと同期を取ります。"</font>" "\n"同期が終わると、いつでもこの携帯電話で連絡先を使用できます。"</string>
+    <string name="noContactsHelpText">"登録されている連絡先がありません。"\n\n"連絡先を追加するには["<font fgcolor="#ffffffff"><b>"メニュー"</b></font>"]を押して、次のどれかを選択します。"\n\n"        "\n<li>"["<font fgcolor="#ffffffff"><b>"同期グループを編集"</b></font>"]-新規または既存のGoogleアカウントから追加する場合"\n</li>\n"        "\n<li>"["<font fgcolor="#ffffffff"><b>"新しい連絡先"</b></font>"]-最初から新しい連絡先を作成する場合"\n</li>\n"        "\n<li>"["<font fgcolor="#ffffffff"><b>"連絡先をインポート"</b></font>"]-SIMカードから連絡先を追加する場合"\n</li></string>
+    <string name="seclectSyncGroups_title">"同期を取るグループを選択"</string>
+    <!-- no translation found for liveFolder_all_label (1552523730090319259) -->
+    <skip />
+    <!-- no translation found for liveFolder_favorites_label (2674341514070517105) -->
+    <skip />
+    <!-- no translation found for liveFolder_phones_label (1709786878793436245) -->
+    <skip />
+    <!-- no translation found for dialer_useDtmfDialpad (1707548397435075040) -->
+    <skip />
+    <!-- no translation found for dialer_returnToInCallScreen (3719386377550913067) -->
+    <skip />
+    <!-- no translation found for dialer_addAnotherCall (4205688819890074468) -->
+    <skip />
+</resources>

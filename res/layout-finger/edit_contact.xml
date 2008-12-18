@@ -43,10 +43,10 @@
                 android:layout_marginLeft="6dip"
                 android:layout_marginRight="10dip"
             >
-                <Button android:id="@+id/photoButton"
+                <ImageButton android:id="@+id/photoButton"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="@string/addPicture"
+                    android:src="@drawable/ic_menu_add_picture"
                     android:gravity="center"
                 />
 
@@ -66,8 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dip"
                 android:gravity="center_vertical"
-                android:singleLine="true"
-                android:capitalize="words"
+                android:inputType="textPersonName|textCapWords"
                 android:hint="@string/ghostData_name"
                 android:nextFocusDown="@id/data"
             />

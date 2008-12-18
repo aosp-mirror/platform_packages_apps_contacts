@@ -55,6 +55,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -91,6 +93,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Displays the details of a specific contact.
@@ -99,11 +102,25 @@ public class ViewContactActivity extends ListActivity
         implements View.OnCreateContextMenuListener, View.OnClickListener,
         DialogInterface.OnClickListener {
     private static final String TAG = "ViewContact";
+    private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
+
+    private static final String[] PHONE_KEYS = {
+        Contacts.Intents.Insert.PHONE,
+        Contacts.Intents.Insert.SECONDARY_PHONE,
+        Contacts.Intents.Insert.TERTIARY_PHONE
+    };
+
+    private static final String[] EMAIL_KEYS = {
+        Contacts.Intents.Insert.EMAIL,
+        Contacts.Intents.Insert.SECONDARY_EMAIL,
+        Contacts.Intents.Insert.TERTIARY_EMAIL
+    };
 
     private static final int DIALOG_CONFIRM_DELETE = 1;
 
     public static final int MENU_ITEM_DELETE = 1;
     public static final int MENU_ITEM_MAKE_DEFAULT = 2;
+    public static final int MENU_ITEM_SHOW_BARCODE = 3;
 
     private Uri mUri;
     private ContentResolver mResolver;
@@ -256,8 +273,8 @@ public class ViewContactActivity extends ListActivity
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(R.string.noButton, null)
-                        .setPositiveButton(R.string.yesButton, this)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, this)
                         .setCancelable(false)
                         .create();
         }
@@ -310,6 +327,29 @@ public class ViewContactActivity extends ListActivity
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        // Perform this check each time the menu is about to be shown, because the Barcode Scanner
+        // could be installed or uninstalled at any time.
+        if (isBarcodeScannerInstalled()) {
+            if (menu.findItem(MENU_ITEM_SHOW_BARCODE) == null) {
+                menu.add(0, MENU_ITEM_SHOW_BARCODE, 0, R.string.menu_showBarcode)
+                        .setIcon(R.drawable.ic_menu_show_barcode);
+            }
+        } else {
+            menu.removeItem(MENU_ITEM_SHOW_BARCODE);
+        }
+        return true;
+    }
+
+    private boolean isBarcodeScannerInstalled() {
+        final Intent intent = new Intent(SHOW_BARCODE_INTENT);
+        List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() > 0;
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info;
         try {
@@ -356,6 +396,44 @@ public class ViewContactActivity extends ListActivity
                 showDialog(DIALOG_CONFIRM_DELETE);
                 return true;
             }
+            case MENU_ITEM_SHOW_BARCODE:
+                if (mCursor.moveToFirst()) {
+                    Intent intent = new Intent(SHOW_BARCODE_INTENT);
+                    intent.putExtra("ENCODE_TYPE", "CONTACT_TYPE");
+                    Bundle bundle = new Bundle();
+                    String name = mCursor.getString(CONTACT_NAME_COLUMN);
+                    if (!TextUtils.isEmpty(name)) {
+                        bundle.putString(Contacts.Intents.Insert.NAME, name);
+                        // The 0th ViewEntry in each ArrayList below is a separator item
+                        int entriesToAdd = Math.min(mPhoneEntries.size() - 1, PHONE_KEYS.length);
+                        for (int x = 0; x < entriesToAdd; x++) {
+                            ViewEntry entry = mPhoneEntries.get(x + 1);
+                            bundle.putString(PHONE_KEYS[x], entry.data);
+                        }
+                        entriesToAdd = Math.min(mEmailEntries.size() - 1, EMAIL_KEYS.length);
+                        for (int x = 0; x < entriesToAdd; x++) {
+                            ViewEntry entry = mEmailEntries.get(x + 1);
+                            bundle.putString(EMAIL_KEYS[x], entry.data);
+                        }
+                        if (mPostalEntries.size() >= 2) {
+                            ViewEntry entry = mPostalEntries.get(1);
+                            bundle.putString(Contacts.Intents.Insert.POSTAL, entry.data);
+                        }
+                        intent.putExtra("ENCODE_DATA", bundle);
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            // The check in onPrepareOptionsMenu() should make this impossible, but
+                            // for safety I'm catching the exception rather than crashing. Ideally
+                            // I'd call Menu.removeItem() here too, but I don't see a way to get
+                            // the options menu.
+                            Log.e(TAG, "Show barcode menu item was clicked but Barcode Scanner " +
+                                    "was not installed.");
+                        }
+                        return true;
+                    }
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
