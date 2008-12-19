@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.mail" />
 
     <application
         android:label="@string/contactsList"
@@ -239,7 +240,8 @@
         </activity>
 
         <!-- Edits the details of a single contact -->
-        <activity android:name="EditContactActivity">
+        <activity android:name="EditContactActivity"
+                android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -264,16 +266,47 @@
             />
         </activity>        
 
-        <!-- Preferences activity -->
-        <activity android:name="ContactsPreferenceActivity" />
-
         <!-- Activity used to select the groups that should be synced -->
-        <activity android:name="ContactsGroupSyncSelector" />
+        <activity android:name="ContactsGroupSyncSelector"
+            android:label="@string/seclectSyncGroups_title"
+        />
 
         <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
         <meta-data android:name="android.app.default_searchable" 
                    android:value=".ContactsListActivity" />
-        
+
+
+        <!-- LIVE FOLDERS -->
+        <activity
+            android:name=".ContactsLiveFolders$AllContacts"
+            android:label="@string/liveFolderAll"
+            android:icon="@drawable/ic_launcher_contacts">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ContactsLiveFolders$StarredContacts"
+            android:label="@string/liveFolderFavorites"
+            android:icon="@drawable/ic_launcher_contacts_starred">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ContactsLiveFolders$PhoneContacts"
+            android:label="@string/liveFolderPhone"
+            android:icon="@drawable/ic_launcher_contacts_phones">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 </manifest>
 

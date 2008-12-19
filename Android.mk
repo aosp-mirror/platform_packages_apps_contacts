@@ -5,8 +5,12 @@ LOCAL_MODULE_TAGS := user development
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
+LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client
+
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
+
+LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client
 
 include $(BUILD_PACKAGE)
 

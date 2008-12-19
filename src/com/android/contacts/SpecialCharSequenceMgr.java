@@ -193,7 +193,7 @@ public class SpecialCharSequenceMgr {
         AlertDialog alert = new AlertDialog.Builder(context)
                 .setTitle(R.string.imei)
                 .setMessage(imeiStr)
-                .setPositiveButton(R.string.ok, null)
+                .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(false)
                 .show();
         alert.getWindow().setType(WindowManager.LayoutParams.TYPE_PRIORITY_PHONE);

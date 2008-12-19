@@ -18,29 +18,28 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
-<!-- The group banner isn't used anymore
-    <TextView 
-            android:id="@+id/contact_group"
-            android:text="@string/noContacts"
+
+    <ListView android:id="@android:id/list"
+            android:layout_width="fill_parent" 
+            android:layout_height="fill_parent"
+            android:fastScrollEnabled="true"
+    />
+
+    <ScrollView android:id="@android:id/empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+    >
+        <TextView android:id="@+id/emptyText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/title_bar"
-            style="@android:style/TextAppearance.WindowTitle"/>
--->
-    <com.android.contacts.FastScrollView 
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        <ListView android:id="@android:id/list"
-                android:layout_width="fill_parent" 
-                android:layout_height="fill_parent"
+            android:text="@string/noContacts"
+            android:textSize="20sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:lineSpacingMultiplier="0.92"
         />
-
-        <TextView android:id="@android:id/empty"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:text="@string/noContacts"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-    </com.android.contacts.FastScrollView>
+    </ScrollView>
 </LinearLayout>

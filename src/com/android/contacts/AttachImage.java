@@ -28,22 +28,22 @@ import java.io.ByteArrayOutputStream;
 
 /**
  * Provides an external interface for other applications to attach images
- * to contacts. It will first present a contact picker and then run the 
+ * to contacts. It will first present a contact picker and then run the
  * image that is handed to it through the cropper to make the image the proper
  * size and give the user a chance to use the face detector.
  */
-class AttachImage extends Activity {
+public class AttachImage extends Activity {
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
 
     private static final String CONTACT_URI_KEY = "contact_uri";
 
     public AttachImage() {
-        
+
     }
 
     Uri mContactUri;
-    
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);

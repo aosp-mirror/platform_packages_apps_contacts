@@ -20,7 +20,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
 >
-    <LinearLayout
+    <LinearLayout android:id="@+id/digitsAndBackspace"
         android:layout_width="fill_parent"
         android:layout_height="66px"
         android:layout_marginTop="3px"
@@ -57,4 +57,15 @@
 
     <!-- Keypad section -->
     <include layout="@layout/dialpad" />
+
+    <!-- "Dialpad chooser" UI, shown only when the user brings up the
+         Dialer while a call is already in progress.
+         When this UI is visible, the other Dialer elements
+         (the textfield/button and the dialpad) are hidden. -->
+    <ListView android:id="@+id/dialpadChooser"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:footerDividersEnabled="true"
+    />
+
 </LinearLayout>

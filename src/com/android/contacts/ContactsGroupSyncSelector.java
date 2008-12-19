@@ -16,28 +16,27 @@
 
 package com.android.contacts;
 
+import com.google.android.googlelogin.GoogleLoginServiceConstants;
+import com.google.android.googlelogin.GoogleLoginServiceHelper;
+
+import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.Contacts;
+import android.provider.Gmail;
 import android.provider.Contacts.Groups;
 import android.provider.Contacts.Settings;
 import android.text.TextUtils;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.internal.app.AlertActivity;
-import com.android.internal.app.AlertController;
-
-public final class ContactsGroupSyncSelector extends AlertActivity implements 
-        ListView.OnItemClickListener, DialogInterface.OnClickListener {
+public final class ContactsGroupSyncSelector extends ListActivity implements View.OnClickListener {
 
     private static final String[] PROJECTION = new String[] {
             Groups._ID, // 0
@@ -50,9 +49,7 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
     private static final int COLUMN_INDEX_SHOULD_SYNC = 2;
     private static final int COLUMN_INDEX_SYSTEM_ID = 3;
 
-    private ContentResolver mResolver;
-    private ListView mListView;
-    private GroupsAdapter mAdapter;
+    private static final int SUBACTIVITY_GET_ACCOUNT = 1;
 
     boolean[] mChecked;
     boolean mSyncAllGroups;
@@ -60,8 +57,7 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
     
     private final class GroupsAdapter extends ArrayAdapter<CharSequence> {
         public GroupsAdapter(CharSequence[] items) {
-            super(new ContextThemeWrapper(ContactsGroupSyncSelector.this,
-                    android.R.style.Theme_Light),
+            super(ContactsGroupSyncSelector.this,
                     android.R.layout.simple_list_item_checked,
                     android.R.id.text1, items);
         }
@@ -95,8 +91,9 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
     /**
      * Handles clicks on the list items
      */
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        boolean isChecked = mListView.isItemChecked(position);
+    @Override
+    protected void onListItemClick(ListView list, View view, int position, long id) {
+        boolean isChecked = list.isItemChecked(position);
         mChecked[position] = isChecked;
         if (position == 0) {
             mSyncAllGroups = isChecked;
@@ -105,58 +102,85 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
     }
 
     /**
-     * Handles clicks on the OK button
+     * Handles clicks on the OK and cancel buttons
      */
-    public void onClick(DialogInterface dialog, int which) {
-        if (mSyncAllGroups) {
-            // For now we only support a single account and the UI doesn't know what
-            // the account name is, so we're using a global setting for SYNC_EVERYTHING.
-            // Some day when we add multiple accounts to the UI this should use the per
-            // account setting.
-            Settings.setSetting(mResolver, null, Settings.SYNC_EVERYTHING, "1");
-        } else {
-            final ContentResolver resolver = mResolver;
-            ContentValues values = new ContentValues();
-            int count = mChecked.length;
-            for (int i = 1; i < count; i++) {
-                values.clear();
-                values.put(Groups.SHOULD_SYNC, mChecked[i]);
-                resolver.update(ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupIds[i]),
-                        values, null, null);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.cancel: {
+                finish();
+                break;
             }
-            // For now we only support a single account and the UI doesn't know what
-            // the account name is, so we're using a global setting for SYNC_EVERYTHING.
-            // Some day when we add multiple accounts to the UI this should use the per
-            // account setting.
-            Settings.setSetting(resolver, null, Settings.SYNC_EVERYTHING, "0");
+            
+            case R.id.ok: {
+                final ContentResolver resolver = getContentResolver();
+                if (mSyncAllGroups) {
+                    // For now we only support a single account and the UI doesn't know what
+                    // the account name is, so we're using a global setting for SYNC_EVERYTHING.
+                    // Some day when we add multiple accounts to the UI this should use the per
+                    // account setting.
+                    Settings.setSetting(resolver, null, Settings.SYNC_EVERYTHING, "1");
+                } else {
+                    ContentValues values = new ContentValues();
+                    int count = mChecked.length;
+                    for (int i = 1; i < count; i++) {
+                        values.clear();
+                        values.put(Groups.SHOULD_SYNC, mChecked[i]);
+                        resolver.update(ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupIds[i]),
+                                values, null, null);
+                    }
+                    // For now we only support a single account and the UI doesn't know what
+                    // the account name is, so we're using a global setting for SYNC_EVERYTHING.
+                    // Some day when we add multiple accounts to the UI this should use the per
+                    // account setting.
+                    Settings.setSetting(resolver, null, Settings.SYNC_EVERYTHING, "0");
+                }
+                finish();
+                break;
+            }
         }
     }
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        mResolver = getContentResolver();
 
-        // Set the alert parameters
-        AlertController.AlertParams params = mAlertParams;
-        params.mTitle = getText(R.string.syncGroupChooserTitle);
-        params.mIcon = getResources().getDrawable(R.drawable.ic_tab_unselected_contacts);
-        params.mPositiveButtonText = getText(R.string.okButtonText);
-        params.mPositiveButtonListener = this;
-        params.mNegativeButtonText = getText(R.string.cancelButtonText);
-        buildItems(params);
+        // Only look for an account on first run.
+        if (savedState == null) {
+            // This will request a Gmail account and if none are present, it will
+            // invoke SetupWizard to login or create one. The result is returned
+            // through onActivityResult().
+            Bundle bundle = new Bundle();
+            bundle.putCharSequence("optional_message", getText(R.string.contactsSyncPlug));
+            GoogleLoginServiceHelper.getCredentials(this, SUBACTIVITY_GET_ACCOUNT,
+                    bundle, GoogleLoginServiceConstants.PREFER_HOSTED, Gmail.GMAIL_AUTH_SERVICE,
+                    true);
+        }
 
-        // Takes the info in mAlertParams and creates the layout
-        setupAlert();
+        setContentView(R.layout.sync_settings);
 
-        mListView = mAlert.getListView();
-        mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        mListView.setOnItemClickListener(this);
-        adjustChecks();
+        findViewById(R.id.ok).setOnClickListener(this);
+        findViewById(R.id.cancel).setOnClickListener(this);
+        
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
-    private void buildItems(AlertController.AlertParams params) {
-        Cursor cursor = mResolver.query(Groups.CONTENT_URI, PROJECTION, null, null, Groups.NAME);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == SUBACTIVITY_GET_ACCOUNT) {
+            if (resultCode == RESULT_OK) {
+                // There is an account setup, build the group list
+                buildItems();
+                adjustChecks();
+            } else {
+                finish();
+            }
+        }
+    }
+
+    private void buildItems() {
+        final ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(Groups.CONTENT_URI, PROJECTION, null, null, Groups.NAME);
         if (cursor != null) {
             try {
                 int count = cursor.getCount() + 1;
@@ -183,13 +207,12 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
                     }
                 }
                 mChecked = checked;
-                mSyncAllGroups = getShouldSyncEverything(mResolver);
+                mSyncAllGroups = getShouldSyncEverything(resolver);
                 checked[0] = mSyncAllGroups;
                 mGroupIds = groupIds;
     
                 // Setup the adapter
-                mAdapter = new GroupsAdapter(items);
-                params.mAdapter = mAdapter;
+                setListAdapter(new GroupsAdapter(items));
             } finally {
                 cursor.close();
             }
@@ -197,7 +220,7 @@ public final class ContactsGroupSyncSelector extends AlertActivity implements
     }
 
     private void adjustChecks() {
-        ListView list = mListView;
+        final ListView list = getListView();
         if (mSyncAllGroups) {
             int count = list.getCount();
             for (int i = 0; i < count; i++) {
