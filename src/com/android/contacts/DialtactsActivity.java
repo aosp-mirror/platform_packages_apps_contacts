@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -37,7 +38,7 @@ import com.android.internal.telephony.ITelephony;
  * and another tab with recent calls in it. This is the container and the tabs
  * are embedded using intents.
  */
-public class DialtactsActivity extends TabActivity {
+public class DialtactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
     private static final String TAG = "Dailtacts";
 
     public static final String EXTRA_IGNORE_STATE = "ignore-state";
@@ -66,6 +67,7 @@ public class DialtactsActivity extends TabActivity {
         setContentView(R.layout.dialer_activity);
 
         mTabHost = getTabHost();
+        mTabHost.setOnTabChangedListener(this);
 
         // Setup the tabs
         setupDialerTab();
@@ -285,5 +287,17 @@ public class DialtactsActivity extends TabActivity {
         }
         
         return super.onKeyDown(keyCode, event);
+    }
+
+    /** {@inheritDoc} */
+    public void onTabChanged(String tabId) {
+        // Because we're using Activities as our tab children, we trigger
+        // onWindowFocusChanged() to let them know when they're active.  This may
+        // seem to duplicate the purpose of onResume(), but it's needed because
+        // onResume() can't reliably check if a keyguard is active.
+        Activity activity = getLocalActivityManager().getActivity(tabId);
+        if (activity != null) {
+            activity.onWindowFocusChanged(true);
+        }
     }
 }

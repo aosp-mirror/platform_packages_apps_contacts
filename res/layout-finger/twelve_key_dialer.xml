@@ -64,8 +64,8 @@
          (the textfield/button and the dialpad) are hidden. -->
     <ListView android:id="@+id/dialpadChooser"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:footerDividersEnabled="true"
+        android:layout_height="1dp"
+        android:layout_weight="1"
     />
 
 </LinearLayout>

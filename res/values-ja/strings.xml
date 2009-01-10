@@ -36,9 +36,11 @@
     <string name="editContact_title_edit">"連絡先を編集"</string>
     <string name="editContact_title_insert">"新しい連絡先"</string>
     <string name="menu_addItem">"詳細情報"</string>
+    <string name="label_phonetic_name">フリガナ</string>
     <string name="label_notes">"メモ"</string>
     <string name="label_ringtone">"着信音"</string>
     <string name="ghostData_name">"氏名を入力してください"</string>
+    <string name="ghostData_phonetic_name">ﾌﾘｶﾞﾅ</string>
     <string name="ghostData_company">"会社"</string>
     <string name="ghostData_title">"役職"</string>
     <string name="ghostData_im">"IM名"</string>

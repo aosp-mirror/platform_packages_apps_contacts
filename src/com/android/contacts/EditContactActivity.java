@@ -23,6 +23,7 @@ import static com.android.contacts.ContactEntryAdapter.CONTACT_NAME_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_NOTES_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_SEND_TO_VOICEMAIL_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_PHONETIC_NAME_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.METHODS_AUX_DATA_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.METHODS_DATA_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.METHODS_ID_COLUMN;
@@ -101,6 +102,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -172,6 +174,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private LayoutInflater mInflater;
     private MenuItem mPhotoMenuItem;
     private boolean mPhotoPresent = false;
+    private EditText mPhoneticNameView;
+    private LinearLayout mPhoneticNameLayout;
 
     // These are accessed by inner classes. They're package scoped to make access more efficient.
     /* package */ ContentResolver mResolver;
@@ -308,8 +312,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mPhotoButton = findViewById(R.id.photoButton);
         mPhotoButton.setOnClickListener(this);
         mSendToVoicemailCheckBox = (CheckBox) findViewById(R.id.send_to_voicemail);
+        mPhoneticNameView = (EditText) findViewById(R.id.phonetic_name);
+        mPhoneticNameLayout = (LinearLayout) findViewById(R.id.phonetic_name_layout);
 
-        // Setup the bottom buttons 
+        // Setup phonetic name field.  mPhoneticNameLayout is GONE by default.
+        // TODO: Don't do this here in Java; instead do it purely using
+        // resources, by having mPhoneticNameLayout come from an XML
+        // <include> file that contains the real UI in layout-ja, but is
+        // empty in layout-finger...
+        String language = Locale.getDefault().getLanguage();
+        if (language != null && language.equals("ja")) {
+            mPhoneticNameLayout.setVisibility(View.VISIBLE);
+        }
+
+        // Setup the bottom buttons
         View view = findViewById(R.id.addMore);
         view.setOnClickListener(this);
         view = findViewById(R.id.saveButton);
@@ -378,6 +394,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         outState.putParcelable("photo", mPhoto);
         outState.putBoolean("photoChanged", mPhotoChanged);
         outState.putBoolean("sendToVoicemail", mSendToVoicemailCheckBox.isChecked());
+        outState.putString("phoneticName", mPhoneticNameView.getText().toString());
     }
 
     @Override
@@ -403,7 +420,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         }
         mPhotoChanged = inState.getBoolean("photoChanged");
         mSendToVoicemailCheckBox.setChecked(inState.getBoolean("sendToVoicemail"));
-        
+        mPhoneticNameView.setText(inState.getString("phoneticName"));
+
         // Now that everything is restored, build the view
         buildViews();
     }
@@ -547,11 +565,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
         // Don't show 'Silent'
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
+        
+        Uri ringtoneUri;
         if (entry.data != null) {
-            Uri ringtoneUri = Uri.parse(entry.data);
-            // Put checkmark next to the current ringtone for this contact
-            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
+            ringtoneUri = Uri.parse(entry.data);
+        } else {
+            // Otherwise pick default ringtone Uri so that something is selected.
+            ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         }
+        
+        // Put checkmark next to the current ringtone for this contact
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
         // Launch!
         startActivityForResult(intent, RINGTONE_PICKED);
     }
@@ -919,6 +943,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             numValues++;
         }
         values.put(People.NAME, name);
+        values.put(People.PHONETIC_NAME, mPhoneticNameView.getText().toString());
         values.put(People.SEND_TO_VOICEMAIL, mSendToVoicemailCheckBox.isChecked() ? 1 : 0);
         mResolver.update(mUri, values, null, null);
 
@@ -992,6 +1017,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             numValues++;
         }
         values.put(People.NAME, name);
+        values.put(People.PHONETIC_NAME, mPhoneticNameView.getText().toString());
         values.put(People.SEND_TO_VOICEMAIL, mSendToVoicemailCheckBox.isChecked() ? 1 : 0);
 
         // Add the contact to the My Contacts group
@@ -1129,6 +1155,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         entry = EditEntry.newRingtoneEntry(this,
                 personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN), mUri);
         mOtherEntries.add(entry);
+
+        // Phonetic name
+        mPhoneticNameView.setText(personCursor.getString(CONTACT_PHONETIC_NAME_COLUMN));
+
         personCursor.close();
 
         // Build up the phone entries
@@ -1279,7 +1309,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Ringtone
         entry = EditEntry.newRingtoneEntry(this, null, mUri);
         mOtherEntries.add(entry);
-        
     }
 
     private void addFromExtras(Bundle extras, Uri phonesUri, Uri methodsUri) {
@@ -1290,14 +1319,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (name != null && TextUtils.isGraphic(name)) {
             mNameView.setText(name);
         }
-        
+
+        // Read the phonetic name from the bundle
+        CharSequence phoneticName = extras.getCharSequence(Insert.PHONETIC_NAME);
+        if (!TextUtils.isEmpty(phoneticName)) {
+            mPhoneticNameView.setText(phoneticName);
+        }
+
         // Postal entries from extras
         CharSequence postal = extras.getCharSequence(Insert.POSTAL);
         int postalType = extras.getInt(Insert.POSTAL_TYPE, INVALID_TYPE);
         if (!TextUtils.isEmpty(postal) && postalType == INVALID_TYPE) {
             postalType = DEFAULT_POSTAL_TYPE;
         }
-        
+
         if (postalType != INVALID_TYPE) {
             entry = EditEntry.newPostalEntry(this, null, postalType, postal.toString(),
                     methodsUri, 0);
@@ -1344,14 +1379,24 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private void addEmailFromExtras(Bundle extras, Uri methodsUri, String emailField,
             String typeField, String primaryField) {
         CharSequence email = extras.getCharSequence(emailField);
-        int emailType = extras.getInt(typeField, INVALID_TYPE);
+        
+        // Correctly handle String in typeField as TYPE_CUSTOM 
+        int emailType = INVALID_TYPE;
+        String customLabel = null;
+        if(extras.get(typeField) instanceof String) {
+            emailType = ContactMethods.TYPE_CUSTOM;
+            customLabel = extras.getString(typeField);
+        } else {
+            emailType = extras.getInt(typeField, INVALID_TYPE);
+        }
+
         if (!TextUtils.isEmpty(email) && emailType == INVALID_TYPE) {
             emailType = DEFAULT_EMAIL_TYPE;
             mPrimaryEmailAdded = true;
         }
 
         if (emailType != INVALID_TYPE) {
-            EditEntry entry = EditEntry.newEmailEntry(this, null, emailType, email.toString(),
+            EditEntry entry = EditEntry.newEmailEntry(this, customLabel, emailType, email.toString(),
                     methodsUri, 0);
             entry.isPrimary = (primaryField == null) ? false : extras.getBoolean(primaryField);
             mEmailEntries.add(entry);
@@ -1366,13 +1411,23 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private void addPhoneFromExtras(Bundle extras, Uri phonesUri, String phoneField,
             String typeField, String primaryField) {
         CharSequence phoneNumber = extras.getCharSequence(phoneField);
-        int phoneType = extras.getInt(typeField, INVALID_TYPE);
+        
+        // Correctly handle String in typeField as TYPE_CUSTOM 
+        int phoneType = INVALID_TYPE;
+        String customLabel = null;
+        if(extras.get(typeField) instanceof String) {
+            phoneType = Phones.TYPE_CUSTOM;
+            customLabel = extras.getString(typeField);
+        } else {
+            phoneType = extras.getInt(typeField, INVALID_TYPE);
+        }
+        
         if (!TextUtils.isEmpty(phoneNumber) && phoneType == INVALID_TYPE) {
             phoneType = DEFAULT_PHONE_TYPE;
         }
 
         if (phoneType != INVALID_TYPE) {
-            EditEntry entry = EditEntry.newPhoneEntry(this, null, phoneType,
+            EditEntry entry = EditEntry.newPhoneEntry(this, customLabel, phoneType,
                     phoneNumber.toString(), phonesUri, 0);
             entry.isPrimary = (primaryField == null) ? false : extras.getBoolean(primaryField);
             mPhoneEntries.add(entry);

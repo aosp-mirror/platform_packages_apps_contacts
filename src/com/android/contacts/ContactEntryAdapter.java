@@ -40,6 +40,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         People.STARRED, // 5
         People.CUSTOM_RINGTONE, // 6
         People.SEND_TO_VOICEMAIL, // 7
+        People.PHONETIC_NAME, // 8
     };
     public static final int CONTACT_ID_COLUMN = 0;
     public static final int CONTACT_NAME_COLUMN = 1;
@@ -49,6 +50,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
     public static final int CONTACT_STARRED_COLUMN = 5;
     public static final int CONTACT_CUSTOM_RINGTONE_COLUMN = 6;
     public static final int CONTACT_SEND_TO_VOICEMAIL_COLUMN = 7;
+    public static final int CONTACT_PHONETIC_NAME_COLUMN = 8;
 
     public static final String[] PHONES_PROJECTION = new String[] {
         People.Phones._ID, // 0

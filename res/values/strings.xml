@@ -117,6 +117,9 @@
     <!-- Button that adds more info to a contact, like a new phone number, email address, or postal address -->
     <string name="menu_addItem">More info</string>
 
+    <!-- The label describing the phonetic pronunciation/reading of a contact name -->
+    <string name="label_phonetic_name">Phonetic</string>
+
     <!-- The label describing the Notes field of a contact. This field allows free form text entry about a contact -->
     <string name="label_notes">Notes</string>
 
@@ -125,6 +128,9 @@
 
     <!-- Hint text for the contact name when editing -->
     <string name="ghostData_name">First and Last</string>
+
+    <!-- Hint text for the phonetic reading of the contact name when editing -->
+    <string name="ghostData_phonetic_name">Phonetic name</string>
 
     <!-- Hint text for the organization name when editing -->
     <string name="ghostData_company">Company</string>

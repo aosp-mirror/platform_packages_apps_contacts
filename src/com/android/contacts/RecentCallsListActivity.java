@@ -271,7 +271,7 @@ public class RecentCallsListActivity extends ListActivity
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
                             Uri.withAppendedPath(Phones.CONTENT_FILTER_URL,
-                                    ciq.number),
+                                    Uri.encode(ciq.number)),
                     PHONES_PROJECTION, null, null, null);
                 if (phonesCursor != null) {
                     if (phonesCursor.moveToFirst()) {
@@ -434,7 +434,10 @@ public class RecentCallsListActivity extends ListActivity
             }
 
             // Set the time and date
-            views.dateView.setText(DateUtils.getRelativeTimeSpanString(date));
+            int flags = DateUtils.FORMAT_ABBREV_RELATIVE | DateUtils.FORMAT_SHOW_DATE
+                    | DateUtils.FORMAT_ABBREV_MONTH;
+            views.dateView.setText(DateUtils.getRelativeDateTimeString(context, date,
+                    DateUtils.MINUTE_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, flags));
 
             // Set the icon
             switch (type) {
@@ -503,7 +506,7 @@ public class RecentCallsListActivity extends ListActivity
                 .getVoiceMailNumber();
         mQueryHandler = new QueryHandler(this);
     }
-
+    
     @Override
     protected void onResume() {
         // The adapter caches looked up numbers, clear it so they will get
@@ -516,16 +519,7 @@ public class RecentCallsListActivity extends ListActivity
         resetNewCallsFlag();
 
         super.onResume();
-        try {
-            ITelephony iTelephony = ITelephony.Stub.asInterface(ServiceManager.getService("phone"));
-            if (iTelephony != null) {
-                iTelephony.cancelMissedCallsNotification();
-            } else {
-                Log.w(TAG, "Telephony service is null, can't call cancelMissedCallsNotification");
-            }
-        } catch (RemoteException e) {
-            Log.e(TAG, "Failed to clear missed calls notification due to remote excetpion");
-        }
+
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
     }
 
@@ -544,6 +538,28 @@ public class RecentCallsListActivity extends ListActivity
         Cursor cursor = mAdapter.getCursor();
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        
+        // Clear notifications only when window gains focus.  This activity won't
+        // immediately receive focus if the keyguard screen is above it.
+        if (hasFocus) {
+            try {
+                ITelephony iTelephony =
+                        ITelephony.Stub.asInterface(ServiceManager.getService("phone"));
+                if (iTelephony != null) {
+                    iTelephony.cancelMissedCallsNotification();
+                } else {
+                    Log.w(TAG, "Telephony service is null, can't call " +
+                            "cancelMissedCallsNotification");
+                }
+            } catch (RemoteException e) {
+                Log.e(TAG, "Failed to clear missed calls notification due to remote exception");
+            }
         }
     }
 

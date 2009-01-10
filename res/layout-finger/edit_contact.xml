@@ -77,6 +77,36 @@
             />
         </LinearLayout>
 
+        <LinearLayout android:id="@+id/phonetic_name_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:orientation="horizontal"
+            android:padding="0dip"
+            android:gravity="center_vertical"
+            android:baselineAligned="false"
+            android:visibility="gone"
+        >
+            <TextView android:id="@+id/phonetic_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="4dip"
+                android:gravity="left|center_vertical"
+                android:text="@string/label_phonetic_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+            <EditText android:id="@+id/phonetic_name"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="4dip"
+                android:gravity="center_vertical"
+                android:inputType="textPersonName|textCapWords"
+                android:hint="@string/ghostData_phonetic_name"
+                android:nextFocusDown="@id/data"
+            />
+        </LinearLayout>
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dip"
