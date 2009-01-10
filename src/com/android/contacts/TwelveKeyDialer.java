@@ -196,18 +196,14 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
         mDialpadChooser = (ListView) findViewById(R.id.dialpadChooser);
         mDialpadChooser.setOnItemClickListener(this);
-        // Add a dummy "footer" view so that the divider under the bottom
-        // item will be visible.
-        // (We set android:footerDividersEnabled="true" on this ListView in XML.)
-        mDialpadChooser.addFooterView(new View(this), null, false);
 
         if (!resolveIntent() && icicle != null) {
             super.onRestoreInstanceState(icicle);
         }
-        
-        // if the mToneGenerator creation fails, just continue without it.  It is 
+
+        // If the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
-        synchronized(mToneGeneratorLock) {
+        synchronized (mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
                     mToneGenerator = new ToneGenerator(AudioManager.STREAM_RING, 

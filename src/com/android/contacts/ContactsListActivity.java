@@ -633,7 +633,7 @@ public final class ContactsListActivity extends ListActivity
         Intent syncIntent = new Intent(Intent.ACTION_VIEW);
         syncIntent.setClass(this, ContactsGroupSyncSelector.class);
         menu.add(0, 0, 0, R.string.syncGroupPreference)
-                .setIcon(R.drawable.ic_menu_refresh)
+                .setIcon(android.R.drawable.ic_menu_refresh)
                 .setIntent(syncIntent);
         
         // SIM import
@@ -815,7 +815,6 @@ public final class ContactsListActivity extends ListActivity
                     .setMessage(R.string.deleteConfirmation)
                     .setNegativeButton(android.R.string.cancel, null)
                     .setPositiveButton(android.R.string.ok, new DeleteClickListener(uri))
-                    .setCancelable(false)
                     .show();
                 return true;
             }
