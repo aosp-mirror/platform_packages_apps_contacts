@@ -355,7 +355,7 @@
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
     </string>
-    
+
     <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
     <string name="seclectSyncGroups_title">Select groups to sync</string>
 
@@ -382,5 +382,31 @@
          (Part of a list of options shown in the dialer when another call
          is already in progress.) -->
     <string name="dialer_addAnotherCall">Add call</string>
+
+    <!-- Title bar for call detail screen -->
+    <string name="callDetailTitle">Call details</string>
+
+    <!-- Toast for call detail screen when couldn't read the requested details -->
+    <string name="toast_call_detail_error">Couldn\'t read details for the requested call.</string>
+
+    <!-- In call detail screen, label for call type -->
+    <string name="call_type">Type</string>
+
+    <!-- In call detail screen, expanded titles for call types -->
+    <string name="type_incoming">Incoming call</string>
+    <string name="type_outgoing">Outgoing call</string>
+    <string name="type_missed">Missed call</string>
+
+    <!-- In call detail screen, label for call date/time -->
+    <string name="call_time">Time</string>
+
+    <!-- In call detail screen, combine date/time string and relative time to give verbose call date/time -->
+    <string name="datetime_relative">"<xliff:g id="datetime" example="Dec 31, 2007, 11:00 am">%1$s</xliff:g> (<xliff:g id="relative" example="4 hours ago">%2$s</xliff:g>)"</string>
+
+    <!-- In call detail screen, label for call duration -->
+    <string name="call_duration">Duration</string>
+
+    <!-- In call detail screen, header title for actions section -->
+    <string name="header_actions">Actions</string>
 
 </resources>

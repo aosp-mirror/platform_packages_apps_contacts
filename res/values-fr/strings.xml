@@ -33,9 +33,13 @@
     <string name="editContact_title_edit">"Modifier le contact"</string>
     <string name="editContact_title_insert">"Nouveau contact"</string>
     <string name="menu_addItem">"Plus d\'infos"</string>
+    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
+    <skip />
     <string name="label_notes">"Remarques"</string>
     <string name="label_ringtone">"Sonnerie"</string>
     <string name="ghostData_name">"Premier et dernier"</string>
+    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
+    <skip />
     <string name="ghostData_company">"Société"</string>
     <string name="ghostData_title">"Position"</string>
     <string name="ghostData_im">"Nom du compte de MI"</string>

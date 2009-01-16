@@ -74,7 +74,9 @@ import android.provider.Contacts.Organizations;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
 import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
@@ -90,6 +92,7 @@ import android.view.ViewParent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -110,7 +113,7 @@ import java.util.Map;
  * background while this activity is running, the updates will be overwritten.
  */
 public final class EditContactActivity extends Activity implements View.OnClickListener,
-        ExpandableListView.OnChildClickListener {
+        ExpandableListView.OnChildClickListener, TextWatcher, CheckBox.OnCheckedChangeListener {
     private static final String TAG = "EditContactActivity";
 
     private static final int STATE_UNKNOWN = 0;
@@ -176,6 +179,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private boolean mPhotoPresent = false;
     private EditText mPhoneticNameView;
     private LinearLayout mPhoneticNameLayout;
+
+    /** Flag marking this contact as changed, meaning we should write changes back. */
+    private boolean mContactChanged = false;
 
     // These are accessed by inner classes. They're package scoped to make access more efficient.
     /* package */ ContentResolver mResolver;
@@ -395,6 +401,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         outState.putBoolean("photoChanged", mPhotoChanged);
         outState.putBoolean("sendToVoicemail", mSendToVoicemailCheckBox.isChecked());
         outState.putString("phoneticName", mPhoneticNameView.getText().toString());
+        outState.putBoolean("contactChanged", mContactChanged);
     }
 
     @Override
@@ -421,6 +428,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mPhotoChanged = inState.getBoolean("photoChanged");
         mSendToVoicemailCheckBox.setChecked(inState.getBoolean("sendToVoicemail"));
         mPhoneticNameView.setText(inState.getString("phoneticName"));
+        mContactChanged = inState.getBoolean("contactChanged");
 
         // Now that everything is restored, build the view
         buildViews();
@@ -448,6 +456,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             case RINGTONE_PICKED: {
                 Uri pickedUri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                 handleRingtonePicked(pickedUri);
+                mContactChanged = true;
                 break;
             }
         }
@@ -754,6 +763,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Rebuild the views if needed
         if (entry != null) {
             buildViews();
+            mContactChanged = true;
 
             View dataView = entry.view.findViewById(R.id.data);
             if (dataView == null) {
@@ -897,6 +907,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         entry.setLabel(EditContactActivity.this, ContactMethods.TYPE_CUSTOM,
                                 label.getText().toString());
+                        mContactChanged = true;
+
                         if (addTo != null) {
                             addTo.add(entry);
                             buildViews();
@@ -999,7 +1011,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             // Add the entry to the my contacts group if it isn't there already
             People.addToMyContactsGroup(mResolver, ContentUris.parseId(mUri));
             setResult(RESULT_OK, new Intent().setData(mUri));
-            Toast.makeText(this, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+
+            // Only notify user if we actually changed contact
+            if (mContactChanged || mPhotoChanged) {
+                Toast.makeText(this, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -1108,6 +1124,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Name
         mNameView.setText(personCursor.getString(CONTACT_NAME_COLUMN));
+        mNameView.addTextChangedListener(this);
 
         // Photo
         mPhoto = People.loadContactPhoto(this, mUri, 0, null);
@@ -1121,6 +1138,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Send to voicemail
         mSendToVoicemailCheckBox
                 .setChecked(personCursor.getInt(CONTACT_SEND_TO_VOICEMAIL_COLUMN) == 1);
+        mSendToVoicemailCheckBox
+                .setOnCheckedChangeListener(this);
 
         // Organizations
         Uri organizationsUri = Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY);
@@ -1158,6 +1177,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Phonetic name
         mPhoneticNameView.setText(personCursor.getString(CONTACT_PHONETIC_NAME_COLUMN));
+        mPhoneticNameView.addTextChangedListener(this);
 
         personCursor.close();
 
@@ -1269,6 +1289,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.isPrimary = true;
             mEmailEntries.add(entry);
         }
+
+        mContactChanged = false;
     }
 
     /**
@@ -1562,6 +1584,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             }
         }
 
+        // Connect listeners up to watch for changed values.
+        if (data instanceof EditText) {
+            data.addTextChangedListener(this);
+        }
+        if (data2 instanceof EditText) {
+            data2.addTextChangedListener(this);
+        }
+
         // Hook up the delete button
         View delete = view.findViewById(R.id.delete);
         if (delete != null) delete.setOnClickListener(this);
@@ -1597,9 +1627,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     createCustomPicker(mEntry, null);
                 } else {
                     mEntry.setLabel(EditContactActivity.this, type, mLabels[which]);
+                    mContactChanged = true;
                 }
             } else {
                 mEntry.setLabel(EditContactActivity.this, which, mLabels[which]);
+                mContactChanged = true;
             }
         }
     }
@@ -1847,7 +1879,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     break;
             }
 
-            values.put(ContactMethods.ISPRIMARY, isPrimary ? "1" : "0");
+            // Only set the ISPRIMARY flag if part of the incoming data.  This is because the
+            // ContentProvider will try finding a new primary when setting to false, meaning
+            // it's possible to lose primary altogether as we walk down the list.  If this editor
+            // implements editing of primaries in the future, this will need to be revisited.
+            if (isPrimary) {
+                values.put(ContactMethods.ISPRIMARY, 1);
+            }
 
             // Save the data
             if (view != null && syncDataWithView) {
@@ -2028,5 +2066,23 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.contentType = EditorInfo.TYPE_CLASS_TEXT;
             return entry;
         }
+    }
+
+    public void afterTextChanged(Editable s) {
+        // Someone edited a text field, so assume this contact is dirty.
+        mContactChanged = true;
+    }
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // Do nothing; editing handled by afterTextChanged()
+    }
+
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        // Do nothing; editing handled by afterTextChanged()
+    }
+
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        // Someone changed a checkbox, so assume this contact is dirty.
+        mContactChanged = true;
     }
 }

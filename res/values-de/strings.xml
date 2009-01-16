@@ -34,9 +34,13 @@
     <string name="editContact_title_edit">"Kontakt bearbeiten"</string>
     <string name="editContact_title_insert">"Neuer Kontakt"</string>
     <string name="menu_addItem">"Weitere Informationen"</string>
+    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
+    <skip />
     <string name="label_notes">"Notizen"</string>
     <string name="label_ringtone">"Klingelton"</string>
     <string name="ghostData_name">"Vor- und Nachname"</string>
+    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
+    <skip />
     <string name="ghostData_company">"Unternehmen"</string>
     <string name="ghostData_title">"Position"</string>
     <string name="ghostData_im">"IM-Name"</string>
@@ -64,7 +68,6 @@
     <string name="menu_displayGroup">"Gruppe anzeigen"</string>
     <string name="syncGroupPreference">"Synchron. bearbeiten"</string>
     <string name="importFromSim">"Kontakte importieren"</string>
-    <string name="alphabet">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="send_to_voicemail_checkbox">"Anrufe direkt an Mailbox senden"</string>
     <string name="send_to_voicemail_view">"Anrufe werden direkt an Mailbox gesendet"</string>
     <string name="default_ringtone">"Standard"</string>

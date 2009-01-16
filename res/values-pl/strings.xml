@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="contactsList">"Kontakty"</string>
+    <string name="shortcutContact">"Kontakt"</string>
+    <string name="starredList">"Oznaczony gwiazdką"</string>
+    <string name="frequentList">"Częste"</string>
+    <string name="strequentList">"Ulubione"</string>
+    <string name="viewContactTitle">"Szczegóły kontaktu"</string>
+    <string name="viewContactDesription">"Wyświetl kontakt"</string>
+    <string name="editContactDescription">"Edytuj kontakt"</string>
+    <string name="insertContactDescription">"Utwórz kontakt"</string>
+    <string name="searchHint">"Przeszukuj kontakty"</string>
+    <string name="menu_newContact">"Nowy kontakt"</string>
+    <string name="menu_viewContact">"Wyświetl kontakt"</string>
+    <string name="menu_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_addStar">"Dodaj do ulubionych"</string>
+    <string name="menu_removeStar">"Usuń z ulubionych"</string>
+    <string name="menu_showBarcode">"Pokaż kod kreskowy"</string>
+    <string name="menu_editContact">"Edytuj kontakt"</string>
+    <string name="menu_deleteContact">"Usuń kontakt"</string>
+    <string name="menu_call">"Zadzwoń"</string>
+    <string name="menu_sendSMS">"Wyślij wiadomość SMS/MMS"</string>
+    <string name="menu_sendEmail">"Wyślij wiadomość e-mail"</string>
+    <string name="menu_viewAddress">"Pokaż adres na mapie"</string>
+    <string name="menu_makeDefaultNumber">"Ustaw ten numer jako domyślny"</string>
+    <string name="deleteConfirmation_title">"Usuń"</string>
+    <string name="deleteConfirmation">"Ten kontakt zostanie usunięty."</string>
+    <string name="menu_done">"Zapisz"</string>
+    <string name="menu_doNotSave">"Odrzuć zmiany"</string>
+    <string name="button_save">"Zapisz"</string>
+    <string name="button_discard">"Odrzuć zmiany"</string>
+    <string name="editContact_title_edit">"Edytuj kontakt"</string>
+    <string name="editContact_title_insert">"Nowy kontakt"</string>
+    <string name="menu_addItem">"Więcej informacji"</string>
+    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
+    <skip />
+    <string name="label_notes">"Notatki"</string>
+    <string name="label_ringtone">"Dzwonek"</string>
+    <string name="ghostData_name">"Imię i nazwisko"</string>
+    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
+    <skip />
+    <string name="ghostData_company">"Firma"</string>
+    <string name="ghostData_title">"Pozycja"</string>
+    <string name="ghostData_im">"Nazwa w komunikatorze"</string>
+    <string name="ghostData_notes">"Moja notatka"</string>
+    <string name="ghostData_phone">"Numer telefonu"</string>
+    <string name="ghostData_email">"Adres e-mail"</string>
+    <string name="ghostData_postal">"Adres pocztowy"</string>
+    <string name="invalidContactMessage">"Kontakt nie istnieje."</string>
+    <string name="pickerNewContactHeader">"Utwórz nowy kontakt"</string>
+    <string name="selectLabel">"Wybierz etykietę"</string>
+    <string name="phoneLabelsGroup">"Telefon"</string>
+    <string name="emailLabelsGroup">"E-mail"</string>
+    <string name="imLabelsGroup">"Komunikatory"</string>
+    <string name="postalLabelsGroup">"Adres pocztowy"</string>
+    <string name="otherLabelsGroup">"Inne"</string>
+  <string-array name="otherLabels">
+    <item>"Organizacja"</item>
+    <item>"Notatka"</item>
+  </string-array>
+    <string name="errorDialogTitle">"Brak zdjęć"</string>
+    <string name="photoPickerNotFoundText">"W telefonie brak dostępnych zdjęć."</string>
+    <string name="attachToContact">"Ikona kontaktu"</string>
+    <string name="customLabelPickerTitle">"Nazwa etykiety niestandardowej"</string>
+    <string name="menu_displayGroup">"Wyświetl grupę"</string>
+    <string name="syncGroupPreference">"Edytuj grupy synchronizacji"</string>
+    <string name="importFromSim">"Importuj kontakty"</string>
+    <string name="send_to_voicemail_checkbox">"Kieruj połączenia bezpośrednio do poczty głosowej."</string>
+    <string name="send_to_voicemail_view">"Połączenia są przekazywane bezpośrednio do poczty głosowej."</string>
+    <string name="default_ringtone">"Domyślny"</string>
+    <string name="addPicture">"Dodaj ikonę"</string>
+    <string name="removePicture">"Usuń ikonę"</string>
+    <string name="noContacts">"Brak kontaktów."</string>
+    <string name="noContactsWithPhoneNumbers">"Brak kontaktów z numerami telefonów."</string>
+    <string name="noFavorites">"Brak ulubionych"</string>
+    <string name="select_group_title">"Grupy"</string>
+    <string name="groupEmpty">"Grupa „<xliff:g id="GROUPNAME">%s</xliff:g>” jest pusta."</string>
+    <string name="showAllGroups">"Wszystkie kontakty"</string>
+    <string name="syncAllGroups">"Synchronizuj wszystkie kontakty"</string>
+    <string name="groupNameMyContacts">"Moje kontakty"</string>
+    <string name="groupNameWithPhones">"Kontakty z numerami telefonu"</string>
+    <string name="contactCreatedToast">"Utworzono kontakt."</string>
+    <string name="contactSavedToast">"Kontakt został zapisany."</string>
+    <string name="listSeparatorCallNumber">"Wybierz numer"</string>
+    <string name="listSeparatorSendSmsMms">"Wyślij wiadomość SMS/MMS"</string>
+    <string name="listSeparatorSendEmail">"Wyślij wiadomość e-mail"</string>
+    <string name="listSeparatorSendIm">"Wyślij wiadomość błyskawiczną"</string>
+    <string name="listSeparatorMapAddress">"Pokaż adres na mapie"</string>
+    <string name="listSeparatorOrganizations">"Organizacje"</string>
+    <string name="listSeparatorOtherInformation">"Inne informacje"</string>
+    <string name="contactsIconLabel">"Kontakty"</string>
+    <string name="contactsFavoritesLabel">"Ulubione"</string>
+    <string name="dialerIconLabel">"Klawisze"</string>
+    <string name="recentCallsIconLabel">"Rejestr połączeń"</string>
+    <string name="liveFolderAll">"Wszystkie kontakty"</string>
+    <string name="liveFolderFavorites">"Kontakty oznaczone gwiazdkami"</string>
+    <string name="liveFolderPhone">"Kontakty z numerami telefonów"</string>
+    <string name="menu_sendTextMessage">"Wyślij wiadomość SMS"</string>
+    <string name="recentCalls_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_editNumberBeforeCall">"Edytuj numer przed nawiązaniem połączenia"</string>
+    <string name="recentCalls_addToContact">"Dodaj do kontaktów"</string>
+    <string name="recentCalls_removeFromRecentList">"Usuń z rejestru połączeń"</string>
+    <string name="recentCalls_deleteAll">"Wyczyść rejestr połączeń"</string>
+    <string name="recentCalls_empty">"Rejestr połączeń jest pusty."</string>
+    <string name="imei">"IMEI"</string>
+    <string name="voicemail">"Poczta głosowa"</string>
+    <string name="unknown">"Nieznane"</string>
+    <string name="private_num">"Numer prywatny"</string>
+    <string name="dialerKeyboardHintText">"Wybierz numer za pomocą klawiatury"</string>
+    <string name="dialerDialpadHintText">"Wybierz numer, aby dodać połączenie"</string>
+    <string name="simContacts_emptyLoading">"Wczytywanie z karty SIM…"</string>
+    <string name="simContacts_title">"Kontakty z karty SIM"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
+    <string name="noContactsHelpText">"Nie masz kontaktów."\n\n"Aby dodać kontakty, naciśnij przycisk "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz jedną z opcji:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Edytuj grupy synchronizacji"</b></font>", aby dodać kontakty z nowego lub istniejącego konta Google;"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>", aby utworzyć nowy kontakt od podstaw;"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>", aby dodać kontakty z karty SIM."\n</li></string>
+    <string name="seclectSyncGroups_title">"Wybierz grupy do zsynchronizowania"</string>
+    <string name="liveFolder_all_label">"Wszystkie kontakty"</string>
+    <string name="liveFolder_favorites_label">"Oznaczone gwiazdkami"</string>
+    <string name="liveFolder_phones_label">"Telefony"</string>
+    <string name="dialer_useDtmfDialpad">"Użyj klawiatury tonowej"</string>
+    <string name="dialer_returnToInCallScreen">"Powrót do aktywnego połączenia"</string>
+    <string name="dialer_addAnotherCall">"Dodaj połączenie"</string>
+</resources>
