@@ -32,6 +32,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -433,11 +434,12 @@ public class RecentCallsListActivity extends ListActivity
                 views.durationView.setText(DateUtils.formatElapsedTime(c.getLong(DURATION_COLUMN_INDEX)));
             }
 
-            // Set the time and date
+            // Set the date/time field by mixing relative and absolute times.
             int flags = DateUtils.FORMAT_ABBREV_RELATIVE | DateUtils.FORMAT_SHOW_DATE
                     | DateUtils.FORMAT_ABBREV_MONTH;
+            
             views.dateView.setText(DateUtils.getRelativeDateTimeString(context, date,
-                    DateUtils.MINUTE_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, flags));
+                    DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS * 2, flags));
 
             // Set the icon
             switch (type) {
@@ -815,6 +817,8 @@ public class RecentCallsListActivity extends ListActivity
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        callEntry(position);
+        Intent intent = new Intent(this, CallDetailActivity.class);
+        intent.setData(ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI, id));
+        startActivity(intent);
     }
 }

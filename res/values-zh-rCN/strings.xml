@@ -33,9 +33,13 @@
     <string name="editContact_title_edit">"编辑联系人"</string>
     <string name="editContact_title_insert">"添加联系人"</string>
     <string name="menu_addItem">"详细信息"</string>
+    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
+    <skip />
     <string name="label_notes">"备注"</string>
     <string name="label_ringtone">"铃声"</string>
     <string name="ghostData_name">"第一个和最后一个"</string>
+    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
+    <skip />
     <string name="ghostData_company">"公司"</string>
     <string name="ghostData_title">"位置"</string>
     <string name="ghostData_im">"即时消息名称"</string>
