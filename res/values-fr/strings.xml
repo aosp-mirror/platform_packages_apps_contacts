@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for applicationName (1951105221222584204) -->
+    <skip />
     <string name="contactsList">"Contacts"</string>
     <string name="shortcutContact">"Contact"</string>
     <string name="starredList">"Marqués d\'une étoile"</string>
@@ -16,7 +18,7 @@
     <string name="menu_callNumber">"Appeler <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar">"Ajouter aux favoris"</string>
     <string name="menu_removeStar">"Supprimer des favoris"</string>
-    <string name="menu_showBarcode">"Afficher le code à barres"</string>
+    <string name="menu_showBarcode">"Afficher le code-barres"</string>
     <string name="menu_editContact">"Modifier le contact"</string>
     <string name="menu_deleteContact">"Supprimer le contact"</string>
     <string name="menu_call">"Appel"</string>
@@ -62,7 +64,7 @@
     <string name="errorDialogTitle">"Aucune image"</string>
     <string name="photoPickerNotFoundText">"Aucune image disponible sur le téléphone."</string>
     <string name="attachToContact">"Icône de contact"</string>
-    <string name="customLabelPickerTitle">"Nom de libellé personnalisé"</string>
+    <string name="customLabelPickerTitle">"Libellé personnalisé"</string>
     <string name="menu_displayGroup">"Afficher les groupes"</string>
     <string name="syncGroupPreference">"Modifier les groupes à synchroniser"</string>
     <string name="importFromSim">"Importer des contacts"</string>
@@ -108,7 +110,7 @@
     <string name="unknown">"Inconnu"</string>
     <string name="private_num">"Numéro privée"</string>
     <string name="dialerKeyboardHintText">"Utilisez le clavier pour effectuer la numérotation"</string>
-    <string name="dialerDialpadHintText">"Numéroter pour ajouter un appel"</string>
+    <string name="dialerDialpadHintText">"Composer le numéro pour ajouter un appel"</string>
     <string name="simContacts_emptyLoading">"Chargement depuis la carte SIM..."</string>
     <string name="simContacts_title">"Contacts de carte SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronisez vos contacts Google !"</font>" "\n"Une fois que vous aurez synchronisé votre téléphone, vos contacts seront disponibles, où que vous soyez."</string>
@@ -117,7 +119,27 @@
     <string name="liveFolder_all_label">"Tous les contacts"</string>
     <string name="liveFolder_favorites_label">"Suivis"</string>
     <string name="liveFolder_phones_label">"Téléphones"</string>
-    <string name="dialer_useDtmfDialpad">"Utiliser le clavier multifréquence"</string>
+    <string name="dialer_useDtmfDialpad">"Utiliser le clavier DTMF"</string>
     <string name="dialer_returnToInCallScreen">"Reprendre l\'appel en cours"</string>
     <string name="dialer_addAnotherCall">"Ajouter un appel"</string>
+    <!-- no translation found for callDetailTitle (5340227785196217938) -->
+    <skip />
+    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
+    <skip />
+    <!-- no translation found for call_type (3213526349444862087) -->
+    <skip />
+    <!-- no translation found for type_incoming (6502076603836088532) -->
+    <skip />
+    <!-- no translation found for type_outgoing (343108709599392641) -->
+    <skip />
+    <!-- no translation found for type_missed (2720502601640509542) -->
+    <skip />
+    <!-- no translation found for call_time (5805575214626630975) -->
+    <skip />
+    <!-- no translation found for datetime_relative (2906207446040994658) -->
+    <skip />
+    <!-- no translation found for call_duration (3941950339482985532) -->
+    <skip />
+    <!-- no translation found for header_actions (229583643365836321) -->
+    <skip />
 </resources>

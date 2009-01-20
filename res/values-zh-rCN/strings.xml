@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for applicationName (1951105221222584204) -->
+    <skip />
     <string name="contactsList">"联系人"</string>
     <string name="shortcutContact">"联系人"</string>
     <string name="starredList">"已加星标"</string>
@@ -95,7 +97,7 @@
     <string name="recentCallsIconLabel">"通话记录"</string>
     <string name="liveFolderAll">"所有联系人"</string>
     <string name="liveFolderFavorites">"已加星标的联系人"</string>
-    <string name="liveFolderPhone">"具有电话号码的联系人"</string>
+    <string name="liveFolderPhone">"有电话号码的联系人"</string>
     <string name="menu_sendTextMessage">"发送短信"</string>
     <string name="recentCalls_callNumber">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall">"在呼叫之前编辑号码"</string>
@@ -120,4 +122,24 @@
     <string name="dialer_useDtmfDialpad">"使用按键式键盘"</string>
     <string name="dialer_returnToInCallScreen">"返回到正在进行中的通话"</string>
     <string name="dialer_addAnotherCall">"添加通话"</string>
+    <!-- no translation found for callDetailTitle (5340227785196217938) -->
+    <skip />
+    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
+    <skip />
+    <!-- no translation found for call_type (3213526349444862087) -->
+    <skip />
+    <!-- no translation found for type_incoming (6502076603836088532) -->
+    <skip />
+    <!-- no translation found for type_outgoing (343108709599392641) -->
+    <skip />
+    <!-- no translation found for type_missed (2720502601640509542) -->
+    <skip />
+    <!-- no translation found for call_time (5805575214626630975) -->
+    <skip />
+    <!-- no translation found for datetime_relative (2906207446040994658) -->
+    <skip />
+    <!-- no translation found for call_duration (3941950339482985532) -->
+    <skip />
+    <!-- no translation found for header_actions (229583643365836321) -->
+    <skip />
 </resources>

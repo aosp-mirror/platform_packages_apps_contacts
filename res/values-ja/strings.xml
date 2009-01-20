@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for applicationName (1951105221222584204) -->
+    <skip />
     <string name="contactsList">"連絡先"</string>
     <string name="shortcutContact">"連絡先"</string>
     <string name="starredList">"スター付き"</string>
@@ -62,7 +64,7 @@
     <string name="errorDialogTitle">"写真なし"</string>
     <string name="photoPickerNotFoundText">"使用できる写真が携帯電話にありません。"</string>
     <string name="attachToContact">"連絡先のアイコン"</string>
-    <string name="customLabelPickerTitle">"独自のラベル名"</string>
+    <string name="customLabelPickerTitle">"新しいラベル名"</string>
     <string name="menu_displayGroup">"グループを表示"</string>
     <string name="syncGroupPreference">"同期グループを編集"</string>
     <string name="importFromSim">"連絡先をインポート"</string>
@@ -95,7 +97,7 @@
     <string name="recentCallsIconLabel">"通話ログ"</string>
     <string name="liveFolderAll">"すべての連絡先"</string>
     <string name="liveFolderFavorites">"スター付きの連絡先"</string>
-    <string name="liveFolderPhone">"電話番号が登録されている連絡先"</string>
+    <string name="liveFolderPhone">"電話番号のある連絡先"</string>
     <string name="menu_sendTextMessage">"SMSメッセージを送信"</string>
     <string name="recentCalls_callNumber">"<xliff:g id="NAME">%s</xliff:g>さんに発信"</string>
     <string name="recentCalls_editNumberBeforeCall">"番号を編集して発信"</string>
@@ -108,7 +110,7 @@
     <string name="unknown">"不明"</string>
     <string name="private_num">"非通知番号"</string>
     <string name="dialerKeyboardHintText">"番号をキーボードから入力してください"</string>
-    <string name="dialerDialpadHintText">"ダイヤルして通話を追加します"</string>
+    <string name="dialerDialpadHintText">"ダイヤルして通話を追加"</string>
     <string name="simContacts_emptyLoading">"SIMカードからロードしています..."</string>
     <string name="simContacts_title">"SIMカードの連絡先"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleコンタクトと同期を取ります。"</font>" "\n"同期が終わると、いつでもこの携帯電話で連絡先を使用できます。"</string>
@@ -117,7 +119,27 @@
     <string name="liveFolder_all_label">"すべての連絡先"</string>
     <string name="liveFolder_favorites_label">"スター付き"</string>
     <string name="liveFolder_phones_label">"電話"</string>
-    <string name="dialer_useDtmfDialpad">"タッチ トーン キーパッドを使用する"</string>
+    <string name="dialer_useDtmfDialpad">"プッシュホン式キーパッドを使う"</string>
     <string name="dialer_returnToInCallScreen">"保留中の通話に戻る"</string>
-    <string name="dialer_addAnotherCall">"通話を追加"</string>
+    <string name="dialer_addAnotherCall">"別の通話を追加"</string>
+    <!-- no translation found for callDetailTitle (5340227785196217938) -->
+    <skip />
+    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
+    <skip />
+    <!-- no translation found for call_type (3213526349444862087) -->
+    <skip />
+    <!-- no translation found for type_incoming (6502076603836088532) -->
+    <skip />
+    <!-- no translation found for type_outgoing (343108709599392641) -->
+    <skip />
+    <!-- no translation found for type_missed (2720502601640509542) -->
+    <skip />
+    <!-- no translation found for call_time (5805575214626630975) -->
+    <skip />
+    <!-- no translation found for datetime_relative (2906207446040994658) -->
+    <skip />
+    <!-- no translation found for call_duration (3941950339482985532) -->
+    <skip />
+    <!-- no translation found for header_actions (229583643365836321) -->
+    <skip />
 </resources>
