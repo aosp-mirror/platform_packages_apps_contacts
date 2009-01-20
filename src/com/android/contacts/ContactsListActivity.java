@@ -626,14 +626,14 @@ public final class ContactsListActivity extends ListActivity
         // Display group
         if (mDefaultMode) {
             menu.add(0, MENU_DISPLAY_GROUP, 0, R.string.menu_displayGroup)
-                    .setIcon(R.drawable.ic_menu_allfriends);
+                    .setIcon(com.android.internal.R.drawable.ic_menu_allfriends);
         }
 
         // Sync settings
         Intent syncIntent = new Intent(Intent.ACTION_VIEW);
         syncIntent.setClass(this, ContactsGroupSyncSelector.class);
         menu.add(0, 0, 0, R.string.syncGroupPreference)
-                .setIcon(android.R.drawable.ic_menu_refresh)
+                .setIcon(com.android.internal.R.drawable.ic_menu_refresh)
                 .setIntent(syncIntent);
         
         // SIM import

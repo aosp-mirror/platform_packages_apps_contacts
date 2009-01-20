@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for applicationName (1951105221222584204) -->
+    <skip />
     <string name="contactsList">"Контакты"</string>
     <string name="shortcutContact">"Контакт"</string>
     <string name="starredList">"Помеченные"</string>
@@ -108,7 +110,7 @@
     <string name="unknown">"Неизвестно"</string>
     <string name="private_num">"Частный номер"</string>
     <string name="dialerKeyboardHintText">"Для набора воспользуйтесь клавиатурой"</string>
-    <string name="dialerDialpadHintText">"Звонок для добавления вызова"</string>
+    <string name="dialerDialpadHintText">"Наберите номер для добавления вызова"</string>
     <string name="simContacts_emptyLoading">"Идет загрузка с SIM-карты…"</string>
     <string name="simContacts_title">"Контакты на SIM-карте"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Синхронизируйте свои контакты Google!"</font>" "\n"После синхронизации с телефоном вы сможете общаться со знакомыми, где бы вы ни были."</string>
@@ -120,4 +122,24 @@
     <string name="dialer_useDtmfDialpad">"Использовать клавиатуру тонального набора"</string>
     <string name="dialer_returnToInCallScreen">"Отобразить текущий вызов"</string>
     <string name="dialer_addAnotherCall">"Добавить вызов"</string>
+    <!-- no translation found for callDetailTitle (5340227785196217938) -->
+    <skip />
+    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
+    <skip />
+    <!-- no translation found for call_type (3213526349444862087) -->
+    <skip />
+    <!-- no translation found for type_incoming (6502076603836088532) -->
+    <skip />
+    <!-- no translation found for type_outgoing (343108709599392641) -->
+    <skip />
+    <!-- no translation found for type_missed (2720502601640509542) -->
+    <skip />
+    <!-- no translation found for call_time (5805575214626630975) -->
+    <skip />
+    <!-- no translation found for datetime_relative (2906207446040994658) -->
+    <skip />
+    <!-- no translation found for call_duration (3941950339482985532) -->
+    <skip />
+    <!-- no translation found for header_actions (229583643365836321) -->
+    <skip />
 </resources>

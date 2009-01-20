@@ -62,7 +62,6 @@
     <string name="menu_displayGroup">"Display group"</string>
     <string name="syncGroupPreference">"Sync groups"</string>
     <string name="importFromSim">"Import from SIM card"</string>
-    <string name="alphabet">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="send_to_voicemail_checkbox">"Send calls directly to voicemail."</string>
     <string name="send_to_voicemail_view">"Calls are sent directly to voicemail."</string>
     <string name="default_ringtone">"Default"</string>
