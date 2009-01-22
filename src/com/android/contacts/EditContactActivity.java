@@ -105,7 +105,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -177,8 +176,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private LayoutInflater mInflater;
     private MenuItem mPhotoMenuItem;
     private boolean mPhotoPresent = false;
-    private EditText mPhoneticNameView;
-    private LinearLayout mPhoneticNameLayout;
+    private EditText mPhoneticNameView;  // invisible in some locales, but always present
 
     /** Flag marking this contact as changed, meaning we should write changes back. */
     private boolean mContactChanged = false;
@@ -319,17 +317,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mPhotoButton.setOnClickListener(this);
         mSendToVoicemailCheckBox = (CheckBox) findViewById(R.id.send_to_voicemail);
         mPhoneticNameView = (EditText) findViewById(R.id.phonetic_name);
-        mPhoneticNameLayout = (LinearLayout) findViewById(R.id.phonetic_name_layout);
-
-        // Setup phonetic name field.  mPhoneticNameLayout is GONE by default.
-        // TODO: Don't do this here in Java; instead do it purely using
-        // resources, by having mPhoneticNameLayout come from an XML
-        // <include> file that contains the real UI in layout-ja, but is
-        // empty in layout-finger...
-        String language = Locale.getDefault().getLanguage();
-        if (language != null && language.equals("ja")) {
-            mPhoneticNameLayout.setVisibility(View.VISIBLE);
-        }
 
         // Setup the bottom buttons
         View view = findViewById(R.id.addMore);
