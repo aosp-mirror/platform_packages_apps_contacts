@@ -19,6 +19,7 @@ package com.android.contacts;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_CUSTOM_RINGTONE_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_NAME_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_NOTES_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_PHONETIC_NAME_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_SEND_TO_VOICEMAIL_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_STARRED_COLUMN;
@@ -182,6 +183,7 @@ public class ViewContactActivity extends ListActivity
     }
 
     private TextView mNameView;
+    private TextView mPhoneticNameView;  // may be null in some locales
     private ImageView mPhotoView;
     private int mNoPhotoResource;
     private CheckBox mStarView;
@@ -195,6 +197,7 @@ public class ViewContactActivity extends ListActivity
         getListView().setOnCreateContextMenuListener(this);
 
         mNameView = (TextView) findViewById(R.id.name);
+        mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
         mPhotoView = (ImageView) findViewById(R.id.photo);
         mStarView = (CheckBox) findViewById(R.id.star);
         mStarView.setOnClickListener(this);
@@ -280,7 +283,7 @@ public class ViewContactActivity extends ListActivity
         }
         return null;
     }
-    
+
     private void dataChanged() {
         mCursor.requery();
         if (mCursor.moveToFirst()) {
@@ -290,6 +293,11 @@ public class ViewContactActivity extends ListActivity
                 mNameView.setText(getText(android.R.string.unknownName));
             } else {
                 mNameView.setText(name);
+            }
+
+            if (mPhoneticNameView != null) {
+                String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
+                mPhoneticNameView.setText(phoneticName);
             }
 
             // Load the photo
@@ -1029,5 +1037,3 @@ public class ViewContactActivity extends ListActivity
         }
     }
 }
-
-
