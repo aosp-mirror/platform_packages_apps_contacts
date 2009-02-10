@@ -576,7 +576,16 @@ public class ViewContactActivity extends ListActivity
         separator.data = getString(R.string.listSeparatorOtherInformation);
         mOtherEntries.add(separator);
     }
-    
+
+    private Uri constructImToUrl(String host, String data) {
+	    // don't encode the url, because the Activity Manager can't find using the encoded url
+        StringBuilder buf = new StringBuilder("imto://");
+        buf.append(host);
+        buf.append('/');
+        buf.append(data);
+        return Uri.parse(buf.toString());
+    }
+
     /**
      * Build up the entries to display on the screen.
      * 
@@ -701,12 +710,11 @@ public class ViewContactActivity extends ListActivity
                     case Contacts.KIND_IM: {
                         Object protocolObj = ContactMethods.decodeImProtocol(
                                 methodsCursor.getString(METHODS_AUX_DATA_COLUMN));
-                        String providerCategory;
+                        String host;
                         if (protocolObj instanceof Number) {
                             int protocol = ((Number) protocolObj).intValue();
                             entry.label = protocolStrings[protocol];
-                            providerCategory = ContactMethods.lookupProviderCategoryFromId(
-                                    protocol);
+                            host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
                             if (protocol == ContactMethods.PROTOCOL_GOOGLE_TALK
                                     || protocol == ContactMethods.PROTOCOL_MSN) {
                                 entry.maxLabelLines = 2;
@@ -714,14 +722,12 @@ public class ViewContactActivity extends ListActivity
                         } else {
                             String providerName = (String) protocolObj;
                             entry.label = providerName;
-                            providerCategory = Im.Provider.getProviderCategoryFromName(
-                                    providerName);
+                            host = providerName.toLowerCase();
                         }
 
-                        // Only add the intent if there is a valid provider name
-                        if (!TextUtils.isEmpty(providerCategory)) {
-                            entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                    Uri.fromParts("im", data, null)).addCategory(providerCategory);
+                        // Only add the intent if there is a valid host
+                        if (!TextUtils.isEmpty(host)) {
+                            entry.intent = new Intent(Intent.ACTION_SENDTO, constructImToUrl(host, data));
                         }
                         entry.data = data;
                         if (!methodsCursor.isNull(METHODS_STATUS_COLUMN)) {
@@ -755,26 +761,25 @@ public class ViewContactActivity extends ListActivity
                     String label;
                     Object protocolObj = ContactMethods.decodeImProtocol(
                             presenceCursor.getString(1));
-                    String providerCategory;
+                    String host;
                     if (protocolObj instanceof Number) {
                         int protocol = ((Number) protocolObj).intValue();
                         label = getResources().getStringArray(
                                 android.R.array.imProtocols)[protocol];
-                        providerCategory = ContactMethods.lookupProviderCategoryFromId(
-                                protocol);
+                        host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
                     } else {
                         String providerName = (String) protocolObj;
                         label = providerName;
-                        providerCategory = Im.Provider.getProviderCategoryFromName(providerName);
+                        host = providerName.toLowerCase();
                     }
 
-                    if (TextUtils.isEmpty(providerCategory)) {
+                    if (TextUtils.isEmpty(host)) {
                         // A valid provider name is required
                         continue;
                     }
 
-                    Intent intent = new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("im", data, null)).addCategory(providerCategory);
+
+                    Intent intent = new Intent(Intent.ACTION_SENDTO, constructImToUrl(host, data));
 
                     // Check to see if there is already an entry for this IM account
                     boolean addEntry = true;

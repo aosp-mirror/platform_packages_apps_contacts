@@ -176,6 +176,14 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             finish();
             return;
         }
+        
+        // Dismiss menu provided by any children activites
+        Activity activity = getLocalActivityManager().
+                getActivity(mTabHost.getCurrentTabTag());
+        if (activity != null) {
+            activity.closeOptionsMenu();
+        }
+
         intent.putExtra(EXTRA_IGNORE_STATE, true);
         if (intent.getComponent().getClassName().equals(getClass().getName())) {
             if (recentCallsRequest) {

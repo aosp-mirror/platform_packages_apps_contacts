@@ -24,7 +24,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@android:drawable/title_bar"
+        android:background="@android:drawable/title_bar_tall"
         android:padding="0dip"
         android:gravity="center_vertical"
     >

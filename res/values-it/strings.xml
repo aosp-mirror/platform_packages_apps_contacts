@@ -40,20 +40,16 @@
     <string name="menu_makeDefaultNumber">"Rendi numero predefinito"</string>
     <string name="deleteConfirmation_title">"Elimina"</string>
     <string name="deleteConfirmation">"Il contatto verrà eliminato."</string>
-    <string name="menu_done">"Salva"</string>
+    <string name="menu_done">"Completato"</string>
     <string name="menu_doNotSave">"Ignora modifiche"</string>
-    <string name="button_save">"Salva"</string>
-    <string name="button_discard">"Ignora modifiche"</string>
     <string name="editContact_title_edit">"Modifica contatto"</string>
     <string name="editContact_title_insert">"Nuovo contatto"</string>
     <string name="menu_addItem">"Altre info"</string>
-    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
-    <skip />
+    <string name="label_phonetic_name">"Fonetica"</string>
     <string name="label_notes">"Note"</string>
     <string name="label_ringtone">"Suoneria"</string>
     <string name="ghostData_name">"Nome e cognome"</string>
-    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
-    <skip />
+    <string name="ghostData_phonetic_name">"Nome fonetico"</string>
     <string name="ghostData_company">"Società"</string>
     <string name="ghostData_title">"Mansione"</string>
     <string name="ghostData_im">"Nome IM"</string>
@@ -80,7 +76,7 @@
     <string name="menu_displayGroup">"Visualizza gruppo"</string>
     <string name="syncGroupPreference">"Modifica sincr. gruppi"</string>
     <string name="importFromSim">"Importa contatti"</string>
-    <string name="send_to_voicemail_checkbox">"Inoltra chiamate direttamente a segreteria."</string>
+    <string name="send_to_voicemail_checkbox">"Inoltra le chiamate direttamente alla posta vocale"</string>
     <string name="send_to_voicemail_view">"Le chiamate vengono inoltrate direttamente alla segreteria."</string>
     <string name="default_ringtone">"Predefinita"</string>
     <string name="addPicture">"Aggiungi icona"</string>
@@ -97,12 +93,18 @@
     <string name="contactCreatedToast">"Contatto creato."</string>
     <string name="contactSavedToast">"Contatto salvato."</string>
     <string name="listSeparatorCallNumber">"Componi numero"</string>
+    <string name="listSeparatorCallNumber_edit">"Numeri di telefono"</string>
     <string name="listSeparatorSendSmsMms">"Invia SMS/MMS"</string>
     <string name="listSeparatorSendEmail">"Invia email"</string>
+    <string name="listSeparatorSendEmail_edit">"Indirizzi email"</string>
     <string name="listSeparatorSendIm">"Invia msg IM"</string>
+    <string name="listSeparatorSendIm_edit">"Messaggistica istantanea"</string>
     <string name="listSeparatorMapAddress">"Indirizzo su mappa"</string>
+    <string name="listSeparatorMapAddress_edit">"Visualizza indirizzo nella mappa"</string>
     <string name="listSeparatorOrganizations">"Organizzazioni"</string>
     <string name="listSeparatorOtherInformation">"Altre informazioni"</string>
+    <string name="listSeparatorOtherInformation_edit">"Altre opzioni"</string>
+    <string name="listSeparatorMore_edit">"Altro"</string>
     <string name="contactsIconLabel">"Contatti"</string>
     <string name="contactsFavoritesLabel">"Preferiti"</string>
     <string name="dialerIconLabel">"Dialer"</string>
@@ -126,7 +128,7 @@
     <string name="simContacts_emptyLoading">"Caricamento da SIM..."</string>
     <string name="simContacts_title">"Contatti SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincronizza i tuoi contatti Google."</font>" "\n"Dopo la sincronizzazione con il telefono, i tuoi contatti saranno sempre a tua disposizione."</string>
-    <string name="noContactsHelpText">"Non esistono contatti."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincr. gruppi"</b></font>" per aggiungere contatti da un account Google nuovo o esistente"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un nuovo contatto"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere contatti dalla SIM"\n</li></string>
+    <string name="noContactsHelpText">"Non è presente alcun contatto. "\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>" Menu"</b></font>" e seleziona: "\n\n"      "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincronizza gruppi"</b></font>"  per aggiungere contatti da un account Google nuovo o da uno esistente"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto partendo da zero"\n</li>\n"        "\n<li><font fgcolor="#ffffffff">"Importa "<b>"contatti"</b></font>" per aggiungere contatti dalla tua SIM card  "\n</li></string>
     <string name="seclectSyncGroups_title">"Seleziona i gruppi da sincronizzare"</string>
     <string name="liveFolder_all_label">"Tutti i contatti"</string>
     <string name="liveFolder_favorites_label">"Speciali"</string>
@@ -134,24 +136,16 @@
     <string name="dialer_useDtmfDialpad">"Usa la tastiera per la selezione a toni"</string>
     <string name="dialer_returnToInCallScreen">"Torna alla chiamata in corso"</string>
     <string name="dialer_addAnotherCall">"Aggiungi chiamata"</string>
-    <!-- no translation found for callDetailTitle (5340227785196217938) -->
-    <skip />
-    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
-    <skip />
-    <!-- no translation found for call_type (3213526349444862087) -->
-    <skip />
-    <!-- no translation found for type_incoming (6502076603836088532) -->
-    <skip />
-    <!-- no translation found for type_outgoing (343108709599392641) -->
-    <skip />
-    <!-- no translation found for type_missed (2720502601640509542) -->
-    <skip />
-    <!-- no translation found for call_time (5805575214626630975) -->
-    <skip />
-    <!-- no translation found for datetime_relative (2906207446040994658) -->
-    <skip />
-    <!-- no translation found for call_duration (3941950339482985532) -->
-    <skip />
-    <!-- no translation found for header_actions (229583643365836321) -->
-    <skip />
+    <string name="callDetailTitle">"Dettagli chiamata"</string>
+    <string name="toast_call_detail_error">"Impossibile leggere i dettagli per la chiamata richiesta."</string>
+    <string name="call_type">"Tipo"</string>
+    <string name="type_incoming">"Chiamata in arrivo"</string>
+    <string name="type_outgoing">"Chiamata in uscita"</string>
+    <string name="type_missed">"Chiamata persa"</string>
+    <string name="call_time">"Ora"</string>
+    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
+    <string name="call_duration">"Durata"</string>
+    <string name="header_actions">"Azioni"</string>
+    <string name="ringtone_spinner">"Suoneria: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
+    <string name="add_more_items">"Aggiungi ulteriori elementi"</string>
 </resources>

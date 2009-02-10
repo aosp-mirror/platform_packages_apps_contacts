@@ -109,7 +109,7 @@
         <!-- An empty activity that presents the DialtactActivity's Contacts tab -->
         <activity-alias android:name="DialtactsContactsEntryActivity"
             android:targetActivity="DialtactsActivity"
-            android:label="@string/contactsIconLabel"
+            android:label="@string/contactsList"
             android:icon="@drawable/ic_launcher_contacts"
         >
             <intent-filter>

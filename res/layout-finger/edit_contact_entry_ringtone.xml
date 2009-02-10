@@ -23,37 +23,36 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginTop="2dip"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:baselineAligned="false"
         android:gravity="center_vertical"
     >
 
+        <!-- We still provide a label for our parent, but we keep it hidden -->
         <TextView android:id="@+id/label"
-            android:layout_width="102dip"
-            android:layout_height="fill_parent"
-            android:paddingLeft="4dip"
-            android:gravity="left|center_vertical"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dip"
+            android:layout_height="0dip"
+            android:visibility="gone"
         />
 
         <Button android:id="@+id/data"
-            android:layout_width="0dip"
-            android:layout_weight="1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLargeInverse"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse"
             android:baselineAligned="false"
             android:background="@android:drawable/btn_dropdown"
-            android:gravity="center_vertical"
+            android:gravity="left|center_vertical"
             android:maxLines="1"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="6dip"
         />
-        
+
     </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="@android:drawable/divider_horizontal_dark"
+        android:background="?android:attr/listDivider"
     />
 </LinearLayout>

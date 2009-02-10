@@ -30,8 +30,6 @@
     <string name="deleteConfirmation">"This contact will be deleted."</string>
     <string name="menu_done">"Save"</string>
     <string name="menu_doNotSave">"Discard changes"</string>
-    <string name="button_save">"Save"</string>
-    <string name="button_discard">"Discard changes"</string>
     <string name="editContact_title_edit">"Edit contact"</string>
     <string name="editContact_title_insert">"New contact"</string>
     <string name="menu_addItem">"More info"</string>

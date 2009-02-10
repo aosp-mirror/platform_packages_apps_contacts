@@ -170,7 +170,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     
     private EditText mNameView;
     private ImageView mPhotoImageView;
-    private View mPhotoButton;
     private CheckBox mSendToVoicemailCheckBox;
     private LinearLayout mLayout;
     private LayoutInflater mInflater;
@@ -198,7 +197,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.photoButton:
             case R.id.photoImage: {
                 doPickPhotoAction();
                 break;
@@ -252,9 +250,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     }
 
     private void setPhotoPresent(boolean present) {
-        mPhotoImageView.setVisibility(present ? View.VISIBLE : View.GONE);
-        mPhotoButton.setVisibility(present ? View.GONE : View.VISIBLE);
         mPhotoPresent = present;
+        
+        // Correctly scale the contact photo if present, otherwise just center
+        // the photo placeholder icon.
+        if (mPhotoPresent) {
+            mPhotoImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            mPhotoImageView.setImageResource(R.drawable.ic_menu_add_picture);
+            mPhotoImageView.setScaleType(ImageView.ScaleType.CENTER);
+        }
+        
         if (mPhotoMenuItem != null) {
             if (present) {
                 mPhotoMenuItem.setTitle(R.string.removePicture);
@@ -312,9 +318,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mNameView = (EditText) findViewById(R.id.name);
         mPhotoImageView = (ImageView) findViewById(R.id.photoImage);
         mPhotoImageView.setOnClickListener(this);
-        mPhotoImageView.setVisibility(View.GONE);
-        mPhotoButton = findViewById(R.id.photoButton);
-        mPhotoButton.setOnClickListener(this);
         mSendToVoicemailCheckBox = (CheckBox) findViewById(R.id.send_to_voicemail);
         mPhoneticNameView = (EditText) findViewById(R.id.phonetic_name);
 
@@ -340,6 +343,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     buildEntriesForEdit(getIntent().getExtras());
                     buildViews();
                 }
+                setTitle(R.string.editContact_title_edit);
                 mState = STATE_EDIT;
             } else if (action.equals(Intent.ACTION_INSERT)) {
                 if (icicle == null) {
@@ -347,6 +351,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     buildEntriesForInsert(getIntent().getExtras());
                     buildViews();
                 }
+                setTitle(R.string.editContact_title_insert);
                 mState = STATE_INSERT;
                 mInsert = true;
             }
@@ -459,7 +464,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         }
         return super.onKeyDown(keyCode, event);
     }
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -549,7 +554,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private void doRemovePhotoAction() {
         mPhoto = null;
         mPhotoChanged = true;
-        mPhotoImageView.setImageResource(R.drawable.ic_contact_picture);
         setPhotoPresent(false);
     }
     
@@ -593,8 +597,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     }
 
     private void updateRingtoneView(EditEntry entry) {
+        String ringtoneName;
         if (entry.data == null) {
-            updateDataView(entry, getString(R.string.default_ringtone));
+            ringtoneName = getString(R.string.default_ringtone);
         } else {
             Uri ringtoneUri = Uri.parse(entry.data);
             Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
@@ -602,8 +607,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 Log.w(TAG, "ringtone's URI doesn't resolve to a Ringtone");
                 return;
             }
-            updateDataView(entry, ringtone.getTitle(this));
+            ringtoneName = ringtone.getTitle(this);
         }
+        
+        // Build actual "Ringtone: Default" string that is assigned to spinner.
+        String text = getString(R.string.ringtone_spinner, ringtoneName);
+        updateDataView(entry, text);
     }
     
     private void updateDataView(EditEntry entry, String text) {
@@ -1456,11 +1465,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final LinearLayout layout = mLayout;
         layout.removeAllViews();
 
-        buildViewsForSection(layout, mPhoneEntries, R.string.listSeparatorCallNumber);
-        buildViewsForSection(layout, mEmailEntries, R.string.listSeparatorSendEmail);
-        buildViewsForSection(layout, mImEntries, R.string.listSeparatorSendIm);
-        buildViewsForSection(layout, mPostalEntries, R.string.listSeparatorMapAddress);
-        buildViewsForSection(layout, mOtherEntries, R.string.listSeparatorOtherInformation);
+        buildViewsForSection(layout, mPhoneEntries, R.string.listSeparatorCallNumber_edit);
+        buildViewsForSection(layout, mEmailEntries, R.string.listSeparatorSendEmail_edit);
+        buildViewsForSection(layout, mImEntries, R.string.listSeparatorSendIm_edit);
+        buildViewsForSection(layout, mPostalEntries, R.string.listSeparatorMapAddress_edit);
+        buildViewsForSection(layout, mOtherEntries, R.string.listSeparatorOtherInformation_edit);
     }
 
 
@@ -1530,7 +1539,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Bind data
         TextView data = (TextView) view.findViewById(R.id.data);
         TextView data2 = (TextView) view.findViewById(R.id.data2);
-
+        
         if (data instanceof Button) {
             data.setOnClickListener(this);
         }

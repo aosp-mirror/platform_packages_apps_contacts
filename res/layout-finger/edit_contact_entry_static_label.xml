@@ -54,6 +54,6 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="@android:drawable/divider_horizontal_dark"
+        android:background="?android:attr/listDivider"
     />
 </LinearLayout>

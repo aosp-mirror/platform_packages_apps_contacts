@@ -38,7 +38,7 @@
             android:layout_width="0dip"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
+            android:layout_marginLeft="4dip"
         />
 
         <ImageButton android:id="@+id/delete"
@@ -51,6 +51,6 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="@android:drawable/divider_horizontal_dark"
+        android:background="?android:attr/listDivider"
     />
 </LinearLayout>

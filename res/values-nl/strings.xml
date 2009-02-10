@@ -40,20 +40,16 @@
     <string name="menu_makeDefaultNumber">"Als standaardnummer instellen"</string>
     <string name="deleteConfirmation_title">"Verwijderen"</string>
     <string name="deleteConfirmation">"Deze contactpersoon wordt verwijderd."</string>
-    <string name="menu_done">"Opslaan"</string>
+    <string name="menu_done">"Gereed"</string>
     <string name="menu_doNotSave">"Wijzigingen ongedaan maken"</string>
-    <string name="button_save">"Opslaan"</string>
-    <string name="button_discard">"Wijzigingen ongedaan maken"</string>
     <string name="editContact_title_edit">"Contactpersoon bewerken"</string>
     <string name="editContact_title_insert">"Nieuwe contactpersoon"</string>
     <string name="menu_addItem">"Meer informatie"</string>
-    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
-    <skip />
+    <string name="label_phonetic_name">"Fonetisch"</string>
     <string name="label_notes">"Opmerkingen"</string>
     <string name="label_ringtone">"Beltoon"</string>
     <string name="ghostData_name">"Voor- en achternaam"</string>
-    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
-    <skip />
+    <string name="ghostData_phonetic_name">"Fonetisch gespelde naam"</string>
     <string name="ghostData_company">"Bedrijf"</string>
     <string name="ghostData_title">"Positie"</string>
     <string name="ghostData_im">"Chatnaam"</string>
@@ -80,7 +76,7 @@
     <string name="menu_displayGroup">"Groep weergeven"</string>
     <string name="syncGroupPreference">"Gesynchroniseerde groepen bewerken"</string>
     <string name="importFromSim">"Contactpersonen importeren"</string>
-    <string name="send_to_voicemail_checkbox">"Oproepen rechtstreeks naar voicemail."</string>
+    <string name="send_to_voicemail_checkbox">"Oproepen rechtstreeks naar voicemail verzenden"</string>
     <string name="send_to_voicemail_view">"Oproepen worden rechtstreeks naar voicemail verzonden."</string>
     <string name="default_ringtone">"Standaard"</string>
     <string name="addPicture">"Pictogram toevoegen"</string>
@@ -97,12 +93,18 @@
     <string name="contactCreatedToast">"Contactpersoon is gemaakt."</string>
     <string name="contactSavedToast">"Contactpersoon opgeslagen."</string>
     <string name="listSeparatorCallNumber">"Nummer bellen"</string>
+    <string name="listSeparatorCallNumber_edit">"Telefoonnummers"</string>
     <string name="listSeparatorSendSmsMms">"SMS/MMS verzenden"</string>
     <string name="listSeparatorSendEmail">"E-mail verzenden"</string>
+    <string name="listSeparatorSendEmail_edit">"E-mailadressen"</string>
     <string name="listSeparatorSendIm">"Chatbericht verzenden"</string>
+    <string name="listSeparatorSendIm_edit">"Instant messenger"</string>
     <string name="listSeparatorMapAddress">"Adres op kaart weergeven"</string>
+    <string name="listSeparatorMapAddress_edit">"Adres op kaart"</string>
     <string name="listSeparatorOrganizations">"Organisaties"</string>
     <string name="listSeparatorOtherInformation">"Overige informatie"</string>
+    <string name="listSeparatorOtherInformation_edit">"Andere opties"</string>
+    <string name="listSeparatorMore_edit">"Meer"</string>
     <string name="contactsIconLabel">"Contactpersonen"</string>
     <string name="contactsFavoritesLabel">"Favorieten"</string>
     <string name="dialerIconLabel">"Dialer"</string>
@@ -126,7 +128,7 @@
     <string name="simContacts_emptyLoading">"Laden vanaf SIM-kaart..."</string>
     <string name="simContacts_title">"Contactpersonen op SIM-kaart"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchroniseer uw Google-contactpersonen!"</font>" "\n"Zodra uw telefoon is gesynchroniseerd, heeft u uw contactpersonen altijd ter beschikking."</string>
-    <string name="noContactsHelpText">"U heeft geen contactpersonen."\n\n"Als u contactpersonen wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteert u:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Gesynchroniseerde groepen bewerken"</b></font>" als u contactpersonen vanuit een nieuwe of bestaande Google-account wilt toevoegen."\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nieuwe contactpersoon"</b></font>" als u een nieuwe contactpersoon wilt invoeren"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Contactpersonen importeren"</b></font>" als u contactpersonen wilt toevoegen vanaf uw SIM-kaart"\n</li></string>
+    <string name="noContactsHelpText">"Je hebt geen contactpersonen."\n\n"Als je contactpersonen wilt toevoegen, druk je op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteer je:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Synchronisatiegroepen bewerken"</b></font>" om deze toe te voegen van een nieuw of bestaand Google-account"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nieuwe contactpersoon"</b></font>" om een nieuwe contactpersoon te maken"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Contactpersonen importeren"</b></font>" om contactpersonen vanaf je SIM-kaart toe te voegen"\n</li></string>
     <string name="seclectSyncGroups_title">"Groepen selecteren om te synchroniseren"</string>
     <string name="liveFolder_all_label">"Alle contactpersonen"</string>
     <string name="liveFolder_favorites_label">"Met ster"</string>
@@ -134,24 +136,16 @@
     <string name="dialer_useDtmfDialpad">"Toetsen voor toonkiezen gebruiken"</string>
     <string name="dialer_returnToInCallScreen">"Terug naar actief gesprek"</string>
     <string name="dialer_addAnotherCall">"Oproep toevoegen"</string>
-    <!-- no translation found for callDetailTitle (5340227785196217938) -->
-    <skip />
-    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
-    <skip />
-    <!-- no translation found for call_type (3213526349444862087) -->
-    <skip />
-    <!-- no translation found for type_incoming (6502076603836088532) -->
-    <skip />
-    <!-- no translation found for type_outgoing (343108709599392641) -->
-    <skip />
-    <!-- no translation found for type_missed (2720502601640509542) -->
-    <skip />
-    <!-- no translation found for call_time (5805575214626630975) -->
-    <skip />
-    <!-- no translation found for datetime_relative (2906207446040994658) -->
-    <skip />
-    <!-- no translation found for call_duration (3941950339482985532) -->
-    <skip />
-    <!-- no translation found for header_actions (229583643365836321) -->
-    <skip />
+    <string name="callDetailTitle">"Gespreksgegevens"</string>
+    <string name="toast_call_detail_error">"Kan geen gegevens over het gevraagde gesprek vinden."</string>
+    <string name="call_type">"Type"</string>
+    <string name="type_incoming">"Binnenkomende oproep"</string>
+    <string name="type_outgoing">"Uitgaand gesprek"</string>
+    <string name="type_missed">"Oproep gemist"</string>
+    <string name="call_time">"Tijd"</string>
+    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
+    <string name="call_duration">"Duur"</string>
+    <string name="header_actions">"Acties"</string>
+    <string name="ringtone_spinner">"Beltoon: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
+    <string name="add_more_items">"Meer items toevoegen"</string>
 </resources>
