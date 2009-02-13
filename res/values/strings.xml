@@ -101,7 +101,7 @@
     <string name="menu_done">Done</string>
 
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made -->
-    <string name="menu_doNotSave">Discard changes</string>
+    <string name="menu_doNotSave">Revert</string>
 
     <!-- The title of the activity that edits and existing contact -->
     <string name="editContact_title_edit">Edit contact</string>

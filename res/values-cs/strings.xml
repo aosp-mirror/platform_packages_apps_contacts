@@ -98,9 +98,11 @@
     <string name="listSeparatorSendEmail">"Odeslat e-mail"</string>
     <string name="listSeparatorSendEmail_edit">"E-mailové adresy"</string>
     <string name="listSeparatorSendIm">"Odeslat zprávu chatu"</string>
-    <string name="listSeparatorSendIm_edit">"Rychlé zasílání zpráv"</string>
+    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
+    <skip />
     <string name="listSeparatorMapAddress">"Adresa na mapě"</string>
-    <string name="listSeparatorMapAddress_edit">"Adresa na mapě"</string>
+    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
+    <skip />
     <string name="listSeparatorOrganizations">"Organizace"</string>
     <string name="listSeparatorOtherInformation">"Ostatní informace"</string>
     <string name="listSeparatorOtherInformation_edit">"Další možnosti"</string>
@@ -148,4 +150,22 @@
     <string name="header_actions">"Akce"</string>
     <string name="ringtone_spinner">"Vyzváněcí tón: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Přidat další položky"</string>
+    <!-- no translation found for actionCall (695145166039381504) -->
+    <skip />
+    <!-- no translation found for actionEmail (3870371552333656807) -->
+    <skip />
+    <!-- no translation found for actionText (6399049224844880108) -->
+    <skip />
+    <!-- no translation found for actionChat (31079429748650300) -->
+    <skip />
+    <!-- no translation found for actionMap (1977955782051732775) -->
+    <skip />
+    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
+    <skip />
+    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
+    <skip />
+    <!-- no translation found for detailsRingtone (4052108748982701775) -->
+    <skip />
+    <!-- no translation found for callBack (5498224409038809224) -->
+    <skip />
 </resources>

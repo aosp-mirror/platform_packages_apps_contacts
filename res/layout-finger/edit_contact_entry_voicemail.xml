@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2008 The Android Open Source Project
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/entry_ringtone"
+    android:id="@+id/checkable"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:paddingRight="?android:attr/scrollbarSize"
@@ -47,22 +47,31 @@
             android:duplicateParentState="true"
             />
 
-        <TextView android:id="@+id/data"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/label"
             android:layout_alignLeft="@+id/label"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/send_to_voicemail_checkbox"
             android:maxLines="2"
             android:duplicateParentState="true"
             />
 
     </RelativeLayout>
 
-    <ImageView
-        style="@style/MoreButton"
+    <CheckBox android:id="@+id/checkbox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:focusable="false"
+        android:clickable="false"
+        />
+
+    <!-- Need to provide a data view to make binder happy -->
+    <TextView android:id="@+id/data"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:visibility="gone"
         />
 
 </LinearLayout>

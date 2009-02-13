@@ -98,9 +98,11 @@
     <string name="listSeparatorSendEmail">"Invia email"</string>
     <string name="listSeparatorSendEmail_edit">"Indirizzi email"</string>
     <string name="listSeparatorSendIm">"Invia msg IM"</string>
-    <string name="listSeparatorSendIm_edit">"Messaggistica istantanea"</string>
+    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
+    <skip />
     <string name="listSeparatorMapAddress">"Indirizzo su mappa"</string>
-    <string name="listSeparatorMapAddress_edit">"Visualizza indirizzo nella mappa"</string>
+    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
+    <skip />
     <string name="listSeparatorOrganizations">"Organizzazioni"</string>
     <string name="listSeparatorOtherInformation">"Altre informazioni"</string>
     <string name="listSeparatorOtherInformation_edit">"Altre opzioni"</string>
@@ -148,4 +150,22 @@
     <string name="header_actions">"Azioni"</string>
     <string name="ringtone_spinner">"Suoneria: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Aggiungi ulteriori elementi"</string>
+    <!-- no translation found for actionCall (695145166039381504) -->
+    <skip />
+    <!-- no translation found for actionEmail (3870371552333656807) -->
+    <skip />
+    <!-- no translation found for actionText (6399049224844880108) -->
+    <skip />
+    <!-- no translation found for actionChat (31079429748650300) -->
+    <skip />
+    <!-- no translation found for actionMap (1977955782051732775) -->
+    <skip />
+    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
+    <skip />
+    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
+    <skip />
+    <!-- no translation found for detailsRingtone (4052108748982701775) -->
+    <skip />
+    <!-- no translation found for callBack (5498224409038809224) -->
+    <skip />
 </resources>

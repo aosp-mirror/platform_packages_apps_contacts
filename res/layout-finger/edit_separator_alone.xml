@@ -14,41 +14,35 @@
      limitations under the License.
 -->
 
+<!-- Layout used for edit separators. -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/separator"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dip"
-    android:layout_marginBottom="3dip"
-    android:orientation="horizontal"
-    android:baselineAligned="false"
-    android:gravity="top"
+    android:paddingLeft="14dip"
     android:paddingRight="?android:attr/scrollbarSize"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:background="@android:drawable/list_selector_background"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:focusable="true"
+    android:clickable="true"
     >
 
-    <!-- Hide this TextView because this layout is only used for Note entries -->
-    <TextView android:id="@+id/label"
-        android:layout_width="80dip"
-        android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:visibility="gone"
-        />
-
-    <EditText android:id="@+id/data"
+    <TextView android:id="@+id/text"
         android:layout_width="0dip"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="2dip"
-        android:layout_marginRight="2dip"
-        android:gravity="top"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:duplicateParentState="true"
         />
 
-    <ImageButton android:id="@+id/delete"
-        style="@style/MinusButton"
+    <ImageView android:id="@+id/add"
+        style="@style/PlusButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         />
 
 </LinearLayout>
