@@ -62,6 +62,7 @@
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_phone"
+            android:screenOrientation="nosensor"
         >
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />

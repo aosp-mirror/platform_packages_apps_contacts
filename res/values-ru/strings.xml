@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"Удаление"</string>
     <string name="deleteConfirmation">"Этот контакт будет удален."</string>
     <string name="menu_done">"Готово"</string>
-    <string name="menu_doNotSave">"Отменить изменения"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Изменить контакт"</string>
     <string name="editContact_title_insert">"Создание контакта"</string>
     <string name="menu_addItem">"Подробнее"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"Отправить сообщение электронной почты"</string>
     <string name="listSeparatorSendEmail_edit">"Адреса электронной почты"</string>
     <string name="listSeparatorSendIm">"Отправить мгновенное сообщение"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"Адреса чата"</string>
     <string name="listSeparatorMapAddress">"Адрес на карте"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"Почтовые адреса"</string>
     <string name="listSeparatorOrganizations">"Организации"</string>
     <string name="listSeparatorOtherInformation">"Другие сведения"</string>
     <string name="listSeparatorOtherInformation_edit">"Другие параметры"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"Действия"</string>
     <string name="ringtone_spinner">"Мелодия: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Добавление контактов"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"Позвонить по номеру: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"Отправить электронное сообщение на адрес: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Отправить текстовое сообщение на номер: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Общаться в чате с помощью: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Просмотр адреса: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Входящие вызовы"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Переадресация в голосовую почту"</string>
+    <string name="detailsRingtone">"Выбрано: <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Перезвонить"</string>
 </resources>

@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"Usuń"</string>
     <string name="deleteConfirmation">"Ten kontakt zostanie usunięty."</string>
     <string name="menu_done">"Gotowe"</string>
-    <string name="menu_doNotSave">"Odrzuć zmiany"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Edytuj kontakt"</string>
     <string name="editContact_title_insert">"Nowy kontakt"</string>
     <string name="menu_addItem">"Więcej informacji"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"Wyślij wiadomość e-mail"</string>
     <string name="listSeparatorSendEmail_edit">"Adresy e-mail"</string>
     <string name="listSeparatorSendIm">"Wyślij wiadomość błyskawiczną"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"Adresy czatu"</string>
     <string name="listSeparatorMapAddress">"Pokaż adres na mapie"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"Adresy pocztowe"</string>
     <string name="listSeparatorOrganizations">"Organizacje"</string>
     <string name="listSeparatorOtherInformation">"Inne informacje"</string>
     <string name="listSeparatorOtherInformation_edit">"Inne opcje"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"Czynności"</string>
     <string name="ringtone_spinner">"Dźwięk dzwonka: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Dodaj więcej elementów"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"Zadzwoń na numer: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"Wyślij wiadomość e-mail na adres: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Wyślij tekst do: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Porozmawiaj na czacie <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Wyświetl adres: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Połączenia przychodzące"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Zostaną wysłane bezpośrednio na pocztę głosową"</string>
+    <string name="detailsRingtone">"Ustaw na <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Oddzwoń"</string>
 </resources>

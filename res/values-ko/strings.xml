@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"삭제"</string>
     <string name="deleteConfirmation">"연락처가 삭제됩니다."</string>
     <string name="menu_done">"완료"</string>
-    <string name="menu_doNotSave">"변경내용 취소"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"연락처 편집"</string>
     <string name="editContact_title_insert">"새 연락처"</string>
     <string name="menu_addItem">"추가정보"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"이메일 보내기"</string>
     <string name="listSeparatorSendEmail_edit">"이메일 주소"</string>
     <string name="listSeparatorSendIm">"인스턴트 메시지 보내기"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"채팅 주소"</string>
     <string name="listSeparatorMapAddress">"지도상의 주소"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"우편 주소"</string>
     <string name="listSeparatorOrganizations">"조직"</string>
     <string name="listSeparatorOtherInformation">"기타 정보"</string>
     <string name="listSeparatorOtherInformation_edit">"기타 옵션"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"작업"</string>
     <string name="ringtone_spinner">"벨소리: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"항목 더 추가"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"<xliff:g id="TYPE">%s</xliff:g>(으)로 전화걸기"</string>
+    <string name="actionEmail">"<xliff:g id="TYPE">%s</xliff:g>(으)로 이메일 보내기"</string>
+    <string name="actionText">"<xliff:g id="TYPE">%s</xliff:g>(으)로 문자 보내기"</string>
+    <string name="actionChat">"<xliff:g id="TYPE">%s</xliff:g> 채팅"</string>
+    <string name="actionMap">"<xliff:g id="TYPE">%s</xliff:g> 주소 보기"</string>
+    <string name="actionIncomingCall">"수신 전화"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"음성메일로 바로 보냄"</string>
+    <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>(으)로 설정"</string>
+    <string name="callBack">"콜백"</string>
 </resources>

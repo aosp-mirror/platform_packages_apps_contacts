@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"Smazat"</string>
     <string name="deleteConfirmation">"Tento kontakt bude smazán."</string>
     <string name="menu_done">"Hotovo"</string>
-    <string name="menu_doNotSave">"Zrušit změny"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Upravit kontakt"</string>
     <string name="editContact_title_insert">"Nový kontakt"</string>
     <string name="menu_addItem">"Další informace"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"Odeslat e-mail"</string>
     <string name="listSeparatorSendEmail_edit">"E-mailové adresy"</string>
     <string name="listSeparatorSendIm">"Odeslat zprávu chatu"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"Adresa chatu"</string>
     <string name="listSeparatorMapAddress">"Adresa na mapě"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"Poštovní adresa"</string>
     <string name="listSeparatorOrganizations">"Organizace"</string>
     <string name="listSeparatorOtherInformation">"Ostatní informace"</string>
     <string name="listSeparatorOtherInformation_edit">"Další možnosti"</string>
@@ -130,7 +129,7 @@
     <string name="simContacts_emptyLoading">"Načítání z karty SIM..."</string>
     <string name="simContacts_title">"Kontakty na kartě SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronizujte své kontakty Google!"</font>" "\n"Po synchronizaci telefonu budete mít kontaktní informace vždy u sebe."</string>
-    <string name="noContactsHelpText">"Nemáte žádné kontakty."\n\n"Pokud chcete přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Nabídka"</b></font>" a vyberte:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Upravit skupiny synchronizace"</b></font>", pokud chcete přidat kontakty z nového nebo stávajícího účtu Google"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit nový kontakt"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importovat kontakty"</b></font>", pokud chcete přidat kontakty z karty SIM"\n</li></string>
+    <string name="noContactsHelpText">"Nemáte žádné kontakty."\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Nabídka"</b></font>" a vyberte možnost:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Upravit synchronizované skupiny"</b></font>", pokud chcete přidat kontakty z nového nebo existujícího účtu Google"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit nový kontakt"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importovat kontakty"</b></font>", pokud chcete přidat kontakty ze své SIM karty"\n</li></string>
     <string name="seclectSyncGroups_title">"Vyberte skupiny, které chcete synchronizovat"</string>
     <string name="liveFolder_all_label">"Všechny kontakty"</string>
     <string name="liveFolder_favorites_label">"S hvězdičkou"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"Akce"</string>
     <string name="ringtone_spinner">"Vyzváněcí tón: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Přidat další položky"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"Volat: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"E-mail: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Text: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Chatovat pomocí služby <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Zobrazit adresu: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Příchozí volání"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Budou odeslány přímo do hlasové pošty."</string>
+    <string name="detailsRingtone">"Nastavit vyzvánění <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Zavolat zpět"</string>
 </resources>

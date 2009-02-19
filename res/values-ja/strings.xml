@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"削除"</string>
     <string name="deleteConfirmation">"この連絡先を削除します。"</string>
     <string name="menu_done">"完了"</string>
-    <string name="menu_doNotSave">"変更取消"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"連絡先を編集"</string>
     <string name="editContact_title_insert">"連絡先を新規登録"</string>
     <string name="menu_addItem">"情報を追加"</string>
@@ -78,7 +79,7 @@
     <string name="importFromSim">"連絡先をインポート"</string>
     <string name="send_to_voicemail_checkbox">"ボイスメールに直接電話します。"</string>
     <string name="send_to_voicemail_view">"この番号にかけるとボイスメールに送信されます。"</string>
-    <string name="default_ringtone">"デフォルト"</string>
+    <string name="default_ringtone">"端末既定"</string>
     <string name="addPicture">"アイコンを追加"</string>
     <string name="removePicture">"アイコンを削除"</string>
     <string name="noContacts">"連絡先がありません。"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"メールを送信"</string>
     <string name="listSeparatorSendEmail_edit">"メールアドレス"</string>
     <string name="listSeparatorSendIm">"インスタントメッセージを送信"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"チャットアドレス"</string>
     <string name="listSeparatorMapAddress">"地図でみる"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"住所"</string>
     <string name="listSeparatorOrganizations">"勤務先情報"</string>
     <string name="listSeparatorOtherInformation">"その他の情報"</string>
     <string name="listSeparatorOtherInformation_edit">"その他のオプション"</string>
@@ -121,7 +120,7 @@
     <string name="recentCalls_removeFromRecentList">"通話履歴から消去"</string>
     <string name="recentCalls_deleteAll">"通話履歴を全件消去"</string>
     <string name="recentCalls_empty">"通話履歴なし"</string>
-    <string name="imei">"IMEI"</string>
+    <string name="imei">"IMEI（端末識別番号）"</string>
     <string name="voicemail">"ボイスメール"</string>
     <string name="unknown">"不明"</string>
     <string name="private_num">"非通知番号"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"操作"</string>
     <string name="ringtone_spinner">"着信音: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"その他の項目を追加"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"<xliff:g id="TYPE">%s</xliff:g>に発信"</string>
+    <string name="actionEmail">"<xliff:g id="TYPE">%s</xliff:g>にメールを送信"</string>
+    <string name="actionText">"<xliff:g id="TYPE">%s</xliff:g>にテキストを送信"</string>
+    <string name="actionChat">"<xliff:g id="TYPE">%s</xliff:g>を使用してチャット"</string>
+    <string name="actionMap">"<xliff:g id="TYPE">%s</xliff:g>の住所を表示"</string>
+    <string name="actionIncomingCall">"着信"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"直接ボイスメールに送信します"</string>
+    <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>に設定"</string>
+    <string name="callBack">"コールバック"</string>
 </resources>

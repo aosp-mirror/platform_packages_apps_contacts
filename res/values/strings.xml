@@ -362,8 +362,14 @@
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">Sync your Google contacts!</font>
     \nAfter syncing to your phone, your contacts will be available to you wherever you go.</string>
 
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group -->
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
     <string name="noContactsHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
+    </string>
+    
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
+    <string name="noContactsHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
         \n<li><font fgcolor="#ffffffff"><b>Edit sync groups</b></font> to add from a new or existing Google account\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"

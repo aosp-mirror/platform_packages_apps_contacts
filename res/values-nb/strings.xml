@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"Slett"</string>
     <string name="deleteConfirmation">"Denne kontakten vil bli slettet."</string>
     <string name="menu_done">"Lagre"</string>
-    <string name="menu_doNotSave">"Forkast endringer"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Rediger kontakt"</string>
     <string name="editContact_title_insert">"Ny kontakt"</string>
     <string name="menu_addItem">"Mer informasjon"</string>

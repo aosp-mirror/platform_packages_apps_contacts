@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"删除"</string>
     <string name="deleteConfirmation">"会删除此联系人。"</string>
     <string name="menu_done">"完成"</string>
-    <string name="menu_doNotSave">"放弃更改"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"编辑联系人"</string>
     <string name="editContact_title_insert">"添加联系人"</string>
     <string name="menu_addItem">"详细信息"</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"发送电子邮件"</string>
     <string name="listSeparatorSendEmail_edit">"电子邮件地址"</string>
     <string name="listSeparatorSendIm">"发送即时消息"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"聊天地址"</string>
     <string name="listSeparatorMapAddress">"地图地址"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"邮政地址"</string>
     <string name="listSeparatorOrganizations">"组织"</string>
     <string name="listSeparatorOtherInformation">"其他信息"</string>
     <string name="listSeparatorOtherInformation_edit">"其他选项"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"操作"</string>
     <string name="ringtone_spinner">"铃声：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"添加更多项目"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"呼叫<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"向<xliff:g id="TYPE">%s</xliff:g>发送电子邮件"</string>
+    <string name="actionText">"向<xliff:g id="TYPE">%s</xliff:g>发送文本消息"</string>
+    <string name="actionChat">"使用 <xliff:g id="TYPE">%s</xliff:g> 进行聊天"</string>
+    <string name="actionMap">"查看<xliff:g id="TYPE">%s</xliff:g>地址"</string>
+    <string name="actionIncomingCall">"来电"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"将直接发送至语音邮件"</string>
+    <string name="detailsRingtone">"设置为“<xliff:g id="RINGTONE_NAME">%s</xliff:g>”"</string>
+    <string name="callBack">"回拨"</string>
 </resources>

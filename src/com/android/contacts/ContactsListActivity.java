@@ -26,6 +26,8 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.IContentProvider;
+import android.content.ISyncAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
@@ -34,6 +36,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
@@ -56,13 +59,14 @@ import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -229,7 +233,7 @@ public final class ContactsListActivity extends ListActivity
 
     ContactItemListAdapter mAdapter;
 
-    private int mMode = DEFAULT_MODE;
+    int mMode = DEFAULT_MODE;
     // The current display group
     private String mDisplayInfo;
     private int mDisplayType;
@@ -246,6 +250,7 @@ public final class ContactsListActivity extends ListActivity
     private Uri mGroupFilterUri;
     private Uri mGroupUri;
     private boolean mJustCreated;
+    private boolean mSyncEnabled;
 
     /**
      * Used to keep track of the scroll state of the list.
@@ -400,7 +405,7 @@ public final class ContactsListActivity extends ListActivity
         // Set the proper empty string
         setEmptyText();
         
-        mAdapter = new ContactItemListAdapter(this, R.layout.contacts_list_item, null);
+        mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
 
         // We manually save/restore the listview state
@@ -408,6 +413,17 @@ public final class ContactsListActivity extends ListActivity
 
         mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
+
+        // Check to see if sync is enabled
+        final ContentResolver resolver = getContentResolver();
+        IContentProvider provider = resolver.acquireProvider(Contacts.CONTENT_URI);
+        try {
+            ISyncAdapter sa = provider.getSyncAdapter();
+            mSyncEnabled = sa != null;
+        } catch (RemoteException e) {
+            mSyncEnabled = false;
+        }
+        resolver.releaseProvider(provider);
     }
 
     private void setEmptyText() {
@@ -417,7 +433,11 @@ public final class ContactsListActivity extends ListActivity
         switch (mMode) {
             case MODE_GROUP:
                 if (Groups.GROUP_MY_CONTACTS.equals(mDisplayInfo)) {
-                    empty.setText(getText(R.string.noContactsHelpText));
+                    if (mSyncEnabled) {
+                        empty.setText(getText(R.string.noContactsHelpTextWithSync));
+                    } else {
+                        empty.setText(getText(R.string.noContactsHelpText));
+                    }
                     gravity = Gravity.NO_GRAVITY;
                 } else {
                     empty.setText(getString(R.string.groupEmpty, mDisplayInfo));
@@ -630,11 +650,13 @@ public final class ContactsListActivity extends ListActivity
         }
 
         // Sync settings
-        Intent syncIntent = new Intent(Intent.ACTION_VIEW);
-        syncIntent.setClass(this, ContactsGroupSyncSelector.class);
-        menu.add(0, 0, 0, R.string.syncGroupPreference)
-                .setIcon(com.android.internal.R.drawable.ic_menu_refresh)
-                .setIntent(syncIntent);
+        if (mSyncEnabled) {
+            Intent syncIntent = new Intent(Intent.ACTION_VIEW);
+            syncIntent.setClass(this, ContactsGroupSyncSelector.class);
+            menu.add(0, 0, 0, R.string.syncGroupPreference)
+                    .setIcon(com.android.internal.R.drawable.ic_menu_refresh)
+                    .setIntent(syncIntent);
+        }
         
         // SIM import
         Intent importIntent = new Intent(Intent.ACTION_VIEW);
@@ -1227,6 +1249,7 @@ public final class ContactsListActivity extends ListActivity
             final ContactsListActivity activity = mActivity.get();
             if (activity != null && !activity.isFinishing()) {
                 activity.mAdapter.setLoading(false);
+                activity.getListView().clearTextFilter();                
                 activity.mAdapter.changeCursor(cursor);
     
                 // Now that the cursor is populated again, it's possible to restore the list state
@@ -1251,6 +1274,7 @@ public final class ContactsListActivity extends ListActivity
         public CharArrayBuffer labelBuffer = new CharArrayBuffer(128);
         public TextView numberView;
         public CharArrayBuffer numberBuffer = new CharArrayBuffer(128);
+        public ImageView presenceView;
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter 
@@ -1262,13 +1286,10 @@ public final class ContactsListActivity extends ListActivity
         private CharSequence mUnknownNameText;
         private CharSequence[] mLocalizedLabels;
 
-        public ContactItemListAdapter(Context context, int resource, Cursor cursor) {
-            super(context, resource, cursor);
+        public ContactItemListAdapter(Context context) {
+            super(context, R.layout.contacts_list_item, null);
             
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
-            if (cursor != null) {
-                mIndexer = new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
-            }
             
             mUnknownNameText = context.getText(android.R.string.unknownName);
             switch (mMode) {
@@ -1310,8 +1331,8 @@ public final class ContactsListActivity extends ListActivity
             final ContactListItemCache cache = new ContactListItemCache();
             cache.nameView = (TextView) view.findViewById(R.id.name);
             cache.labelView = (TextView) view.findViewById(R.id.label);
-            cache.labelView.setCompoundDrawablePadding(3);
             cache.numberView = (TextView) view.findViewById(R.id.number);
+            cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             view.setTag(cache);
 
             return view;
@@ -1332,17 +1353,19 @@ public final class ContactsListActivity extends ListActivity
             
             // Set the phone number
             TextView numberView = cache.numberView;
+            TextView labelView = cache.labelView;
             cursor.copyStringToBuffer(NUMBER_COLUMN_INDEX, cache.numberBuffer);
             size = cache.numberBuffer.sizeCopied;
             if (size != 0) {
                 numberView.setText(cache.numberBuffer.data, 0, size);
                 numberView.setVisibility(View.VISIBLE);
+                labelView.setVisibility(View.VISIBLE);
             } else {
                 numberView.setVisibility(View.GONE);
+                labelView.setVisibility(View.GONE);
             }
 
             // Set the label
-            TextView labelView = cache.labelView;
             if (!cursor.isNull(TYPE_COLUMN_INDEX)) {
                 int type = cursor.getInt(TYPE_COLUMN_INDEX);
 
@@ -1358,32 +1381,32 @@ public final class ContactsListActivity extends ListActivity
                     labelView.setText(cache.labelBuffer.data, 0, cache.labelBuffer.sizeCopied);
                 }
             } else {
-                // Set the text to a length of 0
-                labelView.setText(cache.labelBuffer.data, 0, 0);
+                // There is no label, hide the the view
+                labelView.setVisibility(View.GONE);
             }
-            // Set the proper icon in the label view
+
+            // Set the proper icon (star or presence or nothing)
+            ImageView presenceView = cache.presenceView;
             if (mMode != MODE_STREQUENT) {
                 if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
                     int serverStatus;
                     if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
                         serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
-                        labelView.setCompoundDrawablesWithIntrinsicBounds(
-                                getResources().getDrawable(
-                                        Presence.getPresenceIconResourceId(serverStatus)),
-                                null, null, null);
+                        presenceView.setImageResource(
+                                Presence.getPresenceIconResourceId(serverStatus));
+                        presenceView.setVisibility(View.VISIBLE);
                     } else {
-                        labelView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                        presenceView.setVisibility(View.GONE);
                     }
                 } else {
-                    labelView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                    presenceView.setVisibility(View.GONE);
                 }
             } else {
                 if (cursor.getInt(STARRED_COLUMN_INDEX) != 0) {
-                    labelView.setCompoundDrawablesWithIntrinsicBounds(
-                            getResources().getDrawable(R.drawable.star_on),
-                            null, null, null);
+                    presenceView.setImageResource(R.drawable.star_on);
+                    presenceView.setVisibility(View.VISIBLE);
                 } else {
-                    labelView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                    presenceView.setVisibility(View.GONE);
                 }
             }
         }

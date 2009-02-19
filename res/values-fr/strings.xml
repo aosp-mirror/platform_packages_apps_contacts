@@ -40,15 +40,16 @@
     <string name="menu_makeDefaultNumber">"Numéro téléphone par défaut"</string>
     <string name="deleteConfirmation_title">"Supprimer"</string>
     <string name="deleteConfirmation">"Ce contact sera supprimé."</string>
-    <string name="menu_done">"Terminé"</string>
-    <string name="menu_doNotSave">"Annuler les modifications"</string>
+    <string name="menu_done">"OK"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Modifier le contact"</string>
     <string name="editContact_title_insert">"Nouveau contact"</string>
     <string name="menu_addItem">"Plus d\'infos"</string>
     <string name="label_phonetic_name">"Prononciation phonétique"</string>
     <string name="label_notes">"Remarques"</string>
     <string name="label_ringtone">"Sonnerie"</string>
-    <string name="ghostData_name">"Premier et dernier"</string>
+    <string name="ghostData_name">"Nom et prénom"</string>
     <string name="ghostData_phonetic_name">"Nom phonétique"</string>
     <string name="ghostData_company">"Société"</string>
     <string name="ghostData_title">"Position"</string>
@@ -74,7 +75,7 @@
     <string name="attachToContact">"Icône de contact"</string>
     <string name="customLabelPickerTitle">"Libellé personnalisé"</string>
     <string name="menu_displayGroup">"Afficher les groupes"</string>
-    <string name="syncGroupPreference">"Modifier les groupes à synchroniser"</string>
+    <string name="syncGroupPreference">"Paramètres de sync. des groupes"</string>
     <string name="importFromSim">"Importer des contacts"</string>
     <string name="send_to_voicemail_checkbox">"Envoyer les appels directement en tant que message vocal"</string>
     <string name="send_to_voicemail_view">"Les appels sont renvoyés directement vers la boîte vocale."</string>
@@ -89,7 +90,7 @@
     <string name="showAllGroups">"Tous les contacts"</string>
     <string name="syncAllGroups">"Synchroniser tous les contacts"</string>
     <string name="groupNameMyContacts">"Mes contacts"</string>
-    <string name="groupNameWithPhones">"Contacts avec des numéros téléphone"</string>
+    <string name="groupNameWithPhones">"Contacts avec des n° de téléphone"</string>
     <string name="contactCreatedToast">"Contact créé."</string>
     <string name="contactSavedToast">"Contact enregistré."</string>
     <string name="listSeparatorCallNumber">"Composer le numéro"</string>
@@ -98,19 +99,17 @@
     <string name="listSeparatorSendEmail">"Envoyer un e-mail"</string>
     <string name="listSeparatorSendEmail_edit">"Adresses e-mail"</string>
     <string name="listSeparatorSendIm">"Envoyer un message instantané"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"Adresses de chat"</string>
     <string name="listSeparatorMapAddress">"Adresse sur un plan"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"Adresses postales"</string>
     <string name="listSeparatorOrganizations">"Organisations"</string>
     <string name="listSeparatorOtherInformation">"Autres informations"</string>
     <string name="listSeparatorOtherInformation_edit">"Autres options"</string>
     <string name="listSeparatorMore_edit">"Plus"</string>
     <string name="contactsIconLabel">"Contacts"</string>
     <string name="contactsFavoritesLabel">"Favoris"</string>
-    <string name="dialerIconLabel">"Numéroteur"</string>
-    <string name="recentCallsIconLabel">"Journal des appels"</string>
+    <string name="dialerIconLabel">"Composer"</string>
+    <string name="recentCallsIconLabel">"Appels"</string>
     <string name="liveFolderAll">"Tous les contacts"</string>
     <string name="liveFolderFavorites">"Contacts suivis"</string>
     <string name="liveFolderPhone">"Contacts avec numéro de téléphone"</string>
@@ -118,19 +117,19 @@
     <string name="recentCalls_callNumber">"Appeler <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall">"Modifier le numéro avant d\'effectuer l\'appel"</string>
     <string name="recentCalls_addToContact">"Ajouter aux contacts"</string>
-    <string name="recentCalls_removeFromRecentList">"Supprimer du journal des appels"</string>
-    <string name="recentCalls_deleteAll">"Effacer le journal des appels"</string>
-    <string name="recentCalls_empty">"Le journal des appels est vide."</string>
+    <string name="recentCalls_removeFromRecentList">"Supprimer de la liste des appels"</string>
+    <string name="recentCalls_deleteAll">"Effacer tous les appels"</string>
+    <string name="recentCalls_empty">"Aucun appel enregistré."</string>
     <string name="imei">"IMEI"</string>
     <string name="voicemail">"Boîte vocale"</string>
     <string name="unknown">"Inconnu"</string>
     <string name="private_num">"Numéro privée"</string>
-    <string name="dialerKeyboardHintText">"Utilisez le clavier pour effectuer la numérotation"</string>
+    <string name="dialerKeyboardHintText">"Utilisez le clavier pour composer le numéro"</string>
     <string name="dialerDialpadHintText">"Composer le numéro pour ajouter un appel"</string>
     <string name="simContacts_emptyLoading">"Chargement depuis la carte SIM..."</string>
     <string name="simContacts_title">"Contacts de carte SIM"</string>
-    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronisez vos contacts Google !"</font>" "\n"Une fois que vous aurez synchronisé votre téléphone, vos contacts seront disponibles, où que vous soyez."</string>
-    <string name="noContactsHelpText">"Vous n\'avez aucun contact."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Modifier les groupes synchronisés"</b></font>" pour ajouter un contact à partir d\'un nouveau compte Google ou d\'un compte existant"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact de toutes pièces"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importer des contacts"</b></font>" pour ajouter des contacts à partir de votre carte SIM"\n</li></string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronisez vos contacts Google !"</font>" "\n"Vos contacts seront disponibles, où que vous soyez, dès que vous aurez synchronisé votre téléphone."</string>
+    <string name="noContactsHelpText">"Vous n\'avez aucun contact."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n\n" "\n<li><font fgcolor="#ffffffff"><b>"Paramètres de sync. des groupes"</b></font>" pour ajouter un contact à partir d\'un nouveau compte Google ou d\'un compte existant"\n</li>\n" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact"\n</li>\n" "\n<li><font fgcolor="#ffffffff"><b>"Importer des contacts"</b></font>" pour ajouter des contacts à partir de votre carte SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Sélectionner les groupes à synchroniser"</string>
     <string name="liveFolder_all_label">"Tous les contacts"</string>
     <string name="liveFolder_favorites_label">"Suivis"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"Actions"</string>
     <string name="ringtone_spinner">"Sonnerie : <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Ajouter d\'autres éléments"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"Appeler <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"Envoyer un e-mail à <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Envoyer un message texte à <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Chatter à l\'aide de <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Afficher l\'adresse <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Appels entrants"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Seront envoyés directement en tant que message vocal"</string>
+    <string name="detailsRingtone">"Associer à <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Rappeler"</string>
 </resources>

@@ -41,7 +41,8 @@
     <string name="deleteConfirmation_title">"Verwijderen"</string>
     <string name="deleteConfirmation">"Deze contactpersoon wordt verwijderd."</string>
     <string name="menu_done">"Gereed"</string>
-    <string name="menu_doNotSave">"Wijzigingen ongedaan maken"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
     <string name="editContact_title_edit">"Contactpersoon bewerken"</string>
     <string name="editContact_title_insert">"Nieuwe contactpersoon"</string>
     <string name="menu_addItem">"Meer informatie"</string>
@@ -74,7 +75,7 @@
     <string name="attachToContact">"Pictogram voor contactpersoon"</string>
     <string name="customLabelPickerTitle">"Aangepaste labelnaam"</string>
     <string name="menu_displayGroup">"Groep weergeven"</string>
-    <string name="syncGroupPreference">"Gesynchroniseerde groepen bewerken"</string>
+    <string name="syncGroupPreference">"Synchronisatiegroepen bewerken"</string>
     <string name="importFromSim">"Contactpersonen importeren"</string>
     <string name="send_to_voicemail_checkbox">"Oproepen rechtstreeks naar voicemail verzenden"</string>
     <string name="send_to_voicemail_view">"Oproepen worden rechtstreeks naar voicemail verzonden."</string>
@@ -98,11 +99,9 @@
     <string name="listSeparatorSendEmail">"E-mail verzenden"</string>
     <string name="listSeparatorSendEmail_edit">"E-mailadressen"</string>
     <string name="listSeparatorSendIm">"Chatbericht verzenden"</string>
-    <!-- no translation found for listSeparatorSendIm_edit (3793290685553377986) -->
-    <skip />
+    <string name="listSeparatorSendIm_edit">"Chatadressen"</string>
     <string name="listSeparatorMapAddress">"Adres op kaart weergeven"</string>
-    <!-- no translation found for listSeparatorMapAddress_edit (298711187672067985) -->
-    <skip />
+    <string name="listSeparatorMapAddress_edit">"Postadressen"</string>
     <string name="listSeparatorOrganizations">"Organisaties"</string>
     <string name="listSeparatorOtherInformation">"Overige informatie"</string>
     <string name="listSeparatorOtherInformation_edit">"Andere opties"</string>
@@ -130,7 +129,7 @@
     <string name="simContacts_emptyLoading">"Laden vanaf SIM-kaart..."</string>
     <string name="simContacts_title">"Contactpersonen op SIM-kaart"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchroniseer uw Google-contactpersonen!"</font>" "\n"Zodra uw telefoon is gesynchroniseerd, heeft u uw contactpersonen altijd ter beschikking."</string>
-    <string name="noContactsHelpText">"Je hebt geen contactpersonen."\n\n"Als je contactpersonen wilt toevoegen, druk je op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteer je:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Synchronisatiegroepen bewerken"</b></font>" om deze toe te voegen van een nieuw of bestaand Google-account"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nieuwe contactpersoon"</b></font>" om een nieuwe contactpersoon te maken"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Contactpersonen importeren"</b></font>" om contactpersonen vanaf je SIM-kaart toe te voegen"\n</li></string>
+    <string name="noContactsHelpText">"Je hebt geen contactpersonen."\n\n"Als je contactpersonen wilt toevoegen, klik je op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteer je:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"\'Synchronisatiegroepen bewerken\'"</b></font>" om contactpersonen toe te voegen uit een nieuwe of bestaande Google-account"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuwe contactpersoon\'"</b></font>" om een geheel nieuwe contactpersoon te maken"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"\'Contactpersonen importeren\'"</b></font>" om contactpersonen te importeren vanaf je SIM-kaart"\n</li></string>
     <string name="seclectSyncGroups_title">"Groepen selecteren om te synchroniseren"</string>
     <string name="liveFolder_all_label">"Alle contactpersonen"</string>
     <string name="liveFolder_favorites_label">"Met ster"</string>
@@ -150,22 +149,13 @@
     <string name="header_actions">"Acties"</string>
     <string name="ringtone_spinner">"Beltoon: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Meer items toevoegen"</string>
-    <!-- no translation found for actionCall (695145166039381504) -->
-    <skip />
-    <!-- no translation found for actionEmail (3870371552333656807) -->
-    <skip />
-    <!-- no translation found for actionText (6399049224844880108) -->
-    <skip />
-    <!-- no translation found for actionChat (31079429748650300) -->
-    <skip />
-    <!-- no translation found for actionMap (1977955782051732775) -->
-    <skip />
-    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
-    <skip />
-    <!-- no translation found for detailIncomingCallsGoToVoicemail (9163373178772231307) -->
-    <skip />
-    <!-- no translation found for detailsRingtone (4052108748982701775) -->
-    <skip />
-    <!-- no translation found for callBack (5498224409038809224) -->
-    <skip />
+    <string name="actionCall">"<xliff:g id="TYPE">%s</xliff:g> bellen"</string>
+    <string name="actionEmail">"E-mail <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Tekst <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Chatten via <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"<xliff:g id="TYPE">%s</xliff:g>-adres bekijken"</string>
+    <string name="actionIncomingCall">"Binnenkomende oproepen"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Wordt direct naar voicemail verzonden"</string>
+    <string name="detailsRingtone">"Ingesteld op <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Terugbellen"</string>
 </resources>
