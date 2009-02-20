@@ -464,4 +464,13 @@
     
     <!-- Action string for calling back a number in the call log -->
     <string name="callBack">Call back</string>
+
+    <!-- Action string for calling a number in the call log again -->
+    <string name="callAgain">Call again</string>
+
+    <!-- Action string for returning a missed call in the call log -->
+    <string name="returnCall">Return call</string>
+
+    <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
+    <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
 </resources>

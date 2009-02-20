@@ -37,6 +37,7 @@ import android.provider.CallLog.Calls;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.Contacts.Intents.Insert;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -414,6 +415,9 @@ public class RecentCallsListActivity extends ListActivity
                     number = getString(R.string.private_num);
                 } else if (number.equals(mVoiceMailNumber)) {
                     number = getString(R.string.voicemail);
+                } else {
+                    // Just a raw number, format it to look pretty
+                    number = PhoneNumberUtils.formatNumber(number);
                 }
 
                 views.line1View.setText(number);
