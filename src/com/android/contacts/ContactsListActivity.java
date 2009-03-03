@@ -57,10 +57,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
@@ -89,7 +87,6 @@ public final class ContactsListActivity extends ListActivity
     static final int MENU_ITEM_DELETE = 7;
     static final int MENU_ITEM_TOGGLE_STAR = 8;
 
-    public static final int MENU_SEARCH = 1;
     public static final int MENU_DIALER = 9;
     public static final int MENU_NEW_CONTACT = 10;
     public static final int MENU_DISPLAY_GROUP = 11;
@@ -590,20 +587,11 @@ public final class ContactsListActivity extends ListActivity
             }
         }
 
-        if (mJustCreated && runQuery) {
-            // We need to start a query here the first time the activity is launched, as long
-            // as we aren't doing a filter.
+        if (runQuery) {
+            // Calling requery here may cause an ANR, so always do the async query
             startQuery();
         }
         mJustCreated = false;
-    }
-    
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-        // The cursor was killed off in onStop(), so we need to get a new one here
-        startQuery();
     }
     
     private void updateGroup() {
@@ -637,7 +625,7 @@ public final class ContactsListActivity extends ListActivity
 
         // We don't want the list to display the empty state, since when we resume it will still
         // be there and show up while the new query is happening. After the async query finished
-        // in response to onRestart() setLoading(false) will be called.
+        // in response to onResume() setLoading(false) will be called.
         mAdapter.setLoading(true);
         mAdapter.changeCursor(null);
 
@@ -655,10 +643,6 @@ public final class ContactsListActivity extends ListActivity
         if ((mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER) {
             return false;
         }
-
-        // Search
-        menu.add(0, MENU_SEARCH, 0, R.string.menu_search)
-                .setIcon(android.R.drawable.ic_menu_search);
 
         // New contact
         menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact)
@@ -736,21 +720,16 @@ public final class ContactsListActivity extends ListActivity
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_DISPLAY_GROUP:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(R.string.select_group_title)
-                    .setPositiveButton(android.R.string.ok, this)
-                    .setNegativeButton(android.R.string.cancel, null);
-                
-                setGroupEntries(builder);
-                
-                builder.show();
-                return true;
-
-            case MENU_SEARCH:
-                startSearch(null, false, null, false);
-                return true;
+        if (item.getItemId() == MENU_DISPLAY_GROUP) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle(R.string.select_group_title)
+                .setPositiveButton(android.R.string.ok, this)
+                .setNegativeButton(android.R.string.cancel, null);
+            
+            setGroupEntries(builder);
+            
+            builder.show();
+            return true;
         }
         return false;
     }
@@ -909,11 +888,6 @@ public final class ContactsListActivity extends ListActivity
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        // Hide soft keyboard, if visible
-        InputMethodManager inputMethodManager = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
-
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
             if (position == 0) {
@@ -1044,7 +1018,7 @@ public final class ContactsListActivity extends ListActivity
 
             case MODE_WITH_PHONES:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI, CONTACTS_PROJECTION,
-                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null, SORT_ORDER);
+                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null, People.DEFAULT_SORT_ORDER);
                 break;
 
             case MODE_QUERY: {
@@ -1101,7 +1075,8 @@ public final class ContactsListActivity extends ListActivity
                 } else {
                     uri = Uri.withAppendedPath(mGroupFilterUri, Uri.encode(filter));
                 }
-                return resolver.query(uri, CONTACTS_PROJECTION, null, null, SORT_ORDER);
+                return resolver.query(uri, CONTACTS_PROJECTION, null, null,
+                        People.DEFAULT_SORT_ORDER);
             }
 
             case MODE_ALL_CONTACTS:
@@ -1319,7 +1294,7 @@ public final class ContactsListActivity extends ListActivity
         private CharSequence[] mLocalizedLabels;
 
         public ContactItemListAdapter(Context context) {
-            super(context, R.layout.contacts_list_item, null, false);
+            super(context, R.layout.contacts_list_item, null);
             
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
             
@@ -1336,24 +1311,6 @@ public final class ContactsListActivity extends ListActivity
             }
         }
 
-        /**
-         * Callback on the UI thread when the content observer on the backing cursor fires.
-         * Instead of calling requery we need to do an async query so that the requery doesn't
-         * block the UI thread for a long time. 
-         */
-        @Override
-        protected void onContentChanged() {
-            CharSequence constraint = getListView().getTextFilter();
-            if (!TextUtils.isEmpty(constraint)) {
-                // Reset the filter state then start an async filter operation
-                Filter filter = getFilter();
-                filter.filter(constraint);
-            } else {
-                // Start an async query
-                startQuery();
-            }
-        }
-        
         public void setLoading(boolean loading) {
             mLoading = loading;
         }

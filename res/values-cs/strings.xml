@@ -16,8 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Kontakty"</string>
-    <!-- no translation found for launcherDialer (140610573639849799) -->
-    <skip />
     <string name="shortcutContact">"Kontakt"</string>
     <string name="starredList">"Označené hvězdičkou"</string>
     <string name="frequentList">"Časté"</string>
@@ -131,10 +129,7 @@
     <string name="simContacts_emptyLoading">"Načítání z karty SIM..."</string>
     <string name="simContacts_title">"Kontakty na kartě SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronizujte své kontakty Google!"</font>" "\n"Po synchronizaci telefonu budete mít kontaktní informace vždy u sebe."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"Nemáte žádné kontakty."\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Nabídka"</b></font>" a vyberte možnost:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Upravit synchronizované skupiny"</b></font>", pokud chcete přidat kontakty z nového nebo existujícího účtu Google"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit nový kontakt"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importovat kontakty"</b></font>", pokud chcete přidat kontakty ze své SIM karty"\n</li></string>
     <string name="seclectSyncGroups_title">"Vyberte skupiny, které chcete synchronizovat"</string>
     <string name="liveFolder_all_label">"Všechny kontakty"</string>
     <string name="liveFolder_favorites_label">"S hvězdičkou"</string>
@@ -163,10 +158,4 @@
     <string name="detailIncomingCallsGoToVoicemail">"Budou odeslány přímo do hlasové pošty."</string>
     <string name="detailsRingtone">"Nastavit vyzvánění <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Zavolat zpět"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
 </resources>

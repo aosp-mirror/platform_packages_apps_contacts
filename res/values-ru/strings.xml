@@ -16,8 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Контакты"</string>
-    <!-- no translation found for launcherDialer (140610573639849799) -->
-    <skip />
     <string name="shortcutContact">"Контакт"</string>
     <string name="starredList">"Помеченные"</string>
     <string name="frequentList">"Частые"</string>
@@ -131,10 +129,7 @@
     <string name="simContacts_emptyLoading">"Идет загрузка с SIM-карты…"</string>
     <string name="simContacts_title">"Контакты на SIM-карте"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Синхронизируйте свои контакты Google!"</font>" "\n"После синхронизации с телефоном вы сможете общаться со знакомыми, где бы вы ни были."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"Контакты отсутствуют."\n\n"Чтобы добавить контакты, нажмите кнопку "<font fgcolor="#ffffffff"><b>"\"Меню\""</b></font>", и выберите пункт "\n\n\n<li><font fgcolor="#ffffffff"><b>"\"Редактировать группы синхронизации\""</b></font>" для добавления контакта из нового или существующего аккаунта Google, "\n</li>\n\n<li><font fgcolor="#ffffffff"><b>"\"Создать контакт\""</b></font>" для создания нового контакта из рабочей области или"\n</li>\n\n<li><font fgcolor="#ffffffff"><b>"\"Импортировать контакты\""</b></font>" для добавления контактов, содержащихся на SIM-карте"\n</li>"."</string>
     <string name="seclectSyncGroups_title">"Выбор групп для синхронизации"</string>
     <string name="liveFolder_all_label">"Все контакты"</string>
     <string name="liveFolder_favorites_label">"Помеченные"</string>
@@ -163,10 +158,4 @@
     <string name="detailIncomingCallsGoToVoicemail">"Переадресация в голосовую почту"</string>
     <string name="detailsRingtone">"Выбрано: <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Перезвонить"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
 </resources>

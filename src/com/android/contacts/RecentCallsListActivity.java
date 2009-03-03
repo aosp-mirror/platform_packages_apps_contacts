@@ -95,7 +95,7 @@ public class RecentCallsListActivity extends ListActivity
     /** The projection to use when querying the phones table */
     static final String[] PHONES_PROJECTION = new String[] {
             Phones.PERSON_ID,
-            Phones.DISPLAY_NAME,
+            Phones.NAME,
             Phones.TYPE,
             Phones.LABEL,
             Phones.NUMBER

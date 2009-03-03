@@ -16,7 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Kontakter"</string>
-    <string name="launcherDialer">"Telefon"</string>
     <string name="shortcutContact">"Kontakt"</string>
     <string name="starredList">"Med stjerne"</string>
     <string name="frequentList">"Mest brukt"</string>
@@ -87,7 +86,7 @@
     <string name="noContactsWithPhoneNumbers">"Ingen kontakter med telefonnummer."</string>
     <string name="noFavorites">"Ingen favoritter."</string>
     <string name="select_group_title">"Grupper"</string>
-    <string name="groupEmpty">"Gruppen \"<xliff:g id="GROUPNAME">%s</xliff:g>\" er tom."</string>
+    <string name="groupEmpty">"Gruppen \\\\\\\"<xliff:g id="GROUPNAME">%s</xliff:g>\\\\\\\" er tom."</string>
     <string name="showAllGroups">"Alle kontakter"</string>
     <string name="syncAllGroups">"Synkroniser alle kontakter"</string>
     <string name="groupNameMyContacts">"Mine kontakter"</string>
@@ -130,10 +129,7 @@
     <string name="simContacts_emptyLoading">"Henter fra SIM-kort…"</string>
     <string name="simContacts_title">"Kontakter på SIM-kort"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synkroniser Google-kontaktene dine!"</font>" "\n"Etter å ha synkronisert telefonen vil kontaktene dine bli tilgjengelig overalt."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"Du har ingen kontakter."\n\n"Legg til kontakter ved å trykke på "<font fgcolor="#ffffffff"><b>"Menu (Meny)"</b></font>" og velge:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Edit sync groups (Rediger synkroniseringsgrupper)"</b></font>" for å legge til en ny eller eksisterende Google-konto"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"New contact (Ny kontakt)"</b></font>" for å legge til en ny kontakt helt fra begynnelsen av"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Import contacts (Importer kontakter)"</b></font>" for å legge til kontakter fra SIM-kortet"\n</li></string>
     <string name="seclectSyncGroups_title">"Velg grupper som skal synkroniseres"</string>
     <string name="liveFolder_all_label">"Alle kontakter"</string>
     <string name="liveFolder_favorites_label">"Med stjerne"</string>
@@ -162,10 +158,4 @@
     <string name="detailIncomingCallsGoToVoicemail">"Vil bli sendt rett til telefonsvarer"</string>
     <string name="detailsRingtone">"Sett til <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Ring tilbake"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
 </resources>

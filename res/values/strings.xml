@@ -19,10 +19,6 @@
          used in the Launcher icon. -->
     <string name="contactsList">Contacts</string>
 
-    <!-- Title for the activity that dials the phone.  This is the name
-         used in the Launcher icon. -->
-    <string name="launcherDialer">Dialer</string>
-
     <!-- Name of activity that allows users to create shortcuts on the home screen to a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
     <string name="shortcutContact">Contact</string>
@@ -54,9 +50,6 @@
 
     <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->
     <string name="searchHint">Search contacts</string>
-
-    <!-- Menu item to search contacts -->
-    <string name="menu_search">Search</string>
 
     <!-- Menu item to create a new contact -->
     <string name="menu_newContact">New contact</string>
