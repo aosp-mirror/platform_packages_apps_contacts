@@ -16,6 +16,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"連絡先"</string>
+    <!-- no translation found for launcherDialer (140610573639849799) -->
+    <skip />
     <string name="shortcutContact">"連絡先"</string>
     <string name="starredList">"スター付き"</string>
     <string name="frequentList">"よく連絡する連絡先"</string>
@@ -125,11 +127,14 @@
     <string name="unknown">"不明"</string>
     <string name="private_num">"非通知番号"</string>
     <string name="dialerKeyboardHintText">"キーボードで番号を入力してください"</string>
-    <string name="dialerDialpadHintText">"ダイヤルして通話を追加"</string>
+    <string name="dialerDialpadHintText">"ダイヤルして追加"</string>
     <string name="simContacts_emptyLoading">"SIMカードから読み取り中..."</string>
     <string name="simContacts_title">"SIMカードの連絡先"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleアカウントの連絡先同期"</font>" "\n"Googleサービスで使っている連絡先をこの携帯電話でも使えるようになります。"</string>
-    <string name="noContactsHelpText">"連絡先がありません。"\n\n"連絡先を追加するには、"<font fgcolor="#ffffffff"><b>"メニュー"</b></font>"を押して"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Edit sync groups"</b></font>"を選択し、新規か既存のGoogleアカウント"\n</li>\n"を追加します。        "\n<li><font fgcolor="#ffffffff"><b>"新規連絡先"</b></font>"を選択すると新しい連絡先をはじめから作成できます。"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Import contacts"</b></font>"を選択すると連絡先をSIMカードから追加できます。"\n</li></string>
+    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
+    <skip />
     <string name="seclectSyncGroups_title">"同期するグループを選択"</string>
     <string name="liveFolder_all_label">"すべての連絡先"</string>
     <string name="liveFolder_favorites_label">"スター付き"</string>
@@ -158,4 +163,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"直接ボイスメールに送信します"</string>
     <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>に設定"</string>
     <string name="callBack">"コールバック"</string>
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
 </resources>

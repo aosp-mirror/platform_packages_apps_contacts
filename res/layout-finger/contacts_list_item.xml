@@ -44,6 +44,7 @@
         android:layout_marginTop="-8dip"
 
         android:singleLine="true"
+        android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textStyle="bold"
     />
@@ -58,6 +59,7 @@
         android:layout_alignWithParentIfMissing="true"
 
         android:singleLine="true"
+        android:ellipsize="marquee"
         android:textAppearance="?android:attr/textAppearanceSmall"
     />
 
@@ -71,6 +73,8 @@
         android:layout_toLeftOf="@id/presence"
         android:layout_marginBottom="1dip"
 
+        android:singleLine="true"
+        android:ellipsize="marquee"
         android:gravity="center_vertical|left"
         android:textAppearance="?android:attr/textAppearanceLarge"
     />

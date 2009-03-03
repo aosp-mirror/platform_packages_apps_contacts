@@ -69,6 +69,7 @@ import android.preference.PreferenceManager;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.Intents.Insert;
+import android.provider.Contacts.Groups;
 import android.provider.Contacts.Organizations;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -931,6 +932,44 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     null);
             if (!TextUtils.isEmpty(displayGroup)) {
                 People.addToGroup(mResolver, ContentUris.parseId(contactUri), displayGroup);
+            }
+        } else {
+            // Check to see if we're not syncing everything and if so if My Contacts is synced.
+            // If it isn't then the created contact can end up not in any groups that are
+            // currently synced and end up getting removed from the phone, which is really bad.
+            boolean syncingEverything = !"0".equals(Contacts.Settings.getSetting(mResolver, null,
+                    Contacts.Settings.SYNC_EVERYTHING));
+            if (!syncingEverything) {
+                boolean syncingMyContacts = false;
+                Cursor c = mResolver.query(Groups.CONTENT_URI, new String[] { Groups.SHOULD_SYNC },
+                        Groups.SYSTEM_ID + "=?", new String[] { Groups.GROUP_MY_CONTACTS }, null);
+                if (c != null) {
+                    try {
+                        if (c.moveToFirst()) {
+                            syncingMyContacts = !"0".equals(c.getString(0));
+                        }
+                    } finally {
+                        c.close();
+                    }
+                }
+
+                if (!syncingMyContacts) {
+                    // Not syncing My Contacts, so find a group that is being synced and stick
+                    // the contact in there. We sort the list so at least all contacts
+                    // will appear in the same group.
+                    c = mResolver.query(Groups.CONTENT_URI, new String[] { Groups._ID },
+                            Groups.SHOULD_SYNC + "!=0", null, Groups.DEFAULT_SORT_ORDER);
+                    if (c != null) {
+                        try {
+                            if (c.moveToFirst()) {
+                                People.addToGroup(mResolver, ContentUris.parseId(contactUri),
+                                        c.getLong(0));
+                            }
+                        } finally {
+                            c.close();
+                        }
+                    }
+                }
             }
         }
 

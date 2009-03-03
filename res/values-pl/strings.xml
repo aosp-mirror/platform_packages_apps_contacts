@@ -16,6 +16,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Kontakty"</string>
+    <!-- no translation found for launcherDialer (140610573639849799) -->
+    <skip />
     <string name="shortcutContact">"Kontakt"</string>
     <string name="starredList">"Oznaczony gwiazdką"</string>
     <string name="frequentList">"Częste"</string>
@@ -75,7 +77,7 @@
     <string name="attachToContact">"Ikona kontaktu"</string>
     <string name="customLabelPickerTitle">"Nazwa etykiety niestandardowej"</string>
     <string name="menu_displayGroup">"Wyświetl grupę"</string>
-    <string name="syncGroupPreference">"Edytuj grupy synchronizacji"</string>
+    <string name="syncGroupPreference">"Synchronizacja grup"</string>
     <string name="importFromSim">"Importuj kontakty"</string>
     <string name="send_to_voicemail_checkbox">"Przekieruj połączenia bezpośrednio na pocztę głosową"</string>
     <string name="send_to_voicemail_view">"Połączenia są przekazywane bezpośrednio do poczty głosowej."</string>
@@ -108,10 +110,10 @@
     <string name="listSeparatorMore_edit">"Więcej"</string>
     <string name="contactsIconLabel">"Kontakty"</string>
     <string name="contactsFavoritesLabel">"Ulubione"</string>
-    <string name="dialerIconLabel">"Klawisze"</string>
-    <string name="recentCallsIconLabel">"Rejestr połączeń"</string>
+    <string name="dialerIconLabel">"Telefon"</string>
+    <string name="recentCallsIconLabel">"Rejestr"</string>
     <string name="liveFolderAll">"Wszystkie kontakty"</string>
-    <string name="liveFolderFavorites">"Kontakty oznaczone gwiazdkami"</string>
+    <string name="liveFolderFavorites">"Kontakty oznaczone gwiazdką"</string>
     <string name="liveFolderPhone">"Kontakty z numerami telefonów"</string>
     <string name="menu_sendTextMessage">"Wyślij wiadomość SMS"</string>
     <string name="recentCalls_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -129,10 +131,13 @@
     <string name="simContacts_emptyLoading">"Wczytywanie z karty SIM…"</string>
     <string name="simContacts_title">"Kontakty z karty SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
-    <string name="noContactsHelpText">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, naciśnij opcję "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"Edytuj grupy synchronizowane"</b></font>" w celu dodania kontaktów z nowego lub istniejącego konta Google"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
+    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
+    <skip />
     <string name="seclectSyncGroups_title">"Wybierz grupy do zsynchronizowania"</string>
     <string name="liveFolder_all_label">"Wszystkie kontakty"</string>
-    <string name="liveFolder_favorites_label">"Oznaczone gwiazdkami"</string>
+    <string name="liveFolder_favorites_label">"Oznaczone gwiazdką"</string>
     <string name="liveFolder_phones_label">"Telefony"</string>
     <string name="dialer_useDtmfDialpad">"Użyj klawiatury tonowej"</string>
     <string name="dialer_returnToInCallScreen">"Powrót do aktywnego połączenia"</string>
@@ -140,7 +145,7 @@
     <string name="callDetailTitle">"Szczegóły połączenia"</string>
     <string name="toast_call_detail_error">"Nie można odczytać szczegółów żądanego połączenia."</string>
     <string name="call_type">"Typ"</string>
-    <string name="type_incoming">"Połączenie przychodzące"</string>
+    <string name="type_incoming">"Poł. przychodzące"</string>
     <string name="type_outgoing">"Połączenie wychodzące"</string>
     <string name="type_missed">"Nieodebrane połączenia"</string>
     <string name="call_time">"Godzina"</string>
@@ -158,4 +163,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"Zostaną wysłane bezpośrednio na pocztę głosową"</string>
     <string name="detailsRingtone">"Ustaw na <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Oddzwoń"</string>
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
 </resources>

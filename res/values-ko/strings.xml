@@ -16,6 +16,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"연락처"</string>
+    <!-- no translation found for launcherDialer (140610573639849799) -->
+    <skip />
     <string name="shortcutContact">"연락처"</string>
     <string name="starredList">"별표 표시된 연락처"</string>
     <string name="frequentList">"자주 거는 전화"</string>
@@ -129,7 +131,10 @@
     <string name="simContacts_emptyLoading">"SIM 카드에서 로드 중…"</string>
     <string name="simContacts_title">"SIM 카드 연락처"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Google 연락처를 동기화하세요."</font>" "\n"연락처를 전화기로 동기화하면 어디에서나 연락처를 확인할 수 있습니다."</string>
-    <string name="noContactsHelpText">"주소가 하나도 없습니다."\n\n"주소를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누른 다음 다음을 선택하세요."\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"동기화 그룹 수정"</b></font>": 새 계정 또는 기존 Google 계정에서 추가"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"새 주소록"</b></font>": 처음부터 새 주소록 만들기"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"주소록 가져오기"</b></font>": SIM 카드에서 주소록 추가"\n</li></string>
+    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
+    <skip />
     <string name="seclectSyncGroups_title">"동기화할 그룹 선택"</string>
     <string name="liveFolder_all_label">"전체 주소록"</string>
     <string name="liveFolder_favorites_label">"중요편지함"</string>
@@ -158,4 +163,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"음성메일로 바로 보냄"</string>
     <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>(으)로 설정"</string>
     <string name="callBack">"콜백"</string>
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
 </resources>

@@ -79,7 +79,7 @@ public class CallDetailActivity extends ListActivity implements
     
     static final String[] PHONES_PROJECTION = new String[] {
         Phones.PERSON_ID,
-        Phones.NAME,
+        Phones.DISPLAY_NAME,
         Phones.TYPE,
         Phones.LABEL,
         Phones.NUMBER,

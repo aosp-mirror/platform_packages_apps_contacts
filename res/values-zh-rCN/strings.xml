@@ -16,6 +16,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"联系人"</string>
+    <!-- no translation found for launcherDialer (140610573639849799) -->
+    <skip />
     <string name="shortcutContact">"联系人"</string>
     <string name="starredList">"已加星标"</string>
     <string name="frequentList">"经常"</string>
@@ -129,7 +131,10 @@
     <string name="simContacts_emptyLoading">"正在从 SIM 卡中载入..."</string>
     <string name="simContacts_title">"SIM 卡联系人"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"同步您的 Google 联系人！"</font>\n"将联系人同步到您的手机后，无论您走到哪里，都可以与他们联系。"</string>
-    <string name="noContactsHelpText">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后选择："\n\n"        "\n<li><font fgcolor="#ffffffff"><b>"修改同步组"</b></font>"可以从新的 Google 帐户或现有 Google 帐户进行添加"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"可以从头创建新联系人"\n</li>\n"        "\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>"可以从 SIM 卡添加联系人"\n</li></string>
+    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
+    <skip />
     <string name="seclectSyncGroups_title">"选择要同步的组"</string>
     <string name="liveFolder_all_label">"所有联系人"</string>
     <string name="liveFolder_favorites_label">"已加星标"</string>
@@ -158,4 +163,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"将直接发送至语音邮件"</string>
     <string name="detailsRingtone">"设置为“<xliff:g id="RINGTONE_NAME">%s</xliff:g>”"</string>
     <string name="callBack">"回拨"</string>
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
 </resources>
