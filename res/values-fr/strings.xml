@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="contactsList">"Contacts"</string>
+    <string name="launcherDialer">"Appeler"</string>
+    <string name="shortcutContact">"Contact"</string>
+    <string name="starredList">"Marqués d\'une étoile"</string>
+    <string name="frequentList">"Contacts fréquents"</string>
+    <string name="strequentList">"Favoris"</string>
+    <string name="viewContactTitle">"Détails du contact"</string>
+    <string name="viewContactDesription">"Afficher le contact"</string>
+    <string name="editContactDescription">"Modifier le contact"</string>
+    <string name="insertContactDescription">"Créer un contact"</string>
+    <string name="searchHint">"Rechercher des contacts"</string>
+    <string name="menu_newContact">"Nouveau contact"</string>
+    <string name="menu_viewContact">"Afficher le contact"</string>
+    <string name="menu_callNumber">"Appeler <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_addStar">"Ajouter aux favoris"</string>
+    <string name="menu_removeStar">"Supprimer des favoris"</string>
+    <string name="menu_showBarcode">"Afficher le code-barres"</string>
+    <string name="menu_editContact">"Modifier le contact"</string>
+    <string name="menu_deleteContact">"Supprimer le contact"</string>
+    <string name="menu_call">"Appel"</string>
+    <string name="menu_sendSMS">"Envoyer un SMS/MMS"</string>
+    <string name="menu_sendEmail">"Envoyer un e-mail"</string>
+    <string name="menu_viewAddress">"Adresse sur un plan"</string>
+    <string name="menu_makeDefaultNumber">"Numéro téléphone par défaut"</string>
+    <string name="deleteConfirmation_title">"Supprimer"</string>
+    <string name="deleteConfirmation">"Ce contact sera supprimé."</string>
+    <string name="menu_done">"OK"</string>
+    <string name="menu_doNotSave">"Annuler"</string>
+    <string name="editContact_title_edit">"Modifier le contact"</string>
+    <string name="editContact_title_insert">"Nouveau contact"</string>
+    <string name="menu_addItem">"Plus d\'infos"</string>
+    <string name="label_phonetic_name">"Prononciation phonétique"</string>
+    <string name="label_notes">"Notes"</string>
+    <string name="label_ringtone">"Sonnerie"</string>
+    <string name="ghostData_name">"Nom et prénom"</string>
+    <string name="ghostData_phonetic_name">"Nom phonétique"</string>
+    <string name="ghostData_company">"Société"</string>
+    <string name="ghostData_title">"Position"</string>
+    <string name="ghostData_im">"Nom du compte"</string>
+    <string name="ghostData_notes">"Mon commentaire"</string>
+    <string name="ghostData_phone">"Numéro téléphone"</string>
+    <string name="ghostData_email">"Adresse e-mail"</string>
+    <string name="ghostData_postal">"Adresse postale"</string>
+    <string name="invalidContactMessage">"Ce contact n\'existe pas."</string>
+    <string name="pickerNewContactHeader">"Créer un nouveau contact"</string>
+    <string name="selectLabel">"Sélectionnez un libellé"</string>
+    <string name="phoneLabelsGroup">"Téléphone"</string>
+    <string name="emailLabelsGroup">"E-mail"</string>
+    <string name="imLabelsGroup">"Chat"</string>
+    <string name="postalLabelsGroup">"Adresse postale"</string>
+    <string name="otherLabelsGroup">"Autre"</string>
+  <string-array name="otherLabels">
+    <item>"Organisation"</item>
+    <item>"Remarque"</item>
+  </string-array>
+    <string name="errorDialogTitle">"Aucune image"</string>
+    <string name="photoPickerNotFoundText">"Aucune image disponible sur le téléphone."</string>
+    <string name="attachToContact">"Icône de contact"</string>
+    <string name="customLabelPickerTitle">"Libellé personnalisé"</string>
+    <string name="menu_displayGroup">"Afficher les groupes"</string>
+    <string name="syncGroupPreference">"Param. sync. groupes"</string>
+    <string name="importFromSim">"Importer des contacts"</string>
+    <string name="send_to_voicemail_checkbox">"Renvoyer les appels directement vers la boîte vocale."</string>
+    <string name="send_to_voicemail_view">"Les appels sont renvoyés directement vers la boîte vocale."</string>
+    <string name="default_ringtone">"Par défaut"</string>
+    <string name="addPicture">"Ajouter une icône"</string>
+    <string name="removePicture">"Supprimer l\'icône"</string>
+    <string name="noContacts">"Aucun contact."</string>
+    <string name="noContactsWithPhoneNumbers">"Aucun contact disposant d\'un numéro téléphone."</string>
+    <string name="noFavorites">"Aucun favori."</string>
+    <string name="select_group_title">"Groupes"</string>
+    <string name="groupEmpty">"Votre groupe \"<xliff:g id="GROUPNAME">%s</xliff:g>\" est vide."</string>
+    <string name="showAllGroups">"Tous les contacts"</string>
+    <string name="syncAllGroups">"Synchroniser tous les contacts"</string>
+    <string name="groupNameMyContacts">"Mes contacts"</string>
+    <string name="groupNameWithPhones">"Contacts avec des n° de téléphone"</string>
+    <string name="contactCreatedToast">"Contact créé."</string>
+    <string name="contactSavedToast">"Contact enregistré."</string>
+    <string name="listSeparatorCallNumber">"Composer le numéro"</string>
+    <string name="listSeparatorCallNumber_edit">"Numéros de téléphone"</string>
+    <string name="listSeparatorSendSmsMms">"Envoyer un SMS/MMS"</string>
+    <string name="listSeparatorSendEmail">"Envoyer un e-mail"</string>
+    <string name="listSeparatorSendEmail_edit">"Adresses e-mail"</string>
+    <string name="listSeparatorSendIm">"Envoyer un message instantané"</string>
+    <string name="listSeparatorSendIm_edit">"Adresses de chat"</string>
+    <string name="listSeparatorMapAddress">"Adresse sur un plan"</string>
+    <string name="listSeparatorMapAddress_edit">"Adresses postales"</string>
+    <string name="listSeparatorOrganizations">"Organisations"</string>
+    <string name="listSeparatorOtherInformation">"Autres informations"</string>
+    <string name="listSeparatorOtherInformation_edit">"Autres options"</string>
+    <string name="listSeparatorMore_edit">"Plus"</string>
+    <string name="contactsIconLabel">"Contacts"</string>
+    <string name="contactsFavoritesLabel">"Favoris"</string>
+    <string name="dialerIconLabel">"Appeler"</string>
+    <string name="recentCallsIconLabel">"Appels"</string>
+    <string name="liveFolderAll">"Tous les contacts"</string>
+    <string name="liveFolderFavorites">"Contacts suivis"</string>
+    <string name="liveFolderPhone">"Contacts avec numéro de téléphone"</string>
+    <string name="menu_sendTextMessage">"Envoyer un message SMS"</string>
+    <string name="recentCalls_callNumber">"Appeler <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_editNumberBeforeCall">"Modifier le numéro avant d\'effectuer l\'appel"</string>
+    <string name="recentCalls_addToContact">"Ajouter aux contacts"</string>
+    <string name="recentCalls_removeFromRecentList">"Supprimer de la liste des appels"</string>
+    <string name="recentCalls_deleteAll">"Effacer tous les appels"</string>
+    <string name="recentCalls_empty">"Aucun appel."</string>
+    <string name="imei">"IMEI"</string>
+    <string name="voicemail">"Boîte vocale"</string>
+    <string name="unknown">"Inconnu"</string>
+    <string name="private_num">"Numéro privée"</string>
+    <string name="dialerKeyboardHintText">"Utilisez le clavier pour composer le numéro"</string>
+    <string name="dialerDialpadHintText">"Composer le numéro pour ajouter un appel"</string>
+    <string name="simContacts_emptyLoading">"Chargement depuis la carte SIM..."</string>
+    <string name="simContacts_title">"Contacts de carte SIM"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronisez vos contacts Google !"</font>" "\n"Vos contacts seront disponibles, où que vous soyez, dès que vous aurez synchronisé votre téléphone."</string>
+    <string name="noContactsHelpText">"Aucun contact."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un tout nouveau contact"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer des contacts"</b></font>" pour ajouter des contacts à partir de votre carte SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"Aucun contact."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Param. sync. groupes"</b></font>" pour ajouter des contacts depuis un nouveau compte Google ou un compte existant."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un tout nouveau contact"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer des contacts"</b></font>" pour ajouter des contacts à partir de votre carte SIM"\n</li></string>
+    <string name="seclectSyncGroups_title">"Sélectionner les groupes à synchroniser"</string>
+    <string name="liveFolder_all_label">"Tous les contacts"</string>
+    <string name="liveFolder_favorites_label">"Suivis"</string>
+    <string name="liveFolder_phones_label">"Téléphones"</string>
+    <string name="dialer_useDtmfDialpad">"Utiliser le clavier DTMF"</string>
+    <string name="dialer_returnToInCallScreen">"Reprendre l\'appel en cours"</string>
+    <string name="dialer_addAnotherCall">"Ajouter un appel"</string>
+    <string name="callDetailTitle">"Détails sur l\'appel"</string>
+    <string name="toast_call_detail_error">"Impossible de consulter les détails de l\'appel demandé."</string>
+    <string name="call_type">"Type"</string>
+    <string name="type_incoming">"Appel entrant"</string>
+    <string name="type_outgoing">"Appel sortant"</string>
+    <string name="type_missed">"Appel manqué"</string>
+    <string name="call_time">"Heure"</string>
+    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
+    <string name="call_duration">"Durée"</string>
+    <string name="header_actions">"Actions"</string>
+    <string name="ringtone_spinner">"Sonnerie : <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
+    <string name="add_more_items">"Ajouter d\'autres éléments"</string>
+    <string name="actionCall">"Appeler <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"Envoyer un e-mail à <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Envoyer un SMS à <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Chatter à l\'aide de <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Afficher l\'adresse <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Appels entrants"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Seront envoyés directement en tant que message vocal"</string>
+    <string name="detailsRingtone">"Associer à <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Rappeler"</string>
+    <string name="callAgain">"Rappeler"</string>
+    <string name="returnCall">"Rappeler"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> mn <xliff:g id="SECONDS">%s</xliff:g> s"</string>
+</resources>

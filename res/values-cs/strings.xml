@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="contactsList">"Kontakty"</string>
+    <!-- no translation found for launcherDialer (140610573639849799) -->
+    <skip />
+    <string name="shortcutContact">"Kontakt"</string>
+    <string name="starredList">"Označené hvězdičkou"</string>
+    <string name="frequentList">"Časté"</string>
+    <string name="strequentList">"Oblíbené"</string>
+    <string name="viewContactTitle">"Kontaktní informace"</string>
+    <string name="viewContactDesription">"Zobrazit kontakt"</string>
+    <string name="editContactDescription">"Upravit kontakt"</string>
+    <string name="insertContactDescription">"Vytvořit kontakt"</string>
+    <string name="searchHint">"Vyhledat kontakty"</string>
+    <string name="menu_newContact">"Nový kontakt"</string>
+    <string name="menu_viewContact">"Zobrazit kontakt"</string>
+    <string name="menu_callNumber">"Volat kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_addStar">"Přidat do oblíbených"</string>
+    <string name="menu_removeStar">"Odebrat z oblíbených položek"</string>
+    <string name="menu_showBarcode">"Zobrazit čárový kód"</string>
+    <string name="menu_editContact">"Upravit kontakt"</string>
+    <string name="menu_deleteContact">"Smazat kontakt"</string>
+    <string name="menu_call">"Volat"</string>
+    <string name="menu_sendSMS">"Odeslat SMS nebo MMS"</string>
+    <string name="menu_sendEmail">"Odeslat e-mail"</string>
+    <string name="menu_viewAddress">"Adresa na mapě"</string>
+    <string name="menu_makeDefaultNumber">"Nastavit jako výchozí číslo"</string>
+    <string name="deleteConfirmation_title">"Smazat"</string>
+    <string name="deleteConfirmation">"Tento kontakt bude smazán."</string>
+    <string name="menu_done">"Hotovo"</string>
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
+    <string name="editContact_title_edit">"Upravit kontakt"</string>
+    <string name="editContact_title_insert">"Nový kontakt"</string>
+    <string name="menu_addItem">"Další informace"</string>
+    <string name="label_phonetic_name">"Foneticky"</string>
+    <string name="label_notes">"Poznámky"</string>
+    <string name="label_ringtone">"Vyzváněcí tón"</string>
+    <string name="ghostData_name">"Jméno a příjmení"</string>
+    <string name="ghostData_phonetic_name">"Jméno (foneticky)"</string>
+    <string name="ghostData_company">"Společnost"</string>
+    <string name="ghostData_title">"Funkce"</string>
+    <string name="ghostData_im">"Název v chatu"</string>
+    <string name="ghostData_notes">"Má poznámka"</string>
+    <string name="ghostData_phone">"Telefonní číslo"</string>
+    <string name="ghostData_email">"E-mailová adresa"</string>
+    <string name="ghostData_postal">"Poštovní adresa"</string>
+    <string name="invalidContactMessage">"Kontakt neexistuje."</string>
+    <string name="pickerNewContactHeader">"Vytvořit nový kontakt"</string>
+    <string name="selectLabel">"Vyberte štítek"</string>
+    <string name="phoneLabelsGroup">"Telefon"</string>
+    <string name="emailLabelsGroup">"E-mail"</string>
+    <string name="imLabelsGroup">"Chat"</string>
+    <string name="postalLabelsGroup">"Poštovní adresa"</string>
+    <string name="otherLabelsGroup">"Ostatní"</string>
+  <string-array name="otherLabels">
+    <item>"Organizace"</item>
+    <item>"Poznámka"</item>
+  </string-array>
+    <string name="errorDialogTitle">"Žádné fotografie"</string>
+    <string name="photoPickerNotFoundText">"V telefonu nejsou žádné fotografie."</string>
+    <string name="attachToContact">"Ikona kontaktu"</string>
+    <string name="customLabelPickerTitle">"Název vlastního štítku"</string>
+    <string name="menu_displayGroup">"Zobrazit skupinu"</string>
+    <string name="syncGroupPreference">"Upravit synchronizované skupiny"</string>
+    <string name="importFromSim">"Importovat kontakty"</string>
+    <string name="send_to_voicemail_checkbox">"Odesílat hovory přímo do hlasové pošty"</string>
+    <string name="send_to_voicemail_view">"Hovory jsou přesměrovány přímo do hlasové schránky."</string>
+    <string name="default_ringtone">"Výchozí"</string>
+    <string name="addPicture">"Přidat ikonu"</string>
+    <string name="removePicture">"Odstranit ikonu"</string>
+    <string name="noContacts">"Žádné kontakty."</string>
+    <string name="noContactsWithPhoneNumbers">"Ke kontaktům nejsou přiřazena žádná telefonní čísla."</string>
+    <string name="noFavorites">"Žádné oblíbené položky."</string>
+    <string name="select_group_title">"Skupiny"</string>
+    <string name="groupEmpty">"Skupina <xliff:g id="GROUPNAME">%s</xliff:g> je prázdná."</string>
+    <string name="showAllGroups">"Všechny kontakty"</string>
+    <string name="syncAllGroups">"Synchronizovat všechny kontakty"</string>
+    <string name="groupNameMyContacts">"Moje kontakty"</string>
+    <string name="groupNameWithPhones">"Kontakty s telefonním číslem"</string>
+    <string name="contactCreatedToast">"Kontakt byl vytvořen."</string>
+    <string name="contactSavedToast">"Kontakt byl uložen."</string>
+    <string name="listSeparatorCallNumber">"Vytočit číslo"</string>
+    <string name="listSeparatorCallNumber_edit">"Telefonní čísla"</string>
+    <string name="listSeparatorSendSmsMms">"Odeslat SMS nebo MMS"</string>
+    <string name="listSeparatorSendEmail">"Odeslat e-mail"</string>
+    <string name="listSeparatorSendEmail_edit">"E-mailové adresy"</string>
+    <string name="listSeparatorSendIm">"Odeslat zprávu chatu"</string>
+    <string name="listSeparatorSendIm_edit">"Adresa chatu"</string>
+    <string name="listSeparatorMapAddress">"Adresa na mapě"</string>
+    <string name="listSeparatorMapAddress_edit">"Poštovní adresa"</string>
+    <string name="listSeparatorOrganizations">"Organizace"</string>
+    <string name="listSeparatorOtherInformation">"Ostatní informace"</string>
+    <string name="listSeparatorOtherInformation_edit">"Další možnosti"</string>
+    <string name="listSeparatorMore_edit">"Další"</string>
+    <string name="contactsIconLabel">"Kontakty"</string>
+    <string name="contactsFavoritesLabel">"Oblíbené"</string>
+    <string name="dialerIconLabel">"Vytáčení"</string>
+    <string name="recentCallsIconLabel">"Hovory"</string>
+    <string name="liveFolderAll">"Všechny kontakty"</string>
+    <string name="liveFolderFavorites">"Kontakty označené hvězdičkou"</string>
+    <string name="liveFolderPhone">"Kontakty s telefonními čísly"</string>
+    <string name="menu_sendTextMessage">"Odeslat zprávu SMS"</string>
+    <string name="recentCalls_callNumber">"Volat kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_editNumberBeforeCall">"Před voláním upravit číslo"</string>
+    <string name="recentCalls_addToContact">"Přidat mezi kontakty"</string>
+    <string name="recentCalls_removeFromRecentList">"Odstranit z hovorů"</string>
+    <string name="recentCalls_deleteAll">"Vymazat hovory"</string>
+    <string name="recentCalls_empty">"Záznam hovorů je prázdný."</string>
+    <string name="imei">"IMEI"</string>
+    <string name="voicemail">"Hlasová schránka"</string>
+    <string name="unknown">"Neznámé číslo"</string>
+    <string name="private_num">"Soukromé číslo"</string>
+    <string name="dialerKeyboardHintText">"Číslo vytočíte pomocí klávesnice"</string>
+    <string name="dialerDialpadHintText">"Vytočením přidat hovor"</string>
+    <string name="simContacts_emptyLoading">"Načítání z karty SIM..."</string>
+    <string name="simContacts_title">"Kontakty na kartě SIM"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronizujte své kontakty Google!"</font>" "\n"Po synchronizaci telefonu budete mít kontaktní informace vždy u sebe."</string>
+    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
+    <skip />
+    <string name="seclectSyncGroups_title">"Vyberte skupiny, které chcete synchronizovat"</string>
+    <string name="liveFolder_all_label">"Všechny kontakty"</string>
+    <string name="liveFolder_favorites_label">"S hvězdičkou"</string>
+    <string name="liveFolder_phones_label">"Telefony"</string>
+    <string name="dialer_useDtmfDialpad">"Použít dotykovou tónovou klávesnici"</string>
+    <string name="dialer_returnToInCallScreen">"Návrat k probíhajícímu hovoru"</string>
+    <string name="dialer_addAnotherCall">"Přidat hovor"</string>
+    <string name="callDetailTitle">"Detaily hovoru"</string>
+    <string name="toast_call_detail_error">"Detaily požadovaného hovoru nelze načíst."</string>
+    <string name="call_type">"Typ"</string>
+    <string name="type_incoming">"Příchozí volání"</string>
+    <string name="type_outgoing">"Odchozí volání"</string>
+    <string name="type_missed">"Zmeškané volání"</string>
+    <string name="call_time">"Čas"</string>
+    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
+    <string name="call_duration">"Trvání"</string>
+    <string name="header_actions">"Akce"</string>
+    <string name="ringtone_spinner">"Vyzváněcí tón: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
+    <string name="add_more_items">"Přidat další položky"</string>
+    <string name="actionCall">"Volat: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"E-mail: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Text: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Chatovat pomocí služby <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionMap">"Zobrazit adresu: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionIncomingCall">"Příchozí volání"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"Budou odeslány přímo do hlasové pošty."</string>
+    <string name="detailsRingtone">"Nastavit vyzvánění <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"Zavolat zpět"</string>
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+</resources>
