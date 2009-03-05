@@ -162,6 +162,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     
     private EditText mNameView;
     private ImageView mPhotoImageView;
+    private ViewGroup mContentView;
     private LinearLayout mLayout;
     private LayoutInflater mInflater;
     private MenuItem mPhotoMenuItem;
@@ -335,7 +336,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         setupSections();
 
         // Load the UI
-        setContentView(R.layout.edit_contact);
+        mInflater = getLayoutInflater();
+        mContentView = (ViewGroup)mInflater.inflate(R.layout.edit_contact, null);
+        setContentView(mContentView);
+        
         mLayout = (LinearLayout) findViewById(R.id.list);
         mNameView = (EditText) findViewById(R.id.name);
         mPhotoImageView = (ImageView) findViewById(R.id.photoImage);
@@ -347,8 +351,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         view.setOnClickListener(this);
         view = findViewById(R.id.discardButton);
         view.setOnClickListener(this);
-
-        mInflater = getLayoutInflater();
 
         // Resolve the intent
         mState = STATE_UNKNOWN;
@@ -401,6 +403,48 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        
+        // To store current focus between config changes, follow focus down the
+        // view tree, keeping track of any parents with EditEntry tags
+        View focusedChild = mContentView.getFocusedChild();
+        EditEntry focusedEntry = null;
+        while (focusedChild != null) {
+            Object tag = focusedChild.getTag();
+            if (tag instanceof EditEntry) {
+                focusedEntry = (EditEntry) tag;
+            }
+            
+            // Keep going deeper until child isn't a group
+            if (focusedChild instanceof ViewGroup) {
+                View deeperFocus = ((ViewGroup) focusedChild).getFocusedChild();
+                if (deeperFocus != null) {
+                    focusedChild = deeperFocus;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        
+        if (focusedChild != null) {
+            int requestFocusId = focusedChild.getId();
+            int requestCursor = 0;
+            if (focusedChild instanceof EditText) {
+                requestCursor = ((EditText) focusedChild).getSelectionStart();
+            }
+            
+            // Store focus values in EditEntry if found, otherwise store as
+            // generic values
+            if (focusedEntry != null) {
+                focusedEntry.requestFocusId = requestFocusId;
+                focusedEntry.requestCursor = requestCursor;
+            } else {
+                outState.putInt("requestFocusId", requestFocusId);
+                outState.putInt("requestCursor", requestCursor);
+            }
+        }
+        
         outState.putParcelableArrayList("phoneEntries", mPhoneEntries);
         outState.putParcelableArrayList("emailEntries", mEmailEntries);
         outState.putParcelableArrayList("imEntries", mImEntries);
@@ -447,6 +491,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Now that everything is restored, build the view
         buildViews();
+        
+        // Try restoring any generally requested focus
+        int requestFocusId = inState.getInt("requestFocusId", View.NO_ID);
+        View focusedChild = mContentView.findViewById(requestFocusId);
+        if (focusedChild != null) {
+            focusedChild.requestFocus();
+            if (focusedChild instanceof EditText) {
+                int requestCursor = inState.getInt("requestCursor", 0);
+                ((EditText) focusedChild).setSelection(requestCursor);
+            }
+        }
     }
 
     @Override
@@ -1572,6 +1627,19 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 }
             }
         }
+        
+        // Give focus to children as requested, possibly after a configuration change
+        View focusChild = view.findViewById(entry.requestFocusId);
+        if (focusChild != null) {
+            focusChild.requestFocus();
+            if (focusChild instanceof EditText) {
+                ((EditText) focusChild).setSelection(entry.requestCursor);
+            }
+        }
+        
+        // Reset requested focus values
+        entry.requestFocusId = View.NO_ID;
+        entry.requestCursor = 0;
 
         // Connect listeners up to watch for changed values.
         if (data instanceof EditText) {
@@ -1655,6 +1723,19 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         public boolean isDeleted = false;
         public boolean isStaticLabel = false;
         public boolean syncDataWithView = true;
+
+        /**
+         * Request focus on the child of this {@link EditEntry} found using
+         * {@link View#findViewById(int)}. This value should be reset to
+         * {@link View#NO_ID} after each use.
+         */
+        public int requestFocusId = View.NO_ID;
+
+        /**
+         * If the {@link #requestFocusId} is an {@link EditText}, this value
+         * indicates the requested cursor position placement.
+         */
+        public int requestCursor = 0;
 
         private EditEntry() {
             // only used by CREATOR
@@ -2082,7 +2163,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry.column = ContactMethods.DATA;
             entry.contentDirectory = People.ContactMethods.CONTENT_DIRECTORY;
             entry.kind = Contacts.KIND_IM;
-            entry.contentType = EditorInfo.TYPE_CLASS_TEXT;
+            entry.contentType = EditorInfo.TYPE_CLASS_TEXT
+                    | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
             return entry;
         }
     }

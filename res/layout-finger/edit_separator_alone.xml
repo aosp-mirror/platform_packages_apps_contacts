@@ -36,6 +36,9 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:duplicateParentState="true"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
         />
 
     <ImageView android:id="@+id/add"

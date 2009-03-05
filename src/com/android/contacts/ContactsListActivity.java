@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -48,6 +49,7 @@ import android.provider.Contacts.Presence;
 import android.provider.Contacts.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -67,6 +69,7 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -104,6 +107,8 @@ public final class ContactsListActivity extends ListActivity
     static final int MODE_MASK_NO_FILTER = 0x20000000;
     /** Mask for having a "create new contact" header in the list */
     static final int MODE_MASK_CREATE_NEW = 0x10000000;
+    /** Mask for showing photos in the list */
+    static final int MODE_MASK_SHOW_PHOTOS = 0x08000000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
@@ -118,7 +123,7 @@ public final class ContactsListActivity extends ListActivity
     /** Show frequently contacted contacts */
     static final int MODE_FREQUENT = 30;
     /** Show starred and the frequent */
-    static final int MODE_STREQUENT = 35;
+    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER;
     /** Show all contacts as well as the option to create a new one */
@@ -184,7 +189,8 @@ public final class ContactsListActivity extends ListActivity
         People.PRIMARY_PHONE_ID, // 6
         People.PRIMARY_EMAIL_ID, // 7
         People.PRESENCE_STATUS, // 8
-        People.TIMES_CONTACTED, // 9 (not displayed, but required for the order by to work)
+        "photo_data", // 9
+        People.TIMES_CONTACTED, // 10 (not displayed, but required for the order by to work)
     };
 
     static final String[] PHONES_PROJECTION = new String[] {
@@ -215,6 +221,7 @@ public final class ContactsListActivity extends ListActivity
     static final int PRIMARY_PHONE_ID_COLUMN_INDEX = 6;
     static final int PRIMARY_EMAIL_ID_COLUMN_INDEX = 7;
     static final int SERVER_STATUS_COLUMN_INDEX = 8;
+    static final int PHOTO_COLUMN_INDEX = 9;
 
     
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
@@ -696,7 +703,7 @@ public final class ContactsListActivity extends ListActivity
      * Implements the handler for display group selection.
      */
     public void onClick(DialogInterface dialogInterface, int which) {
-        if (which == DialogInterface.BUTTON1) {
+        if (which == DialogInterface.BUTTON_POSITIVE) {
             // The OK button was pressed
             if (mDisplayGroupOriginalSelection != mDisplayGroupCurrentSelection) {
                 // Set the group to display
@@ -1307,16 +1314,18 @@ public final class ContactsListActivity extends ListActivity
         public TextView numberView;
         public CharArrayBuffer numberBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
+        public ImageView photoView;
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter 
             implements SectionIndexer {
-        
         private AlphabetIndexer mIndexer;
         private String mAlphabet;
         private boolean mLoading = true;
         private CharSequence mUnknownNameText;
         private CharSequence[] mLocalizedLabels;
+        private boolean mDisplayPhotos = false;
+        private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
@@ -1333,6 +1342,12 @@ public final class ContactsListActivity extends ListActivity
                     mLocalizedLabels = EditContactActivity.getLabelsForKind(mContext,
                             Contacts.KIND_PHONE);
                     break;
+            }
+            
+            if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
+                mDisplayPhotos = true;
+                setViewResource(R.layout.contacts_list_item_photo);
+                mBitmapCache = new SparseArray<SoftReference<Bitmap>>();
             }
         }
 
@@ -1373,7 +1388,7 @@ public final class ContactsListActivity extends ListActivity
                 }
             }
         }
-        
+
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             final View view = super.newView(context, cursor, parent);
@@ -1383,6 +1398,7 @@ public final class ContactsListActivity extends ListActivity
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.numberView = (TextView) view.findViewById(R.id.number);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
+            cache.photoView = (ImageView) view.findViewById(R.id.photo);
             view.setTag(cache);
 
             return view;
@@ -1459,12 +1475,53 @@ public final class ContactsListActivity extends ListActivity
                     presenceView.setVisibility(View.GONE);
                 }
             }
+
+            // Set the photo, if requested
+            if (mDisplayPhotos) {
+                Bitmap photo = null;
+
+                // Look for the cached bitmap
+                int pos = cursor.getPosition();
+                SoftReference<Bitmap> ref = mBitmapCache.get(pos);
+                if (ref != null) {
+                    photo = ref.get();
+                }
+
+                if (photo == null) {
+                    // Bitmap cache miss, decode it from the cursor
+                    if (!cursor.isNull(PHOTO_COLUMN_INDEX)) {
+                        try {
+                            byte[] photoData = cursor.getBlob(PHOTO_COLUMN_INDEX);
+                            photo = BitmapFactory.decodeByteArray(photoData, 0,
+                                    photoData.length);
+                            mBitmapCache.put(pos, new SoftReference<Bitmap>(photo));
+                        } catch (OutOfMemoryError e) {
+                            // Not enough memory for the photo, use the default one instead
+                            photo = null;
+                        }
+                    }
+                }
+
+                // Bind the photo, or use the fallback no photo resource
+                if (photo != null) {
+                    cache.photoView.setImageBitmap(photo);
+                } else {
+                    cache.photoView.setImageResource(R.drawable.ic_contact_picture);
+                }
+            }
         }
 
         @Override
         public void changeCursor(Cursor cursor) {
             super.changeCursor(cursor);
+
+            // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
+
+            // Clear the photo bitmap cache, if there is one
+            if (mBitmapCache != null) {
+                mBitmapCache.clear();
+            }
         }
         
         private void updateIndexer(Cursor cursor) {
