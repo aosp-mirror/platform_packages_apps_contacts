@@ -1368,10 +1368,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 int protocol = ((Number) protocolObj).intValue();
                 entry = EditEntry.newImEntry(this,
                         getLabelsForKind(this, Contacts.KIND_IM)[protocol], protocol, 
-                        imHandle.toString(), null, 0);
+                        imHandle.toString(), methodsUri, 0);
             } else {
                 entry = EditEntry.newImEntry(this, protocolObj.toString(), -1, imHandle.toString(),
-                        null, 0);
+                        methodsUri, 0);
             }
             entry.isPrimary = extras.getBoolean(Insert.IM_ISPRIMARY);
             mImEntries.add(entry);
