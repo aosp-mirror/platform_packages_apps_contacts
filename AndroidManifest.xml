@@ -131,6 +131,18 @@
             </intent-filter>
         </activity-alias>
 
+        <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
+        <activity-alias android:name="DialtactsFavoritesEntryActivity"
+            android:targetActivity="DialtactsActivity"
+            android:label="@string/strequentList"
+            android:icon="@drawable/ic_launcher_contacts"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+        
         <!-- The actual list of contacts, usually embedded in ContactsActivity -->
         <activity android:name="ContactsListActivity"
             android:label="@string/contactsList"
