@@ -921,7 +921,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 if (!empty) {
                     values.put(entry.column, data);
                     mResolver.update(entry.uri, values, null, null);
-                    numValues++;
+                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
+                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
+                        numValues++;
+                    }
                 } else {
                     values.put(entry.column, (String) null);
                     mResolver.update(entry.uri, values, null, null);
@@ -935,7 +938,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     } else {
                         mResolver.insert(entry.uri, values);
                     }
-                    numValues++;
+                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
+                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
+                        numValues++;
+                    }
                 } else if (entry.id != 0) {
                     mResolver.delete(entry.uri, null, null);
                 }
@@ -1046,7 +1052,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     entry.uri = mResolver.insert(
                             Uri.withAppendedPath(contactUri, entry.contentDirectory), values);
                     entry.id = ContentUris.parseId(entry.uri);
-                    numValues++;
+                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
+                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
+                        numValues++;
+                    }
                 }
             } else {
                 // Update the contact with any straggling data, like notes
@@ -1055,7 +1064,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 if (data != null && TextUtils.isGraphic(data)) {
                     values.put(entry.column, data);
                     mResolver.update(contactUri, values, null, null);
-                    numValues++;
+                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
+                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
+                        numValues++;
+                    }
                 }
             }
         }
