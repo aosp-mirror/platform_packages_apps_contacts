@@ -73,6 +73,7 @@ import android.widget.TextView;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -83,7 +84,7 @@ public final class ContactsListActivity extends ListActivity
 
     private static final String LIST_STATE_KEY = "liststate";
     private static final String FOCUS_KEY = "focused";
-
+    
     static final int MENU_ITEM_VIEW_CONTACT = 1;
     static final int MENU_ITEM_CALL = 2;
     static final int MENU_ITEM_EDIT_BEFORE_CALL = 3;
@@ -169,6 +170,7 @@ public final class ContactsListActivity extends ListActivity
 
     
     static final String NAME_COLUMN = People.DISPLAY_NAME;
+    static final String SORT_STRING = People.SORT_STRING;
     
     static final String[] CONTACTS_PROJECTION = new String[] {
         People._ID, // 0
@@ -180,6 +182,7 @@ public final class ContactsListActivity extends ListActivity
         People.PRIMARY_PHONE_ID, // 6
         People.PRIMARY_EMAIL_ID, // 7
         People.PRESENCE_STATUS, // 8
+        SORT_STRING, // 9
     };
 
     static final String[] STREQUENT_PROJECTION = new String[] {
@@ -227,6 +230,7 @@ public final class ContactsListActivity extends ListActivity
     static final int PRIMARY_EMAIL_ID_COLUMN_INDEX = 7;
     static final int SERVER_STATUS_COLUMN_INDEX = 8;
     static final int PHOTO_COLUMN_INDEX = 9;
+    static final int SORT_STRING_INDEX = 9;
 
     static final int PHONES_PERSON_ID_INDEX = 6;
     static final int CONTACT_METHODS_PERSON_ID_INDEX = 6;
@@ -234,9 +238,7 @@ public final class ContactsListActivity extends ListActivity
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES = 1;
     static final int DISPLAY_GROUP_INDEX_MY_CONTACTS = 2;
-    
-    static final String SORT_ORDER = NAME_COLUMN + " COLLATE LOCALIZED ASC";
-    
+
     private static final int QUERY_TOKEN = 42;
 
     private static final String[] GROUPS_PROJECTION = new String[] {
@@ -1137,6 +1139,15 @@ public final class ContactsListActivity extends ListActivity
         }
     }
 
+    private static String getSortOrder(String[] projectionType) {
+        if (Locale.getDefault().equals(Locale.JAPAN) &&
+                projectionType == CONTACTS_PROJECTION) {
+            return SORT_STRING + " ASC";
+        } else {
+            return NAME_COLUMN + " COLLATE LOCALIZED ASC";
+        }
+    }
+    
     void startQuery() {
         mAdapter.setLoading(true);
         
@@ -1147,7 +1158,8 @@ public final class ContactsListActivity extends ListActivity
         switch (mMode) {
             case MODE_GROUP:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        mGroupUri, CONTACTS_PROJECTION, null, null, SORT_ORDER);
+                        mGroupUri, CONTACTS_PROJECTION, null, null,
+                        getSortOrder(CONTACTS_PROJECTION));
                 break;
 
             case MODE_ALL_CONTACTS:
@@ -1155,18 +1167,20 @@ public final class ContactsListActivity extends ListActivity
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI, CONTACTS_PROJECTION,
-                        null, null, SORT_ORDER);
+                        null, null, getSortOrder(CONTACTS_PROJECTION));
                 break;
 
             case MODE_WITH_PHONES:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI, CONTACTS_PROJECTION,
-                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null, SORT_ORDER);
+                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null,
+                        getSortOrder(CONTACTS_PROJECTION));
                 break;
 
             case MODE_QUERY: {
                 mQuery = getIntent().getStringExtra(SearchManager.QUERY);
                 mQueryHandler.startQuery(QUERY_TOKEN, null, getPeopleFilterUri(mQuery),
-                        CONTACTS_PROJECTION, null, null, SORT_ORDER);
+                        CONTACTS_PROJECTION, null, null,
+                        getSortOrder(CONTACTS_PROJECTION));
                 break;
             }
             
@@ -1182,27 +1196,31 @@ public final class ContactsListActivity extends ListActivity
                     ssp = data.getSchemeSpecificPart();
                     mCreateData = ssp;
                 }
+                
+                mCreateExtras = new Bundle();
+                Bundle originalExtras = getIntent().getExtras();
+                if (originalExtras != null) {
+                    mCreateExtras.putAll(originalExtras);
+                }
 
                 if ("mailto".equals(scheme)) {
-                    mCreateExtras = new Bundle();
-                    mCreateExtras.putAll(getIntent().getExtras());
                     mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
                     mCreatePersonIndex = CONTACT_METHODS_PERSON_ID_INDEX;
                     
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
                             ContactMethods.CONTENT_URI, CONTACT_METHODS_PROJECTION,
                             ContactMethodsColumns.KIND + "=" + Contacts.KIND_EMAIL + " AND " +
-                            ContactMethods.DATA + "=?", new String[] { ssp }, SORT_ORDER);
+                            ContactMethods.DATA + "=?", new String[] { ssp },
+                            getSortOrder(CONTACT_METHODS_PROJECTION));
                     
                 } else if ("tel".equals(scheme)) {
-                    mCreateExtras = new Bundle();
-                    mCreateExtras.putAll(getIntent().getExtras());
                     mCreateExtras.putString(Intents.Insert.PHONE, ssp);
                     mCreatePersonIndex = PHONES_PERSON_ID_INDEX;
                     
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
                             Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, ssp),
-                            PHONES_PROJECTION, null, null, SORT_ORDER);
+                            PHONES_PROJECTION, null, null,
+                            getSortOrder(PHONES_PROJECTION));
                     
                 } else {
                     Log.w(TAG, "Invalid intent:" + getIntent());
@@ -1213,14 +1231,16 @@ public final class ContactsListActivity extends ListActivity
             }
 
             case MODE_STARRED:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI, CONTACTS_PROJECTION,
-                        People.STARRED + "=1", null, SORT_ORDER);
+                mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI,
+                        CONTACTS_PROJECTION,
+                        People.STARRED + "=1", null, getSortOrder(CONTACTS_PROJECTION));
                 break;
 
             case MODE_FREQUENT:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI, CONTACTS_PROJECTION,
+                mQueryHandler.startQuery(QUERY_TOKEN, null,
+                        People.CONTENT_URI, CONTACTS_PROJECTION,
                         People.TIMES_CONTACTED + " > 0", null,
-                        People.TIMES_CONTACTED + " DESC, " + NAME_COLUMN + " ASC");
+                        People.TIMES_CONTACTED + " DESC, " + getSortOrder(CONTACTS_PROJECTION));
                 break;
 
             case MODE_STREQUENT:
@@ -1231,13 +1251,14 @@ public final class ContactsListActivity extends ListActivity
 
             case MODE_PICK_PHONE:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Phones.CONTENT_URI, PHONES_PROJECTION,
-                        null, null, SORT_ORDER);
+                        null, null, getSortOrder(PHONES_PROJECTION));
                 break;
 
             case MODE_PICK_POSTAL:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, ContactMethods.CONTENT_URI,
                         CONTACT_METHODS_PROJECTION,
-                        ContactMethods.KIND + "=" + Contacts.KIND_POSTAL, null, SORT_ORDER);
+                        ContactMethods.KIND + "=" + Contacts.KIND_POSTAL, null,
+                        getSortOrder(CONTACT_METHODS_PROJECTION));
                 break;
         }
     }
@@ -1259,7 +1280,8 @@ public final class ContactsListActivity extends ListActivity
                 } else {
                     uri = Uri.withAppendedPath(mGroupFilterUri, Uri.encode(filter));
                 }
-                return resolver.query(uri, CONTACTS_PROJECTION, null, null, SORT_ORDER);
+                return resolver.query(uri, CONTACTS_PROJECTION, null, null,
+                        getSortOrder(CONTACTS_PROJECTION));
             }
 
             case MODE_ALL_CONTACTS:
@@ -1267,23 +1289,25 @@ public final class ContactsListActivity extends ListActivity
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT: {
                 return resolver.query(getPeopleFilterUri(filter), CONTACTS_PROJECTION, null, null,
-                        SORT_ORDER);
+                        getSortOrder(CONTACTS_PROJECTION));
             }
 
             case MODE_WITH_PHONES: {
                 return resolver.query(getPeopleFilterUri(filter), CONTACTS_PROJECTION,
-                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null, SORT_ORDER);
+                        People.PRIMARY_PHONE_ID + " IS NOT NULL", null,
+                        getSortOrder(CONTACTS_PROJECTION));
             }
 
             case MODE_STARRED: {
                 return resolver.query(getPeopleFilterUri(filter), CONTACTS_PROJECTION,
-                        People.STARRED + "=1", null, SORT_ORDER);
+                        People.STARRED + "=1", null, getSortOrder(CONTACTS_PROJECTION));
             }
 
             case MODE_FREQUENT: {
                 return resolver.query(getPeopleFilterUri(filter), CONTACTS_PROJECTION,
                         People.TIMES_CONTACTED + " > 0", null,
-                        People.TIMES_CONTACTED + " DESC, " + NAME_COLUMN + " ASC");
+                        People.TIMES_CONTACTED + " DESC, " + getSortOrder(CONTACTS_PROJECTION));
+                
             }
 
             case MODE_STREQUENT: {
@@ -1305,7 +1329,8 @@ public final class ContactsListActivity extends ListActivity
                 } else {
                     uri = Phones.CONTENT_URI;
                 }
-                return resolver.query(uri, PHONES_PROJECTION, null, null, SORT_ORDER);
+                return resolver.query(uri, PHONES_PROJECTION, null, null,
+                        getSortOrder(PHONES_PROJECTION));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
@@ -1475,7 +1500,7 @@ public final class ContactsListActivity extends ListActivity
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter 
             implements SectionIndexer {
-        private AlphabetIndexer mIndexer;
+        private SectionIndexer mIndexer;
         private String mAlphabet;
         private boolean mLoading = true;
         private CharSequence mUnknownNameText;
@@ -1507,6 +1532,14 @@ public final class ContactsListActivity extends ListActivity
             }
         }
 
+        private SectionIndexer getNewIndexer(Cursor cursor) {
+            if (Locale.getDefault().equals(Locale.JAPAN)) {
+                return new JapaneseContactListIndexer(cursor, SORT_STRING_INDEX);
+            } else {
+                return new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
+            }
+        }
+        
         /**
          * Callback on the UI thread when the content observer on the backing cursor fires.
          * Instead of calling requery we need to do an async query so that the requery doesn't
@@ -1682,9 +1715,21 @@ public final class ContactsListActivity extends ListActivity
         
         private void updateIndexer(Cursor cursor) {
             if (mIndexer == null) {
-                mIndexer = new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
+                mIndexer = getNewIndexer(cursor);
             } else {
-                mIndexer.setCursor(cursor);
+                if (Locale.getDefault().equals(Locale.JAPAN)) {
+                    if (mIndexer instanceof JapaneseContactListIndexer) {
+                        ((JapaneseContactListIndexer)mIndexer).setCursor(cursor);
+                    } else {
+                        mIndexer = getNewIndexer(cursor);
+                    }
+                } else {
+                    if (mIndexer instanceof AlphabetIndexer) {
+                        ((AlphabetIndexer)mIndexer).setCursor(cursor);
+                    } else {
+                        mIndexer = getNewIndexer(cursor);
+                    }
+                }
             }
         }
         
@@ -1716,13 +1761,16 @@ public final class ContactsListActivity extends ListActivity
                     // No cursor, the section doesn't exist so just return 0
                     return 0;
                 }
-                mIndexer = new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
+                mIndexer = getNewIndexer(cursor);
             }
 
             return mIndexer.getPositionForSection(sectionIndex);
         }
         
         public int getSectionForPosition(int position) {
+            // Note: JapaneseContactListIndexer depends on the fact
+            // this method always returns 0. If you change this,
+            // please care it too.
             return 0;
         }        
     }
