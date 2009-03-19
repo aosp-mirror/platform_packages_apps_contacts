@@ -243,12 +243,12 @@ public final class ContactsListActivity extends ListActivity
 
     private static final int QUERY_TOKEN = 42;
 
-    private static final String[] GROUPS_PROJECTION = new String[] {
+    static final String[] GROUPS_PROJECTION = new String[] {
         Groups.SYSTEM_ID, // 0
         Groups.NAME, // 1
     };
-    private static final int GROUPS_COLUMN_INDEX_SYSTEM_ID = 0;
-    private static final int GROUPS_COLUMN_INDEX_NAME = 1;
+    static final int GROUPS_COLUMN_INDEX_SYSTEM_ID = 0;
+    static final int GROUPS_COLUMN_INDEX_NAME = 1;
     
     static final String GROUP_WITH_PHONES = "android_smartgroup_phone";
 

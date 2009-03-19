@@ -73,6 +73,7 @@ import android.os.SystemClock;
 import android.provider.Contacts;
 import android.provider.Im;
 import android.provider.Contacts.ContactMethods;
+import android.provider.Contacts.Groups;
 import android.provider.Contacts.Organizations;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -136,6 +137,7 @@ public class ViewContactActivity extends ListActivity
     /* package */ ArrayList<ViewEntry> mPostalEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOrganizationEntries = new ArrayList<ViewEntry>();
+    /* package */ ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
@@ -229,6 +231,7 @@ public class ViewContactActivity extends ListActivity
         mSections.add(mImEntries);
         mSections.add(mPostalEntries);
         mSections.add(mOrganizationEntries);
+        mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
 
         //TODO Read this value from a preference
@@ -576,6 +579,11 @@ public class ViewContactActivity extends ListActivity
 
         separator = new ViewEntry();
         separator.kind = ViewEntry.KIND_SEPARATOR;
+        separator.data = getString(R.string.listSeparatorGroups);
+        mGroupEntries.add(separator);
+
+        separator = new ViewEntry();
+        separator.kind = ViewEntry.KIND_SEPARATOR;
         separator.data = getString(R.string.listSeparatorOtherInformation);
         mOtherEntries.add(separator);
     }
@@ -845,6 +853,47 @@ public class ViewContactActivity extends ListActivity
             organizationsCursor.close();
         }
 
+        // Build the group entries
+        final Uri groupsUri = Uri.withAppendedPath(mUri,
+                ContactEntryAdapter.GROUP_CONTENT_DIRECTORY);
+        Cursor cursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+                null, null, Groups.DEFAULT_SORT_ORDER);
+        try {
+            ArrayList<CharSequence> groups = new ArrayList<CharSequence>();
+            ArrayList<CharSequence> prefStrings = new ArrayList<CharSequence>();
+            StringBuilder sb = new StringBuilder();
+            
+            while (cursor.moveToNext()) {
+                String systemId = cursor.getString(
+                        ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+                
+                if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                    continue;
+                }
+                
+                String name = cursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+                if (!TextUtils.isEmpty(name)) {
+                    if (sb.length() == 0) {
+                        sb.append(name);
+                    } else {
+                        sb.append(getString(R.string.group_list, name));
+                    }
+                }
+            }
+            
+            if (sb.length() > 0) {               
+                ViewEntry entry = new ViewEntry();
+                entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
+                entry.label = getString(R.string.label_groups);
+                entry.data = sb.toString();
+                
+                // TODO: Add an icon for the groups item.
+                
+                mGroupEntries.add(entry);
+            }
+        } finally {
+            cursor.close();
+        }
 
         // Build the other entries
         String note = personCursor.getString(CONTACT_NOTES_COLUMN);

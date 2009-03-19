@@ -108,6 +108,9 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
     public static final int ORGANIZATIONS_TITLE_COLUMN = 4;
     public static final int ORGANIZATIONS_ISPRIMARY_COLUMN = 5;
     
+    /** Directory for group memberships. */
+    public static final String GROUP_CONTENT_DIRECTORY = "groupmembership";
+    
     protected ArrayList<ArrayList<E>> mSections;
     protected LayoutInflater mInflater;
     protected Context mContext;
@@ -122,7 +125,9 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         /** Synthesized phone entry that will send an SMS instead of call the number */
         public static final int KIND_SMS = -2;
         /** A section separator */
-        public static final int KIND_SEPARATOR = -3; 
+        public static final int KIND_SEPARATOR = -3;
+        /** Signifies a group row that is stored in the group membership table */
+        public static final int KIND_GROUP = -4;
 
         public String label;
         public String data;

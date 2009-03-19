@@ -128,6 +128,12 @@
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
 
+    <!-- The label for a list of all the groups that the contact is associated with -->
+    <string name="label_groups">Groups</string>
+
+    <!-- Provides a delimeter in a list of groups. For example, "g1, g2" has ", g2" generated using this string -->
+    <string name="group_list">, <xliff:g id="groupName">%s</xliff:g></string>
+
     <!-- Hint text for the contact name when editing -->
     <string name="ghostData_name">First and Last</string>
 
@@ -240,7 +246,7 @@
     <!-- Title for group selection dialog. The dialog contains a list of contact groups that the
          user can pick from, indicating they only want to see the contacts in that group. -->
     <string name="select_group_title">Groups</string>
-    
+
     <!-- The text displayed when the contacts list is empty while displaying a single group of contacts -->
     <string name="groupEmpty">Your \"<xliff:g id="groupName">%s</xliff:g>\" group is empty.</string>
 
@@ -291,6 +297,9 @@
 
     <!-- Separator in the contact details list describing that the items below are non-actionable organization information -->
     <string name="listSeparatorOrganizations">Organizations</string>
+
+    <!-- Separator in the contact details list describing that the items below are non-actionable group information -->
+    <string name="listSeparatorGroups">Groups</string>
 
     <!-- Separator in the contact details list describing that the items below are random other non-actionable information about a contact -->
     <string name="listSeparatorOtherInformation">Other information</string>
