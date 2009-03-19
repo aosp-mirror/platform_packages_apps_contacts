@@ -26,6 +26,8 @@
     <string name="editContactDescription">"Rediger kontakt"</string>
     <string name="insertContactDescription">"Opprett kontakt"</string>
     <string name="searchHint">"Søk i kontakter"</string>
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
     <string name="menu_newContact">"Ny kontakt"</string>
     <string name="menu_viewContact">"Se på kontakt"</string>
     <string name="menu_callNumber">"Ring <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -125,6 +127,8 @@
     <string name="voicemail">"Telefonsvarer"</string>
     <string name="unknown">"Ukjent"</string>
     <string name="private_num">"Skjult nummer"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Bruk tastaturet for å ringe"</string>
     <string name="dialerDialpadHintText">"Ring for å legge til en samtale"</string>
     <string name="simContacts_emptyLoading">"Henter fra SIM-kort…"</string>
@@ -167,5 +171,11 @@
     <!-- no translation found for returnCall (8171961914203617813) -->
     <skip />
     <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
     <skip />
 </resources>

@@ -36,6 +36,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public final class ContactsGroupSyncSelector extends ListActivity implements View.OnClickListener {
 
     private static final String[] PROJECTION = new String[] {
@@ -51,12 +53,12 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
 
     private static final int SUBACTIVITY_GET_ACCOUNT = 1;
 
-    boolean[] mChecked;
+    ArrayList<Boolean> mChecked;
+    ArrayList<Long> mGroupIds;
     boolean mSyncAllGroups;
-    long[] mGroupIds;
     
     private final class GroupsAdapter extends ArrayAdapter<CharSequence> {
-        public GroupsAdapter(CharSequence[] items) {
+        public GroupsAdapter(ArrayList<CharSequence> items) {
             super(ContactsGroupSyncSelector.this,
                     android.R.layout.simple_list_item_checked,
                     android.R.id.text1, items);
@@ -94,7 +96,7 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
     @Override
     protected void onListItemClick(ListView list, View view, int position, long id) {
         boolean isChecked = list.isItemChecked(position);
-        mChecked[position] = isChecked;
+        mChecked.set(position, isChecked);
         if (position == 0) {
             mSyncAllGroups = isChecked;
             adjustChecks();
@@ -127,11 +129,12 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
                     Settings.setSetting(resolver, null, Settings.SYNC_EVERYTHING, "1");
                 } else {
                     ContentValues values = new ContentValues();
-                    int count = mChecked.length;
+                    int count = mChecked.size();
                     for (int i = 1; i < count; i++) {
                         values.clear();
-                        values.put(Groups.SHOULD_SYNC, mChecked[i]);
-                        resolver.update(ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupIds[i]),
+                        values.put(Groups.SHOULD_SYNC, mChecked.get(i));
+                        resolver.update(
+                                ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupIds.get(i)),
                                 values, null, null);
                     }
                     // For now we only support a single account and the UI doesn't know what
@@ -189,33 +192,34 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
         Cursor cursor = resolver.query(Groups.CONTENT_URI, PROJECTION, null, null, Groups.NAME);
         if (cursor != null) {
             try {
-                int count = cursor.getCount() + 1;
-                CharSequence[] items = new String[count];
-                boolean[] checked = new boolean[count];
-                long[] groupIds = new long[count];
-    
-                int i = 0;
-                items[i++] = getString(R.string.syncAllGroups);
-                items[i++] = getString(R.string.groupNameMyContacts);
-    
+                int count = cursor.getCount() + 1; // add 1 for "sync all"
+                ArrayList<CharSequence> items = new ArrayList<CharSequence>(count);
+                ArrayList<Boolean> checked = new ArrayList<Boolean>(count);
+                ArrayList<Long> groupIds = new ArrayList<Long>(count);
+
+                // The first item in the list is always "sync all"
+                items.add(getString(R.string.syncAllGroups));
+                checked.add(mSyncAllGroups);
+                groupIds.add(Long.valueOf(0)); // dummy entry
+
                 while (cursor.moveToNext()) {
                     String name = cursor.getString(COLUMN_INDEX_NAME);
                     String systemId = cursor.isNull(COLUMN_INDEX_SYSTEM_ID) ?
                             null : cursor.getString(COLUMN_INDEX_SYSTEM_ID);
                     if (systemId == null || !Groups.GROUP_MY_CONTACTS.equals(systemId)) {
-                        items[i] = name;
-                        checked[i] = cursor.getInt(COLUMN_INDEX_SHOULD_SYNC) != 0;
-                        groupIds[i] = cursor.getLong(COLUMN_INDEX_ID);
-                        i++;
+                        items.add(name);
+                        checked.add(cursor.getInt(COLUMN_INDEX_SHOULD_SYNC) != 0);
+                        groupIds.add(cursor.getLong(COLUMN_INDEX_ID));
                     } else {
-                        checked[1] = cursor.getInt(COLUMN_INDEX_SHOULD_SYNC) != 0;
-                        groupIds[1] = cursor.getLong(COLUMN_INDEX_ID);
+                        // If My Contacts is around it wants to be the second list entry
+                        items.add(1, getString(R.string.groupNameMyContacts));
+                        checked.add(1, cursor.getInt(COLUMN_INDEX_SHOULD_SYNC) != 0);
+                        groupIds.add(1, cursor.getLong(COLUMN_INDEX_ID));
                     }
                 }
                 mChecked = checked;
-                mSyncAllGroups = getShouldSyncEverything(resolver);
-                checked[0] = mSyncAllGroups;
                 mGroupIds = groupIds;
+                mSyncAllGroups = getShouldSyncEverything(resolver);
     
                 // Setup the adapter
                 setListAdapter(new GroupsAdapter(items));
@@ -233,10 +237,10 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
                 list.setItemChecked(i, true);
             }
         } else {
-            boolean[] checked = mChecked;
+            ArrayList<Boolean> checked = mChecked;
             int count = list.getCount();
             for (int i = 0; i < count; i++) {
-                list.setItemChecked(i, checked[i]);
+                list.setItemChecked(i, checked.get(i));
             }
         }
     }

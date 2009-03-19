@@ -166,19 +166,19 @@ public class CallDetailActivity extends ListActivity implements
                 String callText = null;
                 switch (callType) {
                     case Calls.INCOMING_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_incoming);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_incoming_call);
                         mCallType.setText(R.string.type_incoming);
                         callText = getString(R.string.callBack);
                         break;
     
                     case Calls.OUTGOING_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_outgoing);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_outgoing_call);
                         mCallType.setText(R.string.type_outgoing);
                         callText = getString(R.string.callAgain);
                         break;
     
                     case Calls.MISSED_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_missed);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_missed_call);
                         mCallType.setText(R.string.type_missed);
                         callText = getString(R.string.returnCall);
                         break;

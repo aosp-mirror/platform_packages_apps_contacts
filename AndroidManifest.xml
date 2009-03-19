@@ -224,16 +224,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+            />
+        </activity>
+
+        <activity android:name="ShowOrCreateActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
                 <data android:scheme="mailto" />
                 <data android:scheme="tel" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"
-            />
         </activity>
 
         <activity-alias android:name="ContactShortcut"

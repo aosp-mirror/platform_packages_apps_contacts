@@ -26,6 +26,8 @@
     <string name="editContactDescription">"Modifier le contact"</string>
     <string name="insertContactDescription">"Créer un contact"</string>
     <string name="searchHint">"Rechercher des contacts"</string>
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
     <string name="menu_newContact">"Nouveau contact"</string>
     <string name="menu_viewContact">"Afficher le contact"</string>
     <string name="menu_callNumber">"Appeler <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -124,6 +126,8 @@
     <string name="voicemail">"Boîte vocale"</string>
     <string name="unknown">"Inconnu"</string>
     <string name="private_num">"Numéro privée"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Utilisez le clavier pour composer le numéro"</string>
     <string name="dialerDialpadHintText">"Composer le numéro pour ajouter un appel"</string>
     <string name="simContacts_emptyLoading">"Chargement depuis la carte SIM..."</string>
@@ -162,4 +166,10 @@
     <string name="callAgain">"Rappeler"</string>
     <string name="returnCall">"Rappeler"</string>
     <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> mn <xliff:g id="SECONDS">%s</xliff:g> s"</string>
+    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
+    <skip />
 </resources>

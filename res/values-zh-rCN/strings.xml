@@ -27,6 +27,8 @@
     <string name="editContactDescription">"编辑联系人"</string>
     <string name="insertContactDescription">"创建联系人"</string>
     <string name="searchHint">"搜索联系人"</string>
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
     <string name="menu_newContact">"添加联系人"</string>
     <string name="menu_viewContact">"查看联系人"</string>
     <string name="menu_callNumber">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
@@ -126,6 +128,8 @@
     <string name="voicemail">"语音邮件"</string>
     <string name="unknown">"未知"</string>
     <string name="private_num">"私人号码"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"使用键盘拔号"</string>
     <string name="dialerDialpadHintText">"通过拨号添加通话"</string>
     <string name="simContacts_emptyLoading">"正在从 SIM 卡中载入..."</string>
@@ -168,5 +172,11 @@
     <!-- no translation found for returnCall (8171961914203617813) -->
     <skip />
     <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
     <skip />
 </resources>

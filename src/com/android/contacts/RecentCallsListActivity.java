@@ -114,17 +114,11 @@ public class RecentCallsListActivity extends ListActivity
     private static final int QUERY_TOKEN = 53;
     private static final int UPDATE_TOKEN = 54;
 
-    private RecentCallsAdapter mAdapter;
+    RecentCallsAdapter mAdapter;
     private QueryHandler mQueryHandler;
-    private String mVoiceMailNumber;
+    String mVoiceMailNumber;
 
-    private CharSequence[] mLabelArray;
-
-    private Drawable mDrawableIncoming;
-    private Drawable mDrawableOutgoing;
-    private Drawable mDrawableMissed;
-
-    private static final class ContactInfo {
+    static final class ContactInfo {
         public long personId;
         public String name;
         public int type;
@@ -136,13 +130,14 @@ public class RecentCallsListActivity extends ListActivity
 
     public static final class RecentCallsListItemViews {
         TextView line1View;
-        TextView line2View;
-        TextView durationView;
+        TextView labelView;
+        TextView numberView;
         TextView dateView;
         ImageView iconView;
+        View callView;
     }
 
-    private static final class CallerInfoQuery {
+    static final class CallerInfoQuery {
         String number;
         int position;
         String name;
@@ -151,8 +146,8 @@ public class RecentCallsListActivity extends ListActivity
     }
 
     /** Adapter class to fill in data for the Call Log */
-    private final class RecentCallsAdapter extends ResourceCursorAdapter
-            implements Runnable, ViewTreeObserver.OnPreDrawListener {
+    final class RecentCallsAdapter extends ResourceCursorAdapter
+            implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
         HashMap<String,ContactInfo> mContactInfo;
         private final LinkedList<CallerInfoQuery> mRequests;
         private volatile boolean mDone;
@@ -162,6 +157,20 @@ public class RecentCallsListActivity extends ListActivity
         private static final int START_THREAD = 2;
         private boolean mFirst;
         private Thread mCallerIdThread;
+
+        private CharSequence[] mLabelArray;
+
+        private Drawable mDrawableIncoming;
+        private Drawable mDrawableOutgoing;
+        private Drawable mDrawableMissed;
+
+        public void onClick(View view) {
+            String number = (String) view.getTag();
+            if (!TextUtils.isEmpty(number)) {
+                Uri telUri = Uri.fromParts("tel", number, null);
+                startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, telUri));
+            }
+        }
 
         public boolean onPreDraw() {
             if (mFirst) {
@@ -191,6 +200,14 @@ public class RecentCallsListActivity extends ListActivity
             mContactInfo = new HashMap<String,ContactInfo>();
             mRequests = new LinkedList<CallerInfoQuery>();
             mPreDrawListener = null;
+
+            mDrawableIncoming = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_incoming_call);
+            mDrawableOutgoing = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_outgoing_call);
+            mDrawableMissed = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_missed_call);
+            mLabelArray = getResources().getTextArray(com.android.internal.R.array.phoneTypes);
         }
 
         void setLoading(boolean loading) {
@@ -331,11 +348,13 @@ public class RecentCallsListActivity extends ListActivity
             // Get the views to bind to
             RecentCallsListItemViews views = new RecentCallsListItemViews();
             views.line1View = (TextView) view.findViewById(R.id.line1);
-            views.line2View = (TextView) view.findViewById(R.id.line2);
-            views.durationView = (TextView) view.findViewById(R.id.duration);
+            views.labelView = (TextView) view.findViewById(R.id.label);
+            views.numberView = (TextView) view.findViewById(R.id.number);
             views.dateView = (TextView) view.findViewById(R.id.date);
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
-
+            views.callView = view.findViewById(R.id.call_icon);
+            views.callView.setOnClickListener(this);
+            
             view.setTag(views);
 
             return view;
@@ -350,6 +369,9 @@ public class RecentCallsListActivity extends ListActivity
             String callerName = c.getString(CALLER_NAME_COLUMN_INDEX);
             int callerNumberType = c.getInt(CALLER_NUMBERTYPE_COLUMN_INDEX);
             String callerNumberLabel = c.getString(CALLER_NUMBERLABEL_COLUMN_INDEX);
+            
+            // Store away the number so we can call it directly if you click on the call icon
+            views.callView.setTag(number);
 
             // Lookup contacts with this number
             ContactInfo info = mContactInfo.get(number);
@@ -387,32 +409,24 @@ public class RecentCallsListActivity extends ListActivity
             // Set the text lines
             if (!TextUtils.isEmpty(name)) {
                 views.line1View.setText(name);
+                views.labelView.setVisibility(View.VISIBLE);
                 CharSequence numberLabel = Phones.getDisplayLabel(context, ntype, label,
                         mLabelArray);
+                views.numberView.setVisibility(View.VISIBLE);
+                views.numberView.setText(number);
                 if (!TextUtils.isEmpty(numberLabel)) {
-                    views.line2View.setText(numberLabel);
+                    views.labelView.setText(numberLabel);
+                    views.labelView.setVisibility(View.VISIBLE);
                 } else {
-                    views.line2View.setText(number);
+                    views.labelView.setVisibility(View.GONE);
                 }
-
-                // Set the presence icon
-/*
-                int serverStatus;
-                if (!c.isNull(SERVER_STATUS_COLUMN_INDEX)) {
-                    serverStatus = c.getInt(SERVER_STATUS_COLUMN_INDEX);
-                    views.line2View.setCompoundDrawablesWithIntrinsicBounds(
-                            getResources().getDrawable(
-                                    Presence.getPresenceIconResourceId(serverStatus)),
-                            null, null, null);
-                } else {
-                    views.line2View.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-                }
-*/
             } else {
                 if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
                     number = getString(R.string.unknown);
                 } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
                     number = getString(R.string.private_num);
+                } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
+                    number = getString(R.string.payphone);
                 } else if (number.equals(mVoiceMailNumber)) {
                     number = getString(R.string.voicemail);
                 } else {
@@ -421,29 +435,18 @@ public class RecentCallsListActivity extends ListActivity
                 }
 
                 views.line1View.setText(number);
-                views.line2View.setText(null);
-
-                // Clear the presence icon
-//                views.line2View.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                views.numberView.setVisibility(View.GONE);
+                views.labelView.setVisibility(View.GONE);
             }
 
             int type = c.getInt(CALL_TYPE_COLUMN_INDEX);
             long date = c.getLong(DATE_COLUMN_INDEX);
 
-            // Set the duration
-            if (type == Calls.MISSED_TYPE) {
-                views.durationView.setVisibility(View.GONE);
-            } else {
-                views.durationView.setVisibility(View.VISIBLE);
-                views.durationView.setText(DateUtils.formatElapsedTime(c.getLong(DURATION_COLUMN_INDEX)));
-            }
-
             // Set the date/time field by mixing relative and absolute times.
-            int flags = DateUtils.FORMAT_ABBREV_RELATIVE | DateUtils.FORMAT_SHOW_DATE
-                    | DateUtils.FORMAT_ABBREV_MONTH;
+            int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
             
-            views.dateView.setText(DateUtils.getRelativeDateTimeString(context, date,
-                    DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS * 2, flags));
+            views.dateView.setText(DateUtils.getRelativeTimeSpanString(date,
+                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags));
 
             // Set the icon
             switch (type) {
@@ -459,6 +462,7 @@ public class RecentCallsListActivity extends ListActivity
                     views.iconView.setImageDrawable(mDrawableMissed);
                     break;
             }
+
             // Listen for the first draw
             if (mPreDrawListener == null) {
                 mFirst = true;
@@ -495,11 +499,6 @@ public class RecentCallsListActivity extends ListActivity
         super.onCreate(state);
 
         setContentView(R.layout.recent_calls);
-
-        mDrawableIncoming = getResources().getDrawable(android.R.drawable.sym_call_incoming);
-        mDrawableOutgoing = getResources().getDrawable(android.R.drawable.sym_call_outgoing);
-        mDrawableMissed = getResources().getDrawable(android.R.drawable.sym_call_missed);
-        mLabelArray = getResources().getTextArray(com.android.internal.R.array.phoneTypes);
 
         // Typing here goes to the dialer
         setDefaultKeyMode(DEFAULT_KEYS_DIALER);
@@ -616,6 +615,8 @@ public class RecentCallsListActivity extends ListActivity
             number = getString(R.string.unknown);
         } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
             number = getString(R.string.private_num);
+        } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
+            number = getString(R.string.payphone);
         } else if (number.equals(mVoiceMailNumber)) {
             number = getString(R.string.voicemail);
             numberUri = Uri.parse("voicemail:x");
@@ -799,7 +800,8 @@ public class RecentCallsListActivity extends ListActivity
             String number = cursor.getString(NUMBER_COLUMN_INDEX);
             if (TextUtils.isEmpty(number)
                     || number.equals(CallerInfo.UNKNOWN_NUMBER)
-                    || number.equals(CallerInfo.PRIVATE_NUMBER)) {
+                    || number.equals(CallerInfo.PRIVATE_NUMBER)
+                    || number.equals(CallerInfo.PAYPHONE_NUMBER)) {
                 // This number can't be called, do nothing
                 return;
             }

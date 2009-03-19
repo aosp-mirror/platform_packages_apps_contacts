@@ -348,6 +348,9 @@
 
     <!-- String used to display calls from private numbers in the call log -->
     <string name="private_num">Private number</string>
+    
+    <!-- String used to display calls from pay phone in the call log -->
+    <string name="payphone">Pay phone</string>
 
     <!-- Displayed in the text entry box in the dialer when in landscape mode to guide the user
          to dial using the physical keyboard -->

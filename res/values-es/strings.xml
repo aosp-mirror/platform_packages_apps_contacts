@@ -26,6 +26,7 @@
     <string name="editContactDescription">"Editar contacto"</string>
     <string name="insertContactDescription">"Crear contacto"</string>
     <string name="searchHint">"Buscar contactos"</string>
+    <string name="menu_search">"Buscar"</string>
     <string name="menu_newContact">"Contacto nuevo"</string>
     <string name="menu_viewContact">"Ver contacto"</string>
     <string name="menu_callNumber">"Llamar a <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -124,13 +125,15 @@
     <string name="voicemail">"Buzón de voz"</string>
     <string name="unknown">"Desconocidos"</string>
     <string name="private_num">"Número privado"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Utilizar teclado para marcar"</string>
     <string name="dialerDialpadHintText">"Marcar para añadir una llamada"</string>
     <string name="simContacts_emptyLoading">"Cargando desde tarjeta SIM…"</string>
     <string name="simContacts_title">"Contactos de tarjeta SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincroniza tus contactos de Google"</font>" "\n"Después de sincronizarlos con tu teléfono, podrás acceder a tus contactos desde cualquier lugar."</string>
-    <string name="noContactsHelpText">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla  "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un nuevo contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadir contactos de la tarjeta SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadir contactos de la tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpText">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un nuevo contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Seleccionar grupos para la sincronización"</string>
     <string name="liveFolder_all_label">"Todos los contactos"</string>
     <string name="liveFolder_favorites_label">"Destacados"</string>
@@ -162,4 +165,7 @@
     <string name="callAgain">"Llamar de nuevo"</string>
     <string name="returnCall">"Devolver llamada"</string>
     <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> seg."</string>
+    <string name="favoritesFrquentSeparator">"Más llamados"</string>
+    <string name="add_contact_dlg_title">"Añadir contacto"</string>
+    <string name="add_contact_dlg_message_fmt">"¿Añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
 </resources>

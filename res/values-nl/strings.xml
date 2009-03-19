@@ -27,6 +27,8 @@
     <string name="editContactDescription">"Contactpersoon bewerken"</string>
     <string name="insertContactDescription">"Contactpersoon maken"</string>
     <string name="searchHint">"Contacten zoeken"</string>
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
     <string name="menu_newContact">"Nieuwe contactpersoon"</string>
     <string name="menu_viewContact">"Contactpersoon weergeven"</string>
     <string name="menu_callNumber">"<xliff:g id="NAME">%s</xliff:g> bellen"</string>
@@ -126,6 +128,8 @@
     <string name="voicemail">"Voicemail"</string>
     <string name="unknown">"Onbekend"</string>
     <string name="private_num">"Privénummer"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Toetsen gebruiken om te bellen"</string>
     <string name="dialerDialpadHintText">"Bellen om een oproep toe te voegen"</string>
     <string name="simContacts_emptyLoading">"Laden vanaf SIM-kaart..."</string>
@@ -168,5 +172,11 @@
     <!-- no translation found for returnCall (8171961914203617813) -->
     <skip />
     <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
     <skip />
 </resources>

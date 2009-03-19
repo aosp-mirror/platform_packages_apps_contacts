@@ -27,6 +27,8 @@
     <string name="editContactDescription">"Kontakt bearbeiten"</string>
     <string name="insertContactDescription">"Kontakt erstellen"</string>
     <string name="searchHint">"Kontakte durchsuchen"</string>
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
     <string name="menu_newContact">"Neuer Kontakt"</string>
     <string name="menu_viewContact">"Kontakt anzeigen"</string>
     <string name="menu_callNumber">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
@@ -126,6 +128,8 @@
     <string name="voicemail">"Mailbox"</string>
     <string name="unknown">"Unbekannt"</string>
     <string name="private_num">"Private Nummer"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Mit Tastatur wählen"</string>
     <string name="dialerDialpadHintText">"Zum Hinzufügen eines Anrufs wählen"</string>
     <string name="simContacts_emptyLoading">"Ladevorgang von SIM-Karte läuft..."</string>
@@ -168,5 +172,11 @@
     <!-- no translation found for returnCall (8171961914203617813) -->
     <skip />
     <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
     <skip />
 </resources>
