@@ -31,4 +31,8 @@
         <item name="android:src">@drawable/ic_btn_round_more</item>
     </style>
 
+    <style name="TallTitleBarTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

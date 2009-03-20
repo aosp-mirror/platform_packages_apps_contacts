@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import static com.android.contacts.ShowOrCreateActivity.QUERY_KIND_EMAIL_OR_IM;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -32,6 +34,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -69,8 +72,6 @@ import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
-import static com.android.contacts.ShowOrCreateActivity.QUERY_KIND_EMAIL_OR_IM;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -1039,7 +1040,7 @@ public final class ContactsListActivity extends ListActivity
             } else {
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                         Intent.ShortcutIconResource.fromContext(this,
-                                R.drawable.ic_launcher_contacts));
+                                R.drawable.ic_launcher_shortcut_contact));
             }
             setResult(RESULT_OK, intent);
         } else {
@@ -1414,6 +1415,7 @@ public final class ContactsListActivity extends ListActivity
         private CharSequence[] mLocalizedLabels;
         private boolean mDisplayPhotos = false;
         private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
+        private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
@@ -1486,6 +1488,45 @@ public final class ContactsListActivity extends ListActivity
         }
 
         @Override
+        public int getItemViewType(int position) {
+            if (position == mFrequentSeparatorPos) {
+                // We don't want the separator view to be recycled.
+                return IGNORE_ITEM_VIEW_TYPE;
+            }
+            return super.getItemViewType(position);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (!mDataValid) {
+                throw new IllegalStateException(
+                        "this should only be called when the cursor is valid");
+            }
+
+            // Handle the separator specially
+            if (position == mFrequentSeparatorPos) {
+                LayoutInflater inflater =
+                        (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+                TextView view = (TextView) inflater.inflate(R.layout.list_separator, parent, false);
+                view.setText(R.string.favoritesFrquentSeparator);
+                return view;
+            }
+
+            if (!mCursor.moveToPosition(getRealPosition(position))) {
+                throw new IllegalStateException("couldn't move cursor to position " + position);
+            }
+            
+            View v;
+            if (convertView == null) {
+                v = newView(mContext, mCursor, parent);
+            } else {
+                v = convertView;
+            }
+            bindView(v, mContext, mCursor);
+            return v;
+        }
+
+        @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             final View view = super.newView(context, cursor, parent);
 
@@ -1549,27 +1590,18 @@ public final class ContactsListActivity extends ListActivity
 
             // Set the proper icon (star or presence or nothing)
             ImageView presenceView = cache.presenceView;
-            if (mMode != MODE_STREQUENT) {
-                if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
-                    int serverStatus;
-                    if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
-                        serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
-                        presenceView.setImageResource(
-                                Presence.getPresenceIconResourceId(serverStatus));
-                        presenceView.setVisibility(View.VISIBLE);
-                    } else {
-                        presenceView.setVisibility(View.GONE);
-                    }
-                } else {
-                    presenceView.setVisibility(View.GONE);
-                }
-            } else {
-                if (cursor.getInt(STARRED_COLUMN_INDEX) != 0) {
-                    presenceView.setImageResource(R.drawable.star_on);
+            if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
+                int serverStatus;
+                if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
+                    serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
+                    presenceView.setImageResource(
+                            Presence.getPresenceIconResourceId(serverStatus));
                     presenceView.setVisibility(View.VISIBLE);
                 } else {
                     presenceView.setVisibility(View.GONE);
                 }
+            } else {
+                presenceView.setVisibility(View.GONE);
             }
 
             // Set the photo, if requested
@@ -1602,13 +1634,29 @@ public final class ContactsListActivity extends ListActivity
                 if (photo != null) {
                     cache.photoView.setImageBitmap(photo);
                 } else {
-                    cache.photoView.setImageResource(R.drawable.ic_contact_picture);
+                    cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
                 }
             }
         }
 
         @Override
         public void changeCursor(Cursor cursor) {
+            // Get the split between starred and frequent items, if the mode is strequent
+            mFrequentSeparatorPos = ListView.INVALID_POSITION;
+            if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
+                cursor.move(-1);
+                for (int i = 0; cursor.moveToNext(); i++) {
+                    int starred = cursor.getInt(STARRED_COLUMN_INDEX);
+                    if (starred == 0) {
+                        if (i > 0) {
+                            // Only add the separator when there are starred items present
+                            mFrequentSeparatorPos = i;
+                        }
+                        break;
+                    }
+                }
+            }
+
             super.changeCursor(cursor);
 
             // Update the indexer for the fast scroll widget
@@ -1656,7 +1704,7 @@ public final class ContactsListActivity extends ListActivity
                 return mIndexer.getSections();
            }
         }
-        
+
         public int getPositionForSection(int sectionIndex) {
             if (mMode == MODE_STREQUENT) {
                 return 0;
@@ -1673,13 +1721,56 @@ public final class ContactsListActivity extends ListActivity
 
             return mIndexer.getPositionForSection(sectionIndex);
         }
-        
+
         public int getSectionForPosition(int position) {
             // Note: JapaneseContactListIndexer depends on the fact
             // this method always returns 0. If you change this,
             // please care it too.
             return 0;
-        }        
+        }
+
+        @Override
+        public boolean areAllItemsEnabled() {
+            return mMode != MODE_STREQUENT;
+        }
+
+        @Override
+        public boolean isEnabled(int position) {
+            return position != mFrequentSeparatorPos;
+        }
+
+        @Override
+        public int getCount() {
+            if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
+                return super.getCount() + 1;
+            } else {
+                return super.getCount();
+            }
+        }
+        
+        private int getRealPosition(int pos) {
+            if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
+                // No separator, identity map
+                return pos;
+            } else if (pos <= mFrequentSeparatorPos) {
+                // Before or at the separator, identity map
+                return pos;
+            } else {
+                // After the separator, remove 1 from the pos to get the real underlying pos
+                return pos - 1;
+            }
+            
+        }
+        
+        @Override
+        public Object getItem(int pos) {
+            return super.getItem(getRealPosition(pos));
+        }
+        
+        @Override
+        public long getItemId(int pos) {
+            return super.getItemId(getRealPosition(pos)); 
+        }
     }
 }
 
