@@ -893,6 +893,11 @@ public class ViewContactActivity extends ListActivity
     }
 
     String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
+        // If there is no type just display an empty string
+        if (type == null) {
+            type = "";
+        }
+
         if (lowerCase) {
             return getString(actionResId, type.toString().toLowerCase());
         } else {
