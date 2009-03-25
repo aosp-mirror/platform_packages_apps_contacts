@@ -1343,6 +1343,11 @@ public final class ContactsListActivity extends ListActivity
                 if (cursor.isNull(GROUPS_COLUMN_INDEX_SYSTEM_ID)
                         && !Groups.GROUP_MY_CONTACTS.equals(systemId)) {
                     // All groups that aren't My Contacts, since that one is localized on the phone
+
+                    // Localize the "Starred in Android" string which we get from the server side.
+                    if (Groups.GROUP_ANDROID_STARRED.equals(name)) {
+                        name = getString(R.string.starredInAndroid);
+                    }
                     groups.add(name);
                     if (name.equals(mDisplayInfo)) {
                         currentIndex = groups.size() - 1;
@@ -1780,5 +1785,3 @@ public final class ContactsListActivity extends ListActivity
         }
     }
 }
-
-
