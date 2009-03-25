@@ -662,7 +662,7 @@ public final class ContactsListActivity extends ListActivity
             startQuery();
         } else {
             // Run the filtered query on the adapter
-            ((ContactItemListAdapter) getListView().getAdapter()).onContentChanged();
+            ((ContactItemListAdapter) getListAdapter()).onContentChanged();
         }
     }
     
