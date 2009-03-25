@@ -1039,7 +1039,7 @@ public final class ContactsListActivity extends ListActivity
             } else {
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                         Intent.ShortcutIconResource.fromContext(this,
-                                R.drawable.ic_launcher_contacts));
+                                R.drawable.ic_launcher_shortcut_contact));
             }
             setResult(RESULT_OK, intent);
         } else {
