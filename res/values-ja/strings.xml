@@ -16,10 +16,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"連絡先"</string>
-    <string name="launcherDialer">"通話"</string>
+    <string name="launcherDialer">"電話"</string>
     <string name="shortcutContact">"連絡先"</string>
     <string name="starredList">"スター付き"</string>
-    <string name="frequentList">"よく連絡する連絡先"</string>
+    <string name="frequentList">"よく使う連絡先"</string>
     <string name="strequentList">"お気に入り"</string>
     <string name="viewContactTitle">"連絡先情報"</string>
     <string name="viewContactDesription">"連絡先を表示"</string>
@@ -95,7 +95,7 @@
     <string name="groupNameWithPhones">"電話番号のある連絡先"</string>
     <string name="contactCreatedToast">"連絡先を作成しました。"</string>
     <string name="contactSavedToast">"連絡先を保存しました。"</string>
-    <string name="listSeparatorCallNumber">"電話をかける"</string>
+    <string name="listSeparatorCallNumber">"発信"</string>
     <string name="listSeparatorCallNumber_edit">"電話番号"</string>
     <string name="listSeparatorSendSmsMms">"SMS/MMSを送信"</string>
     <string name="listSeparatorSendEmail">"メールを送信"</string>
@@ -109,8 +109,8 @@
     <string name="listSeparatorOtherInformation_edit">"その他のオプション"</string>
     <string name="listSeparatorMore_edit">"開く"</string>
     <string name="contactsIconLabel">"連絡先"</string>
-    <string name="contactsFavoritesLabel">"お気に入り"</string>
-    <string name="dialerIconLabel">"通話"</string>
+    <string name="contactsFavoritesLabel">"お気入り"</string>
+    <string name="dialerIconLabel">"電話"</string>
     <string name="recentCallsIconLabel">"通話履歴"</string>
     <string name="liveFolderAll">"すべての連絡先"</string>
     <string name="liveFolderFavorites">"スター付きの連絡先"</string>
@@ -129,7 +129,7 @@
     <!-- no translation found for payphone (4864313342828942922) -->
     <skip />
     <string name="dialerKeyboardHintText">"キーボードで番号を入力してください"</string>
-    <string name="dialerDialpadHintText">"ダイヤルして追加"</string>
+    <string name="dialerDialpadHintText">"ダイヤルして通話追加"</string>
     <string name="simContacts_emptyLoading">"SIMカードから読み取り中..."</string>
     <string name="simContacts_title">"SIMカードの連絡先"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleアカウントの連絡先同期"</font>" "\n"Googleサービスで使っている連絡先をこの携帯電話でも使えるようになります。"</string>
@@ -163,8 +163,7 @@
     <string name="detailIncomingCallsGoToVoicemail">"直接ボイスメールに送信します"</string>
     <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>に設定"</string>
     <string name="callBack">"コールバック"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
+    <string name="callAgain">"再発信"</string>
     <string name="returnCall">"発信"</string>
     <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g>分<xliff:g id="SECONDS">%s</xliff:g>秒"</string>
     <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
