@@ -26,8 +26,7 @@
     <string name="editContactDescription">"連絡先を編集"</string>
     <string name="insertContactDescription">"連絡先を新規登録"</string>
     <string name="searchHint">"連絡先を検索"</string>
-    <!-- no translation found for menu_search (9147752853603483719) -->
-    <skip />
+    <string name="menu_search">"検索"</string>
     <string name="menu_newContact">"連絡先を新規登録"</string>
     <string name="menu_viewContact">"連絡先を表示"</string>
     <string name="menu_callNumber">"発信 <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -65,15 +64,15 @@
     <string name="selectLabel">"選択してください"</string>
     <string name="phoneLabelsGroup">"電話番号"</string>
     <string name="emailLabelsGroup">"メール"</string>
-    <string name="imLabelsGroup">"IM"</string>
+    <string name="imLabelsGroup">"チャット"</string>
     <string name="postalLabelsGroup">"住所"</string>
     <string name="otherLabelsGroup">"その他"</string>
   <string-array name="otherLabels">
     <item>"所属"</item>
     <item>"メモ"</item>
   </string-array>
-    <string name="errorDialogTitle">"写真なし"</string>
-    <string name="photoPickerNotFoundText">"写真がありません。"</string>
+    <string name="errorDialogTitle">"画像なし"</string>
+    <string name="photoPickerNotFoundText">"画像がありません。"</string>
     <string name="attachToContact">"連絡先のアイコン"</string>
     <string name="customLabelPickerTitle">"新しいラベル名"</string>
     <string name="menu_displayGroup">"グループを表示"</string>
@@ -133,8 +132,8 @@
     <string name="simContacts_emptyLoading">"SIMカードから読み取り中..."</string>
     <string name="simContacts_title">"SIMカードの連絡先"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleアカウントの連絡先同期"</font>" "\n"Googleサービスで使っている連絡先をこの携帯電話でも使えるようになります。"</string>
-    <string name="noContactsHelpText">"連絡先が登録されていません。"\n\n<font fgcolor="#ffffffff"><b>"MENU"</b></font>"を押して登録方法を選択してください:"\n" "\n<li><font fgcolor="#ffffffff"><b>"連絡先を新規登録"</b></font>": 連絡先を入力して新規登録します"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"連絡先をインポート"</b></font>": 連絡先をSIMカードから取り込みます"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"連絡先が登録されていません。"\n\n<font fgcolor="#ffffffff"><b>"MENU"</b></font>"を押して登録方法を選択してください:"\n" "\n<li><font fgcolor="#ffffffff"><b>"同期する範囲"</b></font>": Googleアカウントから連絡先を読み込んで追加します"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"連絡先を新規登録"</b></font>": 連絡先を入力して新規登録します"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"連絡先をインポート"</b></font>": 連絡先をSIMカードから取り込みます"\n</li></string>
+    <string name="noContactsHelpText">"連絡先が登録されていません。"\n\n<font fgcolor="#ffffffff"><b>"MENU"</b></font>"キーを押して登録方法を選択してください:"\n" "\n<li><font fgcolor="#ffffffff"><b>"連絡先を新規登録"</b></font>": 連絡先を入力して新規作成します"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"連絡先をインポート"</b></font>": 連絡先をSIMカードから取り込みます"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"連絡先が登録されていません。"\n\n<font fgcolor="#ffffffff"><b>"MENU"</b></font>"キーを押して登録方法を選択してください:"\n\n<li><font fgcolor="#ffffffff"><b>"同期する範囲"</b></font>": Googleアカウントから連絡先を読み込んで追加します"\n</li>\n<li><font fgcolor="#ffffffff"><b>"連絡先を新規登録"</b></font>": 連絡先を入力して新規作成します"\n</li>\n<li><font fgcolor="#ffffffff"><b>"連絡先をインポート"</b></font>": 連絡先をSIMカードから取り込みます"\n</li></string>
     <string name="seclectSyncGroups_title">"同期するグループを選択"</string>
     <string name="liveFolder_all_label">"すべての連絡先"</string>
     <string name="liveFolder_favorites_label">"スター付き"</string>
@@ -166,10 +165,7 @@
     <string name="callAgain">"再発信"</string>
     <string name="returnCall">"発信"</string>
     <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g>分<xliff:g id="SECONDS">%s</xliff:g>秒"</string>
-    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
-    <skip />
+    <string name="favoritesFrquentSeparator">"よく使う連絡先"</string>
+    <string name="add_contact_dlg_title">"連絡先を追加"</string>
+    <string name="add_contact_dlg_message_fmt">"<xliff:g id="EMAIL">%s</xliff:g> を連絡先に追加しますか？"</string>
 </resources>
