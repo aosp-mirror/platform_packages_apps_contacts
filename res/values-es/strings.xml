@@ -16,7 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Contactos"</string>
-    <string name="launcherDialer">"Llamadas"</string>
+    <string name="launcherDialer">"Marcador"</string>
     <string name="shortcutContact">"Contacto"</string>
     <string name="starredList">"Destacados"</string>
     <string name="frequentList">"Frecuentes"</string>
@@ -132,8 +132,8 @@
     <string name="simContacts_emptyLoading">"Cargando desde tarjeta SIM…"</string>
     <string name="simContacts_title">"Contactos de tarjeta SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincroniza tus contactos de Google"</font>" "\n"Después de sincronizarlos con tu teléfono, podrás acceder a tus contactos desde cualquier lugar."</string>
-    <string name="noContactsHelpText">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un nuevo contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"No tienes contactos."\n\n"Para añadir contactos, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un contacto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpText">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y selecciona:"\n\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un contacto manualmente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde tu tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o ya existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuevo contacto"</b></font>" para añadir un contacto manualmente"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Seleccionar grupos para la sincronización"</string>
     <string name="liveFolder_all_label">"Todos los contactos"</string>
     <string name="liveFolder_favorites_label">"Destacados"</string>
@@ -162,10 +162,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"Pasarán directamente al correo de voz"</string>
     <string name="detailsRingtone">"Establecido como <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Volver a llamar"</string>
-    <string name="callAgain">"Llamar de nuevo"</string>
+    <string name="callAgain">"Volver a llamar"</string>
     <string name="returnCall">"Devolver llamada"</string>
-    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> seg."</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min. y <xliff:g id="SECONDS">%s</xliff:g> seg."</string>
     <string name="favoritesFrquentSeparator">"Más llamados"</string>
     <string name="add_contact_dlg_title">"Añadir contacto"</string>
-    <string name="add_contact_dlg_message_fmt">"¿Añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
+    <string name="add_contact_dlg_message_fmt">"¿Deseas añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
 </resources>

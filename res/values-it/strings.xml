@@ -26,8 +26,7 @@
     <string name="editContactDescription">"Modifica contatto"</string>
     <string name="insertContactDescription">"Crea contatto"</string>
     <string name="searchHint">"Cerca contatti"</string>
-    <!-- no translation found for menu_search (9147752853603483719) -->
-    <skip />
+    <string name="menu_search">"Cerca"</string>
     <string name="menu_newContact">"Nuovo contatto"</string>
     <string name="menu_viewContact">"Visualizza contatto"</string>
     <string name="menu_callNumber">"Chiama <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -133,8 +132,8 @@
     <string name="simContacts_emptyLoading">"Caricamento da SIM..."</string>
     <string name="simContacts_title">"Contatti SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincronizza i tuoi contatti Google."</font>" "\n"Dopo la sincronizzazione con il telefono, i tuoi contatti saranno sempre a tua disposizione."</string>
-    <string name="noContactsHelpText">"Non hai nessun contatto."\n\n"Per aggiungere dei contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un nuovo contatto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere i contatti salvati sulla scheda SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"Non hai nessun contatto."\n\n"Per aggiungere i contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincr. gruppi"</b></font>" per aggiungere contatti da un account Google nuovo o già esistente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere i contatti salvati sulla scheda SIM"\n</li></string>
+    <string name="noContactsHelpText">"Non è presente alcun contatto."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere contatti dalla SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"Non è presente alcun contatto."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>" Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincr. gruppi"</b></font>" per aggiungere contatti da un account Google nuovo o esistente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere contatti dalla SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Seleziona i gruppi da sincronizzare"</string>
     <string name="liveFolder_all_label">"Tutti i contatti"</string>
     <string name="liveFolder_favorites_label">"Speciali"</string>
@@ -165,11 +164,8 @@
     <string name="callBack">"Richiama"</string>
     <string name="callAgain">"Richiama"</string>
     <string name="returnCall">"Chiama numero"</string>
-    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
-    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
-    <skip />
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sec."</string>
+    <string name="favoritesFrquentSeparator">"Numeri più chiamati"</string>
+    <string name="add_contact_dlg_title">"Aggiungi contatto"</string>
+    <string name="add_contact_dlg_message_fmt">"Aggiungere \"<xliff:g id="EMAIL">%s</xliff:g>\" ai contatti?"</string>
 </resources>

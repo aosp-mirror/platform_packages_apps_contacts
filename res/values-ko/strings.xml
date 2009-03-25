@@ -16,8 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"연락처"</string>
-    <!-- no translation found for launcherDialer (140610573639849799) -->
-    <skip />
+    <string name="launcherDialer">"Dialer"</string>
     <string name="shortcutContact">"연락처"</string>
     <string name="starredList">"별표 표시된 연락처"</string>
     <string name="frequentList">"자주 거는 전화"</string>
@@ -27,8 +26,7 @@
     <string name="editContactDescription">"연락처 편집"</string>
     <string name="insertContactDescription">"연락처 만들기"</string>
     <string name="searchHint">"연락처 검색"</string>
-    <!-- no translation found for menu_search (9147752853603483719) -->
-    <skip />
+    <string name="menu_search">"검색"</string>
     <string name="menu_newContact">"새 연락처"</string>
     <string name="menu_viewContact">"연락처 보기"</string>
     <string name="menu_callNumber">"<xliff:g id="NAME">%s</xliff:g>에게 전화걸기"</string>
@@ -45,8 +43,7 @@
     <string name="deleteConfirmation_title">"삭제"</string>
     <string name="deleteConfirmation">"연락처가 삭제됩니다."</string>
     <string name="menu_done">"완료"</string>
-    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
-    <skip />
+    <string name="menu_doNotSave">"되돌리기"</string>
     <string name="editContact_title_edit">"연락처 편집"</string>
     <string name="editContact_title_insert">"새 연락처"</string>
     <string name="menu_addItem">"추가정보"</string>
@@ -135,10 +132,8 @@
     <string name="simContacts_emptyLoading">"SIM 카드에서 로드 중…"</string>
     <string name="simContacts_title">"SIM 카드 연락처"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Google 연락처를 동기화하세요."</font>" "\n"연락처를 전화기로 동기화하면 어디에서나 연락처를 확인할 수 있습니다."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"저장된 주소록이 없습니다."\n\n"주소록을 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 선택하세요."\n" "\n<li><font fgcolor="#ffffffff"><b>"새 주소록"</b></font>" - 주소록을 새로 생성하려는 경우"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"주소록 가져오기"</b></font>" - SIM 카드에서 주소록을 추가하려는 경우"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"저장된 주소록이 없습니다."\n\n"주소록을 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 선택하세요."\n\n" "<li><font fgcolor="#ffffffff"><b>"동기화 그룹 수정"</b></font>" - 새 계정 또는 기존 Google 계정에서 추가하려는 경우"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"새 주소록"</b></font>" - 주소록을 새로 생성하려는 경우"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"주소록 가져오기"</b></font>" - SIM 카드에서 주소록을 추가하려는 경우"\n</li></string>
     <string name="seclectSyncGroups_title">"동기화할 그룹 선택"</string>
     <string name="liveFolder_all_label">"전체 주소록"</string>
     <string name="liveFolder_favorites_label">"중요편지함"</string>
@@ -167,16 +162,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"음성메일로 바로 보냄"</string>
     <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>(으)로 설정"</string>
     <string name="callBack">"콜백"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
-    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
-    <skip />
+    <string name="callAgain">"다시 걸기"</string>
+    <string name="returnCall">"부재중 전화에 전화 걸기"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g>분 <xliff:g id="SECONDS">%s</xliff:g>초"</string>
+    <string name="favoritesFrquentSeparator">"자주 통화한 목록"</string>
+    <string name="add_contact_dlg_title">"주소 추가"</string>
+    <string name="add_contact_dlg_message_fmt">"주소록에 \'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 추가하시겠습니까?"</string>
 </resources>

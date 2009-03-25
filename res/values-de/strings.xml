@@ -16,8 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Kontakte"</string>
-    <!-- no translation found for launcherDialer (140610573639849799) -->
-    <skip />
+    <string name="launcherDialer">"Telefon"</string>
     <string name="shortcutContact">"Kontakt"</string>
     <string name="starredList">"Markiert"</string>
     <string name="frequentList">"Häufig"</string>
@@ -27,8 +26,7 @@
     <string name="editContactDescription">"Kontakt bearbeiten"</string>
     <string name="insertContactDescription">"Kontakt erstellen"</string>
     <string name="searchHint">"Kontakte durchsuchen"</string>
-    <!-- no translation found for menu_search (9147752853603483719) -->
-    <skip />
+    <string name="menu_search">"Suchen"</string>
     <string name="menu_newContact">"Neuer Kontakt"</string>
     <string name="menu_viewContact">"Kontakt anzeigen"</string>
     <string name="menu_callNumber">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
@@ -45,8 +43,7 @@
     <string name="deleteConfirmation_title">"Löschen"</string>
     <string name="deleteConfirmation">"Dieser Kontakt wird gelöscht."</string>
     <string name="menu_done">"Fertig"</string>
-    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
-    <skip />
+    <string name="menu_doNotSave">"Rückgängig"</string>
     <string name="editContact_title_edit">"Kontakt bearbeiten"</string>
     <string name="editContact_title_insert">"Neuer Kontakt"</string>
     <string name="menu_addItem">"Weitere Informationen"</string>
@@ -135,10 +132,8 @@
     <string name="simContacts_emptyLoading">"Ladevorgang von SIM-Karte läuft..."</string>
     <string name="simContacts_title">"Kontakte auf SIM-Karte"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchronisieren Sie Ihre Google-Kontakte!"</font>" "\n"Nach der Synchronisierung stehen Ihnen Ihre Kontakte überall zur Verfügung."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"Es sind keine Kontakte vorhanden."\n\n"Drücken Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und wählen Sie Folgendes aus:"\n\n"        "<li><font fgcolor="#ffffffff"><b></b>"Neuer Kontakt"</font>\n", um einen neuen Kontakt zu erstellen"</li>\n<li>"        "<font fgcolor="#ffffffff"><b></b></font>"Kontakte importieren"\n</li>", um Kontakte von Ihrer SIM-Karte hinzuzufügen"</string>
+    <string name="noContactsHelpTextWithSync">"Sie haben keine Kontakte."\n\n"Drücken Sie zum Hinzufügen die "<font fgcolor="#ffffffff"><b>"Menütaste"</b></font>" und wählen Sie"\n\n"        "<li><font fgcolor="#ffffffff"><b>"Synchronisierungsgruppen bearbeiten"</b></font>", um Kontakte mit einem neuen oder bestehenden Google-Konto zu synchronisieren,"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen Kontakt neu zu erstellen, "\n</li>\n"        "<li><font fgcolor="#ffffffff"><b>"Kontakte importieren"</b></font>", um Kontakte von Ihrer SIM-Karte hinzuzufügen."\n</li></string>
     <string name="seclectSyncGroups_title">"Zu synchronisierende Gruppen auswählen"</string>
     <string name="liveFolder_all_label">"Alle Kontakte"</string>
     <string name="liveFolder_favorites_label">"Markiert"</string>
@@ -167,16 +162,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"Wird direkt an Voicemail weitergeleitet"</string>
     <string name="detailsRingtone">"Eingestellt auf <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Rückruf"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
-    <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
-    <skip />
-    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
-    <skip />
+    <string name="callAgain">"Erneut anrufen"</string>
+    <string name="returnCall">"Zurückrufen"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> Minuten, <xliff:g id="SECONDS">%s</xliff:g> Sekunden"</string>
+    <string name="favoritesFrquentSeparator">"Häufig angerufen"</string>
+    <string name="add_contact_dlg_title">"Kontakt hinzufügen"</string>
+    <string name="add_contact_dlg_message_fmt">"\"<xliff:g id="EMAIL">%s</xliff:g>\" zu den Kontakten hinzufügen?"</string>
 </resources>

@@ -44,8 +44,7 @@
     <string name="deleteConfirmation_title">"Slett"</string>
     <string name="deleteConfirmation">"Denne kontakten vil bli slettet."</string>
     <string name="menu_done">"Lagre"</string>
-    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
-    <skip />
+    <string name="menu_doNotSave">"Tilbakestill"</string>
     <string name="editContact_title_edit">"Rediger kontakt"</string>
     <string name="editContact_title_insert">"Ny kontakt"</string>
     <string name="menu_addItem">"Mer informasjon"</string>
@@ -134,10 +133,8 @@
     <string name="simContacts_emptyLoading">"Henter fra SIM-kort…"</string>
     <string name="simContacts_title">"Kontakter på SIM-kort"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synkroniser Google-kontaktene dine!"</font>" "\n"Etter å ha synkronisert telefonen vil kontaktene dine bli tilgjengelig overalt."</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"Du har ingen kontakter."\n\n"For å legge til kontakter, trykk "<font fgcolor="#ffffffff"><b>"menyknappen"</b></font>" og velg:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å lage en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer kontakter"</b></font>" for å legge til kontakter fra SIM-kortet"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"Du har ingen kontakter."\n\n"For å legge til kontakter, trykk "<font fgcolor="#ffffffff"><b>"menyknappen"</b></font>" og velg:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rediger synkroniserte grupper"</b></font>" for å legge til fra en ny eller eksisterende Google-konto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å lage en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer kontakter"</b></font>" for å legge til kontakter fra SIM-kortet"\n</li></string>
     <string name="seclectSyncGroups_title">"Velg grupper som skal synkroniseres"</string>
     <string name="liveFolder_all_label">"Alle kontakter"</string>
     <string name="liveFolder_favorites_label">"Med stjerne"</string>
@@ -166,12 +163,9 @@
     <string name="detailIncomingCallsGoToVoicemail">"Vil bli sendt rett til telefonsvarer"</string>
     <string name="detailsRingtone">"Sett til <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack">"Ring tilbake"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
+    <string name="callAgain">"Ring på nytt"</string>
+    <string name="returnCall">"Ring tilbake"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek"</string>
     <!-- no translation found for favoritesFrquentSeparator (5007070838253932139) -->
     <skip />
     <!-- no translation found for add_contact_dlg_title (2789046541229846116) -->
