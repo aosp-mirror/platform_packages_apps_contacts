@@ -55,6 +55,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -321,8 +322,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         if (!TextUtils.isEmpty(dialString)) {
             Editable digits = mDigits.getText();
             digits.replace(0, digits.length(), dialString);
-            mDigits.setCompoundDrawablesWithIntrinsicBounds(
-                    getResources().getDrawable(R.drawable.ic_dial_number), null, null, null);
+            // for some reason this isn't getting called in the digits.replace call above..
+            // but in any case, this will make sure the background drawable looks right
+            afterTextChanged(digits);
         }
     }
 
@@ -422,6 +424,19 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // Also, a sanity-check: the "dialpad chooser" UI should NEVER
             // be visible if the phone is idle!
             showDialpadChooser(false);
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            // Hide soft keyboard, if visible (it's fugly over button dialer).
+            // The only known case where this will be true is when launching the dialer with
+            // ACTION_DIAL via a soft keyboard.  we dismiss it here because we don't
+            // have a window token yet in onCreate / onNewIntent
+            InputMethodManager inputMethodManager = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(mDigits.getWindowToken(), 0);            
         }
     }
 
