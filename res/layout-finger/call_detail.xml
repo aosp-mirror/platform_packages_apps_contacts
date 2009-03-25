@@ -79,6 +79,25 @@
             android:scrollbarStyle="outsideOverlay"
         />
 
+        <ScrollView android:id="@android:id/empty"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true">
+
+            <TextView android:id="@+id/emptyText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                android:textSize="20sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="10dip"
+                android:gravity="center"
+                android:lineSpacingMultiplier="0.92"/>
+
+        </ScrollView>
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
