@@ -207,6 +207,11 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
                     String systemId = cursor.isNull(COLUMN_INDEX_SYSTEM_ID) ?
                             null : cursor.getString(COLUMN_INDEX_SYSTEM_ID);
                     if (systemId == null || !Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                        // Localize the "Starred in Android" string which we get from the server
+                        // side.
+                        if (Groups.GROUP_ANDROID_STARRED.equals(name)) {
+                            name = getString(R.string.starredInAndroid);
+                        }
                         items.add(name);
                         checked.add(cursor.getInt(COLUMN_INDEX_SHOULD_SYNC) != 0);
                         groupIds.add(cursor.getLong(COLUMN_INDEX_ID));

@@ -262,6 +262,9 @@
     <!-- The group type that displays only contacts with phone numbers -->
     <string name="groupNameWithPhones">Contacts with phone numbers</string>
     
+    <!-- The group type that displays "Starred in Android" contacts -->
+    <string name="starredInAndroid">Starred in Android</string>
+    
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
     
