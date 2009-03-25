@@ -656,7 +656,14 @@ public final class ContactsListActivity extends ListActivity
         super.onRestart();
 
         // The cursor was killed off in onStop(), so we need to get a new one here
-        startQuery();
+        // We do not perform the query if a filter is set on the list because the
+        // filter will cause the query to happen anyway
+        if (TextUtils.isEmpty(getListView().getTextFilter())) {
+            startQuery();
+        } else {
+            // Run the filtered query on the adapter
+            ((ContactItemListAdapter) getListView().getAdapter()).onContentChanged();
+        }
     }
     
     private void updateGroup() {
