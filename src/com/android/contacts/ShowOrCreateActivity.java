@@ -56,20 +56,17 @@ public final class ShowOrCreateActivity extends Activity {
     static final boolean LOGD = false;
 
     static final String[] PHONES_PROJECTION = new String[] {
-        Phones._ID,
         Phones.PERSON_ID,
     };
 
-    static final String[] CONTACT_METHODS_PROJECTION = new String[] {
-        ContactMethods._ID,
-        ContactMethods.PERSON_ID,
+    static final String[] PEOPLE_PROJECTION = new String[] {
+        People._ID,
     };
     
     static final String SCHEME_MAILTO = "mailto";
     static final String SCHEME_TEL = "tel";
     
-    static final int ID_INDEX = 0;
-    static final int PERSON_ID_INDEX = 1;
+    static final int PERSON_ID_INDEX = 0;
 
     /**
      * Query clause to filter {@link ContactMethods#CONTENT_URI} to only search
@@ -126,11 +123,9 @@ public final class ShowOrCreateActivity extends Activity {
         // Handle specific query request
         if (SCHEME_MAILTO.equals(scheme)) {
             createExtras.putString(Intents.Insert.EMAIL, ssp);
-            mQueryHandler.startQuery(QUERY_TOKEN, null,
-                    ContactMethods.CONTENT_URI, CONTACT_METHODS_PROJECTION,
-                    QUERY_KIND_EMAIL_OR_IM + " AND " + ContactMethods.DATA + "=?",
-                    new String[] { ssp }, null);
-            
+            Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI, Uri.encode(ssp));
+            mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
+                    PEOPLE_PROJECTION, null, null, null);
         } else if (SCHEME_TEL.equals(scheme)) {
             createExtras.putString(Intents.Insert.PHONE, ssp);
             mQueryHandler.startQuery(QUERY_TOKEN, null,
