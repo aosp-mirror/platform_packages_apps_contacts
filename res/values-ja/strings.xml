@@ -28,7 +28,7 @@
     <string name="searchHint">"連絡先を検索"</string>
     <string name="menu_search">"検索"</string>
     <string name="menu_newContact">"連絡先を新規登録"</string>
-    <string name="menu_viewContact">"連絡先を表示"</string>
+    <string name="menu_viewContact">"連絡先詳細"</string>
     <string name="menu_callNumber">"発信 <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar">"お気に入りに追加"</string>
     <string name="menu_removeStar">"お気に入りから削除"</string>
@@ -59,7 +59,7 @@
     <string name="ghostData_phone">"電話番号"</string>
     <string name="ghostData_email">"メールアドレス"</string>
     <string name="ghostData_postal">"住所"</string>
-    <string name="invalidContactMessage">"この連絡先は消去されています。"</string>
+    <string name="invalidContactMessage">"この連絡先は削除されました"</string>
     <string name="pickerNewContactHeader">"連絡先を新規登録"</string>
     <string name="selectLabel">"選択してください"</string>
     <string name="phoneLabelsGroup">"電話番号"</string>
@@ -78,8 +78,8 @@
     <string name="menu_displayGroup">"グループを表示"</string>
     <string name="syncGroupPreference">"同期する範囲"</string>
     <string name="importFromSim">"連絡先をインポート"</string>
-    <string name="send_to_voicemail_checkbox">"ボイスメールに直接電話します。"</string>
-    <string name="send_to_voicemail_view">"この番号にかけるとボイスメールに送信されます。"</string>
+    <string name="send_to_voicemail_checkbox">"ボイスメールに自動転送する"</string>
+    <string name="send_to_voicemail_view">"この番号にかけるとボイスメールに転送されます。"</string>
     <string name="default_ringtone">"端末既定"</string>
     <string name="addPicture">"アイコンを追加"</string>
     <string name="removePicture">"アイコンを削除"</string>
@@ -125,8 +125,8 @@
     <string name="recentCalls_empty">"通話履歴なし"</string>
     <string name="imei">"IMEI（端末識別番号）"</string>
     <string name="voicemail">"ボイスメール"</string>
-    <string name="unknown">"不明"</string>
-    <string name="private_num">"非通知番号"</string>
+    <string name="unknown">"通知不可能"</string>
+    <string name="private_num">"非通知"</string>
     <!-- no translation found for payphone (4864313342828942922) -->
     <skip />
     <string name="dialerKeyboardHintText">"キーボードで番号を入力してください"</string>
@@ -157,11 +157,11 @@
     <string name="add_more_items">"その他の項目を追加"</string>
     <string name="actionCall">"<xliff:g id="TYPE">%s</xliff:g>に発信"</string>
     <string name="actionEmail">"<xliff:g id="TYPE">%s</xliff:g>にメールを送信"</string>
-    <string name="actionText">"<xliff:g id="TYPE">%s</xliff:g>にテキストを送信"</string>
-    <string name="actionChat">"<xliff:g id="TYPE">%s</xliff:g>を使用してチャット"</string>
-    <string name="actionMap">"<xliff:g id="TYPE">%s</xliff:g>の住所を表示"</string>
+    <string name="actionText">"<xliff:g id="TYPE">%s</xliff:g>にSMSを送信"</string>
+    <string name="actionChat">"<xliff:g id="TYPE">%s</xliff:g>でチャット"</string>
+    <string name="actionMap">"<xliff:g id="TYPE">%s</xliff:g>の住所を地図で見る"</string>
     <string name="actionIncomingCall">"着信"</string>
-    <string name="detailIncomingCallsGoToVoicemail">"直接ボイスメールに送信します"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"ボイスメールに自動転送されます"</string>
     <string name="detailsRingtone">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>に設定"</string>
     <string name="callBack">"コールバック"</string>
     <string name="callAgain">"再発信"</string>
