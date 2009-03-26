@@ -92,6 +92,8 @@
     <string name="syncAllGroups">"全連絡先を同期"</string>
     <string name="groupNameMyContacts">"Myコンタクト"</string>
     <string name="groupNameWithPhones">"電話番号のある連絡先"</string>
+    <!-- no translation found for starredInAndroid (6495527538140213440) -->
+    <skip />
     <string name="contactCreatedToast">"連絡先を作成しました。"</string>
     <string name="contactSavedToast">"連絡先を保存しました。"</string>
     <string name="listSeparatorCallNumber">"発信"</string>
