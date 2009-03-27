@@ -413,20 +413,23 @@ public class ViewContactActivity extends ListActivity
                     Bundle bundle = new Bundle();
                     String name = mCursor.getString(CONTACT_NAME_COLUMN);
                     if (!TextUtils.isEmpty(name)) {
+                        // Correctly handle when section headers are hidden
+                        int sepAdjust = SHOW_SEPARATORS ? 1 : 0;
+                        
                         bundle.putString(Contacts.Intents.Insert.NAME, name);
                         // The 0th ViewEntry in each ArrayList below is a separator item
-                        int entriesToAdd = Math.min(mPhoneEntries.size() - 1, PHONE_KEYS.length);
+                        int entriesToAdd = Math.min(mPhoneEntries.size() - sepAdjust, PHONE_KEYS.length);
                         for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mPhoneEntries.get(x + 1);
+                            ViewEntry entry = mPhoneEntries.get(x + sepAdjust);
                             bundle.putString(PHONE_KEYS[x], entry.data);
                         }
-                        entriesToAdd = Math.min(mEmailEntries.size() - 1, EMAIL_KEYS.length);
+                        entriesToAdd = Math.min(mEmailEntries.size() - sepAdjust, EMAIL_KEYS.length);
                         for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mEmailEntries.get(x + 1);
+                            ViewEntry entry = mEmailEntries.get(x + sepAdjust);
                             bundle.putString(EMAIL_KEYS[x], entry.data);
                         }
-                        if (mPostalEntries.size() >= 2) {
-                            ViewEntry entry = mPostalEntries.get(1);
+                        if (mPostalEntries.size() >= 1 + sepAdjust) {
+                            ViewEntry entry = mPostalEntries.get(sepAdjust);
                             bundle.putString(Contacts.Intents.Insert.POSTAL, entry.data);
                         }
                         intent.putExtra("ENCODE_DATA", bundle);
@@ -893,6 +896,11 @@ public class ViewContactActivity extends ListActivity
     }
 
     String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
+        // If there is no type just display an empty string
+        if (type == null) {
+            type = "";
+        }
+
         if (lowerCase) {
             return getString(actionResId, type.toString().toLowerCase());
         } else {

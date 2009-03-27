@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import static com.android.contacts.ShowOrCreateActivity.QUERY_KIND_EMAIL_OR_IM;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -32,6 +34,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -41,12 +44,12 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
-import android.provider.Contacts.ContactMethodsColumns;
 import android.provider.Contacts.Groups;
 import android.provider.Contacts.Intents;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.Contacts.Presence;
+import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
@@ -139,8 +142,8 @@ public final class ContactsListActivity extends ListActivity
             55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     /** Run a search query */
     static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
-    /** Show all contacts matching query, or handle special cases where 0 or 1 contacts found. */
-    static final int MODE_SHOW_OR_CREATE_CONTACT = 65 | MODE_MASK_PICKER | MODE_MASK_NO_FILTER;
+    /** Run a search query in PICK mode, but that still launches to VIEW */
+    static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;
 
     static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
 
@@ -183,6 +186,11 @@ public final class ContactsListActivity extends ListActivity
         People.PRIMARY_EMAIL_ID, // 7
         People.PRESENCE_STATUS, // 8
         SORT_STRING, // 9
+    };
+    
+    static final String[] SIMPLE_CONTACTS_PROJECTION = new String[] {
+        People._ID, // 0
+        NAME_COLUMN, // 1
     };
 
     static final String[] STREQUENT_PROJECTION = new String[] {
@@ -233,7 +241,7 @@ public final class ContactsListActivity extends ListActivity
     static final int SORT_STRING_INDEX = 9;
 
     static final int PHONES_PERSON_ID_INDEX = 6;
-    static final int CONTACT_METHODS_PERSON_ID_INDEX = 6;
+    static final int SIMPLE_CONTACTS_PERSON_ID_INDEX = 0;
     
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES = 1;
@@ -270,27 +278,13 @@ public final class ContactsListActivity extends ListActivity
     private Uri mGroupUri;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
-    
-    /**
-     * {@link Bundle} of extras to include when launching
-     * {@link Intents.Insert#ACTION}, usually when responding to
-     * {@link Intents#SHOW_OR_CREATE_CONTACT}.
-     */
-    private Bundle mCreateExtras;
-    
-    /**
-     * Title to display to user when asking if a contact should be created,
-     * usually the requested E-mail address or phone number when responding to a
-     * {@link Intents#SHOW_OR_CREATE_CONTACT}.
-     */
-    private String mCreateData;
 
     /**
      * Cursor row index that holds reference back to {@link People#_ID}, such as
      * {@link ContactMethods#PERSON_ID}. Used when responding to a
-     * {@link Intents#SHOW_OR_CREATE_CONTACT}.
+     * {@link Intent#ACTION_SEARCH} in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
      */
-    private int mCreatePersonIndex;
+    private int mQueryPersonIdIndex;
 
     /**
      * Used to keep track of the scroll state of the list.
@@ -300,7 +294,22 @@ public final class ContactsListActivity extends ListActivity
 
     private boolean mCreateShortcut;
     private boolean mDefaultMode = false;
+    
+    /**
+     * Internal query type when in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
+     */
+    private int mQueryMode = QUERY_MODE_NONE;
 
+    private static final int QUERY_MODE_NONE = -1;
+    private static final int QUERY_MODE_MAILTO = 1;
+    private static final int QUERY_MODE_TEL = 2;
+    
+    /**
+     * Data to use when in mode {@link #MODE_QUERY_PICK_TO_VIEW}. Usually
+     * provided by scheme-specific part of incoming {@link Intent#getData()}.
+     */
+    private String mQueryData;
+    
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
 
@@ -313,23 +322,6 @@ public final class ContactsListActivity extends ListActivity
         }
     }
     
-    private class IntentClickListener implements DialogInterface.OnClickListener {
-        private Activity mParent;
-        private Intent mIntent;
-
-        public IntentClickListener(Activity parent, Intent intent) {
-            mParent = parent;
-            mIntent = intent;
-        }
-
-        public void onClick(DialogInterface dialog, int which) {
-            if (mIntent != null) {
-                mParent.startActivity(mIntent);
-            }
-            mParent.finish();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -407,8 +399,20 @@ public final class ContactsListActivity extends ListActivity
                 finish();
                 return;
             }
-            // Otherwise handle the more normal search case
-            mMode = MODE_QUERY;
+            
+            // See if search request has extras to specify query
+            if (intent.hasExtra(Insert.EMAIL)) {
+                mMode = MODE_QUERY_PICK_TO_VIEW;
+                mQueryMode = QUERY_MODE_MAILTO;
+                mQueryData = intent.getStringExtra(Insert.EMAIL);
+            } else if (intent.hasExtra(Insert.PHONE)) {
+                mMode = MODE_QUERY_PICK_TO_VIEW;
+                mQueryMode = QUERY_MODE_TEL;
+                mQueryData = intent.getStringExtra(Insert.PHONE);
+            } else {
+                // Otherwise handle the more normal search case
+                mMode = MODE_QUERY;
+            }
 
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
@@ -436,8 +440,6 @@ public final class ContactsListActivity extends ListActivity
             startActivity(newIntent);
             finish();
             return;
-        } else if (Intents.SHOW_OR_CREATE_CONTACT.equals(action)) {
-            mMode = MODE_SHOW_OR_CREATE_CONTACT;
         }
 
         if (mMode == MODE_UNKNOWN) {
@@ -489,60 +491,6 @@ public final class ContactsListActivity extends ListActivity
             mSyncEnabled = false;
         } finally {
             resolver.releaseProvider(provider);
-        }
-    }
-
-    /**
-     * Handles special cases of the {@link Intents#SHOW_OR_CREATE_CONTACT}
-     * intent. When zero results found, prompt user to create new contact. When
-     * one contact found, shortcut to viewing that contact.
-     * 
-     * @param c Valid cursor after performing query
-     */
-    private void handleShowOrCreate(final Cursor c) {
-        int count = 0;
-        long personId = 0;
-        if (c != null) {
-            count = c.getCount();
-            if (count == 1 && c.moveToFirst()) {
-                // Try reading ID for the only contact returned
-                personId = c.getLong(mCreatePersonIndex);
-            }
-        }
-        
-        if (count == 1) {
-            // If we only found one item, jump right to viewing it
-            Intent showIntent = new Intent(Intent.ACTION_VIEW,
-                    ContentUris.withAppendedId(People.CONTENT_URI, personId));
-            startActivity(showIntent);
-            finish();
-            
-        } else if (count == 0) {
-            // Insert create values coming from our request
-            Intent createIntent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
-            createIntent.putExtras(mCreateExtras);
-            
-            // Prompt user if they really want to start creating a new
-            // contact. Skip this step if the caller requested {@link
-            // Contacts#EXTRA_FORCE_CREATE}.
-            boolean forceCreate = getIntent().getBooleanExtra(Intents.EXTRA_FORCE_CREATE, false);
-            
-            if (forceCreate) {
-                startActivity(createIntent);
-                finish();
-            } else {
-                CharSequence message = getResources().getString(
-                        R.string.add_contact_dlg_message_fmt, mCreateData);
-                
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.add_contact_dlg_title)
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok,
-                                new IntentClickListener(this, createIntent))
-                        .setNegativeButton(android.R.string.cancel,
-                                new IntentClickListener(this, null))
-                        .show();
-            }
         }
     }
 
@@ -713,7 +661,14 @@ public final class ContactsListActivity extends ListActivity
         super.onRestart();
 
         // The cursor was killed off in onStop(), so we need to get a new one here
-        startQuery();
+        // We do not perform the query if a filter is set on the list because the
+        // filter will cause the query to happen anyway
+        if (TextUtils.isEmpty(getListView().getTextFilter())) {
+            startQuery();
+        } else {
+            // Run the filtered query on the adapter
+            ((ContactItemListAdapter) getListAdapter()).onContentChanged();
+        }
     }
     
     private void updateGroup() {
@@ -1046,10 +1001,10 @@ public final class ContactsListActivity extends ListActivity
                 Intent intent = new Intent(Intent.ACTION_VIEW,
                         ContentUris.withAppendedId(People.CONTENT_URI, id));
                 startActivity(intent);
-            } else if (mMode == MODE_SHOW_OR_CREATE_CONTACT) {
-                // Figure out person ID because we might be using indirect cursor
+            } else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
+                // Started with query that should launch to view contact
                 Cursor c = (Cursor) mAdapter.getItem(position);
-                long personId = c.getLong(mCreatePersonIndex);
+                long personId = c.getLong(mQueryPersonIdIndex);
                 Intent intent = new Intent(Intent.ACTION_VIEW,
                         ContentUris.withAppendedId(People.CONTENT_URI, personId));
                 startActivity(intent);
@@ -1097,7 +1052,7 @@ public final class ContactsListActivity extends ListActivity
             } else {
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                         Intent.ShortcutIconResource.fromContext(this,
-                                R.drawable.ic_launcher_contacts));
+                                R.drawable.ic_launcher_shortcut_contact));
             }
             setResult(RESULT_OK, intent);
         } else {
@@ -1184,52 +1139,27 @@ public final class ContactsListActivity extends ListActivity
                 break;
             }
             
-            case MODE_SHOW_OR_CREATE_CONTACT: {
-                // Caller requested a specific E-mail address or phone number,
-                // so show only matching entries. Once the query finishes we
-                // handle edge cases of 0 or 1 items.
-                Uri data = getIntent().getData();
-                String scheme = null;
-                String ssp = null;
-                if (data != null) {
-                    scheme = data.getScheme();
-                    ssp = data.getSchemeSpecificPart();
-                    mCreateData = ssp;
-                }
-                
-                mCreateExtras = new Bundle();
-                Bundle originalExtras = getIntent().getExtras();
-                if (originalExtras != null) {
-                    mCreateExtras.putAll(originalExtras);
-                }
-
-                if ("mailto".equals(scheme)) {
-                    mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
-                    mCreatePersonIndex = CONTACT_METHODS_PERSON_ID_INDEX;
-                    
+            case MODE_QUERY_PICK_TO_VIEW: {
+                if (mQueryMode == QUERY_MODE_MAILTO) {
+                    // Find all contacts with the given search string as either
+                    // an E-mail or IM address.
+                    mQueryPersonIdIndex = SIMPLE_CONTACTS_PERSON_ID_INDEX;
+                    Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI,
+                            Uri.encode(mQueryData));
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
-                            ContactMethods.CONTENT_URI, CONTACT_METHODS_PROJECTION,
-                            ContactMethodsColumns.KIND + "=" + Contacts.KIND_EMAIL + " AND " +
-                            ContactMethods.DATA + "=?", new String[] { ssp },
-                            getSortOrder(CONTACT_METHODS_PROJECTION));
+                            uri, SIMPLE_CONTACTS_PROJECTION, null, null,
+                            getSortOrder(CONTACTS_PROJECTION));
                     
-                } else if ("tel".equals(scheme)) {
-                    mCreateExtras.putString(Intents.Insert.PHONE, ssp);
-                    mCreatePersonIndex = PHONES_PERSON_ID_INDEX;
-                    
+                } else if (mQueryMode == QUERY_MODE_TEL) {
+                    mQueryPersonIdIndex = PHONES_PERSON_ID_INDEX;
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, ssp),
+                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, mQueryData),
                             PHONES_PROJECTION, null, null,
                             getSortOrder(PHONES_PROJECTION));
-                    
-                } else {
-                    Log.w(TAG, "Invalid intent:" + getIntent());
-                    finish();
                 }
-                
                 break;
             }
-
+            
             case MODE_STARRED:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, People.CONTENT_URI,
                         CONTACTS_PROJECTION,
@@ -1413,7 +1343,6 @@ public final class ContactsListActivity extends ListActivity
                     getString(R.string.groupNameWithPhones));
             prefStrings.add(GROUP_WITH_PHONES);
             
-            int i = 3;
             int currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS;
             while (cursor.moveToNext()) {
                 String systemId = cursor.getString(GROUPS_COLUMN_INDEX_SYSTEM_ID);
@@ -1421,11 +1350,15 @@ public final class ContactsListActivity extends ListActivity
                 if (cursor.isNull(GROUPS_COLUMN_INDEX_SYSTEM_ID)
                         && !Groups.GROUP_MY_CONTACTS.equals(systemId)) {
                     // All groups that aren't My Contacts, since that one is localized on the phone
+
+                    // Localize the "Starred in Android" string which we get from the server side.
+                    if (Groups.GROUP_ANDROID_STARRED.equals(name)) {
+                        name = getString(R.string.starredInAndroid);
+                    }
                     groups.add(name);
                     if (name.equals(mDisplayInfo)) {
-                        currentIndex = i;
+                        currentIndex = groups.size() - 1;
                     }
-                    i++;
                 } else {
                     // The My Contacts group
                     groups.add(DISPLAY_GROUP_INDEX_MY_CONTACTS,
@@ -1443,8 +1376,7 @@ public final class ContactsListActivity extends ListActivity
                 currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES;
             }
             mDisplayGroups = groups.toArray(new CharSequence[groups.size()]);
-            builder.setSingleChoiceItems(mDisplayGroups,
-                    currentIndex, this);
+            builder.setSingleChoiceItems(mDisplayGroups, currentIndex, this);
             mDisplayGroupOriginalSelection = currentIndex;
         } finally {
             cursor.close();
@@ -1467,11 +1399,6 @@ public final class ContactsListActivity extends ListActivity
                 activity.getListView().clearTextFilter();                
                 activity.mAdapter.changeCursor(cursor);
                 
-                // Handle SHOW_OR_CREATE now that we have valid cursor
-                if (activity.mMode == MODE_SHOW_OR_CREATE_CONTACT) {
-                    activity.handleShowOrCreate(cursor);
-                }
-    
                 // Now that the cursor is populated again, it's possible to restore the list state
                 if (activity.mListState != null) {
                     activity.mList.onRestoreInstanceState(activity.mListState);
@@ -1507,6 +1434,7 @@ public final class ContactsListActivity extends ListActivity
         private CharSequence[] mLocalizedLabels;
         private boolean mDisplayPhotos = false;
         private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
+        private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
@@ -1579,6 +1507,45 @@ public final class ContactsListActivity extends ListActivity
         }
 
         @Override
+        public int getItemViewType(int position) {
+            if (position == mFrequentSeparatorPos) {
+                // We don't want the separator view to be recycled.
+                return IGNORE_ITEM_VIEW_TYPE;
+            }
+            return super.getItemViewType(position);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (!mDataValid) {
+                throw new IllegalStateException(
+                        "this should only be called when the cursor is valid");
+            }
+
+            // Handle the separator specially
+            if (position == mFrequentSeparatorPos) {
+                LayoutInflater inflater =
+                        (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+                TextView view = (TextView) inflater.inflate(R.layout.list_separator, parent, false);
+                view.setText(R.string.favoritesFrquentSeparator);
+                return view;
+            }
+
+            if (!mCursor.moveToPosition(getRealPosition(position))) {
+                throw new IllegalStateException("couldn't move cursor to position " + position);
+            }
+            
+            View v;
+            if (convertView == null) {
+                v = newView(mContext, mCursor, parent);
+            } else {
+                v = convertView;
+            }
+            bindView(v, mContext, mCursor);
+            return v;
+        }
+
+        @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             final View view = super.newView(context, cursor, parent);
 
@@ -1604,6 +1571,17 @@ public final class ContactsListActivity extends ListActivity
                 cache.nameView.setText(cache.nameBuffer.data, 0, size);
             } else {
                 cache.nameView.setText(mUnknownNameText);
+            }
+            
+            // Bail out early if using a specific SEARCH query mode, usually for
+            // matching a specific E-mail or phone number. Any contact details
+            // shown would be identical, and columns might not even be present
+            // in the returned cursor.
+            if (mQueryMode != QUERY_MODE_NONE) {
+                cache.numberView.setVisibility(View.GONE);
+                cache.labelView.setVisibility(View.GONE);
+                cache.presenceView.setVisibility(View.GONE);
+                return;
             }
             
             // Set the phone number
@@ -1642,27 +1620,18 @@ public final class ContactsListActivity extends ListActivity
 
             // Set the proper icon (star or presence or nothing)
             ImageView presenceView = cache.presenceView;
-            if (mMode != MODE_STREQUENT) {
-                if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
-                    int serverStatus;
-                    if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
-                        serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
-                        presenceView.setImageResource(
-                                Presence.getPresenceIconResourceId(serverStatus));
-                        presenceView.setVisibility(View.VISIBLE);
-                    } else {
-                        presenceView.setVisibility(View.GONE);
-                    }
-                } else {
-                    presenceView.setVisibility(View.GONE);
-                }
-            } else {
-                if (cursor.getInt(STARRED_COLUMN_INDEX) != 0) {
-                    presenceView.setImageResource(R.drawable.star_on);
+            if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
+                int serverStatus;
+                if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
+                    serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
+                    presenceView.setImageResource(
+                            Presence.getPresenceIconResourceId(serverStatus));
                     presenceView.setVisibility(View.VISIBLE);
                 } else {
                     presenceView.setVisibility(View.GONE);
                 }
+            } else {
+                presenceView.setVisibility(View.GONE);
             }
 
             // Set the photo, if requested
@@ -1695,13 +1664,29 @@ public final class ContactsListActivity extends ListActivity
                 if (photo != null) {
                     cache.photoView.setImageBitmap(photo);
                 } else {
-                    cache.photoView.setImageResource(R.drawable.ic_contact_picture);
+                    cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
                 }
             }
         }
 
         @Override
         public void changeCursor(Cursor cursor) {
+            // Get the split between starred and frequent items, if the mode is strequent
+            mFrequentSeparatorPos = ListView.INVALID_POSITION;
+            if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
+                cursor.move(-1);
+                for (int i = 0; cursor.moveToNext(); i++) {
+                    int starred = cursor.getInt(STARRED_COLUMN_INDEX);
+                    if (starred == 0) {
+                        if (i > 0) {
+                            // Only add the separator when there are starred items present
+                            mFrequentSeparatorPos = i;
+                        }
+                        break;
+                    }
+                }
+            }
+
             super.changeCursor(cursor);
 
             // Update the indexer for the fast scroll widget
@@ -1749,7 +1734,7 @@ public final class ContactsListActivity extends ListActivity
                 return mIndexer.getSections();
            }
         }
-        
+
         public int getPositionForSection(int sectionIndex) {
             if (mMode == MODE_STREQUENT) {
                 return 0;
@@ -1766,14 +1751,55 @@ public final class ContactsListActivity extends ListActivity
 
             return mIndexer.getPositionForSection(sectionIndex);
         }
-        
+
         public int getSectionForPosition(int position) {
             // Note: JapaneseContactListIndexer depends on the fact
             // this method always returns 0. If you change this,
             // please care it too.
             return 0;
-        }        
+        }
+
+        @Override
+        public boolean areAllItemsEnabled() {
+            return mMode != MODE_STREQUENT;
+        }
+
+        @Override
+        public boolean isEnabled(int position) {
+            return position != mFrequentSeparatorPos;
+        }
+
+        @Override
+        public int getCount() {
+            if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
+                return super.getCount() + 1;
+            } else {
+                return super.getCount();
+            }
+        }
+        
+        private int getRealPosition(int pos) {
+            if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
+                // No separator, identity map
+                return pos;
+            } else if (pos <= mFrequentSeparatorPos) {
+                // Before or at the separator, identity map
+                return pos;
+            } else {
+                // After the separator, remove 1 from the pos to get the real underlying pos
+                return pos - 1;
+            }
+            
+        }
+        
+        @Override
+        public Object getItem(int pos) {
+            return super.getItem(getRealPosition(pos));
+        }
+        
+        @Override
+        public long getItemId(int pos) {
+            return super.getItemId(getRealPosition(pos)); 
+        }
     }
 }
-
-

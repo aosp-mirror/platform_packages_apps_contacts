@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.internal.telephony.CallerInfo;
+
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -166,79 +168,89 @@ public class CallDetailActivity extends ListActivity implements
                 String callText = null;
                 switch (callType) {
                     case Calls.INCOMING_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_incoming);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_incoming_call);
                         mCallType.setText(R.string.type_incoming);
                         callText = getString(R.string.callBack);
                         break;
     
                     case Calls.OUTGOING_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_outgoing);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_outgoing_call);
                         mCallType.setText(R.string.type_outgoing);
                         callText = getString(R.string.callAgain);
                         break;
     
                     case Calls.MISSED_TYPE:
-                        mCallTypeIcon.setImageResource(android.R.drawable.sym_call_missed);
+                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_missed_call);
                         mCallType.setText(R.string.type_missed);
                         callText = getString(R.string.returnCall);
                         break;
                 }
     
-                // Perform a reverse-phonebook lookup to find the PERSON_ID
-                String callLabel = null;
-                Uri personUri = null;
-                Uri phoneUri = Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, Uri.encode(mNumber));
-                Cursor phonesCursor = resolver.query(phoneUri, PHONES_PROJECTION, null, null, null);
-                try {
-                    if (phonesCursor != null && phonesCursor.moveToFirst()) {
-                        long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
-                        personUri = ContentUris.withAppendedId(
-                                Contacts.People.CONTENT_URI, personId);
-                        callText = getString(R.string.recentCalls_callNumber,
-                                phonesCursor.getString(COLUMN_INDEX_NAME));
-                        mNumber = phonesCursor.getString(COLUMN_INDEX_NUMBER);
-                        callLabel = Phones.getDisplayLabel(this,
-                                phonesCursor.getInt(COLUMN_INDEX_TYPE),
-                                phonesCursor.getString(COLUMN_INDEX_LABEL)).toString();
-                    } else {
-                        mNumber = PhoneNumberUtils.formatNumber(mNumber);
+                if (mNumber.equals(CallerInfo.UNKNOWN_NUMBER) ||
+                        mNumber.equals(CallerInfo.PRIVATE_NUMBER)) {
+                    // List is empty, let the empty view show instead.
+                    TextView emptyText = (TextView) findViewById(R.id.emptyText);
+                    if (emptyText != null) {
+                        emptyText.setText(mNumber.equals(CallerInfo.PRIVATE_NUMBER) 
+                                ? R.string.private_num : R.string.unknown);
                     }
-                } finally {
-                    if (phonesCursor != null) phonesCursor.close();
-                }
-
-                // Build list of various available actions
-                List<ViewEntry> actions = new ArrayList<ViewEntry>();
-                
-                Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                        Uri.fromParts("tel", mNumber, null));
-                ViewEntry entry = new ViewEntry(android.R.drawable.sym_action_call, callText,
-                        callIntent);
-                entry.number = mNumber;
-                entry.label = callLabel;
-                actions.add(entry);
-                
-                Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
-                        Uri.fromParts("sms", mNumber, null));
-                actions.add(new ViewEntry(R.drawable.sym_action_sms,
-                        getString(R.string.menu_sendTextMessage), smsIntent));
-                
-                // Let user view contact details if they exist, otherwise add option
-                // to create new contact from this number.
-                if (personUri != null) {
-                    Intent viewIntent = new Intent(Intent.ACTION_VIEW, personUri);
-                    actions.add(new ViewEntry(R.drawable.sym_action_view_contact,
-                            getString(R.string.menu_viewContact), viewIntent));
                 } else {
-                    Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                    createIntent.setType(People.CONTENT_ITEM_TYPE);
-                    createIntent.putExtra(Insert.PHONE, mNumber);
-                    actions.add(new ViewEntry(R.drawable.sym_action_add,
-                            getString(R.string.recentCalls_addToContact), createIntent));
+                    // Perform a reverse-phonebook lookup to find the PERSON_ID
+                    String callLabel = null;
+                    Uri personUri = null;
+                    Uri phoneUri = Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, Uri.encode(mNumber));
+                    Cursor phonesCursor = resolver.query(phoneUri, PHONES_PROJECTION, null, null, null);
+                    try {
+                        if (phonesCursor != null && phonesCursor.moveToFirst()) {
+                            long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
+                            personUri = ContentUris.withAppendedId(
+                                    Contacts.People.CONTENT_URI, personId);
+                            callText = getString(R.string.recentCalls_callNumber,
+                                    phonesCursor.getString(COLUMN_INDEX_NAME));
+                            mNumber = phonesCursor.getString(COLUMN_INDEX_NUMBER);
+                            callLabel = Phones.getDisplayLabel(this,
+                                    phonesCursor.getInt(COLUMN_INDEX_TYPE),
+                                    phonesCursor.getString(COLUMN_INDEX_LABEL)).toString();
+                        } else {
+                            mNumber = PhoneNumberUtils.formatNumber(mNumber);
+                        }
+                    } finally {
+                        if (phonesCursor != null) phonesCursor.close();
+                    }
+    
+                    // Build list of various available actions
+                    List<ViewEntry> actions = new ArrayList<ViewEntry>();
+                    
+                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                            Uri.fromParts("tel", mNumber, null));
+                    ViewEntry entry = new ViewEntry(android.R.drawable.sym_action_call, callText,
+                            callIntent);
+                    entry.number = mNumber;
+                    entry.label = callLabel;
+                    actions.add(entry);
+                    
+                    Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
+                            Uri.fromParts("sms", mNumber, null));
+                    actions.add(new ViewEntry(R.drawable.sym_action_sms,
+                            getString(R.string.menu_sendTextMessage), smsIntent));
+                    
+                    // Let user view contact details if they exist, otherwise add option
+                    // to create new contact from this number.
+                    if (personUri != null) {
+                        Intent viewIntent = new Intent(Intent.ACTION_VIEW, personUri);
+                        actions.add(new ViewEntry(R.drawable.sym_action_view_contact,
+                                getString(R.string.menu_viewContact), viewIntent));
+                    } else {
+                        Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                        createIntent.setType(People.CONTENT_ITEM_TYPE);
+                        createIntent.putExtra(Insert.PHONE, mNumber);
+                        actions.add(new ViewEntry(R.drawable.sym_action_add,
+                                getString(R.string.recentCalls_addToContact), createIntent));
+                    }
+                    
+                    ViewAdapter adapter = new ViewAdapter(this, actions);
+                    setListAdapter(adapter);
                 }
-                
-                ViewAdapter adapter = new ViewAdapter(this, actions);
-                setListAdapter(adapter);
             } else {
                 // Something went wrong reading in our primary data, so we're going to
                 // bail out and show error to users.

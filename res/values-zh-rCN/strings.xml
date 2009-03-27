@@ -16,8 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"联系人"</string>
-    <!-- no translation found for launcherDialer (140610573639849799) -->
-    <skip />
+    <string name="launcherDialer">"拨号"</string>
     <string name="shortcutContact">"联系人"</string>
     <string name="starredList">"已加星标"</string>
     <string name="frequentList">"经常"</string>
@@ -27,6 +26,7 @@
     <string name="editContactDescription">"编辑联系人"</string>
     <string name="insertContactDescription">"创建联系人"</string>
     <string name="searchHint">"搜索联系人"</string>
+    <string name="menu_search">"搜索"</string>
     <string name="menu_newContact">"添加联系人"</string>
     <string name="menu_viewContact">"查看联系人"</string>
     <string name="menu_callNumber">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
@@ -43,8 +43,7 @@
     <string name="deleteConfirmation_title">"删除"</string>
     <string name="deleteConfirmation">"会删除此联系人。"</string>
     <string name="menu_done">"完成"</string>
-    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
-    <skip />
+    <string name="menu_doNotSave">"还原"</string>
     <string name="editContact_title_edit">"编辑联系人"</string>
     <string name="editContact_title_insert">"添加联系人"</string>
     <string name="menu_addItem">"详细信息"</string>
@@ -126,15 +125,15 @@
     <string name="voicemail">"语音邮件"</string>
     <string name="unknown">"未知"</string>
     <string name="private_num">"私人号码"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"使用键盘拔号"</string>
     <string name="dialerDialpadHintText">"通过拨号添加通话"</string>
     <string name="simContacts_emptyLoading">"正在从 SIM 卡中载入..."</string>
     <string name="simContacts_title">"SIM 卡联系人"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"同步您的 Google 联系人！"</font>\n"将联系人同步到您的手机后，无论您走到哪里，都可以与他们联系。"</string>
-    <!-- no translation found for noContactsHelpText (2249195687463896364) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (4927701496550314555) -->
-    <skip />
+    <string name="noContactsHelpText">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后选择："\n\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>" - 从头开始创建新联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>" - 从 SIM 卡添加联系人"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后选择："\n\n<li><font fgcolor="#ffffffff"><b>"修改同步组"</b></font>" - 从现有的或新的 Google 帐户添加联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>" - 从头开始创建新联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>" - 从 SIM 卡添加联系人"\n</li></string>
     <string name="seclectSyncGroups_title">"选择要同步的组"</string>
     <string name="liveFolder_all_label">"所有联系人"</string>
     <string name="liveFolder_favorites_label">"已加星标"</string>
@@ -163,10 +162,10 @@
     <string name="detailIncomingCallsGoToVoicemail">"将直接发送至语音邮件"</string>
     <string name="detailsRingtone">"设置为“<xliff:g id="RINGTONE_NAME">%s</xliff:g>”"</string>
     <string name="callBack">"回拨"</string>
-    <!-- no translation found for callAgain (3197312117049874778) -->
-    <skip />
-    <!-- no translation found for returnCall (8171961914203617813) -->
-    <skip />
-    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
-    <skip />
+    <string name="callAgain">"再次呼叫"</string>
+    <string name="returnCall">"回电话"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> 分钟 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="favoritesFrquentSeparator">"经常呼叫的联系人"</string>
+    <string name="add_contact_dlg_title">"添加联系人"</string>
+    <string name="add_contact_dlg_message_fmt">"是否将“<xliff:g id="EMAIL">%s</xliff:g>”添加到通讯录中？"</string>
 </resources>

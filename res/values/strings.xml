@@ -256,6 +256,9 @@
     <!-- The group type that displays only contacts with phone numbers -->
     <string name="groupNameWithPhones">Contacts with phone numbers</string>
     
+    <!-- The group type that displays "Starred in Android" contacts -->
+    <string name="starredInAndroid">Starred in Android</string>
+    
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
     
@@ -348,6 +351,9 @@
 
     <!-- String used to display calls from private numbers in the call log -->
     <string name="private_num">Private number</string>
+    
+    <!-- String used to display calls from pay phone in the call log -->
+    <string name="payphone">Pay phone</string>
 
     <!-- Displayed in the text entry box in the dialer when in landscape mode to guide the user
          to dial using the physical keyboard -->

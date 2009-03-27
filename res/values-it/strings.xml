@@ -26,6 +26,7 @@
     <string name="editContactDescription">"Modifica contatto"</string>
     <string name="insertContactDescription">"Crea contatto"</string>
     <string name="searchHint">"Cerca contatti"</string>
+    <string name="menu_search">"Cerca"</string>
     <string name="menu_newContact">"Nuovo contatto"</string>
     <string name="menu_viewContact">"Visualizza contatto"</string>
     <string name="menu_callNumber">"Chiama <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -78,7 +79,7 @@
     <string name="syncGroupPreference">"Modifica sincr. gruppi"</string>
     <string name="importFromSim">"Importa contatti"</string>
     <string name="send_to_voicemail_checkbox">"Inoltra chiamate direttamente alla segreteria"</string>
-    <string name="send_to_voicemail_view">"Le chiamate vengono inoltrate direttamente alla segreteria."</string>
+    <string name="send_to_voicemail_view">"Chiamate inoltrate direttamente alla segreteria."</string>
     <string name="default_ringtone">"Predefinita"</string>
     <string name="addPicture">"Aggiungi icona"</string>
     <string name="removePicture">"Rimuovi icona"</string>
@@ -109,7 +110,7 @@
     <string name="contactsIconLabel">"Contatti"</string>
     <string name="contactsFavoritesLabel">"Preferiti"</string>
     <string name="dialerIconLabel">"Telefono"</string>
-    <string name="recentCallsIconLabel">"Reg. chiamate"</string>
+    <string name="recentCallsIconLabel">"Chiamate"</string>
     <string name="liveFolderAll">"Tutti i contatti"</string>
     <string name="liveFolderFavorites">"Contatti speciali"</string>
     <string name="liveFolderPhone">"Contatti con numeri di telefono"</string>
@@ -124,13 +125,15 @@
     <string name="voicemail">"Segreteria"</string>
     <string name="unknown">"Sconosciuto"</string>
     <string name="private_num">"Numero privato"</string>
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
     <string name="dialerKeyboardHintText">"Usa la tastiera"</string>
     <string name="dialerDialpadHintText">"Componi per aggiungere una chiamata"</string>
     <string name="simContacts_emptyLoading">"Caricamento da SIM..."</string>
     <string name="simContacts_title">"Contatti SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincronizza i tuoi contatti Google."</font>" "\n"Dopo la sincronizzazione con il telefono, i tuoi contatti saranno sempre a tua disposizione."</string>
-    <string name="noContactsHelpText">"Non hai nessun contatto."\n\n"Per aggiungere dei contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un nuovo contatto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere i contatti salvati sulla scheda SIM card"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"Non hai nessun contatto."\n\n"Per aggiungere i contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincr. gruppi"</b></font>" per aggiungere contatti da un account Google nuovo o già esistente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere i contatti salvati sulla scheda SIM"\n</li></string>
+    <string name="noContactsHelpText">"Non è presente alcun contatto."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere contatti dalla SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"Non è presente alcun contatto."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>" Menu"</b></font>" e seleziona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Modifica sincr. gruppi"</b></font>" per aggiungere contatti da un account Google nuovo o esistente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare un contatto nuovo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa contatti"</b></font>" per aggiungere contatti dalla SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Seleziona i gruppi da sincronizzare"</string>
     <string name="liveFolder_all_label">"Tutti i contatti"</string>
     <string name="liveFolder_favorites_label">"Speciali"</string>
@@ -161,5 +164,8 @@
     <string name="callBack">"Richiama"</string>
     <string name="callAgain">"Richiama"</string>
     <string name="returnCall">"Chiama numero"</string>
-    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sec."</string>
+    <string name="favoritesFrquentSeparator">"Numeri più chiamati"</string>
+    <string name="add_contact_dlg_title">"Aggiungi contatto"</string>
+    <string name="add_contact_dlg_message_fmt">"Aggiungere \"<xliff:g id="EMAIL">%s</xliff:g>\" ai contatti?"</string>
 </resources>
