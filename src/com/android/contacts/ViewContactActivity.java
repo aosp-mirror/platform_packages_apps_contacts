@@ -398,6 +398,11 @@ public class ViewContactActivity extends ListActivity
                 menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
                 break;
             }
+            
+            case ContactEntryAdapter.Entry.KIND_GROUP: {
+                menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
+                break;
+            }
         }
     }
 
@@ -886,6 +891,7 @@ public class ViewContactActivity extends ListActivity
                 entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
                 entry.label = getString(R.string.label_groups);
                 entry.data = sb.toString();
+                entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
                 
                 // TODO: Add an icon for the groups item.
                 

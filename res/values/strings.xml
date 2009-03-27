@@ -134,6 +134,9 @@
     <!-- Provides a delimeter in a list of groups. For example, "g1, g2" has ", g2" generated using this string -->
     <string name="group_list">, <xliff:g id="groupName">%s</xliff:g></string>
 
+    <!-- Menu item used to send user to the edit contact screen -->
+    <string name="menu_viewGroup">Edit groups</string>
+
     <!-- Hint text for the contact name when editing -->
     <string name="ghostData_name">First and Last</string>
 
