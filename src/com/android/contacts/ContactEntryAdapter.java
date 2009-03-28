@@ -108,9 +108,6 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
     public static final int ORGANIZATIONS_TITLE_COLUMN = 4;
     public static final int ORGANIZATIONS_ISPRIMARY_COLUMN = 5;
     
-    /** Directory for group memberships. */
-    public static final String GROUP_CONTENT_DIRECTORY = "groupmembership";
-    
     protected ArrayList<ArrayList<E>> mSections;
     protected LayoutInflater mInflater;
     protected Context mContext;

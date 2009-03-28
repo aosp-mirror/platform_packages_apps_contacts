@@ -44,6 +44,8 @@ import static com.android.contacts.ContactEntryAdapter.PHONES_NUMBER_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.PHONES_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.PHONES_TYPE_COLUMN;
 
+import com.android.contacts.ViewContactActivity.ViewEntry;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -69,6 +71,7 @@ import android.preference.PreferenceManager;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.Intents.Insert;
+import android.provider.Contacts.GroupMembership;
 import android.provider.Contacts.Groups;
 import android.provider.Contacts.Organizations;
 import android.provider.Contacts.People;
@@ -171,6 +174,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** Flag marking this contact as changed, meaning we should write changes back. */
     private boolean mContactChanged = false;
+    
+    /** List of all the group names */
+    private CharSequence[] mGroups;
+    
+    /** Is this contact part of the group */
+    private boolean[] mInTheGroup;
+
+    private static final String[] GROUP_ID_PROJECTION = new String[] {
+        Groups._ID,
+    };
+
+    private static final String[] GROUPMEMBERSHIP_ID_PROJECTION = new String[] {
+        GroupMembership._ID,
+    };
 
     // These are accessed by inner classes. They're package scoped to make access more efficient.
     /* package */ ContentResolver mResolver;
@@ -188,7 +205,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /* package */ static final int MSG_ADD_PHONE = 3;
     /* package */ static final int MSG_ADD_EMAIL = 4;
     /* package */ static final int MSG_ADD_POSTAL = 5;
-
+    
     private static final int[] TYPE_PRECEDENCE_PHONES = new int[] {
             Phones.TYPE_MOBILE, Phones.TYPE_HOME, Phones.TYPE_WORK, Phones.TYPE_OTHER
     };
@@ -219,6 +236,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 entry.data = checkBox.isChecked() ? "1" : "0";
                 
                 mContactChanged = true;
+                break;
+            }
+            
+            case R.id.entry_group: {
+                EditEntry entry = findEntryForView(v);
+                doPickGroup(entry);
                 break;
             }
             
@@ -716,6 +739,121 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         setPhotoPresent(false);
     }
     
+    private void populateGroups() {
+        // Create a list of all the groups
+        Cursor cursor = mResolver.query(Groups.CONTENT_URI, ContactsListActivity.GROUPS_PROJECTION,
+                null, null, Groups.DEFAULT_SORT_ORDER);
+        try {
+            ArrayList<Long> ids = new ArrayList<Long>();
+            ArrayList<String> items = new ArrayList<String>();
+
+            while (cursor.moveToNext()) {
+                String systemId = cursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+                String name = cursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+                
+                if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                    continue;
+                }
+
+                if (!TextUtils.isEmpty(name)) {
+                    ids.add(new Long(cursor.getLong(ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID)));
+                    items.add(name);
+                }
+            }
+
+            mGroups = items.toArray(new CharSequence[items.size()]);
+            mInTheGroup = new boolean[items.size()];
+        } finally {
+            cursor.close();
+        }
+        
+        if (mGroups != null) {
+            
+            // Go through the mGroups for this member and update the list
+            final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
+            Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+                    null, null, Groups.DEFAULT_SORT_ORDER);
+            if (groupCursor != null) {
+                try {
+                    while (groupCursor.moveToNext()) {
+                        String systemId = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+                        String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+                        
+                        if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                            continue;
+                        }
+                        
+                        if (!TextUtils.isEmpty(name)) {
+                            for (int i = 0; i < mGroups.length; i++) {
+                                if (name.equals(mGroups[i])) {
+                                    mInTheGroup[i] = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } finally {
+                    groupCursor.close();
+                }
+            }
+        }
+    }
+    
+    private String generateGroupList() {
+        StringBuilder groupList = new StringBuilder();
+        for (int i = 0; mGroups != null && i < mGroups.length; i++) {
+            if (mInTheGroup[i]) {
+                if (groupList.length() == 0) {
+                    groupList.append(mGroups[i]);
+                } else {
+                    groupList.append(getString(R.string.group_list, mGroups[i]));
+                }
+            }
+        }
+        return groupList.length() > 0 ? groupList.toString() : null;
+    }
+    
+    private void doPickGroup(EditEntry entry) {
+        if (mGroups != null) {
+            GroupDialogListener listener = new GroupDialogListener(this, entry);
+            
+            new AlertDialog.Builder(EditContactActivity.this)
+                .setTitle(R.string.label_groups)
+                .setMultiChoiceItems(mGroups, mInTheGroup, listener)
+                .setPositiveButton(android.R.string.ok, listener)
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+        }
+    }
+
+    /** Handles the clicks in the groups dialog */
+    private static final class GroupDialogListener implements DialogInterface.OnClickListener,
+            DialogInterface.OnMultiChoiceClickListener {
+        
+        private EditContactActivity mEditContactActivity;
+        private EditEntry mEntry;
+        private boolean[] mInTheGroup;
+        
+        public GroupDialogListener(EditContactActivity editContactActivity, EditEntry entry) {
+            mEditContactActivity = editContactActivity;
+            mEntry = entry;
+            mInTheGroup = editContactActivity.mInTheGroup.clone();
+        }
+
+        /** Called when the dialog's ok button is clicked */
+        public void onClick(DialogInterface dialog, int which) {
+            mEditContactActivity.mInTheGroup = mInTheGroup;
+            mEntry.data = mEditContactActivity.generateGroupList();
+            mEditContactActivity.updateDataView(mEntry, mEntry.data);
+        }
+
+        /** Called when each group is clicked */
+        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+            mInTheGroup[which] = isChecked;
+        }
+    }
+    
+    
     private void doPickRingtone(EditEntry entry) {
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
         // Allow user to pick 'Default'
@@ -881,6 +1019,64 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         }
         finish();
     }
+
+    /**
+     * Gets the group id based on group name.
+     * 
+     * @param resolver the resolver to use
+     * @param groupName the name of the group to add the contact to
+     * @return the id of the group
+     * @throws IllegalStateException if the group can't be found
+     */
+    private long getGroupId(ContentResolver resolver, String groupName) {
+        long groupId = 0;
+        Cursor groupsCursor = resolver.query(Groups.CONTENT_URI, GROUP_ID_PROJECTION,
+                Groups.NAME + "=?", new String[] { groupName }, null);
+        if (groupsCursor != null) {
+            try {
+                if (groupsCursor.moveToFirst()) {
+                    groupId = groupsCursor.getLong(0);
+                }
+            } finally {
+                groupsCursor.close();
+            }
+        }
+    
+        if (groupId == 0) {
+            throw new IllegalStateException("Failed to find the " + groupName + "group");
+        }
+        
+        return groupId;
+    }
+
+    /**
+     * Deletes group membership based on person and group ids.
+     * 
+     * @param personId the person id
+     * @param groupId the group id
+     * @return the id of the group membership
+     */
+    private void deleteGroupMembership(long personId, long groupId) {
+        long groupMembershipId = 0;
+        Cursor groupsCursor = mResolver.query(GroupMembership.CONTENT_URI, GROUPMEMBERSHIP_ID_PROJECTION,
+                GroupMembership.PERSON_ID + "=? AND " + GroupMembership.GROUP_ID + "=?",
+                new String[] {String.valueOf(personId), String.valueOf(groupId)}, null);
+        if (groupsCursor != null) {
+            try {
+                if (groupsCursor.moveToFirst()) {
+                    groupMembershipId = groupsCursor.getLong(0);
+                }
+            } finally {
+                groupsCursor.close();
+            }
+        }
+        
+        if (groupMembershipId != 0) {
+            final Uri groupsUri = ContentUris.withAppendedId(
+                    GroupMembership.CONTENT_URI,groupMembershipId);
+            mResolver.delete(groupsUri, null, null);
+        }
+    }
     
     /**
      * Save the various fields to the existing contact.
@@ -928,6 +1124,18 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 } else {
                     values.put(entry.column, (String) null);
                     mResolver.update(entry.uri, values, null, null);
+                }
+            } else if (kind == EditEntry.KIND_GROUP) {
+                if (entry.id != 0) {
+                    for (int g = 0; g < mGroups.length; g++) {
+                        long groupId = getGroupId(mResolver, mGroups[g].toString());
+                        if (mInTheGroup[g]) {
+                            Contacts.People.addToGroup(mResolver, entry.id, groupId);
+                            numValues++;
+                        } else {
+                            deleteGroupMembership(entry.id, groupId);
+                        }
+                    }
                 }
             } else {
                 if (!empty) {
@@ -1152,7 +1360,15 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     mUri);
             mNoteEntries.add(entry);
         }
-
+        
+        // Groups
+        populateGroups();
+        if (mGroups != null) {
+            entry = EditEntry.newGroupEntry(this, generateGroupList(), mUri,
+                    personCursor.getLong(0));
+            mOtherEntries.add(entry);
+        }
+        
         // Ringtone
         entry = EditEntry.newRingtoneEntry(this,
                 personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN), mUri);
@@ -1316,6 +1532,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             mEmailEntries.add(entry);
         }
 
+        // Group
+        populateGroups();
+        if (mGroups != null) {
+            entry = EditEntry.newGroupEntry(this, null, mUri, 0);
+            mOtherEntries.add(entry);
+        }
+        
         // Ringtone
         entry = EditEntry.newRingtoneEntry(this, null, mUri);
         mOtherEntries.add(entry);
@@ -1577,6 +1800,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // with some additional logic.
         if (entry.kind == Contacts.KIND_ORGANIZATION) {
             view = mInflater.inflate(R.layout.edit_contact_entry_org, parent, false);
+        } else if (isOtherEntry(entry, GroupMembership.GROUP_ID)) {
+            view = mInflater.inflate(R.layout.edit_contact_entry_group, parent, false);
+            view.setOnFocusChangeListener(this);
         } else if (isOtherEntry(entry, People.CUSTOM_RINGTONE)) {
             view = mInflater.inflate(R.layout.edit_contact_entry_ringtone, parent, false);
             view.setOnFocusChangeListener(this);
@@ -1671,6 +1897,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private void fillViewData(final EditEntry entry) {
         if (isOtherEntry(entry, People.CUSTOM_RINGTONE)) {
             updateRingtoneView(entry);
+        } else if (isOtherEntry(entry, GroupMembership.GROUP_ID)) {
+            if (entry.data != null) {
+                updateDataView(entry, entry.data);
+            }
         } else if (isOtherEntry(entry, People.SEND_TO_VOICEMAIL)) {
             CheckBox checkBox = (CheckBox) entry.view.findViewById(R.id.checkbox);
             boolean sendToVoicemail = false;
@@ -1846,7 +2076,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 }
 
                 case Contacts.KIND_IM: {
-                    v.setText(getLabelsForKind(activity, kind)[type]);
+                    if (type >= 0) {
+                        v.setText(getLabelsForKind(activity, kind)[type]);
+                    }
                     break;
                 }
                 
@@ -2032,6 +2264,24 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES
                     | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
             entry.isStaticLabel = true;
+            return entry;
+        }
+
+        /**
+         * Create a new group entry with the given data.
+         */
+        public static final EditEntry newGroupEntry(EditContactActivity activity,
+                String data, Uri uri, long personId) {
+            EditEntry entry = new EditEntry(activity);
+            entry.label = activity.getString(R.string.label_groups);
+            entry.data = data;
+            entry.uri = uri;
+            entry.id = personId;
+            entry.column = GroupMembership.GROUP_ID;
+            entry.kind = KIND_GROUP;
+            entry.isStaticLabel = true;
+            entry.syncDataWithView = false;
+            entry.lines = -1;
             return entry;
         }
 

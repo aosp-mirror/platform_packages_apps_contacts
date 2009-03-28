@@ -164,6 +164,9 @@
     <!-- Hint text for the postal address field when editing -->
     <string name="ghostData_postal">Postal address</string>
 
+    <!-- Hint text for the group field when editing -->
+    <string name="ghostData_group">Display group</string>
+
     <!-- Message displayed in a toast when you try to view the details of a contact that
          for some reason doesn't exist anymore. -->
     <string name="invalidContactMessage">The contact does not exist.</string>

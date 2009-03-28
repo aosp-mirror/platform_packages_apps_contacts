@@ -74,6 +74,7 @@ import android.provider.Contacts;
 import android.provider.Im;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.Groups;
+import android.provider.Contacts.GroupMembership;
 import android.provider.Contacts.Organizations;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -729,7 +730,7 @@ public class ViewContactActivity extends ListActivity
                     case Contacts.KIND_IM: {
                         Object protocolObj = ContactMethods.decodeImProtocol(
                                 methodsCursor.getString(METHODS_AUX_DATA_COLUMN));
-                        String host;
+                        String host = null;
                         if (protocolObj instanceof Number) {
                             int protocol = ((Number) protocolObj).intValue();
                             entry.label = buildActionString(R.string.actionChat,
@@ -739,7 +740,7 @@ public class ViewContactActivity extends ListActivity
                                     || protocol == ContactMethods.PROTOCOL_MSN) {
                                 entry.maxLabelLines = 2;
                             }
-                        } else {
+                        } else if (protocolObj != null) {
                             String providerName = (String) protocolObj;
                             entry.label = buildActionString(R.string.actionChat,
                                     providerName, false);
@@ -861,49 +862,6 @@ public class ViewContactActivity extends ListActivity
             organizationsCursor.close();
         }
 
-        // Build the group entries
-        final Uri groupsUri = Uri.withAppendedPath(mUri,
-                ContactEntryAdapter.GROUP_CONTENT_DIRECTORY);
-        Cursor cursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
-                null, null, Groups.DEFAULT_SORT_ORDER);
-        try {
-            ArrayList<CharSequence> groups = new ArrayList<CharSequence>();
-            ArrayList<CharSequence> prefStrings = new ArrayList<CharSequence>();
-            StringBuilder sb = new StringBuilder();
-            
-            while (cursor.moveToNext()) {
-                String systemId = cursor.getString(
-                        ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
-                
-                if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
-                    continue;
-                }
-                
-                String name = cursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
-                if (!TextUtils.isEmpty(name)) {
-                    if (sb.length() == 0) {
-                        sb.append(name);
-                    } else {
-                        sb.append(getString(R.string.group_list, name));
-                    }
-                }
-            }
-            
-            if (sb.length() > 0) {               
-                ViewEntry entry = new ViewEntry();
-                entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
-                entry.label = getString(R.string.label_groups);
-                entry.data = sb.toString();
-                entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
-                
-                // TODO: Add an icon for the groups item.
-                
-                mGroupEntries.add(entry);
-            }
-        } finally {
-            cursor.close();
-        }
-
         // Build the other entries
         String note = personCursor.getString(CONTACT_NOTES_COLUMN);
         if (!TextUtils.isEmpty(note)) {
@@ -918,7 +876,49 @@ public class ViewContactActivity extends ListActivity
             entry.actionIcon = R.drawable.sym_note;
             mOtherEntries.add(entry);
         }
-        
+
+        // Build the group entries
+        final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
+        Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+                null, null, Groups.DEFAULT_SORT_ORDER);
+        if (groupCursor != null) {
+            try {
+                StringBuilder sb = new StringBuilder();
+
+                while (groupCursor.moveToNext()) {
+                    String systemId = groupCursor.getString(
+                            ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+
+                    if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                        continue;
+                    }
+
+                    String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+                    if (!TextUtils.isEmpty(name)) {
+                        if (sb.length() == 0) {
+                            sb.append(name);
+                        } else {
+                            sb.append(getString(R.string.group_list, name));
+                        }
+                    }
+                }
+
+                if (sb.length() > 0) {
+                    ViewEntry entry = new ViewEntry();
+                    entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
+                    entry.label = getString(R.string.label_groups);
+                    entry.data = sb.toString();
+                    entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
+
+                    // TODO: Add an icon for the groups item.
+
+                    mGroupEntries.add(entry);
+                }
+            } finally {
+                groupCursor.close();
+            }
+        }
+
         // Build the ringtone entry
         String ringtoneStr = personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN);
         if (!TextUtils.isEmpty(ringtoneStr)) {
