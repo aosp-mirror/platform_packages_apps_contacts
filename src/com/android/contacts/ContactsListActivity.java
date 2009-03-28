@@ -187,6 +187,11 @@ public final class ContactsListActivity extends ListActivity
         People.PRESENCE_STATUS, // 8
         SORT_STRING, // 9
     };
+    
+    static final String[] SIMPLE_CONTACTS_PROJECTION = new String[] {
+        People._ID, // 0
+        NAME_COLUMN, // 1
+    };
 
     static final String[] STREQUENT_PROJECTION = new String[] {
         People._ID, // 0
@@ -236,7 +241,7 @@ public final class ContactsListActivity extends ListActivity
     static final int SORT_STRING_INDEX = 9;
 
     static final int PHONES_PERSON_ID_INDEX = 6;
-    static final int CONTACT_METHODS_PERSON_ID_INDEX = 6;
+    static final int SIMPLE_CONTACTS_PERSON_ID_INDEX = 0;
     
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES = 1;
@@ -1136,12 +1141,14 @@ public final class ContactsListActivity extends ListActivity
             
             case MODE_QUERY_PICK_TO_VIEW: {
                 if (mQueryMode == QUERY_MODE_MAILTO) {
-                    mQueryPersonIdIndex = CONTACT_METHODS_PERSON_ID_INDEX;
+                    // Find all contacts with the given search string as either
+                    // an E-mail or IM address.
+                    mQueryPersonIdIndex = SIMPLE_CONTACTS_PERSON_ID_INDEX;
+                    Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI,
+                            Uri.encode(mQueryData));
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
-                            ContactMethods.CONTENT_URI, CONTACT_METHODS_PROJECTION,
-                            QUERY_KIND_EMAIL_OR_IM + " AND " + ContactMethods.DATA + "=?",
-                            new String[] { mQueryData },
-                            getSortOrder(CONTACT_METHODS_PROJECTION));
+                            uri, SIMPLE_CONTACTS_PROJECTION, null, null,
+                            getSortOrder(CONTACTS_PROJECTION));
                     
                 } else if (mQueryMode == QUERY_MODE_TEL) {
                     mQueryPersonIdIndex = PHONES_PERSON_ID_INDEX;
@@ -1564,6 +1571,17 @@ public final class ContactsListActivity extends ListActivity
                 cache.nameView.setText(cache.nameBuffer.data, 0, size);
             } else {
                 cache.nameView.setText(mUnknownNameText);
+            }
+            
+            // Bail out early if using a specific SEARCH query mode, usually for
+            // matching a specific E-mail or phone number. Any contact details
+            // shown would be identical, and columns might not even be present
+            // in the returned cursor.
+            if (mQueryMode != QUERY_MODE_NONE) {
+                cache.numberView.setVisibility(View.GONE);
+                cache.labelView.setVisibility(View.GONE);
+                cache.presenceView.setVisibility(View.GONE);
+                return;
             }
             
             // Set the phone number
