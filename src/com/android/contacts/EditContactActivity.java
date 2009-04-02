@@ -769,10 +769,16 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         
         if (mGroups != null) {
             
-            // Go through the mGroups for this member and update the list
+            // Go through the groups for this member and update the list
             final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
-            Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
-                    null, null, Groups.DEFAULT_SORT_ORDER);
+            Cursor groupCursor = null;
+            try {
+                groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+                        null, null, Groups.DEFAULT_SORT_ORDER);
+            } catch (IllegalArgumentException e) {
+                // Contact is new, so we don't need to do any work.
+            }
+            
             if (groupCursor != null) {
                 try {
                     while (groupCursor.moveToNext()) {
@@ -1253,7 +1259,16 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         int entryCount = ContactEntryAdapter.countEntries(mSections, false);
         for (int i = 0; i < entryCount; i++) {
             EditEntry entry = ContactEntryAdapter.getEntry(mSections, i, false);
-            if (entry.kind != EditEntry.KIND_CONTACT) {
+            if (entry.kind == EditEntry.KIND_GROUP) {
+                long contactId = ContentUris.parseId(contactUri);
+                for (int g = 0; g < mGroups.length; g++) {
+                    if (mInTheGroup[g]) {
+                        long groupId = getGroupId(mResolver, mGroups[g].toString());
+                        People.addToGroup(mResolver, contactId, groupId);
+                        numValues++;
+                    }
+                }
+            } else if (entry.kind != EditEntry.KIND_CONTACT) {
                 values.clear();
                 if (entry.toValues(values)) {
                     // Only create the entry if there is data
