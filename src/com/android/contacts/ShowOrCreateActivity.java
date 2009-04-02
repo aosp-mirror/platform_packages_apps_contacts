@@ -41,6 +41,7 @@ import java.lang.ref.WeakReference;
  * connected with a specific E-mail address or phone number. Will search based
  * on incoming {@link Intent#getData()} as described by
  * {@link Intents#SHOW_OR_CREATE_CONTACT}.
+ *
  * <ul>
  * <li>If no matching contacts found, will prompt user with dialog to add to a
  * contact, then will use {@link Intent#ACTION_INSERT_OR_EDIT} to let create new
