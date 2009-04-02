@@ -154,7 +154,7 @@ public class SpecialCharSequenceMgr {
                 sc.progressDialog.show();
 
                 // run the query.
-                handler.startQuery(ADN_QUERY_TOKEN, sc, Uri.parse("content://sim/adn"),
+                handler.startQuery(ADN_QUERY_TOKEN, sc, Uri.parse("content://icc/adn"),
                         new String[]{ADN_PHONE_NUMBER_COLUMN_NAME}, null, null, null);
                 return true;
             } catch (NumberFormatException ex) {
@@ -179,8 +179,16 @@ public class SpecialCharSequenceMgr {
 
     static boolean handleIMEIDisplay(Context context, String input, boolean useSystemWindow) {
         if (input.equals(MMI_IMEI_DISPLAY)) {
-            showIMEIPanel(context, useSystemWindow);
-            return true;
+            int networkType = ((TelephonyManager)context.getSystemService(
+                    Context.TELEPHONY_SERVICE)).getNetworkType();
+            // check for GSM
+            if(networkType == TelephonyManager.NETWORK_TYPE_GPRS || 
+                    networkType == TelephonyManager.NETWORK_TYPE_EDGE || 
+                    networkType == TelephonyManager.NETWORK_TYPE_UMTS ) { 
+
+                showIMEIPanel(context, useSystemWindow); 
+                return true;
+            }
         }
 
         return false;
