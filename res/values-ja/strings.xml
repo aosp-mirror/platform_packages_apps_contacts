@@ -51,7 +51,7 @@
     <string name="label_notes">"メモ"</string>
     <string name="label_ringtone">"着信音"</string>
     <string name="ghostData_name">"名前"</string>
-    <string name="ghostData_phonetic_name">"読み仮名"</string>
+    <string name="ghostData_phonetic_name">"よみがな"</string>
     <string name="ghostData_company">"会社"</string>
     <string name="ghostData_title">"役職"</string>
     <string name="ghostData_im">"IM名"</string>
@@ -92,8 +92,7 @@
     <string name="syncAllGroups">"全連絡先を同期"</string>
     <string name="groupNameMyContacts">"Myコンタクト"</string>
     <string name="groupNameWithPhones">"電話番号のある連絡先"</string>
-    <!-- no translation found for starredInAndroid (6495527538140213440) -->
-    <skip />
+    <string name="starredInAndroid">"Androidでスター付きの連絡先"</string>
     <string name="contactCreatedToast">"連絡先を作成しました。"</string>
     <string name="contactSavedToast">"連絡先を保存しました。"</string>
     <string name="listSeparatorCallNumber">"発信"</string>
@@ -127,8 +126,7 @@
     <string name="voicemail">"ボイスメール"</string>
     <string name="unknown">"通知不可能"</string>
     <string name="private_num">"非通知"</string>
-    <!-- no translation found for payphone (4864313342828942922) -->
-    <skip />
+    <string name="payphone">"公衆電話発信"</string>
     <string name="dialerKeyboardHintText">"キーボードで番号を入力してください"</string>
     <string name="dialerDialpadHintText">"ダイヤルして通話追加"</string>
     <string name="simContacts_emptyLoading">"SIMカードから読み取り中..."</string>
@@ -147,7 +145,7 @@
     <string name="toast_call_detail_error">"通話要求の詳細が読み込めませんでした。"</string>
     <string name="call_type">"入力"</string>
     <string name="type_incoming">"通話着信"</string>
-    <string name="type_outgoing">"通話送信"</string>
+    <string name="type_outgoing">"発信履歴"</string>
     <string name="type_missed">"不在着信"</string>
     <string name="call_time">"時間"</string>
     <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>

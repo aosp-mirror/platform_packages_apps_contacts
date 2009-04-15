@@ -16,7 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList">"Kontakty"</string>
-    <string name="launcherDialer">"Wybieranie numeru"</string>
+    <string name="launcherDialer">"Telefon"</string>
     <string name="shortcutContact">"Kontakt"</string>
     <string name="starredList">"Oznaczony gwiazdką"</string>
     <string name="frequentList">"Częste"</string>
@@ -83,8 +83,8 @@
     <string name="default_ringtone">"Domyślny"</string>
     <string name="addPicture">"Dodaj ikonę"</string>
     <string name="removePicture">"Usuń ikonę"</string>
-    <string name="noContacts">"Brak kontaktów."</string>
-    <string name="noContactsWithPhoneNumbers">"Brak kontaktów z numerami telefonów."</string>
+    <string name="noContacts">"Brak kontaktów"</string>
+    <string name="noContactsWithPhoneNumbers">"Brak kontaktów z numerami telefonów"</string>
     <string name="noFavorites">"Brak ulubionych"</string>
     <string name="select_group_title">"Grupy"</string>
     <string name="groupEmpty">"Grupa „<xliff:g id="GROUPNAME">%s</xliff:g>” jest pusta."</string>
@@ -92,6 +92,7 @@
     <string name="syncAllGroups">"Synchronizuj wszystkie kontakty"</string>
     <string name="groupNameMyContacts">"Moje kontakty"</string>
     <string name="groupNameWithPhones">"Kontakty z numerami telefonu"</string>
+    <string name="starredInAndroid">"Oznaczone gwiazdką w systemie Android"</string>
     <string name="contactCreatedToast">"Utworzono kontakt."</string>
     <string name="contactSavedToast">"Kontakt został zapisany."</string>
     <string name="listSeparatorCallNumber">"Wybierz numer"</string>
@@ -125,15 +126,14 @@
     <string name="voicemail">"Poczta głosowa"</string>
     <string name="unknown">"Nieznane"</string>
     <string name="private_num">"Numer prywatny"</string>
-    <!-- no translation found for payphone (4864313342828942922) -->
-    <skip />
+    <string name="payphone">"Telefon płatny"</string>
     <string name="dialerKeyboardHintText">"Wybierz numer za pomocą klawiatury"</string>
     <string name="dialerDialpadHintText">"Wybierz numer, aby dodać połączenie"</string>
     <string name="simContacts_emptyLoading">"Wczytywanie z karty SIM…"</string>
     <string name="simContacts_title">"Kontakty z karty SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
     <string name="noContactsHelpText">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, wybierz "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, naciśnij "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n\n"        "<li><font fgcolor="#ffffffff"><b>"Synchronizacja grup￼"</b></font>" w celu dodania kontaktów z nowego lub istniejącego konta Google"\n</li>\n"        "<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>\n"        "<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, naciśnij "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n\n" "<li><font fgcolor="#ffffffff"><b>"Synchronizacja grup"</b></font>" w celu dodania kontaktów z nowego lub istniejącego konta Google"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Wybierz grupy do zsynchronizowania"</string>
     <string name="liveFolder_all_label">"Wszystkie kontakty"</string>
     <string name="liveFolder_favorites_label">"Oznaczone gwiazdką"</string>
