@@ -16,14 +16,15 @@
 
 package com.android.contacts;
 
-import com.google.android.googlelogin.GoogleLoginServiceConstants;
-import com.google.android.googlelogin.GoogleLoginServiceHelper;
-
+import android.accounts.AccountManager;
+import android.accounts.AuthenticatorException;
+import android.accounts.Future2;
+import android.accounts.Future2Callback;
+import android.accounts.OperationCanceledException;
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.Contacts;
@@ -37,6 +38,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.io.IOException;
+
+import com.google.android.googlelogin.GoogleLoginServiceConstants;
 
 public final class ContactsGroupSyncSelector extends ListActivity implements View.OnClickListener {
 
@@ -50,8 +54,6 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
     private static final int COLUMN_INDEX_NAME = 1;
     private static final int COLUMN_INDEX_SHOULD_SYNC = 2;
     private static final int COLUMN_INDEX_SYSTEM_ID = 3;
-
-    private static final int SUBACTIVITY_GET_ACCOUNT = 1;
 
     ArrayList<Boolean> mChecked;
     ArrayList<Long> mGroupIds;
@@ -160,9 +162,26 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
             // through onActivityResult().
             Bundle bundle = new Bundle();
             bundle.putCharSequence("optional_message", getText(R.string.contactsSyncPlug));
-            GoogleLoginServiceHelper.getCredentials(this, SUBACTIVITY_GET_ACCOUNT,
-                    bundle, GoogleLoginServiceConstants.PREFER_HOSTED, Gmail.GMAIL_AUTH_SERVICE,
-                    true);
+            AccountManager.get(this).getAuthTokenByFeatures(
+                    GoogleLoginServiceConstants.ACCOUNT_TYPE, Gmail.GMAIL_AUTH_SERVICE,
+                    new String[]{GoogleLoginServiceConstants.FEATURE_GOOGLE_OR_DASHER}, this,
+                    bundle, null /* loginOptions */, new Future2Callback() {
+                public void run(Future2 future) {
+                    try {
+                        // do this to check if this request succeeded or not
+                        future.getResult();
+                        // There is an account setup, build the group list
+                        buildItems();
+                        adjustChecks();
+                    } catch (OperationCanceledException e) {
+                        finish();
+                    } catch (IOException e) {
+                        finish();
+                    } catch (AuthenticatorException e) {
+                        finish();
+                    }
+                }
+            }, null /* handler */);
         }
 
         setContentView(R.layout.sync_settings);
@@ -171,20 +190,6 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
         findViewById(R.id.cancel).setOnClickListener(this);
         
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == SUBACTIVITY_GET_ACCOUNT) {
-            if (resultCode == RESULT_OK) {
-                // There is an account setup, build the group list
-                buildItems();
-                adjustChecks();
-            } else {
-                finish();
-            }
-        }
     }
 
     private void buildItems() {
