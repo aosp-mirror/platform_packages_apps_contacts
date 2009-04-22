@@ -128,7 +128,7 @@
     <string name="private_num">"非通知"</string>
     <string name="payphone">"公衆電話発信"</string>
     <string name="dialerKeyboardHintText">"キーボードで番号を入力してください"</string>
-    <string name="dialerDialpadHintText">"ダイヤルして通話追加"</string>
+    <string name="dialerDialpadHintText">"ダイヤルして追加"</string>
     <string name="simContacts_emptyLoading">"SIMカードから読み取り中..."</string>
     <string name="simContacts_title">"SIMカードの連絡先"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Googleアカウントの連絡先同期"</font>" "\n"Googleサービスで使っている連絡先をこの携帯電話でも使えるようになります。"</string>

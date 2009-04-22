@@ -53,7 +53,7 @@
     <string name="ghostData_name">"Imię i nazwisko"</string>
     <string name="ghostData_phonetic_name">"Nazwisko (fonetycznie)"</string>
     <string name="ghostData_company">"Firma"</string>
-    <string name="ghostData_title">"Pozycja"</string>
+    <string name="ghostData_title">"Stanowisko"</string>
     <string name="ghostData_im">"Nazwa na czacie"</string>
     <string name="ghostData_notes">"Moja notatka"</string>
     <string name="ghostData_phone">"Numer telefonu"</string>
@@ -113,7 +113,7 @@
     <string name="dialerIconLabel">"Telefon"</string>
     <string name="recentCallsIconLabel">"Rejestr"</string>
     <string name="liveFolderAll">"Wszystkie kontakty"</string>
-    <string name="liveFolderFavorites">"Kontakty oznaczone gwiazdką"</string>
+    <string name="liveFolderFavorites">"Kontakty z gwiazdką"</string>
     <string name="liveFolderPhone">"Kontakty z numerami telefonów"</string>
     <string name="menu_sendTextMessage">"Wyślij SMS"</string>
     <string name="recentCalls_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -128,7 +128,7 @@
     <string name="private_num">"Numer prywatny"</string>
     <string name="payphone">"Telefon płatny"</string>
     <string name="dialerKeyboardHintText">"Wybierz numer za pomocą klawiatury"</string>
-    <string name="dialerDialpadHintText">"Wybierz, aby dodać połączenie"</string>
+    <string name="dialerDialpadHintText">"Dodaj nowe poł."</string>
     <string name="simContacts_emptyLoading">"Wczytywanie z karty SIM…"</string>
     <string name="simContacts_title">"Kontakty z karty SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
@@ -153,10 +153,10 @@
     <string name="header_actions">"Czynności"</string>
     <string name="ringtone_spinner">"Dźwięk dzwonka: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Dodaj więcej elementów"</string>
-    <string name="actionCall">"Zadzwoń na numer: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionCall">"Połącz: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionEmail">"Wyślij e-mail: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionText">"Wyślij SMS: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionChat">"Porozmawiaj na czacie <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Czatuj przez <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap">"Wyświetl adres: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionIncomingCall">"Połączenia przychodzące"</string>
     <string name="detailIncomingCallsGoToVoicemail">"Zostaną wysłane bezpośrednio na pocztę głosową"</string>
