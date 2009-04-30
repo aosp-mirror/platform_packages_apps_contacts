@@ -475,23 +475,25 @@ public final class ContactsListActivity extends ListActivity
         mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
 
-        // Check to see if sync is enabled
-        final ContentResolver resolver = getContentResolver();
-        IContentProvider provider = resolver.acquireProvider(Contacts.CONTENT_URI);
-        if (provider == null) {
-            // No contacts provider, bail.
-            finish();
-            return;
-        }
-
-        try {
-            ISyncAdapter sa = provider.getSyncAdapter();
-            mSyncEnabled = sa != null;
-        } catch (RemoteException e) {
-            mSyncEnabled = false;
-        } finally {
-            resolver.releaseProvider(provider);
-        }
+        // TODO(jham) redesign this
+        mSyncEnabled = true;
+//        // Check to see if sync is enabled
+//        final ContentResolver resolver = getContentResolver();
+//        IContentProvider provider = resolver.acquireProvider(Contacts.CONTENT_URI);
+//        if (provider == null) {
+//            // No contacts provider, bail.
+//            finish();
+//            return;
+//        }
+//
+//        try {
+//            ISyncAdapter sa = provider.getSyncAdapter();
+//            mSyncEnabled = sa != null;
+//        } catch (RemoteException e) {
+//            mSyncEnabled = false;
+//        } finally {
+//            resolver.releaseProvider(provider);
+//        }
     }
 
     private void setEmptyText() {
