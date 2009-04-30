@@ -84,7 +84,7 @@
     <string name="addPicture">"新增圖示"</string>
     <string name="removePicture">"移除圖示"</string>
     <string name="noContacts">"沒有聯絡人"</string>
-    <string name="noContactsWithPhoneNumbers">"沒有聯絡人有電話號碼。"</string>
+    <string name="noContactsWithPhoneNumbers">"沒有帶電話號碼的聯絡人。"</string>
     <string name="noFavorites">"沒有我的最愛。"</string>
     <string name="select_group_title">"群組"</string>
     <string name="groupEmpty">"您的「<xliff:g id="GROUPNAME">%s</xliff:g>」群組是空的。"</string>
@@ -132,8 +132,8 @@
     <string name="simContacts_emptyLoading">"從  SIM 卡讀取中…"</string>
     <string name="simContacts_title">"SIM 卡聯絡人"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">" 同步處理您的 Google 聯絡人！"</font>" "\n" 與手機同步處理後，無論您走到哪，都可存取聯絡人資訊。"</string>
-    <string name="noContactsHelpText">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n<li>"["<font fgcolor="#ffffffff"><b></b>"新聯絡人"</font>"]：建立新聯絡人"\n</li>" "\n<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 鍵並選取下列選項："\n\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"編輯同步處理群組"</font>"]：加入新的或既有的 Google 帳戶聯絡人"\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人"</font>"]：建立新聯絡人 "\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
+    <string name="noContactsHelpText">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人 "</font>"]：建立新聯絡人"\n</li>" "\n<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"編輯同步處理群組"</font>"]：加入新的或既有的 Google 帳戶聯絡人"\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人"</font>"]：建立新聯絡人 "\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
     <string name="seclectSyncGroups_title">"選取要同步處理的群組"</string>
     <string name="liveFolder_all_label">"全部聯絡人"</string>
     <string name="liveFolder_favorites_label">"星號標記"</string>
