@@ -24,6 +24,7 @@
     android:hint="@string/searchHint"
     android:searchMode="queryRewriteFromText"
 
+    android:includeInGlobalSearch="true"
     android:searchSuggestAuthority="contacts"
     android:searchSuggestIntentAction="android.provider.Contacts.SEARCH_SUGGESTION_CLICKED"
     android:searchSuggestIntentData="content://contacts/people"
