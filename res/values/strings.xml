@@ -319,6 +319,9 @@
     <!-- Section header in the Edit Contacts screen for the "Add more items" button -->
     <string name="listSeparatorMore_edit">More</string>
 
+    <!-- The description text for the activity stream tab. Space is limited for this string, so the shorter the better -->
+    <string name="activityStreamIconLabel">Stream</string>
+
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsIconLabel">Contacts</string>
 

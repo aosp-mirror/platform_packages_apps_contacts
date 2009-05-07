@@ -64,6 +64,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
         mTabHost.setOnTabChangedListener(this);
 
         // Setup the tabs
+        setupActivityStreamTab();
         setupContactsTab();
         setupFavoritesTab();
 
@@ -86,6 +87,17 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
             editor.putBoolean(PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
             editor.commit();
         }
+    }
+
+    private void setupActivityStreamTab() {
+        // Just a placeholder for now
+        Intent intent = new Intent("com.android.contacts.action.LIST_DEFAULT");
+        intent.setClass(this, ActivityStreamActivity.class);
+
+        mTabHost.addTab(mTabHost.newTabSpec("stream")
+                .setIndicator(getText(R.string.activityStreamIconLabel),
+                        getResources().getDrawable(R.drawable.ic_tab_contacts))
+                .setContent(intent));
     }
 
     private void setupContactsTab() {

@@ -165,6 +165,16 @@
             </intent-filter>
         </activity-alias>
 
+        <!-- Activity stream list -->
+        <activity android:name="ActivityStreamActivity">
+            <intent-filter>
+                <action android:name="com.android.contacts.action.ACTIVITY_STREAM" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+        </activity>
+
+
         <!-- The actual list of contacts, usually embedded in ContactsActivity -->
         <activity android:name="ContactsListActivity"
             android:label="@string/contactsList"
