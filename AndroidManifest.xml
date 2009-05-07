@@ -57,7 +57,7 @@
         </activity>
 
         <!-- Tab container for TwelveKeyDialer and RecentCallsList -->
-        <activity android:name="DialtactsActivity"
+        <activity android:name="DialerActivity"
             android:label="@string/launcherDialer"
             android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
@@ -108,9 +108,32 @@
             </intent-filter>
         </activity>
 
+        <!-- An alias for compatibility -->
+        <activity-alias android:name="DialtactsActivity"
+            android:targetActivity="DialerActivity"
+        >
+        </activity-alias>
+        
+        <!-- Tab container for Activity Stream and Contacts -->
+        <activity android:name="ContactsActivity"
+            android:label="@string/strequentList"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:icon="@drawable/ic_launcher_contacts"
+            android:screenOrientation="nosensor"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
         <!-- An empty activity that presents the DialtactActivity's Contacts tab -->
         <activity-alias android:name="DialtactsContactsEntryActivity"
-            android:targetActivity="DialtactsActivity"
+            android:targetActivity="ContactsActivity"
             android:label="@string/contactsList"
             android:icon="@drawable/ic_launcher_contacts"
         >
@@ -134,9 +157,7 @@
 
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
         <activity-alias android:name="DialtactsFavoritesEntryActivity"
-            android:targetActivity="DialtactsActivity"
-            android:label="@string/strequentList"
-            android:icon="@drawable/ic_launcher_contacts"
+            android:targetActivity="ContactsActivity"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
