@@ -1411,6 +1411,7 @@ public final class ContactsListActivity extends ListActivity
     }
 
     final static class ContactListItemCache {
+        public TextView header;
         public TextView nameView;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
@@ -1431,6 +1432,8 @@ public final class ContactsListActivity extends ListActivity
         private boolean mDisplayPhotos = false;
         private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
+        private boolean mDisplaySectionHeaders = true;
+        private int[] mSectionPositions;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
@@ -1453,6 +1456,10 @@ public final class ContactsListActivity extends ListActivity
                 mDisplayPhotos = true;
                 setViewResource(R.layout.contacts_list_item_photo);
                 mBitmapCache = new SparseArray<SoftReference<Bitmap>>();
+            }
+
+            if (mMode == MODE_STREQUENT) {
+                mDisplaySectionHeaders = false;
             }
         }
 
@@ -1527,7 +1534,8 @@ public final class ContactsListActivity extends ListActivity
                 return view;
             }
 
-            if (!mCursor.moveToPosition(getRealPosition(position))) {
+            int realPosition = getRealPosition(position);
+            if (!mCursor.moveToPosition(realPosition)) {
                 throw new IllegalStateException("couldn't move cursor to position " + position);
             }
 
@@ -1538,6 +1546,7 @@ public final class ContactsListActivity extends ListActivity
                 v = convertView;
             }
             bindView(v, mContext, mCursor);
+            bindSectionHeader(v, realPosition);
             return v;
         }
 
@@ -1546,6 +1555,7 @@ public final class ContactsListActivity extends ListActivity
             final View view = super.newView(context, cursor, parent);
 
             final ContactListItemCache cache = new ContactListItemCache();
+            cache.header = (TextView) view.findViewById(R.id.header);
             cache.nameView = (TextView) view.findViewById(R.id.name);
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.numberView = (TextView) view.findViewById(R.id.number);
@@ -1665,6 +1675,21 @@ public final class ContactsListActivity extends ListActivity
             }
         }
 
+        private void bindSectionHeader(View view, int position) {
+            final ContactListItemCache cache = (ContactListItemCache) view.getTag();
+            if (!mDisplaySectionHeaders) {
+                cache.header.setVisibility(View.GONE);
+            } else {
+                final int section = getSectionForPosition(position);
+                if (getPositionForSection(section) == position) {
+                    cache.header.setText(mIndexer.getSections()[section].toString());
+                    cache.header.setVisibility(View.VISIBLE);
+                } else {
+                    cache.header.setVisibility(View.GONE);
+                }
+            }
+        }
+
         @Override
         public void changeCursor(Cursor cursor) {
             // Get the split between starred and frequent items, if the mode is strequent
@@ -1712,6 +1737,14 @@ public final class ContactsListActivity extends ListActivity
                     }
                 }
             }
+
+            int sectionCount = mIndexer.getSections().length;
+            if (mSectionPositions == null || mSectionPositions.length != sectionCount) {
+                mSectionPositions = new int[sectionCount];
+            }
+            for (int i = 0; i < sectionCount; i++) {
+                mSectionPositions[i] = ListView.INVALID_POSITION;
+            }
         }
 
         /**
@@ -1745,14 +1778,40 @@ public final class ContactsListActivity extends ListActivity
                 mIndexer = getNewIndexer(cursor);
             }
 
-            return mIndexer.getPositionForSection(sectionIndex);
+            int position = mSectionPositions[sectionIndex];
+            if (position == ListView.INVALID_POSITION) {
+                position = mSectionPositions[sectionIndex] = mIndexer.getPositionForSection(sectionIndex);
+            }
+
+            return position;
         }
 
         public int getSectionForPosition(int position) {
-            // Note: JapaneseContactListIndexer depends on the fact
-            // this method always returns 0. If you change this,
-            // please care it too.
-            return 0;
+            // The current implementations of SectionIndexers (specifically the Japanese indexer)
+            // only work in one direction: given a section they can calculate the position.
+            // Here we are using that existing functionality to do the reverse mapping. We are
+            // performing binary search in the mSectionPositions array, which itself is populated
+            // lazily using the "forward" mapping supported by the indexer.
+
+            int start = 0;
+            int end = mSectionPositions.length;
+            while (start != end) {
+
+                // We are making the binary search slightly asymmetrical, because the
+                // user is more likely to be scrolling the list from the top down.
+                int pivot = start + (end - start) / 4;
+
+                int value = getPositionForSection(pivot);
+                if (value <= position) {
+                    start = pivot + 1;
+                } else {
+                    end = pivot;
+                }
+            }
+
+            // The variable "start" cannot be 0, as long as the indexer is implemented properly
+            // and actually maps position = 0 to section = 0
+            return start - 1;
         }
 
         @Override
