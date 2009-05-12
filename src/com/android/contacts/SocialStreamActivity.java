@@ -20,13 +20,13 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
-public class ActivityStreamActivity extends ListActivity {
+public class SocialStreamActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        setContentView(R.layout.activity_list_content);
+        setContentView(R.layout.social_list_content);
 
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1));

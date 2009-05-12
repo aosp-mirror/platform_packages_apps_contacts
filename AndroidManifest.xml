@@ -166,9 +166,9 @@
         </activity-alias>
 
         <!-- Activity stream list -->
-        <activity android:name="ActivityStreamActivity">
+        <activity android:name="SocialStreamActivity">
             <intent-filter>
-                <action android:name="com.android.contacts.action.ACTIVITY_STREAM" />
+                <action android:name="com.android.contacts.action.SOCIAL_STREAM" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>

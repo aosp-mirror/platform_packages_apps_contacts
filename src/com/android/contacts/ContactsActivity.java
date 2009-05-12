@@ -64,8 +64,8 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
         mTabHost.setOnTabChangedListener(this);
 
         // Setup the tabs
-        setupActivityStreamTab();
         setupContactsTab();
+        setupSocialStreamTab();
         setupFavoritesTab();
 
         setCurrentTab(intent);
@@ -89,13 +89,13 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
         }
     }
 
-    private void setupActivityStreamTab() {
+    private void setupSocialStreamTab() {
         // Just a placeholder for now
-        Intent intent = new Intent("com.android.contacts.action.LIST_DEFAULT");
-        intent.setClass(this, ActivityStreamActivity.class);
+        Intent intent = new Intent("com.android.contacts.action.SOCIAL_STREAM");
+        intent.setClass(this, SocialStreamActivity.class);
 
-        mTabHost.addTab(mTabHost.newTabSpec("stream")
-                .setIndicator(getText(R.string.activityStreamIconLabel),
+        mTabHost.addTab(mTabHost.newTabSpec("social")
+                .setIndicator(getText(R.string.socialStreamIconLabel),
                         getResources().getDrawable(R.drawable.ic_tab_contacts))
                 .setContent(intent));
     }
