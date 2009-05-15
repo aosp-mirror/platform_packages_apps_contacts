@@ -495,4 +495,91 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
+
+    <!-- Content description values -->
+
+    <!-- String describing the image on ImageButton one
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_one">one</string>
+
+    <!-- String describing the image on ImageButton two
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_two">two</string>
+
+    <!-- String describing the image on ImageButton three
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_three">three</string>
+
+    <!-- String describing the image on ImageButton four
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_four">four</string>
+
+    <!-- String describing the image on ImageButton five
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_five">five</string>
+
+    <!-- String describing the image on ImageButton six
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_six">six</string>
+
+    <!-- String describing the image on ImageButton seven
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_seven">seven</string>
+
+    <!-- String describing the image on ImageButton eight
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_eight">eight</string>
+
+    <!-- String describing the image on ImageButton nine
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_nine">nine</string>
+
+    <!-- String describing the image on ImageButton star
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_star">star</string>
+
+    <!-- String describing the image on ImageButton zero
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_zero">zero</string>
+
+    <!-- String describing the image on ImageButton pound
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_pound">pound</string>
+
 </resources>
