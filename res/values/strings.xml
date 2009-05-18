@@ -582,4 +582,75 @@
     -->
     <string name="description_image_button_pound">pound</string>
 
+    <!-- Dialog title shown when SD Card does not exist -->
+    <string name="no_sdcard_title">No SD Card</string>
+
+    <!-- Dialog message shown when SDcard does not exist -->
+    <string name="no_sdcard_message">No SD Card detected</string>
+
+    <!-- Dialog title shown when searching VCard data from SD Card -->
+    <string name="searching_vcard_title">Searching for VCard</string>
+
+    <!-- Dialog title shown when asking a user whether import contact data from SIM or SD Card -->
+    <string name="select_import_type_title">Where would you like to import contacts from?</string>
+
+    <!-- Action string for selecting SIM for importing contacts -->
+    <string name="import_from_sim">SIM Card</string>
+
+    <!-- Action string for selecting SD Card for importing contacts -->
+    <string name="import_from_sdcard">SD Card</string>
+
+    <!-- "Import all VCard files" -->
+    <string name="import_all_vcard_string">Import all VCard files</string>
+
+    <!-- "Import one VCard file" -->
+    <string name="import_one_vcard_string">Import one VCard file</string>
+
+    <!-- Dialog message shown when searching VCard data from SD Card -->
+    <string name="searching_vcard_message">Searching for VCard data on VCard</string>
+
+    <!-- Dialog title shown when searching VCard data failed. -->
+    <string name="scanning_sdcard_failed_title">Scanning SD Card failed</string>
+
+    <!-- Dialog message shown when searching VCard data failed. -->
+    <string name="scanning_sdcard_failed_message">Scanning SD Card failed</string>
+
+    <!-- The failed reason: "I/O Error" -->
+    <string name="fail_reason_io_error">I/O Error</string>
+
+    <!-- The failed reason: "Failed to parse VCard data" -->
+    <string name="fail_reason_vcard_parse_error">Failed to parse VCard</string>
+
+    <!-- The failed reason: "There is no VCard file" -->
+    <string name="fail_reason_no_vcard_file">No VCard file found on SD Card</string>
+
+    <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
+    <string name="fail_reason_no_vcard_entry">No valid VCard entry found for your selection</string>
+
+    <!-- Dialog title shown when a user is asked to select VCard file -->
+    <string name="select_vcard_title">Select VCard file</string>
+
+    <!-- Dialog message shown when a user is asked to choose VCard file -->
+    <string name="select_vcard_message">Please select a VCard file to import</string>
+
+    <!-- Dialog title shown when reading VCard data -->
+    <string name="reading_vcard_title">Reading VCard</string>
+
+    <!-- Dialog message shown when reading a VCard file -->
+    <string name="reading_vcard_message">Reading VCard file(s)</string>
+
+    <!-- Dialog message shown when importing VCard data into local database -->
+    <string name="importing_vcard_message">Importing VCard data</string>
+
+    <!-- Dialog title shown when reading VCard data failed -->
+    <string name="reading_vcard_failed_title">Reading of VCard data has failed</string>
+
+    <!-- Dialog message shown when reading VCard data failed -->
+    <string name="reading_vcard_failed_message">VCard data could not be read\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+
+    <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
+    <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+
+    <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
+    <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
 </resources>
