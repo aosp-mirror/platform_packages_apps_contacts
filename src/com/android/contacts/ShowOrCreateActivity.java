@@ -16,16 +16,22 @@
 
 package com.android.contacts;
 
+import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.SocialStreamActivity.MappingCache;
+import com.android.providers.contacts2.ContactsContract;
+import com.android.providers.contacts2.ContactsContract.Aggregates;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.ContactMethodsColumns;
@@ -33,6 +39,7 @@ import android.provider.Contacts.Intents;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.util.Log;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 
@@ -52,7 +59,7 @@ import java.lang.ref.WeakReference;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity {
+public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 
@@ -60,14 +67,15 @@ public final class ShowOrCreateActivity extends Activity {
         Phones.PERSON_ID,
     };
 
-    static final String[] PEOPLE_PROJECTION = new String[] {
-        People._ID,
+    static final String[] CONTACTS_PROJECTION = new String[] {
+        ContactsContract.Contacts.AGGREGATE_ID,
+//        People._ID,
     };
     
     static final String SCHEME_MAILTO = "mailto";
     static final String SCHEME_TEL = "tel";
     
-    static final int PERSON_ID_INDEX = 0;
+    static final int AGGREGATE_ID_INDEX = 0;
 
     /**
      * Query clause to filter {@link ContactMethods#CONTENT_URI} to only search
@@ -76,24 +84,39 @@ public final class ShowOrCreateActivity extends Activity {
     static final String QUERY_KIND_EMAIL_OR_IM = ContactMethodsColumns.KIND +
             " IN (" + Contacts.KIND_EMAIL + "," + Contacts.KIND_IM + ")";
     
+    /**
+     * Extra used to request a specific {@link FastTrackWindow} position.
+     */
+    private static final String EXTRA_Y = "pixel_y";
+    private static final int DEFAULT_Y = 90;
+
     static final int QUERY_TOKEN = 42;
     
-    private QueryHandler mQueryHandler;
+    private NotifyingAsyncQueryHandler mQueryHandler;
+
+    private Bundle mCreateExtras;
+    private String mCreateDescrip;
+    private boolean mCreateForce;
+
+    private FastTrackWindow mFastTrack;
     
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        
+
+        // Throw an empty layout up so we have a window token later
+        setContentView(R.layout.empty);
+
         // Create handler if doesn't exist, otherwise cancel any running
         if (mQueryHandler == null) {
-            mQueryHandler = new QueryHandler(this);
+            mQueryHandler = new NotifyingAsyncQueryHandler(this, this);
         } else {
             mQueryHandler.cancelOperation(QUERY_TOKEN);
         }
 
         final Intent intent = getIntent();
         final Uri data = intent.getData();
-        
+
         // Unpack scheme and target data from intent
         String scheme = null;
         String ssp = null;
@@ -101,52 +124,143 @@ public final class ShowOrCreateActivity extends Activity {
             scheme = data.getScheme();
             ssp = data.getSchemeSpecificPart();
         }
-        
+
         // Build set of extras for possible use when creating contact
-        Bundle createExtras = new Bundle();
+        mCreateExtras = new Bundle();
         Bundle originalExtras = intent.getExtras();
         if (originalExtras != null) {
-            createExtras.putAll(originalExtras);
+            mCreateExtras.putAll(originalExtras);
         }
-        mQueryHandler.setCreateExtras(createExtras);
-        
+
         // Read possible extra with specific title
-        String createDescrip = intent.getStringExtra(Intents.EXTRA_CREATE_DESCRIPTION);
-        if (createDescrip == null) {
-            createDescrip = ssp;
+        String mCreateDescrip = intent.getStringExtra(Intents.EXTRA_CREATE_DESCRIPTION);
+        if (mCreateDescrip == null) {
+            mCreateDescrip = ssp;
         }
-        mQueryHandler.setCreateDescription(createDescrip);
-        
+
         // Allow caller to bypass dialog prompt
-        boolean createForce = intent.getBooleanExtra(Intents.EXTRA_FORCE_CREATE, false);
-        mQueryHandler.setCreateForce(createForce);
-        
+        mCreateForce = intent.getBooleanExtra(Intents.EXTRA_FORCE_CREATE, false);
+
         // Handle specific query request
         if (SCHEME_MAILTO.equals(scheme)) {
-            createExtras.putString(Intents.Insert.EMAIL, ssp);
-            Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI, Uri.encode(ssp));
+            mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
+//            Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI, Uri.encode(ssp));
+//            mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
+//                    PEOPLE_PROJECTION, null, null, null);
+
+            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_EMAIL_FILTER_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
-                    PEOPLE_PROJECTION, null, null, null);
+                    CONTACTS_PROJECTION, null, null, null);
+
         } else if (SCHEME_TEL.equals(scheme)) {
-            createExtras.putString(Intents.Insert.PHONE, ssp);
-            mQueryHandler.startQuery(QUERY_TOKEN, null,
-                    Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, ssp),
-                    PHONES_PROJECTION, null, null, null);
-            
+            mCreateExtras.putString(Intents.Insert.PHONE, ssp);
+//            mQueryHandler.startQuery(QUERY_TOKEN, null,
+//                    Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, ssp),
+//                    PHONES_PROJECTION, null, null, null);
+
         } else {
-            Log.w(TAG, "Invalid intent:" + getIntent());
-            finish();
+            // Otherwise assume incoming aggregate Uri
+            final int y = getIntent().getExtras().getInt(EXTRA_Y, DEFAULT_Y);
+            showFastTrack(data, y);
+
         }
     }
-    
+
     @Override
     protected void onStop() {
         super.onStop();
         if (mQueryHandler != null) {
             mQueryHandler.cancelOperation(QUERY_TOKEN);
         }
+        if (mFastTrack != null) {
+            mFastTrack.dismiss();
+        }
     }
-    
+
+    /**
+     * Show a {@link FastTrackWindow} for the given aggregate at the requested
+     * screen location.
+     */
+    private void showFastTrack(Uri aggUri, int y) {
+        // Use our local window token for now
+        final IBinder windowToken = findViewById(android.R.id.empty).getWindowToken();
+        FakeView fakeView = new FakeView(this, windowToken);
+
+        final MappingCache mappingCache = MappingCache.createAndFill(this);
+
+        mFastTrack = new FastTrackWindow(this, fakeView, aggUri, mappingCache);
+        mFastTrack.showAt(0, y);
+    }
+
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        if (cursor == null) {
+            return;
+        }
+
+        // Count contacts found by query
+        int count = 0;
+        long aggId = -1;
+        try {
+            count = cursor.getCount();
+            if (count == 1 && cursor.moveToFirst()) {
+                // Try reading ID if only one contact returned
+                aggId = cursor.getLong(AGGREGATE_ID_INDEX);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        if (count == 1 && aggId != -1) {
+            // If we only found one item, jump right to viewing it
+            final Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, aggId);
+            final int y = getIntent().getExtras().getInt(EXTRA_Y, DEFAULT_Y);
+            showFastTrack(aggUri, y);
+
+//            Intent viewIntent = new Intent(Intent.ACTION_VIEW,
+//                    ContentUris.withAppendedId(People.CONTENT_URI, personId));
+//            activity.startActivity(viewIntent);
+//            activity.finish();
+
+        } else if (count > 1) {
+            // If more than one, show pick list
+            Intent listIntent = new Intent(Intent.ACTION_SEARCH);
+            listIntent.setComponent(new ComponentName(this, ContactsListActivity.class));
+            listIntent.putExtras(mCreateExtras);
+            startActivity(listIntent);
+            finish();
+
+        } else {
+            // No matching contacts found
+            if (mCreateForce) {
+                // Forced to create new contact
+                Intent createIntent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
+                createIntent.putExtras(mCreateExtras);
+                createIntent.setType(People.CONTENT_TYPE);
+
+                startActivity(createIntent);
+                finish();
+
+            } else {
+                // Prompt user to insert or edit contact
+                Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                createIntent.putExtras(mCreateExtras);
+                createIntent.setType(People.CONTENT_ITEM_TYPE);
+
+                CharSequence message = getResources().getString(
+                        R.string.add_contact_dlg_message_fmt, mCreateDescrip);
+
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.add_contact_dlg_title)
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.ok,
+                                new IntentClickListener(this, createIntent))
+                        .setNegativeButton(android.R.string.cancel,
+                                new IntentClickListener(this, null))
+                        .show();
+            }
+        }
+    }
+
     /**
      * Listener for {@link DialogInterface} that launches a given {@link Intent}
      * when clicked. When clicked, this also closes the parent using
@@ -174,101 +288,20 @@ public final class ShowOrCreateActivity extends Activity {
     }
 
     /**
-     * Handle asynchronous query to find matching contacts. When query finishes,
-     * will handle based on number of matching contacts found.
+     * Fake view that simply exists to pass through a specific {@link IBinder}
+     * window token.
      */
-    private static final class QueryHandler extends AsyncQueryHandler {
-        private final WeakReference<Activity> mActivity;
-        private Bundle mCreateExtras;
-        private String mCreateDescrip;
-        private boolean mCreateForce;
+    private static class FakeView extends View {
+        private IBinder mWindowToken;
 
-        public QueryHandler(Activity activity) {
-            super(activity.getContentResolver());
-            mActivity = new WeakReference<Activity>(activity);
-        }
-        
-        public void setCreateExtras(Bundle createExtras) {
-            mCreateExtras = createExtras;
-        }
-        
-        public void setCreateDescription(String createDescrip) {
-            mCreateDescrip = createDescrip;
-        }
-        
-        public void setCreateForce(boolean createForce) {
-            mCreateForce = createForce;
+        public FakeView(Context context, IBinder windowToken) {
+            super(context);
+            mWindowToken = windowToken;
         }
 
         @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            Activity activity = mActivity.get();
-            if (activity == null) {
-                return;
-            }
-            
-            // Count contacts found by query
-            int count = 0;
-            long personId = -1;
-            if (cursor != null) {
-                try {
-                    count = cursor.getCount();
-                    if (count == 1 && cursor.moveToFirst()) {
-                        // Try reading ID if only one contact returned
-                        personId = cursor.getLong(PERSON_ID_INDEX);
-                    }
-                } finally {
-                    cursor.close();
-                }
-            }
-            
-            if (LOGD) Log.d(TAG, "onQueryComplete count=" + count);
-            
-            if (count == 1) {
-                // If we only found one item, jump right to viewing it
-                Intent viewIntent = new Intent(Intent.ACTION_VIEW,
-                        ContentUris.withAppendedId(People.CONTENT_URI, personId));
-                activity.startActivity(viewIntent);
-                activity.finish();
-                
-            } else if (count > 1) {
-                // If more than one, show pick list
-                Intent listIntent = new Intent(Intent.ACTION_SEARCH);
-                listIntent.setComponent(new ComponentName(activity, ContactsListActivity.class));
-                listIntent.putExtras(mCreateExtras);
-                activity.startActivity(listIntent);
-                activity.finish();
-                
-            } else {
-                // No matching contacts found
-                if (mCreateForce) {
-                    // Forced to create new contact
-                    Intent createIntent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
-                    createIntent.putExtras(mCreateExtras);
-                    createIntent.setType(People.CONTENT_TYPE);
-                    
-                    activity.startActivity(createIntent);
-                    activity.finish();
-                    
-                } else {
-                    // Prompt user to insert or edit contact 
-                    Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                    createIntent.putExtras(mCreateExtras);
-                    createIntent.setType(People.CONTENT_ITEM_TYPE);
-                    
-                    CharSequence message = activity.getResources().getString(
-                            R.string.add_contact_dlg_message_fmt, mCreateDescrip);
-                    
-                    new AlertDialog.Builder(activity)
-                            .setTitle(R.string.add_contact_dlg_title)
-                            .setMessage(message)
-                            .setPositiveButton(android.R.string.ok,
-                                    new IntentClickListener(activity, createIntent))
-                            .setNegativeButton(android.R.string.cancel,
-                                    new IntentClickListener(activity, null))
-                            .show();
-                }
-            }
+        public IBinder getWindowToken() {
+            return mWindowToken;
         }
     }
 }

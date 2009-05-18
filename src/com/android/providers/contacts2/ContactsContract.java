@@ -1,0 +1,1 @@
+../../../../../../../providers/ContactsProvider2/src/com/android/providers/contacts2/ContactsContract.java

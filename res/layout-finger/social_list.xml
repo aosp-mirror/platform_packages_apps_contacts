@@ -14,23 +14,36 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:contacts="http://schemas.android.com/apk/res/com.android.contacts"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.android.contacts.EdgeTriggerView
+        android:id="@+id/edge_trigger"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        contacts:edgeWidth="80dip"
+        contacts:listenEdges="left">
 
-    <ListView android:id="@android:id/list"
-            android:layout_width="fill_parent" 
+        <com.android.contacts.FloatyListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:fastScrollEnabled="true"
-    />
+            android:fastScrollEnabled="true" />
 
-    <ScrollView android:id="@android:id/empty"
+    </com.android.contacts.EdgeTriggerView>
+
+    <ScrollView
+        android:id="@android:id/empty"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="true"
-    >
-        <TextView android:id="@+id/emptyText"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/emptyText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/noContacts"
@@ -39,7 +52,8 @@
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
             android:paddingTop="10dip"
-            android:lineSpacingMultiplier="0.92"
-        />
+            android:lineSpacingMultiplier="0.92" />
+
     </ScrollView>
+
 </LinearLayout>
