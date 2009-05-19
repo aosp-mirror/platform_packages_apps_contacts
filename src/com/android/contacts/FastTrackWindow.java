@@ -216,7 +216,7 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
 
             } else {
                 // No icon found, so don't insert any action button
-                break;
+                continue;
 
             }
 
