@@ -226,7 +226,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
 
         private static final int COL_MIMETYPE = 0;
         private static final int COL_CONTACT_ID = 1;
-        private static final int COL_PHOTO = 3;
+        private static final int COL_PHOTO = 2;
 
         private HashMap<Long, Bitmap> mPhoto = new HashMap<Long, Bitmap>();
 
