@@ -19,42 +19,57 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/sourceIcon"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+
+        android:gravity="center"
+        android:scaleType="centerInside"
+    />
+
+    <ImageView
         android:id="@+id/photo"
         android:layout_width="58dip"
-        android:layout_height="58dip" />
+        android:layout_height="58dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dip"
+
+        android:background="@drawable/contact_picture_border_in_list"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+    />
 
     <TextView
-        android:id="@+id/displayname"
+        android:id="@+id/content"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/photo"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:paddingLeft="8dip"
-        android:paddingTop="3dip"
-        android:textColor="#f000"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_toLeftOf="@id/sourceIcon"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_toRightOf="@id/photo"
-        android:layout_below="@id/displayname"
-        android:textSize="16sp"
         android:lineSpacingMultiplier="0.9"
-        android:paddingLeft="8dip"
-        android:textColor="#f000"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    />
 
     <TextView
         android:id="@+id/published"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/photo"
-        android:layout_below="@id/title"
-        android:textSize="14sp"
-        android:paddingLeft="8dip"
-        android:paddingTop="2dip"
-        android:paddingBottom="5dip"
+        android:layout_below="@id/content"
+        android:layout_marginTop="2dip"
+        android:layout_marginBottom="5dip"
+
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#8000"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    />
 
 </RelativeLayout>

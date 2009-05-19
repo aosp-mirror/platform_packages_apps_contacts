@@ -17,12 +17,12 @@
 package com.android.contacts;
 
 import com.android.contacts.EdgeTriggerView.EdgeTriggerListener;
+import com.android.contacts.SocialStreamActivity.MappingCache.Mapping;
 import com.android.providers.contacts2.ContactsContract;
 import com.android.providers.contacts2.ContactsContract.Aggregates;
 import com.android.providers.contacts2.ContactsContract.Contacts;
 import com.android.providers.contacts2.ContactsContract.Data;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Photo;
-import com.android.providers.contacts2.ContactsContract.CommonDataKinds.StructuredName;
 import com.android.providers.contacts2.SocialContract.Activities;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -35,7 +35,6 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -43,26 +42,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
+import android.text.style.TextAppearanceSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -116,11 +110,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         mMappingCache = MappingCache.createAndFill(this);
 
         Cursor cursor = managedQuery(Activities.CONTENT_URI, PROJ_ACTIVITIES, null, null);
-        mAdapter = new SocialAdapter(this, cursor, mContactsCache);
-
-//        mAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, cursor,
-//                new String[] { Activities.AUTHOR_CONTACT_ID, Activities.TITLE },
-//                new int[] { android.R.id.text1, android.R.id.text2 });
+        mAdapter = new SocialAdapter(this, cursor, mContactsCache, mMappingCache);
 
         setListAdapter(mAdapter);
 
@@ -158,42 +148,67 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
      * {@link Activities#CONTENT_URI}.
      */
     private static class SocialAdapter extends CursorAdapter {
-        private Context mContext;
-        private LayoutInflater mInflater;
-        private ContactsCache mContactsCache;
+        private final Context mContext;
+        private final LayoutInflater mInflater;
+        private final ContactsCache mContactsCache;
+        private final MappingCache mMappingCache;
+        private final TextAppearanceSpan mTextAppearanceName;
+        private final TextAppearanceSpan mTextAppearanceStatus;
 
         private static class SocialHolder {
             ImageView photo;
-            TextView displayname;
-            TextView title;
+            ImageView sourceIcon;
+            TextView content;
+            SpannableStringBuilder contentBuilder = new SpannableStringBuilder();
             TextView published;
         }
 
-        public SocialAdapter(Context context, Cursor c, ContactsCache contactsCache) {
+        public SocialAdapter(Context context, Cursor c, ContactsCache contactsCache,
+                MappingCache mappingCache) {
             super(context, c, true);
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mContactsCache = contactsCache;
-        }
+            mMappingCache = mappingCache;
+            mTextAppearanceName =
+                    new TextAppearanceSpan(mContext, android.R.style.TextAppearance_Medium);
+            mTextAppearanceStatus =
+                    new TextAppearanceSpan(mContext, android.R.style.TextAppearance_Small);
+       }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             SocialHolder holder = (SocialHolder)view.getTag();
 
             long contactId = cursor.getLong(COL_AUTHOR_CONTACT_ID);
+            String name = cursor.getString(COL_DISPLAY_NAME);
+            String title = cursor.getString(COL_TITLE);
+            long published = cursor.getLong(COL_PUBLISHED);
 
             // TODO: trigger async query to find actual name and photo instead
             // of using this lazy caching mechanism
             holder.photo.setImageBitmap(mContactsCache.getPhoto(contactId));
+            holder.contentBuilder.clear();
+            holder.contentBuilder.append(name);
+            holder.contentBuilder.append(": ");
+            holder.contentBuilder.append(title);
+            holder.contentBuilder.setSpan(mTextAppearanceName, 0, name.length() + 2, 0);
+            holder.contentBuilder.setSpan(mTextAppearanceStatus, name.length() + 2,
+                    holder.contentBuilder.length(), 0);
+            holder.content.setText(holder.contentBuilder);
 
-            holder.displayname.setText(cursor.getString(COL_DISPLAY_NAME));
-            holder.title.setText(cursor.getString(COL_TITLE));
-
-            long published = cursor.getLong(COL_PUBLISHED);
-            CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published, System
-                    .currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
+            CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
+                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
             holder.published.setText(relativePublished);
 
+            String packageName = cursor.getString(COL_PACKAGE);
+            String mimeType = cursor.getString(COL_MIMETYPE);
+            Mapping mapping = mMappingCache.getMapping(packageName, mimeType);
+            if (mapping != null && mapping.icon != null) {
+                holder.sourceIcon.setImageBitmap(mapping.icon);
+            } else {
+                holder.sourceIcon.setImageDrawable(null);
+            }
         }
 
         @Override
@@ -201,10 +216,10 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             View view = mInflater.inflate(R.layout.social_list_item, parent, false);
 
             SocialHolder holder = new SocialHolder();
-            holder.photo = (ImageView)view.findViewById(R.id.photo);
-            holder.displayname = (TextView)view.findViewById(R.id.displayname);
-            holder.title = (TextView)view.findViewById(R.id.title);
-            holder.published = (TextView)view.findViewById(R.id.published);
+            holder.photo = (ImageView) view.findViewById(R.id.photo);
+            holder.sourceIcon = (ImageView) view.findViewById(R.id.sourceIcon);
+            holder.content = (TextView) view.findViewById(R.id.content);
+            holder.published = (TextView) view.findViewById(R.id.published);
             view.setTag(holder);
 
             return view;
@@ -365,8 +380,9 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
                 final int depth = parser.getDepth();
                 while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                         && type != XmlPullParser.END_DOCUMENT) {
-                    if (type == XmlPullParser.END_TAG)
+                    if (type == XmlPullParser.END_TAG) {
                         continue;
+                    }
 
                     if (!TAG_MAPPING.equals(parser.getName())) {
                         throw new InflateException("Expected Mapping tag");
@@ -420,7 +436,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
          * The size of the thumbnail is defined by the dimension
          * android.R.dimen.launcher_application_icon_size. This method is not
          * thread-safe and should be invoked on the UI thread only.
-         * 
+         *
          * @param bitmap The bitmap to get a thumbnail of.
          * @param context The application's context.
          * @return A thumbnail for the specified bitmap or the bitmap itself if
