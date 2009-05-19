@@ -148,7 +148,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
 //            mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
 //                    PEOPLE_PROJECTION, null, null, null);
 
-            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_EMAIL_FILTER_URI, Uri.encode(ssp));
+            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                     CONTACTS_PROJECTION, null, null, null);
 
