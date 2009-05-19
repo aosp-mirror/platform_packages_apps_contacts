@@ -138,7 +138,7 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
         mContent = (ViewGroup)inflater.inflate(R.layout.fasttrack, null, false);
 
         setContentView(mContent);
-        setAnimationStyle(android.R.style.Animation_LeftEdge);
+//        setAnimationStyle(android.R.style.Animation_LeftEdge);
 
         setBackgroundDrawable(resources.getDrawable(R.drawable.fasttrack));
 
