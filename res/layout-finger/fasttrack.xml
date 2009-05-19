@@ -14,17 +14,47 @@
      limitations under the License.
 -->
 
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:fadingEdgeLength="40dip"
-    android:scrollbars="none">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/fasttrack"
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginTop="4dip"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/displayname"
+        android:layout_toRightOf="@id/photo"
+        android:layout_alignTop="@id/photo"
+        android:layout_alignBottom="@id/photo"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dip"
-        android:orientation="horizontal" />
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:textSize="18dip"
+        android:textStyle="bold" />
 
-</HorizontalScrollView>
+    <HorizontalScrollView
+        android:layout_below="@id/photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fadingEdgeLength="40dip"
+        android:padding="4dip"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/fasttrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+
+</RelativeLayout>
+

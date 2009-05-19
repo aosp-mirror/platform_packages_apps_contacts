@@ -21,11 +21,13 @@ import com.android.contacts.FloatyListView.FloatyWindow;
 import com.android.contacts.SocialStreamActivity.MappingCache;
 import com.android.contacts.SocialStreamActivity.MappingCache.Mapping;
 import com.android.providers.contacts2.ContactsContract;
+import com.android.providers.contacts2.ContactsContract.Aggregates;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds;
 import com.android.providers.contacts2.ContactsContract.Data;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Email;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Im;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Phone;
+import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Photo;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Postal;
 
 import android.content.ActivityNotFoundException;
@@ -34,6 +36,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
@@ -82,6 +86,7 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
 
     private boolean mShowing = false;
     private boolean mHasPosition = false;
+    private boolean mHasDisplayName = false;
     private boolean mHasData = false;
 
     public static final int ICON_SIZE = 42;
@@ -91,7 +96,8 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
     private int mFirstX;
     private int mFirstY;
 
-    private static final int TOKEN = 1;
+    private static final int TOKEN_DISPLAY_NAME = 1;
+    private static final int TOKEN_DATA = 2;
 
     private static final int GRAVITY = Gravity.LEFT | Gravity.TOP;
 
@@ -152,8 +158,10 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
         mDataUri = Uri.withAppendedPath(aggUri, ContactsContract.Aggregates.Data.CONTENT_DIRECTORY);
 
         mHandler = new NotifyingAsyncQueryHandler(context, this);
-        mHandler.startQuery(TOKEN, null, mDataUri, null, null, null, null);
+        mHandler.startQuery(TOKEN_DISPLAY_NAME, null, aggUri, null, null, null, null);
+        mHandler.startQuery(TOKEN_DATA, null, mDataUri, null, null, null, null);
 
+        // TODO: poll around for latest status message or location details
     }
 
     /**
@@ -161,7 +169,7 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
      * completed query results.
      */
     private synchronized void considerShowing() {
-        if (mHasData && mHasPosition && !mShowing) {
+        if (mHasData && mHasPosition && mHasDisplayName && !mShowing) {
             mShowing = true;
             showAtLocation(mParent, GRAVITY, mFirstX, mFirstY);
         }
@@ -185,6 +193,40 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
 
     /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        if (cursor == null) {
+            return;
+        }
+        switch (token) {
+            case TOKEN_DISPLAY_NAME:
+                handleDisplayName(cursor);
+                break;
+            case TOKEN_DATA:
+                handleData(cursor);
+                break;
+        }
+        considerShowing();
+    }
+
+    /**
+     * Handle the result from the {@link TOKEN_DISPLAY_NAME} query.
+     */
+    private void handleDisplayName(Cursor cursor) {
+        final TextView displayname = (TextView)mContent.findViewById(R.id.displayname);
+        final int COL_DISPLAY_NAME = cursor.getColumnIndex(Aggregates.DISPLAY_NAME);
+
+        if (cursor.moveToNext()) {
+            String foundName = cursor.getString(COL_DISPLAY_NAME);
+            displayname.setText(foundName);
+        }
+
+        mHasDisplayName = true;
+    }
+
+    /**
+     * Handle the result from the {@link TOKEN_DATA} query.
+     */
+    private void handleData(Cursor cursor) {
+        final ImageView photo = (ImageView)mContent.findViewById(R.id.photo);
         final ViewGroup fastTrack = (ViewGroup)mContent.findViewById(R.id.fasttrack);
 
         // Build list of actions for this contact, this could be done better in
@@ -194,11 +236,24 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
         final int COL_ID = cursor.getColumnIndex(Data._ID);
         final int COL_PACKAGE = cursor.getColumnIndex(Data.PACKAGE);
         final int COL_MIMETYPE = cursor.getColumnIndex(Data.MIMETYPE);
+        final int COL_PHOTO = cursor.getColumnIndex(Photo.PHOTO);
+
+        boolean foundDisplayName = false;
+        boolean foundPhoto = false;
 
         while (cursor.moveToNext()) {
             final long dataId = cursor.getLong(COL_ID);
             final String packageName = cursor.getString(COL_PACKAGE);
             final String mimeType = cursor.getString(COL_MIMETYPE);
+
+            // Handle finding the photo among various return rows
+            if (!foundPhoto && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                byte[] photoBlob = cursor.getBlob(COL_PHOTO);
+                Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
+                photo.setImageBitmap(photoBitmap);
+                photo.setVisibility(View.VISIBLE);
+                foundPhoto = true;
+            }
 
             ImageView action;
 
@@ -262,7 +317,6 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
         }
 
         mHasData = true;
-        considerShowing();
     }
 
     /**
