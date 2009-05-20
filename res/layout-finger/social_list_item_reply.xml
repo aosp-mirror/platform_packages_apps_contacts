@@ -21,14 +21,14 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="58dip"
-        android:layout_height="58dip"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="1dip"
         android:layout_marginRight="8dip"
-        android:layout_marginLeft="32dip"
+        android:layout_marginLeft="58dip"
 
         android:background="@drawable/contact_picture_border_in_list"
         android:gravity="center"

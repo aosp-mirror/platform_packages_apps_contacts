@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="58dip"
-        android:layout_height="58dip"
+        android:layout_width="54dip"
+        android:layout_height="54dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
