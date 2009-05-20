@@ -77,6 +77,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         Activities.PUBLISHED,
         Activities.TITLE,
         Activities.SUMMARY,
+        Activities.THREAD_PUBLISHED,
     };
 
     private static final int COL_ID = 0;
@@ -88,6 +89,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
     private static final int COL_PUBLISHED = 6;
     private static final int COL_TITLE = 7;
     private static final int COL_SUMMARY = 8;
+    private static final int COL_THREAD_PUBLISHED = 9;
 
     public static final int PHOTO_SIZE = 58;
 
@@ -170,7 +172,18 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             mContactsCache = contactsCache;
             mMappingCache = mappingCache;
             mTextStyleName = new StyleSpan(android.graphics.Typeface.BOLD);
-       }
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 2;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            Cursor cursor = (Cursor) getItem(position);
+            return isReply(cursor) ? 0 : 1;
+        }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
@@ -200,19 +213,23 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
                     System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
             holder.published.setText(relativePublished);
 
-            String packageName = cursor.getString(COL_PACKAGE);
-            String mimeType = cursor.getString(COL_MIMETYPE);
-            Mapping mapping = mMappingCache.getMapping(packageName, mimeType);
-            if (mapping != null && mapping.icon != null) {
-                holder.sourceIcon.setImageBitmap(mapping.icon);
-            } else {
-                holder.sourceIcon.setImageDrawable(null);
+            if (holder.sourceIcon != null) {
+                String packageName = cursor.getString(COL_PACKAGE);
+                String mimeType = cursor.getString(COL_MIMETYPE);
+                Mapping mapping = mMappingCache.getMapping(packageName, mimeType);
+                if (mapping != null && mapping.icon != null) {
+                    holder.sourceIcon.setImageBitmap(mapping.icon);
+                } else {
+                    holder.sourceIcon.setImageDrawable(null);
+                }
             }
         }
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            View view = mInflater.inflate(R.layout.social_list_item, parent, false);
+            View view = mInflater.inflate(
+                    isReply(cursor) ? R.layout.social_list_item_reply : R.layout.social_list_item,
+                    parent, false);
 
             SocialHolder holder = new SocialHolder();
             holder.photo = (ImageView) view.findViewById(R.id.photo);
@@ -222,6 +239,21 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             view.setTag(holder);
 
             return view;
+        }
+
+        private boolean isReply(Cursor cursor) {
+
+            /*
+             * Comparing the message timestamp to the thread timestamp rather than checking the
+             * in_reply_to field.  The rationale for this approach is that in the case when the
+             * original message to which the reply was posted is missing, we want to display
+             * the message as if it was an original; otherwise it would appear to be a reply
+             * to whatever message preceded it in the list.  In the case when the original message
+             * of the thread is missing, the two timestamps will be the same.
+             */
+            long published = cursor.getLong(COL_PUBLISHED);
+            long threadPublished = cursor.getLong(COL_THREAD_PUBLISHED);
+            return published != threadPublished;
         }
     }
 
