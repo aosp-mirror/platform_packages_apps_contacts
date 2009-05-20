@@ -47,7 +47,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
-import android.text.style.TextAppearanceSpan;
+import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
@@ -152,8 +152,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         private final LayoutInflater mInflater;
         private final ContactsCache mContactsCache;
         private final MappingCache mMappingCache;
-        private final TextAppearanceSpan mTextAppearanceName;
-        private final TextAppearanceSpan mTextAppearanceStatus;
+        private final StyleSpan mTextStyleName;
 
         private static class SocialHolder {
             ImageView photo;
@@ -170,10 +169,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mContactsCache = contactsCache;
             mMappingCache = mappingCache;
-            mTextAppearanceName =
-                    new TextAppearanceSpan(mContext, android.R.style.TextAppearance_Medium);
-            mTextAppearanceStatus =
-                    new TextAppearanceSpan(mContext, android.R.style.TextAppearance_Small);
+            mTextStyleName = new StyleSpan(android.graphics.Typeface.BOLD);
        }
 
         @Override
@@ -187,14 +183,17 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
 
             // TODO: trigger async query to find actual name and photo instead
             // of using this lazy caching mechanism
-            holder.photo.setImageBitmap(mContactsCache.getPhoto(contactId));
+            Bitmap photo = mContactsCache.getPhoto(contactId);
+            if (photo != null) {
+                holder.photo.setImageBitmap(photo);
+            } else {
+                holder.photo.setImageResource(R.drawable.ic_contact_list_picture);
+            }
             holder.contentBuilder.clear();
             holder.contentBuilder.append(name);
-            holder.contentBuilder.append(": ");
+            holder.contentBuilder.append(" ");
             holder.contentBuilder.append(title);
-            holder.contentBuilder.setSpan(mTextAppearanceName, 0, name.length() + 2, 0);
-            holder.contentBuilder.setSpan(mTextAppearanceStatus, name.length() + 2,
-                    holder.contentBuilder.length(), 0);
+            holder.contentBuilder.setSpan(mTextStyleName, 0, name.length(), 0);
             holder.content.setText(holder.contentBuilder);
 
             CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
