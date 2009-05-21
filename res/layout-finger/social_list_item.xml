@@ -97,7 +97,7 @@
             android:id="@+id/thumbnail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dip"
+            android:layout_marginLeft="20dip"
             
             android:maxHeight="54dip"
             android:maxWidth="100dip"

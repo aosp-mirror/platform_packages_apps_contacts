@@ -45,13 +45,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="-6dip"
+        android:layout_marginRight="5dip"
         
         android:paddingTop="8dip"
         android:paddingRight="8dip"
         android:paddingBottom="8dip"
         android:paddingLeft="18dip"
         android:orientation="vertical"
-        android:background="@drawable/bubble_stream"
+        android:background="@drawable/bubble_stream_dither"
     >
     
         <TextView
@@ -80,7 +81,7 @@
             android:id="@+id/thumbnail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dip"
+            android:layout_marginLeft="20dip"
             
             android:maxHeight="54dip"
             android:maxWidth="100dip"
