@@ -40,6 +40,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.Contacts.Phones;
 import android.text.SpannableStringBuilder;
@@ -64,6 +65,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -88,7 +91,7 @@ import java.util.Set;
  * Window that shows fast-track contact details for a specific
  * {@link Aggregate#_ID}.
  */
-public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener {
+public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener, AbsListView.OnItemClickListener {
     private static final String TAG = "FastTrackWindow";
 
     /**
@@ -130,6 +133,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private TextView mContent;
     private TextView mPublished;
     private ViewGroup mTrack;
+    private ListView mResolveList;
 
     // TODO: read from a resource somewhere
     private static final int mHeight = 138;
@@ -196,6 +200,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         mContent = (TextView)mWindow.findViewById(R.id.content);
         mPublished = (TextView)mWindow.findViewById(R.id.published);
         mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
+        mResolveList = (ListView)mWindow.findViewById(android.R.id.list);
 
         // TODO: move generation of mime-type cache to more-efficient place
         generateMappingCache();
@@ -338,9 +343,9 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         // Reset all views to prepare for possible recycling
         mPhoto.setImageResource(R.drawable.ic_contact_list_picture);
-        mPresence.setImageDrawable(null);
+//        mPresence.setImageDrawable(null);
+//        mPublished.setText(null);
         mContent.setText(null);
-        mPublished.setText(null);
 
         mActions.clear();
         mTrack.removeAllViews();
@@ -593,22 +598,31 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         // Add direct intent if single child, otherwise flag for multiple
         LinkedList<ActionInfo> children = mActions.get(mimeType);
         ActionInfo firstInfo = children.get(0);
-        if (children.size() == 1) {
+//        if (children.size() == 1) {
             view.setTag(firstInfo.buildIntent());
-        } else {
-            view.setTag(mimeType);
-        }
+//        } else {
+//            view.setTag(children);
+//        }
 
         // Set icon and listen for clicks
         view.setImageBitmap(firstInfo.mapping.icon);
         view.setOnClickListener(this);
         return view;
     }
+    
+    /** {@inheritDoc} */
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // Pass list item clicks along so that Intents are handled uniformly
+        onClick(view);
+    }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
         final Object tag = v.getTag();
         if (tag instanceof Intent) {
+            // Hide the resolution list, if present
+            mResolveList.setVisibility(View.GONE);
+            
             // Incoming tag is concrete intent, so launch
             try {
                 mContext.startActivity((Intent)tag);
@@ -616,12 +630,48 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
                 Log.w(TAG, NOT_FOUND);
                 Toast.makeText(mContext, NOT_FOUND, Toast.LENGTH_SHORT).show();
             }
-        } else if (tag instanceof String) {
-            // Incoming tag is a mime-type, so show resolution list
-            LinkedList<ActionInfo> children = mActions.get(tag);
-
-            // TODO: show drop-down resolution list
-            Log.d(TAG, "would show list between several options here");
+//        } else if (tag instanceof LinkedList) {
+//            // Incoming tag is a mime-type, so show resolution list
+//            final LinkedList<ActionInfo> children = (LinkedList<ActionInfo>)tag;
+//            Log.d(TAG, "found chidlren=" + children);
+//
+//            mResolveList.setVisibility(View.VISIBLE);
+//            mResolveList.setOnItemClickListener(this);
+//            mResolveList.setAdapter(new BaseAdapter() {
+//                public int getCount() {
+//                    return children.size();
+//                }
+//
+//                public Object getItem(int position) {
+//                    return children.get(position);
+//                }
+//
+//                public long getItemId(int position) {
+//                    return position;
+//                }
+//
+//                public View getView(int position, View convertView, ViewGroup parent) {
+//                    if (convertView == null) {
+//                        convertView = mInflater.inflate(R.layout.fasttrack_resolve_item, parent, false);
+//                    }
+//                    
+//                    // Set action title based on summary value
+//                    ActionInfo info = (ActionInfo)getItem(position);
+//                    TextView textView = (TextView)convertView;
+//                    textView.setText(info.summaryValue);
+//                    textView.setTag(info.buildIntent());
+//                    textView.setCompoundDrawablesWithIntrinsicBounds(
+//                            new BitmapDrawable(info.mapping.icon), null, null, null);
+//                    
+//                    return convertView;
+//                }
+//            });
+//            
+//            // Make sure we resize to make room for ListView
+//            onWindowAttributesChanged(mWindow.getAttributes());
+//
+//            // TODO: show drop-down resolution list
+//            Log.d(TAG, "would show list between several options here");
 
         }
     }

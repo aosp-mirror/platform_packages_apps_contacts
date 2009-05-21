@@ -40,41 +40,25 @@
             android:layout_height="40dip"
             android:layout_marginLeft="4dip"
             android:background="@drawable/frame_sm_track"
-        android:scaleType="fitCenter" />
-
-    <ImageView
-        android:id="@+id/presence"
-        android:layout_width="wrap_content"
-        android:layout_height="42dip"
-        android:layout_marginRight="8dip"
-        android:layout_marginTop="4dip"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/presence_online"
-        android:scaleType="centerInside" />
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:layout_width="0dip"
-        android:layout_toLeftOf="@id/presence"
+            android:layout_toLeftOf="@id/presence"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="8dip"
             android:paddingRight="8dip"
-        android:textColor="#f000"
+            android:orientation="vertical">
 
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_toRightOf="@id/photo"
-        android:layout_toLeftOf="@id/presence"
-        android:layout_below="@id/displayname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textColor="#f000"
-        android:textSize="14dip" />
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="#f000"
+                android:textSize="14dip" />
 
             <TextView
                 android:id="@+id/published"
@@ -96,8 +80,9 @@
             android:scaleType="centerInside" />
 
     </LinearLayout>
+
     <HorizontalScrollView
-        android:layout_below="@id/status"
+        android:id="@+id/scroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fadingEdgeLength="40dip"
@@ -112,6 +97,16 @@
             android:orientation="horizontal" />
 
     </HorizontalScrollView>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
+        android:layout_marginLeft="60dip"
+        android:visibility="gone"
+        android:background="#ff00"
+        />
 
     <ImageView
         android:id="@+id/arrow_down"
