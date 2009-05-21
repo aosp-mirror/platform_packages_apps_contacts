@@ -202,7 +202,6 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         if (link == null) {
             return;
         }
-
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
     }
 
@@ -224,7 +223,6 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
             ImageView photo;
             ImageView sourceIcon;
             TextView content;
-            SpannableStringBuilder contentBuilder = new SpannableStringBuilder();
             TextView summary;
             SpannableStringBuilder summaryBuilder = new SpannableStringBuilder();
             ImageView thumbnail;
