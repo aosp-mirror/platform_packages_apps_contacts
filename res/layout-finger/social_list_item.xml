@@ -16,7 +16,18 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="64dip"
+>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:background="?android:attr/listDivider"
+    />
 
     <ImageView
         android:id="@+id/sourceIcon"
@@ -25,7 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="2dip"
+        android:layout_marginTop="15dip"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="8dip"
 
@@ -43,8 +54,10 @@
         android:layout_marginTop="1dip"
         android:layout_marginRight="8dip"
 
-        android:background="@drawable/contact_picture_border_in_list"
+        android:background="@drawable/social_picture_border_in_list"
+        android:cropToPadding="true"
         android:gravity="center"
+        android:padding="5dip"
         android:scaleType="fitCenter"
     />
 
@@ -53,7 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/photo"
         android:layout_toLeftOf="@id/sourceIcon"
-        android:paddingBottom="2dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
         android:orientation="vertical"
     >
     
@@ -62,9 +76,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
                 
-            android:lineSpacingMultiplier="0.9"
             android:maxLines="6"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorPrimary"
         />
     
         <TextView
@@ -72,9 +86,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
     
+            android:paddingLeft="20dip"
+            android:paddingBottom="5dip"
             android:maxLines="2"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#39F"
+            android:textColor="#38F"
         />
     
         <ImageView
@@ -92,11 +108,11 @@
             android:id="@+id/published"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dip"
     
             android:lines="1"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#999"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="12sp"
         />
     </LinearLayout>
 

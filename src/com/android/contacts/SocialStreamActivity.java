@@ -49,6 +49,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
 import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
@@ -175,6 +176,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         private final ContactsCache mContactsCache;
         private final MappingCache mMappingCache;
         private final StyleSpan mTextStyleName;
+        private final UnderlineSpan mTextStyleLink;
 
         private static class SocialHolder {
             ImageView photo;
@@ -182,6 +184,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             TextView content;
             SpannableStringBuilder contentBuilder = new SpannableStringBuilder();
             TextView summary;
+            SpannableStringBuilder summaryBuilder = new SpannableStringBuilder();
             ImageView thumbnail;
             TextView published;
         }
@@ -194,6 +197,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             mContactsCache = contactsCache;
             mMappingCache = mappingCache;
             mTextStyleName = new StyleSpan(android.graphics.Typeface.BOLD);
+            mTextStyleLink = new UnderlineSpan();
         }
 
         @Override
@@ -236,7 +240,10 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             if (summary == null) {
                 holder.summary.setVisibility(View.GONE);
             } else {
-                holder.summary.setText(summary);
+                holder.summaryBuilder.clear();
+                holder.summaryBuilder.append(summary);
+                holder.summaryBuilder.setSpan(mTextStyleLink, 0, summary.length(), 0);
+                holder.summary.setText(holder.summaryBuilder);
                 holder.summary.setVisibility(View.VISIBLE);
             }
 
