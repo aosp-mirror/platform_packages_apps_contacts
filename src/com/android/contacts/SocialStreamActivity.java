@@ -32,6 +32,7 @@ import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -57,6 +58,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -78,6 +80,8 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         Activities.TITLE,
         Activities.SUMMARY,
         Activities.THREAD_PUBLISHED,
+        Activities.LINK,
+        Activities.THUMBNAIL,
     };
 
     private static final int COL_ID = 0;
@@ -90,8 +94,11 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
     private static final int COL_TITLE = 7;
     private static final int COL_SUMMARY = 8;
     private static final int COL_THREAD_PUBLISHED = 9;
+    private static final int COL_LINK = 10;
+    private static final int COL_THUMBNAIL = 11;
 
-    public static final int PHOTO_SIZE = 58;
+    public static final int PHOTO_SIZE = 54;
+    public static final int THUMBNAIL_SIZE = 54;
 
     private ListAdapter mAdapter;
 
@@ -145,6 +152,19 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
 
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Cursor cursor = (Cursor)getListAdapter().getItem(position);
+
+        // TODO check mime type and if it is supported, launch the corresponding app
+        String link = cursor.getString(COL_LINK);
+        if (link == null) {
+            return;
+        }
+
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+    }
+
     /**
      * List adapter for social stream data queried from
      * {@link Activities#CONTENT_URI}.
@@ -161,6 +181,8 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             ImageView sourceIcon;
             TextView content;
             SpannableStringBuilder contentBuilder = new SpannableStringBuilder();
+            TextView summary;
+            ImageView thumbnail;
             TextView published;
         }
 
@@ -192,7 +214,9 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             long contactId = cursor.getLong(COL_AUTHOR_CONTACT_ID);
             String name = cursor.getString(COL_DISPLAY_NAME);
             String title = cursor.getString(COL_TITLE);
+            String summary = cursor.getString(COL_SUMMARY);
             long published = cursor.getLong(COL_PUBLISHED);
+            byte[] thumbnailBlob = cursor.getBlob(COL_THUMBNAIL);
 
             // TODO: trigger async query to find actual name and photo instead
             // of using this lazy caching mechanism
@@ -208,6 +232,22 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             holder.contentBuilder.append(title);
             holder.contentBuilder.setSpan(mTextStyleName, 0, name.length(), 0);
             holder.content.setText(holder.contentBuilder);
+
+            if (summary == null) {
+                holder.summary.setVisibility(View.GONE);
+            } else {
+                holder.summary.setText(summary);
+                holder.summary.setVisibility(View.VISIBLE);
+            }
+
+            if (thumbnailBlob != null) {
+                Bitmap thumbnail =
+                        BitmapFactory.decodeByteArray(thumbnailBlob, 0, thumbnailBlob.length);
+                holder.thumbnail.setImageBitmap(thumbnail);
+                holder.thumbnail.setVisibility(View.VISIBLE);
+            } else {
+                holder.thumbnail.setVisibility(View.GONE);
+            }
 
             CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
                     System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
@@ -235,6 +275,8 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             holder.photo = (ImageView) view.findViewById(R.id.photo);
             holder.sourceIcon = (ImageView) view.findViewById(R.id.sourceIcon);
             holder.content = (TextView) view.findViewById(R.id.content);
+            holder.summary = (TextView) view.findViewById(R.id.summary);
+            holder.thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             holder.published = (TextView) view.findViewById(R.id.published);
             view.setTag(holder);
 
