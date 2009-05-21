@@ -111,7 +111,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     }
 
     private void setupFavoritesTab() {
-        Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
+        Intent intent = new Intent(UI.LIST_STARRED_ACTION);
         intent.setClass(this, ContactsListActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("favorites")
