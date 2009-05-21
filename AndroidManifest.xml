@@ -116,7 +116,7 @@
         
         <!-- Tab container for Activity Stream and Contacts -->
         <activity android:name="ContactsActivity"
-            android:label="@string/strequentList"
+            android:label="@string/contactsList"
             android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
@@ -129,19 +129,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-        </activity>
-
-        <!-- An empty activity that presents the DialtactActivity's Contacts tab -->
-        <activity-alias android:name="DialtactsContactsEntryActivity"
-            android:targetActivity="ContactsActivity"
-            android:label="@string/contactsList"
-            android:icon="@drawable/ic_launcher_contacts"
-        >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -153,7 +140,7 @@
                 <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity-alias>
+        </activity>
 
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
         <activity-alias android:name="DialtactsFavoritesEntryActivity"

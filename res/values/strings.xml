@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for the activity that shows contacts.  This is the name
          used in the Launcher icon. -->
-    <string name="contactsList">Contacts</string>
+    <string name="contactsList">People</string>
 
     <!-- Title for the activity that dials the phone.  This is the name
          used in the Launcher icon. -->
@@ -323,7 +323,7 @@
     <string name="socialStreamIconLabel">Social</string>
 
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
-    <string name="contactsIconLabel">Contacts</string>
+    <string name="contactsIconLabel">People</string>
 
     <!-- The description text for the favorites tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsFavoritesLabel">Favorites</string>
