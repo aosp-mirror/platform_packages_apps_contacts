@@ -17,7 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
-import com.android.contacts.SocialStreamActivity.MappingCache;
 import com.android.providers.contacts2.ContactsContract;
 import com.android.providers.contacts2.ContactsContract.Aggregates;
 
@@ -38,10 +37,7 @@ import android.provider.Contacts.ContactMethodsColumns;
 import android.provider.Contacts.Intents;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.util.Log;
 import android.view.View;
-
-import java.lang.ref.WeakReference;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in
@@ -59,7 +55,7 @@ import java.lang.ref.WeakReference;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener {
+public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener, FastTrackWindow.OnDismissListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 
@@ -71,10 +67,10 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         ContactsContract.Contacts.AGGREGATE_ID,
 //        People._ID,
     };
-    
+
     static final String SCHEME_MAILTO = "mailto";
     static final String SCHEME_TEL = "tel";
-    
+
     static final int AGGREGATE_ID_INDEX = 0;
 
     /**
@@ -83,7 +79,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
      */
     static final String QUERY_KIND_EMAIL_OR_IM = ContactMethodsColumns.KIND +
             " IN (" + Contacts.KIND_EMAIL + "," + Contacts.KIND_IM + ")";
-    
+
     /**
      * Extra used to request a specific {@link FastTrackWindow} position.
      */
@@ -91,7 +87,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     private static final int DEFAULT_Y = 90;
 
     static final int QUERY_TOKEN = 42;
-    
+
     private NotifyingAsyncQueryHandler mQueryHandler;
 
     private Bundle mCreateExtras;
@@ -99,13 +95,10 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     private boolean mCreateForce;
 
     private FastTrackWindow mFastTrack;
-    
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
-        // Throw an empty layout up so we have a window token later
-        setContentView(R.layout.empty);
 
         // Create handler if doesn't exist, otherwise cancel any running
         if (mQueryHandler == null) {
@@ -133,7 +126,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         }
 
         // Read possible extra with specific title
-        String mCreateDescrip = intent.getStringExtra(Intents.EXTRA_CREATE_DESCRIPTION);
+        mCreateDescrip = intent.getStringExtra(Intents.EXTRA_CREATE_DESCRIPTION);
         if (mCreateDescrip == null) {
             mCreateDescrip = ssp;
         }
@@ -144,11 +137,9 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         // Handle specific query request
         if (SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
-//            Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI, Uri.encode(ssp));
-//            mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
-//                    PEOPLE_PROJECTION, null, null, null);
 
-            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
+            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_EMAIL_URI,
+                    Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                     CONTACTS_PROJECTION, null, null, null);
 
@@ -183,13 +174,14 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
      */
     private void showFastTrack(Uri aggUri, int y) {
         // Use our local window token for now
-        final IBinder windowToken = findViewById(android.R.id.empty).getWindowToken();
-        FakeView fakeView = new FakeView(this, windowToken);
+        mFastTrack = new FastTrackWindow(this, this);
+        mFastTrack.show(aggUri, y);
+    }
 
-        final MappingCache mappingCache = MappingCache.createAndFill(this);
-
-        mFastTrack = new FastTrackWindow(this, fakeView, aggUri, mappingCache);
-        mFastTrack.showAt(0, y);
+    /** {@inheritDoc} */
+    public void onDismiss(FastTrackWindow dialog) {
+        // When dismissed, finish this activity
+        finish();
     }
 
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {

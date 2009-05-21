@@ -28,7 +28,7 @@
         contacts:edgeWidth="80dip"
         contacts:listenEdges="left">
 
-        <com.android.contacts.FloatyListView
+        <ListView
             android:id="@android:id/list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

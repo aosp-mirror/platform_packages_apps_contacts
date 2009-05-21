@@ -96,7 +96,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
 
         mTabHost.addTab(mTabHost.newTabSpec("social")
                 .setIndicator(getText(R.string.socialStreamIconLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_contacts))
+                        getResources().getDrawable(R.drawable.ic_tab_friends))
                 .setContent(intent));
     }
 

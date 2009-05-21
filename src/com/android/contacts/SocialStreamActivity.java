@@ -17,9 +17,9 @@
 package com.android.contacts;
 
 import com.android.contacts.EdgeTriggerView.EdgeTriggerListener;
-import com.android.contacts.SocialStreamActivity.MappingCache.Mapping;
 import com.android.providers.contacts2.ContactsContract;
 import com.android.providers.contacts2.ContactsContract.Aggregates;
+import com.android.providers.contacts2.ContactsContract.CommonDataKinds;
 import com.android.providers.contacts2.ContactsContract.Contacts;
 import com.android.providers.contacts2.ContactsContract.Data;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Photo;
@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -53,9 +54,11 @@ import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -63,11 +66,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SocialStreamActivity extends ListActivity implements EdgeTriggerListener {
+public class SocialStreamActivity extends ListActivity implements OnClickListener, EdgeTriggerListener {
     private static final String TAG = "SocialStreamActivity";
 
     private static final String[] PROJ_ACTIVITIES = new String[] {
@@ -101,14 +105,16 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
     public static final int PHOTO_SIZE = 54;
     public static final int THUMBNAIL_SIZE = 54;
 
-    private ListAdapter mAdapter;
+    private SocialAdapter mAdapter;
 
-    private FloatyListView mListView;
+    private ListView mListView;
     private EdgeTriggerView mEdgeTrigger;
     private FastTrackWindow mFastTrack;
+    private MappingCache mMappingCache;
+
+    private static final boolean USE_GESTURE = false;
 
     private ContactsCache mContactsCache;
-    private MappingCache mMappingCache;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -121,36 +127,66 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
 
         Cursor cursor = managedQuery(Activities.CONTENT_URI, PROJ_ACTIVITIES, null, null);
         mAdapter = new SocialAdapter(this, cursor, mContactsCache, mMappingCache);
+        mAdapter.setPhotoListener(this);
 
         setListAdapter(mAdapter);
 
-        mListView = (FloatyListView)findViewById(android.R.id.list);
+        mListView = getListView();
+        mFastTrack = new FastTrackWindow(this);
 
-        // Find and listen for edge triggers
-        mEdgeTrigger = (EdgeTriggerView)findViewById(R.id.edge_trigger);
-        mEdgeTrigger.setOnEdgeTriggerListener(this);
+        if (USE_GESTURE) {
+            // Find and listen for edge triggers
+            mEdgeTrigger = (EdgeTriggerView)findViewById(R.id.edge_trigger);
+            mEdgeTrigger.setOnEdgeTriggerListener(this);
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void onClick(View v) {
+        // Clicked on photo, so show fast-track
+        View listItem = (View)v.getParent();
+        showFastTrack(listItem, (Long)v.getTag());
     }
 
     /** {@inheritDoc} */
     public void onTrigger(float downX, float downY, int edge) {
         // Find list item user triggered over
-        int position = mListView.pointToPosition((int)downX, (int)downY);
+        final int position = mListView.pointToPosition((int)downX, (int)downY);
+        if (position == ListView.INVALID_POSITION) return;
+
+        // Reverse to find the exact top of the triggered entry
+        final int index = position - mListView.getFirstVisiblePosition();
+        final View anchor = mListView.getChildAt(index);
 
         Cursor cursor = (Cursor)mAdapter.getItem(position);
         long aggId = cursor.getLong(COL_AGGREGATE_ID);
 
-        Log.d(TAG, "onTrigger found position=" + position + ", contactId=" + aggId);
+        showFastTrack(anchor, aggId);
 
+    }
+
+    private int[] mLocation = new int[2];
+
+    private void showFastTrack(View anchor, long aggId) {
         Uri aggUri = ContentUris.withAppendedId(ContactsContract.Aggregates.CONTENT_URI, aggId);
 
-        // Dismiss any existing window first
-        if (mFastTrack != null) {
+        anchor.getLocationInWindow(mLocation);
+        final int entryTop = mLocation[1];
+
+        mFastTrack.dismiss();
+        mFastTrack.show(aggUri, entryTop);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Back key dismisses fast-track when its visible
+        if (keyCode == KeyEvent.KEYCODE_BACK && mFastTrack.isShowing()) {
             mFastTrack.dismiss();
+            return true;
         }
 
-        mFastTrack = new FastTrackWindow(this, mListView, aggUri, mMappingCache);
-        mListView.setFloatyWindow(mFastTrack, position);
-
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -177,6 +213,8 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         private final MappingCache mMappingCache;
         private final StyleSpan mTextStyleName;
         private final UnderlineSpan mTextStyleLink;
+        private OnClickListener mPhotoListener;
+        private SpannableStringBuilder mBuilder = new SpannableStringBuilder();
 
         private static class SocialHolder {
             ImageView photo;
@@ -200,6 +238,10 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             mTextStyleLink = new UnderlineSpan();
         }
 
+        public void setPhotoListener(OnClickListener listener) {
+            mPhotoListener = listener;
+        }
+
         @Override
         public int getViewTypeCount() {
             return 2;
@@ -215,6 +257,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         public void bindView(View view, Context context, Cursor cursor) {
             SocialHolder holder = (SocialHolder)view.getTag();
 
+            long aggId = cursor.getLong(COL_AGGREGATE_ID);
             long contactId = cursor.getLong(COL_AUTHOR_CONTACT_ID);
             String name = cursor.getString(COL_DISPLAY_NAME);
             String title = cursor.getString(COL_TITLE);
@@ -230,12 +273,14 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             } else {
                 holder.photo.setImageResource(R.drawable.ic_contact_list_picture);
             }
-            holder.contentBuilder.clear();
-            holder.contentBuilder.append(name);
-            holder.contentBuilder.append(" ");
-            holder.contentBuilder.append(title);
-            holder.contentBuilder.setSpan(mTextStyleName, 0, name.length(), 0);
-            holder.content.setText(holder.contentBuilder);
+            holder.photo.setTag(aggId);
+
+            mBuilder.clear();
+            mBuilder.append(name);
+            mBuilder.append(" ");
+            mBuilder.append(title);
+            mBuilder.setSpan(mTextStyleName, 0, name.length(), 0);
+            holder.content.setText(mBuilder);
 
             if (summary == null) {
                 holder.summary.setVisibility(View.GONE);
@@ -263,7 +308,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             if (holder.sourceIcon != null) {
                 String packageName = cursor.getString(COL_PACKAGE);
                 String mimeType = cursor.getString(COL_MIMETYPE);
-                Mapping mapping = mMappingCache.getMapping(packageName, mimeType);
+                Mapping mapping = mMappingCache.findMapping(packageName, mimeType);
                 if (mapping != null && mapping.icon != null) {
                     holder.sourceIcon.setImageBitmap(mapping.icon);
                 } else {
@@ -286,6 +331,10 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
             holder.thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             holder.published = (TextView) view.findViewById(R.id.published);
             view.setTag(holder);
+
+            if (!USE_GESTURE) {
+                holder.photo.setOnClickListener(mPhotoListener);
+            }
 
             return view;
         }
@@ -354,10 +403,32 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
     }
 
     /**
-     * Store a parsed <code>RemoteViewsMapping</code> object, which maps
-     * mime-types to <code>RemoteViews</code> XML resources and possible icons.
+     * Store a mapping from a package name and mime-type pair to a set of
+     * {@link RemoteViews}, default icon, and column to use from the
+     * {@link Data} table to use as a summary.
      */
-    public static class MappingCache {
+    public static class Mapping {
+        String packageName;
+        String mimeType;
+        String summaryColumn;
+        int remoteViewsRes;
+        Bitmap icon;
+
+        public Mapping() {
+        }
+
+        public Mapping(String packageName, String mimeType) {
+            this.packageName = packageName;
+            this.mimeType = mimeType;
+        }
+    }
+
+    /**
+     * Store a parsed <code>Mapping</code> object, which maps package and
+     * mime-type combinations to {@link RemoteViews} XML resources, default
+     * icons, and summary columns in the {@link Data} table.
+     */
+    public static class MappingCache extends HashMap<String, Mapping> {
         private static final String TAG = "MappingCache";
 
         private static final String TAG_MAPPINGSET = "MappingSet";
@@ -365,33 +436,45 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
 
         private static final String MAPPING_METADATA = "com.android.contacts.stylemap";
 
-        private LinkedList<Mapping> mappings = new LinkedList<Mapping>();
 
+        /**
+         * Only allow inflating through
+         * {@link MappingCache#createAndFill(Context)}.
+         */
         private MappingCache() {
         }
 
-        public static class Mapping {
-            String packageName;
-            String mimeType;
-            int remoteViewsRes;
-            Bitmap icon;
-        }
-
+        /**
+         * Add a {@link Mapping} instance to this cache, correctly using
+         * {@link #generateKey(String, String)} when storing.
+         */
         public void addMapping(Mapping mapping) {
-            mappings.add(mapping);
+            String hashKey = generateKey(mapping.packageName, mapping.mimeType);
+            put(hashKey, mapping);
         }
 
         /**
-         * Find matching <code>RemoteViews</code> XML resource for requested
-         * package and mime-type. Returns -1 if no mapping found.
+         * Generate a key used internally for mapping a specific package name
+         * and mime-type to a {@link Mapping}.
          */
-        public Mapping getMapping(String packageName, String mimeType) {
-            for (Mapping mapping : mappings) {
-                if (mapping.packageName.equals(packageName) && mapping.mimeType.equals(mimeType)) {
-                    return mapping;
-                }
+        private String generateKey(String packageName, String mimeType) {
+            return packageName + ";" + mimeType;
+        }
+
+        /**
+         * Find matching mapping for requested package and mime-type. Returns
+         * null if no mapping found.
+         */
+        public Mapping findMapping(String packageName, String mimeType) {
+            // Search for common mapping first
+            final String commonMapping = generateKey(CommonDataKinds.PACKAGE_COMMON, mimeType);
+            if (containsKey(commonMapping)) {
+                return get(commonMapping);
             }
-            return null;
+
+            // Otherwise search for package-specific mapping
+            final String specificMapping = generateKey(packageName, mimeType);
+            return get(specificMapping);
         }
 
         /**
@@ -399,7 +482,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
          * all packages to find those that provide mappings.
          */
         public static MappingCache createAndFill(Context context) {
-            Log.d(TAG, "searching for mimetype mappings...");
+            Log.d(TAG, "building mime-type mapping cache...");
             final PackageManager pm = context.getPackageManager();
             MappingCache building = new MappingCache();
             List<ApplicationInfo> installed = pm
@@ -440,6 +523,7 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
         public void inflateMappings(Context context, int uid, String packageName,
                 XmlPullParser parser) throws InflateException {
             final AttributeSet attrs = Xml.asAttributeSet(parser);
+            final Resources res = context.getResources();
 
             try {
                 int type;
@@ -474,15 +558,13 @@ public class SocialStreamActivity extends ListActivity implements EdgeTriggerLis
                     Mapping mapping = new Mapping();
                     mapping.packageName = packageName;
                     mapping.mimeType = a.getString(R.styleable.Mapping_mimeType);
+                    mapping.summaryColumn = a.getString(R.styleable.Mapping_summaryColumn);
                     mapping.remoteViewsRes = a.getResourceId(R.styleable.Mapping_remoteViews, -1);
 
                     // Read and resize icon if provided
                     int iconRes = a.getResourceId(R.styleable.Mapping_icon, -1);
                     if (iconRes != -1) {
-                        mapping.icon = BitmapFactory
-                                .decodeResource(context.getResources(), iconRes);
-                        mapping.icon = Utilities.createBitmapThumbnail(mapping.icon, context,
-                                FastTrackWindow.ICON_SIZE);
+                        mapping.icon = BitmapFactory.decodeResource(res, iconRes);
                     }
 
                     addMapping(mapping);

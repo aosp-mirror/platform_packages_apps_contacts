@@ -17,9 +17,9 @@
 package com.android.contacts;
 
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
-import com.android.contacts.FloatyListView.FloatyWindow;
 import com.android.contacts.SocialStreamActivity.MappingCache;
-import com.android.contacts.SocialStreamActivity.MappingCache.Mapping;
+import com.android.contacts.SocialStreamActivity.Mapping;
+import com.android.internal.policy.PolicyManager;
 import com.android.providers.contacts2.ContactsContract;
 import com.android.providers.contacts2.ContactsContract.Aggregates;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds;
@@ -30,6 +30,7 @@ import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Phone;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Photo;
 import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Postal;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -39,14 +40,24 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.Contacts.Phones;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnScrollChangedListener;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,135 +70,276 @@ import android.widget.Gallery.LayoutParams;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
- * {@link PopupWindow} that shows fast-track details for a specific aggregate.
- * This window implements {@link FloatyWindow} so that it can be quickly
- * repositioned by someone like {@link FloatyListView}.
+ * Window that shows fast-track contact details for a specific
+ * {@link Aggregate#_ID}.
  */
-public class FastTrackWindow extends PopupWindow implements QueryCompleteListener, FloatyWindow {
+public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener {
     private static final String TAG = "FastTrackWindow";
 
-    private Context mContext;
-    private View mParent;
+    /**
+     * Interface used to allow the person showing a {@link FastTrackWindow} to
+     * know when the window has been dismissed.
+     */
+    interface OnDismissListener {
+        public void onDismiss(FastTrackWindow dialog);
+    }
+
+    final Context mContext;
+    final LayoutInflater mInflater;
+    final WindowManager mWindowManager;
+    Window mWindow;
+    View mDecor;
+
+    private boolean mQuerying = false;
+    private boolean mShowing = false;
 
     /** Mapping cache from mime-type to icons and actions */
     private MappingCache mMappingCache;
 
-    private ViewGroup mContent;
-
-    private Uri mDataUri;
     private NotifyingAsyncQueryHandler mHandler;
+    private OnDismissListener mDismissListener;
 
-    private boolean mShowing = false;
-    private boolean mHasPosition = false;
-    private boolean mHasDisplayName = false;
-    private boolean mHasData = false;
+    private long mAggId;
+    private int mRequestedY;
+    private int mSlop;
 
-    public static final int ICON_SIZE = 42;
-    public static final int ICON_PADDING = 3;
-    private static final int VERTICAL_OFFSET = 74;
+    private boolean mHasProfile = false;
+    private boolean mHasActions = false;
 
-    private int mFirstX;
-    private int mFirstY;
+    private ImageView mPhoto;
+    private ImageView mPresence;
+    private TextView mDisplayName;
+    private TextView mStatus;
+    private ViewGroup mTrack;
+
+    // TODO: read from a resource somewhere
+    private static final int mHeight = 150;
+    private static final int mAnchorHeight = 20;
+
+    /**
+     * Set of {@link ActionInfo} that are associated with the aggregate
+     * currently displayed by this fast-track window.
+     */
+    private ActionSet mActions = new ActionSet();
+
+    /**
+     * Specific mime-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
+     * distinguishes actions that should initiate a text message.
+     */
+    public static final String MIME_SMS_ADDRESS = "vnd.android.cursor.item/sms-address";
+
+    /**
+     * Specific mime-types that should be bumped to the front of the fast-track.
+     * Other mime-types not appearing in this list follow in alphabetic order.
+     */
+    private static final String[] ORDERED_MIMETYPES = new String[] {
+        Aggregates.CONTENT_ITEM_TYPE,
+        Phones.CONTENT_ITEM_TYPE,
+        MIME_SMS_ADDRESS,
+        Email.CONTENT_ITEM_TYPE,
+    };
+
+//    public static final int ICON_SIZE = 42;
+//    public static final int ICON_PADDING = 3;
+
+    // TODO: read this status from actual query
+    private static final String STUB_STATUS = "has a really long random status message that would be far too long to read on a single device without the need for tiny reading glasses";
+
+    private static final boolean INCLUDE_PROFILE_ACTION = true;
 
     private static final int TOKEN_DISPLAY_NAME = 1;
     private static final int TOKEN_DATA = 2;
-
-    private static final int GRAVITY = Gravity.LEFT | Gravity.TOP;
 
     /** Message to show when no activity is found to perform an action */
     // TODO: move this value into a resources string
     private static final String NOT_FOUND = "Couldn't find an app to handle this action";
 
-    /** List of default mime-type icons */
-    private static HashMap<String, Integer> sMimeIcons = new HashMap<String, Integer>();
+    /**
+     * Prepare a fast-track window to show in the given {@link Context}.
+     */
+    public FastTrackWindow(Context context) {
+        mContext = new ContextThemeWrapper(context, R.style.FastTrack);
+        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
-    /** List of mime-type sorting scores */
-    private static HashMap<String, Integer> sMimeScores = new HashMap<String, Integer>();
+        mSlop = ViewConfiguration.get(mContext).getScaledWindowTouchSlop();
 
-    static {
-        sMimeIcons.put(Phone.CONTENT_ITEM_TYPE, android.R.drawable.sym_action_call);
-        sMimeIcons.put(Email.CONTENT_ITEM_TYPE, android.R.drawable.sym_action_email);
-        sMimeIcons.put(Im.CONTENT_ITEM_TYPE, android.R.drawable.sym_action_chat);
-//        sMimeIcons.put(Phone.CONTENT_ITEM_TYPE, R.drawable.sym_action_sms);
-        sMimeIcons.put(Postal.CONTENT_ITEM_TYPE, R.drawable.sym_action_map);
+        mWindow = PolicyManager.makeNewWindow(mContext);
+        mWindow.setCallback(this);
+        mWindow.setWindowManager(mWindowManager, null, null);
 
-        // For scoring, put phone numbers and E-mail up front, and addresses last
-        sMimeScores.put(Phone.CONTENT_ITEM_TYPE, -200);
-        sMimeScores.put(Email.CONTENT_ITEM_TYPE, -100);
-        sMimeScores.put(Postal.CONTENT_ITEM_TYPE, 100);
+        mWindow.setContentView(R.layout.fasttrack);
+
+        mPhoto = (ImageView)mWindow.findViewById(R.id.photo);
+        mPresence = (ImageView)mWindow.findViewById(R.id.presence);
+        mDisplayName = (TextView)mWindow.findViewById(R.id.displayname);
+        mStatus = (TextView)mWindow.findViewById(R.id.status);
+        mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
+
+        // TODO: move generation of mime-type cache to more-efficient place
+        generateMappingCache();
+
     }
 
     /**
-     * Create a new fast-track window for the given aggregate, using the
-     * provided {@link MappingCache} for icon as needed.
+     * Prepare a fast-track window to show in the given {@link Context}, and
+     * notify the given {@link OnDismissListener} each time this dialog is
+     * dismissed.
      */
-    public FastTrackWindow(Context context, View parent, Uri aggUri, MappingCache mappingCache) {
-        super(context);
+    public FastTrackWindow(Context context, OnDismissListener dismissListener) {
+        this(context);
+        mDismissListener = dismissListener;
+    }
 
-        final Resources resources = context.getResources();
+    /**
+     * Generate {@link MappingCache} specifically for fast-track windows. This
+     * cache knows how to display {@link CommonDataKinds#PACKAGE_COMMON} data
+     * types using generic icons.
+     */
+    private void generateMappingCache() {
+        mMappingCache = MappingCache.createAndFill(mContext);
 
-        mContext = context;
-        mParent = parent;
+        Resources res = mContext.getResources();
+        Mapping mapping;
 
-        mMappingCache = mappingCache;
+        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Aggregates.CONTENT_ITEM_TYPE);
+        mapping.icon = BitmapFactory.decodeResource(res, R.drawable.ic_contacts_details);
+        mMappingCache.addMapping(mapping);
 
-        // Inflate content view
-        LayoutInflater inflater = (LayoutInflater)context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mContent = (ViewGroup)inflater.inflate(R.layout.fasttrack, null, false);
+        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Phone.CONTENT_ITEM_TYPE);
+        mapping.summaryColumn = Phone.NUMBER;
+        mapping.icon = BitmapFactory.decodeResource(res, android.R.drawable.sym_action_call);
+        mMappingCache.addMapping(mapping);
 
-        setContentView(mContent);
-//        setAnimationStyle(android.R.style.Animation_LeftEdge);
+        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, MIME_SMS_ADDRESS);
+        mapping.summaryColumn = Phone.NUMBER;
+        mapping.icon = BitmapFactory.decodeResource(res, R.drawable.sym_action_sms);
+        mMappingCache.addMapping(mapping);
 
-        setBackgroundDrawable(resources.getDrawable(R.drawable.fasttrack));
+        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Email.CONTENT_ITEM_TYPE);
+        mapping.summaryColumn = Email.DATA;
+        mapping.icon = BitmapFactory.decodeResource(res, android.R.drawable.sym_action_email);
+        mMappingCache.addMapping(mapping);
 
-        setWidth(LayoutParams.WRAP_CONTENT);
-        setHeight(LayoutParams.WRAP_CONTENT);
+    }
 
-        setClippingEnabled(false);
-        setFocusable(false);
+    /**
+     * Start showing a fast-track window for the given {@link Aggregate#_ID}
+     * pointing towards the given location.
+     */
+    public void show(Uri aggUri, int y) {
+        if (mShowing || mQuerying) {
+            Log.w(TAG, "already in process of showing");
+            return;
+        }
+
+        mAggId = ContentUris.parseId(aggUri);
+        mRequestedY = y;
+        mQuerying = true;
 
         // Start data query in background
-        mDataUri = Uri.withAppendedPath(aggUri, ContactsContract.Aggregates.Data.CONTENT_DIRECTORY);
+        Uri dataUri = Uri.withAppendedPath(aggUri,
+                ContactsContract.Aggregates.Data.CONTENT_DIRECTORY);
 
-        mHandler = new NotifyingAsyncQueryHandler(context, this);
+        // TODO: also query for latest status message
+        mHandler = new NotifyingAsyncQueryHandler(mContext, this);
         mHandler.startQuery(TOKEN_DISPLAY_NAME, null, aggUri, null, null, null, null);
-        mHandler.startQuery(TOKEN_DATA, null, mDataUri, null, null, null, null);
+        mHandler.startQuery(TOKEN_DATA, null, dataUri, null, null, null, null);
 
-        // TODO: poll around for latest status message or location details
     }
 
     /**
-     * Consider showing this window, which requires both a given position and
-     * completed query results.
+     * Actual internal method to show this fast-track window. Called only by
+     * {@link #considerShowing()} when all data requirements have been met.
      */
-    private synchronized void considerShowing() {
-        if (mHasData && mHasPosition && mHasDisplayName && !mShowing) {
-            mShowing = true;
-            showAtLocation(mParent, GRAVITY, mFirstX, mFirstY);
+    private void showInternal() {
+        mDecor = mWindow.getDecorView();
+        WindowManager.LayoutParams l = mWindow.getAttributes();
+
+        l.gravity = Gravity.TOP | Gravity.LEFT;
+        l.x = 0;
+        l.y = mRequestedY - mHeight;
+
+        l.width = WindowManager.LayoutParams.FILL_PARENT;
+        l.height = mHeight + mAnchorHeight;
+
+        l.dimAmount = 0.6f;
+        l.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
+
+        mWindowManager.addView(mDecor, l);
+        mShowing = true;
+        mQuerying = false;
+    }
+
+    /**
+     * Dismiss this fast-track window if showing.
+     */
+    public void dismiss() {
+        if (!mQuerying && !mShowing) {
+            Log.d(TAG, "not visible, ignore");
+            return;
+        }
+
+        // Cancel any pending queries
+        mHandler.cancelOperation(TOKEN_DISPLAY_NAME);
+        mHandler.cancelOperation(TOKEN_DATA);
+
+        // Reset all views to prepare for possible recycling
+        mPhoto.setImageResource(R.drawable.ic_contact_list_picture);
+        mPresence.setImageDrawable(null);
+        mDisplayName.setText(null);
+        mStatus.setText(null);
+
+        mActions.clear();
+        mTrack.removeAllViews();
+
+        mHasProfile = false;
+        mHasActions = false;
+
+        if (mDecor == null || !mShowing) {
+            Log.d(TAG, "not showing, ignore");
+            return;
+        }
+
+        mWindowManager.removeView(mDecor);
+        mDecor = null;
+        mWindow.closeAllPanels();
+        mShowing = false;
+
+        // Notify any listeners that we've been dismissed
+        if (mDismissListener != null) {
+            mDismissListener.onDismiss(this);
         }
     }
 
-    /** {@inheritDoc} */
-    public void showAt(int x, int y) {
-        // Adjust vertical position by height
-        y -= VERTICAL_OFFSET;
+    /**
+     * Returns true if this fast-track window is showing or querying.
+     */
+    public boolean isShowing() {
+        return mShowing || mQuerying;
+    }
 
-        // Show dialog or update existing location
-        if (!mShowing) {
-            mFirstX = x;
-            mFirstY = y;
-            mHasPosition = true;
-            considerShowing();
-        } else {
-            update(x, y, -1, -1, true);
+    /**
+     * Consider showing this window, which will only call through to
+     * {@link #showInternal()} when all data items are present.
+     */
+    private synchronized void considerShowing() {
+        if (mHasActions && mHasProfile && !mShowing) {
+            showInternal();
         }
     }
 
@@ -195,160 +347,305 @@ public class FastTrackWindow extends PopupWindow implements QueryCompleteListene
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
         if (cursor == null) {
             return;
+        } else if (token == TOKEN_DISPLAY_NAME) {
+            handleDisplayName(cursor);
+        } else if (token == TOKEN_DATA) {
+            handleData(cursor);
         }
-        switch (token) {
-            case TOKEN_DISPLAY_NAME:
-                handleDisplayName(cursor);
-                break;
-            case TOKEN_DATA:
-                handleData(cursor);
-                break;
-        }
-        considerShowing();
     }
 
     /**
      * Handle the result from the {@link TOKEN_DISPLAY_NAME} query.
      */
     private void handleDisplayName(Cursor cursor) {
-        final TextView displayname = (TextView)mContent.findViewById(R.id.displayname);
         final int COL_DISPLAY_NAME = cursor.getColumnIndex(Aggregates.DISPLAY_NAME);
 
         if (cursor.moveToNext()) {
             String foundName = cursor.getString(COL_DISPLAY_NAME);
-            displayname.setText(foundName);
+            mDisplayName.setText(foundName);
+            mStatus.setText(STUB_STATUS);
         }
 
-        mHasDisplayName = true;
+        mHasProfile = true;
+        considerShowing();
+    }
+
+    /**
+     * Description of a specific, actionable {@link Data#_ID} item. May have a
+     * {@link Mapping} associated with it to find {@link RemoteViews} or icon,
+     * and may have built a summary of itself for UI display.
+     */
+    private class ActionInfo {
+        long dataId;
+        String packageName;
+        String mimeType;
+
+        Mapping mapping;
+        String summaryValue;
+
+        /**
+         * Create an action from common {@link Data} elements.
+         */
+        public ActionInfo(long dataId, String packageName, String mimeType) {
+            this.dataId = dataId;
+            this.packageName = packageName;
+            this.mimeType = mimeType;
+        }
+
+        /**
+         * Attempt to find a {@link Mapping} for the package and mime-type
+         * defined by this action. Returns true if one was found.
+         */
+        public boolean findMapping(MappingCache cache) {
+            mapping = cache.findMapping(packageName, mimeType);
+            return (mapping != null);
+        }
+
+        /**
+         * Given a {@link Cursor} pointed at the {@link Data} row associated
+         * with this action, use the {@link Mapping} to build a text summary.
+         */
+        public void buildSummary(Cursor cursor) {
+            if (mapping == null || mapping.summaryColumn == null) return;
+            int index = cursor.getColumnIndex(mapping.summaryColumn);
+            if (index != -1) {
+                summaryValue = cursor.getString(index);
+            }
+        }
+
+        /**
+         * Build an {@link Intent} that will perform this action.
+         */
+        public Intent buildIntent() {
+            // Handle well-known mime-types with special care
+            if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                Uri callUri = Uri.parse("tel:" + Uri.encode(summaryValue));
+                return new Intent(Intent.ACTION_DIAL, callUri);
+
+            } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
+                Uri smsUri = Uri.fromParts("smsto", summaryValue, null);
+                return new Intent(Intent.ACTION_SENDTO, smsUri);
+
+            } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                Uri mailUri = Uri.fromParts("mailto", summaryValue, null);
+                return new Intent(Intent.ACTION_SENDTO, mailUri);
+
+            }
+
+            // Otherwise fall back to default VIEW action
+            Uri dataUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, dataId);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(dataUri);
+
+            return intent;
+        }
+    }
+
+    /**
+     * Provide a simple way of collecting one or more {@link ActionInfo} objects
+     * under a mime-type key.
+     */
+    private class ActionSet extends HashMap<String, LinkedList<ActionInfo>> {
+        private void collect(String mimeType, ActionInfo info) {
+            // Create mime-type set if needed
+            if (!containsKey(mimeType)) {
+                put(mimeType, new LinkedList<ActionInfo>());
+            }
+            LinkedList<ActionInfo> collectList = get(mimeType);
+            collectList.add(info);
+        }
     }
 
     /**
      * Handle the result from the {@link TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
-        final ImageView photo = (ImageView)mContent.findViewById(R.id.photo);
-        final ViewGroup fastTrack = (ViewGroup)mContent.findViewById(R.id.fasttrack);
-
-        // Build list of actions for this contact, this could be done better in
-        // the future using an Adapter
-        ArrayList<ImageView> list = new ArrayList<ImageView>(cursor.getCount());
-
         final int COL_ID = cursor.getColumnIndex(Data._ID);
         final int COL_PACKAGE = cursor.getColumnIndex(Data.PACKAGE);
         final int COL_MIMETYPE = cursor.getColumnIndex(Data.MIMETYPE);
         final int COL_PHOTO = cursor.getColumnIndex(Photo.PHOTO);
 
-        boolean foundDisplayName = false;
-        boolean foundPhoto = false;
+        ActionInfo info;
+
+        // Add the profile shortcut action if requested
+        if (INCLUDE_PROFILE_ACTION) {
+            final String mimeType = Aggregates.CONTENT_ITEM_TYPE;
+            info = new ActionInfo(mAggId, CommonDataKinds.PACKAGE_COMMON, mimeType);
+            if (info.findMapping(mMappingCache)) {
+                mActions.collect(mimeType, info);
+            }
+        }
 
         while (cursor.moveToNext()) {
             final long dataId = cursor.getLong(COL_ID);
             final String packageName = cursor.getString(COL_PACKAGE);
             final String mimeType = cursor.getString(COL_MIMETYPE);
 
-            // Handle finding the photo among various return rows
-            if (!foundPhoto && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            // Handle when a photo appears in the various data items
+            // TODO: accept a photo only if its marked as primary
+            if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 byte[] photoBlob = cursor.getBlob(COL_PHOTO);
                 Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
-                photo.setImageBitmap(photoBitmap);
-                photo.setVisibility(View.VISIBLE);
-                foundPhoto = true;
-            }
-
-            ImageView action;
-
-            // First, try looking in mapping cache for possible icon match
-            Mapping mapping = mMappingCache.getMapping(packageName, mimeType);
-            if (mapping != null && mapping.icon != null) {
-                action = new ImageView(mContext);
-                action.setImageBitmap(mapping.icon);
-
-            } else if (sMimeIcons.containsKey(mimeType)) {
-                // Otherwise fall back to generic icons
-                int icon = sMimeIcons.get(mimeType);
-                action = new ImageView(mContext);
-                action.setImageResource(icon);
-
-            } else {
-                // No icon found, so don't insert any action button
+                mPhoto.setImageBitmap(photoBitmap);
                 continue;
-
             }
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ICON_SIZE, ICON_SIZE);
-            params.rightMargin = ICON_PADDING;
-            action.setLayoutParams(params);
-
-            // Find the sorting score for this mime-type, otherwise allocate a
-            // new one to make sure the same types are grouped together.
-            if (!sMimeScores.containsKey(mimeType)) {
-                sMimeScores.put(mimeType, sMimeScores.size());
+            // Build an action for this data entry, find a mapping to a UI
+            // element, build its summary from the cursor, and collect it along
+            // with all others of this mime-type.
+            info = new ActionInfo(dataId, packageName, mimeType);
+            if (info.findMapping(mMappingCache)) {
+                info.buildSummary(cursor);
+                mActions.collect(info.mimeType, info);
             }
 
-            int mimeScore = sMimeScores.get(mimeType);
-            action.setTag(mimeScore);
-
-            final Intent intent = buildIntentForMime(dataId, mimeType, cursor);
-            action.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    try {
-                        mContext.startActivity(intent);
-                    } catch (ActivityNotFoundException e) {
-                        Log.w(TAG, NOT_FOUND, e);
-                        Toast.makeText(mContext, NOT_FOUND, Toast.LENGTH_SHORT).show();
-                    }
+            // If phone number, also insert as text message action
+            if (Phones.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                info = new ActionInfo(dataId, packageName, MIME_SMS_ADDRESS);
+                if (info.findMapping(mMappingCache)) {
+                    info.buildSummary(cursor);
+                    mActions.collect(info.mimeType, info);
                 }
-            });
-
-            list.add(action);
+            }
         }
 
         cursor.close();
 
-        // Sort the final list based on mime-type scores
-        Collections.sort(list, new Comparator<ImageView>() {
-            public int compare(ImageView object1, ImageView object2) {
-                return (Integer)object1.getTag() - (Integer)object2.getTag();
+        // Turn our list of actions into UI elements, starting with common types
+        Set<String> containedTypes = mActions.keySet();
+        for (String mimeType : ORDERED_MIMETYPES) {
+            if (containedTypes.contains(mimeType)) {
+                mTrack.addView(inflateAction(mimeType));
+                containedTypes.remove(mimeType);
             }
-        });
-
-        for (ImageView action : list) {
-            fastTrack.addView(action);
         }
 
-        mHasData = true;
+        // Then continue with remaining mime-types in alphabetical order
+        String[] remainingTypes = containedTypes.toArray(new String[containedTypes.size()]);
+        Arrays.sort(remainingTypes);
+        for (String mimeType : remainingTypes) {
+            mTrack.addView(inflateAction(mimeType));
+        }
+
+        mHasActions = true;
+        considerShowing();
     }
 
     /**
-     * Build an {@link Intent} that will trigger the action described by the
-     * given {@link Cursor} and mime-type.
+     * Inflate the in-track view for the action of the given mime-type. Will use
+     * the icon provided by the {@link Mapping}.
      */
-    public Intent buildIntentForMime(long dataId, String mimeType, Cursor cursor) {
-        if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String data = cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
-            Uri callUri = Uri.parse("tel:" + Uri.encode(data));
-            return new Intent(Intent.ACTION_DIAL, callUri);
+    private View inflateAction(String mimeType) {
+        ImageView view = (ImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
 
-        } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String data = cursor.getString(cursor.getColumnIndex(Email.DATA));
-            return new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", data, null));
-
-//        } else if (CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
-//            return new Intent(Intent.ACTION_SENDTO, constructImToUrl(host, data));
-
-        } else if (CommonDataKinds.Postal.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String data = cursor.getString(cursor.getColumnIndex(Postal.DATA));
-            Uri mapsUri = Uri.parse("geo:0,0?q=" + Uri.encode(data));
-            return new Intent(Intent.ACTION_VIEW, mapsUri);
-
+        // Add direct intent if single child, otherwise flag for multiple
+        LinkedList<ActionInfo> children = mActions.get(mimeType);
+        ActionInfo firstInfo = children.get(0);
+        if (children.size() == 1) {
+            view.setTag(firstInfo.buildIntent());
+        } else {
+            view.setTag(mimeType);
         }
 
-        // Otherwise fall back to default VIEW action
-        Uri dataUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, dataId);
+        // Set icon and listen for clicks
+        view.setImageBitmap(firstInfo.mapping.icon);
+        view.setOnClickListener(this);
+        return view;
+    }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(dataUri);
+    /** {@inheritDoc} */
+    public void onClick(View v) {
+        final Object tag = v.getTag();
+        if (tag instanceof Intent) {
+            // Incoming tag is concrete intent, so launch
+            try {
+                mContext.startActivity((Intent)tag);
+            } catch (ActivityNotFoundException e) {
+                Log.w(TAG, NOT_FOUND);
+                Toast.makeText(mContext, NOT_FOUND, Toast.LENGTH_SHORT).show();
+            }
+        } else if (tag instanceof String) {
+            // Incoming tag is a mime-type, so show resolution list
+            LinkedList<ActionInfo> children = mActions.get(tag);
 
-        return intent;
+            // TODO: show drop-down resolution list
+            Log.d(TAG, "would show list between several options here");
+
+        }
+    }
+
+    /** {@inheritDoc} */
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        return mWindow.superDispatchKeyEvent(event);
+    }
+
+    /** {@inheritDoc} */
+    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
+        // TODO: make this window accessible
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+            dismiss();
+            return true;
+        }
+        return mWindow.superDispatchTouchEvent(event);
+    }
+
+    /** {@inheritDoc} */
+    public boolean dispatchTrackballEvent(MotionEvent event) {
+        return mWindow.superDispatchTrackballEvent(event);
+    }
+
+    /** {@inheritDoc} */
+    public void onContentChanged() {
+    }
+
+    /** {@inheritDoc} */
+    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public View onCreatePanelView(int featureId) {
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public void onPanelClosed(int featureId, Menu menu) {
+    }
+
+    /** {@inheritDoc} */
+    public boolean onPreparePanel(int featureId, View view, Menu menu) {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onSearchRequested() {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public void onWindowAttributesChanged(android.view.WindowManager.LayoutParams attrs) {
+        if (mDecor != null) {
+            mWindowManager.updateViewLayout(mDecor, attrs);
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void onWindowFocusChanged(boolean hasFocus) {
     }
 }
