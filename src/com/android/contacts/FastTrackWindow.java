@@ -39,8 +39,13 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.Contacts.Phones;
+import android.text.SpannableStringBuilder;
+import android.text.style.CharacterStyle;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -110,21 +115,26 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private OnDismissListener mDismissListener;
 
     private long mAggId;
-    private int mRequestedY;
-    private int mSlop;
+    private int mAnchorX;
+    private int mAnchorY;
+    private int mAnchorHeight;
 
     private boolean mHasProfile = false;
     private boolean mHasActions = false;
 
+    private View mArrowUp;
+    private View mArrowDown;
+
     private ImageView mPhoto;
     private ImageView mPresence;
-    private TextView mDisplayName;
-    private TextView mStatus;
+    private TextView mContent;
+    private TextView mPublished;
     private ViewGroup mTrack;
 
     // TODO: read from a resource somewhere
-    private static final int mHeight = 150;
-    private static final int mAnchorHeight = 20;
+    private static final int mHeight = 138;
+    private static final int mArrowHeight = 10;
+    private static final int mArrowWidth = 24;
 
     /**
      * Set of {@link ActionInfo} that are associated with the aggregate
@@ -149,9 +159,6 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         Email.CONTENT_ITEM_TYPE,
     };
 
-//    public static final int ICON_SIZE = 42;
-//    public static final int ICON_PADDING = 3;
-
     // TODO: read this status from actual query
     private static final String STUB_STATUS = "has a really long random status message that would be far too long to read on a single device without the need for tiny reading glasses";
 
@@ -172,18 +179,19 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
-        mSlop = ViewConfiguration.get(mContext).getScaledWindowTouchSlop();
-
         mWindow = PolicyManager.makeNewWindow(mContext);
         mWindow.setCallback(this);
         mWindow.setWindowManager(mWindowManager, null, null);
 
         mWindow.setContentView(R.layout.fasttrack);
 
+        mArrowUp = (View)mWindow.findViewById(R.id.arrow_up);
+        mArrowDown = (View)mWindow.findViewById(R.id.arrow_down);
+        
         mPhoto = (ImageView)mWindow.findViewById(R.id.photo);
         mPresence = (ImageView)mWindow.findViewById(R.id.presence);
-        mDisplayName = (TextView)mWindow.findViewById(R.id.displayname);
-        mStatus = (TextView)mWindow.findViewById(R.id.status);
+        mContent = (TextView)mWindow.findViewById(R.id.content);
+        mPublished = (TextView)mWindow.findViewById(R.id.published);
         mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
 
         // TODO: move generation of mime-type cache to more-efficient place
@@ -237,14 +245,16 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * Start showing a fast-track window for the given {@link Aggregate#_ID}
      * pointing towards the given location.
      */
-    public void show(Uri aggUri, int y) {
+    public void show(Uri aggUri, int x, int y, int height) {
         if (mShowing || mQuerying) {
             Log.w(TAG, "already in process of showing");
             return;
         }
 
         mAggId = ContentUris.parseId(aggUri);
-        mRequestedY = y;
+        mAnchorX = x;
+        mAnchorY = y;
+        mAnchorHeight = height;
         mQuerying = true;
 
         // Start data query in background
@@ -259,19 +269,44 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     }
 
     /**
+     * Show the correct callout arrow based on a {@link R.id} reference.
+     */
+    private void showArrow(int whichArrow, int requestedX) {
+        final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
+        final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
+        
+        showArrow.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams param = (LinearLayout.LayoutParams)showArrow.getLayoutParams();
+        param.leftMargin = requestedX - mArrowWidth / 2;
+        
+        hideArrow.setVisibility(View.INVISIBLE);
+    }
+
+    /**
      * Actual internal method to show this fast-track window. Called only by
      * {@link #considerShowing()} when all data requirements have been met.
      */
     private void showInternal() {
         mDecor = mWindow.getDecorView();
         WindowManager.LayoutParams l = mWindow.getAttributes();
-
+        
         l.gravity = Gravity.TOP | Gravity.LEFT;
         l.x = 0;
-        l.y = mRequestedY - mHeight;
-
+        
+        if (mAnchorY > mHeight) {
+            // Show downwards callout when enough room
+            showArrow(R.id.arrow_down, mAnchorX);
+            l.y = mAnchorY - (mHeight - (mArrowHeight * 2) - 5);
+            
+        } else {
+            // Otherwise show upwards callout
+            showArrow(R.id.arrow_up, mAnchorX);
+            l.y = mAnchorY + mAnchorHeight - 10;
+            
+        }
+        
         l.width = WindowManager.LayoutParams.FILL_PARENT;
-        l.height = mHeight + mAnchorHeight;
+        l.height = mHeight;
 
         l.dimAmount = 0.6f;
         l.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND
@@ -301,8 +336,8 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         // Reset all views to prepare for possible recycling
         mPhoto.setImageResource(R.drawable.ic_contact_list_picture);
         mPresence.setImageDrawable(null);
-        mDisplayName.setText(null);
-        mStatus.setText(null);
+        mContent.setText(null);
+        mPublished.setText(null);
 
         mActions.clear();
         mTrack.removeAllViews();
@@ -353,6 +388,10 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
             handleData(cursor);
         }
     }
+    
+    private SpannableStringBuilder mBuilder = new SpannableStringBuilder();
+    private CharacterStyle mStyleBold = new StyleSpan(android.graphics.Typeface.BOLD);
+    private CharacterStyle mStyleBlack = new ForegroundColorSpan(Color.BLACK);
 
     /**
      * Handle the result from the {@link TOKEN_DISPLAY_NAME} query.
@@ -362,8 +401,17 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         if (cursor.moveToNext()) {
             String foundName = cursor.getString(COL_DISPLAY_NAME);
-            mDisplayName.setText(foundName);
-            mStatus.setText(STUB_STATUS);
+            
+            mBuilder.clear();
+            mBuilder.append(foundName);
+            mBuilder.append(" ");
+            mBuilder.append(STUB_STATUS);
+            mBuilder.setSpan(mStyleBold, 0, foundName.length(), 0);
+            mBuilder.setSpan(mStyleBlack, 0, foundName.length(), 0);
+            mContent.setText(mBuilder);
+            
+            mPublished.setText("4 hours ago");
+
         }
 
         mHasProfile = true;

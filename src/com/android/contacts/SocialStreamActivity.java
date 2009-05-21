@@ -166,15 +166,19 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     }
 
     private int[] mLocation = new int[2];
+    
+    private static final int PHOTO_WIDTH = 54;
+    private static final int PHOTO_HEIGHT = 54;
 
     private void showFastTrack(View anchor, long aggId) {
         Uri aggUri = ContentUris.withAppendedId(ContactsContract.Aggregates.CONTENT_URI, aggId);
 
         anchor.getLocationInWindow(mLocation);
         final int entryTop = mLocation[1];
+        final int x = (PHOTO_WIDTH / 2) + 3;
 
         mFastTrack.dismiss();
-        mFastTrack.show(aggUri, entryTop);
+        mFastTrack.show(aggUri, x, entryTop, PHOTO_HEIGHT);
     }
 
     /** {@inheritDoc} */

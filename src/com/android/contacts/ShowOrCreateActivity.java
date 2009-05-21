@@ -83,8 +83,12 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     /**
      * Extra used to request a specific {@link FastTrackWindow} position.
      */
+    private static final String EXTRA_X = "pixel_x";
     private static final String EXTRA_Y = "pixel_y";
+    private static final String EXTRA_HEIGHT = "pixel_height";
+    private static final int DEFAULT_X = 0;
     private static final int DEFAULT_Y = 90;
+    private static final int DEFAULT_HEIGHT = 30;
 
     static final int QUERY_TOKEN = 42;
 
@@ -151,8 +155,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
 
         } else {
             // Otherwise assume incoming aggregate Uri
-            final int y = getIntent().getExtras().getInt(EXTRA_Y, DEFAULT_Y);
-            showFastTrack(data, y);
+            showFastTrack(data);
 
         }
     }
@@ -172,10 +175,14 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
      * Show a {@link FastTrackWindow} for the given aggregate at the requested
      * screen location.
      */
-    private void showFastTrack(Uri aggUri, int y) {
+    private void showFastTrack(Uri aggUri) {
         // Use our local window token for now
+        Bundle extras = getIntent().getExtras();
+        final int x = extras.getInt(EXTRA_X, DEFAULT_X);
+        final int y = extras.getInt(EXTRA_Y, DEFAULT_Y);
+        final int height = extras.getInt(EXTRA_HEIGHT, DEFAULT_HEIGHT);
         mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(aggUri, y);
+        mFastTrack.show(aggUri, x, y, height);
     }
 
     /** {@inheritDoc} */
@@ -205,8 +212,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         if (count == 1 && aggId != -1) {
             // If we only found one item, jump right to viewing it
             final Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, aggId);
-            final int y = getIntent().getExtras().getInt(EXTRA_Y, DEFAULT_Y);
-            showFastTrack(aggUri, y);
+            showFastTrack(aggUri);
 
 //            Intent viewIntent = new Intent(Intent.ACTION_VIEW,
 //                    ContentUris.withAppendedId(People.CONTENT_URI, personId));
