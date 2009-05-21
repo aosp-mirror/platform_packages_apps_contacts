@@ -86,7 +86,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     private static final String EXTRA_X = "pixel_x";
     private static final String EXTRA_Y = "pixel_y";
     private static final String EXTRA_HEIGHT = "pixel_height";
-    private static final int DEFAULT_X = 0;
+    private static final int DEFAULT_X = 30;
     private static final int DEFAULT_Y = 90;
     private static final int DEFAULT_HEIGHT = 30;
 
