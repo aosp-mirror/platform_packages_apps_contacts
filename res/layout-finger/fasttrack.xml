@@ -40,24 +40,41 @@
             android:layout_height="40dip"
             android:layout_marginLeft="4dip"
             android:background="@drawable/frame_sm_track"
-            android:scaleType="fitCenter" />
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/presence"
+        android:layout_width="wrap_content"
+        android:layout_height="42dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginTop="4dip"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/presence_online"
+        android:scaleType="centerInside" />
 
         <LinearLayout
             android:layout_width="0dip"
+        android:layout_toLeftOf="@id/presence"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="8dip"
             android:paddingRight="8dip"
-            android:orientation="vertical">
+        android:textColor="#f000"
 
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="#f666"
-                android:textSize="14dip" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_toRightOf="@id/photo"
+        android:layout_toLeftOf="@id/presence"
+        android:layout_below="@id/displayname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="#f000"
+        android:textSize="14dip" />
 
             <TextView
                 android:id="@+id/published"
@@ -79,9 +96,8 @@
             android:scaleType="centerInside" />
 
     </LinearLayout>
-
     <HorizontalScrollView
-        android:layout_below="@id/header"
+        android:layout_below="@id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fadingEdgeLength="40dip"

@@ -159,6 +159,9 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         Email.CONTENT_ITEM_TYPE,
     };
 
+//    public static final int ICON_SIZE = 42;
+//    public static final int ICON_PADDING = 3;
+
     // TODO: read this status from actual query
     private static final String STUB_STATUS = "has a really long random status message that would be far too long to read on a single device without the need for tiny reading glasses";
 
