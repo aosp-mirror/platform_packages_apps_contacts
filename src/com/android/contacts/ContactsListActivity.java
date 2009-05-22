@@ -16,8 +16,6 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ShowOrCreateActivity.QUERY_KIND_EMAIL_OR_IM;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -34,11 +32,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -101,6 +99,7 @@ public final class ContactsListActivity extends ListActivity
     public static final int MENU_DIALER = 9;
     public static final int MENU_NEW_CONTACT = 10;
     public static final int MENU_DISPLAY_GROUP = 11;
+    public static final int MENU_IMPORT_CONTACTS = 12;
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     
@@ -310,6 +309,34 @@ public final class ContactsListActivity extends ListActivity
      */
     private String mQueryData;
     
+    private Handler mHandler = new Handler();
+
+    private class ImportTypeSelectedListener implements DialogInterface.OnClickListener {
+        public static final int IMPORT_FROM_SIM = 0;
+        public static final int IMPORT_FROM_SDCARD = 1;
+
+        private int mIndex;
+
+        public ImportTypeSelectedListener() {
+            mIndex = IMPORT_FROM_SIM;
+        }
+
+        public void onClick(DialogInterface dialog, int which) {
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                if (mIndex == IMPORT_FROM_SIM) {
+                    doImportFromSim();
+                } else {
+                    VCardImporter importer = new VCardImporter(ContactsListActivity.this, mHandler);
+                    importer.startImportVCardFromSdCard();
+                }
+            } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+
+            } else {
+                mIndex = which;
+            }
+        }
+    }
+
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
 
@@ -748,13 +775,9 @@ public final class ContactsListActivity extends ListActivity
                     .setIntent(syncIntent);
         }
         
-        // SIM import
-        Intent importIntent = new Intent(Intent.ACTION_VIEW);
-        importIntent.setType("vnd.android.cursor.item/sim-contact");
-        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
-        menu.add(0, 0, 0, R.string.importFromSim)
-                .setIcon(R.drawable.ic_menu_import_contact)
-                .setIntent(importIntent);
+        // Contacts import (SIM/SDCard)
+        menu.add(0, MENU_IMPORT_CONTACTS, 0, R.string.importFromSim)
+                .setIcon(R.drawable.ic_menu_import_contact);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -818,8 +841,34 @@ public final class ContactsListActivity extends ListActivity
             case MENU_SEARCH:
                 startSearch(null, false, null, false);
                 return true;
+
+            case MENU_IMPORT_CONTACTS:
+                if (getResources().getBoolean(R.bool.config_allow_import_from_sd_card)) {
+                    ImportTypeSelectedListener listener =
+                        new ImportTypeSelectedListener();
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.select_import_type_title)
+                        .setPositiveButton(android.R.string.ok, listener)
+                        .setNegativeButton(android.R.string.cancel, null);
+                    dialogBuilder.setSingleChoiceItems(new String[] {
+                            getString(R.string.import_from_sim),
+                            getString(R.string.import_from_sdcard)},
+                            ImportTypeSelectedListener.IMPORT_FROM_SIM, listener);
+                    dialogBuilder.show();
+                } else {
+                    doImportFromSim();
+                }
+                return true;
+
         }
         return false;
+    }
+
+    private void doImportFromSim() {
+        Intent importIntent = new Intent(Intent.ACTION_VIEW);
+        importIntent.setType("vnd.android.cursor.item/sim-contact");
+        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
+        startActivity(importIntent);
     }
 
     @Override
@@ -1463,7 +1512,7 @@ public final class ContactsListActivity extends ListActivity
         }
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
-            if (Locale.getDefault().equals(Locale.JAPAN)) {
+            if (Locale.getDefault().getLanguage().equals(Locale.JAPAN.getLanguage())) {
                 return new JapaneseContactListIndexer(cursor, SORT_STRING_INDEX);
             } else {
                 return new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
