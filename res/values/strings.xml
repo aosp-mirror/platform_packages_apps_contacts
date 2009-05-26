@@ -27,6 +27,23 @@
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
     <string name="shortcutContact">Contact</string>
 
+    <!-- Name of activity that allows users to create shortcuts on the home screen to dial a contact.
+         This shows up in a list of things like bookmark, folder, music playlist, etc -->
+    <string name="shortcutDialContact">Direct Dial</string>
+
+    <!-- Name of activity that allows users to create shortcuts on the home screen to message (SMS) a contact.
+         This shows up in a list of things like bookmark, folder, music playlist, etc -->
+    <string name="shortcutMessageContact">Direct Message</string>
+
+    <!-- Activity title when the user is selecting a contact for a shortcut. -->
+    <string name="shortcutActivityTitle">Choose a contact shortcut</string>
+    
+    <!-- Activity title when the user is selecting a contact for a direct dial shortcut. -->
+    <string name="callShortcutActivityTitle">Choose a number to call</string>
+    
+    <!-- Activity title when the user is selecting a contact for a direct message shortcut. -->
+    <string name="messageShortcutActivityTitle">Choose a number to message</string>
+        
     <!-- Title for the activity that shows only starred contacts -->
     <string name="starredList">Starred</string>
 
