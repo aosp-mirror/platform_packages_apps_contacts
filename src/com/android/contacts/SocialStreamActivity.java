@@ -17,13 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.EdgeTriggerView.EdgeTriggerListener;
-import com.android.providers.contacts2.ContactsContract;
-import com.android.providers.contacts2.ContactsContract.Aggregates;
-import com.android.providers.contacts2.ContactsContract.CommonDataKinds;
-import com.android.providers.contacts2.ContactsContract.Contacts;
-import com.android.providers.contacts2.ContactsContract.Data;
-import com.android.providers.contacts2.ContactsContract.CommonDataKinds.Photo;
-import com.android.providers.contacts2.SocialContract.Activities;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -47,6 +40,13 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.SocialContract.Activities;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
 import android.text.style.StyleSpan;

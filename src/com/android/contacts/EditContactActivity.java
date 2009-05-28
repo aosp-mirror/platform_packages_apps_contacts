@@ -16,33 +16,8 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.CONTACT_CUSTOM_RINGTONE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NOTES_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_SEND_TO_VOICEMAIL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PHONETIC_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_AUX_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_ISPRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_KIND_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.METHODS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_COMPANY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_ISPRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TITLE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ISPRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_NUMBER_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.PHONES_TYPE_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_DISPLAY_NAME_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
 
 import com.android.contacts.ViewContactActivity.ViewEntry;
 
@@ -1314,7 +1289,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * @param extras the extras used to start this activity, may be null
      */
     private void buildEntriesForEdit(Bundle extras) {
-        Cursor personCursor = mResolver.query(mUri, CONTACT_PROJECTION, null, null, null);
+        Cursor personCursor = mResolver.query(mUri, AGGREGATE_PROJECTION, null, null, null);
         if (personCursor == null) {
             Log.e(TAG, "invalid contact uri: " + mUri);
             finish();
@@ -1335,7 +1310,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         EditEntry entry;
 
         // Name
-        mNameView.setText(personCursor.getString(CONTACT_NAME_COLUMN));
+        mNameView.setText(personCursor.getString(AGGREGATE_DISPLAY_NAME_COLUMN));
         mNameView.addTextChangedListener(this);
 
         // Photo
@@ -1347,167 +1322,168 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             mPhotoImageView.setImageBitmap(mPhoto);
         }
         
-        // Organizations
-        Uri organizationsUri = Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY);
-        Cursor organizationsCursor = mResolver.query(organizationsUri, ORGANIZATIONS_PROJECTION,
-                null, null, null);
-
-        if (organizationsCursor != null) {
-            while (organizationsCursor.moveToNext()) {
-                int type = organizationsCursor.getInt(ORGANIZATIONS_TYPE_COLUMN);
-                String label = organizationsCursor.getString(ORGANIZATIONS_LABEL_COLUMN);
-                String company = organizationsCursor.getString(ORGANIZATIONS_COMPANY_COLUMN);
-                String title = organizationsCursor.getString(ORGANIZATIONS_TITLE_COLUMN);
-                long id = organizationsCursor.getLong(ORGANIZATIONS_ID_COLUMN);
-                Uri uri = ContentUris.withAppendedId(Organizations.CONTENT_URI, id);
-
-                // Add an organization entry
-                entry = EditEntry.newOrganizationEntry(this, label, type, company, title, uri, id);
-                entry.isPrimary = organizationsCursor.getLong(ORGANIZATIONS_ISPRIMARY_COLUMN) != 0;
-                mOrgEntries.add(entry);
-            }
-            organizationsCursor.close();
-        }
-
-        // Notes
-        if (!personCursor.isNull(CONTACT_NOTES_COLUMN)) {
-            entry = EditEntry.newNotesEntry(this, personCursor.getString(CONTACT_NOTES_COLUMN),
-                    mUri);
-            mNoteEntries.add(entry);
-        }
-        
-        // Groups
-        populateGroups();
-        if (mGroups != null) {
-            entry = EditEntry.newGroupEntry(this, generateGroupList(), mUri,
-                    personCursor.getLong(0));
-            mOtherEntries.add(entry);
-        }
-        
-        // Ringtone
-        entry = EditEntry.newRingtoneEntry(this,
-                personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN), mUri);
-        mOtherEntries.add(entry);
-        
-        // Send to voicemail
-        entry = EditEntry.newSendToVoicemailEntry(this,
-                personCursor.getString(CONTACT_SEND_TO_VOICEMAIL_COLUMN), mUri);
-        mOtherEntries.add(entry);
-
-        // Phonetic name
-        mPhoneticNameView.setText(personCursor.getString(CONTACT_PHONETIC_NAME_COLUMN));
-        mPhoneticNameView.addTextChangedListener(this);
-
-        personCursor.close();
-
-        // Build up the phone entries
-        Uri phonesUri = Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY);
-        Cursor phonesCursor = mResolver.query(phonesUri, PHONES_PROJECTION,
-                null, null, null);
-
-        if (phonesCursor != null) {
-            while (phonesCursor.moveToNext()) {
-                int type = phonesCursor.getInt(PHONES_TYPE_COLUMN);
-                String label = phonesCursor.getString(PHONES_LABEL_COLUMN);
-                String number = phonesCursor.getString(PHONES_NUMBER_COLUMN);
-                long id = phonesCursor.getLong(PHONES_ID_COLUMN);
-                boolean isPrimary = phonesCursor.getLong(PHONES_ISPRIMARY_COLUMN) != 0;
-                Uri uri = ContentUris.withAppendedId(phonesUri, id);
-
-                // Add a phone number entry
-                entry = EditEntry.newPhoneEntry(this, label, type, number, uri, id);
-                entry.isPrimary = isPrimary;
-                mPhoneEntries.add(entry);
-
-                // Keep track of which primary types have been added
-                if (type == Phones.TYPE_MOBILE) {
-                    mMobilePhoneAdded = true;
-                }
-            }
-
-            phonesCursor.close();
-        }
-
-        // Build the contact method entries
-        Uri methodsUri = Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY);
-        Cursor methodsCursor = mResolver.query(methodsUri, METHODS_PROJECTION, null, null, null);
-
-        if (methodsCursor != null) {
-            while (methodsCursor.moveToNext()) {
-                int kind = methodsCursor.getInt(METHODS_KIND_COLUMN);
-                String label = methodsCursor.getString(METHODS_LABEL_COLUMN);
-                String data = methodsCursor.getString(METHODS_DATA_COLUMN);
-                String auxData = methodsCursor.getString(METHODS_AUX_DATA_COLUMN);
-                int type = methodsCursor.getInt(METHODS_TYPE_COLUMN);
-                long id = methodsCursor.getLong(METHODS_ID_COLUMN);
-                boolean isPrimary = methodsCursor.getLong(METHODS_ISPRIMARY_COLUMN) != 0;
-                Uri uri = ContentUris.withAppendedId(methodsUri, id);
-
-                switch (kind) {
-                    case Contacts.KIND_EMAIL: {
-                        entry = EditEntry.newEmailEntry(this, label, type, data, uri, id);
-                        entry.isPrimary = isPrimary;
-                        mEmailEntries.add(entry);
-    
-                        if (isPrimary) {
-                            mPrimaryEmailAdded = true;
-                        }
-                        break;
-                    }
-
-                    case Contacts.KIND_POSTAL: {
-                        entry = EditEntry.newPostalEntry(this, label, type, data, uri, id);
-                        entry.isPrimary = isPrimary;
-                        mPostalEntries.add(entry);
-                        break;
-                    }
-
-                    case Contacts.KIND_IM: {
-                        Object protocolObj = ContactMethods.decodeImProtocol(auxData);
-                        if (protocolObj == null) {
-                            // Invalid IM protocol, log it then ignore.
-                            Log.e(TAG, "Couldn't decode IM protocol: " + auxData);
-                            continue;
-                        } else {
-                            if (protocolObj instanceof Number) {
-                                int protocol = ((Number) protocolObj).intValue();
-                                entry = EditEntry.newImEntry(this,
-                                        getLabelsForKind(this, Contacts.KIND_IM)[protocol], protocol, 
-                                        data, uri, id);
-                            } else {
-                                entry = EditEntry.newImEntry(this, protocolObj.toString(), -1, data,
-                                        uri, id);
-                            }
-                            mImEntries.add(entry);
-                        }
-                        break;
-                    }
-                }
-            }
-
-            methodsCursor.close();
-        }
-
-        // Add values from the extras, if there are any
-        if (extras != null) {
-            addFromExtras(extras, phonesUri, methodsUri);
-        }
-
-        // Add the base types if needed
-        if (!mMobilePhoneAdded) {
-            entry = EditEntry.newPhoneEntry(this,
-                    Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY),
-                    DEFAULT_PHONE_TYPE);
-            mPhoneEntries.add(entry);
-        }
-
-        if (!mPrimaryEmailAdded) {
-            entry = EditEntry.newEmailEntry(this,
-                    Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY),
-                    DEFAULT_EMAIL_TYPE);
-            entry.isPrimary = true;
-            mEmailEntries.add(entry);
-        }
+        // TODO(emillar) Re-implement all this.
+//        // Organizations
+//        Uri organizationsUri = Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY);
+//        Cursor organizationsCursor = mResolver.query(organizationsUri, ORGANIZATIONS_PROJECTION,
+//                null, null, null);
+//
+//        if (organizationsCursor != null) {
+//            while (organizationsCursor.moveToNext()) {
+//                int type = organizationsCursor.getInt(ORGANIZATIONS_TYPE_COLUMN);
+//                String label = organizationsCursor.getString(ORGANIZATIONS_LABEL_COLUMN);
+//                String company = organizationsCursor.getString(ORGANIZATIONS_COMPANY_COLUMN);
+//                String title = organizationsCursor.getString(ORGANIZATIONS_TITLE_COLUMN);
+//                long id = organizationsCursor.getLong(ORGANIZATIONS_ID_COLUMN);
+//                Uri uri = ContentUris.withAppendedId(Organizations.CONTENT_URI, id);
+//
+//                // Add an organization entry
+//                entry = EditEntry.newOrganizationEntry(this, label, type, company, title, uri, id);
+//                entry.isPrimary = organizationsCursor.getLong(ORGANIZATIONS_ISPRIMARY_COLUMN) != 0;
+//                mOrgEntries.add(entry);
+//            }
+//            organizationsCursor.close();
+//        }
+//
+//        // Notes
+//        if (!personCursor.isNull(CONTACT_NOTES_COLUMN)) {
+//            entry = EditEntry.newNotesEntry(this, personCursor.getString(CONTACT_NOTES_COLUMN),
+//                    mUri);
+//            mNoteEntries.add(entry);
+//        }
+//        
+//        // Groups
+//        populateGroups();
+//        if (mGroups != null) {
+//            entry = EditEntry.newGroupEntry(this, generateGroupList(), mUri,
+//                    personCursor.getLong(0));
+//            mOtherEntries.add(entry);
+//        }
+//        
+//        // Ringtone
+//        entry = EditEntry.newRingtoneEntry(this,
+//                personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN), mUri);
+//        mOtherEntries.add(entry);
+//        
+//        // Send to voicemail
+//        entry = EditEntry.newSendToVoicemailEntry(this,
+//                personCursor.getString(CONTACT_SEND_TO_VOICEMAIL_COLUMN), mUri);
+//        mOtherEntries.add(entry);
+//
+//        // Phonetic name
+//        mPhoneticNameView.setText(personCursor.getString(CONTACT_PHONETIC_NAME_COLUMN));
+//        mPhoneticNameView.addTextChangedListener(this);
+//
+//        personCursor.close();
+//
+//        // Build up the phone entries
+//        Uri phonesUri = Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY);
+//        Cursor phonesCursor = mResolver.query(phonesUri, PHONES_PROJECTION,
+//                null, null, null);
+//
+//        if (phonesCursor != null) {
+//            while (phonesCursor.moveToNext()) {
+//                int type = phonesCursor.getInt(PHONES_TYPE_COLUMN);
+//                String label = phonesCursor.getString(PHONES_LABEL_COLUMN);
+//                String number = phonesCursor.getString(PHONES_NUMBER_COLUMN);
+//                long id = phonesCursor.getLong(PHONES_ID_COLUMN);
+//                boolean isPrimary = phonesCursor.getLong(PHONES_ISPRIMARY_COLUMN) != 0;
+//                Uri uri = ContentUris.withAppendedId(phonesUri, id);
+//
+//                // Add a phone number entry
+//                entry = EditEntry.newPhoneEntry(this, label, type, number, uri, id);
+//                entry.isPrimary = isPrimary;
+//                mPhoneEntries.add(entry);
+//
+//                // Keep track of which primary types have been added
+//                if (type == Phones.TYPE_MOBILE) {
+//                    mMobilePhoneAdded = true;
+//                }
+//            }
+//
+//            phonesCursor.close();
+//        }
+//
+//        // Build the contact method entries
+//        Uri methodsUri = Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY);
+//        Cursor methodsCursor = mResolver.query(methodsUri, METHODS_PROJECTION, null, null, null);
+//
+//        if (methodsCursor != null) {
+//            while (methodsCursor.moveToNext()) {
+//                int kind = methodsCursor.getInt(METHODS_KIND_COLUMN);
+//                String label = methodsCursor.getString(METHODS_LABEL_COLUMN);
+//                String data = methodsCursor.getString(METHODS_DATA_COLUMN);
+//                String auxData = methodsCursor.getString(METHODS_AUX_DATA_COLUMN);
+//                int type = methodsCursor.getInt(METHODS_TYPE_COLUMN);
+//                long id = methodsCursor.getLong(METHODS_ID_COLUMN);
+//                boolean isPrimary = methodsCursor.getLong(METHODS_ISPRIMARY_COLUMN) != 0;
+//                Uri uri = ContentUris.withAppendedId(methodsUri, id);
+//
+//                switch (kind) {
+//                    case Contacts.KIND_EMAIL: {
+//                        entry = EditEntry.newEmailEntry(this, label, type, data, uri, id);
+//                        entry.isPrimary = isPrimary;
+//                        mEmailEntries.add(entry);
+//    
+//                        if (isPrimary) {
+//                            mPrimaryEmailAdded = true;
+//                        }
+//                        break;
+//                    }
+//
+//                    case Contacts.KIND_POSTAL: {
+//                        entry = EditEntry.newPostalEntry(this, label, type, data, uri, id);
+//                        entry.isPrimary = isPrimary;
+//                        mPostalEntries.add(entry);
+//                        break;
+//                    }
+//
+//                    case Contacts.KIND_IM: {
+//                        Object protocolObj = ContactMethods.decodeImProtocol(auxData);
+//                        if (protocolObj == null) {
+//                            // Invalid IM protocol, log it then ignore.
+//                            Log.e(TAG, "Couldn't decode IM protocol: " + auxData);
+//                            continue;
+//                        } else {
+//                            if (protocolObj instanceof Number) {
+//                                int protocol = ((Number) protocolObj).intValue();
+//                                entry = EditEntry.newImEntry(this,
+//                                        getLabelsForKind(this, Contacts.KIND_IM)[protocol], protocol, 
+//                                        data, uri, id);
+//                            } else {
+//                                entry = EditEntry.newImEntry(this, protocolObj.toString(), -1, data,
+//                                        uri, id);
+//                            }
+//                            mImEntries.add(entry);
+//                        }
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            methodsCursor.close();
+//        }
+//
+//        // Add values from the extras, if there are any
+//        if (extras != null) {
+//            addFromExtras(extras, phonesUri, methodsUri);
+//        }
+//
+//        // Add the base types if needed
+//        if (!mMobilePhoneAdded) {
+//            entry = EditEntry.newPhoneEntry(this,
+//                    Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY),
+//                    DEFAULT_PHONE_TYPE);
+//            mPhoneEntries.add(entry);
+//        }
+//
+//        if (!mPrimaryEmailAdded) {
+//            entry = EditEntry.newEmailEntry(this,
+//                    Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY),
+//                    DEFAULT_EMAIL_TYPE);
+//            entry.isPrimary = true;
+//            mEmailEntries.add(entry);
+//        }
 
         mContactChanged = false;
     }

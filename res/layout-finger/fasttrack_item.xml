@@ -19,5 +19,5 @@
     android:layout_height="39dip"
     android:layout_marginLeft="4dip"
     android:layout_marginTop="4dip"
-    android:scaleType="fitCenter"
+    android:scaleType="centerInside"
     android:background="@drawable/chicklit_bg2" />

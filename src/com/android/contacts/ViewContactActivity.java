@@ -16,33 +16,22 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.CONTACT_CUSTOM_RINGTONE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NOTES_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PHONETIC_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_SEND_TO_VOICEMAIL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_STARRED_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_AUX_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_KIND_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_STATUS_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_WITH_PRESENCE_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_COMPANY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TITLE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ISPRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_NUMBER_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.PHONES_TYPE_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_DISPLAY_NAME_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_PACKAGE_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_4_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_5_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_6_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_7_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_8_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_9_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_10_COLUMN;
 
 import com.android.internal.telephony.ITelephony;
 
@@ -61,6 +50,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -70,15 +60,10 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.provider.Contacts;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Data;
 import android.provider.Im;
-import android.provider.Contacts.ContactMethods;
-import android.provider.Contacts.Groups;
-import android.provider.Contacts.GroupMembership;
-import android.provider.Contacts.Organizations;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
-import android.provider.Contacts.Presence;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -108,18 +93,6 @@ public class ViewContactActivity extends ListActivity
     private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
     private static final boolean SHOW_SEPARATORS = false;
-    
-    private static final String[] PHONE_KEYS = {
-        Contacts.Intents.Insert.PHONE,
-        Contacts.Intents.Insert.SECONDARY_PHONE,
-        Contacts.Intents.Insert.TERTIARY_PHONE
-    };
-
-    private static final String[] EMAIL_KEYS = {
-        Contacts.Intents.Insert.EMAIL,
-        Contacts.Intents.Insert.SECONDARY_EMAIL,
-        Contacts.Intents.Insert.TERTIARY_EMAIL
-    };
 
     private static final int DIALOG_CONFIRM_DELETE = 1;
 
@@ -178,9 +151,9 @@ public class ViewContactActivity extends ListActivity
         }
         switch (view.getId()) {
             case R.id.star: {
-                int oldStarredState = mCursor.getInt(CONTACT_STARRED_COLUMN);
+                int oldStarredState = mCursor.getInt(AGGREGATE_STARRED_COLUMN);
                 ContentValues values = new ContentValues(1);
-                values.put(People.STARRED, oldStarredState == 1 ? 0 : 1);
+                values.put(Aggregates.STARRED, oldStarredState == 1 ? 0 : 1);
                 getContentResolver().update(mUri, values, null, null);
                 break;
             }
@@ -238,7 +211,7 @@ public class ViewContactActivity extends ListActivity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
-        mCursor = mResolver.query(mUri, CONTACT_PROJECTION, null, null, null);
+        mCursor = mResolver.query(mUri, AGGREGATE_PROJECTION, null, null, null);
     }
 
     @Override
@@ -294,24 +267,28 @@ public class ViewContactActivity extends ListActivity
         mCursor.requery();
         if (mCursor.moveToFirst()) {
             // Set the name
-            String name = mCursor.getString(CONTACT_NAME_COLUMN);
+            String name = mCursor.getString(AGGREGATE_DISPLAY_NAME_COLUMN);
             if (TextUtils.isEmpty(name)) {
                 mNameView.setText(getText(android.R.string.unknownName));
             } else {
                 mNameView.setText(name);
             }
 
-            if (mPhoneticNameView != null) {
+			// TODO(emillar) Bring this back.
+            /*if (mPhoneticNameView != null) {
                 String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
                 mPhoneticNameView.setText(phoneticName);
             }
 
             // Load the photo
             mPhotoView.setImageBitmap(People.loadContactPhoto(this, mUri, mNoPhotoResource,
-                    null /* use the default options */));
+                    null)); */
+            
+            mPhotoView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
+                    mNoPhotoResource, null));
 
             // Set the star
-            mStarView.setChecked(mCursor.getInt(CONTACT_STARRED_COLUMN) == 1 ? true : false);
+            mStarView.setChecked(mCursor.getInt(AGGREGATE_STARRED_COLUMN) == 1 ? true : false);
 
             // Build up the contact entries
             buildEntries(mCursor);
@@ -378,8 +355,9 @@ public class ViewContactActivity extends ListActivity
             Log.e(TAG, "bad menuInfo");
             return;
         }
-
-        ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        
+        // TODO(emillar) Bring this back.
+        /*ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
         switch (entry.kind) {
             case Contacts.KIND_PHONE: {
                 menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
@@ -404,7 +382,7 @@ public class ViewContactActivity extends ListActivity
                 menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
                 break;
             }
-        }
+        } */
     }
 
     @Override
@@ -415,12 +393,14 @@ public class ViewContactActivity extends ListActivity
                 showDialog(DIALOG_CONFIRM_DELETE);
                 return true;
             }
-            case MENU_ITEM_SHOW_BARCODE:
+            
+            // TODO(emillar) Bring this back.
+            /*case MENU_ITEM_SHOW_BARCODE:
                 if (mCursor.moveToFirst()) {
                     Intent intent = new Intent(SHOW_BARCODE_INTENT);
                     intent.putExtra("ENCODE_TYPE", "CONTACT_TYPE");
                     Bundle bundle = new Bundle();
-                    String name = mCursor.getString(CONTACT_NAME_COLUMN);
+                    String name = mCursor.getString(AGGREGATE_DISPLAY_NAME_COLUMN);
                     if (!TextUtils.isEmpty(name)) {
                         // Correctly handle when section headers are hidden
                         int sepAdjust = SHOW_SEPARATORS ? 1 : 0;
@@ -455,7 +435,7 @@ public class ViewContactActivity extends ListActivity
                         return true;
                     }
                 }
-                break;
+                break; */
         }
         return super.onOptionsItemSelected(item);
     }
@@ -464,7 +444,8 @@ public class ViewContactActivity extends ListActivity
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
-                AdapterView.AdapterContextMenuInfo info;
+                //TODO(emillar) Bring this back.
+                /*AdapterView.AdapterContextMenuInfo info;
                 try {
                      info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 } catch (ClassCastException e) {
@@ -475,9 +456,9 @@ public class ViewContactActivity extends ListActivity
                 ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position,
                         SHOW_SEPARATORS);
                 ContentValues values = new ContentValues(1);
-                values.put(People.PRIMARY_PHONE_ID, entry.id);
+                values.put(PRIMARY_PHONE_ID, entry.id);
                 getContentResolver().update(mUri, values, null, null);
-                dataChanged();
+                dataChanged();*/
                 return true;
             }
         }
@@ -502,9 +483,8 @@ public class ViewContactActivity extends ListActivity
                 int index = getListView().getSelectedItemPosition();
                 if (index != -1) {
                     ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
-                    if (entry.kind == Contacts.KIND_PHONE) {
-                        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
-                        startActivity(intent);
+                    if (entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
+                        startActivity(entry.intent);
                     }
                 } else if (mNumPhoneNumbers != 0) {
                     // There isn't anything selected, call the default number
@@ -611,7 +591,7 @@ public class ViewContactActivity extends ListActivity
      * 
      * @param personCursor the URI for the contact being displayed
      */
-    private final void buildEntries(Cursor personCursor) {
+    private final void buildEntries(Cursor aggCursor) {
         // Clear out the old entries
         final int numSections = mSections.size();
         for (int i = 0; i < numSections; i++) {
@@ -621,123 +601,104 @@ public class ViewContactActivity extends ListActivity
         if (SHOW_SEPARATORS) {
             buildSeparators();
         }
-
-        // Build up the phone entries
-        final Uri phonesUri = Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY);
-        final Cursor phonesCursor = mResolver.query(phonesUri, PHONES_PROJECTION, null, null,
-                Phones.ISPRIMARY + " DESC");
-
-        if (phonesCursor != null) {
-            while (phonesCursor.moveToNext()) {
-                final int type = phonesCursor.getInt(PHONES_TYPE_COLUMN);
-                final String number = phonesCursor.getString(PHONES_NUMBER_COLUMN);
-                final String label = phonesCursor.getString(PHONES_LABEL_COLUMN);
-                final boolean isPrimary = phonesCursor.getInt(PHONES_ISPRIMARY_COLUMN) == 1;
-                final long id = phonesCursor.getLong(PHONES_ID_COLUMN);
-                final Uri uri = ContentUris.withAppendedId(phonesUri, id);
-
-                // Don't crash if the number is bogus
-                if (TextUtils.isEmpty(number)) {
-                    Log.w(TAG, "empty number for phone " + id);
-                    continue;
-                }
-
-                mNumPhoneNumbers++;
+        
+        // Build up method entries
+        if (mUri != null) {
+            while (aggCursor.moveToNext()) {
+                final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
+                final String pkg = aggCursor.getString(DATA_PACKAGE_COLUMN);
                 
-                // Add a phone number entry
-                final ViewEntry entry = new ViewEntry();
-                final CharSequence displayLabel = Phones.getDisplayLabel(this, type, label);
-                entry.label = buildActionString(R.string.actionCall, displayLabel, true);
-                entry.data = number;
-                entry.id = id;
-                entry.uri = uri;
-                entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
-                entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
-                        Uri.fromParts("sms", number, null));
-                entry.kind = Contacts.KIND_PHONE;
-                if (isPrimary) {
-                    entry.primaryIcon = R.drawable.ic_default_number;
-                }
-                entry.actionIcon = android.R.drawable.sym_action_call;
-                mPhoneEntries.add(entry);
-
-                if (type == Phones.TYPE_MOBILE || mShowSmsLinksForAllPhones) {
-                    // Add an SMS entry
-                    ViewEntry smsEntry = new ViewEntry();
-                    smsEntry.label = buildActionString(R.string.actionText, displayLabel, true);
-                    smsEntry.data = number;
-                    smsEntry.id = id;
-                    smsEntry.uri = uri;
-                    smsEntry.intent = entry.auxIntent;
-                    smsEntry.kind = ViewEntry.KIND_SMS;
-                    smsEntry.actionIcon = R.drawable.sym_action_sms;
-                    mSmsEntries.add(smsEntry);
-                }
-            }
-
-            phonesCursor.close();
-        }
-
-        // Build the contact method entries
-        final Uri methodsUri = Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY);
-        Cursor methodsCursor = mResolver.query(
-                Uri.withAppendedPath(mUri, "contact_methods_with_presence"),
-                METHODS_WITH_PRESENCE_PROJECTION, null, null, null);
-
-        if (methodsCursor != null) {
-            String[] protocolStrings = getResources().getStringArray(android.R.array.imProtocols);
-
-            while (methodsCursor.moveToNext()) {
-                final int kind = methodsCursor.getInt(METHODS_KIND_COLUMN);
-                final String label = methodsCursor.getString(METHODS_LABEL_COLUMN);
-                final String data = methodsCursor.getString(METHODS_DATA_COLUMN);
-                final int type = methodsCursor.getInt(METHODS_TYPE_COLUMN);
-                final long id = methodsCursor.getLong(METHODS_ID_COLUMN);
-                final Uri uri = ContentUris.withAppendedId(methodsUri, id);
-
-                // Don't crash if the data is bogus
-                if (TextUtils.isEmpty(data)) {
-                    Log.w(TAG, "empty data for contact method " + id);
-                    continue;
-                }
-
                 ViewEntry entry = new ViewEntry();
+
+                final long id = aggCursor.getLong(DATA_ID_COLUMN);
+                final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
                 entry.id = id;
                 entry.uri = uri;
-                entry.kind = kind;
+                //TODO(emillar) Can we get rid of kind?
+                entry.kind = 0;
 
-                switch (kind) {
-                    case Contacts.KIND_EMAIL:
+                if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                        || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE) 
+                        || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE) 
+                        || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
+                    final int type = aggCursor.getInt(DATA_1_COLUMN);
+                    final String label = aggCursor.getString(DATA_2_COLUMN);
+                    final String data = aggCursor.getString(DATA_3_COLUMN);
+                    final boolean isPrimary = "1".equals(aggCursor.getString(DATA_4_COLUMN));
+
+                    // Don't crash if the data is bogus
+                    if (TextUtils.isEmpty(data)) {
+                        Log.w(TAG, "empty data for contact method " + id);
+                        continue;
+                    }
+
+                    // Build phone entries
+                    if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
+                        mNumPhoneNumbers++;
+                     
+                        final CharSequence displayLabel = ContactsUtils.getDisplayLabel(
+                                this, mimetype, type, label);
+                        entry.label = buildActionString(R.string.actionCall, displayLabel, true);
+                        entry.data = data;
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
+                        entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts("sms", data, null));
+                        if (isPrimary) {
+                            entry.primaryIcon = R.drawable.ic_default_number;
+                        }
+                        entry.actionIcon = android.R.drawable.sym_action_call;
+                        mPhoneEntries.add(entry);
+
+                        if (type == CommonDataKinds.Phone.TYPE_MOBILE 
+                                || mShowSmsLinksForAllPhones) {
+                            // Add an SMS entry
+                            ViewEntry smsEntry = new ViewEntry();
+                            smsEntry.label = buildActionString(
+                                    R.string.actionText, displayLabel, true);
+                            smsEntry.data = data;
+                            smsEntry.id = id;
+                            smsEntry.uri = uri;
+                            smsEntry.intent = entry.auxIntent;
+                            smsEntry.kind = ViewEntry.KIND_SMS;
+                            smsEntry.actionIcon = R.drawable.sym_action_sms;
+                            mSmsEntries.add(smsEntry);
+                        }
+                    // Build email entries
+                    } else if (mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
                         entry.label = buildActionString(R.string.actionEmail,
-                                ContactMethods.getDisplayLabel(this, kind, type, label), true);
+                                ContactsUtils.getDisplayLabel(this, mimetype, type, label), true);
                         entry.data = data;
                         entry.intent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("mailto", data, null));
                         entry.actionIcon = android.R.drawable.sym_action_email;
+                        if (isPrimary) {
+                            entry.primaryIcon = R.drawable.ic_default_number;
+                        }
                         mEmailEntries.add(entry);
-                        break;
-
-                    case Contacts.KIND_POSTAL:
+                    // Build postal entries
+                    } else if (mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
                         entry.label = buildActionString(R.string.actionMap,
-                                ContactMethods.getDisplayLabel(this, kind, type, label), true);
+                                ContactsUtils.getDisplayLabel(this, mimetype, type, label), true);
                         entry.data = data;
                         entry.maxLines = 4;
                         entry.intent = new Intent(Intent.ACTION_VIEW, uri);
                         entry.actionIcon = R.drawable.sym_action_map;
                         mPostalEntries.add(entry);
-                        break;
-
-                    case Contacts.KIND_IM: {
-                        Object protocolObj = ContactMethods.decodeImProtocol(
-                                methodsCursor.getString(METHODS_AUX_DATA_COLUMN));
+                    // Build im entries
+                    } else if (mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
+                        String[] protocolStrings = getResources().getStringArray(
+                                android.R.array.imProtocols);
+                        Object protocolObj = ContactsUtils.decodeImProtocol(
+                                aggCursor.getString(DATA_5_COLUMN));
                         String host = null;
                         if (protocolObj instanceof Number) {
                             int protocol = ((Number) protocolObj).intValue();
                             entry.label = buildActionString(R.string.actionChat,
                                     protocolStrings[protocol], false);
-                            host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
-                            if (protocol == ContactMethods.PROTOCOL_GOOGLE_TALK
-                                    || protocol == ContactMethods.PROTOCOL_MSN) {
+                            host = ContactsUtils.lookupProviderNameFromId(
+                                    protocol).toLowerCase();
+                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
+                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
                                 entry.maxLabelLines = 2;
                             }
                         } else if (protocolObj != null) {
@@ -753,202 +714,131 @@ public class ViewContactActivity extends ListActivity
                                     constructImToUrl(host, data));
                         }
                         entry.data = data;
-                        if (!methodsCursor.isNull(METHODS_STATUS_COLUMN)) {
+                        //TODO(emillar) Do we want presence info?
+                        /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
                             entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                    methodsCursor.getInt(METHODS_STATUS_COLUMN));
-                        }
+                                    aggCursor.getInt(METHODS_STATUS_COLUMN));
+                        }*/
                         entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
-                        break;
+                    } 
+                // Build organization entries
+                } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
+                    final int type = aggCursor.getInt(DATA_1_COLUMN);
+                    final String label = aggCursor.getString(DATA_2_COLUMN);
+                    final String company = aggCursor.getString(DATA_3_COLUMN);
+                    final String title = aggCursor.getString(DATA_4_COLUMN);
+                    final boolean isPrimary = "1".equals(aggCursor.getString(DATA_5_COLUMN));
+
+                    if (isPrimary) {
+                        entry.primaryIcon = R.drawable.ic_default_number;
                     }
-                }
-            }
-
-            methodsCursor.close();
-        }
-
-        // Build IM entries for things we have presence info about but not explicit IM entries for
-        long personId = ContentUris.parseId(mUri);
-        String[] projection = new String[] {
-                Presence.IM_HANDLE, // 0
-                Presence.IM_PROTOCOL, // 1
-                Presence.PRESENCE_STATUS, // 2
-        };
-        Cursor presenceCursor = mResolver.query(Presence.CONTENT_URI, projection,
-                Presence.PERSON_ID + "=" + personId, null, null);
-        if (presenceCursor != null) {
-            try {
-                while (presenceCursor.moveToNext()) {
-                    // Find the display info for the provider
-                    String data = presenceCursor.getString(0);
-                    String label;
-                    Object protocolObj = ContactMethods.decodeImProtocol(
-                            presenceCursor.getString(1));
-                    String host;
-                    if (protocolObj instanceof Number) {
-                        int protocol = ((Number) protocolObj).intValue();
-                        label = getResources().getStringArray(
-                                android.R.array.imProtocols)[protocol];
-                        host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
-                    } else {
-                        String providerName = (String) protocolObj;
-                        label = providerName;
-                        host = providerName.toLowerCase();
-                    }
-
-                    if (TextUtils.isEmpty(host)) {
-                        // A valid provider name is required
+                    
+                    // Don't crash if the data is bogus
+                    if (TextUtils.isEmpty(company) && TextUtils.isEmpty(title)) {
+                        Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
+                    
+                    entry.data = title;
+                    entry.actionIcon = R.drawable.sym_action_organization;
+                    entry.label = company;
 
+                    mOrganizationEntries.add(entry);
+                // Build note entries
+                } else if (mimetype.equals(CommonDataKinds.Note.CONTENT_ITEM_TYPE)) {
+                    entry.label = getString(R.string.label_notes);
+                    entry.data = aggCursor.getString(DATA_1_COLUMN);
+                    entry.id = 0;
+                    entry.uri = null;
+                    entry.intent = null;
+                    entry.maxLines = 10;
+                    entry.actionIcon = R.drawable.sym_note;
 
-                    Intent intent = new Intent(Intent.ACTION_SENDTO, constructImToUrl(host, data));
-
-                    // Check to see if there is already an entry for this IM account
-                    boolean addEntry = true;
-                    int numImEntries = mImEntries.size();
-                    for (int i = 0; i < numImEntries; i++) {
-                        // Check to see if the intent point to the same thing, if so we won't
-                        // add this entry to the list since there is already an explict entry
-                        // for the IM account
-                        Intent existingIntent = mImEntries.get(i).intent;
-                        if (intent.filterEquals(existingIntent)) {
-                            addEntry = false;
-                            break;
-                        }
-                    }
-
-                    // Add the entry if an existing one wasn't found
-                    if (addEntry) {
-                        ViewEntry entry = new ViewEntry();
-                        entry.kind = Contacts.KIND_IM;
-                        entry.data = data;
-                        entry.label = label;
-                        entry.intent = intent;
-                        entry.actionIcon = android.R.drawable.sym_action_chat;
-                        entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                presenceCursor.getInt(2));
-                        entry.maxLabelLines = 2;
-                        mImEntries.add(entry);
-                    }
-                }
-            } finally {
-                presenceCursor.close();
-            }
-        }
-
-        // Build the organization entries
-        final Uri organizationsUri = Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY);
-        Cursor organizationsCursor = mResolver.query(organizationsUri, ORGANIZATIONS_PROJECTION,
-                null, null, null);
-
-        if (organizationsCursor != null) {
-            while (organizationsCursor.moveToNext()) {
-                ViewEntry entry = new ViewEntry();
-                entry.id = organizationsCursor.getLong(ORGANIZATIONS_ID_COLUMN);
-                entry.uri = ContentUris.withAppendedId(organizationsUri, entry.id);
-                entry.kind = Contacts.KIND_ORGANIZATION;
-                entry.label = organizationsCursor.getString(ORGANIZATIONS_COMPANY_COLUMN);
-                entry.data = organizationsCursor.getString(ORGANIZATIONS_TITLE_COLUMN);
-                entry.actionIcon = R.drawable.sym_action_organization;
-/*
-                entry.label = Organizations.getDisplayLabel(this,
-                        organizationsCursor.getInt(ORGANIZATIONS_TYPE_COLUMN),
-                        organizationsCursor.getString(ORGANIZATIONS_LABEL_COLUMN)).toString();
-*/
-                mOrganizationEntries.add(entry);
-            }
-
-            organizationsCursor.close();
-        }
-
-        // Build the other entries
-        String note = personCursor.getString(CONTACT_NOTES_COLUMN);
-        if (!TextUtils.isEmpty(note)) {
-            ViewEntry entry = new ViewEntry();
-            entry.label = getString(R.string.label_notes);
-            entry.data = note;
-            entry.id = 0;
-            entry.kind = ViewEntry.KIND_CONTACT;
-            entry.uri = null;
-            entry.intent = null;
-            entry.maxLines = 10;
-            entry.actionIcon = R.drawable.sym_note;
-            mOtherEntries.add(entry);
-        }
-
-        // Build the group entries
-        final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
-        Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
-                null, null, Groups.DEFAULT_SORT_ORDER);
-        if (groupCursor != null) {
-            try {
-                StringBuilder sb = new StringBuilder();
-
-                while (groupCursor.moveToNext()) {
-                    String systemId = groupCursor.getString(
-                            ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
-
-                    if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                    if (TextUtils.isEmpty(entry.data)) {
+                        Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
-
-                    String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
-                    if (!TextUtils.isEmpty(name)) {
-                        if (sb.length() == 0) {
-                            sb.append(name);
-                        } else {
-                            sb.append(getString(R.string.group_list, name));
-                        }
-                    }
-                }
-
-                if (sb.length() > 0) {
-                    ViewEntry entry = new ViewEntry();
-                    entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
-                    entry.label = getString(R.string.label_groups);
-                    entry.data = sb.toString();
-                    entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
-
-                    // TODO: Add an icon for the groups item.
-
-                    mGroupEntries.add(entry);
-                }
-            } finally {
-                groupCursor.close();
-            }
-        }
-
-        // Build the ringtone entry
-        String ringtoneStr = personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN);
-        if (!TextUtils.isEmpty(ringtoneStr)) {
-            // Get the URI
-            Uri ringtoneUri = Uri.parse(ringtoneStr);
-            if (ringtoneUri != null) {
-                Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
-                if (ringtone != null) {
-                    ViewEntry entry = new ViewEntry();
-                    entry.label = getString(R.string.label_ringtone);
-                    entry.data = ringtone.getTitle(this);
-                    entry.kind = ViewEntry.KIND_CONTACT;
-                    entry.uri = ringtoneUri;
-                    entry.actionIcon = R.drawable.sym_ringtone;
+                    
                     mOtherEntries.add(entry);
-                }
-            }
-        }
+                // Build the ringtone and send to voicemail entries
+                } else if (mimetype.equals(CommonDataKinds.CustomRingtone.CONTENT_ITEM_TYPE)) {
+                    final Boolean sendToVoicemail = "1".equals(aggCursor.getString(DATA_1_COLUMN));
+                    final String ringtoneStr = aggCursor.getString(DATA_2_COLUMN);
 
-        // Build the send directly to voice mail entry
-        boolean sendToVoicemail = personCursor.getInt(CONTACT_SEND_TO_VOICEMAIL_COLUMN) == 1;
-        if (sendToVoicemail) {
-            ViewEntry entry = new ViewEntry();
-            entry.label = getString(R.string.actionIncomingCall);
-            entry.data = getString(R.string.detailIncomingCallsGoToVoicemail);
-            entry.kind = ViewEntry.KIND_CONTACT;
-            entry.actionIcon = R.drawable.sym_send_to_voicemail;
-            mOtherEntries.add(entry);
+                    // TODO(emillar) we need to enforce uniqueness of custom ringtone entries on a 
+                    // single aggregate. This could be done by checking against the reference ID stored
+                    // in the aggregate.
+                    
+                    // Build the send directly to voice mail entry
+                    if (sendToVoicemail) {
+                        entry.label = getString(R.string.actionIncomingCall);
+                        entry.data = getString(R.string.detailIncomingCallsGoToVoicemail);
+                        entry.actionIcon = R.drawable.sym_send_to_voicemail;
+                        mOtherEntries.add(entry);
+                    } else if (!TextUtils.isEmpty(ringtoneStr)) {
+                        // Get the URI
+                        Uri ringtoneUri = Uri.parse(ringtoneStr);
+                        if (ringtoneUri != null) {
+                            Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
+                            if (ringtone != null) {
+                                entry.label = getString(R.string.label_ringtone);
+                                entry.data = ringtone.getTitle(this);
+                                entry.uri = ringtoneUri;
+                                entry.actionIcon = R.drawable.sym_ringtone;
+                                mOtherEntries.add(entry);
+                            }
+                        }
+                    }
+                }
+                
+                // TODO(emillar) Add group entries
+//              // Build the group entries
+//              final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
+//              Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+//                      null, null, Groups.DEFAULT_SORT_ORDER);
+//              if (groupCursor != null) {
+//                  try {
+//                      StringBuilder sb = new StringBuilder();
+//
+//                      while (groupCursor.moveToNext()) {
+//                          String systemId = groupCursor.getString(
+//                                  ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+//
+//                          if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+//                              continue;
+//                          }
+//
+//                          String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+//                          if (!TextUtils.isEmpty(name)) {
+//                              if (sb.length() == 0) {
+//                                  sb.append(name);
+//                              } else {
+//                                  sb.append(getString(R.string.group_list, name));
+//                              }
+//                          }
+//                      }
+//
+//                      if (sb.length() > 0) {
+//                          ViewEntry entry = new ViewEntry();
+//                          entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
+//                          entry.label = getString(R.string.label_groups);
+//                          entry.data = sb.toString();
+//                          entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
+//
+//                          // TODO: Add an icon for the groups item.
+//
+//                          mGroupEntries.add(entry);
+//                      }
+//                  } finally {
+//                      groupCursor.close();
+//                  }
+//              }
+                
+            }
         }
     }
+
 
     String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
         // If there is no type just display an empty string

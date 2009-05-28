@@ -45,6 +45,10 @@ import android.provider.Contacts.Phones;
 import android.provider.Contacts.Presence;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.Intents.UI;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -71,11 +75,6 @@ import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Locale;
-
-import com.android.providers.contacts2.ContactsContract;
-import com.android.providers.contacts2.ContactsContract.Aggregates;
-import com.android.providers.contacts2.ContactsContract.CommonDataKinds;
-
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
  * brought back in as we add back that functionality.
@@ -191,69 +190,19 @@ public final class ContactsListActivity extends ListActivity
         Aggregates._ID, // 0
         Aggregates.DISPLAY_NAME, // 1
         Aggregates.STARRED, //2
-        CommonDataKinds.Phone.TYPE, //3
-        CommonDataKinds.Phone.LABEL, //4
-        CommonDataKinds.Phone.NUMBER, //3
+        Aggregates.PRIMARY_PHONE_ID, //3
+        CommonDataKinds.Phone.TYPE, //4
+        CommonDataKinds.Phone.LABEL, //5
+        CommonDataKinds.Phone.NUMBER, //6
     };
-    
-    /* static final String[] CONTACTS_PROJECTION = new String[] {
-        People._ID, // 0
-        NAME_COLUMN, // 1
-        People.NUMBER, // 2
-        People.TYPE, // 3
-        People.LABEL, // 4
-        People.STARRED, // 5
-        People.PRIMARY_PHONE_ID, // 6
-        People.PRIMARY_EMAIL_ID, // 7
-        People.PRESENCE_STATUS, // 8
-        SORT_STRING, // 9
-    };
-
-    static final String[] SIMPLE_CONTACTS_PROJECTION = new String[] {
-        People._ID, // 0
-        NAME_COLUMN, // 1
-    };
-
-    static final String[] STREQUENT_PROJECTION = new String[] {
-        People._ID, // 0
-        NAME_COLUMN, // 1
-        People.NUMBER, // 2
-        People.TYPE, // 3
-        People.LABEL, // 4
-        People.STARRED, // 5
-        People.PRIMARY_PHONE_ID, // 6
-        People.PRIMARY_EMAIL_ID, // 7
-        People.PRESENCE_STATUS, // 8
-        "photo_data", // 9
-        People.TIMES_CONTACTED, // 10 (not displayed, but required for the order by to work)
-    };
-
-    static final String[] PHONES_PROJECTION = new String[] {
-        Phones._ID, // 0
-        NAME_COLUMN, // 1
-        Phones.NUMBER, // 2
-        Phones.TYPE, // 3
-        Phones.LABEL, // 4
-        Phones.STARRED, // 5
-        Phones.PERSON_ID, // 6
-    };
-
-    static final String[] CONTACT_METHODS_PROJECTION = new String[] {
-        ContactMethods._ID, // 0
-        NAME_COLUMN, // 1
-        ContactMethods.DATA, // 2
-        ContactMethods.TYPE, // 3
-        ContactMethods.LABEL, // 4
-        ContactMethods.STARRED, // 5
-        ContactMethods.PERSON_ID, // 6
-    }; */
     
     static final int ID_COLUMN_INDEX = 0;
     static final int NAME_COLUMN_INDEX = 1;
     static final int STARRED_COLUMN_INDEX = 2;
-    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 3;
-    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 4;
-    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 5;
+    static final int PRIMARY_PHONE_ID_COLUMN_INDEX = 3;
+    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 4;
+    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 5;
+    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 6;
 
     static final int PHONES_PERSON_ID_INDEX = 6;
     static final int SIMPLE_CONTACTS_PERSON_ID_INDEX = 0;
@@ -874,34 +823,34 @@ public final class ContactsListActivity extends ListActivity
             return;
         }
         long id = info.id;
-        Uri personUri = ContentUris.withAppendedId(People.CONTENT_URI, id);
+        Uri dataUri = Uri.withAppendedPath(Aggregates.CONTENT_URI, id + "/data");
 
         // Setup the menu header
         menu.setHeaderTitle(cursor.getString(NAME_COLUMN_INDEX));
 
-        /*
         // View contact details
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
-                .setIntent(new Intent(Intent.ACTION_VIEW, personUri));
-        
-        
+                .setIntent(new Intent(Intent.ACTION_VIEW, dataUri));
+
         // Calling contact
         long phoneId = cursor.getLong(PRIMARY_PHONE_ID_COLUMN_INDEX);
         if (phoneId > 0) {
             // Get the display label for the number
-            CharSequence label = cursor.getString(LABEL_COLUMN_INDEX);
-            int type = cursor.getInt(TYPE_COLUMN_INDEX);
-            label = Phones.getDisplayLabel(this, type, label);
+            CharSequence label = cursor.getString(PRIMARY_PHONE_LABEL_COLUMN_INDEX);
+            int type = cursor.getInt(PRIMARY_PHONE_TYPE_COLUMN_INDEX);
+            label = ContactsUtils.getDisplayLabel(
+                    this, CommonDataKinds.Phone.CONTENT_ITEM_TYPE, type, label);
             Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                    ContentUris.withAppendedId(Phones.CONTENT_URI, phoneId));
-            menu.add(0, MENU_ITEM_CALL, 0, String.format(getString(R.string.menu_callNumber), label))
-                    .setIntent(intent);
+                    ContentUris.withAppendedId(Data.CONTENT_URI, id));
+            menu.add(0, MENU_ITEM_CALL, 0, 
+                    String.format(getString(R.string.menu_callNumber), label)).setIntent(intent);
 
             // Send SMS item
             menu.add(0, MENU_ITEM_SEND_SMS, 0, R.string.menu_sendSMS)
                     .setIntent(new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("sms", cursor.getString(NUMBER_COLUMN_INDEX), null)));
-        } */
+                            Uri.fromParts("sms", 
+                                    cursor.getString(PRIMARY_PHONE_NUMBER_COLUMN_INDEX), null)));
+        }
 
         // Star toggling
         int starState = cursor.getInt(STARRED_COLUMN_INDEX);
@@ -1022,7 +971,7 @@ public final class ContactsListActivity extends ListActivity
         if (id != -1) {
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
-                        ContentUris.withAppendedId(People.CONTENT_URI, id));
+                        ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
                 startActivity(intent);
             } /*else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact

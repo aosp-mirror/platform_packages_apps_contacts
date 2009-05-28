@@ -19,8 +19,8 @@ package com.android.contacts;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Parcel;
-import android.provider.Contacts.Organizations;
-import android.provider.Contacts.People;
+import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Data;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,82 +31,38 @@ import java.util.ArrayList;
 public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         extends BaseAdapter {
 
-    public static final String[] CONTACT_PROJECTION = new String[] {
-        People._ID, // 0
-        People.NAME, // 1
-        People.NOTES, // 2
-        People.PRIMARY_PHONE_ID, // 3
-        People.PRESENCE_STATUS, // 4
-        People.STARRED, // 5
-        People.CUSTOM_RINGTONE, // 6
-        People.SEND_TO_VOICEMAIL, // 7
-        People.PHONETIC_NAME, // 8
+    public static final String[] AGGREGATE_PROJECTION = new String[] {
+        Aggregates.DISPLAY_NAME, // 0
+        Aggregates.STARRED, //1
+        Data._ID, // 2
+        Data.PACKAGE, //3
+        Data.MIMETYPE, //4
+        Data.DATA1, //5
+        Data.DATA2, //6
+        Data.DATA3, //7
+        Data.DATA4, //8
+        Data.DATA5, //9
+        Data.DATA6, //10
+        Data.DATA7, //11
+        Data.DATA8, //12
+        Data.DATA9, //13
+        Data.DATA10, //14
     };
-    public static final int CONTACT_ID_COLUMN = 0;
-    public static final int CONTACT_NAME_COLUMN = 1;
-    public static final int CONTACT_NOTES_COLUMN = 2;
-    public static final int CONTACT_PREFERRED_PHONE_COLUMN = 3;
-    public static final int CONTACT_SERVER_STATUS_COLUMN = 4;
-    public static final int CONTACT_STARRED_COLUMN = 5;
-    public static final int CONTACT_CUSTOM_RINGTONE_COLUMN = 6;
-    public static final int CONTACT_SEND_TO_VOICEMAIL_COLUMN = 7;
-    public static final int CONTACT_PHONETIC_NAME_COLUMN = 8;
-
-    public static final String[] PHONES_PROJECTION = new String[] {
-        People.Phones._ID, // 0
-        People.Phones.NUMBER, // 1
-        People.Phones.TYPE, // 2
-        People.Phones.LABEL, // 3
-        People.Phones.ISPRIMARY, // 4
-    };
-    public static final int PHONES_ID_COLUMN = 0;
-    public static final int PHONES_NUMBER_COLUMN = 1;
-    public static final int PHONES_TYPE_COLUMN = 2;
-    public static final int PHONES_LABEL_COLUMN = 3;
-    public static final int PHONES_ISPRIMARY_COLUMN = 4;
-
-    public static final String[] METHODS_PROJECTION = new String[] {
-        People.ContactMethods._ID, // 0
-        People.ContactMethods.KIND, // 1
-        People.ContactMethods.DATA, // 2
-        People.ContactMethods.TYPE, // 3
-        People.ContactMethods.LABEL, // 4
-        People.ContactMethods.ISPRIMARY, // 5
-        People.ContactMethods.AUX_DATA, // 6
-    };
-    public static final String[] METHODS_WITH_PRESENCE_PROJECTION = new String[] {
-        People.ContactMethods._ID, // 0
-        People.ContactMethods.KIND, // 1
-        People.ContactMethods.DATA, // 2
-        People.ContactMethods.TYPE, // 3
-        People.ContactMethods.LABEL, // 4
-        People.ContactMethods.ISPRIMARY, // 5
-        People.ContactMethods.AUX_DATA, // 6
-        People.PRESENCE_STATUS, // 7
-    };
-    public static final int METHODS_ID_COLUMN = 0;
-    public static final int METHODS_KIND_COLUMN = 1;
-    public static final int METHODS_DATA_COLUMN = 2;
-    public static final int METHODS_TYPE_COLUMN = 3;
-    public static final int METHODS_LABEL_COLUMN = 4;
-    public static final int METHODS_ISPRIMARY_COLUMN = 5;
-    public static final int METHODS_AUX_DATA_COLUMN = 6;
-    public static final int METHODS_STATUS_COLUMN = 7;
-
-    public static final String[] ORGANIZATIONS_PROJECTION = new String[] {
-        Organizations._ID, // 0
-        Organizations.TYPE, // 1
-        Organizations.LABEL, // 2
-        Organizations.COMPANY, // 3
-        Organizations.TITLE, // 4
-        Organizations.ISPRIMARY, // 5
-    };
-    public static final int ORGANIZATIONS_ID_COLUMN = 0;
-    public static final int ORGANIZATIONS_TYPE_COLUMN = 1;
-    public static final int ORGANIZATIONS_LABEL_COLUMN = 2;
-    public static final int ORGANIZATIONS_COMPANY_COLUMN = 3;
-    public static final int ORGANIZATIONS_TITLE_COLUMN = 4;
-    public static final int ORGANIZATIONS_ISPRIMARY_COLUMN = 5;
+    public static final int AGGREGATE_DISPLAY_NAME_COLUMN = 0;
+    public static final int AGGREGATE_STARRED_COLUMN = 1;
+    public static final int DATA_ID_COLUMN = 2;
+    public static final int DATA_PACKAGE_COLUMN = 3;
+    public static final int DATA_MIMETYPE_COLUMN = 4;
+    public static final int DATA_1_COLUMN = 5;
+    public static final int DATA_2_COLUMN = 6;
+    public static final int DATA_3_COLUMN = 7;
+    public static final int DATA_4_COLUMN = 8;
+    public static final int DATA_5_COLUMN = 9;
+    public static final int DATA_6_COLUMN = 10;
+    public static final int DATA_7_COLUMN = 11;
+    public static final int DATA_8_COLUMN = 12;
+    public static final int DATA_9_COLUMN = 13;
+    public static final int DATA_10_COLUMN = 14;
     
     protected ArrayList<ArrayList<E>> mSections;
     protected LayoutInflater mInflater;

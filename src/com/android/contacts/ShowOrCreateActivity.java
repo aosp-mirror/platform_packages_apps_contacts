@@ -17,8 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
-import com.android.providers.contacts2.ContactsContract;
-import com.android.providers.contacts2.ContactsContract.Aggregates;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +35,8 @@ import android.provider.Contacts.ContactMethodsColumns;
 import android.provider.Contacts.Intents;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Aggregates;
 import android.view.View;
 
 /**
