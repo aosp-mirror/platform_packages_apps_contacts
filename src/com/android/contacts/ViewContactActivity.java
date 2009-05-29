@@ -86,7 +86,7 @@ import java.util.List;
 /**
  * Displays the details of a specific contact.
  */
-public class ViewContactActivity extends ListActivity 
+public class ViewContactActivity extends ListActivity
         implements View.OnCreateContextMenuListener, View.OnClickListener,
         DialogInterface.OnClickListener {
     private static final String TAG = "ViewContact";
@@ -117,7 +117,7 @@ public class ViewContactActivity extends ListActivity
 
     private Cursor mCursor;
     private boolean mObserverRegistered;
-    
+
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
         public boolean deliverSelfNotifications() {
@@ -194,7 +194,7 @@ public class ViewContactActivity extends ListActivity
             mNoPhotoResource = R.drawable.ic_contact_picture_3;
         }
 
-        mUri = getIntent().getData();
+        mUri = Uri.withAppendedPath(getIntent().getData(), "data");
         mResolver = getContentResolver();
 
         // Build the list of sections. The order they're added to mSections dictates the
@@ -283,7 +283,7 @@ public class ViewContactActivity extends ListActivity
             // Load the photo
             mPhotoView.setImageBitmap(People.loadContactPhoto(this, mUri, mNoPhotoResource,
                     null)); */
-            
+
             mPhotoView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
                     mNoPhotoResource, null));
 
@@ -355,7 +355,7 @@ public class ViewContactActivity extends ListActivity
             Log.e(TAG, "bad menuInfo");
             return;
         }
-        
+
         // TODO(emillar) Bring this back.
         /*ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
         switch (entry.kind) {
@@ -377,7 +377,7 @@ public class ViewContactActivity extends ListActivity
                 menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
                 break;
             }
-            
+
             case ContactEntryAdapter.Entry.KIND_GROUP: {
                 menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
                 break;
@@ -393,7 +393,7 @@ public class ViewContactActivity extends ListActivity
                 showDialog(DIALOG_CONFIRM_DELETE);
                 return true;
             }
-            
+
             // TODO(emillar) Bring this back.
             /*case MENU_ITEM_SHOW_BARCODE:
                 if (mCursor.moveToFirst()) {
@@ -404,7 +404,7 @@ public class ViewContactActivity extends ListActivity
                     if (!TextUtils.isEmpty(name)) {
                         // Correctly handle when section headers are hidden
                         int sepAdjust = SHOW_SEPARATORS ? 1 : 0;
-                        
+
                         bundle.putString(Contacts.Intents.Insert.NAME, name);
                         // The 0th ViewEntry in each ArrayList below is a separator item
                         int entriesToAdd = Math.min(mPhoneEntries.size() - sepAdjust, PHONE_KEYS.length);
@@ -439,7 +439,7 @@ public class ViewContactActivity extends ListActivity
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -535,7 +535,7 @@ public class ViewContactActivity extends ListActivity
      */
     private void buildSeparators() {
         ViewEntry separator;
-        
+
         separator = new ViewEntry();
         separator.kind = ViewEntry.KIND_SEPARATOR;
         separator.data = getString(R.string.listSeparatorCallNumber);
@@ -588,7 +588,7 @@ public class ViewContactActivity extends ListActivity
 
     /**
      * Build up the entries to display on the screen.
-     * 
+     *
      * @param personCursor the URI for the contact being displayed
      */
     private final void buildEntries(Cursor aggCursor) {
@@ -601,13 +601,13 @@ public class ViewContactActivity extends ListActivity
         if (SHOW_SEPARATORS) {
             buildSeparators();
         }
-        
+
         // Build up method entries
         if (mUri != null) {
             while (aggCursor.moveToNext()) {
                 final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
                 final String pkg = aggCursor.getString(DATA_PACKAGE_COLUMN);
-                
+
                 ViewEntry entry = new ViewEntry();
 
                 final long id = aggCursor.getLong(DATA_ID_COLUMN);
@@ -618,8 +618,8 @@ public class ViewContactActivity extends ListActivity
                 entry.kind = 0;
 
                 if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                        || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE) 
-                        || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE) 
+                        || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+                        || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
                     final int type = aggCursor.getInt(DATA_1_COLUMN);
                     final String label = aggCursor.getString(DATA_2_COLUMN);
@@ -635,7 +635,7 @@ public class ViewContactActivity extends ListActivity
                     // Build phone entries
                     if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
                         mNumPhoneNumbers++;
-                     
+
                         final CharSequence displayLabel = ContactsUtils.getDisplayLabel(
                                 this, mimetype, type, label);
                         entry.label = buildActionString(R.string.actionCall, displayLabel, true);
@@ -649,7 +649,7 @@ public class ViewContactActivity extends ListActivity
                         entry.actionIcon = android.R.drawable.sym_action_call;
                         mPhoneEntries.add(entry);
 
-                        if (type == CommonDataKinds.Phone.TYPE_MOBILE 
+                        if (type == CommonDataKinds.Phone.TYPE_MOBILE
                                 || mShowSmsLinksForAllPhones) {
                             // Add an SMS entry
                             ViewEntry smsEntry = new ViewEntry();
@@ -721,7 +721,7 @@ public class ViewContactActivity extends ListActivity
                         }*/
                         entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
-                    } 
+                    }
                 // Build organization entries
                 } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
                     final int type = aggCursor.getInt(DATA_1_COLUMN);
@@ -733,13 +733,13 @@ public class ViewContactActivity extends ListActivity
                     if (isPrimary) {
                         entry.primaryIcon = R.drawable.ic_default_number;
                     }
-                    
+
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(company) && TextUtils.isEmpty(title)) {
                         Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
-                    
+
                     entry.data = title;
                     entry.actionIcon = R.drawable.sym_action_organization;
                     entry.label = company;
@@ -759,17 +759,17 @@ public class ViewContactActivity extends ListActivity
                         Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
-                    
+
                     mOtherEntries.add(entry);
                 // Build the ringtone and send to voicemail entries
                 } else if (mimetype.equals(CommonDataKinds.CustomRingtone.CONTENT_ITEM_TYPE)) {
                     final Boolean sendToVoicemail = "1".equals(aggCursor.getString(DATA_1_COLUMN));
                     final String ringtoneStr = aggCursor.getString(DATA_2_COLUMN);
 
-                    // TODO(emillar) we need to enforce uniqueness of custom ringtone entries on a 
+                    // TODO(emillar) we need to enforce uniqueness of custom ringtone entries on a
                     // single aggregate. This could be done by checking against the reference ID stored
                     // in the aggregate.
-                    
+
                     // Build the send directly to voice mail entry
                     if (sendToVoicemail) {
                         entry.label = getString(R.string.actionIncomingCall);
@@ -791,7 +791,7 @@ public class ViewContactActivity extends ListActivity
                         }
                     }
                 }
-                
+
                 // TODO(emillar) Add group entries
 //              // Build the group entries
 //              final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
@@ -834,7 +834,7 @@ public class ViewContactActivity extends ListActivity
 //                      groupCursor.close();
 //                  }
 //              }
-                
+
             }
         }
     }
@@ -852,7 +852,7 @@ public class ViewContactActivity extends ListActivity
             return getString(actionResId, type.toString());
         }
     }
-    
+
     /**
      * A basic structure with the data for a contact entry in the list.
      */
@@ -872,18 +872,18 @@ public class ViewContactActivity extends ListActivity
             public TextView data;
             public ImageView actionIcon;
             public ImageView presenceIcon;
-            
+
             // Need to keep track of this too
             ViewEntry entry;
         }
-        
+
         ViewAdapter(Context context, ArrayList<ArrayList<ViewEntry>> sections) {
             super(context, sections, SHOW_SEPARATORS);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewEntry entry = getEntry(mSections, position, false); 
+            ViewEntry entry = getEntry(mSections, position, false);
             View v;
 
             // Handle separators specially

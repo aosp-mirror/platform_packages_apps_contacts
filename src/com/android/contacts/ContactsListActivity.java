@@ -185,7 +185,7 @@ public final class ContactsListActivity extends ListActivity
         Aggregates.PRIMARY_PHONE_ID, //3
         Aggregates.PRIMARY_EMAIL_ID, //4
     };
-    
+
     static final String[] AGGREGATES_PRIMARY_PHONE_PROJECTION = new String[] {
         Aggregates._ID, // 0
         Aggregates.DISPLAY_NAME, // 1
@@ -195,7 +195,7 @@ public final class ContactsListActivity extends ListActivity
         CommonDataKinds.Phone.LABEL, //5
         CommonDataKinds.Phone.NUMBER, //6
     };
-    
+
     static final int ID_COLUMN_INDEX = 0;
     static final int NAME_COLUMN_INDEX = 1;
     static final int STARRED_COLUMN_INDEX = 2;
@@ -568,7 +568,7 @@ public final class ContactsListActivity extends ListActivity
                 break;
             } */
 
-            case DISPLAY_TYPE_ALL: 
+            case DISPLAY_TYPE_ALL:
             default: {
                 mMode = MODE_ALL_CONTACTS;
                 mDisplayInfo = null;
@@ -823,7 +823,7 @@ public final class ContactsListActivity extends ListActivity
             return;
         }
         long id = info.id;
-        Uri dataUri = Uri.withAppendedPath(Aggregates.CONTENT_URI, id + "/data");
+        Uri dataUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
 
         // Setup the menu header
         menu.setHeaderTitle(cursor.getString(NAME_COLUMN_INDEX));
@@ -842,13 +842,13 @@ public final class ContactsListActivity extends ListActivity
                     this, CommonDataKinds.Phone.CONTENT_ITEM_TYPE, type, label);
             Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                     ContentUris.withAppendedId(Data.CONTENT_URI, id));
-            menu.add(0, MENU_ITEM_CALL, 0, 
+            menu.add(0, MENU_ITEM_CALL, 0,
                     String.format(getString(R.string.menu_callNumber), label)).setIntent(intent);
 
             // Send SMS item
             menu.add(0, MENU_ITEM_SEND_SMS, 0, R.string.menu_sendSMS)
                     .setIntent(new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("sms", 
+                            Uri.fromParts("sms",
                                     cursor.getString(PRIMARY_PHONE_NUMBER_COLUMN_INDEX), null)));
         }
 
@@ -967,7 +967,7 @@ public final class ContactsListActivity extends ListActivity
             }
             startActivity(intent);
             finish();
-        } else */ 
+        } else */
         if (id != -1) {
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
@@ -1073,7 +1073,7 @@ public final class ContactsListActivity extends ListActivity
         } else {
             return NAME_COLUMN + " COLLATE LOCALIZED ASC";
         } */
-        
+
         return NAME_COLUMN + " COLLATE LOCALIZED ASC";
     }
 
@@ -1095,9 +1095,9 @@ public final class ContactsListActivity extends ListActivity
             /* case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT: */
-                mQueryHandler.startQuery(QUERY_TOKEN, null, 
-                        Uri.parse(ContactsContract.AUTHORITY_URI + "/aggregates_primary_phone/*"), 
-                        AGGREGATES_PRIMARY_PHONE_PROJECTION, null, null, 
+                mQueryHandler.startQuery(QUERY_TOKEN, null,
+                        Uri.parse(ContactsContract.AUTHORITY_URI + "/aggregates_primary_phone/*"),
+                        AGGREGATES_PRIMARY_PHONE_PROJECTION, null, null,
                         getSortOrder(AGGREGATES_PRIMARY_PHONE_PROJECTION));
                 break;
 
@@ -1137,10 +1137,10 @@ public final class ContactsListActivity extends ListActivity
             } */
 
             case MODE_STARRED:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, 
+                mQueryHandler.startQuery(QUERY_TOKEN, null,
                         Uri.parse(ContactsContract.AUTHORITY_URI + "/aggregates_primary_phone/*"),
                         AGGREGATES_PRIMARY_PHONE_PROJECTION,
-                        Aggregates.STARRED + "=1", null, 
+                        Aggregates.STARRED + "=1", null,
                         getSortOrder(AGGREGATES_PRIMARY_PHONE_PROJECTION));
                 break;
 
@@ -1196,7 +1196,7 @@ public final class ContactsListActivity extends ListActivity
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT: {
-                return resolver.query(getPeopleFilterUri(filter), 
+                return resolver.query(getPeopleFilterUri(filter),
                         AGGREGATES_PRIMARY_PHONE_PROJECTION, null, null,
                         getSortOrder(AGGREGATES_PRIMARY_PHONE_PROJECTION));
             }
@@ -1208,9 +1208,9 @@ public final class ContactsListActivity extends ListActivity
             }
 
             case MODE_STARRED: {
-                return resolver.query(getPeopleFilterUri(filter), 
+                return resolver.query(getPeopleFilterUri(filter),
                         AGGREGATES_PRIMARY_PHONE_PROJECTION,
-                        Aggregates.STARRED + "=1", null, 
+                        Aggregates.STARRED + "=1", null,
                         getSortOrder(AGGREGATES_PRIMARY_PHONE_PROJECTION));
             }
 
@@ -1587,7 +1587,7 @@ public final class ContactsListActivity extends ListActivity
             } else {
                 numberView.setVisibility(View.GONE);
                 labelView.setVisibility(View.GONE);
-            } 
+            }
 
             // Set the label
             if (!cursor.isNull(PRIMARY_PHONE_TYPE_COLUMN_INDEX)) {
@@ -1744,7 +1744,7 @@ public final class ContactsListActivity extends ListActivity
         public Object [] getSections() {
             if (mMode == MODE_STARRED) {
                 return new String[] { " " };
-            } else { 
+            } else {
                 return mIndexer.getSections();
             }
         }
