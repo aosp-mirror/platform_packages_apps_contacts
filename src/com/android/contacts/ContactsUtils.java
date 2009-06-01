@@ -1,18 +1,43 @@
+/*
+ * Copyright (C) 2009 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.contacts;
 
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import android.net.Uri;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.provider.Contacts;
+import android.provider.Contacts.Photos;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Postal;
 import android.provider.Im.ProviderNames;
-
-import android.content.Context;
 import android.text.TextUtils;
 
 public class ContactsUtils {
-    
+
     public static final CharSequence getDisplayLabel(Context context, String mimetype, int type,
             CharSequence label) {
         CharSequence display = "";
@@ -40,7 +65,7 @@ public class ContactsUtils {
             // Can't return display label for given mimetype.
             return display;
         }
-        
+
         if (type != customType) {
             CharSequence[] labels = context.getResources().getTextArray(arrayResId);
             try {
@@ -55,7 +80,7 @@ public class ContactsUtils {
         }
         return display;
     }
-    
+
     public static Object decodeImProtocol(String encodedString) {
         if (encodedString == null) {
             return null;
@@ -72,9 +97,43 @@ public class ContactsUtils {
         throw new IllegalArgumentException(
                 "the value is not a valid encoded protocol, " + encodedString);
     }
-    
 
-    
+    /**
+     * Opens an InputStream for the person's photo and returns the photo as a Bitmap.
+     * If the person's photo isn't present returns null.
+     *
+     * @param aggCursor the Cursor pointing to the data record containing the photo.
+     * @param bitmapColumnIndex the column index where the photo Uri is stored.
+     * @param options the decoding options, can be set to null
+     * @return the photo Bitmap
+     */
+    public static Bitmap loadContactPhoto(Cursor aggCursor, int bitmapColumnIndex,
+            BitmapFactory.Options options) {
+        if (aggCursor == null) {
+            return null;
+        }
+
+        byte[] data = aggCursor.getBlob(bitmapColumnIndex);;
+        return BitmapFactory.decodeByteArray(data, 0, data.length, options);
+    }
+
+    /**
+     * Loads a placeholder photo.
+     *
+     * @param placeholderImageResource the resource to use for the placeholder image
+     * @param context the Context
+     * @param options the decoding options, can be set to null
+     * @return the placeholder Bitmap.
+     */
+    public static Bitmap loadPlaceholderPhoto(int placeholderImageResource, Context context,
+            BitmapFactory.Options options) {
+        if (placeholderImageResource == 0) {
+            return null;
+        }
+        return BitmapFactory.decodeResource(context.getResources(),
+                placeholderImageResource, options);
+    }
+
     /**
      * This looks up the provider name defined in
      * {@link android.provider.Im.ProviderNames} from the predefined IM protocol id.

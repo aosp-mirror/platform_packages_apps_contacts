@@ -22,6 +22,8 @@ import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_PACKAGE_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_IS_PRIMARY_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
@@ -50,6 +52,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
@@ -62,6 +65,7 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.Im;
 import android.text.TextUtils;
@@ -101,6 +105,7 @@ public class ViewContactActivity extends ListActivity
     public static final int MENU_ITEM_SHOW_BARCODE = 3;
 
     private Uri mUri;
+    private Uri mAggDataUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
@@ -194,7 +199,8 @@ public class ViewContactActivity extends ListActivity
             mNoPhotoResource = R.drawable.ic_contact_picture_3;
         }
 
-        mUri = Uri.withAppendedPath(getIntent().getData(), "data");
+        mUri = getIntent().getData();
+        mAggDataUri = Uri.withAppendedPath(mUri, "data");
         mResolver = getContentResolver();
 
         // Build the list of sections. The order they're added to mSections dictates the
@@ -211,7 +217,8 @@ public class ViewContactActivity extends ListActivity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
-        mCursor = mResolver.query(mUri, AGGREGATE_PROJECTION, null, null, null);
+        mCursor = mResolver.query(mAggDataUri,
+                AGGREGATE_PROJECTION, null, null, null);
     }
 
     @Override
@@ -274,18 +281,11 @@ public class ViewContactActivity extends ListActivity
                 mNameView.setText(name);
             }
 
-			// TODO(emillar) Bring this back.
+            // TODO(emillar) Bring this back.
             /*if (mPhoneticNameView != null) {
                 String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
                 mPhoneticNameView.setText(phoneticName);
-            }
-
-            // Load the photo
-            mPhotoView.setImageBitmap(People.loadContactPhoto(this, mUri, mNoPhotoResource,
-                    null)); */
-
-            mPhotoView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
-                    mNoPhotoResource, null));
+            } */
 
             // Set the star
             mStarView.setChecked(mCursor.getInt(AGGREGATE_STARRED_COLUMN) == 1 ? true : false);
@@ -356,33 +356,25 @@ public class ViewContactActivity extends ListActivity
             return;
         }
 
-        // TODO(emillar) Bring this back.
-        /*ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
-        switch (entry.kind) {
-            case Contacts.KIND_PHONE: {
-                menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-                menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.auxIntent);
-                if (entry.primaryIcon == -1) {
-                    menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
-                }
-                break;
+        ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
+            menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.auxIntent);
+            if (entry.primaryIcon == -1) {
+                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
             }
-
-            case Contacts.KIND_EMAIL: {
-                menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
-                break;
+        } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
+            if (entry.primaryIcon == -1) {
+                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
             }
-
-            case Contacts.KIND_POSTAL: {
-                menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
-                break;
-            }
-
-            case ContactEntryAdapter.Entry.KIND_GROUP: {
-                menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
-                break;
-            }
-        } */
+        } else if (entry.mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
+        }
+        // TODO(emillar): add back with group support.
+        /* else if (entry.mimetype.equals()) {
+            menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
+            } */
     }
 
     @Override
@@ -444,8 +436,7 @@ public class ViewContactActivity extends ListActivity
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
-                //TODO(emillar) Bring this back.
-                /*AdapterView.AdapterContextMenuInfo info;
+                AdapterView.AdapterContextMenuInfo info;
                 try {
                      info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 } catch (ClassCastException e) {
@@ -455,10 +446,16 @@ public class ViewContactActivity extends ListActivity
 
                 ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position,
                         SHOW_SEPARATORS);
+
+                // Update the primary values in the data record.
                 ContentValues values = new ContentValues(1);
-                values.put(PRIMARY_PHONE_ID, entry.id);
-                getContentResolver().update(mUri, values, null, null);
-                dataChanged();*/
+                values.put(Data.IS_PRIMARY, 1);
+                values.put(Data.IS_SUPER_PRIMARY, 1);
+
+                Log.i(TAG, mUri.toString());
+                getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
+                        values, null, null);
+                dataChanged();
                 return true;
             }
         }
@@ -530,55 +527,8 @@ public class ViewContactActivity extends ListActivity
         //TODO: implement this when we have the sonification APIs
     }
 
-    /**
-     * Build separator entries for all of the sections.
-     */
-    private void buildSeparators() {
-        ViewEntry separator;
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorCallNumber);
-        mPhoneEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendSmsMms);
-        mSmsEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendEmail);
-        mEmailEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendIm);
-        mImEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorMapAddress);
-        mPostalEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorOrganizations);
-        mOrganizationEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorGroups);
-        mGroupEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorOtherInformation);
-        mOtherEntries.add(separator);
-    }
-
     private Uri constructImToUrl(String host, String data) {
-	    // don't encode the url, because the Activity Manager can't find using the encoded url
+        // don't encode the url, because the Activity Manager can't find using the encoded url
         StringBuilder buf = new StringBuilder("imto://");
         buf.append(host);
         buf.append('/');
@@ -598,12 +548,9 @@ public class ViewContactActivity extends ListActivity
             mSections.get(i).clear();
         }
 
-        if (SHOW_SEPARATORS) {
-            buildSeparators();
-        }
-
         // Build up method entries
         if (mUri != null) {
+            Bitmap photoBitmap = null;
             while (aggCursor.moveToNext()) {
                 final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
                 final String pkg = aggCursor.getString(DATA_PACKAGE_COLUMN);
@@ -614,17 +561,17 @@ public class ViewContactActivity extends ListActivity
                 final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
                 entry.id = id;
                 entry.uri = uri;
-                //TODO(emillar) Can we get rid of kind?
-                entry.kind = 0;
+                entry.mimetype = mimetype;
 
                 if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
                     final int type = aggCursor.getInt(DATA_1_COLUMN);
-                    final String label = aggCursor.getString(DATA_2_COLUMN);
-                    final String data = aggCursor.getString(DATA_3_COLUMN);
-                    final boolean isPrimary = "1".equals(aggCursor.getString(DATA_4_COLUMN));
+                    final String label = aggCursor.getString(DATA_3_COLUMN);
+                    final String data = aggCursor.getString(DATA_2_COLUMN);
+                    final boolean isSuperPrimary = "1".equals(
+                            aggCursor.getString(DATA_IS_SUPER_PRIMARY_COLUMN));
 
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(data)) {
@@ -643,7 +590,7 @@ public class ViewContactActivity extends ListActivity
                         entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
                         entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("sms", data, null));
-                        if (isPrimary) {
+                        if (isSuperPrimary) {
                             entry.primaryIcon = R.drawable.ic_default_number;
                         }
                         entry.actionIcon = android.R.drawable.sym_action_call;
@@ -659,7 +606,7 @@ public class ViewContactActivity extends ListActivity
                             smsEntry.id = id;
                             smsEntry.uri = uri;
                             smsEntry.intent = entry.auxIntent;
-                            smsEntry.kind = ViewEntry.KIND_SMS;
+                            smsEntry.mimetype = FastTrackWindow.MIME_SMS_ADDRESS;
                             smsEntry.actionIcon = R.drawable.sym_action_sms;
                             mSmsEntries.add(smsEntry);
                         }
@@ -671,7 +618,7 @@ public class ViewContactActivity extends ListActivity
                         entry.intent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("mailto", data, null));
                         entry.actionIcon = android.R.drawable.sym_action_email;
-                        if (isPrimary) {
+                        if (isSuperPrimary) {
                             entry.primaryIcon = R.drawable.ic_default_number;
                         }
                         mEmailEntries.add(entry);
@@ -790,7 +737,11 @@ public class ViewContactActivity extends ListActivity
                             }
                         }
                     }
+                // Load the photo
+                } else if (mimetype.equals(CommonDataKinds.Photo.CONTENT_ITEM_TYPE)) {
+                    photoBitmap = ContactsUtils.loadContactPhoto(aggCursor, DATA_1_COLUMN, null);
                 }
+
 
                 // TODO(emillar) Add group entries
 //              // Build the group entries
@@ -836,6 +787,11 @@ public class ViewContactActivity extends ListActivity
 //              }
 
             }
+
+            if (photoBitmap == null) {
+                photoBitmap = ContactsUtils.loadPlaceholderPhoto(mNoPhotoResource, this, null);
+            }
+            mPhotoView.setImageBitmap(photoBitmap);
         }
     }
 
@@ -885,14 +841,6 @@ public class ViewContactActivity extends ListActivity
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewEntry entry = getEntry(mSections, position, false);
             View v;
-
-            // Handle separators specially
-            if (entry.kind == ViewEntry.KIND_SEPARATOR) {
-                TextView separator = (TextView) mInflater.inflate(
-                        R.layout.list_separator, parent, SHOW_SEPARATORS);
-                separator.setText(entry.data);
-                return separator;
-            }
 
             ViewCache views;
 

@@ -97,6 +97,10 @@
     <!-- Menu item that makes a phone the default for a contact. The default number used when you
          try to call a contact without specifying a specific number. -->
     <string name="menu_makeDefaultNumber">Make default number</string>
+    
+    <!-- Menu item that makes an email address the default for a contact. The default email used 
+    	 when you try to email a contact without specifying a specific address. -->
+    <string name="menu_makeDefaultEmail">Make default email</string>
 
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>

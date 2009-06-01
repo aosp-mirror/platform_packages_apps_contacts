@@ -37,33 +37,37 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         Data._ID, // 2
         Data.PACKAGE, //3
         Data.MIMETYPE, //4
-        Data.DATA1, //5
-        Data.DATA2, //6
-        Data.DATA3, //7
-        Data.DATA4, //8
-        Data.DATA5, //9
-        Data.DATA6, //10
-        Data.DATA7, //11
-        Data.DATA8, //12
-        Data.DATA9, //13
-        Data.DATA10, //14
+        Data.IS_PRIMARY, //5
+        Data.IS_SUPER_PRIMARY, //6
+        Data.DATA1, //7
+        Data.DATA2, //8
+        Data.DATA3, //9
+        Data.DATA4, //10
+        Data.DATA5, //11
+        Data.DATA6, //12
+        Data.DATA7, //13
+        Data.DATA8, //14
+        Data.DATA9, //15
+        Data.DATA10, //16
     };
     public static final int AGGREGATE_DISPLAY_NAME_COLUMN = 0;
     public static final int AGGREGATE_STARRED_COLUMN = 1;
     public static final int DATA_ID_COLUMN = 2;
     public static final int DATA_PACKAGE_COLUMN = 3;
     public static final int DATA_MIMETYPE_COLUMN = 4;
-    public static final int DATA_1_COLUMN = 5;
-    public static final int DATA_2_COLUMN = 6;
-    public static final int DATA_3_COLUMN = 7;
-    public static final int DATA_4_COLUMN = 8;
-    public static final int DATA_5_COLUMN = 9;
-    public static final int DATA_6_COLUMN = 10;
-    public static final int DATA_7_COLUMN = 11;
-    public static final int DATA_8_COLUMN = 12;
-    public static final int DATA_9_COLUMN = 13;
-    public static final int DATA_10_COLUMN = 14;
-    
+    public static final int DATA_IS_PRIMARY_COLUMN = 5;
+    public static final int DATA_IS_SUPER_PRIMARY_COLUMN = 6;
+    public static final int DATA_1_COLUMN = 7;
+    public static final int DATA_2_COLUMN = 8;
+    public static final int DATA_3_COLUMN = 9;
+    public static final int DATA_4_COLUMN = 10;
+    public static final int DATA_5_COLUMN = 11;
+    public static final int DATA_6_COLUMN = 12;
+    public static final int DATA_7_COLUMN = 13;
+    public static final int DATA_8_COLUMN = 14;
+    public static final int DATA_9_COLUMN = 15;
+    public static final int DATA_10_COLUMN = 16;
+
     protected ArrayList<ArrayList<E>> mSections;
     protected LayoutInflater mInflater;
     protected Context mContext;
@@ -87,8 +91,10 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         public Uri uri;
         public long id = 0;
         public int maxLines = 1;
+        // TODO(emillar): remove "kind" completely once it is removed from EditContactActivity
         public int kind;
-        
+        public String mimetype;
+
         /**
          * Helper for making subclasses parcelable.
          */
@@ -98,9 +104,9 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
             p.writeParcelable(uri, 0);
             p.writeLong(id);
             p.writeInt(maxLines);
-            p.writeInt(kind);
+            p.writeString(mimetype);
         }
-        
+
         /**
          * Helper for making subclasses parcelable.
          */
@@ -110,7 +116,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
             uri = p.readParcelable(null);
             id = p.readLong();
             maxLines = p.readInt();
-            kind = p.readInt();
+            mimetype = p.readString();
         }
     }
 
@@ -123,7 +129,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Resets the section data.
-     * 
+     *
      * @param sections the section data
      */
     public final void setSections(ArrayList<ArrayList<E>> sections, boolean separators) {
@@ -134,7 +140,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Resets the section data and returns the position of the given entry.
-     * 
+     *
      * @param sections the section data
      * @param entry the entry to return the position for
      * @return the position of entry, or -1 if it isn't found
@@ -210,7 +216,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Get the entry for the given position.
-     * 
+     *
      * @param sections the list of sections
      * @param position the position for the desired entry
      * @return the ContactEntry for the given position
@@ -235,7 +241,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Get the count of entries in all sections
-     * 
+     *
      * @param sections the list of sections
      * @return the count of entries in all sections
      */
@@ -283,7 +289,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Create a new view for an entry.
-     * 
+     *
      * @parent the parent ViewGroup
      * @return the newly created view
      */
@@ -291,7 +297,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
 
     /**
      * Binds the data from an entry to a view.
-     * 
+     *
      * @param view the view to display the entry in
      * @param entry the data to bind
      */
