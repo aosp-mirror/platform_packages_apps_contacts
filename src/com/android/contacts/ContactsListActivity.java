@@ -1095,9 +1095,10 @@ public final class ContactsListActivity extends ListActivity
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT: */
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        Uri.parse(ContactsContract.AUTHORITY_URI + "/aggregates_primary_phone/*"),
+                        ContactsContract.Aggregates.CONTENT_SUMMARY_URI,
                         AGGREGATES_PRIMARY_PHONE_PROJECTION, null, null,
                         getSortOrder(AGGREGATES_PRIMARY_PHONE_PROJECTION));
+
                 break;
 
             /* case MODE_WITH_PHONES:

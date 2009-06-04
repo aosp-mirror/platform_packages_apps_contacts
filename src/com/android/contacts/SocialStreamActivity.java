@@ -144,8 +144,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     /** {@inheritDoc} */
     public void onClick(View v) {
         // Clicked on photo, so show fast-track
-        View listItem = (View)v.getParent();
-        showFastTrack(listItem, (Long)v.getTag());
+        showFastTrack(v, (Long)v.getTag());
     }
 
     /** {@inheritDoc} */
@@ -166,19 +165,19 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     }
 
     private int[] mLocation = new int[2];
-    
-    private static final int PHOTO_WIDTH = 54;
-    private static final int PHOTO_HEIGHT = 54;
+    private Rect mRect = new Rect();
 
     private void showFastTrack(View anchor, long aggId) {
         Uri aggUri = ContentUris.withAppendedId(ContactsContract.Aggregates.CONTENT_URI, aggId);
 
         anchor.getLocationInWindow(mLocation);
-        final int entryTop = mLocation[1];
-        final int x = (PHOTO_WIDTH / 2) + 3;
+        mRect.left = mLocation[0];
+        mRect.top = mLocation[1];
+        mRect.right = mRect.left + anchor.getWidth();
+        mRect.bottom = mRect.top + anchor.getHeight();
 
         mFastTrack.dismiss();
-        mFastTrack.show(aggUri, x, entryTop, PHOTO_HEIGHT);
+        mFastTrack.show(aggUri, mRect);
     }
 
     /** {@inheritDoc} */
@@ -219,12 +218,14 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         private OnClickListener mPhotoListener;
         private SpannableStringBuilder mBuilder = new SpannableStringBuilder();
 
+        public static final int TYPE_ACTIVITY = 0;
+        public static final int TYPE_REPLY = 1;
+
         private static class SocialHolder {
             ImageView photo;
             ImageView sourceIcon;
             TextView content;
             TextView summary;
-            SpannableStringBuilder summaryBuilder = new SpannableStringBuilder();
             ImageView thumbnail;
             TextView published;
         }
@@ -252,7 +253,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         @Override
         public int getItemViewType(int position) {
             Cursor cursor = (Cursor) getItem(position);
-            return isReply(cursor) ? 0 : 1;
+            return isReply(cursor) ? TYPE_ACTIVITY : TYPE_REPLY;
         }
 
         @Override
@@ -287,10 +288,10 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
             if (summary == null) {
                 holder.summary.setVisibility(View.GONE);
             } else {
-                holder.summaryBuilder.clear();
-                holder.summaryBuilder.append(summary);
-                holder.summaryBuilder.setSpan(mTextStyleLink, 0, summary.length(), 0);
-                holder.summary.setText(holder.summaryBuilder);
+                mBuilder.clear();
+                mBuilder.append(summary);
+                mBuilder.setSpan(mTextStyleLink, 0, summary.length(), 0);
+                holder.summary.setText(mBuilder);
                 holder.summary.setVisibility(View.VISIBLE);
             }
 
@@ -413,6 +414,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         String packageName;
         String mimeType;
         String summaryColumn;
+        String detailColumn;
         int remoteViewsRes;
         Bitmap icon;
 
@@ -561,6 +563,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
                     mapping.packageName = packageName;
                     mapping.mimeType = a.getString(R.styleable.Mapping_mimeType);
                     mapping.summaryColumn = a.getString(R.styleable.Mapping_summaryColumn);
+                    mapping.detailColumn = a.getString(R.styleable.Mapping_detailColumn);
                     mapping.remoteViewsRes = a.getResourceId(R.styleable.Mapping_remoteViews, -1);
 
                     // Read and resize icon if provided

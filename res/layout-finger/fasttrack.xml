@@ -87,7 +87,6 @@
         android:layout_height="wrap_content"
         android:fadingEdgeLength="40dip"
         android:padding="4dip"
-        android:paddingBottom="10dip"
         android:scrollbars="none">
 
         <LinearLayout
@@ -103,15 +102,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:layout_marginLeft="60dip"
         android:visibility="gone"
-        android:background="#ff00"
+        android:cacheColorHint="@null"
+        android:divider="#fddd"
         />
 
     <ImageView
         android:id="@+id/arrow_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dip"
         android:src="@drawable/arrow_down" />
 
 </LinearLayout>

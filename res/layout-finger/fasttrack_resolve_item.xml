@@ -14,12 +14,52 @@
      limitations under the License.
 -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:textAppearance="?android:attr/textAppearanceLargeInverse"
-    android:gravity="center_vertical"
-    android:drawablePadding="14dip"
-    android:paddingLeft="15dip"
-    android:paddingRight="15dip" />
+    android:orientation="horizontal"
+    android:paddingLeft="30dip"
+    android:paddingRight="30dip"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@android:id/icon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dip"
+        android:gravity="center"
+        android:scaleType="centerInside" />
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="7dip"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+        <TextView
+            android:id="@android:id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@android:id/icon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:gravity="center"
+        android:scaleType="centerInside" />
+
+</LinearLayout>

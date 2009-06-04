@@ -26,24 +26,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Contacts;
-import android.provider.Contacts.ContactMethods;
-import android.provider.Contacts.ContactMethodsColumns;
 import android.provider.Contacts.Intents;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.PhoneLookup;
 import android.view.View;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in
  * connected with a specific E-mail address or phone number. Will search based
  * on incoming {@link Intent#getData()} as described by
- * {@link Intents#SHOW_OR_CREATE_CONTACT}.
+ * {@link android.provider.Contacts.Intents#SHOW_OR_CREATE_CONTACT}.
  *
  * <ul>
  * <li>If no matching contacts found, will prompt user with dialog to add to a
@@ -55,17 +52,17 @@ import android.view.View;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener, FastTrackWindow.OnDismissListener {
+public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener,
+        FastTrackWindow.OnDismissListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 
     static final String[] PHONES_PROJECTION = new String[] {
-        Phones.PERSON_ID,
+        PhoneLookup._ID,
     };
 
     static final String[] CONTACTS_PROJECTION = new String[] {
-        ContactsContract.Contacts.AGGREGATE_ID,
-//        People._ID,
+        Contacts.AGGREGATE_ID,
     };
 
     static final String SCHEME_MAILTO = "mailto";
@@ -74,21 +71,12 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     static final int AGGREGATE_ID_INDEX = 0;
 
     /**
-     * Query clause to filter {@link ContactMethods#CONTENT_URI} to only search
-     * {@link Contacts#KIND_EMAIL} or {@link Contacts#KIND_IM}.
-     */
-    static final String QUERY_KIND_EMAIL_OR_IM = ContactMethodsColumns.KIND +
-            " IN (" + Contacts.KIND_EMAIL + "," + Contacts.KIND_IM + ")";
-
-    /**
      * Extra used to request a specific {@link FastTrackWindow} position.
+     * Normally the fast-track window will try pointing an arrow towards this
+     * location, but if the left and right edges are crossed, the arrow may be
+     * hidden.
      */
-    private static final String EXTRA_X = "pixel_x";
-    private static final String EXTRA_Y = "pixel_y";
-    private static final String EXTRA_HEIGHT = "pixel_height";
-    private static final int DEFAULT_X = 30;
-    private static final int DEFAULT_Y = 90;
-    private static final int DEFAULT_HEIGHT = 30;
+    private static final String EXTRA_RECT = "target_rect";
 
     static final int QUERY_TOKEN = 42;
 
@@ -142,16 +130,14 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         if (SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
-            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_EMAIL_URI,
-                    Uri.encode(ssp));
-            mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
-                    CONTACTS_PROJECTION, null, null, null);
+            Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
+            mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
         } else if (SCHEME_TEL.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.PHONE, ssp);
-//            mQueryHandler.startQuery(QUERY_TOKEN, null,
-//                    Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, ssp),
-//                    PHONES_PROJECTION, null, null, null);
+
+            Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, ssp);
+            mQueryHandler.startQuery(QUERY_TOKEN, null, uri, PHONES_PROJECTION, null, null, null);
 
         } else {
             // Otherwise assume incoming aggregate Uri
@@ -178,11 +164,17 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     private void showFastTrack(Uri aggUri) {
         // Use our local window token for now
         Bundle extras = getIntent().getExtras();
-        final int x = extras.getInt(EXTRA_X, DEFAULT_X);
-        final int y = extras.getInt(EXTRA_Y, DEFAULT_Y);
-        final int height = extras.getInt(EXTRA_HEIGHT, DEFAULT_HEIGHT);
+
+        Rect targetRect;
+        if (extras.containsKey(EXTRA_RECT)) {
+            targetRect = (Rect)extras.getParcelable(EXTRA_RECT);
+        } else {
+            // TODO: this default rect matches gmail messages, and should move over there
+            targetRect = new Rect(15, 110, 15+18, 110+18);
+        }
+
         mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(aggUri, x, y, height);
+        mFastTrack.show(aggUri, targetRect);
     }
 
     /** {@inheritDoc} */
@@ -210,14 +202,9 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         }
 
         if (count == 1 && aggId != -1) {
-            // If we only found one item, jump right to viewing it
+            // If we only found one item, show fast-track
             final Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, aggId);
             showFastTrack(aggUri);
-
-//            Intent viewIntent = new Intent(Intent.ACTION_VIEW,
-//                    ContentUris.withAppendedId(People.CONTENT_URI, personId));
-//            activity.startActivity(viewIntent);
-//            activity.finish();
 
         } else if (count > 1) {
             // If more than one, show pick list
@@ -231,9 +218,9 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
             // No matching contacts found
             if (mCreateForce) {
                 // Forced to create new contact
-                Intent createIntent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
+                Intent createIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 createIntent.putExtras(mCreateExtras);
-                createIntent.setType(People.CONTENT_TYPE);
+                createIntent.setType(Contacts.CONTENT_TYPE);
 
                 startActivity(createIntent);
                 finish();
@@ -242,7 +229,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
                 // Prompt user to insert or edit contact
                 Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 createIntent.putExtras(mCreateExtras);
-                createIntent.setType(People.CONTENT_ITEM_TYPE);
+                createIntent.setType(Contacts.CONTENT_ITEM_TYPE);
 
                 CharSequence message = getResources().getString(
                         R.string.add_contact_dlg_message_fmt, mCreateDescrip);
@@ -282,24 +269,6 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
                 mParent.startActivity(mIntent);
             }
             mParent.finish();
-        }
-    }
-
-    /**
-     * Fake view that simply exists to pass through a specific {@link IBinder}
-     * window token.
-     */
-    private static class FakeView extends View {
-        private IBinder mWindowToken;
-
-        public FakeView(Context context, IBinder windowToken) {
-            super(context);
-            mWindowToken = windowToken;
-        }
-
-        @Override
-        public IBinder getWindowToken() {
-            return mWindowToken;
         }
     }
 }

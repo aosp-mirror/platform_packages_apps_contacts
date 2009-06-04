@@ -18,6 +18,7 @@ package com.android.contacts;
 
 
 import java.io.ByteArrayInputStream;
+import android.provider.ContactsContract.Data;
 import java.io.InputStream;
 
 import android.net.Uri;
@@ -35,9 +36,47 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Postal;
 import android.provider.Im.ProviderNames;
+import android.database.Cursor;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class ContactsUtils {
+
+    /**
+     * Build the display title for the {@link Data#CONTENT_URI} entry in the
+     * provided cursor, assuming the given mimeType.
+     */
+    public static final CharSequence getDisplayLabel(Context context,
+            String mimeType, Cursor cursor) {
+        // Try finding the type and label for this mimetype
+        int colType;
+        int colLabel;
+
+        // TODO: move the SMS mime-type to a central location
+        if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)
+                || FastTrackWindow.MIME_SMS_ADDRESS.equals(mimeType)) {
+            // Reset to phone mimetype so we generate a label for SMS case
+            mimeType = Phone.CONTENT_ITEM_TYPE;
+            colType = cursor.getColumnIndex(Phone.TYPE);
+            colLabel = cursor.getColumnIndex(Phone.LABEL);
+        } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            colType = cursor.getColumnIndex(Email.TYPE);
+            colLabel = cursor.getColumnIndex(Email.LABEL);
+        } else if (Postal.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            colType = cursor.getColumnIndex(Postal.TYPE);
+            colLabel = cursor.getColumnIndex(Postal.LABEL);
+        } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            colType = cursor.getColumnIndex(Organization.TYPE);
+            colLabel = cursor.getColumnIndex(Organization.LABEL);
+        } else {
+            return null;
+        }
+
+        final int type = cursor.getInt(colType);
+        final CharSequence label = cursor.getString(colLabel);
+
+        return getDisplayLabel(context, mimeType, type, label);
+    }
 
     public static final CharSequence getDisplayLabel(Context context, String mimetype, int type,
             CharSequence label) {

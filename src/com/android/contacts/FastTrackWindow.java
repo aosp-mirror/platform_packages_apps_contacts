@@ -17,11 +17,10 @@
 package com.android.contacts;
 
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
-import com.android.contacts.SocialStreamActivity.MappingCache;
 import com.android.contacts.SocialStreamActivity.Mapping;
+import com.android.contacts.SocialStreamActivity.MappingCache;
 import com.android.internal.policy.PolicyManager;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -31,19 +30,22 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Rect;
 import android.net.Uri;
-import android.provider.Contacts.Phones;
 import android.provider.ContactsContract;
+import android.provider.SocialContract;
+import android.provider.Contacts.Phones;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Postal;
+import android.provider.Im.PresenceColumns;
+import android.provider.SocialContract.Activities;
 import android.text.SpannableStringBuilder;
+import android.text.format.DateUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -56,42 +58,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.Gallery.LayoutParams;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
  * Window that shows fast-track contact details for a specific
- * {@link Aggregate#_ID}.
+ * {@link Aggregates#_ID}.
  */
-public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener, AbsListView.OnItemClickListener {
+public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener,
+        AbsListView.OnItemClickListener {
     private static final String TAG = "FastTrackWindow";
 
     /**
@@ -118,11 +111,10 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private OnDismissListener mDismissListener;
 
     private long mAggId;
-    private int mAnchorX;
-    private int mAnchorY;
-    private int mAnchorHeight;
+    private Rect mAnchor;
 
-    private boolean mHasProfile = false;
+    private boolean mHasSummary = false;
+    private boolean mHasSocial = false;
     private boolean mHasActions = false;
 
     private View mArrowUp;
@@ -132,19 +124,23 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private ImageView mPresence;
     private TextView mContent;
     private TextView mPublished;
+    private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
     private ListView mResolveList;
 
-    // TODO: read from a resource somewhere
-    private static final int mHeight = 138;
-    private static final int mArrowHeight = 10;
-    private static final int mArrowWidth = 24;
+    private String mDisplayName = null;
+    private String mSocialTitle = null;
+
+    private SpannableStringBuilder mBuilder = new SpannableStringBuilder();
+    private CharacterStyle mStyleBold = new StyleSpan(android.graphics.Typeface.BOLD);
+    private CharacterStyle mStyleBlack = new ForegroundColorSpan(Color.BLACK);
 
     /**
      * Set of {@link ActionInfo} that are associated with the aggregate
-     * currently displayed by this fast-track window.
+     * currently displayed by this fast-track window, represented as a map from
+     * {@link String} mimetype to {@link ActionList}.
      */
-    private ActionSet mActions = new ActionSet();
+    private ActionMap mActions = new ActionMap();
 
     /**
      * Specific mime-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
@@ -157,22 +153,17 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * Other mime-types not appearing in this list follow in alphabetic order.
      */
     private static final String[] ORDERED_MIMETYPES = new String[] {
-        Aggregates.CONTENT_ITEM_TYPE,
         Phones.CONTENT_ITEM_TYPE,
+        Aggregates.CONTENT_ITEM_TYPE,
         MIME_SMS_ADDRESS,
         Email.CONTENT_ITEM_TYPE,
     };
 
-//    public static final int ICON_SIZE = 42;
-//    public static final int ICON_PADDING = 3;
-
-    // TODO: read this status from actual query
-    private static final String STUB_STATUS = "has a really long random status message that would be far too long to read on a single device without the need for tiny reading glasses";
-
     private static final boolean INCLUDE_PROFILE_ACTION = true;
 
-    private static final int TOKEN_DISPLAY_NAME = 1;
-    private static final int TOKEN_DATA = 2;
+    private static final int TOKEN_SUMMARY = 1;
+    private static final int TOKEN_SOCIAL = 2;
+    private static final int TOKEN_DATA = 3;
 
     /** Message to show when no activity is found to perform an action */
     // TODO: move this value into a resources string
@@ -192,14 +183,15 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         mWindow.setContentView(R.layout.fasttrack);
 
-        mArrowUp = (View)mWindow.findViewById(R.id.arrow_up);
-        mArrowDown = (View)mWindow.findViewById(R.id.arrow_down);
-        
+        mArrowUp = mWindow.findViewById(R.id.arrow_up);
+        mArrowDown = mWindow.findViewById(R.id.arrow_down);
+
         mPhoto = (ImageView)mWindow.findViewById(R.id.photo);
         mPresence = (ImageView)mWindow.findViewById(R.id.presence);
         mContent = (TextView)mWindow.findViewById(R.id.content);
         mPublished = (TextView)mWindow.findViewById(R.id.published);
         mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
+        mTrackScroll = (HorizontalScrollView)mWindow.findViewById(R.id.scroll);
         mResolveList = (ListView)mWindow.findViewById(android.R.id.list);
 
         // TODO: move generation of mime-type cache to more-efficient place
@@ -233,17 +225,20 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         mMappingCache.addMapping(mapping);
 
         mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Phone.CONTENT_ITEM_TYPE);
-        mapping.summaryColumn = Phone.NUMBER;
+        mapping.summaryColumn = Phone.TYPE;
+        mapping.detailColumn = Phone.NUMBER;
         mapping.icon = BitmapFactory.decodeResource(res, android.R.drawable.sym_action_call);
         mMappingCache.addMapping(mapping);
 
         mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, MIME_SMS_ADDRESS);
-        mapping.summaryColumn = Phone.NUMBER;
+        mapping.summaryColumn = Phone.TYPE;
+        mapping.detailColumn = Phone.NUMBER;
         mapping.icon = BitmapFactory.decodeResource(res, R.drawable.sym_action_sms);
         mMappingCache.addMapping(mapping);
 
         mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Email.CONTENT_ITEM_TYPE);
-        mapping.summaryColumn = Email.DATA;
+        mapping.summaryColumn = Email.TYPE;
+        mapping.detailColumn = Email.DATA;
         mapping.icon = BitmapFactory.decodeResource(res, android.R.drawable.sym_action_email);
         mMappingCache.addMapping(mapping);
 
@@ -253,26 +248,28 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * Start showing a fast-track window for the given {@link Aggregate#_ID}
      * pointing towards the given location.
      */
-    public void show(Uri aggUri, int x, int y, int height) {
+    public void show(Uri aggUri, Rect anchor) {
         if (mShowing || mQuerying) {
             Log.w(TAG, "already in process of showing");
             return;
         }
 
         mAggId = ContentUris.parseId(aggUri);
-        mAnchorX = x;
-        mAnchorY = y;
-        mAnchorHeight = height;
+        mAnchor = new Rect(anchor);
         mQuerying = true;
 
-        // Start data query in background
-        Uri dataUri = Uri.withAppendedPath(aggUri,
+        Uri aggSummary = ContentUris.withAppendedId(
+                ContactsContract.Aggregates.CONTENT_SUMMARY_URI, mAggId);
+        Uri aggSocial = ContentUris.withAppendedId(
+                SocialContract.Activities.CONTENT_AGGREGATE_STATUS_URI, mAggId);
+        Uri aggData = Uri.withAppendedPath(aggUri,
                 ContactsContract.Aggregates.Data.CONTENT_DIRECTORY);
 
-        // TODO: also query for latest status message
+        // Start data query in background
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
-        mHandler.startQuery(TOKEN_DISPLAY_NAME, null, aggUri, null, null, null, null);
-        mHandler.startQuery(TOKEN_DATA, null, dataUri, null, null, null, null);
+        mHandler.startQuery(TOKEN_SUMMARY, null, aggSummary, null, null, null, null);
+        mHandler.startQuery(TOKEN_SOCIAL, null, aggSocial, null, null, null, null);
+        mHandler.startQuery(TOKEN_DATA, null, aggData, null, null, null, null);
 
     }
 
@@ -282,11 +279,13 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private void showArrow(int whichArrow, int requestedX) {
         final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
         final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
-        
+
+        final int arrowWidth = mArrowUp.getMeasuredWidth();
+
         showArrow.setVisibility(View.VISIBLE);
         LinearLayout.LayoutParams param = (LinearLayout.LayoutParams)showArrow.getLayoutParams();
-        param.leftMargin = requestedX - mArrowWidth / 2;
-        
+        param.leftMargin = requestedX - arrowWidth / 2;
+
         hideArrow.setVisibility(View.INVISIBLE);
     }
 
@@ -297,29 +296,37 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private void showInternal() {
         mDecor = mWindow.getDecorView();
         WindowManager.LayoutParams l = mWindow.getAttributes();
-        
+
+        l.width = WindowManager.LayoutParams.FILL_PARENT;
+        l.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        // Force layout measuring pass so we have baseline numbers
+        mDecor.measure(l.width, l.height);
+
+        final int blockHeight = mDecor.getMeasuredHeight();
+        final int arrowHeight = mArrowUp.getHeight();
+
         l.gravity = Gravity.TOP | Gravity.LEFT;
         l.x = 0;
-        
-        if (mAnchorY > mHeight) {
-            // Show downwards callout when enough room
-            showArrow(R.id.arrow_down, mAnchorX);
-            l.y = mAnchorY - (mHeight - (mArrowHeight * 2) - 5);
-            
+
+        if (mAnchor.top > blockHeight) {
+            // Show downwards callout when enough room, aligning bottom block
+            // edge with top of anchor area, and adjusting to inset arrow.
+            showArrow(R.id.arrow_down, mAnchor.centerX());
+            l.y = mAnchor.top - blockHeight + arrowHeight;
+
         } else {
-            // Otherwise show upwards callout
-            showArrow(R.id.arrow_up, mAnchorX);
-            l.y = mAnchorY + mAnchorHeight - 10;
-            
+            // Otherwise show upwards callout, aligning block top with bottom of
+            // anchor area, and adjusting to inset arrow.
+            showArrow(R.id.arrow_up, mAnchor.centerX());
+            l.y = mAnchor.bottom - arrowHeight;
+
         }
-        
-        l.width = WindowManager.LayoutParams.FILL_PARENT;
-        l.height = mHeight;
 
         l.dimAmount = 0.6f;
         l.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND
                 | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                 | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
@@ -338,19 +345,28 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         }
 
         // Cancel any pending queries
-        mHandler.cancelOperation(TOKEN_DISPLAY_NAME);
+        mHandler.cancelOperation(TOKEN_SUMMARY);
+        mHandler.cancelOperation(TOKEN_SOCIAL);
         mHandler.cancelOperation(TOKEN_DATA);
 
         // Reset all views to prepare for possible recycling
         mPhoto.setImageResource(R.drawable.ic_contact_list_picture);
-//        mPresence.setImageDrawable(null);
-//        mPublished.setText(null);
+        mPresence.setImageDrawable(null);
+        mPublished.setText(null);
         mContent.setText(null);
 
+        mDisplayName = null;
+        mSocialTitle = null;
+
+        // Clear track actions and scroll to hard left
         mActions.clear();
         mTrack.removeAllViews();
+        mTrackScroll.fullScroll(View.FOCUS_LEFT);
+        mWasDownArrow = false;
 
-        mHasProfile = false;
+        showResolveList(View.GONE);
+
+        mHasSocial = false;
         mHasActions = false;
 
         if (mDecor == null || !mShowing) {
@@ -381,7 +397,16 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * {@link #showInternal()} when all data items are present.
      */
     private synchronized void considerShowing() {
-        if (mHasActions && mHasProfile && !mShowing) {
+        if (mHasSummary && mHasSocial && mHasActions && !mShowing) {
+            // Now that all queries have been finished, build summary string.
+            mBuilder.clear();
+            mBuilder.append(mDisplayName);
+            mBuilder.append(" ");
+            mBuilder.append(mSocialTitle);
+            mBuilder.setSpan(mStyleBold, 0, mDisplayName.length(), 0);
+            mBuilder.setSpan(mStyleBlack, 0, mDisplayName.length(), 0);
+            mContent.setText(mBuilder);
+
             showInternal();
         }
     }
@@ -390,39 +415,52 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
         if (cursor == null) {
             return;
-        } else if (token == TOKEN_DISPLAY_NAME) {
-            handleDisplayName(cursor);
+        } else if (token == TOKEN_SUMMARY) {
+            handleSummary(cursor);
+        } else if (token == TOKEN_SOCIAL) {
+            handleSocial(cursor);
         } else if (token == TOKEN_DATA) {
             handleData(cursor);
         }
     }
-    
-    private SpannableStringBuilder mBuilder = new SpannableStringBuilder();
-    private CharacterStyle mStyleBold = new StyleSpan(android.graphics.Typeface.BOLD);
-    private CharacterStyle mStyleBlack = new ForegroundColorSpan(Color.BLACK);
 
     /**
-     * Handle the result from the {@link TOKEN_DISPLAY_NAME} query.
+     * Handle the result from the {@link TOKEN_SUMMARY} query.
      */
-    private void handleDisplayName(Cursor cursor) {
-        final int COL_DISPLAY_NAME = cursor.getColumnIndex(Aggregates.DISPLAY_NAME);
+    private void handleSummary(Cursor cursor) {
+        final int colDisplayName = cursor.getColumnIndex(Aggregates.DISPLAY_NAME);
+        final int colStatus = cursor.getColumnIndex(PresenceColumns.PRESENCE_STATUS);
 
         if (cursor.moveToNext()) {
-            String foundName = cursor.getString(COL_DISPLAY_NAME);
-            
-            mBuilder.clear();
-            mBuilder.append(foundName);
-            mBuilder.append(" ");
-            mBuilder.append(STUB_STATUS);
-            mBuilder.setSpan(mStyleBold, 0, foundName.length(), 0);
-            mBuilder.setSpan(mStyleBlack, 0, foundName.length(), 0);
-            mContent.setText(mBuilder);
-            
-            mPublished.setText("4 hours ago");
+            mDisplayName = cursor.getString(colDisplayName);
+
+            int status = cursor.getInt(colStatus);
+            int statusRes = Presence.getPresenceIconResourceId(status);
+            mPresence.setImageResource(statusRes);
+        }
+
+        mHasSummary = true;
+        considerShowing();
+    }
+
+    /**
+     * Handle the result from the {@link TOKEN_SOCIAL} query.
+     */
+    private void handleSocial(Cursor cursor) {
+        final int colTitle = cursor.getColumnIndex(Activities.TITLE);
+        final int colPublished = cursor.getColumnIndex(Activities.PUBLISHED);
+
+        if (cursor.moveToNext()) {
+            mSocialTitle = cursor.getString(colTitle);
+
+            long published = cursor.getLong(colPublished);
+            CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
+                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
+            mPublished.setText(relativePublished);
 
         }
 
-        mHasProfile = true;
+        mHasSocial = true;
         considerShowing();
     }
 
@@ -437,7 +475,8 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         String mimeType;
 
         Mapping mapping;
-        String summaryValue;
+        CharSequence summaryValue;
+        String detailValue;
 
         /**
          * Create an action from common {@link Data} elements.
@@ -461,11 +500,19 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
          * Given a {@link Cursor} pointed at the {@link Data} row associated
          * with this action, use the {@link Mapping} to build a text summary.
          */
-        public void buildSummary(Cursor cursor) {
-            if (mapping == null || mapping.summaryColumn == null) return;
-            int index = cursor.getColumnIndex(mapping.summaryColumn);
-            if (index != -1) {
-                summaryValue = cursor.getString(index);
+        public void buildDetails(Cursor cursor) {
+            if (mapping == null) return;
+
+            // Try finding common display label for this item, otherwise fall
+            // back to reading from defined summary column.
+            summaryValue = ContactsUtils.getDisplayLabel(mContext, mimeType, cursor);
+            if (summaryValue == null && mapping.summaryColumn != null) {
+                summaryValue = cursor.getString(cursor.getColumnIndex(mapping.summaryColumn));
+            }
+
+            // Read detailed value, if mapping was defined
+            if (mapping.detailColumn != null) {
+                detailValue = cursor.getString(cursor.getColumnIndex(mapping.detailColumn));
             }
         }
 
@@ -475,15 +522,15 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         public Intent buildIntent() {
             // Handle well-known mime-types with special care
             if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                Uri callUri = Uri.parse("tel:" + Uri.encode(summaryValue));
+                Uri callUri = Uri.parse("tel:" + Uri.encode(detailValue));
                 return new Intent(Intent.ACTION_DIAL, callUri);
 
             } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
-                Uri smsUri = Uri.fromParts("smsto", summaryValue, null);
+                Uri smsUri = Uri.fromParts("smsto", detailValue, null);
                 return new Intent(Intent.ACTION_SENDTO, smsUri);
 
             } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                Uri mailUri = Uri.fromParts("mailto", summaryValue, null);
+                Uri mailUri = Uri.fromParts("mailto", detailValue, null);
                 return new Intent(Intent.ACTION_SENDTO, mailUri);
 
             }
@@ -499,16 +546,24 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     }
 
     /**
+     * Provide a strongly-typed {@link LinkedList} that holds a list of
+     * {@link ActionInfo} objects.
+     */
+    private class ActionList extends LinkedList<ActionInfo> {
+    }
+
+    /**
      * Provide a simple way of collecting one or more {@link ActionInfo} objects
      * under a mime-type key.
      */
-    private class ActionSet extends HashMap<String, LinkedList<ActionInfo>> {
+    private class ActionMap extends HashMap<String, ActionList> {
         private void collect(String mimeType, ActionInfo info) {
-            // Create mime-type set if needed
-            if (!containsKey(mimeType)) {
-                put(mimeType, new LinkedList<ActionInfo>());
+            // Create list for this mimetype when needed
+            ActionList collectList = get(mimeType);
+            if (collectList == null) {
+                collectList = new ActionList();
+                put(mimeType, collectList);
             }
-            LinkedList<ActionInfo> collectList = get(mimeType);
             collectList.add(info);
         }
     }
@@ -517,10 +572,10 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * Handle the result from the {@link TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
-        final int COL_ID = cursor.getColumnIndex(Data._ID);
-        final int COL_PACKAGE = cursor.getColumnIndex(Data.PACKAGE);
-        final int COL_MIMETYPE = cursor.getColumnIndex(Data.MIMETYPE);
-        final int COL_PHOTO = cursor.getColumnIndex(Photo.PHOTO);
+        final int colId = cursor.getColumnIndex(Data._ID);
+        final int colPackage = cursor.getColumnIndex(Data.PACKAGE);
+        final int colMimeType = cursor.getColumnIndex(Data.MIMETYPE);
+        final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
 
         ActionInfo info;
 
@@ -534,14 +589,14 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         }
 
         while (cursor.moveToNext()) {
-            final long dataId = cursor.getLong(COL_ID);
-            final String packageName = cursor.getString(COL_PACKAGE);
-            final String mimeType = cursor.getString(COL_MIMETYPE);
+            final long dataId = cursor.getLong(colId);
+            final String packageName = cursor.getString(colPackage);
+            final String mimeType = cursor.getString(colMimeType);
 
             // Handle when a photo appears in the various data items
             // TODO: accept a photo only if its marked as primary
             if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                byte[] photoBlob = cursor.getBlob(COL_PHOTO);
+                byte[] photoBlob = cursor.getBlob(colPhoto);
                 Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
                 mPhoto.setImageBitmap(photoBitmap);
                 continue;
@@ -552,7 +607,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
             // with all others of this mime-type.
             info = new ActionInfo(dataId, packageName, mimeType);
             if (info.findMapping(mMappingCache)) {
-                info.buildSummary(cursor);
+                info.buildDetails(cursor);
                 mActions.collect(info.mimeType, info);
             }
 
@@ -560,7 +615,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
             if (Phones.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 info = new ActionInfo(dataId, packageName, MIME_SMS_ADDRESS);
                 if (info.findMapping(mMappingCache)) {
-                    info.buildSummary(cursor);
+                    info.buildDetails(cursor);
                     mActions.collect(info.mimeType, info);
                 }
             }
@@ -596,24 +651,52 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         ImageView view = (ImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
 
         // Add direct intent if single child, otherwise flag for multiple
-        LinkedList<ActionInfo> children = mActions.get(mimeType);
+        ActionList children = mActions.get(mimeType);
         ActionInfo firstInfo = children.get(0);
-//        if (children.size() == 1) {
+        if (children.size() == 1) {
             view.setTag(firstInfo.buildIntent());
-//        } else {
-//            view.setTag(children);
-//        }
+        } else {
+            view.setTag(children);
+        }
 
         // Set icon and listen for clicks
         view.setImageBitmap(firstInfo.mapping.icon);
         view.setOnClickListener(this);
         return view;
     }
-    
+
     /** {@inheritDoc} */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Pass list item clicks along so that Intents are handled uniformly
         onClick(view);
+    }
+
+    /**
+     * Flag indicating if {@link #mArrowDown} was visible during the last call
+     * to {@link #showResolveList(int)}. Used to decide during a later call if
+     * the arrow should be restored.
+     */
+    private boolean mWasDownArrow = false;
+
+    /**
+     * Helper for showing and hiding {@link #mResolveList}, which will correctly
+     * manage {@link #mArrowDown} as needed.
+     */
+    private void showResolveList(int visibility) {
+        // Show or hide the resolve list if needed
+        if (mResolveList.getVisibility() != visibility) {
+            mResolveList.setVisibility(visibility);
+        }
+
+        if (visibility == View.VISIBLE) {
+            // If showing list, then hide and save state of down arrow
+            mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
+            mArrowDown.setVisibility(View.INVISIBLE);
+        } else {
+            // If hiding list, restore any down arrow state
+            mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
+        }
+
     }
 
     /** {@inheritDoc} */
@@ -621,8 +704,8 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         final Object tag = v.getTag();
         if (tag instanceof Intent) {
             // Hide the resolution list, if present
-            mResolveList.setVisibility(View.GONE);
-            
+            showResolveList(View.GONE);
+
             // Incoming tag is concrete intent, so launch
             try {
                 mContext.startActivity((Intent)tag);
@@ -630,54 +713,67 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
                 Log.w(TAG, NOT_FOUND);
                 Toast.makeText(mContext, NOT_FOUND, Toast.LENGTH_SHORT).show();
             }
-//        } else if (tag instanceof LinkedList) {
-//            // Incoming tag is a mime-type, so show resolution list
-//            final LinkedList<ActionInfo> children = (LinkedList<ActionInfo>)tag;
-//            Log.d(TAG, "found chidlren=" + children);
-//
-//            mResolveList.setVisibility(View.VISIBLE);
-//            mResolveList.setOnItemClickListener(this);
-//            mResolveList.setAdapter(new BaseAdapter() {
-//                public int getCount() {
-//                    return children.size();
-//                }
-//
-//                public Object getItem(int position) {
-//                    return children.get(position);
-//                }
-//
-//                public long getItemId(int position) {
-//                    return position;
-//                }
-//
-//                public View getView(int position, View convertView, ViewGroup parent) {
-//                    if (convertView == null) {
-//                        convertView = mInflater.inflate(R.layout.fasttrack_resolve_item, parent, false);
-//                    }
-//                    
-//                    // Set action title based on summary value
-//                    ActionInfo info = (ActionInfo)getItem(position);
-//                    TextView textView = (TextView)convertView;
-//                    textView.setText(info.summaryValue);
-//                    textView.setTag(info.buildIntent());
-//                    textView.setCompoundDrawablesWithIntrinsicBounds(
-//                            new BitmapDrawable(info.mapping.icon), null, null, null);
-//                    
-//                    return convertView;
-//                }
-//            });
-//            
-//            // Make sure we resize to make room for ListView
-//            onWindowAttributesChanged(mWindow.getAttributes());
-//
-//            // TODO: show drop-down resolution list
-//            Log.d(TAG, "would show list between several options here");
+        } else if (tag instanceof ActionList) {
+            // Incoming tag is a mime-type, so show resolution list
+            final ActionList children = (ActionList)tag;
+
+            // Show resolution list and set adapter
+            showResolveList(View.VISIBLE);
+
+            mResolveList.setOnItemClickListener(this);
+            mResolveList.setAdapter(new BaseAdapter() {
+                public int getCount() {
+                    return children.size();
+                }
+
+                public Object getItem(int position) {
+                    return children.get(position);
+                }
+
+                public long getItemId(int position) {
+                    return position;
+                }
+
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = mInflater.inflate(R.layout.fasttrack_resolve_item, parent, false);
+                    }
+
+                    // Set action title based on summary value
+                    ActionInfo info = (ActionInfo)getItem(position);
+
+                    ImageView icon1 = (ImageView)convertView.findViewById(android.R.id.icon1);
+                    TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
+                    TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+
+                    icon1.setImageBitmap(info.mapping.icon);
+                    text1.setText(info.summaryValue);
+                    text2.setText(info.detailValue);
+
+                    convertView.setTag(info.buildIntent());
+                    return convertView;
+                }
+            });
+
+            // Make sure we resize to make room for ListView
+            onWindowAttributesChanged(mWindow.getAttributes());
 
         }
     }
 
     /** {@inheritDoc} */
     public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN
+                && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            // Back key will first dismiss any expanded resolve list, otherwise
+            // it will close the entire dialog.
+            if (mResolveList.getVisibility() == View.VISIBLE) {
+                showResolveList(View.GONE);
+            } else {
+                dismiss();
+            }
+            return true;
+        }
         return mWindow.superDispatchKeyEvent(event);
     }
 
