@@ -823,14 +823,14 @@ public final class ContactsListActivity extends ListActivity
             return;
         }
         long id = info.id;
-        Uri dataUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
+        Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
 
         // Setup the menu header
         menu.setHeaderTitle(cursor.getString(NAME_COLUMN_INDEX));
 
         // View contact details
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
-                .setIntent(new Intent(Intent.ACTION_VIEW, dataUri));
+                .setIntent(new Intent(Intent.ACTION_VIEW, aggUri));
 
         // Calling contact
         long phoneId = cursor.getLong(PRIMARY_PHONE_ID_COLUMN_INDEX);
@@ -860,11 +860,10 @@ public final class ContactsListActivity extends ListActivity
             menu.add(0, MENU_ITEM_TOGGLE_STAR, 0, R.string.menu_removeStar);
         }
 
-        /*
         // Contact editing
         menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
-                .setIntent(new Intent(Intent.ACTION_EDIT, personUri));
-        menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact); */
+                .setIntent(new Intent(Intent.ACTION_EDIT, aggUri));
+        menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact);
     }
 
     @Override
@@ -1432,8 +1431,8 @@ public final class ContactsListActivity extends ListActivity
                             Contacts.KIND_POSTAL);
                     break; */
                 default:
-                    mLocalizedLabels = EditContactActivity.getLabelsForKind(mContext,
-                            Contacts.KIND_PHONE);
+                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
+                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
                     break;
             }
 

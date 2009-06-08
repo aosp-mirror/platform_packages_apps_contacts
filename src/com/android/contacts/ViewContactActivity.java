@@ -156,6 +156,7 @@ public class ViewContactActivity extends ListActivity
         }
         switch (view.getId()) {
             case R.id.star: {
+                mCursor.moveToFirst();
                 int oldStarredState = mCursor.getInt(AGGREGATE_STARRED_COLUMN);
                 ContentValues values = new ContentValues(1);
                 values.put(Aggregates.STARRED, oldStarredState == 1 ? 0 : 1);
@@ -273,20 +274,6 @@ public class ViewContactActivity extends ListActivity
     private void dataChanged() {
         mCursor.requery();
         if (mCursor.moveToFirst()) {
-            // Set the name
-            String name = mCursor.getString(AGGREGATE_DISPLAY_NAME_COLUMN);
-            if (TextUtils.isEmpty(name)) {
-                mNameView.setText(getText(android.R.string.unknownName));
-            } else {
-                mNameView.setText(name);
-            }
-
-            // TODO(emillar) Bring this back.
-            /*if (mPhoneticNameView != null) {
-                String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
-                mPhoneticNameView.setText(phoneticName);
-            } */
-
             // Set the star
             mStarView.setChecked(mCursor.getInt(AGGREGATE_STARRED_COLUMN) == 1 ? true : false);
 
@@ -553,7 +540,6 @@ public class ViewContactActivity extends ListActivity
             Bitmap photoBitmap = null;
             while (aggCursor.moveToNext()) {
                 final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
-                final String pkg = aggCursor.getString(DATA_PACKAGE_COLUMN);
 
                 ViewEntry entry = new ViewEntry();
 
@@ -669,10 +655,22 @@ public class ViewContactActivity extends ListActivity
                         entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
                     }
+                // Set the name
+                } else if (mimetype.equals(CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)) {
+                    String name = mCursor.getString(DATA_9_COLUMN);
+                    if (TextUtils.isEmpty(name)) {
+                        mNameView.setText(getText(android.R.string.unknownName));
+                    } else {
+                        mNameView.setText(name);
+                    }
+                    /*
+                    if (mPhoneticNameView != null) {
+                        String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
+                        mPhoneticNameView.setText(phoneticName);
+                    }
+                    */
                 // Build organization entries
                 } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
-                    final int type = aggCursor.getInt(DATA_1_COLUMN);
-                    final String label = aggCursor.getString(DATA_2_COLUMN);
                     final String company = aggCursor.getString(DATA_3_COLUMN);
                     final String title = aggCursor.getString(DATA_4_COLUMN);
                     final boolean isPrimary = "1".equals(aggCursor.getString(DATA_5_COLUMN));

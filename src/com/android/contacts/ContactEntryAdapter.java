@@ -77,22 +77,11 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
      * Base class for adapter entries.
      */
     public static class Entry {
-        /** Details from the person table */
-        public static final int KIND_CONTACT = -1;
-        /** Synthesized phone entry that will send an SMS instead of call the number */
-        public static final int KIND_SMS = -2;
-        /** A section separator */
-        public static final int KIND_SEPARATOR = -3;
-        /** Signifies a group row that is stored in the group membership table */
-        public static final int KIND_GROUP = -4;
-
         public String label;
         public String data;
         public Uri uri;
         public long id = 0;
         public int maxLines = 1;
-        // TODO(emillar): remove "kind" completely once it is removed from EditContactActivity
-        public int kind;
         public String mimetype;
 
         /**

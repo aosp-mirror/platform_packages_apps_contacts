@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 import android.net.Uri;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -79,6 +80,14 @@ public class ContactsUtils {
             }
         }
         return display;
+    }
+
+    public static String encodePredefinedImProtocol(int protocol) {
+        return "pre:" + protocol;
+    }
+
+    public static String encodeCustomImProtocol(String protocolString) {
+        return "custom:" + protocolString;
     }
 
     public static Object decodeImProtocol(String encodedString) {
