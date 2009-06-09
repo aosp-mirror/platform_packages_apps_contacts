@@ -499,9 +499,6 @@ public final class ContactsListActivity extends ListActivity
         list.setOnCreateContextMenuListener(this);
         if ((mMode & MODE_MASK_NO_FILTER) != MODE_MASK_NO_FILTER) {
             list.setTextFilterEnabled(true);
-            list.setGestures(ListView.GESTURES_FILTER);
-        } else {
-            list.setGestures(ListView.GESTURES_NONE);
         }        
 
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
