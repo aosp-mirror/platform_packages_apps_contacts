@@ -218,6 +218,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/person_aggregate" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
                 <data android:mimeType="vnd.android.cursor.dir/phone" />
                 <data android:mimeType="vnd.android.cursor.dir/postal-address" />
