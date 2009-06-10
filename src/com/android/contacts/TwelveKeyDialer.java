@@ -45,6 +45,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
@@ -96,6 +97,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private View mDialpad;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
+    //Member variables for dialpad options
+    private MenuItem m2SecPauseMenuItem;
+    private MenuItem mWaitMenuItem;
+    private static final int MENU_ADD_CONTACTS = 1;
+    private static final int MENU_2S_PAUSE = 2;
+    private static final int MENU_WAIT = 3;
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
@@ -472,9 +479,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mAddToContactMenuItem = menu.add(0, 0, 0, R.string.recentCalls_addToContact)
+        mAddToContactMenuItem = menu.add(0, MENU_ADD_CONTACTS, 0, R.string.recentCalls_addToContact)
                 .setIcon(android.R.drawable.ic_menu_add);
-
+        m2SecPauseMenuItem = menu.add(0, MENU_2S_PAUSE, 0, R.string.add_2sec_pause)
+                .setIcon(R.drawable.ic_menu_2sec_pause);
+        mWaitMenuItem = menu.add(0, MENU_WAIT, 0, R.string.add_wait)
+                .setIcon(R.drawable.ic_menu_wait);
         return true;
     }
 
@@ -488,6 +498,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         CharSequence digits = mDigits.getText();
         if (digits == null || !TextUtils.isGraphic(digits)) {
             mAddToContactMenuItem.setVisible(false);
+            m2SecPauseMenuItem.setVisible(false);
+            mWaitMenuItem.setVisible(false);
         } else {
             // Put the current digits string into an intent
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
@@ -495,6 +507,41 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             intent.setType(People.CONTENT_ITEM_TYPE);
             mAddToContactMenuItem.setIntent(intent);
             mAddToContactMenuItem.setVisible(true);
+
+            // Check out whether to show Pause & Wait option menu items
+            int selectionStart;
+            int selectionEnd;
+            String strDigits = digits.toString();
+
+            selectionStart = mDigits.getSelectionStart();
+            selectionEnd = mDigits.getSelectionEnd();
+
+            if (selectionStart != -1) {
+                if (selectionStart > selectionEnd) {
+                    // swap it as we want start to be less then end
+                    int tmp = selectionStart;
+                    selectionStart = selectionEnd;
+                    selectionEnd = tmp;
+                }
+
+                if (selectionStart != 0) {
+                    // Pause can be visible if cursor is not in the begining
+                    m2SecPauseMenuItem.setVisible(true);
+
+                    // For Wait to be visible set of condition to meet
+                    mWaitMenuItem.setVisible(showWait(selectionStart,
+                                                      selectionEnd, strDigits));
+                } else {
+                    // cursor in the beginning both pause and wait to be invisible
+                    m2SecPauseMenuItem.setVisible(false);
+                    mWaitMenuItem.setVisible(false);
+                }
+            } else {
+                // cursor is not selected so assume new digit is added to the end
+                int strLength = strDigits.length();
+                mWaitMenuItem.setVisible(showWait(strLength,
+                                                      strLength, strDigits));
+            }
         }
         return true;
     }
@@ -968,5 +1015,76 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mVibrator = new Vibrator();
         }
         mVibrator.vibrate(mVibrateDuration);
+    }
+
+    /**
+     * Returns true whenever any one of the options from the menu is selected.
+     * Code changes to support dialpad options
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_2S_PAUSE:
+                updateDialString(",");
+                return true;
+            case MENU_WAIT:
+                updateDialString(";");
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Updates the dial string (mDigits) after inserting a Pause character (,)
+     * or Wait character (;).
+     */
+    private void updateDialString(String newDigits) {
+        int selectionStart;
+        int selectionEnd;
+
+        // SpannableStringBuilder editable_text = new SpannableStringBuilder(mDigits.getText());
+        selectionStart = mDigits.getSelectionStart();
+        selectionEnd = mDigits.getSelectionEnd();
+
+        Editable digits = mDigits.getText();
+        if (selectionStart != -1 ) {
+            if (selectionStart == selectionEnd) {
+                // then there is no selection. So insert the pause at this
+                // position and update the mDigits.
+                digits.replace(selectionStart, selectionStart, newDigits);
+            } else {
+                digits.delete(selectionStart, selectionEnd);
+                digits.replace(selectionStart, selectionStart, newDigits);
+            }
+        } else {
+            int len = mDigits.length();
+            digits.replace(len, len, newDigits);
+        }
+    }
+
+    /**
+     * This function return true if Wait menu item can be shown
+     * otherwise returns false. Assumes the passed string is non-empty
+     * and the 0th index check is not required.
+     */
+    private boolean showWait(int start, int end, String digits) {
+        if (start == end) {
+            // visible false in this case
+            if (start > digits.length()) return false;
+
+            // preceding char is ';', so visible should be false
+            if (digits.charAt(start-1) == ';') return false;
+
+            // next char is ';', so visible should be false
+            if ((digits.length() > start) && (digits.charAt(start) == ';')) return false;
+        } else {
+            // visible false in this case
+            if (start > digits.length() || end > digits.length()) return false;
+
+            // In this case we need to just check for ';' preceding to start
+            // or next to end
+            if (digits.charAt(start-1) == ';') return false;
+        }
+        return true;
     }
 }

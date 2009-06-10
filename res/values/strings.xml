@@ -736,4 +736,8 @@
     
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
+
+    <!-- Menu items for dialpad options as part of Pause and Wait ftr -->
+    <string name="add_2sec_pause">Add 2-sec Pause</string>
+    <string name="add_wait">Add Wait</string>
 </resources>
