@@ -102,6 +102,12 @@
     	 when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
 
+    <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
+    <string name="menu_splitAggregate">Split</string>
+    
+    <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
+    <string name="splitAggregate_title">Split contact</string>
+    
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 

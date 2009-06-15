@@ -34,39 +34,41 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
     public static final String[] AGGREGATE_PROJECTION = new String[] {
         Aggregates.DISPLAY_NAME, // 0
         Aggregates.STARRED, //1
-        Data._ID, // 2
-        Data.PACKAGE, //3
-        Data.MIMETYPE, //4
-        Data.IS_PRIMARY, //5
-        Data.IS_SUPER_PRIMARY, //6
-        Data.DATA1, //7
-        Data.DATA2, //8
-        Data.DATA3, //9
-        Data.DATA4, //10
-        Data.DATA5, //11
-        Data.DATA6, //12
-        Data.DATA7, //13
-        Data.DATA8, //14
-        Data.DATA9, //15
-        Data.DATA10, //16
+        Data._ID, //2
+        Data.CONTACT_ID, //3
+        Data.PACKAGE, //4
+        Data.MIMETYPE, //5
+        Data.IS_PRIMARY, //6
+        Data.IS_SUPER_PRIMARY, //7
+        Data.DATA1, //8
+        Data.DATA2, //9
+        Data.DATA3, //10
+        Data.DATA4, //11
+        Data.DATA5, //12
+        Data.DATA6, //13
+        Data.DATA7, //14
+        Data.DATA8, //15
+        Data.DATA9, //16
+        Data.DATA10, //17
     };
     public static final int AGGREGATE_DISPLAY_NAME_COLUMN = 0;
     public static final int AGGREGATE_STARRED_COLUMN = 1;
     public static final int DATA_ID_COLUMN = 2;
-    public static final int DATA_PACKAGE_COLUMN = 3;
-    public static final int DATA_MIMETYPE_COLUMN = 4;
-    public static final int DATA_IS_PRIMARY_COLUMN = 5;
-    public static final int DATA_IS_SUPER_PRIMARY_COLUMN = 6;
-    public static final int DATA_1_COLUMN = 7;
-    public static final int DATA_2_COLUMN = 8;
-    public static final int DATA_3_COLUMN = 9;
-    public static final int DATA_4_COLUMN = 10;
-    public static final int DATA_5_COLUMN = 11;
-    public static final int DATA_6_COLUMN = 12;
-    public static final int DATA_7_COLUMN = 13;
-    public static final int DATA_8_COLUMN = 14;
-    public static final int DATA_9_COLUMN = 15;
-    public static final int DATA_10_COLUMN = 16;
+    public static final int DATA_CONTACT_ID_COLUMN = 3;
+    public static final int DATA_PACKAGE_COLUMN = 4;
+    public static final int DATA_MIMETYPE_COLUMN = 5;
+    public static final int DATA_IS_PRIMARY_COLUMN = 6;
+    public static final int DATA_IS_SUPER_PRIMARY_COLUMN = 7;
+    public static final int DATA_1_COLUMN = 8;
+    public static final int DATA_2_COLUMN = 9;
+    public static final int DATA_3_COLUMN = 10;
+    public static final int DATA_4_COLUMN = 11;
+    public static final int DATA_5_COLUMN = 12;
+    public static final int DATA_6_COLUMN = 13;
+    public static final int DATA_7_COLUMN = 14;
+    public static final int DATA_8_COLUMN = 15;
+    public static final int DATA_9_COLUMN = 16;
+    public static final int DATA_10_COLUMN = 17;
 
     protected ArrayList<ArrayList<E>> mSections;
     protected LayoutInflater mInflater;
@@ -81,6 +83,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         public String data;
         public Uri uri;
         public long id = 0;
+        public long contactId;
         public int maxLines = 1;
         public String mimetype;
 

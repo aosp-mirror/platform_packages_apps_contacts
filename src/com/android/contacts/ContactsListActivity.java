@@ -106,6 +106,7 @@ public final class ContactsListActivity extends ListActivity
     public static final int MENU_DISPLAY_GROUP = 11;
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
+    private static final int SUBACTIVITY_VIEW_CONTACT = 2;
 
     /** Mask for picker mode */
     static final int MODE_MASK_PICKER = 0x80000000;
@@ -798,6 +799,13 @@ public final class ContactsListActivity extends ListActivity
                     returnPickerResult(data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
                             data.getData());
                 }
+                break;
+
+            case SUBACTIVITY_VIEW_CONTACT:
+                if (resultCode == RESULT_OK) {
+                    mAdapter.notifyDataSetChanged();
+                }
+                break;
         }
     }
 
@@ -971,7 +979,7 @@ public final class ContactsListActivity extends ListActivity
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
                         ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
-                startActivity(intent);
+                startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } /*else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
                 Cursor c = (Cursor) mAdapter.getItem(position);

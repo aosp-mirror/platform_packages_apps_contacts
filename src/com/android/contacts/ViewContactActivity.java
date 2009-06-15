@@ -16,25 +16,20 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_DISPLAY_NAME_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_PACKAGE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_IS_PRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_4_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_5_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_6_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_7_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_8_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_9_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_10_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_CONTACT_ID_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
 
+import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.AlertDialog;
@@ -47,13 +42,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -63,14 +58,14 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Aggregates;
-import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.AggregationExceptions;
+import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
-import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,7 +80,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Displays the details of a specific contact.
@@ -103,12 +97,23 @@ public class ViewContactActivity extends ListActivity
     public static final int MENU_ITEM_DELETE = 1;
     public static final int MENU_ITEM_MAKE_DEFAULT = 2;
     public static final int MENU_ITEM_SHOW_BARCODE = 3;
+    public static final int MENU_ITEM_SPLIT_AGGREGATE = 4;
+
+    private static final String[] AGGREGATION_EXCEPTIONS_PROJECTION =
+            new String[] { AggregationExceptions._ID};
+
+    private static final int AGGREGATION_EXCEPTIONS_COL_ID = 0;
 
     private Uri mUri;
     private Uri mAggDataUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
+
+    /**
+     * A list of distinct contact IDs included in the current aggregate.
+     */
+    private ArrayList<Long> mContactIds = new ArrayList<Long>();
 
     /* package */ ArrayList<ViewEntry> mPhoneEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mSmsEntries = new ArrayList<ViewEntry>();
@@ -300,7 +305,8 @@ public class ViewContactActivity extends ListActivity
                 .setAlphabeticShortcut('e');
         menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact)
                 .setIcon(android.R.drawable.ic_menu_delete);
-
+        menu.add(0, MENU_ITEM_SPLIT_AGGREGATE, 0, R.string.menu_splitAggregate)
+                .setIcon(android.R.drawable.ic_menu_share);
         return true;
     }
 
@@ -317,6 +323,9 @@ public class ViewContactActivity extends ListActivity
         } else {
             menu.removeItem(MENU_ITEM_SHOW_BARCODE);
         }
+
+        boolean isAggregate = mContactIds.size() > 1;
+        menu.findItem(MENU_ITEM_SPLIT_AGGREGATE).setEnabled(isAggregate);
         return true;
     }
 
@@ -373,6 +382,11 @@ public class ViewContactActivity extends ListActivity
                 return true;
             }
 
+            case MENU_ITEM_SPLIT_AGGREGATE: {
+                showSplitAggregateDialog();
+                return true;
+            }
+
             // TODO(emillar) Bring this back.
             /*case MENU_ITEM_SHOW_BARCODE:
                 if (mCursor.moveToFirst()) {
@@ -423,30 +437,129 @@ public class ViewContactActivity extends ListActivity
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
-                AdapterView.AdapterContextMenuInfo info;
-                try {
-                     info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                } catch (ClassCastException e) {
-                    Log.e(TAG, "bad menuInfo", e);
-                    break;
+                if (makeItemDefault(item)) {
+                    return true;
                 }
-
-                ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position,
-                        SHOW_SEPARATORS);
-
-                // Update the primary values in the data record.
-                ContentValues values = new ContentValues(1);
-                values.put(Data.IS_PRIMARY, 1);
-                values.put(Data.IS_SUPER_PRIMARY, 1);
-
-                Log.i(TAG, mUri.toString());
-                getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
-                        values, null, null);
-                dataChanged();
-                return true;
+                break;
             }
         }
+
         return super.onContextItemSelected(item);
+    }
+
+    private boolean makeItemDefault(MenuItem item) {
+        ViewEntry entry = getViewEntryForMenuItem(item);
+        if (entry == null) {
+            return false;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(2);
+        values.put(Data.IS_PRIMARY, 1);
+        values.put(Data.IS_SUPER_PRIMARY, 1);
+
+        Log.i(TAG, mUri.toString());
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
+                values, null, null);
+        dataChanged();
+        return true;
+    }
+
+    /**
+     * Shows a dialog that contains a list of all constituent contacts in this aggregate.
+     * The user picks a contact to be split into its own aggregate or clicks Cancel.
+     */
+    private void showSplitAggregateDialog() {
+
+        // Wrap this dialog in a specific theme so that list items have correct text color.
+        final ContextThemeWrapper dialogContext =
+                new ContextThemeWrapper(this, android.R.style.Theme_Light);
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(dialogContext);
+        builder.setTitle(getString(R.string.splitAggregate_title));
+
+        final SplitAggregateView view = new SplitAggregateView(dialogContext, mUri);
+        builder.setView(view);
+
+        builder.setInverseBackgroundForced(true);
+        builder.setCancelable(true);
+        builder.setNegativeButton(android.R.string.cancel,
+                new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        final AlertDialog dialog = builder.create();
+
+        view.setOnContactSelectedListener(new OnContactSelectedListener() {
+            public void onContactSelected(long contactId) {
+                dialog.dismiss();
+                splitContact(contactId);
+            }
+        });
+
+        dialog.show();
+    }
+
+    /**
+     * Given an ID of a constituent contact, splits it off into a separate aggregate.
+     */
+    protected void splitContact(long contactToSplit) {
+      long contactToKeep;
+
+      // We are guaranteed to have at least two items in the mContactIds array, because
+      // otherwise the "Split" menu item would be disabled.
+      if (mContactIds.get(0) != contactToSplit) {
+          contactToKeep = mContactIds.get(0);
+      } else {
+          contactToKeep = mContactIds.get(1);
+      }
+
+      ContentValues values = new ContentValues(3);
+      values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_NEVER_MATCH);
+
+      boolean updated = false;
+
+      // First see if there is an existing exception for this pair of contacts
+      Cursor c = mResolver.query(AggregationExceptions.CONTENT_URI,
+              AGGREGATION_EXCEPTIONS_PROJECTION,
+              "(" + AggregationExceptions.CONTACT_ID1 + "=" + contactToSplit
+              + " AND " + AggregationExceptions.CONTACT_ID2 + "=" + contactToKeep
+              + ") OR (" + AggregationExceptions.CONTACT_ID1 + "=" + contactToKeep
+              + " AND " + AggregationExceptions.CONTACT_ID2 + "=" + contactToSplit + ")",
+              null, null);
+
+      try {
+          if (c.moveToFirst()) {
+              long exceptionId = c.getLong(AGGREGATION_EXCEPTIONS_COL_ID);
+              mResolver.update(ContentUris.withAppendedId(AggregationExceptions.CONTENT_URI,
+                      exceptionId), values, null, null);
+              updated = true;
+          }
+      } finally {
+          c.close();
+      }
+
+      // Otherwise, insert a new exception
+      if (!updated) {
+          values.put(AggregationExceptions.CONTACT_ID1, contactToSplit);
+          values.put(AggregationExceptions.CONTACT_ID2, contactToKeep);
+          mResolver.insert(AggregationExceptions.CONTENT_URI, values);
+      }
+
+      mAdapter.notifyDataSetChanged();
+    }
+
+    private ViewEntry getViewEntryForMenuItem(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info;
+        try {
+             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        } catch (ClassCastException e) {
+            Log.e(TAG, "bad menuInfo", e);
+            return null;
+        }
+
+        return ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
     }
 
     @Override
@@ -535,6 +648,8 @@ public class ViewContactActivity extends ListActivity
             mSections.get(i).clear();
         }
 
+        mContactIds.clear();
+
         // Build up method entries
         if (mUri != null) {
             Bitmap photoBitmap = null;
@@ -548,6 +663,10 @@ public class ViewContactActivity extends ListActivity
                 entry.id = id;
                 entry.uri = uri;
                 entry.mimetype = mimetype;
+                entry.contactId = aggCursor.getLong(DATA_CONTACT_ID_COLUMN);
+                if (!mContactIds.contains(entry.contactId)) {
+                    mContactIds.add(entry.contactId);
+                }
 
                 if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
