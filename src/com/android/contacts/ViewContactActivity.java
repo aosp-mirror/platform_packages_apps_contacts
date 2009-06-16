@@ -505,49 +505,15 @@ public class ViewContactActivity extends ListActivity
      * Given an ID of a constituent contact, splits it off into a separate aggregate.
      */
     protected void splitContact(long contactToSplit) {
-      long contactToKeep;
 
-      // We are guaranteed to have at least two items in the mContactIds array, because
-      // otherwise the "Split" menu item would be disabled.
-      if (mContactIds.get(0) != contactToSplit) {
-          contactToKeep = mContactIds.get(0);
-      } else {
-          contactToKeep = mContactIds.get(1);
-      }
+        ContentValues values = new ContentValues(3);
+        values.put(AggregationExceptions.AGGREGATE_ID, ContentUris.parseId(mUri));
+        values.put(AggregationExceptions.CONTACT_ID, contactToSplit);
+        values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_OUT);
 
-      ContentValues values = new ContentValues(3);
-      values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_NEVER_MATCH);
+        mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
 
-      boolean updated = false;
-
-      // First see if there is an existing exception for this pair of contacts
-      Cursor c = mResolver.query(AggregationExceptions.CONTENT_URI,
-              AGGREGATION_EXCEPTIONS_PROJECTION,
-              "(" + AggregationExceptions.CONTACT_ID1 + "=" + contactToSplit
-              + " AND " + AggregationExceptions.CONTACT_ID2 + "=" + contactToKeep
-              + ") OR (" + AggregationExceptions.CONTACT_ID1 + "=" + contactToKeep
-              + " AND " + AggregationExceptions.CONTACT_ID2 + "=" + contactToSplit + ")",
-              null, null);
-
-      try {
-          if (c.moveToFirst()) {
-              long exceptionId = c.getLong(AGGREGATION_EXCEPTIONS_COL_ID);
-              mResolver.update(ContentUris.withAppendedId(AggregationExceptions.CONTENT_URI,
-                      exceptionId), values, null, null);
-              updated = true;
-          }
-      } finally {
-          c.close();
-      }
-
-      // Otherwise, insert a new exception
-      if (!updated) {
-          values.put(AggregationExceptions.CONTACT_ID1, contactToSplit);
-          values.put(AggregationExceptions.CONTACT_ID2, contactToKeep);
-          mResolver.insert(AggregationExceptions.CONTENT_URI, values);
-      }
-
-      mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     private ViewEntry getViewEntryForMenuItem(MenuItem item) {
