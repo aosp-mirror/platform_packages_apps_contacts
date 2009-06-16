@@ -20,6 +20,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Parcel;
 import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         Aggregates.STARRED, //1
         Data._ID, //2
         Data.CONTACT_ID, //3
-        Data.PACKAGE, //4
+        Contacts.PACKAGE, //4
         Data.MIMETYPE, //5
         Data.IS_PRIMARY, //6
         Data.IS_SUPER_PRIMARY, //7

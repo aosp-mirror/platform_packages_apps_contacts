@@ -37,6 +37,7 @@ import android.provider.SocialContract;
 import android.provider.Contacts.Phones;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -573,7 +574,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      */
     private void handleData(Cursor cursor) {
         final int colId = cursor.getColumnIndex(Data._ID);
-        final int colPackage = cursor.getColumnIndex(Data.PACKAGE);
+        final int colPackage = cursor.getColumnIndex(Contacts.PACKAGE);
         final int colMimeType = cursor.getColumnIndex(Data.MIMETYPE);
         final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
 

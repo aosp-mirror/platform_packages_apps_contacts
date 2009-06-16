@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Aggregates.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
@@ -49,8 +50,8 @@ import java.util.List;
 public class SplitAggregateView extends ListView {
 
     private static final String[] AGGREGATE_DATA_PROJECTION = new String[] {
-            Data.MIMETYPE, Data.PACKAGE, Data.CONTACT_ID, Data.DATA1, Data.DATA2, Data.IS_PRIMARY,
-            StructuredName.DISPLAY_NAME
+            Data.MIMETYPE, Contacts.PACKAGE, Data.CONTACT_ID, Data.DATA1, Data.DATA2,
+            Data.IS_PRIMARY, StructuredName.DISPLAY_NAME
     };
 
     private static final int COL_MIMETYPE = 0;
