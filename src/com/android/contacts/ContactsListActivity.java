@@ -19,6 +19,7 @@ package com.android.contacts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -30,22 +31,21 @@ import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.provider.Contacts;
-import android.provider.Contacts.ContactMethods;
-import android.provider.Contacts.Groups;
-import android.provider.Contacts.Intents;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
-import android.provider.Contacts.Intents.UI;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.Postal;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.Intents.UI;
+import android.provider.ContactsContract.Presence;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -144,30 +144,31 @@ public final class ContactsListActivity extends ListActivity
     static final int MODE_WITH_PHONES = 15;
     /** Show all starred contacts */
     static final int MODE_STARRED = 20;
-//    /** Show frequently contacted contacts */
-//    static final int MODE_FREQUENT = 30;
-//    /** Show starred and the frequent */
-//    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS;
+    /** Show frequently contacted contacts */
+    static final int MODE_FREQUENT = 30;
+    /** Show starred and the frequent */
+    static final int MODE_STREQUENT = 35;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_AGGREGATE = 40 | MODE_MASK_PICKER;
     /** Show all contacts as well as the option to create a new one */
     static final int MODE_PICK_OR_CREATE_AGGREGATE = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
-//    /** Show all contacts and pick them when clicking, and allow creating a new contact */
-//    static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
+    /** Show all contacts and pick them when clicking, and allow creating a new contact */
+    static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all phone numbers and pick them when clicking */
     static final int MODE_PICK_PHONE = 50 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE;
     /** Show all postal addresses and pick them when clicking */
     static final int MODE_PICK_POSTAL =
             55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
-//    /** Run a search query */
-//    static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
-//    /** Run a search query in PICK mode, but that still launches to VIEW */
-//    static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;
-
+    /** Run a search query */
+    static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
+    /** Run a search query in PICK mode, but that still launches to VIEW */
+    // TODO Remove this mode if we decided it is really not needed.
+    /*static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;*/
+    
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_AGGREGATE = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
             | MODE_MASK_NO_DATA;
-
+            
     static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
 
     /**
@@ -194,7 +195,6 @@ public final class ContactsListActivity extends ListActivity
      */
     static final String PREF_DISPLAY_INFO = "display_group";
 
-
     static final String NAME_COLUMN = Aggregates.DISPLAY_NAME;
     //static final String SORT_STRING = People.SORT_STRING;
 
@@ -211,17 +211,21 @@ public final class ContactsListActivity extends ListActivity
         Aggregates.DISPLAY_NAME, // 1
         Aggregates.STARRED, //2
         Aggregates.PRIMARY_PHONE_ID, //3
-        CommonDataKinds.Phone.TYPE, //4
-        CommonDataKinds.Phone.LABEL, //5
-        CommonDataKinds.Phone.NUMBER, //6
+        Aggregates.TIMES_CONTACTED, //4
+        Presence.PRESENCE_STATUS, //5
+        CommonDataKinds.Phone.TYPE, //6
+        CommonDataKinds.Phone.LABEL, //7
+        CommonDataKinds.Phone.NUMBER, //8
     };
     static final int ID_COLUMN_INDEX = 0;
     static final int SUMMARY_NAME_COLUMN_INDEX = 1;
     static final int SUMMARY_STARRED_COLUMN_INDEX = 2;
     static final int PRIMARY_PHONE_ID_COLUMN_INDEX = 3;
-    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 4;
-    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 5;
-    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 6;
+    static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 4;
+    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 5;
+    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 6;
+    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 7;
+    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 8;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Data._ID, //0
@@ -249,21 +253,20 @@ public final class ContactsListActivity extends ListActivity
     static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
     static final int POSTAL_DISPLAY_NAME_COLUMN_INDEX = 4;
 
-    static final int PHONES_PERSON_ID_INDEX = 6;
-    static final int SIMPLE_CONTACTS_PERSON_ID_INDEX = 0;
-
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
     static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES = 1;
     static final int DISPLAY_GROUP_INDEX_MY_CONTACTS = 2;
 
     private static final int QUERY_TOKEN = 42;
 
+    /*
     static final String[] GROUPS_PROJECTION = new String[] {
         Groups.SYSTEM_ID, // 0
         Groups.NAME, // 1
     };
     static final int GROUPS_COLUMN_INDEX_SYSTEM_ID = 0;
     static final int GROUPS_COLUMN_INDEX_NAME = 1;
+    */
 
     static final String GROUP_WITH_PHONES = "android_smartgroup_phone";
 
@@ -341,7 +344,7 @@ public final class ContactsListActivity extends ListActivity
         final Intent intent = getIntent();
 
         // Allow the title to be set to a custom String using an extra on the intent
-        String title = intent.getStringExtra(Contacts.Intents.UI.TITLE_EXTRA_KEY);
+        String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
         if (title != null) {
             setTitle(title);
         }
@@ -368,11 +371,11 @@ public final class ContactsListActivity extends ListActivity
             mMode = MODE_ALL_CONTACTS;
         } else if (UI.LIST_STARRED_ACTION.equals(action)) {
             mMode = MODE_STARRED;
-        } /*else if (UI.LIST_FREQUENT_ACTION.equals(action)) {
+        } else if (UI.LIST_FREQUENT_ACTION.equals(action)) {
             mMode = MODE_FREQUENT;
         } else if (UI.LIST_STREQUENT_ACTION.equals(action)) {
             mMode = MODE_STREQUENT;
-        }*/ else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
+        } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
             mMode = MODE_WITH_PHONES;
         } else if (Intent.ACTION_PICK.equals(action)) {
             // XXX These should be showing the data from the URI given in
@@ -385,16 +388,16 @@ public final class ContactsListActivity extends ListActivity
             } else if (Postal.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
             }
-        } /*else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
+        } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
             mMode = MODE_PICK_OR_CREATE_AGGREGATE;
             mCreateShortcut = true;
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             final String type = intent.resolveType(this);
-            if (People.CONTENT_ITEM_TYPE.equals(type)) {
+            if (Aggregates.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_OR_CREATE_AGGREGATE;
-            } else if (Phones.CONTENT_ITEM_TYPE.equals(type)) {
+            } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
-            } else if (ContactMethods.CONTENT_POSTAL_ITEM_TYPE.equals(type)) {
+            } else if (Postal.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
             }
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
@@ -413,7 +416,7 @@ public final class ContactsListActivity extends ListActivity
             }
 
             // See if search request has extras to specify query
-            if (intent.hasExtra(Insert.EMAIL)) {
+            /*if (intent.hasExtra(Insert.EMAIL)) {
                 mMode = MODE_QUERY_PICK_TO_VIEW;
                 mQueryMode = QUERY_MODE_MAILTO;
                 mQueryData = intent.getStringExtra(Insert.EMAIL);
@@ -425,6 +428,8 @@ public final class ContactsListActivity extends ListActivity
                 // Otherwise handle the more normal search case
                 mMode = MODE_QUERY;
             }
+            */
+            mMode = MODE_QUERY;
 
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
@@ -446,13 +451,14 @@ public final class ContactsListActivity extends ListActivity
             finish();
             return;
         } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
+            // TODO actually support this in EditContactActivity.
             String number = intent.getData().getSchemeSpecificPart();
-            Intent newIntent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
+            Intent newIntent = new Intent(Intent.ACTION_INSERT, Aggregates.CONTENT_URI);
             newIntent.putExtra(Intents.Insert.PHONE, number);
             startActivity(newIntent);
             finish();
             return;
-        } */
+        }
 
         if (JOIN_AGGREGATE.equals(action)) {
             mMode = MODE_JOIN_AGGREGATE;
@@ -536,14 +542,12 @@ public final class ContactsListActivity extends ListActivity
                     empty.setText(getString(R.string.groupEmpty, mDisplayInfo));
                 }
                 break;
-
+            */
             case MODE_STARRED:
             case MODE_STREQUENT:
             case MODE_FREQUENT:
                 empty.setText(getText(R.string.noFavorites));
                 break;
-
-            */
             case MODE_WITH_PHONES:
                 empty.setText(getText(R.string.noContactsWithPhoneNumbers));
                 break;
@@ -733,11 +737,11 @@ public final class ContactsListActivity extends ListActivity
         mAdapter.setLoading(true);
         mAdapter.changeCursor(null);
 
-        /* if (mMode == MODE_QUERY) {
+        if (mMode == MODE_QUERY) {
             // Make sure the search box is closed
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             searchManager.stopSearch();
-        } */
+        }
     }
 
     @Override
@@ -753,10 +757,13 @@ public final class ContactsListActivity extends ListActivity
                 .setIcon(android.R.drawable.ic_menu_search);
 
         // New contact
+        //TODO Hook this up to new create contact activity.
+        /*
         menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact)
                 .setIcon(android.R.drawable.ic_menu_add)
                 .setIntent(new Intent(Intents.Insert.ACTION, People.CONTENT_URI))
                 .setAlphabeticShortcut('n');
+                */
 
         // Display group
         if (mDefaultMode) {
@@ -801,11 +808,11 @@ public final class ContactsListActivity extends ListActivity
                     // Display all with phone numbers
                     mDisplayType = DISPLAY_TYPE_ALL_WITH_PHONES;
                     mDisplayInfo = null;
-                } else if (mDisplayGroupsIncludesMyContacts &&
+                } /*else if (mDisplayGroupsIncludesMyContacts &&
                         mDisplayGroupCurrentSelection == DISPLAY_GROUP_INDEX_MY_CONTACTS) {
                     mDisplayType = DISPLAY_TYPE_SYSTEM_GROUP;
                     mDisplayInfo = Groups.GROUP_MY_CONTACTS;
-                } else {
+                } */else {
                     mDisplayType = DISPLAY_TYPE_USER_GROUP;
                     mDisplayInfo = mDisplayGroups[mDisplayGroupCurrentSelection].toString();
                 }
@@ -829,7 +836,7 @@ public final class ContactsListActivity extends ListActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_DISPLAY_GROUP:
+            /*case MENU_DISPLAY_GROUP:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.select_group_title)
                     .setPositiveButton(android.R.string.ok, this)
@@ -838,7 +845,7 @@ public final class ContactsListActivity extends ListActivity
                 setGroupEntries(builder);
 
                 builder.show();
-                return true;
+                return true;*/
 
             case MENU_SEARCH:
                 startSearch(null, false, null, false);
@@ -988,7 +995,7 @@ public final class ContactsListActivity extends ListActivity
                 Object o = getListView().getSelectedItem();
                 if (o != null) {
                     Cursor cursor = (Cursor) o;
-                    Uri uri = ContentUris.withAppendedId(People.CONTENT_URI,
+                    Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI,
                             cursor.getLong(ID_COLUMN_INDEX));
                     //TODO make this dialog persist across screen rotations
                     new AlertDialog.Builder(ContactsListActivity.this)
@@ -1015,15 +1022,15 @@ public final class ContactsListActivity extends ListActivity
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
 
-        /*if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
+        if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
             if (position == 0) {
                 // Insert
-                intent = new Intent(Intent.ACTION_INSERT, People.CONTENT_URI);
+                intent = new Intent(Intent.ACTION_INSERT, Aggregates.CONTENT_URI);
             } else {
                 // Edit
                 intent = new Intent(Intent.ACTION_EDIT,
-                        ContentUris.withAppendedId(People.CONTENT_URI, id));
+                        ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             final Bundle extras = getIntent().getExtras();
@@ -1032,7 +1039,7 @@ public final class ContactsListActivity extends ListActivity
             }
             startActivity(intent);
             finish();
-        } else */
+        } else
         if (id != -1) {
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
@@ -1054,14 +1061,14 @@ public final class ContactsListActivity extends ListActivity
             }*/ else if (mMode == MODE_PICK_AGGREGATE
                     || mMode == MODE_PICK_OR_CREATE_AGGREGATE) {
                 Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
-                /*if (mCreateShortcut) {
+                if (mCreateShortcut) {
                     // Subtract one if we have Create Contact at the top
                     Cursor c = (Cursor) mAdapter.getItem(position
                             - (mMode == MODE_PICK_OR_CREATE_AGGREGATE? 1:0));
                     returnPickerResult(c.getString(SUMMARY_NAME_COLUMN_INDEX), uri);
                 } else {
                     returnPickerResult(null, uri);
-                } */
+                }
                 setResult(RESULT_OK, new Intent().setData(uri));
                 finish();
             } else if (mMode == MODE_PICK_PHONE) {
@@ -1075,8 +1082,9 @@ public final class ContactsListActivity extends ListActivity
             }
         } else if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW
                 && position == 0) {
-            Intent newContact = new Intent(Intents.Insert.ACTION, People.CONTENT_URI);
-            startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);
+            // Hook this up to new edit contact activity.
+            /*Intent newContact = new Intent(Intents.Insert.ACTION, People.CONTENT_URI);
+            startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);*/
         } else {
             signalError();
         }
@@ -1090,7 +1098,7 @@ public final class ContactsListActivity extends ListActivity
             shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-            final Bitmap icon = People.loadContactPhoto(this, uri, 0, null);
+            final Bitmap icon = loadContactPhoto(ContentUris.parseId(uri), null);
             if (icon != null) {
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
             } else {
@@ -1111,16 +1119,14 @@ public final class ContactsListActivity extends ListActivity
             case MODE_ALL_CONTACTS:
             case MODE_WITH_PHONES:
             case MODE_PICK_AGGREGATE:
-            /*case MODE_PICK_OR_CREATE_AGGREGATE:
-            case MODE_QUERY:*/
+            case MODE_PICK_OR_CREATE_AGGREGATE:
+            case MODE_QUERY:
             case MODE_STARRED:
-            /*case MODE_FREQUENT:
-            case MODE_INSERT_OR_EDIT_CONTACT: */
+            case MODE_FREQUENT:
+            case MODE_STREQUENT:
+            case MODE_INSERT_OR_EDIT_CONTACT:
                 return AGGREGATES_SUMMARY_PROJECTION;
 
-            /* case MODE_STREQUENT:
-                return STREQUENT_PROJECTION;
-            */
             case MODE_PICK_PHONE:
                 return PHONES_PROJECTION;
 
@@ -1128,6 +1134,23 @@ public final class ContactsListActivity extends ListActivity
                 return POSTALS_PROJECTION;
         }
         return null;
+    }
+
+    private Bitmap loadContactPhoto(long dataId, BitmapFactory.Options options) {
+        Cursor cursor = null;
+        Bitmap bm;
+        try {
+            cursor = getContentResolver().query(
+                    ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
+                    new String[] {Photo.PHOTO}, null, null, null);
+            cursor.moveToFirst();
+            bm = ContactsUtils.loadContactPhoto(cursor, 0, options);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return bm;
     }
 
     private Uri getAggregateFilterUri(String filter) {
@@ -1165,8 +1188,8 @@ public final class ContactsListActivity extends ListActivity
 
             case MODE_ALL_CONTACTS:
             case MODE_PICK_AGGREGATE:
-            /*case MODE_PICK_OR_CREATE_AGGREGATE:
-            case MODE_INSERT_OR_EDIT_CONTACT: */
+            case MODE_PICK_OR_CREATE_AGGREGATE:
+            case MODE_INSERT_OR_EDIT_CONTACT:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
                         AGGREGATES_SUMMARY_PROJECTION, null, null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
@@ -1180,34 +1203,34 @@ public final class ContactsListActivity extends ListActivity
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
-            /*case MODE_QUERY: {
+            case MODE_QUERY: {
                 mQuery = getIntent().getStringExtra(SearchManager.QUERY);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getPeopleFilterUri(mQuery),
-                        CONTACTS_PROJECTION, null, null,
-                        getSortOrder(CONTACTS_PROJECTION));
+                mQueryHandler.startQuery(QUERY_TOKEN, null, getAggregateFilterUri(mQuery),
+                        AGGREGATES_SUMMARY_PROJECTION, null, null,
+                        getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
             }
 
+            /*
             case MODE_QUERY_PICK_TO_VIEW: {
                 if (mQueryMode == QUERY_MODE_MAILTO) {
-                    // Find all contacts with the given search string as either
-                    // an E-mail or IM address.
-                    mQueryPersonIdIndex = SIMPLE_CONTACTS_PERSON_ID_INDEX;
-                    Uri uri = Uri.withAppendedPath(People.WITH_EMAIL_OR_IM_FILTER_URI,
+                    // Find all contacts with the given search string as E-mail.
+                    Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_EMAIL_URI,
                             Uri.encode(mQueryData));
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
                             uri, SIMPLE_CONTACTS_PROJECTION, null, null,
                             getSortOrder(CONTACTS_PROJECTION));
 
                 } else if (mQueryMode == QUERY_MODE_TEL) {
-                    mQueryPersonIdIndex = PHONES_PERSON_ID_INDEX;
+                    mQueryAggIdIndex = PHONES_PERSON_ID_INDEX;
                     mQueryHandler.startQuery(QUERY_TOKEN, null,
                             Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, mQueryData),
                             PHONES_PROJECTION, null, null,
                             getSortOrder(PHONES_PROJECTION));
                 }
                 break;
-            } */
+            }
+            */
 
             case MODE_STARRED:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
@@ -1215,19 +1238,20 @@ public final class ContactsListActivity extends ListActivity
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
-            /*case MODE_FREQUENT:
-                mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        People.CONTENT_URI, CONTACTS_PROJECTION,
-                        People.TIMES_CONTACTED + " > 0", null,
-                        People.TIMES_CONTACTED + " DESC, " + getSortOrder(CONTACTS_PROJECTION));
+            case MODE_FREQUENT:
+                mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
+                        AGGREGATES_SUMMARY_PROJECTION,
+                        Aggregates.TIMES_CONTACTED + " > 0", null,
+                        Aggregates.TIMES_CONTACTED + " DESC, "
+                        + getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
             case MODE_STREQUENT:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        Uri.withAppendedPath(People.CONTENT_URI, "strequent"), STREQUENT_PROJECTION,
+                        Aggregates.CONTENT_SUMMARY_STREQUENT_URI, AGGREGATES_SUMMARY_PROJECTION,
                         null, null, null);
                 break;
-            */
+
             case MODE_PICK_PHONE:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Phone.CONTENT_URI,
                         PHONES_PROJECTION, null, null, getSortOrder(PHONES_PROJECTION));
@@ -1271,8 +1295,8 @@ public final class ContactsListActivity extends ListActivity
 
             case MODE_ALL_CONTACTS:
             case MODE_PICK_AGGREGATE:
-            /*case MODE_PICK_OR_CREATE_AGGREGATE:
-            case MODE_INSERT_OR_EDIT_CONTACT:*/ {
+            case MODE_PICK_OR_CREATE_AGGREGATE:
+            case MODE_INSERT_OR_EDIT_CONTACT: {
                 return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
                         null, null, getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
@@ -1284,30 +1308,29 @@ public final class ContactsListActivity extends ListActivity
             }
 
             case MODE_STARRED: {
-                return resolver.query(getAggregateFilterUri(filter),
-                        AGGREGATES_SUMMARY_PROJECTION,
+                return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
                         Aggregates.STARRED + "=1", null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
 
-            /*case MODE_FREQUENT: {
-                return resolver.query(getPeopleFilterUri(filter), CONTACTS_PROJECTION,
-                        People.TIMES_CONTACTED + " > 0", null,
-                        People.TIMES_CONTACTED + " DESC, " + getSortOrder(CONTACTS_PROJECTION));
-
+            case MODE_FREQUENT: {
+                return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
+                        Aggregates.TIMES_CONTACTED + " > 0", null,
+                        Aggregates.TIMES_CONTACTED + " DESC, "
+                        + getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
 
             case MODE_STREQUENT: {
                 Uri uri;
                 if (!TextUtils.isEmpty(filter)) {
-                    uri = Uri.withAppendedPath(People.CONTENT_URI, "strequent/filter/"
-                            + Uri.encode(filter));
+                    uri = Uri.withAppendedPath(Aggregates.CONTENT_SUMMARY_STREQUENT_FILTER_URI,
+                            Uri.encode(filter));
                 } else {
-                    uri = Uri.withAppendedPath(People.CONTENT_URI, "strequent");
+                    uri = Aggregates.CONTENT_SUMMARY_STREQUENT_URI;
                 }
-                return resolver.query(uri, STREQUENT_PROJECTION, null, null, null);
+                return resolver.query(uri, AGGREGATES_SUMMARY_PROJECTION, null, null, null);
             }
-            */
+
             case MODE_PICK_PHONE: {
                 Uri uri;
                 if (!TextUtils.isEmpty(filter)) {
@@ -1331,13 +1354,13 @@ public final class ContactsListActivity extends ListActivity
         if (list.hasFocus()) {
             Cursor cursor = (Cursor) list.getSelectedItem();
             if (cursor != null) {
-                long phoneId = cursor.getLong(PRIMARY_PHONE_NUMBER_COLUMN_INDEX);
-                if (phoneId == 0) {
+                long dataId = cursor.getLong(ID_COLUMN_INDEX);
+                if (dataId == 0) {
                     // There is no phone number.
                     signalError();
                     return false;
                 }
-                Uri uri = ContentUris.withAppendedId(Phones.CONTENT_URI, phoneId);
+                Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
                 Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
                 startActivity(intent);
                 return true;
@@ -1363,6 +1386,7 @@ public final class ContactsListActivity extends ListActivity
         return (Cursor) listView.getAdapter().getItem(index);
     }
 
+    /*
     private void setGroupEntries(AlertDialog.Builder builder) {
         boolean syncEverything;
         // For now we only support a single account and the UI doesn't know what
@@ -1394,13 +1418,13 @@ public final class ContactsListActivity extends ListActivity
             groups.add(DISPLAY_GROUP_INDEX_ALL_CONTACTS, getString(R.string.showAllGroups));
             prefStrings.add("");
 
-            /*// Add Contacts with phones
+            // Add Contacts with phones
             groups.add(DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES,
                     getString(R.string.groupNameWithPhones));
-            prefStrings.add(GROUP_WITH_PHONES); */
+            prefStrings.add(GROUP_WITH_PHONES);
 
             int currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS;
-            /*while (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 String systemId = cursor.getString(GROUPS_COLUMN_INDEX_SYSTEM_ID);
                 String name = cursor.getString(GROUPS_COLUMN_INDEX_NAME);
                 if (cursor.isNull(GROUPS_COLUMN_INDEX_SYSTEM_ID)
@@ -1425,7 +1449,7 @@ public final class ContactsListActivity extends ListActivity
                     }
                     mDisplayGroupsIncludesMyContacts = true;
                 }
-            } */
+            }
             if (mMode == MODE_ALL_CONTACTS) {
                 currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS;
             } else if (mMode == MODE_WITH_PHONES) {
@@ -1438,6 +1462,7 @@ public final class ContactsListActivity extends ListActivity
             cursor.close();
         }
     }
+    */
 
     private static final class QueryHandler extends AsyncQueryHandler {
         private final WeakReference<ContactsListActivity> mActivity;
@@ -1537,9 +1562,9 @@ public final class ContactsListActivity extends ListActivity
                 mBitmapCache = new SparseArray<SoftReference<Bitmap>>();
             }
 
-            /* if (mMode == MODE_STREQUENT) {
+            if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
-            } */
+            }
         }
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
@@ -1730,12 +1755,12 @@ public final class ContactsListActivity extends ListActivity
                 labelView.setVisibility(View.GONE);
             }
 
-            /* // Set the proper icon (star or presence or nothing)
+            // Set the proper icon (star or presence or nothing)
             ImageView presenceView = cache.presenceView;
             if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
                 int serverStatus;
-                if (!cursor.isNull(SERVER_STATUS_COLUMN_INDEX)) {
-                    serverStatus = cursor.getInt(SERVER_STATUS_COLUMN_INDEX);
+                if (!cursor.isNull(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
+                    serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
                     presenceView.setImageResource(
                             Presence.getPresenceIconResourceId(serverStatus));
                     presenceView.setVisibility(View.VISIBLE);
@@ -1747,6 +1772,9 @@ public final class ContactsListActivity extends ListActivity
             }
 
             // Set the photo, if requested
+            // TODO Either remove photos from this class completely or re-implement w/ asynchronous
+            // loading.
+            /*
             if (mDisplayPhotos) {
                 Bitmap photo = null;
 
@@ -1800,10 +1828,10 @@ public final class ContactsListActivity extends ListActivity
         public void changeCursor(Cursor cursor) {
             // Get the split between starred and frequent items, if the mode is strequent
             mFrequentSeparatorPos = ListView.INVALID_POSITION;
-            /*if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
+            if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
                 cursor.move(-1);
                 for (int i = 0; cursor.moveToNext(); i++) {
-                    int starred = cursor.getInt(STARRED_COLUMN_INDEX);
+                    int starred = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
                     if (starred == 0) {
                         if (i > 0) {
                             // Only add the separator when there are starred items present
@@ -1812,7 +1840,7 @@ public final class ContactsListActivity extends ListActivity
                         break;
                     }
                 }
-            } */
+            }
 
             super.changeCursor(cursor);
 

@@ -217,6 +217,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/person_aggregate" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
             </intent-filter>
 
@@ -232,6 +233,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/person_aggregate" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
                 <data android:mimeType="vnd.android.cursor.item/phone" />
                 <data android:mimeType="vnd.android.cursor.item/postal-address" />

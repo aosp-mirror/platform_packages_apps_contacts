@@ -155,13 +155,13 @@ public class ContactsUtils {
      * @param options the decoding options, can be set to null
      * @return the photo Bitmap
      */
-    public static Bitmap loadContactPhoto(Cursor aggCursor, int bitmapColumnIndex,
+    public static Bitmap loadContactPhoto(Cursor cursor, int bitmapColumnIndex,
             BitmapFactory.Options options) {
-        if (aggCursor == null) {
+        if (cursor == null) {
             return null;
         }
 
-        byte[] data = aggCursor.getBlob(bitmapColumnIndex);;
+        byte[] data = cursor.getBlob(bitmapColumnIndex);;
         return BitmapFactory.decodeByteArray(data, 0, data.length, options);
     }
 
