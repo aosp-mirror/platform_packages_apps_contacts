@@ -58,6 +58,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
@@ -94,15 +95,13 @@ public class ViewContactActivity extends ListActivity
 
     private static final int DIALOG_CONFIRM_DELETE = 1;
 
+    private static final int REQUEST_JOIN_AGGREGATE = 1;
+
     public static final int MENU_ITEM_DELETE = 1;
     public static final int MENU_ITEM_MAKE_DEFAULT = 2;
     public static final int MENU_ITEM_SHOW_BARCODE = 3;
     public static final int MENU_ITEM_SPLIT_AGGREGATE = 4;
-
-    private static final String[] AGGREGATION_EXCEPTIONS_PROJECTION =
-            new String[] { AggregationExceptions._ID};
-
-    private static final int AGGREGATION_EXCEPTIONS_COL_ID = 0;
+    public static final int MENU_ITEM_JOIN_AGGREGATE = 5;
 
     private Uri mUri;
     private Uri mAggDataUri;
@@ -307,6 +306,8 @@ public class ViewContactActivity extends ListActivity
                 .setIcon(android.R.drawable.ic_menu_delete);
         menu.add(0, MENU_ITEM_SPLIT_AGGREGATE, 0, R.string.menu_splitAggregate)
                 .setIcon(android.R.drawable.ic_menu_share);
+        menu.add(0, MENU_ITEM_JOIN_AGGREGATE, 0, R.string.menu_joinAggregate)
+                .setIcon(android.R.drawable.ic_menu_add);
         return true;
     }
 
@@ -384,6 +385,11 @@ public class ViewContactActivity extends ListActivity
 
             case MENU_ITEM_SPLIT_AGGREGATE: {
                 showSplitAggregateDialog();
+                return true;
+            }
+
+            case MENU_ITEM_JOIN_AGGREGATE: {
+                showJoinAggregateActivity();
                 return true;
             }
 
@@ -502,18 +508,55 @@ public class ViewContactActivity extends ListActivity
     }
 
     /**
-     * Given an ID of a constituent contact, splits it off into a separate aggregate.
+     * Shows a list of aggregates that can be joined into the currently viewed aggregate.
      */
-    protected void splitContact(long contactToSplit) {
+    public void showJoinAggregateActivity() {
+        Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
+        intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, ContentUris.parseId(mUri));
+        startActivityForResult(intent, REQUEST_JOIN_AGGREGATE);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == REQUEST_JOIN_AGGREGATE && resultCode == RESULT_OK && intent != null) {
+            final long aggregateId = ContentUris.parseId(intent.getData());
+            joinAggregate(aggregateId);
+        }
+    }
+
+    private void splitContact(long contactId) {
+        setAggregationException(contactId, AggregationExceptions.TYPE_KEEP_OUT);
+        Toast.makeText(this, R.string.contactSplitMessage, Toast.LENGTH_SHORT);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void joinAggregate(final long aggregateId) {
+        Cursor c = mResolver.query(Contacts.CONTENT_URI, new String[] {Contacts._ID},
+                Contacts.AGGREGATE_ID + "=" + aggregateId, null, null);
+
+        try {
+            while(c.moveToNext()) {
+                long contactId = c.getLong(0);
+                setAggregationException(contactId, AggregationExceptions.TYPE_KEEP_IN);
+            }
+        } finally {
+            c.close();
+        }
+
+        Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_SHORT);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Given a contact ID sets an aggregation exception to either join the contact with the
+     * current aggregate or split off.
+     */
+    protected void setAggregationException(long contactId, int exceptionType) {
         ContentValues values = new ContentValues(3);
         values.put(AggregationExceptions.AGGREGATE_ID, ContentUris.parseId(mUri));
-        values.put(AggregationExceptions.CONTACT_ID, contactToSplit);
-        values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_OUT);
-
+        values.put(AggregationExceptions.CONTACT_ID, contactId);
+        values.put(AggregationExceptions.TYPE, exceptionType);
         mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
-
-        mAdapter.notifyDataSetChanged();
     }
 
     private ViewEntry getViewEntryForMenuItem(MenuItem item) {

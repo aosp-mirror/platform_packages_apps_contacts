@@ -97,17 +97,26 @@
     <!-- Menu item that makes a phone the default for a contact. The default number used when you
          try to call a contact without specifying a specific number. -->
     <string name="menu_makeDefaultNumber">Make default number</string>
-    
+
     <!-- Menu item that makes an email address the default for a contact. The default email used 
     	 when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Split</string>
-    
+
     <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
     <string name="splitAggregate_title">Split contact</string>
-    
+
+    <!-- Toast shown after a contact has been split from an aggregate by a user action -->
+    <string name="contactsSplitMessage">Contact split</string>
+
+    <!-- Menu item that joins an aggregate with another aggregate -->
+    <string name="menu_joinAggregate">Join</string>
+
+    <!-- Toast shown after two contacts have been joined by a user action -->
+    <string name="contactsJoinedMessage">Contacts joined</string>
+
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 

@@ -19,7 +19,6 @@ package com.android.contacts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -31,7 +30,6 @@ import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -42,15 +40,12 @@ import android.provider.Contacts.Groups;
 import android.provider.Contacts.Intents;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.provider.Contacts.Presence;
-import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.Intents.UI;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Postal;
-import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -110,6 +105,22 @@ public final class ContactsListActivity extends ListActivity
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
 
+    /**
+     * The action for the join contact activity.
+     *
+     * TODO: move to {@link Contacts}.
+     */
+    public static final String JOIN_AGGREGATE =
+            "com.android.contacts.action.JOIN_AGGREGATE";
+
+    /**
+     * Used with {@link #JOIN_AGGREGATE} to give it the target for aggregation.
+     * <p>
+     * Type: LONG
+     */
+    public static final String EXTRA_AGGREGATE_ID =
+            "com.android.contacts.action.AGGREGATE_ID";
+
     /** Mask for picker mode */
     static final int MODE_MASK_PICKER = 0x80000000;
     /** Mask for no presence mode */
@@ -120,6 +131,8 @@ public final class ContactsListActivity extends ListActivity
     static final int MODE_MASK_CREATE_NEW = 0x10000000;
     /** Mask for showing photos in the list */
     static final int MODE_MASK_SHOW_PHOTOS = 0x08000000;
+    /** Mask for hiding additional information e.g. primary phone number in the list */
+    static final int MODE_MASK_NO_DATA = 0x04000000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
@@ -150,6 +163,10 @@ public final class ContactsListActivity extends ListActivity
 //    static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
 //    /** Run a search query in PICK mode, but that still launches to VIEW */
 //    static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;
+
+    /** Show join suggestions followed by an A-Z list */
+    static final int MODE_JOIN_AGGREGATE = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
+            | MODE_MASK_NO_DATA;
 
     static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
 
@@ -277,6 +294,8 @@ public final class ContactsListActivity extends ListActivity
      * {@link Intent#ACTION_SEARCH} in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
      */
     private int mQueryPersonIdIndex;
+
+    private long mQueryAggregateId;
 
     /**
      * Used to keep track of the scroll state of the list.
@@ -434,6 +453,17 @@ public final class ContactsListActivity extends ListActivity
             finish();
             return;
         } */
+
+        if (JOIN_AGGREGATE.equals(action)) {
+            mMode = MODE_JOIN_AGGREGATE;
+            mQueryAggregateId = intent.getLongExtra(EXTRA_AGGREGATE_ID, -1);
+            if (mQueryAggregateId == -1) {
+                Log.e(TAG, "Intent " + action + " is missing required extra: "
+                        + EXTRA_AGGREGATE_ID);
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        }
 
         if (mMode == MODE_UNKNOWN) {
             mMode = DEFAULT_MODE;
@@ -1008,7 +1038,12 @@ public final class ContactsListActivity extends ListActivity
                 Intent intent = new Intent(Intent.ACTION_VIEW,
                         ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
-            } /*else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
+            } else if (mMode == MODE_JOIN_AGGREGATE) {
+                Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
+                returnPickerResult(null, uri);
+            }
+
+            /*else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
                 Cursor c = (Cursor) mAdapter.getItem(position);
                 long personId = c.getLong(mQueryPersonIdIndex);
@@ -1201,6 +1236,14 @@ public final class ContactsListActivity extends ListActivity
             case MODE_PICK_POSTAL:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Postal.CONTENT_URI,
                         POSTALS_PROJECTION, null, null, getSortOrder(POSTALS_PROJECTION));
+                break;
+
+            case MODE_JOIN_AGGREGATE:
+                mQueryHandler.startQuery(QUERY_TOKEN, null,
+                        Aggregates.CONTENT_URI, AGGREGATES_PROJECTION,
+                        Aggregates._ID + " != " + mQueryAggregateId, null,
+                        getSortOrder(AGGREGATES_PROJECTION));
+
                 break;
         }
     }
@@ -1447,6 +1490,7 @@ public final class ContactsListActivity extends ListActivity
         private CharSequence mUnknownNameText;
         private CharSequence[] mLocalizedLabels;
         private boolean mDisplayPhotos = false;
+        private boolean mDisplayAdditionalData = true;
         private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
@@ -1473,6 +1517,18 @@ public final class ContactsListActivity extends ListActivity
                     mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
                             CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
                     break;
+            }
+
+            // Do not display the second line of text if in a specific SEARCH query mode, usually for
+            // matching a specific E-mail or phone number. Any contact details
+            // shown would be identical, and columns might not even be present
+            // in the returned cursor.
+            if (mQueryMode != QUERY_MODE_NONE) {
+                mDisplayAdditionalData = false;
+            }
+
+            if ((mMode & MODE_MASK_NO_DATA) == MODE_MASK_NO_DATA) {
+                mDisplayAdditionalData = false;
             }
 
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
@@ -1635,11 +1691,7 @@ public final class ContactsListActivity extends ListActivity
                 cache.nameView.setText(mUnknownNameText);
             }
 
-            // Bail out early if using a specific SEARCH query mode, usually for
-            // matching a specific E-mail or phone number. Any contact details
-            // shown would be identical, and columns might not even be present
-            // in the returned cursor.
-            if (mQueryMode != QUERY_MODE_NONE) {
+            if (!mDisplayAdditionalData) {
                 cache.dataView.setVisibility(View.GONE);
                 cache.labelView.setVisibility(View.GONE);
                 cache.presenceView.setVisibility(View.GONE);

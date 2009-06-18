@@ -210,6 +210,11 @@
             </intent-filter>
 
             <intent-filter>
+                <action android:name="com.android.contacts.action.JOIN_AGGREGATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
