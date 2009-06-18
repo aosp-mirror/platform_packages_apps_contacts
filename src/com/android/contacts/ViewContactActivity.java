@@ -526,7 +526,7 @@ public class ViewContactActivity extends ListActivity
 
     private void splitContact(long contactId) {
         setAggregationException(contactId, AggregationExceptions.TYPE_KEEP_OUT);
-        Toast.makeText(this, R.string.contactSplitMessage, Toast.LENGTH_SHORT);
+        Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_SHORT);
         mAdapter.notifyDataSetChanged();
     }
 
