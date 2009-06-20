@@ -36,7 +36,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Aggregates.AggregationSuggestions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -107,8 +109,10 @@ public final class ContactsListActivity extends ListActivity
 
     /**
      * The action for the join contact activity.
+     * <p>
+     * Input: extra field {@link #EXTRA_AGGREGATE_ID} is the aggregate ID.
      *
-     * TODO: move to {@link Contacts}.
+     * TODO: move to {@link ContactsContract}.
      */
     public static final String JOIN_AGGREGATE =
             "com.android.contacts.action.JOIN_AGGREGATE";
@@ -164,12 +168,15 @@ public final class ContactsListActivity extends ListActivity
     /** Run a search query in PICK mode, but that still launches to VIEW */
     // TODO Remove this mode if we decided it is really not needed.
     /*static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;*/
-    
+
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_AGGREGATE = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
             | MODE_MASK_NO_DATA;
-            
+
     static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
+
+    /** Maximum number of suggestions shown for joining aggregates */
+    static final int MAX_SUGGESTIONS = 4;
 
     /**
      * The type of data to display in the main contacts list.
@@ -469,6 +476,8 @@ public final class ContactsListActivity extends ListActivity
                 setResult(RESULT_CANCELED);
                 finish();
             }
+
+            setTitle(R.string.titleJoinAggregate);
         }
 
         if (mMode == MODE_UNKNOWN) {
@@ -501,7 +510,11 @@ public final class ContactsListActivity extends ListActivity
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
 
-        mQueryHandler = new QueryHandler(this);
+        if (mMode == MODE_JOIN_AGGREGATE) {
+            mQueryHandler = new SuggestionsQueryHandler(this, mQueryAggregateId);
+        } else {
+            mQueryHandler = new QueryHandler(this);
+        }
         mJustCreated = true;
 
         // TODO(jham) redesign this
@@ -1263,11 +1276,14 @@ public final class ContactsListActivity extends ListActivity
                 break;
 
             case MODE_JOIN_AGGREGATE:
-                mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        Aggregates.CONTENT_URI, AGGREGATES_PROJECTION,
-                        Aggregates._ID + " != " + mQueryAggregateId, null,
-                        getSortOrder(AGGREGATES_PROJECTION));
-
+                Uri suggestionsUri = Aggregates.CONTENT_URI.buildUpon()
+                        .appendEncodedPath(String.valueOf(mQueryAggregateId))
+                        .appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY)
+                        .appendQueryParameter(AggregationSuggestions.MAX_SUGGESTIONS,
+                                String.valueOf(MAX_SUGGESTIONS))
+                        .build();
+                mQueryHandler.startQuery(QUERY_TOKEN, null, suggestionsUri, AGGREGATES_PROJECTION,
+                        null, null, null);
                 break;
         }
     }
@@ -1464,8 +1480,8 @@ public final class ContactsListActivity extends ListActivity
     }
     */
 
-    private static final class QueryHandler extends AsyncQueryHandler {
-        private final WeakReference<ContactsListActivity> mActivity;
+    private static class QueryHandler extends AsyncQueryHandler {
+        protected final WeakReference<ContactsListActivity> mActivity;
 
         public QueryHandler(Context context) {
             super(context.getContentResolver());
@@ -1489,6 +1505,46 @@ public final class ContactsListActivity extends ListActivity
                     activity.mListHasFocus = false;
                     activity.mListState = null;
                 }
+            } else {
+                cursor.close();
+            }
+        }
+    }
+
+    /**
+     * Query handler for the suggestions query used in the Join Contacts UI.  Once the
+     * suggestions query is complete, the handler launches an A-Z query.  The entire search is only
+     * done once the second query is complete.
+     */
+    private static final class SuggestionsQueryHandler extends QueryHandler {
+        boolean mSuggestionsQueryComplete;
+        private final long mAggregateId;
+
+        public SuggestionsQueryHandler(Context context, long aggregateId) {
+            super(context);
+            mAggregateId = aggregateId;
+        }
+
+        @Override
+        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            if (mSuggestionsQueryComplete) {
+                super.onQueryComplete(token, cookie, cursor);
+                return;
+            }
+
+            mSuggestionsQueryComplete = true;
+
+            final ContactsListActivity activity = mActivity.get();
+            if (activity != null && !activity.isFinishing()) {
+                if (cursor.getCount() > 0) {
+                    activity.mAdapter.setSuggestionsCursor(cursor);
+                } else {
+                    activity.mAdapter.setSuggestionsCursor(null);
+                }
+                startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_URI, AGGREGATES_PROJECTION,
+                        Aggregates._ID + " != " + mAggregateId, null,
+                        getSortOrder(AGGREGATES_PROJECTION));
+
             } else {
                 cursor.close();
             }
@@ -1520,6 +1576,8 @@ public final class ContactsListActivity extends ListActivity
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
         private int[] mSectionPositions;
+        private Cursor mSuggestionsCursor;
+        private int mSuggestionsCursorCount;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
@@ -1565,6 +1623,14 @@ public final class ContactsListActivity extends ListActivity
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
             }
+        }
+
+        public void setSuggestionsCursor(Cursor cursor) {
+            if (mSuggestionsCursor != null) {
+                mSuggestionsCursor.close();
+            }
+            mSuggestionsCursor = cursor;
+            mSuggestionsCursorCount = cursor == null ? 0 : cursor.getCount();
         }
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
@@ -1615,7 +1681,7 @@ public final class ContactsListActivity extends ListActivity
 
         @Override
         public int getItemViewType(int position) {
-            if (position == mFrequentSeparatorPos) {
+            if (getSeparatorId(position) != 0) {
                 // We don't want the separator view to be recycled.
                 return IGNORE_ITEM_VIEW_TYPE;
             }
@@ -1630,28 +1696,54 @@ public final class ContactsListActivity extends ListActivity
             }
 
             // Handle the separator specially
-            if (position == mFrequentSeparatorPos) {
+            int separatorId = getSeparatorId(position);
+            if (separatorId != 0) {
                 LayoutInflater inflater =
                         (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 TextView view = (TextView) inflater.inflate(R.layout.list_separator, parent, false);
-                view.setText(R.string.favoritesFrquentSeparator);
+                view.setText(separatorId);
                 return view;
             }
 
+            boolean showingSuggestion;
+            Cursor cursor;
+            if (mSuggestionsCursorCount != 0 && position < mSuggestionsCursorCount + 2) {
+                showingSuggestion = true;
+                cursor = mSuggestionsCursor;
+            } else {
+                showingSuggestion = false;
+                cursor = mCursor;
+            }
+
             int realPosition = getRealPosition(position);
-            if (!mCursor.moveToPosition(realPosition)) {
+            if (!cursor.moveToPosition(realPosition)) {
                 throw new IllegalStateException("couldn't move cursor to position " + position);
             }
 
             View v;
             if (convertView == null) {
-                v = newView(mContext, mCursor, parent);
+                v = newView(mContext, cursor, parent);
             } else {
                 v = convertView;
             }
-            bindView(v, mContext, mCursor);
-            bindSectionHeader(v, realPosition);
+            bindView(v, mContext, cursor);
+            bindSectionHeader(v, realPosition, mDisplaySectionHeaders && !showingSuggestion);
             return v;
+        }
+
+        private int getSeparatorId(int position) {
+            int separatorId = 0;
+            if (position == mFrequentSeparatorPos) {
+                separatorId = R.string.favoritesFrquentSeparator;
+            }
+            if (mSuggestionsCursorCount != 0) {
+                if (position == 0) {
+                    separatorId = R.string.separatorJoinAggregateSuggestions;
+                } else if (position == mSuggestionsCursorCount + 1) {
+                    separatorId = R.string.separatorJoinAggregateAll;
+                }
+            }
+            return separatorId;
         }
 
         @Override
@@ -1809,9 +1901,9 @@ public final class ContactsListActivity extends ListActivity
             } */
         }
 
-        private void bindSectionHeader(View view, int position) {
+        private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
             final ContactListItemCache cache = (ContactListItemCache) view.getTag();
-            if (!mDisplaySectionHeaders) {
+            if (!displaySectionHeaders) {
                 cache.header.setVisibility(View.GONE);
             } else {
                 final int section = getSectionForPosition(position);
@@ -1914,7 +2006,8 @@ public final class ContactsListActivity extends ListActivity
 
             int position = mSectionPositions[sectionIndex];
             if (position == ListView.INVALID_POSITION) {
-                position = mSectionPositions[sectionIndex] = mIndexer.getPositionForSection(sectionIndex);
+                position = mSectionPositions[sectionIndex] =
+                        mIndexer.getPositionForSection(sectionIndex);
             }
 
             return position;
@@ -1955,12 +2048,21 @@ public final class ContactsListActivity extends ListActivity
 
         @Override
         public boolean isEnabled(int position) {
+            if (mSuggestionsCursorCount > 0) {
+                return position != 0 && position != mSuggestionsCursorCount + 1;
+            }
             return position != mFrequentSeparatorPos;
         }
 
         @Override
         public int getCount() {
-            if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
+            if (mSuggestionsCursorCount != 0) {
+                // When showing suggestions, we have 2 additional list items: the "Suggestions"
+                // and "All contacts" headers.
+                return mSuggestionsCursorCount + super.getCount() + 2;
+            }
+            else if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
+                // When showing strequent list, we have an additional list item - the separator.
                 return super.getCount() + 1;
             } else {
                 return super.getCount();
@@ -1968,7 +2070,19 @@ public final class ContactsListActivity extends ListActivity
         }
 
         private int getRealPosition(int pos) {
-            if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
+            if (mSuggestionsCursorCount != 0) {
+                // When showing suggestions, we have 2 additional list items: the "Suggestions"
+                // and "All contacts" separators.
+                if (pos < mSuggestionsCursorCount + 2) {
+                    // We are in the upper partition (Suggestions). Adjusting for the "Suggestions"
+                    // separator.
+                    return pos - 1;
+                } else {
+                    // We are in the lower partition (All contacts). Adjusting for the size
+                    // of the upper partition plus the two separators.
+                    return pos - mSuggestionsCursorCount - 2;
+                }
+            } else if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
                 // No separator, identity map
                 return pos;
             } else if (pos <= mFrequentSeparatorPos) {
@@ -1978,16 +2092,27 @@ public final class ContactsListActivity extends ListActivity
                 // After the separator, remove 1 from the pos to get the real underlying pos
                 return pos - 1;
             }
-
         }
 
         @Override
         public Object getItem(int pos) {
-            return super.getItem(getRealPosition(pos));
+            if (mSuggestionsCursorCount != 0 && pos <= mSuggestionsCursorCount) {
+                mSuggestionsCursor.moveToPosition(getRealPosition(pos));
+                return mSuggestionsCursor;
+            } else {
+                return super.getItem(getRealPosition(pos));
+            }
         }
 
         @Override
         public long getItemId(int pos) {
+            if (mSuggestionsCursorCount != 0 && pos < mSuggestionsCursorCount + 2) {
+                if (mSuggestionsCursor.moveToPosition(pos - 1)) {
+                    return mSuggestionsCursor.getLong(mRowIDColumn);
+                } else {
+                    return 0;
+                }
+            }
             return super.getItemId(getRealPosition(pos));
         }
     }
