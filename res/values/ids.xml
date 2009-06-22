@@ -18,4 +18,7 @@
     <!-- The EditText for entries in the EditContactActivity -->
     <item type="id" name="data" />
 
+    <item type="id" name="header_all" />
+    <item type="id" name="header_phones" />
+
 </resources>

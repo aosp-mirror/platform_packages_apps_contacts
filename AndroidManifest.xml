@@ -249,6 +249,8 @@
             />
         </activity>
 
+        <activity android:name=".DisplayGroupsActivity" android:label="@string/displayGroups" />
+
         <activity android:name="ShowOrCreateActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>

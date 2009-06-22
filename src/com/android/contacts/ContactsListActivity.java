@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.DisplayGroupsActivity.Prefs;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -83,8 +85,8 @@ import java.util.Locale;
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
-public final class ContactsListActivity extends ListActivity
-        implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener {
+public final class ContactsListActivity extends ListActivity implements
+        View.OnCreateContextMenuListener {
     private static final String TAG = "ContactsListActivity";
 
     private static final String LIST_STATE_KEY = "liststate";
@@ -106,6 +108,7 @@ public final class ContactsListActivity extends ListActivity
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
+    private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
 
     /**
      * The action for the join contact activity.
@@ -140,12 +143,10 @@ public final class ContactsListActivity extends ListActivity
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
-//    /** Show members of the "Contacts" group */
-//    static final int MODE_GROUP = 5;
-    /** Show all contacts sorted alphabetically */
-    static final int MODE_ALL_CONTACTS = 10;
-    /** Show all contacts with phone numbers, sorted alphabetically */
-    static final int MODE_WITH_PHONES = 15;
+    /** Default mode */
+    static final int MODE_DEFAULT = 4;
+    /** Custom mode */
+    static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
     static final int MODE_STARRED = 20;
     /** Show frequently contacted contacts */
@@ -173,34 +174,8 @@ public final class ContactsListActivity extends ListActivity
     static final int MODE_JOIN_AGGREGATE = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
             | MODE_MASK_NO_DATA;
 
-    static final int DEFAULT_MODE = MODE_ALL_CONTACTS;
-
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
-
-    /**
-     * The type of data to display in the main contacts list.
-     */
-    static final String PREF_DISPLAY_TYPE = "display_system_group";
-
-    /** Unknown display type. */
-    static final int DISPLAY_TYPE_UNKNOWN = -1;
-    /** Display all contacts */
-    static final int DISPLAY_TYPE_ALL = 0;
-    /** Display all contacts that have phone numbers */
-    static final int DISPLAY_TYPE_ALL_WITH_PHONES = 1;
-    /** Display a system group */
-    static final int DISPLAY_TYPE_SYSTEM_GROUP = 2;
-    /** Display a user group */
-    static final int DISPLAY_TYPE_USER_GROUP = 3;
-
-    /**
-     * Info about what to display. If {@link #PREF_DISPLAY_TYPE}
-     * is {@link #DISPLAY_TYPE_SYSTEM_GROUP} then this will be the system id.
-     * If {@link #PREF_DISPLAY_TYPE} is {@link #DISPLAY_TYPE_USER_GROUP} then this will
-     * be the group name.
-     */
-    static final String PREF_DISPLAY_INFO = "display_group";
 
     static final String NAME_COLUMN = Aggregates.DISPLAY_NAME;
     //static final String SORT_STRING = People.SORT_STRING;
@@ -260,43 +235,21 @@ public final class ContactsListActivity extends ListActivity
     static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
     static final int POSTAL_DISPLAY_NAME_COLUMN_INDEX = 4;
 
-    static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS = 0;
-    static final int DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES = 1;
-    static final int DISPLAY_GROUP_INDEX_MY_CONTACTS = 2;
-
     private static final int QUERY_TOKEN = 42;
 
     /*
-    static final String[] GROUPS_PROJECTION = new String[] {
-        Groups.SYSTEM_ID, // 0
-        Groups.NAME, // 1
-    };
-    static final int GROUPS_COLUMN_INDEX_SYSTEM_ID = 0;
-    static final int GROUPS_COLUMN_INDEX_NAME = 1;
     */
-
-    static final String GROUP_WITH_PHONES = "android_smartgroup_phone";
-
     ContactItemListAdapter mAdapter;
 
-    int mMode = DEFAULT_MODE;
-    // The current display group
-    private String mDisplayInfo;
-    private int mDisplayType;
-    // The current list of display groups, during selection from menu
-    private CharSequence[] mDisplayGroups;
-    // If true position 2 in mDisplayGroups is the MyContacts group
-    private boolean mDisplayGroupsIncludesMyContacts = false;
-
-    private int mDisplayGroupOriginalSelection;
-    private int mDisplayGroupCurrentSelection;
+    int mMode = MODE_DEFAULT;
 
     private QueryHandler mQueryHandler;
     private String mQuery;
-    private Uri mGroupFilterUri;
-    private Uri mGroupUri;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
+
+    private boolean mDisplayAll;
+    private boolean mDisplayOnlyPhones;
 
     /**
      * Cursor row index that holds reference back to {@link People#_ID}, such as
@@ -314,7 +267,6 @@ public final class ContactsListActivity extends ListActivity
     private boolean mListHasFocus;
 
     private boolean mCreateShortcut;
-    private boolean mDefaultMode = false;
 
     /**
      * Internal query type when in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
@@ -330,6 +282,9 @@ public final class ContactsListActivity extends ListActivity
      * provided by scheme-specific part of incoming {@link Intent#getData()}.
      */
     private String mQueryData;
+
+    private static final String CLAUSE_ONLY_VISIBLE = Aggregates.IN_VISIBLE_GROUP + "=1";
+    private static final String CLAUSE_ONLY_PHONES = Aggregates.PRIMARY_PHONE_ID + " IS NOT NULL";
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
@@ -363,7 +318,7 @@ public final class ContactsListActivity extends ListActivity
 
         Log.i(TAG, "Called with action: " + action);
         if (UI.LIST_DEFAULT.equals(action)) {
-            mDefaultMode = true;
+            mMode = MODE_DEFAULT;
             // When mDefaultMode is true the mode is set in onResume(), since the preferneces
             // activity may change it whenever this activity isn't running
         } /* else if (UI.LIST_GROUP_ACTION.equals(action)) {
@@ -375,7 +330,9 @@ public final class ContactsListActivity extends ListActivity
             }
             buildUserGroupUris(groupName);
         }*/ else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
-            mMode = MODE_ALL_CONTACTS;
+            mMode = MODE_CUSTOM;
+            mDisplayAll = true;
+            mDisplayOnlyPhones = false;
         } else if (UI.LIST_STARRED_ACTION.equals(action)) {
             mMode = MODE_STARRED;
         } else if (UI.LIST_FREQUENT_ACTION.equals(action)) {
@@ -383,7 +340,9 @@ public final class ContactsListActivity extends ListActivity
         } else if (UI.LIST_STREQUENT_ACTION.equals(action)) {
             mMode = MODE_STREQUENT;
         } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
-            mMode = MODE_WITH_PHONES;
+            mMode = MODE_CUSTOM;
+            mDisplayAll = true;
+            mDisplayOnlyPhones = true;
         } else if (Intent.ACTION_PICK.equals(action)) {
             // XXX These should be showing the data from the URI given in
             // the Intent.
@@ -481,7 +440,7 @@ public final class ContactsListActivity extends ListActivity
         }
 
         if (mMode == MODE_UNKNOWN) {
-            mMode = DEFAULT_MODE;
+            mMode = MODE_DEFAULT;
         }
 
         // Setup the UI
@@ -542,56 +501,20 @@ public final class ContactsListActivity extends ListActivity
         TextView empty = (TextView) findViewById(R.id.emptyText);
         // Center the text by default
         int gravity = Gravity.CENTER;
-        switch (mMode) {/*
-            case MODE_GROUP:
-                if (Groups.GROUP_MY_CONTACTS.equals(mDisplayInfo)) {
-                    if (mSyncEnabled) {
-                        empty.setText(getText(R.string.noContactsHelpTextWithSync));
-                    } else {
-                        empty.setText(getText(R.string.noContactsHelpText));
-                    }
-                    gravity = Gravity.NO_GRAVITY;
-                } else {
-                    empty.setText(getString(R.string.groupEmpty, mDisplayInfo));
-                }
-                break;
-            */
-            case MODE_STARRED:
-            case MODE_STREQUENT:
-            case MODE_FREQUENT:
-                empty.setText(getText(R.string.noFavorites));
-                break;
-            case MODE_WITH_PHONES:
-                empty.setText(getText(R.string.noContactsWithPhoneNumbers));
-                break;
 
-            default:
-                empty.setText(getText(R.string.noContacts));
-                break;
+        if (mDisplayOnlyPhones) {
+            empty.setText(getText(R.string.noContactsWithPhoneNumbers));
+        } else if (mDisplayAll) {
+            empty.setText(getText(R.string.noContacts));
+        } else {
+            if (mSyncEnabled) {
+                empty.setText(getText(R.string.noContactsHelpTextWithSync));
+            } else {
+                empty.setText(getText(R.string.noContactsHelpText));
+            }
+            gravity = Gravity.NO_GRAVITY;
         }
         empty.setGravity(gravity);
-    }
-
-    /**
-     * Builds the URIs to query when displaying a user group
-     *
-     * @param groupName the group being displayed
-     */
-    private void buildUserGroupUris(String groupName) {
-        mGroupFilterUri = Uri.parse("content://contacts/groups/name/" + groupName
-                + "/members/filter/");
-        mGroupUri = Uri.parse("content://contacts/groups/name/" + groupName + "/members");
-    }
-
-    /**
-     * Builds the URIs to query when displaying a system group
-     *
-     * @param systemId the system group's ID
-     */
-    private void buildSystemGroupUris(String systemId) {
-        mGroupFilterUri = Uri.parse("content://contacts/groups/system_id/" + systemId
-                + "/members/filter/");
-        mGroupUri = Uri.parse("content://contacts/groups/system_id/" + systemId + "/members");
     }
 
     /**
@@ -601,65 +524,9 @@ public final class ContactsListActivity extends ListActivity
         // Load the preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Lookup the group to display
-        mDisplayType = prefs.getInt(PREF_DISPLAY_TYPE, DISPLAY_TYPE_UNKNOWN);
-        switch (mDisplayType) {
-            case DISPLAY_TYPE_ALL_WITH_PHONES: {
-                mMode = MODE_WITH_PHONES;
-                mDisplayInfo = null;
-                break;
-            }
-
-            /*case DISPLAY_TYPE_SYSTEM_GROUP: {
-                String systemId = prefs.getString(
-                        PREF_DISPLAY_INFO, null);
-                if (!TextUtils.isEmpty(systemId)) {
-                    // Display the selected system group
-                    mMode = MODE_GROUP;
-                    buildSystemGroupUris(systemId);
-                    mDisplayInfo = systemId;
-                } else {
-                    // No valid group is present, display everything
-                    mMode = MODE_WITH_PHONES;
-                    mDisplayInfo = null;
-                    mDisplayType = DISPLAY_TYPE_ALL;
-                }
-                break;
-            }
-
-            case DISPLAY_TYPE_USER_GROUP: {
-                String displayGroup = prefs.getString(
-                        PREF_DISPLAY_INFO, null);
-                if (!TextUtils.isEmpty(displayGroup)) {
-                    // Display the selected user group
-                    mMode = MODE_GROUP;
-                    buildUserGroupUris(displayGroup);
-                    mDisplayInfo = displayGroup;
-                } else {
-                    // No valid group is present, display everything
-                    mMode = MODE_WITH_PHONES;
-                    mDisplayInfo = null;
-                    mDisplayType = DISPLAY_TYPE_ALL;
-                }
-                break;
-            } */
-
-            case DISPLAY_TYPE_ALL:
-            default: {
-                mMode = MODE_ALL_CONTACTS;
-                mDisplayInfo = null;
-                break;
-            }
-
-            /* default: {
-                // We don't know what to display, default to My Contacts
-                mMode = MODE_GROUP;
-                mDisplayType = DISPLAY_TYPE_SYSTEM_GROUP;
-                buildSystemGroupUris(Groups.GROUP_MY_CONTACTS);
-                mDisplayInfo = Groups.GROUP_MY_CONTACTS;
-                break;
-            } */
-        }
+        mDisplayAll = prefs.getBoolean(Prefs.DISPLAY_ALL, Prefs.DISPLAY_ALL_DEFAULT);
+        mDisplayOnlyPhones = prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
+                Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
 
         // Update the empty text view with the proper string, as the group may have changed
         setEmptyText();
@@ -674,7 +541,7 @@ public final class ContactsListActivity extends ListActivity
 
         // Do this before setting the filter. The filter thread relies
         // on some state that is initialized in setDefaultMode
-        if (mDefaultMode) {
+        if (mMode == MODE_DEFAULT) {
             // If we're in default mode we need to possibly reset the mode due to a change
             // in the preferences activity while we weren't running
             setDefaultMode();
@@ -713,15 +580,6 @@ public final class ContactsListActivity extends ListActivity
             // Run the filtered query on the adapter
             ((ContactItemListAdapter) getListAdapter()).onContentChanged();
         }
-    }
-
-    private void updateGroup() {
-        if (mDefaultMode) {
-            setDefaultMode();
-        }
-
-        // Calling requery here may cause an ANR, so always do the async query
-        startQuery();
     }
 
     @Override
@@ -779,7 +637,7 @@ public final class ContactsListActivity extends ListActivity
                 */
 
         // Display group
-        if (mDefaultMode) {
+        if (mMode == MODE_DEFAULT) {
             menu.add(0, MENU_DISPLAY_GROUP, 0, R.string.menu_displayGroup)
                     .setIcon(com.android.internal.R.drawable.ic_menu_allfriends);
         }
@@ -804,61 +662,13 @@ public final class ContactsListActivity extends ListActivity
         return super.onCreateOptionsMenu(menu);
     }
 
-    /*
-     * Implements the handler for display group selection.
-     */
-    public void onClick(DialogInterface dialogInterface, int which) {
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-            // The OK button was pressed
-            if (mDisplayGroupOriginalSelection != mDisplayGroupCurrentSelection) {
-                // Set the group to display
-                if (mDisplayGroupCurrentSelection == DISPLAY_GROUP_INDEX_ALL_CONTACTS) {
-                    // Display all
-                    mDisplayType = DISPLAY_TYPE_ALL;
-                    mDisplayInfo = null;
-                } else if (mDisplayGroupCurrentSelection
-                        == DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES) {
-                    // Display all with phone numbers
-                    mDisplayType = DISPLAY_TYPE_ALL_WITH_PHONES;
-                    mDisplayInfo = null;
-                } /*else if (mDisplayGroupsIncludesMyContacts &&
-                        mDisplayGroupCurrentSelection == DISPLAY_GROUP_INDEX_MY_CONTACTS) {
-                    mDisplayType = DISPLAY_TYPE_SYSTEM_GROUP;
-                    mDisplayInfo = Groups.GROUP_MY_CONTACTS;
-                } */else {
-                    mDisplayType = DISPLAY_TYPE_USER_GROUP;
-                    mDisplayInfo = mDisplayGroups[mDisplayGroupCurrentSelection].toString();
-                }
-
-                // Save the changes to the preferences
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-                prefs.edit()
-                        .putInt(PREF_DISPLAY_TYPE, mDisplayType)
-                        .putString(PREF_DISPLAY_INFO, mDisplayInfo)
-                        .commit();
-
-                // Update the display state
-                updateGroup();
-            }
-        } else {
-            // A list item was selected, cache the position
-            mDisplayGroupCurrentSelection = which;
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            /*case MENU_DISPLAY_GROUP:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(R.string.select_group_title)
-                    .setPositiveButton(android.R.string.ok, this)
-                    .setNegativeButton(android.R.string.cancel, null);
-
-                setGroupEntries(builder);
-
-                builder.show();
-                return true;*/
+            case MENU_DISPLAY_GROUP:
+                final Intent intent = new Intent(this, DisplayGroupsActivity.class);
+                startActivityForResult(intent, SUBACTIVITY_DISPLAY_GROUP);
+                return true;
 
             case MENU_SEARCH:
                 startSearch(null, false, null, false);
@@ -883,6 +693,11 @@ public final class ContactsListActivity extends ListActivity
                 if (resultCode == RESULT_OK) {
                     mAdapter.notifyDataSetChanged();
                 }
+                break;
+
+            case SUBACTIVITY_DISPLAY_GROUP:
+                // Mark as just created so we re-run the view query
+                mJustCreated = true;
                 break;
         }
     }
@@ -1128,25 +943,15 @@ public final class ContactsListActivity extends ListActivity
 
     String[] getProjection() {
         switch (mMode) {
-            /* case MODE_GROUP: */
-            case MODE_ALL_CONTACTS:
-            case MODE_WITH_PHONES:
-            case MODE_PICK_AGGREGATE:
-            case MODE_PICK_OR_CREATE_AGGREGATE:
-            case MODE_QUERY:
-            case MODE_STARRED:
-            case MODE_FREQUENT:
-            case MODE_STREQUENT:
-            case MODE_INSERT_OR_EDIT_CONTACT:
-                return AGGREGATES_SUMMARY_PROJECTION;
-
             case MODE_PICK_PHONE:
                 return PHONES_PROJECTION;
 
             case MODE_PICK_POSTAL:
                 return POSTALS_PROJECTION;
         }
-        return null;
+
+        // Default to normal aggregate projection
+        return AGGREGATES_SUMMARY_PROJECTION;
     }
 
     private Bitmap loadContactPhoto(long dataId, BitmapFactory.Options options) {
@@ -1164,6 +969,21 @@ public final class ContactsListActivity extends ListActivity
             }
         }
         return bm;
+    }
+
+    /**
+     * Return the selection arguments for a default query based on
+     * {@link #mDisplayAll} and {@link #mDisplayOnlyPhones} flags.
+     */
+    private String getAggregateSelection() {
+        if (!mDisplayAll && mDisplayOnlyPhones) {
+            return CLAUSE_ONLY_VISIBLE + " AND " + CLAUSE_ONLY_PHONES;
+        } else if (!mDisplayAll) {
+            return CLAUSE_ONLY_VISIBLE;
+        } else if (mDisplayOnlyPhones) {
+            return CLAUSE_ONLY_PHONES;
+        }
+        return null;
     }
 
     private Uri getAggregateFilterUri(String filter) {
@@ -1199,20 +1019,12 @@ public final class ContactsListActivity extends ListActivity
                         getSortOrder(CONTACTS_PROJECTION));
                 break; */
 
-            case MODE_ALL_CONTACTS:
+            case MODE_DEFAULT:
             case MODE_PICK_AGGREGATE:
             case MODE_PICK_OR_CREATE_AGGREGATE:
             case MODE_INSERT_OR_EDIT_CONTACT:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
-                        AGGREGATES_SUMMARY_PROJECTION, null, null,
-                        getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
-
-                break;
-
-            case MODE_WITH_PHONES:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
-                        AGGREGATES_SUMMARY_PROJECTION,
-                        Aggregates.PRIMARY_PHONE_ID + " IS NOT NULL", null,
+                        AGGREGATES_SUMMARY_PROJECTION, getAggregateSelection(), null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
@@ -1298,29 +1110,12 @@ public final class ContactsListActivity extends ListActivity
         final ContentResolver resolver = getContentResolver();
 
         switch (mMode) {
-            /* case MODE_GROUP: {
-                Uri uri;
-                if (TextUtils.isEmpty(filter)) {
-                    uri = mGroupUri;
-                } else {
-                    uri = Uri.withAppendedPath(mGroupFilterUri, Uri.encode(filter));
-                }
-                return resolver.query(uri, CONTACTS_PROJECTION, null, null,
-                        getSortOrder(CONTACTS_PROJECTION));
-            } */
-
-            case MODE_ALL_CONTACTS:
+            case MODE_DEFAULT:
             case MODE_PICK_AGGREGATE:
             case MODE_PICK_OR_CREATE_AGGREGATE:
             case MODE_INSERT_OR_EDIT_CONTACT: {
                 return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
-                        null, null, getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
-            }
-
-             case MODE_WITH_PHONES: {
-                return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
-                        Aggregates.PRIMARY_PHONE_ID + " IS NOT NULL", null,
-                        getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
+                        getAggregateSelection(), null, getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
 
             case MODE_STARRED: {
@@ -1401,84 +1196,6 @@ public final class ContactsListActivity extends ListActivity
         }
         return (Cursor) listView.getAdapter().getItem(index);
     }
-
-    /*
-    private void setGroupEntries(AlertDialog.Builder builder) {
-        boolean syncEverything;
-        // For now we only support a single account and the UI doesn't know what
-        // the account name is, so we're using a global setting for SYNC_EVERYTHING.
-        // Some day when we add multiple accounts to the UI this should use the per
-        // account setting.
-        String value = Contacts.Settings.getSetting(getContentResolver(), null,
-                Contacts.Settings.SYNC_EVERYTHING);
-        if (value == null) {
-            // If nothing is set yet we default to syncing everything
-            syncEverything = true;
-        } else {
-            syncEverything = !TextUtils.isEmpty(value) && !"0".equals(value);
-        }
-
-        Cursor cursor;
-        if (!syncEverything) {
-            cursor = getContentResolver().query(Groups.CONTENT_URI, GROUPS_PROJECTION,
-                    Groups.SHOULD_SYNC + " != 0", null, Groups.DEFAULT_SORT_ORDER);
-        } else {
-            cursor = getContentResolver().query(Groups.CONTENT_URI, GROUPS_PROJECTION,
-                    null, null, Groups.DEFAULT_SORT_ORDER);
-        }
-        try {
-            ArrayList<CharSequence> groups = new ArrayList<CharSequence>();
-            ArrayList<CharSequence> prefStrings = new ArrayList<CharSequence>();
-
-            // Add All Contacts
-            groups.add(DISPLAY_GROUP_INDEX_ALL_CONTACTS, getString(R.string.showAllGroups));
-            prefStrings.add("");
-
-            // Add Contacts with phones
-            groups.add(DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES,
-                    getString(R.string.groupNameWithPhones));
-            prefStrings.add(GROUP_WITH_PHONES);
-
-            int currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS;
-            while (cursor.moveToNext()) {
-                String systemId = cursor.getString(GROUPS_COLUMN_INDEX_SYSTEM_ID);
-                String name = cursor.getString(GROUPS_COLUMN_INDEX_NAME);
-                if (cursor.isNull(GROUPS_COLUMN_INDEX_SYSTEM_ID)
-                        && !Groups.GROUP_MY_CONTACTS.equals(systemId)) {
-                    // All groups that aren't My Contacts, since that one is localized on the phone
-
-                    // Localize the "Starred in Android" string which we get from the server side.
-                    if (Groups.GROUP_ANDROID_STARRED.equals(name)) {
-                        name = getString(R.string.starredInAndroid);
-                    }
-                    groups.add(name);
-                    if (name.equals(mDisplayInfo)) {
-                        currentIndex = groups.size() - 1;
-                    }
-                } else {
-                    // The My Contacts group
-                    groups.add(DISPLAY_GROUP_INDEX_MY_CONTACTS,
-                            getString(R.string.groupNameMyContacts));
-                    if (mDisplayType == DISPLAY_TYPE_SYSTEM_GROUP
-                            && Groups.GROUP_MY_CONTACTS.equals(mDisplayInfo)) {
-                        currentIndex = DISPLAY_GROUP_INDEX_MY_CONTACTS;
-                    }
-                    mDisplayGroupsIncludesMyContacts = true;
-                }
-            }
-            if (mMode == MODE_ALL_CONTACTS) {
-                currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS;
-            } else if (mMode == MODE_WITH_PHONES) {
-                currentIndex = DISPLAY_GROUP_INDEX_ALL_CONTACTS_WITH_PHONES;
-            }
-            mDisplayGroups = groups.toArray(new CharSequence[groups.size()]);
-            builder.setSingleChoiceItems(mDisplayGroups, currentIndex, this);
-            mDisplayGroupOriginalSelection = currentIndex;
-        } finally {
-            cursor.close();
-        }
-    }
-    */
 
     private static class QueryHandler extends AsyncQueryHandler {
         protected final WeakReference<ContactsListActivity> mActivity;

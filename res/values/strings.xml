@@ -251,7 +251,10 @@
     <string name="customLabelPickerTitle">Custom label name</string>
 
     <!-- The menu item to open the list of groups to display -->
-    <string name="menu_displayGroup">Display group</string>
+    <string name="menu_displayGroup">Display groups</string>
+
+    <!-- Title of activity that lets user pick which contact groups to display -->
+    <string name="displayGroups">Display groups</string>
 
     <!-- The menu item that leads to the settings for contact syncing -->
     <string name="syncGroupPreference">Edit sync groups</string>
@@ -292,6 +295,25 @@
 
     <!-- The description of all groups when asking the user what they want to display -->
     <string name="showAllGroups">All contacts</string>
+
+    <!-- The title of the filter to only show contacts with phone numbers -->
+    <string name="showFilterPhones">Only contacts with phones</string>
+
+    <!-- The description of the filter to only show contacts with phone numbers -->
+    <string name="showFilterPhonesDescrip">Only display contacts that have phone numbers</string>
+
+    <!-- The header over the list of all contacts groups -->
+    <string name="headerContactGroups">Contact groups</string>
+
+    <!-- The description of a group with the total number of contacts -->
+    <plurals name="groupDescrip">
+        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- The description of a group with the total number of contacts, and the total number of contacts with phone numbers -->
+    <plurals name="groupDescripPhones">
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts, <xliff:g id="countWithPhones">%2$d</xliff:g> with phones</item>
+    </plurals>
 
     <!-- The setting to sync all contacts from the server -->
     <string name="syncAllGroups">Sync all contacts</string>
