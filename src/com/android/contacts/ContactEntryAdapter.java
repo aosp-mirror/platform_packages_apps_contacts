@@ -80,6 +80,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
      * Base class for adapter entries.
      */
     public static class Entry {
+        public int type = -1;
         public String label;
         public String data;
         public Uri uri;
@@ -92,6 +93,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
          * Helper for making subclasses parcelable.
          */
         protected void writeToParcel(Parcel p) {
+            p.writeInt(type);
             p.writeString(label);
             p.writeString(data);
             p.writeParcelable(uri, 0);
@@ -104,6 +106,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
          * Helper for making subclasses parcelable.
          */
         protected void readFromParcel(Parcel p) {
+            type = p.readInt();
             label = p.readString();
             data = p.readString();
             uri = p.readParcelable(null);

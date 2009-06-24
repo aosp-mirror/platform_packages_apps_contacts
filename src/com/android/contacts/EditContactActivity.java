@@ -199,23 +199,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /* package */ static final int MSG_ADD_EMAIL = 4;
     /* package */ static final int MSG_ADD_POSTAL = 5;
 
-    private static final int[] TYPE_PRECEDENCE_PHONES = new int[] {
-            Phone.TYPE_MOBILE, Phone.TYPE_HOME, Phone.TYPE_WORK, Phone.TYPE_OTHER
-    };
-    private static final int[] TYPE_PRECEDENCE_EMAIL = new int[] {
-            Email.TYPE_HOME, Email.TYPE_WORK, Email.TYPE_OTHER
-    };
-    private static final int[] TYPE_PRECEDENCE_POSTAL = new int[] {
-            Postal.TYPE_HOME, Postal.TYPE_WORK, Postal.TYPE_OTHER
-    };
-    private static final int[] TYPE_PRECEDENCE_IM = new int[] {
-            Im.PROTOCOL_GOOGLE_TALK, Im.PROTOCOL_AIM, Im.PROTOCOL_MSN, Im.PROTOCOL_YAHOO,
-            Im.PROTOCOL_JABBER
-    };
-    private static final int[] TYPE_PRECEDENCE_ORG = new int[] {
-            Organization.TYPE_WORK, Organization.TYPE_OTHER
-    };
-
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.photoImage: {
@@ -632,6 +615,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         return precedenceList[precedenceList.length - 1];
     }
 
+    // TODO When this gets brought back we'll need to use the new TypePrecedence class instead of
+    // the older local TYPE_PRECEDENCE* contstants.
     private void doAddAction(int sectionType) {
         EditEntry entry = null;
         switch (sectionType) {

@@ -143,6 +143,8 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      */
     private ActionMap mActions = new ActionMap();
 
+    // TODO We should move this to someplace more general as it is needed in a few places in the app
+    // code.
     /**
      * Specific mime-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
      * distinguishes actions that should initiate a text message.

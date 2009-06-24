@@ -29,6 +29,7 @@ import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
 
+import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.internal.telephony.ITelephony;
 
@@ -61,6 +62,9 @@ import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Presence;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -79,6 +83,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Displays the details of a specific contact.
@@ -282,6 +289,13 @@ public class ViewContactActivity extends ListActivity
 
             // Build up the contact entries
             buildEntries(mCursor);
+
+            // Collapse similar data items in select sections.
+            Collapser.collapseList(mPhoneEntries);
+            Collapser.collapseList(mSmsEntries);
+            Collapser.collapseList(mEmailEntries);
+            Collapser.collapseList(mPostalEntries);
+
             if (mAdapter == null) {
                 mAdapter = new ViewAdapter(this, mSections);
                 setListAdapter(mAdapter);
@@ -468,9 +482,16 @@ public class ViewContactActivity extends ListActivity
         // Update the primary values in the data record.
         ContentValues values = new ContentValues(2);
         values.put(Data.IS_PRIMARY, 1);
-        values.put(Data.IS_SUPER_PRIMARY, 1);
 
-        Log.i(TAG, mUri.toString());
+        if (entry.ids.size() > 0) {
+            for (int i = 0; i < entry.ids.size(); i++) {
+                getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI,
+                        entry.ids.get(i)),
+                        values, null, null);
+            }
+        }
+
+        values.put(Data.IS_SUPER_PRIMARY, 1);
         getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
                 values, null, null);
         dataChanged();
@@ -699,6 +720,8 @@ public class ViewContactActivity extends ListActivity
                     final boolean isSuperPrimary = "1".equals(
                             aggCursor.getString(DATA_IS_SUPER_PRIMARY_COLUMN));
 
+                    entry.type = type;
+
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(data)) {
                         Log.w(TAG, "empty data for contact method " + id);
@@ -712,7 +735,7 @@ public class ViewContactActivity extends ListActivity
                         final CharSequence displayLabel = ContactsUtils.getDisplayLabel(
                                 this, mimetype, type, label);
                         entry.label = buildActionString(R.string.actionCall, displayLabel, true);
-                        entry.data = data;
+                        entry.data = PhoneNumberUtils.stripSeparators(data);
                         entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
                         entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("sms", data, null));
@@ -728,11 +751,12 @@ public class ViewContactActivity extends ListActivity
                             ViewEntry smsEntry = new ViewEntry();
                             smsEntry.label = buildActionString(
                                     R.string.actionText, displayLabel, true);
-                            smsEntry.data = data;
+                            smsEntry.data = PhoneNumberUtils.stripSeparators(data);
                             smsEntry.id = id;
                             smsEntry.uri = uri;
                             smsEntry.intent = entry.auxIntent;
                             smsEntry.mimetype = FastTrackWindow.MIME_SMS_ADDRESS;
+                            smsEntry.type = type;
                             smsEntry.actionIcon = R.drawable.sym_action_sms;
                             mSmsEntries.add(smsEntry);
                         }
@@ -787,10 +811,11 @@ public class ViewContactActivity extends ListActivity
                                     constructImToUrl(host, data));
                         }
                         entry.data = data;
-                        //TODO(emillar) Do we want presence info?
+                        //TODO(emillar) Add in presence info
                         /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
                             entry.presenceIcon = Presence.getPresenceIconResourceId(
                                     aggCursor.getInt(METHODS_STATUS_COLUMN));
+                            entry.status = ...
                         }*/
                         entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
@@ -904,7 +929,6 @@ public class ViewContactActivity extends ListActivity
         }
     }
 
-
     String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
         // If there is no type just display an empty string
         if (type == null) {
@@ -921,13 +945,63 @@ public class ViewContactActivity extends ListActivity
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    final static class ViewEntry extends ContactEntryAdapter.Entry {
+    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
         public int primaryIcon = -1;
         public Intent intent;
         public Intent auxIntent = null;
-        public int presenceIcon = -1;
+        public int status = -1;
         public int actionIcon = -1;
         public int maxLabelLines = 1;
+        public ArrayList<Long> ids = new ArrayList<Long>();
+        public int collapseCount = 0;
+
+        public boolean collapseWith(ViewEntry entry) {
+            // assert equal collapse keys
+            if (!getCollapseKey().equals(entry.getCollapseKey())) {
+                return false;
+            }
+
+            // Choose the label associated with the highest type precedence.
+            if (TypePrecedence.getTypePrecedence(mimetype, type)
+                    > TypePrecedence.getTypePrecedence(entry.mimetype, entry.type)) {
+                type = entry.type;
+                label = entry.label;
+            }
+
+            // Choose the max of the maxLines and maxLabelLines values.
+            maxLines = Math.max(maxLines, entry.maxLines);
+            maxLabelLines = Math.max(maxLabelLines, entry.maxLabelLines);
+
+            // Choose the presence with the highest precedence.
+            if (Presence.getPresencePrecedence(status)
+                    < Presence.getPresencePrecedence(entry.status)) {
+                status = entry.status;
+            }
+
+            // If any of the collapsed entries are primary make the whole thing primary.
+            if (primaryIcon != entry.primaryIcon && primaryIcon == -1) {
+                primaryIcon = entry.primaryIcon;
+            }
+
+            // uri, and contactdId, shouldn't make a difference. Just keep the original.
+
+            // Keep track of all the ids that have been collapsed with this one.
+            ids.add(entry.id);
+            collapseCount++;
+            return true;
+        }
+
+        public String getCollapseKey() {
+            StringBuilder hashSb = new StringBuilder();
+            hashSb.append(data);
+            hashSb.append(mimetype);
+            hashSb.append((intent != null && intent.getAction() != null)
+                    ? intent.getAction() : "");
+            hashSb.append((auxIntent != null && auxIntent.getAction() != null)
+                    ? auxIntent.getAction() : "");
+            hashSb.append(actionIcon);
+            return hashSb.toString();
+        }
     }
 
     private static final class ViewAdapter extends ContactEntryAdapter<ViewEntry> {
@@ -997,7 +1071,12 @@ public class ViewContactActivity extends ListActivity
             // Set the data
             TextView data = views.data;
             if (data != null) {
-                data.setText(entry.data);
+                if (entry.mimetype.equals(Phone.CONTENT_ITEM_TYPE)
+                        || entry.mimetype.equals(FastTrackWindow.MIME_SMS_ADDRESS)) {
+                    data.setText(PhoneNumberUtils.formatNumber(entry.data));
+                } else {
+                    data.setText(entry.data);
+                }
                 setMaxLines(data, entry.maxLines);
             }
 
@@ -1015,8 +1094,9 @@ public class ViewContactActivity extends ListActivity
             Drawable presenceIcon = null;
             if (entry.primaryIcon != -1) {
                 presenceIcon = resources.getDrawable(entry.primaryIcon);
-            } else if (entry.presenceIcon != -1) {
-                presenceIcon = resources.getDrawable(entry.presenceIcon);
+            } else if (entry.status != -1) {
+                presenceIcon = resources.getDrawable(
+                        Presence.getPresenceIconResourceId(entry.status));
             }
 
             ImageView presence = views.presenceIcon;
