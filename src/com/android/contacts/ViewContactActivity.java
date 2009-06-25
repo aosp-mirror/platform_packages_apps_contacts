@@ -50,8 +50,6 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -102,6 +100,7 @@ public class ViewContactActivity extends ListActivity
     public static final int MENU_ITEM_SHOW_BARCODE = 3;
     public static final int MENU_ITEM_SPLIT_AGGREGATE = 4;
     public static final int MENU_ITEM_JOIN_AGGREGATE = 5;
+    public static final int MENU_ITEM_OPTIONS = 6;
 
     private Uri mUri;
     private Uri mAggDataUri;
@@ -308,6 +307,8 @@ public class ViewContactActivity extends ListActivity
                 .setIcon(android.R.drawable.ic_menu_share);
         menu.add(0, MENU_ITEM_JOIN_AGGREGATE, 0, R.string.menu_joinAggregate)
                 .setIcon(android.R.drawable.ic_menu_add);
+        menu.add(0, MENU_ITEM_OPTIONS, 0, R.string.menu_contactOptions)
+                .setIcon(R.drawable.ic_menu_mark);
         return true;
     }
 
@@ -390,6 +391,11 @@ public class ViewContactActivity extends ListActivity
 
             case MENU_ITEM_JOIN_AGGREGATE: {
                 showJoinAggregateActivity();
+                return true;
+            }
+
+            case MENU_ITEM_OPTIONS: {
+                showOptionsActivity();
                 return true;
             }
 
@@ -557,6 +563,12 @@ public class ViewContactActivity extends ListActivity
         values.put(AggregationExceptions.CONTACT_ID, contactId);
         values.put(AggregationExceptions.TYPE, exceptionType);
         mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
+    }
+
+    private void showOptionsActivity() {
+        final Intent intent = new Intent(this, ContactOptionsActivity.class);
+        intent.setData(mUri);
+        startActivity(intent);
     }
 
     private ViewEntry getViewEntryForMenuItem(MenuItem item) {
@@ -834,35 +846,6 @@ public class ViewContactActivity extends ListActivity
                     }
 
                     mOtherEntries.add(entry);
-                // Build the ringtone and send to voicemail entries
-                } else if (mimetype.equals(CommonDataKinds.CustomRingtone.CONTENT_ITEM_TYPE)) {
-                    final Boolean sendToVoicemail = "1".equals(aggCursor.getString(DATA_1_COLUMN));
-                    final String ringtoneStr = aggCursor.getString(DATA_2_COLUMN);
-
-                    // TODO(emillar) we need to enforce uniqueness of custom ringtone entries on a
-                    // single aggregate. This could be done by checking against the reference ID stored
-                    // in the aggregate.
-
-                    // Build the send directly to voice mail entry
-                    if (sendToVoicemail) {
-                        entry.label = getString(R.string.actionIncomingCall);
-                        entry.data = getString(R.string.detailIncomingCallsGoToVoicemail);
-                        entry.actionIcon = R.drawable.sym_send_to_voicemail;
-                        mOtherEntries.add(entry);
-                    } else if (!TextUtils.isEmpty(ringtoneStr)) {
-                        // Get the URI
-                        Uri ringtoneUri = Uri.parse(ringtoneStr);
-                        if (ringtoneUri != null) {
-                            Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
-                            if (ringtone != null) {
-                                entry.label = getString(R.string.label_ringtone);
-                                entry.data = ringtone.getTitle(this);
-                                entry.uri = ringtoneUri;
-                                entry.actionIcon = R.drawable.sym_ringtone;
-                                mOtherEntries.add(entry);
-                            }
-                        }
-                    }
                 // Load the photo
                 } else if (mimetype.equals(CommonDataKinds.Photo.CONTENT_ITEM_TYPE)) {
                     photoBitmap = ContactsUtils.loadContactPhoto(aggCursor, DATA_1_COLUMN, null);

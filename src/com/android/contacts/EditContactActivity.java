@@ -46,8 +46,6 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -57,7 +55,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
-import android.provider.ContactsContract.CommonDataKinds.CustomRingtone;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -113,9 +110,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** The launch code when picking a photo and the raw data is returned */
     private static final int PHOTO_PICKED_WITH_DATA = 3021;
-
-    /** The launch code when picking a ringtone */
-    private static final int RINGTONE_PICKED = 3023;
 
     // These correspond to the string array in resources for picker "other" items
     final static int OTHER_ORGANIZATION = 0;
@@ -247,12 +241,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 break;
             }
             */
-
-            case R.id.entry_ringtone: {
-                EditEntry entry = findEntryForView(v);
-                doPickRingtone(entry);
-                break;
-            }
 
             case R.id.separator: {
                 // Someone clicked on a section header, so handle add action
@@ -552,13 +540,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     mPhotoImageView.setImageBitmap(photo);
                     setPhotoPresent(true);
                 }
-                break;
-            }
-
-            case RINGTONE_PICKED: {
-                Uri pickedUri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-                handleRingtonePicked(pickedUri);
-                mContactChanged = true;
                 break;
             }
         }
@@ -868,62 +849,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     }
     */
 
-    private void doPickRingtone(EditEntry entry) {
-        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        // Allow user to pick 'Default'
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-        // Show only ringtones
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
-        // Don't show 'Silent'
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
-
-        Uri ringtoneUri;
-        if (entry.data != null) {
-            ringtoneUri = Uri.parse(entry.data);
-        } else {
-            // Otherwise pick default ringtone Uri so that something is selected.
-            ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        }
-
-        // Put checkmark next to the current ringtone for this contact
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
-        // Launch!
-        startActivityForResult(intent, RINGTONE_PICKED);
-    }
-
-    private void handleRingtonePicked(Uri pickedUri) {
-        EditEntry entry = getOtherEntry(CustomRingtone.RINGTONE_URI);
-        if (entry == null) {
-            Log.w(TAG, "Ringtone picked but could not find ringtone entry");
-            return;
-        }
-
-        if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) {
-            entry.data = null;
-        } else {
-            entry.data = pickedUri.toString();
-        }
-
-        updateRingtoneView(entry);
-    }
-
-    private void updateRingtoneView(EditEntry entry) {
-        String ringtoneName;
-        if (entry.data == null) {
-            ringtoneName = getString(R.string.default_ringtone);
-        } else {
-            Uri ringtoneUri = Uri.parse(entry.data);
-            Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
-            if (ringtone == null) {
-                Log.w(TAG, "ringtone's URI doesn't resolve to a Ringtone");
-                return;
-            }
-            ringtoneName = ringtone.getTitle(this);
-        }
-
-        updateDataView(entry, ringtoneName);
-    }
-
     private void updateDataView(EditEntry entry, String text) {
         TextView dataView = (TextView) entry.view.findViewById(R.id.data);
         dataView.setText(text);
@@ -1159,10 +1084,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 } else {
                     /* mResolver.insert(entry.uri, values); */
                 }
-                if (!CustomRingtone.RINGTONE_URI.equals(entry.column) &&
-                        !CustomRingtone.SEND_TO_VOICEMAIL.equals(entry.column)) {
-                    numValues++;
-                }
             } else if (entry.id != 0) {
                 mResolver.delete(entry.uri, null, null);
             }
@@ -1284,10 +1205,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     entry.uri = mResolver.insert(
                             Uri.withAppendedPath(contactUri, entry.contentDirectory), values);
                     entry.id = ContentUris.parseId(entry.uri);
-                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
-                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
-                        numValues++;
-                    }
                 }
             } else {
                 // Update the contact with any straggling data, like notes
@@ -1296,10 +1213,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 if (data != null && TextUtils.isGraphic(data)) {
                     values.put(entry.column, data);
                     mResolver.update(contactUri, values, null, null);
-                    if (!People.CUSTOM_RINGTONE.equals(entry.column) &&
-                            !People.SEND_TO_VOICEMAIL.equals(entry.column)) {
-                        numValues++;
-                    }
                 }
             }
         }
@@ -1377,14 +1290,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 entry = EditEntry.newNotesEntry(this, aggCursor.getString(DATA_1_COLUMN),
                         uri, id);
                 mNoteEntries.add(entry);
-            } else if (mimetype.equals(CommonDataKinds.CustomRingtone.CONTENT_ITEM_TYPE)) {
-                entry = EditEntry.newRingtoneEntry(this,
-                        aggCursor.getString(DATA_2_COLUMN), uri, id);
-                mOtherEntries.add(entry);
-
-                entry = EditEntry.newSendToVoicemailEntry(this,
-                        aggCursor.getString(DATA_1_COLUMN), uri, id);
-                mOtherEntries.add(entry);
             } else if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                     || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
                     || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)
@@ -1519,14 +1424,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             entry = EditEntry.newGroupEntry(this, null, mUri, 0);
             mOtherEntries.add(entry);
         }
-
-        // Ringtone
-        entry = EditEntry.newRingtoneEntry(this, null, mUri, 0);
-        mOtherEntries.add(entry);
-
-        // Send to voicemail
-        entry = EditEntry.newSendToVoicemailEntry(this, "0", mUri, 0);
-        mOtherEntries.add(entry);
     }
 
     private void addFromExtras(Bundle extras, Uri phonesUri, Uri methodsUri) {
@@ -1782,21 +1679,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // with some additional logic.
         if (entry.mimetype.equals(Organization.CONTENT_ITEM_TYPE)) {
             view = mInflater.inflate(R.layout.edit_contact_entry_org, parent, false);
-        }
         /*
         else if (entry.mimetype.equals(Group.CONTENT_ITEM_TYPE)) {
             view = mInflater.inflate(R.layout.edit_contact_entry_group, parent, false);
             view.setOnFocusChangeListener(this);
         }
         */
-        else if (entry.mimetype.equals(CustomRingtone.CONTENT_ITEM_TYPE)) {
-            if (entry.column.equals(CustomRingtone.RINGTONE_URI)) {
-                view = mInflater.inflate(R.layout.edit_contact_entry_ringtone, parent, false);
-                view.setOnFocusChangeListener(this);
-            } else {
-                view = mInflater.inflate(R.layout.edit_contact_entry_voicemail, parent, false);
-                view.setOnFocusChangeListener(this);
-            }
         } else if (!entry.isStaticLabel) {
             view = mInflater.inflate(R.layout.edit_contact_entry, parent, false);
         } else {
@@ -1830,7 +1718,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             data2.setText(entry.data2);
         }
         data.setHint(entry.hint);
-        if (data2 != null) data2.setHint(entry.hint2);
+        if (data2 != null) {
+            data2.setHint(entry.hint2);
+        }
         if (entry.lines > 1) {
             data.setLines(entry.lines);
             data.setMaxLines(entry.maxLines);
@@ -1877,15 +1767,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Hook up the delete button
         View delete = view.findViewById(R.id.delete);
-        if (delete != null) delete.setOnClickListener(this);
+        if (delete != null) {
+            delete.setOnClickListener(this);
+        }
 
         return view;
     }
 
     private void fillViewData(final EditEntry entry) {
-        if (isOtherEntry(entry, CustomRingtone.RINGTONE_URI)) {
-            updateRingtoneView(entry);
-        }
         /*
         else if (isOtherEntry(entry, GroupMembership.GROUP_ID)) {
             if (entry.data != null) {
@@ -1893,14 +1782,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             }
         }
         */
-        else if (isOtherEntry(entry, CustomRingtone.SEND_TO_VOICEMAIL)) {
-            CheckBox checkBox = (CheckBox) entry.view.findViewById(R.id.checkbox);
-            boolean sendToVoicemail = false;
-            if (entry.data != null) {
-                sendToVoicemail = (Integer.valueOf(entry.data) == 1);
-            }
-            checkBox.setChecked(sendToVoicemail);
-        }
     }
 
     /**
@@ -2247,42 +2128,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             return entry;
         }
         */
-
-        /**
-         * Create a new ringtone entry with the given data.
-         */
-        public static final EditEntry newRingtoneEntry(EditContactActivity activity,
-                String data, Uri uri, long id) {
-            EditEntry entry = new EditEntry(activity);
-            entry.label = activity.getString(R.string.label_ringtone);
-            entry.data = data;
-            entry.uri = uri;
-            entry.id = id;
-            entry.column = CustomRingtone.RINGTONE_URI;
-            entry.mimetype = CustomRingtone.CONTENT_ITEM_TYPE;
-            entry.isStaticLabel = true;
-            entry.syncDataWithView = false;
-            entry.lines = -1;
-            return entry;
-        }
-
-        /**
-         * Create a new send-to-voicemail entry with the given data.
-         */
-        public static final EditEntry newSendToVoicemailEntry(EditContactActivity activity,
-                String data, Uri uri, long id) {
-            EditEntry entry = new EditEntry(activity);
-            entry.label = activity.getString(R.string.actionIncomingCall);
-            entry.data = data;
-            entry.uri = uri;
-            entry.id = id;
-            entry.column = CustomRingtone.SEND_TO_VOICEMAIL;
-            entry.mimetype = CustomRingtone.CONTENT_ITEM_TYPE;
-            entry.isStaticLabel = true;
-            entry.syncDataWithView = false;
-            entry.lines = -1;
-            return entry;
-        }
 
         /**
          * Create a new empty email entry

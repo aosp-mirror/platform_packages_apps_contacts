@@ -326,6 +326,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Views the details of a single contact -->
+        <activity android:name="ContactOptionsActivity"
+            android:label="@string/contactOptionsTitle"
+        >   
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity android:name="AttachImage"
             android:label="@string/attachToContact"
