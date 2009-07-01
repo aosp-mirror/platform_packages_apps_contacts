@@ -28,6 +28,7 @@
     android:searchSuggestAuthority="contacts"
     android:searchSuggestIntentAction="android.provider.Contacts.SEARCH_SUGGESTION_CLICKED"
     android:searchSuggestIntentData="content://contacts/people"
+    android:searchSettingsDescription="@string/search_settings_description"
 >
 
     <!-- allow green action key for search-bar and per-suggestion clicks -->
