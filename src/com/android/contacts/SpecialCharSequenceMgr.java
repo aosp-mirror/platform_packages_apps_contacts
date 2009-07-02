@@ -181,12 +181,19 @@ public class SpecialCharSequenceMgr {
         if (input.equals(MMI_IMEI_DISPLAY)) {
             int networkType = ((TelephonyManager)context.getSystemService(
                     Context.TELEPHONY_SERVICE)).getNetworkType();
-            // check for GSM
-            if(networkType == TelephonyManager.NETWORK_TYPE_GPRS || 
-                    networkType == TelephonyManager.NETWORK_TYPE_EDGE || 
-                    networkType == TelephonyManager.NETWORK_TYPE_UMTS ) { 
 
-                showIMEIPanel(context, useSystemWindow); 
+            if (networkType == TelephonyManager.NETWORK_TYPE_GPRS ||
+                    networkType == TelephonyManager.NETWORK_TYPE_EDGE ||
+                    networkType == TelephonyManager.NETWORK_TYPE_UMTS) {
+
+                showIMEIPanel(context, useSystemWindow);
+                return true;
+            } else if (networkType == TelephonyManager.NETWORK_TYPE_CDMA ||
+                         networkType == TelephonyManager.NETWORK_TYPE_EVDO_0 ||
+                         networkType == TelephonyManager.NETWORK_TYPE_EVDO_A ||
+                         networkType == TelephonyManager.NETWORK_TYPE_1xRTT) {
+
+                showMEIDPanel(context, useSystemWindow);
                 return true;
             }
         }
@@ -201,6 +208,19 @@ public class SpecialCharSequenceMgr {
         AlertDialog alert = new AlertDialog.Builder(context)
                 .setTitle(R.string.imei)
                 .setMessage(imeiStr)
+                .setPositiveButton(android.R.string.ok, null)
+                .setCancelable(false)
+                .show();
+        alert.getWindow().setType(WindowManager.LayoutParams.TYPE_PRIORITY_PHONE);
+    }
+
+    static void showMEIDPanel(Context context, boolean useSystemWindow) {
+        String meidStr = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
+                .getDeviceId();
+
+        AlertDialog alert = new AlertDialog.Builder(context)
+                .setTitle(R.string.meid)
+                .setMessage(meidStr)
                 .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(false)
                 .show();

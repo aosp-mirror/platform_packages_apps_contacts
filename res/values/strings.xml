@@ -375,6 +375,9 @@
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
 
+    <!-- The title of a dialog that displays the MEID of the CDMA phone -->
+    <string name="meid">MEID</string>
+
     <!-- String used for displaying calls to the voicemail number in the call log -->
     <string name="voicemail">Voicemail</string>
 
