@@ -132,28 +132,33 @@ public final class StyleManager extends BroadcastReceiver {
      */
     public Bitmap getMimetypeIcon(String packageName, String mimetype) {
         String key = getKey(packageName, mimetype);
-        if (!mIconCache.containsKey(key)) {
-            // Cache miss
 
-            // loadIcon() may return null, which is fine since, if no icon was found we want to
-            // store a null value so we know not to look next time.
-            mIconCache.put(key, loadIcon(packageName, mimetype));
+        synchronized(mIconCache) {
+            if (!mIconCache.containsKey(key)) {
+                // Cache miss
+
+                // loadIcon() may return null, which is fine since, if no icon was found we want to
+                // store a null value so we know not to look next time.
+                mIconCache.put(key, loadIcon(packageName, mimetype));
+            }
+            return mIconCache.get(key);
         }
-        return mIconCache.get(key);
     }
 
     private Bitmap loadIcon(String packageName, String mimetype) {
         StyleSet ss = null;
 
-        if (!mStyleSetCache.containsKey(packageName)) {
-            // Cache miss
-            try {
-                StyleSet inflated = inflateStyleSet(packageName);
-                mStyleSetCache.put(packageName, inflated);
-            } catch (InflateException e) {
-                // If inflation failed keep a null entry so we know not to try again.
-                Log.w(TAG, "Inflation failed: " + e);
-                mStyleSetCache.put(packageName, null);
+        synchronized(mStyleSetCache) {
+            if (!mStyleSetCache.containsKey(packageName)) {
+                // Cache miss
+                try {
+                    StyleSet inflated = inflateStyleSet(packageName);
+                    mStyleSetCache.put(packageName, inflated);
+                } catch (InflateException e) {
+                    // If inflation failed keep a null entry so we know not to try again.
+                    Log.w(TAG, "Inflation failed: " + e);
+                    mStyleSetCache.put(packageName, null);
+                }
             }
         }
 
