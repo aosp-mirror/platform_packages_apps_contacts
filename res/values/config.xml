@@ -19,7 +19,7 @@
 
 <resources>
     <!-- Flag indicating whether Contacts app is allowed to import contacts from SDCard -->
-    <bool name="config_allow_import_from_sdcard">false</bool>
+    <bool name="config_allow_import_from_sdcard">true</bool>
     <!-- If true, all vcard files are imported from SDCard without asking a user.
     If not, dialog shows to let the user to select whether all vcard files are imported or not.
     If the user selects "not", then the application ask the user to select a file.-->
