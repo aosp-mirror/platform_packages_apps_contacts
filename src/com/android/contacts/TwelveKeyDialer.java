@@ -34,6 +34,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -98,7 +99,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
-    
+
+    // Vibration (haptic feedback) for dialer key presses.
+    private Vibrator mVibrator;
+    private boolean mVibrateOn;
+    private long mVibrateDuration;
+
     /** Identifier for the "Add Call" intent extra. */
     static final String ADD_CALL_MODE_KEY = "add_call_mode";
     /** Indicates if we are opening this dialer to add a call from the InCallScreen. */
@@ -215,6 +221,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 }
             }
         }
+
+        // Initialize vibration parameters.
+        // TODO: We might eventually need to make mVibrateOn come from a
+        // user preference rather than a per-platform resource, in which
+        // case we would need to update it in onResume() rather than here.
+        mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
+        mVibrateDuration = (long) r.getInteger(R.integer.config_dialer_key_vibrate_duration);
     }
 
     @Override
@@ -371,7 +384,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
-        
+
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
@@ -534,6 +547,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
     
     private void keyPressed(int keyCode) {
+        vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
     }
@@ -617,6 +631,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return;
             }
             case R.id.digits: {
+                vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
                 return;
             }
@@ -938,5 +953,18 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             Log.w(TAG, "phone.isIdle() failed", e);
         }
         return phoneInUse;
+    }
+
+    /**
+     * Triggers haptic feedback (if enabled) for dialer key presses.
+     */
+    private synchronized void vibrate() {
+        if (!mVibrateOn) {
+            return;
+        }
+        if (mVibrator == null) {
+            mVibrator = new Vibrator();
+        }
+        mVibrator.vibrate(mVibrateDuration);
     }
 }

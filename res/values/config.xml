@@ -33,4 +33,14 @@
     
     <!-- Flag indicating whether Contacts app is allowed to export contacts to SDCard -->
     <bool name="config_allow_export_to_sdcard">false</bool>
+
+    <!-- If true, enable vibration (haptic feedback) for dialer key presses.
+         TODO: If enough users are annoyed by this, we might eventually
+         need to make it a user preference rather than a per-platform
+         resource. -->
+    <bool name="config_enable_dialer_key_vibration">true</bool>
+
+    <!-- How long to vibrate (in msec), if dialer key vibration is enabled. -->
+    <integer name="config_dialer_key_vibrate_duration">40</integer>
+
 </resources>
