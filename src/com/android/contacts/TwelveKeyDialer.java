@@ -688,8 +688,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     };
 
     /**
-     * Play a tone for TONE_LENGTH_MS milliseconds.
-     * 
+     * Plays the specified tone for TONE_LENGTH_MS milliseconds.
+     *
+     * The tone is played locally, using the audio stream for phone calls.
+     * Tones are played only if the "Audible touch tones" user preference
+     * is checked, and are NOT played if the device is in silent mode.
+     *
      * @param tone a tone code from {@link ToneGenerator}
      */
     void playTone(int tone) {
@@ -697,7 +701,17 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         if (!mDTMFToneEnabled) {
             return;
         }
- 
+
+        // Also do nothing if the phone is in silent mode.
+        // We need to re-check the ringer mode for *every* playTone()
+        // call, rather than keeping a local flag that's updated in
+        // onResume(), since it's possible to toggle silent mode without
+        // leaving the current activity (via the ENDCALL-longpress menu.)
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+            return;
+        }
+
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 Log.w(TAG, "playTone: mToneGenerator == null, tone: "+tone);

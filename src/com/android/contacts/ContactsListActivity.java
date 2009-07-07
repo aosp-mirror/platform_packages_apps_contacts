@@ -109,6 +109,7 @@ public final class ContactsListActivity extends ListActivity
     public static final int MENU_NEW_CONTACT = 10;
     public static final int MENU_DISPLAY_GROUP = 11;
     public static final int MENU_IMPORT_CONTACTS = 12;
+    public static final int MENU_EXPORT_CONTACTS = 13;
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     
@@ -335,8 +336,7 @@ public final class ContactsListActivity extends ListActivity
                 if (mIndex == IMPORT_FROM_SIM) {
                     doImportFromSim();
                 } else {
-                    VCardImporter importer = new VCardImporter(ContactsListActivity.this, mHandler);
-                    importer.startImportVCardFromSdCard();
+                    doImportFromSDCard();
                 }
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
 
@@ -799,6 +799,12 @@ public final class ContactsListActivity extends ListActivity
         menu.add(0, MENU_IMPORT_CONTACTS, 0, R.string.importFromSim)
                 .setIcon(R.drawable.ic_menu_import_contact);
 
+        /* Temporarily commented out
+        if (getResources().getBoolean(R.bool.config_allow_export_to_sdcard)) {
+            menu.add(0, MENU_EXPORT_CONTACTS, 0, R.string.export_contact_list)
+                    .setIcon(R.drawable.ic_menu_export_contact);
+        }*/
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -863,7 +869,7 @@ public final class ContactsListActivity extends ListActivity
                 return true;
 
             case MENU_IMPORT_CONTACTS:
-                if (getResources().getBoolean(R.bool.config_allow_import_from_sd_card)) {
+                if (getResources().getBoolean(R.bool.config_allow_import_from_sdcard)) {
                     ImportTypeSelectedListener listener =
                         new ImportTypeSelectedListener();
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
@@ -880,6 +886,8 @@ public final class ContactsListActivity extends ListActivity
                 }
                 return true;
 
+            /*case MENU_EXPORT_CONTACTS:
+                handleExportContacts();*/
         }
         return false;
     }
@@ -891,6 +899,17 @@ public final class ContactsListActivity extends ListActivity
         startActivity(importIntent);
     }
 
+    private void doImportFromSDCard() {
+        Intent intent = new Intent(this, ImportVCardActivity.class);
+        startActivity(intent);
+    }
+
+    /*
+    private void handleExportContacts() {
+        VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
+        exporter.startExportVCardToSdCard();
+    }*/
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
             Intent data) {

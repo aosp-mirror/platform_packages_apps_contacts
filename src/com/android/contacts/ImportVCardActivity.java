@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -23,6 +24,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.syncml.pim.VBuilder;
@@ -81,14 +83,26 @@ class VCardFile {
  * Class for importing vCard. Several user interaction will be required while reading
  * (selecting a file, waiting a moment, etc.)
  */
-public class VCardImporter {
-    private static final String LOG_TAG = "VCardImporter";
+public class ImportVCardActivity extends Activity {
+    private static final String LOG_TAG = "ImportVCardActivity";
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
     private ProgressDialog mProgressDialog;
-    private Context mParentContext;
-    private Handler mParentHandler;
+    private Handler mHandler = new Handler();
     private boolean mLastNameComesBeforeFirstName;
+
+    private class CancelListener
+        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
+        public void onClick(DialogInterface dialog, int which) {
+            finish();
+        }
+
+        public void onCancel(DialogInterface dialog) {
+            finish();
+        }
+    }
+
+    private CancelListener mCancelListener = new CancelListener();
 
     private class ErrorDisplayer implements Runnable {
         private String mErrorMessage;
@@ -101,11 +115,12 @@ public class VCardImporter {
             String message =
                 getString(R.string.reading_vcard_failed_message, mErrorMessage);
             AlertDialog.Builder builder =
-                new AlertDialog.Builder(mParentContext)
+                new AlertDialog.Builder(ImportVCardActivity.this)
                     .setTitle(getString(R.string.reading_vcard_failed_title))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(message)
-                    .setPositiveButton(android.R.string.ok, null);
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
             builder.show();
         }
     }
@@ -132,8 +147,9 @@ public class VCardImporter {
         }
 
         private void init() {
-            mResolver = mParentContext.getContentResolver();
-            PowerManager powerManager = (PowerManager)mParentContext.getSystemService(
+            Context context = ImportVCardActivity.this;
+            mResolver = context.getContentResolver();
+            PowerManager powerManager = (PowerManager)context.getSystemService(
                     Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
@@ -226,17 +242,19 @@ public class VCardImporter {
             } finally {
                 mWakeLock.release();
                 mProgressDialog.dismiss();
+                finish();
             }
         }
 
         private void doActuallyReadOneVCard(String charset, boolean doIncrementProgress,
                 VCardSourceDetector detector) {
             VCardDataBuilder builder;
+            final Context context = ImportVCardActivity.this;
             if (charset != null) {
                 builder = new VCardDataBuilder(mResolver,
                         mProgressDialog,
-                        mParentContext.getString(R.string.reading_vcard_message),
-                        mParentHandler,
+                        context.getString(R.string.reading_vcard_message),
+                        mHandler,
                         charset,
                         charset,
                         false,
@@ -244,8 +262,8 @@ public class VCardImporter {
             } else {
                 builder = new VCardDataBuilder(mResolver,
                         mProgressDialog,
-                        mParentContext.getString(R.string.reading_vcard_message),
-                        mParentHandler,
+                        context.getString(R.string.reading_vcard_message),
+                        mHandler,
                         null,
                         null,
                         false,
@@ -304,7 +322,7 @@ public class VCardImporter {
 
                 mProgressDialog.dismiss();
 
-                mParentHandler.post(new ErrorDisplayer(
+                mHandler.post(new ErrorDisplayer(
                         getString(R.string.fail_reason_io_error) +
                         " (" + e.getMessage() + ")"));
                 return false;
@@ -313,7 +331,7 @@ public class VCardImporter {
                     throw e;
                 } else {
                     Log.e(LOG_TAG, "VCardNestedException was emitted: " + e);
-                    mParentHandler.post(new ErrorDisplayer(
+                    mHandler.post(new ErrorDisplayer(
                             getString(R.string.fail_reason_vcard_parse_error) +
                             " (" + e.getMessage() + ")"));
                     return false;
@@ -321,7 +339,7 @@ public class VCardImporter {
             } catch (VCardException e) {
                 Log.e(LOG_TAG, "VCardException was emitted: " + e);
 
-                mParentHandler.post(new ErrorDisplayer(
+                mHandler.post(new ErrorDisplayer(
                         getString(R.string.fail_reason_vcard_parse_error) +
                         " (" + e.getMessage() + ")"));
                 return false;
@@ -357,7 +375,7 @@ public class VCardImporter {
                     showVCardFileSelectDialog(mVCardFileList);
                 }
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-
+                finish();
             } else {
                 mCurrentIndex = which;
             }
@@ -377,7 +395,7 @@ public class VCardImporter {
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 importOneVCardFromSDCard(mVCardFileList.get(mCurrentIndex).getCanonicalPath());
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-
+                finish();
             } else {
                 // Some file is selected.
                 mCurrentIndex = which;
@@ -410,7 +428,7 @@ public class VCardImporter {
             mRootDirectory = sdcardDirectory;
             mCheckedPaths = new HashSet<String>();
             mVCardFiles = new Vector<VCardFile>();
-            PowerManager powerManager = (PowerManager)mParentContext.getSystemService(
+            PowerManager powerManager = (PowerManager)ImportVCardActivity.this.getSystemService(
                     Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
@@ -437,43 +455,46 @@ public class VCardImporter {
             mProgressDialog.dismiss();
 
             if (mGotIOException) {
-                mParentHandler.post(new Runnable() {
+                mHandler.post(new Runnable() {
                     public void run() {
                         String message = (getString(R.string.scanning_sdcard_failed_message,
                                 getString(R.string.fail_reason_io_error)));
 
                         AlertDialog.Builder builder =
-                            new AlertDialog.Builder(mParentContext)
+                            new AlertDialog.Builder(ImportVCardActivity.this)
                                 .setTitle(R.string.scanning_sdcard_failed_title)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setMessage(message)
-                                .setPositiveButton(android.R.string.ok, null);
+                                .setOnCancelListener(mCancelListener)
+                                .setPositiveButton(android.R.string.ok, mCancelListener);
                         builder.show();
                     }
                 });
             } else if (mCanceled) {
-                return;
+                finish();
             } else {
-                mParentHandler.post(new Runnable() {
+                mHandler.post(new Runnable() {
                     public void run() {
                         int size = mVCardFiles.size();
+                        final Context context = ImportVCardActivity.this;
                         if (size == 0) {
                             String message = (getString(R.string.scanning_sdcard_failed_message,
                                     getString(R.string.fail_reason_no_vcard_file)));
 
                             AlertDialog.Builder builder =
-                                new AlertDialog.Builder(mParentContext)
+                                new AlertDialog.Builder(context)
                                     .setTitle(R.string.scanning_sdcard_failed_title)
                                     .setMessage(message)
-                                    .setPositiveButton(android.R.string.ok, null);
+                                    .setOnCancelListener(mCancelListener)
+                                    .setPositiveButton(android.R.string.ok, mCancelListener);
                             builder.show();
                             return;
-                        } else if (mParentContext.getResources().getBoolean(
+                        } else if (context.getResources().getBoolean(
                                 R.bool.config_import_all_vcard_from_sdcard_automatically)) {
                             importAllVCardFromSDCard(mVCardFiles);
                         } else if (size == 1) {
                             importOneVCardFromSDCard(mVCardFiles.get(0).getCanonicalPath());
-                        } else if (mParentContext.getResources().getBoolean(
+                        } else if (context.getResources().getBoolean(
                                 R.bool.config_allow_users_select_all_vcard_import)) {
                             showSelectImportTypeDialog(mVCardFiles);
                         } else {
@@ -541,10 +562,11 @@ public class VCardImporter {
         DialogInterface.OnClickListener listener =
             new ImportTypeSelectedListener(vcardFileList);
         AlertDialog.Builder builder =
-            new AlertDialog.Builder(mParentContext)
+            new AlertDialog.Builder(ImportVCardActivity.this)
                 .setTitle(R.string.select_vcard_title)
                 .setPositiveButton(android.R.string.ok, listener)
-                .setNegativeButton(android.R.string.cancel, null);
+                .setOnCancelListener(mCancelListener)
+                .setNegativeButton(android.R.string.cancel, mCancelListener);
 
         String[] items = new String[2];
         items[ImportTypeSelectedListener.IMPORT_ALL] =
@@ -561,10 +583,11 @@ public class VCardImporter {
         DialogInterface.OnClickListener listener =
             new VCardSelectedListener(vcardFileList);
         AlertDialog.Builder builder =
-            new AlertDialog.Builder(mParentContext)
+            new AlertDialog.Builder(this)
                 .setTitle(R.string.select_vcard_title)
                 .setPositiveButton(android.R.string.ok, listener)
-                .setNegativeButton(android.R.string.cancel, null);
+                .setOnCancelListener(mCancelListener)
+                .setNegativeButton(android.R.string.cancel, mCancelListener);
 
         CharSequence[] items = new CharSequence[size];
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -591,7 +614,7 @@ public class VCardImporter {
     private void showReadingVCardDialog(DialogInterface.OnCancelListener listener) {
         String title = getString(R.string.reading_vcard_title);
         String message = getString(R.string.reading_vcard_message);
-        mProgressDialog = new ProgressDialog(mParentContext);
+        mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle(title);
         mProgressDialog.setMessage(message);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -599,23 +622,14 @@ public class VCardImporter {
         mProgressDialog.show();
     }
 
-    private String getString(int resId, Object... formatArgs) {
-        return mParentContext.getString(resId, formatArgs);
-    }
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
 
-    private String getString(int resId) {
-        return mParentContext.getString(resId);
-    }
-
-    /**
-     * @param parentContext must not be null
-     * @param parentHandler must not be null
-     */
-    public VCardImporter(Context parentContext, Handler parentHandler) {
-        mParentContext = parentContext;
-        mParentHandler = parentHandler;
-        mLastNameComesBeforeFirstName = parentContext.getResources().getBoolean(
+        mLastNameComesBeforeFirstName = getResources().getBoolean(
                 com.android.internal.R.bool.config_lastname_comes_before_firstname);
+
+        startImportVCardFromSdCard();
     }
 
     /**
@@ -627,18 +641,18 @@ public class VCardImporter {
     public void startImportVCardFromSdCard() {
         File file = new File("/sdcard");
         if (!file.exists() || !file.isDirectory() || !file.canRead()) {
-            new AlertDialog.Builder(mParentContext)
+            new AlertDialog.Builder(this)
                     .setTitle(R.string.no_sdcard_title)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(R.string.no_sdcard_message)
-                    .setPositiveButton(android.R.string.ok, null)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener)
                     .show();
         } else {
             String title = getString(R.string.searching_vcard_title);
             String message = getString(R.string.searching_vcard_message);
 
-            mProgressDialog = ProgressDialog.show(mParentContext,
-                    title, message, true, false);
+            mProgressDialog = ProgressDialog.show(this, title, message, true, false);
             VCardScanThread thread = new VCardScanThread(file);
             mProgressDialog.setOnCancelListener(thread);
             thread.start();
