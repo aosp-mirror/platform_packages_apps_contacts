@@ -30,7 +30,36 @@
     If config_import_all_vcard_from_sdcard_automatically is set true, this configuration
     is ignored. -->
     <bool name="config_allow_users_select_all_vcard_import">false</bool>
-    
+
     <!-- Flag indicating whether Contacts app is allowed to export contacts to SDCard -->
     <bool name="config_allow_export_to_sdcard">false</bool>
+
+    <!-- The type of VCard for export. Without specifying this, generic VCard will be emitted.
+     If you want to let the app emit VCard specific to some vendor (like DoCoMo),
+     please specify the type.-->
+    <string name="config_export_vcard_type"></string>
+
+    <!-- Directory in which exported VCard file is stored -->
+    <string name="config_export_dir">/sdcard</string>
+
+    <!-- Prefix of exported VCard file -->
+    <string name="config_export_file_prefix"></string>
+
+    <!-- Suffix of exported VCard file. Attached before an extension -->
+    <string name="config_export_file_suffix"></string>
+
+    <!-- Extension for exported VCard files -->
+    <string name="config_export_file_extension">vcf</string>
+
+    <!-- Minimum number of exported VCard file index -->
+    <integer name="config_export_file_min_index">1</integer>
+
+    <!-- Maximum number of exported VCard file index -->
+    <integer name="config_export_file_max_index">99999</integer>
+
+    <!-- The list (separated by ',') of extensions should be checked in addition to
+     config_export_extension. e.g. If "aaa" is added to here and 00001.vcf and 00002.aaa
+     exist in a target directory, 00003.vcf becomes a next file name candidate.
+     Without this configuration, 00002.vcf becomes the candidate.-->
+    <string name="config_export_extensions_to_consider"></string>
 </resources>
