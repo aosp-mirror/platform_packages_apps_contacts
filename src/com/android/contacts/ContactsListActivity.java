@@ -1163,7 +1163,9 @@ public final class ContactsListActivity extends ListActivity
                 Uri phoneUri = Uri.fromParts(scheme, number, null);
                 shortcutIntent = new Intent(mShortcutAction, phoneUri);
                 
-                Uri personUri = ContentUris.withAppendedId(People.CONTENT_URI, id);
+                // Find the People._ID for this phone number
+                final long personId = c.getLong(PHONES_PERSON_ID_INDEX);
+                Uri personUri = ContentUris.withAppendedId(People.CONTENT_URI, personId);
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
                         generatePhoneNumberIcon(personUri, type, resid));
                 
