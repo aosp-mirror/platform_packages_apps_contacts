@@ -36,6 +36,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -63,6 +65,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.Filter;
@@ -74,7 +78,7 @@ import android.widget.TextView;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
@@ -144,7 +148,7 @@ public final class ContactsListActivity extends ListActivity implements
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
     /** Default mode */
-    static final int MODE_DEFAULT = 4;
+    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS;
     /** Custom mode */
     static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
@@ -154,7 +158,7 @@ public final class ContactsListActivity extends ListActivity implements
     /** Show starred and the frequent */
     static final int MODE_STREQUENT = 35;
     /** Show all contacts and pick them when clicking */
-    static final int MODE_PICK_AGGREGATE = 40 | MODE_MASK_PICKER;
+    static final int MODE_PICK_AGGREGATE = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS;
     /** Show all contacts as well as the option to create a new one */
     static final int MODE_PICK_OR_CREATE_AGGREGATE = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
@@ -172,7 +176,7 @@ public final class ContactsListActivity extends ListActivity implements
 
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_AGGREGATE = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
-            | MODE_MASK_NO_DATA;
+            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS;
 
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
@@ -194,20 +198,22 @@ public final class ContactsListActivity extends ListActivity implements
         Aggregates.STARRED, //2
         Aggregates.PRIMARY_PHONE_ID, //3
         Aggregates.TIMES_CONTACTED, //4
-        Presence.PRESENCE_STATUS, //5
-        CommonDataKinds.Phone.TYPE, //6
-        CommonDataKinds.Phone.LABEL, //7
-        CommonDataKinds.Phone.NUMBER, //8
+        Aggregates.PHOTO_ID, //5
+        Presence.PRESENCE_STATUS, //6
+        CommonDataKinds.Phone.TYPE, //7
+        CommonDataKinds.Phone.LABEL, //8
+        CommonDataKinds.Phone.NUMBER, //9
     };
     static final int ID_COLUMN_INDEX = 0;
     static final int SUMMARY_NAME_COLUMN_INDEX = 1;
     static final int SUMMARY_STARRED_COLUMN_INDEX = 2;
     static final int PRIMARY_PHONE_ID_COLUMN_INDEX = 3;
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 4;
-    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 5;
-    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 6;
-    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 7;
-    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 8;
+    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
+    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
+    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 7;
+    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 8;
+    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 9;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Data._ID, //0
@@ -346,6 +352,7 @@ public final class ContactsListActivity extends ListActivity implements
         } else if (Intent.ACTION_PICK.equals(action)) {
             // XXX These should be showing the data from the URI given in
             // the Intent.
+            mDisplayAll = true;
             final String type = intent.resolveType(this);
             if (Aggregates.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_AGGREGATE;
@@ -465,6 +472,7 @@ public final class ContactsListActivity extends ListActivity implements
 
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
+        getListView().setOnScrollListener(mAdapter);
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -1281,7 +1289,7 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter
-            implements SectionIndexer {
+            implements SectionIndexer, OnScrollListener {
         private SectionIndexer mIndexer;
         private String mAlphabet;
         private boolean mLoading = true;
@@ -1290,15 +1298,20 @@ public final class ContactsListActivity extends ListActivity implements
         private boolean mDisplayPhotos = false;
         private boolean mDisplayAdditionalData = true;
         private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
+        private HashSet<ImageView> mItemsMissingImages = null;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
         private int[] mSectionPositions;
         private Cursor mSuggestionsCursor;
         private int mSuggestionsCursorCount;
+        private ImageFetchHandler mHandler;
+        private int mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
+        private static final int FETCH_IMAGE_MSG = 1;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
 
+            mHandler = new ImageFetchHandler();
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
 
             mUnknownNameText = context.getText(android.R.string.unknownName);
@@ -1335,10 +1348,46 @@ public final class ContactsListActivity extends ListActivity implements
                 mDisplayPhotos = true;
                 setViewResource(R.layout.contacts_list_item_photo);
                 mBitmapCache = new SparseArray<SoftReference<Bitmap>>();
+                mItemsMissingImages = new HashSet<ImageView>();
             }
 
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
+            }
+        }
+
+        private class ImageFetchHandler extends Handler {
+
+            @Override
+            public void handleMessage(Message message) {
+                switch(message.what) {
+                    case FETCH_IMAGE_MSG:
+                        ImageView imageView = (ImageView) message.obj;
+                        int pos = (Integer) imageView.getTag();
+                        Cursor cursor = (Cursor) getItem(pos);
+
+                        if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
+                            try {
+                                Bitmap photo = ContactsUtils.loadContactPhoto(
+                                        mContext, cursor.getInt(SUMMARY_PHOTO_ID_COLUMN_INDEX),
+                                        null);
+                                mBitmapCache.put(pos, new SoftReference<Bitmap>(photo));
+                                imageView.setImageBitmap(photo);
+                                mItemsMissingImages.remove(imageView);
+                            } catch (OutOfMemoryError e) {
+                                // Not enough memory for the photo, do nothing.
+                            }
+                        }
+
+                        if (imageView.getDrawable() == null) {
+                            imageView.setImageResource(R.drawable.ic_contact_list_picture);
+                        }
+                        break;
+                }
+            }
+
+            public void clearImageFecthing() {
+                removeMessages(FETCH_IMAGE_MSG);
             }
         }
 
@@ -1581,41 +1630,33 @@ public final class ContactsListActivity extends ListActivity implements
             }
 
             // Set the photo, if requested
-            // TODO Either remove photos from this class completely or re-implement w/ asynchronous
-            // loading.
-            /*
             if (mDisplayPhotos) {
+                int pos = cursor.getPosition();
                 Bitmap photo = null;
+                cache.photoView.setImageBitmap(null);
+                cache.photoView.setTag(pos);
 
                 // Look for the cached bitmap
-                int pos = cursor.getPosition();
                 SoftReference<Bitmap> ref = mBitmapCache.get(pos);
                 if (ref != null) {
                     photo = ref.get();
-                }
-
-                if (photo == null) {
-                    // Bitmap cache miss, decode it from the cursor
-                    if (!cursor.isNull(PHOTO_COLUMN_INDEX)) {
-                        try {
-                            byte[] photoData = cursor.getBlob(PHOTO_COLUMN_INDEX);
-                            photo = BitmapFactory.decodeByteArray(photoData, 0,
-                                    photoData.length);
-                            mBitmapCache.put(pos, new SoftReference<Bitmap>(photo));
-                        } catch (OutOfMemoryError e) {
-                            // Not enough memory for the photo, use the default one instead
-                            photo = null;
-                        }
-                    }
                 }
 
                 // Bind the photo, or use the fallback no photo resource
                 if (photo != null) {
                     cache.photoView.setImageBitmap(photo);
                 } else {
+                    // Cache miss
                     cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
+                    if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+                        // Scrolling is idle, go get the image right now.
+                        sendFetchImageMessage(cache.photoView);
+                    } else {
+                        // Add it to a set of images that will be populated when scrolling stops.
+                        mItemsMissingImages.add(cache.photoView);
+                    }
                 }
-            } */
+            }
         }
 
         private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
@@ -1831,6 +1872,35 @@ public final class ContactsListActivity extends ListActivity implements
                 }
             }
             return super.getItemId(getRealPosition(pos));
+        }
+
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                int totalItemCount) {
+            // no op
+        }
+
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            mScrollState = scrollState;
+            if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
+                // If we are not idle, stop loading images.
+                mHandler.clearImageFecthing();
+            } else if (mDisplayPhotos) {
+                processMissingImageItems(view);
+            }
+        }
+
+        private void processMissingImageItems(AbsListView view) {
+            for (ImageView iv : mItemsMissingImages) {
+                int pos = (Integer) iv.getTag();
+                sendFetchImageMessage(iv);
+            }
+        }
+
+        private void sendFetchImageMessage(ImageView view) {
+            Message msg = new Message();
+            msg.what = FETCH_IMAGE_MSG;
+            msg.obj = view;
+            mHandler.sendMessage(msg);
         }
     }
 }

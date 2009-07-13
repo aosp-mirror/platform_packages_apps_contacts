@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PHOTO_ID;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
@@ -286,6 +287,15 @@ public class ViewContactActivity extends ListActivity
         if (mCursor.moveToFirst()) {
             // Set the star
             mStarView.setChecked(mCursor.getInt(AGGREGATE_STARRED_COLUMN) == 1 ? true : false);
+
+            //Set the photo
+            int photoId = mCursor.getInt(AGGREGATE_PHOTO_ID);
+            Bitmap photoBitmap = ContactsUtils.loadContactPhoto(
+                    this, photoId, null);
+            if (photoBitmap == null) {
+                photoBitmap = ContactsUtils.loadPlaceholderPhoto(mNoPhotoResource, this, null);
+            }
+            mPhotoView.setImageBitmap(photoBitmap);
 
             // Build up the contact entries
             buildEntries(mCursor);
@@ -871,9 +881,6 @@ public class ViewContactActivity extends ListActivity
                     }
 
                     mOtherEntries.add(entry);
-                // Load the photo
-                } else if (mimetype.equals(CommonDataKinds.Photo.CONTENT_ITEM_TYPE)) {
-                    photoBitmap = ContactsUtils.loadContactPhoto(aggCursor, DATA_1_COLUMN, null);
                 }
 
 
@@ -921,11 +928,6 @@ public class ViewContactActivity extends ListActivity
 //              }
 
             }
-
-            if (photoBitmap == null) {
-                photoBitmap = ContactsUtils.loadPlaceholderPhoto(mNoPhotoResource, this, null);
-            }
-            mPhotoView.setImageBitmap(photoBitmap);
         }
     }
 

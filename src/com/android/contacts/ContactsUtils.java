@@ -23,6 +23,7 @@ import java.io.InputStream;
 
 import android.net.Uri;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -34,6 +35,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.Postal;
 import android.provider.Im.ProviderNames;
 import android.database.Cursor;
@@ -180,6 +182,31 @@ public class ContactsUtils {
         }
         return BitmapFactory.decodeResource(context.getResources(),
                 placeholderImageResource, options);
+    }
+
+    public static Bitmap loadContactPhoto(Context context, int photoId,
+            BitmapFactory.Options options) {
+        Cursor photoCursor = null;
+        Bitmap photoBm = null;
+
+        try {
+            photoCursor = context.getContentResolver().query(
+                    ContentUris.withAppendedId(Data.CONTENT_URI, photoId),
+                    new String[] { Photo.PHOTO },
+                    null, null, null);
+
+            if (photoCursor.moveToFirst() && !photoCursor.isNull(0)) {
+                byte[] photoData = photoCursor.getBlob(0);
+                photoBm = BitmapFactory.decodeByteArray(photoData, 0,
+                        photoData.length, options);
+            }
+        } finally {
+            if (photoCursor != null) {
+                photoCursor.close();
+            }
+        }
+
+        return photoBm;
     }
 
     /**
