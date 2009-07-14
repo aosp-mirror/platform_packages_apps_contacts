@@ -18,6 +18,11 @@
     <string name="contactsList">"Contactos"</string>
     <string name="launcherDialer">"Llamadas"</string>
     <string name="shortcutContact">"Contacto"</string>
+    <string name="shortcutDialContact">"Llamada directa"</string>
+    <string name="shortcutMessageContact">"Mensaje directo"</string>
+    <string name="shortcutActivityTitle">"Elegir un acceso directo para el contacto"</string>
+    <string name="callShortcutActivityTitle">"Elegir un número para la llamada"</string>
+    <string name="messageShortcutActivityTitle">"Elegir un número para el mensaje"</string>
     <string name="starredList">"Destacados"</string>
     <string name="frequentList">"Frecuentes"</string>
     <string name="strequentList">"Favoritos"</string>
@@ -128,17 +133,17 @@
     <string name="private_num">"Número privado"</string>
     <string name="payphone">"Teléfono público"</string>
     <string name="dialerKeyboardHintText">"Utilizar teclado para marcar"</string>
-    <string name="dialerDialpadHintText">"Marcar para añadir una llamada"</string>
+    <string name="dialerDialpadHintText">"Añadir llamada"</string>
     <string name="simContacts_emptyLoading">"Cargando desde tarjeta SIM…"</string>
     <string name="simContacts_title">"Contactos de tarjeta SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincroniza tus contactos de Google"</font>" "\n"Después de sincronizarlos con tu teléfono, podrás acceder a tus contactos desde cualquier lugar."</string>
-    <string name="noContactsHelpText">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y selecciona:"\n\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un contacto manualmente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde tu tarjeta SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o ya existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuevo contacto"</b></font>" para añadir un contacto manualmente"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpText">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" y selecciona:"\n\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un contacto manualmente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde tu tarjeta SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"No tienes ningún contacto."\n\n"Si quieres añadir alguno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y selecciona:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Editar grupos de sincronización"</b></font>" para añadirlos desde una cuenta de Google nueva o ya existente"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para añadir un contacto manualmente"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importar contactos"</b></font>" para añadirlos desde la tarjeta SIM"\n</li></string>
     <string name="seclectSyncGroups_title">"Seleccionar grupos para la sincronización"</string>
     <string name="liveFolder_all_label">"Todos los contactos"</string>
     <string name="liveFolder_favorites_label">"Destacados"</string>
     <string name="liveFolder_phones_label">"Teléfonos"</string>
-    <string name="dialer_useDtmfDialpad">"Usar el teclado de tonos"</string>
+    <string name="dialer_useDtmfDialpad">"Usar teclado táctil"</string>
     <string name="dialer_returnToInCallScreen">"Volver a la llamada en curso"</string>
     <string name="dialer_addAnotherCall">"Añadir llamada"</string>
     <string name="callDetailTitle">"Detalles de la llamada"</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"Más llamados"</string>
     <string name="add_contact_dlg_title">"Añadir contacto"</string>
     <string name="add_contact_dlg_message_fmt">"¿Deseas añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
+    <string name="description_image_button_one">"uno"</string>
+    <string name="description_image_button_two">"dos"</string>
+    <string name="description_image_button_three">"tres"</string>
+    <string name="description_image_button_four">"cuatro"</string>
+    <string name="description_image_button_five">"cinco"</string>
+    <string name="description_image_button_six">"seis"</string>
+    <string name="description_image_button_seven">"siete"</string>
+    <string name="description_image_button_eight">"ocho"</string>
+    <string name="description_image_button_nine">"nueve"</string>
+    <string name="description_image_button_star">"estrella"</string>
+    <string name="description_image_button_zero">"cero"</string>
+    <string name="description_image_button_pound">"libra"</string>
+    <string name="no_sdcard_title">"Falta la tarjeta SD"</string>
+    <string name="no_sdcard_message">"No se ha detectado ninguna tarjeta SD."</string>
+    <string name="searching_vcard_title">"Buscando vCard"</string>
+    <string name="select_import_type_title">"¿De dónde quieres importar contactos?"</string>
+    <string name="import_from_sim">"Tarjeta SIM"</string>
+    <string name="import_from_sdcard">"Tarjeta SD"</string>
+    <string name="import_all_vcard_string">"Importar todos los archivos de vCard"</string>
+    <string name="import_one_vcard_string">"Importar un archivo de vCard"</string>
+    <string name="searching_vcard_message">"Buscando datos de vCard en vCard..."</string>
+    <string name="scanning_sdcard_failed_title">"Error al buscar en tarjeta SD"</string>
+    <string name="scanning_sdcard_failed_message">"Error al buscar en tarjeta SD"</string>
+    <string name="fail_reason_io_error">"Error de E/S"</string>
+    <string name="fail_reason_vcard_parse_error">"Error al analizar vCard"</string>
+    <string name="fail_reason_no_vcard_file">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
+    <string name="fail_reason_no_vcard_entry">"No se ha encontrado ninguna entrada de vCard válida para la selección realizada."</string>
+    <string name="select_vcard_title">"Seleccionar archivo de vCard"</string>
+    <string name="select_vcard_message">"Selecciona un archivo de vCard para la operación de importación."</string>
+    <string name="reading_vcard_title">"Leyendo vCard"</string>
+    <string name="reading_vcard_message">"Leyendo archivos de vCard..."</string>
+    <string name="importing_vcard_message">"Importando datos de vCard..."</string>
+    <string name="reading_vcard_failed_title">"Error al leer datos de vCard"</string>
+    <string name="reading_vcard_failed_message">"No ha sido posible leer los datos de vCard."\n"Motivo del error: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="reading_vcard_contacts">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
+    <string name="reading_vcard_files">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> archivos"</string>
+    <string name="export_contact_list">"Exportar contactos"</string>
+    <string name="confirm_export_title">"Confirmación de exportación"</string>
+    <string name="confirm_export_message">"¿Confirmas que deseas exportar tu lista de contactos a \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <string name="exporting_contact_failed_title">"Error al exportar datos de contacto"</string>
+    <string name="exporting_contact_failed_message">"Se ha producido un error al exportar los datos del contacto."\n"Motivo del error: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_too_many_vcard">"Hay demasiados datos de vCard en la tarjeta SD."</string>
+    <string name="fail_reason_cannot_open_destination_dir">"No se puede abrir o crear el directorio de destino \"<xliff:g id="DIR_NAME">%s</xliff:g>\"."</string>
+    <string name="exporting_contact_list_title">"Exportando datos de contacto"</string>
+    <string name="exporting_contact_list_message">"Exportando datos de contacto a \"<xliff:g id="FILE_NAME">%s</xliff:g>\"..."</string>
+    <string name="fail_reason_could_not_initialize_exporter">"No se ha podido inicializar el exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_error_occurred_during_export">"Se ha producido un error durante la exportación: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_open_file">"No se ha podido abrir el archivo \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

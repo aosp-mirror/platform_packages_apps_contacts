@@ -18,20 +18,30 @@
     <string name="contactsList">"联系人"</string>
     <string name="launcherDialer">"拨号"</string>
     <string name="shortcutContact">"联系人"</string>
+    <!-- no translation found for shortcutDialContact (7165340343023469996) -->
+    <skip />
+    <!-- no translation found for shortcutMessageContact (3025782962770298900) -->
+    <skip />
+    <!-- no translation found for shortcutActivityTitle (6642877210643565436) -->
+    <skip />
+    <!-- no translation found for callShortcutActivityTitle (6065749861423648991) -->
+    <skip />
+    <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
+    <skip />
     <string name="starredList">"已加星标"</string>
-    <string name="frequentList">"经常"</string>
-    <string name="strequentList">"收藏夹"</string>
-    <string name="viewContactTitle">"联系人详细信息"</string>
+    <string name="frequentList">"频繁"</string>
+    <string name="strequentList">"收藏"</string>
+    <string name="viewContactTitle">"联系人详情"</string>
     <string name="viewContactDesription">"查看联系人"</string>
     <string name="editContactDescription">"编辑联系人"</string>
     <string name="insertContactDescription">"创建联系人"</string>
     <string name="searchHint">"搜索联系人"</string>
     <string name="menu_search">"搜索"</string>
-    <string name="menu_newContact">"添加联系人"</string>
+    <string name="menu_newContact">"新建联系人"</string>
     <string name="menu_viewContact">"查看联系人"</string>
     <string name="menu_callNumber">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_addStar">"添加到收藏夹"</string>
-    <string name="menu_removeStar">"从收藏夹中删除"</string>
+    <string name="menu_addStar">"添加到收藏"</string>
+    <string name="menu_removeStar">"从收藏删除"</string>
     <string name="menu_showBarcode">"显示条形码"</string>
     <string name="menu_editContact">"编辑联系人"</string>
     <string name="menu_deleteContact">"删除联系人"</string>
@@ -41,62 +51,61 @@
     <string name="menu_viewAddress">"地图地址"</string>
     <string name="menu_makeDefaultNumber">"设置默认号码"</string>
     <string name="deleteConfirmation_title">"删除"</string>
-    <string name="deleteConfirmation">"会删除此联系人。"</string>
+    <string name="deleteConfirmation">"将会删除此联系人。"</string>
     <string name="menu_done">"完成"</string>
     <string name="menu_doNotSave">"还原"</string>
     <string name="editContact_title_edit">"编辑联系人"</string>
-    <string name="editContact_title_insert">"添加联系人"</string>
+    <string name="editContact_title_insert">"新建联系人"</string>
     <string name="menu_addItem">"详细信息"</string>
     <string name="label_phonetic_name">"拼音"</string>
     <string name="label_notes">"备注"</string>
     <string name="label_ringtone">"铃声"</string>
-    <string name="ghostData_name">"第一个和最后一个"</string>
-    <string name="ghostData_phonetic_name">"拼音姓名"</string>
+    <string name="ghostData_name">"姓名"</string>
+    <string name="ghostData_phonetic_name">"姓名拼音"</string>
     <string name="ghostData_company">"公司"</string>
-    <string name="ghostData_title">"位置"</string>
-    <string name="ghostData_im">"即时消息名称"</string>
+    <string name="ghostData_title">"职位"</string>
+    <string name="ghostData_im">"聊天帐号"</string>
     <string name="ghostData_notes">"我的备注"</string>
     <string name="ghostData_phone">"电话号码"</string>
     <string name="ghostData_email">"电子邮件地址"</string>
-    <string name="ghostData_postal">"通讯地址"</string>
-    <string name="invalidContactMessage">"该联系人不存在。"</string>
-    <string name="pickerNewContactHeader">"创建新联系人"</string>
+    <string name="ghostData_postal">"邮政地址"</string>
+    <string name="invalidContactMessage">"联系人不存在。"</string>
+    <string name="pickerNewContactHeader">"新建联系人"</string>
     <string name="selectLabel">"选择标签"</string>
     <string name="phoneLabelsGroup">"手机"</string>
     <string name="emailLabelsGroup">"电子邮件"</string>
     <string name="imLabelsGroup">"即时消息"</string>
-    <string name="postalLabelsGroup">"通讯地址"</string>
+    <string name="postalLabelsGroup">"邮政地址"</string>
     <string name="otherLabelsGroup">"其他"</string>
   <string-array name="otherLabels">
     <item>"组织"</item>
     <item>"备注"</item>
   </string-array>
-    <string name="errorDialogTitle">"没有图片"</string>
-    <string name="photoPickerNotFoundText">"手机上没有可用的图片。"</string>
-    <string name="attachToContact">"“联系人”图标"</string>
+    <string name="errorDialogTitle">"无图片"</string>
+    <string name="photoPickerNotFoundText">"手机上没有图片。"</string>
+    <string name="attachToContact">"联系人图标"</string>
     <string name="customLabelPickerTitle">"自定义标签名称"</string>
-    <string name="menu_displayGroup">"显示组"</string>
-    <string name="syncGroupPreference">"编辑同步组"</string>
+    <string name="menu_displayGroup">"显示群组"</string>
+    <string name="syncGroupPreference">"编辑同步群组"</string>
     <string name="importFromSim">"导入联系人"</string>
-    <string name="send_to_voicemail_checkbox">"将通话直接发送到语音邮件"</string>
-    <string name="send_to_voicemail_view">"呼叫被直接发送至语音邮件。"</string>
+    <string name="send_to_voicemail_checkbox">"直接将呼叫发送到语音信箱"</string>
+    <string name="send_to_voicemail_view">"呼叫直接发送到语音信箱。"</string>
     <string name="default_ringtone">"默认"</string>
-    <string name="addPicture">"“添加”图标"</string>
-    <string name="removePicture">"“删除”图标"</string>
-    <string name="noContacts">"没有联系人。"</string>
-    <string name="noContactsWithPhoneNumbers">"没有联系人拥有电话号码。"</string>
-    <string name="noFavorites">"没有收藏内容。"</string>
-    <string name="select_group_title">"组"</string>
-    <string name="groupEmpty">"您的“<xliff:g id="GROUPNAME">%s</xliff:g>”组为空。"</string>
+    <string name="addPicture">"添加图标"</string>
+    <string name="removePicture">"删除图标"</string>
+    <string name="noContacts">"无联系人。"</string>
+    <string name="noContactsWithPhoneNumbers">"无具有手机号码的联系人。"</string>
+    <string name="noFavorites">"无收藏。"</string>
+    <string name="select_group_title">"群组"</string>
+    <string name="groupEmpty">"“<xliff:g id="GROUPNAME">%s</xliff:g>”群组为空。"</string>
     <string name="showAllGroups">"所有联系人"</string>
     <string name="syncAllGroups">"同步所有联系人"</string>
     <string name="groupNameMyContacts">"我的联系人"</string>
-    <string name="groupNameWithPhones">"拥有电话号码的联系人"</string>
-    <!-- no translation found for starredInAndroid (6495527538140213440) -->
-    <skip />
-    <string name="contactCreatedToast">"已创建“联系人”。"</string>
-    <string name="contactSavedToast">"已保存联系人。"</string>
-    <string name="listSeparatorCallNumber">"拔号"</string>
+    <string name="groupNameWithPhones">"具有手机号码的联系人"</string>
+    <string name="starredInAndroid">"Android 中加星标的联系人"</string>
+    <string name="contactCreatedToast">"已创建联系人。"</string>
+    <string name="contactSavedToast">"联系人已保存。"</string>
+    <string name="listSeparatorCallNumber">"拨打电话"</string>
     <string name="listSeparatorCallNumber_edit">"电话号码"</string>
     <string name="listSeparatorSendSmsMms">"发送短信/彩信"</string>
     <string name="listSeparatorSendEmail">"发送电子邮件"</string>
@@ -110,64 +119,139 @@
     <string name="listSeparatorOtherInformation_edit">"其他选项"</string>
     <string name="listSeparatorMore_edit">"更多"</string>
     <string name="contactsIconLabel">"联系人"</string>
-    <string name="contactsFavoritesLabel">"收藏夹"</string>
-    <string name="dialerIconLabel">"拔号程序"</string>
+    <string name="contactsFavoritesLabel">"收藏"</string>
+    <string name="dialerIconLabel">"拨号器"</string>
     <string name="recentCallsIconLabel">"通话记录"</string>
     <string name="liveFolderAll">"所有联系人"</string>
     <string name="liveFolderFavorites">"已加星标的联系人"</string>
-    <string name="liveFolderPhone">"有电话号码的联系人"</string>
+    <string name="liveFolderPhone">"具有手机号码的联系人"</string>
     <string name="menu_sendTextMessage">"发送短信"</string>
     <string name="recentCalls_callNumber">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall">"在呼叫之前编辑号码"</string>
+    <string name="recentCalls_editNumberBeforeCall">"在呼叫前编辑号码"</string>
     <string name="recentCalls_addToContact">"添加到联系人"</string>
     <string name="recentCalls_removeFromRecentList">"从通话记录中删除"</string>
     <string name="recentCalls_deleteAll">"清除通话记录"</string>
     <string name="recentCalls_empty">"通话记录为空。"</string>
-    <string name="imei">"移动通信国际识别码"</string>
-    <string name="voicemail">"语音邮件"</string>
+    <string name="imei">"IMEI"</string>
+    <string name="voicemail">"语音信箱"</string>
     <string name="unknown">"未知"</string>
     <string name="private_num">"私人号码"</string>
-    <!-- no translation found for payphone (4864313342828942922) -->
-    <skip />
-    <string name="dialerKeyboardHintText">"使用键盘拔号"</string>
-    <string name="dialerDialpadHintText">"通过拨号添加通话"</string>
-    <string name="simContacts_emptyLoading">"正在从 SIM 卡中载入..."</string>
+    <string name="payphone">"投币式公用电话"</string>
+    <string name="dialerKeyboardHintText">"使用键盘拨号"</string>
+    <string name="dialerDialpadHintText">"拨号以添加通话"</string>
+    <string name="simContacts_emptyLoading">"正在从 SIM 卡载入..."</string>
     <string name="simContacts_title">"SIM 卡联系人"</string>
-    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"同步您的 Google 联系人！"</font>\n"将联系人同步到您的手机后，无论您走到哪里，都可以与他们联系。"</string>
-    <string name="noContactsHelpText">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后选择："\n\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>" - 从头开始创建新联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>" - 从 SIM 卡添加联系人"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后选择："\n\n<li><font fgcolor="#ffffffff"><b>"修改同步组"</b></font>" - 从现有的或新的 Google 帐户添加联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>" - 从头开始创建新联系人"\n</li>\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>" - 从 SIM 卡添加联系人"\n</li></string>
-    <string name="seclectSyncGroups_title">"选择要同步的组"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"同步您的 Google 联系人！"</font>" "\n"将您的联系人同步到您的手机，然后您在任何地方都可以与他们联系。"</string>
+    <string name="noContactsHelpText">"您没有任何联系人。"\n\n"要添加联系人，请按 "<font fgcolor="#ffffffff"><b>"MENU"</b></font>" 并选择："\n" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人 "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>"以从您的 SIM 卡添加联系人"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"您没有任何联系人。"\n\n"要添加联系人，请按 "<font fgcolor="#ffffffff"><b>"MENU"</b></font>" 并选择："\n" "\n<li><font fgcolor="#ffffffff"><b>"编辑同步群组"</b></font>"以从新的或现有的 Google 帐户添加"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>"以从您的 SIM 卡添加联系人"\n</li></string>
+    <string name="seclectSyncGroups_title">"选择要同步的群组"</string>
     <string name="liveFolder_all_label">"所有联系人"</string>
     <string name="liveFolder_favorites_label">"已加星标"</string>
-    <string name="liveFolder_phones_label">"电话"</string>
-    <string name="dialer_useDtmfDialpad">"使用按键式键盘"</string>
-    <string name="dialer_returnToInCallScreen">"返回到正在进行中的通话"</string>
-    <string name="dialer_addAnotherCall">"添加通话"</string>
+    <string name="liveFolder_phones_label">"手机"</string>
+    <string name="dialer_useDtmfDialpad">"使用按键式数字键盘"</string>
+    <string name="dialer_returnToInCallScreen">"返回正在进行的通话"</string>
+    <string name="dialer_addAnotherCall">"添加呼叫"</string>
     <string name="callDetailTitle">"通话详情"</string>
-    <string name="toast_call_detail_error">"无法阅读所请求通话的详情。"</string>
+    <string name="toast_call_detail_error">"无法读取所请求呼叫的详细信息。"</string>
     <string name="call_type">"类型"</string>
     <string name="type_incoming">"来电"</string>
-    <string name="type_outgoing">"去电"</string>
-    <string name="type_missed">"未接来电"</string>
+    <string name="type_outgoing">"对外呼叫"</string>
+    <string name="type_missed">"未接电话"</string>
     <string name="call_time">"时间"</string>
-    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g>（<xliff:g id="RELATIVE">%2$s</xliff:g>）"</string>
+    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
     <string name="call_duration">"持续时间"</string>
     <string name="header_actions">"操作"</string>
     <string name="ringtone_spinner">"铃声：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
-    <string name="add_more_items">"添加更多项目"</string>
+    <string name="add_more_items">"添加更多项"</string>
     <string name="actionCall">"呼叫<xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail">"向<xliff:g id="TYPE">%s</xliff:g>发送电子邮件"</string>
-    <string name="actionText">"向<xliff:g id="TYPE">%s</xliff:g>发送文本消息"</string>
-    <string name="actionChat">"使用 <xliff:g id="TYPE">%s</xliff:g> 进行聊天"</string>
+    <string name="actionEmail">"发送电子邮件至<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"发送信息至<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"使用<xliff:g id="TYPE">%s</xliff:g>聊天"</string>
     <string name="actionMap">"查看<xliff:g id="TYPE">%s</xliff:g>地址"</string>
     <string name="actionIncomingCall">"来电"</string>
-    <string name="detailIncomingCallsGoToVoicemail">"将直接发送至语音邮件"</string>
-    <string name="detailsRingtone">"设置为“<xliff:g id="RINGTONE_NAME">%s</xliff:g>”"</string>
-    <string name="callBack">"回拨"</string>
-    <string name="callAgain">"再次呼叫"</string>
-    <string name="returnCall">"回电话"</string>
-    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> 分钟 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
-    <string name="favoritesFrquentSeparator">"经常呼叫的联系人"</string>
+    <string name="detailIncomingCallsGoToVoicemail">"直接发送到语音信箱"</string>
+    <string name="detailsRingtone">"设为<xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack">"回电"</string>
+    <string name="callAgain">"重新呼叫"</string>
+    <string name="returnCall">"返回呼叫"</string>
+    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="favoritesFrquentSeparator">"经常呼叫"</string>
     <string name="add_contact_dlg_title">"添加联系人"</string>
-    <string name="add_contact_dlg_message_fmt">"是否将“<xliff:g id="EMAIL">%s</xliff:g>”添加到通讯录中？"</string>
+    <string name="add_contact_dlg_message_fmt">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
+    <!-- no translation found for description_image_button_one (1740638037139856139) -->
+    <skip />
+    <!-- no translation found for description_image_button_two (5882638439003731308) -->
+    <skip />
+    <!-- no translation found for description_image_button_three (8709731759376015180) -->
+    <skip />
+    <!-- no translation found for description_image_button_four (3530239685642246130) -->
+    <skip />
+    <!-- no translation found for description_image_button_five (1182465427501188413) -->
+    <skip />
+    <!-- no translation found for description_image_button_six (2093656269261415475) -->
+    <skip />
+    <!-- no translation found for description_image_button_seven (2450357020447676481) -->
+    <skip />
+    <!-- no translation found for description_image_button_eight (6969435115163287801) -->
+    <skip />
+    <!-- no translation found for description_image_button_nine (7857248695662558323) -->
+    <skip />
+    <!-- no translation found for description_image_button_star (3365919907520767866) -->
+    <skip />
+    <!-- no translation found for description_image_button_zero (4133108949401820710) -->
+    <skip />
+    <!-- no translation found for description_image_button_pound (3039765597595889230) -->
+    <skip />
+    <string name="no_sdcard_title">"无 SD 卡"</string>
+    <string name="no_sdcard_message">"未检测到 SD 卡"</string>
+    <string name="searching_vcard_title">"正在搜索 VCard"</string>
+    <string name="select_import_type_title">"您希望从何处导入联系人？"</string>
+    <string name="import_from_sim">"SIM 卡"</string>
+    <string name="import_from_sdcard">"SD 卡"</string>
+    <string name="import_all_vcard_string">"导入所有 VCard 文件"</string>
+    <string name="import_one_vcard_string">"导入一个 VCard 文件"</string>
+    <string name="searching_vcard_message">"正在搜索 VCard 上的 VCard 数据"</string>
+    <string name="scanning_sdcard_failed_title">"扫描 SD 卡失败"</string>
+    <string name="scanning_sdcard_failed_message">"扫描 SD 卡失败"</string>
+    <string name="fail_reason_io_error">"I/O 错误"</string>
+    <string name="fail_reason_vcard_parse_error">"解析 VCard 失败"</string>
+    <string name="fail_reason_no_vcard_file">"未在 SD 卡上找到 VCard 文件"</string>
+    <string name="fail_reason_no_vcard_entry">"未找到与所选内容对应的有效 VCard 条目"</string>
+    <string name="select_vcard_title">"选择 VCard 文件"</string>
+    <string name="select_vcard_message">"请选择要导入的 VCard 文件"</string>
+    <string name="reading_vcard_title">"正在读取 VCard"</string>
+    <string name="reading_vcard_message">"正在读取 VCard 文件"</string>
+    <string name="importing_vcard_message">"正在导入 VCard 数据"</string>
+    <string name="reading_vcard_failed_title">"读取 VCard 数据失败"</string>
+    <string name="reading_vcard_failed_message">"无法读取 VCard 数据"\n"失败原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="reading_vcard_contacts">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个联系人"</string>
+    <string name="reading_vcard_files">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个文件"</string>
+    <!-- no translation found for export_contact_list (3165097742175874384) -->
+    <skip />
+    <!-- no translation found for confirm_export_title (1693047909433122854) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (63482084706768079) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (1455264422455075858) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (1426451081541603512) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (5416992255233341607) -->
+    <skip />
+    <!-- no translation found for fail_reason_cannot_open_destination_dir (1739293936432987758) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_message (5640326540405486055) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_initialize_exporter (4943708332700987376) -->
+    <skip />
+    <!-- no translation found for fail_reason_error_occurred_during_export (2151165129433831202) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_open_file (4013520943128739511) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_progress (560522409559101193) -->
+    <skip />
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

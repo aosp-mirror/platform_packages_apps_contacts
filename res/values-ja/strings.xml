@@ -241,4 +241,6 @@
     <string name="fail_reason_error_occurred_during_export">"エクスポート中にエラーが発生しました: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_open_file">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\"を開けませんでした: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件のファイル"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

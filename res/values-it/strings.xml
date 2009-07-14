@@ -18,6 +18,11 @@
     <string name="contactsList">"Contatti"</string>
     <string name="launcherDialer">"Telefono"</string>
     <string name="shortcutContact">"Contatto"</string>
+    <string name="shortcutDialContact">"Composizione diretta"</string>
+    <string name="shortcutMessageContact">"Messaggio diretto"</string>
+    <string name="shortcutActivityTitle">"Scegli una scorciatoia contatto"</string>
+    <string name="callShortcutActivityTitle">"Scegli un numero da chiamare"</string>
+    <string name="messageShortcutActivityTitle">"Scegli un numero a cui inviare il messaggio"</string>
     <string name="starredList">"Speciali"</string>
     <string name="frequentList">"Frequenti"</string>
     <string name="strequentList">"Preferiti"</string>
@@ -128,7 +133,7 @@
     <string name="private_num">"Numero privato"</string>
     <string name="payphone">"Telefono a monete"</string>
     <string name="dialerKeyboardHintText">"Usa la tastiera"</string>
-    <string name="dialerDialpadHintText">"Componi per aggiungere una chiamata"</string>
+    <string name="dialerDialpadHintText">"Componi per aggiungere chiamata"</string>
     <string name="simContacts_emptyLoading">"Caricamento da SIM..."</string>
     <string name="simContacts_title">"Contatti SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Sincronizza i tuoi contatti Google."</font>" "\n"Dopo la sincronizzazione con il telefono, i tuoi contatti saranno sempre a tua disposizione."</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"Numeri più chiamati"</string>
     <string name="add_contact_dlg_title">"Aggiungi contatto"</string>
     <string name="add_contact_dlg_message_fmt">"Aggiungere \"<xliff:g id="EMAIL">%s</xliff:g>\" ai contatti?"</string>
+    <string name="description_image_button_one">"uno"</string>
+    <string name="description_image_button_two">"due"</string>
+    <string name="description_image_button_three">"tre"</string>
+    <string name="description_image_button_four">"quattro"</string>
+    <string name="description_image_button_five">"cinque"</string>
+    <string name="description_image_button_six">"sei"</string>
+    <string name="description_image_button_seven">"sette"</string>
+    <string name="description_image_button_eight">"otto"</string>
+    <string name="description_image_button_nine">"nove"</string>
+    <string name="description_image_button_star">"stella"</string>
+    <string name="description_image_button_zero">"zero"</string>
+    <string name="description_image_button_pound">"sterlina"</string>
+    <string name="no_sdcard_title">"Nessuna scheda SD"</string>
+    <string name="no_sdcard_message">"Nessuna scheda SD rilevata"</string>
+    <string name="searching_vcard_title">"Ricerca VCard"</string>
+    <string name="select_import_type_title">"Da dove desideri importare i contatti?"</string>
+    <string name="import_from_sim">"Scheda SIM"</string>
+    <string name="import_from_sdcard">"Scheda SD"</string>
+    <string name="import_all_vcard_string">"Importa tutti i file VCard"</string>
+    <string name="import_one_vcard_string">"Importa un file VCard"</string>
+    <string name="searching_vcard_message">"Ricerca dati VCard su VCard"</string>
+    <string name="scanning_sdcard_failed_title">"Analisi scheda SD non riuscita"</string>
+    <string name="scanning_sdcard_failed_message">"Analisi scheda SD non riuscita"</string>
+    <string name="fail_reason_io_error">"Errore I/O"</string>
+    <string name="fail_reason_vcard_parse_error">"Analisi VCard non riuscita"</string>
+    <string name="fail_reason_no_vcard_file">"Nessun file VCard trovato sulla scheda SD"</string>
+    <string name="fail_reason_no_vcard_entry">"Nessuna voce VCard valida trovata per la tua selezione"</string>
+    <string name="select_vcard_title">"Seleziona file VCard"</string>
+    <string name="select_vcard_message">"Seleziona un file VCard da importare"</string>
+    <string name="reading_vcard_title">"Lettura VCard"</string>
+    <string name="reading_vcard_message">"Lettura file VCard"</string>
+    <string name="importing_vcard_message">"Importazione dati VCard"</string>
+    <string name="reading_vcard_failed_title">"Lettura dati VCard non riuscita"</string>
+    <string name="reading_vcard_failed_message">"Impossibile leggere i dati VCard"\n"Motivo dell\'errore: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="reading_vcard_contacts">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="reading_vcard_files">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> file su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="export_contact_list">"Esporta contatti"</string>
+    <string name="confirm_export_title">"Conferma dell\'esportazione"</string>
+    <string name="confirm_export_message">"Esportare l\'elenco contatti in \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <string name="exporting_contact_failed_title">"Esportazione dati di contatto non riuscita"</string>
+    <string name="exporting_contact_failed_message">"Impossibile esportare i dati di contatto"\n"Motivo dell\'errore: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_too_many_vcard">"Troppi dati VCard sulla scheda SD"</string>
+    <string name="fail_reason_cannot_open_destination_dir">"Impossibile aprire o creare la directory di destinazione \"<xliff:g id="DIR_NAME">%s</xliff:g>\""</string>
+    <string name="exporting_contact_list_title">"Esportazione dati di contatto"</string>
+    <string name="exporting_contact_list_message">"Esportazione dati di contatto in \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_initialize_exporter">"Impossibile inizializzare l\'utilità di esportazione: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_error_occurred_during_export">"Si è verificato un errore durante l\'esportazione: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_open_file">"Impossibile aprire \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>
