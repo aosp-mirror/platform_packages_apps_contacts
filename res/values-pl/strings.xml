@@ -18,6 +18,11 @@
     <string name="contactsList">"Kontakty"</string>
     <string name="launcherDialer">"Telefon"</string>
     <string name="shortcutContact">"Kontakt"</string>
+    <string name="shortcutDialContact">"Telefonowanie bezpośrednie"</string>
+    <string name="shortcutMessageContact">"Wiadomość bezpośrednia"</string>
+    <string name="shortcutActivityTitle">"Wybierz skrót kontaktu"</string>
+    <string name="callShortcutActivityTitle">"Wybierz numer, aby nawiązać połączenie"</string>
+    <string name="messageShortcutActivityTitle">"Wybierz numer, aby wysłać wiadomość"</string>
     <string name="starredList">"Oznaczony gwiazdką"</string>
     <string name="frequentList">"Częste"</string>
     <string name="strequentList">"Ulubione"</string>
@@ -29,15 +34,15 @@
     <string name="menu_search">"Szukaj"</string>
     <string name="menu_newContact">"Nowy kontakt"</string>
     <string name="menu_viewContact">"Wyświetl kontakt"</string>
-    <string name="menu_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_callNumber">"Zadzwoń do: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar">"Dodaj do ulubionych"</string>
     <string name="menu_removeStar">"Usuń z ulubionych"</string>
     <string name="menu_showBarcode">"Pokaż kod kreskowy"</string>
     <string name="menu_editContact">"Edytuj kontakt"</string>
     <string name="menu_deleteContact">"Usuń kontakt"</string>
     <string name="menu_call">"Zadzwoń"</string>
-    <string name="menu_sendSMS">"Wyślij wiadomość SMS/MMS"</string>
-    <string name="menu_sendEmail">"Wyślij wiadomość e-mail"</string>
+    <string name="menu_sendSMS">"Wyślij SMS/MMS"</string>
+    <string name="menu_sendEmail">"Wyślij e-mail"</string>
     <string name="menu_viewAddress">"Pokaż adres na mapie"</string>
     <string name="menu_makeDefaultNumber">"Ustaw ten numer jako domyślny"</string>
     <string name="deleteConfirmation_title">"Usuń"</string>
@@ -53,8 +58,8 @@
     <string name="ghostData_name">"Imię i nazwisko"</string>
     <string name="ghostData_phonetic_name">"Nazwisko (fonetycznie)"</string>
     <string name="ghostData_company">"Firma"</string>
-    <string name="ghostData_title">"Pozycja"</string>
-    <string name="ghostData_im">"Nazwa w komunikatorze"</string>
+    <string name="ghostData_title">"Stanowisko"</string>
+    <string name="ghostData_im">"Nazwa na czacie"</string>
     <string name="ghostData_notes">"Moja notatka"</string>
     <string name="ghostData_phone">"Numer telefonu"</string>
     <string name="ghostData_email">"Adres e-mail"</string>
@@ -83,8 +88,8 @@
     <string name="default_ringtone">"Domyślny"</string>
     <string name="addPicture">"Dodaj ikonę"</string>
     <string name="removePicture">"Usuń ikonę"</string>
-    <string name="noContacts">"Brak kontaktów."</string>
-    <string name="noContactsWithPhoneNumbers">"Brak kontaktów z numerami telefonów."</string>
+    <string name="noContacts">"Brak kontaktów"</string>
+    <string name="noContactsWithPhoneNumbers">"Brak kontaktów z numerami telefonów"</string>
     <string name="noFavorites">"Brak ulubionych"</string>
     <string name="select_group_title">"Grupy"</string>
     <string name="groupEmpty">"Grupa „<xliff:g id="GROUPNAME">%s</xliff:g>” jest pusta."</string>
@@ -92,15 +97,15 @@
     <string name="syncAllGroups">"Synchronizuj wszystkie kontakty"</string>
     <string name="groupNameMyContacts">"Moje kontakty"</string>
     <string name="groupNameWithPhones">"Kontakty z numerami telefonu"</string>
-    <string name="starredInAndroid">"Oznaczone gwiazdką w systemie Android"</string>
+    <string name="starredInAndroid">"Z gwiazdką w systemie Android"</string>
     <string name="contactCreatedToast">"Utworzono kontakt."</string>
     <string name="contactSavedToast">"Kontakt został zapisany."</string>
     <string name="listSeparatorCallNumber">"Wybierz numer"</string>
     <string name="listSeparatorCallNumber_edit">"Numery telefonów"</string>
-    <string name="listSeparatorSendSmsMms">"Wyślij wiadomość SMS/MMS"</string>
-    <string name="listSeparatorSendEmail">"Wyślij wiadomość e-mail"</string>
+    <string name="listSeparatorSendSmsMms">"Wyślij SMS/MMS"</string>
+    <string name="listSeparatorSendEmail">"Wyślij e-mail"</string>
     <string name="listSeparatorSendEmail_edit">"Adresy e-mail"</string>
-    <string name="listSeparatorSendIm">"Wyślij wiadomość błyskawiczną"</string>
+    <string name="listSeparatorSendIm">"Wyślij wiadomość czatu"</string>
     <string name="listSeparatorSendIm_edit">"Adresy czatu"</string>
     <string name="listSeparatorMapAddress">"Pokaż adres na mapie"</string>
     <string name="listSeparatorMapAddress_edit">"Adresy pocztowe"</string>
@@ -113,10 +118,10 @@
     <string name="dialerIconLabel">"Telefon"</string>
     <string name="recentCallsIconLabel">"Rejestr"</string>
     <string name="liveFolderAll">"Wszystkie kontakty"</string>
-    <string name="liveFolderFavorites">"Kontakty oznaczone gwiazdką"</string>
+    <string name="liveFolderFavorites">"Kontakty z gwiazdką"</string>
     <string name="liveFolderPhone">"Kontakty z numerami telefonów"</string>
-    <string name="menu_sendTextMessage">"Wyślij wiadomość SMS"</string>
-    <string name="recentCalls_callNumber">"Zadzwoń do kontaktu <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_sendTextMessage">"Wyślij SMS"</string>
+    <string name="recentCalls_callNumber">"Zadzwoń do: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall">"Edytuj numer przed nawiązaniem połączenia"</string>
     <string name="recentCalls_addToContact">"Dodaj do kontaktów"</string>
     <string name="recentCalls_removeFromRecentList">"Usuń z rejestru połączeń"</string>
@@ -128,7 +133,7 @@
     <string name="private_num">"Numer prywatny"</string>
     <string name="payphone">"Telefon płatny"</string>
     <string name="dialerKeyboardHintText">"Wybierz numer za pomocą klawiatury"</string>
-    <string name="dialerDialpadHintText">"Wybierz numer, aby dodać połączenie"</string>
+    <string name="dialerDialpadHintText">"Dodaj nowe poł."</string>
     <string name="simContacts_emptyLoading">"Wczytywanie z karty SIM…"</string>
     <string name="simContacts_title">"Kontakty z karty SIM"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
@@ -144,7 +149,7 @@
     <string name="callDetailTitle">"Szczegóły połączenia"</string>
     <string name="toast_call_detail_error">"Nie można odczytać szczegółów żądanego połączenia."</string>
     <string name="call_type">"Typ"</string>
-    <string name="type_incoming">"Poł. przychodzące"</string>
+    <string name="type_incoming">"Połączenie"</string>
     <string name="type_outgoing">"Połączenie wychodzące"</string>
     <string name="type_missed">"Nieodebrane połączenia"</string>
     <string name="call_time">"Godzina"</string>
@@ -153,10 +158,10 @@
     <string name="header_actions">"Czynności"</string>
     <string name="ringtone_spinner">"Dźwięk dzwonka: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"Dodaj więcej elementów"</string>
-    <string name="actionCall">"Zadzwoń na numer: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail">"Wyślij wiadomość e-mail na adres: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText">"Wyślij tekst do: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionChat">"Porozmawiaj na czacie <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionCall">"Połącz: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail">"Wyślij e-mail: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"Wyślij SMS: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat">"Czatuj przez <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap">"Wyświetl adres: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionIncomingCall">"Połączenia przychodzące"</string>
     <string name="detailIncomingCallsGoToVoicemail">"Zostaną wysłane bezpośrednio na pocztę głosową"</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"Częste połączenia"</string>
     <string name="add_contact_dlg_title">"Dodaj kontakt"</string>
     <string name="add_contact_dlg_message_fmt">"Czy dodać adres „<xliff:g id="EMAIL">%s</xliff:g>” do kontaktów?"</string>
+    <string name="description_image_button_one">"jeden"</string>
+    <string name="description_image_button_two">"dwa"</string>
+    <string name="description_image_button_three">"trzy"</string>
+    <string name="description_image_button_four">"cztery"</string>
+    <string name="description_image_button_five">"pięć"</string>
+    <string name="description_image_button_six">"sześć"</string>
+    <string name="description_image_button_seven">"siedem"</string>
+    <string name="description_image_button_eight">"osiem"</string>
+    <string name="description_image_button_nine">"dziewięć"</string>
+    <string name="description_image_button_star">"gwiazdka"</string>
+    <string name="description_image_button_zero">"zero"</string>
+    <string name="description_image_button_pound">"funt"</string>
+    <string name="no_sdcard_title">"Brak karty SD"</string>
+    <string name="no_sdcard_message">"Nie wykryto karty SD"</string>
+    <string name="searching_vcard_title">"Wyszukiwanie danych VCard"</string>
+    <string name="select_import_type_title">"Skąd chcesz zaimportować kontakty?"</string>
+    <string name="import_from_sim">"Karta SIM"</string>
+    <string name="import_from_sdcard">"Karta SD"</string>
+    <string name="import_all_vcard_string">"Importuj wszystkie pliki VCard"</string>
+    <string name="import_one_vcard_string">"Zaimportuj jeden plik VCard"</string>
+    <string name="searching_vcard_message">"Wyszukiwanie danych VCard w pliku VCard"</string>
+    <string name="scanning_sdcard_failed_title">"Skanowanie karty SD nie powiodło się"</string>
+    <string name="scanning_sdcard_failed_message">"Skanowanie karty SD nie powiodło się"</string>
+    <string name="fail_reason_io_error">"Błąd wejścia/wyjścia"</string>
+    <string name="fail_reason_vcard_parse_error">"Analiza danych VCard nie powiodła się"</string>
+    <string name="fail_reason_no_vcard_file">"Na karcie SD nie znaleziono żadnego pliku VCard"</string>
+    <string name="fail_reason_no_vcard_entry">"W wybranym zakresie nie znaleziono poprawnej pozycji VCard"</string>
+    <string name="select_vcard_title">"Wybierz plik VCard"</string>
+    <string name="select_vcard_message">"Wybierz plik VCard do zaimportowania"</string>
+    <string name="reading_vcard_title">"Odczytywanie danych VCard"</string>
+    <string name="reading_vcard_message">"Odczytywanie plików VCard"</string>
+    <string name="importing_vcard_message">"Importowanie danych VCard"</string>
+    <string name="reading_vcard_failed_title">"Odczytywanie danych VCard nie powiodło się"</string>
+    <string name="reading_vcard_failed_message">"Nie można odczytać danych VCard"\n"Przyczyna niepowodzenia: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="reading_vcard_contacts">"Kontakt <xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="reading_vcard_files">"plik <xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="export_contact_list">"Eksportuj kontakty"</string>
+    <string name="confirm_export_title">"Potwierdzenie eksportowania"</string>
+    <string name="confirm_export_message">"Czy chcesz wyeksportować swoją listę kontaktów do pliku „<xliff:g id="VCARD_FILENAME">%s</xliff:g>”?"</string>
+    <string name="exporting_contact_failed_title">"Eksportowanie danych kontaktowych nie powiodło się"</string>
+    <string name="exporting_contact_failed_message">"Eksportowanie danych kontaktowych nie powiodło się"\n"Przyczyna niepowodzenia: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="fail_reason_too_many_vcard">"Zbyt dużo danych VCard na karcie SD"</string>
+    <string name="fail_reason_cannot_open_destination_dir">"Nie można otworzyć lub utworzyć katalogu docelowego „<xliff:g id="DIR_NAME">%s</xliff:g>”"</string>
+    <string name="exporting_contact_list_title">"Eksportowanie danych kontaktowych"</string>
+    <string name="exporting_contact_list_message">"Eksportowanie danych kontaktowych do pliku „<xliff:g id="FILE_NAME">%s</xliff:g>”"</string>
+    <string name="fail_reason_could_not_initialize_exporter">"Nie można zainicjować programu eksportującego: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
+    <string name="fail_reason_error_occurred_during_export">"Wystąpił błąd podczas eksportowania: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
+    <string name="fail_reason_could_not_open_file">"Nie można otworzyć pliku „<xliff:g id="FILE_NAME">%s</xliff:g>”: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"Kontakt <xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

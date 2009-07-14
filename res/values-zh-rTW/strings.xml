@@ -18,6 +18,11 @@
     <string name="contactsList">"聯絡人"</string>
     <string name="launcherDialer">"撥號"</string>
     <string name="shortcutContact">"聯絡人"</string>
+    <string name="shortcutDialContact">"直接撥號"</string>
+    <string name="shortcutMessageContact">"直接傳訊"</string>
+    <string name="shortcutActivityTitle">"選擇聯絡人捷徑"</string>
+    <string name="callShortcutActivityTitle">"選擇去電號碼"</string>
+    <string name="messageShortcutActivityTitle">"選擇傳訊號碼"</string>
     <string name="starredList">"已標記星號"</string>
     <string name="frequentList">"經常聯絡"</string>
     <string name="strequentList">"我的最愛"</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"常用聯絡人"</string>
     <string name="add_contact_dlg_title">"新增聯絡人"</string>
     <string name="add_contact_dlg_message_fmt">"要將「<xliff:g id="EMAIL">%s</xliff:g>」新增為聯絡人嗎？"</string>
+    <string name="description_image_button_one">"1"</string>
+    <string name="description_image_button_two">"2"</string>
+    <string name="description_image_button_three">"3"</string>
+    <string name="description_image_button_four">"4"</string>
+    <string name="description_image_button_five">"5"</string>
+    <string name="description_image_button_six">"6"</string>
+    <string name="description_image_button_seven">"7"</string>
+    <string name="description_image_button_eight">"8"</string>
+    <string name="description_image_button_nine">"9"</string>
+    <string name="description_image_button_star">"星號"</string>
+    <string name="description_image_button_zero">"0"</string>
+    <string name="description_image_button_pound">"磅"</string>
+    <string name="no_sdcard_title">"無 SD 卡"</string>
+    <string name="no_sdcard_message">"未偵測到 SD 卡"</string>
+    <string name="searching_vcard_title">"正在搜尋 VCard"</string>
+    <string name="select_import_type_title">"您要從哪裡匯入聯絡人？"</string>
+    <string name="import_from_sim">"SIM 卡"</string>
+    <string name="import_from_sdcard">"SD 卡"</string>
+    <string name="import_all_vcard_string">"匯入所有 VCard 檔案"</string>
+    <string name="import_one_vcard_string">"匯入一個 VCard 檔案"</string>
+    <string name="searching_vcard_message">"正在搜尋 VCard 資料"</string>
+    <string name="scanning_sdcard_failed_title">"無法掃描 SD 卡"</string>
+    <string name="scanning_sdcard_failed_message">"無法掃描 SD 卡"</string>
+    <string name="fail_reason_io_error">"I/O 錯誤"</string>
+    <string name="fail_reason_vcard_parse_error">"無法剖析 VCard"</string>
+    <string name="fail_reason_no_vcard_file">"SD 卡上沒有 VCard 檔案"</string>
+    <string name="fail_reason_no_vcard_entry">"您所選的檔案沒有有效的 VCard 項目"</string>
+    <string name="select_vcard_title">"選取 VCard 檔案"</string>
+    <string name="select_vcard_message">"請選取要匯入的 VCard 檔案"</string>
+    <string name="reading_vcard_title">"讀取 VCard"</string>
+    <string name="reading_vcard_message">"正在讀取 VCard 檔案"</string>
+    <string name="importing_vcard_message">"正在匯入 VCard 資料"</string>
+    <string name="reading_vcard_failed_title">"無法讀取 VCard 資料"</string>
+    <string name="reading_vcard_failed_message">"無法讀取 VCard 資料"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
+    <string name="reading_vcard_contacts">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <string name="reading_vcard_files">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 個"</string>
+    <string name="export_contact_list">"匯出聯絡人"</string>
+    <string name="confirm_export_title">"確認匯出"</string>
+    <string name="confirm_export_message">"可以將聯絡人清單匯出至「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」嗎？"</string>
+    <string name="exporting_contact_failed_title">"無法匯出聯絡人資料"</string>
+    <string name="exporting_contact_failed_message">"無法匯出聯絡人資料"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
+    <string name="fail_reason_too_many_vcard">"SD 卡上儲存的 VCard 資料過多"</string>
+    <string name="fail_reason_cannot_open_destination_dir">"無法開啟或建立目標目錄「<xliff:g id="DIR_NAME">%s</xliff:g>」"</string>
+    <string name="exporting_contact_list_title">"正在匯出聯絡人資料"</string>
+    <string name="exporting_contact_list_message">"正在將聯絡人資料匯出至「<xliff:g id="FILE_NAME">%s</xliff:g>」"</string>
+    <string name="fail_reason_could_not_initialize_exporter">"無法初始化匯出程式：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
+    <string name="fail_reason_error_occurred_during_export">"匯出時發生錯誤：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
+    <string name="fail_reason_could_not_open_file">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

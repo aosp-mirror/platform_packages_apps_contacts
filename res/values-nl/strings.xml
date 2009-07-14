@@ -18,6 +18,11 @@
     <string name="contactsList">"Contacten"</string>
     <string name="launcherDialer">"Telefoon"</string>
     <string name="shortcutContact">"Contacten"</string>
+    <string name="shortcutDialContact">"Direct bellen"</string>
+    <string name="shortcutMessageContact">"Direct bericht"</string>
+    <string name="shortcutActivityTitle">"Kies een contactsnelkoppeling"</string>
+    <string name="callShortcutActivityTitle">"Kies een nummer om te bellen"</string>
+    <string name="messageShortcutActivityTitle">"Kies een nummer voor bericht"</string>
     <string name="starredList">"Met ster"</string>
     <string name="frequentList">"Vaak"</string>
     <string name="strequentList">"Favorieten"</string>
@@ -108,10 +113,10 @@
     <string name="listSeparatorOtherInformation">"Overige informatie"</string>
     <string name="listSeparatorOtherInformation_edit">"Andere opties"</string>
     <string name="listSeparatorMore_edit">"Meer"</string>
-    <string name="contactsIconLabel">"Contacten"</string>
-    <string name="contactsFavoritesLabel">"Favorieten"</string>
+    <string name="contactsIconLabel">"Contact"</string>
+    <string name="contactsFavoritesLabel">"Favoriet"</string>
     <string name="dialerIconLabel">"Telefoon"</string>
-    <string name="recentCallsIconLabel">"Gesprekken"</string>
+    <string name="recentCallsIconLabel">"Gesprek"</string>
     <string name="liveFolderAll">"Alle contacten"</string>
     <string name="liveFolderFavorites">"Contacten met ster"</string>
     <string name="liveFolderPhone">"Contacten met telefoonnummers"</string>
@@ -133,7 +138,7 @@
     <string name="simContacts_title">"Contacten op SIM-kaart"</string>
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">"Synchroniseer uw Google-contacten!"</font>" "\n"Zodra uw telefoon is gesynchroniseerd, heeft u uw contacten altijd ter beschikking."</string>
     <string name="noContactsHelpText">"U heeft geen contacten."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteert u:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nieuw contact"</b></font>" om een nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacten importeren"</b></font>" om contacten vanaf uw SIM-kaart toe te voegen"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"U heeft geen contacten."\n\n"Als u contacten wilt toevoegen, klikt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteert u:"\n\n<li><font fgcolor="#ffffffff"><b>"\'Synchronisatiegroepen bewerken\'"</b></font>" om contacten toe te voegen uit een nieuw of bestaand Google-account"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"\'Contacten importeren\'"</b></font>" om contact te importeren vanaf uw SIM-kaart"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"U heeft geen contacten."\n\n"Als u contacten wilt toevoegen, klikt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en selecteert u:"\n\n<li><font fgcolor="#ffffffff"><b>"\'Synchronisatiegroepen bewerken\'"</b></font>" om contacten toe te voegen uit een nieuw of bestaand Google-account"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"\'Contacten importeren\'"</b></font>" om contacten te importeren vanaf uw SIM-kaart"\n</li></string>
     <string name="seclectSyncGroups_title">"Groepen selecteren om te synchroniseren"</string>
     <string name="liveFolder_all_label">"Alle contacten"</string>
     <string name="liveFolder_favorites_label">"Met ster"</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"Vaak gebeld"</string>
     <string name="add_contact_dlg_title">"Contact toevoegen"</string>
     <string name="add_contact_dlg_message_fmt">"\"<xliff:g id="EMAIL">%s</xliff:g>\" toevoegen aan contacten?"</string>
+    <string name="description_image_button_one">"één"</string>
+    <string name="description_image_button_two">"twee"</string>
+    <string name="description_image_button_three">"drie"</string>
+    <string name="description_image_button_four">"vier"</string>
+    <string name="description_image_button_five">"vijf"</string>
+    <string name="description_image_button_six">"zes"</string>
+    <string name="description_image_button_seven">"zeven"</string>
+    <string name="description_image_button_eight">"acht"</string>
+    <string name="description_image_button_nine">"negen"</string>
+    <string name="description_image_button_star">"ster"</string>
+    <string name="description_image_button_zero">"nul"</string>
+    <string name="description_image_button_pound">"hekje"</string>
+    <string name="no_sdcard_title">"Geen SD-kaart"</string>
+    <string name="no_sdcard_message">"Geen SD-kaart gedetecteerd"</string>
+    <string name="searching_vcard_title">"Zoeken naar VCard"</string>
+    <string name="select_import_type_title">"Waarvandaan wilt u contacten importeren?"</string>
+    <string name="import_from_sim">"SIM-kaart"</string>
+    <string name="import_from_sdcard">"SD-kaart"</string>
+    <string name="import_all_vcard_string">"Alle VCard-bestanden importeren"</string>
+    <string name="import_one_vcard_string">"Eén VCard-bestand importeren"</string>
+    <string name="searching_vcard_message">"Zoeken naar VCard-gegevens op VCard"</string>
+    <string name="scanning_sdcard_failed_title">"Scannen van SD-kaart is mislukt"</string>
+    <string name="scanning_sdcard_failed_message">"Scannen van SD-kaart is mislukt"</string>
+    <string name="fail_reason_io_error">"I/O-fout"</string>
+    <string name="fail_reason_vcard_parse_error">"Parseren van VCard is mislukt"</string>
+    <string name="fail_reason_no_vcard_file">"Geen VCard-bestand gevonden op SD-kaart"</string>
+    <string name="fail_reason_no_vcard_entry">"Geen geldig VCard-item gevonden voor uw selectie"</string>
+    <string name="select_vcard_title">"VCard-bestand selecteren"</string>
+    <string name="select_vcard_message">"Selecteer een VCard-bestand om te importeren"</string>
+    <string name="reading_vcard_title">"VCard lezen"</string>
+    <string name="reading_vcard_message">"VCard-bestand(en) lezen"</string>
+    <string name="importing_vcard_message">"VCard-gegevens importeren"</string>
+    <string name="reading_vcard_failed_title">"Lezen van VCard-gegevens is mislukt"</string>
+    <string name="reading_vcard_failed_message">"VCard-gegevens kunnen niet worden gelezen"\n"Reden voor fout: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <string name="reading_vcard_contacts">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
+    <string name="reading_vcard_files">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> bestanden"</string>
+    <string name="export_contact_list">"Contacten exporteren"</string>
+    <string name="confirm_export_title">"Bevestiging voor export"</string>
+    <string name="confirm_export_message">"Mag uw contactenlijst worden geëxporteerd naar \'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'?"</string>
+    <string name="exporting_contact_failed_title">"Exporteren van contactgegevens is mislukt"</string>
+    <string name="exporting_contact_failed_message">"Exporteren van contactgegevens is mislukt"\n"Reden voor fout: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_too_many_vcard">"Te veel VCard-gegevens op de SD-kaart"</string>
+    <string name="fail_reason_cannot_open_destination_dir">"Kan de doeldirectory \'<xliff:g id="DIR_NAME">%s</xliff:g>\' niet openen of maken"</string>
+    <string name="exporting_contact_list_title">"Contactgegevens exporteren"</string>
+    <string name="exporting_contact_list_message">"Contactgegevens exporteren naar \'<xliff:g id="FILE_NAME">%s</xliff:g>\'"</string>
+    <string name="fail_reason_could_not_initialize_exporter">"Kan het exportprogramma niet initialiseren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_error_occurred_during_export">"Fout opgetreden tijdens export: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_could_not_open_file">"Kan \'<xliff:g id="FILE_NAME">%s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>
