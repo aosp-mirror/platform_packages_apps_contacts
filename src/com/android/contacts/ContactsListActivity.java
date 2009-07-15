@@ -168,6 +168,7 @@ public final class ContactsListActivity extends ListActivity implements
     /** Show all postal addresses and pick them when clicking */
     static final int MODE_PICK_POSTAL =
             55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
+    static final int MODE_GROUP = 57 | MODE_MASK_SHOW_PHOTOS;
     /** Run a search query */
     static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
     /** Run a search query in PICK mode, but that still launches to VIEW */
@@ -264,6 +265,8 @@ public final class ContactsListActivity extends ListActivity implements
      */
     private int mQueryPersonIdIndex;
 
+    private Uri mGroupUri;
+
     private long mQueryAggregateId;
 
     /**
@@ -327,15 +330,15 @@ public final class ContactsListActivity extends ListActivity implements
             mMode = MODE_DEFAULT;
             // When mDefaultMode is true the mode is set in onResume(), since the preferneces
             // activity may change it whenever this activity isn't running
-        } /* else if (UI.LIST_GROUP_ACTION.equals(action)) {
+        } else if (UI.LIST_GROUP_ACTION.equals(action)) {
             mMode = MODE_GROUP;
             String groupName = intent.getStringExtra(UI.GROUP_NAME_EXTRA_KEY);
             if (TextUtils.isEmpty(groupName)) {
                 finish();
                 return;
             }
-            buildUserGroupUris(groupName);
-        }*/ else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
+            buildUserGroupUri(groupName);
+        } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
             mMode = MODE_CUSTOM;
             mDisplayAll = true;
             mDisplayOnlyPhones = false;
@@ -523,6 +526,10 @@ public final class ContactsListActivity extends ListActivity implements
             gravity = Gravity.NO_GRAVITY;
         }
         empty.setGravity(gravity);
+    }
+
+    private void buildUserGroupUri(String group) {
+        mGroupUri = Uri.withAppendedPath(Aggregates.CONTENT_SUMMARY_GROUP_URI, group);
     }
 
     /**
@@ -1021,11 +1028,11 @@ public final class ContactsListActivity extends ListActivity implements
 
         // Kick off the new query
         switch (mMode) {
-            /* case MODE_GROUP:
+            case MODE_GROUP:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        mGroupUri, CONTACTS_PROJECTION, null, null,
-                        getSortOrder(CONTACTS_PROJECTION));
-                break; */
+                        mGroupUri, AGGREGATES_SUMMARY_PROJECTION, getAggregateSelection(), null,
+                        getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
+                break;
 
             case MODE_DEFAULT:
             case MODE_PICK_AGGREGATE:
