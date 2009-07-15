@@ -51,7 +51,7 @@ public class StyleManagerTests extends AndroidTestCase {
     }
 
     public void testGetMimetypeIcon() {
-        Bitmap phoneIconFromSm = mStyleManager.getMimetypeIcon(PACKAGE_NAME, PHONE_MIMETYPE);
+        Bitmap phoneIconFromSm = mStyleManager.getMimetypeIcon(mContext, PACKAGE_NAME, PHONE_MIMETYPE);
         int smHeight = phoneIconFromSm.getHeight();
         int smWidth = phoneIconFromSm.getWidth();
 
@@ -70,14 +70,14 @@ public class StyleManagerTests extends AndroidTestCase {
     }
 
     public void testGetMissingMimetypeIcon() {
-        Bitmap postalIconFromSm = mStyleManager.getMimetypeIcon(PACKAGE_NAME,
+        Bitmap postalIconFromSm = mStyleManager.getMimetypeIcon(mContext, PACKAGE_NAME,
                 "vnd.android.cursor.item/postal-address");
 
         assertNull(postalIconFromSm);
     }
 
     public void testGetDefaultIcon() {
-        Bitmap defaultIconFromSm = mStyleManager.getDefaultIcon(PACKAGE_NAME);
+        Bitmap defaultIconFromSm = mStyleManager.getDefaultIcon(mContext, PACKAGE_NAME);
 
         int smHeight = defaultIconFromSm.getHeight();
         int smWidth = defaultIconFromSm.getWidth();
@@ -103,14 +103,14 @@ public class StyleManagerTests extends AndroidTestCase {
         assertTrue(mStyleManager.getStyleSetCacheSize() == 0);
 
         // Getting the icon should add it to the cache.
-        mStyleManager.getDefaultIcon(PACKAGE_NAME);
+        mStyleManager.getDefaultIcon(mContext, PACKAGE_NAME);
         assertTrue(mStyleManager.getIconCacheSize() == 1);
         assertTrue(mStyleManager.getStyleSetCacheSize() == 1);
         assertTrue(mStyleManager.isIconCacheHit(PACKAGE_NAME, StyleManager.DEFAULT_MIMETYPE));
         assertFalse(mStyleManager.isIconCacheHit(PACKAGE_NAME, PHONE_MIMETYPE));
         assertTrue(mStyleManager.isStyleSetCacheHit(PACKAGE_NAME));
 
-        mStyleManager.getMimetypeIcon(PACKAGE_NAME, PHONE_MIMETYPE);
+        mStyleManager.getMimetypeIcon(mContext, PACKAGE_NAME, PHONE_MIMETYPE);
         assertTrue(mStyleManager.getIconCacheSize() == 2);
         assertTrue(mStyleManager.getStyleSetCacheSize() == 1);
         assertTrue(mStyleManager.isIconCacheHit(PACKAGE_NAME, StyleManager.DEFAULT_MIMETYPE));

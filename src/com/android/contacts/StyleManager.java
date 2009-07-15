@@ -55,13 +55,10 @@ public final class StyleManager extends BroadcastReceiver {
     private static final String TAG_ICON_DEFAULT = "icon-default";
     private static final String KEY_JOIN_CHAR = "|";
 
-    private Context mContext;
-
     private StyleManager(Context context) {
         mIconCache = new WeakHashMap<String, Bitmap>();
         mStyleSetCache = new HashMap<String, StyleSet>();
-        mContext = context;
-        registerIntentReceivers();
+        registerIntentReceivers(context);
     }
 
     /**
@@ -78,12 +75,12 @@ public final class StyleManager extends BroadcastReceiver {
         return sInstance;
     }
 
-    private void registerIntentReceivers() {
+    private void registerIntentReceivers(Context context) {
         IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-        mContext.registerReceiver(this, filter);
+        context.registerReceiver(this, filter);
     }
 
     @Override
@@ -119,8 +116,8 @@ public final class StyleManager extends BroadcastReceiver {
      * @param packageName
      * @return Bitmap holding the default icon.
      */
-    public Bitmap getDefaultIcon(String packageName) {
-        return getMimetypeIcon(packageName, DEFAULT_MIMETYPE);
+    public Bitmap getDefaultIcon(Context context, String packageName) {
+        return getMimetypeIcon(context, packageName, DEFAULT_MIMETYPE);
     }
 
     /**
@@ -130,7 +127,7 @@ public final class StyleManager extends BroadcastReceiver {
      * @param packageName
      * @return Bitmap holding the default icon.
      */
-    public Bitmap getMimetypeIcon(String packageName, String mimetype) {
+    public Bitmap getMimetypeIcon(Context context, String packageName, String mimetype) {
         String key = getKey(packageName, mimetype);
 
         synchronized(mIconCache) {
@@ -139,20 +136,20 @@ public final class StyleManager extends BroadcastReceiver {
 
                 // loadIcon() may return null, which is fine since, if no icon was found we want to
                 // store a null value so we know not to look next time.
-                mIconCache.put(key, loadIcon(packageName, mimetype));
+                mIconCache.put(key, loadIcon(context, packageName, mimetype));
             }
             return mIconCache.get(key);
         }
     }
 
-    private Bitmap loadIcon(String packageName, String mimetype) {
+    private Bitmap loadIcon(Context context, String packageName, String mimetype) {
         StyleSet ss = null;
 
         synchronized(mStyleSetCache) {
             if (!mStyleSetCache.containsKey(packageName)) {
                 // Cache miss
                 try {
-                    StyleSet inflated = inflateStyleSet(packageName);
+                    StyleSet inflated = inflateStyleSet(context, packageName);
                     mStyleSetCache.put(packageName, inflated);
                 } catch (InflateException e) {
                     // If inflation failed keep a null entry so we know not to try again.
@@ -172,12 +169,12 @@ public final class StyleManager extends BroadcastReceiver {
             return null;
         }
 
-        return BitmapFactory.decodeResource(mContext.getResources(),
+        return BitmapFactory.decodeResource(context.getResources(),
                 iconRes, null);
     }
 
-    private StyleSet inflateStyleSet(String packageName) throws InflateException {
-        final PackageManager pm = mContext.getPackageManager();
+    private StyleSet inflateStyleSet(Context context, String packageName) throws InflateException {
+        final PackageManager pm = context.getPackageManager();
         final ApplicationInfo ai;
 
         try {
@@ -221,14 +218,14 @@ public final class StyleManager extends BroadcastReceiver {
 
                 String mimetype;
                 if (TAG_ICON.equals(parser.getName())) {
-                    a = mContext.obtainStyledAttributes(attrs, android.R.styleable.Icon);
+                    a = context.obtainStyledAttributes(attrs, android.R.styleable.Icon);
                     mimetype = a.getString(com.android.internal.R.styleable.Icon_mimeType);
                     if (mimetype != null) {
                         styleSet.addIcon(mimetype,
                                 a.getResourceId(com.android.internal.R.styleable.Icon_icon, -1));
                     }
                 } else if (TAG_ICON_DEFAULT.equals(parser.getName())) {
-                    a = mContext.obtainStyledAttributes(attrs, android.R.styleable.IconDefault);
+                    a = context.obtainStyledAttributes(attrs, android.R.styleable.IconDefault);
                     styleSet.addIcon(DEFAULT_MIMETYPE,
                             a.getResourceId(
                                     com.android.internal.R.styleable.IconDefault_icon, -1));
