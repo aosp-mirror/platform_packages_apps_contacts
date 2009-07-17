@@ -63,7 +63,6 @@ public final class TypePrecedence {
     private static final int[] TYPE_PRECEDENCE_ORG = {
             Organization.TYPE_CUSTOM,
             Organization.TYPE_WORK,
-            Organization.TYPE_HOME,
             Organization.TYPE_OTHER};
 
     /**

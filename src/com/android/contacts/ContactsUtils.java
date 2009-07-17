@@ -100,7 +100,7 @@ public class ContactsUtils {
             customType = Postal.TYPE_CUSTOM;
             arrayResId = com.android.internal.R.array.postalAddressTypes;
         } else if (Organization.CONTENT_ITEM_TYPE.equals(mimetype)) {
-            defaultType = Organization.TYPE_HOME;
+            defaultType = Organization.TYPE_WORK;
             customType = Organization.TYPE_CUSTOM;
             arrayResId = com.android.internal.R.array.organizationTypes;
         } else {
