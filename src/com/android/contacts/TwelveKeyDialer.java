@@ -75,12 +75,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         AdapterView.OnItemClickListener, TextWatcher {
 
     private static final String TAG = "TwelveKeyDialer";
-    
+
     private static final int STOP_TONE = 1;
 
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
-    
+
     /** The DTMF tone volume relative to other sounds in the stream */
     private static final int TONE_RELATIVE_VOLUME = 50;
 
@@ -111,6 +111,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private Vibrator mVibrator;
     private boolean mVibrateOn;
     private long mVibrateDuration;
+
 
     /** Identifier for the "Add Call" intent extra. */
     static final String ADD_CALL_MODE_KEY = "add_call_mode";
@@ -146,7 +147,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     public void onTextChanged(CharSequence input, int start, int before, int changeCount) {
         // Do nothing
-        // DTMF Tones do not need to be played here any longer - 
+        // DTMF Tones do not need to be played here any longer -
         // the DTMF dialer handles that functionality now.
     }
 
@@ -220,7 +221,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         synchronized (mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_VOICE_CALL, 
+                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_DTMF,
                             TONE_RELATIVE_VOLUME);
                 } catch (RuntimeException e) {
                     Log.w(TAG, "Exception caught while creating local tone generator: " + e);
@@ -253,13 +254,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     protected void onRestoreInstanceState(Bundle icicle) {
         // Do nothing, state is restored in onCreate() if needed
     }
-    
+
     protected void maybeAddNumberFormatting() {
         mDigits.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
-    
+
     /**
-     * Overridden by subclasses to control the resource used by the content view. 
+     * Overridden by subclasses to control the resource used by the content view.
      */
     protected int getContentViewResource() {
         return R.layout.twelve_key_dialer;
@@ -353,7 +354,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         setIntent(newIntent);
         resolveIntent();
     }
-    
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -364,7 +365,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // will always happen after onRestoreSavedInstanceState().
         mDigits.addTextChangedListener(this);
     }
-    
+
     private void setupKeypad() {
         // Setup the listeners for the buttons
         View view = findViewById(R.id.one);
@@ -396,12 +397,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
 
-        // if the mToneGenerator creation fails, just continue without it.  It is 
+        // if the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_VOICE_CALL, 
+                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_DTMF,
                             TONE_RELATIVE_VOLUME);
                 } catch (RuntimeException e) {
                     Log.w(TAG, "Exception caught while creating local tone generator: " + e);
@@ -409,7 +410,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 }
             }
         }
-        
+
         Activity parent = getParent();
         // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
         // digits in the dialer field.
@@ -456,7 +457,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // have a window token yet in onCreate / onNewIntent
             InputMethodManager inputMethodManager = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(mDigits.getWindowToken(), 0);            
+            inputMethodManager.hideSoftInputFromWindow(mDigits.getWindowToken(), 0);
         }
     }
 
@@ -563,7 +564,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return true;
             }
             case KeyEvent.KEYCODE_1: {
-                long timeDiff = SystemClock.uptimeMillis() - event.getDownTime(); 
+                long timeDiff = SystemClock.uptimeMillis() - event.getDownTime();
                 if (timeDiff >= ViewConfiguration.getLongPressTimeout()) {
                     // Long press detected, call voice mail
                     callVoicemail();
@@ -592,7 +593,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         }
         return super.onKeyUp(keyCode, event);
     }
-    
+
     private void keyPressed(int keyCode) {
         vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
@@ -781,10 +782,10 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 Log.w(TAG, "playTone: mToneGenerator == null, tone: "+tone);
                 return;
             }
-            
+
             // Remove pending STOP_TONE messages
             mToneStopper.removeMessages(STOP_TONE);
-    
+
             // Start the new tone (will stop any playing tone)
             mToneGenerator.startTone(tone);
             mToneStopper.sendEmptyMessageDelayed(STOP_TONE, TONE_LENGTH_MS);
