@@ -711,5 +711,5 @@
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
     
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
-    <string name="search_settings_description">Names in your contact list</string>
+    <string name="search_settings_description">Names of your contacts</string>
 </resources>
