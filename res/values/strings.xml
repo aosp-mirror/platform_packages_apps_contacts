@@ -654,7 +654,10 @@
     <string name="fail_reason_io_error">I/O Error</string>
 
     <!-- The failed reason: "Failed to parse VCard data" -->
-    <string name="fail_reason_vcard_parse_error">Failed to parse VCard</string>
+    <string name="fail_reason_vcard_parse_error">Failed to parse VCard with some unexpected reason</string>
+    
+    <!-- The failed reason: "The VCard is not supported right now, but may be supported in the future" -->
+    <string name="fail_reason_vcard_not_supported_error">Failed to parse VCard though it seems in valid format, since the current implementation does not support it</string>
 
     <!-- The failed reason: "There is no VCard file" -->
     <string name="fail_reason_no_vcard_file">No VCard file found on SD Card</string>

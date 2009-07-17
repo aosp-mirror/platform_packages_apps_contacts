@@ -27,17 +27,19 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.syncml.pim.VBuilder;
-import android.syncml.pim.VBuilderCollection;
-import android.syncml.pim.VParser;
-import android.syncml.pim.vcard.VCardDataBuilder;
-import android.syncml.pim.vcard.VCardEntryCounter;
-import android.syncml.pim.vcard.VCardException;
-import android.syncml.pim.vcard.VCardNestedException;
-import android.syncml.pim.vcard.VCardParser_V21;
-import android.syncml.pim.vcard.VCardParser_V30;
-import android.syncml.pim.vcard.VCardSourceDetector;
-import android.syncml.pim.vcard.VCardVersionException;
+import android.pim.vcard.EntryCommitter;
+import android.pim.vcard.VCardBuilder;
+import android.pim.vcard.VCardBuilderCollection;
+import android.pim.vcard.VCardConfig;
+import android.pim.vcard.VCardDataBuilder;
+import android.pim.vcard.VCardEntryCounter;
+import android.pim.vcard.VCardParser_V21;
+import android.pim.vcard.VCardParser_V30;
+import android.pim.vcard.VCardSourceDetector;
+import android.pim.vcard.exception.VCardException;
+import android.pim.vcard.exception.VCardNestedException;
+import android.pim.vcard.exception.VCardNotSupportedException;
+import android.pim.vcard.exception.VCardVersionException;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
@@ -182,18 +184,19 @@ public class ImportVCardActivity extends Activity {
                     }
                     VCardEntryCounter counter = new VCardEntryCounter();
                     VCardSourceDetector detector = new VCardSourceDetector();
-                    VBuilderCollection builderCollection = new VBuilderCollection(
+                    VCardBuilderCollection builderCollection = new VCardBuilderCollection(
                             Arrays.asList(counter, detector));
+
                     boolean result;
                     try {
-                        result = readOneVCard(mCanonicalPath,
-                                VParser.DEFAULT_CHARSET, builderCollection, null, true);
+                        result = readOneVCardFile(mCanonicalPath,
+                                VCardConfig.DEFAULT_CHARSET, builderCollection, null, true);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
-                            result = readOneVCard(mCanonicalPath,
-                                    VParser.DEFAULT_CHARSET, counter, detector, false);
+                            result = readOneVCardFile(mCanonicalPath,
+                                    VCardConfig.DEFAULT_CHARSET, counter, detector, false);
                         } catch (VCardNestedException e2) {
                             result = false;
                             Log.e(LOG_TAG, "Must not reach here. " + e2);
@@ -227,8 +230,8 @@ public class ImportVCardActivity extends Activity {
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
-                            if (!readOneVCard(canonicalPath, VParser.DEFAULT_CHARSET, detector,
-                                    null, true)) {
+                            if (!readOneVCardFile(canonicalPath, VCardConfig.DEFAULT_CHARSET,
+                                    detector, null, true)) {
                                 continue;
                             }
                         } catch (VCardNestedException e) {
@@ -248,45 +251,40 @@ public class ImportVCardActivity extends Activity {
 
         private void doActuallyReadOneVCard(String charset, boolean doIncrementProgress,
                 VCardSourceDetector detector) {
-            VCardDataBuilder builder;
             final Context context = ImportVCardActivity.this;
+            VCardDataBuilder builder;
+            int nameOrderType =
+                (mLastNameComesBeforeFirstName ? 
+                        VCardConfig.NAME_ORDER_TYPE_JAPANESE :
+                            VCardConfig.NAME_ORDER_TYPE_ENGLISH);
             if (charset != null) {
-                builder = new VCardDataBuilder(mResolver,
-                        mProgressDialog,
-                        context.getString(R.string.reading_vcard_message),
-                        mHandler,
-                        charset,
+                builder = new VCardDataBuilder(charset,
                         charset,
                         false,
-                        mLastNameComesBeforeFirstName);
+                        nameOrderType);
             } else {
-                builder = new VCardDataBuilder(mResolver,
-                        mProgressDialog,
-                        context.getString(R.string.reading_vcard_message),
-                        mHandler,
-                        null,
+                charset = VCardConfig.DEFAULT_CHARSET;
+                builder = new VCardDataBuilder(null,
                         null,
                         false,
-                        mLastNameComesBeforeFirstName);
-                charset = VParser.DEFAULT_CHARSET;
+                        nameOrderType);
             }
-            if (doIncrementProgress) {
-                builder.setOnProgressRunnable(new Runnable() {
-                    public void run() {
-                        mProgressDialog.incrementProgressBy(1);
-                    }
-                });
-            }
+            builder.addEntryHandler(new EntryCommitter(mResolver));
+            builder.addEntryHandler(new ProgressShower(mProgressDialog,
+                    context.getString(R.string.reading_vcard_message),
+                    mHandler,
+                    doIncrementProgress));
+
             try {
-                readOneVCard(mCanonicalPath, charset, builder, detector, false);
+                readOneVCardFile(mCanonicalPath, charset, builder, detector, false);
             } catch (VCardNestedException e) {
-                Log.e(LOG_TAG, "Must not reach here.");
+                Log.e(LOG_TAG, "Never reach here.");
             }
-            builder.showDebugInfo();
         }
 
-        private boolean readOneVCard(String canonicalPath, String charset, VBuilder builder,
-                VCardSourceDetector detector, boolean throwNestedException)
+        private boolean readOneVCardFile(String canonicalPath, String charset,
+                VCardBuilder builder, VCardSourceDetector detector,
+                boolean throwNestedException)
                 throws VCardNestedException {
             FileInputStream is;
             try {
@@ -316,9 +314,8 @@ public class ImportVCardActivity extends Activity {
                         }
                     }
                 }
-                mVCardParser.showDebugInfo();
             } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException was emitted: " + e);
+                Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
 
                 mProgressDialog.dismiss();
 
@@ -326,19 +323,15 @@ public class ImportVCardActivity extends Activity {
                         getString(R.string.fail_reason_io_error) +
                         " (" + e.getMessage() + ")"));
                 return false;
-            } catch (VCardNestedException e) {
-                if (throwNestedException) {
-                    throw e;
-                } else {
-                    Log.e(LOG_TAG, "VCardNestedException was emitted: " + e);
-                    mHandler.post(new ErrorDisplayer(
-                            getString(R.string.fail_reason_vcard_parse_error) +
-                            " (" + e.getMessage() + ")"));
-                    return false;
+            } catch (VCardNotSupportedException e) {
+                if ((e instanceof VCardNestedException) && throwNestedException) {
+                    throw (VCardNestedException)e;
                 }
+                mHandler.post(new ErrorDisplayer(
+                        getString(R.string.fail_reason_vcard_not_supported_error) +
+                        " (" + e.getMessage() + ")"));
+                return false;
             } catch (VCardException e) {
-                Log.e(LOG_TAG, "VCardException was emitted: " + e);
-
                 mHandler.post(new ErrorDisplayer(
                         getString(R.string.fail_reason_vcard_parse_error) +
                         " (" + e.getMessage() + ")"));
