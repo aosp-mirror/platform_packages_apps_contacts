@@ -710,6 +710,9 @@
     <!-- The failed reason: "Too many vcard files on the SD Card" -->
     <string name="fail_reason_too_many_vcard">Too many VCard data on the SD Card</string>
 
+    <!-- The failed reason: "Too long filename". This error usually does not happen. -->
+    <string name="fail_reason_too_long_filename">Too long filename is required (\"<xliff:g id="filename">%s</xliff:g>\")</string>
+
     <!-- The failed reason: "Cannot open or create the destination directory" -->
     <string name="fail_reason_cannot_open_destination_dir">Cannot open or create the destination directory\"<xliff:g id="dir_name">%s</xliff:g>\"</string>
 

@@ -799,11 +799,10 @@ public final class ContactsListActivity extends ListActivity
         menu.add(0, MENU_IMPORT_CONTACTS, 0, R.string.importFromSim)
                 .setIcon(R.drawable.ic_menu_import_contact);
 
-        /* Temporarily commented out
         if (getResources().getBoolean(R.bool.config_allow_export_to_sdcard)) {
             menu.add(0, MENU_EXPORT_CONTACTS, 0, R.string.export_contact_list)
                     .setIcon(R.drawable.ic_menu_export_contact);
-        }*/
+        }
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -886,8 +885,8 @@ public final class ContactsListActivity extends ListActivity
                 }
                 return true;
 
-            /*case MENU_EXPORT_CONTACTS:
-                handleExportContacts();*/
+            case MENU_EXPORT_CONTACTS:
+                handleExportContacts();
         }
         return false;
     }
@@ -904,11 +903,10 @@ public final class ContactsListActivity extends ListActivity
         startActivity(intent);
     }
 
-    /*
     private void handleExportContacts() {
         VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
         exporter.startExportVCardToSdCard();
-    }*/
+    }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
