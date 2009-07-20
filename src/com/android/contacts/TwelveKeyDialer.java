@@ -708,7 +708,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // onResume(), since it's possible to toggle silent mode without
         // leaving the current activity (via the ENDCALL-longpress menu.)
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+        int ringerMode = audioManager.getRingerMode();
+        if ((ringerMode == AudioManager.RINGER_MODE_SILENT)
+            || (ringerMode == AudioManager.RINGER_MODE_VIBRATE)) {
             return;
         }
 
