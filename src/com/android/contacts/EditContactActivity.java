@@ -1132,7 +1132,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     mResolver.update(entry.uri, values, null, null);
                 }
             } else if (kind == EditEntry.KIND_GROUP) {
-                if (entry.id != 0) {
+                if (entry.id != 0 && mGroups != null) {
                     for (int g = 0; g < mGroups.length; g++) {
                         long groupId = getGroupId(mResolver, mGroups[g].toString());
                         if (mInTheGroup[g]) {
@@ -1259,7 +1259,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         int entryCount = ContactEntryAdapter.countEntries(mSections, false);
         for (int i = 0; i < entryCount; i++) {
             EditEntry entry = ContactEntryAdapter.getEntry(mSections, i, false);
-            if (entry.kind == EditEntry.KIND_GROUP) {
+            if (entry.kind == EditEntry.KIND_GROUP && mGroups != null) {
                 long contactId = ContentUris.parseId(contactUri);
                 for (int g = 0; g < mGroups.length; g++) {
                     if (mInTheGroup[g]) {
