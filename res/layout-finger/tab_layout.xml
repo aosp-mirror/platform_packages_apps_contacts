@@ -14,13 +14,16 @@
      limitations under the License.
 -->
 
-<!-- In the default locale, the "Name" field is a single TextView -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/name"
+<com.android.contacts.NoDragHorizontalScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLargeInverse"
-    android:textColor="@android:color/secondary_text_light"
-    android:maxLines="2"
-    android:ellipsize="end"
+    android:layout_alignParentLeft="true"
+    android:scrollbars="none"
+    android:fadingEdgeLength="0dip">
+    
+    <LinearLayout
+        android:id="@android:id/tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
     />
+</com.android.contacts.NoDragHorizontalScrollView>

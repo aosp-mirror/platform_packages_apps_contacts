@@ -80,7 +80,13 @@ public final class StyleManager extends BroadcastReceiver {
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-        context.registerReceiver(this, filter);
+
+        // We use getApplicationContext() so that the broadcast reciever can stay registered for
+        // the length of the application lifetime (instead of the calling activity's lifetime).
+        // This is so that we can notified of package changes, and purge the cache accordingly,
+        // but not be woken up if the application process isn't already running, since we will
+        // have no cache to clear at that point.
+        context.getApplicationContext().registerReceiver(this, filter);
     }
 
     @Override

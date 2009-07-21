@@ -14,13 +14,18 @@
      limitations under the License.
 -->
 
-<!-- In the default locale, the "Name" field is a single TextView -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/name"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLargeInverse"
-    android:textColor="@android:color/secondary_text_light"
-    android:maxLines="2"
-    android:ellipsize="end"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dip"
+    android:layout_height="40dip"
+    android:background="@+drawable/tab_indicator_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/all_tab_label"
+        android:textColor="@color/tab_indicator_text"
+        android:textSize="20dip"
     />
+
+</RelativeLayout>

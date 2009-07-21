@@ -71,6 +71,7 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,6 +79,7 @@ import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -88,9 +90,9 @@ import java.util.ArrayList;
 /**
  * Displays the details of a specific contact.
  */
-public class ViewContactActivity extends ListActivity
-        implements View.OnCreateContextMenuListener, View.OnClickListener,
-        DialogInterface.OnClickListener {
+public class ViewContactActivity extends BaseContactCardActivity
+        implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener,
+        AdapterView.OnItemClickListener {
     private static final String TAG = "ViewContact";
     private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
@@ -113,10 +115,13 @@ public class ViewContactActivity extends ListActivity
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
 
+    private static final long ALL_CONTACTS_ID = -1;
+    private long mRawContactId = ALL_CONTACTS_ID;
+
     /**
      * A list of distinct contact IDs included in the current contact.
      */
-    private ArrayList<Long> mContactIds = new ArrayList<Long>();
+    private ArrayList<Long> mRawContactIds = new ArrayList<Long>();
 
     /* package */ ArrayList<ViewEntry> mPhoneEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mSmsEntries = new ArrayList<ViewEntry>();
@@ -158,55 +163,21 @@ public class ViewContactActivity extends ListActivity
         finish();
     }
 
-    public void onClick(View view) {
-        if (!mObserverRegistered) {
-            return;
-        }
-        switch (view.getId()) {
-            case R.id.star: {
-                mCursor.moveToFirst();
-                int oldStarredState = mCursor.getInt(CONTACT_STARRED_COLUMN);
-                ContentValues values = new ContentValues(1);
-                values.put(Contacts.STARRED, oldStarredState == 1 ? 0 : 1);
-                getContentResolver().update(mUri, values, null, null);
-                break;
-            }
-        }
-    }
-
-    private TextView mNameView;
-    private TextView mPhoneticNameView;  // may be null in some locales
-    private ImageView mPhotoView;
-    private int mNoPhotoResource;
-    private CheckBox mStarView;
+    private FrameLayout mTabContentLayout;
+    private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        setContentView(R.layout.view_contact);
-        getListView().setOnCreateContextMenuListener(this);
+        mListView = new ListView(this);
+        mListView.setOnCreateContextMenuListener(this);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        mListView.setOnItemClickListener(this);
 
-        mNameView = (TextView) findViewById(R.id.name);
-        mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
-        mPhotoView = (ImageView) findViewById(R.id.photo);
-        mStarView = (CheckBox) findViewById(R.id.star);
-        mStarView.setOnClickListener(this);
-
-        // Set the photo with a random "no contact" image
-        long now = SystemClock.elapsedRealtime();
-        int num = (int) now & 0xf;
-        if (num < 9) {
-            // Leaning in from right, common
-            mNoPhotoResource = R.drawable.ic_contact_picture;
-        } else if (num < 14) {
-            // Leaning in from left uncommon
-            mNoPhotoResource = R.drawable.ic_contact_picture_2;
-        } else {
-            // Coming in from the top, rare
-            mNoPhotoResource = R.drawable.ic_contact_picture_3;
-        }
+        mTabContentLayout = (FrameLayout) findViewById(android.R.id.tabcontent);
+        mTabContentLayout.addView(mListView);
 
         mUri = getIntent().getData();
         mAggDataUri = Uri.withAppendedPath(mUri, "data");
@@ -279,20 +250,28 @@ public class ViewContactActivity extends ListActivity
         return null;
     }
 
+    @Override
+    protected void bindTabs(Cursor tabsCursor) {
+        if (tabsCursor.getCount() > 1) {
+            addAllTab();
+        }
+        super.bindTabs(tabsCursor);
+    }
+
+    private void addAllTab() {
+        View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator, mTabWidget, false);
+        addTab(ALL_CONTACTS_ID, allTabIndicator);
+    }
+
+    public void onTabSelectionChanged(int tabIndex, boolean clicked) {
+        long rawContactId = getTabRawContactId(tabIndex);
+        mRawContactId = rawContactId;
+        dataChanged();
+    }
+
     private void dataChanged() {
         mCursor.requery();
         if (mCursor.moveToFirst()) {
-            // Set the star
-            mStarView.setChecked(mCursor.getInt(CONTACT_STARRED_COLUMN) == 1 ? true : false);
-
-            //Set the photo
-            int photoId = mCursor.getInt(CONTACT_PHOTO_ID);
-            Bitmap photoBitmap = ContactsUtils.loadContactPhoto(
-                    this, photoId, null);
-            if (photoBitmap == null) {
-                photoBitmap = ContactsUtils.loadPlaceholderPhoto(mNoPhotoResource, this, null);
-            }
-            mPhotoView.setImageBitmap(photoBitmap);
 
             // Build up the contact entries
             buildEntries(mCursor);
@@ -305,7 +284,7 @@ public class ViewContactActivity extends ListActivity
 
             if (mAdapter == null) {
                 mAdapter = new ViewAdapter(this, mSections);
-                setListAdapter(mAdapter);
+                mListView.setAdapter(mAdapter);
             } else {
                 mAdapter.setSections(mSections, SHOW_SEPARATORS);
             }
@@ -347,7 +326,7 @@ public class ViewContactActivity extends ListActivity
             menu.removeItem(MENU_ITEM_SHOW_BARCODE);
         }
 
-        boolean isAggregate = mContactIds.size() > 1;
+        boolean isAggregate = mRawContactIds.size() > 1;
         menu.findItem(MENU_ITEM_SPLIT_AGGREGATE).setEnabled(isAggregate);
         return true;
     }
@@ -626,7 +605,7 @@ public class ViewContactActivity extends ListActivity
                     // Fall through and try to call the contact
                 }
 
-                int index = getListView().getSelectedItemPosition();
+                int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
                     ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
                     if (entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
@@ -649,8 +628,7 @@ public class ViewContactActivity extends ListActivity
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    public void onItemClick(AdapterView parent, View v, int position, long id) {
         ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
         if (entry != null) {
             Intent intent = entry.intent;
@@ -697,11 +675,10 @@ public class ViewContactActivity extends ListActivity
             mSections.get(i).clear();
         }
 
-        mContactIds.clear();
+        mRawContactIds.clear();
 
         // Build up method entries
         if (mUri != null) {
-            Bitmap photoBitmap = null;
             aggCursor.moveToPosition(-1);
             while (aggCursor.moveToNext()) {
                 final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
@@ -713,9 +690,15 @@ public class ViewContactActivity extends ListActivity
                 entry.id = id;
                 entry.uri = uri;
                 entry.mimetype = mimetype;
+                // TODO: entry.contactId should be renamed to entry.rawContactId
                 entry.contactId = aggCursor.getLong(DATA_CONTACT_ID_COLUMN);
-                if (!mContactIds.contains(entry.contactId)) {
-                    mContactIds.add(entry.contactId);
+                if (!mRawContactIds.contains(entry.contactId)) {
+                    mRawContactIds.add(entry.contactId);
+                }
+
+                // This performs the tab filtering
+                if (mRawContactId != entry.contactId && mRawContactId != ALL_CONTACTS_ID) {
+                    continue;
                 }
 
                 if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
@@ -828,20 +811,6 @@ public class ViewContactActivity extends ListActivity
                         entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
                     }
-                // Set the name
-                } else if (mimetype.equals(CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)) {
-                    String name = mCursor.getString(DATA_9_COLUMN);
-                    if (TextUtils.isEmpty(name)) {
-                        mNameView.setText(getText(android.R.string.unknownName));
-                    } else {
-                        mNameView.setText(name);
-                    }
-                    /*
-                    if (mPhoneticNameView != null) {
-                        String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
-                        mPhoneticNameView.setText(phoneticName);
-                    }
-                    */
                 // Build organization entries
                 } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
                     final String company = aggCursor.getString(DATA_3_COLUMN);

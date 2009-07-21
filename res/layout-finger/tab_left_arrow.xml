@@ -14,26 +14,27 @@
      limitations under the License.
 -->
 
-<!-- In Japanese-language locales, the "Name" field contains two separate
-     TextViews: the name itself, and also the phonetic ("furigana") field. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="0dip"
-    android:layout_weight="1"
-    android:layout_height="wrap_content">
-
-    <TextView android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    	android:textAppearance="?android:attr/textAppearanceLargeInverse"
-    	android:textColor="@android:color/secondary_text_light"
+    android:layout_width="44dip"
+    android:layout_height="40dip"
+    android:layout_alignParentLeft="true"
+    android:orientation="horizontal">
+    
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/tab_indicator_bg"
+        android:id="@+id/arrow"
+        android:scaleType="centerInside"
+        android:src="@drawable/tab_left_arrow"
         />
-
-    <TextView android:id="@+id/phonetic_name"
+        
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    	android:textAppearance="?android:attr/textAppearanceSmallInverse"
-    	android:textColor="@android:color/secondary_text_light"
+        android:layout_height="fill_parent"
+        android:id="@+id/divider"
+        android:src="@drawable/tab_divider"
         />
 
 </LinearLayout>

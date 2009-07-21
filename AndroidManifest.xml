@@ -271,13 +271,13 @@
                 <data android:mimeType="vnd.android.cursor.item/calls" />
             </intent-filter>
         </activity>
-
+            
         <!-- Views the details of a single contact -->
         <activity android:name="ViewContactActivity"
             android:label="@string/viewContactTitle"
             android:theme="@style/TallTitleBarTheme"
         >   
-            <intent-filter android:label="@string/viewContactDesription">
+        	<intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/contact" />

@@ -163,7 +163,7 @@ public class ContactsUtils {
             return null;
         }
 
-        byte[] data = cursor.getBlob(bitmapColumnIndex);;
+        byte[] data = cursor.getBlob(bitmapColumnIndex);
         return BitmapFactory.decodeByteArray(data, 0, data.length, options);
     }
 
@@ -184,7 +184,7 @@ public class ContactsUtils {
                 placeholderImageResource, options);
     }
 
-    public static Bitmap loadContactPhoto(Context context, int photoId,
+    public static Bitmap loadContactPhoto(Context context, long photoId,
             BitmapFactory.Options options) {
         Cursor photoCursor = null;
         Bitmap photoBm = null;
