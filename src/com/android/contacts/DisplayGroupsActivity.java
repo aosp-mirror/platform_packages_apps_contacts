@@ -366,12 +366,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             mCursor.moveToPosition(-1);
             while (mCursor.moveToNext()) {
                 final int position = mCursor.getPosition();
-                final long packageId = mCursor.getLong(Projections.COL_PACKAGE_ID);
+                final long packageId = mCursor.getLong(Projections.COL_ID);
                 totalContacts += mCursor.getInt(Projections.COL_SUMMARY_COUNT);
                 if (group == null || packageId != group.packageId) {
                     group = new Group();
                     group.packageId = packageId;
-                    group.packageName = mCursor.getString(Projections.COL_PACKAGE);
+                    group.packageName = mCursor.getString(Projections.COL_RES_PACKAGE);
                     group.firstPos = position;
                     group.label = group.packageName;
 
@@ -517,9 +517,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
             // Read title, but override with string resource when present
             CharSequence title = mCursor.getString(Projections.COL_TITLE);
-            if (!mCursor.isNull(Projections.COL_TITLE_RESOURCE)) {
-                final String packageName = mCursor.getString(Projections.COL_PACKAGE);
-                final int titleRes = mCursor.getInt(Projections.COL_TITLE_RESOURCE);
+            if (!mCursor.isNull(Projections.COL_RES_TITLE)) {
+                final String packageName = mCursor.getString(Projections.COL_RES_PACKAGE);
+                final int titleRes = mCursor.getInt(Projections.COL_RES_TITLE);
                 try {
                     title = mExternalRes.getText(packageName, titleRes);
                 } catch (NameNotFoundException e) {
@@ -610,25 +610,24 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         public static final String[] PROJ_SUMMARY = new String[] {
             Groups._ID,
-            Groups.PACKAGE_ID,
-            Groups.PACKAGE,
             Groups.TITLE,
-            Groups.TITLE_RESOURCE,
+            Groups.RES_PACKAGE,
+            Groups.TITLE_RES,
             Groups.GROUP_VISIBLE,
             Groups.SUMMARY_COUNT,
             Groups.SUMMARY_WITH_PHONES,
         };
 
-        public static final String SORT_ORDER = Groups.PACKAGE + " ASC";
+        public static final String SORT_ORDER = Groups.ACCOUNT_TYPE + " ASC, "
+                + Groups.ACCOUNT_NAME + " ASC";
 
         public static final int COL_ID = 0;
-        public static final int COL_PACKAGE_ID = 1;
-        public static final int COL_PACKAGE = 2;
-        public static final int COL_TITLE = 3;
-        public static final int COL_TITLE_RESOURCE = 4;
-        public static final int COL_GROUP_VISIBLE = 5;
-        public static final int COL_SUMMARY_COUNT = 6;
-        public static final int COL_SUMMARY_WITH_PHONES = 7;
+        public static final int COL_TITLE = 1;
+        public static final int COL_RES_PACKAGE = 2;
+        public static final int COL_RES_TITLE = 3;
+        public static final int COL_GROUP_VISIBLE = 4;
+        public static final int COL_SUMMARY_COUNT = 5;
+        public static final int COL_SUMMARY_WITH_PHONES = 6;
 
     }
 

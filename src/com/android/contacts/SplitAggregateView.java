@@ -50,12 +50,12 @@ import java.util.List;
 public class SplitAggregateView extends ListView {
 
     private static final String[] AGGREGATE_DATA_PROJECTION = new String[] {
-            Data.MIMETYPE, Contacts.PACKAGE, Data.CONTACT_ID, Data.DATA1, Data.DATA2,
+            Data.MIMETYPE, Data.RES_PACKAGE, Data.CONTACT_ID, Data.DATA1, Data.DATA2,
             Data.IS_PRIMARY, StructuredName.DISPLAY_NAME
     };
 
     private static final int COL_MIMETYPE = 0;
-    private static final int COL_PACKAGE = 1;
+    private static final int COL_RES_PACKAGE = 1;
     private static final int COL_CONTACT_ID = 2;
     private static final int COL_DATA1 = 3;
     private static final int COL_DATA2 = 4;
@@ -104,7 +104,7 @@ public class SplitAggregateView extends ListView {
      */
     private static class ContactInfo implements Comparable<ContactInfo> {
         final long contactId;
-        String packageName;
+        String resPackage;
         String name;
         String phone;
         String email;
@@ -131,7 +131,7 @@ public class SplitAggregateView extends ListView {
         }
 
         public int compareTo(ContactInfo another) {
-            return packageName.compareTo(another.packageName);
+            return resPackage.compareTo(another.resPackage);
         }
     }
 
@@ -151,7 +151,7 @@ public class SplitAggregateView extends ListView {
                 if (info == null) {
                     info = new ContactInfo(contactId);
                     contactInfos.put(contactId, info);
-                    info.packageName = cursor.getString(COL_PACKAGE);
+                    info.resPackage = cursor.getString(COL_RES_PACKAGE);
                 }
 
                 String mimetype = cursor.getString(COL_MIMETYPE);
@@ -253,7 +253,7 @@ public class SplitAggregateView extends ListView {
             cache.name.setText(info.name);
             cache.additionalData.setText(info.getAdditionalData());
 
-            Bitmap sourceBitmap = getSourceIcon(info.packageName);
+            Bitmap sourceBitmap = getSourceIcon(info.resPackage);
             if (sourceBitmap != null) {
                 cache.sourceIcon.setImageBitmap(sourceBitmap);
             } else {

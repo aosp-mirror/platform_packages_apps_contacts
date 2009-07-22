@@ -38,7 +38,7 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         Aggregates.PHOTO_ID, //2
         Data._ID, //3
         Data.CONTACT_ID, //4
-        Contacts.PACKAGE, //5
+        Data.RES_PACKAGE, //5
         Data.MIMETYPE, //6
         Data.IS_PRIMARY, //7
         Data.IS_SUPER_PRIMARY, //8

@@ -20,7 +20,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Postal;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 
 /**
  * This class contains utility functions for determining the precedence of different types
@@ -49,10 +49,10 @@ public final class TypePrecedence {
             Email.TYPE_OTHER};
 
     private static final int[] TYPE_PRECEDENCE_POSTAL = {
-            Postal.TYPE_CUSTOM,
-            Postal.TYPE_HOME,
-            Postal.TYPE_WORK,
-            Postal.TYPE_OTHER};
+            StructuredPostal.TYPE_CUSTOM,
+            StructuredPostal.TYPE_HOME,
+            StructuredPostal.TYPE_WORK,
+            StructuredPostal.TYPE_OTHER};
 
     private static final int[] TYPE_PRECEDENCE_IM = {
             Im.TYPE_CUSTOM,
@@ -93,7 +93,7 @@ public final class TypePrecedence {
             return TYPE_PRECEDENCE_PHONES;
         } else if (mimetype.equals(Email.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_EMAIL;
-        } else if (mimetype.equals(Postal.CONTENT_ITEM_TYPE)) {
+        } else if (mimetype.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_POSTAL;
         } else if (mimetype.equals(Im.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_IM;

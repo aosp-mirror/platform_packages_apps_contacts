@@ -61,8 +61,8 @@ import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Postal;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Data;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
@@ -142,7 +142,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final int DEFAULT_EMAIL_TYPE = Email.TYPE_HOME;
 
     /** The default type for a postal address that is added via an intent */
-    private static final int DEFAULT_POSTAL_TYPE = Postal.TYPE_HOME;
+    private static final int DEFAULT_POSTAL_TYPE = StructuredPostal.TYPE_HOME;
 
     private int mState; // saved across instances
     private boolean mInsert; // saved across instances
@@ -861,7 +861,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             return resources.getStringArray(android.R.array.phoneTypes);
         } else if (mimetype.equals(Email.CONTENT_ITEM_TYPE)) {
             return resources.getStringArray(android.R.array.emailAddressTypes);
-        } else if (mimetype.equals(Postal.CONTENT_ITEM_TYPE)) {
+        } else if (mimetype.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
             return resources.getStringArray(android.R.array.postalAddressTypes);
         } else if (mimetype.equals(Im.CONTENT_ITEM_TYPE)) {
             return resources.getStringArray(android.R.array.imProtocols);
@@ -1277,7 +1277,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 mNoteEntries.add(entry);
             } else if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                     || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
-                    || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)
+                    || mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
                     || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
                 int type = aggCursor.getInt(DATA_1_COLUMN);
                 String data = aggCursor.getString(DATA_2_COLUMN);
@@ -1301,7 +1301,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     if (isSuperPrimary) {
                         mPrimaryEmailAdded = true;
                     }
-                } else if (mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
+                } else if (mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
                     entry = EditEntry.newPostalEntry(this, label, type, data, uri, id);
                     entry.isPrimary = isSuperPrimary;
                     mPostalEntries.add(entry);
@@ -1930,7 +1930,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             v.setText(ContactsUtils.getDisplayLabel(context, mimetype, type, label));
             if (mimetype.equals(Im.CONTENT_ITEM_TYPE) && type >= 0) {
                 v.setText(getLabelsForMimetype(activity, mimetype)[type]);
-            } else if (mimetype.equals(Postal.CONTENT_ITEM_TYPE)) {
+            } else if (mimetype.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
                 v.setMaxLines(3);
             }
             v.setOnClickListener(activity);
@@ -1991,12 +1991,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     values.put(CommonDataKinds.Im.PROTOCOL,
                             ContactsUtils.encodeCustomImProtocol(label.toString()));
                 }
-            } else if (mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
-                if (type != Postal.TYPE_CUSTOM) {
+            } else if (mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
+                if (type != StructuredPostal.TYPE_CUSTOM) {
                     labelString = null;
                 }
-                values.put(Postal.LABEL, labelString);
-                values.put(Postal.TYPE, type);
+                values.put(StructuredPostal.LABEL, labelString);
+                values.put(StructuredPostal.TYPE, type);
             } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
                 if (type != Organization.TYPE_CUSTOM) {
                     labelString = null;
@@ -2181,8 +2181,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 String label, int type, String data, Uri uri, long id) {
             EditEntry entry = new EditEntry(activity, label, type, data, uri, id);
             entry.hint = activity.getString(R.string.ghostData_postal);
-            entry.column = Postal.DATA;
-            entry.mimetype = Postal.CONTENT_ITEM_TYPE;
+            entry.column = StructuredPostal.DATA;
+            entry.mimetype = StructuredPostal.CONTENT_ITEM_TYPE;
             entry.contentType = EditorInfo.TYPE_CLASS_TEXT
                     | EditorInfo.TYPE_TEXT_VARIATION_POSTAL_ADDRESS
                     | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS

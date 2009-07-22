@@ -36,7 +36,7 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Postal;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.Im.ProviderNames;
 import android.database.Cursor;
 import android.text.TextUtils;
@@ -64,9 +64,9 @@ public class ContactsUtils {
         } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
             colType = cursor.getColumnIndex(Email.TYPE);
             colLabel = cursor.getColumnIndex(Email.LABEL);
-        } else if (Postal.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            colType = cursor.getColumnIndex(Postal.TYPE);
-            colLabel = cursor.getColumnIndex(Postal.LABEL);
+        } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            colType = cursor.getColumnIndex(StructuredPostal.TYPE);
+            colLabel = cursor.getColumnIndex(StructuredPostal.LABEL);
         } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
             colType = cursor.getColumnIndex(Organization.TYPE);
             colLabel = cursor.getColumnIndex(Organization.LABEL);
@@ -95,9 +95,9 @@ public class ContactsUtils {
             defaultType = Email.TYPE_HOME;
             customType = Email.TYPE_CUSTOM;
             arrayResId = com.android.internal.R.array.emailAddressTypes;
-        } else if (Postal.CONTENT_ITEM_TYPE.equals(mimetype)) {
-            defaultType = Postal.TYPE_HOME;
-            customType = Postal.TYPE_CUSTOM;
+        } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimetype)) {
+            defaultType = StructuredPostal.TYPE_HOME;
+            customType = StructuredPostal.TYPE_CUSTOM;
             arrayResId = com.android.internal.R.array.postalAddressTypes;
         } else if (Organization.CONTENT_ITEM_TYPE.equals(mimetype)) {
             defaultType = Organization.TYPE_WORK;

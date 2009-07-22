@@ -576,7 +576,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      */
     private void handleData(Cursor cursor) {
         final int colId = cursor.getColumnIndex(Data._ID);
-        final int colPackage = cursor.getColumnIndex(Contacts.PACKAGE);
+        final int colPackage = cursor.getColumnIndex(Data.RES_PACKAGE);
         final int colMimeType = cursor.getColumnIndex(Data.MIMETYPE);
         final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
 

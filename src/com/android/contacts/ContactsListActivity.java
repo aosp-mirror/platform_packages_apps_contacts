@@ -47,7 +47,7 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Postal;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.UI;
@@ -231,9 +231,9 @@ public final class ContactsListActivity extends ListActivity implements
 
     static final String[] POSTALS_PROJECTION = new String[] {
         Data._ID, //0
-        CommonDataKinds.Postal.TYPE, //1
-        CommonDataKinds.Postal.LABEL, //2
-        CommonDataKinds.Postal.DATA, //3
+        CommonDataKinds.StructuredPostal.TYPE, //1
+        CommonDataKinds.StructuredPostal.LABEL, //2
+        CommonDataKinds.StructuredPostal.DATA, //3
         Aggregates.DISPLAY_NAME, // 4
     };
     static final int POSTAL_ID_COLUMN_INDEX = 0;
@@ -361,7 +361,7 @@ public final class ContactsListActivity extends ListActivity implements
                 mMode = MODE_PICK_AGGREGATE;
             } else if (Phone.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
-            } else if (Postal.CONTENT_TYPE.equals(type)) {
+            } else if (StructuredPostal.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
@@ -373,7 +373,7 @@ public final class ContactsListActivity extends ListActivity implements
                 mMode = MODE_PICK_OR_CREATE_AGGREGATE;
             } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
-            } else if (Postal.CONTENT_ITEM_TYPE.equals(type)) {
+            } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
             }
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
@@ -1098,7 +1098,7 @@ public final class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_PICK_POSTAL:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, Postal.CONTENT_URI,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, StructuredPostal.CONTENT_URI,
                         POSTALS_PROJECTION, null, null, getSortOrder(POSTALS_PROJECTION));
                 break;
 
@@ -1325,7 +1325,7 @@ public final class ContactsListActivity extends ListActivity implements
             switch (mMode) {
                 case MODE_PICK_POSTAL:
                     mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-                            CommonDataKinds.Postal.CONTENT_ITEM_TYPE);
+                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
                     mDisplaySectionHeaders = false;
                     break;
                 case MODE_PICK_PHONE:
@@ -1560,7 +1560,7 @@ public final class ContactsListActivity extends ListActivity implements
                     dataColumnIndex = POSTAL_ADDRESS_COLUMN_INDEX;
                     typeColumnIndex = POSTAL_TYPE_COLUMN_INDEX;
                     labelColumnIndex = POSTAL_LABEL_COLUMN_INDEX;
-                    defaultType = Postal.TYPE_HOME;
+                    defaultType = StructuredPostal.TYPE_HOME;
                     break;
                 }
                 default: {

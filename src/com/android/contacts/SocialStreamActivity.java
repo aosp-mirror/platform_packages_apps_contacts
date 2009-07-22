@@ -76,7 +76,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
 
     private static final String[] PROJ_ACTIVITIES = new String[] {
         Activities._ID,
-        Activities.PACKAGE,
+        Activities.RES_PACKAGE,
         Activities.MIMETYPE,
         Activities.AUTHOR_CONTACT_ID,
         Contacts.AGGREGATE_ID,

@@ -390,7 +390,7 @@ public class ViewContactActivity extends ListActivity
             if (entry.primaryIcon == -1) {
                 menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
             }
-        } else if (entry.mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
+        } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
         }
         // TODO(emillar): add back with group support.
@@ -722,7 +722,7 @@ public class ViewContactActivity extends ListActivity
 
                 if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
-                        || mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)
+                        || mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
                         || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
                     final int type = aggCursor.getInt(DATA_1_COLUMN);
                     final String label = aggCursor.getString(DATA_3_COLUMN);
@@ -783,7 +783,7 @@ public class ViewContactActivity extends ListActivity
                         }
                         mEmailEntries.add(entry);
                     // Build postal entries
-                    } else if (mimetype.equals(CommonDataKinds.Postal.CONTENT_ITEM_TYPE)) {
+                    } else if (mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
                         entry.label = buildActionString(R.string.actionMap,
                                 ContactsUtils.getDisplayLabel(this, mimetype, type, label), true);
                         entry.data = data;
