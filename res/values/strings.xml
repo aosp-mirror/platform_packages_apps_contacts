@@ -658,4 +658,44 @@
     -->
     <string name="description_image_button_pound">pound</string>
 
+<!-- TODO: add comments to each of these strings to prepare for translation -->
+<!-- TODO: split out separate strings for "Home" versus "Call home", see http://b/2029022 -->
+<string name="nameLabelsGroup">Name</string>
+<string name="nicknameLabelsGroup">Nickname</string>
+<string name="organizationLabelsGroup">Organization</string>
+<string name="websiteLabelsGroup">Website</string>
+
+<string name="type_home">Home</string>
+<string name="type_mobile">Mobile</string>
+<string name="type_work">Work</string>
+<string name="type_fax_work">Work Fax</string>
+<string name="type_fax_home">Home Fax</string>
+<string name="type_pager">Pager</string>
+<string name="type_other">Other</string>
+<string name="type_custom">Custom</string>
+
+<!-- exchange specific -->
+<string name="type_home_2">Home 2</string>
+<string name="type_work_2">Work 2</string>
+<string name="type_car">Car</string>
+<string name="type_company_main">Company Main</string>
+<string name="type_mms">MMS</string>
+<string name="type_radio">Radio</string>
+<string name="type_assistant">Assistant</string>
+
+<string name="type_email_1">Email 1</string>
+<string name="type_email_2">Email 2</string>
+<string name="type_email_3">Email 3</string>
+
+
+<string name="type_im_aim">AIM</string>
+<string name="type_im_live">Windows Live</string>
+<string name="type_im_yahoo">Yahoo</string>
+<string name="type_im_skype">Skype</string>
+<string name="type_im_qq">QQ</string>
+<string name="type_im_talk">Google Talk</string>
+<string name="type_im_icq">ICQ</string>
+<string name="type_im_jabber">Jabber</string>
+
+
 </resources>

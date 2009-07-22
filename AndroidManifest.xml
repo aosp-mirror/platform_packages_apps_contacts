@@ -285,7 +285,7 @@
         </activity>
 
         <!-- Edits the details of a single contact -->
-        <activity android:name="EditContactActivity"
+        <activity android:name=".ui.EditContactActivity"
                 android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />

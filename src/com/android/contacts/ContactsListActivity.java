@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.DisplayGroupsActivity.Prefs;
+import com.android.contacts.ui.EditContactActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -1322,22 +1323,24 @@ public final class ContactsListActivity extends ListActivity implements
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
 
             mUnknownNameText = context.getText(android.R.string.unknownName);
-            switch (mMode) {
-                case MODE_PICK_POSTAL:
-                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
-                    mDisplaySectionHeaders = false;
-                    break;
-                case MODE_PICK_PHONE:
-                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-                    mDisplaySectionHeaders = false;
-                    break;
-                default:
-                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-                    break;
-            }
+            // TODO: use a different method of finding labels
+//            switch (mMode) {
+//                case MODE_PICK_POSTAL:
+//                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
+//                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
+//                    mDisplaySectionHeaders = false;
+//                    break;
+//                case MODE_PICK_PHONE:
+//                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
+//                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+//                    mDisplaySectionHeaders = false;
+//                    break;
+//                default:
+                    mLocalizedLabels = context.getResources().getStringArray(android.R.array.phoneTypes);
+//                    EditContactActivity.getLabelsForMimetype(mContext,
+//                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+//                    break;
+//            }
 
             // Do not display the second line of text if in a specific SEARCH query mode, usually for
             // matching a specific E-mail or phone number. Any contact details
