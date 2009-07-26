@@ -27,6 +27,23 @@
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
     <string name="shortcutContact">Contact</string>
 
+    <!-- Name of activity that allows users to create shortcuts on the home screen to dial a contact.
+         This shows up in a list of things like bookmark, folder, music playlist, etc -->
+    <string name="shortcutDialContact">Direct Dial</string>
+
+    <!-- Name of activity that allows users to create shortcuts on the home screen to message (SMS) a contact.
+         This shows up in a list of things like bookmark, folder, music playlist, etc -->
+    <string name="shortcutMessageContact">Direct Message</string>
+
+    <!-- Activity title when the user is selecting a contact for a shortcut. -->
+    <string name="shortcutActivityTitle">Choose a contact shortcut</string>
+    
+    <!-- Activity title when the user is selecting a contact for a direct dial shortcut. -->
+    <string name="callShortcutActivityTitle">Choose a number to call</string>
+    
+    <!-- Activity title when the user is selecting a contact for a direct message shortcut. -->
+    <string name="messageShortcutActivityTitle">Choose a number to message</string>
+        
     <!-- Title for the activity that shows only starred contacts -->
     <string name="starredList">Starred</string>
 
@@ -495,4 +512,204 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
+
+    <!-- Content description values -->
+
+    <!-- String describing the image on ImageButton one
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_one">one</string>
+
+    <!-- String describing the image on ImageButton two
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_two">two</string>
+
+    <!-- String describing the image on ImageButton three
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_three">three</string>
+
+    <!-- String describing the image on ImageButton four
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_four">four</string>
+
+    <!-- String describing the image on ImageButton five
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_five">five</string>
+
+    <!-- String describing the image on ImageButton six
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_six">six</string>
+
+    <!-- String describing the image on ImageButton seven
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_seven">seven</string>
+
+    <!-- String describing the image on ImageButton eight
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_eight">eight</string>
+
+    <!-- String describing the image on ImageButton nine
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_nine">nine</string>
+
+    <!-- String describing the image on ImageButton star
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_star">star</string>
+
+    <!-- String describing the image on ImageButton zero
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_zero">zero</string>
+
+    <!-- String describing the image on ImageButton pound
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_image_button_pound">pound</string>
+
+    <!-- Dialog title shown when SD Card does not exist -->
+    <string name="no_sdcard_title">No SD Card</string>
+
+    <!-- Dialog message shown when SDcard does not exist -->
+    <string name="no_sdcard_message">No SD Card detected</string>
+
+    <!-- Dialog title shown when searching VCard data from SD Card -->
+    <string name="searching_vcard_title">Searching for VCard</string>
+
+    <!-- Dialog title shown when asking a user whether import contact data from SIM or SD Card -->
+    <string name="select_import_type_title">Where would you like to import contacts from?</string>
+
+    <!-- Action string for selecting SIM for importing contacts -->
+    <string name="import_from_sim">SIM Card</string>
+
+    <!-- Action string for selecting SD Card for importing contacts -->
+    <string name="import_from_sdcard">SD Card</string>
+
+    <!-- "Import all VCard files" -->
+    <string name="import_all_vcard_string">Import all VCard files</string>
+
+    <!-- "Import one VCard file" -->
+    <string name="import_one_vcard_string">Import one VCard file</string>
+
+    <!-- Dialog message shown when searching VCard data from SD Card -->
+    <string name="searching_vcard_message">Searching for VCard data on VCard</string>
+
+    <!-- Dialog title shown when searching VCard data failed. -->
+    <string name="scanning_sdcard_failed_title">Scanning SD Card failed</string>
+
+    <!-- Dialog message shown when searching VCard data failed. -->
+    <string name="scanning_sdcard_failed_message">Scanning SD Card failed</string>
+
+    <!-- The failed reason: "I/O Error" -->
+    <string name="fail_reason_io_error">I/O Error</string>
+
+    <!-- The failed reason: "Failed to parse VCard data" -->
+    <string name="fail_reason_vcard_parse_error">Failed to parse VCard</string>
+
+    <!-- The failed reason: "There is no VCard file" -->
+    <string name="fail_reason_no_vcard_file">No VCard file found on SD Card</string>
+
+    <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
+    <string name="fail_reason_no_vcard_entry">No valid VCard entry found for your selection</string>
+
+    <!-- Dialog title shown when a user is asked to select VCard file -->
+    <string name="select_vcard_title">Select VCard file</string>
+
+    <!-- Dialog message shown when a user is asked to choose VCard file -->
+    <string name="select_vcard_message">Please select a VCard file to import</string>
+
+    <!-- Dialog title shown when reading VCard data -->
+    <string name="reading_vcard_title">Reading VCard</string>
+
+    <!-- Dialog message shown when reading a VCard file -->
+    <string name="reading_vcard_message">Reading VCard file(s)</string>
+
+    <!-- Dialog message shown when importing VCard data into local database -->
+    <string name="importing_vcard_message">Importing VCard data</string>
+
+    <!-- Dialog title shown when reading VCard data failed -->
+    <string name="reading_vcard_failed_title">Reading of VCard data has failed</string>
+
+    <!-- Dialog message shown when reading VCard data failed -->
+    <string name="reading_vcard_failed_message">VCard data could not be read\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+
+    <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
+    <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+
+    <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
+    <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
+
+    <!-- The menu item that launches VCard export activity -->
+    <string name="export_contact_list">Export contacts</string>
+    
+    <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
+    <string name="confirm_export_title">Confirmation for export</string>
+        
+    <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
+    <string name="confirm_export_message">Is it ok to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>    
+    
+    <!-- Dialog title shown when exporting Contact data failed -->
+    <string name="exporting_contact_failed_title">Exporting contact data has failed</string>
+    
+    <!-- Dialog message shown when exporting Contact data failed -->
+    <string name="exporting_contact_failed_message">Exporting contact data has failed\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+
+    <!-- The failed reason: "Too many vcard files on the SD Card" -->
+    <string name="fail_reason_too_many_vcard">Too many VCard data on the SD Card</string>
+
+    <!-- The failed reason: "Cannot open or create the destination directory" -->
+    <string name="fail_reason_cannot_open_destination_dir">Cannot open or create the destination directory\"<xliff:g id="dir_name">%s</xliff:g>\"</string>
+
+    <!-- Dialog title shown when the application is exporting contact data outside -->
+    <string name="exporting_contact_list_title">Exporting contact data</string>
+
+    <!-- Message shown when the application is exporting contact data outside -->
+    <string name="exporting_contact_list_message">Exporting contact data to \"<xliff:g id="file_name">%s</xliff:g>\"</string>
+    
+    <!-- The failed reason: "Could not initialize the exporter" -->
+    <string name="fail_reason_could_not_initialize_exporter">Could not initialize the exporter: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
+    
+    <!-- The failed reason: "Error occured during export" -->
+    <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
+    
+    <!-- The failed reason: "Could not open a specific file" -->
+    <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
+
+    <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
+    <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+    
+    <!-- The string used to describe Contacts as a searchable item within system search settings. -->
+    <string name="search_settings_description">Address book</string>
 </resources>

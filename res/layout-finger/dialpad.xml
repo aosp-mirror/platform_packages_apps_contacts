@@ -27,6 +27,7 @@
             android:src="@drawable/dial_num_1"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_one"
         />
             
         <ImageButton android:id="@+id/two"
@@ -35,6 +36,7 @@
             android:src="@drawable/dial_num_2"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_two"
         />
 
         <ImageButton android:id="@+id/three"
@@ -43,6 +45,7 @@
             android:src="@drawable/dial_num_3"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_three"
         />
 
         <ImageButton android:id="@+id/four"
@@ -51,6 +54,7 @@
             android:src="@drawable/dial_num_4"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_four"
         />
         
         <ImageButton android:id="@+id/five"
@@ -59,6 +63,7 @@
             android:src="@drawable/dial_num_5"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_five"
         />
 
         <ImageButton android:id="@+id/six"
@@ -67,6 +72,7 @@
             android:src="@drawable/dial_num_6"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_six"
         />
 
         <ImageButton android:id="@+id/seven"
@@ -75,6 +81,7 @@
             android:src="@drawable/dial_num_7"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_seven"
         />
     
         <ImageButton android:id="@+id/eight"
@@ -83,6 +90,7 @@
             android:src="@drawable/dial_num_8"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_eight"
         />
 
         <ImageButton android:id="@+id/nine"
@@ -91,6 +99,7 @@
             android:src="@drawable/dial_num_9"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_nine"
         />
 
         <ImageButton android:id="@+id/star"
@@ -99,6 +108,7 @@
             android:src="@drawable/dial_num_star"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_star"
         />
     
         <ImageButton android:id="@+id/zero"
@@ -107,6 +117,7 @@
             android:src="@drawable/dial_num_0"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_zero"
         />
 
         <ImageButton android:id="@+id/pound"
@@ -115,5 +126,6 @@
             android:src="@drawable/dial_num_pound"
             android:background="@drawable/btn_dial"
             android:soundEffectsEnabled="false"
+            android:contentDescription="@string/description_image_button_pound"
         />
 </com.android.contacts.ButtonGridLayout>

@@ -15,37 +15,37 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="contactsList">"連絡人"</string>
+    <string name="contactsList">"聯絡人"</string>
     <string name="launcherDialer">"撥號"</string>
-    <string name="shortcutContact">"連絡人"</string>
+    <string name="shortcutContact">"聯絡人"</string>
     <string name="starredList">"已標記星號"</string>
     <string name="frequentList">"經常聯絡"</string>
     <string name="strequentList">"我的最愛"</string>
-    <string name="viewContactTitle">"連絡人詳細資料"</string>
-    <string name="viewContactDesription">"檢視連絡人"</string>
-    <string name="editContactDescription">"編輯連絡人"</string>
-    <string name="insertContactDescription">"建立連絡人"</string>
-    <string name="searchHint">"搜尋連絡人"</string>
+    <string name="viewContactTitle">"聯絡人詳細資料"</string>
+    <string name="viewContactDesription">"檢視聯絡人"</string>
+    <string name="editContactDescription">"編輯聯絡人"</string>
+    <string name="insertContactDescription">"建立聯絡人"</string>
+    <string name="searchHint">"搜尋聯絡人"</string>
     <string name="menu_search">"搜尋"</string>
-    <string name="menu_newContact">"新增連絡人"</string>
-    <string name="menu_viewContact">"檢視連絡人"</string>
+    <string name="menu_newContact">"新增聯絡人"</string>
+    <string name="menu_viewContact">"檢視聯絡人"</string>
     <string name="menu_callNumber">"撥打電話給 <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar">"新增至我的最愛"</string>
     <string name="menu_removeStar">"從我的最愛中移除"</string>
     <string name="menu_showBarcode">"顯示條碼"</string>
-    <string name="menu_editContact">"編輯連絡人"</string>
-    <string name="menu_deleteContact">"刪除連絡人"</string>
+    <string name="menu_editContact">"編輯聯絡人"</string>
+    <string name="menu_deleteContact">"刪除聯絡人"</string>
     <string name="menu_call">"通話"</string>
     <string name="menu_sendSMS">"傳送 SMS/MMS"</string>
     <string name="menu_sendEmail">"傳送電子郵件"</string>
     <string name="menu_viewAddress">"在地圖上顯示地址"</string>
     <string name="menu_makeDefaultNumber">"設為預設號碼"</string>
     <string name="deleteConfirmation_title">"刪除"</string>
-    <string name="deleteConfirmation">"此連絡人會被刪除。"</string>
+    <string name="deleteConfirmation">"刪除此聯絡人？"</string>
     <string name="menu_done">"完成"</string>
-    <string name="menu_doNotSave">"復原"</string>
-    <string name="editContact_title_edit">"編輯連絡人"</string>
-    <string name="editContact_title_insert">"新增連絡人"</string>
+    <string name="menu_doNotSave">"取消"</string>
+    <string name="editContact_title_edit">"編輯聯絡人"</string>
+    <string name="editContact_title_insert">"新增聯絡人"</string>
     <string name="menu_addItem">"更多資訊"</string>
     <string name="label_phonetic_name">"拼音"</string>
     <string name="label_notes">"附註"</string>
@@ -59,8 +59,8 @@
     <string name="ghostData_phone">"電話號碼"</string>
     <string name="ghostData_email">"電子郵件地址"</string>
     <string name="ghostData_postal">"郵寄地址"</string>
-    <string name="invalidContactMessage">"連絡人不存在"</string>
-    <string name="pickerNewContactHeader">"建立新連絡人"</string>
+    <string name="invalidContactMessage">"聯絡人不存在。"</string>
+    <string name="pickerNewContactHeader">"建立新聯絡人"</string>
     <string name="selectLabel">"選取標籤"</string>
     <string name="phoneLabelsGroup">"電話"</string>
     <string name="emailLabelsGroup">"電子郵件"</string>
@@ -68,34 +68,33 @@
     <string name="postalLabelsGroup">"郵寄地址"</string>
     <string name="otherLabelsGroup">"其他"</string>
   <string-array name="otherLabels">
-    <item>"組織"</item>
+    <item>"機構"</item>
     <item>"附註"</item>
   </string-array>
     <string name="errorDialogTitle">"沒有相片"</string>
     <string name="photoPickerNotFoundText">"手機上沒有相片 。"</string>
-    <string name="attachToContact">"連絡人圖示"</string>
+    <string name="attachToContact">"聯絡人圖示"</string>
     <string name="customLabelPickerTitle">"自訂標籤名稱"</string>
     <string name="menu_displayGroup">"顯示群組"</string>
     <string name="syncGroupPreference">"編輯同步處理群組"</string>
-    <string name="importFromSim">"匯入連絡人"</string>
-    <string name="send_to_voicemail_checkbox">"直接將通話轉到語音郵件"</string>
-    <string name="send_to_voicemail_view">"通話已直接轉至語音信箱"</string>
+    <string name="importFromSim">"匯入聯絡人"</string>
+    <string name="send_to_voicemail_checkbox">"直接將來電轉到語音信箱"</string>
+    <string name="send_to_voicemail_view">"來電已直接轉至語音信箱。"</string>
     <string name="default_ringtone">"預設值"</string>
     <string name="addPicture">"新增圖示"</string>
     <string name="removePicture">"移除圖示"</string>
-    <string name="noContacts">"沒有連絡人"</string>
-    <string name="noContactsWithPhoneNumbers">"沒有連絡人有電話號碼。"</string>
+    <string name="noContacts">"沒有聯絡人。"</string>
+    <string name="noContactsWithPhoneNumbers">"沒有包含電話號碼的聯絡人資訊。"</string>
     <string name="noFavorites">"沒有我的最愛。"</string>
     <string name="select_group_title">"群組"</string>
     <string name="groupEmpty">"您的「<xliff:g id="GROUPNAME">%s</xliff:g>」群組是空的。"</string>
-    <string name="showAllGroups">"所有連絡人"</string>
-    <string name="syncAllGroups">"同步處理所有連絡人"</string>
+    <string name="showAllGroups">"所有聯絡人"</string>
+    <string name="syncAllGroups">"同步處理所有聯絡人"</string>
     <string name="groupNameMyContacts">"我的聯絡人"</string>
-    <string name="groupNameWithPhones">"有電話號碼的連絡人"</string>
-    <!-- no translation found for starredInAndroid (6495527538140213440) -->
-    <skip />
-    <string name="contactCreatedToast">"已建立連絡人"</string>
-    <string name="contactSavedToast">"連絡人已儲存。"</string>
+    <string name="groupNameWithPhones">"包含電話號碼的聯絡人資訊"</string>
+    <string name="starredInAndroid">"在 Android 中標有星號的聯絡人"</string>
+    <string name="contactCreatedToast">"已建立聯絡人。"</string>
+    <string name="contactSavedToast">"聯絡人已儲存。"</string>
     <string name="listSeparatorCallNumber">"撥打號碼"</string>
     <string name="listSeparatorCallNumber_edit">"電話號碼"</string>
     <string name="listSeparatorSendSmsMms">"傳送  SMS/MMS"</string>
@@ -109,55 +108,54 @@
     <string name="listSeparatorOtherInformation">"其他資訊"</string>
     <string name="listSeparatorOtherInformation_edit">"其他選項"</string>
     <string name="listSeparatorMore_edit">"更多"</string>
-    <string name="contactsIconLabel">"連絡人"</string>
+    <string name="contactsIconLabel">"聯絡人"</string>
     <string name="contactsFavoritesLabel">"我的最愛"</string>
     <string name="dialerIconLabel">"撥號"</string>
-    <string name="recentCallsIconLabel">"通話紀錄"</string>
+    <string name="recentCallsIconLabel">"通話記錄"</string>
     <string name="liveFolderAll">"全部聯絡人"</string>
     <string name="liveFolderFavorites">"有星號標記的聯絡人"</string>
     <string name="liveFolderPhone">"有電話號碼的聯絡人"</string>
     <string name="menu_sendTextMessage">"傳送  SMS 訊息"</string>
-    <string name="recentCalls_callNumber">"撥打電話給 <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_callNumber">"撥電話給<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall">"撥打電話前編輯號碼"</string>
-    <string name="recentCalls_addToContact">"新增至連絡人"</string>
-    <string name="recentCalls_removeFromRecentList">"從通話紀錄中移除"</string>
-    <string name="recentCalls_deleteAll">"清除通話紀錄"</string>
-    <string name="recentCalls_empty">"通話紀錄是空的。"</string>
+    <string name="recentCalls_addToContact">"新增至聯絡人"</string>
+    <string name="recentCalls_removeFromRecentList">"從通話記錄中移除"</string>
+    <string name="recentCalls_deleteAll">"清除通話記錄"</string>
+    <string name="recentCalls_empty">"無通話記錄。"</string>
     <string name="imei">"IMEI"</string>
-    <string name="voicemail">"語音信箱"</string>
+    <string name="voicemail">"語音留言"</string>
     <string name="unknown">"未知的"</string>
     <string name="private_num">"私人號碼"</string>
-    <!-- no translation found for payphone (4864313342828942922) -->
-    <skip />
+    <string name="payphone">"公共電話"</string>
     <string name="dialerKeyboardHintText">"使用鍵盤撥號"</string>
     <string name="dialerDialpadHintText">"撥號即可新增通話"</string>
     <string name="simContacts_emptyLoading">"從  SIM 卡讀取中…"</string>
-    <string name="simContacts_title">"SIM 卡連絡人"</string>
-    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">" 同步處理您的 Google 連絡人！"</font>" "\n" 與手機同步處理後，無論您走到哪，都可存取連絡人資訊。"</string>
-    <string name="noContactsHelpText">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n<li>"["<font fgcolor="#ffffffff"><b></b>"新聯絡人"</font>"]：建立新聯絡人"\n</li>" "\n<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 鍵並選取下列選項："\n\n"        "<li>"["<font fgcolor="#ffffffff"><b></b>"編輯同步群組"</font>"]：加入新的或既有的 Google 帳戶聯絡人"\n</li>\n"        "<li>"["<font fgcolor="#ffffffff"><b></b>"新聯絡人"</font>"]：建立新聯絡人"\n</li>\n"        "<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
+    <string name="simContacts_title">"SIM 卡聯絡人"</string>
+    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">" 同步處理您的 Google 聯絡人！"</font>" "\n" 與手機同步處理後，無論您走到哪，都可存取聯絡人資訊。"</string>
+    <string name="noContactsHelpText">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人 "</font>"]：建立新聯絡人"\n</li>" "\n<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
+    <string name="noContactsHelpTextWithSync">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"編輯同步處理群組"</font>"]：加入新的或既有的 Google 帳戶聯絡人"\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人"</font>"]：建立新聯絡人 "\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
     <string name="seclectSyncGroups_title">"選取要同步處理的群組"</string>
     <string name="liveFolder_all_label">"全部聯絡人"</string>
     <string name="liveFolder_favorites_label">"星號標記"</string>
     <string name="liveFolder_phones_label">"電話"</string>
-    <string name="dialer_useDtmfDialpad">"使用按鍵式鍵盤"</string>
+    <string name="dialer_useDtmfDialpad">"使用觸控音按鍵"</string>
     <string name="dialer_returnToInCallScreen">"返回進行中的通話"</string>
     <string name="dialer_addAnotherCall">"新增通話"</string>
     <string name="callDetailTitle">"通話詳細資料"</string>
     <string name="toast_call_detail_error">"無法解讀通話要求詳細資訊。"</string>
     <string name="call_type">"類型"</string>
-    <string name="type_incoming">"外來通話"</string>
-    <string name="type_outgoing">"播出通話"</string>
-    <string name="type_missed">"未接通話"</string>
+    <string name="type_incoming">"來電"</string>
+    <string name="type_outgoing">"撥出電話"</string>
+    <string name="type_missed">"未接來電"</string>
     <string name="call_time">"時間"</string>
     <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
     <string name="call_duration">"持續時間"</string>
-    <string name="header_actions">"動作"</string>
+    <string name="header_actions">"操作"</string>
     <string name="ringtone_spinner">"鈴聲：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items">"新增更多項目"</string>
-    <string name="actionCall">"播打<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionCall">"撥打 <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionEmail">"傳送電子郵件至<xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText">"傳送簡訊至<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText">"傳送簡訊至 <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionChat">"透過 <xliff:g id="TYPE">%s</xliff:g> 進行即時通訊"</string>
     <string name="actionMap">"檢視<xliff:g id="TYPE">%s</xliff:g>地址"</string>
     <string name="actionIncomingCall">"來電"</string>

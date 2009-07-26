@@ -16,8 +16,6 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ShowOrCreateActivity.QUERY_KIND_EMAIL_OR_IM;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -32,13 +30,20 @@ import android.content.IContentProvider;
 import android.content.ISyncAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -85,6 +90,8 @@ public final class ContactsListActivity extends ListActivity
         implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener {
     private static final String TAG = "ContactsListActivity";
 
+    private static final boolean ENABLE_ACTION_ICON_OVERLAYS = false;
+
     private static final String LIST_STATE_KEY = "liststate";
     private static final String FOCUS_KEY = "focused";
     
@@ -101,6 +108,8 @@ public final class ContactsListActivity extends ListActivity
     public static final int MENU_DIALER = 9;
     public static final int MENU_NEW_CONTACT = 10;
     public static final int MENU_DISPLAY_GROUP = 11;
+    public static final int MENU_IMPORT_CONTACTS = 12;
+    public static final int MENU_EXPORT_CONTACTS = 13;
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     
@@ -292,7 +301,7 @@ public final class ContactsListActivity extends ListActivity
     private Parcelable mListState = null;
     private boolean mListHasFocus;
 
-    private boolean mCreateShortcut;
+    private String mShortcutAction;
     private boolean mDefaultMode = false;
     
     /**
@@ -310,6 +319,33 @@ public final class ContactsListActivity extends ListActivity
      */
     private String mQueryData;
     
+    private Handler mHandler = new Handler();
+
+    private class ImportTypeSelectedListener implements DialogInterface.OnClickListener {
+        public static final int IMPORT_FROM_SIM = 0;
+        public static final int IMPORT_FROM_SDCARD = 1;
+
+        private int mIndex;
+
+        public ImportTypeSelectedListener() {
+            mIndex = IMPORT_FROM_SIM;
+        }
+
+        public void onClick(DialogInterface dialog, int which) {
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                if (mIndex == IMPORT_FROM_SIM) {
+                    doImportFromSim();
+                } else {
+                    doImportFromSDCard();
+                }
+            } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+
+            } else {
+                mIndex = which;
+            }
+        }
+    }
+
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
 
@@ -374,8 +410,19 @@ public final class ContactsListActivity extends ListActivity
                 mMode = MODE_PICK_POSTAL;
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
-            mMode = MODE_PICK_OR_CREATE_CONTACT;
-            mCreateShortcut = true;
+            if (intent.getComponent().getClassName().equals("alias.DialShortcut")) {
+                mMode = MODE_PICK_PHONE;
+                mShortcutAction = Intent.ACTION_CALL;
+                setTitle(R.string.callShortcutActivityTitle);
+            } else if (intent.getComponent().getClassName().equals("alias.MessageShortcut")) {
+                mMode = MODE_PICK_PHONE;
+                mShortcutAction = Intent.ACTION_SENDTO;
+                setTitle(R.string.messageShortcutActivityTitle);
+            } else {
+                mMode = MODE_PICK_OR_CREATE_CONTACT;
+                mShortcutAction = Intent.ACTION_VIEW;
+                setTitle(R.string.shortcutActivityTitle);
+            }
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             final String type = intent.resolveType(this);
             if (People.CONTENT_ITEM_TYPE.equals(type)) {
@@ -452,7 +499,7 @@ public final class ContactsListActivity extends ListActivity
         list.setOnCreateContextMenuListener(this);
         if ((mMode & MODE_MASK_NO_FILTER) != MODE_MASK_NO_FILTER) {
             list.setTextFilterEnabled(true);
-        }
+        }        
 
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
@@ -746,13 +793,15 @@ public final class ContactsListActivity extends ListActivity
                     .setIntent(syncIntent);
         }
         
-        // SIM import
-        Intent importIntent = new Intent(Intent.ACTION_VIEW);
-        importIntent.setType("vnd.android.cursor.item/sim-contact");
-        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
-        menu.add(0, 0, 0, R.string.importFromSim)
-                .setIcon(R.drawable.ic_menu_import_contact)
-                .setIntent(importIntent);
+        // Contacts import (SIM/SDCard)
+        menu.add(0, MENU_IMPORT_CONTACTS, 0, R.string.importFromSim)
+                .setIcon(R.drawable.ic_menu_import_contact);
+
+        /* Temporarily commented out
+        if (getResources().getBoolean(R.bool.config_allow_export_to_sdcard)) {
+            menu.add(0, MENU_EXPORT_CONTACTS, 0, R.string.export_contact_list)
+                    .setIcon(R.drawable.ic_menu_export_contact);
+        }*/
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -816,10 +865,49 @@ public final class ContactsListActivity extends ListActivity
             case MENU_SEARCH:
                 startSearch(null, false, null, false);
                 return true;
+
+            case MENU_IMPORT_CONTACTS:
+                if (getResources().getBoolean(R.bool.config_allow_import_from_sdcard)) {
+                    ImportTypeSelectedListener listener =
+                        new ImportTypeSelectedListener();
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.select_import_type_title)
+                        .setPositiveButton(android.R.string.ok, listener)
+                        .setNegativeButton(android.R.string.cancel, null);
+                    dialogBuilder.setSingleChoiceItems(new String[] {
+                            getString(R.string.import_from_sim),
+                            getString(R.string.import_from_sdcard)},
+                            ImportTypeSelectedListener.IMPORT_FROM_SIM, listener);
+                    dialogBuilder.show();
+                } else {
+                    doImportFromSim();
+                }
+                return true;
+
+            /*case MENU_EXPORT_CONTACTS:
+                handleExportContacts();*/
         }
         return false;
     }
 
+    private void doImportFromSim() {
+        Intent importIntent = new Intent(Intent.ACTION_VIEW);
+        importIntent.setType("vnd.android.cursor.item/sim-contact");
+        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
+        startActivity(importIntent);
+    }
+
+    private void doImportFromSDCard() {
+        Intent intent = new Intent(this, ImportVCardActivity.class);
+        startActivity(intent);
+    }
+
+    /*
+    private void handleExportContacts() {
+        VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
+        exporter.startExportVCardToSdCard();
+    }*/
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
             Intent data) {
@@ -827,8 +915,8 @@ public final class ContactsListActivity extends ListActivity
             case SUBACTIVITY_NEW_CONTACT:
                 if (resultCode == RESULT_OK) {
                     // Contact was created, pass it back
-                    returnPickerResult(data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
-                            data.getData());
+                    returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
+                            data.getData(), 0);
                 }
         }
     }
@@ -1012,18 +1100,22 @@ public final class ContactsListActivity extends ListActivity
             } else if (mMode == MODE_PICK_CONTACT 
                     || mMode == MODE_PICK_OR_CREATE_CONTACT) {
                 Uri uri = ContentUris.withAppendedId(People.CONTENT_URI, id);
-                if (mCreateShortcut) {
+                if (mShortcutAction != null) {
                     // Subtract one if we have Create Contact at the top
                     Cursor c = (Cursor) mAdapter.getItem(position
                             - (mMode == MODE_PICK_OR_CREATE_CONTACT? 1:0));
-                    returnPickerResult(c.getString(NAME_COLUMN_INDEX), uri);
+                    returnPickerResult(c, c.getString(NAME_COLUMN_INDEX), uri, id);
                 } else {
-                    returnPickerResult(null, uri);
+                    returnPickerResult(null, null, uri, id);
                 }
             } else if (mMode == MODE_PICK_PHONE) {
-                setResult(RESULT_OK, new Intent().setData(
-                        ContentUris.withAppendedId(Phones.CONTENT_URI, id)));
-                finish();
+                Uri uri = ContentUris.withAppendedId(Phones.CONTENT_URI, id);
+                if (mShortcutAction != null) {
+                    Cursor c = (Cursor) mAdapter.getItem(position);
+                    returnPickerResult(c, c.getString(NAME_COLUMN_INDEX), uri, id);
+                } else {
+                    returnPickerResult(null, null, uri, id);
+                }
             } else if (mMode == MODE_PICK_POSTAL) {
                 setResult(RESULT_OK, new Intent().setData(
                         ContentUris.withAppendedId(ContactMethods.CONTENT_URI, id)));
@@ -1038,22 +1130,47 @@ public final class ContactsListActivity extends ListActivity
         }
     }
 
-    private void returnPickerResult(String name, Uri uri) {
+    private void returnPickerResult(Cursor c, String name, Uri uri, long id) {
         final Intent intent = new Intent();
     
-        if (mCreateShortcut) {
-            Intent shortcutIntent = new Intent(Intent.ACTION_VIEW, uri);
+        if (mShortcutAction != null) {
+            Intent shortcutIntent;
+            if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
+                // This is a simple shortcut to view a contact.
+                shortcutIntent = new Intent(mShortcutAction, uri);
+                final Bitmap icon = People.loadContactPhoto(this, uri, 0, null);
+                if (icon != null) {
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+                } else {
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                            Intent.ShortcutIconResource.fromContext(this,
+                                    R.drawable.ic_launcher_shortcut_contact));
+                }
+            } else {
+                // This is a direct dial or sms shortcut.
+                String number = c.getString(DATA_COLUMN_INDEX);
+                int type = c.getInt(TYPE_COLUMN_INDEX);
+                String scheme;
+                int resid;
+                if (Intent.ACTION_CALL.equals(mShortcutAction)) {
+                    scheme = "tel";
+                    resid = R.drawable.badge_action_call;
+                } else {
+                    scheme = "smsto";
+                    resid = R.drawable.badge_action_sms;
+                }
+                // Make the URI a direct tel: URI so that it will always continue to work
+                Uri phoneUri = Uri.fromParts(scheme, number, null);
+                shortcutIntent = new Intent(mShortcutAction, phoneUri);
+                
+                Uri personUri = ContentUris.withAppendedId(People.CONTENT_URI, id);
+                intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
+                        generatePhoneNumberIcon(personUri, type, resid));
+                
+            }
             shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-            final Bitmap icon = People.loadContactPhoto(this, uri, 0, null);
-            if (icon != null) {
-                intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
-            } else {
-                intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                        Intent.ShortcutIconResource.fromContext(this,
-                                R.drawable.ic_launcher_shortcut_contact));
-            }
             setResult(RESULT_OK, intent);
         } else {
             setResult(RESULT_OK, intent.setData(uri));
@@ -1061,6 +1178,107 @@ public final class ContactsListActivity extends ListActivity
         finish();
     }
 
+    /**
+     * Generates a phone number shortcut icon. Adds an overlay describing the type of the phone
+     * number, and if there is a photo also adds the call action icon.
+     *
+     * @param personUri The person the phone number belongs to
+     * @param type The type of the phone number
+     * @param actionResId The ID for the action resource
+     * @return The bitmap for the icon
+     */
+    private Bitmap generatePhoneNumberIcon(Uri personUri, int type, int actionResId) {
+        final Resources r = getResources();
+        boolean drawPhoneOverlay = true;
+
+        Bitmap photo = People.loadContactPhoto(this, personUri, 0, null);
+        if (photo == null) {
+            // If there isn't a photo use the generic phone action icon instead
+            Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
+            if (phoneIcon != null) {
+                photo = phoneIcon;
+                drawPhoneOverlay = false;
+            } else {
+                return null;
+            }
+        }
+
+        // Setup the drawing classes
+        int iconSize = (int) r.getDimension(android.R.dimen.app_icon_size);
+        Bitmap icon = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(icon);
+
+        // Copy in the photo
+        Paint photoPaint = new Paint();
+        photoPaint.setDither(true);
+        photoPaint.setFilterBitmap(true);
+        Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
+        Rect dst = new Rect(0,0, iconSize,iconSize);
+        canvas.drawBitmap(photo, src, dst, photoPaint);
+
+        // Create an overlay for the phone number type
+        String overlay = null;
+        switch (type) {
+            case Phones.TYPE_HOME:
+                overlay = "H";
+                break;
+
+            case Phones.TYPE_MOBILE:
+                overlay = "M";
+                break;
+
+            case Phones.TYPE_WORK:
+                overlay = "W";
+                break;
+
+            case Phones.TYPE_PAGER:
+                overlay = "P";
+                break;
+
+            case Phones.TYPE_OTHER:
+                overlay = "O";
+                break;
+        }
+        if (overlay != null) {
+            Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
+            textPaint.setTextSize(20.0f);
+            textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+            textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
+            textPaint.setShadowLayer(3f, 1, 1, r.getColor(R.color.textColorIconOverlayShadow));
+            canvas.drawText(overlay, 2, 16, textPaint);
+        }
+
+        // Draw the phone action icon as an overlay
+        if (ENABLE_ACTION_ICON_OVERLAYS && drawPhoneOverlay) {
+            Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
+            if (phoneIcon != null) {
+                src.set(0,0, phoneIcon.getWidth(),phoneIcon.getHeight());
+                int iconWidth = icon.getWidth();
+                dst.set(iconWidth - 20, -1, iconWidth, 19);
+                canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
+            }
+        }
+
+        return icon;
+    }
+
+    /**
+     * Returns the icon for the phone call action.
+     *
+     * @param r The resources to load the icon from
+     * @param resId The resource ID to load
+     * @return the icon for the phone call action
+     */
+    private Bitmap getPhoneActionIcon(Resources r, int resId) {
+        Drawable phoneIcon = r.getDrawable(resId);
+        if (phoneIcon instanceof BitmapDrawable) {
+            BitmapDrawable bd = (BitmapDrawable) phoneIcon;
+            return bd.getBitmap();
+        } else {
+            return null;
+        }
+    }
+    
     String[] getProjection() {
         switch (mMode) {
             case MODE_GROUP:
@@ -1461,7 +1679,7 @@ public final class ContactsListActivity extends ListActivity
         }
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
-            if (Locale.getDefault().equals(Locale.JAPAN)) {
+            if (Locale.getDefault().getLanguage().equals(Locale.JAPAN.getLanguage())) {
                 return new JapaneseContactListIndexer(cursor, SORT_STRING_INDEX);
             } else {
                 return new AlphabetIndexer(cursor, NAME_COLUMN_INDEX, mAlphabet);
