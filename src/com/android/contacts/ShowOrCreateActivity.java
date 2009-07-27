@@ -32,7 +32,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.Aggregates;
-import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.view.View;
 
@@ -62,7 +62,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     };
 
     static final String[] CONTACTS_PROJECTION = new String[] {
-        Contacts.AGGREGATE_ID,
+        RawContacts.AGGREGATE_ID,
     };
 
     static final String SCHEME_MAILTO = "mailto";
@@ -130,7 +130,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
         if (SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
-            Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
+            Uri uri = Uri.withAppendedPath(RawContacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
         } else if (SCHEME_TEL.equals(scheme)) {
@@ -218,9 +218,9 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
             // No matching contacts found
             if (mCreateForce) {
                 // Forced to create new contact
-                Intent createIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                Intent createIntent = new Intent(Intent.ACTION_INSERT, RawContacts.CONTENT_URI);
                 createIntent.putExtras(mCreateExtras);
-                createIntent.setType(Contacts.CONTENT_TYPE);
+                createIntent.setType(RawContacts.CONTENT_TYPE);
 
                 startActivity(createIntent);
                 finish();
@@ -229,7 +229,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
                 // Prompt user to insert or edit contact
                 Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 createIntent.putExtras(mCreateExtras);
-                createIntent.setType(Contacts.CONTENT_ITEM_TYPE);
+                createIntent.setType(RawContacts.CONTENT_ITEM_TYPE);
 
                 CharSequence message = getResources().getString(
                         R.string.add_contact_dlg_message_fmt, mCreateDescrip);

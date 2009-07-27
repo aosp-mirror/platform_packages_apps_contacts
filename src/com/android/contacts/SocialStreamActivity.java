@@ -43,8 +43,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.SocialContract.Activities;
 import android.text.SpannableStringBuilder;
@@ -61,14 +61,12 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class SocialStreamActivity extends ListActivity implements OnClickListener, EdgeTriggerListener {
@@ -79,7 +77,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         Activities.RES_PACKAGE,
         Activities.MIMETYPE,
         Activities.AUTHOR_CONTACT_ID,
-        Contacts.AGGREGATE_ID,
+        RawContacts.AGGREGATE_ID,
         Aggregates.DISPLAY_NAME,
         Activities.PUBLISHED,
         Activities.TITLE,
@@ -359,7 +357,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     }
 
     /**
-     * Keep a cache that maps from {@link Contacts#_ID} to {@link Photo#PHOTO}
+     * Keep a cache that maps from {@link RawContacts#_ID} to {@link Photo#PHOTO}
      * values.
      */
     private static class ContactsCache {

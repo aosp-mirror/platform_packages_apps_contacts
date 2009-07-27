@@ -16,9 +16,9 @@
 
 package com.android.contacts;
 
+import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PHOTO_ID;
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PHOTO_ID;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
@@ -58,12 +58,12 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Presence;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -84,9 +84,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Displays the details of a specific contact.
@@ -568,8 +565,8 @@ public class ViewContactActivity extends ListActivity
     }
 
     private void joinAggregate(final long aggregateId) {
-        Cursor c = mResolver.query(Contacts.CONTENT_URI, new String[] {Contacts._ID},
-                Contacts.AGGREGATE_ID + "=" + aggregateId, null, null);
+        Cursor c = mResolver.query(RawContacts.CONTENT_URI, new String[] {RawContacts._ID},
+                RawContacts.AGGREGATE_ID + "=" + aggregateId, null, null);
 
         try {
             while(c.moveToNext()) {
