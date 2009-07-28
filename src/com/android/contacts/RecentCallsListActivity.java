@@ -336,7 +336,7 @@ public class RecentCallsListActivity extends ListActivity
                     phonesCursor.close();
                 }
             }
-            if (info != null && info != ContactInfo.EMPTY) {
+            if (info != null) {
                 updateCallLog(ciq, info);
             }
         }
