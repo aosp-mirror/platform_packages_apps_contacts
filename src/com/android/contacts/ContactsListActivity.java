@@ -563,8 +563,8 @@ public final class ContactsListActivity extends ListActivity implements
         }
 
         // See if we were invoked with a filter
-        if (parent != null && parent instanceof ContactsActivity) {
-            String filterText = ((ContactsActivity) parent).getAndClearFilterText();
+        if (parent != null && parent instanceof DialtactsActivity) {
+            String filterText = ((DialtactsActivity) parent).getAndClearFilterText();
             if (filterText != null && filterText.length() > 0) {
                 getListView().setFilterText(filterText);
                 // Don't start a new query since it will conflict with the filter

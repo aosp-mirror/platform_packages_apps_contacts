@@ -252,7 +252,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         final Intent intent;
         if (isChild()) {
             intent = getParent().getIntent();
-            ignoreState = intent.getBooleanExtra(DialerActivity.EXTRA_IGNORE_STATE, false);
+            ignoreState = intent.getBooleanExtra(DialtactsActivity.EXTRA_IGNORE_STATE, false);
         } else {
             intent = getIntent();
         }
@@ -393,8 +393,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         Activity parent = getParent();
         // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
         // digits in the dialer field.
-        if (parent != null && parent instanceof DialerActivity) {
-            Uri dialUri = ((DialerActivity) parent).getAndClearDialUri();
+        if (parent != null && parent instanceof DialtactsActivity) {
+            Uri dialUri = ((DialtactsActivity) parent).getAndClearDialUri();
             if (dialUri != null) {
                 resolveIntent();
             }

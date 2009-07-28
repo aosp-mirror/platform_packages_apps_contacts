@@ -20,26 +20,36 @@ import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.ServiceManager;
+import android.provider.CallLog;
 import android.provider.Contacts;
+import android.provider.CallLog.Calls;
 import android.provider.Contacts.Intents.UI;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.TabHost;
+import com.android.internal.telephony.ITelephony;
 
 /**
- * The contacts activity that has one tab with social activity stream and
- * another with contact list. This is the container and the tabs are embedded
- * using intents.
+ * The dialer activity that has one tab with the virtual 12key dialer,
+ * and another tab with recent calls in it. This is the container and the tabs
+ * are embedded using intents.
  */
-public class ContactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
-    private static final String TAG = "Contacts";
+public class DialtactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
+    private static final String TAG = "Dailtacts";
     private static final String FAVORITES_ENTRY_COMPONENT =
             "com.android.contacts.DialtactsFavoritesEntryActivity";
 
-    private static final int TAB_INDEX_CONTACTS = 0;
-    private static final int TAB_INDEX_FAVORITES = 1;
-
+    private static final int TAB_INDEX_DIALER = 0;
+    private static final int TAB_INDEX_CALL_LOG = 1;
+    private static final int TAB_INDEX_CONTACTS = 2;
+    private static final int TAB_INDEX_FAVORITES = 3;
+    
     static final String EXTRA_IGNORE_STATE = "ignore-state";
 
     /** Name of the dialtacts shared preferences */
@@ -49,14 +59,16 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
 
     private TabHost mTabHost;
-    private String mFilterText;
+    private String mFilterText;    
+    private Uri mDialUri;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         final Intent intent = getIntent();
-
+        fixIntent(intent);
+        
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialer_activity);
 
@@ -64,8 +76,9 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
         mTabHost.setOnTabChangedListener(this);
 
         // Setup the tabs
+        setupDialerTab();
+        setupCallLogTab();
         setupContactsTab();
-        setupSocialStreamTab();
         setupFavoritesTab();
 
         setCurrentTab(intent);
@@ -79,7 +92,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     @Override
     protected void onPause() {
         super.onPause();
-
+        
         int currentTabIndex = mTabHost.getCurrentTab();
         if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
             SharedPreferences.Editor editor = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE)
@@ -88,15 +101,36 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
             editor.commit();
         }
     }
+    
+    private void fixIntent(Intent intent) {
+        // This should be cleaned up: the call key used to send an Intent
+        // that just said to go to the recent calls list.  It now sends this
+        // abstract action, but this class hasn't been rewritten to deal with it.
+        if (Intent.ACTION_CALL_BUTTON.equals(intent.getAction())) {
+            intent.setDataAndType(Calls.CONTENT_URI, Calls.CONTENT_TYPE);
+            intent.putExtra("call_key", true);
+            setIntent(intent);
+        }
+    }
+    
+    private void setupCallLogTab() {
+        // Force the class since overriding tab entries doesn't work
+        Intent intent = new Intent("com.android.phone.action.RECENT_CALLS");
+        intent.setClass(this, RecentCallsListActivity.class);
 
-    private void setupSocialStreamTab() {
-        // Just a placeholder for now
-        Intent intent = new Intent("com.android.contacts.action.SOCIAL_STREAM");
-        intent.setClass(this, SocialStreamActivity.class);
+        mTabHost.addTab(mTabHost.newTabSpec("call_log")
+                .setIndicator(getString(R.string.recentCallsIconLabel),
+                        getResources().getDrawable(R.drawable.ic_tab_recent))
+                .setContent(intent));
+    }
 
-        mTabHost.addTab(mTabHost.newTabSpec("social")
-                .setIndicator(getText(R.string.socialStreamIconLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_friends))
+    private void setupDialerTab() {
+        Intent intent = new Intent("com.android.phone.action.TOUCH_DIALER");
+        intent.setClass(this, TwelveKeyDialer.class);
+
+        mTabHost.addTab(mTabHost.newTabSpec("dialer")
+                .setIndicator(getString(R.string.dialerIconLabel),
+                        getResources().getDrawable(R.drawable.ic_tab_dialer))
                 .setContent(intent));
     }
 
@@ -111,7 +145,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     }
 
     private void setupFavoritesTab() {
-        Intent intent = new Intent(UI.LIST_STARRED_ACTION);
+        Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
         intent.setClass(this, ContactsListActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("favorites")
@@ -121,12 +155,43 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     }
 
     /**
+     * Returns true if the intent is due to hitting the green send key while in a call.
+     * 
+     * @param intent the intent that launched this activity
+     * @param recentCallsRequest true if the intent is requesting to view recent calls
+     * @return true if the intent is due to hitting the green send key while in a call 
+     */
+    private boolean isSendKeyWhileInCall(final Intent intent, final boolean recentCallsRequest) {
+        // If there is a call in progress go to the call screen
+        if (recentCallsRequest) {
+            final boolean callKey = intent.getBooleanExtra("call_key", false);
+
+            try {
+                ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+                if (callKey && phone != null && phone.showCallScreen()) {
+                    return true;
+                }
+            } catch (RemoteException e) {
+                Log.e(TAG, "Failed to handle send while in call", e);
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Sets the current tab based on the intent's request type
-     *
+     * 
      * @param recentCallsRequest true is the recent calls tab is desired, false otherwise
      */
     private void setCurrentTab(Intent intent) {
-
+        // If we got here by hitting send and we're in call forward along to the in-call activity
+        final boolean recentCallsRequest = Calls.CONTENT_TYPE.equals(intent.getType());
+        if (isSendKeyWhileInCall(intent, recentCallsRequest)) {
+            finish();
+            return;
+        }
+        
         // Dismiss menu provided by any children activities
         Activity activity = getLocalActivityManager().
                 getActivity(mTabHost.getCurrentTabTag());
@@ -140,10 +205,14 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
 
         // Choose the tab based on the inbound intent
         String componentName = intent.getComponent().getClassName();
-        if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
+        if (getClass().getName().equals(componentName)) {
+            if (recentCallsRequest) {
+                mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
+            } else {
+                mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+            }
+        } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
             mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
-        } else if (Contacts.Intents.UI.FILTER_CONTACTS_ACTION.equals(intent.getAction())) {
-            mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
         } else {
             SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
             boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
@@ -163,19 +232,37 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     @Override
     public void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
+        fixIntent(newIntent);
         setCurrentTab(newIntent);
         final String action = newIntent.getAction();
         if (action.equals(Contacts.Intents.UI.FILTER_CONTACTS_ACTION)) {
             setupFilterText(newIntent);
+        } else if (isDialIntent(newIntent)) {
+            setupDialUri(newIntent);
         }
     }
 
+    /** Returns true if the given intent contains a phone number to populate the dialer with */
+    private boolean isDialIntent(Intent intent) {
+        final String action = intent.getAction();
+        if (Intent.ACTION_DIAL.equals(action)) {
+            return true;
+        }
+        if (Intent.ACTION_VIEW.equals(action)) {
+            final Uri data = intent.getData();
+            if (data != null && "tel".equals(data.getScheme())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     /**
      * Retrieves the filter text stored in {@link #setupFilterText(Intent)}.
      * This text originally came from a FILTER_CONTACTS_ACTION intent received
      * by this activity. The stored text will then be cleared after after this
      * method returns.
-     *
+     * 
      * @return The stored filter text
      */
     public String getAndClearFilterText() {
@@ -187,7 +274,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
     /**
      * Stores the filter text associated with a FILTER_CONTACTS_ACTION intent.
      * This is so child activities can check if they are supposed to display a filter.
-     *
+     * 
      * @param intent The intent received in {@link #onNewIntent(Intent)}
      */
     private void setupFilterText(Intent intent) {
@@ -201,6 +288,33 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
         }
     }
 
+    /**
+     * Retrieves the uri stored in {@link #setupDialUri(Intent)}. This uri
+     * originally came from a dial intent received by this activity. The stored
+     * uri will then be cleared after after this method returns.
+     * 
+     * @return The stored uri
+     */
+    public Uri getAndClearDialUri() {
+        Uri dialUri = mDialUri;
+        mDialUri = null;
+        return dialUri;
+    }
+
+    /**
+     * Stores the uri associated with a dial intent. This is so child activities can
+     * check if they are supposed to display new dial info.
+     * 
+     * @param intent The intent received in {@link #onNewIntent(Intent)}
+     */
+    private void setupDialUri(Intent intent) {
+        // If the intent was relaunched from history, don't reapply the intent.
+        if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
+            return;
+        }
+        mDialUri = intent.getData();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Handle BACK
@@ -212,7 +326,7 @@ public class ContactsActivity extends TabActivity implements TabHost.OnTabChange
             moveTaskToBack(false);
             return true;
         }
-
+        
         return super.onKeyDown(keyCode, event);
     }
 

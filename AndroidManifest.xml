@@ -58,7 +58,7 @@
         </activity>
 
         <!-- Tab container for TwelveKeyDialer and RecentCallsList -->
-        <activity android:name="DialerActivity"
+        <activity android:name="DialtactsActivity"
             android:label="@string/launcherDialer"
             android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
@@ -109,20 +109,11 @@
             </intent-filter>
         </activity>
 
-        <!-- An alias for compatibility -->
-        <activity-alias android:name="DialtactsActivity"
-            android:targetActivity="DialerActivity"
-        >
-        </activity-alias>
-        
         <!-- Tab container for Activity Stream and Contacts -->
-        <activity android:name="ContactsActivity"
+        <activity-alias android:name="DialtactsContactsEntryActivity"
+            android:targetActivity="DialtactsActivity"
             android:label="@string/contactsList"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:launchMode="singleTask"
-            android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_contacts"
-            android:screenOrientation="nosensor"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -141,27 +132,17 @@
                 <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
         <activity-alias android:name="DialtactsFavoritesEntryActivity"
-            android:targetActivity="ContactsActivity"
+            android:targetActivity="DialtactsActivity"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity-alias>
-
-        <!-- Activity stream list -->
-        <activity android:name="SocialStreamActivity">
-            <intent-filter>
-                <action android:name="com.android.contacts.action.SOCIAL_STREAM" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.TAB" />
-            </intent-filter>
-        </activity>
-
 
         <!-- The actual list of contacts, usually embedded in ContactsActivity -->
         <activity android:name="ContactsListActivity"
