@@ -19,7 +19,7 @@ package com.android.contacts;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Parcel;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +31,12 @@ import java.util.ArrayList;
 public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         extends BaseAdapter {
 
-    public static final String[] AGGREGATE_PROJECTION = new String[] {
-        Aggregates.DISPLAY_NAME, // 0
-        Aggregates.STARRED, //1
-        Aggregates.PHOTO_ID, //2
+    public static final String[] CONTACT_PROJECTION = new String[] {
+        Contacts.DISPLAY_NAME, // 0
+        Contacts.STARRED, //1
+        Contacts.PHOTO_ID, //2
         Data._ID, //3
-        Data.CONTACT_ID, //4
+        Data.RAW_CONTACT_ID, //4
         Data.RES_PACKAGE, //5
         Data.MIMETYPE, //6
         Data.IS_PRIMARY, //7
@@ -52,9 +52,9 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         Data.DATA9, //17
         Data.DATA10, //18
     };
-    public static final int AGGREGATE_DISPLAY_NAME_COLUMN = 0;
-    public static final int AGGREGATE_STARRED_COLUMN = 1;
-    public static final int AGGREGATE_PHOTO_ID = 2;
+    public static final int CONTACT_DISPLAY_NAME_COLUMN = 0;
+    public static final int CONTACT_STARRED_COLUMN = 1;
+    public static final int CONTACT_PHOTO_ID = 2;
     public static final int DATA_ID_COLUMN = 3;
     public static final int DATA_CONTACT_ID_COLUMN = 4;
     public static final int DATA_PACKAGE_COLUMN = 5;

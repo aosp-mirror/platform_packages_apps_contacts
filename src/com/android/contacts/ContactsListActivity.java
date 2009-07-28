@@ -41,8 +41,8 @@ import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Aggregates;
-import android.provider.ContactsContract.Aggregates.AggregationSuggestions;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Contacts.AggregationSuggestions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -182,24 +182,24 @@ public final class ContactsListActivity extends ListActivity implements
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
 
-    static final String NAME_COLUMN = Aggregates.DISPLAY_NAME;
+    static final String NAME_COLUMN = Contacts.DISPLAY_NAME;
     //static final String SORT_STRING = People.SORT_STRING;
 
     static final String[] AGGREGATES_PROJECTION = new String[] {
-        Aggregates._ID, // 0
-        Aggregates.DISPLAY_NAME, // 1
-        Aggregates.STARRED, //2
-        Aggregates.PRIMARY_PHONE_ID, //3
-        Aggregates.PRIMARY_EMAIL_ID, //4
+        Contacts._ID, // 0
+        Contacts.DISPLAY_NAME, // 1
+        Contacts.STARRED, //2
+        Contacts.PRIMARY_PHONE_ID, //3
+        Contacts.PRIMARY_EMAIL_ID, //4
     };
 
     static final String[] AGGREGATES_SUMMARY_PROJECTION = new String[] {
-        Aggregates._ID, // 0
-        Aggregates.DISPLAY_NAME, // 1
-        Aggregates.STARRED, //2
-        Aggregates.PRIMARY_PHONE_ID, //3
-        Aggregates.TIMES_CONTACTED, //4
-        Aggregates.PHOTO_ID, //5
+        Contacts._ID, // 0
+        Contacts.DISPLAY_NAME, // 1
+        Contacts.STARRED, //2
+        Contacts.PRIMARY_PHONE_ID, //3
+        Contacts.TIMES_CONTACTED, //4
+        Contacts.PHOTO_ID, //5
         Presence.PRESENCE_STATUS, //6
         CommonDataKinds.Phone.TYPE, //7
         CommonDataKinds.Phone.LABEL, //8
@@ -221,7 +221,7 @@ public final class ContactsListActivity extends ListActivity implements
         CommonDataKinds.Phone.TYPE, //1
         CommonDataKinds.Phone.LABEL, //2
         CommonDataKinds.Phone.NUMBER, //3
-        Aggregates.DISPLAY_NAME, // 4
+        Contacts.DISPLAY_NAME, // 4
     };
     static final int PHONE_ID_COLUMN_INDEX = 0;
     static final int PHONE_TYPE_COLUMN_INDEX = 1;
@@ -234,7 +234,7 @@ public final class ContactsListActivity extends ListActivity implements
         CommonDataKinds.StructuredPostal.TYPE, //1
         CommonDataKinds.StructuredPostal.LABEL, //2
         CommonDataKinds.StructuredPostal.DATA, //3
-        Aggregates.DISPLAY_NAME, // 4
+        Contacts.DISPLAY_NAME, // 4
     };
     static final int POSTAL_ID_COLUMN_INDEX = 0;
     static final int POSTAL_TYPE_COLUMN_INDEX = 1;
@@ -292,8 +292,8 @@ public final class ContactsListActivity extends ListActivity implements
      */
     private String mQueryData;
 
-    private static final String CLAUSE_ONLY_VISIBLE = Aggregates.IN_VISIBLE_GROUP + "=1";
-    private static final String CLAUSE_ONLY_PHONES = Aggregates.PRIMARY_PHONE_ID + " IS NOT NULL";
+    private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
+    private static final String CLAUSE_ONLY_PHONES = Contacts.PRIMARY_PHONE_ID + " IS NOT NULL";
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
@@ -357,7 +357,7 @@ public final class ContactsListActivity extends ListActivity implements
             // the Intent.
             mDisplayAll = true;
             final String type = intent.resolveType(this);
-            if (Aggregates.CONTENT_TYPE.equals(type)) {
+            if (Contacts.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_AGGREGATE;
             } else if (Phone.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
@@ -369,7 +369,7 @@ public final class ContactsListActivity extends ListActivity implements
             mCreateShortcut = true;
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             final String type = intent.resolveType(this);
-            if (Aggregates.CONTENT_ITEM_TYPE.equals(type)) {
+            if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_OR_CREATE_AGGREGATE;
             } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
@@ -429,7 +429,7 @@ public final class ContactsListActivity extends ListActivity implements
         } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
             // TODO actually support this in EditContactActivity.
             String number = intent.getData().getSchemeSpecificPart();
-            Intent newIntent = new Intent(Intent.ACTION_INSERT, Aggregates.CONTENT_URI);
+            Intent newIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             newIntent.putExtra(Intents.Insert.PHONE, number);
             startActivity(newIntent);
             finish();
@@ -529,7 +529,7 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private void buildUserGroupUri(String group) {
-        mGroupUri = Uri.withAppendedPath(Aggregates.CONTENT_SUMMARY_GROUP_URI, group);
+        mGroupUri = Uri.withAppendedPath(Contacts.CONTENT_SUMMARY_GROUP_URI, group);
     }
 
     /**
@@ -739,7 +739,7 @@ public final class ContactsListActivity extends ListActivity implements
             return;
         }
         long id = info.id;
-        Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
+        Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
 
         // Setup the menu header
         menu.setHeaderTitle(cursor.getString(SUMMARY_NAME_COLUMN_INDEX));
@@ -798,8 +798,8 @@ public final class ContactsListActivity extends ListActivity implements
             case MENU_ITEM_TOGGLE_STAR: {
                 // Toggle the star
                 ContentValues values = new ContentValues(1);
-                values.put(Aggregates.STARRED, cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX) == 0 ? 1 : 0);
-                Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI,
+                values.put(Contacts.STARRED, cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX) == 0 ? 1 : 0);
+                Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI,
                         cursor.getInt(ID_COLUMN_INDEX));
                 getContentResolver().update(aggUri, values, null, null);
                 return true;
@@ -838,7 +838,7 @@ public final class ContactsListActivity extends ListActivity implements
                 Object o = getListView().getSelectedItem();
                 if (o != null) {
                     Cursor cursor = (Cursor) o;
-                    Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI,
+                    Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI,
                             cursor.getLong(ID_COLUMN_INDEX));
                     //TODO make this dialog persist across screen rotations
                     new AlertDialog.Builder(ContactsListActivity.this)
@@ -869,11 +869,11 @@ public final class ContactsListActivity extends ListActivity implements
             Intent intent;
             if (position == 0) {
                 // Insert
-                intent = new Intent(Intent.ACTION_INSERT, Aggregates.CONTENT_URI);
+                intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             } else {
                 // Edit
                 intent = new Intent(Intent.ACTION_EDIT,
-                        ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
+                        ContentUris.withAppendedId(Contacts.CONTENT_URI, id));
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             final Bundle extras = getIntent().getExtras();
@@ -886,10 +886,10 @@ public final class ContactsListActivity extends ListActivity implements
         if (id != -1) {
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
-                        ContentUris.withAppendedId(Aggregates.CONTENT_URI, id));
+                        ContentUris.withAppendedId(Contacts.CONTENT_URI, id));
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } else if (mMode == MODE_JOIN_AGGREGATE) {
-                Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
+                Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
                 returnPickerResult(null, uri);
             }
 
@@ -903,7 +903,7 @@ public final class ContactsListActivity extends ListActivity implements
                 finish();
             }*/ else if (mMode == MODE_PICK_AGGREGATE
                     || mMode == MODE_PICK_OR_CREATE_AGGREGATE) {
-                Uri uri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, id);
+                Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
                 if (mCreateShortcut) {
                     // Subtract one if we have Create Contact at the top
                     Cursor c = (Cursor) mAdapter.getItem(position
@@ -1003,9 +1003,9 @@ public final class ContactsListActivity extends ListActivity implements
 
     private Uri getAggregateFilterUri(String filter) {
         if (!TextUtils.isEmpty(filter)) {
-            return Uri.withAppendedPath(Aggregates.CONTENT_SUMMARY_FILTER_URI, Uri.encode(filter));
+            return Uri.withAppendedPath(Contacts.CONTENT_SUMMARY_FILTER_URI, Uri.encode(filter));
         } else {
-            return Aggregates.CONTENT_SUMMARY_URI;
+            return Contacts.CONTENT_SUMMARY_URI;
         }
     }
 
@@ -1038,7 +1038,7 @@ public final class ContactsListActivity extends ListActivity implements
             case MODE_PICK_AGGREGATE:
             case MODE_PICK_OR_CREATE_AGGREGATE:
             case MODE_INSERT_OR_EDIT_CONTACT:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, Contacts.CONTENT_SUMMARY_URI,
                         AGGREGATES_SUMMARY_PROJECTION, getAggregateSelection(), null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
@@ -1073,22 +1073,22 @@ public final class ContactsListActivity extends ListActivity implements
             */
 
             case MODE_STARRED:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
-                        AGGREGATES_SUMMARY_PROJECTION, Aggregates.STARRED + "=1", null,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, Contacts.CONTENT_SUMMARY_URI,
+                        AGGREGATES_SUMMARY_PROJECTION, Contacts.STARRED + "=1", null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
             case MODE_FREQUENT:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_SUMMARY_URI,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, Contacts.CONTENT_SUMMARY_URI,
                         AGGREGATES_SUMMARY_PROJECTION,
-                        Aggregates.TIMES_CONTACTED + " > 0", null,
-                        Aggregates.TIMES_CONTACTED + " DESC, "
+                        Contacts.TIMES_CONTACTED + " > 0", null,
+                        Contacts.TIMES_CONTACTED + " DESC, "
                         + getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
                 break;
 
             case MODE_STREQUENT:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        Aggregates.CONTENT_SUMMARY_STREQUENT_URI, AGGREGATES_SUMMARY_PROJECTION,
+                        Contacts.CONTENT_SUMMARY_STREQUENT_URI, AGGREGATES_SUMMARY_PROJECTION,
                         null, null, null);
                 break;
 
@@ -1103,7 +1103,7 @@ public final class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_JOIN_AGGREGATE:
-                Uri suggestionsUri = Aggregates.CONTENT_URI.buildUpon()
+                Uri suggestionsUri = Contacts.CONTENT_URI.buildUpon()
                         .appendEncodedPath(String.valueOf(mQueryAggregateId))
                         .appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY)
                         .appendQueryParameter(AggregationSuggestions.MAX_SUGGESTIONS,
@@ -1135,24 +1135,24 @@ public final class ContactsListActivity extends ListActivity implements
 
             case MODE_STARRED: {
                 return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
-                        Aggregates.STARRED + "=1", null,
+                        Contacts.STARRED + "=1", null,
                         getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
 
             case MODE_FREQUENT: {
                 return resolver.query(getAggregateFilterUri(filter), AGGREGATES_SUMMARY_PROJECTION,
-                        Aggregates.TIMES_CONTACTED + " > 0", null,
-                        Aggregates.TIMES_CONTACTED + " DESC, "
+                        Contacts.TIMES_CONTACTED + " > 0", null,
+                        Contacts.TIMES_CONTACTED + " DESC, "
                         + getSortOrder(AGGREGATES_SUMMARY_PROJECTION));
             }
 
             case MODE_STREQUENT: {
                 Uri uri;
                 if (!TextUtils.isEmpty(filter)) {
-                    uri = Uri.withAppendedPath(Aggregates.CONTENT_SUMMARY_STREQUENT_FILTER_URI,
+                    uri = Uri.withAppendedPath(Contacts.CONTENT_SUMMARY_STREQUENT_FILTER_URI,
                             Uri.encode(filter));
                 } else {
-                    uri = Aggregates.CONTENT_SUMMARY_STREQUENT_URI;
+                    uri = Contacts.CONTENT_SUMMARY_STREQUENT_URI;
                 }
                 return resolver.query(uri, AGGREGATES_SUMMARY_PROJECTION, null, null, null);
             }
@@ -1273,8 +1273,8 @@ public final class ContactsListActivity extends ListActivity implements
                 } else {
                     activity.mAdapter.setSuggestionsCursor(null);
                 }
-                startQuery(QUERY_TOKEN, null, Aggregates.CONTENT_URI, AGGREGATES_PROJECTION,
-                        Aggregates._ID + " != " + mAggregateId, null,
+                startQuery(QUERY_TOKEN, null, Contacts.CONTENT_URI, AGGREGATES_PROJECTION,
+                        Contacts._ID + " != " + mAggregateId, null,
                         getSortOrder(AGGREGATES_PROJECTION));
 
             } else {

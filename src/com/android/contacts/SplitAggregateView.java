@@ -22,7 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.ContactsContract.Aggregates.Data;
+import android.provider.ContactsContract.Contacts.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -49,13 +49,13 @@ import java.util.List;
 public class SplitAggregateView extends ListView {
 
     private static final String[] AGGREGATE_DATA_PROJECTION = new String[] {
-            Data.MIMETYPE, Data.RES_PACKAGE, Data.CONTACT_ID, Data.DATA1, Data.DATA2,
+            Data.MIMETYPE, Data.RES_PACKAGE, Data.RAW_CONTACT_ID, Data.DATA1, Data.DATA2,
             Data.IS_PRIMARY, StructuredName.DISPLAY_NAME
     };
 
     private static final int COL_MIMETYPE = 0;
     private static final int COL_RES_PACKAGE = 1;
-    private static final int COL_CONTACT_ID = 2;
+    private static final int COL_RAW_CONTACT_ID = 2;
     private static final int COL_DATA1 = 3;
     private static final int COL_DATA2 = 4;
     private static final int COL_IS_PRIMARY = 5;
@@ -145,7 +145,7 @@ public class SplitAggregateView extends ListView {
                 AGGREGATE_DATA_PROJECTION, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                long contactId = cursor.getLong(COL_CONTACT_ID);
+                long contactId = cursor.getLong(COL_RAW_CONTACT_ID);
                 ContactInfo info = contactInfos.get(contactId);
                 if (info == null) {
                     info = new ContactInfo(contactId);

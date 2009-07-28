@@ -16,9 +16,9 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PHOTO_ID;
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_PHOTO_ID;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_STARRED_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
@@ -58,7 +58,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
@@ -114,7 +114,7 @@ public class ViewContactActivity extends ListActivity
     private int mNumPhoneNumbers = 0;
 
     /**
-     * A list of distinct contact IDs included in the current aggregate.
+     * A list of distinct contact IDs included in the current contact.
      */
     private ArrayList<Long> mContactIds = new ArrayList<Long>();
 
@@ -165,9 +165,9 @@ public class ViewContactActivity extends ListActivity
         switch (view.getId()) {
             case R.id.star: {
                 mCursor.moveToFirst();
-                int oldStarredState = mCursor.getInt(AGGREGATE_STARRED_COLUMN);
+                int oldStarredState = mCursor.getInt(CONTACT_STARRED_COLUMN);
                 ContentValues values = new ContentValues(1);
-                values.put(Aggregates.STARRED, oldStarredState == 1 ? 0 : 1);
+                values.put(Contacts.STARRED, oldStarredState == 1 ? 0 : 1);
                 getContentResolver().update(mUri, values, null, null);
                 break;
             }
@@ -227,7 +227,7 @@ public class ViewContactActivity extends ListActivity
         mShowSmsLinksForAllPhones = true;
 
         mCursor = mResolver.query(mAggDataUri,
-                AGGREGATE_PROJECTION, null, null, null);
+                CONTACT_PROJECTION, null, null, null);
     }
 
     @Override
@@ -283,10 +283,10 @@ public class ViewContactActivity extends ListActivity
         mCursor.requery();
         if (mCursor.moveToFirst()) {
             // Set the star
-            mStarView.setChecked(mCursor.getInt(AGGREGATE_STARRED_COLUMN) == 1 ? true : false);
+            mStarView.setChecked(mCursor.getInt(CONTACT_STARRED_COLUMN) == 1 ? true : false);
 
             //Set the photo
-            int photoId = mCursor.getInt(AGGREGATE_PHOTO_ID);
+            int photoId = mCursor.getInt(CONTACT_PHOTO_ID);
             Bitmap photoBitmap = ContactsUtils.loadContactPhoto(
                     this, photoId, null);
             if (photoBitmap == null) {
@@ -566,7 +566,7 @@ public class ViewContactActivity extends ListActivity
 
     private void joinAggregate(final long aggregateId) {
         Cursor c = mResolver.query(RawContacts.CONTENT_URI, new String[] {RawContacts._ID},
-                RawContacts.AGGREGATE_ID + "=" + aggregateId, null, null);
+                RawContacts.CONTACT_ID + "=" + aggregateId, null, null);
 
         try {
             while(c.moveToNext()) {
@@ -587,7 +587,7 @@ public class ViewContactActivity extends ListActivity
      */
     protected void setAggregationException(long contactId, int exceptionType) {
         ContentValues values = new ContentValues(3);
-        values.put(AggregationExceptions.AGGREGATE_ID, ContentUris.parseId(mUri));
+        values.put(AggregationExceptions.CONTACT_ID, ContentUris.parseId(mUri));
         values.put(AggregationExceptions.CONTACT_ID, contactId);
         values.put(AggregationExceptions.TYPE, exceptionType);
         mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);

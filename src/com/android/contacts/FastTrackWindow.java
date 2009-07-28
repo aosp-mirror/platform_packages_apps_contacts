@@ -35,7 +35,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.SocialContract;
 import android.provider.Contacts.Phones;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Presence;
@@ -81,7 +81,7 @@ import java.util.Set;
 
 /**
  * Window that shows fast-track contact details for a specific
- * {@link Aggregates#_ID}.
+ * {@link Contacts#_ID}.
  */
 public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener,
         AbsListView.OnItemClickListener {
@@ -156,7 +156,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      */
     private static final String[] ORDERED_MIMETYPES = new String[] {
         Phones.CONTENT_ITEM_TYPE,
-        Aggregates.CONTENT_ITEM_TYPE,
+        Contacts.CONTENT_ITEM_TYPE,
         MIME_SMS_ADDRESS,
         Email.CONTENT_ITEM_TYPE,
     };
@@ -222,7 +222,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         Resources res = mContext.getResources();
         Mapping mapping;
 
-        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Aggregates.CONTENT_ITEM_TYPE);
+        mapping = new Mapping(CommonDataKinds.PACKAGE_COMMON, Contacts.CONTENT_ITEM_TYPE);
         mapping.icon = BitmapFactory.decodeResource(res, R.drawable.ic_contacts_details);
         mMappingCache.addMapping(mapping);
 
@@ -261,11 +261,11 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         mQuerying = true;
 
         Uri aggSummary = ContentUris.withAppendedId(
-                ContactsContract.Aggregates.CONTENT_SUMMARY_URI, mAggId);
+                ContactsContract.Contacts.CONTENT_SUMMARY_URI, mAggId);
         Uri aggSocial = ContentUris.withAppendedId(
                 SocialContract.Activities.CONTENT_AGGREGATE_STATUS_URI, mAggId);
         Uri aggData = Uri.withAppendedPath(aggUri,
-                ContactsContract.Aggregates.Data.CONTENT_DIRECTORY);
+                ContactsContract.Contacts.Data.CONTENT_DIRECTORY);
 
         // Start data query in background
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
@@ -430,7 +430,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
      * Handle the result from the {@link TOKEN_SUMMARY} query.
      */
     private void handleSummary(Cursor cursor) {
-        final int colDisplayName = cursor.getColumnIndex(Aggregates.DISPLAY_NAME);
+        final int colDisplayName = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
         final int colStatus = cursor.getColumnIndex(PresenceColumns.PRESENCE_STATUS);
 
         if (cursor.moveToNext()) {
@@ -583,7 +583,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         // Add the profile shortcut action if requested
         if (INCLUDE_PROFILE_ACTION) {
-            final String mimeType = Aggregates.CONTENT_ITEM_TYPE;
+            final String mimeType = Contacts.CONTENT_ITEM_TYPE;
             info = new ActionInfo(mAggId, CommonDataKinds.PACKAGE_COMMON, mimeType);
             if (info.findMapping(mMappingCache)) {
                 mActions.collect(mimeType, info);

@@ -41,7 +41,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -77,8 +77,8 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         Activities.RES_PACKAGE,
         Activities.MIMETYPE,
         Activities.AUTHOR_CONTACT_ID,
-        RawContacts.AGGREGATE_ID,
-        Aggregates.DISPLAY_NAME,
+        RawContacts.CONTACT_ID,
+        Contacts.DISPLAY_NAME,
         Activities.PUBLISHED,
         Activities.TITLE,
         Activities.SUMMARY,
@@ -166,7 +166,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     private Rect mRect = new Rect();
 
     private void showFastTrack(View anchor, long aggId) {
-        Uri aggUri = ContentUris.withAppendedId(ContactsContract.Aggregates.CONTENT_URI, aggId);
+        Uri aggUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, aggId);
 
         anchor.getLocationInWindow(mLocation);
         mRect.left = mLocation[0];
@@ -365,12 +365,12 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
 
         private static final String[] PROJ_DETAILS = new String[] {
             Data.MIMETYPE,
-            Data.CONTACT_ID,
+            Data.RAW_CONTACT_ID,
             Photo.PHOTO,
         };
 
         private static final int COL_MIMETYPE = 0;
-        private static final int COL_CONTACT_ID = 1;
+        private static final int COL_RAW_CONTACT_ID = 1;
         private static final int COL_PHOTO = 2;
 
         private HashMap<Long, Bitmap> mPhoto = new HashMap<Long, Bitmap>();
@@ -383,7 +383,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
                     Data.MIMETYPE + "=?", new String[] { Photo.CONTENT_ITEM_TYPE }, null);
 
             while (cursor.moveToNext()) {
-                long contactId = cursor.getLong(COL_CONTACT_ID);
+                long contactId = cursor.getLong(COL_RAW_CONTACT_ID);
                 String mimeType = cursor.getString(COL_MIMETYPE);
                 if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     byte[] photoBlob = cursor.getBlob(COL_PHOTO);

@@ -31,7 +31,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Contacts.Intents;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.view.View;
@@ -62,7 +62,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     };
 
     static final String[] CONTACTS_PROJECTION = new String[] {
-        RawContacts.AGGREGATE_ID,
+        RawContacts.CONTACT_ID,
     };
 
     static final String SCHEME_MAILTO = "mailto";
@@ -203,7 +203,7 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
 
         if (count == 1 && aggId != -1) {
             // If we only found one item, show fast-track
-            final Uri aggUri = ContentUris.withAppendedId(Aggregates.CONTENT_URI, aggId);
+            final Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, aggId);
             showFastTrack(aggUri);
 
         } else if (count > 1) {

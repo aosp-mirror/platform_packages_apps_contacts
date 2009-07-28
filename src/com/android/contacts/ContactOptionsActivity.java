@@ -24,7 +24,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Aggregates;
+import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -38,7 +38,7 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
     private static final String TAG = "ContactOptionsActivity";
 
     private static final String[] AGGREGATES_PROJECTION = new String[] {
-            Aggregates.CUSTOM_RINGTONE, Aggregates.SEND_TO_VOICEMAIL
+            Contacts.CUSTOM_RINGTONE, Contacts.SEND_TO_VOICEMAIL
     };
 
     private static final int COL_CUSTOM_RINGTONE = 0;
@@ -193,8 +193,8 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
 
     private void saveData() {
         ContentValues values = new ContentValues(2);
-        values.put(Aggregates.CUSTOM_RINGTONE, mCustomRingtone);
-        values.put(Aggregates.SEND_TO_VOICEMAIL, mSendToVoicemail);
+        values.put(Contacts.CUSTOM_RINGTONE, mCustomRingtone);
+        values.put(Contacts.SEND_TO_VOICEMAIL, mSendToVoicemail);
         getContentResolver().update(mAggregateUri, values, null, null);
     }
 }

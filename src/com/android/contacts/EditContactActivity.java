@@ -16,20 +16,16 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_DISPLAY_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.AGGREGATE_STARRED_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_PACKAGE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_IS_PRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_4_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_5_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_9_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
+import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -41,7 +37,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -50,10 +45,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.Aggregates;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -63,7 +56,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.Data;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -71,7 +63,6 @@ import android.text.TextWatcher;
 import android.text.method.TextKeyListener;
 import android.text.method.TextKeyListener.Capitalize;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -86,7 +77,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -1222,7 +1212,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * @param extras the extras used to start this activity, may be null
      */
     private void buildEntriesForEdit(Bundle extras) {
-        Cursor aggCursor = mResolver.query(mAggDataUri, AGGREGATE_PROJECTION, null, null, null);
+        Cursor aggCursor = mResolver.query(mAggDataUri, CONTACT_PROJECTION, null, null, null);
         if (aggCursor == null) {
             Log.e(TAG, "invalid contact uri: " + mUri);
             finish();
