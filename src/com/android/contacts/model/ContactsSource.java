@@ -19,6 +19,7 @@ package com.android.contacts.model;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.widget.EditText;
@@ -70,7 +71,7 @@ import java.util.List;
  */
 public class ContactsSource {
     /**
-     * The {@link Contacts#ACCOUNT_TYPE} these constraints apply to.
+     * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
     public String accountType;
 

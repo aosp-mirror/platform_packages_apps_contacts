@@ -113,7 +113,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final Bundle extras = intent.getExtras();
 
         mUri = intent.getData();
-        
+
         // TODO: read all contacts part of this aggregate and hook into tabs
 
         // Resolve the intent

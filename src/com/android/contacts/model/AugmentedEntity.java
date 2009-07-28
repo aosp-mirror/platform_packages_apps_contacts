@@ -19,14 +19,20 @@ package com.android.contacts.model;
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Entity;
+import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
+import android.net.Uri;
 import android.os.Parcel;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Contains an {@link Entity} that records any modifications separately so the
@@ -43,7 +49,6 @@ import java.util.HashMap;
  */
 public class AugmentedEntity {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
-    // TODO: write unit tests to make sure that getDiff() is performing correctly
 
     /**
      * Direct values from {@link Entity#getEntityValues()}.
@@ -60,6 +65,11 @@ public class AugmentedEntity {
         mEntries = new HashMap<String, ArrayList<AugmentedValues>>();
     }
 
+    public AugmentedEntity(AugmentedValues values) {
+        this();
+        mValues = values;
+    }
+
     /**
      * Build an {@link AugmentedEntity} using the given {@link Entity} as a
      * starting point; the "before" snapshot.
@@ -67,10 +77,15 @@ public class AugmentedEntity {
     public static AugmentedEntity fromBefore(Entity before) {
         final AugmentedEntity entity = new AugmentedEntity();
         entity.mValues = AugmentedValues.fromBefore(before.getEntityValues());
+        entity.mValues.setIdColumn(Contacts._ID);
         for (NamedContentValues namedValues : before.getSubValues()) {
             entity.addEntry(AugmentedValues.fromBefore(namedValues.values));
         }
         return entity;
+    }
+
+    public AugmentedValues getValues() {
+        return mValues;
     }
 
     /**
@@ -78,7 +93,7 @@ public class AugmentedEntity {
      */
     public AugmentedValues getPrimaryEntry(String mimeType) {
         // TODO: handle the case where the caller must have a non-null value,
-        // for example displayname
+        // for example inserting a displayname automatically
         final ArrayList<AugmentedValues> mimeEntries = getMimeEntries(mimeType, false);
         for (AugmentedValues entry : mimeEntries) {
             if (entry.isPrimary()) {
@@ -119,8 +134,8 @@ public class AugmentedEntity {
      * {@link BaseColumns#_ID} value, used when {@link #augmentFrom(Parcel)} is
      * inflating a modified state.
      */
-    public AugmentedValues getEntry(long anchorId) {
-        if (anchorId < 0) {
+    public AugmentedValues getEntry(Long childId) {
+        if (childId == null) {
             // Requesting an "insert" entry, which has no "before"
             return null;
         }
@@ -128,7 +143,7 @@ public class AugmentedEntity {
         // Search all children for requested entry
         for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
             for (AugmentedValues entry : mimeEntries) {
-                if (entry.getId() == anchorId) {
+                if (entry.getId() == childId) {
                     return entry;
                 }
             }
@@ -159,11 +174,11 @@ public class AugmentedEntity {
         // Read in packaged children until finished
         int mode = parcel.readInt();
         while (mode == MODE_CONTINUE) {
-            final long anchorId = parcel.readLong();
+            final Long childId = readLong(parcel);
             final ContentValues after = (ContentValues)parcel.readValue(null);
 
-            AugmentedValues entry = getEntry(anchorId);
-            if (anchorId < 0 || entry == null) {
+            AugmentedValues entry = getEntry(childId);
+            if (entry == null) {
                 // Is "insert", or "before" record is missing, so now "insert"
                 entry = AugmentedValues.fromAfter(after);
                 addEntry(entry);
@@ -185,11 +200,73 @@ public class AugmentedEntity {
         for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
             for (AugmentedValues child : mimeEntries) {
                 parcel.writeInt(MODE_CONTINUE);
-                parcel.writeLong(child.getId());
+                writeLong(parcel, child.getId());
                 parcel.writeValue(child.mAfter);
             }
         }
         parcel.writeInt(MODE_DONE);
+    }
+
+    private void writeLong(Parcel parcel, Long value) {
+        parcel.writeLong(value == null ? -1 : value);
+    }
+
+    private Long readLong(Parcel parcel) {
+        final long value = parcel.readLong();
+        return value == -1 ? null : value;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof AugmentedEntity) {
+            final AugmentedEntity other = (AugmentedEntity)object;
+
+            // Equality failed if parent values different
+            if (!other.mValues.equals(mValues)) return false;
+
+            for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
+                for (AugmentedValues child : mimeEntries) {
+                    // Equality failed if any children unmatched
+                    if (!other.containsEntry(child)) return false;
+                }
+            }
+
+            // Passed all tests, so equal
+            return true;
+        }
+        return false;
+    }
+
+    private boolean containsEntry(AugmentedValues entry) {
+        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
+            for (AugmentedValues child : mimeEntries) {
+                // Contained if we find any child that matches
+                if (child.equals(entry)) return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("\n(");
+        builder.append(mValues.toString());
+        builder.append(") = {");
+        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
+            for (AugmentedValues child : mimeEntries) {
+                builder.append("\n\t");
+                child.toString(builder);
+            }
+        }
+        builder.append("\n}\n");
+        return builder.toString();
+    }
+
+    private void possibleAdd(ArrayList<ContentProviderOperation> diff, ContentProviderOperation.Builder builder) {
+        if (builder != null) {
+            diff.add(builder.build());
+        }
     }
 
     /**
@@ -197,10 +274,51 @@ public class AugmentedEntity {
      * current "before" {@link Entity} state into the modified state which this
      * {@link AugmentedEntity} represents.
      */
-    public ArrayList<ContentProviderOperation> getDiff() {
-        // TODO: assert that existing contact exists, and provide CONTACT_ID to children inserts
-        // TODO: mostly calling through to children for diff operations
-        return null;
+    public ArrayList<ContentProviderOperation> buildDiff() {
+        final ArrayList<ContentProviderOperation> diff = new ArrayList<ContentProviderOperation>();
+
+        final boolean isContactInsert = mValues.isInsert();
+        final boolean isContactDelete = mValues.isDelete();
+
+        final Long beforeId = mValues.getId();
+        final Long beforeVersion = mValues.getAsLong(RawContacts.VERSION);
+
+        // Build possible operation at Contact level
+        Builder builder = mValues.buildDiff(RawContacts.CONTENT_URI);
+        possibleAdd(diff, builder);
+
+        // Build operations for all children
+        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
+            for (AugmentedValues child : mimeEntries) {
+                // Ignore children if parent was deleted
+                if (isContactDelete) continue;
+
+                builder = child.buildDiff(Data.CONTENT_URI);
+                if (child.isInsert()) {
+                    if (isContactInsert) {
+                        // Parent is brand new insert, so back-reference _id
+                        builder.withValueBackReference(Data.RAW_CONTACT_ID, 0);
+                    } else {
+                        // Inserting under existing, so fill with known _id
+                        builder.withValue(Data.RAW_CONTACT_ID, beforeId);
+                    }
+                } else if (isContactInsert) {
+                    // Child must be insert when Contact insert
+                    throw new IllegalArgumentException("When parent insert, child must be also");
+                }
+                possibleAdd(diff, builder);
+            }
+        }
+
+        // If any operations, assert that version is identical so we bail if changed
+        if (diff.size() > 0 && beforeVersion != null) {
+            builder = ContentProviderOperation.newCountQuery(Contacts.CONTENT_URI);
+            builder.withSelection(RawContacts.VERSION + "=" + beforeVersion, null);
+            builder.withExpectedCount(1);
+            possibleAdd(diff, builder);
+        }
+
+        return diff;
     }
 
     /**
@@ -211,6 +329,7 @@ public class AugmentedEntity {
     public static class AugmentedValues {
         private ContentValues mBefore;
         private ContentValues mAfter;
+        private String mIdColumn = BaseColumns._ID;
 
         private AugmentedValues() {
         }
@@ -262,15 +381,30 @@ public class AugmentedEntity {
         }
 
         public Long getId() {
-            return getAsLong(BaseColumns._ID);
+            return getAsLong(mIdColumn);
+        }
+
+        public void setIdColumn(String idColumn) {
+            mIdColumn = idColumn;
         }
 
         public boolean isPrimary() {
             return (getAsLong(Data.IS_PRIMARY) != 0);
         }
 
-        public boolean isDeleted() {
+        public boolean isDelete() {
+            // When "after" is wiped, action is "delete"
             return (mAfter == null);
+        }
+
+        public boolean isUpdate() {
+            // When "after" has some changes, action is "update"
+            return (mAfter.size() > 0);
+        }
+
+        public boolean isInsert() {
+            // When no "before" id, action is "insert"
+            return mBefore == null || getId() == null;
         }
 
         public void markDeleted() {
@@ -297,16 +431,100 @@ public class AugmentedEntity {
         }
 
         /**
+         * Return set of all keys defined through this object.
+         */
+        public Set<String> keySet() {
+            final HashSet<String> keys = new HashSet<String>();
+
+            if (mBefore != null) {
+                for (Map.Entry<String, Object> entry : mBefore.valueSet()) {
+                    keys.add(entry.getKey());
+                }
+            }
+
+            if (mAfter != null) {
+                for (Map.Entry<String, Object> entry : mAfter.valueSet()) {
+                    keys.add(entry.getKey());
+                }
+            }
+
+            return keys;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            if (object instanceof AugmentedValues) {
+                // Only exactly equal with both are identical subsets
+                final AugmentedValues other = (AugmentedValues)object;
+                return this.subsetEquals(other) && other.subsetEquals(this);
+            }
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            toString(builder);
+            return builder.toString();
+        }
+
+        /**
+         * Helper for building string representation, leveraging the given
+         * {@link StringBuilder} to minimize allocations.
+         */
+        public void toString(StringBuilder builder) {
+            builder.append("{ ");
+            for (String key : this.keySet()) {
+                builder.append(key);
+                builder.append("=");
+                builder.append(this.getAsString(key));
+                builder.append(", ");
+            }
+            builder.append("}");
+        }
+
+        /**
+         * Check if the given {@link AugmentedValues} is both a subset of this
+         * object, and any defined keys have equal values.
+         */
+        public boolean subsetEquals(AugmentedValues other) {
+            for (String key : this.keySet()) {
+                final String ourValue = this.getAsString(key);
+                final String theirValue = other.getAsString(key);
+                if (ourValue == null) {
+                    // If they have value when we're null, no match
+                    if (theirValue != null) return false;
+                } else {
+                    // If both values defined and aren't equal, no match
+                    if (!ourValue.equals(theirValue)) return false;
+                }
+            }
+            // All values compared and matched
+            return true;
+        }
+
+        /**
          * Build a {@link ContentProviderOperation} that will transform our
          * "before" state into our "after" state, using insert, update, or
          * delete as needed.
          */
-        public ContentProviderOperation getDiff() {
-            // TODO: build insert/update/delete based on internal state
-            // any _id under zero are inserts
-            return null;
+        public ContentProviderOperation.Builder buildDiff(Uri targetUri) {
+            Builder builder = null;
+            if (isInsert()) {
+                // Changed values are "insert" back-referenced to Contact
+                builder = ContentProviderOperation.newInsert(targetUri);
+                builder.withValues(mAfter);
+            } else if (isDelete()) {
+                // When marked for deletion and "before" exists, then "delete"
+                builder = ContentProviderOperation.newDelete(targetUri);
+                builder.withSelection(mIdColumn + "=" + getId(), null);
+            } else if (isUpdate()) {
+                // When has changes and "before" exists, then "update"
+                builder = ContentProviderOperation.newUpdate(targetUri);
+                builder.withSelection(mIdColumn + "=" + getId(), null);
+                builder.withValues(mAfter);
+            }
+            return builder;
         }
-
     }
-
 }

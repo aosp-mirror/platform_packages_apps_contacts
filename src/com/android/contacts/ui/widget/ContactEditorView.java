@@ -240,7 +240,7 @@ public class ContactEditorView extends ViewHolder {
             mEntry = entry;
             mState = state;
 
-            if (entry.isDeleted()) {
+            if (entry.isDelete()) {
                 // Hide ourselves entirely if deleted
                 mContent.setVisibility(View.GONE);
                 return;
