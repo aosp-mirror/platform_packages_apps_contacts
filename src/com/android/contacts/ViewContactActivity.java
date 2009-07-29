@@ -776,25 +776,27 @@ public class ViewContactActivity extends BaseContactCardActivity
                     } else if (mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
                         String[] protocolStrings = getResources().getStringArray(
                                 android.R.array.imProtocols);
-                        Object protocolObj = ContactsUtils.decodeImProtocol(
-                                aggCursor.getString(DATA_5_COLUMN));
+                        Object protocolObj = aggCursor.getString(DATA_5_COLUMN);
                         String host = null;
-                        if (protocolObj instanceof Number) {
-                            int protocol = ((Number) protocolObj).intValue();
-                            entry.label = buildActionString(R.string.actionChat,
-                                    protocolStrings[protocol], false);
-                            host = ContactsUtils.lookupProviderNameFromId(
-                                    protocol).toLowerCase();
-                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
-                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
-                                entry.maxLabelLines = 2;
-                            }
-                        } else if (protocolObj != null) {
+                        // TODO: fix by moving to contactssource-based rendering rules
+//                      Object protocolObj = ContactsUtils.decodeImProtocol(
+//                      aggCursor.getString(DATA_5_COLUMN));
+//                        if (protocolObj instanceof Number) {
+//                            int protocol = ((Number) protocolObj).intValue();
+//                            entry.label = buildActionString(R.string.actionChat,
+//                                    protocolStrings[protocol], false);
+//                            host = ContactsUtils.lookupProviderNameFromId(
+//                                    protocol).toLowerCase();
+//                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
+//                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
+//                                entry.maxLabelLines = 2;
+//                            }
+//                        } else if (protocolObj != null) {
                             String providerName = (String) protocolObj;
                             entry.label = buildActionString(R.string.actionChat,
                                     providerName, false);
                             host = providerName.toLowerCase();
-                        }
+//                        }
 
                         // Only add the intent if there is a valid host
                         if (!TextUtils.isEmpty(host)) {

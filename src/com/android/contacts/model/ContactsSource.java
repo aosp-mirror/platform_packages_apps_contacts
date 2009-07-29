@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -141,6 +142,8 @@ public class ContactsSource {
         public List<EditType> typeList;
         public List<EditField> fieldList;
 
+        public ContentValues defaultValues;
+
         public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
             this.mimeType = mimeType;
             this.titleRes = titleRes;
@@ -206,9 +209,9 @@ public class ContactsSource {
             this.inputType = inputType;
         }
 
-        public EditField(String column, int titleRes, int inputType, int minLines) {
+        public EditField(String column, int titleRes, int inputType, boolean optional) {
             this(column, titleRes, inputType);
-            this.minLines = minLines;
+            this.optional = optional;
         }
     }
 

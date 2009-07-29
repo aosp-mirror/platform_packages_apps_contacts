@@ -36,6 +36,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -222,6 +223,12 @@ public class ContactEditorView extends ViewHolder {
          * possible custom label string.
          */
         private void rebuildLabel() {
+            // Handle undetected types
+            if (mType == null) {
+                mLabel.setText(R.string.unknown);
+                return;
+            }
+
             if (mType.customColumn != null) {
                 // Use custom label string when present
                 final String customText = mEntry.getAsString(mType.customColumn);
@@ -327,12 +334,17 @@ public class ContactEditorView extends ViewHolder {
             // Build list of valid types, including the current value
             final List<EditType> validTypes = EntityModifier.getValidTypes(mState, mKind, mType);
 
+            // Wrap our context to inflate list items using correct theme
+            final Context dialogContext = new ContextThemeWrapper(mContext,
+                    android.R.style.Theme_Light);
+            final LayoutInflater dialogInflater = mInflater.cloneInContext(dialogContext);
+
             final ListAdapter typeAdapter = new ArrayAdapter<EditType>(mContext, RES_LABEL_ITEM,
                     validTypes) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     if (convertView == null) {
-                        convertView = mInflater.inflate(RES_LABEL_ITEM, parent, false);
+                        convertView = dialogInflater.inflate(RES_LABEL_ITEM, parent, false);
                     }
 
                     final EditType type = this.getItem(position);
@@ -358,10 +370,6 @@ public class ContactEditorView extends ViewHolder {
                     }
                 }
             };
-
-            // Wrap our context to inflate list items using correct theme
-            final Context dialogContext = new ContextThemeWrapper(mContext,
-                    android.R.style.Theme_Black);
 
             new AlertDialog.Builder(mContext).setSingleChoiceItems(typeAdapter, 0, clickListener)
                     .setTitle(R.string.selectLabel).show();

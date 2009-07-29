@@ -18,9 +18,12 @@ package com.android.contacts.model;
 
 import com.android.contacts.R;
 
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
@@ -77,6 +80,23 @@ public class Sources {
         return mSources.get(accountType);
     }
 
+    private static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
+    private static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
+    private static final int FLAGS_PERSON_NAME = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;
+    private static final int FLAGS_PHONETIC = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_VARIATION_PHONETIC;
+    private static final int FLAGS_GENERIC_NAME = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
+    private static final int FLAGS_NOTE = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
+    private static final int FLAGS_WEBSITE = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_VARIATION_URI;
+    private static final int FLAGS_POSTAL = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_VARIATION_POSTAL_ADDRESS | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS
+            | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
+
     /**
      * Hard-coded instance of {@link ContactsSource} for Google Contacts.
      */
@@ -117,8 +137,7 @@ public class Sources {
                     Phone.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup,
-                    EditorInfo.TYPE_CLASS_PHONE));
+            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
             list.add(kind);
         }
@@ -140,8 +159,40 @@ public class Sources {
                     Email.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup,
-                    EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
+            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+            list.add(kind);
+        }
+
+        {
+            // GOOGLE: IM
+            DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
+                    android.R.drawable.sym_action_chat, 20, true);
+
+            kind.actionHeader = new ActionLabelInflater(R.string.actionChat, kind);
+            kind.actionBody = new ColumnInflater(Im.DATA);
+
+            // NOTE: even though a traditional "type" exists, for editing
+            // purposes we're using the network to pick labels
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
+
+            kind.typeColumn = Im.PROTOCOL;
+            kind.typeList = new ArrayList<EditType>();
+            kind.typeList.add(new EditType(Im.PROTOCOL_AIM, R.string.type_im_aim));
+            kind.typeList.add(new EditType(Im.PROTOCOL_MSN, R.string.type_im_msn));
+            kind.typeList.add(new EditType(Im.PROTOCOL_YAHOO, R.string.type_im_yahoo));
+            kind.typeList.add(new EditType(Im.PROTOCOL_SKYPE, R.string.type_im_skype));
+            kind.typeList.add(new EditType(Im.PROTOCOL_QQ, R.string.type_im_qq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_GOOGLE_TALK, R.string.type_im_google_talk));
+            kind.typeList.add(new EditType(Im.PROTOCOL_ICQ, R.string.type_im_icq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_JABBER, R.string.type_im_jabber));
+            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom, true, -1,
+                    Im.CUSTOM_PROTOCOL));
+
+            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
         }
@@ -149,9 +200,11 @@ public class Sources {
         {
             // GOOGLE: POSTAL
             DataKind kind = new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
-                    R.string.postalLabelsGroup, R.drawable.sym_action_map, 20, true);
+                    R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true);
 
             kind.actionHeader = new ActionLabelInflater(R.string.actionMap, kind);
+            // TODO: build body from various structured fields
+            kind.actionBody = new ColumnInflater(StructuredPostal.FORMATTED_ADDRESS);
 
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -161,27 +214,29 @@ public class Sources {
             kind.typeList.add(new EditType(StructuredPostal.TYPE_CUSTOM, R.string.type_custom,
                     true, -1, StructuredPostal.LABEL));
 
-            // TODO: define editors for each field
-
-// EditorInfo.TYPE_CLASS_TEXT
-//          | EditorInfo.TYPE_TEXT_VARIATION_POSTAL_ADDRESS
-//          | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS
-//          | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
-
-//          entry.maxLines = 4;
-//          entry.lines = 2;
+            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList.add(new EditField(StructuredPostal.AGENT, -1, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.HOUSENAME, -1, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.STREET, -1, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POBOX, -1, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD, -1, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.CITY, -1, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.SUBREGION, -1, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.REGION, -1, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE, -1, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY, -1, FLAGS_POSTAL, true));
 
             list.add(kind);
         }
-
-        // TODO: GOOGLE: IM
-//      entry.contentType = EditorInfo.TYPE_CLASS_TEXT
-//      | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
 
         {
             // GOOGLE: ORGANIZATION
             DataKind kind = new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true);
+
+            kind.actionHeader = new SimpleInflater(R.string.organizationLabelsGroup);
+            // TODO: build body from multiple fields
+            kind.actionBody = new ColumnInflater(Organization.TITLE);
 
             kind.typeColumn = Organization.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -192,9 +247,9 @@ public class Sources {
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
-                    EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS));
+                    FLAGS_GENERIC_NAME));
             kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
-                    EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS));
+                    FLAGS_GENERIC_NAME));
 
             list.add(kind);
         }
@@ -205,13 +260,11 @@ public class Sources {
                     R.string.label_notes, R.drawable.sym_note, 110, true);
             kind.secondary = true;
 
-//            kind.actionHeader = new ActionLabelInflater(R.string.ac, kind);
-            kind.actionBody = new ColumnInflater(Email.DATA);
+            kind.actionHeader = new SimpleInflater(R.string.label_notes);
+            kind.actionBody = new ColumnInflater(Note.NOTE);
 
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Email.DATA, R.string.label_notes,
-                    EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES
-                            | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE));
+            kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
             list.add(kind);
         }
@@ -222,11 +275,18 @@ public class Sources {
                     R.string.nicknameLabelsGroup, -1, 115, true);
             kind.secondary = true;
 
+            kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
+            kind.actionBody = new ColumnInflater(Nickname.NAME);
+
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup));
+            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
+                    FLAGS_PERSON_NAME));
 
             list.add(kind);
         }
+
+        // TODO: GOOGLE: GROUPMEMBERSHIP
+        // TODO: GOOGLE: WEBSITE
 
         return list;
     }
@@ -297,7 +357,7 @@ public class Sources {
                     Phone.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup));
+            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
             list.add(kind);
         }
@@ -317,7 +377,27 @@ public class Sources {
             kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, false, 1));
 
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup));
+            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+            list.add(kind);
+        }
+
+        {
+            // EXCHANGE: IM
+            DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
+                    android.R.drawable.sym_action_chat, 20, true);
+
+            kind.actionHeader = new ActionLabelInflater(R.string.actionChat, kind);
+            kind.actionBody = new ColumnInflater(Im.DATA);
+
+            kind.typeColumn = Im.TYPE;
+            kind.typeList = new ArrayList<EditType>();
+            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1, false, 1));
+            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2, false, 1));
+            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3, false, 1));
+
+            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
         }
@@ -327,11 +407,14 @@ public class Sources {
             DataKind kind = new DataKind(Nickname.CONTENT_ITEM_TYPE,
                     R.string.nicknameLabelsGroup, -1, 115, true);
             kind.secondary = true;
-
             kind.typeOverallMax = 1;
 
+            kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
+            kind.actionBody = new ColumnInflater(Nickname.NAME);
+
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup));
+            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
+                    FLAGS_PERSON_NAME));
 
             list.add(kind);
         }
@@ -341,11 +424,13 @@ public class Sources {
             DataKind kind = new DataKind(Website.CONTENT_ITEM_TYPE,
                     R.string.websiteLabelsGroup, -1, 120, true);
             kind.secondary = true;
-
             kind.typeOverallMax = 1;
 
+            kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
+            kind.actionBody = new ColumnInflater(Website.URL);
+
             kind.fieldList = new ArrayList<EditField>();
-            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup));
+            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
 
             list.add(kind);
         }
@@ -359,6 +444,9 @@ public class Sources {
      */
     public static class SimpleInflater implements StringInflater {
         // TODO: implement this
+
+        public SimpleInflater(int stringRes) {
+        }
 
         public SimpleInflater(int stringRes, String columnName) {
         }

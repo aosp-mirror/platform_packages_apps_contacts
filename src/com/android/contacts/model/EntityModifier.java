@@ -84,10 +84,19 @@ public class EntityModifier {
     public static void insertChild(AugmentedEntity state, DataKind kind) {
         final ContentValues after = new ContentValues();
 
-        // TODO: add the best-kind of entry based on current state machine
-        // TODO: fill in other default values
+        // Our parent CONTACT_ID is provided later
         after.put(Data.MIMETYPE, kind.mimeType);
-//        after.put(Data.CONTACT_ID, state.values.getAsLong(Contacts._ID));
+
+        // Fill-in with any requested default values
+        if (kind.defaultValues != null) {
+            after.putAll(kind.defaultValues);
+        }
+
+        if (kind.typeColumn != null) {
+            // TODO: add the best-kind of entry based on current state machine
+            final EditType firstType = kind.typeList.get(0);
+            after.put(kind.typeColumn, firstType.rawValue);
+        }
 
         state.addEntry(AugmentedValues.fromAfter(after));
     }

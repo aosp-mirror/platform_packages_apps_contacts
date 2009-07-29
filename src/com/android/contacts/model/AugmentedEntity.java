@@ -24,7 +24,6 @@ import android.content.Entity.NamedContentValues;
 import android.net.Uri;
 import android.os.Parcel;
 import android.provider.BaseColumns;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 
@@ -40,7 +39,7 @@ import java.util.Set;
  * changes still cleanly applied.
  * <p>
  * One benefit of this approach is that we can build changes entirely on an
- * empty {@link Entity}, which then becomes an insert {@link Contacts} case.
+ * empty {@link Entity}, which then becomes an insert {@link RawContacts} case.
  * <p>
  * When applying modifications over an {@link Entity}, we try finding the
  * original {@link Data#_ID} rows where the modifications took place. If those
@@ -77,7 +76,7 @@ public class AugmentedEntity {
     public static AugmentedEntity fromBefore(Entity before) {
         final AugmentedEntity entity = new AugmentedEntity();
         entity.mValues = AugmentedValues.fromBefore(before.getEntityValues());
-        entity.mValues.setIdColumn(Contacts._ID);
+        entity.mValues.setIdColumn(RawContacts._ID);
         for (NamedContentValues namedValues : before.getSubValues()) {
             entity.addEntry(AugmentedValues.fromBefore(namedValues.values));
         }
@@ -311,11 +310,13 @@ public class AugmentedEntity {
         }
 
         // If any operations, assert that version is identical so we bail if changed
-        if (diff.size() > 0 && beforeVersion != null) {
-            builder = ContentProviderOperation.newCountQuery(Contacts.CONTENT_URI);
-            builder.withSelection(RawContacts.VERSION + "=" + beforeVersion, null);
+        if (diff.size() > 0 && beforeVersion != null && beforeId != null) {
+            builder = ContentProviderOperation.newCountQuery(RawContacts.CONTENT_URI);
+            builder.withSelection(RawContacts._ID + "=" + beforeId + " AND " + RawContacts.VERSION
+                    + "=" + beforeVersion, null);
             builder.withExpectedCount(1);
-            possibleAdd(diff, builder);
+            // Sneak version check at beginning of list
+            diff.add(0, builder.build());
         }
 
         return diff;

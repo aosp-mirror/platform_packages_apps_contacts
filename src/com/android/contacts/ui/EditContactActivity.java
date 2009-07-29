@@ -24,12 +24,14 @@ import com.android.contacts.ui.widget.ContactEditorView;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.Intent;
+import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -164,8 +166,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mTabContent.removeAllViews();
         mTabContent.addView(mEditor.getView());
 
+//        final ContactsSource source = Sources.getInstance().getKindsForAccountType(
+//                Sources.ACCOUNT_TYPE_GOOGLE);
         final ContactsSource source = Sources.getInstance().getKindsForAccountType(
-                Sources.ACCOUNT_TYPE_GOOGLE);
+                Sources.ACCOUNT_TYPE_EXCHANGE);
         mEditor.setState(mEntities.get(0), source);
 
 
@@ -310,11 +314,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.saveButton:
+            case R.id.btn_done:
                 doSaveAction();
                 break;
 
-            case R.id.discardButton:
+            case R.id.btn_discard:
                 doRevertAction();
                 break;
 
@@ -548,6 +552,32 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * Saves or creates the contact based on the mode, and if sucessful finishes the activity.
      */
     private void doSaveAction() {
+
+        final ContentResolver resolver = this.getContentResolver();
+
+        for (AugmentedEntity entity : mEntities) {
+
+            Log.d(TAG, "about to persist " + entity.toString());
+
+            final ArrayList<ContentProviderOperation> diff = entity.buildDiff();
+
+            // TODO: handle failed operations by re-reading entity
+            // may also need backoff algorithm to give failed msg after n tries
+
+            try {
+                resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+            } catch (RemoteException e) {
+                Log.w(TAG, "problem writing rawcontact diff", e);
+            } catch (OperationApplicationException e) {
+                Log.w(TAG, "problem writing rawcontact diff", e);
+            }
+
+        }
+
+        this.finish();
+
+
+
         // Save or create the contact if needed
 //        switch (mState) {
 //            case STATE_EDIT:

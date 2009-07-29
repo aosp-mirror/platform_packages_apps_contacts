@@ -252,12 +252,12 @@ public class AugmentedEntityTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
-            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
     }
 
@@ -280,17 +280,17 @@ public class AugmentedEntityTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 3, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(1);
             assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final ContentProviderOperation oper = diff.get(1);
+            final ContentProviderOperation oper = diff.get(2);
             assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
-        }
-        {
-            final ContentProviderOperation oper = diff.get(2);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
         }
     }
 
@@ -307,12 +307,12 @@ public class AugmentedEntityTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
-            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
     }
 
@@ -328,12 +328,12 @@ public class AugmentedEntityTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
-            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
 

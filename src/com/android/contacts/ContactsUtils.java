@@ -123,31 +123,6 @@ public class ContactsUtils {
         return display;
     }
 
-    public static String encodePredefinedImProtocol(int protocol) {
-        return "pre:" + protocol;
-    }
-
-    public static String encodeCustomImProtocol(String protocolString) {
-        return "custom:" + protocolString;
-    }
-
-    public static Object decodeImProtocol(String encodedString) {
-        if (encodedString == null) {
-            return null;
-        }
-
-        if (encodedString.startsWith("pre:")) {
-            return Integer.parseInt(encodedString.substring(4));
-        }
-
-        if (encodedString.startsWith("custom:")) {
-            return encodedString.substring(7);
-        }
-
-        throw new IllegalArgumentException(
-                "the value is not a valid encoded protocol, " + encodedString);
-    }
-
     /**
      * Opens an InputStream for the person's photo and returns the photo as a Bitmap.
      * If the person's photo isn't present returns null.
