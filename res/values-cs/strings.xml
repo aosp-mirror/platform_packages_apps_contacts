@@ -18,6 +18,11 @@
     <string name="contactsList">"Kontakty"</string>
     <string name="launcherDialer">"Vytáčení"</string>
     <string name="shortcutContact">"Kontakt"</string>
+    <string name="shortcutDialContact">"Přímé vytáčení"</string>
+    <string name="shortcutMessageContact">"Přímá zpráva"</string>
+    <string name="shortcutActivityTitle">"Výběr zkratky kontaktu"</string>
+    <string name="callShortcutActivityTitle">"Výběr čísla pro hovor"</string>
+    <string name="messageShortcutActivityTitle">"Výběr čísla pro zprávu"</string>
     <string name="starredList">"Označené hvězdičkou"</string>
     <string name="frequentList">"Časté"</string>
     <string name="strequentList">"Oblíbené"</string>
@@ -168,4 +173,55 @@
     <string name="favoritesFrquentSeparator">"Často volané"</string>
     <string name="add_contact_dlg_title">"Přidat kontakt"</string>
     <string name="add_contact_dlg_message_fmt">"Chcete přidat „<xliff:g id="EMAIL">%s</xliff:g>“ do kontaktů?"</string>
+    <string name="description_image_button_one">"jedna"</string>
+    <string name="description_image_button_two">"dvě"</string>
+    <string name="description_image_button_three">"tři"</string>
+    <string name="description_image_button_four">"čtyři"</string>
+    <string name="description_image_button_five">"pět"</string>
+    <string name="description_image_button_six">"šest"</string>
+    <string name="description_image_button_seven">"sedm"</string>
+    <string name="description_image_button_eight">"osm"</string>
+    <string name="description_image_button_nine">"devět"</string>
+    <string name="description_image_button_star">"hvězdička"</string>
+    <string name="description_image_button_zero">"nula"</string>
+    <string name="description_image_button_pound">"libra"</string>
+    <string name="no_sdcard_title">"Žádná karta SD"</string>
+    <string name="no_sdcard_message">"Nebyla zjištěna žádná karta SD"</string>
+    <string name="searching_vcard_title">"Vyhledávání karty VCard"</string>
+    <string name="select_import_type_title">"Odkud chcete kontakty importovat?"</string>
+    <string name="import_from_sim">"Karta SIM"</string>
+    <string name="import_from_sdcard">"Karta SD"</string>
+    <string name="import_all_vcard_string">"Importovat všechny soubory VCard"</string>
+    <string name="import_one_vcard_string">"Importovat jeden soubor karty VCard"</string>
+    <string name="searching_vcard_message">"Vyhledávání dat karty VCard na kartě VCard"</string>
+    <string name="scanning_sdcard_failed_title">"Vyhledávání na kartě SD se nezdařilo"</string>
+    <string name="scanning_sdcard_failed_message">"Vyhledávání na kartě SD se nezdařilo"</string>
+    <string name="fail_reason_io_error">"Chyba V/V"</string>
+    <string name="fail_reason_vcard_parse_error">"Analýza karty VCard se nezdařila"</string>
+    <string name="fail_reason_no_vcard_file">"Na kartě SD nebyl nalezen žádný soubor karty VCard"</string>
+    <string name="fail_reason_no_vcard_entry">"Pro daný výběr nebyla nalezena žádná položka karty VCard"</string>
+    <string name="select_vcard_title">"Výběr souboru VCard"</string>
+    <string name="select_vcard_message">"Vyberte soubor karty VCard k importu"</string>
+    <string name="reading_vcard_title">"Čtení karty VCard"</string>
+    <string name="reading_vcard_message">"Čtení souborů karty VCard"</string>
+    <string name="importing_vcard_message">"Probíhá import dat na kartě VCard"</string>
+    <string name="reading_vcard_failed_title">"Čtení dat karty VCard se nezdařilo"</string>
+    <string name="reading_vcard_failed_message">"Data na kartě VCard nelze přečíst."\n"Důvod selhání: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="reading_vcard_contacts">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktů"</string>
+    <string name="reading_vcard_files">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> souborů"</string>
+    <string name="export_contact_list">"Export kontaktů"</string>
+    <string name="confirm_export_title">"Potvrzení exportu"</string>
+    <string name="confirm_export_message">"Mají se kontakty exportovat do souboru <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
+    <string name="exporting_contact_failed_title">"Export dat kontaktů se nezdařil"</string>
+    <string name="exporting_contact_failed_message">"Export dat kontaktů se nezdařil"\n"Důvod selhání: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_too_many_vcard">"Na kartě SD je příliš mnoho dat karty VCard"</string>
+    <string name="fail_reason_cannot_open_destination_dir">"Cílový adresář <xliff:g id="DIR_NAME">%s</xliff:g> nelze otevřít nebo vytvořit."</string>
+    <string name="exporting_contact_list_title">"Export dat kontaktů"</string>
+    <string name="exporting_contact_list_message">"Probíhá export dat kontaktů do souboru <xliff:g id="FILE_NAME">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter">"Nelze spustit exportní program: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_error_occurred_during_export">"Při exportu došlo k chybě: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_open_file">"Soubor <xliff:g id="FILE_NAME">%s</xliff:g> nelze otevřít: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktů"</string>
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>

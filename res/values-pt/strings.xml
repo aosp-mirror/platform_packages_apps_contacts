@@ -60,7 +60,7 @@
     <string name="label_phonetic_name">"Fonética"</string>
     <string name="label_notes">"Observações"</string>
     <string name="label_ringtone">"Toque"</string>
-    <string name="ghostData_name">"Primeiro e último"</string>
+    <string name="ghostData_name">"Nome e sobrenome"</string>
     <string name="ghostData_phonetic_name">"Nome fonético"</string>
     <string name="ghostData_company">"Empresa"</string>
     <string name="ghostData_title">"Posição"</string>
@@ -226,4 +226,32 @@
     <string name="reading_vcard_failed_message">"Não foi possível ler os dados do VCard"\n"Motivo da falha: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="reading_vcard_contacts">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contatos"</string>
     <string name="reading_vcard_files">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> arquivos"</string>
+    <!-- no translation found for export_contact_list (3165097742175874384) -->
+    <skip />
+    <!-- no translation found for confirm_export_title (1693047909433122854) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (63482084706768079) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (1455264422455075858) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (1426451081541603512) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (5416992255233341607) -->
+    <skip />
+    <!-- no translation found for fail_reason_cannot_open_destination_dir (1739293936432987758) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_message (5640326540405486055) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_initialize_exporter (4943708332700987376) -->
+    <skip />
+    <!-- no translation found for fail_reason_error_occurred_during_export (2151165129433831202) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_open_file (4013520943128739511) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_progress (560522409559101193) -->
+    <skip />
+    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <skip />
 </resources>
