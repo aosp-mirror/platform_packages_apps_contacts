@@ -702,6 +702,7 @@ public class ViewContactActivity extends ListActivity
         // Build up method entries
         if (mUri != null) {
             Bitmap photoBitmap = null;
+            aggCursor.moveToPosition(-1);
             while (aggCursor.moveToNext()) {
                 final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
 
