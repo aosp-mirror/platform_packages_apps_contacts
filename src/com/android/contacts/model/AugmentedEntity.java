@@ -76,7 +76,7 @@ public class AugmentedEntity {
     public static AugmentedEntity fromBefore(Entity before) {
         final AugmentedEntity entity = new AugmentedEntity();
         entity.mValues = AugmentedValues.fromBefore(before.getEntityValues());
-        entity.mValues.setIdColumn(RawContacts._ID);
+        entity.mValues.setIdColumn("raw_contacts", RawContacts._ID);
         for (NamedContentValues namedValues : before.getSubValues()) {
             entity.addEntry(AugmentedValues.fromBefore(namedValues.values));
         }
@@ -148,6 +148,21 @@ public class AugmentedEntity {
             }
         }
         return null;
+    }
+
+    /**
+     * Return the total number of {@link AugmentedValues} contained.
+     */
+    public int getEntryCount(boolean onlyVisible) {
+        int count = 0;
+        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
+            for (AugmentedValues child : mimeEntries) {
+                // Skip deleted items when requesting only visible
+                if (onlyVisible && child.isVisible()) continue;
+                count++;
+            }
+        }
+        return count;
     }
 
     private static final int MODE_CONTINUE = 1;
@@ -330,6 +345,7 @@ public class AugmentedEntity {
     public static class AugmentedValues {
         private ContentValues mBefore;
         private ContentValues mAfter;
+        private String mIdTable = "data";
         private String mIdColumn = BaseColumns._ID;
 
         private AugmentedValues() {
@@ -385,7 +401,9 @@ public class AugmentedEntity {
             return getAsLong(mIdColumn);
         }
 
-        public void setIdColumn(String idColumn) {
+        public void setIdColumn(String idTable, String idColumn) {
+            // TODO: remove idTable when we've fixed contentprovider
+            mIdTable = idTable;
             mIdColumn = idColumn;
         }
 
@@ -393,19 +411,28 @@ public class AugmentedEntity {
             return (getAsLong(Data.IS_PRIMARY) != 0);
         }
 
+        public boolean beforeExists() {
+            return (mBefore != null && mBefore.containsKey(mIdColumn));
+        }
+
+        public boolean isVisible() {
+            // When "after" is present, then visible
+            return (mAfter != null);
+        }
+
         public boolean isDelete() {
             // When "after" is wiped, action is "delete"
-            return (mAfter == null);
+            return beforeExists() && (mAfter == null);
         }
 
         public boolean isUpdate() {
             // When "after" has some changes, action is "update"
-            return (mAfter.size() > 0);
+            return beforeExists() && (mAfter.size() > 0);
         }
 
         public boolean isInsert() {
-            // When no "before" id, action is "insert"
-            return mBefore == null || getId() == null;
+            // When no "before" id, and has "after", action is "insert"
+            return !beforeExists() && (mAfter != null);
         }
 
         public void markDeleted() {
@@ -518,11 +545,11 @@ public class AugmentedEntity {
             } else if (isDelete()) {
                 // When marked for deletion and "before" exists, then "delete"
                 builder = ContentProviderOperation.newDelete(targetUri);
-                builder.withSelection(mIdColumn + "=" + getId(), null);
+                builder.withSelection(mIdTable + "." + mIdColumn + "=" + getId(), null);
             } else if (isUpdate()) {
                 // When has changes and "before" exists, then "update"
                 builder = ContentProviderOperation.newUpdate(targetUri);
-                builder.withSelection(mIdColumn + "=" + getId(), null);
+                builder.withSelection(mIdTable + "." + mIdColumn + "=" + getId(), null);
                 builder.withValues(mAfter);
             }
             return builder;

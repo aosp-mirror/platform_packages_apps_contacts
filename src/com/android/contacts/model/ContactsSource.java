@@ -150,6 +150,7 @@ public class ContactsSource {
             this.iconRes = iconRes;
             this.weight = weight;
             this.editable = editable;
+            this.typeOverallMax = -1;
         }
     }
 
@@ -169,6 +170,7 @@ public class ContactsSource {
         public EditType(int rawValue, int labelRes) {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
+            this.specificMax = -1;
         }
 
         public EditType(int rawValue, int labelRes, boolean secondary) {
@@ -184,6 +186,20 @@ public class ContactsSource {
         public EditType(int rawValue, int labelRes, boolean secondary, int specificMax, String customColumn) {
             this(rawValue, labelRes, secondary, specificMax);
             this.customColumn = customColumn;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            if (object instanceof EditType) {
+                final EditType other = (EditType)object;
+                return other.rawValue == rawValue;
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return rawValue;
         }
     }
 

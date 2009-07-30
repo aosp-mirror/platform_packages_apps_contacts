@@ -63,7 +63,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         mContext = getContext();
     }
 
-    public Entity getEntity(long contactId, long phoneId) {
+    protected Entity getEntity(long contactId, long phoneId) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
         contact.put(RawContacts.VERSION, 43);

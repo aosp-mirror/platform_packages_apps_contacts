@@ -120,7 +120,7 @@ public class ContactEditorView extends ViewHolder {
      * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
      * section header and a trigger for adding new {@link Data} rows.
      */
-    public static class KindSection extends ViewHolder implements OnClickListener {
+    protected static class KindSection extends ViewHolder implements OnClickListener, EditorListener {
         private static final int RES_SECTION = R.layout.item_edit_kind;
 
         private ViewGroup mEditors;
@@ -144,7 +144,12 @@ public class ContactEditorView extends ViewHolder {
             mTitle = (TextView)mContent.findViewById(R.id.kind_title);
             mTitle.setText(kind.titleRes);
 
-            rebuildFromState();
+            this.rebuildFromState();
+            this.updateAddEnabled();
+        }
+
+        public void onDeleted(Editor editor) {
+            this.updateAddEnabled();
         }
 
         /**
@@ -152,7 +157,6 @@ public class ContactEditorView extends ViewHolder {
          */
         public void rebuildFromState() {
             // TODO: build special "stub" entries to help enter first-phone or first-email
-            // TODO: set the add-enabled state based on entitymodifier
 
             // Remove any existing editors
             mEditors.removeAllViews();
@@ -160,16 +164,27 @@ public class ContactEditorView extends ViewHolder {
             // Build individual editors for each entry
             if (!mState.hasMimeEntries(mKind.mimeType)) return;
             for (AugmentedValues entry : mState.getMimeEntries(mKind.mimeType)) {
+                // Skip entries that aren't visible
+                if (!entry.isVisible()) continue;
+
                 final GenericEditor editor = new GenericEditor(mContext);
                 editor.setValues(mKind, entry, mState);
+                editor.setEditorListener(this);
                 mEditors.addView(editor.getView());
             }
+        }
+
+        protected void updateAddEnabled() {
+            // Set enabled state on the "add" view
+            final boolean canInsert = EntityModifier.canInsert(mState, mKind);
+            mAdd.setEnabled(canInsert);
         }
 
         public void onClick(View v) {
             // Insert a new child and rebuild
             EntityModifier.insertChild(mState, mKind);
-            rebuildFromState();
+            this.rebuildFromState();
+            this.updateAddEnabled();
         }
     }
 
@@ -177,13 +192,28 @@ public class ContactEditorView extends ViewHolder {
      * Generic definition of something that edits a {@link Data} row through an
      * {@link AugmentedValues} object.
      */
-    public interface Editor {
+    protected interface Editor {
         /**
          * Prepare this editor for the given {@link AugmentedValues}, which
          * builds any needed views. Any changes performed by the user will be
          * written back to that same object.
          */
         public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state);
+
+        /**
+         * Add a specific {@link EditorListener} to this {@link Editor}.
+         */
+        public void setEditorListener(EditorListener listener);
+    }
+
+    /**
+     * Listener for an {@link Editor}, usually to handle deleted items.
+     */
+    protected interface EditorListener {
+        /**
+         * Called when the given {@link Editor} has been deleted.
+         */
+        public void onDeleted(Editor editor);
     }
 
     /**
@@ -191,7 +221,7 @@ public class ContactEditorView extends ViewHolder {
      * the entry. Uses {@link AugmentedValues} to read any existing
      * {@link Entity} values, and to correctly write any changes values.
      */
-    public static class GenericEditor extends ViewHolder implements Editor, OnClickListener {
+    protected static class GenericEditor extends ViewHolder implements Editor, OnClickListener {
         private static final int RES_EDITOR = R.layout.item_editor;
         private static final int RES_FIELD = R.layout.item_editor_field;
         private static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
@@ -216,6 +246,12 @@ public class ContactEditorView extends ViewHolder {
 
             mDelete = mContent.findViewById(R.id.edit_delete);
             mDelete.setOnClickListener(this);
+        }
+
+        private EditorListener mListener;
+
+        public void setEditorListener(EditorListener listener) {
+            mListener = listener;
         }
 
         /**
@@ -247,7 +283,7 @@ public class ContactEditorView extends ViewHolder {
             mEntry = entry;
             mState = state;
 
-            if (entry.isDelete()) {
+            if (!entry.isVisible()) {
                 // Hide ourselves entirely if deleted
                 mContent.setVisibility(View.GONE);
                 return;
@@ -386,6 +422,11 @@ public class ContactEditorView extends ViewHolder {
                     // Mark as deleted and hide this editor
                     mEntry.markDeleted();
                     mContent.setVisibility(View.GONE);
+
+                    if (mListener != null) {
+                        // Notify listener when present
+                        mListener.onDeleted(this);
+                    }
                     break;
                 }
             }
@@ -395,7 +436,7 @@ public class ContactEditorView extends ViewHolder {
     /**
      * Simple editor for {@link Photo}.
      */
-    public static class PhotoEditor extends ViewHolder implements Editor {
+    protected static class PhotoEditor extends ViewHolder implements Editor {
         private static final int RES_PHOTO = R.layout.item_editor_photo;
 
         public PhotoEditor(Context context) {
@@ -454,12 +495,15 @@ public class ContactEditorView extends ViewHolder {
 
         public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state) {
         }
+
+        public void setEditorListener(EditorListener listener) {
+        }
     }
 
     /**
      * Simple editor for {@link StructuredName}.
      */
-    public static class DisplayNameEditor extends ViewHolder implements Editor {
+    protected static class DisplayNameEditor extends ViewHolder implements Editor {
         private static final int RES_DISPLAY_NAME = R.layout.item_editor_displayname;
 
         public DisplayNameEditor(Context context) {
@@ -467,6 +511,9 @@ public class ContactEditorView extends ViewHolder {
         }
 
         public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state) {
+        }
+
+        public void setEditorListener(EditorListener listener) {
         }
     }
 
