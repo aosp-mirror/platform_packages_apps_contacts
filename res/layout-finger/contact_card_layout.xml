@@ -20,45 +20,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
         
-    <LinearLayout android:id="@+id/banner"
+    <com.android.internal.widget.ContactHeaderWidget
+        android:id="@+id/contact_header_widget"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/contact_header_bg"
-        android:paddingRight="5dip"
-        android:gravity="center_vertical">
-    
-        <ImageView android:id="@+id/photo"
-            android:layout_width="64dip"
-            android:layout_height="64dip"
-            android:layout_marginRight="7dip"
-            android:layout_marginLeft="2dip"
-            android:scaleType="fitCenter"
-            android:background="@drawable/contact_picture_bg"/>
-    
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!-- "Name" field is locale-specific. -->
-            <include layout="@layout/view_contact_name"/>
-            
-            <TextView android:id="@+id/status"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:maxLines="2"/>
-                
-        </LinearLayout>
-
-        <CheckBox android:id="@+id/star"
-            style="?android:attr/starStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
 
     <com.android.contacts.ScrollingTabWidget android:id="@+id/tab_widget"
         android:layout_width="fill_parent"
