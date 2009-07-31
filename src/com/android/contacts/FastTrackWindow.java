@@ -263,7 +263,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         Uri aggSummary = ContentUris.withAppendedId(
                 ContactsContract.Contacts.CONTENT_SUMMARY_URI, mAggId);
         Uri aggSocial = ContentUris.withAppendedId(
-                SocialContract.Activities.CONTENT_AGGREGATE_STATUS_URI, mAggId);
+                SocialContract.Activities.CONTENT_CONTACT_STATUS_URI, mAggId);
         Uri aggData = Uri.withAppendedPath(aggUri,
                 ContactsContract.Contacts.Data.CONTENT_DIRECTORY);
 
