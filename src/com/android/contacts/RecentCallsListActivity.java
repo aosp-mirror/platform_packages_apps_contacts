@@ -24,10 +24,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabaseCorruptException;
+import android.database.sqlite.SQLiteDiskIOException;
+import android.database.sqlite.SQLiteFullException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -147,18 +151,18 @@ public class RecentCallsListActivity extends ListActivity
         int numberType;
         String numberLabel;
     }
-    
+
     /**
      * Shared builder used by {@link #formatPhoneNumber(String)} to minimize
      * allocations when formatting phone numbers.
      */
     private static final SpannableStringBuilder sEditable = new SpannableStringBuilder();
-    
+
     /**
      * Invalid formatting type constant for {@link #sFormattingType}.
      */
     private static final int FORMATTING_TYPE_INVALID = -1;
-    
+
     /**
      * Cached formatting type for current {@link Locale}, as provided by
      * {@link PhoneNumberUtils#getFormatTypeForLocale(Locale)}.
@@ -277,9 +281,17 @@ public class RecentCallsListActivity extends ListActivity
             values.put(Calls.CACHED_NAME, ci.name);
             values.put(Calls.CACHED_NUMBER_TYPE, ci.type);
             values.put(Calls.CACHED_NUMBER_LABEL, ci.label);
-            RecentCallsListActivity.this.getContentResolver().update(
-                    Calls.CONTENT_URI,
-                    values, Calls.NUMBER + "='" + ciq.number + "'", null);
+
+            try {
+                RecentCallsListActivity.this.getContentResolver().update(Calls.CONTENT_URI, values,
+                        Calls.NUMBER + "='" + ciq.number + "'", null);
+            } catch (SQLiteDiskIOException e) {
+                Log.w(TAG, "Exception while updating call info", e);
+            } catch (SQLiteFullException e) {
+                Log.w(TAG, "Exception while updating call info", e);
+            } catch (SQLiteDatabaseCorruptException e) {
+                Log.w(TAG, "Exception while updating call info", e);
+            }
         }
 
         private void enqueueRequest(String number, int position,
@@ -320,7 +332,7 @@ public class RecentCallsListActivity extends ListActivity
                         info.type = phonesCursor.getInt(PHONE_TYPE_COLUMN_INDEX);
                         info.label = phonesCursor.getString(LABEL_COLUMN_INDEX);
                         info.number = phonesCursor.getString(MATCHED_NUMBER_COLUMN_INDEX);
-                        
+
                         // New incoming phone number invalidates our formatted
                         // cache. Any cache fills happen only on the GUI thread.
                         info.formattedNumber = null;
@@ -378,7 +390,7 @@ public class RecentCallsListActivity extends ListActivity
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
             views.callView = view.findViewById(R.id.call_icon);
             views.callView.setOnClickListener(this);
-            
+
             view.setTag(views);
 
             return view;
@@ -394,7 +406,7 @@ public class RecentCallsListActivity extends ListActivity
             String callerName = c.getString(CALLER_NAME_COLUMN_INDEX);
             int callerNumberType = c.getInt(CALLER_NUMBERTYPE_COLUMN_INDEX);
             String callerNumberLabel = c.getString(CALLER_NUMBERLABEL_COLUMN_INDEX);
-            
+
             // Store away the number so we can call it directly if you click on the call icon
             views.callView.setTag(number);
 
@@ -418,7 +430,7 @@ public class RecentCallsListActivity extends ListActivity
                     enqueueRequest(number, c.getPosition(),
                             callerName, callerNumberType, callerNumberLabel);
                 }
-                
+
                 // Format and cache phone number for found contact
                 if (info.formattedNumber == null) {
                     info.formattedNumber = formatPhoneNumber(info.number);
@@ -436,7 +448,7 @@ public class RecentCallsListActivity extends ListActivity
                 name = callerName;
                 ntype = callerNumberType;
                 label = callerNumberLabel;
-                
+
                 // Format the cached call_log phone number
                 formattedNumber = formatPhoneNumber(number);
             }
@@ -478,7 +490,7 @@ public class RecentCallsListActivity extends ListActivity
 
             // Set the date/time field by mixing relative and absolute times.
             int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
-            
+
             views.dateView.setText(DateUtils.getRelativeTimeSpanString(date,
                     System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags));
 
@@ -508,6 +520,36 @@ public class RecentCallsListActivity extends ListActivity
 
     private static final class QueryHandler extends AsyncQueryHandler {
         private final WeakReference<RecentCallsListActivity> mActivity;
+
+        /**
+         * Simple handler that wraps background calls to catch
+         * {@link SQLiteException}, such as when the disk is full.
+         */
+        protected class CatchingWorkerHandler extends AsyncQueryHandler.WorkerHandler {
+            public CatchingWorkerHandler(Looper looper) {
+                super(looper);
+            }
+
+            @Override
+            public void handleMessage(Message msg) {
+                try {
+                    // Perform same query while catching any exceptions
+                    super.handleMessage(msg);
+                } catch (SQLiteDiskIOException e) {
+                    Log.w(TAG, "Exception on background worker thread", e);
+                } catch (SQLiteFullException e) {
+                    Log.w(TAG, "Exception on background worker thread", e);
+                } catch (SQLiteDatabaseCorruptException e) {
+                    Log.w(TAG, "Exception on background worker thread", e);
+                }
+            }
+        }
+
+        @Override
+        protected Handler createHandler(Looper looper) {
+            // Provide our special handler that catches exceptions
+            return new CatchingWorkerHandler(looper);
+        }
 
         public QueryHandler(Context context) {
             super(context.getContentResolver());
@@ -544,11 +586,11 @@ public class RecentCallsListActivity extends ListActivity
         mVoiceMailNumber = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE))
                 .getVoiceMailNumber();
         mQueryHandler = new QueryHandler(this);
-        
+
         // Reset locale-based formatting cache
         sFormattingType = FORMATTING_TYPE_INVALID;
     }
-    
+
     @Override
     protected void onResume() {
         // The adapter caches looked up numbers, clear it so they will get
@@ -586,7 +628,7 @@ public class RecentCallsListActivity extends ListActivity
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        
+
         // Clear notifications only when window gains focus.  This activity won't
         // immediately receive focus if the keyguard screen is above it.
         if (hasFocus) {
@@ -619,10 +661,10 @@ public class RecentCallsListActivity extends ListActivity
         if (sFormattingType == FORMATTING_TYPE_INVALID) {
             sFormattingType = PhoneNumberUtils.getFormatTypeForLocale(Locale.getDefault());
         }
-        
+
         sEditable.clear();
         sEditable.append(number);
-        
+
         PhoneNumberUtils.formatNumber(sEditable, sFormattingType);
         return sEditable.toString();
     }
