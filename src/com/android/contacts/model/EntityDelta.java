@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Contains an {@link Entity} that records any modifications separately so the
+ * Contains an {@link Entity} and records any modifications separately so the
  * original {@link Entity} can be swapped out with a newer version and the
  * changes still cleanly applied.
  * <p>
@@ -46,55 +46,55 @@ import java.util.Set;
  * rows are missing from the new {@link Entity}, we know the original data must
  * be deleted, but to preserve the user modifications we treat as an insert.
  */
-public class AugmentedEntity {
+public class EntityDelta {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
     /**
      * Direct values from {@link Entity#getEntityValues()}.
      */
-    private AugmentedValues mValues;
+    private ValuesDelta mValues;
 
     /**
      * Internal map of children values from {@link Entity#getSubValues()}, which
      * we store here sorted into {@link Data#MIMETYPE} bins.
      */
-    private HashMap<String, ArrayList<AugmentedValues>> mEntries;
+    private HashMap<String, ArrayList<ValuesDelta>> mEntries;
 
-    private AugmentedEntity() {
-        mEntries = new HashMap<String, ArrayList<AugmentedValues>>();
+    private EntityDelta() {
+        mEntries = new HashMap<String, ArrayList<ValuesDelta>>();
     }
 
-    public AugmentedEntity(AugmentedValues values) {
+    public EntityDelta(ValuesDelta values) {
         this();
         mValues = values;
     }
 
     /**
-     * Build an {@link AugmentedEntity} using the given {@link Entity} as a
+     * Build an {@link EntityDelta} using the given {@link Entity} as a
      * starting point; the "before" snapshot.
      */
-    public static AugmentedEntity fromBefore(Entity before) {
-        final AugmentedEntity entity = new AugmentedEntity();
-        entity.mValues = AugmentedValues.fromBefore(before.getEntityValues());
+    public static EntityDelta fromBefore(Entity before) {
+        final EntityDelta entity = new EntityDelta();
+        entity.mValues = ValuesDelta.fromBefore(before.getEntityValues());
         entity.mValues.setIdColumn("raw_contacts", RawContacts._ID);
         for (NamedContentValues namedValues : before.getSubValues()) {
-            entity.addEntry(AugmentedValues.fromBefore(namedValues.values));
+            entity.addEntry(ValuesDelta.fromBefore(namedValues.values));
         }
         return entity;
     }
 
-    public AugmentedValues getValues() {
+    public ValuesDelta getValues() {
         return mValues;
     }
 
     /**
-     * Get the {@link AugmentedValues} child marked as {@link Data#IS_PRIMARY}.
+     * Get the {@link ValuesDelta} child marked as {@link Data#IS_PRIMARY}.
      */
-    public AugmentedValues getPrimaryEntry(String mimeType) {
+    public ValuesDelta getPrimaryEntry(String mimeType) {
         // TODO: handle the case where the caller must have a non-null value,
         // for example inserting a displayname automatically
-        final ArrayList<AugmentedValues> mimeEntries = getMimeEntries(mimeType, false);
-        for (AugmentedValues entry : mimeEntries) {
+        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
+        for (ValuesDelta entry : mimeEntries) {
             if (entry.isPrimary()) {
                 return entry;
             }
@@ -103,19 +103,19 @@ public class AugmentedEntity {
     }
 
     /**
-     * Return the list of child {@link AugmentedValues} from our optimized map,
+     * Return the list of child {@link ValuesDelta} from our optimized map,
      * creating the list if requested.
      */
-    private ArrayList<AugmentedValues> getMimeEntries(String mimeType, boolean lazyCreate) {
-        ArrayList<AugmentedValues> mimeEntries = mEntries.get(mimeType);
+    private ArrayList<ValuesDelta> getMimeEntries(String mimeType, boolean lazyCreate) {
+        ArrayList<ValuesDelta> mimeEntries = mEntries.get(mimeType);
         if (mimeEntries == null && lazyCreate) {
-            mimeEntries = new ArrayList<AugmentedValues>();
+            mimeEntries = new ArrayList<ValuesDelta>();
             mEntries.put(mimeType, mimeEntries);
         }
         return mimeEntries;
     }
 
-    public ArrayList<AugmentedValues> getMimeEntries(String mimeType) {
+    public ArrayList<ValuesDelta> getMimeEntries(String mimeType) {
         return getMimeEntries(mimeType, false);
     }
 
@@ -123,25 +123,25 @@ public class AugmentedEntity {
         return mEntries.containsKey(mimeType);
     }
 
-    public void addEntry(AugmentedValues entry) {
+    public void addEntry(ValuesDelta entry) {
         final String mimeType = entry.getMimetype();
         getMimeEntries(mimeType, true).add(entry);
     }
 
     /**
-     * Find the {@link AugmentedValues} that has a specific
+     * Find the {@link ValuesDelta} that has a specific
      * {@link BaseColumns#_ID} value, used when {@link #augmentFrom(Parcel)} is
      * inflating a modified state.
      */
-    public AugmentedValues getEntry(Long childId) {
+    public ValuesDelta getEntry(Long childId) {
         if (childId == null) {
             // Requesting an "insert" entry, which has no "before"
             return null;
         }
 
         // Search all children for requested entry
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues entry : mimeEntries) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta entry : mimeEntries) {
                 if (entry.getId() == childId) {
                     return entry;
                 }
@@ -151,12 +151,12 @@ public class AugmentedEntity {
     }
 
     /**
-     * Return the total number of {@link AugmentedValues} contained.
+     * Return the total number of {@link ValuesDelta} contained.
      */
     public int getEntryCount(boolean onlyVisible) {
         int count = 0;
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues child : mimeEntries) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
                 // Skip deleted items when requesting only visible
                 if (onlyVisible && child.isVisible()) continue;
                 count++;
@@ -178,7 +178,7 @@ public class AugmentedEntity {
             final ContentValues after = (ContentValues)parcel.readValue(null);
             if (mValues == null) {
                 // Entity didn't exist before, so "insert"
-                mValues = AugmentedValues.fromAfter(after);
+                mValues = ValuesDelta.fromAfter(after);
             } else {
                 // Existing entity "update"
                 mValues.mAfter = after;
@@ -191,10 +191,10 @@ public class AugmentedEntity {
             final Long childId = readLong(parcel);
             final ContentValues after = (ContentValues)parcel.readValue(null);
 
-            AugmentedValues entry = getEntry(childId);
+            ValuesDelta entry = getEntry(childId);
             if (entry == null) {
                 // Is "insert", or "before" record is missing, so now "insert"
-                entry = AugmentedValues.fromAfter(after);
+                entry = ValuesDelta.fromAfter(after);
                 addEntry(entry);
             } else {
                 // Existing entry "update"
@@ -211,8 +211,8 @@ public class AugmentedEntity {
     public void augmentTo(Parcel parcel) {
         parcel.writeValue(mValues.mAfter);
 
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues child : mimeEntries) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
                 parcel.writeInt(MODE_CONTINUE);
                 writeLong(parcel, child.getId());
                 parcel.writeValue(child.mAfter);
@@ -232,14 +232,14 @@ public class AugmentedEntity {
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof AugmentedEntity) {
-            final AugmentedEntity other = (AugmentedEntity)object;
+        if (object instanceof EntityDelta) {
+            final EntityDelta other = (EntityDelta)object;
 
             // Equality failed if parent values different
             if (!other.mValues.equals(mValues)) return false;
 
-            for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-                for (AugmentedValues child : mimeEntries) {
+            for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+                for (ValuesDelta child : mimeEntries) {
                     // Equality failed if any children unmatched
                     if (!other.containsEntry(child)) return false;
                 }
@@ -251,9 +251,9 @@ public class AugmentedEntity {
         return false;
     }
 
-    private boolean containsEntry(AugmentedValues entry) {
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues child : mimeEntries) {
+    private boolean containsEntry(ValuesDelta entry) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
                 // Contained if we find any child that matches
                 if (child.equals(entry)) return true;
             }
@@ -267,8 +267,8 @@ public class AugmentedEntity {
         builder.append("\n(");
         builder.append(mValues.toString());
         builder.append(") = {");
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues child : mimeEntries) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
                 builder.append("\n\t");
                 child.toString(builder);
             }
@@ -286,7 +286,7 @@ public class AugmentedEntity {
     /**
      * Build a list of {@link ContentProviderOperation} that will transform the
      * current "before" {@link Entity} state into the modified state which this
-     * {@link AugmentedEntity} represents.
+     * {@link EntityDelta} represents.
      */
     public ArrayList<ContentProviderOperation> buildDiff() {
         final ArrayList<ContentProviderOperation> diff = new ArrayList<ContentProviderOperation>();
@@ -302,8 +302,8 @@ public class AugmentedEntity {
         possibleAdd(diff, builder);
 
         // Build operations for all children
-        for (ArrayList<AugmentedValues> mimeEntries : mEntries.values()) {
-            for (AugmentedValues child : mimeEntries) {
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
                 // Ignore children if parent was deleted
                 if (isContactDelete) continue;
 
@@ -342,32 +342,32 @@ public class AugmentedEntity {
      * modified version of that state. This allows us to build insert, update,
      * or delete operations based on a "before" {@link Entity} snapshot.
      */
-    public static class AugmentedValues {
+    public static class ValuesDelta {
         private ContentValues mBefore;
         private ContentValues mAfter;
         private String mIdTable = "data";
         private String mIdColumn = BaseColumns._ID;
 
-        private AugmentedValues() {
+        private ValuesDelta() {
         }
 
         /**
-         * Create {@link AugmentedValues}, using the given object as the
+         * Create {@link ValuesDelta}, using the given object as the
          * "before" state, usually from an {@link Entity}.
          */
-        public static AugmentedValues fromBefore(ContentValues before) {
-            final AugmentedValues entry = new AugmentedValues();
+        public static ValuesDelta fromBefore(ContentValues before) {
+            final ValuesDelta entry = new ValuesDelta();
             entry.mBefore = before;
             entry.mAfter = new ContentValues();
             return entry;
         }
 
         /**
-         * Create {@link AugmentedValues}, using the given object as the "after"
+         * Create {@link ValuesDelta}, using the given object as the "after"
          * state, usually when we are inserting a row instead of updating.
          */
-        public static AugmentedValues fromAfter(ContentValues after) {
-            final AugmentedValues entry = new AugmentedValues();
+        public static ValuesDelta fromAfter(ContentValues after) {
+            final ValuesDelta entry = new ValuesDelta();
             entry.mBefore = null;
             entry.mAfter = after;
             return entry;
@@ -481,9 +481,9 @@ public class AugmentedEntity {
 
         @Override
         public boolean equals(Object object) {
-            if (object instanceof AugmentedValues) {
+            if (object instanceof ValuesDelta) {
                 // Only exactly equal with both are identical subsets
-                final AugmentedValues other = (AugmentedValues)object;
+                final ValuesDelta other = (ValuesDelta)object;
                 return this.subsetEquals(other) && other.subsetEquals(this);
             }
             return false;
@@ -512,10 +512,10 @@ public class AugmentedEntity {
         }
 
         /**
-         * Check if the given {@link AugmentedValues} is both a subset of this
+         * Check if the given {@link ValuesDelta} is both a subset of this
          * object, and any defined keys have equal values.
          */
-        public boolean subsetEquals(AugmentedValues other) {
+        public boolean subsetEquals(ValuesDelta other) {
             for (String key : this.keySet()) {
                 final String ourValue = this.getAsString(key);
                 final String theirValue = other.getAsString(key);

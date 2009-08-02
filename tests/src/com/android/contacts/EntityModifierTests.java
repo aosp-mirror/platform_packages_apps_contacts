@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AugmentedEntity;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -77,10 +77,10 @@ public class EntityModifierTests extends AndroidTestCase {
     /**
      * Build an {@link Entity} with the requested set of phone numbers.
      */
-    protected AugmentedEntity getEntity() {
+    protected EntityDelta getEntity() {
         final ContentValues contact = new ContentValues();
         final Entity before = new Entity(contact);
-        return AugmentedEntity.fromBefore(before);
+        return EntityDelta.fromBefore(before);
     }
 
     /**
@@ -99,7 +99,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
     /**
      * Insert various rows to test
-     * {@link EntityModifier#getValidTypes(AugmentedEntity, DataKind, EditType)}
+     * {@link EntityModifier#getValidTypes(EntityDelta, DataKind, EditType)}
      */
     public void testValidTypes() {
         // Build a source and pull specific types
@@ -112,7 +112,7 @@ public class EntityModifierTests extends AndroidTestCase {
         List<EditType> validTypes;
 
         // Add first home, first work
-        final AugmentedEntity state = getEntity();
+        final EntityDelta state = getEntity();
         EntityModifier.insertChild(state, kindPhone, typeHome);
         EntityModifier.insertChild(state, kindPhone, typeWork);
 
@@ -143,7 +143,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
-     * Test {@link EntityModifier#canInsert(AugmentedEntity, DataKind)} by
+     * Test {@link EntityModifier#canInsert(EntityDelta, DataKind)} by
      * inserting various rows.
      */
     public void testCanInsert() {
@@ -155,7 +155,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeOther = EntityModifier.getType(kindPhone, Phone.TYPE_OTHER);
 
         // Add first home, first work
-        final AugmentedEntity state = getEntity();
+        final EntityDelta state = getEntity();
         EntityModifier.insertChild(state, kindPhone, typeHome);
         EntityModifier.insertChild(state, kindPhone, typeWork);
         assertTrue("Unable to insert", EntityModifier.canInsert(state, kindPhone));
@@ -171,7 +171,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
-     * Test {@link EntityModifier#getBestValidType(AugmentedEntity, DataKind)}
+     * Test {@link EntityModifier#getBestValidType(EntityDelta, DataKind)}
      * by asserting expected best options in various states.
      */
     public void testBestValidType() {
@@ -186,7 +186,7 @@ public class EntityModifierTests extends AndroidTestCase {
         EditType suggested;
 
         // Default suggestion should be home
-        final AugmentedEntity state = getEntity();
+        final EntityDelta state = getEntity();
         suggested = EntityModifier.getBestValidType(state, kindPhone, false);
         assertEquals("Unexpected suggestion", typeHome, suggested);
 

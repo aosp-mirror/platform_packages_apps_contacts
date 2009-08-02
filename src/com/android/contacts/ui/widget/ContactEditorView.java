@@ -17,10 +17,10 @@
 package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AugmentedEntity;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.AugmentedEntity.AugmentedValues;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
@@ -50,11 +50,11 @@ import java.util.List;
 
 /**
  * Custom view that provides all the editor interaction for a specific
- * {@link Contacts} represented through an {@link AugmentedEntity}. Callers can
+ * {@link Contacts} represented through an {@link EntityDelta}. Callers can
  * reuse this view and quickly rebuild its contents through
- * {@link #setState(AugmentedEntity, ContactsSource)}.
+ * {@link #setState(EntityDelta, ContactsSource)}.
  * <p>
- * Internal updates are performed against {@link AugmentedValues} so that the
+ * Internal updates are performed against {@link ValuesDelta} so that the
  * source {@link Entity} can be swapped out. Any state-based changes, such as
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
@@ -80,10 +80,10 @@ public class ContactEditorView extends ViewHolder {
 
     /**
      * Set the internal state for this view, given a current
-     * {@link AugmentedEntity} state and the {@link ContactsSource} that
+     * {@link EntityDelta} state and the {@link ContactsSource} that
      * apply to that state.
      */
-    public void setState(AugmentedEntity state, ContactsSource source) {
+    public void setState(EntityDelta state, ContactsSource source) {
         // Remove any existing sections
         mGeneral.removeAllViews();
         mSecondary.removeAllViews();
@@ -96,11 +96,11 @@ public class ContactEditorView extends ViewHolder {
             final String mimeType = kind.mimeType;
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
-                final AugmentedValues primary = state.getPrimaryEntry(mimeType);
+                final ValuesDelta primary = state.getPrimaryEntry(mimeType);
                 mDisplayName.setValues(null, primary, state);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
-                final AugmentedValues firstValue = state.getPrimaryEntry(mimeType);
+                final ValuesDelta firstValue = state.getPrimaryEntry(mimeType);
                 mPhoto.setValues(null, firstValue, state);
             } else {
                 // Otherwise use generic section-based editors
@@ -128,9 +128,9 @@ public class ContactEditorView extends ViewHolder {
         private TextView mTitle;
 
         private DataKind mKind;
-        private AugmentedEntity mState;
+        private EntityDelta mState;
 
-        public KindSection(Context context, DataKind kind, AugmentedEntity state) {
+        public KindSection(Context context, DataKind kind, EntityDelta state) {
             super(context, RES_SECTION);
 
             mKind = kind;
@@ -163,7 +163,7 @@ public class ContactEditorView extends ViewHolder {
 
             // Build individual editors for each entry
             if (!mState.hasMimeEntries(mKind.mimeType)) return;
-            for (AugmentedValues entry : mState.getMimeEntries(mKind.mimeType)) {
+            for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
                 // Skip entries that aren't visible
                 if (!entry.isVisible()) continue;
 
@@ -190,15 +190,15 @@ public class ContactEditorView extends ViewHolder {
 
     /**
      * Generic definition of something that edits a {@link Data} row through an
-     * {@link AugmentedValues} object.
+     * {@link ValuesDelta} object.
      */
     protected interface Editor {
         /**
-         * Prepare this editor for the given {@link AugmentedValues}, which
+         * Prepare this editor for the given {@link ValuesDelta}, which
          * builds any needed views. Any changes performed by the user will be
          * written back to that same object.
          */
-        public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state);
+        public void setValues(DataKind kind, ValuesDelta values, EntityDelta state);
 
         /**
          * Add a specific {@link EditorListener} to this {@link Editor}.
@@ -218,7 +218,7 @@ public class ContactEditorView extends ViewHolder {
 
     /**
      * Simple editor that handles labels and any {@link EditField} defined for
-     * the entry. Uses {@link AugmentedValues} to read any existing
+     * the entry. Uses {@link ValuesDelta} to read any existing
      * {@link Entity} values, and to correctly write any changes values.
      */
     protected static class GenericEditor extends ViewHolder implements Editor, OnClickListener {
@@ -231,8 +231,8 @@ public class ContactEditorView extends ViewHolder {
         private View mDelete;
 
         private DataKind mKind;
-        private AugmentedValues mEntry;
-        private AugmentedEntity mState;
+        private ValuesDelta mEntry;
+        private EntityDelta mState;
 
         private EditType mType;
 
@@ -278,7 +278,7 @@ public class ContactEditorView extends ViewHolder {
             mLabel.setText(mType.labelRes);
         }
 
-        public void setValues(DataKind kind, AugmentedValues entry, AugmentedEntity state) {
+        public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state) {
             mKind = kind;
             mEntry = entry;
             mState = state;
@@ -493,7 +493,7 @@ public class ContactEditorView extends ViewHolder {
 //            setPhotoPresent(false);
 //        }
 
-        public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state) {
+        public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
         }
 
         public void setEditorListener(EditorListener listener) {
@@ -510,7 +510,7 @@ public class ContactEditorView extends ViewHolder {
             super(context, RES_DISPLAY_NAME);
         }
 
-        public void setValues(DataKind kind, AugmentedValues values, AugmentedEntity state) {
+        public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
         }
 
         public void setEditorListener(EditorListener listener) {

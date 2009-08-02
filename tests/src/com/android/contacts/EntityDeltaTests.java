@@ -16,8 +16,8 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AugmentedEntity;
-import com.android.contacts.model.AugmentedEntity.AugmentedValues;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
@@ -38,12 +38,12 @@ import android.test.suitebuilder.annotation.LargeTest;
 import java.util.ArrayList;
 
 /**
- * Tests for {@link AugmentedEntity} and {@link AugmentedValues}. These tests
+ * Tests for {@link EntityDelta} and {@link ValuesDelta}. These tests
  * focus on passing changes across {@link Parcel}, and verifying that they
  * correctly build expected "diff" operations.
  */
 @LargeTest
-public class AugmentedEntityTests extends AndroidTestCase {
+public class EntityDeltaTests extends AndroidTestCase {
     public static final String TAG = "AugmentedEntityTests";
 
     private static final long TEST_CONTACT_ID = 12;
@@ -54,7 +54,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
 
     private static final String TEST_ACCOUNT_NAME = "TEST";
 
-    public AugmentedEntityTests() {
+    public EntityDeltaTests() {
         super();
     }
 
@@ -81,91 +81,68 @@ public class AugmentedEntityTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link AugmentedEntity#augmentTo(Parcel)} correctly passes any
+     * Test that {@link EntityDelta#augmentTo(Parcel)} correctly passes any
      * changes through the {@link Parcel} object. This enforces that
-     * {@link AugmentedEntity} should be identical when serialized against the
+     * {@link EntityDelta} should be identical when serialized against the
      * same "before" {@link Entity}.
      */
     public void testParcelChangesNone() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
+        final EntityDelta dest = EntityDelta.fromBefore(before);
 
-        // No changes, should be same
-        final Parcel parcel = Parcel.obtain();
-        source.augmentTo(parcel);
-
-        final AugmentedEntity dest = AugmentedEntity.fromBefore(before);
-        parcel.setDataPosition(0);
-        dest.augmentFrom(parcel);
-
-        // Assert that we have same data rows
-        assertEquals("Changed when passing through Parcel", source, dest);
-        parcel.recycle();
+        // Merge modified values and assert they match
+        dest.mergeAfter(source);
+        assertEquals("Unexpected change when merging", source, dest);
     }
 
     public void testParcelChangesInsert() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
+        final EntityDelta dest = EntityDelta.fromBefore(before);
 
         // Add a new row and pass across parcel, should be same
         final ContentValues phone = new ContentValues();
         phone.put(Data.MIMETYPE, Phone.MIMETYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
-        source.addEntry(AugmentedValues.fromAfter(phone));
+        source.addEntry(ValuesDelta.fromAfter(phone));
 
-        final Parcel parcel = Parcel.obtain();
-        source.augmentTo(parcel);
-
-        final AugmentedEntity dest = AugmentedEntity.fromBefore(before);
-        parcel.setDataPosition(0);
-        dest.augmentFrom(parcel);
-
-        // Assert that we have same data rows
-        assertEquals("Changed when passing through Parcel", source, dest);
-        parcel.recycle();
+        // Merge modified values and assert they match
+        dest.mergeAfter(source);
+        assertEquals("Unexpected change when merging", source, dest);
     }
 
     public void testParcelChangesUpdate() {
         // Update existing row and pass across parcel, should be same
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
-        final AugmentedValues child = source.getEntry(TEST_PHONE_ID);
+        final EntityDelta source = EntityDelta.fromBefore(before);
+        final EntityDelta dest = EntityDelta.fromBefore(before);
+
+        final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
-        final Parcel parcel = Parcel.obtain();
-        source.augmentTo(parcel);
-
-        final AugmentedEntity dest = AugmentedEntity.fromBefore(before);
-        parcel.setDataPosition(0);
-        dest.augmentFrom(parcel);
-
-        // Assert that we have same data rows
-        assertEquals("Changed when passing through Parcel", source, dest);
-        parcel.recycle();
+        // Merge modified values and assert they match
+        dest.mergeAfter(source);
+        assertEquals("Unexpected change when merging", source, dest);
     }
 
     public void testParcelChangesDelete() {
         // Delete a row and pass across parcel, should be same
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
-        final AugmentedValues child = source.getEntry(TEST_PHONE_ID);
+        final EntityDelta source = EntityDelta.fromBefore(before);
+        final EntityDelta dest = EntityDelta.fromBefore(before);
+
+        final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.markDeleted();
 
-        final Parcel parcel = Parcel.obtain();
-        source.augmentTo(parcel);
-
-        final AugmentedEntity dest = AugmentedEntity.fromBefore(before);
-        parcel.setDataPosition(0);
-        dest.augmentFrom(parcel);
-
-        // Assert that we have same data rows
-        assertEquals("Changed when passing through Parcel", source, dest);
-        parcel.recycle();
+        // Merge modified values and assert they match
+        dest.mergeAfter(source);
+        assertEquals("Unexpected change when merging", source, dest);
     }
 
     /**
-     * Test that {@link AugmentedValues#buildDiff()} is correctly built for
+     * Test that {@link ValuesDelta#buildDiff()} is correctly built for
      * insert, update, and delete cases. Note this only tests behavior for
      * individual {@link Data} rows.
      */
@@ -174,7 +151,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         before.put(Data._ID, TEST_PHONE_ID);
         before.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
 
-        final AugmentedValues values = AugmentedValues.fromBefore(before);
+        final ValuesDelta values = ValuesDelta.fromBefore(before);
 
         // None action shouldn't produce a builder
         final Builder builder = values.buildDiff(Data.CONTENT_URI);
@@ -185,7 +162,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         final ContentValues after = new ContentValues();
         after.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
-        final AugmentedValues values = AugmentedValues.fromAfter(after);
+        final ValuesDelta values = ValuesDelta.fromAfter(after);
 
         // Should produce an insert action
         final Builder builder = values.buildDiff(Data.CONTENT_URI);
@@ -198,7 +175,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         before.put(Data._ID, TEST_PHONE_ID);
         before.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
 
-        final AugmentedValues values = AugmentedValues.fromBefore(before);
+        final ValuesDelta values = ValuesDelta.fromBefore(before);
         values.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Should produce an update action
@@ -212,7 +189,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         before.put(Data._ID, TEST_PHONE_ID);
         before.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
 
-        final AugmentedValues values = AugmentedValues.fromBefore(before);
+        final ValuesDelta values = ValuesDelta.fromBefore(before);
         values.markDeleted();
 
         // Should produce a delete action
@@ -222,13 +199,13 @@ public class AugmentedEntityTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link AugmentedEntity#buildDiff()} is correctly built for
+     * Test that {@link EntityDelta#buildDiff()} is correctly built for
      * insert, update, and delete cases. This only tests a subset of possible
      * {@link Data} row changes.
      */
     public void testEntityDiffNone() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Assert that writing unchanged produces few operations
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
@@ -238,14 +215,14 @@ public class AugmentedEntityTests extends AndroidTestCase {
 
     public void testEntityDiffNoneInsert() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
         phone.put(Data.MIMETYPE, Phone.MIMETYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
-        source.addEntry(AugmentedValues.fromAfter(phone));
+        source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: insert Data row and enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
@@ -263,7 +240,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
 
     public void testEntityDiffUpdateInsert() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Update parent contact values
         source.getValues().put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DISABLED);
@@ -273,7 +250,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
         phone.put(Data.MIMETYPE, Phone.MIMETYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
-        source.addEntry(AugmentedValues.fromAfter(phone));
+        source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert three operations: update Contact, insert Data row, enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
@@ -296,10 +273,10 @@ public class AugmentedEntityTests extends AndroidTestCase {
 
     public void testEntityDiffNoneUpdate() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Update existing phone number
-        final AugmentedValues child = source.getEntry(TEST_PHONE_ID);
+        final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Assert two operations: update Data and enforce version
@@ -318,7 +295,7 @@ public class AugmentedEntityTests extends AndroidTestCase {
 
     public void testEntityDiffDelete() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final AugmentedEntity source = AugmentedEntity.fromBefore(before);
+        final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Delete entire entity
         source.getValues().markDeleted();
@@ -343,8 +320,8 @@ public class AugmentedEntityTests extends AndroidTestCase {
         after.put(RawContacts.ACCOUNT_NAME, TEST_ACCOUNT_NAME);
         after.put(RawContacts.SEND_TO_VOICEMAIL, 1);
 
-        final AugmentedValues values = AugmentedValues.fromAfter(after);
-        final AugmentedEntity source = new AugmentedEntity(values);
+        final ValuesDelta values = ValuesDelta.fromAfter(after);
+        final EntityDelta source = new EntityDelta(values);
 
         // Assert two operations: delete Contact and enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
@@ -362,15 +339,15 @@ public class AugmentedEntityTests extends AndroidTestCase {
         after.put(RawContacts.ACCOUNT_NAME, TEST_ACCOUNT_NAME);
         after.put(RawContacts.SEND_TO_VOICEMAIL, 1);
 
-        final AugmentedValues values = AugmentedValues.fromAfter(after);
-        final AugmentedEntity source = new AugmentedEntity(values);
+        final ValuesDelta values = ValuesDelta.fromAfter(after);
+        final EntityDelta source = new EntityDelta(values);
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
         phone.put(Data.MIMETYPE, Phone.MIMETYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
-        source.addEntry(AugmentedValues.fromAfter(phone));
+        source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: delete Contact and enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();

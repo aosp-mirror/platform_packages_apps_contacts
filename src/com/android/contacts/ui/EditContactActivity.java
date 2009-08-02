@@ -17,7 +17,7 @@
 package com.android.contacts.ui;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AugmentedEntity;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.widget.ContactEditorView;
@@ -78,7 +78,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 //    private boolean mContactChanged = false;
 
     private Uri mUri;
-    private ArrayList<AugmentedEntity> mEntities = new ArrayList<AugmentedEntity>();
+    private ArrayList<EntityDelta> mEntities = new ArrayList<EntityDelta>();
 
     private ContentResolver mResolver;
     private ContactEditorView mEditor;
@@ -128,7 +128,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                         ContactsContract.RawContacts.CONTACT_ID + "=" + aggId, null, null);
                 while (iterator.hasNext()) {
                     final Entity before = iterator.next();
-                    final AugmentedEntity entity = AugmentedEntity.fromBefore(before);
+                    final EntityDelta entity = EntityDelta.fromBefore(before);
 
                     mEntities.add(entity);
 
@@ -555,7 +555,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         final ContentResolver resolver = this.getContentResolver();
 
-        for (AugmentedEntity entity : mEntities) {
+        for (EntityDelta entity : mEntities) {
 
             Log.d(TAG, "about to persist " + entity.toString());
 
