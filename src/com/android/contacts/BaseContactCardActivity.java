@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.internal.widget.ContactHeaderWidget;
 
 import android.app.Activity;
 import android.content.ContentUris;
@@ -47,22 +48,15 @@ import android.widget.TextView;
  * The base Activity class for viewing and editing a contact.
  */
 public abstract class BaseContactCardActivity extends Activity
-        implements QueryCompleteListener, OnTabSelectionChangedListener, View.OnClickListener {
+        implements QueryCompleteListener, OnTabSelectionChangedListener {
 
     private static final String TAG = "BaseContactCardActivity";
 
     private SparseArray<Long> mTabRawContactIdMap;
     protected Uri mUri;
-    protected long mContactId;
     protected ScrollingTabWidget mTabWidget;
+    protected ContactHeaderWidget mContactHeaderWidget;
     private NotifyingAsyncQueryHandler mHandler;
-    private TextView mDisplayNameView;
-    private TextView mPhoneticNameView;
-    private CheckBox mStarredView;
-    private ImageView mPhotoView;
-    private TextView mStatusView;
-
-    private int mNoPhotoResource;
 
     protected LayoutInflater mInflater;
 
@@ -76,29 +70,7 @@ public abstract class BaseContactCardActivity extends Activity
     protected static final int TAB_ACCOUNT_NAME_COLUMN_INDEX = 1;
     protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
 
-    //Projection used for the summary info in the header.
-    protected static final String[] HEADER_PROJECTION = new String[] {
-        Contacts.DISPLAY_NAME,
-        Contacts.STARRED,
-        Contacts.PHOTO_ID,
-    };
-    protected static final int HEADER_DISPLAY_NAME_COLUMN_INDEX = 0;
-    //TODO: We need to figure out how we're going to get the phonetic name.
-    //static final int HEADER_PHONETIC_NAME_COLUMN_INDEX
-    protected static final int HEADER_STARRED_COLUMN_INDEX = 1;
-    protected static final int HEADER_PHOTO_ID_COLUMN_INDEX = 2;
-
-    //Projection used for finding the most recent social status.
-    protected static final String[] SOCIAL_PROJECTION = new String[] {
-        Activities.TITLE,
-        Activities.PUBLISHED,
-    };
-    protected static final int SOCIAL_TITLE_COLUMN_INDEX = 0;
-    protected static final int SOCIAL_PUBLISHED_COLUMN_INDEX = 1;
-
-    private static final int TOKEN_HEADER = 0;
-    private static final int TOKEN_SOCIAL = 1;
-    private static final int TOKEN_TABS = 2;
+    private static final int TOKEN_TABS = 0;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -108,50 +80,21 @@ public abstract class BaseContactCardActivity extends Activity
 
         final Intent intent = getIntent();
         mUri = intent.getData();
-        mContactId = ContentUris.parseId(mUri);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.contact_card_layout);
 
+        mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
+        mContactHeaderWidget.showStar(true);
+        mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
         mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
-        mDisplayNameView = (TextView) findViewById(R.id.name);
-        mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
-        mStarredView = (CheckBox) findViewById(R.id.star);
-        mStarredView.setOnClickListener(this);
-        mPhotoView = (ImageView) findViewById(R.id.photo);
-        mStatusView = (TextView) findViewById(R.id.status);
 
         mTabWidget.setTabSelectionListener(this);
         mTabRawContactIdMap = new SparseArray<Long>();
 
-        // Set the photo with a random "no contact" image
-        long now = SystemClock.elapsedRealtime();
-        int num = (int) now & 0xf;
-        if (num < 9) {
-            // Leaning in from right, common
-            mNoPhotoResource = R.drawable.ic_contact_picture;
-        } else if (num < 14) {
-            // Leaning in from left uncommon
-            mNoPhotoResource = R.drawable.ic_contact_picture_2;
-        } else {
-            // Coming in from the top, rare
-            mNoPhotoResource = R.drawable.ic_contact_picture_3;
-        }
-
         mHandler = new NotifyingAsyncQueryHandler(this, this);
 
         setupTabs();
-        setupHeader();
-    }
-
-    private void setupHeader() {
-        Uri headerUri = Uri.withAppendedPath(mUri, "data");
-
-        Uri socialUri = ContentUris.withAppendedId(
-                SocialContract.Activities.CONTENT_CONTACT_STATUS_URI, mContactId);
-
-        mHandler.startQuery(TOKEN_HEADER, null, headerUri, HEADER_PROJECTION, null, null, null);
-        mHandler.startQuery(TOKEN_SOCIAL, null, socialUri, SOCIAL_PROJECTION, null, null, null);
     }
 
     private void setupTabs() {
@@ -171,20 +114,15 @@ public abstract class BaseContactCardActivity extends Activity
 
     /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        if (cursor == null) {
-            return;
-        }
         try{
-            if (token == TOKEN_HEADER) {
-                bindHeader(cursor);
-            } else if (token == TOKEN_SOCIAL) {
-                bindSocial(cursor);
-            } else if (token == TOKEN_TABS) {
+            if (token == TOKEN_TABS) {
                 clearCurrentTabs();
                 bindTabs(cursor);
             }
         } finally {
-            cursor.close();
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 
@@ -208,69 +146,6 @@ public abstract class BaseContactCardActivity extends Activity
         }
         selectDefaultTab();
 
-    }
-
-    //TODO: This will be part of the ContactHeaderWidget eventually.
-    protected void bindHeader(Cursor c) {
-        if (c == null) {
-            return;
-        }
-        if (c.moveToFirst()) {
-            //Set name
-            String displayName = c.getString(HEADER_DISPLAY_NAME_COLUMN_INDEX);
-            Log.i(TAG, displayName);
-            mDisplayNameView.setText(displayName);
-            //TODO: Bring back phonetic name
-            /*if (mPhoneticNameView != null) {
-                String phoneticName = c.getString(CONTACT_PHONETIC_NAME_COLUMN);
-                mPhoneticNameView.setText(phoneticName);
-            }*/
-
-            //Set starred
-            boolean starred = c.getInt(HEADER_STARRED_COLUMN_INDEX) == 1;
-            mStarredView.setChecked(starred);
-
-            //Set the photo
-            long photoId = c.getLong(HEADER_PHOTO_ID_COLUMN_INDEX);
-            Bitmap photoBitmap = ContactsUtils.loadContactPhoto(
-                    this, photoId, null);
-            if (photoBitmap == null) {
-                photoBitmap = ContactsUtils.loadPlaceholderPhoto(mNoPhotoResource, this, null);
-            }
-            mPhotoView.setImageBitmap(photoBitmap);
-        }
-    }
-
-    //TODO: This will be part of the ContactHeaderWidget eventually.
-    protected void bindSocial(Cursor c) {
-        if (c == null) {
-            return;
-        }
-        if (c.moveToFirst()) {
-            String status = c.getString(SOCIAL_TITLE_COLUMN_INDEX);
-            mStatusView.setText(status);
-        }
-    }
-
-    //TODO: This will be part of the ContactHeaderWidget eventually.
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.star: {
-                Uri uri = Uri.withAppendedPath(mUri, "data");
-                Cursor c = getContentResolver().query(uri, HEADER_PROJECTION, null, null, null);
-                try {
-                    c.moveToFirst();
-                    int oldStarredState = c.getInt(HEADER_STARRED_COLUMN_INDEX);
-                    ContentValues values = new ContentValues(1);
-                    values.put(Contacts.STARRED, oldStarredState == 1 ? 0 : 1);
-                    getContentResolver().update(mUri, values, null, null);
-                } finally {
-                    c.close();
-                }
-                setupHeader();
-                break;
-            }
-        }
     }
 
     /**
