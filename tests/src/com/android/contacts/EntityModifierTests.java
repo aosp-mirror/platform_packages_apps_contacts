@@ -171,7 +171,8 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
-     * Test {@link EntityModifier#getBestValidType(EntityDelta, DataKind)}
+     * Test
+     * {@link EntityModifier#getBestValidType(EntityDelta, DataKind, boolean, int)}
      * by asserting expected best options in various states.
      */
     public void testBestValidType() {
@@ -187,27 +188,27 @@ public class EntityModifierTests extends AndroidTestCase {
 
         // Default suggestion should be home
         final EntityDelta state = getEntity();
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false);
+        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeHome, suggested);
 
         // Add first home, should now suggest work
         EntityModifier.insertChild(state, kindPhone, typeHome);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false);
+        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add work fax, should still suggest work
         EntityModifier.insertChild(state, kindPhone, typeFaxWork);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false);
+        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add other, should still suggest work
         EntityModifier.insertChild(state, kindPhone, typeOther);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false);
+        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add work, now should suggest other
         EntityModifier.insertChild(state, kindPhone, typeWork);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false);
+        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeOther, suggested);
     }
 }

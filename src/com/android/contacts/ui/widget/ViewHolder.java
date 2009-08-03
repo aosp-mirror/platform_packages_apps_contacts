@@ -19,6 +19,9 @@ package com.android.contacts.ui.widget;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
 
 /**
  * Helper to inflate a given layout and produce the {@link View} when requested.
@@ -32,6 +35,30 @@ public class ViewHolder {
         mContext = context;
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mContent = mInflater.inflate(layoutRes, null);
+    }
+
+    public void swapWith(View target) {
+        // Borrow layout params and id for ourselves
+        this.mContent.setLayoutParams(target.getLayoutParams());
+        this.mContent.setId(target.getId());
+
+        // Find the direct parent of this view
+        final ViewParent parent = target.getParent();
+        if (parent == null || !(parent instanceof ViewGroup)) return;
+
+        // Swap out existing view with ourselves
+        final ViewGroup parentGroup = (ViewGroup)parent;
+        final int index = parentGroup.indexOfChild(target);
+        parentGroup.removeViewAt(index);
+        parentGroup.addView(this.mContent, index);
+    }
+
+    public void swapWith(View ancestor, int id) {
+        // Try finding the target view to replace
+        final View target = ancestor.findViewById(id);
+        if (target != null) {
+            swapWith(target);
+        }
     }
 
     public View getView() {
