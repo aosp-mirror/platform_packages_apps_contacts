@@ -357,13 +357,13 @@ public class ViewContactActivity extends BaseContactCardActivity
         ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
         if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-            menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.auxIntent);
-            if (entry.primaryIcon == -1) {
+            menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
+            if (!entry.isPrimary) {
                 menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
             }
         } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
-            if (entry.primaryIcon == -1) {
+            if (!entry.isPrimary) {
                 menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
             }
         } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
@@ -728,28 +728,28 @@ public class ViewContactActivity extends BaseContactCardActivity
                         entry.label = buildActionString(R.string.actionCall, displayLabel, true);
                         entry.data = PhoneNumberUtils.stripSeparators(data);
                         entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
-                        entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
+                        entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("sms", data, null));
-                        if (isSuperPrimary) {
-                            entry.primaryIcon = R.drawable.ic_default_number;
-                        }
+                        entry.isPrimary = isSuperPrimary;
                         entry.actionIcon = android.R.drawable.sym_action_call;
                         mPhoneEntries.add(entry);
 
                         if (type == CommonDataKinds.Phone.TYPE_MOBILE
                                 || mShowSmsLinksForAllPhones) {
                             // Add an SMS entry
-                            ViewEntry smsEntry = new ViewEntry();
-                            smsEntry.label = buildActionString(
-                                    R.string.actionText, displayLabel, true);
-                            smsEntry.data = PhoneNumberUtils.stripSeparators(data);
-                            smsEntry.id = id;
-                            smsEntry.uri = uri;
-                            smsEntry.intent = entry.auxIntent;
-                            smsEntry.mimetype = FastTrackWindow.MIME_SMS_ADDRESS;
-                            smsEntry.type = type;
-                            smsEntry.actionIcon = R.drawable.sym_action_sms;
-                            mSmsEntries.add(smsEntry);
+                            entry.secondaryActionIcon = R.drawable.sym_action_sms;
+
+//                            ViewEntry smsEntry = new ViewEntry();
+//                            smsEntry.label = buildActionString(
+//                                    R.string.actionText, displayLabel, true);
+//                            smsEntry.data = PhoneNumberUtils.stripSeparators(data);
+//                            smsEntry.id = id;
+//                            smsEntry.uri = uri;
+//                            smsEntry.intent = entry.secondaryIntent;
+//                            smsEntry.mimetype = FastTrackWindow.MIME_SMS_ADDRESS;
+//                            smsEntry.type = type;
+//                            smsEntry.actionIcon = R.drawable.sym_action_sms;
+//                            mSmsEntries.add(smsEntry);
                         }
                     // Build email entries
                     } else if (mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
@@ -759,9 +759,7 @@ public class ViewContactActivity extends BaseContactCardActivity
                         entry.intent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("mailto", data, null));
                         entry.actionIcon = android.R.drawable.sym_action_email;
-                        if (isSuperPrimary) {
-                            entry.primaryIcon = R.drawable.ic_default_number;
-                        }
+                        entry.isPrimary = isSuperPrimary;
                         mEmailEntries.add(entry);
                     // Build postal entries
                     } else if (mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
@@ -817,11 +815,6 @@ public class ViewContactActivity extends BaseContactCardActivity
                 } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
                     final String company = aggCursor.getString(DATA_3_COLUMN);
                     final String title = aggCursor.getString(DATA_4_COLUMN);
-                    final boolean isPrimary = "1".equals(aggCursor.getString(DATA_5_COLUMN));
-
-                    if (isPrimary) {
-                        entry.primaryIcon = R.drawable.ic_default_number;
-                    }
 
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(company) && TextUtils.isEmpty(title)) {
@@ -917,11 +910,13 @@ public class ViewContactActivity extends BaseContactCardActivity
      * A basic structure with the data for a contact entry in the list.
      */
     static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
-        public int primaryIcon = -1;
-        public Intent intent;
-        public Intent auxIntent = null;
-        public int status = -1;
         public int actionIcon = -1;
+        public boolean isPrimary = false;
+        public int presenceIcon = -1;
+        public int secondaryActionIcon = -1;
+        public Intent intent;
+        public Intent secondaryIntent = null;
+        public int status = -1;
         public int maxLabelLines = 1;
         public ArrayList<Long> ids = new ArrayList<Long>();
         public int collapseCount = 0;
@@ -950,9 +945,7 @@ public class ViewContactActivity extends BaseContactCardActivity
             }
 
             // If any of the collapsed entries are primary make the whole thing primary.
-            if (primaryIcon != entry.primaryIcon && primaryIcon == -1) {
-                primaryIcon = entry.primaryIcon;
-            }
+            isPrimary = entry.isPrimary ? true : isPrimary;
 
             // uri, and contactdId, shouldn't make a difference. Just keep the original.
 
@@ -968,27 +961,38 @@ public class ViewContactActivity extends BaseContactCardActivity
             hashSb.append(mimetype);
             hashSb.append((intent != null && intent.getAction() != null)
                     ? intent.getAction() : "");
-            hashSb.append((auxIntent != null && auxIntent.getAction() != null)
-                    ? auxIntent.getAction() : "");
+            hashSb.append((secondaryIntent != null && secondaryIntent.getAction() != null)
+                    ? secondaryIntent.getAction() : "");
             hashSb.append(actionIcon);
             return hashSb.toString();
         }
     }
 
-    private static final class ViewAdapter extends ContactEntryAdapter<ViewEntry> {
-        /** Cache of the children views of a row */
-        static class ViewCache {
-            public TextView label;
-            public TextView data;
-            public ImageView actionIcon;
-            public ImageView presenceIcon;
+    /** Cache of the children views of a row */
+    static class ViewCache {
+        public TextView label;
+        public TextView data;
+        public ImageView actionIcon;
+        public ImageView presenceIcon;
+        public ImageView primaryIcon;
+        public ImageView secondaryActionButton;
+        public View secondaryActionDivider;
 
-            // Need to keep track of this too
-            ViewEntry entry;
-        }
+        // Need to keep track of this too
+        ViewEntry entry;
+    }
+
+    private final class ViewAdapter extends ContactEntryAdapter<ViewEntry>
+            implements View.OnClickListener {
+
 
         ViewAdapter(Context context, ArrayList<ArrayList<ViewEntry>> sections) {
             super(context, sections, SHOW_SEPARATORS);
+        }
+
+        public void onClick(View v) {
+            Intent intent = (Intent) v.getTag();
+            startActivity(intent);
         }
 
         @Override
@@ -1010,8 +1014,14 @@ public class ViewContactActivity extends BaseContactCardActivity
                 views = new ViewCache();
                 views.label = (TextView) v.findViewById(android.R.id.text1);
                 views.data = (TextView) v.findViewById(android.R.id.text2);
-                views.actionIcon = (ImageView) v.findViewById(R.id.icon1);
-                views.presenceIcon = (ImageView) v.findViewById(R.id.icon2);
+                views.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
+                views.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
+                views.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
+                views.secondaryActionButton = (ImageView) v.findViewById(
+                        R.id.secondary_action_button);
+                views.secondaryActionButton.setOnClickListener(this);
+                views.secondaryActionButton.setFocusable(true);
+                views.secondaryActionDivider = v.findViewById(R.id.divider);
                 v.setTag(views);
             }
 
@@ -1051,6 +1061,9 @@ public class ViewContactActivity extends BaseContactCardActivity
                 setMaxLines(data, entry.maxLines);
             }
 
+            // Set the primary icon
+            views.primaryIcon.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
+
             // Set the action icon
             ImageView action = views.actionIcon;
             if (entry.actionIcon != -1) {
@@ -1063,19 +1076,34 @@ public class ViewContactActivity extends BaseContactCardActivity
 
             // Set the presence icon
             Drawable presenceIcon = null;
-            if (entry.primaryIcon != -1) {
-                presenceIcon = resources.getDrawable(entry.primaryIcon);
+            if (entry.presenceIcon != -1) {
+                presenceIcon = resources.getDrawable(entry.presenceIcon);
             } else if (entry.status != -1) {
                 presenceIcon = resources.getDrawable(
                         Presence.getPresenceIconResourceId(entry.status));
             }
-
-            ImageView presence = views.presenceIcon;
+            ImageView presenceIconView = views.presenceIcon;
             if (presenceIcon != null) {
-                presence.setImageDrawable(presenceIcon);
-                presence.setVisibility(View.VISIBLE);
+                presenceIconView.setImageDrawable(presenceIcon);
+                presenceIconView.setVisibility(View.VISIBLE);
             } else {
-                presence.setVisibility(View.GONE);
+                presenceIconView.setVisibility(View.GONE);
+            }
+
+            // Set the secondary action button
+            ImageView secondaryActionView = views.secondaryActionButton;
+            Drawable secondaryActionIcon = null;
+            if (entry.secondaryActionIcon != -1) {
+                secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
+            }
+            if (entry.secondaryIntent != null && secondaryActionIcon != null) {
+                secondaryActionView.setImageDrawable(secondaryActionIcon);
+                secondaryActionView.setTag(entry.secondaryIntent);
+                secondaryActionView.setVisibility(View.VISIBLE);
+                views.secondaryActionDivider.setVisibility(View.VISIBLE);
+            } else {
+                secondaryActionView.setVisibility(View.GONE);
+                views.secondaryActionDivider.setVisibility(View.GONE);
             }
         }
 
