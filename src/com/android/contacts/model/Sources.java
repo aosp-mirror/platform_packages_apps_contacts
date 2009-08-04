@@ -63,7 +63,7 @@ public class Sources {
     }
 
     public static final String ACCOUNT_TYPE_GOOGLE = "com.google.GAIA";
-    public static final String ACCOUNT_TYPE_EXCHANGE = "vnd.exchange";
+    public static final String ACCOUNT_TYPE_EXCHANGE = "com.android.exchange";
 
     private HashMap<String, ContactsSource> mSources = new HashMap<String, ContactsSource>();
 
@@ -76,7 +76,7 @@ public class Sources {
      * Find the {@link ContactsSource} for the given
      * {@link Contacts#ACCOUNT_TYPE}.
      */
-    public ContactsSource getKindsForAccountType(String accountType) {
+    public ContactsSource getSourceForType(String accountType) {
         return mSources.get(accountType);
     }
 

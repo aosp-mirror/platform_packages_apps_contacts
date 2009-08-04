@@ -23,6 +23,7 @@ import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
 import android.net.Uri;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -46,7 +47,7 @@ import java.util.Set;
  * rows are missing from the new {@link Entity}, we know the original data must
  * be deleted, but to preserve the user modifications we treat as an insert.
  */
-public class EntityDelta {
+public class EntityDelta implements Parcelable {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
     /**
@@ -83,6 +84,34 @@ public class EntityDelta {
         return entity;
     }
 
+    /**
+     * Merge the "after" values from the given {@link EntityDelta} onto the
+     * "before" state represented by this {@link EntityDelta}, discarding any
+     * existing "after" states. This is typically used when re-parenting changes
+     * onto an updated {@link Entity}.
+     */
+    public void mergeAfter(EntityDelta remote) {
+        // Always take after values from new state
+        this.mValues.mAfter = remote.mValues.mAfter;
+
+        // Find matching local entry for each remote values, or create
+        for (ArrayList<ValuesDelta> mimeEntries : remote.mEntries.values()) {
+            for (ValuesDelta remoteEntry : mimeEntries) {
+                final Long childId = remoteEntry.getId();
+
+                ValuesDelta localEntry = this.getEntry(childId);
+                if (localEntry == null) {
+                    // Is "insert", or "before" record is missing, so now "insert"
+                    localEntry = ValuesDelta.fromAfter(remoteEntry.mAfter);
+                    this.addEntry(localEntry);
+                } else {
+                    // Existing entry "update"
+                    localEntry.mAfter = remoteEntry.mAfter;
+                }
+            }
+        }
+    }
+
     public ValuesDelta getValues() {
         return mValues;
     }
@@ -91,9 +120,12 @@ public class EntityDelta {
      * Get the {@link ValuesDelta} child marked as {@link Data#IS_PRIMARY}.
      */
     public ValuesDelta getPrimaryEntry(String mimeType) {
+        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
+
         // TODO: handle the case where the caller must have a non-null value,
         // for example inserting a displayname automatically
-        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
+        if (mimeEntries == null) return null;
+
         for (ValuesDelta entry : mimeEntries) {
             if (entry.isPrimary()) {
                 return entry;
@@ -129,9 +161,7 @@ public class EntityDelta {
     }
 
     /**
-     * Find the {@link ValuesDelta} that has a specific
-     * {@link BaseColumns#_ID} value, used when {@link #augmentFrom(Parcel)} is
-     * inflating a modified state.
+     * Find entry with the given {@link BaseColumns#_ID} value.
      */
     public ValuesDelta getEntry(Long childId) {
         if (childId == null) {
@@ -163,71 +193,6 @@ public class EntityDelta {
             }
         }
         return count;
-    }
-
-    private static final int MODE_CONTINUE = 1;
-    private static final int MODE_DONE = 2;
-
-    /**
-     * Read a set of modifying actions from the given {@link Parcel}, which
-     * expects the format written by {@link #augmentTo(Parcel)}. This expects
-     * that we already have a base {@link Entity} that we are applying over.
-     */
-    public void augmentFrom(Parcel parcel) {
-        {
-            final ContentValues after = (ContentValues)parcel.readValue(null);
-            if (mValues == null) {
-                // Entity didn't exist before, so "insert"
-                mValues = ValuesDelta.fromAfter(after);
-            } else {
-                // Existing entity "update"
-                mValues.mAfter = after;
-            }
-        }
-
-        // Read in packaged children until finished
-        int mode = parcel.readInt();
-        while (mode == MODE_CONTINUE) {
-            final Long childId = readLong(parcel);
-            final ContentValues after = (ContentValues)parcel.readValue(null);
-
-            ValuesDelta entry = getEntry(childId);
-            if (entry == null) {
-                // Is "insert", or "before" record is missing, so now "insert"
-                entry = ValuesDelta.fromAfter(after);
-                addEntry(entry);
-            } else {
-                // Existing entry "update"
-                entry.mAfter = after;
-            }
-
-            mode = parcel.readInt();
-        }
-    }
-
-    /**
-     * Store all modifying actions into the given {@link Parcel}.
-     */
-    public void augmentTo(Parcel parcel) {
-        parcel.writeValue(mValues.mAfter);
-
-        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
-            for (ValuesDelta child : mimeEntries) {
-                parcel.writeInt(MODE_CONTINUE);
-                writeLong(parcel, child.getId());
-                parcel.writeValue(child.mAfter);
-            }
-        }
-        parcel.writeInt(MODE_DONE);
-    }
-
-    private void writeLong(Parcel parcel, Long value) {
-        parcel.writeLong(value == null ? -1 : value);
-    }
-
-    private Long readLong(Parcel parcel) {
-        final long value = parcel.readLong();
-        return value == -1 ? null : value;
     }
 
     @Override
@@ -326,23 +291,63 @@ public class EntityDelta {
 
         // If any operations, assert that version is identical so we bail if changed
         if (diff.size() > 0 && beforeVersion != null && beforeId != null) {
-            builder = ContentProviderOperation.newCountQuery(RawContacts.CONTENT_URI);
-            builder.withSelection(RawContacts._ID + "=" + beforeId + " AND " + RawContacts.VERSION
-                    + "=" + beforeVersion, null);
-            builder.withExpectedCount(1);
-            // Sneak version check at beginning of list
-            diff.add(0, builder.build());
+            // TODO: re-enable version enforcement once we have COUNT(*) or ASSERT
+//            builder = ContentProviderOperation.newCountQuery(RawContacts.CONTENT_URI);
+//            builder.withSelection(RawContacts._ID + "=" + beforeId + " AND " + RawContacts.VERSION
+//                    + "=" + beforeVersion, null);
+//            builder.withExpectedCount(1);
+//            // Sneak version check at beginning of list
+//            diff.add(0, builder.build());
         }
 
         return diff;
     }
+
+    /** {@inheritDoc} */
+    public int describeContents() {
+        // Nothing special about this parcel
+        return 0;
+    }
+
+    /** {@inheritDoc} */
+    public void writeToParcel(Parcel dest, int flags) {
+        final int size = this.getEntryCount(false);
+        dest.writeInt(size);
+        dest.writeParcelable(mValues, flags);
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
+                dest.writeParcelable(child, flags);
+            }
+        }
+    }
+
+    public void readFromParcel(Parcel source) {
+        final int size = source.readInt();
+        mValues = source.<ValuesDelta> readParcelable(null);
+        for (int i = 0; i < size; i++) {
+            final ValuesDelta child = source.<ValuesDelta> readParcelable(null);
+            this.addEntry(child);
+        }
+    }
+
+    public static final Parcelable.Creator<EntityDelta> CREATOR = new Parcelable.Creator<EntityDelta>() {
+        public EntityDelta createFromParcel(Parcel in) {
+            final EntityDelta state = new EntityDelta();
+            state.readFromParcel(in);
+            return state;
+        }
+
+        public EntityDelta[] newArray(int size) {
+            return new EntityDelta[size];
+        }
+    };
 
     /**
      * Type of {@link ContentValues} that maintains both an original state and a
      * modified version of that state. This allows us to build insert, update,
      * or delete operations based on a "before" {@link Entity} snapshot.
      */
-    public static class ValuesDelta {
+    public static class ValuesDelta implements Parcelable {
         private ContentValues mBefore;
         private ContentValues mAfter;
         private String mIdTable = "data";
@@ -402,7 +407,7 @@ public class EntityDelta {
         }
 
         public void setIdColumn(String idTable, String idColumn) {
-            // TODO: remove idTable when we've fixed contentprovider
+            // TODO: remove idTable when contentprovider _id collisions fixed
             mIdTable = idTable;
             mIdColumn = idColumn;
         }
@@ -554,5 +559,38 @@ public class EntityDelta {
             }
             return builder;
         }
+
+        /** {@inheritDoc} */
+        public int describeContents() {
+            // Nothing special about this parcel
+            return 0;
+        }
+
+        /** {@inheritDoc} */
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeParcelable(mBefore, flags);
+            dest.writeParcelable(mAfter, flags);
+            dest.writeString(mIdTable);
+            dest.writeString(mIdColumn);
+        }
+
+        public void readFromParcel(Parcel source) {
+            mBefore = source.<ContentValues> readParcelable(null);
+            mAfter = source.<ContentValues> readParcelable(null);
+            mIdTable = source.readString();
+            mIdColumn = source.readString();
+        }
+
+        public static final Parcelable.Creator<ValuesDelta> CREATOR = new Parcelable.Creator<ValuesDelta>() {
+            public ValuesDelta createFromParcel(Parcel in) {
+                final ValuesDelta values = new ValuesDelta();
+                values.readFromParcel(in);
+                return values;
+            }
+
+            public ValuesDelta[] newArray(int size) {
+                return new ValuesDelta[size];
+            }
+        };
     }
 }

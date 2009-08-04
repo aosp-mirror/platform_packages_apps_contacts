@@ -14,40 +14,50 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:fillViewport="true">
-
-    <!-- TODO: insert aggregate summary widget -->
-    <!-- TODO: insert contact tab widget -->
-
-    <ScrollView
-        android:id="@android:id/tabcontent"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:fillViewport="true" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        style="@android:style/ButtonBar">
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:fillViewport="true">
 
-        <Button android:id="@+id/btn_done"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/menu_done" />
+        <!-- TODO: insert aggregate summary widget -->
+        <!-- TODO: insert contact tab widget -->
 
-        <Button android:id="@+id/btn_discard"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="@string/menu_doNotSave" />
+            android:fillViewport="true" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@android:style/ButtonBar">
+
+            <Button
+                android:id="@+id/btn_done"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/menu_done" />
+
+            <Button
+                android:id="@+id/btn_discard"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/menu_doNotSave" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

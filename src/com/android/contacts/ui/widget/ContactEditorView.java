@@ -75,7 +75,10 @@ public class ContactEditorView extends ViewHolder {
         mSecondary = (ViewGroup)mContent.findViewById(R.id.sect_secondary);
 
         mPhoto = new PhotoEditor(context);
+        mPhoto.swapWith(mContent, R.id.hook_photo);
+
         mDisplayName = new DisplayNameEditor(context);
+        mDisplayName.swapWith(mContent, R.id.hook_displayname);
     }
 
     /**
@@ -87,6 +90,9 @@ public class ContactEditorView extends ViewHolder {
         // Remove any existing sections
         mGeneral.removeAllViews();
         mSecondary.removeAllViews();
+
+        // Bail if invalid state or source
+        if (state == null || source == null) return;
 
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
@@ -304,7 +310,9 @@ public class ContactEditorView extends ViewHolder {
             for (EditField field : kind.fieldList) {
                 // Inflate field from definition
                 EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, mFields, false);
-                fieldView.setHint(field.titleRes);
+                if (field.titleRes != -1) {
+                    fieldView.setHint(field.titleRes);
+                }
                 fieldView.setInputType(field.inputType);
                 fieldView.setMinLines(field.minLines);
 
