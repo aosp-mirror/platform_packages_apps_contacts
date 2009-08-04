@@ -19,6 +19,7 @@ package com.android.contacts.model;
 import com.android.contacts.R;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
@@ -55,9 +56,9 @@ public class Sources {
 
     private static Sources sInstance;
 
-    public static synchronized Sources getInstance() {
+    public static synchronized Sources getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new Sources();
+            sInstance = new Sources(context);
         }
         return sInstance;
     }
@@ -67,9 +68,9 @@ public class Sources {
 
     private HashMap<String, ContactsSource> mSources = new HashMap<String, ContactsSource>();
 
-    private Sources() {
-        mSources.put(ACCOUNT_TYPE_GOOGLE, buildGoogle());
-        mSources.put(ACCOUNT_TYPE_EXCHANGE, buildExchange());
+    private Sources(Context context) {
+        mSources.put(ACCOUNT_TYPE_GOOGLE, buildGoogle(context));
+        mSources.put(ACCOUNT_TYPE_EXCHANGE, buildExchange(context));
     }
 
     /**
@@ -100,8 +101,10 @@ public class Sources {
     /**
      * Hard-coded instance of {@link ContactsSource} for Google Contacts.
      */
-    private ContactsSource buildGoogle() {
+    private ContactsSource buildGoogle(Context context) {
         final ContactsSource list = new ContactsSource();
+        list.accountType = ACCOUNT_TYPE_GOOGLE;
+        list.resPackageName = context.getPackageName();
 
         {
             // GOOGLE: STRUCTUREDNAME
@@ -121,8 +124,8 @@ public class Sources {
             DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
                     R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionCall, kind);
-            kind.actionBody = new ColumnInflater(Phone.NUMBER);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -147,8 +150,8 @@ public class Sources {
             DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
                     R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionEmail, kind);
-            kind.actionBody = new ColumnInflater(Email.DATA);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Email.DATA);
 
             kind.typeColumn = Email.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -169,8 +172,8 @@ public class Sources {
             DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionChat, kind);
-            kind.actionBody = new ColumnInflater(Im.DATA);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Im.DATA);
 
             // NOTE: even though a traditional "type" exists, for editing
             // purposes we're using the network to pick labels
@@ -202,9 +205,9 @@ public class Sources {
             DataKind kind = new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
                     R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionMap, kind);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
             // TODO: build body from various structured fields
-            kind.actionBody = new ColumnInflater(StructuredPostal.FORMATTED_ADDRESS);
+            kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
 
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -234,9 +237,9 @@ public class Sources {
             DataKind kind = new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true);
 
-            kind.actionHeader = new SimpleInflater(R.string.organizationLabelsGroup);
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.organizationLabelsGroup);
             // TODO: build body from multiple fields
-            kind.actionBody = new ColumnInflater(Organization.TITLE);
+            kind.actionBody = new SimpleInflater(Organization.TITLE);
 
             kind.typeColumn = Organization.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -260,8 +263,8 @@ public class Sources {
                     R.string.label_notes, R.drawable.sym_note, 110, true);
             kind.secondary = true;
 
-            kind.actionHeader = new SimpleInflater(R.string.label_notes);
-            kind.actionBody = new ColumnInflater(Note.NOTE);
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.label_notes);
+            kind.actionBody = new SimpleInflater(Note.NOTE);
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
@@ -275,8 +278,8 @@ public class Sources {
                     R.string.nicknameLabelsGroup, -1, 115, true);
             kind.secondary = true;
 
-            kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
-            kind.actionBody = new ColumnInflater(Nickname.NAME);
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.nicknameLabelsGroup);
+            kind.actionBody = new SimpleInflater(Nickname.NAME);
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
@@ -313,8 +316,10 @@ public class Sources {
     /**
      * Hard-coded instance of {@link ContactsSource} for Exchange.
      */
-    private ContactsSource buildExchange() {
+    private ContactsSource buildExchange(Context context) {
         final ContactsSource list = new ContactsSource();
+        list.accountType = ACCOUNT_TYPE_EXCHANGE;
+        list.resPackageName = context.getPackageName();
 
         {
             // EXCHANGE: STRUCTUREDNAME
@@ -336,8 +341,8 @@ public class Sources {
             DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
                     R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionCall, kind);
-            kind.actionBody = new ColumnInflater(Phone.NUMBER);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -367,8 +372,8 @@ public class Sources {
             DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
                     R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionEmail, kind);
-            kind.actionBody = new ColumnInflater(Email.DATA);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Email.DATA);
 
             kind.typeColumn = Email.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -387,8 +392,8 @@ public class Sources {
             DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true);
 
-            kind.actionHeader = new ActionLabelInflater(R.string.actionChat, kind);
-            kind.actionBody = new ColumnInflater(Im.DATA);
+            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Im.DATA);
 
             kind.typeColumn = Im.TYPE;
             kind.typeList = new ArrayList<EditType>();
@@ -409,8 +414,8 @@ public class Sources {
             kind.secondary = true;
             kind.typeOverallMax = 1;
 
-            kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
-            kind.actionBody = new ColumnInflater(Nickname.NAME);
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.nicknameLabelsGroup);
+            kind.actionBody = new SimpleInflater(Nickname.NAME);
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
@@ -426,8 +431,8 @@ public class Sources {
             kind.secondary = true;
             kind.typeOverallMax = 1;
 
-            kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
-            kind.actionBody = new ColumnInflater(Website.URL);
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.websiteLabelsGroup);
+            kind.actionBody = new SimpleInflater(Website.URL);
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
@@ -443,16 +448,42 @@ public class Sources {
      * filled from the given column.
      */
     public static class SimpleInflater implements StringInflater {
-        // TODO: implement this
+        private final String mPackageName;
+        private final int mStringRes;
+        private final String mColumnName;
 
-        public SimpleInflater(int stringRes) {
+        public SimpleInflater(String packageName, int stringRes) {
+            this(packageName, stringRes, null);
         }
 
-        public SimpleInflater(int stringRes, String columnName) {
+        public SimpleInflater(String columnName) {
+            this(null, -1, columnName);
         }
 
-        public CharSequence inflateUsing(Cursor cursor) {
-            return null;
+        public SimpleInflater(String packageName, int stringRes, String columnName) {
+            mPackageName = packageName;
+            mStringRes = stringRes;
+            mColumnName = columnName;
+        }
+
+        public CharSequence inflateUsing(Context context, Cursor cursor) {
+            final int index = mColumnName != null ? cursor.getColumnIndex(mColumnName) : -1;
+            final boolean validString = mStringRes > 0;
+            final boolean validColumn = index != -1;
+
+            final CharSequence stringValue = validString ? context.getPackageManager().getText(
+                    mPackageName, mStringRes, null) : null;
+            final CharSequence columnValue = validColumn ? cursor.getString(index) : null;
+
+            if (validString && validColumn) {
+                return String.format(stringValue.toString(), columnValue);
+            } else if (validString) {
+                return stringValue;
+            } else if (validColumn) {
+                return columnValue;
+            } else {
+                return null;
+            }
         }
     }
 
@@ -462,30 +493,19 @@ public class Sources {
      * {@link EditType#labelRes}.
      */
     public static class ActionLabelInflater implements StringInflater {
-        // TODO: implement this
+        private String mPackageName;
+        private DataKind mKind;
 
-        public ActionLabelInflater(int actionRes, DataKind labelProvider) {
+        public ActionLabelInflater(String packageName, DataKind labelProvider) {
+            mPackageName = packageName;
+            mKind = labelProvider;
         }
 
-        public CharSequence inflateUsing(Cursor cursor) {
-            // use the given action string along with localized label name
-            return null;
-        }
-    }
-
-    /**
-     * Simple inflater that uses the raw value from the given column.
-     */
-    public static class ColumnInflater implements StringInflater {
-        // TODO: implement this
-
-        public ColumnInflater(String columnName) {
-        }
-
-        public CharSequence inflateUsing(Cursor cursor) {
-            // return the cursor value for column name
-            return null;
+        public CharSequence inflateUsing(Context context, Cursor cursor) {
+            final EditType type = EntityModifier.getCurrentType(cursor, mKind);
+            final boolean validString = type.actionRes > 0;
+            return validString ? context.getPackageManager().getText(mPackageName, type.actionRes,
+                    null) : null;
         }
     }
-
 }

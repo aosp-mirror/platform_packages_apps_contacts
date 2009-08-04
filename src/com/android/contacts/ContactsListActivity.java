@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.DisplayGroupsActivity.Prefs;
 import com.android.contacts.ui.EditContactActivity;
+import com.android.contacts.ui.FastTrackWindow;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,6 +36,7 @@ import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -91,7 +93,7 @@ import java.util.Locale;
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
 public final class ContactsListActivity extends ListActivity implements
-        View.OnCreateContextMenuListener {
+        View.OnCreateContextMenuListener, View.OnClickListener {
     private static final String TAG = "ContactsListActivity";
 
     private static final String LIST_STATE_KEY = "liststate";
@@ -245,9 +247,8 @@ public final class ContactsListActivity extends ListActivity implements
 
     private static final int QUERY_TOKEN = 42;
 
-    /*
-    */
-    ContactItemListAdapter mAdapter;
+    private FastTrackWindow mFastTrack;
+    private ContactItemListAdapter mAdapter;
 
     int mMode = MODE_DEFAULT;
 
@@ -474,6 +475,7 @@ public final class ContactsListActivity extends ListActivity implements
         // Set the proper empty string
         setEmptyText();
 
+        mFastTrack = new FastTrackWindow(this);
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
@@ -507,6 +509,30 @@ public final class ContactsListActivity extends ListActivity implements
 //        } finally {
 //            resolver.releaseProvider(provider);
 //        }
+    }
+
+    private int[] mLocation = new int[2];
+    private Rect mRect = new Rect();
+
+    private void showFastTrack(View anchor, long contactId) {
+        final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+
+        anchor.getLocationInWindow(mLocation);
+        mRect.left = mLocation[0];
+        mRect.top = mLocation[1];
+        mRect.right = mRect.left + anchor.getWidth();
+        mRect.bottom = mRect.top + anchor.getHeight();
+
+        mFastTrack.dismiss();
+        mFastTrack.show(contactUri, mRect, Intents.MODE_MEDIUM);
+    }
+
+    /** {@inheritDoc} */
+    public void onClick(View v) {
+        // Clicked on photo, so show fast-track
+        final int position = (Integer)v.getTag();
+        final long contactId = this.getListView().getItemIdAtPosition(position);
+        showFastTrack(v, contactId);
     }
 
     private void setEmptyText() {
@@ -828,13 +854,20 @@ public final class ContactsListActivity extends ListActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK: {
+                if (mFastTrack.isShowing()) {
+                    // Back key dismisses fast-track when its visible
+                    mFastTrack.dismiss();
+                    return true;
+                }
+                break;
+            }
             case KeyEvent.KEYCODE_CALL: {
                 if (callSelection()) {
                     return true;
                 }
                 break;
             }
-
             case KeyEvent.KEYCODE_DEL: {
                 Object o = getListView().getSelectedItem();
                 if (o != null) {
@@ -1533,6 +1566,7 @@ public final class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (ImageView) view.findViewById(R.id.photo);
+            cache.photoView.setOnClickListener(ContactsListActivity.this);
             view.setTag(cache);
 
             return view;

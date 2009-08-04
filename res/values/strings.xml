@@ -658,6 +658,16 @@
     -->
     <string name="description_image_button_pound">pound</string>
 
+    <!-- Shown as a toast when the user taps on a Fast-Track icon, and no application
+         was found that could perform the selected action -->
+    <string name="fasttrack_missing_app">No application found to handle this action</string>
+
+    <!-- Shown as the header name for a person when the name is missing or unknown. -->
+    <string name="fasttrack_missing_name">Unknown</string>
+
+    <!-- Shown as the social status snippet for a person when no social updates exist. -->
+    <string name="fasttrack_missing_status">No recent updates</string>
+
 <!-- TODO: add comments to each of these strings to prepare for translation -->
 <!-- TODO: split out separate strings for "Home" versus "Call home", see http://b/2029022 -->
 <string name="nameLabelsGroup">Name</string>

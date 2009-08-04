@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.ui.FastTrackWindow;
+
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;

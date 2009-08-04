@@ -233,13 +233,14 @@
 
         <activity android:name=".DisplayGroupsActivity" android:label="@string/displayGroups" />
 
-        <activity android:name="ShowOrCreateActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        <activity
+            android:name="ShowOrCreateActivity"
+            android:theme="@style/ShowOrCreateTheme">
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="mailto" />
                 <data android:scheme="tel" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
             <intent-filter>

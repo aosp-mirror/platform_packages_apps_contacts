@@ -21,6 +21,8 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
@@ -183,6 +185,16 @@ public class EntityModifier {
     }
 
     /**
+     * Find the {@link EditType} that describes the given {@link Cursor} row,
+     * assuming the given {@link DataKind} dictates the possible types.
+     */
+    public static EditType getCurrentType(Cursor cursor, DataKind kind) {
+        final int index = cursor.getColumnIndex(kind.typeColumn);
+        final int rawValue = cursor.getInt(index);
+        return getType(kind, rawValue);
+    }
+
+    /**
      * Find the {@link EditType} with the given {@link EditType#rawValue}.
      */
     public static EditType getType(DataKind kind, int rawValue) {
@@ -285,9 +297,9 @@ public class EntityModifier {
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(EntityDelta state, Bundle extras) {
+    public static void parseExtras(Context context, EntityDelta state, Bundle extras) {
         final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        final ContactsSource source = Sources.getInstance().getSourceForType(accountType);
+        final ContactsSource source = Sources.getInstance(context).getSourceForType(accountType);
 
         {
             // StructuredName

@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.EdgeTriggerView.EdgeTriggerListener;
+import com.android.contacts.ui.FastTrackWindow;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -44,6 +45,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.SocialContract.Activities;
@@ -175,7 +177,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         mRect.bottom = mRect.top + anchor.getHeight();
 
         mFastTrack.dismiss();
-        mFastTrack.show(aggUri, mRect);
+        mFastTrack.show(aggUri, mRect, Intents.MODE_MEDIUM);
     }
 
     /** {@inheritDoc} */

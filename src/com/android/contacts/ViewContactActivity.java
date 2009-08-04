@@ -32,6 +32,7 @@ import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
 
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
+import com.android.contacts.ui.FastTrackWindow;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.AlertDialog;

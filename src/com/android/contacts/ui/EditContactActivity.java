@@ -99,7 +99,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final Bundle extras = intent.getExtras();
 
         mUri = intent.getData();
-        mSources = Sources.getInstance();
+        mSources = Sources.getInstance(this);
 
         if (Intent.ACTION_EDIT.equals(action) && icicle == null) {
             // Read initial state from database

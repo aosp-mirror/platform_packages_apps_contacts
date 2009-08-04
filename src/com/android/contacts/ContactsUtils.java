@@ -17,6 +17,8 @@
 package com.android.contacts;
 
 
+import com.android.contacts.ui.FastTrackWindow;
+
 import java.io.ByteArrayInputStream;
 import android.provider.ContactsContract.Data;
 import java.io.InputStream;

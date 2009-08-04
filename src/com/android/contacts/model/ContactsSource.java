@@ -16,7 +16,9 @@
 
 package com.android.contacts.model;
 
+import android.accounts.Account;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -64,9 +66,9 @@ import java.util.List;
 */
 
 /**
- * Internal structure that represents constraints for a specific data source,
- * such as the various data types they support, including details on how those
- * types should be rendered and edited.
+ * Internal structure that represents constraints and styles for a specific data
+ * source, such as the various data types they support, including details on how
+ * those types should be rendered and edited.
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
@@ -75,6 +77,12 @@ public class ContactsSource {
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
     public String accountType;
+
+    /**
+     * Package that resources should be loaded from, either defined through an
+     * {@link Account} or for matching against {@link Data#RES_PACKAGE}.
+     */
+    public String resPackageName;
 
     /**
      * Set of {@link DataKind} supported by this source.
@@ -163,6 +171,7 @@ public class ContactsSource {
     public static class EditType {
         public int rawValue;
         public int labelRes;
+        public int actionRes;
         public boolean secondary;
         public int specificMax;
         public String customColumn;
@@ -170,6 +179,7 @@ public class ContactsSource {
         public EditType(int rawValue, int labelRes) {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
+            this.actionRes = actionRes;
             this.specificMax = -1;
         }
 
@@ -238,7 +248,7 @@ public class ContactsSource {
      * before presenting to the user.
      */
     public interface StringInflater {
-        public CharSequence inflateUsing(Cursor cursor);
+        public CharSequence inflateUsing(Context context, Cursor cursor);
     }
 
 }

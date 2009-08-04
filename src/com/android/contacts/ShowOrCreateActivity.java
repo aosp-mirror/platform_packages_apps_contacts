@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.ui.FastTrackWindow;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,7 +31,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Contacts.Intents;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.PhoneLookup;
@@ -69,14 +70,6 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
     static final String SCHEME_TEL = "tel";
 
     static final int AGGREGATE_ID_INDEX = 0;
-
-    /**
-     * Extra used to request a specific {@link FastTrackWindow} position.
-     * Normally the fast-track window will try pointing an arrow towards this
-     * location, but if the left and right edges are crossed, the arrow may be
-     * hidden.
-     */
-    private static final String EXTRA_RECT = "target_rect";
 
     static final int QUERY_TOKEN = 42;
 
@@ -163,18 +156,21 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
      */
     private void showFastTrack(Uri aggUri) {
         // Use our local window token for now
-        Bundle extras = getIntent().getExtras();
+        final Bundle extras = getIntent().getExtras();
 
         Rect targetRect;
-        if (extras.containsKey(EXTRA_RECT)) {
-            targetRect = (Rect)extras.getParcelable(EXTRA_RECT);
+        if (extras.containsKey(Intents.EXTRA_TARGET_RECT)) {
+            targetRect = (Rect)extras.getParcelable(Intents.EXTRA_TARGET_RECT);
         } else {
             // TODO: this default rect matches gmail messages, and should move over there
             targetRect = new Rect(15, 110, 15+18, 110+18);
         }
 
+        // Use requested display mode, defaulting to medium
+        final int mode = extras.getInt(Intents.EXTRA_MODE, Intents.MODE_MEDIUM);
+
         mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(aggUri, targetRect);
+        mFastTrack.show(aggUri, targetRect, mode);
     }
 
     /** {@inheritDoc} */
