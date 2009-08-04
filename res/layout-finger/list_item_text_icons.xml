@@ -27,7 +27,7 @@
     android:gravity="center_vertical"
 >
 
-    <ImageView android:id="@+id/icon1"
+    <ImageView android:id="@+id/action_icon"
         android:layout_width="32dip"
         android:layout_height="32dip"
         android:layout_marginRight="5dip"
@@ -35,14 +35,13 @@
         android:scaleType="centerInside"
     />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginLeft="5dip"
         android:paddingTop="5dip"
         android:paddingBottom="7dip"
-        android:orientation="vertical"
         android:gravity="center_vertical"
     >
 
@@ -55,17 +54,43 @@
         <TextView android:id="@android:id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@android:id/text1"
             android:textAppearance="?android:attr/textAppearanceSmall"
         />
 
-    </LinearLayout>
+        <ImageView android:id="@+id/primary_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@android:id/text2"
+            android:layout_alignTop="@android:id/text2"
+            android:src="@drawable/ic_default_number"
+        />
 
-    <ImageView android:id="@+id/icon2"
+    </RelativeLayout>
+
+    <ImageView android:id="@+id/presence_icon"
         android:layout_width="32dip"
         android:layout_height="32dip"
         android:layout_marginLeft="5dip"
         android:gravity="center"
         android:scaleType="centerInside"
+    />
+
+    <View android:id="@+id/divider"
+        android:layout_width="1dip"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="11dip"
+        android:background="@drawable/divider_vertical_dark"
+    />
+
+    <ImageView android:id="@+id/secondary_action_button"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="7dip"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:background="@drawable/list_item_secondary_button"
     />
 
 </LinearLayout>
