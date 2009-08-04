@@ -1021,7 +1021,6 @@ public class ViewContactActivity extends BaseContactCardActivity
                 views.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
                 views.secondaryActionButton.setOnClickListener(this);
-                views.secondaryActionButton.setFocusable(true);
                 views.secondaryActionDivider = v.findViewById(R.id.divider);
                 v.setTag(views);
             }

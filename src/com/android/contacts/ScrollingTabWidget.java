@@ -20,24 +20,22 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.InflateException;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
-import android.widget.HorizontalScrollView;
+import android.view.View.OnFocusChangeListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TabHost;
 
 /*
  * Tab widget that can contain more tabs than can fit on screen at once and scroll over them.
  */
 public class ScrollingTabWidget extends RelativeLayout
-        implements OnClickListener {
+        implements OnClickListener, ViewTreeObserver.OnGlobalFocusChangeListener,
+        OnFocusChangeListener {
 
     private static final String TAG = "ScrollingTabWidget";
 
@@ -67,6 +65,13 @@ public class ScrollingTabWidget extends RelativeLayout
         mInflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
+        setFocusable(true);
+        setOnFocusChangeListener(this);
+        onLoseFocus();
+//        if (!hasFocus()) {
+//            setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+//        }
+
         mLeftArrowView = (LinearLayout) mInflater.inflate(R.layout.tab_left_arrow, this, false);
         mLeftArrowView.setOnClickListener(this);
         mRightArrowView = (LinearLayout) mInflater.inflate(R.layout.tab_right_arrow, this, false);
@@ -83,6 +88,24 @@ public class ScrollingTabWidget extends RelativeLayout
         addView(mTabsScrollWrapper);
         addView(mLeftArrowView);
         addView(mRightArrowView);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        final ViewTreeObserver treeObserver = getViewTreeObserver();
+        if (treeObserver != null) {
+            treeObserver.addOnGlobalFocusChangeListener(this);
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        final ViewTreeObserver treeObserver = getViewTreeObserver();
+        if (treeObserver != null) {
+            treeObserver.removeOnGlobalFocusChangeListener(this);
+        }
     }
 
     protected void updateArrowVisibility() {
@@ -192,15 +215,9 @@ public class ScrollingTabWidget extends RelativeLayout
      *  @see #setCurrentTab
      */
     public void focusCurrentTab(int index) {
-        final int oldTab = mSelectedTab;
-
-        // set the tab
         setCurrentTab(index);
+        getChildTabViewAt(index).requestFocus();
 
-        // change the focus if applicable.
-        if (oldTab != index) {
-            getChildTabViewAt(index).requestFocus();
-        }
     }
 
     /**
@@ -236,7 +253,7 @@ public class ScrollingTabWidget extends RelativeLayout
         child.setFocusable(true);
         child.setClickable(true);
         child.setOnClickListener(new TabClickListener());
-        child.setOnFocusChangeListener(new TabFocusListener());
+        child.setOnFocusChangeListener(this);
 
         // If we already have at least one tab, then add a divider before adding the next tab.
         if (getTabCount() > 0) {
@@ -260,18 +277,60 @@ public class ScrollingTabWidget extends RelativeLayout
         mSelectionChangedListener = listener;
     }
 
-    private class TabFocusListener implements OnFocusChangeListener {
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (hasFocus) {
-                for (int i = 0; i < getTabCount(); i++) {
-                    if (getChildTabViewAt(i) == v) {
-                        setCurrentTab(i);
-                        mSelectionChangedListener.onTabSelectionChanged(i, false);
-                        break;
-                    }
+    public void onGlobalFocusChanged(View oldFocus, View newFocus) {
+        if (isTab(oldFocus) && !isTab(newFocus)) {
+            onLoseFocus();
+        }
+    }
+
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (v == this && hasFocus) {
+            onObtainFocus();
+            return;
+        }
+
+        if (hasFocus) {
+            for (int i = 0; i < getTabCount(); i++) {
+                if (getChildTabViewAt(i) == v) {
+                    setCurrentTab(i);
+                    mSelectionChangedListener.onTabSelectionChanged(i, false);
+                    break;
                 }
             }
         }
+    }
+
+    /**
+     * Called when the {@link ScrollingTabWidget} gets focus. Here the
+     * widget decides which of it's tabs should have focus.
+     */
+    protected void onObtainFocus() {
+        // Setting this flag, allows the children of this View to obtain focus.
+        setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
+        // Assign focus to the last selected tab.
+        focusCurrentTab(mSelectedTab);
+        mSelectionChangedListener.onTabSelectionChanged(mSelectedTab, false);
+    }
+
+    /**
+     * Called when the focus has left the {@link ScrollingTabWidget} or its
+     * descendants. At this time we want the children of this view to be marked
+     * as un-focusable, so that next time focus is moved to the widget, the widget
+     * gets control, and can assign focus where it wants.
+     */
+    protected void onLoseFocus() {
+        // Setting this flag will effectively make the tabs unfocusable. This will
+        // be toggled when the widget obtains focus again.
+        setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+    }
+
+    public boolean isTab(View v) {
+        for (int i = 0; i < getTabCount(); i++) {
+            if (getChildTabViewAt(i) == v) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private class TabClickListener implements OnClickListener {
