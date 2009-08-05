@@ -22,18 +22,18 @@
 >
     <LinearLayout android:id="@+id/digitsAndBackspace"
         android:layout_width="fill_parent"
-        android:layout_height="66px"
-        android:layout_marginTop="3px"
-        android:layout_marginBottom="5px"
-        android:layout_marginLeft="3px"
-        android:layout_marginRight="3px"
+        android:layout_height="66dip"
+        android:layout_marginTop="3dip"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="3dip"
+        android:layout_marginRight="3dip"
         android:orientation="horizontal"
     >
 
         <EditText android:id="@+id/digits"
             android:layout_width="0dip"
             android:layout_weight="1"
-            android:layout_height="66px"
+            android:layout_height="66dip"
             android:maxLines="1"
             android:scrollHorizontally="true"
             android:textSize="28sp"
@@ -47,7 +47,7 @@
         <ImageButton android:id="@+id/backspace"
             style="@android:style/Widget.Button.Inset"
             android:layout_width="wrap_content"
-            android:layout_height="66px"
+            android:layout_height="66dip"
             android:background="@drawable/btn_dial_delete"
             android:src="@drawable/ic_delete_phone_number"
             android:gravity="center"
@@ -64,7 +64,7 @@
          (the textfield/button and the dialpad) are hidden. -->
     <ListView android:id="@+id/dialpadChooser"
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="1dip"
         android:layout_weight="1"
     />
 
