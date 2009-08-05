@@ -71,4 +71,11 @@
      exist in a target directory, 00003.vcf becomes a next file name candidate.
      Without this configuration, 00002.vcf becomes the candidate.-->
     <string name="config_export_extensions_to_consider"></string>
+
+    <!-- If true, show an onscreen "Dial" button in the dialer.
+         (In practice this is used only on platforms with no hard SEND/END
+         keys, but for maximum flexibility it's controlled by a flag here
+         (which can be overridden on a per-product basis.)) -->
+    <bool name="config_show_onscreen_dial_button">false</bool>
+
 </resources>

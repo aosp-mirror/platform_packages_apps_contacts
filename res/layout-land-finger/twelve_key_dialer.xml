@@ -59,6 +59,21 @@
 
     </LinearLayout>
 
+    <!-- Onscreen "Dial" button, used on some platforms -->
+    <Button android:id="@+id/dialButton"
+            android:text="@string/dial_button_label"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dip"
+            android:paddingLeft="100dip"
+            android:paddingRight="100dip"
+            android:enabled="false"
+            android:visibility="gone"
+            />
+
     <!-- "Dialpad chooser" UI, shown only when the user brings up the
          Dialer while a call is already in progress.
          When this UI is visible, the other Dialer elements

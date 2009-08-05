@@ -95,6 +95,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private Drawable mDeleteEmptyBackground;
     private View mDigitsAndBackspace;
     private View mDialpad;
+    private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
     //Member variables for dialpad options
@@ -168,6 +169,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
             mDigits.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         }
+
+        // Update the enabledness of the "Dial" button
+        if (mDialButton != null) {
+            mDialButton.setEnabled(mDigits.length() != 0);
+        }
     }
 
     @Override
@@ -198,6 +204,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         View view = findViewById(R.id.one);
         if (view != null) {
             setupKeypad();
+        }
+
+        // Check whether we should show the onscreen "Dial" button.
+        if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
+            mDialButton = findViewById(R.id.dialButton);
+            mDialButton.setVisibility(View.VISIBLE);  // It's GONE by default
+            mDialButton.setOnClickListener(this);
         }
 
         view = findViewById(R.id.backspace);
@@ -678,6 +691,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
             }
+            case R.id.dialButton:
             case R.id.digits: {
                 vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
@@ -813,6 +827,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // Log.i(TAG, "Showing dialpad chooser!");
             mDigitsAndBackspace.setVisibility(View.GONE);
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
+            if (mDialButton != null) mDialButton.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
 
             // Instantiate the DialpadChooserAdapter and hook it up to the
@@ -825,6 +840,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // Log.i(TAG, "Displaying normal Dialer UI.");
             mDigitsAndBackspace.setVisibility(View.VISIBLE);
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
+            if (mDialButton != null) mDialButton.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
         }
     }

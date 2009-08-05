@@ -740,4 +740,8 @@
     <!-- Menu items for dialpad options as part of Pause and Wait ftr -->
     <string name="add_2sec_pause">Add 2-sec Pause</string>
     <string name="add_wait">Add Wait</string>
+
+    <!-- Label for onscreen "Dial" button -->
+    <string name="dial_button_label">Dial</string>
+
 </resources>
