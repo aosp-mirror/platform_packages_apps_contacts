@@ -26,15 +26,19 @@ import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +63,7 @@ import java.util.List;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends ViewHolder {
+public class ContactEditorView extends ViewHolder implements OnClickListener {
     private static final int RES_CONTENT = R.layout.act_edit_contact;
 
     private PhotoEditor mPhoto;
@@ -68,17 +72,47 @@ public class ContactEditorView extends ViewHolder {
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
 
+    private TextView mSecondaryHeader;
+
+    private Drawable mSecondaryOpen;
+    private Drawable mSecondaryClosed;
+
     public ContactEditorView(Context context) {
         super(context, RES_CONTENT);
 
         mGeneral = (ViewGroup)mContent.findViewById(R.id.sect_general);
         mSecondary = (ViewGroup)mContent.findViewById(R.id.sect_secondary);
 
+        mSecondaryHeader = (TextView)mContent.findViewById(R.id.head_secondary);
+        mSecondaryHeader.setOnClickListener(this);
+
+        final Resources res = context.getResources();
+        mSecondaryOpen = res.getDrawable(com.android.internal.R.drawable.expander_ic_maximized);
+        mSecondaryClosed = res.getDrawable(com.android.internal.R.drawable.expander_ic_minimized);
+
+        this.setSecondaryVisible(false);
+
         mPhoto = new PhotoEditor(context);
-        mPhoto.swapWith(mContent, R.id.hook_photo);
+        mPhoto.swapInto((ViewGroup)mContent.findViewById(R.id.hook_photo));
 
         mDisplayName = new DisplayNameEditor(context);
-        mDisplayName.swapWith(mContent, R.id.hook_displayname);
+        mDisplayName.swapInto((ViewGroup)mContent.findViewById(R.id.hook_displayname));
+    }
+
+    /** {@inheritDoc} */
+    public void onClick(View v) {
+        // Toggle visibility of secondary kinds
+        final boolean makeVisible = mSecondary.getVisibility() != View.VISIBLE;
+        this.setSecondaryVisible(makeVisible);
+    }
+
+    /**
+     * Set the visibility of secondary sections, along with header icon.
+     */
+    private void setSecondaryVisible(boolean makeVisible) {
+        mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
+        mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(makeVisible ? mSecondaryOpen
+                : mSecondaryClosed, null, null, null);
     }
 
     /**
@@ -139,6 +173,9 @@ public class ContactEditorView extends ViewHolder {
         public KindSection(Context context, DataKind kind, EntityDelta state) {
             super(context, RES_SECTION);
 
+            mContent.setDrawingCacheEnabled(true);
+            ((ViewGroup)mContent).setAlwaysDrawnWithCacheEnabled(true);
+
             mKind = kind;
             mState = state;
 
@@ -152,10 +189,12 @@ public class ContactEditorView extends ViewHolder {
 
             this.rebuildFromState();
             this.updateAddEnabled();
+            this.updateEditorsVisible();
         }
 
         public void onDeleted(Editor editor) {
             this.updateAddEnabled();
+            this.updateEditorsVisible();
         }
 
         /**
@@ -180,6 +219,11 @@ public class ContactEditorView extends ViewHolder {
             }
         }
 
+        protected void updateEditorsVisible() {
+            final boolean hasChildren = mEditors.getChildCount() > 0;
+            mEditors.setVisibility(hasChildren ? View.VISIBLE : View.GONE);
+        }
+
         protected void updateAddEnabled() {
             // Set enabled state on the "add" view
             final boolean canInsert = EntityModifier.canInsert(mState, mKind);
@@ -191,6 +235,7 @@ public class ContactEditorView extends ViewHolder {
             EntityModifier.insertChild(mState, mKind);
             this.rebuildFromState();
             this.updateAddEnabled();
+            this.updateEditorsVisible();
         }
     }
 
@@ -227,10 +272,13 @@ public class ContactEditorView extends ViewHolder {
      * the entry. Uses {@link ValuesDelta} to read any existing
      * {@link Entity} values, and to correctly write any changes values.
      */
-    protected static class GenericEditor extends ViewHolder implements Editor, OnClickListener {
+    protected static class GenericEditor extends ViewHolder implements Editor, View.OnClickListener {
         private static final int RES_EDITOR = R.layout.item_editor;
         private static final int RES_FIELD = R.layout.item_editor_field;
         private static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
+
+        private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
+                | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
         private TextView mLabel;
         private ViewGroup mFields;
@@ -343,38 +391,38 @@ public class ContactEditorView extends ViewHolder {
             }
         }
 
-        private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
-                | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
-
         /**
-         * Show dialog for entering a custom label.
+         * Prepare dialog for entering a custom label.
          */
-        private void showCustomDialog() {
+        public Dialog createCustomDialog() {
             final EditText customType = new EditText(mContext);
             customType.setInputType(INPUT_TYPE_CUSTOM);
             customType.requestFocus();
 
-            final DialogInterface.OnClickListener clickPositive = new DialogInterface.OnClickListener() {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.customLabelPickerTitle);
+            builder.setView(customType);
+
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     final String customText = customType.getText().toString();
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
                 }
-            };
+            });
 
             // TODO: handle canceled case by reverting to previous type?
+            builder.setNegativeButton(android.R.string.cancel, null);
 
-            new AlertDialog.Builder(mContext).setView(customType).setTitle(
-                    R.string.customLabelPickerTitle).setPositiveButton(android.R.string.ok,
-                    clickPositive).setNegativeButton(android.R.string.cancel, null).show();
+            return builder.create();
         }
 
         /**
-         * Show dialog for picking a new {@link EditType} or entering a custom
-         * label. This dialog is limited to the valid types as determined by
-         * {@link EntityModifier}.
+         * Prepare dialog for picking a new {@link EditType} or entering a
+         * custom label. This dialog is limited to the valid types as determined
+         * by {@link EntityModifier}.
          */
-        private void showTypeDialog() {
+        public Dialog createLabelDialog() {
             // Build list of valid types, including the current value
             final List<EditType> validTypes = EntityModifier.getValidTypes(mState, mKind, mType);
 
@@ -408,28 +456,33 @@ public class ContactEditorView extends ViewHolder {
 
                     if (mType.customColumn != null) {
                         // Show custom label dialog if requested by type
-                        showCustomDialog();
+                        createCustomDialog().show();
                     } else {
                         rebuildLabel();
                     }
                 }
             };
 
-            new AlertDialog.Builder(mContext).setSingleChoiceItems(typeAdapter, 0, clickListener)
-                    .setTitle(R.string.selectLabel).show();
+            final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.selectLabel);
+            builder.setSingleChoiceItems(typeAdapter, 0, clickListener);
+            return builder.create();
         }
 
-
+        /** {@inheritDoc} */
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.edit_label: {
-                    showTypeDialog();
+                    createLabelDialog().show();
                     break;
                 }
                 case R.id.edit_delete: {
-                    // Mark as deleted and hide this editor
+                    // Keep around in model, but mark as deleted
                     mEntry.markDeleted();
-                    mContent.setVisibility(View.GONE);
+
+                    // Remove editor from parent view
+                    final ViewGroup parent = (ViewGroup)mContent.getParent();
+                    parent.removeView(mContent);
 
                     if (mListener != null) {
                         // Notify listener when present
@@ -474,33 +527,6 @@ public class ContactEditorView extends ViewHolder {
 //      }
 //  }
 
-//        private void doPickPhotoAction() {
-//            Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-//            // TODO: get these values from constants somewhere
-//            intent.setType("image/*");
-//            intent.putExtra("crop", "true");
-//            intent.putExtra("aspectX", 1);
-//            intent.putExtra("aspectY", 1);
-//            intent.putExtra("outputX", 96);
-//            intent.putExtra("outputY", 96);
-//            try {
-//                intent.putExtra("return-data", true);
-//                startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
-//            } catch (ActivityNotFoundException e) {
-//                new AlertDialog.Builder(EditContactActivity.this)
-//                    .setTitle(R.string.errorDialogTitle)
-//                    .setMessage(R.string.photoPickerNotFoundText)
-//                    .setPositiveButton(android.R.string.ok, null)
-//                    .show();
-//            }
-//        }
-
-//        private void doRemovePhotoAction() {
-//            mPhoto = null;
-//            mPhotoChanged = true;
-//            setPhotoPresent(false);
-//        }
-
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
         }
 
@@ -524,5 +550,4 @@ public class ContactEditorView extends ViewHolder {
         public void setEditorListener(EditorListener listener) {
         }
     }
-
 }

@@ -20,18 +20,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:id="@+id/kind_header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginLeft="14dip"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="1dip"
+        android:layout_marginTop="2dip"
+        android:layout_marginBottom="2dip"
         android:layout_marginRight="?android:attr/scrollbarSize"
         android:orientation="horizontal"
-        android:gravity="bottom"
+        android:gravity="center_vertical"
         android:focusable="true"
         android:clickable="true">
 
@@ -40,8 +47,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginBottom="8dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/kind_title"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal" />
@@ -58,6 +65,7 @@
         android:id="@+id/kind_editors"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="6dip"
         android:orientation="vertical" />
 
 </LinearLayout>

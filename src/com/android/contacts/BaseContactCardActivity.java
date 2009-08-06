@@ -39,6 +39,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -157,7 +158,7 @@ public abstract class BaseContactCardActivity extends Activity
      * @param icon An icon to display in the tab indicator.
      */
     protected void addTab(long contactId, String label, Drawable icon) {
-        addTab(contactId, createTabIndicatorView(label, icon));
+        addTab(contactId, createTabIndicatorView(mTabWidget, label, icon));
     }
 
     /**
@@ -201,8 +202,10 @@ public abstract class BaseContactCardActivity extends Activity
      * @param icon The icon to display. If null, no icon will be displayed.
      * @return The tab indicator View.
      */
-    protected View createTabIndicatorView(String label, Drawable icon) {
-        View tabIndicator = mInflater.inflate(R.layout.tab_indicator, mTabWidget, false);
+    public static View createTabIndicatorView(ViewGroup parent, CharSequence label, Drawable icon) {
+        final LayoutInflater inflater = (LayoutInflater)parent.getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        final View tabIndicator = inflater.inflate(R.layout.tab_indicator, parent, false);
 
         final TextView tv = (TextView) tabIndicator.findViewById(R.id.tab_title);
         tv.setText(label);

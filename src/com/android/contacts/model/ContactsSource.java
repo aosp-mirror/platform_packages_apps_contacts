@@ -84,6 +84,9 @@ public class ContactsSource {
      */
     public String resPackageName;
 
+    public int titleRes;
+    public int iconRes;
+
     /**
      * Set of {@link DataKind} supported by this source.
      */

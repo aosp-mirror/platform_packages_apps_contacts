@@ -37,6 +37,11 @@ public class ViewHolder {
         mContent = mInflater.inflate(layoutRes, null);
     }
 
+    public void swapInto(ViewGroup target) {
+        target.removeAllViews();
+        target.addView(mContent);
+    }
+
     public void swapWith(View target) {
         // Borrow layout params and id for ourselves
         this.mContent.setLayoutParams(target.getLayoutParams());

@@ -23,20 +23,21 @@
 
     <TextView
         android:id="@+id/text_summary"
-android:background="#f0f0"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dip" />
 
     <FrameLayout
         android:id="@+id/hook_photo"
-android:background="#f00f"
         android:layout_width="76dip"
         android:layout_height="76dip"
+        android:layout_marginTop="4dip"
+        android:layout_marginLeft="2dip"
+        android:layout_marginBottom="4dip"
+        android:layout_marginRight="4dip"
         android:layout_below="@+id/text_summary" />
 
     <FrameLayout
         android:id="@+id/hook_displayname"
-android:background="#fff0"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/hook_photo"
@@ -45,26 +46,35 @@ android:background="#fff0"
 
     <LinearLayout
         android:id="@+id/sect_general"
-android:background="#f0ff"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/hook_photo"
         android:orientation="vertical" />
 
-    <!-- TODO: make secondary section collapsable -->
     <TextView
-android:background="#ff00"
         android:id="@+id/head_secondary"
         android:layout_width="fill_parent"
-        android:layout_height="10dip"
-        android:layout_below="@+id/sect_general" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sect_general"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:background="@color/sect_secondary"
+        android:text="@string/edit_secondary_collapse"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/kind_title"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:clickable="true"
+        android:paddingLeft="10dip"
+        android:drawablePadding="10dip" />
 
     <LinearLayout
-android:background="#ff0f"
         android:id="@+id/sect_secondary"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/head_secondary"
+        android:background="@color/sect_secondary"
         android:orientation="vertical" />
 
 </RelativeLayout>

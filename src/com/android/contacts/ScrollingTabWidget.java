@@ -273,7 +273,7 @@ public class ScrollingTabWidget extends RelativeLayout
      * Provides a way for ViewContactActivity and EditContactActivity to be notified that the
      * user clicked on a tab indicator.
      */
-    void setTabSelectionListener(OnTabSelectionChangedListener listener) {
+    public void setTabSelectionListener(OnTabSelectionChangedListener listener) {
         mSelectionChangedListener = listener;
     }
 
@@ -345,7 +345,7 @@ public class ScrollingTabWidget extends RelativeLayout
         }
     }
 
-    static interface OnTabSelectionChangedListener {
+    public interface OnTabSelectionChangedListener {
         /**
          * Informs the tab widget host which tab was selected. It also indicates
          * if the tab was clicked/pressed or just focused into.

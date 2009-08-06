@@ -503,7 +503,7 @@ public class Sources {
 
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
-            final boolean validString = type.actionRes > 0;
+            final boolean validString = (type != null && type.actionRes > 0);
             return validString ? context.getPackageManager().getText(mPackageName, type.actionRes,
                     null) : null;
         }

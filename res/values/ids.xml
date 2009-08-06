@@ -21,4 +21,10 @@
     <item type="id" name="header_all" />
     <item type="id" name="header_phones" />
 
+    <item type="id" name="dialog_delete" />
+    <item type="id" name="dialog_photo" />
+    <item type="id" name="dialog_name" />
+    <item type="id" name="dialog_label" />
+    <item type="id" name="dialog_label_custom" />
+
 </resources>

@@ -242,7 +242,12 @@ public class EntityDelta implements Parcelable {
         return builder.toString();
     }
 
-    private void possibleAdd(ArrayList<ContentProviderOperation> diff, ContentProviderOperation.Builder builder) {
+    /**
+     * Consider building the given {@link ContentProviderOperation.Builder} and
+     * appending it to the given list, which only happens if builder is valid.
+     */
+    private void possibleAdd(ArrayList<ContentProviderOperation> diff,
+            ContentProviderOperation.Builder builder) {
         if (builder != null) {
             diff.add(builder.build());
         }
@@ -291,13 +296,11 @@ public class EntityDelta implements Parcelable {
 
         // If any operations, assert that version is identical so we bail if changed
         if (diff.size() > 0 && beforeVersion != null && beforeId != null) {
-            // TODO: re-enable version enforcement once we have COUNT(*) or ASSERT
-//            builder = ContentProviderOperation.newCountQuery(RawContacts.CONTENT_URI);
-//            builder.withSelection(RawContacts._ID + "=" + beforeId + " AND " + RawContacts.VERSION
-//                    + "=" + beforeVersion, null);
-//            builder.withExpectedCount(1);
-//            // Sneak version check at beginning of list
-//            diff.add(0, builder.build());
+            builder = ContentProviderOperation.newAssertQuery(RawContacts.CONTENT_URI);
+            builder.withSelection(RawContacts._ID + "=" + beforeId, null);
+            builder.withValue(RawContacts.VERSION, beforeVersion);
+            // Sneak version check at beginning of list
+            diff.add(0, builder.build());
         }
 
         return diff;

@@ -286,8 +286,11 @@
         </activity>
 
         <!-- Edits the details of a single contact -->
-        <activity android:name=".ui.EditContactActivity"
-                android:windowSoftInputMode="stateVisible|adjustResize">
+        <activity
+            android:name=".ui.EditContactActivity"
+            android:theme="@style/TallTitleBarTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />

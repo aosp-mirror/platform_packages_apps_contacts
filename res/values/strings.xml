@@ -710,5 +710,8 @@
 <string name="type_im_icq">ICQ</string>
 <string name="type_im_jabber">Jabber</string>
 
+    <!-- Shown as the header title over a collapsible section that, by default, hides
+         secondary contact detail edit fields, such as birthday. -->
+    <string name="edit_secondary_collapse">Secondary details</string>
 
 </resources>

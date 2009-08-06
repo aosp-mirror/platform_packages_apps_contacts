@@ -22,7 +22,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 import static android.content.ContentProviderOperation.TYPE_DELETE;
-import static android.content.ContentProviderOperation.TYPE_COUNT;
+import static android.content.ContentProviderOperation.TYPE_ASSERT;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
@@ -229,7 +229,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
@@ -257,7 +257,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 3, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
@@ -284,7 +284,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
@@ -305,7 +305,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_COUNT, oper.getType());
+            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);

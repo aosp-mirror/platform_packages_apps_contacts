@@ -32,6 +32,7 @@ import java.util.HashMap;
  * Describes a set of {@link ContentProviderOperation} that need to be
  * executed to transform a database from one {@link Entity} to another.
  */
+@Deprecated
 public class EntityDiff extends ArrayList<ContentProviderOperation> {
     private EntityDiff() {
     }

@@ -568,7 +568,7 @@ public class ViewContactActivity extends BaseContactCardActivity
     protected void setAggregationException(long contactId, int exceptionType) {
         ContentValues values = new ContentValues(3);
         values.put(AggregationExceptions.CONTACT_ID, ContentUris.parseId(mUri));
-        values.put(AggregationExceptions.CONTACT_ID, contactId);
+        values.put(AggregationExceptions.RAW_CONTACT_ID, contactId);
         values.put(AggregationExceptions.TYPE, exceptionType);
         mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
     }
