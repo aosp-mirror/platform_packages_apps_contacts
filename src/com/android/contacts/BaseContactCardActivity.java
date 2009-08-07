@@ -98,8 +98,9 @@ public abstract class BaseContactCardActivity extends Activity
     }
 
     private void setupTabs() {
-        Uri tabsUri = Uri.withAppendedPath(mUri, "raw_contacts");
-        mHandler.startQuery(TOKEN_TABS, null, tabsUri, TAB_PROJECTION, null, null, null);
+        long contactId = ContentUris.parseId(mUri);
+        mHandler.startQuery(TOKEN_TABS, null, RawContacts.CONTENT_URI, TAB_PROJECTION,
+                RawContacts.CONTACT_ID + "=" + contactId, null, null);
     }
 
     /**
