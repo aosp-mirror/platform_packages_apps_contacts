@@ -14,27 +14,14 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="44dip"
-    android:layout_height="40dip"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/arrow"
+    android:layout_width="40dip"
+    android:layout_height="37dip"
     android:layout_alignParentLeft="true"
-    android:orientation="horizontal">
-    
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:background="@drawable/tab_indicator_bg"
-        android:id="@+id/arrow"
-        android:scaleType="centerInside"
-        android:src="@drawable/tab_left_arrow"
-        />
-        
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:id="@+id/divider"
-        android:src="@drawable/tab_divider"
-        />
-
-</LinearLayout>
+    android:layout_alignParentTop="true"
+    android:layout_weight="1"
+    android:background="@drawable/tab_indicator_bg"
+    android:scaleType="centerInside"
+    android:src="@drawable/tab_left_arrow"
+    />

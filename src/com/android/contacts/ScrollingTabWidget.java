@@ -18,8 +18,10 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,8 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -41,12 +45,11 @@ public class ScrollingTabWidget extends RelativeLayout
 
     private OnTabSelectionChangedListener mSelectionChangedListener;
     private int mSelectedTab = 0;
-    private LinearLayout mLeftArrowView;
-    private LinearLayout mRightArrowView;
-    private NoDragHorizontalScrollView mTabsScrollWrapper;
-    private LinearLayout mTabsView;
+    private ImageView mLeftArrowView;
+    private ImageView mRightArrowView;
+    private HorizontalScrollView mTabsScrollWrapper;
+    private TabStripView mTabsView;
     private LayoutInflater mInflater;
-    private Drawable mDividerDrawable;
 
     // Keeps track of the left most visible tab.
     private int mLeftMostVisibleTabIndex = 0;
@@ -67,20 +70,17 @@ public class ScrollingTabWidget extends RelativeLayout
 
         setFocusable(true);
         setOnFocusChangeListener(this);
-        onLoseFocus();
-//        if (!hasFocus()) {
-//            setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
-//        }
+        if (!hasFocus()) {
+            setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+        }
 
-        mLeftArrowView = (LinearLayout) mInflater.inflate(R.layout.tab_left_arrow, this, false);
+        mLeftArrowView = (ImageView) mInflater.inflate(R.layout.tab_left_arrow, this, false);
         mLeftArrowView.setOnClickListener(this);
-        mRightArrowView = (LinearLayout) mInflater.inflate(R.layout.tab_right_arrow, this, false);
+        mRightArrowView = (ImageView) mInflater.inflate(R.layout.tab_right_arrow, this, false);
         mRightArrowView.setOnClickListener(this);
-        mTabsScrollWrapper = (NoDragHorizontalScrollView) mInflater.inflate(
+        mTabsScrollWrapper = (HorizontalScrollView) mInflater.inflate(
                 R.layout.tab_layout, this, false);
-        mTabsView = (LinearLayout) mTabsScrollWrapper.findViewById(android.R.id.tabs);
-        mDividerDrawable = mContext.getResources().getDrawable(
-                R.drawable.tab_divider);
+        mTabsView = (TabStripView) mTabsScrollWrapper.findViewById(android.R.id.tabs);
 
         mLeftArrowView.setVisibility(View.INVISIBLE);
         mRightArrowView.setVisibility(View.INVISIBLE);
@@ -140,7 +140,7 @@ public class ScrollingTabWidget extends RelativeLayout
      * @return the tab indicator view at the given index
      */
     public View getChildTabViewAt(int index) {
-        return mTabsView.getChildAt(index*2);
+        return mTabsView.getChildAt(index);
     }
 
     /**
@@ -149,8 +149,7 @@ public class ScrollingTabWidget extends RelativeLayout
      * @return the number of tab indicator views.
      */
     public int getTabCount() {
-        int children = mTabsView.getChildCount();
-        return (children + 1) / 2;
+        return mTabsView.getChildCount();
     }
 
     public void removeAllTabs() {
@@ -195,9 +194,9 @@ public class ScrollingTabWidget extends RelativeLayout
             return;
         }
 
-        getChildTabViewAt(mSelectedTab).setSelected(false);
+        mTabsView.setSelected(mSelectedTab, false);
         mSelectedTab = index;
-        getChildTabViewAt(mSelectedTab).setSelected(true);
+        mTabsView.setSelected(mSelectedTab, true);
     }
 
     /**
@@ -266,17 +265,6 @@ public class ScrollingTabWidget extends RelativeLayout
         child.setOnClickListener(new TabClickListener());
         child.setOnFocusChangeListener(this);
 
-        // If we already have at least one tab, then add a divider before adding the next tab.
-        if (getTabCount() > 0) {
-            View divider = new View(mContext);
-            final LayoutParams lp = new LayoutParams(
-                    mDividerDrawable.getIntrinsicWidth(),
-                    ViewGroup.LayoutParams.FILL_PARENT);
-            lp.setMargins(0, 0, 0, 0);
-            divider.setLayoutParams(lp);
-            divider.setBackgroundDrawable(mDividerDrawable);
-            mTabsView.addView(divider);
-        }
         mTabsView.addView(child);
     }
 
@@ -369,23 +357,8 @@ public class ScrollingTabWidget extends RelativeLayout
         void onTabSelectionChanged(int tabIndex, boolean clicked);
     }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        boolean handled = super.dispatchKeyEvent(event);
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_DPAD_LEFT:
-                case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    // If tabs move from left/right events we must update mLeftMostVisibleTabIndex.
-                    updateLeftMostVisible();
-                    break;
-            }
-        }
-
-        return handled;
-    }
-
     public void onClick(View v) {
+        updateLeftMostVisible();
         if (v == mRightArrowView && (mLeftMostVisibleTabIndex + 1 < getTabCount())) {
             tabScroll(true /* right */);
         } else if (v == mLeftArrowView && mLeftMostVisibleTabIndex > 0) {
