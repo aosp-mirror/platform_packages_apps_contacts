@@ -728,7 +728,8 @@ public class ViewContactActivity extends BaseContactCardActivity
                                 this, mimetype, type, label);
                         entry.label = buildActionString(R.string.actionCall, displayLabel, true);
                         entry.data = PhoneNumberUtils.stripSeparators(data);
-                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                Uri.fromParts("tel", data, null));
                         entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts("sms", data, null));
                         entry.isPrimary = isSuperPrimary;
@@ -739,18 +740,6 @@ public class ViewContactActivity extends BaseContactCardActivity
                                 || mShowSmsLinksForAllPhones) {
                             // Add an SMS entry
                             entry.secondaryActionIcon = R.drawable.sym_action_sms;
-
-//                            ViewEntry smsEntry = new ViewEntry();
-//                            smsEntry.label = buildActionString(
-//                                    R.string.actionText, displayLabel, true);
-//                            smsEntry.data = PhoneNumberUtils.stripSeparators(data);
-//                            smsEntry.id = id;
-//                            smsEntry.uri = uri;
-//                            smsEntry.intent = entry.secondaryIntent;
-//                            smsEntry.mimetype = FastTrackWindow.MIME_SMS_ADDRESS;
-//                            smsEntry.type = type;
-//                            smsEntry.actionIcon = R.drawable.sym_action_sms;
-//                            mSmsEntries.add(smsEntry);
                         }
                     // Build email entries
                     } else if (mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
