@@ -31,6 +31,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -47,6 +49,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -140,8 +143,8 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
                 mDisplayName.setValues(null, primary, state);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
-                final ValuesDelta firstValue = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(null, firstValue, state);
+                final ValuesDelta primary = state.getPrimaryEntry(mimeType);
+                mPhoto.setValues(null, primary, state);
             } else {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
@@ -500,34 +503,31 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
     protected static class PhotoEditor extends ViewHolder implements Editor {
         private static final int RES_PHOTO = R.layout.item_editor_photo;
 
+        private ImageView mPhoto;
+        private ValuesDelta mEntry;
+
         public PhotoEditor(Context context) {
             super(context, RES_PHOTO);
+
+            mPhoto = (ImageView)mContent;
         }
 
-//      private void setPhotoPresent(boolean present) {
-//      mPhotoPresent = present;
-//
-//      // Correctly scale the contact photo if present, otherwise just center
-//      // the photo placeholder icon.
-//      if (mPhotoPresent) {
-//          mPhotoImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//      } else {
-//          mPhotoImageView.setImageResource(R.drawable.ic_menu_add_picture);
-//          mPhotoImageView.setScaleType(ImageView.ScaleType.CENTER);
-//      }
-//
-//      if (mPhotoMenuItem != null) {
-//          if (present) {
-//              mPhotoMenuItem.setTitle(R.string.removePicture);
-//              mPhotoMenuItem.setIcon(android.R.drawable.ic_menu_delete);
-//          } else {
-//              mPhotoMenuItem.setTitle(R.string.addPicture);
-//              mPhotoMenuItem.setIcon(R.drawable.ic_menu_add_picture);
-//          }
-//      }
-//  }
-
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
+            mEntry = values;
+            if (values == null) {
+                // Invalid photo, show default "add photo" placeholder
+                mPhoto.setScaleType(ImageView.ScaleType.CENTER);
+                mPhoto.setImageResource(R.drawable.ic_menu_add_picture);
+                return;
+            }
+
+            // Try decoding photo if actual entry
+            final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);
+            final Bitmap photo = BitmapFactory
+                    .decodeByteArray(photoBytes, 0, photoBytes.length);
+
+            mPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mPhoto.setImageBitmap(photo);
         }
 
         public void setEditorListener(EditorListener listener) {
@@ -540,11 +540,37 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
     protected static class DisplayNameEditor extends ViewHolder implements Editor {
         private static final int RES_DISPLAY_NAME = R.layout.item_editor_displayname;
 
+        private EditText mName;
+        private ValuesDelta mEntry;
+
         public DisplayNameEditor(Context context) {
             super(context, RES_DISPLAY_NAME);
+
+            mName = (EditText)mContent.findViewById(R.id.name);
         }
 
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
+            mEntry = values;
+            if (values == null) {
+                // Invalid display name, so reset and skip
+                mName.setText(null);
+                return;
+            }
+
+            final String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+            mName.setText(displayName);
+            mName.addTextChangedListener(new TextWatcher() {
+                public void afterTextChanged(Editable s) {
+                    // Write the newly changed value
+                    mEntry.put(StructuredName.DISPLAY_NAME, s.toString());
+                }
+
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+            });
         }
 
         public void setEditorListener(EditorListener listener) {

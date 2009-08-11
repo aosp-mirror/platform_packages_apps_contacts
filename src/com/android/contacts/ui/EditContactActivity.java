@@ -21,6 +21,7 @@ import com.android.contacts.ScrollingTabWidget;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.internal.widget.ContactHeaderWidget;
@@ -44,7 +45,10 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -52,7 +56,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -191,7 +197,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final View tabView = createTabView(mTabWidget, source);
             mTabWidget.addTab(tabView);
         }
-        mTabWidget.setCurrentTab(0);
+        if (mEntities.size() > 0) {
+            mTabWidget.setCurrentTab(0);
+            this.onTabSelectionChanged(0, false);
+        }
     }
 
     /**
@@ -243,12 +252,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** {@inheritDoc} */
     public void onDisplayNameLongClick(View view) {
-        // TODO: show dialog to pick primary display name
+        this.createNameDialog().show();
     }
 
     /** {@inheritDoc} */
     public void onPhotoLongClick(View view) {
-        // TODO: show dialog to pick primary photo
+        this.createPhotoDialog().show();
     }
 
 
@@ -313,7 +322,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // show or hide photo item based on current tab
-        // hide entirely if on read-only source
+        // hide photo stuff entirely if on read-only source
 
         return true;
     }
@@ -343,15 +352,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final ContentResolver resolver = this.getContentResolver();
         boolean savedChanges = false;
         for (EntityDelta entity : mEntities) {
-            Log.d(TAG, "about to persist " + entity.toString());
-
             final ArrayList<ContentProviderOperation> diff = entity.buildDiff();
-            savedChanges |= diff.size() > 0;
+
+            // Skip updates that don't change
+            if (diff.size() == 0) continue;
+            savedChanges = true;
 
             // TODO: handle failed operations by re-reading entity
             // may also need backoff algorithm to give failed msg after n tries
 
             try {
+                Log.d(TAG, "about to persist " + entity.toString());
                 resolver.applyBatch(ContactsContract.AUTHORITY, diff);
             } catch (RemoteException e) {
                 Log.w(TAG, "problem writing rawcontact diff", e);
@@ -381,10 +392,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * user confirmation before continuing.
      */
     private boolean doDeleteAction() {
-        showDialog(R.id.dialog_delete);
+        this.createDeleteDialog().show();
         return true;
     }
-
 
     /**
      * Delete the entire contact currently being edited.
@@ -429,25 +439,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
 
 
-
-
-
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case R.id.dialog_delete:
-                return createDeleteDialog();
-            case R.id.dialog_photo:
-                return createPhotoDialog();
-            case R.id.dialog_name:
-                return createNameDialog();
-        }
-        return super.onCreateDialog(id);
-    }
-
-
-
     private Dialog createDeleteDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.deleteConfirmation_title);
@@ -468,15 +459,59 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         return null;
     }
 
+    /**
+     * Create dialog for selecting primary display name.
+     */
     private Dialog createNameDialog() {
-        // TODO: build dialog for picking primary name
-        return null;
+        // Build set of all available display names
+        final ArrayList<ValuesDelta> allNames = new ArrayList<ValuesDelta>();
+        for (EntityDelta entity : this.mEntities) {
+            final ArrayList<ValuesDelta> displayNames = entity
+                    .getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
+            allNames.addAll(displayNames);
+        }
+
+        // Wrap our context to inflate list items using correct theme
+        final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
+        final LayoutInflater dialogInflater = this.getLayoutInflater().cloneInContext(dialogContext);
+
+        final ListAdapter nameAdapter = new ArrayAdapter<ValuesDelta>(this,
+                android.R.layout.simple_list_item_1, allNames) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = dialogInflater.inflate(
+                            android.R.layout.simple_expandable_list_item_1, parent, false);
+                }
+
+                final ValuesDelta structuredName = this.getItem(position);
+                final String displayName = structuredName.getAsString(StructuredName.DISPLAY_NAME);
+
+                ((TextView)convertView).setText(displayName);
+
+                return convertView;
+            }
+        };
+
+        final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                // User picked display name, so make super-primary
+                final ValuesDelta structuredName = allNames.get(which);
+                structuredName.put(Data.IS_PRIMARY, 1);
+                structuredName.put(Data.IS_SUPER_PRIMARY, 1);
+
+                // TODO: include last social snippet after update
+                final String displayName = structuredName.getAsString(StructuredName.DISPLAY_NAME);
+                mHeader.bindStatic(displayName, null);
+            }
+        };
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_primary_name);
+        builder.setSingleChoiceItems(nameAdapter, 0, clickListener);
+        return builder.create();
     }
-
-
-
-
-
-
 
 }

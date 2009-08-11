@@ -131,7 +131,9 @@ public class EntityDelta implements Parcelable {
                 return entry;
             }
         }
-        return null;
+
+        // When no direct primary, return something
+        return mimeEntries.size() > 0 ? mimeEntries.get(0) : null;
     }
 
     /**
@@ -385,6 +387,16 @@ public class EntityDelta implements Parcelable {
                 return mAfter.getAsString(key);
             } else if (mBefore != null && mBefore.containsKey(key)) {
                 return mBefore.getAsString(key);
+            } else {
+                return null;
+            }
+        }
+
+        public byte[] getAsByteArray(String key) {
+            if (mAfter != null && mAfter.containsKey(key)) {
+                return mAfter.getAsByteArray(key);
+            } else if (mBefore != null && mBefore.containsKey(key)) {
+                return mBefore.getAsByteArray(key);
             } else {
                 return null;
             }

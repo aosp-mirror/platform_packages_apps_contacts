@@ -714,4 +714,6 @@
          secondary contact detail edit fields, such as birthday. -->
     <string name="edit_secondary_collapse">Secondary details</string>
 
+    <string name="dialog_primary_name">Primary name</string>
+
 </resources>
