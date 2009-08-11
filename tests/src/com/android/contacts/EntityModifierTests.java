@@ -63,9 +63,9 @@ public class EntityModifierTests extends AndroidTestCase {
             kind.typeOverallMax = 5;
             kind.typeColumn = Phone.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(Phone.TYPE_HOME, -1, false, 2));
-            kind.typeList.add(new EditType(Phone.TYPE_WORK, -1, false, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1, true, -1));
+            kind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
+            kind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));
             kind.typeList.add(new EditType(Phone.TYPE_OTHER, -1));
 
             list.add(kind);

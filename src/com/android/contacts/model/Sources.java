@@ -123,20 +123,30 @@ public class Sources {
             // GOOGLE: PHONE
             DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
                     R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
+            kind.iconAltRes = R.drawable.sym_action_sms;
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionAltHeader = new ActionAltInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home));
-            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile));
-            kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work, true));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_HOME, R.string.type_fax_home, true));
-            kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager, true));
-            kind.typeList.add(new EditType(Phone.TYPE_OTHER, R.string.type_other));
-            kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_custom, true, -1,
+            kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
+                    R.string.sms_home));
+            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
+                    R.string.call_mobile, R.string.sms_mobile));
+            kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
+                    R.string.sms_work));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
+                    R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_HOME, R.string.type_fax_home,
+                    R.string.call_fax_home, R.string.sms_fax_home).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager,
+                    R.string.call_pager, R.string.sms_pager).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_OTHER, R.string.type_other,
+                    R.string.call_other, R.string.sms_other));
+            kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_custom,
+                    R.string.call_custom, R.string.sms_custom).setSecondary(true).setCustomColumn(
                     Phone.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
@@ -150,16 +160,19 @@ public class Sources {
             DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
                     R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
 
             kind.typeColumn = Email.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(Email.TYPE_HOME, R.string.type_home));
-            kind.typeList.add(new EditType(Email.TYPE_WORK, R.string.type_work));
-            kind.typeList.add(new EditType(Email.TYPE_OTHER, R.string.type_other));
-            kind.typeList.add(new EditType(Email.TYPE_CUSTOM, R.string.type_custom, true, -1,
-                    Email.LABEL));
+            kind.typeList
+                    .add(new EditType(Email.TYPE_HOME, R.string.type_home, R.string.email_home));
+            kind.typeList
+                    .add(new EditType(Email.TYPE_WORK, R.string.type_work, R.string.email_work));
+            kind.typeList.add(new EditType(Email.TYPE_OTHER, R.string.type_other,
+                    R.string.email_other));
+            kind.typeList.add(new EditType(Email.TYPE_CUSTOM, R.string.type_custom,
+                    R.string.email_home).setSecondary(true).setCustomColumn(Email.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
@@ -172,7 +185,7 @@ public class Sources {
             DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true);
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Im.DATA);
 
             // NOTE: even though a traditional "type" exists, for editing
@@ -191,8 +204,8 @@ public class Sources {
             kind.typeList.add(new EditType(Im.PROTOCOL_GOOGLE_TALK, R.string.type_im_google_talk));
             kind.typeList.add(new EditType(Im.PROTOCOL_ICQ, R.string.type_im_icq));
             kind.typeList.add(new EditType(Im.PROTOCOL_JABBER, R.string.type_im_jabber));
-            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom, true, -1,
-                    Im.CUSTOM_PROTOCOL));
+            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom).setSecondary(
+                    true).setCustomColumn(Im.CUSTOM_PROTOCOL));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
@@ -205,17 +218,22 @@ public class Sources {
             DataKind kind = new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
                     R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true);
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             // TODO: build body from various structured fields
             kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
 
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(StructuredPostal.TYPE_HOME, R.string.type_home));
-            kind.typeList.add(new EditType(StructuredPostal.TYPE_WORK, R.string.type_work));
-            kind.typeList.add(new EditType(StructuredPostal.TYPE_OTHER, R.string.type_other));
-            kind.typeList.add(new EditType(StructuredPostal.TYPE_CUSTOM, R.string.type_custom,
-                    true, -1, StructuredPostal.LABEL));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_HOME, R.string.type_home,
+                    R.string.map_home));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_WORK, R.string.type_work,
+                    R.string.map_work));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_OTHER, R.string.type_other,
+                    R.string.map_other));
+            kind.typeList
+                    .add(new EditType(StructuredPostal.TYPE_CUSTOM, R.string.type_custom,
+                            R.string.map_custom).setSecondary(true).setCustomColumn(
+                            StructuredPostal.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(StructuredPostal.AGENT, -1, FLAGS_POSTAL, true));
@@ -245,8 +263,8 @@ public class Sources {
             kind.typeList = new ArrayList<EditType>();
             kind.typeList.add(new EditType(Organization.TYPE_WORK, R.string.type_work));
             kind.typeList.add(new EditType(Organization.TYPE_OTHER, R.string.type_other));
-            kind.typeList.add(new EditType(Organization.TYPE_CUSTOM, R.string.type_custom, true,
-                    -1, Organization.LABEL));
+            kind.typeList.add(new EditType(Organization.TYPE_CUSTOM, R.string.type_custom)
+                    .setSecondary(true).setCustomColumn(Organization.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
@@ -340,26 +358,44 @@ public class Sources {
             // EXCHANGE: PHONE
             DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
                     R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
+            kind.iconAltRes = R.drawable.sym_action_sms;
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionAltHeader = new ActionAltInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, false, 1));
-            kind.typeList.add(new EditType(TYPE_HOME2, R.string.type_home_2, true, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile, false, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, false, 1));
-            kind.typeList.add(new EditType(TYPE_WORK2, R.string.type_work_2, true, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work, true, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_HOME, R.string.type_fax_home, true, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager, true, 1));
-            kind.typeList.add(new EditType(TYPE_CAR, R.string.type_car, true, 1));
-            kind.typeList.add(new EditType(TYPE_COMPANY_MAIN, R.string.type_company_main, true, 1));
-            kind.typeList.add(new EditType(TYPE_MMS, R.string.type_mms, true, 1));
-            kind.typeList.add(new EditType(TYPE_RADIO, R.string.type_radio, true, 1));
-            kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_assistant, true, 1,
-                    Phone.LABEL));
+            kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
+                    R.string.sms_home).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_HOME2, R.string.type_home_2, R.string.call_home_2,
+                    R.string.sms_home_2).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
+                    R.string.call_mobile, R.string.sms_mobile).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
+                    R.string.sms_work).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_WORK2, R.string.type_work_2, R.string.call_work_2,
+                    R.string.sms_work_2).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
+                    R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_HOME, R.string.type_fax_home,
+                    R.string.call_fax_home, R.string.sms_fax_home).setSecondary(true)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager,
+                    R.string.call_pager, R.string.sms_pager).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_CAR, R.string.type_car, R.string.call_car,
+                    R.string.sms_car).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_COMPANY_MAIN, R.string.type_company_main,
+                    R.string.call_company_main, R.string.sms_company_main).setSecondary(true)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_MMS, R.string.type_mms, R.string.call_mms,
+                    R.string.sms_mms).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_RADIO, R.string.type_radio, R.string.call_radio,
+                    R.string.sms_radio).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_assistant,
+                    R.string.call_custom, R.string.sms_custom).setSecondary(true).setSpecificMax(1)
+                    .setCustomColumn(Phone.LABEL));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
@@ -372,14 +408,17 @@ public class Sources {
             DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
                     R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
 
             kind.typeColumn = Email.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1, false, 1));
-            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2, false, 1));
-            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, false, 1));
+            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1, R.string.email_1)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2, R.string.email_2)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, R.string.email_3)
+                    .setSpecificMax(1));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
@@ -392,14 +431,14 @@ public class Sources {
             DataKind kind = new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true);
 
-            kind.actionHeader = new ActionLabelInflater(list.resPackageName, kind);
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Im.DATA);
 
             kind.typeColumn = Im.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1, false, 1));
-            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2, false, 1));
-            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3, false, 1));
+            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).setSpecificMax(1));
 
             kind.fieldList = new ArrayList<EditField>();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
@@ -492,11 +531,11 @@ public class Sources {
      * provide an action string like "Call home", where "home" is provided from
      * {@link EditType#labelRes}.
      */
-    public static class ActionLabelInflater implements StringInflater {
+    public static class ActionInflater implements StringInflater {
         private String mPackageName;
         private DataKind mKind;
 
-        public ActionLabelInflater(String packageName, DataKind labelProvider) {
+        public ActionInflater(String packageName, DataKind labelProvider) {
             mPackageName = packageName;
             mKind = labelProvider;
         }
@@ -506,6 +545,23 @@ public class Sources {
             final boolean validString = (type != null && type.actionRes > 0);
             return validString ? context.getPackageManager().getText(mPackageName, type.actionRes,
                     null) : null;
+        }
+    }
+
+    public static class ActionAltInflater implements StringInflater {
+        private String mPackageName;
+        private DataKind mKind;
+
+        public ActionAltInflater(String packageName, DataKind labelProvider) {
+            mPackageName = packageName;
+            mKind = labelProvider;
+        }
+
+        public CharSequence inflateUsing(Context context, Cursor cursor) {
+            final EditType type = EntityModifier.getCurrentType(cursor, mKind);
+            final boolean validString = (type != null && type.actionAltRes > 0);
+            return validString ? context.getPackageManager().getText(mPackageName,
+                    type.actionAltRes, null) : null;
         }
     }
 }

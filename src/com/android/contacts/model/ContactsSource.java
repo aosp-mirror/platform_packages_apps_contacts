@@ -138,11 +138,13 @@ public class ContactsSource {
         public String mimeType;
         public int titleRes;
         public int iconRes;
+        public int iconAltRes;
         public int weight;
         public boolean secondary;
         public boolean editable;
 
         public StringInflater actionHeader;
+        public StringInflater actionAltHeader;
         public StringInflater actionBody;
         public boolean actionBodySocial;
         public boolean actionBodyCombine;
@@ -175,6 +177,7 @@ public class ContactsSource {
         public int rawValue;
         public int labelRes;
         public int actionRes;
+        public int actionAltRes;
         public boolean secondary;
         public int specificMax;
         public String customColumn;
@@ -182,23 +185,32 @@ public class ContactsSource {
         public EditType(int rawValue, int labelRes) {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
-            this.actionRes = actionRes;
             this.specificMax = -1;
         }
 
-        public EditType(int rawValue, int labelRes, boolean secondary) {
+        public EditType(int rawValue, int labelRes, int actionRes) {
             this(rawValue, labelRes);
+            this.actionRes = actionRes;
+        }
+
+        public EditType(int rawValue, int labelRes, int actionRes, int actionAltRes) {
+            this(rawValue, labelRes, actionRes);
+            this.actionAltRes = actionAltRes;
+        }
+
+        public EditType setSecondary(boolean secondary) {
             this.secondary = secondary;
+            return this;
         }
 
-        public EditType(int rawValue, int labelRes, boolean secondary, int specificMax) {
-            this(rawValue, labelRes, secondary);
+        public EditType setSpecificMax(int specificMax) {
             this.specificMax = specificMax;
+            return this;
         }
 
-        public EditType(int rawValue, int labelRes, boolean secondary, int specificMax, String customColumn) {
-            this(rawValue, labelRes, secondary, specificMax);
+        public EditType setCustomColumn(String customColumn) {
             this.customColumn = customColumn;
+            return this;
         }
 
         @Override

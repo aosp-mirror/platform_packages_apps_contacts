@@ -28,12 +28,9 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -48,13 +45,8 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.Im.PresenceColumns;
 import android.provider.SocialContract.Activities;
-import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
-import android.text.style.CharacterStyle;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -78,7 +70,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,7 +77,6 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -465,7 +455,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         final String name = getAsString(cursor, Contacts.DISPLAY_NAME);
         final int status = getAsInteger(cursor, Contacts.PRESENCE_STATUS);
-        final int statusIcon = Presence.getPresenceIconResourceId(status);
+        final Drawable statusIcon = getPresenceIcon(status);
 
         setHeaderText(R.id.name, name);
         setHeaderImage(R.id.presence, statusIcon);
@@ -484,6 +474,30 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         setHeaderText(R.id.status, status);
         setHeaderText(R.id.published, relativePublished);
+    }
+
+    /**
+     * Find the presence icon for showing in summary header.
+     */
+    private Drawable getPresenceIcon(int status) {
+        int resId = -1;
+        switch (status) {
+            case Presence.AVAILABLE:
+                resId = android.R.drawable.presence_online;
+                break;
+            case Presence.IDLE:
+            case Presence.AWAY:
+                resId = android.R.drawable.presence_away;
+                break;
+            case Presence.DO_NOT_DISTURB:
+                resId = android.R.drawable.presence_busy;
+                break;
+        }
+        if (resId > 0) {
+            return mContext.getResources().getDrawable(resId);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -558,28 +572,38 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
         private CharSequence mBody;
         private Intent mIntent;
 
+        private boolean mAlternate;
+
         /**
          * Create an action from common {@link Data} elements.
          */
-        public DataAction(Context context, ContactsSource source, DataKind kind, Cursor cursor) {
+        public DataAction(Context context, ContactsSource source, String mimeType, DataKind kind, Cursor cursor) {
             mContext = context;
             mSource = source;
             mKind = kind;
 
             // Inflate strings from cursor
-            if (mKind.actionHeader != null) {
+            mAlternate = MIME_SMS_ADDRESS.equals(mimeType);
+            if (mAlternate && mKind.actionAltHeader != null) {
+                mHeader = mKind.actionAltHeader.inflateUsing(context, cursor);
+            } else if (mKind.actionHeader != null) {
                 mHeader = mKind.actionHeader.inflateUsing(context, cursor);
             }
+
             if (mKind.actionBody != null) {
                 mBody = mKind.actionBody.inflateUsing(context, cursor);
             }
 
             // Handle well-known MIME-types with special care
-            final String mimeType = mKind.mimeType;
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 final Uri callUri = Uri.fromParts(SCHEME_TEL, number, null);
                 mIntent = new Intent(Intent.ACTION_DIAL, callUri);
+
+            } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
+                final String number = getAsString(cursor, Phone.NUMBER);
+                final Uri smsUri = Uri.fromParts(SCHEME_SMSTO, number, null);
+                mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
 
             } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String address = getAsString(cursor, Email.DATA);
@@ -606,45 +630,17 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
         /** {@inheritDoc} */
         public Drawable getIcon() {
-            Drawable icon = null;
-            if (mSource.resPackageName == null || mKind.iconRes != -1) {
-                icon = mContext.getPackageManager().getDrawable(mSource.resPackageName,
-                        mKind.iconRes, null);
+            // Bail early if no valid resources
+            if (mSource.resPackageName == null) return null;
+
+            final PackageManager pm = mContext.getPackageManager();
+            if (mAlternate && mKind.iconAltRes > 0) {
+                return pm.getDrawable(mSource.resPackageName, mKind.iconAltRes, null);
+            } else if (mKind.iconRes > 0) {
+                return pm.getDrawable(mSource.resPackageName, mKind.iconRes, null);
+            } else {
+                return null;
             }
-            return icon;
-        }
-
-        /** {@inheritDoc} */
-        public Intent getIntent() {
-            return mIntent;
-        }
-    }
-
-    private static class SmsAction implements Action {
-        private final Context mContext;
-        private final Intent mIntent;
-
-        public SmsAction(Context context, Cursor cursor) {
-            mContext = context;
-
-            final String number = getAsString(cursor, Phone.NUMBER);
-            final Uri smsUri = Uri.fromParts(SCHEME_SMSTO, number, null);
-            mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
-        }
-
-        /** {@inheritDoc} */
-        public CharSequence getHeader() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        public CharSequence getBody() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        public Drawable getIcon() {
-            return mContext.getResources().getDrawable(R.drawable.sym_action_sms);
         }
 
         /** {@inheritDoc} */
@@ -735,7 +731,8 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
             if (photoView != null && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
                 final byte[] photoBlob = cursor.getBlob(colPhoto);
-                final Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
+                final Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0,
+                        photoBlob.length);
                 photoView.setImageBitmap(photoBitmap);
                 continue;
             }
@@ -749,13 +746,14 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
                 // Build an action for this data entry, find a mapping to a UI
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
-                final Action action = new DataAction(mContext, source, kind, cursor);
+                final Action action = new DataAction(mContext, source, mimeType, kind, cursor);
                 considerAdd(action, mimeType);
             }
 
             // If phone number, also insert as text message action
             if (Phones.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final Action action = new SmsAction(mContext, cursor);
+                final Action action = new DataAction(mContext, source, MIME_SMS_ADDRESS, kind,
+                        cursor);
                 considerAdd(action, MIME_SMS_ADDRESS);
             }
         }
