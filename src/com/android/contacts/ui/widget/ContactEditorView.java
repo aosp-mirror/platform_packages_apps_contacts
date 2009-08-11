@@ -514,20 +514,27 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
 
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
             mEntry = values;
-            if (values == null) {
-                // Invalid photo, show default "add photo" placeholder
-                mPhoto.setScaleType(ImageView.ScaleType.CENTER);
-                mPhoto.setImageResource(R.drawable.ic_menu_add_picture);
-                return;
+            if (values != null) {
+                // Try decoding photo if actual entry
+                final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);
+                if (photoBytes != null) {
+                    final Bitmap photo = BitmapFactory.decodeByteArray(photoBytes, 0,
+                            photoBytes.length);
+
+                    mPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    mPhoto.setImageBitmap(photo);
+                } else {
+                    resetDefault();
+                }
+            } else {
+                resetDefault();
             }
+        }
 
-            // Try decoding photo if actual entry
-            final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);
-            final Bitmap photo = BitmapFactory
-                    .decodeByteArray(photoBytes, 0, photoBytes.length);
-
-            mPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            mPhoto.setImageBitmap(photo);
+        protected void resetDefault() {
+            // Invalid photo, show default "add photo" placeholder
+            mPhoto.setScaleType(ImageView.ScaleType.CENTER);
+            mPhoto.setImageResource(R.drawable.ic_menu_add_picture);
         }
 
         public void setEditorListener(EditorListener listener) {
