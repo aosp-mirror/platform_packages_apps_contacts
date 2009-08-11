@@ -44,6 +44,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Entity;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageManager;
@@ -252,11 +253,11 @@ public class ViewContactActivity extends BaseContactCardActivity
     }
 
     @Override
-    protected void bindTabs(Cursor tabsCursor) {
-        if (tabsCursor.getCount() > 1) {
+    protected void bindTabs(ArrayList<Entity> entities) {
+        if (entities.size() > 1) {
             addAllTab();
         }
-        super.bindTabs(tabsCursor);
+        super.bindTabs(entities);
     }
 
     private void addAllTab() {

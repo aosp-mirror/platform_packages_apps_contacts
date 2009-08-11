@@ -299,7 +299,8 @@ public class EntityModifier {
      */
     public static void parseExtras(Context context, EntityDelta state, Bundle extras) {
         final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        final ContactsSource source = Sources.getInstance(context).getSourceForType(accountType);
+        final ContactsSource source = Sources.getPartialInstance(context).
+                getSourceForType(accountType);
 
         {
             // StructuredName

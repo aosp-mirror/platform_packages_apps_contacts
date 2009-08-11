@@ -18,6 +18,11 @@ package com.android.contacts.model;
 
 import com.android.contacts.R;
 
+import android.accounts.AccountManager;
+import android.accounts.AuthenticatorDescription;
+import android.accounts.Future1;
+import android.accounts.Future1Callback;
+import android.accounts.OperationCanceledException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -34,6 +39,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -41,6 +47,7 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.StringInflater;
 
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,23 +61,67 @@ import java.util.HashMap;
 public class Sources {
     // TODO: finish hard-coding all constraints
 
-    private static Sources sInstance;
+    private static SoftReference<Sources> sInstance;
 
-    public static synchronized Sources getInstance(Context context) {
-        if (sInstance == null) {
-            sInstance = new Sources(context);
+    private ArrayList<SourcesCompleteListener> mSourcesCompleteListeners;
+    private boolean mComplete = false;
+
+    /**
+     * Returns the singleton {@link Sources} without binding data from
+     * the available authenticators. All clients of this class should move
+     * to requestInstance().
+     */
+    @Deprecated
+    public static synchronized Sources getPartialInstance(Context context) {
+        if (sInstance == null || sInstance.get() == null) {
+            sInstance = new SoftReference<Sources>(new Sources(context, false));
         }
-        return sInstance;
+        return sInstance.get();
+    }
+
+    /**
+     * Requests the singleton instance of {@link Sources} with data bound
+     * from the available authenticators. The result will be returned to
+     * the {@link SourcesCompleteListener} callback interface.
+     * @param context
+     * @param listener An implementation of {@link SourcesCompleteListener} to
+     * pass the {@link Sources} object to.
+     */
+    public static synchronized void requestInstance(Context context,
+            SourcesCompleteListener listener) {
+        Sources sources = sInstance == null ? null : sInstance.get();
+        if (sources == null) {
+            sources = new Sources(context, true);
+            sources.mSourcesCompleteListeners.add(listener);
+            sInstance = new SoftReference<Sources>(sources);
+        } else {
+            if (sources.mComplete) {
+                // We're already complete, so we can call the callback right now.
+                listener.onSourcesComplete(sources);
+            } else {
+                sources.mSourcesCompleteListeners.add(listener);
+            }
+        }
+
     }
 
     public static final String ACCOUNT_TYPE_GOOGLE = "com.google.GAIA";
     public static final String ACCOUNT_TYPE_EXCHANGE = "com.android.exchange";
+    public static final String ACCOUNT_TYPE_FACEBOOK = "com.facebook.auth.login";
 
     private HashMap<String, ContactsSource> mSources = new HashMap<String, ContactsSource>();
+    private AccountManager mAccountManager;
 
-    private Sources(Context context) {
+    private Sources(Context context, boolean fetchAuthenticatorData) {
         mSources.put(ACCOUNT_TYPE_GOOGLE, buildGoogle(context));
         mSources.put(ACCOUNT_TYPE_EXCHANGE, buildExchange(context));
+        mSources.put(ACCOUNT_TYPE_FACEBOOK, buildFacebook(context));
+
+        if (fetchAuthenticatorData) {
+            mSourcesCompleteListeners = new ArrayList<SourcesCompleteListener>();
+            mAccountManager = AccountManager.get(context);
+            asyncGetAuthenticatorTypes();
+        }
     }
 
     /**
@@ -483,6 +534,18 @@ public class Sources {
     }
 
     /**
+     * Hard-coded instance of {@link ContactsSource} for Facebook.
+     */
+    private ContactsSource buildFacebook(Context context) {
+        final ContactsSource list = new ContactsSource();
+        list.accountType = ACCOUNT_TYPE_FACEBOOK;
+        list.resPackageName = context.getPackageName();
+
+        return list;
+
+    }
+
+    /**
      * Simple inflater that assumes a string resource has a "%s" that will be
      * filled from the given column.
      */
@@ -563,5 +626,42 @@ public class Sources {
             return validString ? context.getPackageManager().getText(mPackageName,
                     type.actionAltRes, null) : null;
         }
+    }
+
+    private void asyncGetAuthenticatorTypes() {
+        mAccountManager.getAuthenticatorTypes(new GetAuthenticatorsCallback(), null /* handler */);
+    }
+
+    private class GetAuthenticatorsCallback implements Future1Callback<AuthenticatorDescription[]> {
+        public void run(Future1<AuthenticatorDescription[]> future) {
+            try {
+                AuthenticatorDescription[] authenticatorDescs = future.getResult();
+
+                for (int i = 0; i < authenticatorDescs.length; i++) {
+                    String accountType = authenticatorDescs[i].type;
+                    ContactsSource contactSource = mSources.get(accountType);
+                    if (contactSource != null) {
+                        contactSource.iconRes = authenticatorDescs[i].iconId;
+                        contactSource.titleRes = authenticatorDescs[i].labelId;
+                        contactSource.resPackageName = authenticatorDescs[i].packageName;;
+                    }
+                }
+            } catch (OperationCanceledException e) {
+                // the request was canceled
+            }
+
+            mComplete = true;
+            for (SourcesCompleteListener listener : mSourcesCompleteListeners) {
+                listener.onSourcesComplete(Sources.this);
+            }
+        }
+    }
+
+    /**
+     * Callback interface used for being notified when the Sources object
+     * has finished binding with data from the Authenticators.
+     */
+    public interface SourcesCompleteListener {
+        public void onSourcesComplete(Sources sources);
     }
 }

@@ -17,7 +17,7 @@ package com.android.contacts.ui;
 
 import com.android.contacts.NotifyingAsyncQueryHandler;
 import com.android.contacts.R;
-import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -26,6 +26,7 @@ import com.android.internal.policy.PolicyManager;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -83,7 +84,7 @@ import java.util.Set;
  * Window that shows fast-track contact details for a specific
  * {@link Contacts#_ID}.
  */
-public class FastTrackWindow implements Window.Callback, QueryCompleteListener, OnClickListener,
+public class FastTrackWindow implements Window.Callback, AsyncQueryListener, OnClickListener,
         AbsListView.OnItemClickListener {
     private static final String TAG = "FastTrackWindow";
 
@@ -709,7 +710,7 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
     private void handleData(Cursor cursor) {
         if (cursor == null) return;
 
-        final ContactsSource defaultSource = Sources.getInstance(mContext).getSourceForType(
+        final ContactsSource defaultSource = Sources.getPartialInstance(mContext).getSourceForType(
                 Sources.ACCOUNT_TYPE_GOOGLE);
 
         {
@@ -996,5 +997,9 @@ public class FastTrackWindow implements Window.Callback, QueryCompleteListener, 
 
     /** {@inheritDoc} */
     public void onWindowFocusChanged(boolean hasFocus) {
+    }
+
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        //Empty
     }
 }

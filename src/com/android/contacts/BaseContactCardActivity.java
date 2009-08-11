@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2009 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,32 +16,33 @@
 
 package com.android.contacts;
 
+import java.util.ArrayList;
+
+import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
-import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
 import com.android.internal.widget.ContactHeaderWidget;
 
 import android.app.Activity;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
+import android.content.Entity;
+import android.content.EntityIterator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.provider.SocialContract;
-import android.provider.ContactsContract.Contacts;
+import android.os.RemoteException;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.SocialContract.Activities;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,7 +50,8 @@ import android.widget.TextView;
  * The base Activity class for viewing and editing a contact.
  */
 public abstract class BaseContactCardActivity extends Activity
-        implements QueryCompleteListener, OnTabSelectionChangedListener {
+        implements AsyncQueryListener, OnTabSelectionChangedListener,
+        Sources.SourcesCompleteListener {
 
     private static final String TAG = "BaseContactCardActivity";
 
@@ -73,6 +75,8 @@ public abstract class BaseContactCardActivity extends Activity
 
     private static final int TOKEN_TABS = 0;
 
+    private Sources mSources;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -91,17 +95,24 @@ public abstract class BaseContactCardActivity extends Activity
         mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
 
         mTabWidget.setTabSelectionListener(this);
+        mTabWidget.setVisibility(View.INVISIBLE);
         mTabRawContactIdMap = new SparseArray<Long>();
 
         mHandler = new NotifyingAsyncQueryHandler(this, this);
 
-        setupTabs();
+        Sources.requestInstance(this, this);
+
     }
 
-    private void setupTabs() {
+    public void onSourcesComplete(Sources sources) {
+        mSources = sources;
+        asyncSetupTabs();
+    }
+
+    private void asyncSetupTabs() {
         long contactId = ContentUris.parseId(mUri);
-        mHandler.startQuery(TOKEN_TABS, null, RawContacts.CONTENT_URI, TAB_PROJECTION,
-                RawContacts.CONTACT_ID + "=" + contactId, null, null);
+        mHandler.startQueryEntities(TOKEN_TABS, null,
+                RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
     }
 
     /**
@@ -115,17 +126,34 @@ public abstract class BaseContactCardActivity extends Activity
     }
 
     /** {@inheritDoc} */
-    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
         try{
             if (token == TOKEN_TABS) {
                 clearCurrentTabs();
-                bindTabs(cursor);
+                bindTabs(readEntities(iterator));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
+            if (iterator != null) {
+                iterator.close();
             }
         }
+    }
+
+    /** {@inheritDoc} */
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        // Emtpy
+    }
+
+    private ArrayList<Entity> readEntities(EntityIterator iterator) {
+        ArrayList<Entity> entities = new ArrayList<Entity>();
+        try {
+            while (iterator.hasNext()) {
+                entities.add(iterator.next());
+            }
+        } catch (RemoteException e) {
+        }
+
+        return entities;
     }
 
     /**
@@ -133,22 +161,23 @@ public abstract class BaseContactCardActivity extends Activity
      * Override this method if you want to additional tabs and/or different
      * tabs for your activity.
      *
-     * @param tabsCursor A cursor over all the RawContacts associated with
-     * the contact being displayed. Use {@link TAB_CONTACT_ID_COLUMN_INDEX},
-     * {@link TAB_ACCOUNT_NAME_COLUMN_INDEX}, {@link TAB_ACCOUNT_TYPE_COLUMN_INDEX},
-     * and {@link TAB_PACKAGE_COLUMN_INDEX} as column indexes on the cursor.
+     * @param entities An {@link ArrayList} of {@link Entity}s of all the RawContacts
+     * associated with the contact being displayed.
      */
-    protected void bindTabs(Cursor tabsCursor) {
-        while (tabsCursor.moveToNext()) {
-            long contactId = tabsCursor.getLong(TAB_CONTACT_ID_COLUMN_INDEX);
-
-            //TODO: figure out how to get the icon
-            Drawable tabIcon = null;
-            addTab(contactId, null, tabIcon);
+    protected void bindTabs(ArrayList<Entity> entities) {
+        for (Entity entity : entities) {
+            final String accountType = entity.getEntityValues().
+                    getAsString(RawContacts.ACCOUNT_TYPE);
+            final Long rawContactId = entity.getEntityValues().
+                    getAsLong(RawContacts._ID);
+            ContactsSource source = mSources.getSourceForType(accountType);
+            addTab(rawContactId, createTabIndicatorView(mTabWidget, source));
         }
-        selectDefaultTab();
-
+        mTabWidget.setCurrentTab(0);
+        mTabWidget.setVisibility(View.VISIBLE);
+        mTabWidget.postInvalidate();
     }
+
 
     /**
      * Add a tab to be displayed in the {@link ScrollingTabWidget}.
@@ -167,8 +196,8 @@ public abstract class BaseContactCardActivity extends Activity
      * @param contactId The contact id associated with the tab.
      * @param view A view to use as the tab indicator.
      */
-    protected void addTab(long contactId, View view) {
-        mTabRawContactIdMap.put(mTabWidget.getTabCount(), contactId);
+    protected void addTab(long rawContactId, View view) {
+        mTabRawContactIdMap.put(mTabWidget.getTabCount(), rawContactId);
         mTabWidget.addTab(view);
     }
 
@@ -198,6 +227,7 @@ public abstract class BaseContactCardActivity extends Activity
     /**
      * Utility for creating a standard tab indicator view.
      *
+     * @param parent The parent ViewGroup to attach the new view to.
      * @param label The label to display in the tab indicator. If null, not label will be displayed.
      * @param icon The icon to display. If null, no icon will be displayed.
      * @return The tab indicator View.
@@ -214,6 +244,32 @@ public abstract class BaseContactCardActivity extends Activity
         iconView.setImageDrawable(icon);
 
         return tabIndicator;
+    }
+
+    /**
+     * Utility for creating a standard tab indicator view.
+     *
+     * @param context The label to display in the tab indicator. If null, not label will be displayed.
+     * @param parent The parent ViewGroup to attach the new view to.
+     * @param source The {@link ContactsSource} to build the tab view from.
+     * @return The tab indicator View.
+     */
+    public static View createTabIndicatorView(ViewGroup parent, ContactsSource source) {
+        Drawable icon = null;
+        if (source != null) {
+            final String packageName = source.resPackageName;
+            if (source.iconRes > 0) {
+                try {
+                    final Context authContext = parent.getContext().
+                            createPackageContext(packageName, 0);
+                    icon = authContext.getResources().getDrawable(source.iconRes);
+
+                } catch (PackageManager.NameNotFoundException e) {
+                    Log.d(TAG, "error getting the Package Context for " + packageName, e);
+                }
+            }
+        }
+        return createTabIndicatorView(parent, null, icon);
     }
 
 }

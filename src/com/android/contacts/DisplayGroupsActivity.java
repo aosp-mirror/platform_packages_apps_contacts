@@ -16,13 +16,14 @@
 
 package com.android.contacts;
 
-import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 
 import android.app.ExpandableListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.EntityIterator;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
@@ -59,7 +60,7 @@ import java.util.Map;
  * select which ones they want to be visible.
  */
 public final class DisplayGroupsActivity extends ExpandableListActivity implements
-        QueryCompleteListener, OnItemClickListener {
+        AsyncQueryListener, OnItemClickListener {
     private static final String TAG = "DisplayGroupsActivity";
 
     public interface Prefs {
@@ -629,6 +630,10 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         public static final int COL_SUMMARY_COUNT = 5;
         public static final int COL_SUMMARY_WITH_PHONES = 6;
 
+    }
+
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        // Emtpy
     }
 
 }

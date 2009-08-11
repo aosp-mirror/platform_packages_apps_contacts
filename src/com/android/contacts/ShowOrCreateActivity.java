@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.NotifyingAsyncQueryHandler.QueryCompleteListener;
+import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.ui.FastTrackWindow;
 
 import android.app.Activity;
@@ -25,6 +25,7 @@ import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.EntityIterator;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Rect;
@@ -53,7 +54,7 @@ import android.view.View;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity implements QueryCompleteListener,
+public final class ShowOrCreateActivity extends Activity implements AsyncQueryListener,
         FastTrackWindow.OnDismissListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
@@ -266,5 +267,9 @@ public final class ShowOrCreateActivity extends Activity implements QueryComplet
             }
             mParent.finish();
         }
+    }
+
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        // Empty
     }
 }

@@ -2,6 +2,7 @@ package com.android.contacts;
 
 import android.content.AsyncQueryHandler;
 import android.content.Context;
+import android.content.EntityIterator;
 import android.database.Cursor;
 
 import java.lang.ref.WeakReference;
@@ -14,28 +15,48 @@ import java.lang.ref.WeakReference;
  * Using this pattern will help keep you from leaking a {@link Context}.
  */
 public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
-    private final WeakReference<QueryCompleteListener> mListener;
+    private WeakReference<AsyncQueryListener> mListener;
 
     /**
-     * Interface to listen for completed queries.
+     * Interface to listen for completed query operations.
      */
-    public static interface QueryCompleteListener {
-        public void onQueryComplete(int token, Object cookie, Cursor cursor);
+    public interface AsyncQueryListener {
+        void onQueryComplete(int token, Object cookie, Cursor cursor);
+        void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator);
     }
 
-    public NotifyingAsyncQueryHandler(Context context, QueryCompleteListener listener) {
+    public NotifyingAsyncQueryHandler(Context context, AsyncQueryListener listener) {
         super(context.getContentResolver());
-        mListener = new WeakReference<QueryCompleteListener>(listener);
+        setQueryListener(listener);
+    }
+
+    /**
+     * Assign the given {@link AsyncQueryListener} to receive query events from
+     * asynchronous calls. Will replace any existing listener.
+     */
+    public void setQueryListener(AsyncQueryListener listener) {
+        mListener = new WeakReference<AsyncQueryListener>(listener);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        final QueryCompleteListener listener = mListener.get();
+        final AsyncQueryListener listener = mListener.get();
         if (listener != null) {
             listener.onQueryComplete(token, cookie, cursor);
-        } else {
+        } else if (cursor != null) {
             cursor.close();
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        final AsyncQueryListener listener = mListener.get();
+        if (listener != null) {
+            listener.onQueryEntitiesComplete(token, cookie, iterator);
+        } else if (iterator != null) {
+            iterator.close();
         }
     }
 }
