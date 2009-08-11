@@ -77,7 +77,7 @@ public class EntityDelta implements Parcelable {
     public static EntityDelta fromBefore(Entity before) {
         final EntityDelta entity = new EntityDelta();
         entity.mValues = ValuesDelta.fromBefore(before.getEntityValues());
-        entity.mValues.setIdColumn("raw_contacts", RawContacts._ID);
+        entity.mValues.setIdColumn(RawContacts._ID);
         for (NamedContentValues namedValues : before.getSubValues()) {
             entity.addEntry(ValuesDelta.fromBefore(namedValues.values));
         }
@@ -350,7 +350,6 @@ public class EntityDelta implements Parcelable {
     public static class ValuesDelta implements Parcelable {
         private ContentValues mBefore;
         private ContentValues mAfter;
-        private String mIdTable = "data";
         private String mIdColumn = BaseColumns._ID;
 
         private ValuesDelta() {
@@ -406,9 +405,7 @@ public class EntityDelta implements Parcelable {
             return getAsLong(mIdColumn);
         }
 
-        public void setIdColumn(String idTable, String idColumn) {
-            // TODO: remove idTable when contentprovider _id collisions fixed
-            mIdTable = idTable;
+        public void setIdColumn(String idColumn) {
             mIdColumn = idColumn;
         }
 
@@ -550,11 +547,11 @@ public class EntityDelta implements Parcelable {
             } else if (isDelete()) {
                 // When marked for deletion and "before" exists, then "delete"
                 builder = ContentProviderOperation.newDelete(targetUri);
-                builder.withSelection(mIdTable + "." + mIdColumn + "=" + getId(), null);
+                builder.withSelection(mIdColumn + "=" + getId(), null);
             } else if (isUpdate()) {
                 // When has changes and "before" exists, then "update"
                 builder = ContentProviderOperation.newUpdate(targetUri);
-                builder.withSelection(mIdTable + "." + mIdColumn + "=" + getId(), null);
+                builder.withSelection(mIdColumn + "=" + getId(), null);
                 builder.withValues(mAfter);
             }
             return builder;
@@ -570,14 +567,12 @@ public class EntityDelta implements Parcelable {
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeParcelable(mBefore, flags);
             dest.writeParcelable(mAfter, flags);
-            dest.writeString(mIdTable);
             dest.writeString(mIdColumn);
         }
 
         public void readFromParcel(Parcel source) {
             mBefore = source.<ContentValues> readParcelable(null);
             mAfter = source.<ContentValues> readParcelable(null);
-            mIdTable = source.readString();
             mIdColumn = source.readString();
         }
 
