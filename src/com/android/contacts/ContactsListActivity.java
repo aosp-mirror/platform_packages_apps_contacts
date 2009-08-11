@@ -192,32 +192,22 @@ public final class ContactsListActivity extends ListActivity implements
         Contacts._ID, // 0
         Contacts.DISPLAY_NAME, // 1
         Contacts.STARRED, //2
-        Contacts.PRIMARY_PHONE_ID, //3
-        Contacts.PRIMARY_EMAIL_ID, //4
     };
 
     static final String[] AGGREGATES_SUMMARY_PROJECTION = new String[] {
         Contacts._ID, // 0
         Contacts.DISPLAY_NAME, // 1
         Contacts.STARRED, //2
-        Contacts.PRIMARY_PHONE_ID, //3
-        Contacts.TIMES_CONTACTED, //4
-        Contacts.PHOTO_ID, //5
-        Presence.PRESENCE_STATUS, //6
-        CommonDataKinds.Phone.TYPE, //7
-        CommonDataKinds.Phone.LABEL, //8
-        CommonDataKinds.Phone.NUMBER, //9
+        Contacts.TIMES_CONTACTED, //3
+        Contacts.PHOTO_ID, //4
+        Presence.PRESENCE_STATUS, //5
     };
     static final int ID_COLUMN_INDEX = 0;
     static final int SUMMARY_NAME_COLUMN_INDEX = 1;
     static final int SUMMARY_STARRED_COLUMN_INDEX = 2;
-    static final int PRIMARY_PHONE_ID_COLUMN_INDEX = 3;
-    static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 4;
-    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
-    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
-    static final int PRIMARY_PHONE_TYPE_COLUMN_INDEX = 7;
-    static final int PRIMARY_PHONE_LABEL_COLUMN_INDEX = 8;
-    static final int PRIMARY_PHONE_NUMBER_COLUMN_INDEX = 9;
+    static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
+    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 4;
+    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 5;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Data._ID, //0
@@ -295,7 +285,7 @@ public final class ContactsListActivity extends ListActivity implements
     private String mQueryData;
 
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
-    private static final String CLAUSE_ONLY_PHONES = Contacts.PRIMARY_PHONE_ID + " IS NOT NULL";
+    private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
@@ -775,6 +765,7 @@ public final class ContactsListActivity extends ListActivity implements
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
                 .setIntent(new Intent(Intent.ACTION_VIEW, aggUri));
 
+        /*
         // Calling contact
         long phoneId = cursor.getLong(PRIMARY_PHONE_ID_COLUMN_INDEX);
         if (phoneId > 0) {
@@ -794,6 +785,7 @@ public final class ContactsListActivity extends ListActivity implements
                             Uri.fromParts("sms",
                                     cursor.getString(PRIMARY_PHONE_NUMBER_COLUMN_INDEX), null)));
         }
+         */
 
         // Star toggling
         int starState = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
@@ -1583,6 +1575,7 @@ public final class ContactsListActivity extends ListActivity implements
             int labelColumnIndex;
             int defaultType;
             int nameColumnIndex;
+            boolean displayAdditionalData = mDisplayAdditionalData;
             switch(mMode) {
                 case MODE_PICK_PHONE: {
                     nameColumnIndex = PHONE_DISPLAY_NAME_COLUMN_INDEX;
@@ -1602,10 +1595,11 @@ public final class ContactsListActivity extends ListActivity implements
                 }
                 default: {
                     nameColumnIndex = SUMMARY_NAME_COLUMN_INDEX;
-                    dataColumnIndex = PRIMARY_PHONE_NUMBER_COLUMN_INDEX;
-                    typeColumnIndex = PRIMARY_PHONE_TYPE_COLUMN_INDEX;
-                    labelColumnIndex = PRIMARY_PHONE_LABEL_COLUMN_INDEX;
+                    dataColumnIndex = -1;
+                    typeColumnIndex = -1;
+                    labelColumnIndex = -1;
                     defaultType = Phone.TYPE_HOME;
+                    displayAdditionalData = false;
                 }
             }
 
@@ -1618,7 +1612,7 @@ public final class ContactsListActivity extends ListActivity implements
                 cache.nameView.setText(mUnknownNameText);
             }
 
-            if (!mDisplayAdditionalData) {
+            if (!displayAdditionalData) {
                 cache.dataView.setVisibility(View.GONE);
                 cache.labelView.setVisibility(View.GONE);
                 cache.presenceView.setVisibility(View.GONE);
