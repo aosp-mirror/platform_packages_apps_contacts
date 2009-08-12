@@ -779,12 +779,12 @@ public class ViewContactActivity extends BaseContactCardActivity
 //                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
 //                                entry.maxLabelLines = 2;
 //                            }
-//                        } else if (protocolObj != null) {
+                        if (protocolObj != null) {
                             String providerName = (String) protocolObj;
                             entry.label = buildActionString(R.string.actionChat,
                                     providerName, false);
                             host = providerName.toLowerCase();
-//                        }
+                        }
 
                         // Only add the intent if there is a valid host
                         if (!TextUtils.isEmpty(host)) {
