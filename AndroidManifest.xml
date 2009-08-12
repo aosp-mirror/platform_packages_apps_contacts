@@ -236,6 +236,7 @@
         <activity
             android:name="ShowOrCreateActivity"
             android:theme="@style/ShowOrCreateTheme">
+
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -246,7 +247,8 @@
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
@@ -272,20 +274,21 @@
                 <data android:mimeType="vnd.android.cursor.item/calls" />
             </intent-filter>
         </activity>
-            
+
         <!-- Views the details of a single contact -->
         <activity android:name="ViewContactActivity"
             android:label="@string/viewContactTitle"
-            android:theme="@style/TallTitleBarTheme"
-        >   
-        	<intent-filter android:label="@string/viewContactDesription">
+            android:theme="@style/TallTitleBarTheme">
+
+            <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
-        <!-- Edits the details of a single contact -->
+        <!-- Edit or insert details for a contact -->
         <activity
             android:name=".ui.EditContactActivity"
             android:theme="@style/TallTitleBarTheme"
@@ -294,25 +297,22 @@
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
             </intent-filter>
             <intent-filter android:label="@string/insertContactDescription">
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
-            </intent-filter>
-            
-            <intent-filter android:label="@string/editContactDescription">
-                <action android:name="android.intent.action.EDIT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
-            </intent-filter>
-            <intent-filter android:label="@string/insertContactDescription">
-                <action android:name="android.intent.action.INSERT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
+
+        <!-- Stub service used to keep our process alive long enough for
+             background threads to finish their operations. -->
+        <service
+            android:name=".util.EmptyService"
+            android:exported="false" />
 
         <!-- Views the details of a single contact -->
         <activity android:name="ContactOptionsActivity"

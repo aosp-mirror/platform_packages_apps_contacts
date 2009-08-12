@@ -28,6 +28,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -218,4 +219,15 @@ public class ContactsUtils {
         return null;
     }
 
+    public static Intent getPhotoPickIntent() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 96);
+        intent.putExtra("outputY", 96);
+        intent.putExtra("return-data", true);
+        return intent;
+    }
 }

@@ -297,11 +297,7 @@ public class EntityModifier {
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(Context context, EntityDelta state, Bundle extras) {
-        final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        final ContactsSource source = Sources.getPartialInstance(context).
-                getSourceForType(accountType);
-
+    public static void parseExtras(Context context, ContactsSource source, EntityDelta state, Bundle extras) {
         {
             // StructuredName
             final DataKind kind = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);

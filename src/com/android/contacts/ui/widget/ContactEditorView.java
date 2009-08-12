@@ -17,13 +17,13 @@
 package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -38,9 +38,10 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +71,7 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
     private static final int RES_CONTENT = R.layout.act_edit_contact;
 
     private PhotoEditor mPhoto;
-    private DisplayNameEditor mDisplayName;
+    private StructuredNameEditor mDisplayName;
 
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
@@ -98,7 +99,7 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
         mPhoto = new PhotoEditor(context);
         mPhoto.swapInto((ViewGroup)mContent.findViewById(R.id.hook_photo));
 
-        mDisplayName = new DisplayNameEditor(context);
+        mDisplayName = new StructuredNameEditor(context);
         mDisplayName.swapInto((ViewGroup)mContent.findViewById(R.id.hook_displayname));
     }
 
@@ -163,7 +164,8 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
      * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
      * section header and a trigger for adding new {@link Data} rows.
      */
-    protected static class KindSection extends ViewHolder implements OnClickListener, EditorListener {
+    protected static class KindSection extends ViewHolder implements OnClickListener,
+            EditorListener {
         private static final int RES_SECTION = R.layout.item_edit_kind;
 
         private ViewGroup mEditors;
@@ -258,6 +260,12 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
          * Add a specific {@link EditorListener} to this {@link Editor}.
          */
         public void setEditorListener(EditorListener listener);
+
+        /**
+         * Called internally when the contents of a specific field have changed,
+         * allowing advanced editors to persist data in a specific way.
+         */
+        public void onFieldChanged(String column, String value);
     }
 
     /**
@@ -276,22 +284,22 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
      * {@link Entity} values, and to correctly write any changes values.
      */
     protected static class GenericEditor extends ViewHolder implements Editor, View.OnClickListener {
-        private static final int RES_EDITOR = R.layout.item_editor;
-        private static final int RES_FIELD = R.layout.item_editor_field;
-        private static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
+        protected static final int RES_EDITOR = R.layout.item_editor;
+        protected static final int RES_FIELD = R.layout.item_editor_field;
+        protected static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
 
-        private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
+        protected static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
                 | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
-        private TextView mLabel;
-        private ViewGroup mFields;
-        private View mDelete;
+        protected TextView mLabel;
+        protected ViewGroup mFields;
+        protected View mDelete;
 
-        private DataKind mKind;
-        private ValuesDelta mEntry;
-        private EntityDelta mState;
+        protected DataKind mKind;
+        protected ValuesDelta mEntry;
+        protected EntityDelta mState;
 
-        private EditType mType;
+        protected EditType mType;
 
         public GenericEditor(Context context) {
             super(context, RES_EDITOR);
@@ -305,7 +313,7 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
             mDelete.setOnClickListener(this);
         }
 
-        private EditorListener mListener;
+        protected EditorListener mListener;
 
         public void setEditorListener(EditorListener listener) {
             mListener = listener;
@@ -335,6 +343,16 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
             mLabel.setText(mType.labelRes);
         }
 
+        /** {@inheritDoc} */
+        public void onFieldChanged(String column, String value) {
+            // Field changes are saved directly
+            mEntry.put(column, value);
+        }
+
+        /**
+         * Prepare this editor using the given {@link DataKind} for defining
+         * structure and {@link ValuesDelta} describing the content to edit.
+         */
         public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state) {
             mKind = kind;
             mEntry = entry;
@@ -361,7 +379,7 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
             for (EditField field : kind.fieldList) {
                 // Inflate field from definition
                 EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, mFields, false);
-                if (field.titleRes != -1) {
+                if (field.titleRes > 0) {
                     fieldView.setHint(field.titleRes);
                 }
                 fieldView.setInputType(field.inputType);
@@ -375,8 +393,8 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
                 // Prepare listener for writing changes
                 fieldView.addTextChangedListener(new TextWatcher() {
                     public void afterTextChanged(Editable s) {
-                        // Write the newly changed value
-                        mEntry.put(column, s.toString());
+                        // Trigger event for newly changed value
+                        onFieldChanged(column, s.toString());
                     }
 
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -387,7 +405,7 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
                 });
 
                 // Hide field when empty and optional value
-                boolean shouldHide = (value == null && field.optional);
+                boolean shouldHide = (TextUtils.isEmpty(value) && field.optional);
                 fieldView.setVisibility(shouldHide ? View.GONE : View.VISIBLE);
 
                 mFields.addView(fieldView);
@@ -498,6 +516,26 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
     }
 
     /**
+     * Specific editor for {@link StructuredPostal} addresses that flattens any
+     * user changes into {@link StructuredPostal#FORMATTED_ADDRESS} so data
+     * consistency is maintained.
+     */
+    protected static class PostalEditor extends GenericEditor {
+        public PostalEditor(Context context) {
+            super(context);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public void onFieldChanged(String column, String value) {
+            super.onFieldChanged(column, value);
+
+            // TODO: flatten the structured values into unstructured
+            mEntry.put(StructuredPostal.FORMATTED_ADDRESS, null);
+        }
+    }
+
+    /**
      * Simple editor for {@link Photo}.
      */
     protected static class PhotoEditor extends ViewHolder implements Editor {
@@ -510,6 +548,11 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
             super(context, RES_PHOTO);
 
             mPhoto = (ImageView)mContent;
+        }
+
+        /** {@inheritDoc} */
+        public void onFieldChanged(String column, String value) {
+            throw new UnsupportedOperationException("Photos don't support direct field changes");
         }
 
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
@@ -544,40 +587,59 @@ public class ContactEditorView extends ViewHolder implements OnClickListener {
     /**
      * Simple editor for {@link StructuredName}.
      */
-    protected static class DisplayNameEditor extends ViewHolder implements Editor {
+    protected static class StructuredNameEditor extends ViewHolder implements Editor {
         private static final int RES_DISPLAY_NAME = R.layout.item_editor_displayname;
 
         private EditText mName;
         private ValuesDelta mEntry;
 
-        public DisplayNameEditor(Context context) {
+        public StructuredNameEditor(Context context) {
             super(context, RES_DISPLAY_NAME);
 
             mName = (EditText)mContent.findViewById(R.id.name);
         }
 
+        /** {@inheritDoc} */
+        public void onFieldChanged(String column, String value) {
+            if (!StructuredName.DISPLAY_NAME.equals(column)) {
+                throw new IllegalArgumentException("StructuredName editor only "
+                        + "supports updating through DISPLAY_NAME field");
+
+            }
+
+            // Field changes are saved directly
+            mEntry.put(column, value);
+
+            // TODO: split into structured fields using NameSplitter
+        }
+
+        private TextWatcher mWatcher = new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                // Trigger event for newly changed value
+                onFieldChanged(StructuredName.DISPLAY_NAME, s.toString());
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        };
+
         public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
             mEntry = values;
             if (values == null) {
                 // Invalid display name, so reset and skip
+                // TODO: should always have a display name?
+                mName.removeTextChangedListener(mWatcher);
                 mName.setText(null);
                 return;
             }
 
             final String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+            mName.removeTextChangedListener(mWatcher);
             mName.setText(displayName);
-            mName.addTextChangedListener(new TextWatcher() {
-                public void afterTextChanged(Editable s) {
-                    // Write the newly changed value
-                    mEntry.put(StructuredName.DISPLAY_NAME, s.toString());
-                }
-
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
-            });
+            mName.addTextChangedListener(mWatcher);
         }
 
         public void setEditorListener(EditorListener listener) {

@@ -18,9 +18,9 @@ package com.android.contacts;
 
 import java.util.ArrayList;
 
-import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.contacts.model.Sources;
 import com.android.internal.widget.ContactHeaderWidget;
 
@@ -49,9 +49,8 @@ import android.widget.TextView;
 /**
  * The base Activity class for viewing and editing a contact.
  */
-public abstract class BaseContactCardActivity extends Activity
-        implements AsyncQueryListener, OnTabSelectionChangedListener,
-        Sources.SourcesCompleteListener {
+public abstract class BaseContactCardActivity extends Activity implements
+        NotifyingAsyncQueryHandler.AsyncQueryListener, OnTabSelectionChangedListener {
 
     private static final String TAG = "BaseContactCardActivity";
 
@@ -74,8 +73,6 @@ public abstract class BaseContactCardActivity extends Activity
     protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
 
     private static final int TOKEN_TABS = 0;
-
-    private Sources mSources;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -100,12 +97,7 @@ public abstract class BaseContactCardActivity extends Activity
 
         mHandler = new NotifyingAsyncQueryHandler(this, this);
 
-        Sources.requestInstance(this, this);
-
-    }
-
-    public void onSourcesComplete(Sources sources) {
-        mSources = sources;
+        // TODO: turn this into async call instead of blocking ui
         asyncSetupTabs();
     }
 
@@ -165,12 +157,17 @@ public abstract class BaseContactCardActivity extends Activity
      * associated with the contact being displayed.
      */
     protected void bindTabs(ArrayList<Entity> entities) {
+        final Sources sources = Sources.getInstance(this);
+
         for (Entity entity : entities) {
             final String accountType = entity.getEntityValues().
                     getAsString(RawContacts.ACCOUNT_TYPE);
             final Long rawContactId = entity.getEntityValues().
                     getAsLong(RawContacts._ID);
-            ContactsSource source = mSources.getSourceForType(accountType);
+
+            // TODO: ensure inflation on background task so we don't block UI thread here
+            final ContactsSource source = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_SUMMARY);
             addTab(rawContactId, createTabIndicatorView(mTabWidget, source));
         }
         mTabWidget.setCurrentTab(0);
@@ -271,5 +268,4 @@ public abstract class BaseContactCardActivity extends Activity
         }
         return createTabIndicatorView(parent, null, icon);
     }
-
 }

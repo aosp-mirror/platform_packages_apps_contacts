@@ -15,12 +15,11 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.NotifyingAsyncQueryHandler;
 import com.android.contacts.R;
-import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 
 import android.content.ActivityNotFoundException;
@@ -61,7 +60,6 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -84,7 +82,8 @@ import java.util.Set;
  * Window that shows fast-track contact details for a specific
  * {@link Contacts#_ID}.
  */
-public class FastTrackWindow implements Window.Callback, AsyncQueryListener, OnClickListener,
+public class FastTrackWindow implements Window.Callback,
+        NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
         AbsListView.OnItemClickListener {
     private static final String TAG = "FastTrackWindow";
 
@@ -710,8 +709,8 @@ public class FastTrackWindow implements Window.Callback, AsyncQueryListener, OnC
     private void handleData(Cursor cursor) {
         if (cursor == null) return;
 
-        final ContactsSource defaultSource = Sources.getPartialInstance(mContext).getSourceForType(
-                Sources.ACCOUNT_TYPE_GOOGLE);
+        // TODO: turn this into background async instead of blocking ui
+        final Sources sources = Sources.getInstance(mContext);
 
         {
             // Add the profile shortcut action
@@ -740,7 +739,10 @@ public class FastTrackWindow implements Window.Callback, AsyncQueryListener, OnC
 
             // TODO: find the ContactsSource for this, either from accountType,
             // or through lazy-loading when resPackage is set, or default.
-            final ContactsSource source = defaultSource;
+
+            // TODO: move source inflation to background thread so we don't block UI
+            final ContactsSource source = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_MIMETYPES);
             final DataKind kind = source.getKindForMimetype(mimeType);
 
             if (kind != null) {
@@ -999,7 +1001,23 @@ public class FastTrackWindow implements Window.Callback, AsyncQueryListener, OnC
     public void onWindowFocusChanged(boolean hasFocus) {
     }
 
+    /** {@inheritDoc} */
+    public void onDeleteComplete(int token, Object cookie, int result) {
+        // No actions
+    }
+
+    /** {@inheritDoc} */
+    public void onInsertComplete(int token, Object cookie, Uri uri) {
+        // No actions
+    }
+
+    /** {@inheritDoc} */
     public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        //Empty
+        // No actions
+    }
+
+    /** {@inheritDoc} */
+    public void onUpdateComplete(int token, Object cookie, int result) {
+        // No actions
     }
 }

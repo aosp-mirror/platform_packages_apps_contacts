@@ -16,9 +16,15 @@
 
 package com.android.contacts.model;
 
+import org.xmlpull.v1.XmlPullParser;
+
 import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -76,7 +82,7 @@ public class ContactsSource {
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
-    public String accountType;
+    public String accountType = null;
 
     /**
      * Package that resources should be loaded from, either defined through an
@@ -87,10 +93,70 @@ public class ContactsSource {
     public int titleRes;
     public int iconRes;
 
+    public boolean readOnly;
+
     /**
      * Set of {@link DataKind} supported by this source.
      */
     private ArrayList<DataKind> mKinds = new ArrayList<DataKind>();
+
+    private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
+    private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
+
+    public static final int LEVEL_SUMMARY = 1;
+    public static final int LEVEL_MIMETYPES = 2;
+    public static final int LEVEL_CONSTRAINTS = 3;
+
+    private int mInflatedLevel = -1;
+
+    public synchronized boolean isInflated(int inflateLevel) {
+        return mInflatedLevel >= inflateLevel;
+    }
+
+    /**
+     * Ensure that the constraint rules behind this {@link ContactsSource} have
+     * been inflated. Because this may involve parsing meta-data from
+     * {@link PackageManager}, it shouldn't be called from a UI thread.
+     */
+    public synchronized void ensureInflated(Context context, int inflateLevel) {
+        if (isInflated(inflateLevel)) return;
+        // TODO: handle inflating at multiple levels of parsing
+        mInflatedLevel = inflateLevel;
+        mKinds.clear();
+
+        // Handle some well-known sources with hard-coded constraints
+        // TODO: move these into adapter-specific XML once schema finalized
+        if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(accountType)) {
+            HardCodedSources.buildGoogle(this);
+            return;
+        } else if(HardCodedSources.ACCOUNT_TYPE_EXCHANGE.equals(accountType)) {
+            HardCodedSources.buildExchange(this);
+            return;
+        } else if(HardCodedSources.ACCOUNT_TYPE_FACEBOOK.equals(accountType)) {
+            HardCodedSources.buildFacebook(this);
+            return;
+        }
+
+        // Handle unknown sources by searching their package
+        final PackageManager pm = context.getPackageManager();
+        final Intent syncAdapter = new Intent(ACTION_SYNC_ADAPTER);
+        final List<ResolveInfo> matches = pm.queryIntentServices(syncAdapter,
+                PackageManager.GET_META_DATA);
+        for (ResolveInfo info : matches) {
+            final XmlResourceParser parser = info.activityInfo.loadXmlMetaData(pm,
+                    METADATA_CONTACTS);
+            inflate(parser);
+        }
+    }
+
+    /**
+     * Inflate this {@link ContactsSource} from the given parser. This may only
+     * load details matching the publicly-defined schema.
+     */
+    protected void inflate(XmlPullParser parser) {
+        // TODO: implement basic functionality for third-party integration
+        throw new UnsupportedOperationException("Custom constraint parser not implemented");
+    }
 
     /**
      * {@link Comparator} to sort by {@link DataKind#weight}.

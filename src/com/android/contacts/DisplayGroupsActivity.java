@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 import android.app.ExpandableListActivity;
 import android.content.ContentResolver;
@@ -60,7 +60,7 @@ import java.util.Map;
  * select which ones they want to be visible.
  */
 public final class DisplayGroupsActivity extends ExpandableListActivity implements
-        AsyncQueryListener, OnItemClickListener {
+        NotifyingAsyncQueryHandler.AsyncQueryListener, OnItemClickListener {
     private static final String TAG = "DisplayGroupsActivity";
 
     public interface Prefs {
@@ -170,6 +170,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                 Projections.PROJ_SUMMARY, null, null, Projections.SORT_ORDER);
     }
 
+    /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
         mAdapter.changeCursor(cursor);
 
@@ -178,6 +179,11 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         for (int i = 0; i < groupCount; i++) {
             mList.expandGroup(i);
         }
+    }
+
+    /** {@inheritDoc} */
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        // No actions
     }
 
     /**
@@ -631,9 +637,4 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         public static final int COL_SUMMARY_WITH_PHONES = 6;
 
     }
-
-    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        // Emtpy
-    }
-
 }

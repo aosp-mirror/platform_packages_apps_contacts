@@ -655,18 +655,16 @@ public final class ContactsListActivity extends ListActivity implements
             return false;
         }
 
+        // TODO: move this into a resource-based menu
+
         // Search
         menu.add(0, MENU_SEARCH, 0, R.string.menu_search)
                 .setIcon(android.R.drawable.ic_menu_search);
 
         // New contact
-        //TODO Hook this up to new create contact activity.
-        /*
-        menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact)
-                .setIcon(android.R.drawable.ic_menu_add)
-                .setIntent(new Intent(Intents.Insert.ACTION, People.CONTENT_URI))
-                .setAlphabeticShortcut('n');
-                */
+        menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact).setIcon(
+                android.R.drawable.ic_menu_add).setIntent(
+                new Intent(Intents.Insert.ACTION, Contacts.CONTENT_URI)).setAlphabeticShortcut('n');
 
         // Display group
         if (mMode == MODE_DEFAULT) {

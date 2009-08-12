@@ -16,14 +16,13 @@
 
 package com.android.contacts;
 
-import com.android.contacts.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.EntityIterator;
 import android.content.Intent;
@@ -31,12 +30,10 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
-import android.view.View;
+import android.provider.ContactsContract.RawContacts;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in
@@ -54,8 +51,8 @@ import android.view.View;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity implements AsyncQueryListener,
-        FastTrackWindow.OnDismissListener {
+public final class ShowOrCreateActivity extends Activity implements
+        NotifyingAsyncQueryHandler.AsyncQueryListener, FastTrackWindow.OnDismissListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 
@@ -180,6 +177,7 @@ public final class ShowOrCreateActivity extends Activity implements AsyncQueryLi
         finish();
     }
 
+    /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
         if (cursor == null) {
             return;
@@ -243,6 +241,11 @@ public final class ShowOrCreateActivity extends Activity implements AsyncQueryLi
         }
     }
 
+    /** {@inheritDoc} */
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        // No actions
+    }
+
     /**
      * Listener for {@link DialogInterface} that launches a given {@link Intent}
      * when clicked. When clicked, this also closes the parent using
@@ -267,9 +270,5 @@ public final class ShowOrCreateActivity extends Activity implements AsyncQueryLi
             }
             mParent.finish();
         }
-    }
-
-    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        // Empty
     }
 }

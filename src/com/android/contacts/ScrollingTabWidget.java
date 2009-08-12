@@ -201,6 +201,13 @@ public class ScrollingTabWidget extends RelativeLayout
     }
 
     /**
+     * Return index of the currently selected tab.
+     */
+    public int getCurrentTab() {
+        return mSelectedTab;
+    }
+
+    /**
      * Sets the current tab and focuses the UI on it.
      * This method makes sure that the focused tab matches the selected
      * tab, normally at {@link #setCurrentTab}.  Normally this would not
@@ -215,6 +222,10 @@ public class ScrollingTabWidget extends RelativeLayout
      *  @see #setCurrentTab
      */
     public void focusCurrentTab(int index) {
+        if (index < 0 || index >= getTabCount()) {
+            return;
+        }
+
         setCurrentTab(index);
         getChildTabViewAt(index).requestFocus();
 

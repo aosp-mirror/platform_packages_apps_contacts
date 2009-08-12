@@ -228,6 +228,18 @@ public class EntityDelta implements Parcelable {
         return false;
     }
 
+    /**
+     * Mark this entire object deleted, including any {@link ValuesDelta}.
+     */
+    public void markDeleted() {
+        this.mValues.markDeleted();
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta child : mimeEntries) {
+                child.markDeleted();
+            }
+        }
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -288,7 +300,7 @@ public class EntityDelta implements Parcelable {
                         // Inserting under existing, so fill with known _id
                         builder.withValue(Data.RAW_CONTACT_ID, beforeId);
                     }
-                } else if (isContactInsert) {
+                } else if (isContactInsert && builder != null) {
                     // Child must be insert when Contact insert
                     throw new IllegalArgumentException("When parent insert, child must be also");
                 }
