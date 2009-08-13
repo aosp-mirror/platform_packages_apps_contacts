@@ -164,7 +164,7 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
             bundle.putCharSequence("optional_message", getText(R.string.contactsSyncPlug));
             AccountManager.get(this).getAuthTokenByFeatures(
                     GoogleLoginServiceConstants.ACCOUNT_TYPE, Gmail.GMAIL_AUTH_SERVICE,
-                    new String[]{GoogleLoginServiceConstants.FEATURE_GOOGLE_OR_DASHER}, this,
+                    new String[]{GoogleLoginServiceConstants.FEATURE_HOSTED_OR_GOOGLE}, this,
                     bundle, null /* loginOptions */, new Future2Callback() {
                 public void run(Future2 future) {
                     try {
