@@ -1407,8 +1407,9 @@ public final class ContactsListActivity extends ListActivity implements
                                         mContext, cursor.getInt(SUMMARY_PHOTO_ID_COLUMN_INDEX),
                                         null);
                                 mBitmapCache.put(pos, new SoftReference<Bitmap>(photo));
-                                imageView.setImageBitmap(photo);
-                                mItemsMissingImages.remove(imageView);
+                                if (photo != null) {
+                                    imageView.setImageBitmap(photo);
+                                }
                             } catch (OutOfMemoryError e) {
                                 // Not enough memory for the photo, do nothing.
                             }
@@ -1417,6 +1418,7 @@ public final class ContactsListActivity extends ListActivity implements
                         if (imageView.getDrawable() == null) {
                             imageView.setImageResource(R.drawable.ic_contact_list_picture);
                         }
+                        mItemsMissingImages.remove(imageView);
                         break;
                 }
             }
@@ -1612,6 +1614,35 @@ public final class ContactsListActivity extends ListActivity implements
                 cache.nameView.setText(mUnknownNameText);
             }
 
+            // Set the photo, if requested
+            if (mDisplayPhotos) {
+                int pos = cursor.getPosition();
+                Bitmap photo = null;
+                cache.photoView.setImageBitmap(null);
+                cache.photoView.setTag(pos);
+
+                // Look for the cached bitmap
+                SoftReference<Bitmap> ref = mBitmapCache.get(pos);
+                if (ref != null) {
+                    photo = ref.get();
+                }
+
+                // Bind the photo, or use the fallback no photo resource
+                if (photo != null) {
+                    cache.photoView.setImageBitmap(photo);
+                } else {
+                    // Cache miss
+                    cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
+                    if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+                        // Scrolling is idle, go get the image right now.
+                        sendFetchImageMessage(cache.photoView);
+                    } else {
+                        // Add it to a set of images that will be populated when scrolling stops.
+                        mItemsMissingImages.add(cache.photoView);
+                    }
+                }
+            }
+
             if (!displayAdditionalData) {
                 cache.dataView.setVisibility(View.GONE);
                 cache.labelView.setVisibility(View.GONE);
@@ -1667,34 +1698,6 @@ public final class ContactsListActivity extends ListActivity implements
                 presenceView.setVisibility(View.GONE);
             }
 
-            // Set the photo, if requested
-            if (mDisplayPhotos) {
-                int pos = cursor.getPosition();
-                Bitmap photo = null;
-                cache.photoView.setImageBitmap(null);
-                cache.photoView.setTag(pos);
-
-                // Look for the cached bitmap
-                SoftReference<Bitmap> ref = mBitmapCache.get(pos);
-                if (ref != null) {
-                    photo = ref.get();
-                }
-
-                // Bind the photo, or use the fallback no photo resource
-                if (photo != null) {
-                    cache.photoView.setImageBitmap(photo);
-                } else {
-                    // Cache miss
-                    cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
-                    if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-                        // Scrolling is idle, go get the image right now.
-                        sendFetchImageMessage(cache.photoView);
-                    } else {
-                        // Add it to a set of images that will be populated when scrolling stops.
-                        mItemsMissingImages.add(cache.photoView);
-                    }
-                }
-            }
         }
 
         private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
