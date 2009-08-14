@@ -504,7 +504,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
                 // TODO: include last social snippet after update
                 final String displayName = structuredName.getAsString(StructuredName.DISPLAY_NAME);
-                mHeader.bindStatic(displayName, null);
             }
         };
 
