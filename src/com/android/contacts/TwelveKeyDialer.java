@@ -76,6 +76,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     private static final String TAG = "TwelveKeyDialer";
 
+    // Handler message codes
     private static final int STOP_TONE = 1;
 
     /** The length of DTMF tones in milliseconds */
@@ -229,38 +230,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             super.onRestoreInstanceState(icicle);
         }
 
-        // If the mToneGenerator creation fails, just continue without it.  It is
-        // a local audio signal, and is not as important as the dtmf tone itself.
-        synchronized (mToneGeneratorLock) {
-            if (mToneGenerator == null) {
-                try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_DTMF,
-                            TONE_RELATIVE_VOLUME);
-                } catch (RuntimeException e) {
-                    Log.w(TAG, "Exception caught while creating local tone generator: " + e);
-                    mToneGenerator = null;
-                }
-            }
-        }
-
         // Initialize vibration parameters.
         // TODO: We might eventually need to make mVibrateOn come from a
         // user preference rather than a per-platform resource, in which
         // case we would need to update it in onResume() rather than here.
         mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
         mVibrateDuration = (long) r.getInteger(R.integer.config_dialer_key_vibrate_duration);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        synchronized(mToneGeneratorLock) {
-            if (mToneGenerator != null) {
-                mToneStopper.removeMessages(STOP_TONE);
-                mToneGenerator.release();
-                mToneGenerator = null;
-            }
-        }
     }
 
     @Override
