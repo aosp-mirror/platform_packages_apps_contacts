@@ -16,7 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.EdgeTriggerView.EdgeTriggerListener;
 import com.android.contacts.ui.FastTrackWindow;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -71,7 +70,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class SocialStreamActivity extends ListActivity implements OnClickListener, EdgeTriggerListener {
+public class SocialStreamActivity extends ListActivity implements OnClickListener {
     private static final String TAG = "SocialStreamActivity";
 
     private static final String[] PROJ_ACTIVITIES = new String[] {
@@ -108,11 +107,8 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
     private SocialAdapter mAdapter;
 
     private ListView mListView;
-    private EdgeTriggerView mEdgeTrigger;
     private FastTrackWindow mFastTrack;
     private MappingCache mMappingCache;
-
-    private static final boolean USE_GESTURE = false;
 
     private ContactsCache mContactsCache;
 
@@ -133,35 +129,12 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
 
         mListView = getListView();
         mFastTrack = new FastTrackWindow(this);
-
-        if (USE_GESTURE) {
-            // Find and listen for edge triggers
-            mEdgeTrigger = (EdgeTriggerView)findViewById(R.id.edge_trigger);
-            mEdgeTrigger.setOnEdgeTriggerListener(this);
-        }
     }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
         // Clicked on photo, so show fast-track
         showFastTrack(v, (Long)v.getTag());
-    }
-
-    /** {@inheritDoc} */
-    public void onTrigger(float downX, float downY, int edge) {
-        // Find list item user triggered over
-        final int position = mListView.pointToPosition((int)downX, (int)downY);
-        if (position == ListView.INVALID_POSITION) return;
-
-        // Reverse to find the exact top of the triggered entry
-        final int index = position - mListView.getFirstVisiblePosition();
-        final View anchor = mListView.getChildAt(index);
-
-        Cursor cursor = (Cursor)mAdapter.getItem(position);
-        long aggId = cursor.getLong(COL_AGGREGATE_ID);
-
-        showFastTrack(anchor, aggId);
-
     }
 
     private int[] mLocation = new int[2];
@@ -335,9 +308,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
             holder.published = (TextView) view.findViewById(R.id.published);
             view.setTag(holder);
 
-            if (!USE_GESTURE) {
-                holder.photo.setOnClickListener(mPhotoListener);
-            }
+            holder.photo.setOnClickListener(mPhotoListener);
 
             return view;
         }
@@ -409,7 +380,10 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
      * Store a mapping from a package name and mime-type pair to a set of
      * {@link RemoteViews}, default icon, and column to use from the
      * {@link Data} table to use as a summary.
+     * 
+     * @deprecated use {@link ContactsSource} instead
      */
+    @Deprecated
     public static class Mapping {
         String packageName;
         String mimeType;
@@ -431,7 +405,10 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
      * Store a parsed <code>Mapping</code> object, which maps package and
      * mime-type combinations to {@link RemoteViews} XML resources, default
      * icons, and summary columns in the {@link Data} table.
+     * 
+     * @deprecated use {@link Sources} instead
      */
+    @Deprecated
     public static class MappingCache extends HashMap<String, Mapping> {
         private static final String TAG = "MappingCache";
 
@@ -603,12 +580,14 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
          * The size of the thumbnail is defined by the dimension
          * android.R.dimen.launcher_application_icon_size. This method is not
          * thread-safe and should be invoked on the UI thread only.
-         *
+         * 
          * @param bitmap The bitmap to get a thumbnail of.
          * @param context The application's context.
          * @return A thumbnail for the specified bitmap or the bitmap itself if
          *         the thumbnail could not be created.
+         * @deprecated use {@link Bitmap#createScaledBitmap} instead.
          */
+        @Deprecated
         static Bitmap createBitmapThumbnail(Bitmap bitmap, Context context, int size) {
             int width = size;
             int height = size;

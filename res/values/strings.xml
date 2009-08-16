@@ -864,6 +864,16 @@
     <string name="dialog_primary_name">Primary name</string>
     <string name="dialog_new_contact_account">Create contact under account</string>
 
+    <string name="menu_sync_remove">Remove sync group</string>
+    <string name="menu_sync_add">Add sync group</string>
+
+    <!-- List title for a special contacts group that covers all contacts that
+         aren't members of any other group.  -->
+    <string name="display_ungrouped">(Ungrouped contacts)</string>
+
+    <!-- Warning message given to users just before they remove a currently syncing
+         group that would also cause all ungrouped contacts to stop syncing. -->
+    <string name="display_warn_remove_ungrouped">Removing '%s' from sync will also remove any ungrouped contacts from sync.</string>
 
 
 <string name="call_home">Call home</string>

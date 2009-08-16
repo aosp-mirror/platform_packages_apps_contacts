@@ -122,25 +122,27 @@ public class Sources {
         }
         throw new IllegalStateException("Couldn't find authenticator for specific account type");
     }
-
+    
     /**
      * Return list of all known, writable {@link ContactsSource}. Sources
      * returned may require inflation before they can be used.
      */
-    public ArrayList<Account> getWritableAccounts() {
+    public ArrayList<Account> getAccounts(boolean writableOnly) {
         final AccountManager am = AccountManager.get(mContext);
         final Account[] accounts = am.getAccounts();
-        final ArrayList<Account> writable = new ArrayList<Account>();
+        final ArrayList<Account> matching = new ArrayList<Account>();
 
         for (Account account : accounts) {
             // Ensure we have details loaded for each account
             final ContactsSource source = getInflatedSource(account.type,
                     ContactsSource.LEVEL_SUMMARY);
-            if (!source.readOnly) {
-                writable.add(account);
+            final boolean hasContacts = source != null;
+            final boolean matchesWritable = (!writableOnly || (writableOnly && !source.readOnly));
+            if (hasContacts && matchesWritable) {
+                matching.add(account);
             }
         }
-        return writable;
+        return matching;
     }
 
     protected ContactsSource getSourceForType(String accountType) {
@@ -157,7 +159,7 @@ public class Sources {
      */
     public ContactsSource getInflatedSource(String accountType, int inflateLevel) {
         final ContactsSource source = getSourceForType(accountType);
-        if (source.isInflated(inflateLevel)) {
+        if (source == null || source.isInflated(inflateLevel)) {
             // Found inflated, so return directly
             return source;
         } else {

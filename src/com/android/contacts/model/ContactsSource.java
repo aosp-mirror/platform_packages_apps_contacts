@@ -158,6 +158,15 @@ public class ContactsSource {
         throw new UnsupportedOperationException("Custom constraint parser not implemented");
     }
 
+    public CharSequence getDisplayLabel(Context context) {
+        if (this.titleRes > 0) {
+            final PackageManager pm = context.getPackageManager();
+            return pm.getText(this.resPackageName, this.titleRes, null);
+        } else {
+            return this.accountType;
+        }
+    }
+
     /**
      * {@link Comparator} to sort by {@link DataKind#weight}.
      */
