@@ -81,7 +81,7 @@
     <string name="attachToContact" msgid="8820530304406066714">"Ikona kontaktu"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Název vlastního štítku"</string>
     <string name="menu_displayGroup" msgid="4603480747214476335">"Zobrazit skupinu"</string>
-    <string name="syncGroupPreference" msgid="9028361137161162861">"Upravit synchronizované skupiny"</string>
+    <string name="syncGroupPreference" msgid="9028361137161162861">"Upravit synchronizaci"</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importovat kontakty"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Odesílat hovory přímo do hlasové pošty"</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Hovory jsou přesměrovány přímo do hlasové schránky."</string>
@@ -133,7 +133,7 @@
     <string name="private_num" msgid="6374339738119166953">"Soukromé číslo"</string>
     <string name="payphone" msgid="4864313342828942922">"Veřejný telefon"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Číslo vytočíte pomocí klávesnice"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Vytočením přidat hovor"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Přidáváte hovor"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Načítání z karty SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty na kartě SIM"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synchronizujte své kontakty Google!"</font>" "\n"Po synchronizaci telefonu budete mít kontaktní informace vždy u sebe."</string>

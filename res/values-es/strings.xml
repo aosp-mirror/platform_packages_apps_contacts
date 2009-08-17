@@ -116,7 +116,7 @@
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>
     <string name="dialerIconLabel" msgid="7228520966699542850">"Llamar"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Registro de llamadas"</string>
+    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Registro"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Todos los contactos"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactos destacados"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Contactos con números de teléfono"</string>

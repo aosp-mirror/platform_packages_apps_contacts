@@ -133,7 +133,7 @@
     <string name="private_num" msgid="6374339738119166953">"Privénummer"</string>
     <string name="payphone" msgid="4864313342828942922">"Betaaltelefoon"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Toetsen gebruiken om te bellen"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Bellen om een oproep toe te voegen"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Oproep toevoegen"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Laden vanaf SIM-kaart..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contacten op SIM-kaart"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synchroniseer uw Google-contacten!"</font>" "\n"Zodra uw telefoon is gesynchroniseerd, heeft u uw contacten altijd ter beschikking."</string>

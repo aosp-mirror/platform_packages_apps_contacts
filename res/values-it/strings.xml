@@ -149,8 +149,8 @@
     <string name="callDetailTitle" msgid="5340227785196217938">"Dettagli chiamata"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Impossibile leggere i dettagli per la chiamata richiesta."</string>
     <string name="call_type" msgid="3213526349444862087">"Tipo"</string>
-    <string name="type_incoming" msgid="6502076603836088532">"Chiamata in arrivo"</string>
-    <string name="type_outgoing" msgid="343108709599392641">"Chiamata in uscita"</string>
+    <string name="type_incoming" msgid="6502076603836088532">"Chiamata ricevuta"</string>
+    <string name="type_outgoing" msgid="343108709599392641">"Chiamata effettuata"</string>
     <string name="type_missed" msgid="2720502601640509542">"Chiamata persa"</string>
     <string name="call_time" msgid="5805575214626630975">"Ora"</string>
     <string name="datetime_relative" msgid="2906207446040994658">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
