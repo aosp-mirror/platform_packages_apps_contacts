@@ -20,15 +20,10 @@ import com.android.contacts.R;
 
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
-import android.accounts.Future1;
-import android.accounts.Future1Callback;
-import android.accounts.OperationCanceledException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -39,7 +34,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -110,7 +104,6 @@ public class Sources {
     public static final String ACCOUNT_TYPE_FACEBOOK = "com.facebook.auth.login";
 
     private HashMap<String, ContactsSource> mSources = new HashMap<String, ContactsSource>();
-    private AccountManager mAccountManager;
 
     private Sources(Context context, boolean fetchAuthenticatorData) {
         mSources.put(ACCOUNT_TYPE_GOOGLE, buildGoogle(context));
@@ -119,14 +112,29 @@ public class Sources {
 
         if (fetchAuthenticatorData) {
             mSourcesCompleteListeners = new ArrayList<SourcesCompleteListener>();
-            mAccountManager = AccountManager.get(context);
-            asyncGetAuthenticatorTypes();
+            AuthenticatorDescription[] authenticatorDescs =
+                    AccountManager.get(context).getAuthenticatorTypes();
+
+            for (int i = 0; i < authenticatorDescs.length; i++) {
+                String accountType = authenticatorDescs[i].type;
+                ContactsSource contactSource = mSources.get(accountType);
+                if (contactSource != null) {
+                    contactSource.iconRes = authenticatorDescs[i].iconId;
+                    contactSource.titleRes = authenticatorDescs[i].labelId;
+                    contactSource.resPackageName = authenticatorDescs[i].packageName;;
+                }
+            }
+
+            mComplete = true;
+            for (SourcesCompleteListener listener : mSourcesCompleteListeners) {
+                listener.onSourcesComplete(Sources.this);
+            }
         }
     }
 
     /**
      * Find the {@link ContactsSource} for the given
-     * {@link Contacts#ACCOUNT_TYPE}.
+     * {@link android.provider.ContactsContract.RawContacts#ACCOUNT_TYPE}.
      */
     public ContactsSource getSourceForType(String accountType) {
         return mSources.get(accountType);
@@ -625,35 +633,6 @@ public class Sources {
             final boolean validString = (type != null && type.actionAltRes > 0);
             return validString ? context.getPackageManager().getText(mPackageName,
                     type.actionAltRes, null) : null;
-        }
-    }
-
-    private void asyncGetAuthenticatorTypes() {
-        mAccountManager.getAuthenticatorTypes(new GetAuthenticatorsCallback(), null /* handler */);
-    }
-
-    private class GetAuthenticatorsCallback implements Future1Callback<AuthenticatorDescription[]> {
-        public void run(Future1<AuthenticatorDescription[]> future) {
-            try {
-                AuthenticatorDescription[] authenticatorDescs = future.getResult();
-
-                for (int i = 0; i < authenticatorDescs.length; i++) {
-                    String accountType = authenticatorDescs[i].type;
-                    ContactsSource contactSource = mSources.get(accountType);
-                    if (contactSource != null) {
-                        contactSource.iconRes = authenticatorDescs[i].iconId;
-                        contactSource.titleRes = authenticatorDescs[i].labelId;
-                        contactSource.resPackageName = authenticatorDescs[i].packageName;;
-                    }
-                }
-            } catch (OperationCanceledException e) {
-                // the request was canceled
-            }
-
-            mComplete = true;
-            for (SourcesCompleteListener listener : mSourcesCompleteListeners) {
-                listener.onSourcesComplete(Sources.this);
-            }
         }
     }
 
