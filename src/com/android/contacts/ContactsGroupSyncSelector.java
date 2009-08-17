@@ -18,8 +18,8 @@ package com.android.contacts;
 
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorException;
-import android.accounts.Future2;
-import android.accounts.Future2Callback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AccountManagerCallback;
 import android.accounts.OperationCanceledException;
 import android.app.ListActivity;
 import android.content.ContentResolver;
@@ -164,9 +164,9 @@ public final class ContactsGroupSyncSelector extends ListActivity implements Vie
             bundle.putCharSequence("optional_message", getText(R.string.contactsSyncPlug));
             AccountManager.get(this).getAuthTokenByFeatures(
                     GoogleLoginServiceConstants.ACCOUNT_TYPE, Gmail.GMAIL_AUTH_SERVICE,
-                    new String[]{GoogleLoginServiceConstants.FEATURE_GOOGLE_OR_DASHER}, this,
-                    bundle, null /* loginOptions */, new Future2Callback() {
-                public void run(Future2 future) {
+                    new String[]{GoogleLoginServiceConstants.FEATURE_HOSTED_OR_GOOGLE}, this,
+                    bundle, null /* loginOptions */, new AccountManagerCallback<Bundle>() {
+                public void run(AccountManagerFuture<Bundle> future) {
                     try {
                         // do this to check if this request succeeded or not
                         future.getResult();
