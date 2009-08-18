@@ -1395,6 +1395,9 @@ public final class ContactsListActivity extends ListActivity implements
 
             @Override
             public void handleMessage(Message message) {
+                if (ContactsListActivity.this.isFinishing()) {
+                    return;
+                }
                 switch(message.what) {
                     case FETCH_IMAGE_MSG:
                         ImageView imageView = (ImageView) message.obj;
