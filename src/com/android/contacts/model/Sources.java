@@ -85,7 +85,7 @@ public class Sources {
             final AuthenticatorDescription[] auths = am.getAuthenticatorTypes();
 
             for (SyncAdapterType sync : syncs) {
-                if (ContactsContract.AUTHORITY.equals(sync.authority)) {
+                if (!ContactsContract.AUTHORITY.equals(sync.authority)) {
                     // Skip sync adapters that don't provide contact data.
                     continue;
                 }
