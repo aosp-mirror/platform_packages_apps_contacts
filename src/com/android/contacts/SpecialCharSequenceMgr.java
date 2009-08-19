@@ -179,20 +179,13 @@ public class SpecialCharSequenceMgr {
 
     static boolean handleIMEIDisplay(Context context, String input, boolean useSystemWindow) {
         if (input.equals(MMI_IMEI_DISPLAY)) {
-            int networkType = ((TelephonyManager)context.getSystemService(
-                    Context.TELEPHONY_SERVICE)).getNetworkType();
+            int phoneType = ((TelephonyManager)context.getSystemService(
+                    Context.TELEPHONY_SERVICE)).getPhoneType();
 
-            if (networkType == TelephonyManager.NETWORK_TYPE_GPRS ||
-                    networkType == TelephonyManager.NETWORK_TYPE_EDGE ||
-                    networkType == TelephonyManager.NETWORK_TYPE_UMTS) {
-
+            if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
                 showIMEIPanel(context, useSystemWindow);
                 return true;
-            } else if (networkType == TelephonyManager.NETWORK_TYPE_CDMA ||
-                         networkType == TelephonyManager.NETWORK_TYPE_EVDO_0 ||
-                         networkType == TelephonyManager.NETWORK_TYPE_EVDO_A ||
-                         networkType == TelephonyManager.NETWORK_TYPE_1xRTT) {
-
+            } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
                 showMEIDPanel(context, useSystemWindow);
                 return true;
             }
