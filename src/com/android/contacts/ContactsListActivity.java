@@ -1130,8 +1130,7 @@ public final class ContactsListActivity extends ListActivity implements
                 Uri suggestionsUri = Contacts.CONTENT_URI.buildUpon()
                         .appendEncodedPath(String.valueOf(mQueryAggregateId))
                         .appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY)
-                        .appendQueryParameter(AggregationSuggestions.MAX_SUGGESTIONS,
-                                String.valueOf(MAX_SUGGESTIONS))
+                        .appendQueryParameter("limit", String.valueOf(MAX_SUGGESTIONS))
                         .build();
                 mQueryHandler.startQuery(QUERY_TOKEN, null, suggestionsUri, AGGREGATES_PROJECTION,
                         null, null, null);
@@ -1561,7 +1560,9 @@ public final class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (ImageView) view.findViewById(R.id.photo);
-            cache.photoView.setOnClickListener(ContactsListActivity.this);
+            if (cache.photoView != null) {
+                cache.photoView.setOnClickListener(ContactsListActivity.this);
+            }
             view.setTag(cache);
 
             return view;
