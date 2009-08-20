@@ -155,11 +155,11 @@ public final class ContactsListActivity extends ListActivity implements
     /** Custom mode */
     static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
-    static final int MODE_STARRED = 20;
+    static final int MODE_STARRED = 20 | MODE_MASK_SHOW_PHOTOS;
     /** Show frequently contacted contacts */
-    static final int MODE_FREQUENT = 30;
+    static final int MODE_FREQUENT = 30 | MODE_MASK_SHOW_PHOTOS;
     /** Show starred and the frequent */
-    static final int MODE_STREQUENT = 35;
+    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_AGGREGATE = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS;
     /** Show all contacts as well as the option to create a new one */
