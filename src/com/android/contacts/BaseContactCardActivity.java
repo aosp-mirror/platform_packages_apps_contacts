@@ -233,6 +233,7 @@ public abstract class BaseContactCardActivity extends Activity implements
         final LayoutInflater inflater = (LayoutInflater)parent.getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         final View tabIndicator = inflater.inflate(R.layout.tab_indicator, parent, false);
+        tabIndicator.getBackground().setDither(true);
 
         final TextView tv = (TextView) tabIndicator.findViewById(R.id.tab_title);
         tv.setText(label);
