@@ -34,8 +34,9 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.PhoneLookup;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.Contacts.Intents.Insert;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
@@ -96,11 +97,11 @@ public class RecentCallsListActivity extends ListActivity
 
     /** The projection to use when querying the phones table */
     static final String[] PHONES_PROJECTION = new String[] {
-            Phones.PERSON_ID,
-            Phones.DISPLAY_NAME,
-            Phones.TYPE,
-            Phones.LABEL,
-            Phones.NUMBER
+            PhoneLookup._ID,
+            PhoneLookup.DISPLAY_NAME,
+            PhoneLookup.TYPE,
+            PhoneLookup.LABEL,
+            PhoneLookup.NUMBER
     };
 
     static final int PERSON_ID_COLUMN_INDEX = 0;
@@ -147,18 +148,18 @@ public class RecentCallsListActivity extends ListActivity
         int numberType;
         String numberLabel;
     }
-    
+
     /**
      * Shared builder used by {@link #formatPhoneNumber(String)} to minimize
      * allocations when formatting phone numbers.
      */
     private static final SpannableStringBuilder sEditable = new SpannableStringBuilder();
-    
+
     /**
      * Invalid formatting type constant for {@link #sFormattingType}.
      */
     private static final int FORMATTING_TYPE_INVALID = -1;
-    
+
     /**
      * Cached formatting type for current {@link Locale}, as provided by
      * {@link PhoneNumberUtils#getFormatTypeForLocale(Locale)}.
@@ -309,7 +310,7 @@ public class RecentCallsListActivity extends ListActivity
             } else {
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL,
+                            Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                     Uri.encode(ciq.number)),
                     PHONES_PROJECTION, null, null, null);
                 if (phonesCursor != null) {
@@ -320,7 +321,7 @@ public class RecentCallsListActivity extends ListActivity
                         info.type = phonesCursor.getInt(PHONE_TYPE_COLUMN_INDEX);
                         info.label = phonesCursor.getString(LABEL_COLUMN_INDEX);
                         info.number = phonesCursor.getString(MATCHED_NUMBER_COLUMN_INDEX);
-                        
+
                         // New incoming phone number invalidates our formatted
                         // cache. Any cache fills happen only on the GUI thread.
                         info.formattedNumber = null;
@@ -378,7 +379,7 @@ public class RecentCallsListActivity extends ListActivity
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
             views.callView = view.findViewById(R.id.call_icon);
             views.callView.setOnClickListener(this);
-            
+
             view.setTag(views);
 
             return view;
@@ -394,7 +395,7 @@ public class RecentCallsListActivity extends ListActivity
             String callerName = c.getString(CALLER_NAME_COLUMN_INDEX);
             int callerNumberType = c.getInt(CALLER_NUMBERTYPE_COLUMN_INDEX);
             String callerNumberLabel = c.getString(CALLER_NUMBERLABEL_COLUMN_INDEX);
-            
+
             // Store away the number so we can call it directly if you click on the call icon
             views.callView.setTag(number);
 
@@ -418,7 +419,7 @@ public class RecentCallsListActivity extends ListActivity
                     enqueueRequest(number, c.getPosition(),
                             callerName, callerNumberType, callerNumberLabel);
                 }
-                
+
                 // Format and cache phone number for found contact
                 if (info.formattedNumber == null) {
                     info.formattedNumber = formatPhoneNumber(info.number);
@@ -436,7 +437,7 @@ public class RecentCallsListActivity extends ListActivity
                 name = callerName;
                 ntype = callerNumberType;
                 label = callerNumberLabel;
-                
+
                 // Format the cached call_log phone number
                 formattedNumber = formatPhoneNumber(number);
             }
@@ -444,7 +445,7 @@ public class RecentCallsListActivity extends ListActivity
             if (!TextUtils.isEmpty(name)) {
                 views.line1View.setText(name);
                 views.labelView.setVisibility(View.VISIBLE);
-                CharSequence numberLabel = Phones.getDisplayLabel(context, ntype, label,
+                CharSequence numberLabel = Phone.getDisplayLabel(context, ntype, label,
                         mLabelArray);
                 views.numberView.setVisibility(View.VISIBLE);
                 views.numberView.setText(formattedNumber);
@@ -478,7 +479,7 @@ public class RecentCallsListActivity extends ListActivity
 
             // Set the date/time field by mixing relative and absolute times.
             int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
-            
+
             views.dateView.setText(DateUtils.getRelativeTimeSpanString(date,
                     System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags));
 
@@ -544,11 +545,11 @@ public class RecentCallsListActivity extends ListActivity
         mVoiceMailNumber = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE))
                 .getVoiceMailNumber();
         mQueryHandler = new QueryHandler(this);
-        
+
         // Reset locale-based formatting cache
         sFormattingType = FORMATTING_TYPE_INVALID;
     }
-    
+
     @Override
     protected void onResume() {
         // The adapter caches looked up numbers, clear it so they will get
@@ -586,7 +587,7 @@ public class RecentCallsListActivity extends ListActivity
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        
+
         // Clear notifications only when window gains focus.  This activity won't
         // immediately receive focus if the keyguard screen is above it.
         if (hasFocus) {
@@ -619,10 +620,10 @@ public class RecentCallsListActivity extends ListActivity
         if (sFormattingType == FORMATTING_TYPE_INVALID) {
             sFormattingType = PhoneNumberUtils.getFormatTypeForLocale(Locale.getDefault());
         }
-        
+
         sEditable.clear();
         sEditable.append(number);
-        
+
         PhoneNumberUtils.formatNumber(sEditable, sFormattingType);
         return sEditable.toString();
     }
@@ -701,7 +702,7 @@ public class RecentCallsListActivity extends ListActivity
         if (contactInfoPresent) {
             menu.add(0, 0, 0, R.string.menu_viewContact)
                     .setIntent(new Intent(Intent.ACTION_VIEW,
-                            ContentUris.withAppendedId(People.CONTENT_URI, info.personId)));
+                            ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId)));
         }
 
         if (numberUri != null && !isVoicemail) {
@@ -713,7 +714,7 @@ public class RecentCallsListActivity extends ListActivity
         }
         if (!contactInfoPresent && numberUri != null && !isVoicemail) {
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.setType(People.CONTENT_ITEM_TYPE);
+            intent.setType(Contacts.CONTENT_ITEM_TYPE);
             intent.putExtra(Insert.PHONE, number);
             menu.add(0, 0, 0, R.string.recentCalls_addToContact)
                     .setIntent(intent);
@@ -733,7 +734,7 @@ public class RecentCallsListActivity extends ListActivity
             }
 
             case MENU_ITEM_VIEW_CONTACTS: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, People.CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;
@@ -826,7 +827,7 @@ public class RecentCallsListActivity extends ListActivity
             try {
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL,
+                            Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                     number),
                     PHONES_PROJECTION, null, null, null);
                 if (phonesCursor != null) {
