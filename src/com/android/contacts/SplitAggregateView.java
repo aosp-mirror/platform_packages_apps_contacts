@@ -16,17 +16,23 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
 import com.google.common.util.text.TextUtil;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract.Contacts.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Contacts.Data;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +54,15 @@ import java.util.List;
  */
 public class SplitAggregateView extends ListView {
 
+    private static final String TAG = "SplitAggregateView";
+
     private static final String[] AGGREGATE_DATA_PROJECTION = new String[] {
-            Data.MIMETYPE, Data.RES_PACKAGE, Data.RAW_CONTACT_ID, Data.DATA1, Data.DATA2,
+            Data.MIMETYPE, RawContacts.ACCOUNT_TYPE, Data.RAW_CONTACT_ID, Data.DATA1, Data.DATA2,
             Data.IS_PRIMARY, StructuredName.DISPLAY_NAME
     };
 
     private static final int COL_MIMETYPE = 0;
-    private static final int COL_RES_PACKAGE = 1;
+    private static final int COL_ACCOUNT_TYPE = 1;
     private static final int COL_RAW_CONTACT_ID = 2;
     private static final int COL_DATA1 = 3;
     private static final int COL_DATA2 = 4;
@@ -64,6 +72,7 @@ public class SplitAggregateView extends ListView {
 
     private final Uri mAggregateUri;
     private OnContactSelectedListener mListener;
+    private Sources mSources;
 
     /**
      * Listener interface that gets the contact ID of the user-selected contact.
@@ -79,6 +88,8 @@ public class SplitAggregateView extends ListView {
         super(context);
 
         mAggregateUri = aggregateUri;
+
+        mSources = Sources.getInstance(context);
 
         final List<ContactInfo> list = loadData();
 
@@ -103,7 +114,7 @@ public class SplitAggregateView extends ListView {
      */
     private static class ContactInfo implements Comparable<ContactInfo> {
         final long contactId;
-        String resPackage;
+        String accountType;
         String name;
         String phone;
         String email;
@@ -130,7 +141,9 @@ public class SplitAggregateView extends ListView {
         }
 
         public int compareTo(ContactInfo another) {
-            return resPackage.compareTo(another.resPackage);
+            String thisAccount = accountType != null ? accountType : "";
+            String thatAccount = another.accountType != null ? another.accountType : "";
+            return thisAccount.compareTo(thatAccount);
         }
     }
 
@@ -150,7 +163,7 @@ public class SplitAggregateView extends ListView {
                 if (info == null) {
                     info = new ContactInfo(contactId);
                     contactInfos.put(contactId, info);
-                    info.resPackage = cursor.getString(COL_RES_PACKAGE);
+                    info.accountType = cursor.getString(COL_ACCOUNT_TYPE);
                 }
 
                 String mimetype = cursor.getString(COL_MIMETYPE);
@@ -215,16 +228,16 @@ public class SplitAggregateView extends ListView {
         }
     }
 
+    private static class SplitAggregateItemCache  {
+        TextView name;
+        TextView additionalData;
+        ImageView sourceIcon;
+    }
+
     /**
      * List adapter for the list of {@link ContactInfo} objects.
      */
-    private static class SplitAggregateAdapter extends ArrayAdapter<ContactInfo> {
-
-        private static class SplitAggregateItemCache  {
-            TextView name;
-            TextView additionalData;
-            ImageView sourceIcon;
-        }
+    private class SplitAggregateAdapter extends ArrayAdapter<ContactInfo> {
 
         private LayoutInflater mInflater;
 
@@ -252,22 +265,27 @@ public class SplitAggregateView extends ListView {
             cache.name.setText(info.name);
             cache.additionalData.setText(info.getAdditionalData());
 
-            Bitmap sourceBitmap = getSourceIcon(info.resPackage);
-            if (sourceBitmap != null) {
-                cache.sourceIcon.setImageBitmap(sourceBitmap);
+            Drawable icon = null;
+            ContactsSource source = mSources.getInflatedSource(info.accountType,
+                    ContactsSource.LEVEL_SUMMARY);
+            if (source != null) {
+                final String packageName = source.resPackageName;
+                if (source.iconRes > 0) {
+                    try {
+                        final Context context = getContext().createPackageContext(packageName, 0);
+                        icon = context.getResources().getDrawable(source.iconRes);
+
+                    } catch (PackageManager.NameNotFoundException e) {
+                        Log.d(TAG, "error getting the Package Context for " + packageName, e);
+                    }
+                }
+            }
+            if (icon != null) {
+                cache.sourceIcon.setImageDrawable(icon);
             } else {
                 cache.sourceIcon.setImageResource(R.drawable.unknown_source);
             }
             return convertView;
-        }
-
-        /**
-         * Returns the icon corresponding to the source of contact information.
-         */
-        private Bitmap getSourceIcon(String packageName) {
-
-            // TODO: obtain from PackageManager
-            return null;
         }
     }
 }
