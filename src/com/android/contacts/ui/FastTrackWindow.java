@@ -1020,4 +1020,14 @@ public class FastTrackWindow implements Window.Callback,
     public void onUpdateComplete(int token, Object cookie, int result) {
         // No actions
     }
+
+    /** {@inheritDoc} */
+    public void onAttachedToWindow() {
+        // No actions
+    }
+
+    /** {@inheritDoc} */
+    public void onDetachedFromWindow() {
+        // No actions
+    }
 }
