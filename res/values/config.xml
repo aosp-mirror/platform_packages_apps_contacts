@@ -29,7 +29,7 @@
     skipped and the importer asks the user to choose one vcard file.
     If config_import_all_vcard_from_sdcard_automatically is set true, this configuration
     is ignored. -->
-    <bool name="config_allow_users_select_all_vcard_import">false</bool>
+    <bool name="config_allow_users_select_all_vcard_import">true</bool>
 
     <!-- Flag indicating whether Contacts app is allowed to export contacts to SDCard -->
     <bool name="config_allow_export_to_sdcard">false</bool>
