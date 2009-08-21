@@ -13,105 +13,110 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:fillViewport="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-    >
-
-        <LinearLayout android:id="@+id/banner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dip"
-            android:gravity="center_vertical"
-            android:baselineAligned="false"
-        >
-
-            <FrameLayout
-                android:layout_width="76dip"
-                android:layout_height="76dip"
-                android:layout_marginTop="4dip"
-                android:layout_marginLeft="6dip"
-                android:layout_marginBottom="6dip"
-                android:layout_marginRight="2dip"
-            >
-                <ImageView android:id="@+id/photoImage"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ic_menu_add_picture"
-                    android:scaleType="center"
-                    android:background="@drawable/btn_contact_picture"
-                />
-            </FrameLayout>
-
-            <EditText android:id="@+id/name"
-                android:layout_width="0dip"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="?android:attr/scrollbarSize"
-                android:gravity="center_vertical"
-                android:inputType="textPersonName|textCapWords"
-                android:hint="@string/ghostData_name"
-                android:nextFocusDown="@id/data"
-            />
-
-            <ImageView android:id="@+id/star"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-            />
-        </LinearLayout>
-
-        <!-- "Phonetic name" entry widget, visible only in certain locales -->
-        <include layout="@layout/edit_phonetic_name"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
+            android:layout_height="fill_parent"
             android:orientation="vertical"
-            >
+        >
 
-            <!-- The edit items -->
-            <LinearLayout android:id="@+id/list"
+            <LinearLayout android:id="@+id/banner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="0dip"
+                android:gravity="center_vertical"
+                android:baselineAligned="false"
+            >
+
+                <FrameLayout
+                    android:layout_width="76dip"
+                    android:layout_height="76dip"
+                    android:layout_marginTop="4dip"
+                    android:layout_marginLeft="6dip"
+                    android:layout_marginBottom="6dip"
+                    android:layout_marginRight="2dip"
+                >
+                    <ImageView android:id="@+id/photoImage"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_menu_add_picture"
+                        android:scaleType="center"
+                        android:background="@drawable/btn_contact_picture"
+                    />
+                </FrameLayout>
+
+                <EditText android:id="@+id/name"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="?android:attr/scrollbarSize"
+                    android:gravity="center_vertical"
+                    android:inputType="textPersonName|textCapWords"
+                    android:hint="@string/ghostData_name"
+                    android:nextFocusDown="@id/data"
+                />
+
+                <ImageView android:id="@+id/star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                />
+            </LinearLayout>
+
+            <!-- "Phonetic name" entry widget, visible only in certain locales -->
+            <include layout="@layout/edit_phonetic_name"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
                 android:orientation="vertical"
-            />
+                >
 
+                <!-- The edit items -->
+                <LinearLayout android:id="@+id/list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                />
+
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="@android:style/ButtonBar"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@android:style/ButtonBar"
         >
 
-            <Button android:id="@+id/saveButton"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/menu_done"
-            />
+        <Button android:id="@+id/saveButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/menu_done"
+        />
 
-            <Button android:id="@+id/discardButton"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/menu_doNotSave"
-            />
+        <Button android:id="@+id/discardButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/menu_doNotSave"
+        />
 
-        </LinearLayout>
-                
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

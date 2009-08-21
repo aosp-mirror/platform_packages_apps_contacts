@@ -115,6 +115,40 @@
          try to call a contact without specifying a specific number. -->
     <string name="menu_makeDefaultNumber">Make default number</string>
 
+    <!-- Menu item that makes an email address the default for a contact. The default email used 
+    	 when you try to email a contact without specifying a specific address. -->
+    <string name="menu_makeDefaultEmail">Make default email</string>
+
+    <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
+    <string name="menu_splitAggregate">Split</string>
+
+    <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
+    <string name="splitAggregate_title">Split contact</string>
+
+    <!-- Toast shown after a contact has been split from an aggregate by a user action -->
+    <string name="contactsSplitMessage">Contact split</string>
+
+    <!-- Menu item that joins an aggregate with another aggregate -->
+    <string name="menu_joinAggregate">Join</string>
+
+    <!-- Activity title for the Join Contact list -->
+    <string name="titleJoinAggregate">Join contact</string>
+
+    <!-- List separator for the Join Contact list: Suggestions -->
+    <string name="separatorJoinAggregateSuggestions">Suggestions</string>
+
+    <!-- List separator for the Join Contact list: A-Z -->
+    <string name="separatorJoinAggregateAll">All contacts</string>
+
+    <!-- Toast shown after two contacts have been joined by a user action -->
+    <string name="contactsJoinedMessage">Contacts joined</string>
+
+    <!-- Menu item that opens the Options activity for a given contact -->
+    <string name="menu_contactOptions">Options</string>
+
+    <!-- Title for the Options activity for a given contact -->
+    <string name="contactOptionsTitle">Options</string>
+
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 
@@ -234,7 +268,10 @@
     <string name="customLabelPickerTitle">Custom label name</string>
 
     <!-- The menu item to open the list of groups to display -->
-    <string name="menu_displayGroup">Display group</string>
+    <string name="menu_displayGroup">Display groups</string>
+
+    <!-- Title of activity that lets user pick which contact groups to display -->
+    <string name="displayGroups">Display groups</string>
 
     <!-- The menu item that leads to the settings for contact syncing -->
     <string name="syncGroupPreference">Edit sync groups</string>
@@ -275,6 +312,25 @@
 
     <!-- The description of all groups when asking the user what they want to display -->
     <string name="showAllGroups">All contacts</string>
+
+    <!-- The title of the filter to only show contacts with phone numbers -->
+    <string name="showFilterPhones">Only contacts with phones</string>
+
+    <!-- The description of the filter to only show contacts with phone numbers -->
+    <string name="showFilterPhonesDescrip">Only display contacts that have phone numbers</string>
+
+    <!-- The header over the list of all contacts groups -->
+    <string name="headerContactGroups">Contact groups</string>
+
+    <!-- The description of a group with the total number of contacts -->
+    <plurals name="groupDescrip">
+        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- The description of a group with the total number of contacts, and the total number of contacts with phone numbers -->
+    <plurals name="groupDescripPhones">
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts, <xliff:g id="countWithPhones">%2$d</xliff:g> with phones</item>
+    </plurals>
 
     <!-- The setting to sync all contacts from the server -->
     <string name="syncAllGroups">Sync all contacts</string>
@@ -335,6 +391,9 @@
 
     <!-- Section header in the Edit Contacts screen for the "Add more items" button -->
     <string name="listSeparatorMore_edit">More</string>
+
+    <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
+    <string name="socialStreamIconLabel">Social</string>
 
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsIconLabel">Contacts</string>
@@ -530,6 +589,9 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
+
+    <!-- Label for the all data tab in the view and edit card -->
+    <string name="all_tab_label">All</string>
 
     <!-- Content description values -->
 
@@ -743,5 +805,135 @@
 
     <!-- Label for onscreen "Dial" button -->
     <string name="dial_button_label">Dial</string>
+
+    <!-- Shown as a toast when the user taps on a Fast-Track icon, and no application
+         was found that could perform the selected action -->
+    <string name="fasttrack_missing_app">No application found to handle this action</string>
+
+    <!-- Shown as the header name for a person when the name is missing or unknown. -->
+    <string name="fasttrack_missing_name">Unknown</string>
+
+    <!-- Shown as the social status snippet for a person when no social updates exist. -->
+    <string name="fasttrack_missing_status">No recent updates</string>
+
+<!-- TODO: add comments to each of these strings to prepare for translation -->
+<string name="nameLabelsGroup">Name</string>
+<string name="nicknameLabelsGroup">Nickname</string>
+<string name="organizationLabelsGroup">Organization</string>
+<string name="websiteLabelsGroup">Website</string>
+
+<string name="type_home">Home</string>
+<string name="type_mobile">Mobile</string>
+<string name="type_work">Work</string>
+<string name="type_fax_work">Work Fax</string>
+<string name="type_fax_home">Home Fax</string>
+<string name="type_pager">Pager</string>
+<string name="type_other">Other</string>
+<string name="type_custom">Custom</string>
+
+<!-- exchange specific -->
+<string name="type_home_2">Home 2</string>
+<string name="type_work_2">Work 2</string>
+<string name="type_car">Car</string>
+<string name="type_company_main">Company Main</string>
+<string name="type_mms">MMS</string>
+<string name="type_radio">Radio</string>
+<string name="type_assistant">Assistant</string>
+
+<string name="type_email_1">Email 1</string>
+<string name="type_email_2">Email 2</string>
+<string name="type_email_3">Email 3</string>
+
+<string name="type_im_1">Im 1</string>
+<string name="type_im_2">Im 2</string>
+<string name="type_im_3">Im 3</string>
+
+<string name="type_im_aim">AIM</string>
+<string name="type_im_msn">Windows Live</string>
+<string name="type_im_yahoo">Yahoo</string>
+<string name="type_im_skype">Skype</string>
+<string name="type_im_qq">QQ</string>
+<string name="type_im_google_talk">Google Talk</string>
+<string name="type_im_icq">ICQ</string>
+<string name="type_im_jabber">Jabber</string>
+
+    <!-- Shown as the header title over a collapsible section that, by default, hides
+         secondary contact detail edit fields, such as birthday. -->
+    <string name="edit_secondary_collapse">Secondary details</string>
+
+    <string name="dialog_primary_name">Primary name</string>
+    <string name="dialog_new_contact_account">Create contact under account</string>
+
+
+
+<string name="call_home">Call home</string>
+<string name="call_mobile">Call mobile</string>
+<string name="call_work">Call work</string>
+<string name="call_fax_work">Call work fax</string>
+<string name="call_fax_home">Call home fax</string>
+<string name="call_pager">Call pager</string>
+<string name="call_other">Call other</string>
+<string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
+
+<!-- exchange specific -->
+<string name="call_home_2">Call home 2</string>
+<string name="call_work_2">Call work 2</string>
+<string name="call_car">Call car</string>
+<string name="call_company_main">Call company main</string>
+<string name="call_mms">Call MMS</string>
+<string name="call_radio">Call radio</string>
+
+
+
+
+
+<string name="sms_home">Text home</string>
+<string name="sms_mobile">Text mobile</string>
+<string name="sms_work">Text work</string>
+<string name="sms_fax_work">Text work fax</string>
+<string name="sms_fax_home">Text home fax</string>
+<string name="sms_pager">Text pager</string>
+<string name="sms_other">Text other</string>
+<string name="sms_custom">Text <xliff:g id="custom">%s</xliff:g></string>
+
+<!-- exchange specific -->
+<string name="sms_home_2">Text home 2</string>
+<string name="sms_work_2">Text work 2</string>
+<string name="sms_car">Text car</string>
+<string name="sms_company_main">Text company main</string>
+<string name="sms_mms">Text MMS</string>
+<string name="sms_radio">Text radio</string>
+
+
+
+<string name="email_home">Email home</string>
+<string name="email_mobile">Email mobile</string>
+<string name="email_work">Email work</string>
+<string name="email_other">Email other</string>
+<string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
+
+<string name="email_1">Email 1</string>
+<string name="email_2">Email 2</string>
+<string name="email_3">Email 2</string>
+
+
+
+
+<string name="map_home">Map home</string>
+<string name="map_work">Map work</string>
+<string name="map_other">Map other</string>
+<string name="map_custom">Map <xliff:g id="custom">%s</xliff:g></string>
+
+
+
+<string name="postal_street">Street</string>
+<string name="postal_pobox">PO box</string>
+<string name="postal_neighborhood">Neighborhood</string>
+<string name="postal_city">City</string>
+<string name="postal_region">State</string>
+<string name="postal_postcode">ZIP code</string>
+<string name="postal_country">Country</string>
+
+
 
 </resources>

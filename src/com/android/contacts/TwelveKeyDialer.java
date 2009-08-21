@@ -219,8 +219,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         view.setOnLongClickListener(this);
         mDelete = view;
 
-        mDigitsAndBackspace = (View) findViewById(R.id.digitsAndBackspace);
-        mDialpad = (View) findViewById(R.id.dialpad);  // This is null in landscape mode
+        mDigitsAndBackspace = findViewById(R.id.digitsAndBackspace);
+        mDialpad = findViewById(R.id.dialpad);  // This is null in landscape mode
 
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
         mDialpadChooser = (ListView) findViewById(R.id.dialpadChooser);

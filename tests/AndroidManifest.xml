@@ -19,11 +19,12 @@
 
     <application>
         <uses-library android:name="android.test.runner" />
+        <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
     </application>
 
-    <instrumentation android:name="ContactsLaunchPerformance"
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.android.contacts"
-        android:label="Contacts Launch Performance">
+        android:label="Contacts app tests">
     </instrumentation>
 
 </manifest> 

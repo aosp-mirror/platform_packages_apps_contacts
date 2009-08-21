@@ -213,8 +213,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             }
         } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
             mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
-        } else if (Contacts.Intents.UI.FILTER_CONTACTS_ACTION.equals(intent.getAction())) {
-            mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
         } else {
             SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
             boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
