@@ -38,8 +38,9 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.PhoneLookup;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.Contacts.Intents.Insert;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
@@ -100,11 +101,11 @@ public class RecentCallsListActivity extends ListActivity
 
     /** The projection to use when querying the phones table */
     static final String[] PHONES_PROJECTION = new String[] {
-            Phones.PERSON_ID,
-            Phones.DISPLAY_NAME,
-            Phones.TYPE,
-            Phones.LABEL,
-            Phones.NUMBER
+            PhoneLookup._ID,
+            PhoneLookup.DISPLAY_NAME,
+            PhoneLookup.TYPE,
+            PhoneLookup.LABEL,
+            PhoneLookup.NUMBER
     };
 
     static final int PERSON_ID_COLUMN_INDEX = 0;
@@ -321,7 +322,7 @@ public class RecentCallsListActivity extends ListActivity
             } else {
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL,
+                            Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                     Uri.encode(ciq.number)),
                     PHONES_PROJECTION, null, null, null);
                 if (phonesCursor != null) {
@@ -456,7 +457,7 @@ public class RecentCallsListActivity extends ListActivity
             if (!TextUtils.isEmpty(name)) {
                 views.line1View.setText(name);
                 views.labelView.setVisibility(View.VISIBLE);
-                CharSequence numberLabel = Phones.getDisplayLabel(context, ntype, label,
+                CharSequence numberLabel = Phone.getDisplayLabel(context, ntype, label,
                         mLabelArray);
                 views.numberView.setVisibility(View.VISIBLE);
                 views.numberView.setText(formattedNumber);
@@ -743,7 +744,7 @@ public class RecentCallsListActivity extends ListActivity
         if (contactInfoPresent) {
             menu.add(0, 0, 0, R.string.menu_viewContact)
                     .setIntent(new Intent(Intent.ACTION_VIEW,
-                            ContentUris.withAppendedId(People.CONTENT_URI, info.personId)));
+                            ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId)));
         }
 
         if (numberUri != null && !isVoicemail) {
@@ -755,7 +756,7 @@ public class RecentCallsListActivity extends ListActivity
         }
         if (!contactInfoPresent && numberUri != null && !isVoicemail) {
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.setType(People.CONTENT_ITEM_TYPE);
+            intent.setType(Contacts.CONTENT_ITEM_TYPE);
             intent.putExtra(Insert.PHONE, number);
             menu.add(0, 0, 0, R.string.recentCalls_addToContact)
                     .setIntent(intent);
@@ -775,7 +776,7 @@ public class RecentCallsListActivity extends ListActivity
             }
 
             case MENU_ITEM_VIEW_CONTACTS: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, People.CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;
@@ -868,7 +869,7 @@ public class RecentCallsListActivity extends ListActivity
             try {
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL,
+                            Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                     number),
                     PHONES_PROJECTION, null, null, null);
                 if (phonesCursor != null) {
