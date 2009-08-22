@@ -21,6 +21,8 @@ import com.android.contacts.ui.FastTrackWindow;
 
 import java.io.ByteArrayInputStream;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
+
 import java.io.InputStream;
 
 import android.net.Uri;
@@ -229,5 +231,23 @@ public class ContactsUtils {
         intent.putExtra("outputY", 96);
         intent.putExtra("return-data", true);
         return intent;
+    }
+
+    public static long queryForContactId(ContentResolver cr, long rawContactId) {
+        Cursor contactIdCursor = null;
+        long contactId = -1;
+        try {
+            contactIdCursor = cr.query(RawContacts.CONTENT_URI,
+                    new String[] {RawContacts.CONTACT_ID},
+                    RawContacts._ID + "=" + rawContactId, null, null);
+            if (contactIdCursor != null && contactIdCursor.moveToFirst()) {
+                contactId = contactIdCursor.getLong(0);
+            }
+        } finally {
+            if (contactIdCursor != null) {
+                contactIdCursor.close();
+            }
+        }
+        return contactId;
     }
 }

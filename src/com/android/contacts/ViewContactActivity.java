@@ -98,27 +98,29 @@ public class ViewContactActivity extends BaseContactCardActivity
     private static final String TAG = "ViewContact";
     private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
+    public static final String RAW_CONTACT_ID_EXTRA = "rawContactIdExtra";
+
     private static final boolean SHOW_SEPARATORS = false;
 
     private static final int DIALOG_CONFIRM_DELETE = 1;
 
-    private static final int REQUEST_JOIN_AGGREGATE = 1;
+    private static final int REQUEST_JOIN_CONTACT = 1;
+    private static final int REQUEST_EDIT_CONTACT = 2;
 
-    public static final int MENU_ITEM_DELETE = 1;
-    public static final int MENU_ITEM_MAKE_DEFAULT = 2;
-    public static final int MENU_ITEM_SHOW_BARCODE = 3;
-    public static final int MENU_ITEM_SPLIT_AGGREGATE = 4;
-    public static final int MENU_ITEM_JOIN_AGGREGATE = 5;
-    public static final int MENU_ITEM_OPTIONS = 6;
+    public static final int MENU_ITEM_EDIT = 1;
+    public static final int MENU_ITEM_DELETE = 2;
+    public static final int MENU_ITEM_MAKE_DEFAULT = 3;
+    public static final int MENU_ITEM_SHOW_BARCODE = 4;
+    public static final int MENU_ITEM_SPLIT_AGGREGATE = 5;
+    public static final int MENU_ITEM_JOIN_AGGREGATE = 6;
+    public static final int MENU_ITEM_OPTIONS = 7;
 
     private Uri mUri;
-    private Uri mAggDataUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
 
-    private static final long ALL_CONTACTS_ID = -1;
-    private long mRawContactId = ALL_CONTACTS_ID;
+    private static final long ALL_CONTACTS_ID = -100;
 
     /**
      * A list of distinct contact IDs included in the current contact.
@@ -182,7 +184,6 @@ public class ViewContactActivity extends BaseContactCardActivity
         mTabContentLayout.addView(mListView);
 
         mUri = getIntent().getData();
-        mAggDataUri = Uri.withAppendedPath(mUri, "data");
         mResolver = getContentResolver();
 
         // Build the list of sections. The order they're added to mSections dictates the
@@ -199,7 +200,10 @@ public class ViewContactActivity extends BaseContactCardActivity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
-        mCursor = mResolver.query(mAggDataUri,
+        //Select the all tab to start.
+        mSelectedRawContactId = ALL_CONTACTS_ID;
+
+        mCursor = mResolver.query(Uri.withAppendedPath(mUri, "data"),
                 CONTACT_PROJECTION, null, null, null);
     }
 
@@ -268,7 +272,7 @@ public class ViewContactActivity extends BaseContactCardActivity
 
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
         long rawContactId = getTabRawContactId(tabIndex);
-        mRawContactId = rawContactId;
+        mSelectedRawContactId = rawContactId;
         dataChanged();
     }
 
@@ -300,9 +304,8 @@ public class ViewContactActivity extends BaseContactCardActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 0, 0, R.string.menu_editContact)
+        menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
                 .setIcon(android.R.drawable.ic_menu_edit)
-                .setIntent(new Intent(Intent.ACTION_EDIT, mUri))
                 .setAlphabeticShortcut('e');
         menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact)
                 .setIcon(android.R.drawable.ic_menu_delete);
@@ -381,6 +384,18 @@ public class ViewContactActivity extends BaseContactCardActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case MENU_ITEM_EDIT: {
+                long rawContactIdToEdit = mSelectedRawContactId;
+                if (rawContactIdToEdit == ALL_CONTACTS_ID) {
+                    // If the "all" tab is selected, edit the next tab.
+                    rawContactIdToEdit = getTabRawContactId(mTabWidget.getCurrentTab() + 1);
+                }
+                Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                        rawContactIdToEdit);
+                startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
+                        REQUEST_EDIT_CONTACT);
+                break;
+            }
             case MENU_ITEM_DELETE: {
                 // Get confirmation
                 showDialog(DIALOG_CONFIRM_DELETE);
@@ -529,14 +544,29 @@ public class ViewContactActivity extends BaseContactCardActivity
     public void showJoinAggregateActivity() {
         Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
         intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, ContentUris.parseId(mUri));
-        startActivityForResult(intent, REQUEST_JOIN_AGGREGATE);
+        startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == REQUEST_JOIN_AGGREGATE && resultCode == RESULT_OK && intent != null) {
-            final long aggregateId = ContentUris.parseId(intent.getData());
-            joinAggregate(aggregateId);
+        switch (requestCode) {
+            case REQUEST_JOIN_CONTACT: {
+                if (resultCode == RESULT_OK && intent != null) {
+                    final long aggregateId = ContentUris.parseId(intent.getData());
+                    joinAggregate(aggregateId);
+                }
+                break;
+            }
+            case REQUEST_EDIT_CONTACT: {
+                if (resultCode == RESULT_OK && intent != null) {
+                    long newInitialSelectedRawContactId = intent.getLongExtra(
+                            RAW_CONTACT_ID_EXTRA, ALL_CONTACTS_ID);
+                    if (newInitialSelectedRawContactId != mSelectedRawContactId) {
+                        mSelectedRawContactId = newInitialSelectedRawContactId;
+                        selectInitialTab();
+                    }
+                }
+            }
         }
     }
 
@@ -700,7 +730,8 @@ public class ViewContactActivity extends BaseContactCardActivity
                 }
 
                 // This performs the tab filtering
-                if (mRawContactId != entry.contactId && mRawContactId != ALL_CONTACTS_ID) {
+                if (mSelectedRawContactId != entry.contactId
+                        && mSelectedRawContactId != ALL_CONTACTS_ID) {
                     continue;
                 }
 

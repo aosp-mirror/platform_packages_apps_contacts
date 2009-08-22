@@ -72,6 +72,9 @@ public abstract class BaseContactCardActivity extends Activity implements
     protected static final int TAB_ACCOUNT_NAME_COLUMN_INDEX = 1;
     protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
 
+    protected static final String SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContact";
+    protected long mSelectedRawContactId;
+
     private static final int TOKEN_TABS = 0;
 
     @Override
@@ -101,6 +104,19 @@ public abstract class BaseContactCardActivity extends Activity implements
         asyncSetupTabs();
     }
 
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mSelectedRawContactId = savedInstanceState.getLong(SELECTED_RAW_CONTACT_ID_KEY);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+    }
+
     private void asyncSetupTabs() {
         long contactId = ContentUris.parseId(mUri);
         mHandler.startQueryEntities(TOKEN_TABS, null,
@@ -108,13 +124,29 @@ public abstract class BaseContactCardActivity extends Activity implements
     }
 
     /**
-     * Return the contactId associated with the tab at an index.
+     * Return the RawContact id associated with the tab at an index.
      *
      * @param index The index of the tab in question.
      * @return The contactId associated with the tab at the specified index.
      */
     protected long getTabRawContactId(int index) {
         return mTabRawContactIdMap.get(index);
+    }
+
+    /**
+     * Return the tab index associated with the RawContact id.
+     *
+     * @param index The index of the tab in question.
+     * @return The contactId associated with the tab at the specified index.
+     */
+    protected int getTabIndexForRawContactId(long rawContactId) {
+        int numTabs = mTabRawContactIdMap.size();
+        for (int i=0; i < numTabs; i++) {
+            if (mTabRawContactIdMap.get(i) == rawContactId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /** {@inheritDoc} */
@@ -170,7 +202,8 @@ public abstract class BaseContactCardActivity extends Activity implements
                     ContactsSource.LEVEL_SUMMARY);
             addTab(rawContactId, createTabIndicatorView(mTabWidget, source));
         }
-        mTabWidget.setCurrentTab(0);
+
+        selectInitialTab();
         mTabWidget.setVisibility(View.VISIBLE);
         mTabWidget.postInvalidate();
     }
@@ -202,6 +235,18 @@ public abstract class BaseContactCardActivity extends Activity implements
     protected void clearCurrentTabs() {
         mTabRawContactIdMap.clear();
         mTabWidget.removeAllTabs();
+    }
+
+    protected void selectInitialTab() {
+        int selectedTabIndex = -1;
+        if (mSelectedRawContactId > 0) {
+            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
+        }
+        if (selectedTabIndex >= 0) {
+            mTabWidget.setCurrentTab(selectedTabIndex);
+        } else {
+            selectDefaultTab();
+        }
     }
 
     /**

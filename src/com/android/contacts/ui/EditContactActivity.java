@@ -20,6 +20,7 @@ import com.android.contacts.BaseContactCardActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.ScrollingTabWidget;
+import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.HardCodedSources;
@@ -97,6 +98,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_EDITOR_STATE = "editor";
     private static final String KEY_SELECTED_TAB = "tab";
+    private static final String KEY_SELECTED_TAB_ID = "tabId";
+    private static final String KEY_CONTACT_ID = "contactId";
+
+    private long mSelectedRawContactId = -1;
+    private long mContactId = -1;
 
     private ScrollingTabWidget mTabWidget;
     private ContactHeaderWidget mHeader;
@@ -213,11 +219,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final Uri data = intent.getData();
             final String authority = data.getAuthority();
             if (ContactsContract.AUTHORITY.equals(authority)) {
-                final long contactId = ContentUris.parseId(data);
-                selection = RawContacts.CONTACT_ID + "=" + contactId;
-
+                final long rawContactId = ContentUris.parseId(data);
+                target.mSelectedRawContactId = rawContactId;
+                target.mContactId = ContactsUtils.queryForContactId(target.getContentResolver(),
+                        rawContactId);
+                selection = RawContacts.CONTACT_ID + "=" + target.mContactId;
             } else if (Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
+                target.mSelectedRawContactId = rawContactId;
                 selection = RawContacts._ID + "=" + rawContactId;
             }
 
@@ -277,6 +286,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         outState.putParcelable(KEY_EDIT_STATE, mState);
 //        outState.putSparseParcelableArray(KEY_EDITOR_STATE, buildEditorState());
 //        outState.putInt(KEY_SELECTED_TAB, mTabWidget.getCurrentTab());
+        outState.putLong(KEY_SELECTED_TAB_ID, mSelectedRawContactId);
+        outState.putLong(KEY_CONTACT_ID, mContactId);
 
         super.onSaveInstanceState(outState);
     }
@@ -285,6 +296,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         // Read modifications from instance
         mState = savedInstanceState.<EditState> getParcelable(KEY_EDIT_STATE);
+        mSelectedRawContactId = savedInstanceState.getLong(KEY_SELECTED_TAB_ID);
+        mContactId = savedInstanceState.getLong(KEY_CONTACT_ID);
 
         Log.d(TAG, "onrestoreinstancestate");
 
@@ -306,19 +319,26 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      */
     protected void bindTabs() {
         final Sources sources = Sources.getInstance(this);
+        int selectedTab = 0;
 
         mTabWidget.removeAllTabs();
         for (EntityDelta entity : mState) {
-            final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            ValuesDelta values = entity.getValues();
+            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            final Long rawContactId = values.getAsLong(RawContacts._ID);
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
+
+            if (rawContactId != null && rawContactId == mSelectedRawContactId) {
+                selectedTab = mTabWidget.getTabCount();
+            }
 
             final View tabView = BaseContactCardActivity.createTabIndicatorView(mTabWidget, source);
             mTabWidget.addTab(tabView);
         }
         if (mState.size() > 0) {
-            mTabWidget.setCurrentTab(0);
-            this.onTabSelectionChanged(0, false);
+            mTabWidget.setCurrentTab(selectedTab);
+            this.onTabSelectionChanged(selectedTab, false);
         }
     }
 
@@ -333,12 +353,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // TODO: fill header bar with newly parsed data for speed
         // TODO: handle legacy case correctly instead of assuming _id
 
-        final Uri uri = this.getIntent().getData();
-
-        try {
-            final long contactId = ContentUris.parseId(uri);
-            mHeader.bindFromContactId(contactId);
-        } catch (NumberFormatException e) {
+        if (mContactId > 0) {
+            mHeader.bindFromContactId(mContactId);
         }
 
 //        mHeader.setDisplayName(displayName, phoneticName);
@@ -355,6 +371,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Find entity and source for selected tab
         final EntityDelta entity = mState.get(tabIndex);
         final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        Long rawContactId = entity.getValues().getAsLong(RawContacts._ID);
+        if (rawContactId != null) {
+            mSelectedRawContactId = rawContactId;
+        }
 
         final Sources sources = Sources.getInstance(this);
         final ContactsSource source = sources.getInflatedSource(accountType,
@@ -561,6 +581,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Persisting finished, or we timed out waiting on it. Either way,
         // finish this activity, the background task will keep running.
+        setResult(RESULT_OK, new Intent().putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA,
+                mSelectedRawContactId));
         this.finish();
         return true;
     }
