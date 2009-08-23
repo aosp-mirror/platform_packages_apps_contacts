@@ -233,7 +233,7 @@
             />
         </activity>
 
-        <activity android:name=".DisplayGroupsActivity" android:label="@string/displayGroups" />
+        <activity android:name=".ui.DisplayGroupsActivity" android:label="@string/displayGroups" />
 
         <activity
             android:name="ShowOrCreateActivity"

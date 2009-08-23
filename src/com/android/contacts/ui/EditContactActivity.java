@@ -48,6 +48,7 @@ import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.OperationApplicationException;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -659,7 +660,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            final ArrayList<Account> writable = sources.getWritableAccounts();
+            final ArrayList<Account> writable = sources.getAccounts(true);
             final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(target,
                     android.R.layout.simple_list_item_2, writable) {
                 @Override
@@ -676,9 +677,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     final Account account = this.getItem(position);
                     final ContactsSource source = sources.getInflatedSource(account.type,
                             ContactsSource.LEVEL_SUMMARY);
-                    if (source.titleRes > 0) {
-                        text1.setText(source.titleRes);
-                    }
+
+                    text1.setText(source.getDisplayLabel(target));
                     text2.setText(account.name);
 
                     return convertView;

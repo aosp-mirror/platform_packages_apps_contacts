@@ -16,8 +16,9 @@
 
 package com.android.contacts;
 
-import com.android.contacts.DisplayGroupsActivity.Prefs;
+import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -258,7 +259,7 @@ public final class ContactsListActivity extends ListActivity implements
     private boolean mJustCreated;
     private boolean mSyncEnabled;
 
-    private boolean mDisplayAll;
+//    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
 
     /**
@@ -373,7 +374,6 @@ public final class ContactsListActivity extends ListActivity implements
             buildUserGroupUri(groupName);
         } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
             mMode = MODE_CUSTOM;
-            mDisplayAll = true;
             mDisplayOnlyPhones = false;
         } else if (UI.LIST_STARRED_ACTION.equals(action)) {
             mMode = MODE_STARRED;
@@ -383,12 +383,10 @@ public final class ContactsListActivity extends ListActivity implements
             mMode = MODE_STREQUENT;
         } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
             mMode = MODE_CUSTOM;
-            mDisplayAll = true;
             mDisplayOnlyPhones = true;
         } else if (Intent.ACTION_PICK.equals(action)) {
             // XXX These should be showing the data from the URI given in
             // the Intent.
-            mDisplayAll = true;
             final String type = intent.resolveType(this);
             if (Contacts.CONTENT_TYPE.equals(type)) {
                 mMode = MODE_PICK_AGGREGATE;
@@ -585,8 +583,6 @@ public final class ContactsListActivity extends ListActivity implements
 
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
-        } else if (mDisplayAll) {
-            empty.setText(getText(R.string.noContacts));
         } else {
             if (mSyncEnabled) {
                 empty.setText(getText(R.string.noContactsHelpTextWithSync));
@@ -609,7 +605,6 @@ public final class ContactsListActivity extends ListActivity implements
         // Load the preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mDisplayAll = prefs.getBoolean(Prefs.DISPLAY_ALL, Prefs.DISPLAY_ALL_DEFAULT);
         mDisplayOnlyPhones = prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
                 Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
 
@@ -1248,14 +1243,11 @@ public final class ContactsListActivity extends ListActivity implements
      * {@link #mDisplayAll} and {@link #mDisplayOnlyPhones} flags.
      */
     private String getAggregateSelection() {
-        if (!mDisplayAll && mDisplayOnlyPhones) {
+        if (mDisplayOnlyPhones) {
             return CLAUSE_ONLY_VISIBLE + " AND " + CLAUSE_ONLY_PHONES;
-        } else if (!mDisplayAll) {
+        } else {
             return CLAUSE_ONLY_VISIBLE;
-        } else if (mDisplayOnlyPhones) {
-            return CLAUSE_ONLY_PHONES;
         }
-        return null;
     }
 
     private Uri getAggregateFilterUri(String filter) {

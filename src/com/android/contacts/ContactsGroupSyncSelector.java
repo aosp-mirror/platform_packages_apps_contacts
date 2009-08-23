@@ -42,6 +42,7 @@ import java.io.IOException;
 
 import com.google.android.googlelogin.GoogleLoginServiceConstants;
 
+@Deprecated
 public final class ContactsGroupSyncSelector extends ListActivity implements View.OnClickListener {
 
     private static final String[] PROJECTION = new String[] {
