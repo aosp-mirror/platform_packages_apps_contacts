@@ -166,9 +166,10 @@ public final class ShowOrCreateActivity extends Activity implements
 
         // Use requested display mode, defaulting to medium
         final int mode = extras.getInt(Intents.EXTRA_MODE, Intents.MODE_MEDIUM);
+        final String[] excludeMimes = extras.getStringArray(Intents.EXTRA_EXCLUDE_MIMES);
 
         mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(aggUri, targetRect, mode);
+        mFastTrack.show(aggUri, targetRect, mode, excludeMimes);
     }
 
     /** {@inheritDoc} */

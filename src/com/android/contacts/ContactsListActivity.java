@@ -565,7 +565,7 @@ public final class ContactsListActivity extends ListActivity implements
         mRect.bottom = mRect.top + anchor.getHeight();
 
         mFastTrack.dismiss();
-        mFastTrack.show(contactUri, mRect, Intents.MODE_MEDIUM);
+        mFastTrack.show(contactUri, mRect, Intents.MODE_MEDIUM, null);
     }
 
     /** {@inheritDoc} */

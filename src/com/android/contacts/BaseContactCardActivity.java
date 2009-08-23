@@ -36,6 +36,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.util.SparseArray;
@@ -92,10 +93,14 @@ public abstract class BaseContactCardActivity extends Activity implements
         mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
         mContactHeaderWidget.showStar(true);
         mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
-        mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
+        mContactHeaderWidget.setExcludeMimes(new String[] {
+            Contacts.CONTENT_ITEM_TYPE
+        });
 
+        mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
         mTabWidget.setVisibility(View.INVISIBLE);
+
         mTabRawContactIdMap = new SparseArray<Long>();
 
         mHandler = new NotifyingAsyncQueryHandler(this, this);

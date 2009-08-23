@@ -46,6 +46,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.SocialContract.Activities;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -96,7 +97,6 @@ public class FastTrackWindow implements Window.Callback,
     }
 
     private final Context mContext;
-    private final PackageManager mPackageManager;
     private final LayoutInflater mInflater;
     private final WindowManager mWindowManager;
     private Window mWindow;
@@ -131,6 +131,8 @@ public class FastTrackWindow implements Window.Callback,
      */
     private ActionMap mActions = new ActionMap();
 
+    private String[] mExcludeMimes;
+
     /**
      * Specific MIME-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
      * distinguishes actions that should initiate a text message.
@@ -163,7 +165,6 @@ public class FastTrackWindow implements Window.Callback,
      */
     public FastTrackWindow(Context context) {
         mContext = new ContextThemeWrapper(context, R.style.FastTrack);
-        mPackageManager = context.getPackageManager();
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
@@ -231,7 +232,7 @@ public class FastTrackWindow implements Window.Callback,
      * Start showing a fast-track window for the given {@link Contacts#_ID}
      * pointing towards the given location.
      */
-    public void show(Uri aggUri, Rect anchor, int mode) {
+    public void show(Uri aggUri, Rect anchor, int mode, String[] excludeMimes) {
         if (mShowing || mQuerying) {
             Log.w(TAG, "already in process of showing");
             return;
@@ -239,6 +240,7 @@ public class FastTrackWindow implements Window.Callback,
 
         // Prepare header view for requested mode
         mHeader = getHeaderView(mode);
+        mExcludeMimes = excludeMimes;
 
         setHeaderText(R.id.name, R.string.fasttrack_missing_name);
         setHeaderText(R.id.status, R.string.fasttrack_missing_status);
@@ -552,6 +554,7 @@ public class FastTrackWindow implements Window.Callback,
         public CharSequence getHeader();
         public CharSequence getBody();
         public Drawable getIcon();
+        public boolean isValid();
 
         /**
          * Build an {@link Intent} that will perform this action.
@@ -573,11 +576,13 @@ public class FastTrackWindow implements Window.Callback,
         private Intent mIntent;
 
         private boolean mAlternate;
+        private boolean mValidAction;
 
         /**
          * Create an action from common {@link Data} elements.
          */
-        public DataAction(Context context, ContactsSource source, String mimeType, DataKind kind, Cursor cursor) {
+        public DataAction(Context context, ContactsSource source, String mimeType, DataKind kind,
+                Cursor cursor) {
             mContext = context;
             mSource = source;
             mKind = kind;
@@ -597,18 +602,24 @@ public class FastTrackWindow implements Window.Callback,
             // Handle well-known MIME-types with special care
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
-                final Uri callUri = Uri.fromParts(SCHEME_TEL, number, null);
-                mIntent = new Intent(Intent.ACTION_DIAL, callUri);
+                if (!TextUtils.isEmpty(number)) {
+                    final Uri callUri = Uri.fromParts(SCHEME_TEL, number, null);
+                    mIntent = new Intent(Intent.ACTION_DIAL, callUri);
+                }
 
             } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
-                final Uri smsUri = Uri.fromParts(SCHEME_SMSTO, number, null);
-                mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
+                if (!TextUtils.isEmpty(number)) {
+                    final Uri smsUri = Uri.fromParts(SCHEME_SMSTO, number, null);
+                    mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
+                }
 
             } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String address = getAsString(cursor, Email.DATA);
-                final Uri mailUri = Uri.fromParts(SCHEME_MAILTO, address, null);
-                mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
+                if (!TextUtils.isEmpty(address)) {
+                    final Uri mailUri = Uri.fromParts(SCHEME_MAILTO, address, null);
+                    mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
+                }
 
             } else {
                 // Otherwise fall back to default VIEW action
@@ -616,6 +627,10 @@ public class FastTrackWindow implements Window.Callback,
                 final Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
                 mIntent = new Intent(Intent.ACTION_VIEW, dataUri);
             }
+
+            // TODO: resolve our created intent to pull correct icon
+            final PackageManager pm = context.getPackageManager();
+            mValidAction = pm.queryIntentActivities(mIntent, 0).size() > 0;
         }
 
         /** {@inheritDoc} */
@@ -633,6 +648,8 @@ public class FastTrackWindow implements Window.Callback,
             // Bail early if no valid resources
             if (mSource.resPackageName == null) return null;
 
+            // TODO: switch to using ResolveInfo icon instead
+
             final PackageManager pm = mContext.getPackageManager();
             if (mAlternate && mKind.iconAltRes > 0) {
                 return pm.getDrawable(mSource.resPackageName, mKind.iconAltRes, null);
@@ -641,6 +658,11 @@ public class FastTrackWindow implements Window.Callback,
             } else {
                 return null;
             }
+        }
+
+        /** {@inheritDoc} */
+        public boolean isValid() {
+            return mValidAction;
         }
 
         /** {@inheritDoc} */
@@ -674,6 +696,11 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        public boolean isValid() {
+            return true;
+        }
+
+        /** {@inheritDoc} */
         public Intent getIntent() {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mId);
             return new Intent(Intent.ACTION_VIEW, contactUri);
@@ -704,26 +731,41 @@ public class FastTrackWindow implements Window.Callback,
     }
 
     /**
+     * Check if the given MIME-type appears in the list of excluded MIME-types
+     * that the most-recent caller requested.
+     */
+    private boolean isMimeExcluded(String mimeType) {
+        if (mExcludeMimes == null) return false;
+        for (String excludedMime : mExcludeMimes) {
+            if (TextUtils.equals(excludedMime, mimeType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
         if (cursor == null) return;
 
-        // TODO: turn this into background async instead of blocking ui
-        final Sources sources = Sources.getInstance(mContext);
-
-        {
+        if (!isMimeExcluded(Contacts.CONTENT_ITEM_TYPE)) {
             // Add the profile shortcut action
             final Action action = new ProfileAction(mContext, mAggId);
             mActions.collect(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
+        final Sources sources = Sources.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
         while (cursor.moveToNext()) {
             final String accountType = getAsString(cursor, RawContacts.ACCOUNT_TYPE);
             final String resPackage = getAsString(cursor, Data.RES_PACKAGE);
             final String mimeType = getAsString(cursor, Data.MIMETYPE);
+
+            // Skip this data item if MIME-type excluded
+            if (isMimeExcluded(mimeType)) continue;
 
             // Handle when a photo appears in the various data items
             // TODO: accept a photo only if its marked as primary
@@ -740,7 +782,6 @@ public class FastTrackWindow implements Window.Callback,
             // TODO: find the ContactsSource for this, either from accountType,
             // or through lazy-loading when resPackage is set, or default.
 
-            // TODO: move source inflation to background thread so we don't block UI
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_MIMETYPES);
             final DataKind kind = source.getKindForMimetype(mimeType);
@@ -786,9 +827,7 @@ public class FastTrackWindow implements Window.Callback,
      * {@link Action#getIntent()}.
      */
     private void considerAdd(Action action, String mimeType) {
-        final Intent intent = action.getIntent();
-        final boolean intentHandled = mPackageManager.queryIntentActivities(intent, 0).size() > 0;
-        if (intentHandled) {
+        if (action.isValid()) {
             mActions.collect(mimeType, action);
         }
     }
@@ -1002,22 +1041,7 @@ public class FastTrackWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
-    public void onDeleteComplete(int token, Object cookie, int result) {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
-    public void onInsertComplete(int token, Object cookie, Uri uri) {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
     public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
-    public void onUpdateComplete(int token, Object cookie, int result) {
         // No actions
     }
 
