@@ -385,10 +385,11 @@ public class ViewContactActivity extends BaseContactCardActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_EDIT: {
-                long rawContactIdToEdit = mSelectedRawContactId;
+                final int tabIndex = mTabWidget.getCurrentTab();
+                long rawContactIdToEdit = getTabRawContactId(tabIndex);
                 if (rawContactIdToEdit == ALL_CONTACTS_ID) {
                     // If the "all" tab is selected, edit the next tab.
-                    rawContactIdToEdit = getTabRawContactId(mTabWidget.getCurrentTab() + 1);
+                    rawContactIdToEdit = getTabRawContactId(tabIndex + 1);
                 }
                 Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                         rawContactIdToEdit);
