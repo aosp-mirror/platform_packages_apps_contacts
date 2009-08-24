@@ -23,11 +23,14 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,7 +39,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.SocialContract;
-import android.provider.Contacts.Phones;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
@@ -74,9 +76,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.ref.SoftReference;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -107,9 +111,12 @@ public class FastTrackWindow implements Window.Callback,
 
     private NotifyingAsyncQueryHandler mHandler;
     private OnDismissListener mDismissListener;
+    private ResolveCache mResolveCache;
 
     private long mAggId;
     private Rect mAnchor;
+
+    private int mShadowHeight;
 
     private boolean mHasSummary = false;
     private boolean mHasSocial = false;
@@ -122,6 +129,9 @@ public class FastTrackWindow implements Window.Callback,
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
     private Animation mTrackAnim;
+
+    private View mFooter;
+    private View mFooterDisambig;
     private ListView mResolveList;
 
     /**
@@ -150,7 +160,7 @@ public class FastTrackWindow implements Window.Callback,
      * Other mime-types not appearing in this list follow in alphabetic order.
      */
     private static final String[] ORDERED_MIMETYPES = new String[] {
-        Phones.CONTENT_ITEM_TYPE,
+        Phone.CONTENT_ITEM_TYPE,
         Contacts.CONTENT_ITEM_TYPE,
         MIME_SMS_ADDRESS,
         Email.CONTENT_ITEM_TYPE,
@@ -177,8 +187,16 @@ public class FastTrackWindow implements Window.Callback,
         mArrowUp = (ImageView)mWindow.findViewById(R.id.arrow_up);
         mArrowDown = (ImageView)mWindow.findViewById(R.id.arrow_down);
 
+        mResolveCache = new ResolveCache(mContext);
+
+        final Resources res = mContext.getResources();
+        mShadowHeight = res.getDimensionPixelSize(R.dimen.fasttrack_shadow);
+
         mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
         mTrackScroll = (HorizontalScrollView)mWindow.findViewById(R.id.scroll);
+
+        mFooter = mWindow.findViewById(R.id.footer);
+        mFooterDisambig = mWindow.findViewById(R.id.footer_disambig);
         mResolveList = (ListView)mWindow.findViewById(android.R.id.list);
 
         // Prepare track entrance animation
@@ -296,7 +314,6 @@ public class FastTrackWindow implements Window.Callback,
         mDecor.measure(l.width, l.height);
 
         final int blockHeight = mDecor.getMeasuredHeight();
-        final int arrowHeight = mArrowUp.getDrawable().getIntrinsicHeight();
 
         l.gravity = Gravity.TOP | Gravity.LEFT;
         l.x = 0;
@@ -305,13 +322,13 @@ public class FastTrackWindow implements Window.Callback,
             // Show downwards callout when enough room, aligning bottom block
             // edge with top of anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_down, mAnchor.centerX());
-            l.y = mAnchor.top - blockHeight + arrowHeight;
+            l.y = mAnchor.top - blockHeight + mShadowHeight;
 
         } else {
             // Otherwise show upwards callout, aligning block top with bottom of
             // anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_up, mAnchor.centerX());
-            l.y = mAnchor.bottom - arrowHeight;
+            l.y = mAnchor.bottom - mShadowHeight;
 
         }
 
@@ -345,12 +362,13 @@ public class FastTrackWindow implements Window.Callback,
         mHandler.cancelOperation(TOKEN_DATA);
 
         // Clear track actions and scroll to hard left
+        mResolveCache.clear();
         mActions.clear();
         mTrack.removeViews(1, mTrack.getChildCount() - 2);
         mTrackScroll.fullScroll(View.FOCUS_LEFT);
         mWasDownArrow = false;
 
-        showResolveList(View.GONE);
+        setResolveVisible(false);
 
         mQuerying = false;
         mHasSummary = false;
@@ -551,8 +569,9 @@ public class FastTrackWindow implements Window.Callback,
     private interface Action {
         public CharSequence getHeader();
         public CharSequence getBody();
-        public Drawable getIcon();
-        public boolean isValid();
+
+        public String getMimeType();
+        public Drawable getFallbackIcon();
 
         /**
          * Build an {@link Intent} that will perform this action.
@@ -568,13 +587,13 @@ public class FastTrackWindow implements Window.Callback,
         private final Context mContext;
         private final ContactsSource mSource;
         private final DataKind mKind;
+        private final String mMimeType;
 
         private CharSequence mHeader;
         private CharSequence mBody;
         private Intent mIntent;
 
         private boolean mAlternate;
-        private boolean mValidAction;
 
         /**
          * Create an action from common {@link Data} elements.
@@ -584,6 +603,7 @@ public class FastTrackWindow implements Window.Callback,
             mContext = context;
             mSource = source;
             mKind = kind;
+            mMimeType = mimeType;
 
             // Inflate strings from cursor
             mAlternate = MIME_SMS_ADDRESS.equals(mimeType);
@@ -625,10 +645,6 @@ public class FastTrackWindow implements Window.Callback,
                 final Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
                 mIntent = new Intent(Intent.ACTION_VIEW, dataUri);
             }
-
-            // TODO: resolve our created intent to pull correct icon
-            final PackageManager pm = context.getPackageManager();
-            mValidAction = pm.queryIntentActivities(mIntent, 0).size() > 0;
         }
 
         /** {@inheritDoc} */
@@ -642,11 +658,14 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
-        public Drawable getIcon() {
+        public String getMimeType() {
+            return mMimeType;
+        }
+
+        /** {@inheritDoc} */
+        public Drawable getFallbackIcon() {
             // Bail early if no valid resources
             if (mSource.resPackageName == null) return null;
-
-            // TODO: switch to using ResolveInfo icon instead
 
             final PackageManager pm = mContext.getPackageManager();
             if (mAlternate && mKind.iconAltRes > 0) {
@@ -659,16 +678,14 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
-        public boolean isValid() {
-            return mValidAction;
-        }
-
-        /** {@inheritDoc} */
         public Intent getIntent() {
             return mIntent;
         }
     }
 
+    /**
+     * Specific action that launches the profile card.
+     */
     private static class ProfileAction implements Action {
         private final Context mContext;
         private final long mId;
@@ -689,19 +706,109 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
-        public Drawable getIcon() {
-            return mContext.getResources().getDrawable(R.drawable.ic_contacts_details);
+        public String getMimeType() {
+            return Contacts.CONTENT_ITEM_TYPE;
         }
 
         /** {@inheritDoc} */
-        public boolean isValid() {
-            return true;
+        public Drawable getFallbackIcon() {
+            return mContext.getResources().getDrawable(R.drawable.ic_contacts_details);
         }
 
         /** {@inheritDoc} */
         public Intent getIntent() {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mId);
             return new Intent(Intent.ACTION_VIEW, contactUri);
+        }
+    }
+
+    /**
+     * Internally hold a cache of scaled icons based on {@link PackageManager}
+     * queries, keyed internally on MIME-type.
+     */
+    private static class ResolveCache {
+        private Context mContext;
+        private PackageManager mPackageManager;
+
+        /**
+         * Cached entry holding the best {@link ResolveInfo} for a specific
+         * MIME-type, along with a {@link SoftReference} to its icon.
+         */
+        private static class Entry {
+            public ResolveInfo bestResolve;
+            public SoftReference<Drawable> icon;
+        }
+
+        private HashMap<String, Entry> mCache = new HashMap<String, Entry>();
+
+        public ResolveCache(Context context) {
+            mContext = context;
+            mPackageManager = context.getPackageManager();
+        }
+
+        /**
+         * Get the {@link Entry} best associated with the given {@link Action},
+         * or create and populate a new one if it doesn't exist.
+         */
+        protected Entry getEntry(Action action) {
+            final String mimeType = action.getMimeType();
+            Entry entry = mCache.get(mimeType);
+            if (entry == null) {
+                entry = new Entry();
+
+                final Intent intent = action.getIntent();
+                final List<ResolveInfo> matches = mPackageManager.queryIntentActivities(intent,
+                        PackageManager.MATCH_DEFAULT_ONLY);
+
+                if (matches.size() > 0) {
+                    final ResolveInfo bestResolve = matches.get(0);
+                    final Drawable icon = bestResolve.loadIcon(mPackageManager);
+
+                    entry.bestResolve = bestResolve;
+                    entry.icon = new SoftReference<Drawable>(icon);
+                }
+
+                mCache.put(mimeType, entry);
+            }
+            return entry;
+        }
+
+        /**
+         * Check {@link PackageManager} to see if any apps offer to handle the
+         * given {@link Action}.
+         */
+        public boolean hasResolve(Action action) {
+            return getEntry(action).bestResolve != null;
+        }
+
+        /**
+         * Find the best description for the given {@link Action}, usually used
+         * for accessibility purposes.
+         */
+        public CharSequence getDescription(Action action) {
+            final CharSequence actionHeader = action.getHeader();
+            final ResolveInfo info = getEntry(action).bestResolve;
+            if (!TextUtils.isEmpty(actionHeader)) {
+                return actionHeader;
+            } else if (info != null) {
+                return info.loadLabel(mPackageManager);
+            } else {
+                return null;
+            }
+        }
+
+        /**
+         * Return the best icon for the given {@link Action}, which is usually
+         * based on the {@link ResolveInfo} found through a
+         * {@link PackageManager} query.
+         */
+        public Drawable getIcon(Action action) {
+            final SoftReference<Drawable> iconRef = getEntry(action).icon;
+            return (iconRef == null) ? null : iconRef.get();
+        }
+
+        public void clear() {
+            mCache.clear();
         }
     }
 
@@ -793,7 +900,7 @@ public class FastTrackWindow implements Window.Callback,
             }
 
             // If phone number, also insert as text message action
-            if (Phones.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
                 final Action action = new DataAction(mContext, source, MIME_SMS_ADDRESS, kind,
                         cursor);
                 considerAdd(action, MIME_SMS_ADDRESS);
@@ -825,7 +932,7 @@ public class FastTrackWindow implements Window.Callback,
      * {@link Action#getIntent()}.
      */
     private void considerAdd(Action action, String mimeType) {
-        if (action.isValid()) {
+        if (mResolveCache.hasResolve(action)) {
             mActions.collect(mimeType, action);
         }
     }
@@ -847,7 +954,10 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         // Set icon and listen for clicks
-        view.setImageDrawable(firstInfo.getIcon());
+        final CharSequence descrip = mResolveCache.getDescription(firstInfo);
+        final Drawable icon = mResolveCache.getIcon(firstInfo);
+        view.setContentDescription(descrip);
+        view.setImageDrawable(icon);
         view.setOnClickListener(this);
         return view;
     }
@@ -860,22 +970,26 @@ public class FastTrackWindow implements Window.Callback,
 
     /**
      * Flag indicating if {@link #mArrowDown} was visible during the last call
-     * to {@link #showResolveList(int)}. Used to decide during a later call if
-     * the arrow should be restored.
+     * to {@link #setResolveVisible(boolean)}. Used to decide during a later
+     * call if the arrow should be restored.
      */
     private boolean mWasDownArrow = false;
 
     /**
-     * Helper for showing and hiding {@link #mResolveList}, which will correctly
-     * manage {@link #mArrowDown} as needed.
+     * Helper for showing and hiding {@link #mFooterDisambig}, which will
+     * correctly manage {@link #mArrowDown} as needed.
      */
-    private void showResolveList(int visibility) {
+    private void setResolveVisible(boolean visible) {
         // Show or hide the resolve list if needed
-        if (mResolveList.getVisibility() != visibility) {
-            mResolveList.setVisibility(visibility);
-        }
+        boolean visibleNow = mFooterDisambig.getVisibility() == View.VISIBLE;
 
-        if (visibility == View.VISIBLE) {
+        // Bail early if already in desired state
+        if (visible == visibleNow) return;
+
+        mFooter.setVisibility(visible ? View.GONE : View.VISIBLE);
+        mFooterDisambig.setVisibility(visible ? View.VISIBLE : View.GONE);
+
+        if (visible) {
             // If showing list, then hide and save state of down arrow
             mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
             mArrowDown.setVisibility(View.INVISIBLE);
@@ -890,14 +1004,8 @@ public class FastTrackWindow implements Window.Callback,
         final Object tag = v.getTag();
         if (tag instanceof Intent) {
             // Hide the resolution list, if present
-            showResolveList(View.GONE);
-
-            // Dismiss track entirely if switching to dialer
-            final Intent intent = (Intent)tag;
-            final String action = intent.getAction();
-            if (Intent.ACTION_DIAL.equals(action)) {
-                this.dismiss();
-            }
+            setResolveVisible(false);
+            this.dismiss();
 
             try {
                 // Incoming tag is concrete intent, so try launching
@@ -910,7 +1018,7 @@ public class FastTrackWindow implements Window.Callback,
             final ActionList children = (ActionList)tag;
 
             // Show resolution list and set adapter
-            showResolveList(View.VISIBLE);
+            setResolveVisible(true);
 
             mResolveList.setOnItemClickListener(this);
             mResolveList.setAdapter(new BaseAdapter() {
@@ -933,12 +1041,11 @@ public class FastTrackWindow implements Window.Callback,
 
                     // Set action title based on summary value
                     final Action action = (Action)getItem(position);
+                    final Drawable icon = mResolveCache.getIcon(action);
 
-                    ImageView icon1 = (ImageView)convertView.findViewById(android.R.id.icon1);
                     TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
                     TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
 
-                    icon1.setImageDrawable(action.getIcon());
                     text1.setText(action.getHeader());
                     text2.setText(action.getBody());
 
@@ -959,8 +1066,8 @@ public class FastTrackWindow implements Window.Callback,
                 && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             // Back key will first dismiss any expanded resolve list, otherwise
             // it will close the entire dialog.
-            if (mResolveList.getVisibility() == View.VISIBLE) {
-                showResolveList(View.GONE);
+            if (mFooterDisambig.getVisibility() == View.VISIBLE) {
+                setResolveVisible(false);
             } else {
                 dismiss();
             }

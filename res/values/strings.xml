@@ -821,6 +821,11 @@
          was found that could perform the selected action -->
     <string name="fasttrack_missing_app">No application found to handle this action</string>
 
+    <!-- Shown as the checkbox label that, when checked, will store remember the
+         selected choice and shortcut to it in the future.  For example, this would
+         make a selected phone number the default. -->
+    <string name="fasttrack_remember_choice">Remember this choice</string>
+
     <!-- Shown as the header name for a person when the name is missing or unknown. -->
     <string name="fasttrack_missing_name">Unknown</string>
 

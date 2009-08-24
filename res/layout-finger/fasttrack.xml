@@ -24,7 +24,7 @@
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dip">
+        android:layout_marginTop="11dip">
 
         <ViewStub
             android:id="@+id/header_small"
@@ -62,6 +62,8 @@
             android:id="@+id/fasttrack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip"
             android:orientation="horizontal">
 
             <ImageView
@@ -78,31 +80,57 @@
 
     </HorizontalScrollView>
 
-    <ListView
-        android:id="@android:id/list"
+    <FrameLayout
+        android:id="@+id/footer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:background="@drawable/fasttrack_disambig"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:visibility="gone"
-        android:cacheColorHint="@null"
-        android:divider="#fddd" />
+        android:background="@drawable/fasttrack_bottom_frame" />
 
-    <!-- Callout arrows are placed at end so they appear on top -->
+    <LinearLayout
+        android:id="@+id/footer_disambig"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
+        android:background="@drawable/fasttrack_disambig_bottom_bg"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/fasttrack_disambig"
+            android:divider="@drawable/fasttrack_disambig_divider"
+            android:cacheColorHint="@null" />
+
+        <CheckBox
+            android:id="@android:id/checkbox"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dip"
+            android:layout_marginRight="19dip"
+            android:minHeight="60dip"
+            android:textColor="#f000"
+            android:textStyle="bold"
+            android:text="@string/fasttrack_remember_choice"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:button="@drawable/fasttrack_disambig_checkbox" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/arrow_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/fasttrack_arrow_lrg" />
+        android:src="@drawable/fasttrack_arrow_up" />
 
     <ImageView
         android:id="@+id/arrow_down"
-        android:layout_below="@id/scroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-10dip"
-        android:src="@drawable/fasttrack_arrow_large_up" />
+        android:layout_marginTop="-1dip"
+        android:layout_below="@id/footer"
+        android:src="@drawable/fasttrack_arrow_down" />
 
 </RelativeLayout>

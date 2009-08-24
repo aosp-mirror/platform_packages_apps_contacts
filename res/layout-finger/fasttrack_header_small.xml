@@ -19,5 +19,5 @@
     android:id="@+id/header_small"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fasttrack_frame_sm"
+    android:background="@drawable/fasttrack_top_frame"
     android:orientation="horizontal" />

@@ -14,7 +14,11 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true">
+
+    <item android:state_checked="true"
+        android:drawable="@drawable/fasttrack_slider_btn_on" />
     <item android:state_window_focused="false"
         android:drawable="@drawable/fasttrack_slider_btn_normal" />
     <item android:state_pressed="true"
@@ -22,5 +26,6 @@
     <item android:state_focused="true"
         android:drawable="@drawable/fasttrack_slider_btn_selected" />
     <item
-         android:drawable="@drawable/fasttrack_slider_btn_normal" />
+        android:drawable="@drawable/fasttrack_slider_btn_normal" />
+
 </selector>

@@ -19,7 +19,8 @@
     android:id="@+id/header_medium"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fasttrack_frame_med"
+    android:minHeight="45dip"
+    android:background="@drawable/fasttrack_top_frame"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -33,9 +34,23 @@
         android:singleLine="true"
         android:ellipsize="end"
         android:textColor="#f000"
-        android:textStyle="bold"
         android:textSize="15dip" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:src="@drawable/fasttrack_frame_divider_med" />
+
+    <ImageView
+        android:id="@+id/source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dip"
+        android:layout_marginRight="16dip"
+        android:src="@drawable/facebook" />
+
+    <!--
     <ImageView
         android:id="@+id/presence"
         android:layout_width="wrap_content"
@@ -43,5 +58,6 @@
         android:layout_marginRight="15dip"
         android:src="@drawable/fasttrack_slider_presence_active"
         android:scaleType="centerInside" />
+    -->
 
 </LinearLayout>

@@ -89,7 +89,7 @@ public class ContactsSource {
      * {@link Account} or for matching against {@link Data#RES_PACKAGE}.
      */
     public String resPackageName;
-
+    
     public int titleRes;
     public int iconRes;
 
@@ -127,13 +127,13 @@ public class ContactsSource {
         // Handle some well-known sources with hard-coded constraints
         // TODO: move these into adapter-specific XML once schema finalized
         if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(accountType)) {
-            HardCodedSources.buildGoogle(this);
+            HardCodedSources.buildGoogle(context, this);
             return;
         } else if(HardCodedSources.ACCOUNT_TYPE_EXCHANGE.equals(accountType)) {
-            HardCodedSources.buildExchange(this);
+            HardCodedSources.buildExchange(context, this);
             return;
         } else if(HardCodedSources.ACCOUNT_TYPE_FACEBOOK.equals(accountType)) {
-            HardCodedSources.buildFacebook(this);
+            HardCodedSources.buildFacebook(context, this);
             return;
         }
 
