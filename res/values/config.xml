@@ -43,10 +43,13 @@
     <!-- How long to vibrate (in msec), if dialer key vibration is enabled. -->
     <integer name="config_dialer_key_vibrate_duration">40</integer>
 
-    <!-- The type of VCard for export. Without specifying this, generic VCard will be emitted.
-     If you want to let the app emit VCard specific to some vendor (like DoCoMo),
-     please specify the type.-->
-    <string name="config_export_vcard_type"></string>
+    <!-- The type of vcard for improt. If the vcard importer cannot guess the exact type
+    of a vCard type, the improter uses this type. -->
+    <string name="config_import_vcard_type">default</string>
+
+    <!-- The type of VCard for export. If you want to let the app emit vCard which is
+    specific to some vendor (like DoCoMo), specify this type (e.g. "docomo") -->
+    <string name="config_export_vcard_type">default</string>
 
     <!-- Directory in which exported VCard file is stored -->
     <string name="config_export_dir">/sdcard</string>

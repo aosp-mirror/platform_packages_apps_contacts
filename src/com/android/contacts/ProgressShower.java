@@ -16,6 +16,7 @@
 package com.android.contacts;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Handler;
 import android.pim.vcard.ContactStruct;
 import android.pim.vcard.EntryHandler;
@@ -25,10 +26,10 @@ import android.util.Log;
 public class ProgressShower implements EntryHandler {
     public static final String LOG_TAG = "vcard.ProgressShower"; 
 
+    private final Context mContext;
     private final Handler mHandler;
     private final ProgressDialog mProgressDialog;
     private final String mProgressMessage;
-    private final boolean mIncrementProgress;
 
     private long mTime;
     
@@ -40,24 +41,25 @@ public class ProgressShower implements EntryHandler {
         }
         
         public void run() {
-            mProgressDialog.setMessage(mProgressMessage + "\n" + 
-                    mContact.displayString());
-            if (mIncrementProgress) {
-                mProgressDialog.incrementProgressBy(1);
-            }
+            mProgressDialog.setMessage( mProgressMessage + "\n" + 
+                    mContact.getDisplayName());
+            mProgressDialog.incrementProgressBy(1);
         }
     }
     
     public ProgressShower(ProgressDialog progressDialog,
             String progressMessage,
-            Handler handler, 
-            boolean incrementProgress) {
+            Context context,
+            Handler handler) {
+        mContext = context;
         mHandler = handler;
         mProgressDialog = progressDialog;
         mProgressMessage = progressMessage;
-        mIncrementProgress = incrementProgress;
     }
-    
+
+    public void onParsingStart() {
+    }
+
     public void onEntryCreated(ContactStruct contactStruct) {
         long start = System.currentTimeMillis();
         
@@ -66,8 +68,9 @@ public class ProgressShower implements EntryHandler {
                 if (mHandler != null) {
                     mHandler.post(new ShowProgressRunnable(contactStruct));
                 } else {
-                    mProgressDialog.setMessage(mProgressMessage + "\n" + 
-                            contactStruct.displayString());
+                    mProgressDialog.setMessage(mContext.getString(R.string.progress_shower_message,
+                            mProgressMessage, 
+                            contactStruct.getDisplayName()));
                 }
             }
         }
@@ -75,10 +78,10 @@ public class ProgressShower implements EntryHandler {
         mTime += System.currentTimeMillis() - start;
     }
 
-    public void onFinal() {
+    public void onParsingEnd() {
         if (VCardConfig.showPerformanceLog()) {
             Log.d(LOG_TAG,
-                    String.format("Time to progress a dialog: %ld ms", mTime));
+                    String.format("Time to progress a dialog: %d ms", mTime));
         }
     }
 }

@@ -697,11 +697,14 @@
     <!-- Action string for selecting SD Card for importing contacts -->
     <string name="import_from_sdcard">SD Card</string>
 
-    <!-- "Import all VCard files" -->
-    <string name="import_all_vcard_string">Import all VCard files</string>
+    <!-- "Import one vCard file" -->
+    <string name="import_one_vcard_string">Import one vCard file</string>
 
-    <!-- "Import one VCard file" -->
-    <string name="import_one_vcard_string">Import one VCard file</string>
+    <!-- "Import more than one vCard -->
+    <string name="import_multiple_vcard_string">Import multiple vCard files</string>
+
+    <!-- "Import all vCard files" -->
+    <string name="import_all_vcard_string">Import all vCard files</string>
 
     <!-- Dialog message shown when searching VCard data from SD Card -->
     <string name="searching_vcard_message">Searching for VCard data on VCard</string>
@@ -713,7 +716,7 @@
     <string name="scanning_sdcard_failed_message">Scanning SD Card failed</string>
 
     <!-- The failed reason: "I/O Error" -->
-    <string name="fail_reason_io_error">I/O Error</string>
+    <string name="fail_reason_io_error">I/O Error (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason: "Failed to parse VCard data" -->
     <string name="fail_reason_vcard_parse_error">Failed to parse VCard with some unexpected reason</string>
@@ -727,11 +730,19 @@
     <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
     <string name="fail_reason_no_vcard_entry">No valid VCard entry found for your selection</string>
 
+    <!-- The failed reason: "One or more files failed to be imported." -->
+    <string name="fail_reason_failed_to_read_files">One or more files failed to be imported.</string>
+
     <!-- Dialog title shown when a user is asked to select VCard file -->
     <string name="select_vcard_title">Select VCard file</string>
 
     <!-- Dialog message shown when a user is asked to choose VCard file -->
     <string name="select_vcard_message">Please select a VCard file to import</string>
+
+    <!-- The message shown while reading a vCard file/entry. The first argument is like 
+    "Reading VCard" or "Reading VCard files" and the second is the display name of the current 
+    data being parsed -->
+    <string name="progress_shower_message">%s\n%s</string>
 
     <!-- Dialog title shown when reading VCard data -->
     <string name="reading_vcard_title">Reading VCard</string>
