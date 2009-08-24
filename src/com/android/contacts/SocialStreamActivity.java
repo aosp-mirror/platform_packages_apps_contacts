@@ -150,7 +150,7 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         mRect.bottom = mRect.top + anchor.getHeight();
 
         mFastTrack.dismiss();
-        mFastTrack.show(aggUri, mRect, Intents.MODE_MEDIUM);
+        mFastTrack.show(aggUri, mRect, Intents.MODE_MEDIUM, null);
     }
 
     /** {@inheritDoc} */
