@@ -34,6 +34,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in
@@ -121,7 +122,7 @@ public final class ShowOrCreateActivity extends Activity implements
         if (SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
-            Uri uri = Uri.withAppendedPath(RawContacts.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
+            Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
         } else if (SCHEME_TEL.equals(scheme)) {
@@ -181,6 +182,8 @@ public final class ShowOrCreateActivity extends Activity implements
     /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
         if (cursor == null) {
+            // Bail when problem running query in background
+            finish();
             return;
         }
 
