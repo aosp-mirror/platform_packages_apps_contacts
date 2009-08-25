@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
@@ -54,6 +55,16 @@ public class TabStripView extends LinearLayout {
     public void setSelected(int index, boolean selected) {
         mSelectedTabIndex = index;
         getChildAt(index).setSelected(selected);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        ViewParent parent = getParent();
+        if (parent instanceof HorizontalScrollView) {
+            setMinimumWidth(((HorizontalScrollView) getParent()).getMeasuredWidth());
+        }
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override

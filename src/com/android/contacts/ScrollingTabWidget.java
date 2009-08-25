@@ -152,6 +152,14 @@ public class ScrollingTabWidget extends RelativeLayout
         return mTabsView.getChildCount();
     }
 
+    /**
+     * Returns the {@link ViewGroup} that actually contains the tabs. This is where the tab
+     * views should be attached to when being inflated.
+     */
+    public ViewGroup getTabParent() {
+        return mTabsView;
+    }
+
     public void removeAllTabs() {
         mTabsView.removeAllViews();
     }
