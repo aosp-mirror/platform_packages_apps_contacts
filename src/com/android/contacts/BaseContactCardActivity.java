@@ -205,24 +205,12 @@ public abstract class BaseContactCardActivity extends Activity implements
             // TODO: ensure inflation on background task so we don't block UI thread here
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_SUMMARY);
-            addTab(rawContactId, createTabIndicatorView(mTabWidget, source));
+            addTab(rawContactId, createTabIndicatorView(mTabWidget.getTabParent(), source));
         }
 
         selectInitialTab();
         mTabWidget.setVisibility(View.VISIBLE);
         mTabWidget.postInvalidate();
-    }
-
-
-    /**
-     * Add a tab to be displayed in the {@link ScrollingTabWidget}.
-     *
-     * @param contactId The contact id associated with the tab.
-     * @param label A label to display in the tab indicator.
-     * @param icon An icon to display in the tab indicator.
-     */
-    protected void addTab(long contactId, String label, Drawable icon) {
-        addTab(contactId, createTabIndicatorView(mTabWidget, label, icon));
     }
 
     /**

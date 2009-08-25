@@ -335,7 +335,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 selectedTab = mTabWidget.getTabCount();
             }
 
-            final View tabView = BaseContactCardActivity.createTabIndicatorView(mTabWidget, source);
+            final View tabView = BaseContactCardActivity.createTabIndicatorView(
+                    mTabWidget.getTabParent(), source);
             mTabWidget.addTab(tabView);
         }
         if (mState.size() > 0) {

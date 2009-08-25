@@ -265,7 +265,8 @@ public class ViewContactActivity extends BaseContactCardActivity
     }
 
     private void addAllTab() {
-        View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator, mTabWidget, false);
+        View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator,
+                mTabWidget.getTabParent(), false);
         allTabIndicator.getBackground().setDither(true);
         addTab(ALL_CONTACTS_ID, allTabIndicator);
     }
