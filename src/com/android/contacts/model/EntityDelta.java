@@ -437,7 +437,8 @@ public class EntityDelta implements Parcelable {
         }
 
         public boolean isPrimary() {
-            return (getAsLong(Data.IS_PRIMARY) != 0);
+            final Long isPrimary = getAsLong(Data.IS_PRIMARY);
+            return isPrimary == null ? false : isPrimary != 0;
         }
 
         public boolean beforeExists() {
