@@ -816,6 +816,9 @@
     <!-- Shown as the social status snippet for a person when no social updates exist. -->
     <string name="fasttrack_missing_status">No recent updates</string>
 
+    <!-- The menu item to open the list of accounts -->
+    <string name="menu_accounts">Accounts</string>
+
 <!-- TODO: add comments to each of these strings to prepare for translation -->
 <string name="nameLabelsGroup">Name</string>
 <string name="nicknameLabelsGroup">Nickname</string>
