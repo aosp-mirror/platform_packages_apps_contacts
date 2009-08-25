@@ -298,6 +298,11 @@ public class EntityModifier {
      * assuming the extras defined through {@link Intents}.
      */
     public static void parseExtras(Context context, ContactsSource source, EntityDelta state, Bundle extras) {
+        if (extras == null || extras.size() == 0) {
+            // Bail early if no useful data
+            return;
+        }
+
         {
             // StructuredName
             final DataKind kind = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
@@ -332,7 +337,7 @@ public class EntityModifier {
         {
             // Email
             final DataKind kind = source.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
-            parseExtras(state, kind, extras, Insert.EMAIL_TYPE, Insert.PHONE, Email.DATA);
+            parseExtras(state, kind, extras, Insert.EMAIL_TYPE, Insert.EMAIL, Email.DATA);
             parseExtras(state, kind, extras, Insert.SECONDARY_EMAIL_TYPE, Insert.SECONDARY_EMAIL,
                     Email.DATA);
             parseExtras(state, kind, extras, Insert.TERTIARY_EMAIL_TYPE, Insert.TERTIARY_EMAIL,
@@ -363,7 +368,7 @@ public class EntityModifier {
 
         // Bail when can't insert type, or value missing
         final boolean canInsert = EntityModifier.canInsert(state, kind);
-        final boolean validValue = TextUtils.isGraphic(value);
+        final boolean validValue = (value != null && TextUtils.isGraphic(value));
         if (!validValue || !canInsert) return;
 
         // Find exact type, or otherwise best type

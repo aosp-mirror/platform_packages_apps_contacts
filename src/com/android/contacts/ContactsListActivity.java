@@ -50,6 +50,7 @@ import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -71,6 +72,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,13 +120,6 @@ public final class ContactsListActivity extends ListActivity implements
     static final int MENU_ITEM_DELETE = 7;
     static final int MENU_ITEM_TOGGLE_STAR = 8;
 
-    public static final int MENU_SEARCH = 1;
-    public static final int MENU_DIALER = 9;
-    public static final int MENU_NEW_CONTACT = 10;
-    public static final int MENU_DISPLAY_GROUP = 11;
-    public static final int MENU_IMPORT_CONTACTS = 12;
-    public static final int MENU_EXPORT_CONTACTS = 13;
-
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
@@ -146,6 +141,8 @@ public final class ContactsListActivity extends ListActivity implements
      */
     public static final String EXTRA_AGGREGATE_ID =
             "com.android.contacts.action.AGGREGATE_ID";
+
+    public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
     /** Mask for picker mode */
     static final int MODE_MASK_PICKER = 0x80000000;
@@ -281,7 +278,7 @@ public final class ContactsListActivity extends ListActivity implements
 
     private String mShortcutAction;
     private boolean mDefaultMode = false;
-    
+
     private boolean mCreateShortcut;
 
     /**
@@ -298,7 +295,7 @@ public final class ContactsListActivity extends ListActivity implements
      * provided by scheme-specific part of incoming {@link Intent#getData()}.
      */
     private String mQueryData;
-    
+
     private Handler mHandler = new Handler();
 
     private class ImportTypeSelectedListener implements DialogInterface.OnClickListener {
@@ -502,7 +499,7 @@ public final class ContactsListActivity extends ListActivity implements
         list.setOnCreateContextMenuListener(this);
         if ((mMode & MODE_MASK_NO_FILTER) != MODE_MASK_NO_FILTER) {
             list.setTextFilterEnabled(true);
-        }        
+        }
 
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
@@ -697,63 +694,48 @@ public final class ContactsListActivity extends ListActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
         // If Contacts was invoked by another Activity simply as a way of
         // picking a contact, don't show the options menu
         if ((mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER) {
             return false;
         }
 
-        // TODO: move this into a resource-based menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list, menu);
+        return true;
+    }
 
-        // Search
-        menu.add(0, MENU_SEARCH, 0, R.string.menu_search)
-                .setIcon(android.R.drawable.ic_menu_search);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        final boolean defaultMode = (mMode == MODE_DEFAULT);
+        menu.findItem(R.id.menu_display_groups).setVisible(defaultMode);
 
-        // New contact
-        menu.add(0, MENU_NEW_CONTACT, 0, R.string.menu_newContact).setIcon(
-                android.R.drawable.ic_menu_add).setIntent(
-                new Intent(Intents.Insert.ACTION, Contacts.CONTENT_URI)).setAlphabeticShortcut('n');
+        final boolean allowExport = getResources().getBoolean(R.bool.config_allow_export_to_sdcard);
+        menu.findItem(R.id.menu_export).setVisible(allowExport);
 
-        // Display group
-        if (mMode == MODE_DEFAULT) {
-            menu.add(0, MENU_DISPLAY_GROUP, 0, R.string.menu_displayGroup)
-                    .setIcon(com.android.internal.R.drawable.ic_menu_allfriends);
-        }
-
-        // Sync settings
-        if (mSyncEnabled) {
-            Intent syncIntent = new Intent(Intent.ACTION_VIEW);
-            syncIntent.setClass(this, ContactsGroupSyncSelector.class);
-            menu.add(0, 0, 0, R.string.syncGroupPreference)
-                    .setIcon(com.android.internal.R.drawable.ic_menu_refresh)
-                    .setIntent(syncIntent);
-        }
-        
-        // Contacts import (SIM/SDCard)
-        menu.add(0, MENU_IMPORT_CONTACTS, 0, R.string.importFromSim)
-                .setIcon(R.drawable.ic_menu_import_contact);
-
-        if (getResources().getBoolean(R.bool.config_allow_export_to_sdcard)) {
-            menu.add(0, MENU_EXPORT_CONTACTS, 0, R.string.export_contact_list)
-                    .setIcon(R.drawable.ic_menu_export_contact);
-        }
-
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_DISPLAY_GROUP:
+            case R.id.menu_display_groups: {
                 final Intent intent = new Intent(this, DisplayGroupsActivity.class);
                 startActivityForResult(intent, SUBACTIVITY_DISPLAY_GROUP);
                 return true;
-
-            case MENU_SEARCH:
+            }
+            case R.id.menu_search: {
                 startSearch(null, false, null, false);
                 return true;
-
-            case MENU_IMPORT_CONTACTS:
+            }
+            case R.id.menu_add: {
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_import: {
                 if (getResources().getBoolean(R.bool.config_allow_import_from_sdcard)) {
                     ImportTypeSelectedListener listener =
                             new ImportTypeSelectedListener();
@@ -770,9 +752,19 @@ public final class ContactsListActivity extends ListActivity implements
                     doImportFromSim();
                 }
                 return true;
-
-            case MENU_EXPORT_CONTACTS:
+            }
+            case R.id.menu_export: {
                 handleExportContacts();
+                return true;
+            }
+            case R.id.menu_accounts: {
+                final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
+                intent.putExtra(AUTHORITIES_FILTER_KEY, new String[] {
+                    ContactsContract.AUTHORITY
+                });
+                startActivity(intent);
+                return true;
+            }
         }
         return false;
     }
@@ -793,7 +785,7 @@ public final class ContactsListActivity extends ListActivity implements
         VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
         exporter.startExportVCardToSdCard();
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
             Intent data) {
@@ -1050,7 +1042,7 @@ public final class ContactsListActivity extends ListActivity implements
 
     private void returnPickerResult(Cursor c, String name, Uri uri, long id) {
         final Intent intent = new Intent();
-    
+
         if (mShortcutAction != null) {
             Intent shortcutIntent;
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
@@ -1080,7 +1072,7 @@ public final class ContactsListActivity extends ListActivity implements
                 // Make the URI a direct tel: URI so that it will always continue to work
                 Uri phoneUri = Uri.fromParts(scheme, number, null);
                 shortcutIntent = new Intent(mShortcutAction, phoneUri);
-                
+
                 // Find the People._ID for this phone number
 /* TODO bring back the better icon handling
                 final long personId = c.getLong(PHONES_PERSON_ID_INDEX);
@@ -1207,7 +1199,7 @@ public final class ContactsListActivity extends ListActivity implements
             return null;
         }
     }
-    
+
     String[] getProjection() {
         switch (mMode) {
             case MODE_PICK_PHONE:

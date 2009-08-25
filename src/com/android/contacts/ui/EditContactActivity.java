@@ -23,6 +23,7 @@ import com.android.contacts.ScrollingTabWidget;
 import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -690,10 +691,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     dialog.dismiss();
 
                     // Create new contact based on selected source
-                    final Account source = accountAdapter.getItem(which);
+                    final Account account = accountAdapter.getItem(which);
                     final ContentValues values = new ContentValues();
-                    values.put(RawContacts.ACCOUNT_NAME, source.name);
-                    values.put(RawContacts.ACCOUNT_TYPE, source.type);
+                    values.put(RawContacts.ACCOUNT_NAME, account.name);
+                    values.put(RawContacts.ACCOUNT_TYPE, account.type);
 
                     // Tie this directly to existing aggregate
                     // TODO: this may need to use aggregation exception rules
@@ -702,7 +703,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                         values.put(RawContacts.CONTACT_ID, aggregateId);
                     }
 
+                    // Parse any values from incoming intent
                     final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
+                    final ContactsSource source = sources.getInflatedSource(account.type,
+                            ContactsSource.LEVEL_CONSTRAINTS);
+                    final Bundle extras = target.getIntent().getExtras();
+                    EntityModifier.parseExtras(target, source, insert, extras);
+
                     target.mState.add(insert);
 
                     target.bindTabs();

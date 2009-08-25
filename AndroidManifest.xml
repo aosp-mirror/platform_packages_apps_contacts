@@ -201,8 +201,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
 
             <intent-filter>
@@ -311,6 +312,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
                 <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
@@ -324,13 +326,16 @@
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
+
             <intent-filter android:label="@string/insertContactDescription">
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
             </intent-filter>
         </activity>
 
@@ -361,11 +366,6 @@
             </intent-filter>
             />
         </activity>        
-
-        <!-- Activity used to select the groups that should be synced -->
-        <activity android:name="ContactsGroupSyncSelector"
-            android:label="@string/seclectSyncGroups_title"
-        />
 
         <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
         <meta-data android:name="android.app.default_searchable" 
