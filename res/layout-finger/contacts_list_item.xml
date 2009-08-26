@@ -27,7 +27,13 @@
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content"
         android:background="#444444"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+    />
+
+    <View android:id="@+id/list_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/divider_horizontal_dark"
     />
 
     <RelativeLayout

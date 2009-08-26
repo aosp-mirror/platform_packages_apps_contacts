@@ -27,6 +27,12 @@
         layout="@layout/list_separator"
     />
     
+    <View android:id="@+id/list_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/divider_horizontal_dark"
+    />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
