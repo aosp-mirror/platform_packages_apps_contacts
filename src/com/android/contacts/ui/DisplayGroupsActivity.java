@@ -529,10 +529,10 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                     return R.string.display_ungrouped;
                 case GroupsQuery.GROUP_VISIBLE:
                     return mCursor.getInt(SettingsQuery.UNGROUPED_VISIBLE);
-                case GroupsQuery.SUMMARY_COUNT:
-                    return mCursor.getInt(SettingsQuery.UNGROUPED_COUNT);
-                case GroupsQuery.SUMMARY_WITH_PHONES:
-                    return mCursor.getInt(SettingsQuery.UNGROUPED_WITH_PHONES);
+//                case GroupsQuery.SUMMARY_COUNT:
+//                    return mCursor.getInt(SettingsQuery.UNGROUPED_COUNT);
+//                case GroupsQuery.SUMMARY_WITH_PHONES:
+//                    return mCursor.getInt(SettingsQuery.UNGROUPED_WITH_PHONES);
             }
             throw new IllegalArgumentException("Requested column not available as int");
         }
@@ -642,18 +642,18 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             final TextView text2 = (TextView)view.findViewById(android.R.id.text2);
             final CheckBox checkbox = (CheckBox)view.findViewById(android.R.id.checkbox);
 
-            final int count = cursor.getInt(GroupsQuery.SUMMARY_COUNT);
-            final int withPhones = cursor.getInt(GroupsQuery.SUMMARY_WITH_PHONES);
+//            final int count = cursor.getInt(GroupsQuery.SUMMARY_COUNT);
+//            final int withPhones = cursor.getInt(GroupsQuery.SUMMARY_WITH_PHONES);
             final int membersVisible = cursor.getInt(GroupsQuery.GROUP_VISIBLE);
 
             // Read title, but override with string resource when present
             final CharSequence title = getGroupTitle(mContext, cursor);
-            final CharSequence descrip = mContext.getResources().getQuantityString(
-                    mChildWithPhones ? R.plurals.groupDescripPhones : R.plurals.groupDescrip,
-                    count, count, withPhones);
+//            final CharSequence descrip = mContext.getResources().getQuantityString(
+//                    mChildWithPhones ? R.plurals.groupDescripPhones : R.plurals.groupDescrip,
+//                    count, count, withPhones);
 
             text1.setText(title);
-            text2.setText(descrip);
+//            text2.setText(descrip);
             checkbox.setChecked((membersVisible == 1));
         }
     }
@@ -664,16 +664,16 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                 Settings.ACCOUNT_TYPE,
                 Settings.SHOULD_SYNC,
                 Settings.UNGROUPED_VISIBLE,
-                Settings.UNGROUPED_COUNT,
-                Settings.UNGROUPED_WITH_PHONES,
+//                Settings.UNGROUPED_COUNT,
+//                Settings.UNGROUPED_WITH_PHONES,
         };
 
         final int ACCOUNT_NAME = 0;
         final int ACCOUNT_TYPE = 1;
         final int SHOULD_SYNC = 2;
         final int UNGROUPED_VISIBLE = 3;
-        final int UNGROUPED_COUNT = 4;
-        final int UNGROUPED_WITH_PHONES = 5;
+//        final int UNGROUPED_COUNT = 4;
+//        final int UNGROUPED_WITH_PHONES = 5;
     }
 
     private interface GroupsQuery {
@@ -683,8 +683,8 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             Groups.RES_PACKAGE,
             Groups.TITLE_RES,
             Groups.GROUP_VISIBLE,
-            Groups.SUMMARY_COUNT,
-            Groups.SUMMARY_WITH_PHONES,
+//            Groups.SUMMARY_COUNT,
+//            Groups.SUMMARY_WITH_PHONES,
             Groups.ACCOUNT_NAME,
             Groups.ACCOUNT_TYPE,
         };
@@ -694,9 +694,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final int RES_PACKAGE = 2;
         final int TITLE_RES = 3;
         final int GROUP_VISIBLE = 4;
-        final int SUMMARY_COUNT = 5;
-        final int SUMMARY_WITH_PHONES = 6;
-        final int ACCOUNT_NAME = 7;
-        final int ACCOUNT_TYPE = 8;
+//        final int SUMMARY_COUNT = 5;
+//        final int SUMMARY_WITH_PHONES = 6;
+        final int ACCOUNT_NAME = 5;
+        final int ACCOUNT_TYPE = 6;
     }
 }
