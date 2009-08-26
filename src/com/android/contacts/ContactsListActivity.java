@@ -495,6 +495,9 @@ public final class ContactsListActivity extends ListActivity implements
 
         // Setup the UI
         final ListView list = getListView();
+        // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
+        // them when an A-Z headers is visible.
+        list.setDividerHeight(0);
         list.setFocusable(true);
         list.setOnCreateContextMenuListener(this);
         if ((mMode & MODE_MASK_NO_FILTER) != MODE_MASK_NO_FILTER) {
@@ -1525,6 +1528,7 @@ public final class ContactsListActivity extends ListActivity implements
 
     final static class ContactListItemCache {
         public TextView header;
+        public View divider;
         public TextView nameView;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
@@ -1772,6 +1776,7 @@ public final class ContactsListActivity extends ListActivity implements
 
             final ContactListItemCache cache = new ContactListItemCache();
             cache.header = (TextView) view.findViewById(R.id.header);
+            cache.divider = (View) view.findViewById(R.id.list_divider);
             cache.nameView = (TextView) view.findViewById(R.id.name);
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
@@ -1923,13 +1928,16 @@ public final class ContactsListActivity extends ListActivity implements
             final ContactListItemCache cache = (ContactListItemCache) view.getTag();
             if (!displaySectionHeaders) {
                 cache.header.setVisibility(View.GONE);
+                cache.divider.setVisibility(View.VISIBLE);
             } else {
                 final int section = getSectionForPosition(position);
                 if (getPositionForSection(section) == position) {
                     cache.header.setText(mIndexer.getSections()[section].toString());
                     cache.header.setVisibility(View.VISIBLE);
+                    cache.divider.setVisibility(View.GONE);
                 } else {
                     cache.header.setVisibility(View.GONE);
+                    cache.divider.setVisibility(View.VISIBLE);
                 }
             }
         }
