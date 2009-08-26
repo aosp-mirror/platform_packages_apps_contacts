@@ -46,6 +46,7 @@ public class TabStripView extends LinearLayout {
     }
 
     private void init() {
+        mGroupFlags |= FLAG_USE_CHILD_DRAWING_ORDER;
         mBottomLeftStrip = mContext.getResources().getDrawable(
                 R.drawable.tab_bottom);
         mBottomRightStrip = mContext.getResources().getDrawable(
@@ -65,6 +66,19 @@ public class TabStripView extends LinearLayout {
         }
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
+    protected int getChildDrawingOrder(int childCount, int i) {
+        // Always draw the selected tab last, so that drop shadows are drawn
+        // in the correct z-order.
+        if (i == childCount - 1) {
+            return mSelectedTabIndex;
+        } else if (i >= mSelectedTabIndex) {
+            return i + 1;
+        } else {
+            return i;
+        }
     }
 
     @Override
