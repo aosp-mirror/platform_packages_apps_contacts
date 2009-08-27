@@ -892,7 +892,7 @@
 
     <!-- Warning message given to users just before they remove a currently syncing
          group that would also cause all ungrouped contacts to stop syncing. -->
-    <string name="display_warn_remove_ungrouped">Removing '%s' from sync will also remove any ungrouped contacts from sync.</string>
+    <string name="display_warn_remove_ungrouped">Removing \'%s\' from sync will also remove any ungrouped contacts from sync.</string>
 
 
 <string name="call_home">Call home</string>
