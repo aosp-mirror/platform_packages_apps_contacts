@@ -17,7 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.ui.DisplayGroupsActivity;
-import com.android.contacts.ui.FastTrackWindow;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 import com.android.contacts.util.Constants;
 
@@ -90,6 +89,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
+import android.widget.FasttrackBadgeWidget;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -288,7 +288,6 @@ public final class ContactsListActivity extends ListActivity implements
 
     private static final int QUERY_TOKEN = 42;
 
-    private FastTrackWindow mFastTrack;
     private ContactItemListAdapter mAdapter;
 
     int mMode = MODE_DEFAULT;
@@ -533,7 +532,6 @@ public final class ContactsListActivity extends ListActivity implements
         // Set the proper empty string
         setEmptyText();
 
-        mFastTrack = new FastTrackWindow(this);
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
@@ -572,40 +570,15 @@ public final class ContactsListActivity extends ListActivity implements
     private int[] mLocation = new int[2];
     private Rect mRect = new Rect();
 
-    private void showFastTrack(View anchor, Uri contactUri) {
-        anchor.getLocationInWindow(mLocation);
-        mRect.left = mLocation[0];
-        mRect.top = mLocation[1];
-        mRect.right = mRect.left + anchor.getWidth();
-        mRect.bottom = mRect.top + anchor.getHeight();
-
-        mFastTrack.dismiss();
-        mFastTrack.show(contactUri, mRect, Intents.MODE_MEDIUM, null);
-    }
-
     /** {@inheritDoc} */
     public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.call_button: {
-                final int position = (Integer) v.getTag();
-                Cursor c =  (Cursor) mAdapter.getItem(position);
-                if (c != null) {
-                    callContact(c);
-                }
-                break;
-            }
-
-            case R.id.photo: {
-                // Clicked on photo, so show fast-track
-                final PhotoInfo info = (PhotoInfo) v.getTag();
-                final int position = info.position;
-                final Uri contactUri = getContactUri(position);
-                showFastTrack(v, contactUri);
-                break;
+        if (v.getId() == R.id.call_button) {
+            final int position = (Integer) v.getTag();
+            Cursor c =  (Cursor) mAdapter.getItem(position);
+            if (c != null) {
+                callContact(c);
             }
         }
-
     }
 
     private void setEmptyText() {
@@ -1010,16 +983,6 @@ public final class ContactsListActivity extends ListActivity implements
         }
 
         return super.onContextItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mFastTrack.isShowing()) {
-            // Back key dismisses fast-track when its visible
-            mFastTrack.dismiss();
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -1832,7 +1795,7 @@ public final class ContactsListActivity extends ListActivity implements
         public TextView dataView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
-        public ImageView photoView;
+        public FasttrackBadgeWidget photoView;
     }
 
     final static class PhotoInfo {
@@ -1843,6 +1806,7 @@ public final class ContactsListActivity extends ListActivity implements
             this.position = position;
             this.photoId = photoId;
         }
+        public FasttrackBadgeWidget photoView;
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter
@@ -2104,10 +2068,7 @@ public final class ContactsListActivity extends ListActivity implements
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
-            cache.photoView = (ImageView) view.findViewById(R.id.photo);
-            if (cache.photoView != null) {
-                cache.photoView.setOnClickListener(ContactsListActivity.this);
-            }
+            cache.photoView = (FasttrackBadgeWidget) view.findViewById(R.id.photo);
             view.setTag(cache);
 
             return view;
@@ -2182,6 +2143,11 @@ public final class ContactsListActivity extends ListActivity implements
 
                 final int position = cursor.getPosition();
                 cache.photoView.setTag(new PhotoInfo(position, photoId));
+
+                // Build soft lookup reference
+                final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
+                final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
+                cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
 
                 if (photoId == 0) {
                     cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
