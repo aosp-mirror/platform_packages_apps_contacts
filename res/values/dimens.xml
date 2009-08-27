@@ -14,6 +14,6 @@
      limitations under the License.
 -->
 
-<nine-patch xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/fasttrack_slider_background"
-    android:dither="true" />
+<resources>
+    <dimen name="fasttrack_shadow">37dip</dimen>
+</resources>

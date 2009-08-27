@@ -14,7 +14,12 @@
      limitations under the License.
 -->
 
-<bitmap
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/fasttrack_slider_btn_normal"
-    android:dither="true" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true">
+
+    <item android:state_checked="true"
+        android:drawable="@drawable/fasttrack_disambig_checkbox_on" />
+    <item
+        android:drawable="@drawable/fasttrack_disambig_checkbox_off" />
+
+</selector>

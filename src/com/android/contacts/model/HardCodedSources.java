@@ -74,7 +74,7 @@ public class HardCodedSources {
     /**
      * Hard-coded instance of {@link ContactsSource} for Google Contacts.
      */
-    static void buildGoogle(ContactsSource list) {
+    static void buildGoogle(Context context, ContactsSource list) {
         {
             // GOOGLE: STRUCTUREDNAME
             DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
@@ -305,7 +305,7 @@ public class HardCodedSources {
     /**
      * Hard-coded instance of {@link ContactsSource} for Exchange.
      */
-    static void buildExchange(ContactsSource list) {
+    static void buildExchange(Context context, ContactsSource list) {
         {
             // EXCHANGE: STRUCTUREDNAME
             DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
@@ -450,7 +450,7 @@ public class HardCodedSources {
     /**
      * Hard-coded instance of {@link ContactsSource} for Facebook.
      */
-    static void buildFacebook(ContactsSource list) {
+    static void buildFacebook(Context context, ContactsSource list) {
         list.accountType = ACCOUNT_TYPE_FACEBOOK;
         list.readOnly = true;
 
@@ -517,9 +517,8 @@ public class HardCodedSources {
 
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
-            final boolean validString = (type != null && type.actionRes > 0);
-            return validString ? context.getPackageManager().getText(mPackageName, type.actionRes,
-                    null) : null;
+            final boolean validString = (type != null && type.actionRes != 0);
+            return validString ? context.getText(type.actionRes) : null;
         }
     }
 
@@ -534,9 +533,8 @@ public class HardCodedSources {
 
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
-            final boolean validString = (type != null && type.actionAltRes > 0);
-            return validString ? context.getPackageManager().getText(mPackageName,
-                    type.actionAltRes, null) : null;
+            final boolean validString = (type != null && type.actionAltRes != 0);
+            return validString ? context.getText(type.actionAltRes) : null;
         }
     }
 }

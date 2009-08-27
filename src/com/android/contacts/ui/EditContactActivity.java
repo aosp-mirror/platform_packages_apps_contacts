@@ -24,17 +24,14 @@ import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.contacts.util.EmptyService;
-import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.internal.widget.ContactHeaderWidget;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -49,21 +46,16 @@ import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.OperationApplicationException;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
-import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -73,14 +65,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -226,7 +215,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 target.mContactId = ContactsUtils.queryForContactId(target.getContentResolver(),
                         rawContactId);
                 selection = RawContacts.CONTACT_ID + "=" + target.mContactId;
-            } else if (Contacts.AUTHORITY.equals(authority)) {
+            } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
                 target.mSelectedRawContactId = rawContactId;
                 selection = RawContacts._ID + "=" + rawContactId;
@@ -315,7 +304,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
 
     /**
-     * Rebuild tabs to match our underlying {@link #mEntities} object, usually
+     * Rebuild tabs to match our underlying {@link #mState} object, usually
      * called once we've parsed {@link Entity} data or have inserted a new
      * {@link RawContacts}.
      */

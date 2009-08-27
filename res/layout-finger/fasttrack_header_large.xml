@@ -19,7 +19,8 @@
     android:id="@+id/header_large"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fasttrack_frame_lrg"
+    android:minHeight="87dip"
+    android:background="@drawable/fasttrack_top_frame"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 

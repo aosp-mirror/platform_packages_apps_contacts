@@ -35,19 +35,19 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.util.Log;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in
  * connected with a specific E-mail address or phone number. Will search based
  * on incoming {@link Intent#getData()} as described by
- * {@link android.provider.Contacts.Intents#SHOW_OR_CREATE_CONTACT}.
- *
+ * {@link Intents#SHOW_OR_CREATE_CONTACT}.
  * <ul>
  * <li>If no matching contacts found, will prompt user with dialog to add to a
  * contact, then will use {@link Intent#ACTION_INSERT_OR_EDIT} to let create new
  * contact or edit new data into an existing one.
- * <li>If one matching contact found, directly show {@link Intent#ACTION_VIEW}
- * that specific contact.
+ * <li>If one matching contact found, show the {@link FastTrackWindow}
+ * associated with the found contact. Will show translucent over the caller.
  * <li>If more than one matching found, show list of matching contacts using
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
@@ -162,6 +162,7 @@ public final class ShowOrCreateActivity extends Activity implements
             targetRect = (Rect)extras.getParcelable(Intents.EXTRA_TARGET_RECT);
         } else {
             // TODO: this default rect matches gmail messages, and should move over there
+            Log.w(TAG, "Using default TARGET_RECT");
             targetRect = new Rect(15, 110, 15+18, 110+18);
         }
 
