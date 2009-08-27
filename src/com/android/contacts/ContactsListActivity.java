@@ -687,6 +687,7 @@ public final class ContactsListActivity extends ListActivity implements
         // in response to onRestart() setLoading(false) will be called.
         mAdapter.setLoading(true);
         mAdapter.changeCursor(null);
+        mAdapter.clearImageFetching();
 
         if (mMode == MODE_QUERY) {
             // Make sure the search box is closed
@@ -1622,7 +1623,7 @@ public final class ContactsListActivity extends ListActivity implements
                         int pos = (Integer) imageView.getTag();
                         Cursor cursor = (Cursor) getItem(pos);
 
-                        if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
+                        if (cursor != null && !cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
                             try {
                                 Bitmap photo = ContactsUtils.loadContactPhoto(
                                         mContext, cursor.getInt(SUMMARY_PHOTO_ID_COLUMN_INDEX),
@@ -2151,7 +2152,7 @@ public final class ContactsListActivity extends ListActivity implements
             mScrollState = scrollState;
             if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
                 // If we are not idle, stop loading images.
-                mHandler.clearImageFecthing();
+                clearImageFetching();
             } else if (mDisplayPhotos) {
                 processMissingImageItems(view);
             }
@@ -2169,6 +2170,11 @@ public final class ContactsListActivity extends ListActivity implements
             msg.what = FETCH_IMAGE_MSG;
             msg.obj = view;
             mHandler.sendMessage(msg);
+        }
+
+        /** Clear all pending messages on the {@link ImageFetchHandler} */
+        public void clearImageFetching() {
+            mHandler.clearImageFecthing();
         }
     }
 }
