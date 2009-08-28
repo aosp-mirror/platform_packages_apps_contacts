@@ -23,7 +23,6 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.EntityIterator;
@@ -32,8 +31,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -46,7 +43,6 @@ import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.SocialContract.Activities;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -120,11 +116,13 @@ public class FastTrackWindow implements Window.Callback,
 
     private boolean mHasSummary = false;
     private boolean mHasSocial = false;
+    private boolean mHasValidSocial = false;
     private boolean mHasActions = false;
 
     private ImageView mArrowUp;
     private ImageView mArrowDown;
 
+    private int mMode;
     private View mHeader;
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
@@ -257,20 +255,23 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         // Prepare header view for requested mode
+        mMode = mode;
         mHeader = getHeaderView(mode);
         mExcludeMimes = excludeMimes;
 
         setHeaderText(R.id.name, R.string.fasttrack_missing_name);
-        setHeaderText(R.id.status, R.string.fasttrack_missing_status);
+        setHeaderText(R.id.status, null);
         setHeaderText(R.id.published, null);
         setHeaderImage(R.id.presence, null);
+
+        mHasValidSocial = false;
 
         mAggId = ContentUris.parseId(aggUri);
         mAnchor = new Rect(anchor);
         mQuerying = true;
 
         Uri aggSummary = ContentUris.withAppendedId(
-                ContactsContract.Contacts.CONTENT_SUMMARY_URI, mAggId);
+                ContactsContract.Contacts.CONTENT_URI, mAggId);
         Uri aggSocial = ContentUris.withAppendedId(
                 SocialContract.Activities.CONTENT_CONTACT_STATUS_URI, mAggId);
         Uri aggData = Uri.withAppendedPath(aggUri,
@@ -278,9 +279,9 @@ public class FastTrackWindow implements Window.Callback,
 
         // Start data query in background
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
-        mHandler.startQuery(TOKEN_SUMMARY, null, aggSummary, null, null, null, null);
-        mHandler.startQuery(TOKEN_SOCIAL, null, aggSocial, null, null, null, null);
-        mHandler.startQuery(TOKEN_DATA, null, aggData, null, null, null, null);
+        mHandler.startQuery(TOKEN_SUMMARY, null, aggSummary, SummaryQuery.PROJECTION, null, null, null);
+        mHandler.startQuery(TOKEN_SOCIAL, null, aggSocial, SocialQuery.PROJECTION, null, null, null);
+        mHandler.startQuery(TOKEN_DATA, null, aggData, DataQuery.PROJECTION, null, null, null);
     }
 
     /**
@@ -404,6 +405,13 @@ public class FastTrackWindow implements Window.Callback,
      */
     private synchronized void considerShowing() {
         if (mHasSummary && mHasSocial && mHasActions && !mShowing) {
+            if (mMode == Intents.MODE_MEDIUM && !mHasValidSocial) {
+                // Missing valid social, swap medium for small header
+                mHeader.setVisibility(View.GONE);
+                mHeader = getHeaderView(Intents.MODE_SMALL);
+            }
+
+            // All queries have returned, pull curtain
             showInternal();
         }
     }
@@ -471,8 +479,10 @@ public class FastTrackWindow implements Window.Callback,
     private void handleSummary(Cursor cursor) {
         if (cursor == null || !cursor.moveToNext()) return;
 
-        final String name = getAsString(cursor, Contacts.DISPLAY_NAME);
-        final int status = getAsInteger(cursor, Contacts.PRESENCE_STATUS);
+        // TODO: switch to provider-specific presence dots instead of using
+        // overall summary dot.
+        final String name = cursor.getString(SummaryQuery.DISPLAY_NAME);
+        final int status = cursor.getInt(SummaryQuery.PRESENCE_STATUS);
         final Drawable statusIcon = getPresenceIcon(status);
 
         setHeaderText(R.id.name, name);
@@ -485,10 +495,12 @@ public class FastTrackWindow implements Window.Callback,
     private void handleSocial(Cursor cursor) {
         if (cursor == null || !cursor.moveToNext()) return;
 
-        final String status = getAsString(cursor, Activities.TITLE);
-        final long published = getAsLong(cursor, Activities.PUBLISHED);
+        final String status = cursor.getString(SocialQuery.TITLE);
+        final long published = cursor.getLong(SocialQuery.PUBLISHED);
         final CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
                 System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
+
+        mHasValidSocial = !TextUtils.isEmpty(status);
 
         setHeaderText(R.id.status, status);
         setHeaderText(R.id.published, relativePublished);
@@ -548,18 +560,6 @@ public class FastTrackWindow implements Window.Callback,
     private static String getAsString(Cursor cursor, String columnName) {
         final int index = cursor.getColumnIndex(columnName);
         return cursor.getString(index);
-    }
-
-    /** Read int from the given {@link Cursor}. */
-    private static int getAsInteger(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getInt(index);
-    }
-
-    /** Read long from the given {@link Cursor}. */
-    private static long getAsLong(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getLong(index);
     }
 
     /**
@@ -622,7 +622,7 @@ public class FastTrackWindow implements Window.Callback,
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
                     final Uri callUri = Uri.fromParts(SCHEME_TEL, number, null);
-                    mIntent = new Intent(Intent.ACTION_DIAL, callUri);
+                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
                 }
 
             } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
@@ -641,7 +641,7 @@ public class FastTrackWindow implements Window.Callback,
 
             } else {
                 // Otherwise fall back to default VIEW action
-                final long dataId = getAsLong(cursor, Data._ID);
+                final long dataId = cursor.getLong(DataQuery._ID);
                 final Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
                 mIntent = new Intent(Intent.ACTION_VIEW, dataUri);
             }
@@ -865,9 +865,9 @@ public class FastTrackWindow implements Window.Callback,
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
         while (cursor.moveToNext()) {
-            final String accountType = getAsString(cursor, RawContacts.ACCOUNT_TYPE);
-            final String resPackage = getAsString(cursor, Data.RES_PACKAGE);
-            final String mimeType = getAsString(cursor, Data.MIMETYPE);
+            final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
+            final String resPackage = cursor.getString(DataQuery.RES_PACKAGE);
+            final String mimeType = cursor.getString(DataQuery.MIMETYPE);
 
             // Skip this data item if MIME-type excluded
             if (isMimeExcluded(mimeType)) continue;
@@ -875,14 +875,15 @@ public class FastTrackWindow implements Window.Callback,
             // Handle when a photo appears in the various data items
             // TODO: accept a photo only if its marked as primary
             // TODO: move to using photo thumbnail columns, when they exist
-            if (photoView != null && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
-                final byte[] photoBlob = cursor.getBlob(colPhoto);
-                final Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0,
-                        photoBlob.length);
-                photoView.setImageBitmap(photoBitmap);
-                continue;
-            }
+            // TODO: launch photo as separate TOKEN query, only for large
+//            if (photoView != null && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+//                final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
+//                final byte[] photoBlob = cursor.getBlob(colPhoto);
+//                final Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0,
+//                        photoBlob.length);
+//                photoView.setImageBitmap(photoBitmap);
+//                continue;
+//            }
 
             // TODO: find the ContactsSource for this, either from accountType,
             // or through lazy-loading when resPackage is set, or default.
@@ -1158,5 +1159,50 @@ public class FastTrackWindow implements Window.Callback,
     /** {@inheritDoc} */
     public void onDetachedFromWindow() {
         // No actions
+    }
+
+    private interface SummaryQuery {
+        final String[] PROJECTION = new String[] {
+                Contacts.DISPLAY_NAME,
+                Contacts.PHOTO_ID,
+                Contacts.PRESENCE_STATUS,
+                Contacts.PRESENCE_CUSTOM_STATUS,
+        };
+
+        final int DISPLAY_NAME = 0;
+        final int PHOTO_ID = 1;
+        final int PRESENCE_STATUS = 2;
+        final int PRESENCE_CUSTOM_STATUS = 3;
+    }
+
+    private interface SocialQuery {
+        final String[] PROJECTION = new String[] {
+                Activities.PUBLISHED,
+                Activities.TITLE,
+        };
+
+        final int PUBLISHED = 0;
+        final int TITLE = 0;
+    }
+
+    private interface DataQuery {
+        final String[] PROJECTION = new String[] {
+                Data._ID,
+                RawContacts.ACCOUNT_TYPE,
+                Data.RES_PACKAGE,
+                Data.MIMETYPE,
+                Data.IS_PRIMARY,
+                Data.IS_SUPER_PRIMARY,
+                Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
+                Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10, Data.DATA11,
+                Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
+        };
+
+        final int _ID = 0;
+        final int ACCOUNT_TYPE = 1;
+        final int RES_PACKAGE = 2;
+        final int MIMETYPE = 3;
+        final int IS_PRIMARY = 4;
+        final int IS_SUPER_PRIMARY = 5;
     }
 }
