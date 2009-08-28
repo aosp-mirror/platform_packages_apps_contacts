@@ -829,9 +829,6 @@
     <!-- Shown as the header name for a person when the name is missing or unknown. -->
     <string name="fasttrack_missing_name">Unknown</string>
 
-    <!-- Shown as the social status snippet for a person when no social updates exist. -->
-    <string name="fasttrack_missing_status">No recent updates</string>
-
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
