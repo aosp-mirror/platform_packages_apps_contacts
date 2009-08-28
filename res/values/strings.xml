@@ -742,7 +742,7 @@
     <!-- The message shown while reading a vCard file/entry. The first argument is like 
     "Reading VCard" or "Reading VCard files" and the second is the display name of the current 
     data being parsed -->
-    <string name="progress_shower_message">%s\n%s</string>
+    <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
 
     <!-- Dialog title shown when reading VCard data -->
     <string name="reading_vcard_title">Reading VCard</string>
@@ -889,7 +889,7 @@
 
     <!-- Warning message given to users just before they remove a currently syncing
          group that would also cause all ungrouped contacts to stop syncing. -->
-    <string name="display_warn_remove_ungrouped">Removing \'%s\' from sync will also remove any ungrouped contacts from sync.</string>
+    <string name="display_warn_remove_ungrouped">Removing \'<xliff:g id="group" example="Starred">%s</xliff:g>\' from sync will also remove any ungrouped contacts from sync.</string>
 
 
 <string name="call_home">Call home</string>
