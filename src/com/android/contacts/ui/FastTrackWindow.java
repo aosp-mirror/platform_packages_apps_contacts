@@ -101,6 +101,7 @@ public class FastTrackWindow implements Window.Callback,
     private final WindowManager mWindowManager;
     private Window mWindow;
     private View mDecor;
+    private final Rect mRect = new Rect();
 
     private boolean mQuerying = false;
     private boolean mShowing = false;
@@ -333,9 +334,7 @@ public class FastTrackWindow implements Window.Callback,
 
         }
 
-        l.flags = WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+        l.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                 | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         mWindowManager.addView(mDecor, l);
@@ -1083,8 +1082,25 @@ public class FastTrackWindow implements Window.Callback,
         return false;
     }
 
+    /**
+     * Detect if the given {@link MotionEvent} is outside the boundaries of this
+     * window, which usually means we should dismiss.
+     */
+    protected void detectEventOutside(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            // Only try detecting outside events on down-press
+            mDecor.getHitRect(mRect);
+            final int x = (int)event.getX();
+            final int y = (int)event.getY();
+            if (!mRect.contains(x, y)) {
+                event.setAction(MotionEvent.ACTION_OUTSIDE);
+            }
+        }
+    }
+
     /** {@inheritDoc} */
     public boolean dispatchTouchEvent(MotionEvent event) {
+        detectEventOutside(event);
         if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             dismiss();
             return true;
