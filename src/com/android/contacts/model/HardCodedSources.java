@@ -485,8 +485,7 @@ public class HardCodedSources {
             final boolean validString = mStringRes > 0;
             final boolean validColumn = index != -1;
 
-            final CharSequence stringValue = validString ? context.getPackageManager().getText(
-                    mPackageName, mStringRes, null) : null;
+            final CharSequence stringValue = validString ? context.getText(mStringRes) : null;
             final CharSequence columnValue = validColumn ? cursor.getString(index) : null;
 
             if (validString && validColumn) {
