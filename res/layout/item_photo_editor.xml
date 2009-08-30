@@ -14,10 +14,10 @@
      limitations under the License.
 -->
 
-<ImageView
+<com.android.contacts.ui.widget.PhotoEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="@dimen/edit_photo_size"
+    android:layout_height="@dimen/edit_photo_size"
     android:clickable="true"
     android:focusable="true"
     android:src="@drawable/ic_menu_add_picture"

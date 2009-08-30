@@ -16,7 +16,7 @@
 
 <!-- the body surrounding all editors for a specific kind -->
 
-<LinearLayout
+<com.android.contacts.ui.widget.KindSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -68,4 +68,4 @@
         android:paddingBottom="6dip"
         android:orientation="vertical" />
 
-</LinearLayout>
+</com.android.contacts.ui.widget.KindSectionView>

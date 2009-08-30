@@ -24,12 +24,14 @@ import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.internal.widget.ContactHeaderWidget;
+import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -52,7 +54,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
@@ -87,30 +93,39 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final int TOKEN_ENTITY = 41;
 
     private static final String KEY_EDIT_STATE = "state";
-    private static final String KEY_EDITOR_STATE = "editor";
     private static final String KEY_SELECTED_TAB = "tab";
-    private static final String KEY_SELECTED_TAB_ID = "tabId";
-    private static final String KEY_CONTACT_ID = "contactId";
+//    private static final String KEY_SELECTED_TAB_ID = "tabId";
+//    private static final String KEY_CONTACT_ID = "contactId";
 
-    private long mSelectedRawContactId = -1;
-    private long mContactId = -1;
+//    private int mSelectedTab = -1;
+
+//    private long mSelectedRawContactId = -1;
+//    private long mContactId = -1;
 
     private ScrollingTabWidget mTabWidget;
     private ContactHeaderWidget mHeader;
 
-    private View mTabContent;
     private ContactEditorView mEditor;
 
     private EditState mState = new EditState();
 
     private static class EditState extends ArrayList<EntityDelta> implements Parcelable {
-        public long getAggregateId() {
+        public long getContactId() {
             if (this.size() > 0) {
                 // Assume the aggregate tied to first child
                 final EntityDelta first = this.get(0);
                 return first.getValues().getAsLong(RawContacts.CONTACT_ID);
             } else {
                 // Otherwise return invalid value
+                return -1;
+            }
+        }
+
+        public long getRawContactId(int index) {
+            if (index >=0 && index < this.size()) {
+                final EntityDelta delta = this.get(index);
+                return delta.getValues().getAsLong(RawContacts._ID);
+            } else {
                 return -1;
             }
         }
@@ -171,10 +186,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
 
-        mTabContent = this.findViewById(android.R.id.tabcontent);
-
-        mEditor = new ContactEditorView(context);
-        mEditor.swapWith(mTabContent);
+        mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -183,7 +195,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
 
-        } else if (Intent.ACTION_INSERT.equals(action)) {
+        } else if (Intent.ACTION_INSERT.equals(action) && icicle == null) {
             // Trigger dialog to pick account type
             doAddAction();
 
@@ -206,18 +218,23 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final ContentResolver resolver = context.getContentResolver();
 
             // Handle both legacy and new authorities
-            String selection = "0";
             final Uri data = intent.getData();
             final String authority = data.getAuthority();
+            final String mimeType = intent.resolveType(resolver);
+
+            String selection = "0";
             if (ContactsContract.AUTHORITY.equals(authority)) {
-                final long rawContactId = ContentUris.parseId(data);
-                target.mSelectedRawContactId = rawContactId;
-                target.mContactId = ContactsUtils.queryForContactId(target.getContentResolver(),
-                        rawContactId);
-                selection = RawContacts.CONTACT_ID + "=" + target.mContactId;
+                if (Contacts.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    // Handle selected aggregate
+                    final long contactId = ContentUris.parseId(data);
+                    selection = RawContacts.CONTACT_ID + "=" + contactId;
+                } else if (RawContacts.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final long rawContactId = ContentUris.parseId(data);
+                    final long contactId = ContactsUtils.queryForContactId(resolver, rawContactId);
+                    selection = RawContacts.CONTACT_ID + "=" + contactId;
+                }
             } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
-                target.mSelectedRawContactId = rawContactId;
                 selection = RawContacts._ID + "=" + rawContactId;
             }
 
@@ -275,10 +292,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     protected void onSaveInstanceState(Bundle outState) {
         // Store entities with modifications
         outState.putParcelable(KEY_EDIT_STATE, mState);
-//        outState.putSparseParcelableArray(KEY_EDITOR_STATE, buildEditorState());
-//        outState.putInt(KEY_SELECTED_TAB, mTabWidget.getCurrentTab());
-        outState.putLong(KEY_SELECTED_TAB_ID, mSelectedRawContactId);
-        outState.putLong(KEY_CONTACT_ID, mContactId);
+        outState.putInt(KEY_SELECTED_TAB, mTabWidget.getCurrentTab());
+//        outState.putLong(KEY_SELECTED_TAB_ID, mSelectedRawContactId);
+//        outState.putLong(KEY_CONTACT_ID, mContactId);
 
         super.onSaveInstanceState(outState);
     }
@@ -287,16 +303,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         // Read modifications from instance
         mState = savedInstanceState.<EditState> getParcelable(KEY_EDIT_STATE);
-        mSelectedRawContactId = savedInstanceState.getLong(KEY_SELECTED_TAB_ID);
-        mContactId = savedInstanceState.getLong(KEY_CONTACT_ID);
+
+//        mSelectedRawContactId = savedInstanceState.getLong(KEY_SELECTED_TAB_ID);
+//        mContactId = savedInstanceState.getLong(KEY_CONTACT_ID);
 
         Log.d(TAG, "onrestoreinstancestate");
 
-//        mEditorState = savedInstanceState.getSparseParcelableArray(KEY_EDITOR_STATE);
-//
-//        final int selectedTab = savedInstanceState.getInt(KEY_SELECTED_TAB);
         bindTabs();
         bindHeader();
+
+        final int selectedTab = savedInstanceState.getInt(KEY_SELECTED_TAB);
+        mTabWidget.setCurrentTab(selectedTab);
 
         // Restore selected tab and any focus
         super.onRestoreInstanceState(savedInstanceState);
@@ -320,22 +337,22 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
 
-            if (rawContactId != null && rawContactId == mSelectedRawContactId) {
-                selectedTab = mTabWidget.getTabCount();
-            }
-
             final View tabView = BaseContactCardActivity.createTabIndicatorView(
                     mTabWidget.getTabParent(), source);
             mTabWidget.addTab(tabView);
         }
+
         if (mState.size() > 0) {
             mTabWidget.setCurrentTab(selectedTab);
             this.onTabSelectionChanged(selectedTab, false);
         }
+
+        // Show editor now that we've loaded state
+        mEditor.setVisibility(View.VISIBLE);
     }
 
     /**
-     * Bind our header based on {@link #mEntities}, which include any edits.
+     * Bind our header based on {@link #mState}, which include any edits.
      * Usually called once {@link Entity} data has been loaded, or after a
      * primary {@link Data} change.
      */
@@ -345,9 +362,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // TODO: fill header bar with newly parsed data for speed
         // TODO: handle legacy case correctly instead of assuming _id
 
-        if (mContactId > 0) {
-            mHeader.bindFromContactId(mContactId);
-        }
+//        if (mContactId > 0) {
+//            mHeader.bindFromContactId(mContactId);
+//        }
 
 //        mHeader.setDisplayName(displayName, phoneticName);
 //        mHeader.setPhoto(bitmap);
@@ -363,10 +380,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Find entity and source for selected tab
         final EntityDelta entity = mState.get(tabIndex);
         final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        Long rawContactId = entity.getValues().getAsLong(RawContacts._ID);
-        if (rawContactId != null) {
-            mSelectedRawContactId = rawContactId;
-        }
 
         final Sources sources = Sources.getInstance(this);
         final ContactsSource source = sources.getInflatedSource(accountType,
@@ -449,6 +462,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public boolean onPrepareOptionsMenu(Menu menu) {
         // TODO: show or hide photo items based on current tab
         // hide photo stuff entirely if on read-only source
+
+        menu.findItem(R.id.menu_photo_add).setVisible(false);
+        menu.findItem(R.id.menu_photo_remove).setVisible(false);
 
         return true;
     }
@@ -559,6 +575,15 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * finishes the activity.
      */
     private boolean doSaveAction() {
+        // Pass back last-selected contact
+        final int selectedTab = mTabWidget.getCurrentTab();
+        final long rawContactId = mState.getRawContactId(selectedTab);
+        if (rawContactId != -1) {
+            final Intent intent = new Intent();
+            intent.putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA, rawContactId);
+            setResult(RESULT_OK, intent);
+        }
+
         try {
             final PersistTask task = new PersistTask(this);
             task.execute(mState);
@@ -573,8 +598,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Persisting finished, or we timed out waiting on it. Either way,
         // finish this activity, the background task will keep running.
-        setResult(RESULT_OK, new Intent().putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA,
-                mSelectedRawContactId));
         this.finish();
         return true;
     }
@@ -686,9 +709,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     values.put(RawContacts.ACCOUNT_NAME, account.name);
                     values.put(RawContacts.ACCOUNT_TYPE, account.type);
 
-                    // Tie this directly to existing aggregate
-                    // TODO: this may need to use aggregation exception rules
-                    final long aggregateId = target.mState.getAggregateId();
+                    // Tie directly to an existing aggregate, which is turned
+                    // into an AggregationException later during persisting.
+                    final long aggregateId = target.mState.getContactId();
                     if (aggregateId >= 0) {
                         values.put(RawContacts.CONTACT_ID, aggregateId);
                     }
@@ -699,6 +722,18 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                             ContactsSource.LEVEL_CONSTRAINTS);
                     final Bundle extras = target.getIntent().getExtras();
                     EntityModifier.parseExtras(target, source, insert, extras);
+
+                    // Ensure we have some default fields
+                    EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
+                    EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
+
+                    // Create "My Contacts" membership for Google contacts
+                    // TODO: move this off into "templates" for each given source
+                    if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(source.accountType)) {
+                        final ValuesDelta membership = HardCodedSources
+                                .buildMyContactsMembership(target);
+                        insert.addEntry(membership);
+                    }
 
                     target.mState.add(insert);
 
@@ -716,7 +751,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 }
             };
 
-            // TODO: when canceled and single add, finish()
+            // TODO: when canceled and was single add, finish()
             final AlertDialog.Builder builder = new AlertDialog.Builder(target);
             builder.setTitle(R.string.dialog_new_contact_account);
             builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
@@ -762,7 +797,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      */
     private Dialog createNameDialog() {
         // Build set of all available display names
-        final ArrayList<ValuesDelta> allNames = new ArrayList<ValuesDelta>();
+        final ArrayList<ValuesDelta> allNames = Lists.newArrayList();
         for (EntityDelta entity : mState) {
             final ArrayList<ValuesDelta> displayNames = entity
                     .getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
