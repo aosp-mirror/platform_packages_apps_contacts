@@ -16,6 +16,8 @@
 
 package com.android.contacts.model;
 
+import com.google.android.collect.Lists;
+
 import org.xmlpull.v1.XmlPullParser;
 
 import android.accounts.Account;
@@ -89,7 +91,7 @@ public class ContactsSource {
      * {@link Account} or for matching against {@link Data#RES_PACKAGE}.
      */
     public String resPackageName;
-    
+
     public int titleRes;
     public int iconRes;
 
@@ -98,7 +100,7 @@ public class ContactsSource {
     /**
      * Set of {@link DataKind} supported by this source.
      */
-    private ArrayList<DataKind> mKinds = new ArrayList<DataKind>();
+    private ArrayList<DataKind> mKinds = Lists.newArrayList();
 
     private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
@@ -126,7 +128,10 @@ public class ContactsSource {
 
         // Handle some well-known sources with hard-coded constraints
         // TODO: move these into adapter-specific XML once schema finalized
-        if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(accountType)) {
+        if (HardCodedSources.ACCOUNT_TYPE_FALLBACK.equals(accountType)) {
+            HardCodedSources.buildFallback(context, this);
+            return;
+        } else if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(accountType)) {
             HardCodedSources.buildGoogle(context, this);
             return;
         } else if(HardCodedSources.ACCOUNT_TYPE_EXCHANGE.equals(accountType)) {

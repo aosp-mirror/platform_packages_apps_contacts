@@ -21,6 +21,7 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
+import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
 import android.content.Entity;
@@ -62,7 +63,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
             kind.typeOverallMax = 5;
             kind.typeColumn = Phone.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
             kind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));

@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.Sources;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +41,10 @@ import android.util.Log;
 import android.util.Xml;
 
 
+/**
+ * @deprecated Use {@link Sources} instead.
+ */
+@Deprecated
 public final class StyleManager extends BroadcastReceiver {
 
     public static final String TAG = "StyleManager";

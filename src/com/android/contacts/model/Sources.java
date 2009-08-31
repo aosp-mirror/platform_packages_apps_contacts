@@ -16,6 +16,10 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.R;
+import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
@@ -39,11 +43,11 @@ import java.util.HashMap;
 public class Sources {
     private static final String TAG = "Sources";
 
-    public static final String ACCOUNT_TYPE_FALLBACK = HardCodedSources.ACCOUNT_TYPE_GOOGLE;
+    public static final String ACCOUNT_TYPE_FALLBACK = HardCodedSources.ACCOUNT_TYPE_FALLBACK;
 
     private Context mContext;
 
-    private HashMap<String, ContactsSource> mSources = new HashMap<String, ContactsSource>();
+    private HashMap<String, ContactsSource> mSources = Maps.newHashMap();
 
     private static SoftReference<Sources> sInstance = null;
 
@@ -76,6 +80,17 @@ public class Sources {
      */
     protected void loadAccounts() {
         mSources.clear();
+
+        {
+            // Create fallback contacts source for on-phone contacts
+            final ContactsSource source = new ContactsSource();
+            source.accountType = HardCodedSources.ACCOUNT_TYPE_FALLBACK;
+            source.resPackageName = mContext.getPackageName();
+            source.titleRes = R.string.account_phone;
+            source.iconRes = R.drawable.ic_launcher_contacts;
+
+            mSources.put(source.accountType, source);
+        }
 
         final AccountManager am = AccountManager.get(mContext);
         final IContentService cs = ContentResolver.getContentService();
@@ -122,7 +137,7 @@ public class Sources {
         }
         throw new IllegalStateException("Couldn't find authenticator for specific account type");
     }
-    
+
     /**
      * Return list of all known, writable {@link ContactsSource}. Sources
      * returned may require inflation before they can be used.
@@ -130,7 +145,7 @@ public class Sources {
     public ArrayList<Account> getAccounts(boolean writableOnly) {
         final AccountManager am = AccountManager.get(mContext);
         final Account[] accounts = am.getAccounts();
-        final ArrayList<Account> matching = new ArrayList<Account>();
+        final ArrayList<Account> matching = Lists.newArrayList();
 
         for (Account account : accounts) {
             // Ensure we have details loaded for each account

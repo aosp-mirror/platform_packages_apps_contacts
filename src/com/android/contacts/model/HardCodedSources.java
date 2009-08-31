@@ -21,11 +21,17 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.ContactsSource.StringInflater;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.google.android.collect.Lists;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -35,6 +41,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Contacts.Data;
 import android.view.inputmethod.EditorInfo;
 
 import java.util.ArrayList;
@@ -49,6 +56,7 @@ public class HardCodedSources {
     public static final String ACCOUNT_TYPE_GOOGLE = "com.google.GAIA";
     public static final String ACCOUNT_TYPE_EXCHANGE = "com.android.exchange";
     public static final String ACCOUNT_TYPE_FACEBOOK = "com.facebook.auth.login";
+    public static final String ACCOUNT_TYPE_FALLBACK = "com.example.fallback-contacts";
 
     private static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     private static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
@@ -72,6 +80,48 @@ public class HardCodedSources {
     }
 
     /**
+     * Hard-coded instance of {@link ContactsSource} for fallback use.
+     */
+    static void buildFallback(Context context, ContactsSource list) {
+        {
+            // FALLBACK: STRUCTUREDNAME
+            DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                    R.string.nameLabelsGroup, -1, -1, true);
+            list.add(kind);
+        }
+
+        {
+            // FALLBACK: PHONE
+            DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
+                    R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
+            kind.iconAltRes = R.drawable.sym_action_sms;
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionAltHeader = new ActionAltInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Phone.NUMBER);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
+
+            list.add(kind);
+        }
+
+        {
+            // GOOGLE: EMAIL
+            DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
+                    R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Email.DATA);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+            list.add(kind);
+        }
+    }
+
+    /**
      * Hard-coded instance of {@link ContactsSource} for Google Contacts.
      */
     static void buildGoogle(Context context, ContactsSource list) {
@@ -79,6 +129,25 @@ public class HardCodedSources {
             // GOOGLE: STRUCTUREDNAME
             DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                     R.string.nameLabelsGroup, -1, -1, true);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC, true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC, true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC, true));
+
             list.add(kind);
         }
 
@@ -99,7 +168,7 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
                     R.string.sms_home));
             kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
@@ -118,7 +187,7 @@ public class HardCodedSources {
                     R.string.call_custom, R.string.sms_custom).setSecondary(true).setCustomColumn(
                     Phone.LABEL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
             list.add(kind);
@@ -133,7 +202,7 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(Email.DATA);
 
             kind.typeColumn = Email.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList
                     .add(new EditType(Email.TYPE_HOME, R.string.type_home, R.string.email_home));
             kind.typeList
@@ -143,7 +212,7 @@ public class HardCodedSources {
             kind.typeList.add(new EditType(Email.TYPE_CUSTOM, R.string.type_custom,
                     R.string.email_home).setSecondary(true).setCustomColumn(Email.LABEL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
@@ -164,7 +233,7 @@ public class HardCodedSources {
             kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
 
             kind.typeColumn = Im.PROTOCOL;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Im.PROTOCOL_AIM, R.string.type_im_aim));
             kind.typeList.add(new EditType(Im.PROTOCOL_MSN, R.string.type_im_msn));
             kind.typeList.add(new EditType(Im.PROTOCOL_YAHOO, R.string.type_im_yahoo));
@@ -176,7 +245,7 @@ public class HardCodedSources {
             kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom).setSecondary(
                     true).setCustomColumn(Im.CUSTOM_PROTOCOL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
@@ -192,7 +261,7 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
 
             kind.typeColumn = StructuredPostal.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(StructuredPostal.TYPE_HOME, R.string.type_home,
                     R.string.map_home));
             kind.typeList.add(new EditType(StructuredPostal.TYPE_WORK, R.string.type_work,
@@ -204,7 +273,7 @@ public class HardCodedSources {
                             R.string.map_custom).setSecondary(true).setCustomColumn(
                             StructuredPostal.LABEL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(StructuredPostal.STREET, R.string.postal_street,
                     FLAGS_POSTAL));
             kind.fieldList.add(new EditField(StructuredPostal.POBOX, R.string.postal_pobox,
@@ -233,13 +302,13 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(Organization.TITLE);
 
             kind.typeColumn = Organization.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Organization.TYPE_WORK, R.string.type_work));
             kind.typeList.add(new EditType(Organization.TYPE_OTHER, R.string.type_other));
             kind.typeList.add(new EditType(Organization.TYPE_CUSTOM, R.string.type_custom)
                     .setSecondary(true).setCustomColumn(Organization.LABEL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
                     FLAGS_GENERIC_NAME));
             kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
@@ -257,7 +326,7 @@ public class HardCodedSources {
             kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.label_notes);
             kind.actionBody = new SimpleInflater(Note.NOTE);
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
             list.add(kind);
@@ -272,7 +341,7 @@ public class HardCodedSources {
             kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.nicknameLabelsGroup);
             kind.actionBody = new SimpleInflater(Nickname.NAME);
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
                     FLAGS_PERSON_NAME));
 
@@ -280,23 +349,46 @@ public class HardCodedSources {
         }
 
         // TODO: GOOGLE: GROUPMEMBERSHIP
-        // TODO: GOOGLE: WEBSITE
+
+        {
+            // GOOGLE: WEBSITE
+            DataKind kind = new DataKind(Website.CONTENT_ITEM_TYPE,
+                    R.string.websiteLabelsGroup, -1, 120, true);
+            kind.secondary = true;
+
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.websiteLabelsGroup);
+            kind.actionBody = new SimpleInflater(Website.URL);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
+
+            list.add(kind);
+        }
+    }
+
+    // TODO: this should come from resource in the future
+    private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
+
+    public static final ValuesDelta buildMyContactsMembership(Context context) {
+        final ContentResolver resolver = context.getContentResolver();
+        final Cursor cursor = resolver.query(Groups.CONTENT_URI, new String[] { Groups.SOURCE_ID },
+                Groups.TITLE + "=?", new String[] { GOOGLE_MY_CONTACTS_GROUP }, null);
+
+        final ContentValues values = new ContentValues();
+        if (cursor.moveToFirst()) {
+            final String sourceId = cursor.getString(0);
+            values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+            values.put(GroupMembership.GROUP_SOURCE_ID, sourceId);
+        }
+
+        cursor.close();
+        return ValuesDelta.fromAfter(values);
     }
 
     /**
      * The constants below are shared with the Exchange sync adapter, and are
      * currently static. These values should be maintained in parallel.
      */
-    private static final int TYPE_EMAIL1 = 20;
-    private static final int TYPE_EMAIL2 = 21;
-    private static final int TYPE_EMAIL3 = 22;
-
-    private static final int TYPE_IM1 = 23;
-    private static final int TYPE_IM2 = 24;
-    private static final int TYPE_IM3 = 25;
-
-    private static final int TYPE_WORK2 = 26;
-    private static final int TYPE_HOME2 = 27;
     private static final int TYPE_CAR = 28;
     private static final int TYPE_COMPANY_MAIN = 29;
     private static final int TYPE_MMS = 30;
@@ -311,6 +403,23 @@ public class HardCodedSources {
             DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                     R.string.nameLabelsGroup, -1, -1, true);
             kind.typeOverallMax = 1;
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                    FLAGS_PERSON_NAME, true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC, true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC, true));
+
             list.add(kind);
         }
 
@@ -332,17 +441,13 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
             kind.typeColumn = Phone.TYPE;
-            kind.typeList = new ArrayList<EditType>();
+            kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
-                    R.string.sms_home).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_HOME2, R.string.type_home_2, R.string.call_home_2,
-                    R.string.sms_home_2).setSecondary(true).setSpecificMax(1));
+                    R.string.sms_home).setSpecificMax(2));
             kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
                     R.string.call_mobile, R.string.sms_mobile).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
-                    R.string.sms_work).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_WORK2, R.string.type_work_2, R.string.call_work_2,
-                    R.string.sms_work_2).setSecondary(true).setSpecificMax(1));
+                    R.string.sms_work).setSpecificMax(2));
             kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
                     R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true)
                     .setSpecificMax(1));
@@ -364,7 +469,7 @@ public class HardCodedSources {
                     R.string.call_custom, R.string.sms_custom).setSecondary(true).setSpecificMax(1)
                     .setCustomColumn(Phone.LABEL));
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
             list.add(kind);
@@ -377,17 +482,9 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
+            kind.typeOverallMax = 3;
 
-            kind.typeColumn = Email.TYPE;
-            kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1, R.string.email_1)
-                    .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2, R.string.email_2)
-                    .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, R.string.email_3)
-                    .setSpecificMax(1));
-
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
@@ -400,14 +497,9 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Im.DATA);
+            kind.typeOverallMax = 3;
 
-            kind.typeColumn = Im.TYPE;
-            kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).setSpecificMax(1));
-
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
             list.add(kind);
@@ -423,7 +515,7 @@ public class HardCodedSources {
             kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.nicknameLabelsGroup);
             kind.actionBody = new SimpleInflater(Nickname.NAME);
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
                     FLAGS_PERSON_NAME));
 
@@ -440,7 +532,7 @@ public class HardCodedSources {
             kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.websiteLabelsGroup);
             kind.actionBody = new SimpleInflater(Website.URL);
 
-            kind.fieldList = new ArrayList<EditField>();
+            kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
 
             list.add(kind);

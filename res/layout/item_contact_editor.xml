@@ -15,7 +15,7 @@
 -->
 
 <!-- placed inside act_edit as tabcontent -->
-<RelativeLayout
+<com.android.contacts.ui.widget.ContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -27,28 +27,33 @@
         android:layout_height="0dip" />
 
     <FrameLayout
-        android:id="@+id/hook_photo"
-        android:layout_width="76dip"
-        android:layout_height="76dip"
-        android:layout_marginTop="4dip"
-        android:layout_marginLeft="2dip"
-        android:layout_marginBottom="4dip"
-        android:layout_marginRight="4dip"
-        android:layout_below="@+id/text_summary" />
+        android:id="@+id/stub_photo"
+        android:layout_width="100dip"
+        android:layout_height="96dip"
+        android:paddingLeft="12dip"
+        android:paddingTop="10dip">
 
-    <FrameLayout
-        android:id="@+id/hook_displayname"
+        <include
+            android:id="@+id/edit_photo"
+            layout="@layout/item_photo_editor" />
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/edit_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/hook_photo"
-        android:layout_alignBottom="@+id/hook_photo"
-        android:layout_toRightOf="@+id/hook_photo" />
+        android:layout_below="@id/text_summary"
+        android:layout_toRightOf="@id/stub_photo"
+        android:layout_marginTop="6dip"
+        android:layout_marginBottom="4dip"
+        layout="@layout/item_generic_editor" />
 
     <LinearLayout
         android:id="@+id/sect_general"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hook_photo"
+        android:layout_below="@+id/edit_name"
         android:orientation="vertical" />
 
     <TextView
@@ -77,4 +82,4 @@
         android:background="@color/sect_secondary"
         android:orientation="vertical" />
 
-</RelativeLayout>
+</com.android.contacts.ui.widget.ContactEditorView>

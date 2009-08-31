@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.WeakAsyncTask;
+import com.google.android.collect.Sets;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -171,7 +172,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             target.startManagingCursor(cursor);
 
             // Make records for each account known by Settings
-            final HashSet<Account> knownAccounts = new HashSet<Account>();
+            final HashSet<Account> knownAccounts = Sets.newHashSet();
             while (cursor.moveToNext()) {
                 final String accountName = cursor.getString(SettingsQuery.ACCOUNT_NAME);
                 final String accountType = cursor.getString(SettingsQuery.ACCOUNT_TYPE);

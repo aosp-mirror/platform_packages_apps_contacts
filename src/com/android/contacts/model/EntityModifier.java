@@ -19,6 +19,7 @@ package com.android.contacts.model;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,7 +27,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -34,7 +34,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseIntArray;
 
 import java.util.ArrayList;
@@ -64,6 +63,20 @@ public class EntityModifier {
             return (getValidTypes(state, kind).size() > 0);
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Ensure that at least one of the given {@link DataKind} exists in the
+     * given {@link EntityDelta} state, and try creating one if none exist.
+     */
+    public static void ensureKindExists(EntityDelta state, ContactsSource source, String mimeType) {
+        final DataKind kind = source.getKindForMimetype(mimeType);
+        final boolean hasChild = state.getMimeEntriesCount(mimeType) > 0;
+
+        if (!hasChild && kind != null) {
+            // Create child when none exists and valid kind
+            insertChild(state, kind);
         }
     }
 
@@ -106,7 +119,7 @@ public class EntityModifier {
      */
     private static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind,
             EditType forceInclude, boolean includeSecondary, SparseIntArray typeCount) {
-        final ArrayList<EditType> validTypes = new ArrayList<EditType>();
+        final ArrayList<EditType> validTypes = Lists.newArrayList();
 
         // Bail early if no types provided
         if (!hasEditTypes(kind)) return validTypes;
@@ -297,7 +310,8 @@ public class EntityModifier {
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(Context context, ContactsSource source, EntityDelta state, Bundle extras) {
+    public static void parseExtras(Context context, ContactsSource source, EntityDelta state,
+            Bundle extras) {
         if (extras == null || extras.size() == 0) {
             // Bail early if no useful data
             return;

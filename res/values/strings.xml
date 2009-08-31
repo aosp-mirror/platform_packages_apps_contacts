@@ -856,14 +856,6 @@
 <string name="type_radio">Radio</string>
 <string name="type_assistant">Assistant</string>
 
-<string name="type_email_1">Email 1</string>
-<string name="type_email_2">Email 2</string>
-<string name="type_email_3">Email 3</string>
-
-<string name="type_im_1">Im 1</string>
-<string name="type_im_2">Im 2</string>
-<string name="type_im_3">Im 3</string>
-
 <string name="type_im_aim">AIM</string>
 <string name="type_im_msn">Windows Live</string>
 <string name="type_im_yahoo">Yahoo</string>
@@ -891,6 +883,10 @@
          group that would also cause all ungrouped contacts to stop syncing. -->
     <string name="display_warn_remove_ungrouped">Removing \'<xliff:g id="group" example="Starred">%s</xliff:g>\' from sync will also remove any ungrouped contacts from sync.</string>
 
+    <!-- Title for data source when creating or editing a contact that doesn't
+         belong to a specific account.  This contact will only exist on the phone
+         and will not be synced. -->
+    <string name="account_phone">Phone-only (unsynced)</string>
 
 <string name="call_home">Call home</string>
 <string name="call_mobile">Call mobile</string>
@@ -902,8 +898,6 @@
 <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
 
 <!-- exchange specific -->
-<string name="call_home_2">Call home 2</string>
-<string name="call_work_2">Call work 2</string>
 <string name="call_car">Call car</string>
 <string name="call_company_main">Call company main</string>
 <string name="call_mms">Call MMS</string>
@@ -923,8 +917,6 @@
 <string name="sms_custom">Text <xliff:g id="custom">%s</xliff:g></string>
 
 <!-- exchange specific -->
-<string name="sms_home_2">Text home 2</string>
-<string name="sms_work_2">Text work 2</string>
 <string name="sms_car">Text car</string>
 <string name="sms_company_main">Text company main</string>
 <string name="sms_mms">Text MMS</string>
@@ -937,10 +929,6 @@
 <string name="email_work">Email work</string>
 <string name="email_other">Email other</string>
 <string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
-
-<string name="email_1">Email 1</string>
-<string name="email_2">Email 2</string>
-<string name="email_3">Email 2</string>
 
 
 
@@ -959,6 +947,16 @@
 <string name="postal_region">State</string>
 <string name="postal_postcode">ZIP code</string>
 <string name="postal_country">Country</string>
+
+
+<string name="name_given">Given name</string>
+<string name="name_family">Family name</string>
+<string name="name_prefix">Name prefix</string>
+<string name="name_middle">Middle name</string>
+<string name="name_suffix">Name suffix</string>
+<string name="name_phonetic_given">Phonetic given name</string>
+<string name="name_phonetic_middle">Phonetic middle name</string>
+<string name="name_phonetic_family">Phonetic family name</string>
 
 
 

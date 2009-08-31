@@ -752,10 +752,11 @@ public class FastTrackWindow implements Window.Callback,
         protected Entry getEntry(Action action) {
             final String mimeType = action.getMimeType();
             Entry entry = mCache.get(mimeType);
-            if (entry == null) {
-                entry = new Entry();
+            if (entry != null) return entry;
+            entry = new Entry();
 
-                final Intent intent = action.getIntent();
+            final Intent intent = action.getIntent();
+            if (intent != null) {
                 final List<ResolveInfo> matches = mPackageManager.queryIntentActivities(intent,
                         PackageManager.MATCH_DEFAULT_ONLY);
 
@@ -766,9 +767,9 @@ public class FastTrackWindow implements Window.Callback,
                     entry.bestResolve = bestResolve;
                     entry.icon = new SoftReference<Drawable>(icon);
                 }
-
-                mCache.put(mimeType, entry);
             }
+
+            mCache.put(mimeType, entry);
             return entry;
         }
 

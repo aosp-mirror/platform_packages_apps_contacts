@@ -37,12 +37,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 
-        <FrameLayout
+        <include
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="0dip"
             android:layout_weight="1"
-            android:fillViewport="true" />
+            android:fillViewport="true"
+            android:visibility="invisible"
+            layout="@layout/item_contact_editor" />
 
         <LinearLayout
             android:layout_width="fill_parent"
