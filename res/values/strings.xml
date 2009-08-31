@@ -730,8 +730,8 @@
     <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
     <string name="fail_reason_no_vcard_entry">No valid VCard entry found for your selection</string>
 
-    <!-- The failed reason: "One or more files failed to be imported." -->
-    <string name="fail_reason_failed_to_read_files">One or more files failed to be imported.</string>
+    <!-- The failed reason: "One or more files failed to be imported. (&lt;a list of file names&gt;)" -->
+    <string name="fail_reason_failed_to_read_files">One or more files failed to be imported (%s).</string>
 
     <!-- Dialog title shown when a user is asked to select VCard file -->
     <string name="select_vcard_title">Select VCard file</string>
