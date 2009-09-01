@@ -730,9 +730,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     // Create "My Contacts" membership for Google contacts
                     // TODO: move this off into "templates" for each given source
                     if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(source.accountType)) {
-                        final ValuesDelta membership = HardCodedSources
-                                .buildMyContactsMembership(target);
-                        insert.addEntry(membership);
+                        HardCodedSources.attemptMyContactsMembership(insert, target);
                     }
 
                     target.mState.add(insert);

@@ -369,26 +369,37 @@ public class HardCodedSources {
     // TODO: this should come from resource in the future
     private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
 
-    public static final ValuesDelta buildMyContactsMembership(Context context) {
+    public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
         final ContentResolver resolver = context.getContentResolver();
         final Cursor cursor = resolver.query(Groups.CONTENT_URI, new String[] { Groups.SOURCE_ID },
                 Groups.TITLE + "=?", new String[] { GOOGLE_MY_CONTACTS_GROUP }, null);
-
-        final ContentValues values = new ContentValues();
-        if (cursor.moveToFirst()) {
-            final String sourceId = cursor.getString(0);
-            values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
-            values.put(GroupMembership.GROUP_SOURCE_ID, sourceId);
+        try {
+            if (cursor.moveToFirst()) {
+                final ContentValues values = new ContentValues();
+                final String sourceId = cursor.getString(0);
+                values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+                values.put(GroupMembership.GROUP_SOURCE_ID, sourceId);
+                state.addEntry(ValuesDelta.fromAfter(values));
+            }
+        } finally {
+            cursor.close();
         }
-
-        cursor.close();
-        return ValuesDelta.fromAfter(values);
     }
 
     /**
      * The constants below are shared with the Exchange sync adapter, and are
      * currently static. These values should be maintained in parallel.
      */
+    private static final int TYPE_EMAIL1 = 20;
+    private static final int TYPE_EMAIL2 = 21;
+    private static final int TYPE_EMAIL3 = 22;
+
+    private static final int TYPE_IM1 = 23;
+    private static final int TYPE_IM2 = 24;
+    private static final int TYPE_IM3 = 25;
+
+    private static final int TYPE_WORK2 = 26;
+    private static final int TYPE_HOME2 = 27;
     private static final int TYPE_CAR = 28;
     private static final int TYPE_COMPANY_MAIN = 29;
     private static final int TYPE_MMS = 30;
@@ -443,11 +454,15 @@ public class HardCodedSources {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
-                    R.string.sms_home).setSpecificMax(2));
+                    R.string.sms_home).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_HOME2, R.string.type_home_2, R.string.call_home_2,
+                    R.string.sms_home_2).setSecondary(true).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
                     R.string.call_mobile, R.string.sms_mobile).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
-                    R.string.sms_work).setSpecificMax(2));
+                    R.string.sms_work).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_WORK2, R.string.type_work_2, R.string.call_work_2,
+                    R.string.sms_work_2).setSecondary(true).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
                     R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true)
                     .setSpecificMax(1));
@@ -482,10 +497,20 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
-            kind.typeOverallMax = 3;
+
+            kind.typeColumn = Email.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1, R.string.email_1)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2, R.string.email_2)
+                    .setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, R.string.email_3)
+                    .setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+            kind.fieldList.add(new EditField(Email.DISPLAY_NAME, R.string.label_email_display_name,
+                    FLAGS_PERSON_NAME));
 
             list.add(kind);
         }
@@ -497,7 +522,12 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Im.DATA);
-            kind.typeOverallMax = 3;
+
+            kind.typeColumn = Im.TYPE;
+            kind.typeList = new ArrayList<EditType>();
+            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
