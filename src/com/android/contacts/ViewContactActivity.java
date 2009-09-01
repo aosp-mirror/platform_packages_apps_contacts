@@ -200,9 +200,6 @@ public class ViewContactActivity extends BaseContactCardActivity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
-        //Select the all tab to start.
-        mSelectedRawContactId = ALL_CONTACTS_ID;
-
         mCursor = mResolver.query(Uri.withAppendedPath(mUri, "data"),
                 CONTACT_PROJECTION, null, null, null);
     }
@@ -305,9 +302,6 @@ public class ViewContactActivity extends BaseContactCardActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
-                .setIcon(android.R.drawable.ic_menu_edit)
-                .setAlphabeticShortcut('e');
         menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact)
                 .setIcon(android.R.drawable.ic_menu_delete);
         menu.add(0, MENU_ITEM_SPLIT_AGGREGATE, 0, R.string.menu_splitAggregate)
@@ -331,6 +325,17 @@ public class ViewContactActivity extends BaseContactCardActivity
             }
         } else {
             menu.removeItem(MENU_ITEM_SHOW_BARCODE);
+        }
+
+        // Only show the edit option if we have a selected tab.
+        if (mSelectedRawContactId != null) {
+            if (menu.findItem(MENU_ITEM_EDIT) == null) {
+                menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
+                    .setIcon(android.R.drawable.ic_menu_edit)
+                    .setAlphabeticShortcut('e');
+            }
+        } else {
+            menu.removeItem(MENU_ITEM_EDIT);
         }
 
         boolean isAggregate = mRawContactIds.size() > 1;
@@ -386,11 +391,15 @@ public class ViewContactActivity extends BaseContactCardActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_EDIT: {
-                final int tabIndex = mTabWidget.getCurrentTab();
-                long rawContactIdToEdit = getTabRawContactId(tabIndex);
+                Long rawContactIdToEdit = mSelectedRawContactId;
+                if (rawContactIdToEdit == null) {
+                    // This shouldn't be possible. We only show the edit option if
+                    // this value is non-null.
+                    break;
+                }
                 if (rawContactIdToEdit == ALL_CONTACTS_ID) {
                     // If the "all" tab is selected, edit the next tab.
-                    rawContactIdToEdit = getTabRawContactId(tabIndex + 1);
+                    rawContactIdToEdit = getTabRawContactId(mTabWidget.getCurrentTab() + 1);
                 }
                 Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                         rawContactIdToEdit);
@@ -732,7 +741,8 @@ public class ViewContactActivity extends BaseContactCardActivity
                 }
 
                 // This performs the tab filtering
-                if (mSelectedRawContactId != entry.contactId
+                if (mSelectedRawContactId != null
+                        && mSelectedRawContactId != entry.contactId
                         && mSelectedRawContactId != ALL_CONTACTS_ID) {
                     continue;
                 }
