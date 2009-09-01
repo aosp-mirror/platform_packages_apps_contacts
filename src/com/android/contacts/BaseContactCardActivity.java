@@ -74,7 +74,7 @@ public abstract class BaseContactCardActivity extends Activity implements
     protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
 
     protected static final String SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContact";
-    protected long mSelectedRawContactId;
+    protected Long mSelectedRawContactId = null;
 
     private static final int TOKEN_TABS = 0;
 
@@ -231,31 +231,24 @@ public abstract class BaseContactCardActivity extends Activity implements
     }
 
     protected void selectInitialTab() {
-        int selectedTabIndex = -1;
-        if (mSelectedRawContactId > 0) {
-            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
-        }
-        if (selectedTabIndex >= 0) {
-            mTabWidget.setCurrentTab(selectedTabIndex);
-        } else {
-            selectDefaultTab();
-        }
-    }
+        int selectedTabIndex = 0;
 
-    /**
-     * Makes the default tab selection. This is called after the tabs have been
-     * bound for the first time, and whenever a new intent is received. Override
-     * this method if you want to customize the default tab behavior.
-     */
-    protected void selectDefaultTab() {
-        // Select the first tab.
-        mTabWidget.setCurrentTab(0);
+        if (mSelectedRawContactId != null) {
+            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
+            if (selectedTabIndex == -1) {
+                // If there was no matching tab, just select the first;
+                selectedTabIndex = 0;
+            }
+        }
+
+        mTabWidget.setCurrentTab(selectedTabIndex);
+        onTabSelectionChanged(selectedTabIndex, false);
     }
 
     @Override
     public void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
-        selectDefaultTab();
+        selectInitialTab();
         mUri = newIntent.getData();
     }
 
