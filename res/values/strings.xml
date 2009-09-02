@@ -856,6 +856,14 @@
 <string name="type_radio">Radio</string>
 <string name="type_assistant">Assistant</string>
 
+<string name="type_email_1">Email 1</string>
+<string name="type_email_2">Email 2</string>
+<string name="type_email_3">Email 3</string>
+
+<string name="type_im_1">Im 1</string>
+<string name="type_im_2">Im 2</string>
+<string name="type_im_3">Im 3</string>
+
 <string name="type_im_aim">AIM</string>
 <string name="type_im_msn">Windows Live</string>
 <string name="type_im_yahoo">Yahoo</string>
@@ -888,6 +896,10 @@
          and will not be synced. -->
     <string name="account_phone">Phone-only (unsynced)</string>
 
+    <!-- The label describing the display name field of an Email address, allowing the
+         user to give a specific name to describe this address. -->
+    <string name="label_email_display_name">Display name</string>
+
 <string name="call_home">Call home</string>
 <string name="call_mobile">Call mobile</string>
 <string name="call_work">Call work</string>
@@ -898,6 +910,8 @@
 <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
 
 <!-- exchange specific -->
+<string name="call_home_2">Call home 2</string>
+<string name="call_work_2">Call work 2</string>
 <string name="call_car">Call car</string>
 <string name="call_company_main">Call company main</string>
 <string name="call_mms">Call MMS</string>
@@ -917,6 +931,8 @@
 <string name="sms_custom">Text <xliff:g id="custom">%s</xliff:g></string>
 
 <!-- exchange specific -->
+<string name="sms_home_2">Text home 2</string>
+<string name="sms_work_2">Text work 2</string>
 <string name="sms_car">Text car</string>
 <string name="sms_company_main">Text company main</string>
 <string name="sms_mms">Text MMS</string>
@@ -930,6 +946,9 @@
 <string name="email_other">Email other</string>
 <string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
 
+<string name="email_1">Email 1</string>
+<string name="email_2">Email 2</string>
+<string name="email_3">Email 2</string>
 
 
 

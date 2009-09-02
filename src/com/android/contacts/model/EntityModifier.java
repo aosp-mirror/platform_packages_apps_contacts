@@ -52,9 +52,10 @@ public class EntityModifier {
      */
     public static boolean canInsert(EntityDelta state, DataKind kind) {
         // Insert possible when have valid types and under overall maximum
+        final int visibleCount = state.getMimeEntriesCount(kind.mimeType, true);
         final boolean validTypes = hasValidTypes(state, kind);
         final boolean validOverall = (kind.typeOverallMax == -1)
-                || (state.getEntryCount(true) < kind.typeOverallMax);
+                || (visibleCount < kind.typeOverallMax);
         return (validTypes && validOverall);
     }
 
@@ -72,7 +73,7 @@ public class EntityModifier {
      */
     public static void ensureKindExists(EntityDelta state, ContactsSource source, String mimeType) {
         final DataKind kind = source.getKindForMimetype(mimeType);
-        final boolean hasChild = state.getMimeEntriesCount(mimeType) > 0;
+        final boolean hasChild = state.getMimeEntriesCount(mimeType, true) > 0;
 
         if (!hasChild && kind != null) {
             // Create child when none exists and valid kind
@@ -202,6 +203,7 @@ public class EntityModifier {
      * assuming the given {@link DataKind} dictates the possible types.
      */
     public static EditType getCurrentType(Cursor cursor, DataKind kind) {
+        if (kind.typeColumn == null) return null;
         final int index = cursor.getColumnIndex(kind.typeColumn);
         final int rawValue = cursor.getInt(index);
         return getType(kind, rawValue);
@@ -319,14 +321,16 @@ public class EntityModifier {
 
         {
             // StructuredName
-            final DataKind kind = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+            EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
+            final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+
             final String name = extras.getString(Insert.NAME);
+            if (!TextUtils.isEmpty(name) && TextUtils.isGraphic(name)) {
+                child.put(StructuredName.GIVEN_NAME, name);
+            }
+
             final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
-            if (kind != null && (TextUtils.isGraphic(name) || TextUtils.isGraphic(phoneticName))) {
-                // TODO: handle the case where name already exists and limited to one
-                // TODO: represent phonetic name as structured fields
-                final ValuesDelta child = EntityModifier.insertChild(state, kind, null);
-                child.put(StructuredName.DISPLAY_NAME, name);
+            if (!TextUtils.isEmpty(phoneticName) && TextUtils.isGraphic(phoneticName)) {
                 child.put(StructuredName.PHONETIC_GIVEN_NAME, phoneticName);
             }
         }

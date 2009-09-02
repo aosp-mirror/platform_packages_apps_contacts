@@ -121,13 +121,11 @@ public class EntityDelta implements Parcelable {
     }
 
     /**
-     * Get the {@link ValuesDelta} child marked as {@link Data#IS_PRIMARY}.
+     * Get the {@link ValuesDelta} child marked as {@link Data#IS_PRIMARY},
+     * which may return null when no entry exists.
      */
     public ValuesDelta getPrimaryEntry(String mimeType) {
         final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
-
-        // TODO: handle the case where the caller must have a non-null value,
-        // for example inserting a displayname automatically
         if (mimeEntries == null) return null;
 
         for (ValuesDelta entry : mimeEntries) {
@@ -157,9 +155,17 @@ public class EntityDelta implements Parcelable {
         return getMimeEntries(mimeType, false);
     }
 
-    public int getMimeEntriesCount(String mimeType) {
-        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
-        return mimeEntries == null ? 0 : mimeEntries.size();
+    public int getMimeEntriesCount(String mimeType, boolean onlyVisible) {
+        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType);
+        if (mimeEntries == null) return 0;
+
+        int count = 0;
+        for (ValuesDelta child : mimeEntries) {
+            // Skip deleted items when requesting only visible
+            if (onlyVisible && !child.isVisible()) continue;
+            count++;
+        }
+        return count;
     }
 
     public boolean hasMimeEntries(String mimeType) {
@@ -196,12 +202,8 @@ public class EntityDelta implements Parcelable {
      */
     public int getEntryCount(boolean onlyVisible) {
         int count = 0;
-        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
-            for (ValuesDelta child : mimeEntries) {
-                // Skip deleted items when requesting only visible
-                if (onlyVisible && child.isVisible()) continue;
-                count++;
-            }
+        for (String mimeType : mEntries.keySet()) {
+            count += getMimeEntriesCount(mimeType, onlyVisible);
         }
         return count;
     }
