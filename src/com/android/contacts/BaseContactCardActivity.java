@@ -16,12 +16,10 @@
 
 package com.android.contacts;
 
-import java.util.ArrayList;
-
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.contacts.model.Sources;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.widget.ContactHeaderWidget;
 
 import android.app.Activity;
@@ -36,6 +34,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
@@ -47,6 +46,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * The base Activity class for viewing and editing a contact.
  */
@@ -56,6 +57,7 @@ public abstract class BaseContactCardActivity extends Activity implements
     private static final String TAG = "BaseContactCardActivity";
 
     private SparseArray<Long> mTabRawContactIdMap;
+    protected Uri mOriginalUri;
     protected Uri mUri;
     protected ScrollingTabWidget mTabWidget;
     protected ContactHeaderWidget mContactHeaderWidget;
@@ -85,7 +87,7 @@ public abstract class BaseContactCardActivity extends Activity implements
         mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         final Intent intent = getIntent();
-        mUri = intent.getData();
+        resolveContactUriFromIntent(intent);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.contact_card_layout);
@@ -109,6 +111,11 @@ public abstract class BaseContactCardActivity extends Activity implements
         asyncSetupTabs();
     }
 
+
+    private void resolveContactUriFromIntent(final Intent intent) {
+        mOriginalUri = intent.getData();
+        mUri = ContactsContract.Contacts.lookupContact(getContentResolver(), mOriginalUri);
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -248,8 +255,8 @@ public abstract class BaseContactCardActivity extends Activity implements
     @Override
     public void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
+        resolveContactUriFromIntent(newIntent);
         selectInitialTab();
-        mUri = newIntent.getData();
     }
 
     /**

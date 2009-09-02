@@ -35,7 +35,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -61,6 +60,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
@@ -108,7 +108,7 @@ public final class ContactsListActivity extends ListActivity implements
         View.OnCreateContextMenuListener, View.OnClickListener {
     private static final String TAG = "ContactsListActivity";
 
-    private static final boolean ENABLE_ACTION_ICON_OVERLAYS = false;
+    private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
 
     private static final String LIST_STATE_KEY = "liststate";
     private static final String FOCUS_KEY = "focused";
@@ -243,6 +243,7 @@ public final class ContactsListActivity extends ListActivity implements
         CommonDataKinds.Phone.LABEL, //2
         CommonDataKinds.Phone.NUMBER, //3
         Contacts.DISPLAY_NAME, // 4
+        RawContacts.CONTACT_ID, // 5
     };
     static final String[] LEGACY_PHONES_PROJECTION = new String[] {
         Phones._ID, //0
@@ -256,6 +257,7 @@ public final class ContactsListActivity extends ListActivity implements
     static final int PHONE_LABEL_COLUMN_INDEX = 2;
     static final int PHONE_NUMBER_COLUMN_INDEX = 3;
     static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 4;
+    static final int PHONE_CONTACT_ID_COLUMN_INDEX = 5;
 
     static final String[] POSTALS_PROJECTION = new String[] {
         Data._ID, //0
@@ -1066,7 +1068,7 @@ public final class ContactsListActivity extends ListActivity implements
             } else if (mMode == MODE_PICK_PHONE) {
                 if (mShortcutAction != null) {
                     Cursor c = (Cursor) mAdapter.getItem(position);
-                    returnPickerResult(c, c.getString(SUMMARY_NAME_COLUMN_INDEX), uri, id);
+                    returnPickerResult(c, c.getString(PHONE_DISPLAY_NAME_COLUMN_INDEX), uri, id);
                 } else {
                     returnPickerResult(null, null, uri, id);
                 }
@@ -1092,7 +1094,8 @@ public final class ContactsListActivity extends ListActivity implements
             Intent shortcutIntent;
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
                 // This is a simple shortcut to view a contact.
-                shortcutIntent = new Intent(mShortcutAction, uri);
+                Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                shortcutIntent = new Intent(mShortcutAction, lookupUri);
                 final Bitmap icon = loadContactPhoto(id, null);
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
@@ -1114,25 +1117,15 @@ public final class ContactsListActivity extends ListActivity implements
                     scheme = "smsto";
                     resid = R.drawable.badge_action_sms;
                 }
+
                 // Make the URI a direct tel: URI so that it will always continue to work
                 Uri phoneUri = Uri.fromParts(scheme, number, null);
                 shortcutIntent = new Intent(mShortcutAction, phoneUri);
 
-                // Find the People._ID for this phone number
-/* TODO bring back the better icon handling
-                final long personId = c.getLong(PHONES_PERSON_ID_INDEX);
-                Uri personUri = ContentUris.withAppendedId(People.CONTENT_URI, personId);
+                // Find the Contacts._ID for this phone number
+                long contactId = c.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
-                        generatePhoneNumberIcon(personUri, type, resid));
-*/
-                final Bitmap icon = loadContactPhoto(id, null);
-                if (icon != null) {
-                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
-                } else {
-                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                            Intent.ShortcutIconResource.fromContext(this,
-                                    R.drawable.ic_launcher_shortcut_contact));
-                }
+                        generatePhoneNumberIcon(contactId, type, resid));
             }
             shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
@@ -1148,16 +1141,16 @@ public final class ContactsListActivity extends ListActivity implements
      * Generates a phone number shortcut icon. Adds an overlay describing the type of the phone
      * number, and if there is a photo also adds the call action icon.
      *
-     * @param personUri The person the phone number belongs to
+     * @param contactId The person the phone number belongs to
      * @param type The type of the phone number
      * @param actionResId The ID for the action resource
      * @return The bitmap for the icon
      */
-    private Bitmap generatePhoneNumberIcon(Uri personUri, int type, int actionResId) {
+    private Bitmap generatePhoneNumberIcon(long contactId, int type, int actionResId) {
         final Resources r = getResources();
         boolean drawPhoneOverlay = true;
 
-        Bitmap photo = People.loadContactPhoto(this, personUri, 0, null);
+        Bitmap photo = loadContactPhoto(contactId, null);
         if (photo == null) {
             // If there isn't a photo use the generic phone action icon instead
             Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
@@ -1185,24 +1178,24 @@ public final class ContactsListActivity extends ListActivity implements
         // Create an overlay for the phone number type
         String overlay = null;
         switch (type) {
-            case Phones.TYPE_HOME:
-                overlay = "H";
+            case Phone.TYPE_HOME:
+                overlay = getString(R.string.type_short_home);
                 break;
 
-            case Phones.TYPE_MOBILE:
-                overlay = "M";
+            case Phone.TYPE_MOBILE:
+                overlay = getString(R.string.type_short_mobile);
                 break;
 
-            case Phones.TYPE_WORK:
-                overlay = "W";
+            case Phone.TYPE_WORK:
+                overlay = getString(R.string.type_short_work);
                 break;
 
-            case Phones.TYPE_PAGER:
-                overlay = "P";
+            case Phone.TYPE_PAGER:
+                overlay = getString(R.string.type_short_pager);
                 break;
 
-            case Phones.TYPE_OTHER:
-                overlay = "O";
+            case Phone.TYPE_OTHER:
+                overlay = getString(R.string.type_short_other);
                 break;
         }
         if (overlay != null) {
@@ -1218,7 +1211,7 @@ public final class ContactsListActivity extends ListActivity implements
         if (ENABLE_ACTION_ICON_OVERLAYS && drawPhoneOverlay) {
             Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
             if (phoneIcon != null) {
-                src.set(0,0, phoneIcon.getWidth(),phoneIcon.getHeight());
+                src.set(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
                 int iconWidth = icon.getWidth();
                 dst.set(iconWidth - 20, -1, iconWidth, 19);
                 canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
@@ -1347,15 +1340,17 @@ public final class ContactsListActivity extends ListActivity implements
         return CONTACTS_SUMMARY_PROJECTION;
     }
 
-    private Bitmap loadContactPhoto(long dataId, BitmapFactory.Options options) {
+    private Bitmap loadContactPhoto(long contactId, BitmapFactory.Options options) {
         Cursor cursor = null;
-        Bitmap bm;
+        Bitmap bm = null;
         try {
-            cursor = getContentResolver().query(
-                    ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
-                    new String[] {Photo.PHOTO}, null, null, null);
-            cursor.moveToFirst();
-            bm = ContactsUtils.loadContactPhoto(cursor, 0, options);
+            Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
+            cursor = getContentResolver().query(photoUri, new String[] {Photo.PHOTO},
+                    null, null, null);
+            if (cursor.moveToFirst()) {
+                bm = ContactsUtils.loadContactPhoto(cursor, 0, options);
+            }
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -1941,7 +1936,7 @@ public final class ContactsListActivity extends ListActivity implements
 
             final ContactListItemCache cache = new ContactListItemCache();
             cache.header = (TextView) view.findViewById(R.id.header);
-            cache.divider = (View) view.findViewById(R.id.list_divider);
+            cache.divider = view.findViewById(R.id.list_divider);
             cache.nameView = (TextView) view.findViewById(R.id.name);
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
