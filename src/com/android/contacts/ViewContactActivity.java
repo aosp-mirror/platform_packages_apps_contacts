@@ -16,15 +16,12 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PHOTO_ID;
 import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_STARRED_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_4_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_5_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_9_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_CONTACT_ID_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
 import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
@@ -37,7 +34,6 @@ import com.android.internal.telephony.ITelephony;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -52,15 +48,14 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.graphics.Bitmap;
+import android.database.DatabaseUtils;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemClock;
-import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Data;
@@ -73,14 +68,12 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -115,7 +108,6 @@ public class ViewContactActivity extends BaseContactCardActivity
     public static final int MENU_ITEM_JOIN_AGGREGATE = 6;
     public static final int MENU_ITEM_OPTIONS = 7;
 
-    private Uri mUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
@@ -183,7 +175,6 @@ public class ViewContactActivity extends BaseContactCardActivity
         mTabContentLayout = (FrameLayout) findViewById(android.R.id.tabcontent);
         mTabContentLayout.addView(mListView);
 
-        mUri = getIntent().getData();
         mResolver = getContentResolver();
 
         // Build the list of sections. The order they're added to mSections dictates the
@@ -295,7 +286,7 @@ public class ViewContactActivity extends BaseContactCardActivity
             }
         } else {
             Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "invalid contact uri: " + mUri);
+            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
             finish();
         }
     }

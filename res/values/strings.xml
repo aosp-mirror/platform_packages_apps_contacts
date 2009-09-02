@@ -847,6 +847,13 @@
 <string name="type_other">Other</string>
 <string name="type_custom">Custom</string>
 
+<!-- Single-character overlays on shortcut icons -->
+<string name="type_short_home">H</string>
+<string name="type_short_mobile">M</string>
+<string name="type_short_work">W</string>
+<string name="type_short_pager">P</string>
+<string name="type_short_other">O</string>
+
 <!-- exchange specific -->
 <string name="type_home_2">Home 2</string>
 <string name="type_work_2">Work 2</string>
