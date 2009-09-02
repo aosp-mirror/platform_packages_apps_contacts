@@ -514,11 +514,11 @@ public class HardCodedSources {
 
             kind.typeColumn = Email.TYPE;
             kind.typeList = Lists.newArrayList();
-            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1, R.string.email_1)
+            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1)
                     .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2, R.string.email_2)
+            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2)
                     .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3, R.string.email_3)
+            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3)
                     .setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
@@ -539,9 +539,12 @@ public class HardCodedSources {
 
             kind.typeColumn = Im.TYPE;
             kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).
+                    setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).
+                    setSpecificMax(1));
+            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).
+                    setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
@@ -578,6 +581,46 @@ public class HardCodedSources {
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
+
+            list.add(kind);
+        }
+
+        {
+            // EXCHANGE: ORGANIZATION
+            DataKind kind = new DataKind(Organization.CONTENT_ITEM_TYPE,
+                    R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true);
+
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.organizationLabelsGroup);
+            // TODO: build body from multiple fields
+            kind.actionBody = new SimpleInflater(Organization.TITLE);
+
+            kind.typeColumn = Organization.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(Organization.TYPE_WORK, R.string.type_work));
+            kind.typeList.add(new EditType(Organization.TYPE_OTHER, R.string.type_other));
+            kind.typeList.add(new EditType(Organization.TYPE_CUSTOM, R.string.type_custom)
+                    .setSecondary(true).setCustomColumn(Organization.LABEL));
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
+                    FLAGS_GENERIC_NAME));
+            kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
+                    FLAGS_GENERIC_NAME));
+
+            list.add(kind);
+        }
+
+        {
+            // EXCHANGE: NOTE
+            DataKind kind = new DataKind(Note.CONTENT_ITEM_TYPE,
+                    R.string.label_notes, R.drawable.sym_note, 110, true);
+            kind.secondary = true;
+
+            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.label_notes);
+            kind.actionBody = new SimpleInflater(Note.NOTE);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
             list.add(kind);
         }
