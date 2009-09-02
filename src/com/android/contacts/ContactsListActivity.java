@@ -221,7 +221,8 @@ public final class ContactsListActivity extends ListActivity implements
         Contacts.STARRED, //2
         Contacts.TIMES_CONTACTED, //3
         Presence.PRESENCE_STATUS, //4
-        Contacts.PHOTO_ID, //4
+        Contacts.PHOTO_ID, //5
+        Contacts.HAS_PHONE_NUMBER, //6
     };
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
         People._ID, // 0
@@ -236,6 +237,7 @@ public final class ContactsListActivity extends ListActivity implements
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
     static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 4;
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
+    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 6;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Data._ID, //0
@@ -882,14 +884,16 @@ public final class ContactsListActivity extends ListActivity implements
             return;
         }
         long id = info.id;
-        Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
+        Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
+        long rawContactId = ContactsUtils.queryForRawContactId(getContentResolver(), id);
+        Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
 
         // Setup the menu header
         menu.setHeaderTitle(cursor.getString(SUMMARY_NAME_COLUMN_INDEX));
 
         // View contact details
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
-                .setIntent(new Intent(Intent.ACTION_VIEW, aggUri));
+                .setIntent(new Intent(Intent.ACTION_VIEW, contactUri));
 
         /*
         // Calling contact
@@ -923,7 +927,7 @@ public final class ContactsListActivity extends ListActivity implements
 
         // Contact editing
         menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
-                .setIntent(new Intent(Intent.ACTION_EDIT, aggUri));
+                .setIntent(new Intent(Intent.ACTION_EDIT, rawContactUri));
         menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact);
     }
 
@@ -1583,14 +1587,22 @@ public final class ContactsListActivity extends ListActivity implements
         if (list.hasFocus()) {
             Cursor cursor = (Cursor) list.getSelectedItem();
             if (cursor != null) {
-                long dataId = cursor.getLong(ID_COLUMN_INDEX);
-                if (dataId == 0) {
+                boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+                if (!hasPhone) {
                     // There is no phone number.
                     signalError();
                     return false;
                 }
-                Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
-                Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+
+                String phone = ContactsUtils.querySuperPrimaryPhone(getContentResolver(), cursor.
+                        getLong(ID_COLUMN_INDEX));
+                if (phone == null) {
+                    signalError();
+                    return false;
+                }
+
+                Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                        Uri.fromParts("tel", phone, null));
                 startActivity(intent);
                 return true;
             }
