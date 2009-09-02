@@ -344,6 +344,7 @@ public class ContactsSource {
      */
     public interface StringInflater {
         public CharSequence inflateUsing(Context context, Cursor cursor);
+        public CharSequence inflateUsing(Context context, ContentValues values);
     }
 
 }

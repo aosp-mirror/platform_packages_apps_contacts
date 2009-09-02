@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 
+import com.android.contacts.model.ContactsSource;
 import com.android.contacts.ui.FastTrackWindow;
 
 import java.io.ByteArrayInputStream;
@@ -31,9 +32,11 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.provider.Contacts;
 import android.provider.Contacts.Photos;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -46,9 +49,15 @@ import android.provider.Im.ProviderNames;
 import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ContactsUtils {
 
+    private static final String TAG = "ContactsUtils";
     /**
      * Build the display title for the {@link Data#CONTENT_URI} entry in the
      * provided cursor, assuming the given mimeType.
@@ -249,5 +258,55 @@ public class ContactsUtils {
             }
         }
         return contactId;
+    }
+
+
+    /**
+     * Utility for creating a standard tab indicator view.
+     *
+     * @param parent The parent ViewGroup to attach the new view to.
+     * @param label The label to display in the tab indicator. If null, not label will be displayed.
+     * @param icon The icon to display. If null, no icon will be displayed.
+     * @return The tab indicator View.
+     */
+    public static View createTabIndicatorView(ViewGroup parent, CharSequence label, Drawable icon) {
+        final LayoutInflater inflater = (LayoutInflater)parent.getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        final View tabIndicator = inflater.inflate(R.layout.tab_indicator, parent, false);
+        tabIndicator.getBackground().setDither(true);
+
+        final TextView tv = (TextView) tabIndicator.findViewById(R.id.tab_title);
+        tv.setText(label);
+
+        final ImageView iconView = (ImageView) tabIndicator.findViewById(R.id.tab_icon);
+        iconView.setImageDrawable(icon);
+
+        return tabIndicator;
+    }
+
+    /**
+     * Utility for creating a standard tab indicator view.
+     *
+     * @param context The label to display in the tab indicator. If null, not label will be displayed.
+     * @param parent The parent ViewGroup to attach the new view to.
+     * @param source The {@link ContactsSource} to build the tab view from.
+     * @return The tab indicator View.
+     */
+    public static View createTabIndicatorView(ViewGroup parent, ContactsSource source) {
+        Drawable icon = null;
+        if (source != null) {
+            final String packageName = source.resPackageName;
+            if (source.iconRes > 0) {
+                try {
+                    final Context authContext = parent.getContext().
+                            createPackageContext(packageName, 0);
+                    icon = authContext.getResources().getDrawable(source.iconRes);
+
+                } catch (PackageManager.NameNotFoundException e) {
+                    Log.d(TAG, "error getting the Package Context for " + packageName, e);
+                }
+            }
+        }
+        return createTabIndicatorView(parent, null, icon);
     }
 }

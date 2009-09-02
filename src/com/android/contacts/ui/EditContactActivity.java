@@ -16,7 +16,6 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.BaseContactCardActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.ScrollingTabWidget;
@@ -337,7 +336,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
 
-            final View tabView = BaseContactCardActivity.createTabIndicatorView(
+            final View tabView = ContactsUtils.createTabIndicatorView(
                     mTabWidget.getTabParent(), source);
             mTabWidget.addTab(tabView);
         }
