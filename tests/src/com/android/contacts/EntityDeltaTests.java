@@ -226,15 +226,25 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Assert two operations: insert Data row and enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
-        assertEquals("Unexpected operations", 2, diff.size());
+        assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
             assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(2);
             assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(3);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
 
@@ -254,20 +264,30 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Assert three operations: update Contact, insert Data row, enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
-        assertEquals("Unexpected operations", 3, diff.size());
+        assertEquals("Unexpected operations", 5, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
             assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(2);
+            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(3);
             assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(4);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
 
@@ -281,15 +301,25 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Assert two operations: update Data and enforce version
         final ArrayList<ContentProviderOperation> diff = source.buildDiff();
-        assertEquals("Unexpected operations", 2, diff.size());
+        assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
             assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(2);
             assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(3);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
 
