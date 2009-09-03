@@ -1281,7 +1281,8 @@ public final class ContactsListActivity extends ListActivity implements
     Uri getPickerResultUri(long id) {
         switch(mMode) {
             case MODE_PICK_CONTACT:
-            case MODE_PICK_OR_CREATE_CONTACT: {
+            case MODE_PICK_OR_CREATE_CONTACT:
+            case MODE_JOIN_CONTACT: {
                 return ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
             }
             case MODE_LEGACY_PICK_PERSON:
