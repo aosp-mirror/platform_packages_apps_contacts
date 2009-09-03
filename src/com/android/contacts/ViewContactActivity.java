@@ -22,6 +22,7 @@ import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.HardCodedSources.SimpleInflater;
 import com.android.contacts.ui.FastTrackWindow;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
@@ -993,6 +994,13 @@ public class ViewContactActivity extends Activity
                             entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
                                     Uri.fromParts("sms", entry.data, null));
                             entry.data = PhoneNumberUtils.stripSeparators(entry.data);
+
+                            // If data is empty, don't show it.
+                            if (TextUtils.isEmpty(entry.data)) {
+                                Log.w(TAG, "empty data for contact method " + id);
+                                continue;
+                            }
+
                             entry.isPrimary = isSuperPrimary;
                             mPhoneEntries.add(entry);
 
@@ -1007,6 +1015,10 @@ public class ViewContactActivity extends Activity
                             // Build email entries
                             entry.intent = new Intent(Intent.ACTION_SENDTO,
                                     Uri.fromParts("mailto", entry.data, null));
+                            // Temporary hack until we get real label resources for exchange.
+                            if (TextUtils.isEmpty(entry.label)) {
+                                entry.label = getString(R.string.email).toLowerCase();
+                            }
                             entry.isPrimary = isSuperPrimary;
                             mEmailEntries.add(entry);
                         } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
@@ -1019,6 +1031,10 @@ public class ViewContactActivity extends Activity
                             // Build im entries
                             Object protocolObj = entryValues.getAsInteger(Data.DATA5);
                             String host = null;
+
+                            if (TextUtils.isEmpty(entry.label)) {
+                                entry.label = getString(R.string.im).toLowerCase();
+                            }
 
                             if (protocolObj instanceof Number) {
                                 int protocol = ((Number) protocolObj).intValue();

@@ -955,7 +955,8 @@
 
 <string name="email_1">Email 1</string>
 <string name="email_2">Email 2</string>
-<string name="email_3">Email 2</string>
+<string name="email_3">Email 3</string>
+<string name="email">Email</string>
 
 
 
@@ -973,6 +974,11 @@
 <string name="chat_icq">Chat using ICQ</string>
 <string name="chat_jabber">Chat using Jabber</string>
 <string name="chat_other">Chat</string>
+
+<string name="im_1">Chat 1</string>
+<string name="im_2">Chat 2</string>
+<string name="im_3">Chat 3</string>
+<string name="im">Chat</string>
 
 <string name="postal_street">Street</string>
 <string name="postal_pobox">PO box</string>
