@@ -196,11 +196,18 @@ public class ViewContactActivity extends Activity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         final Intent intent = getIntent();
-        mUri = intent.getData();
-        resolveContactUriFromIntent(intent);
+        if (!resolveContactUriFromIntent(intent)) {
+
+            // TODO either figure out a way to prevent a flash of black background or
+            // use some other UI than a toast
+            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
+            finish();
+            return;
+        }
+
+        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.contact_card_layout);
@@ -251,9 +258,10 @@ public class ViewContactActivity extends Activity
         startEntityQuery();
     }
 
-    private void resolveContactUriFromIntent(final Intent intent) {
+    private boolean resolveContactUriFromIntent(final Intent intent) {
         mOriginalUri = intent.getData();
         mUri = ContactsContract.Contacts.lookupContact(getContentResolver(), mOriginalUri);
+        return mUri != null;
     }
 
     @Override
