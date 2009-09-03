@@ -112,7 +112,7 @@ public class ViewContactActivity extends Activity
     public static final int MENU_ITEM_JOIN_AGGREGATE = 6;
     public static final int MENU_ITEM_OPTIONS = 7;
 
-    protected Uri mOriginalUri;
+    protected Uri mLookupUri;
     private Uri mUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
@@ -136,7 +136,6 @@ public class ViewContactActivity extends Activity
     /* package */ ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
     private Cursor mCursor;
-    private boolean mObserverRegistered;
 
     private SparseArray<Long> mTabRawContactIdMap;
     protected ScrollingTabWidget mTabWidget;
@@ -175,14 +174,7 @@ public class ViewContactActivity extends Activity
     };
 
     public void onClick(DialogInterface dialog, int which) {
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mCursor.unregisterContentObserver(mObserver);
-                mObserverRegistered = false;
-            }
-            mCursor.close();
-            mCursor = null;
-        }
+        closeCursor();
         getContentResolver().delete(mUri, null, null);
         finish();
     }
@@ -197,15 +189,7 @@ public class ViewContactActivity extends Activity
         super.onCreate(icicle);
 
         final Intent intent = getIntent();
-        if (!resolveContactUriFromIntent(intent)) {
-
-            // TODO either figure out a way to prevent a flash of black background or
-            // use some other UI than a toast
-            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
-            finish();
-            return;
-        }
+        mLookupUri = intent.getData();
 
         mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -214,7 +198,6 @@ public class ViewContactActivity extends Activity
 
         mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
         mContactHeaderWidget.showStar(true);
-        mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
         mContactHeaderWidget.setExcludeMimes(new String[] {
             Contacts.CONTENT_ITEM_TYPE
         });
@@ -251,50 +234,25 @@ public class ViewContactActivity extends Activity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
-        //Stub query so we can get notifications.
-        mCursor = mResolver.query(Uri.withAppendedPath(mUri, "data"),
-                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
-
         startEntityQuery();
-    }
-
-    private boolean resolveContactUriFromIntent(final Intent intent) {
-        mOriginalUri = intent.getData();
-        mUri = ContactsContract.Contacts.lookupContact(getContentResolver(), mOriginalUri);
-        return mUri != null;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mObserverRegistered = true;
-        mCursor.registerContentObserver(mObserver);
         startEntityQuery();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mObserverRegistered = false;
-                mCursor.unregisterContentObserver(mObserver);
-            }
-            mCursor.deactivate();
-        }
+        closeCursor();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mCursor.unregisterContentObserver(mObserver);
-                mObserverRegistered = false;
-            }
-            mCursor.close();
-        }
+        closeCursor();
     }
 
     @Override
@@ -391,13 +349,6 @@ public class ViewContactActivity extends Activity
         onTabSelectionChanged(selectedTabIndex, false);
     }
 
-    @Override
-    public void onNewIntent(Intent newIntent) {
-        setIntent(newIntent);
-        resolveContactUriFromIntent(newIntent);
-        selectInitialTab();
-    }
-
     private void addAllTab() {
         View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator,
                 mTabWidget.getTabParent(), false);
@@ -457,7 +408,7 @@ public class ViewContactActivity extends Activity
 
     /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        // Emtpy
+        // Empty
     }
 
     private ArrayList<Entity> readEntities(EntityIterator iterator) {
@@ -473,9 +424,42 @@ public class ViewContactActivity extends Activity
     }
 
     private void startEntityQuery() {
+        closeCursor();
+
+        if (mLookupUri != null) {
+            mLookupUri = Contacts.getLookupUri(getContentResolver(), mLookupUri);
+            if (mLookupUri != null) {
+                mUri = Contacts.lookupContact(getContentResolver(), mLookupUri);
+            }
+        }
+
+        if (mUri == null) {
+
+            // TODO either figure out a way to prevent a flash of black background or
+            // use some other UI than a toast
+            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "invalid contact uri: " + mLookupUri);
+            finish();
+            return;
+        }
+
+        mCursor = mResolver.query(Uri.withAppendedPath(mUri, Contacts.Data.CONTENT_DIRECTORY),
+                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        mCursor.registerContentObserver(mObserver);
+
         long contactId = ContentUris.parseId(mUri);
         mHandler.startQueryEntities(TOKEN_QUERY, null,
                 RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
+
+        mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
+    }
+
+    private void closeCursor() {
+        if (mCursor != null) {
+            mCursor.unregisterContentObserver(mObserver);
+            mCursor.close();
+            mCursor = null;
+        }
     }
 
     private void bindData() {
@@ -743,9 +727,9 @@ public class ViewContactActivity extends Activity
         final AlertDialog dialog = builder.create();
 
         view.setOnContactSelectedListener(new OnContactSelectedListener() {
-            public void onContactSelected(long contactId) {
+            public void onContactSelected(long rawContactId) {
                 dialog.dismiss();
-                splitContact(contactId);
+                splitContact(rawContactId);
             }
         });
 
@@ -784,10 +768,13 @@ public class ViewContactActivity extends Activity
         }
     }
 
-    private void splitContact(long contactId) {
-        setAggregationException(contactId, AggregationExceptions.TYPE_KEEP_OUT);
+    private void splitContact(long rawContactId) {
+        setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_OUT);
+
+        // The split operation may have removed the original aggregate contact, so we need
+        // to requery everything
         Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_SHORT).show();
-        mAdapter.notifyDataSetChanged();
+        startEntityQuery();
     }
 
     private void joinAggregate(final long aggregateId) {
@@ -811,10 +798,10 @@ public class ViewContactActivity extends Activity
      * Given a contact ID sets an aggregation exception to either join the contact with the
      * current aggregate or split off.
      */
-    protected void setAggregationException(long contactId, int exceptionType) {
+    protected void setAggregationException(long rawContactId, int exceptionType) {
         ContentValues values = new ContentValues(3);
         values.put(AggregationExceptions.CONTACT_ID, ContentUris.parseId(mUri));
-        values.put(AggregationExceptions.RAW_CONTACT_ID, contactId);
+        values.put(AggregationExceptions.RAW_CONTACT_ID, rawContactId);
         values.put(AggregationExceptions.TYPE, exceptionType);
         mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
     }

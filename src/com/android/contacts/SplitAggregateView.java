@@ -78,7 +78,7 @@ public class SplitAggregateView extends ListView {
      * Listener interface that gets the contact ID of the user-selected contact.
      */
     public interface OnContactSelectedListener {
-        void onContactSelected(long contactId);
+        void onContactSelected(long rawContactId);
     }
 
     /**
@@ -97,7 +97,7 @@ public class SplitAggregateView extends ListView {
         setOnItemClickListener(new OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mListener.onContactSelected(list.get(position).contactId);
+                mListener.onContactSelected(list.get(position).rawContactId);
             }
         });
     }
@@ -113,15 +113,15 @@ public class SplitAggregateView extends ListView {
      * Contact information loaded from the content provider.
      */
     private static class ContactInfo implements Comparable<ContactInfo> {
-        final long contactId;
+        final long rawContactId;
         String accountType;
         String name;
         String phone;
         String email;
         String nickname;
 
-        public ContactInfo(long contactId) {
-            this.contactId = contactId;
+        public ContactInfo(long rawContactId) {
+            this.rawContactId = rawContactId;
         }
 
         public String getAdditionalData() {
