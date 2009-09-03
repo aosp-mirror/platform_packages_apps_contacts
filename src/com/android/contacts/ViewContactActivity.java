@@ -54,6 +54,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
@@ -480,12 +481,6 @@ public class ViewContactActivity extends Activity
         } else {
             mAdapter.setSections(mSections, SHOW_SEPARATORS);
         }
-
-//        else {
-//            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
-//            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
-//            finish();
-//        }
     }
 
     @Override
@@ -602,7 +597,11 @@ public class ViewContactActivity extends Activity
             }
 
             case MENU_ITEM_SPLIT_AGGREGATE: {
-                showSplitAggregateDialog();
+                if (mRawContactIds.size() == 2) {
+                    splitContact(mRawContactIds.get(1));
+                } else {
+                    showSplitAggregateDialog();
+                }
                 return true;
             }
 
@@ -706,7 +705,6 @@ public class ViewContactActivity extends Activity
      * The user picks a contact to be split into its own aggregate or clicks Cancel.
      */
     private void showSplitAggregateDialog() {
-
         // Wrap this dialog in a specific theme so that list items have correct text color.
         final ContextThemeWrapper dialogContext =
                 new ContextThemeWrapper(this, android.R.style.Theme_Light);
@@ -774,7 +772,7 @@ public class ViewContactActivity extends Activity
 
         // The split operation may have removed the original aggregate contact, so we need
         // to requery everything
-        Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_LONG).show();
         startEntityQuery();
     }
 
@@ -791,8 +789,8 @@ public class ViewContactActivity extends Activity
             c.close();
         }
 
-        Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_SHORT).show();
-        mAdapter.notifyDataSetChanged();
+        Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+        startEntityQuery();
     }
 
     /**
