@@ -203,7 +203,9 @@ public class ScrollingTabWidget extends RelativeLayout
             return;
         }
 
-        mTabsView.setSelected(mSelectedTab, false);
+        if (mSelectedTab < getTabCount()) {
+            mTabsView.setSelected(mSelectedTab, false);
+        }
         mSelectedTab = index;
         mTabsView.setSelected(mSelectedTab, true);
     }
