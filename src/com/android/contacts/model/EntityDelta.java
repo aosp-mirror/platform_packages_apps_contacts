@@ -288,17 +288,12 @@ public class EntityDelta implements Parcelable {
 
         final boolean isContactInsert = mValues.isInsert();
         final boolean isContactDelete = mValues.isDelete();
+        final boolean isContactUpdate = !isContactInsert && !isContactDelete;
 
         final Long beforeId = mValues.getId();
         final Long beforeVersion = mValues.getAsLong(RawContacts.VERSION);
 
         Builder builder;
-
-        // Suspend aggregation while persisting edits
-        if (mValues.beforeExists()) {
-            builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_SUSPENDED);
-            possibleAdd(diff, builder);
-        }
 
         // Build possible operation at Contact level
         builder = mValues.buildDiff(RawContacts.CONTENT_URI);
@@ -337,14 +332,20 @@ public class EntityDelta implements Parcelable {
             possibleAdd(diff, builder);
         }
 
-        // Enable aggregation when finished with updates
-        if (mValues.beforeExists()) {
+        final boolean hasOperations = diff.size() > 0;
+
+        if (hasOperations && isContactUpdate) {
+            // Suspend aggregation while persisting updates
+            builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_SUSPENDED);
+            diff.add(0, builder.build());
+
+            // Restore aggregation as last operation
             builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_DEFAULT);
-            possibleAdd(diff, builder);
+            diff.add(builder.build());
         }
 
-        // If any operations, assert that version is identical so we bail if changed
-        if (diff.size() > 0 && beforeVersion != null && beforeId != null) {
+        if (hasOperations && (isContactUpdate || isContactDelete)) {
+            // Assert version is consistent while persisting changes
             builder = ContentProviderOperation.newAssertQuery(RawContacts.CONTENT_URI);
             builder.withSelection(RawContacts._ID + "=" + beforeId, null);
             builder.withValue(RawContacts.VERSION, beforeVersion);
