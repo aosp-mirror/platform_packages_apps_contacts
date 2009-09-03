@@ -87,6 +87,13 @@ public class HardCodedSources {
             // FALLBACK: STRUCTUREDNAME
             DataKind kind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                     R.string.nameLabelsGroup, -1, -1, true);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME));
+
             list.add(kind);
         }
 
