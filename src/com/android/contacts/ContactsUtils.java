@@ -21,6 +21,8 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.ui.FastTrackWindow;
 
 import java.io.ByteArrayInputStream;
+
+import android.provider.Contacts.People.Phones;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 
@@ -36,15 +38,13 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.provider.Contacts;
-import android.provider.Contacts.Photos;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.Contacts;
 import android.provider.Im.ProviderNames;
 import android.database.Cursor;
 import android.text.TextUtils;
@@ -258,6 +258,49 @@ public class ContactsUtils {
             }
         }
         return contactId;
+    }
+
+    public static String querySuperPrimaryPhone(ContentResolver cr, long contactId) {
+        Cursor c = null;
+        String phone = null;
+        try {
+            Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            Uri dataUri = Uri.withAppendedPath(baseUri, "data");
+
+            c = cr.query(dataUri,
+                    new String[] {Phone.NUMBER},
+                    Data.MIMETYPE + "=" + Phone.MIMETYPE +
+                        " AND " + Data.IS_SUPER_PRIMARY + "=1",
+                    null, null);
+            if (c != null && c.moveToFirst()) {
+                // Just return the first one.
+                phone = c.getString(0);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return phone;
+    }
+
+    public static long queryForRawContactId(ContentResolver cr, long contactId) {
+        Cursor rawContactIdCursor = null;
+        long rawContactId = -1;
+        try {
+            rawContactIdCursor = cr.query(RawContacts.CONTENT_URI,
+                    new String[] {RawContacts._ID},
+                    RawContacts.CONTACT_ID + "=" + contactId, null, null);
+            if (rawContactIdCursor != null && rawContactIdCursor.moveToFirst()) {
+                // Just return the first one.
+                rawContactId = rawContactIdCursor.getLong(0);
+            }
+        } finally {
+            if (rawContactIdCursor != null) {
+                rawContactIdCursor.close();
+            }
+        }
+        return rawContactId;
     }
 
 
