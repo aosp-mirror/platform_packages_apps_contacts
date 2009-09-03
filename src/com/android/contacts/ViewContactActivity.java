@@ -426,6 +426,7 @@ public class ViewContactActivity extends Activity
     private void startEntityQuery() {
         closeCursor();
 
+        mUri = null;
         if (mLookupUri != null) {
             mLookupUri = Contacts.getLookupUri(getContentResolver(), mLookupUri);
             if (mLookupUri != null) {
