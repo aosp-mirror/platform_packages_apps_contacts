@@ -241,16 +241,23 @@ public class HardCodedSources {
 
             kind.typeColumn = Im.PROTOCOL;
             kind.typeList = Lists.newArrayList();
-            kind.typeList.add(new EditType(Im.PROTOCOL_AIM, R.string.type_im_aim));
-            kind.typeList.add(new EditType(Im.PROTOCOL_MSN, R.string.type_im_msn));
-            kind.typeList.add(new EditType(Im.PROTOCOL_YAHOO, R.string.type_im_yahoo));
-            kind.typeList.add(new EditType(Im.PROTOCOL_SKYPE, R.string.type_im_skype));
-            kind.typeList.add(new EditType(Im.PROTOCOL_QQ, R.string.type_im_qq));
-            kind.typeList.add(new EditType(Im.PROTOCOL_GOOGLE_TALK, R.string.type_im_google_talk));
-            kind.typeList.add(new EditType(Im.PROTOCOL_ICQ, R.string.type_im_icq));
-            kind.typeList.add(new EditType(Im.PROTOCOL_JABBER, R.string.type_im_jabber));
-            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom).setSecondary(
-                    true).setCustomColumn(Im.CUSTOM_PROTOCOL));
+            kind.typeList.add(new EditType(Im.PROTOCOL_AIM, R.string.type_im_aim,
+                    R.string.chat_aim));
+            kind.typeList.add(new EditType(Im.PROTOCOL_MSN, R.string.type_im_msn,
+                    R.string.chat_msn));
+            kind.typeList.add(new EditType(Im.PROTOCOL_YAHOO, R.string.type_im_yahoo,
+                    R.string.chat_yahoo));
+            kind.typeList.add(new EditType(Im.PROTOCOL_SKYPE, R.string.type_im_skype,
+                    R.string.chat_skype));
+            kind.typeList.add(new EditType(Im.PROTOCOL_QQ, R.string.type_im_qq, R.string.chat_qq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_GOOGLE_TALK, R.string.type_im_google_talk,
+                    R.string.chat_gtalk));
+            kind.typeList.add(new EditType(Im.PROTOCOL_ICQ, R.string.type_im_icq,
+                    R.string.chat_icq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_JABBER, R.string.type_im_jabber,
+                    R.string.chat_jabber));
+            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom,
+                    R.string.chat_other).setSecondary(true).setCustomColumn(Im.CUSTOM_PROTOCOL));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
@@ -627,6 +634,24 @@ public class HardCodedSources {
                 return null;
             }
         }
+
+        public CharSequence inflateUsing(Context context, ContentValues values) {
+            final boolean validColumn = values.containsKey(mColumnName);
+            final boolean validString = mStringRes > 0;
+
+            final CharSequence stringValue = validString ? context.getText(mStringRes) : null;
+            final CharSequence columnValue = validColumn ? values.getAsString(mColumnName) : null;
+
+            if (validString && validColumn) {
+                return String.format(stringValue.toString(), columnValue);
+            } else if (validString) {
+                return stringValue;
+            } else if (validColumn) {
+                return columnValue;
+            } else {
+                return null;
+            }
+        }
     }
 
     /**
@@ -648,6 +673,12 @@ public class HardCodedSources {
             final boolean validString = (type != null && type.actionRes != 0);
             return validString ? context.getText(type.actionRes) : null;
         }
+
+        public CharSequence inflateUsing(Context context, ContentValues values) {
+            final EditType type = EntityModifier.getCurrentType(values, mKind);
+            final boolean validString = (type != null && type.actionRes != 0);
+            return validString ? context.getText(type.actionRes) : null;
+        }
     }
 
     public static class ActionAltInflater implements StringInflater {
@@ -661,6 +692,12 @@ public class HardCodedSources {
 
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
+            final boolean validString = (type != null && type.actionAltRes != 0);
+            return validString ? context.getText(type.actionAltRes) : null;
+        }
+
+        public CharSequence inflateUsing(Context context, ContentValues values) {
+            final EditType type = EntityModifier.getCurrentType(values, mKind);
             final boolean validString = (type != null && type.actionAltRes != 0);
             return validString ? context.getText(type.actionAltRes) : null;
         }

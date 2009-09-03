@@ -199,6 +199,16 @@ public class EntityModifier {
     }
 
     /**
+     * Find the {@link EditType} that describes the given {@link ContentValues} row,
+     * assuming the given {@link DataKind} dictates the possible types.
+     */
+    public static EditType getCurrentType(ContentValues entry, DataKind kind) {
+        if (kind.typeColumn == null) return null;
+        final int rawValue = entry.getAsInteger(kind.typeColumn);
+        return getType(kind, rawValue);
+    }
+
+    /**
      * Find the {@link EditType} that describes the given {@link Cursor} row,
      * assuming the given {@link DataKind} dictates the possible types.
      */

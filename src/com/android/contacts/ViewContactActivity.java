@@ -16,22 +16,18 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.DATA_1_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_2_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_3_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_4_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_5_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_CONTACT_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_IS_SUPER_PRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.DATA_MIMETYPE_COLUMN;
-
 import com.android.contacts.Collapser.Collapsible;
+import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
+import com.android.internal.widget.ContactHeaderWidget;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -41,8 +37,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Entity.NamedContentValues;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
@@ -58,6 +56,7 @@ import android.os.ServiceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
@@ -65,13 +64,16 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -85,9 +87,10 @@ import java.util.ArrayList;
 /**
  * Displays the details of a specific contact.
  */
-public class ViewContactActivity extends BaseContactCardActivity
+public class ViewContactActivity extends Activity
         implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener,
-        AdapterView.OnItemClickListener {
+        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener,
+        OnTabSelectionChangedListener {
     private static final String TAG = "ViewContact";
     private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
@@ -108,6 +111,8 @@ public class ViewContactActivity extends BaseContactCardActivity
     public static final int MENU_ITEM_JOIN_AGGREGATE = 6;
     public static final int MENU_ITEM_OPTIONS = 7;
 
+    protected Uri mOriginalUri;
+    private Uri mUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
@@ -132,6 +137,28 @@ public class ViewContactActivity extends BaseContactCardActivity
     private Cursor mCursor;
     private boolean mObserverRegistered;
 
+    private SparseArray<Long> mTabRawContactIdMap;
+    protected ScrollingTabWidget mTabWidget;
+    protected ContactHeaderWidget mContactHeaderWidget;
+    private NotifyingAsyncQueryHandler mHandler;
+
+    protected LayoutInflater mInflater;
+
+    //Projection used for the query that determines which tabs to add.
+    protected static final String[] TAB_PROJECTION = new String[] {
+        RawContacts._ID,
+        RawContacts.ACCOUNT_NAME,
+        RawContacts.ACCOUNT_TYPE
+    };
+    protected static final int TAB_CONTACT_ID_COLUMN_INDEX = 0;
+    protected static final int TAB_ACCOUNT_NAME_COLUMN_INDEX = 1;
+    protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
+
+    protected static final String SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContact";
+    protected Long mSelectedRawContactId = null;
+
+    private static final int TOKEN_QUERY = 0;
+
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
         public boolean deliverSelfNotifications() {
@@ -140,8 +167,8 @@ public class ViewContactActivity extends BaseContactCardActivity
 
         @Override
         public void onChange(boolean selfChange) {
-            if (mCursor != null && !mCursor.isClosed()){
-                dataChanged();
+            if (mCursor != null && !mCursor.isClosed()) {
+                startEntityQuery();
             }
         }
     };
@@ -162,10 +189,35 @@ public class ViewContactActivity extends BaseContactCardActivity
     private FrameLayout mTabContentLayout;
     private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
+    private ArrayList<Entity> mEntities = null;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        final Intent intent = getIntent();
+        mUri = intent.getData();
+        resolveContactUriFromIntent(intent);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.contact_card_layout);
+
+        mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
+        mContactHeaderWidget.showStar(true);
+        mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
+        mContactHeaderWidget.setExcludeMimes(new String[] {
+            Contacts.CONTENT_ITEM_TYPE
+        });
+
+        mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
+        mTabWidget.setTabSelectionListener(this);
+        mTabWidget.setVisibility(View.INVISIBLE);
+
+        mTabRawContactIdMap = new SparseArray<Long>();
+
+        mHandler = new NotifyingAsyncQueryHandler(this, this);
 
         mListView = new ListView(this);
         mListView.setOnCreateContextMenuListener(this);
@@ -191,8 +243,16 @@ public class ViewContactActivity extends BaseContactCardActivity
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
+        //Stub query so we can get notifications.
         mCursor = mResolver.query(Uri.withAppendedPath(mUri, "data"),
-                CONTACT_PROJECTION, null, null, null);
+                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+
+        startEntityQuery();
+    }
+
+    private void resolveContactUriFromIntent(final Intent intent) {
+        mOriginalUri = intent.getData();
+        mUri = ContactsContract.Contacts.lookupContact(getContentResolver(), mOriginalUri);
     }
 
     @Override
@@ -200,7 +260,7 @@ public class ViewContactActivity extends BaseContactCardActivity
         super.onResume();
         mObserverRegistered = true;
         mCursor.registerContentObserver(mObserver);
-        dataChanged();
+        startEntityQuery();
     }
 
     @Override
@@ -229,6 +289,18 @@ public class ViewContactActivity extends BaseContactCardActivity
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mSelectedRawContactId = savedInstanceState.getLong(SELECTED_RAW_CONTACT_ID_KEY);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+    }
+
+    @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DIALOG_CONFIRM_DELETE:
@@ -244,12 +316,77 @@ public class ViewContactActivity extends BaseContactCardActivity
         return null;
     }
 
-    @Override
-    protected void bindTabs(ArrayList<Entity> entities) {
-        if (entities.size() > 1) {
+
+    // TAB CODE //
+    /**
+     * Adds a tab for each {@link RawContact} associated with this contact.
+     * Override this method if you want to additional tabs and/or different
+     * tabs for your activity.
+     *
+     * @param entities An {@link ArrayList} of {@link Entity}s of all the RawContacts
+     * associated with the contact being displayed.
+     */
+    protected void bindTabs() {
+        if (mEntities.size() > 1) {
             addAllTab();
         }
-        super.bindTabs(entities);
+
+        final Sources sources = Sources.getInstance(this);
+
+        for (Entity entity : mEntities) {
+            final String accountType = entity.getEntityValues().
+                    getAsString(RawContacts.ACCOUNT_TYPE);
+            final Long rawContactId = entity.getEntityValues().
+                    getAsLong(RawContacts._ID);
+
+            // TODO: ensure inflation on background task so we don't block UI thread here
+            final ContactsSource source = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_SUMMARY);
+            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(), source));
+        }
+
+        selectInitialTab();
+        mTabWidget.setVisibility(View.VISIBLE);
+        mTabWidget.postInvalidate();
+    }
+
+    /**
+     * Add a tab to be displayed in the {@link ScrollingTabWidget}.
+     *
+     * @param contactId The contact id associated with the tab.
+     * @param view A view to use as the tab indicator.
+     */
+    protected void addTab(long rawContactId, View view) {
+        mTabRawContactIdMap.put(mTabWidget.getTabCount(), rawContactId);
+        mTabWidget.addTab(view);
+    }
+
+
+    protected void clearCurrentTabs() {
+        mTabRawContactIdMap.clear();
+        mTabWidget.removeAllTabs();
+    }
+
+    protected void selectInitialTab() {
+        int selectedTabIndex = 0;
+
+        if (mSelectedRawContactId != null) {
+            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
+            if (selectedTabIndex == -1) {
+                // If there was no matching tab, just select the first;
+                selectedTabIndex = 0;
+            }
+        }
+
+        mTabWidget.setCurrentTab(selectedTabIndex);
+        onTabSelectionChanged(selectedTabIndex, false);
+    }
+
+    @Override
+    public void onNewIntent(Intent newIntent) {
+        setIntent(newIntent);
+        resolveContactUriFromIntent(newIntent);
+        selectInitialTab();
     }
 
     private void addAllTab() {
@@ -262,33 +399,99 @@ public class ViewContactActivity extends BaseContactCardActivity
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
         long rawContactId = getTabRawContactId(tabIndex);
         mSelectedRawContactId = rawContactId;
-        dataChanged();
+        bindData();
     }
 
-    private void dataChanged() {
-        mCursor.requery();
-        if (mCursor.moveToFirst()) {
+    /**
+     * Return the RawContact id associated with the tab at an index.
+     *
+     * @param index The index of the tab in question.
+     * @return The contactId associated with the tab at the specified index.
+     */
+    protected long getTabRawContactId(int index) {
+        return mTabRawContactIdMap.get(index);
+    }
 
-            // Build up the contact entries
-            buildEntries(mCursor);
-
-            // Collapse similar data items in select sections.
-            Collapser.collapseList(mPhoneEntries);
-            Collapser.collapseList(mSmsEntries);
-            Collapser.collapseList(mEmailEntries);
-            Collapser.collapseList(mPostalEntries);
-
-            if (mAdapter == null) {
-                mAdapter = new ViewAdapter(this, mSections);
-                mListView.setAdapter(mAdapter);
-            } else {
-                mAdapter.setSections(mSections, SHOW_SEPARATORS);
+    /**
+     * Return the tab index associated with the RawContact id.
+     *
+     * @param index The index of the tab in question.
+     * @return The contactId associated with the tab at the specified index.
+     */
+    protected int getTabIndexForRawContactId(long rawContactId) {
+        int numTabs = mTabRawContactIdMap.size();
+        for (int i=0; i < numTabs; i++) {
+            if (mTabRawContactIdMap.get(i) == rawContactId) {
+                return i;
             }
-        } else {
-            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
-            finish();
         }
+        return -1;
+    }
+
+
+    // QUERY CODE //
+    /** {@inheritDoc} */
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        try{
+            if (token == TOKEN_QUERY) {
+                clearCurrentTabs();
+                mEntities = readEntities(iterator);
+                bindTabs();
+                bindData();
+            }
+        } finally {
+            if (iterator != null) {
+                iterator.close();
+            }
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        // Emtpy
+    }
+
+    private ArrayList<Entity> readEntities(EntityIterator iterator) {
+        ArrayList<Entity> entities = new ArrayList<Entity>();
+        try {
+            while (iterator.hasNext()) {
+                entities.add(iterator.next());
+            }
+        } catch (RemoteException e) {
+        }
+
+        return entities;
+    }
+
+    private void startEntityQuery() {
+        long contactId = ContentUris.parseId(mUri);
+        mHandler.startQueryEntities(TOKEN_QUERY, null,
+                RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
+    }
+
+    private void bindData() {
+
+        // Build up the contact entries
+        buildEntries();
+
+        // Collapse similar data items in select sections.
+        Collapser.collapseList(mPhoneEntries);
+        Collapser.collapseList(mSmsEntries);
+        Collapser.collapseList(mEmailEntries);
+        Collapser.collapseList(mPostalEntries);
+
+        if (mAdapter == null) {
+            mAdapter = new ViewAdapter(this, mSections);
+            mListView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setSections(mSections, SHOW_SEPARATORS);
+        }
+
+//        else {
+//            Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
+//            Log.e(TAG, "invalid contact uri: " + mOriginalUri);
+//            finish();
+//        }
     }
 
     @Override
@@ -500,7 +703,7 @@ public class ViewContactActivity extends BaseContactCardActivity
         values.put(Data.IS_SUPER_PRIMARY, 1);
         getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
                 values, null, null);
-        dataChanged();
+        startEntityQuery();
         return true;
     }
 
@@ -703,7 +906,7 @@ public class ViewContactActivity extends BaseContactCardActivity
      *
      * @param personCursor the URI for the contact being displayed
      */
-    private final void buildEntries(Cursor aggCursor) {
+    private final void buildEntries() {
         // Clear out the old entries
         final int numSections = mSections.size();
         for (int i = 0; i < numSections; i++) {
@@ -712,224 +915,215 @@ public class ViewContactActivity extends BaseContactCardActivity
 
         mRawContactIds.clear();
 
+        Sources sources = Sources.getInstance(this);
+
         // Build up method entries
         if (mUri != null) {
-            aggCursor.moveToPosition(-1);
-            while (aggCursor.moveToNext()) {
-                final String mimetype = aggCursor.getString(DATA_MIMETYPE_COLUMN);
-
-                ViewEntry entry = new ViewEntry();
-
-                final long id = aggCursor.getLong(DATA_ID_COLUMN);
-                final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-                entry.id = id;
-                entry.uri = uri;
-                entry.mimetype = mimetype;
+            for (Entity entity: mEntities) {
+                final ContentValues entValues = entity.getEntityValues();
+                final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
                 // TODO: entry.contactId should be renamed to entry.rawContactId
-                entry.contactId = aggCursor.getLong(DATA_CONTACT_ID_COLUMN);
-                if (!mRawContactIds.contains(entry.contactId)) {
-                    mRawContactIds.add(entry.contactId);
-                }
+                long contactId = entValues.getAsLong(RawContacts._ID);
 
-                // This performs the tab filtering
-                if (mSelectedRawContactId != null
-                        && mSelectedRawContactId != entry.contactId
-                        && mSelectedRawContactId != ALL_CONTACTS_ID) {
-                    continue;
-                }
+                for (NamedContentValues subValue : entity.getSubValues()) {
+                    ViewEntry entry = new ViewEntry();
 
-                if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                        || mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)
-                        || mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
-                        || mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
-                    final int type = aggCursor.getInt(DATA_1_COLUMN);
-                    final String label = aggCursor.getString(DATA_3_COLUMN);
-                    final String data = aggCursor.getString(DATA_2_COLUMN);
-                    final boolean isSuperPrimary = "1".equals(
-                            aggCursor.getString(DATA_IS_SUPER_PRIMARY_COLUMN));
-
-                    entry.type = type;
-
-                    // Don't crash if the data is bogus
-                    if (TextUtils.isEmpty(data)) {
-                        Log.w(TAG, "empty data for contact method " + id);
+                    ContentValues entryValues = subValue.values;
+                    final String mimetype = entryValues.getAsString(Data.MIMETYPE);
+                    if (mimetype == null || accountType == null) {
                         continue;
                     }
 
-                    // Build phone entries
-                    if (mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
-                        mNumPhoneNumbers++;
-
-                        final CharSequence displayLabel = ContactsUtils.getDisplayLabel(
-                                this, mimetype, type, label);
-                        entry.label = buildActionString(R.string.actionCall, displayLabel, true);
-                        entry.data = PhoneNumberUtils.stripSeparators(data);
-                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                Uri.fromParts("tel", data, null));
-                        entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("sms", data, null));
-                        entry.isPrimary = isSuperPrimary;
-                        entry.actionIcon = android.R.drawable.sym_action_call;
-                        mPhoneEntries.add(entry);
-
-                        if (type == CommonDataKinds.Phone.TYPE_MOBILE
-                                || mShowSmsLinksForAllPhones) {
-                            // Add an SMS entry
-                            entry.secondaryActionIcon = R.drawable.sym_action_sms;
-                        }
-                    // Build email entries
-                    } else if (mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
-                        entry.label = buildActionString(R.string.actionEmail,
-                                ContactsUtils.getDisplayLabel(this, mimetype, type, label), true);
-                        entry.data = data;
-                        entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("mailto", data, null));
-                        entry.actionIcon = android.R.drawable.sym_action_email;
-                        entry.isPrimary = isSuperPrimary;
-                        mEmailEntries.add(entry);
-                    // Build postal entries
-                    } else if (mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
-                        entry.label = buildActionString(R.string.actionMap,
-                                ContactsUtils.getDisplayLabel(this, mimetype, type, label), true);
-                        entry.data = data;
-                        entry.maxLines = 4;
-                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
-                        entry.actionIcon = R.drawable.sym_action_map;
-                        mPostalEntries.add(entry);
-                    // Build im entries
-                    } else if (mimetype.equals(CommonDataKinds.Im.CONTENT_ITEM_TYPE)) {
-                        String[] protocolStrings = getResources().getStringArray(
-                                android.R.array.imProtocols);
-                        Object protocolObj = aggCursor.getString(DATA_5_COLUMN);
-                        String host = null;
-                        // TODO: fix by moving to contactssource-based rendering rules
-//                      Object protocolObj = ContactsUtils.decodeImProtocol(
-//                      aggCursor.getString(DATA_5_COLUMN));
-//                        if (protocolObj instanceof Number) {
-//                            int protocol = ((Number) protocolObj).intValue();
-//                            entry.label = buildActionString(R.string.actionChat,
-//                                    protocolStrings[protocol], false);
-//                            host = ContactsUtils.lookupProviderNameFromId(
-//                                    protocol).toLowerCase();
-//                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
-//                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
-//                                entry.maxLabelLines = 2;
-//                            }
-                        if (protocolObj != null) {
-                            String providerName = (String) protocolObj;
-                            entry.label = buildActionString(R.string.actionChat,
-                                    providerName, false);
-                            host = providerName.toLowerCase();
-                        }
-
-                        // Only add the intent if there is a valid host
-                        if (!TextUtils.isEmpty(host)) {
-                            entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                    constructImToUrl(host, data));
-                        }
-                        entry.data = data;
-                        //TODO(emillar) Add in presence info
-                        /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
-                            entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                    aggCursor.getInt(METHODS_STATUS_COLUMN));
-                            entry.status = ...
-                        }*/
-                        entry.actionIcon = android.R.drawable.sym_action_chat;
-                        mImEntries.add(entry);
-                    }
-                // Build organization entries
-                } else if (mimetype.equals(CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
-                    final String company = aggCursor.getString(DATA_3_COLUMN);
-                    final String title = aggCursor.getString(DATA_4_COLUMN);
-
-                    // Don't crash if the data is bogus
-                    if (TextUtils.isEmpty(company) && TextUtils.isEmpty(title)) {
-                        Log.w(TAG, "empty data for contact method " + id);
+                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                            ContactsSource.LEVEL_MIMETYPES);
+                    if (contactsSource == null) {
                         continue;
                     }
 
-                    entry.data = title;
-                    entry.actionIcon = R.drawable.sym_action_organization;
-                    entry.label = company;
+                    DataKind kind = contactsSource.getKindForMimetype(mimetype);
+                    if (kind == null) {
+                        continue;
+                    }
 
-                    mOrganizationEntries.add(entry);
-                // Build note entries
-                } else if (mimetype.equals(CommonDataKinds.Note.CONTENT_ITEM_TYPE)) {
-                    entry.label = getString(R.string.label_notes);
-                    entry.data = aggCursor.getString(DATA_1_COLUMN);
-                    entry.id = 0;
-                    entry.uri = null;
-                    entry.intent = null;
-                    entry.maxLines = 10;
-                    entry.actionIcon = R.drawable.sym_note;
+                    final long id = entryValues.getAsLong(Data._ID);
+                    final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
+                    entry.contactId = contactId;
+                    entry.id = id;
+                    entry.uri = uri;
+                    entry.mimetype = mimetype;
+                    entry.label = buildActionString(kind, entryValues, true);
+                    entry.data = buildDataString(kind, entryValues);
+                    if (kind.typeColumn != null) {
+                        entry.type = entryValues.getAsInteger(kind.typeColumn);
+                    }
+                    if (kind.iconRes > 0) {
+                        entry.actionIcon = kind.iconRes;
+                    }
 
+                    // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(entry.data)) {
                         Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
 
-                    mOtherEntries.add(entry);
+                    if (!mRawContactIds.contains(entry.contactId)) {
+                        mRawContactIds.add(entry.contactId);
+                    }
+
+                    // This performs the tab filtering
+                    if (mSelectedRawContactId != null
+                            && mSelectedRawContactId != entry.contactId
+                            && mSelectedRawContactId != ALL_CONTACTS_ID) {
+                        continue;
+                    }
+
+                    if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)
+                            || CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)
+                            || CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.equals(mimetype)
+                            || CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        final boolean isSuperPrimary = entryValues.getAsInteger(
+                                Data.IS_SUPER_PRIMARY) != 0;
+
+                        if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                            // Build phone entries
+                            mNumPhoneNumbers++;
+
+                            entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                    Uri.fromParts("tel", entry.data, null));
+                            entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
+                                    Uri.fromParts("sms", entry.data, null));
+                            entry.data = PhoneNumberUtils.stripSeparators(entry.data);
+                            entry.isPrimary = isSuperPrimary;
+                            mPhoneEntries.add(entry);
+
+                            if (entry.type == CommonDataKinds.Phone.TYPE_MOBILE
+                                    || mShowSmsLinksForAllPhones) {
+                                // Add an SMS entry
+                                if (kind.iconAltRes > 0) {
+                                    entry.secondaryActionIcon = kind.iconAltRes;
+                                }
+                            }
+                        } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                            // Build email entries
+                            entry.intent = new Intent(Intent.ACTION_SENDTO,
+                                    Uri.fromParts("mailto", entry.data, null));
+                            entry.isPrimary = isSuperPrimary;
+                            mEmailEntries.add(entry);
+                        } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
+                                equals(mimetype)) {
+                            // Build postal entries
+                            entry.maxLines = 4;
+                            entry.intent = new Intent(Intent.ACTION_VIEW, uri);
+                            mPostalEntries.add(entry);
+                        } else if (CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                            // Build im entries
+                            Object protocolObj = entryValues.getAsInteger(Data.DATA5);
+                            String host = null;
+
+                            if (protocolObj instanceof Number) {
+                                int protocol = ((Number) protocolObj).intValue();
+                                host = ContactsUtils.lookupProviderNameFromId(
+                                        protocol).toLowerCase();
+                                if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
+                                        || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
+                                    entry.maxLabelLines = 2;
+                                }
+                            } else if (protocolObj != null) {
+                                String providerName = (String) protocolObj;
+                                host = providerName.toLowerCase();
+                            }
+
+                            // Only add the intent if there is a valid host
+                            if (!TextUtils.isEmpty(host)) {
+                                entry.intent = new Intent(Intent.ACTION_SENDTO,
+                                        constructImToUrl(host, entry.data));
+                            }
+                            //TODO(emillar) Add in presence info
+                            /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
+                            entry.presenceIcon = Presence.getPresenceIconResourceId(
+                                    aggCursor.getInt(METHODS_STATUS_COLUMN));
+                            entry.status = ...
+                        }*/
+                            mImEntries.add(entry);
+                        }
+                    } else if (CommonDataKinds.Organization.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build organization entries
+                        mOrganizationEntries.add(entry);
+                    } else if (CommonDataKinds.Note.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build note entries
+                        entry.id = 0;
+                        entry.uri = null;
+                        entry.intent = null;
+                        entry.maxLines = 10;
+                        mOtherEntries.add(entry);
+                    }
+
+
+                    // TODO(emillar) Add group entries
+                    //              // Build the group entries
+                    //              final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
+                    //              Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
+                    //                      null, null, Groups.DEFAULT_SORT_ORDER);
+                    //              if (groupCursor != null) {
+                    //                  try {
+                    //                      StringBuilder sb = new StringBuilder();
+                    //
+                    //                      while (groupCursor.moveToNext()) {
+                    //                          String systemId = groupCursor.getString(
+                    //                                  ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
+                    //
+                    //                          if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
+                    //                              continue;
+                    //                          }
+                    //
+                    //                          String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
+                    //                          if (!TextUtils.isEmpty(name)) {
+                    //                              if (sb.length() == 0) {
+                    //                                  sb.append(name);
+                    //                              } else {
+                    //                                  sb.append(getString(R.string.group_list, name));
+                    //                              }
+                    //                          }
+                    //                      }
+                    //
+                    //                      if (sb.length() > 0) {
+                    //                          ViewEntry entry = new ViewEntry();
+                    //                          entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
+                    //                          entry.label = getString(R.string.label_groups);
+                    //                          entry.data = sb.toString();
+                    //                          entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
+                    //
+                    //                          // TODO: Add an icon for the groups item.
+                    //
+                    //                          mGroupEntries.add(entry);
+                    //                      }
+                    //                  } finally {
+                    //                      groupCursor.close();
+                    //                  }
+                    //              }
                 }
-
-
-                // TODO(emillar) Add group entries
-//              // Build the group entries
-//              final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
-//              Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
-//                      null, null, Groups.DEFAULT_SORT_ORDER);
-//              if (groupCursor != null) {
-//                  try {
-//                      StringBuilder sb = new StringBuilder();
-//
-//                      while (groupCursor.moveToNext()) {
-//                          String systemId = groupCursor.getString(
-//                                  ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
-//
-//                          if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
-//                              continue;
-//                          }
-//
-//                          String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
-//                          if (!TextUtils.isEmpty(name)) {
-//                              if (sb.length() == 0) {
-//                                  sb.append(name);
-//                              } else {
-//                                  sb.append(getString(R.string.group_list, name));
-//                              }
-//                          }
-//                      }
-//
-//                      if (sb.length() > 0) {
-//                          ViewEntry entry = new ViewEntry();
-//                          entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
-//                          entry.label = getString(R.string.label_groups);
-//                          entry.data = sb.toString();
-//                          entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
-//
-//                          // TODO: Add an icon for the groups item.
-//
-//                          mGroupEntries.add(entry);
-//                      }
-//                  } finally {
-//                      groupCursor.close();
-//                  }
-//              }
 
             }
         }
     }
 
-    String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
-        // If there is no type just display an empty string
-        if (type == null) {
-            type = "";
+    String buildActionString(DataKind kind, ContentValues values, boolean lowerCase) {
+        if (kind.actionHeader == null) {
+            return null;
         }
+        CharSequence actionHeader = kind.actionHeader.inflateUsing(this, values);
+        if (actionHeader == null) {
+            return null;
+        }
+        return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
+    }
 
-        if (lowerCase) {
-            return getString(actionResId, type.toString().toLowerCase());
-        } else {
-            return getString(actionResId, type.toString());
+    String buildDataString(DataKind kind, ContentValues values) {
+        if (kind.actionBody == null) {
+            return null;
         }
+        CharSequence actionBody = kind.actionBody.inflateUsing(this, values);
+        return actionBody == null ? null : actionBody.toString();
     }
 
     /**

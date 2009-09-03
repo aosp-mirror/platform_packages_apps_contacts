@@ -959,12 +959,20 @@
 
 
 
-<string name="map_home">Map home</string>
-<string name="map_work">Map work</string>
-<string name="map_other">Map other</string>
-<string name="map_custom">Map <xliff:g id="custom">%s</xliff:g></string>
+<string name="map_home">View home address</string>
+<string name="map_work">View work address</string>
+<string name="map_other">View other address</string>
+<string name="map_custom">View <xliff:g id="custom">%s</xliff:g> address</string>
 
-
+<string name="chat_aim">Chat using AIM</string>
+<string name="chat_msn">Chat using Windows Live</string>
+<string name="chat_yahoo">Chat using Yahoo</string>
+<string name="chat_skype">Chat using Skype</string>
+<string name="chat_qq">Chat using QQ</string>
+<string name="chat_gtalk">Chat using Google Talk</string>
+<string name="chat_icq">Chat using ICQ</string>
+<string name="chat_jabber">Chat using Jabber</string>
+<string name="chat_other">Chat</string>
 
 <string name="postal_street">Street</string>
 <string name="postal_pobox">PO box</string>
