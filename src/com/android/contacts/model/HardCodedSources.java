@@ -311,7 +311,7 @@ public class HardCodedSources {
             DataKind kind = new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true);
 
-            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.organizationLabelsGroup);
+            kind.actionHeader = new SimpleInflater(Organization.COMPANY);
             // TODO: build body from multiple fields
             kind.actionBody = new SimpleInflater(Organization.TITLE);
 
@@ -590,7 +590,7 @@ public class HardCodedSources {
             DataKind kind = new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true);
 
-            kind.actionHeader = new SimpleInflater(list.resPackageName, R.string.organizationLabelsGroup);
+            kind.actionHeader = new SimpleInflater(Organization.COMPANY);
             // TODO: build body from multiple fields
             kind.actionBody = new SimpleInflater(Organization.TITLE);
 
