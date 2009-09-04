@@ -220,12 +220,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/phone" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/postal-address" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/phone_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/phone" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address" android:host="contacts" />
             </intent-filter>
 
             <intent-filter>
