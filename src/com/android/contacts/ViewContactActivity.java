@@ -85,6 +85,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Displays the details of a specific contact.
@@ -749,8 +750,8 @@ public class ViewContactActivity extends Activity
         switch (requestCode) {
             case REQUEST_JOIN_CONTACT: {
                 if (resultCode == RESULT_OK && intent != null) {
-                    final long aggregateId = ContentUris.parseId(intent.getData());
-                    joinAggregate(aggregateId);
+                    final long contactId = ContentUris.parseId(intent.getData());
+                    joinAggregate(contactId);
                 }
                 break;
             }
@@ -768,7 +769,7 @@ public class ViewContactActivity extends Activity
     }
 
     private void splitContact(long rawContactId) {
-        setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_OUT);
+        setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_SEPARATE);
 
         // The split operation may have removed the original aggregate contact, so we need
         // to requery everything
@@ -776,14 +777,14 @@ public class ViewContactActivity extends Activity
         startEntityQuery();
     }
 
-    private void joinAggregate(final long aggregateId) {
+    private void joinAggregate(final long contactId) {
         Cursor c = mResolver.query(RawContacts.CONTENT_URI, new String[] {RawContacts._ID},
-                RawContacts.CONTACT_ID + "=" + aggregateId, null, null);
+                RawContacts.CONTACT_ID + "=" + contactId, null, null);
 
         try {
             while(c.moveToNext()) {
-                long contactId = c.getLong(0);
-                setAggregationException(contactId, AggregationExceptions.TYPE_KEEP_IN);
+                long rawContactId = c.getLong(0);
+                setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_TOGETHER);
             }
         } finally {
             c.close();
@@ -799,10 +800,14 @@ public class ViewContactActivity extends Activity
      */
     protected void setAggregationException(long rawContactId, int exceptionType) {
         ContentValues values = new ContentValues(3);
-        values.put(AggregationExceptions.CONTACT_ID, ContentUris.parseId(mUri));
-        values.put(AggregationExceptions.RAW_CONTACT_ID, rawContactId);
-        values.put(AggregationExceptions.TYPE, exceptionType);
-        mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
+        for (long aRawContactId : mRawContactIds) {
+            if (aRawContactId != rawContactId) {
+                values.put(AggregationExceptions.RAW_CONTACT_ID1, aRawContactId);
+                values.put(AggregationExceptions.RAW_CONTACT_ID2, rawContactId);
+                values.put(AggregationExceptions.TYPE, exceptionType);
+                mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
+            }
+        }
     }
 
     private void showOptionsActivity() {
