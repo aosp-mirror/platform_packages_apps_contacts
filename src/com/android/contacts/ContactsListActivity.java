@@ -19,9 +19,11 @@ package com.android.contacts;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.FastTrackWindow;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
+import com.android.contacts.util.Constants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
@@ -61,15 +63,19 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts.AggregationSuggestions;
+import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextMenu;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -83,6 +89,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
+import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -196,8 +203,7 @@ public final class ContactsListActivity extends ListActivity implements
     /** Run a search query */
     static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
     /** Run a search query in PICK mode, but that still launches to VIEW */
-    // TODO Remove this mode if we decided it is really not needed.
-    /*static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;*/
+    static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;
 
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_CONTACT = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
@@ -209,12 +215,6 @@ public final class ContactsListActivity extends ListActivity implements
     static final String NAME_COLUMN = Contacts.DISPLAY_NAME;
     //static final String SORT_STRING = People.SORT_STRING;
 
-    static final String[] CONTACTS_PROJECTION = new String[] {
-        Contacts._ID, // 0
-        Contacts.DISPLAY_NAME, // 1
-        Contacts.STARRED, //2
-    };
-
     static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
         Contacts._ID, // 0
         Contacts.DISPLAY_NAME, // 1
@@ -223,6 +223,7 @@ public final class ContactsListActivity extends ListActivity implements
         Presence.PRESENCE_STATUS, //4
         Contacts.PHOTO_ID, //5
         Contacts.HAS_PHONE_NUMBER, //6
+        Contacts.LOOKUP_KEY, //7
     };
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
         People._ID, // 0
@@ -231,13 +232,14 @@ public final class ContactsListActivity extends ListActivity implements
         PeopleColumns.TIMES_CONTACTED, //3
         People.PRESENCE_STATUS, //4
     };
-    static final int ID_COLUMN_INDEX = 0;
+    static final int SUMMARY_ID_COLUMN_INDEX = 0;
     static final int SUMMARY_NAME_COLUMN_INDEX = 1;
     static final int SUMMARY_STARRED_COLUMN_INDEX = 2;
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
     static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 4;
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
     static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 6;
+    static final int SUMMARY_LOOKUP_KEY = 7;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Data._ID, //0
@@ -296,13 +298,6 @@ public final class ContactsListActivity extends ListActivity implements
 //    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
 
-    /**
-     * Cursor row index that holds reference back to {@link People#_ID}, such as
-     * {@link ContactMethods#PERSON_ID}. Used when responding to a
-     * {@link Intent#ACTION_SEARCH} in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
-     */
-    private int mQueryPersonIdIndex;
-
     private Uri mGroupUri;
 
     private long mQueryAggregateId;
@@ -314,9 +309,6 @@ public final class ContactsListActivity extends ListActivity implements
     private boolean mListHasFocus;
 
     private String mShortcutAction;
-    private boolean mDefaultMode = false;
-
-    private boolean mCreateShortcut;
 
     /**
      * Internal query type when in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
@@ -334,31 +326,6 @@ public final class ContactsListActivity extends ListActivity implements
     private String mQueryData;
 
     private Handler mHandler = new Handler();
-
-    private class ImportTypeSelectedListener implements DialogInterface.OnClickListener {
-        public static final int IMPORT_FROM_SIM = 0;
-        public static final int IMPORT_FROM_SDCARD = 1;
-
-        private int mIndex;
-
-        public ImportTypeSelectedListener() {
-            mIndex = IMPORT_FROM_SIM;
-        }
-
-        public void onClick(DialogInterface dialog, int which) {
-            if (which == DialogInterface.BUTTON_POSITIVE) {
-                if (mIndex == IMPORT_FROM_SIM) {
-                    doImportFromSim();
-                } else {
-                    doImportFromSDCard();
-                }
-            } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-
-            } else {
-                mIndex = which;
-            }
-        }
-    }
 
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
@@ -449,7 +416,6 @@ public final class ContactsListActivity extends ListActivity implements
                 mShortcutAction = Intent.ACTION_VIEW;
                 setTitle(R.string.shortcutActivityTitle);
             }
-            mCreateShortcut = true;
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             final String type = intent.resolveType(this);
             if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
@@ -479,7 +445,7 @@ public final class ContactsListActivity extends ListActivity implements
             }
 
             // See if search request has extras to specify query
-            /*if (intent.hasExtra(Insert.EMAIL)) {
+            if (intent.hasExtra(Insert.EMAIL)) {
                 mMode = MODE_QUERY_PICK_TO_VIEW;
                 mQueryMode = QUERY_MODE_MAILTO;
                 mQueryData = intent.getStringExtra(Insert.EMAIL);
@@ -491,7 +457,6 @@ public final class ContactsListActivity extends ListActivity implements
                 // Otherwise handle the more normal search case
                 mMode = MODE_QUERY;
             }
-            */
             mMode = MODE_QUERY;
 
         // Since this is the filter activity it receives all intents
@@ -762,10 +727,6 @@ public final class ContactsListActivity extends ListActivity implements
     public boolean onPrepareOptionsMenu(Menu menu) {
         final boolean defaultMode = (mMode == MODE_DEFAULT);
         menu.findItem(R.id.menu_display_groups).setVisible(defaultMode);
-
-        final boolean allowExport = getResources().getBoolean(R.bool.config_allow_export_to_sdcard);
-        menu.findItem(R.id.menu_export).setVisible(allowExport);
-
         return true;
     }
 
@@ -786,26 +747,8 @@ public final class ContactsListActivity extends ListActivity implements
                 startActivity(intent);
                 return true;
             }
-            case R.id.menu_import: {
-                if (getResources().getBoolean(R.bool.config_allow_import_from_sdcard)) {
-                    ImportTypeSelectedListener listener =
-                            new ImportTypeSelectedListener();
-                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
-                            .setTitle(R.string.select_import_type_title)
-                            .setPositiveButton(android.R.string.ok, listener)
-                            .setNegativeButton(android.R.string.cancel, null);
-                    dialogBuilder.setSingleChoiceItems(new String[] {
-                            getString(R.string.import_from_sim),
-                            getString(R.string.import_from_sdcard)},
-                            ImportTypeSelectedListener.IMPORT_FROM_SIM, listener);
-                    dialogBuilder.show();
-                } else {
-                    doImportFromSim();
-                }
-                return true;
-            }
-            case R.id.menu_export: {
-                handleExportContacts();
+            case R.id.menu_import_export: {
+                showDialog(R.id.dialog_import_export);
                 return true;
             }
             case R.id.menu_accounts: {
@@ -820,6 +763,82 @@ public final class ContactsListActivity extends ListActivity implements
         return false;
     }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case R.id.dialog_import_export: {
+                return createImportExportDialog();
+            }
+        }
+        return super.onCreateDialog(id);
+    }
+
+    /**
+     * Create a {@link Dialog} that allows the user to pick from a bulk import
+     * or bulk export task across all contacts.
+     */
+    private Dialog createImportExportDialog() {
+        // Wrap our context to inflate list items using correct theme
+        final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
+        final Resources res = dialogContext.getResources();
+        final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        // Adapter that shows a list of string resources
+        final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
+                android.R.layout.simple_list_item_1) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_1,
+                            parent, false);
+                }
+
+                final int resId = this.getItem(position);
+                ((TextView)convertView).setText(resId);
+                return convertView;
+            }
+        };
+
+        if (TelephonyManager.getDefault().hasIccCard()) {
+            adapter.add(R.string.import_from_sim);
+        }
+        if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
+            adapter.add(R.string.import_from_sdcard);
+        }
+        if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
+            adapter.add(R.string.export_to_sdcard);
+        }
+
+        final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                final int resId = adapter.getItem(which);
+                switch (resId) {
+                    case R.string.import_from_sim: {
+                        doImportFromSim();
+                        break;
+                    }
+                    case R.string.import_from_sdcard: {
+                        doImportFromSdCard();
+                        break;
+                    }
+                    case R.string.export_to_sdcard: {
+                        doExportToSdCard();
+                        break;
+                    }
+                }
+            }
+        };
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_import_export);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setSingleChoiceItems(adapter, -1, clickListener);
+        return builder.create();
+    }
+
     private void doImportFromSim() {
         Intent importIntent = new Intent(Intent.ACTION_VIEW);
         importIntent.setType("vnd.android.cursor.item/sim-contact");
@@ -827,12 +846,12 @@ public final class ContactsListActivity extends ListActivity implements
         startActivity(importIntent);
     }
 
-    private void doImportFromSDCard() {
+    private void doImportFromSdCard() {
         Intent intent = new Intent(this, ImportVCardActivity.class);
         startActivity(intent);
     }
 
-    private void handleExportContacts() {
+    private void doExportToSdCard() {
         VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
         exporter.startExportVCardToSdCard();
     }
@@ -948,26 +967,16 @@ public final class ContactsListActivity extends ListActivity implements
                 // Toggle the star
                 ContentValues values = new ContentValues(1);
                 values.put(Contacts.STARRED, cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX) == 0 ? 1 : 0);
-                Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI,
-                        cursor.getInt(ID_COLUMN_INDEX));
-                getContentResolver().update(aggUri, values, null, null);
+                final Uri selectedUri = this.getContactUri(info.position);
+                getContentResolver().update(selectedUri, values, null, null);
                 return true;
             }
 
-            /* case MENU_ITEM_DELETE: {
-                // Get confirmation
-                Uri uri = ContentUris.withAppendedId(People.CONTENT_URI,
-                        cursor.getLong(ID_COLUMN_INDEX));
-                //TODO make this dialog persist across screen rotations
-                new AlertDialog.Builder(ContactsListActivity.this)
-                    .setTitle(R.string.deleteConfirmation_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setMessage(R.string.deleteConfirmation)
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(android.R.string.ok, new DeleteClickListener(uri))
-                    .show();
+            case MENU_ITEM_DELETE: {
+                final Uri selectedUri = getContactUri(info.position);
+                doContactDelete(selectedUri);
                 return true;
-            } */
+            }
         }
 
         return super.onContextItemSelected(item);
@@ -991,20 +1000,10 @@ public final class ContactsListActivity extends ListActivity implements
                 break;
             }
             case KeyEvent.KEYCODE_DEL: {
-                Object o = getListView().getSelectedItem();
-                if (o != null) {
-                    Cursor cursor = (Cursor) o;
-                    Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI,
-                            cursor.getLong(ID_COLUMN_INDEX));
-                    //TODO make this dialog persist across screen rotations
-                    new AlertDialog.Builder(ContactsListActivity.this)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(uri))
-                        .setCancelable(false)
-                        .show();
+                final int position = getListView().getSelectedItemPosition();
+                if (position != ListView.INVALID_POSITION) {
+                    final Uri selectedUri = getContactUri(position);
+                    doContactDelete(selectedUri);
                     return true;
                 }
                 break;
@@ -1012,6 +1011,19 @@ public final class ContactsListActivity extends ListActivity implements
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * Prompt the user before deleting the given {@link Contacts} entry.
+     */
+    protected void doContactDelete(Uri contactUri) {
+        new AlertDialog.Builder(ContactsListActivity.this)
+            .setTitle(R.string.deleteConfirmation_title)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setMessage(R.string.deleteConfirmation)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(android.R.string.ok, new DeleteClickListener(contactUri))
+            .show();
     }
 
     @Override
@@ -1028,8 +1040,8 @@ public final class ContactsListActivity extends ListActivity implements
                 intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             } else {
                 // Edit
-                intent = new Intent(Intent.ACTION_EDIT,
-                        ContentUris.withAppendedId(Contacts.CONTENT_URI, id));
+                final Uri uri = getSelectedUri(position);
+                intent = new Intent(Intent.ACTION_EDIT, uri);
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             final Bundle extras = getIntent().getExtras();
@@ -1039,24 +1051,18 @@ public final class ContactsListActivity extends ListActivity implements
             startActivity(intent);
             finish();
         } else if (id != -1) {
-            Uri uri = getPickerResultUri(id);
+            final Uri uri = getSelectedUri(position);
             if ((mMode & MODE_MASK_PICKER) == 0) {
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        ContentUris.withAppendedId(Contacts.CONTENT_URI, id));
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } else if (mMode == MODE_JOIN_CONTACT) {
                 returnPickerResult(null, null, uri, id);
-            }
-
-            /*else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
+            } else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
-                Cursor c = (Cursor) mAdapter.getItem(position);
-                long personId = c.getLong(mQueryPersonIdIndex);
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        ContentUris.withAppendedId(People.CONTENT_URI, personId));
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 finish();
-            }*/ else if (mMode == MODE_PICK_CONTACT
+            } else if (mMode == MODE_PICK_CONTACT
                     || mMode == MODE_PICK_OR_CREATE_CONTACT
                     || mMode == MODE_LEGACY_PICK_PERSON
                     || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
@@ -1083,7 +1089,7 @@ public final class ContactsListActivity extends ListActivity implements
             }
         } else if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW
                 && position == 0) {
-            // Hook this up to new edit contact activity (bug 2092559)
+            // TODO: Hook this up to new edit contact activity (bug 2092559)
             /*Intent newContact = new Intent(Intents.Insert.ACTION, People.CONTENT_URI);
             startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);*/
         } else {
@@ -1091,6 +1097,10 @@ public final class ContactsListActivity extends ListActivity implements
         }
     }
 
+    /**
+     * @param uri In most cases, this should be a lookup {@link Uri}, possibly
+     *            generated through {@link Contacts#getLookupUri(long, String)}.
+     */
     private void returnPickerResult(Cursor c, String name, Uri uri, long id) {
         final Intent intent = new Intent();
 
@@ -1098,8 +1108,7 @@ public final class ContactsListActivity extends ListActivity implements
             Intent shortcutIntent;
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
                 // This is a simple shortcut to view a contact.
-                Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
-                shortcutIntent = new Intent(mShortcutAction, lookupUri);
+                shortcutIntent = new Intent(mShortcutAction, uri);
                 final Bitmap icon = loadContactPhoto(id, null);
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
@@ -1115,10 +1124,10 @@ public final class ContactsListActivity extends ListActivity implements
                 String scheme;
                 int resid;
                 if (Intent.ACTION_CALL.equals(mShortcutAction)) {
-                    scheme = "tel";
+                    scheme = Constants.SCHEME_TEL;
                     resid = R.drawable.badge_action_call;
                 } else {
-                    scheme = "smsto";
+                    scheme = Constants.SCHEME_SMSTO;
                     resid = R.drawable.badge_action_sms;
                 }
 
@@ -1272,19 +1281,54 @@ public final class ContactsListActivity extends ListActivity implements
             case MODE_LEGACY_PICK_POSTAL: {
                 return ContactMethods.CONTENT_URI;
             }
+            case MODE_QUERY_PICK_TO_VIEW: {
+                if (mQueryMode == QUERY_MODE_MAILTO) {
+                    return Uri.withAppendedPath(Email.CONTENT_FILTER_URI, Uri.encode(mQueryData));
+                } else if (mQueryMode == QUERY_MODE_TEL) {
+                    return Uri.withAppendedPath(Phone.CONTENT_FILTER_URI, Uri.encode(mQueryData));
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Build the {@link Contacts#CONTENT_LOOKUP_URI} for the given
+     * {@link ListView} position, using {@link #mAdapter}.
+     */
+    private Uri getContactUri(int position) {
+        if (position == ListView.INVALID_POSITION) {
+            throw new IllegalArgumentException("Position not in list bounds");
+        }
+
+        final Cursor cursor = (Cursor)mAdapter.getItem(position);
+        switch(mMode) {
+            case MODE_LEGACY_PICK_PERSON:
+            case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
+                final long personId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
+                return ContentUris.withAppendedId(People.CONTENT_URI, personId);
+            }
+
             default: {
-                return null;
+                // Build and return soft, lookup reference
+                final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
+                final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
+                return Contacts.getLookupUri(contactId, lookupKey);
             }
         }
     }
 
-    Uri getPickerResultUri(long id) {
+    /**
+     * Build the {@link Uri} for the given {@link ListView} position, which can
+     * be used as result when in {@link #MODE_MASK_PICKER} mode.
+     */
+    private Uri getSelectedUri(int position) {
+        if (position == ListView.INVALID_POSITION) {
+            throw new IllegalArgumentException("Position not in list bounds");
+        }
+
+        final long id = mAdapter.getItemId(position);
         switch(mMode) {
-            case MODE_PICK_CONTACT:
-            case MODE_PICK_OR_CREATE_CONTACT:
-            case MODE_JOIN_CONTACT: {
-                return ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
-            }
             case MODE_LEGACY_PICK_PERSON:
             case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
                 return ContentUris.withAppendedId(People.CONTENT_URI, id);
@@ -1302,16 +1346,14 @@ public final class ContactsListActivity extends ListActivity implements
                 return ContentUris.withAppendedId(ContactMethods.CONTENT_URI, id);
             }
             default: {
-                return null;
+                return getContactUri(position);
             }
         }
     }
 
     String[] getProjectionForQuery() {
         switch(mMode) {
-            case MODE_JOIN_CONTACT: {
-                return CONTACTS_PROJECTION;
-            }
+            case MODE_JOIN_CONTACT:
             case MODE_STREQUENT:
             case MODE_FREQUENT:
             case MODE_STARRED:
@@ -1338,6 +1380,14 @@ public final class ContactsListActivity extends ListActivity implements
             }
             case MODE_LEGACY_PICK_POSTAL: {
                 return LEGACY_POSTALS_PROJECTION;
+            }
+            case MODE_QUERY_PICK_TO_VIEW: {
+                if (mQueryMode == QUERY_MODE_MAILTO) {
+                    return CONTACTS_SUMMARY_PROJECTION;
+                } else if (mQueryMode == QUERY_MODE_TEL) {
+                    return PHONES_PROJECTION;
+                }
+                break;
             }
         }
 
@@ -1444,26 +1494,11 @@ public final class ContactsListActivity extends ListActivity implements
                 break;
             }
 
-            /*
             case MODE_QUERY_PICK_TO_VIEW: {
-                if (mQueryMode == QUERY_MODE_MAILTO) {
-                    // Find all contacts with the given search string as E-mail.
-                    Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_EMAIL_URI,
-                            Uri.encode(mQueryData));
-                    mQueryHandler.startQuery(QUERY_TOKEN, null,
-                            uri, SIMPLE_CONTACTS_PROJECTION, null, null,
-                            getSortOrder(CONTACTS_PROJECTION));
-
-                } else if (mQueryMode == QUERY_MODE_TEL) {
-                    mQueryAggIdIndex = PHONES_PERSON_ID_INDEX;
-                    mQueryHandler.startQuery(QUERY_TOKEN, null,
-                            Uri.withAppendedPath(Phones.CONTENT_FILTER_URL, mQueryData),
-                            PHONES_PROJECTION, null, null,
-                            getSortOrder(PHONES_PROJECTION));
-                }
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, null, null,
+                        getSortOrder(projection));
                 break;
             }
-            */
 
             case MODE_STARRED:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
@@ -1595,15 +1630,17 @@ public final class ContactsListActivity extends ListActivity implements
                     return false;
                 }
 
-                String phone = ContactsUtils.querySuperPrimaryPhone(getContentResolver(), cursor.
-                        getLong(ID_COLUMN_INDEX));
+                // TODO: transition to use lookup instead of strong id
+                final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
+                final String phone = ContactsUtils.querySuperPrimaryPhone(getContentResolver(),
+                        contactId);
                 if (phone == null) {
                     signalError();
                     return false;
                 }
 
                 Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                        Uri.fromParts("tel", phone, null));
+                        Uri.fromParts(Constants.SCHEME_TEL, phone, null));
                 startActivity(intent);
                 return true;
             }
@@ -1689,9 +1726,9 @@ public final class ContactsListActivity extends ListActivity implements
                 } else {
                     activity.mAdapter.setSuggestionsCursor(null);
                 }
-                startQuery(QUERY_TOKEN, null, Contacts.CONTENT_URI, CONTACTS_PROJECTION,
+                startQuery(QUERY_TOKEN, null, Contacts.CONTENT_URI, CONTACTS_SUMMARY_PROJECTION,
                         Contacts._ID + " != " + mAggregateId, null,
-                        getSortOrder(CONTACTS_PROJECTION));
+                        getSortOrder(CONTACTS_SUMMARY_PROJECTION));
 
             } else {
                 cursor.close();

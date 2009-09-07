@@ -350,6 +350,9 @@
     <!-- Toast displayed when a contact is saved -->
     <string name="contactSavedToast">Contact saved.</string>
 
+    <!-- Toast displayed when saving a contact failed -->
+    <string name="contactSavedErrorToast">Error, unable to save contact changes.</string>
+
     <!-- Separator in the contact details list describing that the items below it will place a call when clicked -->
     <string name="listSeparatorCallNumber">Dial number</string>
 
@@ -692,10 +695,13 @@
     <string name="select_import_type_title">Where would you like to import contacts from?</string>
 
     <!-- Action string for selecting SIM for importing contacts -->
-    <string name="import_from_sim">SIM Card</string>
+    <string name="import_from_sim">Import from SIM card</string>
 
     <!-- Action string for selecting SD Card for importing contacts -->
-    <string name="import_from_sdcard">SD Card</string>
+    <string name="import_from_sdcard">Import from SD card</string>
+
+    <!-- Action that exports all contacts to SD Card -->
+    <string name="export_to_sdcard">Export to SD card</string>
 
     <!-- "Import one vCard file" -->
     <string name="import_one_vcard_string">Import one vCard file</string>
@@ -832,6 +838,23 @@
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
+    <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card. -->
+    <string name="menu_import_export">Import/Export</string>
+
+    <!-- Dialog title when selecting the bulk operation to perform from a list. -->
+    <string name="dialog_import_export">Import/Export contacts</string>
+
+    <!-- The menu item to share the currently viewed contact -->
+    <string name="menu_share">Share</string>
+
+    <!-- Dialog title when picking the application to share a contact with. -->
+    <string name="share_via">Share contact via</string>
+
+    <!-- Toast indicating that sharing a contact has failed. -->
+    <string name="share_error">This contact cannot be shared.</string>
+
+
+
 <!-- TODO: add comments to each of these strings to prepare for translation -->
 <string name="nameLabelsGroup">Name</string>
 <string name="nicknameLabelsGroup">Nickname</string>
@@ -862,14 +885,6 @@
 <string name="type_mms">MMS</string>
 <string name="type_radio">Radio</string>
 <string name="type_assistant">Assistant</string>
-
-<string name="type_email_1">Email 1</string>
-<string name="type_email_2">Email 2</string>
-<string name="type_email_3">Email 3</string>
-
-<string name="type_im_1">IM 1</string>
-<string name="type_im_2">IM 2</string>
-<string name="type_im_3">IM 3</string>
 
 <string name="type_im_aim">AIM</string>
 <string name="type_im_msn">Windows Live</string>
@@ -953,9 +968,6 @@
 <string name="email_other">Email other</string>
 <string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
 
-<string name="email_1">Email 1</string>
-<string name="email_2">Email 2</string>
-<string name="email_3">Email 3</string>
 <string name="email">Email</string>
 
 
@@ -974,11 +986,6 @@
 <string name="chat_icq">Chat using ICQ</string>
 <string name="chat_jabber">Chat using Jabber</string>
 <string name="chat_other">Chat</string>
-
-<string name="im_1">Chat 1</string>
-<string name="im_2">Chat 2</string>
-<string name="im_3">Chat 3</string>
-<string name="im">Chat</string>
 
 <string name="postal_street">Street</string>
 <string name="postal_pobox">PO box</string>

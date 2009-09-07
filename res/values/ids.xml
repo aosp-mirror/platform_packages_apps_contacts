@@ -29,4 +29,6 @@
 
     <item type="id" name="dialog_sync_add" />
 
+    <item type="id" name="dialog_import_export" />
+
 </resources>

@@ -20,10 +20,11 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.HardCodedSources.SimpleInflater;
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.ContactHeaderWidget;
@@ -42,20 +43,15 @@ import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Entity.NamedContentValues;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.BaseColumns;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
@@ -64,6 +60,7 @@ import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -72,6 +69,7 @@ import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +83,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Displays the details of a specific contact.
@@ -95,7 +92,6 @@ public class ViewContactActivity extends Activity
         AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener,
         OnTabSelectionChangedListener {
     private static final String TAG = "ViewContact";
-    private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
     public static final String RAW_CONTACT_ID_EXTRA = "rawContactIdExtra";
 
@@ -106,13 +102,7 @@ public class ViewContactActivity extends Activity
     private static final int REQUEST_JOIN_CONTACT = 1;
     private static final int REQUEST_EDIT_CONTACT = 2;
 
-    public static final int MENU_ITEM_EDIT = 1;
-    public static final int MENU_ITEM_DELETE = 2;
     public static final int MENU_ITEM_MAKE_DEFAULT = 3;
-    public static final int MENU_ITEM_SHOW_BARCODE = 4;
-    public static final int MENU_ITEM_SPLIT_AGGREGATE = 5;
-    public static final int MENU_ITEM_JOIN_AGGREGATE = 6;
-    public static final int MENU_ITEM_OPTIONS = 7;
 
     protected Uri mLookupUri;
     private Uri mUri;
@@ -288,12 +278,9 @@ public class ViewContactActivity extends Activity
 
     // TAB CODE //
     /**
-     * Adds a tab for each {@link RawContact} associated with this contact.
+     * Adds a tab for each {@link RawContacts} associated with this contact.
      * Override this method if you want to additional tabs and/or different
      * tabs for your activity.
-     *
-     * @param entities An {@link ArrayList} of {@link Entity}s of all the RawContacts
-     * associated with the contact being displayed.
      */
     protected void bindTabs() {
         if (mEntities.size() > 1) {
@@ -322,7 +309,7 @@ public class ViewContactActivity extends Activity
     /**
      * Add a tab to be displayed in the {@link ScrollingTabWidget}.
      *
-     * @param contactId The contact id associated with the tab.
+     * @param rawContactId The contact id associated with the tab.
      * @param view A view to use as the tab indicator.
      */
     protected void addTab(long rawContactId, View view) {
@@ -486,52 +473,26 @@ public class ViewContactActivity extends Activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact)
-                .setIcon(android.R.drawable.ic_menu_delete);
-        menu.add(0, MENU_ITEM_SPLIT_AGGREGATE, 0, R.string.menu_splitAggregate)
-                .setIcon(android.R.drawable.ic_menu_share);
-        menu.add(0, MENU_ITEM_JOIN_AGGREGATE, 0, R.string.menu_joinAggregate)
-                .setIcon(android.R.drawable.ic_menu_add);
-        menu.add(0, MENU_ITEM_OPTIONS, 0, R.string.menu_contactOptions)
-                .setIcon(R.drawable.ic_menu_mark);
+        super.onCreateOptionsMenu(menu);
+
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view, menu);
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // Perform this check each time the menu is about to be shown, because the Barcode Scanner
-        // could be installed or uninstalled at any time.
-        if (isBarcodeScannerInstalled()) {
-            if (menu.findItem(MENU_ITEM_SHOW_BARCODE) == null) {
-                menu.add(0, MENU_ITEM_SHOW_BARCODE, 0, R.string.menu_showBarcode)
-                        .setIcon(R.drawable.ic_menu_show_barcode);
-            }
-        } else {
-            menu.removeItem(MENU_ITEM_SHOW_BARCODE);
-        }
 
-        // Only show the edit option if we have a selected tab.
-        if (mSelectedRawContactId != null) {
-            if (menu.findItem(MENU_ITEM_EDIT) == null) {
-                menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
-                    .setIcon(android.R.drawable.ic_menu_edit)
-                    .setAlphabeticShortcut('e');
-            }
-        } else {
-            menu.removeItem(MENU_ITEM_EDIT);
-        }
+        // Only allow edit if we have a selected tab
+        final boolean contactSelected = (mSelectedRawContactId != null);
+        menu.findItem(R.id.menu_edit).setEnabled(contactSelected);
 
-        boolean isAggregate = mRawContactIds.size() > 1;
-        menu.findItem(MENU_ITEM_SPLIT_AGGREGATE).setEnabled(isAggregate);
+        // Only allow split when more than one contact
+        final boolean isAggregate = (mRawContactIds.size() > 1);
+        menu.findItem(R.id.menu_split).setEnabled(isAggregate);
+
         return true;
-    }
-
-    private boolean isBarcodeScannerInstalled() {
-        final Intent intent = new Intent(SHOW_BARCODE_INTENT);
-        ResolveInfo ri = getPackageManager().resolveActivity(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        return ri != null;
     }
 
     @Override
@@ -574,7 +535,7 @@ public class ViewContactActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_ITEM_EDIT: {
+            case R.id.menu_edit: {
                 Long rawContactIdToEdit = mSelectedRawContactId;
                 if (rawContactIdToEdit == null) {
                     // This shouldn't be possible. We only show the edit option if
@@ -591,13 +552,12 @@ public class ViewContactActivity extends Activity
                         REQUEST_EDIT_CONTACT);
                 break;
             }
-            case MENU_ITEM_DELETE: {
+            case R.id.menu_delete: {
                 // Get confirmation
                 showDialog(DIALOG_CONFIRM_DELETE);
                 return true;
             }
-
-            case MENU_ITEM_SPLIT_AGGREGATE: {
+            case R.id.menu_split: {
                 if (mRawContactIds.size() == 2) {
                     splitContact(mRawContactIds.get(1));
                 } else {
@@ -605,59 +565,30 @@ public class ViewContactActivity extends Activity
                 }
                 return true;
             }
-
-            case MENU_ITEM_JOIN_AGGREGATE: {
+            case R.id.menu_join: {
                 showJoinAggregateActivity();
                 return true;
             }
-
-            case MENU_ITEM_OPTIONS: {
+            case R.id.menu_options: {
                 showOptionsActivity();
                 return true;
             }
+            case R.id.menu_share: {
+                final Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType(Contacts.CONTENT_ITEM_TYPE);
+                intent.putExtra(Intent.EXTRA_STREAM, mLookupUri);
 
-            // TODO(emillar) Bring this back.
-            /*case MENU_ITEM_SHOW_BARCODE:
-                if (mCursor.moveToFirst()) {
-                    Intent intent = new Intent(SHOW_BARCODE_INTENT);
-                    intent.putExtra("ENCODE_TYPE", "CONTACT_TYPE");
-                    Bundle bundle = new Bundle();
-                    String name = mCursor.getString(AGGREGATE_DISPLAY_NAME_COLUMN);
-                    if (!TextUtils.isEmpty(name)) {
-                        // Correctly handle when section headers are hidden
-                        int sepAdjust = SHOW_SEPARATORS ? 1 : 0;
+                // Launch chooser to share contact via
+                final CharSequence chooseTitle = getText(R.string.share_via);
+                final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
 
-                        bundle.putString(Contacts.Intents.Insert.NAME, name);
-                        // The 0th ViewEntry in each ArrayList below is a separator item
-                        int entriesToAdd = Math.min(mPhoneEntries.size() - sepAdjust, PHONE_KEYS.length);
-                        for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mPhoneEntries.get(x + sepAdjust);
-                            bundle.putString(PHONE_KEYS[x], entry.data);
-                        }
-                        entriesToAdd = Math.min(mEmailEntries.size() - sepAdjust, EMAIL_KEYS.length);
-                        for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mEmailEntries.get(x + sepAdjust);
-                            bundle.putString(EMAIL_KEYS[x], entry.data);
-                        }
-                        if (mPostalEntries.size() >= 1 + sepAdjust) {
-                            ViewEntry entry = mPostalEntries.get(sepAdjust);
-                            bundle.putString(Contacts.Intents.Insert.POSTAL, entry.data);
-                        }
-                        intent.putExtra("ENCODE_DATA", bundle);
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            // The check in onPrepareOptionsMenu() should make this impossible, but
-                            // for safety I'm catching the exception rather than crashing. Ideally
-                            // I'd call Menu.removeItem() here too, but I don't see a way to get
-                            // the options menu.
-                            Log.e(TAG, "Show barcode menu item was clicked but Barcode Scanner " +
-                                    "was not installed.");
-                        }
-                        return true;
-                    }
+                try {
+                    startActivity(chooseIntent);
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
                 }
-                break; */
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -953,7 +884,7 @@ public class ViewContactActivity extends Activity
                     entry.mimetype = mimetype;
                     entry.label = buildActionString(kind, entryValues, true);
                     entry.data = buildDataString(kind, entryValues);
-                    if (kind.typeColumn != null) {
+                    if (kind.typeColumn != null && entryValues.containsKey(kind.typeColumn)) {
                         entry.type = entryValues.getAsInteger(kind.typeColumn);
                     }
                     if (kind.iconRes > 0) {
@@ -1032,7 +963,7 @@ public class ViewContactActivity extends Activity
                             String host = null;
 
                             if (TextUtils.isEmpty(entry.label)) {
-                                entry.label = getString(R.string.im).toLowerCase();
+                                entry.label = getString(R.string.chat_other).toLowerCase();
                             }
 
                             if (protocolObj instanceof Number) {
@@ -1287,7 +1218,7 @@ public class ViewContactActivity extends Activity
             TextView data = views.data;
             if (data != null) {
                 if (entry.mimetype.equals(Phone.CONTENT_ITEM_TYPE)
-                        || entry.mimetype.equals(FastTrackWindow.MIME_SMS_ADDRESS)) {
+                        || entry.mimetype.equals(Constants.MIME_SMS_ADDRESS)) {
                     data.setText(PhoneNumberUtils.formatNumber(entry.data));
                 } else {
                     data.setText(entry.data);
