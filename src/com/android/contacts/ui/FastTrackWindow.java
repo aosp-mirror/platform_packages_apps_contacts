@@ -1199,7 +1199,7 @@ public class FastTrackWindow implements Window.Callback,
         };
 
         final int PUBLISHED = 0;
-        final int TITLE = 0;
+        final int TITLE = 1;
     }
 
     private interface DataQuery {

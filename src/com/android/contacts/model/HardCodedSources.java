@@ -630,10 +630,11 @@ public class HardCodedSources {
      * Hard-coded instance of {@link ContactsSource} for Facebook.
      */
     static void buildFacebook(Context context, ContactsSource list) {
+        // Rely on the fallback source for now, it has a generic set of sources
+        buildFallback(context, list);
+
         list.accountType = ACCOUNT_TYPE_FACEBOOK;
         list.readOnly = true;
-
-        // TODO: fill in read-only values that should be visible?
     }
 
     /**
