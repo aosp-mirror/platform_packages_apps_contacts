@@ -72,6 +72,7 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextMenu;
@@ -85,13 +86,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
@@ -100,7 +106,9 @@ import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
@@ -914,27 +922,13 @@ public final class ContactsListActivity extends ListActivity implements
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
                 .setIntent(new Intent(Intent.ACTION_VIEW, contactUri));
 
-        /*
-        // Calling contact
-        long phoneId = cursor.getLong(PRIMARY_PHONE_ID_COLUMN_INDEX);
-        if (phoneId > 0) {
-            // Get the display label for the number
-            CharSequence label = cursor.getString(PRIMARY_PHONE_LABEL_COLUMN_INDEX);
-            int type = cursor.getInt(PRIMARY_PHONE_TYPE_COLUMN_INDEX);
-            label = ContactsUtils.getDisplayLabel(
-                    this, CommonDataKinds.Phone.CONTENT_ITEM_TYPE, type, label);
-            Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                    ContentUris.withAppendedId(Data.CONTENT_URI, id));
+        if (cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0) {
+            // Calling contact
             menu.add(0, MENU_ITEM_CALL, 0,
-                    String.format(getString(R.string.menu_callNumber), label)).setIntent(intent);
-
+                    getString(R.string.menu_call));
             // Send SMS item
-            menu.add(0, MENU_ITEM_SEND_SMS, 0, R.string.menu_sendSMS)
-                    .setIntent(new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("sms",
-                                    cursor.getString(PRIMARY_PHONE_NUMBER_COLUMN_INDEX), null)));
+            menu.add(0, MENU_ITEM_SEND_SMS, 0, getString(R.string.menu_sendSMS));
         }
-         */
 
         // Star toggling
         int starState = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
@@ -969,6 +963,16 @@ public final class ContactsListActivity extends ListActivity implements
                 values.put(Contacts.STARRED, cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX) == 0 ? 1 : 0);
                 final Uri selectedUri = this.getContactUri(info.position);
                 getContentResolver().update(selectedUri, values, null, null);
+                return true;
+            }
+
+            case MENU_ITEM_CALL: {
+                callContact(cursor);
+                return true;
+            }
+
+            case MENU_ITEM_SEND_SMS: {
+                smsContact(cursor);
                 return true;
             }
 
@@ -1622,31 +1626,84 @@ public final class ContactsListActivity extends ListActivity implements
         ListView list = getListView();
         if (list.hasFocus()) {
             Cursor cursor = (Cursor) list.getSelectedItem();
-            if (cursor != null) {
-                boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
-                if (!hasPhone) {
-                    // There is no phone number.
-                    signalError();
-                    return false;
-                }
+            return callContact(cursor);
+        }
+        return false;
+    }
 
-                // TODO: transition to use lookup instead of strong id
-                final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-                final String phone = ContactsUtils.querySuperPrimaryPhone(getContentResolver(),
-                        contactId);
-                if (phone == null) {
-                    signalError();
-                    return false;
-                }
+    boolean callContact(Cursor cursor) {
+        return callOrSmsContact(cursor, false /*call*/);
+    }
 
-                Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                        Uri.fromParts(Constants.SCHEME_TEL, phone, null));
-                startActivity(intent);
-                return true;
+    boolean smsContact(Cursor cursor) {
+        return callOrSmsContact(cursor, true /*sms*/);
+    }
+
+    /**
+     * Calls the contact which the cursor is point to.
+     * @return true if the call was initiated, false otherwise
+     */
+    boolean callOrSmsContact(Cursor cursor, boolean sendSms) {
+        if (cursor != null) {
+            boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+            if (!hasPhone) {
+                // There is no phone number.
+                signalError();
+                return false;
             }
+
+            String phone = null;
+            Cursor phonesCursor = null;
+            phonesCursor = queryPhoneNumbers(cursor.getLong(SUMMARY_ID_COLUMN_INDEX));
+            if (phonesCursor == null || phonesCursor.getCount() == 0) {
+                // No valid number
+                signalError();
+                return false;
+            } else if (phonesCursor.getCount() == 1) {
+                // only one number, call it.
+                phone = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+            } else {
+                phonesCursor.moveToPosition(-1);
+                while (phonesCursor.moveToNext()) {
+                    if (phonesCursor.getInt(phonesCursor.
+                            getColumnIndex(Data.IS_SUPER_PRIMARY)) != 0) {
+                        // Found super primary, call it.
+                        phone = phonesCursor.
+                        getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+                        break;
+                    }
+                }
+            }
+
+            if (phone == null) {
+                // Display dialog to choose a number to call.
+                PhoneDisambigDialog phoneDialog = new PhoneDisambigDialog(
+                        this, phonesCursor, sendSms);
+                phoneDialog.show();
+            } else {
+                if (sendSms) {
+                    ContactsUtils.initiateSms(this, phone);
+                } else {
+                    ContactsUtils.initiateCall(this, phone);
+                }
+            }
+            return true;
         }
 
         return false;
+    }
+
+    private Cursor queryPhoneNumbers(long contactId) {
+        Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
+
+        Cursor c = getContentResolver().query(dataUri,
+                new String[] {Data._ID, Phone.NUMBER, Data.IS_SUPER_PRIMARY},
+                Data.MIMETYPE + "=?", new String[] {Phone.CONTENT_ITEM_TYPE}, null);
+        if (c != null && c.moveToFirst()) {
+            return c;
+        }
+        return null;
     }
 
     /**

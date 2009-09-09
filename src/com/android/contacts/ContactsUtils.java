@@ -353,4 +353,22 @@ public class ContactsUtils {
         }
         return createTabIndicatorView(parent, null, icon);
     }
+
+    /**
+     * Kick off an intent to initiate a call.
+     */
+    public static void initiateCall(Context context, CharSequence phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                Uri.fromParts("tel", phoneNumber.toString(), null));
+        context.startActivity(intent);
+    }
+
+    /**
+     * Kick off an intent to initiate an Sms/Mms message.
+     */
+    public static void initiateSms(Context context, CharSequence phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO,
+                Uri.fromParts("sms", phoneNumber.toString(), null));
+        context.startActivity(intent);
+    }
 }
