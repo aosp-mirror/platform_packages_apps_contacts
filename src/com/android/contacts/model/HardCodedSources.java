@@ -715,13 +715,30 @@ public class HardCodedSources {
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
             final boolean validString = (type != null && type.actionRes != 0);
-            return validString ? context.getText(type.actionRes) : null;
+            CharSequence actionString;
+            if (type.customColumn != null) {
+                final int index = cursor.getColumnIndex(type.customColumn);
+                final String customLabel = cursor.getString(index);
+                actionString = String.format(context.getString(type.actionRes),
+                        customLabel);
+            } else {
+                actionString = context.getText(type.actionRes);
+            }
+            return validString ? actionString : null;
         }
 
         public CharSequence inflateUsing(Context context, ContentValues values) {
             final EditType type = EntityModifier.getCurrentType(values, mKind);
             final boolean validString = (type != null && type.actionRes != 0);
-            return validString ? context.getText(type.actionRes) : null;
+            CharSequence actionString;
+            if (type.customColumn != null) {
+                final String customLabel = values.getAsString(type.customColumn);
+                actionString = String.format(context.getString(type.actionRes),
+                        customLabel);
+            } else {
+                actionString = context.getText(type.actionRes);
+            }
+            return validString ? actionString : null;
         }
     }
 
@@ -737,13 +754,30 @@ public class HardCodedSources {
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
             final boolean validString = (type != null && type.actionAltRes != 0);
-            return validString ? context.getText(type.actionAltRes) : null;
+            CharSequence actionString;
+            if (type.customColumn != null) {
+                final int index = cursor.getColumnIndex(type.customColumn);
+                final String customLabel = cursor.getString(index);
+                actionString = String.format(context.getString(type.actionAltRes),
+                        customLabel);
+            } else {
+                actionString = context.getText(type.actionAltRes);
+            }
+            return validString ? actionString : null;
         }
 
         public CharSequence inflateUsing(Context context, ContentValues values) {
             final EditType type = EntityModifier.getCurrentType(values, mKind);
             final boolean validString = (type != null && type.actionAltRes != 0);
-            return validString ? context.getText(type.actionAltRes) : null;
+            CharSequence actionString;
+            if (type.customColumn != null) {
+                final String customLabel = values.getAsString(type.customColumn);
+                actionString = String.format(context.getString(type.actionAltRes),
+                        customLabel);
+            } else {
+                actionString = context.getText(type.actionAltRes);
+            }
+            return validString ? actionString : null;
         }
     }
 }
