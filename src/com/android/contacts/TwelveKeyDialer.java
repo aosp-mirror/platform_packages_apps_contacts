@@ -76,9 +76,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     private static final String TAG = "TwelveKeyDialer";
 
-    // Handler message codes
-    private static final int STOP_TONE = 1;
-
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
 
@@ -459,7 +456,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator != null) {
-                mToneStopper.removeMessages(STOP_TONE);
                 mToneGenerator.release();
                 mToneGenerator = null;
             }
@@ -722,22 +718,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         finish();
     }
 
-    Handler mToneStopper = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case STOP_TONE:
-                    synchronized(mToneGeneratorLock) {
-                        if (mToneGenerator == null) {
-                            Log.w(TAG, "mToneStopper: mToneGenerator == null");
-                        } else {
-                            mToneGenerator.stopTone();
-                        }
-                    }
-                    break;
-            }
-        }
-    };
 
     /**
      * Plays the specified tone for TONE_LENGTH_MS milliseconds.
@@ -772,12 +752,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return;
             }
 
-            // Remove pending STOP_TONE messages
-            mToneStopper.removeMessages(STOP_TONE);
-
             // Start the new tone (will stop any playing tone)
-            mToneGenerator.startTone(tone);
-            mToneStopper.sendEmptyMessageDelayed(STOP_TONE, TONE_LENGTH_MS);
+            mToneGenerator.startTone(tone, TONE_LENGTH_MS);
         }
     }
 
