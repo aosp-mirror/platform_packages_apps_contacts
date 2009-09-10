@@ -19,6 +19,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.util.Constants;
 
 import java.io.ByteArrayInputStream;
 
@@ -69,9 +70,8 @@ public class ContactsUtils {
         int colType;
         int colLabel;
 
-        // TODO: move the SMS mime-type to a central location
         if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)
-                || FastTrackWindow.MIME_SMS_ADDRESS.equals(mimeType)) {
+                || Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
             // Reset to phone mimetype so we generate a label for SMS case
             mimeType = Phone.CONTENT_ITEM_TYPE;
             colType = cursor.getColumnIndex(Phone.TYPE);
@@ -266,7 +266,7 @@ public class ContactsUtils {
         String phone = null;
         try {
             Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-            Uri dataUri = Uri.withAppendedPath(baseUri, "data");
+            Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
             c = cr.query(dataUri,
                     new String[] {Phone.NUMBER},

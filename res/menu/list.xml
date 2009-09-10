@@ -37,13 +37,8 @@
         android:title="@string/menu_accounts" />
 
     <item
-        android:id="@+id/menu_import"
-        android:icon="@drawable/ic_menu_import_contact"
-        android:title="@string/importFromSim" />
-
-    <item
-        android:id="@+id/menu_export"
+        android:id="@+id/menu_import_export"
         android:icon="@drawable/ic_menu_export_contact"
-        android:title="@string/export_contact_list" />
+        android:title="@string/menu_import_export" />
 
 </menu>
