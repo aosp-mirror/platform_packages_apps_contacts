@@ -633,11 +633,53 @@ public class HardCodedSources {
      * Hard-coded instance of {@link ContactsSource} for Facebook.
      */
     static void buildFacebook(Context context, ContactsSource list) {
-        // Rely on the fallback source for now, it has a generic set of sources
-        buildFallback(context, list);
-
         list.accountType = ACCOUNT_TYPE_FACEBOOK;
         list.readOnly = true;
+
+        {
+            // FACEBOOK: PHONE
+            DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE,
+                    R.string.phoneLabelsGroup, android.R.drawable.sym_action_call, 10, true);
+            kind.iconAltRes = R.drawable.sym_action_sms;
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionAltHeader = new ActionAltInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Phone.NUMBER);
+
+            kind.typeColumn = Phone.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
+                    R.string.call_mobile, R.string.sms_mobile));
+            kind.typeList.add(new EditType(Phone.TYPE_OTHER, R.string.type_other,
+                    R.string.call_other, R.string.sms_other));
+
+            list.add(kind);
+        }
+
+        {
+            // FACEBOOK: EMAIL
+            DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
+                    R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            kind.actionBody = new SimpleInflater(Email.DATA);
+
+            kind.typeColumn = Email.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList
+                    .add(new EditType(Email.TYPE_HOME, R.string.type_home, R.string.email_home));
+            kind.typeList
+                    .add(new EditType(Email.TYPE_WORK, R.string.type_work, R.string.email_work));
+            kind.typeList.add(new EditType(Email.TYPE_OTHER, R.string.type_other,
+                    R.string.email_other));
+            kind.typeList.add(new EditType(Email.TYPE_CUSTOM, R.string.type_custom,
+                    R.string.email_home).setSecondary(true).setCustomColumn(Email.LABEL));
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+            list.add(kind);
+        }
     }
 
     /**
