@@ -318,6 +318,8 @@ public final class ContactsListActivity extends ListActivity implements
 
     private String mShortcutAction;
 
+    private int mScrollState;
+
     /**
      * Internal query type when in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
      */
@@ -636,6 +638,7 @@ public final class ContactsListActivity extends ListActivity implements
     protected void onResume() {
         super.onResume();
 
+        mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
         boolean runQuery = true;
         Activity parent = getParent();
 
@@ -1823,7 +1826,6 @@ public final class ContactsListActivity extends ListActivity implements
         private Cursor mSuggestionsCursor;
         private int mSuggestionsCursorCount;
         private ImageFetchHandler mHandler;
-        private int mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
         private static final int FETCH_IMAGE_MSG = 1;
 
         public ContactItemListAdapter(Context context) {
