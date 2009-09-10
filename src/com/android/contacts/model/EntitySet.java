@@ -159,7 +159,7 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
      * existing {@link RawContacts#_ID} value. Usually used when creating
      * {@link AggregationExceptions} during an update.
      */
-    public long findRawContactId() {
+    protected long findRawContactId() {
         for (EntityDelta delta : this) {
             final Long rawContactId = delta.getValues().getAsLong(RawContacts._ID);
             if (rawContactId != null && rawContactId >= 0) {
@@ -177,8 +177,22 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
             final EntityDelta delta = this.get(index);
             return delta.getValues().getAsLong(RawContacts._ID);
         } else {
-            return -1;
+            return 0;
         }
+    }
+
+    /**
+     * Find index of given {@link RawContacts#_ID} when present.
+     */
+    public int indexOfRawContactId(long rawContactId) {
+        final int size = this.size();
+        for (int i = 0; i < size; i++) {
+            final long currentId = getRawContactId(i);
+            if (currentId == rawContactId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /** {@inheritDoc} */

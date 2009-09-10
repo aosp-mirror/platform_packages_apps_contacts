@@ -27,13 +27,24 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * Simple editor for {@link Photo}.
  */
-public class PhotoEditorView extends ImageView implements Editor {
+public class PhotoEditorView extends ImageView implements Editor, OnClickListener {
+    private static final String TAG = "PhotoEditorView";
+
     private ValuesDelta mEntry;
+    private EditorListener mListener;
+
+    private boolean mHasSetPhoto = false;
 
     public PhotoEditorView(Context context) {
         super(context);
@@ -44,10 +55,25 @@ public class PhotoEditorView extends ImageView implements Editor {
     }
 
     /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        this.setOnClickListener(this);
+    }
+
+    /** {@inheritDoc} */
+    public void onClick(View v) {
+        if (mListener != null) {
+            mListener.onRequest(EditorListener.REQUEST_PICK_PHOTO);
+        }
+    }
+
+    /** {@inheritDoc} */
     public void onFieldChanged(String column, String value) {
         throw new UnsupportedOperationException("Photos don't support direct field changes");
     }
 
+    /** {@inheritDoc} */
     public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
         mEntry = values;
         if (values != null) {
@@ -59,6 +85,7 @@ public class PhotoEditorView extends ImageView implements Editor {
 
                 setScaleType(ImageView.ScaleType.CENTER_CROP);
                 setImageBitmap(photo);
+                mHasSetPhoto = true;
             } else {
                 resetDefault();
             }
@@ -67,12 +94,50 @@ public class PhotoEditorView extends ImageView implements Editor {
         }
     }
 
-    protected void resetDefault() {
-        // Invalid photo, show default "add photo" placeholder
-        setScaleType(ImageView.ScaleType.CENTER);
-        setImageResource(R.drawable.ic_menu_add_picture);
+    /**
+     * Return true if a valid {@link Photo} has been set.
+     */
+    public boolean hasSetPhoto() {
+        return mHasSetPhoto;
     }
 
+    /**
+     * Assign the given {@link Bitmap} as the new value, updating UI and
+     * readying for persisting through {@link ValuesDelta}.
+     */
+    public void setPhotoBitmap(Bitmap photo) {
+        if (photo == null) {
+            // Clear any existing photo and return
+            mEntry.put(Photo.PHOTO, (byte[])null);
+            resetDefault();
+            return;
+        }
+
+        final int size = photo.getWidth() * photo.getHeight() * 4;
+        final ByteArrayOutputStream out = new ByteArrayOutputStream(size);
+
+        try {
+            photo.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.flush();
+            out.close();
+
+            mEntry.put(Photo.PHOTO, out.toByteArray());
+            setImageBitmap(photo);
+            mHasSetPhoto = true;
+        } catch (IOException e) {
+            Log.w(TAG, "Unable to serialize photo: " + e.toString());
+        }
+    }
+
+    protected void resetDefault() {
+        // Invalid photo, show default "add photo" place-holder
+        setScaleType(ImageView.ScaleType.CENTER);
+        setImageResource(R.drawable.ic_menu_add_picture);
+        mHasSetPhoto = false;
+    }
+
+    /** {@inheritDoc} */
     public void setEditorListener(EditorListener listener) {
+        mListener = listener;
     }
 }
