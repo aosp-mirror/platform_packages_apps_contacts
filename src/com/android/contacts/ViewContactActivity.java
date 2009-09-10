@@ -614,17 +614,7 @@ public class ViewContactActivity extends Activity
         }
 
         // Update the primary values in the data record.
-        ContentValues values = new ContentValues(2);
-        values.put(Data.IS_PRIMARY, 1);
-
-        if (entry.ids.size() > 0) {
-            for (int i = 0; i < entry.ids.size(); i++) {
-                getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI,
-                        entry.ids.get(i)),
-                        values, null, null);
-            }
-        }
-
+        ContentValues values = new ContentValues(1);
         values.put(Data.IS_SUPER_PRIMARY, 1);
         getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
                 values, null, null);

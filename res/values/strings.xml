@@ -100,10 +100,10 @@
     <string name="menu_deleteContact">Delete contact</string>
 
     <!-- Menu item used to call a specific contact when viewing the details of that contact. -->
-    <string name="menu_call">Call</string>
+    <string name="menu_call">Call contact</string>
 
     <!-- Menu item used to send an SMS or MMS message to a specific phone number or a contacts default phone number -->
-    <string name="menu_sendSMS">Send SMS/MMS</string>
+    <string name="menu_sendSMS">Text contact</string>
 
     <!-- Menu item used to send an email message to a specific email address -->
     <string name="menu_sendEmail">Send email</string>
@@ -822,6 +822,15 @@
 
     <!-- Label for onscreen "Dial" button -->
     <string name="dial_button_label">Dial</string>
+    
+    <!-- Title for the call disambiguation dialog -->
+    <string name="call_disambig_title">Call using</string>
+    
+    <!-- Title for the sms disambiguation dialog -->
+    <string name="sms_disambig_title">Text using</string>
+    
+    <!-- Message next to disamgiguation dialog check box -->
+    <string name="make_primary">Remember this choice</string>
 
     <!-- Shown as a toast when the user taps on a Fast-Track icon, and no application
          was found that could perform the selected action -->
