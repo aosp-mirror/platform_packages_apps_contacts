@@ -204,7 +204,8 @@ public class EntityModifier {
      */
     public static EditType getCurrentType(ContentValues entry, DataKind kind) {
         if (kind.typeColumn == null) return null;
-        final int rawValue = entry.getAsInteger(kind.typeColumn);
+        final Integer rawValue = entry.getAsInteger(kind.typeColumn);
+        if (rawValue == null) return null;
         return getType(kind, rawValue);
     }
 
@@ -215,6 +216,7 @@ public class EntityModifier {
     public static EditType getCurrentType(Cursor cursor, DataKind kind) {
         if (kind.typeColumn == null) return null;
         final int index = cursor.getColumnIndex(kind.typeColumn);
+        if (index == -1) return null;
         final int rawValue = cursor.getInt(index);
         return getType(kind, rawValue);
     }
@@ -229,6 +231,20 @@ public class EntityModifier {
             }
         }
         return null;
+    }
+
+    /**
+     * Return the precedence for the the given {@link EditType#rawValue}, where
+     * lower numbers are higher precedence.
+     */
+    public static int getTypePrecedence(DataKind kind, int rawValue) {
+        for (int i = 0; i < kind.typeList.size(); i++) {
+            final EditType type = kind.typeList.get(i);
+            if (type.rawValue == rawValue) {
+                return i;
+            }
+        }
+        return Integer.MAX_VALUE;
     }
 
     /**

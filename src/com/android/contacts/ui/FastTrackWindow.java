@@ -19,6 +19,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 
@@ -143,25 +144,13 @@ public class FastTrackWindow implements Window.Callback,
     private String[] mExcludeMimes;
 
     /**
-     * Specific MIME-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
-     * distinguishes actions that should initiate a text message.
-     */
-    // TODO: We should move this to someplace more general as it is needed in a
-    // few places in the app code.
-    public static final String MIME_SMS_ADDRESS = "vnd.android.cursor.item/sms-address";
-
-    private static final String SCHEME_TEL = "tel";
-    private static final String SCHEME_SMSTO = "smsto";
-    private static final String SCHEME_MAILTO = "mailto";
-
-    /**
      * Specific mime-types that should be bumped to the front of the fast-track.
      * Other mime-types not appearing in this list follow in alphabetic order.
      */
     private static final String[] ORDERED_MIMETYPES = new String[] {
         Phone.CONTENT_ITEM_TYPE,
         Contacts.CONTENT_ITEM_TYPE,
-        MIME_SMS_ADDRESS,
+        Constants.MIME_SMS_ADDRESS,
         Email.CONTENT_ITEM_TYPE,
     };
 
@@ -605,7 +594,7 @@ public class FastTrackWindow implements Window.Callback,
             mMimeType = mimeType;
 
             // Inflate strings from cursor
-            mAlternate = MIME_SMS_ADDRESS.equals(mimeType);
+            mAlternate = Constants.MIME_SMS_ADDRESS.equals(mimeType);
             if (mAlternate && mKind.actionAltHeader != null) {
                 mHeader = mKind.actionAltHeader.inflateUsing(context, cursor);
             } else if (mKind.actionHeader != null) {
@@ -620,21 +609,21 @@ public class FastTrackWindow implements Window.Callback,
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
-                    final Uri callUri = Uri.fromParts(SCHEME_TEL, number, null);
+                    final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
                     mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
                 }
 
-            } else if (MIME_SMS_ADDRESS.equals(mimeType)) {
+            } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
-                    final Uri smsUri = Uri.fromParts(SCHEME_SMSTO, number, null);
+                    final Uri smsUri = Uri.fromParts(Constants.SCHEME_SMSTO, number, null);
                     mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
                 }
 
             } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String address = getAsString(cursor, Email.DATA);
                 if (!TextUtils.isEmpty(address)) {
-                    final Uri mailUri = Uri.fromParts(SCHEME_MAILTO, address, null);
+                    final Uri mailUri = Uri.fromParts(Constants.SCHEME_MAILTO, address, null);
                     mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 }
 
@@ -902,9 +891,9 @@ public class FastTrackWindow implements Window.Callback,
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final Action action = new DataAction(mContext, source, MIME_SMS_ADDRESS, kind,
-                        cursor);
-                considerAdd(action, MIME_SMS_ADDRESS);
+                final Action action = new DataAction(mContext, source, Constants.MIME_SMS_ADDRESS,
+                        kind, cursor);
+                considerAdd(action, Constants.MIME_SMS_ADDRESS);
             }
         }
 

@@ -23,6 +23,7 @@ import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -44,19 +45,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
-import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
@@ -101,68 +98,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 //    private long mSelectedRawContactId = -1;
 //    private long mContactId = -1;
 
+    private String mQuerySelection;
+
     private ScrollingTabWidget mTabWidget;
     private ContactHeaderWidget mHeader;
 
     private ContactEditorView mEditor;
 
-    private EditState mState = new EditState();
-
-    private static class EditState extends ArrayList<EntityDelta> implements Parcelable {
-        public long getContactId() {
-            if (this.size() > 0) {
-                // Assume the aggregate tied to first child
-                final EntityDelta first = this.get(0);
-                return first.getValues().getAsLong(RawContacts.CONTACT_ID);
-            } else {
-                // Otherwise return invalid value
-                return -1;
-            }
-        }
-
-        public long getRawContactId(int index) {
-            if (index >=0 && index < this.size()) {
-                final EntityDelta delta = this.get(index);
-                return delta.getValues().getAsLong(RawContacts._ID);
-            } else {
-                return -1;
-            }
-        }
-
-        /** {@inheritDoc} */
-        public int describeContents() {
-            // Nothing special about this parcel
-            return 0;
-        }
-
-        /** {@inheritDoc} */
-        public void writeToParcel(Parcel dest, int flags) {
-            final int size = this.size();
-            dest.writeInt(size);
-            for (EntityDelta delta : this) {
-                dest.writeParcelable(delta, flags);
-            }
-        }
-
-        public void readFromParcel(Parcel source) {
-            final int size = source.readInt();
-            for (int i = 0; i < size; i++) {
-                this.add(source.<EntityDelta> readParcelable(null));
-            }
-        }
-
-        public static final Parcelable.Creator<EditState> CREATOR = new Parcelable.Creator<EditState>() {
-            public EditState createFromParcel(Parcel in) {
-                final EditState state = new EditState();
-                state.readFromParcel(in);
-                return state;
-            }
-
-            public EditState[] newArray(int size) {
-                return new EditState[size];
-            }
-        };
-    }
+    private EntitySet mState;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -237,27 +180,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 selection = RawContacts._ID + "=" + rawContactId;
             }
 
-            EntityIterator iterator = null;
-            final EditState state = new EditState();
-            try {
-                // Perform background query to pull contact details
-                iterator = resolver.queryEntities(RawContacts.CONTENT_URI,
-                        selection, null, null);
-                while (iterator.hasNext()) {
-                    // Read all contacts into local deltas to prepare for edits
-                    final Entity before = iterator.next();
-                    final EntityDelta entity = EntityDelta.fromBefore(before);
-                    state.add(entity);
-                }
-            } catch (RemoteException e) {
-                throw new IllegalStateException("Problem querying contact details", e);
-            } finally {
-                if (iterator != null) {
-                    iterator.close();
-                }
-            }
-
-            target.mState = state;
+            target.mQuerySelection = selection;
+            target.mState = EntitySet.fromQuery(resolver, selection, null, null);
             return null;
         }
 
@@ -268,6 +192,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             target.bindHeader();
         }
     }
+
 
 
 //    /**
@@ -301,7 +226,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         // Read modifications from instance
-        mState = savedInstanceState.<EditState> getParcelable(KEY_EDIT_STATE);
+        mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
 
 //        mSelectedRawContactId = savedInstanceState.getLong(KEY_SELECTED_TAB_ID);
 //        mContactId = savedInstanceState.getLong(KEY_CONTACT_ID);
@@ -506,55 +431,70 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * {@link EmptyService} to make sure the background thread can finish
      * persisting in cases where the system wants to reclaim our process.
      */
-    public static class PersistTask extends WeakAsyncTask<EditState, Void, Boolean, Context> {
-        public PersistTask(Context context) {
-            super(context);
+    public static class PersistTask extends
+            WeakAsyncTask<EntitySet, Void, Integer, EditContactActivity> {
+        private static final int PERSIST_TRIES = 3;
+
+        private static final int RESULT_UNCHANGED = 0;
+        private static final int RESULT_SUCCESS = 1;
+        private static final int RESULT_FAILURE = 2;
+
+        public PersistTask(EditContactActivity target) {
+            super(target);
         }
 
         /** {@inheritDoc} */
         @Override
-        protected void onPreExecute(Context context) {
+        protected void onPreExecute(EditContactActivity target) {
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
+            final Context context = target;
             context.startService(new Intent(context, EmptyService.class));
         }
 
         /** {@inheritDoc} */
         @Override
-        protected Boolean doInBackground(Context context, EditState... params) {
-            final EditState state = params[0];
-            final ContentResolver resolver = context.getContentResolver();
+        protected Integer doInBackground(EditContactActivity target, EntitySet... params) {
+            final ContentResolver resolver = target.getContentResolver();
 
-            boolean savedChanges = false;
-            for (EntityDelta entity : state) {
-                // TODO: remove this extremely verbose debugging
-                Log.d(TAG, "trying to persist " + entity.toString());
-                final ArrayList<ContentProviderOperation> diff = entity.buildDiff();
-
-                // Skip updates that don't change
-                if (diff.size() == 0) continue;
-                savedChanges = true;
-
-                // TODO: handle failed operations by re-reading entity
-                // may also need backoff algorithm to give failed msg after n tries
-
+            int tries = 0;
+            Integer result = RESULT_FAILURE;
+            EntitySet state = params[0];
+            while (tries < PERSIST_TRIES) {
                 try {
+                    // Build operations and try applying
+                    final ArrayList<ContentProviderOperation> diff = state.buildDiff();
                     resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                    result = (diff.size() > 0) ? RESULT_SUCCESS : RESULT_UNCHANGED;
+                    break;
+
                 } catch (RemoteException e) {
-                    Log.w(TAG, "problem writing rawcontact diff", e);
+                    // Something went wrong, bail without success
+                    Log.e(TAG, "Problem persisting user edits", e);
+                    break;
+
                 } catch (OperationApplicationException e) {
-                    Log.w(TAG, "problem writing rawcontact diff", e);
+                    // Version consistency failed, re-parent change and try again
+                    Log.w(TAG, "Version consistency failed, re-parenting", e);
+                    final EntitySet newState = EntitySet.fromQuery(resolver,
+                            target.mQuerySelection, null, null);
+                    newState.mergeAfter(state);
+                    state = newState;
                 }
             }
 
-            return savedChanges;
+            return result;
         }
 
         /** {@inheritDoc} */
         @Override
-        protected void onPostExecute(Context context, Boolean result) {
-            if (result) {
+        protected void onPostExecute(EditContactActivity target, Integer result) {
+            final Context context = target;
+
+            if (result == RESULT_SUCCESS) {
                 Toast.makeText(context, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+            } else if (result == RESULT_FAILURE) {
+                Toast.makeText(context, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
             // Stop the service that was protecting us
@@ -708,13 +648,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     values.put(RawContacts.ACCOUNT_NAME, account.name);
                     values.put(RawContacts.ACCOUNT_TYPE, account.type);
 
-                    // Tie directly to an existing aggregate, which is turned
-                    // into an AggregationException later during persisting.
-                    final long aggregateId = target.mState.getContactId();
-                    if (aggregateId >= 0) {
-                        values.put(RawContacts.CONTACT_ID, aggregateId);
-                    }
-
                     // Parse any values from incoming intent
                     final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
                     final ContactsSource source = sources.getInflatedSource(account.type,
@@ -732,7 +665,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                         HardCodedSources.attemptMyContactsMembership(insert, target);
                     }
 
-                    target.mState.add(insert);
+                    if (target.mState == null) {
+                        // Create state if none exists yet
+                        target.mState = EntitySet.fromSingle(insert);
+                    } else {
+                        // Add contact onto end of existing state
+                        target.mState.add(insert);
+                    }
 
                     target.bindTabs();
                     target.bindHeader();

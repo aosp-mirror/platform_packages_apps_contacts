@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 import android.app.Activity;
@@ -64,9 +65,6 @@ public final class ShowOrCreateActivity extends Activity implements
     static final String[] CONTACTS_PROJECTION = new String[] {
         RawContacts.CONTACT_ID,
     };
-
-    static final String SCHEME_MAILTO = "mailto";
-    static final String SCHEME_TEL = "tel";
 
     static final int AGGREGATE_ID_INDEX = 0;
 
@@ -119,13 +117,13 @@ public final class ShowOrCreateActivity extends Activity implements
         mCreateForce = intent.getBooleanExtra(Intents.EXTRA_FORCE_CREATE, false);
 
         // Handle specific query request
-        if (SCHEME_MAILTO.equals(scheme)) {
+        if (Constants.SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
             Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
-        } else if (SCHEME_TEL.equals(scheme)) {
+        } else if (Constants.SCHEME_TEL.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.PHONE, ssp);
 
             Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, ssp);

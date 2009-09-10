@@ -29,7 +29,6 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
-import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.view.View;
@@ -98,6 +97,8 @@ public class EntityDelta implements Parcelable {
         // Always take after values from new state
         this.mValues.mAfter = remote.mValues.mAfter;
 
+        // TODO: log before/after versions to track re-parenting
+
         // Find matching local entry for each remote values, or create
         for (ArrayList<ValuesDelta> mimeEntries : remote.mEntries.values()) {
             for (ValuesDelta remoteEntry : mimeEntries) {
@@ -118,6 +119,10 @@ public class EntityDelta implements Parcelable {
 
     public ValuesDelta getValues() {
         return mValues;
+    }
+
+    public boolean isContactInsert() {
+        return mValues.isInsert();
     }
 
     /**
@@ -279,25 +284,44 @@ public class EntityDelta implements Parcelable {
     }
 
     /**
+     * Build a list of {@link ContentProviderOperation} that will assert any
+     * "before" state hasn't changed. This is maintained separately so that all
+     * asserts can take place before any updates occur.
+     */
+    public void buildAssert(ArrayList<ContentProviderOperation> buildInto) {
+        final boolean isContactInsert = mValues.isInsert();
+        if (!isContactInsert) {
+            // Assert version is consistent while persisting changes
+            final Long beforeId = mValues.getId();
+            final Long beforeVersion = mValues.getAsLong(RawContacts.VERSION);
+
+            final ContentProviderOperation.Builder builder = ContentProviderOperation
+                    .newAssertQuery(RawContacts.CONTENT_URI);
+            builder.withSelection(RawContacts._ID + "=" + beforeId, null);
+            builder.withValue(RawContacts.VERSION, beforeVersion);
+            buildInto.add(builder.build());
+        }
+    }
+
+    /**
      * Build a list of {@link ContentProviderOperation} that will transform the
      * current "before" {@link Entity} state into the modified state which this
      * {@link EntityDelta} represents.
      */
-    public ArrayList<ContentProviderOperation> buildDiff() {
-        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+    public void buildDiff(ArrayList<ContentProviderOperation> buildInto) {
+        final int firstIndex = buildInto.size();
 
         final boolean isContactInsert = mValues.isInsert();
         final boolean isContactDelete = mValues.isDelete();
         final boolean isContactUpdate = !isContactInsert && !isContactDelete;
 
         final Long beforeId = mValues.getId();
-        final Long beforeVersion = mValues.getAsLong(RawContacts.VERSION);
 
         Builder builder;
 
         // Build possible operation at Contact level
         builder = mValues.buildDiff(RawContacts.CONTENT_URI);
-        possibleAdd(diff, builder);
+        possibleAdd(buildInto, builder);
 
         // Build operations for all children
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
@@ -309,7 +333,7 @@ public class EntityDelta implements Parcelable {
                 if (child.isInsert()) {
                     if (isContactInsert) {
                         // Parent is brand new insert, so back-reference _id
-                        builder.withValueBackReference(Data.RAW_CONTACT_ID, 0);
+                        builder.withValueBackReference(Data.RAW_CONTACT_ID, firstIndex);
                     } else {
                         // Inserting under existing, so fill with known _id
                         builder.withValue(Data.RAW_CONTACT_ID, beforeId);
@@ -318,43 +342,20 @@ public class EntityDelta implements Parcelable {
                     // Child must be insert when Contact insert
                     throw new IllegalArgumentException("When parent insert, child must be also");
                 }
-                possibleAdd(diff, builder);
+                possibleAdd(buildInto, builder);
             }
         }
 
-        // Create exception when insert requested aggregate membership
-        final Long contactId = mValues.getAsLong(RawContacts.CONTACT_ID);
-        if (isContactInsert && contactId != null) {
-            builder = ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
-            builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_IN);
-            builder.withValue(AggregationExceptions.CONTACT_ID, contactId);
-            builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID, 0);
-            possibleAdd(diff, builder);
-        }
-
-        final boolean hasOperations = diff.size() > 0;
-
-        if (hasOperations && isContactUpdate) {
+        final boolean addedOperations = buildInto.size() > firstIndex;
+        if (addedOperations && isContactUpdate) {
             // Suspend aggregation while persisting updates
             builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_SUSPENDED);
-            diff.add(0, builder.build());
+            buildInto.add(firstIndex, builder.build());
 
             // Restore aggregation as last operation
             builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_DEFAULT);
-            diff.add(builder.build());
+            buildInto.add(builder.build());
         }
-
-        if (hasOperations && (isContactUpdate || isContactDelete)) {
-            // Assert version is consistent while persisting changes
-            builder = ContentProviderOperation.newAssertQuery(RawContacts.CONTENT_URI);
-            builder.withSelection(RawContacts._ID + "=" + beforeId, null);
-            builder.withValue(RawContacts.VERSION, beforeVersion);
-            // Sneak version check at beginning of list--we only depend on
-            // back-references during insert cases.
-            diff.add(0, builder.build());
-        }
-
-        return diff;
     }
 
     /**

@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.google.android.collect.Lists;
 
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
@@ -44,15 +45,15 @@ import java.util.ArrayList;
  */
 @LargeTest
 public class EntityDeltaTests extends AndroidTestCase {
-    public static final String TAG = "AugmentedEntityTests";
+    public static final String TAG = "EntityDeltaTests";
 
-    private static final long TEST_CONTACT_ID = 12;
-    private static final long TEST_PHONE_ID = 24;
+    public static final long TEST_CONTACT_ID = 12;
+    public static final long TEST_PHONE_ID = 24;
 
-    private static final String TEST_PHONE_NUMBER_1 = "218-555-1111";
-    private static final String TEST_PHONE_NUMBER_2 = "218-555-2222";
+    public static final String TEST_PHONE_NUMBER_1 = "218-555-1111";
+    public static final String TEST_PHONE_NUMBER_2 = "218-555-2222";
 
-    private static final String TEST_ACCOUNT_NAME = "TEST";
+    public static final String TEST_ACCOUNT_NAME = "TEST";
 
     public EntityDeltaTests() {
         super();
@@ -63,7 +64,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         mContext = getContext();
     }
 
-    protected Entity getEntity(long contactId, long phoneId) {
+    public static Entity getEntity(long contactId, long phoneId) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
         contact.put(RawContacts.VERSION, 43);
@@ -81,10 +82,10 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link EntityDelta#augmentTo(Parcel)} correctly passes any
-     * changes through the {@link Parcel} object. This enforces that
-     * {@link EntityDelta} should be identical when serialized against the
-     * same "before" {@link Entity}.
+     * Test that {@link EntityDelta#mergeAfter(EntityDelta)} correctly passes
+     * any changes through the {@link Parcel} object. This enforces that
+     * {@link EntityDelta} should be identical when serialized against the same
+     * "before" {@link Entity}.
      */
     public void testParcelChangesNone() {
         final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
@@ -142,9 +143,9 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link ValuesDelta#buildDiff()} is correctly built for
-     * insert, update, and delete cases. Note this only tests behavior for
-     * individual {@link Data} rows.
+     * Test that {@link ValuesDelta#buildDiff(android.net.Uri)} is correctly
+     * built for insert, update, and delete cases. Note this only tests behavior
+     * for individual {@link Data} rows.
      */
     public void testValuesDiffNone() {
         final ContentValues before = new ContentValues();
@@ -199,7 +200,7 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link EntityDelta#buildDiff()} is correctly built for
+     * Test that {@link EntityDelta#buildDiff(ArrayList)} is correctly built for
      * insert, update, and delete cases. This only tests a subset of possible
      * {@link Data} row changes.
      */
@@ -208,7 +209,8 @@ public class EntityDeltaTests extends AndroidTestCase {
         final EntityDelta source = EntityDelta.fromBefore(before);
 
         // Assert that writing unchanged produces few operations
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildDiff(diff);
 
         assertTrue("Created changes when none needed", (diff.size() == 0));
     }
@@ -225,7 +227,9 @@ public class EntityDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: insert Data row and enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
@@ -263,7 +267,9 @@ public class EntityDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert three operations: update Contact, insert Data row, enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 5, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
@@ -299,8 +305,10 @@ public class EntityDeltaTests extends AndroidTestCase {
         final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
-        // Assert two operations: update Data and enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        // Assert that version is enforced
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
@@ -331,7 +339,9 @@ public class EntityDeltaTests extends AndroidTestCase {
         source.getValues().markDeleted();
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
@@ -354,7 +364,9 @@ public class EntityDeltaTests extends AndroidTestCase {
         final EntityDelta source = new EntityDelta(values);
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
@@ -380,7 +392,9 @@ public class EntityDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<ContentProviderOperation> diff = source.buildDiff();
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);

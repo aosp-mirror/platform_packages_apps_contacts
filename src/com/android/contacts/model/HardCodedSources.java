@@ -384,6 +384,7 @@ public class HardCodedSources {
     private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
+        // TODO: create group when it doesnt exist (syncadapter will fold in)
         final ContentResolver resolver = context.getContentResolver();
         final Cursor cursor = resolver.query(Groups.CONTENT_URI, new String[] { Groups.SOURCE_ID },
                 Groups.TITLE + "=?", new String[] { GOOGLE_MY_CONTACTS_GROUP }, null);
@@ -404,14 +405,6 @@ public class HardCodedSources {
      * The constants below are shared with the Exchange sync adapter, and are
      * currently static. These values should be maintained in parallel.
      */
-    private static final int TYPE_EMAIL1 = 20;
-    private static final int TYPE_EMAIL2 = 21;
-    private static final int TYPE_EMAIL3 = 22;
-
-    private static final int TYPE_IM1 = 23;
-    private static final int TYPE_IM2 = 24;
-    private static final int TYPE_IM3 = 25;
-
     private static final int TYPE_WORK2 = 26;
     private static final int TYPE_HOME2 = 27;
     private static final int TYPE_CAR = 28;
@@ -511,20 +504,12 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
-
-            kind.typeColumn = Email.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(new EditType(TYPE_EMAIL1, R.string.type_email_1)
-                    .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL2, R.string.type_email_2)
-                    .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_EMAIL3, R.string.type_email_3)
-                    .setSpecificMax(1));
+            kind.typeOverallMax = 3;
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
-            kind.fieldList.add(new EditField(Email.DISPLAY_NAME, R.string.label_email_display_name,
-                    FLAGS_PERSON_NAME));
+//            kind.fieldList.add(new EditField(Email.DISPLAY_NAME, R.string.label_email_display_name,
+//                    FLAGS_PERSON_NAME));
 
             list.add(kind);
         }
@@ -536,15 +521,33 @@ public class HardCodedSources {
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Im.DATA);
+            kind.typeOverallMax = 3;
 
-            kind.typeColumn = Im.TYPE;
-            kind.typeList = new ArrayList<EditType>();
-            kind.typeList.add(new EditType(TYPE_IM1, R.string.type_im_1).
-                    setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM2, R.string.type_im_2).
-                    setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_IM3, R.string.type_im_3).
-                    setSpecificMax(1));
+            // NOTE: even though a traditional "type" exists, for editing
+            // purposes we're using the network to pick labels
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
+
+            kind.typeColumn = Im.PROTOCOL;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(Im.PROTOCOL_AIM, R.string.type_im_aim,
+                    R.string.chat_aim));
+            kind.typeList.add(new EditType(Im.PROTOCOL_MSN, R.string.type_im_msn,
+                    R.string.chat_msn));
+            kind.typeList.add(new EditType(Im.PROTOCOL_YAHOO, R.string.type_im_yahoo,
+                    R.string.chat_yahoo));
+            kind.typeList.add(new EditType(Im.PROTOCOL_SKYPE, R.string.type_im_skype,
+                    R.string.chat_skype));
+            kind.typeList.add(new EditType(Im.PROTOCOL_QQ, R.string.type_im_qq, R.string.chat_qq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_GOOGLE_TALK, R.string.type_im_google_talk,
+                    R.string.chat_gtalk));
+            kind.typeList.add(new EditType(Im.PROTOCOL_ICQ, R.string.type_im_icq,
+                    R.string.chat_icq));
+            kind.typeList.add(new EditType(Im.PROTOCOL_JABBER, R.string.type_im_jabber,
+                    R.string.chat_jabber));
+            kind.typeList.add(new EditType(Im.PROTOCOL_CUSTOM, R.string.type_custom,
+                    R.string.chat_other).setSecondary(true).setCustomColumn(Im.CUSTOM_PROTOCOL));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
@@ -715,30 +718,28 @@ public class HardCodedSources {
         public CharSequence inflateUsing(Context context, Cursor cursor) {
             final EditType type = EntityModifier.getCurrentType(cursor, mKind);
             final boolean validString = (type != null && type.actionRes != 0);
-            CharSequence actionString;
+            if (!validString) return null;
+
             if (type.customColumn != null) {
                 final int index = cursor.getColumnIndex(type.customColumn);
                 final String customLabel = cursor.getString(index);
-                actionString = String.format(context.getString(type.actionRes),
-                        customLabel);
+                return String.format(context.getString(type.actionRes), customLabel);
             } else {
-                actionString = context.getText(type.actionRes);
+                return context.getText(type.actionRes);
             }
-            return validString ? actionString : null;
         }
 
         public CharSequence inflateUsing(Context context, ContentValues values) {
             final EditType type = EntityModifier.getCurrentType(values, mKind);
             final boolean validString = (type != null && type.actionRes != 0);
-            CharSequence actionString;
+            if (!validString) return null;
+
             if (type.customColumn != null) {
                 final String customLabel = values.getAsString(type.customColumn);
-                actionString = String.format(context.getString(type.actionRes),
-                        customLabel);
+                return String.format(context.getString(type.actionRes), customLabel);
             } else {
-                actionString = context.getText(type.actionRes);
+                return context.getText(type.actionRes);
             }
-            return validString ? actionString : null;
         }
     }
 
