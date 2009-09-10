@@ -21,11 +21,13 @@ import com.android.contacts.R;
 import com.android.contacts.ScrollingTabWidget;
 import com.android.contacts.ViewContactActivity;
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
+import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.contacts.util.EmptyService;
@@ -47,6 +49,7 @@ import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.OperationApplicationException;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -80,7 +83,8 @@ import java.util.concurrent.TimeoutException;
  * Activity for editing or inserting a contact.
  */
 public final class EditContactActivity extends Activity implements View.OnClickListener,
-        ScrollingTabWidget.OnTabSelectionChangedListener, ContactHeaderWidget.ContactHeaderListener {
+        ScrollingTabWidget.OnTabSelectionChangedListener,
+        ContactHeaderWidget.ContactHeaderListener, EditorListener {
     private static final String TAG = "EditContactActivity";
 
     /** The launch code when picking a photo and the raw data is returned */
@@ -89,7 +93,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final int TOKEN_ENTITY = 41;
 
     private static final String KEY_EDIT_STATE = "state";
-    private static final String KEY_SELECTED_TAB = "tab";
+    private static final String KEY_SELECTED_RAW_CONTACT = "selected";
+
 //    private static final String KEY_SELECTED_TAB_ID = "tabId";
 //    private static final String KEY_CONTACT_ID = "contactId";
 
@@ -128,7 +133,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
 
+        // Build editor and listen for photo requests
         mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
+        mEditor.getPhotoEditor().setEditorListener(this);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -140,7 +147,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         } else if (Intent.ACTION_INSERT.equals(action) && icicle == null) {
             // Trigger dialog to pick account type
             doAddAction();
-
         }
     }
 
@@ -195,28 +201,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
 
 
-//    /**
-//     * Instance state for {@link #mEditor} from a previous instance.
-//     */
-//    private SparseArray<Parcelable> mEditorState;
-//
-//    /**
-//     * Save state of the currently selected {@link #mEditor}, usually for
-//     * passing across instance boundaries to restore later.
-//     */
-//    private SparseArray<Parcelable> buildEditorState() {
-//        final SparseArray<Parcelable> state = new SparseArray<Parcelable>();
-//        if (mEditor != null) {
-//            mEditor.getView().saveHierarchyState(state);
-//        }
-//        return state;
-//    }
-//
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // Store entities with modifications
         outState.putParcelable(KEY_EDIT_STATE, mState);
-        outState.putInt(KEY_SELECTED_TAB, mTabWidget.getCurrentTab());
+        outState.putLong(KEY_SELECTED_RAW_CONTACT, getSelectedRawContactId());
 //        outState.putLong(KEY_SELECTED_TAB_ID, mSelectedRawContactId);
 //        outState.putLong(KEY_CONTACT_ID, mContactId);
 
@@ -236,12 +225,29 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         bindTabs();
         bindHeader();
 
-        final int selectedTab = savedInstanceState.getInt(KEY_SELECTED_TAB);
-        mTabWidget.setCurrentTab(selectedTab);
+        final long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
+        setSelectedRawContactId(selectedId);
 
         // Restore selected tab and any focus
         super.onRestoreInstanceState(savedInstanceState);
     }
+
+    /**
+     * Return the {@link RawContacts#_ID} of the currently selected tab.
+     */
+    protected long getSelectedRawContactId() {
+        final int index = mTabWidget.getCurrentTab();
+        return mState.getRawContactId(index);
+    }
+
+    /**
+     * Set the selected tab based on the given {@link RawContacts#_ID}.
+     */
+    protected void setSelectedRawContactId(long rawContactId) {
+        final int index = mState.indexOfRawContactId(rawContactId);
+        mTabWidget.setCurrentTab(index);
+    }
+
 
 
     /**
@@ -357,16 +363,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         switch (requestCode) {
             case PHOTO_PICKED_WITH_DATA: {
-                // TODO: pass back to requesting tab
-//                final Bundle extras = data.getExtras();
-//                if (extras != null) {
-//                    Bitmap photo = extras.getParcelable("data");
-//                    mPhoto = photo;
-//                    mPhotoChanged = true;
-//                    mPhotoImageView.setImageBitmap(photo);
-//                    setPhotoPresent(true);
-//                }
-//                break;
+                // When reaching this point, we've already inflated our tab
+                // state and returned to the last-visible tab.
+                final Bitmap photo = data.getParcelableExtra("data");
+                mEditor.setPhotoBitmap(photo);
+                break;
             }
         }
     }
@@ -384,11 +385,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        // TODO: show or hide photo items based on current tab
-        // hide photo stuff entirely if on read-only source
+        final boolean hasPhotoEditor = mEditor.hasPhotoEditor();
+        final boolean hasSetPhoto = mEditor.hasSetPhoto();
 
-        menu.findItem(R.id.menu_photo_add).setVisible(false);
-        menu.findItem(R.id.menu_photo_remove).setVisible(false);
+        menu.findItem(R.id.menu_photo_add).setVisible(hasPhotoEditor);
+        menu.findItem(R.id.menu_photo_remove).setVisible(hasSetPhoto);
 
         return true;
     }
@@ -567,26 +568,45 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         return true;
     }
 
-
     /**
-     * Pick a specific photo to be added under this contact.
+     * Pick a specific photo to be added under the currently selected tab.
      */
     private boolean doPickPhotoAction() {
         try {
+            // Launch picker to choose photo for selected contact
             final Intent intent = ContactsUtils.getPhotoPickIntent();
             startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
         } catch (ActivityNotFoundException e) {
-            new AlertDialog.Builder(EditContactActivity.this).setTitle(R.string.errorDialogTitle)
-                    .setMessage(R.string.photoPickerNotFoundText).setPositiveButton(
-                            android.R.string.ok, null).show();
+            Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
         return true;
     }
 
+    /**
+     * Clear any existing photo under the currently selected tab.
+     */
     public boolean doRemovePhotoAction() {
-        // TODO: remove photo from current contact
+        // Remove photo from selected contact
+        mEditor.setPhotoBitmap(null);
         return true;
     }
+
+    /** {@inheritDoc} */
+    public void onDeleted(Editor editor) {
+        // Ignore any editor deletes
+    }
+
+    /** {@inheritDoc} */
+    public void onRequest(int request) {
+        switch (request) {
+            case EditorListener.REQUEST_PICK_PHOTO: {
+                doPickPhotoAction();
+                break;
+            }
+        }
+    }
+
+
 
 
 
