@@ -72,7 +72,6 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextMenu;
@@ -86,18 +85,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
@@ -106,9 +100,8 @@ import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
@@ -1818,7 +1811,7 @@ public final class ContactsListActivity extends ListActivity implements
         private CharSequence[] mLocalizedLabels;
         private boolean mDisplayPhotos = false;
         private boolean mDisplayAdditionalData = true;
-        private SparseArray<SoftReference<Bitmap>> mBitmapCache = null;
+        private HashMap<Long, SoftReference<Bitmap>> mBitmapCache = null;
         private HashSet<ImageView> mItemsMissingImages = null;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
@@ -1869,7 +1862,7 @@ public final class ContactsListActivity extends ListActivity implements
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
                 mDisplayPhotos = true;
                 setViewResource(R.layout.contacts_list_item_photo);
-                mBitmapCache = new SparseArray<SoftReference<Bitmap>>();
+                mBitmapCache = new HashMap<Long, SoftReference<Bitmap>>();
                 mItemsMissingImages = new HashSet<ImageView>();
             }
 
@@ -1888,26 +1881,18 @@ public final class ContactsListActivity extends ListActivity implements
                 switch(message.what) {
                     case FETCH_IMAGE_MSG:
                         ImageView imageView = (ImageView) message.obj;
-                        int pos = (Integer) imageView.getTag();
-                        Cursor cursor = (Cursor) getItem(pos);
-
-                        if (cursor != null && !cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
-                            try {
-                                Bitmap photo = ContactsUtils.loadContactPhoto(
-                                        mContext, cursor.getInt(SUMMARY_PHOTO_ID_COLUMN_INDEX),
-                                        null);
-                                mBitmapCache.put(pos, new SoftReference<Bitmap>(photo));
-                                if (photo != null) {
-                                    imageView.setImageBitmap(photo);
-                                }
-                            } catch (OutOfMemoryError e) {
-                                // Not enough memory for the photo, do nothing.
+                        long photoId = (Long) imageView.getTag();
+                        Bitmap photo = null;
+                        try {
+                            photo = ContactsUtils.loadContactPhoto(mContext, photoId, null);
+                            if (photo != null) {
+                                mBitmapCache.put(photoId, new SoftReference<Bitmap>(photo));
+                                imageView.setImageBitmap(photo);
                             }
+                        } catch (OutOfMemoryError e) {
+                            // Not enough memory for the photo, do nothing.
                         }
 
-                        if (imageView.getDrawable() == null) {
-                            imageView.setImageResource(R.drawable.ic_contact_list_picture);
-                        }
                         mItemsMissingImages.remove(imageView);
                         break;
                 }
@@ -2111,29 +2096,43 @@ public final class ContactsListActivity extends ListActivity implements
 
             // Set the photo, if requested
             if (mDisplayPhotos) {
-                int pos = cursor.getPosition();
-                Bitmap photo = null;
-                cache.photoView.setImageBitmap(null);
-                cache.photoView.setTag(pos);
 
-                // Look for the cached bitmap
-                SoftReference<Bitmap> ref = mBitmapCache.get(pos);
-                if (ref != null) {
-                    photo = ref.get();
+                long photoId = 0;
+                if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
+                    photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
                 }
 
-                // Bind the photo, or use the fallback no photo resource
-                if (photo != null) {
-                    cache.photoView.setImageBitmap(photo);
-                } else {
-                    // Cache miss
+                if (photoId == 0) {
                     cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
-                    if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-                        // Scrolling is idle, go get the image right now.
-                        sendFetchImageMessage(cache.photoView);
+                } else {
+                    cache.photoView.setImageBitmap(null);
+
+                    Bitmap photo = null;
+
+                    // Look for the cached bitmap
+                    SoftReference<Bitmap> ref = mBitmapCache.get(photoId);
+                    if (ref != null) {
+                        photo = ref.get();
+                        if (photo == null) {
+                            mBitmapCache.remove(photoId);
+                        }
+                    }
+
+                    // Bind the photo, or use the fallback no photo resource
+                    if (photo != null) {
+                        cache.photoView.setImageBitmap(photo);
                     } else {
-                        // Add it to a set of images that will be populated when scrolling stops.
-                        mItemsMissingImages.add(cache.photoView);
+                        cache.photoView.setTag(photoId);
+
+                        // Cache miss
+                        cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
+                        if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+                            // Scrolling is idle, go get the image right now.
+                            sendFetchImageMessage(cache.photoView);
+                        } else {
+                            // Add it to a set of images that will be populated when scrolling stops.
+                            mItemsMissingImages.add(cache.photoView);
+                        }
                     }
                 }
             }
@@ -2430,7 +2429,6 @@ public final class ContactsListActivity extends ListActivity implements
 
         private void processMissingImageItems(AbsListView view) {
             for (ImageView iv : mItemsMissingImages) {
-                int pos = (Integer) iv.getTag();
                 sendFetchImageMessage(iv);
             }
         }
