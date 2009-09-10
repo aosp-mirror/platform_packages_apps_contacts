@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
@@ -34,6 +35,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseIntArray;
 
 import java.util.ArrayList;
@@ -45,6 +47,8 @@ import java.util.List;
  * new rows, or enforcing {@link ContactsSource}.
  */
 public class EntityModifier {
+    private static final String TAG = "EntityModifier";
+
     /**
      * For the given {@link EntityDelta}, determine if the given
      * {@link DataKind} could be inserted under specific
@@ -332,6 +336,48 @@ public class EntityModifier {
         final ValuesDelta child = ValuesDelta.fromAfter(after);
         state.addEntry(child);
         return child;
+    }
+
+    /**
+     * Processing to trim any empty {@link ValuesDelta} rows from the given
+     * {@link EntityDelta}, assuming the given {@link ContactsSource} dictates
+     * the structure for various fields. This method ignores rows not described
+     * by the {@link ContactsSource}.
+     */
+    public static void trimEmpty(ContactsSource source, EntityDelta state) {
+        // Walk through entries for each well-known kind
+        for (DataKind kind : source.getSortedDataKinds()) {
+            final String mimeType = kind.mimeType;
+            final ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
+            if (entries == null) continue;
+
+            for (ValuesDelta entry : entries) {
+                // Test and remove this row if empty
+                final boolean touched = entry.isInsert() || entry.isUpdate();
+                if (touched && EntityModifier.isEmpty(entry, kind)) {
+                    // TODO: remove this verbose logging
+                    Log.w(TAG, "Trimming: " + entry.toString());
+                    entry.markDeleted();
+                }
+            }
+        }
+    }
+
+    /**
+     * Test if the given {@link ValuesDelta} would be considered "empty" in
+     * terms of {@link DataKind#fieldList}.
+     */
+    public static boolean isEmpty(ValuesDelta values, DataKind kind) {
+        boolean hasValues = false;
+        for (EditField field : kind.fieldList) {
+            // If any field has values, we're not empty
+            final String value = values.getAsString(field.column);
+            if (!TextUtils.isEmpty(value)) {
+                hasValues = true;
+            }
+        }
+
+        return !hasValues;
     }
 
     /**

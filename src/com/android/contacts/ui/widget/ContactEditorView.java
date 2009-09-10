@@ -21,42 +21,26 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * Custom view that provides all the editor interaction for a specific
@@ -74,6 +58,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
 
     private PhotoEditorView mPhoto;
     private GenericEditorView mName;
+
+    private boolean mHasPhotoEditor = false;
 
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
@@ -94,6 +80,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
+        super.onFinishInflate();
+
         mInflater = (LayoutInflater)getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
@@ -116,6 +104,33 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         mSecondaryClosed = res.getDrawable(com.android.internal.R.drawable.expander_ic_minimized);
 
         this.setSecondaryVisible(false);
+    }
+
+    /**
+     * Assign the given {@link Bitmap} to the internal {@link PhotoEditorView}
+     * for the {@link EntityDelta} currently being edited.
+     */
+    public void setPhotoBitmap(Bitmap bitmap) {
+        mPhoto.setPhotoBitmap(bitmap);
+    }
+
+    /**
+     * Return true if the current {@link RawContacts} supports {@link Photo},
+     * which means that {@link PhotoEditorView} is enabled.
+     */
+    public boolean hasPhotoEditor() {
+        return mHasPhotoEditor;
+    }
+
+    /**
+     * Return true if internal {@link PhotoEditorView} has a {@link Photo} set.
+     */
+    public boolean hasSetPhoto() {
+        return mPhoto.hasSetPhoto();
+    }
+
+    public PhotoEditorView getPhotoEditor() {
+        return mPhoto;
     }
 
     /** {@inheritDoc} */
@@ -149,6 +164,11 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
 
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
+
+        // Show photo editor when supported
+        EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
+        mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
+        mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
 
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {

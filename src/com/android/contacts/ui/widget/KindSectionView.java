@@ -50,7 +50,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
     private DataKind mKind;
     private EntityDelta mState;
-    
+
     public KindSectionView(Context context) {
         super(context);
     }
@@ -76,9 +76,15 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         mTitle = (TextView)findViewById(R.id.kind_title);
     }
 
+    /** {@inheritDoc} */
     public void onDeleted(Editor editor) {
         this.updateAddEnabled();
         this.updateEditorsVisible();
+    }
+
+    /** {@inheritDoc} */
+    public void onRequest(int request) {
+        // Ignore requests
     }
 
     public void setState(DataKind kind, EntityDelta state) {
@@ -125,7 +131,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         final boolean canInsert = EntityModifier.canInsert(mState, mKind);
         mAdd.setEnabled(canInsert);
     }
-    
+
+    /** {@inheritDoc} */
     public void onClick(View v) {
         // Insert a new child and rebuild
         EntityModifier.insertChild(mState, mKind);

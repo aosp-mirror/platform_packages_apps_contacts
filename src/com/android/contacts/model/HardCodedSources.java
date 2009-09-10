@@ -161,6 +161,10 @@ public class HardCodedSources {
         {
             // GOOGLE: PHOTO
             DataKind kind = new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
+
             list.add(kind);
         }
 
@@ -445,6 +449,10 @@ public class HardCodedSources {
             // EXCHANGE: PHOTO
             DataKind kind = new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true);
             kind.typeOverallMax = 1;
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
+
             list.add(kind);
         }
 

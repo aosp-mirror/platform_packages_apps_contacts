@@ -34,6 +34,14 @@ public interface Editor {
          * Called when the given {@link Editor} has been deleted.
          */
         public void onDeleted(Editor editor);
+
+        /**
+         * Called when the given {@link Editor} has a request, for example it
+         * wants to select a photo.
+         */
+        public void onRequest(int request);
+
+        public static final int REQUEST_PICK_PHOTO = 1;
     }
 
     /**
