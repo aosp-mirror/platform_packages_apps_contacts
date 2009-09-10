@@ -103,6 +103,18 @@
             android:gravity="center_vertical|left"
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
+        
+        <ImageView android:id="@+id/call_button"
+	        android:layout_width="50dip"
+	        android:layout_height="50dip"
+	        android:layout_marginLeft="9dip"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        
+	        android:gravity="center"
+	        android:src="@android:drawable/sym_action_call"
+	        android:background="@drawable/list_item_secondary_button"
+	    />
     
     </RelativeLayout>
 </LinearLayout>
