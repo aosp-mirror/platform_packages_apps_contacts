@@ -515,6 +515,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * finishes the activity.
      */
     private boolean doSaveAction() {
+        // Bail early if nothing to save
+        if (mState == null || mState.size() == 0) return true;
+
         // Pass back last-selected contact
         final int selectedTab = mTabWidget.getCurrentTab();
         final long rawContactId = mState.getRawContactId(selectedTab);
@@ -701,7 +704,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final DialogInterface.OnCancelListener cancelListener = new DialogInterface.OnCancelListener() {
                 public void onCancel(DialogInterface dialog) {
                     // If nothing remains, close activity
-                    if (target.mState.size() == 0) {
+                    if (target.mState == null || target.mState.size() == 0) {
                         target.finish();
                     }
                 }
