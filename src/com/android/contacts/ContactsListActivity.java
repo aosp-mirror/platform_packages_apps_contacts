@@ -166,6 +166,8 @@ public final class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_SHOW_PHOTOS = 0x08000000;
     /** Mask for hiding additional information e.g. primary phone number in the list */
     static final int MODE_MASK_NO_DATA = 0x04000000;
+    /** Mask for showing a call button in the list */
+    static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
@@ -178,7 +180,7 @@ public final class ContactsListActivity extends ListActivity implements
     /** Show frequently contacted contacts */
     static final int MODE_FREQUENT = 30 | MODE_MASK_SHOW_PHOTOS;
     /** Show starred and the frequent */
-    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS;
+    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS;
     /** Show all contacts as well as the option to create a new one */
@@ -1791,6 +1793,7 @@ public final class ContactsListActivity extends ListActivity implements
         public TextView header;
         public View divider;
         public TextView nameView;
+        public ImageView callView;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
         public CharArrayBuffer labelBuffer = new CharArrayBuffer(128);
@@ -1818,6 +1821,7 @@ public final class ContactsListActivity extends ListActivity implements
         private CharSequence mUnknownNameText;
         private CharSequence[] mLocalizedLabels;
         private boolean mDisplayPhotos = false;
+        private boolean mDisplayCallButton = false;
         private boolean mDisplayAdditionalData = true;
         private HashMap<Long, SoftReference<Bitmap>> mBitmapCache = null;
         private HashSet<ImageView> mItemsMissingImages = null;
@@ -1865,6 +1869,10 @@ public final class ContactsListActivity extends ListActivity implements
 
             if ((mMode & MODE_MASK_NO_DATA) == MODE_MASK_NO_DATA) {
                 mDisplayAdditionalData = false;
+            }
+
+            if ((mMode & MODE_MASK_SHOW_CALL_BUTTON) == MODE_MASK_SHOW_CALL_BUTTON) {
+                mDisplayCallButton = true;
             }
 
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
@@ -2057,6 +2065,10 @@ public final class ContactsListActivity extends ListActivity implements
             cache.header = (TextView) view.findViewById(R.id.header);
             cache.divider = view.findViewById(R.id.list_divider);
             cache.nameView = (TextView) view.findViewById(R.id.name);
+            cache.callView = (ImageView) view.findViewById(R.id.call_button);
+            if (cache.callView != null) {
+                cache.callView.setOnClickListener(ContactsListActivity.this);
+            }
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
@@ -2117,6 +2129,15 @@ public final class ContactsListActivity extends ListActivity implements
                 cache.nameView.setText(cache.nameBuffer.data, 0, size);
             } else {
                 cache.nameView.setText(mUnknownNameText);
+            }
+
+            // Make the call button visible if requested.
+            if (mDisplayCallButton) {
+                int pos = cursor.getPosition();
+                cache.callView.setVisibility(View.VISIBLE);
+                cache.callView.setTag(pos);
+            } else {
+                cache.callView.setVisibility(View.GONE);
             }
 
             // Set the photo, if requested
