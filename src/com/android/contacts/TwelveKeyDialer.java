@@ -1011,8 +1011,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         int selectionEnd;
 
         // SpannableStringBuilder editable_text = new SpannableStringBuilder(mDigits.getText());
-        selectionStart = mDigits.getSelectionStart();
-        selectionEnd = mDigits.getSelectionEnd();
+        int anchor = mDigits.getSelectionStart();
+        int point = mDigits.getSelectionEnd();
+
+        selectionStart = Math.min(anchor, point);
+        selectionEnd = Math.max(anchor, point);
 
         Editable digits = mDigits.getText();
         if (selectionStart != -1 ) {
