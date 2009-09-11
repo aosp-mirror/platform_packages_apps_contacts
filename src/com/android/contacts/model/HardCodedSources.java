@@ -28,7 +28,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -43,8 +42,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.view.inputmethod.EditorInfo;
-
-import java.util.ArrayList;
 
 /**
  * Hard-coded definition of some {@link ContactsSource} constraints, since the
@@ -559,6 +556,39 @@ public class HardCodedSources {
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
+
+            list.add(kind);
+        }
+
+        {
+            // EXCHANGE: POSTAL
+            DataKind kind = new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
+                    R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true);
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            // TODO: build body from various structured fields
+            kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
+
+            kind.typeColumn = StructuredPostal.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_WORK, R.string.type_work,
+                    R.string.map_work).setSpecificMax(1));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_HOME, R.string.type_home,
+                    R.string.map_home).setSpecificMax(1));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_OTHER, R.string.type_other,
+                    R.string.map_other).setSpecificMax(1));
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredPostal.STREET, R.string.postal_street,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.CITY, R.string.postal_city,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.REGION, R.string.postal_region,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE, R.string.postal_postcode,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY, R.string.postal_country,
+                    FLAGS_POSTAL, true));
 
             list.add(kind);
         }
