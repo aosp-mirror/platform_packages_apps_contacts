@@ -1879,22 +1879,37 @@ public final class ContactsListActivity extends ListActivity implements
                     return;
                 }
                 switch(message.what) {
-                    case FETCH_IMAGE_MSG:
+                    case FETCH_IMAGE_MSG: {
                         ImageView imageView = (ImageView) message.obj;
                         long photoId = (Long) imageView.getTag();
+                        if (photoId == 0) {
+                            break;
+                        }
+
                         Bitmap photo = null;
                         try {
                             photo = ContactsUtils.loadContactPhoto(mContext, photoId, null);
-                            if (photo != null) {
-                                mBitmapCache.put(photoId, new SoftReference<Bitmap>(photo));
-                                imageView.setImageBitmap(photo);
-                            }
                         } catch (OutOfMemoryError e) {
                             // Not enough memory for the photo, do nothing.
                         }
 
-                        mItemsMissingImages.remove(imageView);
+                        if (photo == null) {
+                            break;
+                        }
+
+                        mBitmapCache.put(photoId, new SoftReference<Bitmap>(photo));
+
+                        // Make sure the photoId on this image view has not changed
+                        // while we were loading the image.
+                        synchronized (imageView) {
+                            long currentPhotoId = (Long) imageView.getTag();
+                            if (currentPhotoId == photoId) {
+                                imageView.setImageBitmap(photo);
+                                mItemsMissingImages.remove(imageView);
+                            }
+                        }
                         break;
+                    }
                 }
             }
 
@@ -2102,10 +2117,11 @@ public final class ContactsListActivity extends ListActivity implements
                     photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
                 }
 
+                cache.photoView.setTag(photoId);
+
                 if (photoId == 0) {
                     cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
                 } else {
-                    cache.photoView.setImageBitmap(null);
 
                     Bitmap photo = null;
 
@@ -2122,16 +2138,16 @@ public final class ContactsListActivity extends ListActivity implements
                     if (photo != null) {
                         cache.photoView.setImageBitmap(photo);
                     } else {
-                        cache.photoView.setTag(photoId);
-
                         // Cache miss
                         cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
-                        if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-                            // Scrolling is idle, go get the image right now.
+
+                        // Add it to a set of images that are populated asynchronously.
+                        mItemsMissingImages.add(cache.photoView);
+
+                        if (mScrollState != OnScrollListener.SCROLL_STATE_FLING) {
+
+                            // Scrolling is idle or slow, go get the image right now.
                             sendFetchImageMessage(cache.photoView);
-                        } else {
-                            // Add it to a set of images that will be populated when scrolling stops.
-                            mItemsMissingImages.add(cache.photoView);
                         }
                     }
                 }
@@ -2419,8 +2435,8 @@ public final class ContactsListActivity extends ListActivity implements
 
         public void onScrollStateChanged(AbsListView view, int scrollState) {
             mScrollState = scrollState;
-            if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
-                // If we are not idle, stop loading images.
+            if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
+                // If we are in a fling, stop loading images.
                 clearImageFetching();
             } else if (mDisplayPhotos) {
                 processMissingImageItems(view);
