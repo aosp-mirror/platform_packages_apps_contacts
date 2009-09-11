@@ -570,9 +570,7 @@ public final class ContactsListActivity extends ListActivity implements
     private int[] mLocation = new int[2];
     private Rect mRect = new Rect();
 
-    private void showFastTrack(View anchor, long contactId) {
-        final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-
+    private void showFastTrack(View anchor, Uri contactUri) {
         anchor.getLocationInWindow(mLocation);
         mRect.left = mLocation[0];
         mRect.top = mLocation[1];
@@ -584,11 +582,11 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     /** {@inheritDoc} */
-    public void onClick(View v) {
+    public void onClick(View view) {
         // Clicked on photo, so show fast-track
-        final int position = (Integer)v.getTag();
-        final long contactId = this.getListView().getItemIdAtPosition(position);
-        showFastTrack(v, contactId);
+        final PhotoInfo info = (PhotoInfo)view.getTag();
+        final Uri contactUri = getContactUri(info.position);
+        showFastTrack(view, contactUri);
     }
 
     private void setEmptyText() {
@@ -1802,6 +1800,16 @@ public final class ContactsListActivity extends ListActivity implements
         public ImageView photoView;
     }
 
+    final static class PhotoInfo {
+        public int position;
+        public long photoId;
+
+        public PhotoInfo(int position, long photoId) {
+            this.position = position;
+            this.photoId = photoId;
+        }
+    }
+
     private final class ContactItemListAdapter extends ResourceCursorAdapter
             implements SectionIndexer, OnScrollListener {
         private SectionIndexer mIndexer;
@@ -1880,8 +1888,9 @@ public final class ContactsListActivity extends ListActivity implements
                 }
                 switch(message.what) {
                     case FETCH_IMAGE_MSG: {
-                        ImageView imageView = (ImageView) message.obj;
-                        long photoId = (Long) imageView.getTag();
+                        final ImageView imageView = (ImageView) message.obj;
+                        final PhotoInfo info = (PhotoInfo)imageView.getTag();
+                        final long photoId = info.photoId;
                         if (photoId == 0) {
                             break;
                         }
@@ -1902,7 +1911,8 @@ public final class ContactsListActivity extends ListActivity implements
                         // Make sure the photoId on this image view has not changed
                         // while we were loading the image.
                         synchronized (imageView) {
-                            long currentPhotoId = (Long) imageView.getTag();
+                            final PhotoInfo updatedInfo = (PhotoInfo)imageView.getTag();
+                            long currentPhotoId = updatedInfo.photoId;
                             if (currentPhotoId == photoId) {
                                 imageView.setImageBitmap(photo);
                                 mItemsMissingImages.remove(imageView);
@@ -2117,7 +2127,8 @@ public final class ContactsListActivity extends ListActivity implements
                     photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
                 }
 
-                cache.photoView.setTag(photoId);
+                final int position = cursor.getPosition();
+                cache.photoView.setTag(new PhotoInfo(position, photoId));
 
                 if (photoId == 0) {
                     cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
