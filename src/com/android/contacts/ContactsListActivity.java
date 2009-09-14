@@ -584,11 +584,28 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     /** {@inheritDoc} */
-    public void onClick(View view) {
-        // Clicked on photo, so show fast-track
-        final PhotoInfo info = (PhotoInfo)view.getTag();
-        final Uri contactUri = getContactUri(info.position);
-        showFastTrack(view, contactUri);
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.call_button: {
+                final int position = (Integer) v.getTag();
+                Cursor c =  (Cursor) mAdapter.getItem(position);
+                if (c != null) {
+                    callContact(c);
+                }
+                break;
+            }
+
+            case R.id.photo: {
+                // Clicked on photo, so show fast-track
+                final PhotoInfo info = (PhotoInfo) v.getTag();
+                final int position = info.position;
+                final Uri contactUri = getContactUri(position);
+                showFastTrack(v, contactUri);
+                break;
+            }
+        }
+
     }
 
     private void setEmptyText() {
