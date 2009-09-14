@@ -40,20 +40,19 @@
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:paddingLeft="14dip"
-        android:paddingRight="5dip"
     >
-    
+
         <ImageView android:id="@+id/presence"
             android:layout_width="32dip"
             android:layout_height="32dip"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="5dip"
             android:layout_centerVertical="true"
-    
+
             android:gravity="center"
             android:scaleType="centerInside"
         />
-    
+
         <TextView android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,13 +60,13 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dip"
             android:layout_marginTop="-8dip"
-    
+
             android:singleLine="true"
             android:ellipsize="marquee"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
         />
-    
+
         <TextView android:id="@+id/data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,12 +75,12 @@
             android:layout_alignBaseline="@id/label"
             android:layout_toLeftOf="@id/presence"
             android:layout_alignWithParentIfMissing="true"
-    
+
             android:singleLine="true"
             android:ellipsize="marquee"
             android:textAppearance="?android:attr/textAppearanceSmall"
         />
-    
+
         <TextView android:id="@+id/name"
             android:layout_width="0dip"
             android:layout_height="0dip"
@@ -91,24 +90,34 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/presence"
             android:layout_marginBottom="1dip"
-    
+
             android:singleLine="true"
             android:ellipsize="marquee"
             android:gravity="center_vertical|left"
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
-            
+
         <ImageView android:id="@+id/call_button"
-	        android:layout_width="50dip"
-	        android:layout_height="50dip"
-	        android:layout_marginLeft="9dip"
-	        android:layout_alignParentRight="true"
-	        android:layout_centerVertical="true"
-	        
-	        android:gravity="center"
-	        android:src="@android:drawable/sym_action_call"
-	        android:background="@drawable/list_item_secondary_button"
-	    />
-    
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="14dip"
+            android:paddingRight="14dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            android:gravity="center"
+            android:src="@android:drawable/sym_action_call"
+            android:background="@android:drawable/list_selector_background"
+        />
+
+        <View android:id="@+id/divider"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/call_button"
+            android:layout_marginLeft="11dip"
+
+            android:background="@drawable/divider_vertical_dark"
+        />
+
     </RelativeLayout>
 </LinearLayout>
