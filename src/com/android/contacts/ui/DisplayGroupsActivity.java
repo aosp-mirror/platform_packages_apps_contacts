@@ -16,12 +16,6 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
-import com.android.contacts.util.WeakAsyncTask;
-import com.google.android.collect.Sets;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -55,9 +49,15 @@ import android.widget.CheckBox;
 import android.widget.CursorTreeAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+
+import com.google.android.collect.Sets;
+
+import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.util.WeakAsyncTask;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -74,7 +74,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
     public interface Prefs {
         public static final String DISPLAY_ONLY_PHONES = "only_phones";
-        public static final boolean DISPLAY_ONLY_PHONES_DEFAULT = true;
+        public static final boolean DISPLAY_ONLY_PHONES_DEFAULT = false;
 
     }
 
@@ -83,10 +83,8 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
     private SharedPreferences mPrefs;
 
-    private RadioButton mDisplayAll;
-    private RadioButton mDisplayPhones;
+    private CheckBox mDisplayPhones;
 
-    private View mHeaderAll;
     private View mHeaderPhones;
     private View mHeaderSeparator;
 
@@ -100,23 +98,10 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        // Add the "All contacts" header modifier.
-        mHeaderAll = inflater.inflate(R.layout.display_header, mList, false);
-        mHeaderAll.setId(R.id.header_all);
-        mDisplayAll = (RadioButton)mHeaderAll.findViewById(android.R.id.checkbox);
-        {
-            final TextView text1 = (TextView)mHeaderAll.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)mHeaderAll.findViewById(android.R.id.text2);
-            text1.setText(R.string.showAllGroups);
-            text2.setVisibility(View.GONE);
-        }
-        mList.addHeaderView(mHeaderAll, null, true);
-
-
         // Add the "Only contacts with phones" header modifier.
         mHeaderPhones = inflater.inflate(R.layout.display_header, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
-        mDisplayPhones = (RadioButton)mHeaderPhones.findViewById(android.R.id.checkbox);
+        mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
         {
             final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
             final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
@@ -139,7 +124,6 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         boolean displayOnlyPhones = mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
                 Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
 
-        mDisplayAll.setChecked(!displayOnlyPhones);
         mDisplayPhones.setChecked(displayOnlyPhones);
 
         mAdapter.setChildDescripWithPhones(displayOnlyPhones);
@@ -229,11 +213,6 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (view.getId()) {
-            case R.id.header_all: {
-                mDisplayAll.toggle();
-                setDisplayOnlyPhones(!mDisplayAll.isChecked());
-                break;
-            }
             case R.id.header_phones: {
                 mDisplayPhones.toggle();
                 setDisplayOnlyPhones(mDisplayPhones.isChecked());
@@ -247,7 +226,6 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      * the visible list as needed.
      */
     protected void setDisplayOnlyPhones(boolean displayOnlyPhones) {
-        mDisplayAll.setChecked(!displayOnlyPhones);
         mDisplayPhones.setChecked(displayOnlyPhones);
 
         Editor editor = mPrefs.edit();
