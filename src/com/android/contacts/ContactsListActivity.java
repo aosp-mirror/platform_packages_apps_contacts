@@ -616,10 +616,22 @@ public final class ContactsListActivity extends ListActivity implements
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
         } else {
-            if (mSyncEnabled) {
-                empty.setText(getText(R.string.noContactsHelpTextWithSync));
+            boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
+                    .hasIccCard();
+
+            if (hasSim) {
+                if (mSyncEnabled) {
+                    empty.setText(getText(R.string.noContactsHelpTextWithSync));
+                } else {
+                    empty.setText(getText(R.string.noContactsHelpText));
+                }
+
             } else {
-                empty.setText(getText(R.string.noContactsHelpText));
+                if (mSyncEnabled) {
+                    empty.setText(getText(R.string.noContactsNoSimHelpTextWithSync));
+                } else {
+                    empty.setText(getText(R.string.noContactsNoSimHelpText));
+                }
             }
             gravity = Gravity.NO_GRAVITY;
         }
