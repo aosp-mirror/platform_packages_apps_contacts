@@ -486,7 +486,7 @@
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
     </string>
 
-        <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
     <string name="noContactsNoSimHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
@@ -497,6 +497,14 @@
         \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to select contact groups to make visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
+    </string>
+
+    <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab -->
+    <string name="noFavoritesHelpText">"You don't have any favorites.\n
+        \nTo add a contact to your list of favorites:\n
+        \n<li>Touch Contacts\n</li>
+        \n<li>Touch the contact you want to add to your favorites\n</li>
+        \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
 
     <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
