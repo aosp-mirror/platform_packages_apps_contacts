@@ -1012,16 +1012,18 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     @Override
+    public void onBackPressed() {
+        if (mFastTrack.isShowing()) {
+            // Back key dismisses fast-track when its visible
+            mFastTrack.dismiss();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK: {
-                if (mFastTrack.isShowing()) {
-                    // Back key dismisses fast-track when its visible
-                    mFastTrack.dismiss();
-                    return true;
-                }
-                break;
-            }
             case KeyEvent.KEYCODE_CALL: {
                 if (callSelection()) {
                     return true;
