@@ -238,7 +238,7 @@ public class FastTrackWindow implements Window.Callback,
      * Start showing a fast-track window for the given {@link Contacts#_ID}
      * pointing towards the given location.
      */
-    public void show(Uri aggUri, Rect anchor, int mode, String[] excludeMimes) {
+    public void show(Uri contactUri, Rect anchor, int mode, String[] excludeMimes) {
         if (mShowing || mQuerying) {
             Log.w(TAG, "already in process of showing");
             return;
@@ -256,16 +256,13 @@ public class FastTrackWindow implements Window.Callback,
 
         mHasValidSocial = false;
 
-        mAggId = ContentUris.parseId(aggUri);
+        mAggId = ContentUris.parseId(contactUri);
         mAnchor = new Rect(anchor);
         mQuerying = true;
 
-        Uri aggSummary = ContentUris.withAppendedId(
-                ContactsContract.Contacts.CONTENT_URI, mAggId);
-        Uri aggSocial = ContentUris.withAppendedId(
-                SocialContract.Activities.CONTENT_CONTACT_STATUS_URI, mAggId);
-        Uri aggData = Uri.withAppendedPath(aggUri,
-                ContactsContract.Contacts.Data.CONTENT_DIRECTORY);
+        Uri aggSummary = ContentUris.withAppendedId(Contacts.CONTENT_URI, mAggId);
+        Uri aggSocial = ContentUris.withAppendedId(Activities.CONTENT_CONTACT_STATUS_URI, mAggId);
+        Uri aggData = Uri.withAppendedPath(aggSummary, Contacts.Data.CONTENT_DIRECTORY);
 
         // Start data query in background
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
