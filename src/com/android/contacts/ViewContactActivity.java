@@ -20,10 +20,8 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
 import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.ui.FastTrackWindow;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
@@ -52,6 +50,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
@@ -60,7 +59,6 @@ import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -181,8 +179,16 @@ public class ViewContactActivity extends Activity
         super.onCreate(icicle);
 
         final Intent intent = getIntent();
-        mLookupUri = intent.getData();
+        Uri data = intent.getData();
+        String authority = data.getAuthority();
+        if (ContactsContract.AUTHORITY.equals(authority)) {
+            mLookupUri = data;
+        } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
+            final long rawContactId = ContentUris.parseId(data);
+            mLookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
 
+        }
         mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
