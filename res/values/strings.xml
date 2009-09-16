@@ -934,7 +934,8 @@
     <string name="dialog_new_contact_account">Create contact under account</string>
 
     <string name="menu_sync_remove">Remove sync group</string>
-    <string name="menu_sync_add">Add sync group</string>
+    <string name="dialog_sync_add">Add sync group</string>
+    <string name="display_more_groups">More groups\u2026</string>
 
     <!-- List title for a special contacts group that covers all contacts that
          aren't members of any other group.  -->
