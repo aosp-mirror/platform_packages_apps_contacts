@@ -28,6 +28,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -339,12 +341,29 @@ public class EntityModifier {
     }
 
     /**
+     * Processing to trim any empty {@link ValuesDelta} and {@link EntityDelta}
+     * from the given {@link EntitySet}, assuming the given {@link Sources}
+     * dictates the structure for various fields. This method ignores rows not
+     * described by the {@link ContactsSource}.
+     */
+    public static void trimEmpty(EntitySet set, Sources sources) {
+        for (EntityDelta state : set) {
+            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final ContactsSource source = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_MIMETYPES);
+            trimEmpty(state, source);
+        }
+    }
+
+    /**
      * Processing to trim any empty {@link ValuesDelta} rows from the given
      * {@link EntityDelta}, assuming the given {@link ContactsSource} dictates
      * the structure for various fields. This method ignores rows not described
      * by the {@link ContactsSource}.
      */
-    public static void trimEmpty(ContactsSource source, EntityDelta state) {
+    public static void trimEmpty(EntityDelta state, ContactsSource source) {
+        boolean hasValues = false;
+
         // Walk through entries for each well-known kind
         for (DataKind kind : source.getSortedDataKinds()) {
             final String mimeType = kind.mimeType;
@@ -352,14 +371,27 @@ public class EntityModifier {
             if (entries == null) continue;
 
             for (ValuesDelta entry : entries) {
-                // Test and remove this row if empty
+                // Skip any values that haven't been touched
                 final boolean touched = entry.isInsert() || entry.isUpdate();
-                if (touched && EntityModifier.isEmpty(entry, kind)) {
+                if (!touched) {
+                    hasValues = true;
+                    continue;
+                }
+
+                // Test and remove this row if empty
+                if (EntityModifier.isEmpty(entry, kind)) {
                     // TODO: remove this verbose logging
                     Log.w(TAG, "Trimming: " + entry.toString());
                     entry.markDeleted();
+                } else {
+                    hasValues = true;
                 }
             }
+        }
+
+        if (!hasValues) {
+            // Trim overall entity if no children exist
+            state.markDeleted();
         }
     }
 
@@ -454,7 +486,10 @@ public class EntityModifier {
      */
     public static void parseExtras(EntityDelta state, DataKind kind, Bundle extras,
             String typeExtra, String valueExtra, String valueColumn) {
-        final String value = extras.getString(valueExtra);
+        final CharSequence value = extras.getCharSequence(valueExtra);
+
+        // Bail early if source doesn't handle this type
+        if (kind == null) return;
 
         // Bail when can't insert type, or value missing
         final boolean canInsert = EntityModifier.canInsert(state, kind);
@@ -462,16 +497,17 @@ public class EntityModifier {
         if (!validValue || !canInsert) return;
 
         // Find exact type, or otherwise best type
-        final int typeValue = extras.getInt(typeExtra, Integer.MIN_VALUE);
+        final int typeValue = extras.getInt(typeExtra, BaseTypes.TYPE_CUSTOM);
         final EditType editType = EntityModifier.getBestValidType(state, kind, true, typeValue);
 
         // Create data row and fill with value
         final ValuesDelta child = EntityModifier.insertChild(state, kind, editType);
-        child.put(valueColumn, value);
+        child.put(valueColumn, value.toString());
 
         if (editType != null && editType.customColumn != null) {
             // Write down label when custom type picked
-            child.put(editType.customColumn, extras.getString(typeExtra));
+            final CharSequence customType = extras.getCharSequence(typeExtra);
+            child.put(editType.customColumn, customType.toString());
         }
     }
 }
