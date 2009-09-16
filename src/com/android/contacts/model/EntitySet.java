@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
 
 import android.content.ContentProviderOperation;
@@ -173,18 +174,20 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
      * Find {@link RawContacts#_ID} of the requested {@link EntityDelta}.
      */
     public long getRawContactId(int index) {
-        if (index >=0 && index < this.size()) {
+        if (index >= 0 && index < this.size()) {
             final EntityDelta delta = this.get(index);
-            return delta.getValues().getAsLong(RawContacts._ID);
-        } else {
-            return 0;
+            final ValuesDelta values = delta.getValues();
+            if (values.isVisible()) {
+                return values.getAsLong(RawContacts._ID);
+            }
         }
+        return 0;
     }
 
     /**
      * Find index of given {@link RawContacts#_ID} when present.
      */
-    public int indexOfRawContactId(long rawContactId) {
+    public int indexOfRawContactId(Long rawContactId) {
         final int size = this.size();
         for (int i = 0; i < size; i++) {
             final long currentId = getRawContactId(i);

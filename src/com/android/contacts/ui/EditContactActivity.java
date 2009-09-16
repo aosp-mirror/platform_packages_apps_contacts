@@ -61,6 +61,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -101,6 +102,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     private EntitySet mState;
 
+    private ArrayList<Dialog> mManagedDialogs = Lists.newArrayList();
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -129,11 +132,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
 
-        if (Intent.ACTION_EDIT.equals(action) && icicle == null) {
+        // Handle initial actions only when existing state missing
+        final boolean hasIncomingState = icicle != null && icicle.containsKey(KEY_EDIT_STATE);
+
+        if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
 
-        } else if (Intent.ACTION_INSERT.equals(action) && icicle == null) {
+        } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
             // Trigger dialog to pick account type
             doAddAction();
         }
@@ -180,7 +186,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
             // Handle any incoming values that should be inserted
             final Bundle extras = intent.getExtras();
-            final boolean hasExtras = extras.size() > 0;
+            final boolean hasExtras = extras != null && extras.size() > 0;
             final boolean hasState = target.mState.size() > 0;
             if (hasExtras && hasState) {
                 // Find source defining the first RawContact found
@@ -224,7 +230,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         bindHeader();
 
         if (hasValidState()) {
-            final long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
+            final Long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
             setSelectedRawContactId(selectedId);
         }
 
@@ -232,20 +238,68 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         super.onRestoreInstanceState(savedInstanceState);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        for (Dialog dialog : mManagedDialogs) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        }
+    }
+
+    /**
+     * Start managing this {@link Dialog} along with the {@link Activity}.
+     */
+    private void startManagingDialog(Dialog dialog) {
+        synchronized (mManagedDialogs) {
+            mManagedDialogs.add(dialog);
+        }
+    }
+
+    /**
+     * Show this {@link Dialog} and manage with the {@link Activity}.
+     */
+    private void showAndManageDialog(Dialog dialog) {
+        startManagingDialog(dialog);
+        dialog.show();
+    }
+
     /**
      * Return the {@link RawContacts#_ID} of the currently selected tab.
      */
-    protected long getSelectedRawContactId() {
-        final int index = mTabWidget.getCurrentTab();
-        return mState.getRawContactId(index);
+    protected Long getSelectedRawContactId() {
+        final int tabIndex = mTabWidget.getCurrentTab();
+        return this.mTabRawContacts.get(tabIndex);
+    }
+
+    /**
+     * Return the {@link EntityDelta} for the currently selected tab.
+     */
+    protected EntityDelta getSelectedEntityDelta() {
+        final Long rawContactId = getSelectedRawContactId();
+        final int stateIndex = mState.indexOfRawContactId(rawContactId);
+        return mState.get(stateIndex);
     }
 
     /**
      * Set the selected tab based on the given {@link RawContacts#_ID}.
      */
-    protected void setSelectedRawContactId(long rawContactId) {
-        final int index = mState.indexOfRawContactId(rawContactId);
-        mTabWidget.setCurrentTab(index);
+    protected void setSelectedRawContactId(Long rawContactId) {
+        int tabIndex = 0;
+
+        // Find index of requested contact
+        final int size = mTabRawContacts.size();
+        for (int i = 0; i < size; i++) {
+            if (mTabRawContacts.valueAt(i) == rawContactId) {
+                tabIndex = i;
+                break;
+            }
+        }
+
+        mTabWidget.setCurrentTab(tabIndex);
+        this.onTabSelectionChanged(tabIndex, false);
     }
 
     /**
@@ -259,6 +313,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
 
     /**
+     * Map from {@link #mTabWidget} indexes to {@link RawContacts#_ID}, usually
+     * used when mapping to {@link #mState}.
+     */
+    private SparseArray<Long> mTabRawContacts = new SparseArray<Long>();
+
+
+    /**
      * Rebuild tabs to match our underlying {@link #mState} object, usually
      * called once we've parsed {@link Entity} data or have inserted a new
      * {@link RawContacts}.
@@ -267,24 +328,34 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (!hasValidState()) return;
 
         final Sources sources = Sources.getInstance(this);
-        int selectedTab = 0;
+        final Long selectedRawContactId = this.getSelectedRawContactId();
 
+        // Remove any existing tabs and rebuild any visible
         mTabWidget.removeAllTabs();
+        mTabRawContacts.clear();
         for (EntityDelta entity : mState) {
-            ValuesDelta values = entity.getValues();
+            final ValuesDelta values = entity.getValues();
+            if (!values.isVisible()) continue;
+
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final Long rawContactId = values.getAsLong(RawContacts._ID);
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
 
+            final int tabIndex = mTabWidget.getTabCount();
             final View tabView = ContactsUtils.createTabIndicatorView(
                     mTabWidget.getTabParent(), source);
             mTabWidget.addTab(tabView);
+            mTabRawContacts.put(tabIndex, rawContactId);
         }
 
-        if (mState.size() > 0) {
-            mTabWidget.setCurrentTab(selectedTab);
-            this.onTabSelectionChanged(selectedTab, false);
+        final boolean hasActiveTabs = mTabWidget.getTabCount() > 0;
+        if (hasActiveTabs) {
+            // Focus on last selected contact
+            this.setSelectedRawContactId(selectedRawContactId);
+        } else {
+            // Nothing remains to edit, save and bail entirely
+            this.doSaveAction();
         }
 
         // Show editor now that we've loaded state
@@ -317,10 +388,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /** {@inheritDoc} */
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
         if (!hasValidState()) return;
-        if (tabIndex < 0 || tabIndex >= mState.size()) return;
 
         // Find entity and source for selected tab
-        final EntityDelta entity = mState.get(tabIndex);
+        final EntityDelta entity = this.getSelectedEntityDelta();
         final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
 
         final Sources sources = Sources.getInstance(this);
@@ -334,13 +404,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /** {@inheritDoc} */
     public void onDisplayNameLongClick(View view) {
         if (!hasValidState()) return;
-        this.createNameDialog().show();
+        showAndManageDialog(createNameDialog());
     }
 
     /** {@inheritDoc} */
     public void onPhotoLongClick(View view) {
         if (!hasValidState()) return;
-        this.createPhotoDialog().show();
+        showAndManageDialog(createPhotoDialog());
     }
 
 
@@ -535,11 +605,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (!hasValidState()) return false;
 
         // Pass back last-selected contact
-        final int selectedTab = mTabWidget.getCurrentTab();
-        final long rawContactId = mState.getRawContactId(selectedTab);
-        if (rawContactId != -1) {
+        final Long rawContactId = this.getSelectedRawContactId();
+        if (rawContactId != null) {
             final Intent intent = new Intent();
-            intent.putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA, rawContactId);
+            intent.putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA, (long)rawContactId);
             setResult(RESULT_OK, intent);
         }
 
@@ -586,7 +655,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private boolean doDeleteAction() {
         if (!hasValidState()) return false;
 
-        this.createDeleteDialog().show();
+        showAndManageDialog(createDeleteDialog());
         return true;
     }
 
@@ -745,7 +814,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         @Override
         protected void onPostExecute(EditContactActivity target, AlertDialog.Builder result) {
-            result.create().show();
+            target.showAndManageDialog(result.create());
         }
     }
 
@@ -759,11 +828,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // Mark the currently selected contact for deletion
-                final int index = mTabWidget.getCurrentTab();
-                final EntityDelta delta = mState.get(index);
+                final EntityDelta delta = getSelectedEntityDelta();
                 delta.markDeleted();
 
-                // TODO: trigger task to update tabs (doesnt need to be background)
                 bindTabs();
                 bindHeader();
             }
