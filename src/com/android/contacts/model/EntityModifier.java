@@ -278,7 +278,7 @@ public class EntityModifier {
             final EditType type = iterator.next();
             final int count = typeCount.get(type.rawValue);
 
-            if (count == exactValue) {
+            if (exactValue == type.rawValue) {
                 // Found exact value match
                 return type;
             }
@@ -468,9 +468,30 @@ public class EntityModifier {
 
         {
             // Im
-            // TODO: handle decodeImProtocol for legacy reasons
             final DataKind kind = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
+            fixupLegacyImType(extras);
             parseExtras(state, kind, extras, Insert.IM_PROTOCOL, Insert.IM_HANDLE, Im.DATA);
+        }
+    }
+
+    /**
+     * Attempt to parse legacy {@link Insert#IM_PROTOCOL} values, replacing them
+     * with updated values.
+     */
+    private static void fixupLegacyImType(Bundle bundle) {
+        final String encodedString = bundle.getString(Insert.IM_PROTOCOL);
+        if (encodedString == null) return;
+
+        try {
+            final Object protocol = android.provider.Contacts.ContactMethods
+                    .decodeImProtocol(encodedString);
+            if (protocol instanceof Integer) {
+                bundle.putInt(Insert.IM_PROTOCOL, (Integer)protocol);
+            } else {
+                bundle.putString(Insert.IM_PROTOCOL, (String)protocol);
+            }
+        } catch (IllegalArgumentException e) {
+            // Ignore exception when legacy parser fails
         }
     }
 
@@ -506,8 +527,8 @@ public class EntityModifier {
 
         if (editType != null && editType.customColumn != null) {
             // Write down label when custom type picked
-            final CharSequence customType = extras.getCharSequence(typeExtra);
-            child.put(editType.customColumn, customType.toString());
+            final String customType = extras.getString(typeExtra);
+            child.put(editType.customColumn, customType);
         }
     }
 }
