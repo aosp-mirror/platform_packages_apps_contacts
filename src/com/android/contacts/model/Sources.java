@@ -66,12 +66,18 @@ public class Sources {
     }
 
     /**
-     * Internal constructor that only performs initial parsing. Obtain a
-     * {@link android.provider.ContactsContract.RawContacts#ACCOUNT_TYPE}.
+     * Internal constructor that only performs initial parsing.
      */
     private Sources(Context context) {
         mContext = context;
         loadAccounts();
+    }
+
+    /** @hide exposed for unit tests */
+    public Sources(ContactsSource... sources) {
+        for (ContactsSource source : sources) {
+            mSources.put(source.accountType, source);
+        }
     }
 
     /**

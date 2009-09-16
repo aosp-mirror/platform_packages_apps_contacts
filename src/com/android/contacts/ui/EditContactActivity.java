@@ -62,7 +62,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -90,18 +89,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /** The launch code when picking a photo and the raw data is returned */
     private static final int PHOTO_PICKED_WITH_DATA = 3021;
 
-    private static final int TOKEN_ENTITY = 41;
-
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_SELECTED_RAW_CONTACT = "selected";
-
-//    private static final String KEY_SELECTED_TAB_ID = "tabId";
-//    private static final String KEY_CONTACT_ID = "contactId";
-
-//    private int mSelectedTab = -1;
-
-//    private long mSelectedRawContactId = -1;
-//    private long mContactId = -1;
 
     private String mQuerySelection;
 
@@ -188,6 +177,20 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
             target.mQuerySelection = selection;
             target.mState = EntitySet.fromQuery(resolver, selection, null, null);
+
+            // Handle any incoming values that should be inserted
+            final Bundle extras = intent.getExtras();
+            final boolean hasExtras = extras.size() > 0;
+            final boolean hasState = target.mState.size() > 0;
+            if (hasExtras && hasState) {
+                // Find source defining the first RawContact found
+                final EntityDelta state = target.mState.get(0);
+                final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+                final ContactsSource source = sources.getInflatedSource(accountType,
+                        ContactsSource.LEVEL_CONSTRAINTS);
+                EntityModifier.parseExtras(context, source, state, extras);
+            }
+
             return null;
         }
 
@@ -203,11 +206,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        // Store entities with modifications
-        outState.putParcelable(KEY_EDIT_STATE, mState);
-        outState.putLong(KEY_SELECTED_RAW_CONTACT, getSelectedRawContactId());
-//        outState.putLong(KEY_SELECTED_TAB_ID, mSelectedRawContactId);
-//        outState.putLong(KEY_CONTACT_ID, mContactId);
+        if (hasValidState()) {
+            // Store entities with modifications
+            outState.putParcelable(KEY_EDIT_STATE, mState);
+            outState.putLong(KEY_SELECTED_RAW_CONTACT, getSelectedRawContactId());
+        }
 
         super.onSaveInstanceState(outState);
     }
@@ -217,16 +220,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Read modifications from instance
         mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
 
-//        mSelectedRawContactId = savedInstanceState.getLong(KEY_SELECTED_TAB_ID);
-//        mContactId = savedInstanceState.getLong(KEY_CONTACT_ID);
-
-        Log.d(TAG, "onrestoreinstancestate");
-
         bindTabs();
         bindHeader();
 
-        final long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
-        setSelectedRawContactId(selectedId);
+        if (hasValidState()) {
+            final long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
+            setSelectedRawContactId(selectedId);
+        }
 
         // Restore selected tab and any focus
         super.onRestoreInstanceState(savedInstanceState);
@@ -248,6 +248,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mTabWidget.setCurrentTab(index);
     }
 
+    /**
+     * Check if our internal {@link #mState} is valid, usually checked before
+     * performing user actions.
+     */
+    protected boolean hasValidState() {
+        return mState != null && mState.size() > 0;
+    }
+
 
 
     /**
@@ -256,6 +264,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * {@link RawContacts}.
      */
     protected void bindTabs() {
+        if (!hasValidState()) return;
+
         final Sources sources = Sources.getInstance(this);
         int selectedTab = 0;
 
@@ -287,6 +297,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * primary {@link Data} change.
      */
     protected void bindHeader() {
+        if (!hasValidState()) return;
+
         // TODO: rebuild header widget based on internal entities
 
         // TODO: fill header bar with newly parsed data for speed
@@ -304,8 +316,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** {@inheritDoc} */
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
-        boolean validTab = mState != null && tabIndex >= 0 && tabIndex < mState.size();
-        if (!validTab) return;
+        if (!hasValidState()) return;
+        if (tabIndex < 0 || tabIndex >= mState.size()) return;
 
         // Find entity and source for selected tab
         final EntityDelta entity = mState.get(tabIndex);
@@ -321,11 +333,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** {@inheritDoc} */
     public void onDisplayNameLongClick(View view) {
+        if (!hasValidState()) return;
         this.createNameDialog().show();
     }
 
     /** {@inheritDoc} */
     public void onPhotoLongClick(View view) {
+        if (!hasValidState()) return;
         this.createPhotoDialog().show();
     }
 
@@ -347,12 +361,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** {@inheritDoc} */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                return doSaveAction();
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        doSaveAction();
     }
 
     /** {@inheritDoc} */
@@ -456,11 +466,18 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         /** {@inheritDoc} */
         @Override
         protected Integer doInBackground(EditContactActivity target, EntitySet... params) {
-            final ContentResolver resolver = target.getContentResolver();
+            final Context context = target;
+            final ContentResolver resolver = context.getContentResolver();
 
+            EntitySet state = params[0];
+
+            // Trim any empty fields, and RawContacts, before persisting
+            final Sources sources = Sources.getInstance(context);
+            EntityModifier.trimEmpty(state, sources);
+
+            // Attempt to persist changes
             int tries = 0;
             Integer result = RESULT_FAILURE;
-            EntitySet state = params[0];
             while (tries < PERSIST_TRIES) {
                 try {
                     // Build operations and try applying
@@ -515,8 +532,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * finishes the activity.
      */
     private boolean doSaveAction() {
-        // Bail early if nothing to save
-        if (mState == null || mState.size() == 0) return true;
+        if (!hasValidState()) return false;
 
         // Pass back last-selected contact
         final int selectedTab = mTabWidget.getCurrentTab();
@@ -558,6 +574,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * {@link EntityDelta} under the currently edited {@link Contacts}.
      */
     private boolean doAddAction() {
+        // Adding is okay when missing state
         new AddContactTask(this).execute();
         return true;
     }
@@ -567,6 +584,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * user confirmation before continuing.
      */
     private boolean doDeleteAction() {
+        if (!hasValidState()) return false;
+
         this.createDeleteDialog().show();
         return true;
     }
@@ -575,6 +594,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * Pick a specific photo to be added under the currently selected tab.
      */
     private boolean doPickPhotoAction() {
+        if (!hasValidState()) return false;
+
         try {
             // Launch picker to choose photo for selected contact
             final Intent intent = ContactsUtils.getPhotoPickIntent();
@@ -589,6 +610,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * Clear any existing photo under the currently selected tab.
      */
     public boolean doRemovePhotoAction() {
+        if (!hasValidState()) return false;
+
         // Remove photo from selected contact
         mEditor.setPhotoBitmap(null);
         return true;
@@ -601,6 +624,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
     /** {@inheritDoc} */
     public void onRequest(int request) {
+        if (!hasValidState()) return;
+
         switch (request) {
             case EditorListener.REQUEST_PICK_PHOTO: {
                 doPickPhotoAction();
@@ -704,7 +729,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             final DialogInterface.OnCancelListener cancelListener = new DialogInterface.OnCancelListener() {
                 public void onCancel(DialogInterface dialog) {
                     // If nothing remains, close activity
-                    if (target.mState == null || target.mState.size() == 0) {
+                    if (!target.hasValidState()) {
                         target.finish();
                     }
                 }
@@ -739,6 +764,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 delta.markDeleted();
 
                 // TODO: trigger task to update tabs (doesnt need to be background)
+                bindTabs();
+                bindHeader();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, null);

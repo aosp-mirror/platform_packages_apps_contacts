@@ -115,6 +115,11 @@ public class ContactsSource {
         return mInflatedLevel >= inflateLevel;
     }
 
+    /** @hide exposed for unit tests */
+    public void setInflatedLevel(int inflateLevel) {
+        mInflatedLevel = inflateLevel;
+    }
+
     /**
      * Ensure that the constraint rules behind this {@link ContactsSource} have
      * been inflated. Because this may involve parsing meta-data from
