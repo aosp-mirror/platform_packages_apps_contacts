@@ -17,12 +17,16 @@
 package com.android.contacts;
 
 import android.app.Activity;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Contacts;
-import android.provider.Contacts.People;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
@@ -42,6 +46,9 @@ public class AttachImage extends Activity {
 
     }
 
+    /**
+     * Is the raw_contact uri for the contact the user selected
+     */
     Uri mContactUri;
 
     @Override
@@ -52,7 +59,7 @@ public class AttachImage extends Activity {
             mContactUri = icicle.getParcelable(CONTACT_URI_KEY);
         } else {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType(People.CONTENT_ITEM_TYPE);
+            intent.setType(Contacts.CONTENT_ITEM_TYPE);
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
         }
     }
@@ -74,7 +81,6 @@ public class AttachImage extends Activity {
         }
 
         if (requestCode == REQUEST_PICK_CONTACT) {
-            mContactUri = result.getData();
             // A contact was picked. Launch the cropper to get face detection, the right size, etc.
             // TODO: get these values from constants somewhere
             Intent myIntent = getIntent();
@@ -89,6 +95,20 @@ public class AttachImage extends Activity {
             intent.putExtra("outputY", 96);
             intent.putExtra("return-data", true);
             startActivityForResult(intent, REQUEST_CROP_PHOTO);
+
+            // while they're cropping, convert the contact into a raw_contact
+            final long contactId = ContentUris.parseId(result.getData());
+            final long rawContactId = ContactsUtils.queryForRawContactId(getContentResolver(),
+                    contactId);
+
+            if (rawContactId == -1) {
+                Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            }
+
+            mContactUri = Uri.withAppendedPath(
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
+                    RawContacts.Data.CONTENT_DIRECTORY);
+
         } else if (requestCode == REQUEST_CROP_PHOTO) {
             final Bundle extras = result.getExtras();
             if (extras != null) {
@@ -96,8 +116,12 @@ public class AttachImage extends Activity {
                 if (photo != null) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     photo.compress(Bitmap.CompressFormat.JPEG, 75, stream);
-                    Contacts.People.setPhotoData(getContentResolver(), mContactUri,
-                            stream.toByteArray());
+
+                    final ContentValues imageValues = new ContentValues();
+                    imageValues.put(Photo.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
+                    imageValues.put(Photo.PHOTO, stream.toByteArray());
+                    imageValues.put(RawContacts.Data.IS_SUPER_PRIMARY, 1);
+                    getContentResolver().insert(mContactUri, imageValues);
                 }
             }
             finish();

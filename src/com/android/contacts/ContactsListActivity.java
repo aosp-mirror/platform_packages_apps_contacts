@@ -294,6 +294,8 @@ public final class ContactsListActivity extends ListActivity implements
 
     private static final int QUERY_TOKEN = 42;
 
+    static final String KEY_PICKER_MODE = "picker_mode";
+
     private ContactItemListAdapter mAdapter;
 
     int mMode = MODE_DEFAULT;
@@ -878,7 +880,6 @@ public final class ContactsListActivity extends ListActivity implements
         switch (requestCode) {
             case SUBACTIVITY_NEW_CONTACT:
                 if (resultCode == RESULT_OK) {
-                    // Contact was created, pass it back
                     returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
                             data.getData(), 0);
                 }
@@ -1040,7 +1041,6 @@ public final class ContactsListActivity extends ListActivity implements
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
             if (position == 0) {
-                // Insert
                 intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             } else {
                 // Edit
@@ -1048,10 +1048,14 @@ public final class ContactsListActivity extends ListActivity implements
                 intent = new Intent(Intent.ACTION_EDIT, uri);
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-            final Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
+            Bundle extras = getIntent().getExtras();
+
+            if (extras == null) {
+                extras = new Bundle();
             }
+            intent.putExtras(extras);
+            extras.putBoolean(KEY_PICKER_MODE, (mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER);
+
             startActivity(intent);
             finish();
         } else if (id != -1) {
@@ -1094,9 +1098,8 @@ public final class ContactsListActivity extends ListActivity implements
             }
         } else if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW
                 && position == 0) {
-            // TODO: Hook this up to new edit contact activity (bug 2092559)
-            /*Intent newContact = new Intent(Intents.Insert.ACTION, People.CONTENT_URI);
-            startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);*/
+            Intent newContact = new Intent(Intents.Insert.ACTION, Contacts.CONTENT_URI);
+            startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);
         } else {
             signalError();
         }
