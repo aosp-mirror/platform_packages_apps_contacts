@@ -432,7 +432,10 @@ public final class ContactsListActivity extends ListActivity implements
                 mMode = MODE_PICK_POSTAL;
             } else if (ContactMethods.CONTENT_POSTAL_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_POSTAL;
+            }  else if (People.CONTENT_ITEM_TYPE.equals(type)) {
+                mMode = MODE_LEGACY_PICK_OR_CREATE_PERSON;
             }
+
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
             mMode = MODE_INSERT_OR_EDIT_CONTACT;
         } else if (Intent.ACTION_SEARCH.equals(action)) {
@@ -1046,6 +1049,10 @@ public final class ContactsListActivity extends ListActivity implements
             startActivity(intent);
             finish();
         } else if (id != -1) {
+            // Subtract one if we have Create Contact at the top
+            if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
+                position--;
+            }
             final Uri uri = getSelectedUri(position);
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -1062,10 +1069,7 @@ public final class ContactsListActivity extends ListActivity implements
                     || mMode == MODE_LEGACY_PICK_PERSON
                     || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
                 if (mShortcutAction != null) {
-                    // Subtract one if we have Create Contact at the top
-                    Cursor c = (Cursor) mAdapter.getItem(position
-                            - (mMode == MODE_PICK_OR_CREATE_CONTACT
-                                    || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON ? 1:0));
+                    Cursor c = (Cursor) mAdapter.getItem(position);
                     returnPickerResult(c, c.getString(SUMMARY_NAME_COLUMN_INDEX), uri, id);
                 } else {
                     returnPickerResult(null, null, uri, id);
