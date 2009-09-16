@@ -16,6 +16,11 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 import com.android.contacts.util.Constants;
@@ -92,6 +97,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FasttrackBadgeWidget;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
@@ -1792,7 +1798,8 @@ public final class ContactsListActivity extends ListActivity implements
         public TextView header;
         public View divider;
         public TextView nameView;
-        public ImageView callView;
+        public View callView;
+        public ImageView callButton;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
         public CharArrayBuffer labelBuffer = new CharArrayBuffer(128);
@@ -1819,7 +1826,7 @@ public final class ContactsListActivity extends ListActivity implements
         private String mAlphabet;
         private boolean mLoading = true;
         private CharSequence mUnknownNameText;
-        private CharSequence[] mLocalizedLabels;
+        private SparseArray<Integer> mLocalizedLabels;
         private boolean mDisplayPhotos = false;
         private boolean mDisplayCallButton = false;
         private boolean mDisplayAdditionalData = true;
@@ -1840,24 +1847,24 @@ public final class ContactsListActivity extends ListActivity implements
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
 
             mUnknownNameText = context.getText(android.R.string.unknownName);
-            // TODO: use a different method of finding labels
-//            switch (mMode) {
-//                case MODE_PICK_POSTAL:
-//                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-//                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
-//                    mDisplaySectionHeaders = false;
-//                    break;
-//                case MODE_PICK_PHONE:
-//                    mLocalizedLabels = EditContactActivity.getLabelsForMimetype(mContext,
-//                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-//                    mDisplaySectionHeaders = false;
-//                    break;
-//                default:
-                    mLocalizedLabels = context.getResources().getStringArray(android.R.array.phoneTypes);
-//                    EditContactActivity.getLabelsForMimetype(mContext,
-//                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-//                    break;
-//            }
+            switch (mMode) {
+                case MODE_LEGACY_PICK_POSTAL:
+                case MODE_PICK_POSTAL:
+                    mLocalizedLabels = inflateLocalizedLabels(
+                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
+                    mDisplaySectionHeaders = false;
+                    break;
+                case MODE_LEGACY_PICK_PHONE:
+                case MODE_PICK_PHONE:
+                    mDisplaySectionHeaders = false;
+                    mLocalizedLabels = inflateLocalizedLabels(
+                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                    break;
+                default:
+                    mLocalizedLabels = inflateLocalizedLabels(
+                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                    break;
+            }
 
             // Do not display the second line of text if in a specific SEARCH query mode, usually for
             // matching a specific E-mail or phone number. Any contact details
@@ -1885,6 +1892,29 @@ public final class ContactsListActivity extends ListActivity implements
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
             }
+        }
+
+        private SparseArray<Integer> inflateLocalizedLabels(String mimetype) {
+            SparseArray<Integer> localizedLabels = new SparseArray<Integer>();
+
+            Sources sources = Sources.getInstance(ContactsListActivity.this);
+
+            ContactsSource contactsSource = sources.getInflatedSource(null /*get fallback type*/,
+                    ContactsSource.LEVEL_MIMETYPES);
+            if (contactsSource == null) {
+                return localizedLabels;
+            }
+
+            DataKind kind = contactsSource.getKindForMimetype(mimetype);
+            if (kind == null) {
+                return localizedLabels;
+            }
+
+            for (EditType type : kind.typeList) {
+                localizedLabels.put(type.rawValue, type.labelRes);
+            }
+
+            return localizedLabels;
         }
 
         private class ImageFetchHandler extends Handler {
@@ -2065,9 +2095,10 @@ public final class ContactsListActivity extends ListActivity implements
             cache.header = (TextView) view.findViewById(R.id.header);
             cache.divider = view.findViewById(R.id.list_divider);
             cache.nameView = (TextView) view.findViewById(R.id.name);
-            cache.callView = (ImageView) view.findViewById(R.id.call_button);
-            if (cache.callView != null) {
-                cache.callView.setOnClickListener(ContactsListActivity.this);
+            cache.callView = view.findViewById(R.id.call_view);
+            cache.callButton = (ImageView) view.findViewById(R.id.call_button);
+            if (cache.callButton != null) {
+                cache.callButton.setOnClickListener(ContactsListActivity.this);
             }
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
@@ -2132,7 +2163,7 @@ public final class ContactsListActivity extends ListActivity implements
             if (mDisplayCallButton) {
                 int pos = cursor.getPosition();
                 cache.callView.setVisibility(View.VISIBLE);
-                cache.callView.setTag(pos);
+                cache.callButton.setTag(pos);
             } else {
                 cache.callView.setVisibility(View.GONE);
             }
@@ -2212,9 +2243,9 @@ public final class ContactsListActivity extends ListActivity implements
 
                 if (type != CommonDataKinds.BaseTypes.TYPE_CUSTOM) {
                     try {
-                        labelView.setText(mLocalizedLabels[type - 1]);
+                        labelView.setText(mLocalizedLabels.get(type));
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        labelView.setText(mLocalizedLabels[defaultType - 1]);
+                        labelView.setText(mLocalizedLabels.get(defaultType));
                     }
                 } else {
                     cursor.copyStringToBuffer(labelColumnIndex, cache.labelBuffer);
