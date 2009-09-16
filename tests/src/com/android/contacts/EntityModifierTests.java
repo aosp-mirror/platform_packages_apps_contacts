@@ -23,6 +23,8 @@ import static android.content.ContentProviderOperation.TYPE_UPDATE;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
@@ -40,7 +42,6 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,6 +54,9 @@ public class EntityModifierTests extends AndroidTestCase {
 
     private static final long TEST_ID = 4;
     private static final String TEST_PHONE = "218-555-1212";
+
+    private static final String TEST_ACCOUNT_NAME = "unittest@example.com";
+    private static final String TEST_ACCOUNT_TYPE = "com.example.unittest";
 
     public EntityModifierTests() {
         super();
@@ -69,6 +73,8 @@ public class EntityModifierTests extends AndroidTestCase {
      */
     protected ContactsSource getSource() {
         final ContactsSource list = new ContactsSource();
+        list.accountType = TEST_ACCOUNT_TYPE;
+        list.setInflatedLevel(ContactsSource.LEVEL_CONSTRAINTS);
 
         {
             // Phone allows maximum 2 home, 1 work, and unlimited other, with
@@ -94,11 +100,23 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
+     * Build {@link Sources} instance.
+     */
+    protected Sources getSources(ContactsSource... sources) {
+        return new Sources(sources);
+    }
+
+    /**
      * Build an {@link Entity} with the requested set of phone numbers.
      */
-    protected EntityDelta getEntity(ContentValues... entries) {
+    protected EntityDelta getEntity(Long existingId, ContentValues... entries) {
         final ContentValues contact = new ContentValues();
-        contact.put(RawContacts._ID, TEST_ID);
+        if (existingId != null) {
+            contact.put(RawContacts._ID, existingId);
+        }
+        contact.put(RawContacts.ACCOUNT_NAME, TEST_ACCOUNT_NAME);
+        contact.put(RawContacts.ACCOUNT_TYPE, TEST_ACCOUNT_TYPE);
+
         final Entity before = new Entity(contact);
         for (ContentValues values : entries) {
             before.addSubValue(Data.CONTENT_URI, values);
@@ -135,7 +153,7 @@ public class EntityModifierTests extends AndroidTestCase {
         List<EditType> validTypes;
 
         // Add first home, first work
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         EntityModifier.insertChild(state, kindPhone, typeHome);
         EntityModifier.insertChild(state, kindPhone, typeWork);
 
@@ -178,7 +196,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeOther = EntityModifier.getType(kindPhone, Phone.TYPE_OTHER);
 
         // Add first home, first work
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         EntityModifier.insertChild(state, kindPhone, typeHome);
         EntityModifier.insertChild(state, kindPhone, typeWork);
         assertTrue("Unable to insert", EntityModifier.canInsert(state, kindPhone));
@@ -210,7 +228,7 @@ public class EntityModifierTests extends AndroidTestCase {
         EditType suggested;
 
         // Default suggestion should be home
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeHome, suggested);
 
@@ -252,7 +270,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but core fields are empty
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
 
         assertTrue("Expected empty", EntityModifier.isEmpty(values, kindPhone));
@@ -269,7 +287,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but core fields are empty
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
 
         // Build diff, expecting insert for data row and update enforcement
@@ -292,11 +310,16 @@ public class EntityModifierTests extends AndroidTestCase {
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
-        // Trim empty rows and try again, expecting no changes
-        EntityModifier.trimEmpty(source, state);
+        // Trim empty rows and try again, expecting delete of overall contact
+        EntityModifier.trimEmpty(state, source);
         diff.clear();
         state.buildDiff(diff);
-        assertEquals("Unexpected operations", 0, diff.size());
+        assertEquals("Unexpected operations", 1, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
     }
 
     public void testTrimEmptyUntouched() {
@@ -305,7 +328,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" that has empty row
-        final EntityDelta state = getEntity();
+        final EntityDelta state = getEntity(TEST_ID);
         final ContentValues before = new ContentValues();
         before.put(Data._ID, TEST_ID);
         before.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
@@ -317,7 +340,7 @@ public class EntityModifierTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Try trimming existing empty, which we shouldn't touch
-        EntityModifier.trimEmpty(source, state);
+        EntityModifier.trimEmpty(state, source);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
@@ -334,7 +357,7 @@ public class EntityModifierTests extends AndroidTestCase {
         before.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         before.put(kindPhone.typeColumn, typeHome.rawValue);
         before.put(Phone.NUMBER, TEST_PHONE);
-        final EntityDelta state = getEntity(before);
+        final EntityDelta state = getEntity(TEST_ID, before);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -364,7 +387,128 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn that update into delete
-        EntityModifier.trimEmpty(source, state);
+        EntityModifier.trimEmpty(state, source);
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 1, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+    }
+
+    public void testTrimInsertEmpty() {
+        final ContactsSource source = getSource();
+        final Sources sources = getSources(source);
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Try creating a contact without any child entries
+        final EntityDelta state = getEntity(null);
+        final EntitySet set = EntitySet.fromSingle(state);
+
+        // Build diff, expecting single insert
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 1, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+
+        // Trim empty rows and try again, expecting no insert
+        EntityModifier.trimEmpty(set, sources);
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 0, diff.size());
+    }
+
+    public void testTrimInsertInsert() {
+        final ContactsSource source = getSource();
+        final Sources sources = getSources(source);
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Try creating a contact with single empty entry
+        final EntityDelta state = getEntity(null);
+        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        final EntitySet set = EntitySet.fromSingle(state);
+
+        // Build diff, expecting two insert operations
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 2, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(1);
+            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+
+        // Trim empty rows and try again, expecting silence
+        EntityModifier.trimEmpty(set, sources);
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 0, diff.size());
+    }
+
+    public void testTrimUpdateRemain() {
+        final ContactsSource source = getSource();
+        final Sources sources = getSources(source);
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Build "before" with two phone numbers
+        final ContentValues first = new ContentValues();
+        first.put(Data._ID, TEST_ID);
+        first.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        first.put(kindPhone.typeColumn, typeHome.rawValue);
+        first.put(Phone.NUMBER, TEST_PHONE);
+
+        final ContentValues second = new ContentValues();
+        second.put(Data._ID, TEST_ID);
+        second.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        second.put(kindPhone.typeColumn, typeHome.rawValue);
+        second.put(Phone.NUMBER, TEST_PHONE);
+
+        final EntityDelta state = getEntity(TEST_ID, first, second);
+        final EntitySet set = EntitySet.fromSingle(state);
+
+        // Build diff, expecting no changes
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 0, diff.size());
+
+        // Now update row by changing number to empty string, expecting single update
+        final ValuesDelta child = state.getEntry(TEST_ID);
+        child.put(Phone.NUMBER, "");
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 3, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(1);
+            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(2);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+
+        // Now run trim, which should turn that update into delete
+        EntityModifier.trimEmpty(set, sources);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
@@ -381,6 +525,61 @@ public class EntityModifierTests extends AndroidTestCase {
         {
             final ContentProviderOperation oper = diff.get(2);
             assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+    }
+
+    public void testTrimUpdateUpdate() {
+        final ContactsSource source = getSource();
+        final Sources sources = getSources(source);
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Build "before" with two phone numbers
+        final ContentValues first = new ContentValues();
+        first.put(Data._ID, TEST_ID);
+        first.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        first.put(kindPhone.typeColumn, typeHome.rawValue);
+        first.put(Phone.NUMBER, TEST_PHONE);
+
+        final EntityDelta state = getEntity(TEST_ID, first);
+        final EntitySet set = EntitySet.fromSingle(state);
+
+        // Build diff, expecting no changes
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 0, diff.size());
+
+        // Now update row by changing number to empty string, expecting single update
+        final ValuesDelta child = state.getEntry(TEST_ID);
+        child.put(Phone.NUMBER, "");
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 3, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(1);
+            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
+        }
+        {
+            final ContentProviderOperation oper = diff.get(2);
+            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
+        }
+
+        // Now run trim, which should turn into deleting the whole contact
+        EntityModifier.trimEmpty(set, sources);
+        diff.clear();
+        state.buildDiff(diff);
+        assertEquals("Unexpected operations", 1, diff.size());
+        {
+            final ContentProviderOperation oper = diff.get(0);
+            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
