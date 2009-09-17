@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.ui;
 
-import com.android.contacts.ui.FastTrackWindow;
+import com.android.contacts.ContactsListActivity;
+import com.android.contacts.R;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
@@ -28,7 +29,6 @@ import android.content.DialogInterface;
 import android.content.EntityIterator;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -47,14 +47,14 @@ import android.util.Log;
  * <li>If no matching contacts found, will prompt user with dialog to add to a
  * contact, then will use {@link Intent#ACTION_INSERT_OR_EDIT} to let create new
  * contact or edit new data into an existing one.
- * <li>If one matching contact found, show the {@link FastTrackWindow}
- * associated with the found contact. Will show translucent over the caller.
+ * <li>If one matching contact found, directly show {@link Intent#ACTION_VIEW}
+ * that specific contact.
  * <li>If more than one matching found, show list of matching contacts using
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
 public final class ShowOrCreateActivity extends Activity implements
-        NotifyingAsyncQueryHandler.AsyncQueryListener, FastTrackWindow.OnDismissListener {
+        NotifyingAsyncQueryHandler.AsyncQueryListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 
@@ -66,7 +66,7 @@ public final class ShowOrCreateActivity extends Activity implements
         RawContacts.CONTACT_ID,
     };
 
-    static final int AGGREGATE_ID_INDEX = 0;
+    static final int CONTACT_ID_INDEX = 0;
 
     static final int QUERY_TOKEN = 42;
 
@@ -75,8 +75,6 @@ public final class ShowOrCreateActivity extends Activity implements
     private Bundle mCreateExtras;
     private String mCreateDescrip;
     private boolean mCreateForce;
-
-    private FastTrackWindow mFastTrack;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -120,7 +118,7 @@ public final class ShowOrCreateActivity extends Activity implements
         if (Constants.SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
-            Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_EMAIL_URI, Uri.encode(ssp));
+            Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
         } else if (Constants.SCHEME_TEL.equals(scheme)) {
@@ -130,9 +128,8 @@ public final class ShowOrCreateActivity extends Activity implements
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, PHONES_PROJECTION, null, null, null);
 
         } else {
-            // Otherwise assume incoming aggregate Uri
-            showFastTrack(data);
-
+            Log.w(TAG, "Invalid intent:" + getIntent());
+            finish();
         }
     }
 
@@ -142,40 +139,6 @@ public final class ShowOrCreateActivity extends Activity implements
         if (mQueryHandler != null) {
             mQueryHandler.cancelOperation(QUERY_TOKEN);
         }
-        if (mFastTrack != null) {
-            mFastTrack.dismiss();
-        }
-    }
-
-    /**
-     * Show a {@link FastTrackWindow} for the given aggregate at the requested
-     * screen location.
-     */
-    private void showFastTrack(Uri aggUri) {
-        // Use our local window token for now
-        final Bundle extras = getIntent().getExtras();
-
-        Rect targetRect;
-        if (extras.containsKey(Intents.EXTRA_TARGET_RECT)) {
-            targetRect = (Rect)extras.getParcelable(Intents.EXTRA_TARGET_RECT);
-        } else {
-            // TODO: this default rect matches gmail messages, and should move over there
-            Log.w(TAG, "Using default TARGET_RECT");
-            targetRect = new Rect(15, 110, 15+18, 110+18);
-        }
-
-        // Use requested display mode, defaulting to medium
-        final int mode = extras.getInt(Intents.EXTRA_MODE, Intents.MODE_MEDIUM);
-        final String[] excludeMimes = extras.getStringArray(Intents.EXTRA_EXCLUDE_MIMES);
-
-        mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(aggUri, targetRect, mode, excludeMimes);
-    }
-
-    /** {@inheritDoc} */
-    public void onDismiss(FastTrackWindow dialog) {
-        // When dismissed, finish this activity
-        finish();
     }
 
     /** {@inheritDoc} */
@@ -188,21 +151,23 @@ public final class ShowOrCreateActivity extends Activity implements
 
         // Count contacts found by query
         int count = 0;
-        long aggId = -1;
+        long contactId = -1;
         try {
             count = cursor.getCount();
             if (count == 1 && cursor.moveToFirst()) {
                 // Try reading ID if only one contact returned
-                aggId = cursor.getLong(AGGREGATE_ID_INDEX);
+                contactId = cursor.getLong(CONTACT_ID_INDEX);
             }
         } finally {
             cursor.close();
         }
 
-        if (count == 1 && aggId != -1) {
-            // If we only found one item, show fast-track
-            final Uri aggUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, aggId);
-            showFastTrack(aggUri);
+        if (count == 1 && contactId != -1) {
+            // If we only found one item, jump right to viewing it
+            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            final Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
+            startActivity(viewIntent);
+            finish();
 
         } else if (count > 1) {
             // If more than one, show pick list

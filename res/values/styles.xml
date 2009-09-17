@@ -44,7 +44,7 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
-    <style name="ShowOrCreateTheme" parent="android:Theme.Translucent.NoTitleBar">
+    <style name="FullyTranslucent" parent="android:Theme.Translucent.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
