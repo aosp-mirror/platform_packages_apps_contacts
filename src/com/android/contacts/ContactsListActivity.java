@@ -432,11 +432,11 @@ public final class ContactsListActivity extends ListActivity implements
                 mMode = MODE_PICK_OR_CREATE_CONTACT;
             } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
-            } else if (Phones.CONTENT_TYPE.equals(type)) {
+            } else if (Phones.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_PHONE;
             } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
-            } else if (ContactMethods.CONTENT_POSTAL_TYPE.equals(type)) {
+            } else if (ContactMethods.CONTENT_POSTAL_ITEM_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_POSTAL;
             }  else if (People.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_OR_CREATE_PERSON;
