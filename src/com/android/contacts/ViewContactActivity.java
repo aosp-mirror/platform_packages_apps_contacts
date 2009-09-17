@@ -682,7 +682,6 @@ public class ViewContactActivity extends Activity
                             RAW_CONTACT_ID_EXTRA, ALL_CONTACTS_ID);
                     if (newInitialSelectedRawContactId != mSelectedRawContactId) {
                         mSelectedRawContactId = newInitialSelectedRawContactId;
-                        selectInitialTab();
                     }
                 }
             }
