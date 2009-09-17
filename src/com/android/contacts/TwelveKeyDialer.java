@@ -1024,8 +1024,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 // position and update the mDigits.
                 digits.replace(selectionStart, selectionStart, newDigits);
             } else {
-                digits.delete(selectionStart, selectionEnd);
-                digits.replace(selectionStart, selectionStart, newDigits);
+                digits.replace(selectionStart, selectionEnd, newDigits);
             }
         } else {
             int len = mDigits.length();
