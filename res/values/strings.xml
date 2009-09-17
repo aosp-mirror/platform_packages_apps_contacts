@@ -360,7 +360,7 @@
     <string name="listSeparatorCallNumber_edit">Phone numbers</string>
 
     <!-- Separator in the contact details list describing that the items below it will send an SMS/MMS to a phone number -->
-    <string name="listSeparatorSendSmsMms">Send SMS/MMS</string>
+    <string name="listSeparatorSendSmsMms">Send Text</string>
 
     <!-- Separator in the contact details list describing that the items below it will send an email -->
     <string name="listSeparatorSendEmail">Send email</string>
@@ -414,7 +414,7 @@
     <string name="liveFolderPhone">Contacts with phone numbers</string>
 
     <!-- Menu item used to send an SMS or MMS message to a phone number  -->
-    <string name="menu_sendTextMessage">Send SMS message</string>
+    <string name="menu_sendTextMessage">Send Text message</string>
 
     <!-- Menu item used to call a contact from the call log -->
     <string name="recentCalls_callNumber">Call <xliff:g id="name">%s</xliff:g></string>
