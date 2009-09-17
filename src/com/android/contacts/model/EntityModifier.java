@@ -411,7 +411,7 @@ public class EntityModifier {
             // StructuredPostal
             final DataKind kind = source.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
             parseExtras(state, kind, extras, Insert.POSTAL_TYPE, Insert.POSTAL,
-                    StructuredPostal.FORMATTED_ADDRESS);
+                    StructuredPostal.STREET);
         }
 
         {
