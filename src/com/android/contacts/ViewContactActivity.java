@@ -441,7 +441,7 @@ public class ViewContactActivity extends Activity
         mHandler.startQueryEntities(TOKEN_QUERY, null,
                 RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
 
-        mContactHeaderWidget.bindFromContactId(ContentUris.parseId(mUri));
+        mContactHeaderWidget.bindFromContactLookupUri(mLookupUri);
     }
 
     private void closeCursor() {
