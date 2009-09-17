@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,13 +37,13 @@
 
     <!-- Activity title when the user is selecting a contact for a shortcut. -->
     <string name="shortcutActivityTitle">Choose a contact shortcut</string>
-    
+
     <!-- Activity title when the user is selecting a contact for a direct dial shortcut. -->
     <string name="callShortcutActivityTitle">Choose a number to call</string>
-    
+
     <!-- Activity title when the user is selecting a contact for a direct message shortcut. -->
     <string name="messageShortcutActivityTitle">Choose a number to message</string>
-        
+
     <!-- Title for the activity that shows only starred contacts -->
     <string name="starredList">Starred</string>
 
@@ -56,11 +56,11 @@
 
     <!-- The title bar when viewing the contact details activity -->
     <string name="viewContactTitle">Contact details</string>
-    
+
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          viewing a contact. This string represents the built in way to view the contact. -->
     <string name="viewContactDesription">View contact</string>
-    
+
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          editing a contact. This string represents the built in way to edit the contact. -->
     <string name="editContactDescription">Edit contact</string>
@@ -115,7 +115,7 @@
          try to call a contact without specifying a specific number. -->
     <string name="menu_makeDefaultNumber">Make default number</string>
 
-    <!-- Menu item that makes an email address the default for a contact. The default email used 
+    <!-- Menu item that makes an email address the default for a contact. The default email used
     	 when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
 
@@ -275,7 +275,7 @@
 
     <!-- The menu item that leads to the settings for contact syncing -->
     <string name="syncGroupPreference">Edit sync groups</string>
-    
+
     <!-- The menu item that launches the SIM card import activity -->
     <string name="importFromSim">Import contacts</string>
 
@@ -337,16 +337,16 @@
 
     <!-- The name of the system "My Contacts" group. This should be kept in sync with the web UI -->
     <string name="groupNameMyContacts">My Contacts</string>
-    
+
     <!-- The group type that displays only contacts with phone numbers -->
     <string name="groupNameWithPhones">Contacts with phone numbers</string>
-    
+
     <!-- The group type that displays "Starred in Android" contacts -->
     <string name="starredInAndroid">Starred in Android</string>
-    
+
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
-    
+
     <!-- Toast displayed when a contact is saved -->
     <string name="contactSavedToast">Contact saved.</string>
 
@@ -448,7 +448,7 @@
 
     <!-- String used to display calls from private numbers in the call log -->
     <string name="private_num">Private number</string>
-    
+
     <!-- String used to display calls from pay phone in the call log -->
     <string name="payphone">Pay phone</string>
 
@@ -472,17 +472,31 @@
     <string name="contactsSyncPlug"><font fgcolor="#ffffffff">Sync your Google contacts!</font>
     \nAfter syncing to your phone, your contacts will be available to you wherever you go.</string>
 
+
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
     <string name="noContactsHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
     </string>
-    
+
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
     <string name="noContactsHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
-        \n<li><font fgcolor="#ffffffff"><b>Edit sync groups</b></font> to add from a new or existing Google account\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to select contact groups to make visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
+    </string>
+
+        <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
+    <string name="noContactsNoSimHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
+    </string>
+
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
+    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to select contact groups to make visible\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
     </string>
 
     <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
@@ -495,7 +509,7 @@
     <string name="liveFolder_favorites_label">Starred</string>
 
     <!-- Live folder label for all contacts with phone numbers -->
-    <string name="liveFolder_phones_label">Phones</string>    
+    <string name="liveFolder_phones_label">Phones</string>
 
     <!-- Item label: jump to the in-call DTMF dialpad.
          (Part of a list of options shown in the dialer when another call
@@ -523,7 +537,7 @@
 
     <!-- Title for incoming call details screen -->
     <string name="type_incoming">Incoming call</string>
-    
+
     <!-- Title for outgoing call details screen -->
     <string name="type_outgoing">Outgoing call</string>
 
@@ -565,13 +579,13 @@
 
     <!-- Description for incoming calls going to voice mail vs. not -->
     <string name="actionIncomingCall">Incoming calls</string>
-    
+
     <!-- Detail text for incoming calls going to voice mail -->
     <string name="detailIncomingCallsGoToVoicemail">Will be sent directly to voicemail</string>
 
     <!-- Description of what the contact specific ringtone is set to -->
     <string name="detailsRingtone">Set to <xliff:g id="ringtone_name" example="Flutey Phone">%s</xliff:g></string>
-    
+
     <!-- Action string for calling back a number in the call log -->
     <string name="callBack">Call back</string>
 
@@ -726,7 +740,7 @@
 
     <!-- The failed reason: "Failed to parse VCard data" -->
     <string name="fail_reason_vcard_parse_error">Failed to parse VCard with some unexpected reason</string>
-    
+
     <!-- The failed reason: "The VCard is not supported right now, but may be supported in the future" -->
     <string name="fail_reason_vcard_not_supported_error">Failed to parse VCard though it seems in valid format, since the current implementation does not support it</string>
 
@@ -745,8 +759,8 @@
     <!-- Dialog message shown when a user is asked to choose VCard file -->
     <string name="select_vcard_message">Please select a VCard file to import</string>
 
-    <!-- The message shown while reading a vCard file/entry. The first argument is like 
-    "Reading VCard" or "Reading VCard files" and the second is the display name of the current 
+    <!-- The message shown while reading a vCard file/entry. The first argument is like
+    "Reading VCard" or "Reading VCard files" and the second is the display name of the current
     data being parsed -->
     <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
 
@@ -773,16 +787,16 @@
 
     <!-- The menu item that launches VCard export activity -->
     <string name="export_contact_list">Export contacts</string>
-    
+
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_title">Confirmation for export</string>
-        
+
     <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
-    <string name="confirm_export_message">Is it ok to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>    
-    
+    <string name="confirm_export_message">Is it ok to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
+
     <!-- Dialog title shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_title">Exporting contact data has failed</string>
-    
+
     <!-- Dialog message shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_message">Exporting contact data has failed\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
@@ -800,19 +814,19 @@
 
     <!-- Message shown when the application is exporting contact data outside -->
     <string name="exporting_contact_list_message">Exporting contact data to \"<xliff:g id="file_name">%s</xliff:g>\"</string>
-    
+
     <!-- The failed reason: "Could not initialize the exporter" -->
     <string name="fail_reason_could_not_initialize_exporter">Could not initialize the exporter: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
-    
+
     <!-- The failed reason: "Error occured during export" -->
     <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
-    
+
     <!-- The failed reason: "Could not open a specific file" -->
     <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
 
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
-    
+
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
 
@@ -822,13 +836,13 @@
 
     <!-- Label for onscreen "Dial" button -->
     <string name="dial_button_label">Dial</string>
-    
+
     <!-- Title for the call disambiguation dialog -->
     <string name="call_disambig_title">Call using</string>
-    
+
     <!-- Title for the sms disambiguation dialog -->
     <string name="sms_disambig_title">Text using</string>
-    
+
     <!-- Message next to disamgiguation dialog check box -->
     <string name="make_primary">Remember this choice</string>
 
