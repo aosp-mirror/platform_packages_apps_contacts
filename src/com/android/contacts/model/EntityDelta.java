@@ -16,6 +16,8 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditField;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
@@ -31,6 +33,8 @@ import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -294,6 +298,7 @@ public class EntityDelta implements Parcelable {
             // Assert version is consistent while persisting changes
             final Long beforeId = mValues.getId();
             final Long beforeVersion = mValues.getAsLong(RawContacts.VERSION);
+            if (beforeId == null || beforeVersion == null) return;
 
             final ContentProviderOperation.Builder builder = ContentProviderOperation
                     .newAssertQuery(RawContacts.CONTENT_URI);
@@ -525,7 +530,7 @@ public class EntityDelta implements Parcelable {
 
         public boolean isUpdate() {
             // When "after" has some changes, action is "update"
-            return beforeExists() && (mAfter.size() > 0);
+            return beforeExists() && (mAfter != null && mAfter.size() > 0);
         }
 
         public boolean isInsert() {
