@@ -235,7 +235,7 @@ public class HardCodedSources {
             kind.actionBody = new SimpleInflater(Im.DATA);
 
             // NOTE: even though a traditional "type" exists, for editing
-            // purposes we're using the network to pick labels
+            // purposes we're using the protocol to pick labels
 
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
@@ -403,17 +403,6 @@ public class HardCodedSources {
     }
 
     /**
-     * The constants below are shared with the Exchange sync adapter, and are
-     * currently static. These values should be maintained in parallel.
-     */
-    private static final int TYPE_WORK2 = 26;
-    private static final int TYPE_HOME2 = 27;
-    private static final int TYPE_CAR = 28;
-    private static final int TYPE_COMPANY_MAIN = 29;
-    private static final int TYPE_MMS = 30;
-    private static final int TYPE_RADIO = 31;
-
-    /**
      * Hard-coded instance of {@link ContactsSource} for Exchange.
      */
     static void buildExchange(Context context, ContactsSource list) {
@@ -466,15 +455,11 @@ public class HardCodedSources {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
-                    R.string.sms_home).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_HOME2, R.string.type_home_2, R.string.call_home_2,
-                    R.string.sms_home_2).setSecondary(true).setSpecificMax(1));
+                    R.string.sms_home).setSpecificMax(2));
             kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
                     R.string.call_mobile, R.string.sms_mobile).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
-                    R.string.sms_work).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_WORK2, R.string.type_work_2, R.string.call_work_2,
-                    R.string.sms_work_2).setSecondary(true).setSpecificMax(1));
+                    R.string.sms_work).setSpecificMax(2));
             kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
                     R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true)
                     .setSpecificMax(1));
@@ -483,15 +468,15 @@ public class HardCodedSources {
                     .setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager,
                     R.string.call_pager, R.string.sms_pager).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_CAR, R.string.type_car, R.string.call_car,
+            kind.typeList.add(new EditType(Phone.TYPE_CAR, R.string.type_car, R.string.call_car,
                     R.string.sms_car).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_COMPANY_MAIN, R.string.type_company_main,
+            kind.typeList.add(new EditType(Phone.TYPE_COMPANY_MAIN, R.string.type_company_main,
                     R.string.call_company_main, R.string.sms_company_main).setSecondary(true)
                     .setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_MMS, R.string.type_mms, R.string.call_mms,
+            kind.typeList.add(new EditType(Phone.TYPE_MMS, R.string.type_mms, R.string.call_mms,
                     R.string.sms_mms).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(new EditType(TYPE_RADIO, R.string.type_radio, R.string.call_radio,
-                    R.string.sms_radio).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(new EditType(Phone.TYPE_RADIO, R.string.type_radio,
+                    R.string.call_radio, R.string.sms_radio).setSecondary(true).setSpecificMax(1));
             kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_assistant,
                     R.string.call_custom, R.string.sms_custom).setSecondary(true).setSpecificMax(1)
                     .setCustomColumn(Phone.LABEL));
@@ -513,8 +498,6 @@ public class HardCodedSources {
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
-//            kind.fieldList.add(new EditField(Email.DISPLAY_NAME, R.string.label_email_display_name,
-//                    FLAGS_PERSON_NAME));
 
             list.add(kind);
         }
@@ -529,7 +512,7 @@ public class HardCodedSources {
             kind.typeOverallMax = 3;
 
             // NOTE: even though a traditional "type" exists, for editing
-            // purposes we're using the network to pick labels
+            // purposes we're using the protocol to pick labels
 
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
