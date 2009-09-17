@@ -615,6 +615,8 @@ public final class ContactsListActivity extends ListActivity implements
 
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
+        } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
+            empty.setText(getText(R.string.noFavoritesHelpText));
         } else {
             boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
                     .hasIccCard();
@@ -625,7 +627,6 @@ public final class ContactsListActivity extends ListActivity implements
                 } else {
                     empty.setText(getText(R.string.noContactsHelpText));
                 }
-
             } else {
                 if (mSyncEnabled) {
                     empty.setText(getText(R.string.noContactsNoSimHelpTextWithSync));
