@@ -71,6 +71,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     private static final String TAG = "DisplayGroupsActivity";
 
     private static final int UNGROUPED_ID = -2;
+    private static final int UNSYNCED_ID = -3;
+
+    private static final int FOOTER_ENTRY = -4;
 
     public interface Prefs {
         public static final String DISPLAY_ONLY_PHONES = "only_phones";
@@ -251,13 +254,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final ContentValues values = new ContentValues();
 
         // TODO: heavy update, perhaps push to background query
-        if (id != UNGROUPED_ID) {
-            // Handle persisting for normal group
-            values.put(Groups.GROUP_VISIBLE, checkbox.isChecked() ? 1 : 0);
-
-            final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, id);
-            final int count = resolver.update(groupUri, values, null, null);
-        } else {
+        if (id == UNGROUPED_ID) {
             // Handle persisting for ungrouped through Settings
             values.put(Settings.UNGROUPED_VISIBLE, checkbox.isChecked() ? 1 : 0);
 
@@ -267,6 +264,15 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                     settings.getString(SettingsQuery.ACCOUNT_NAME),
                     settings.getString(SettingsQuery.ACCOUNT_TYPE)
             });
+        } else if (id == UNSYNCED_ID) {
+            // Open context menu for bringing back unsynced
+            this.openContextMenu(v);
+        } else {
+            // Handle persisting for normal group
+            values.put(Groups.GROUP_VISIBLE, checkbox.isChecked() ? 1 : 0);
+
+            final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, id);
+            final int count = resolver.update(groupUri, values, null, null);
         }
 
         return true;
@@ -300,19 +306,23 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final String accountType = groupCursor.getString(SettingsQuery.ACCOUNT_TYPE);
         final Account account = new Account(accountName, accountType);
 
-        if (childPosition == -1) {
+        final boolean shouldSyncUngrouped = groupCursor.getInt(SettingsQuery.SHOULD_SYNC) != 0;
+        final boolean anyUnsynced = groupCursor.getInt(SettingsQuery.ANY_UNSYNCED) != 0;
+        final boolean lastChild = (childPosition == (mAdapter.getChildrenCount(groupPosition) - 1));
+
+        if (anyUnsynced && lastChild) {
             // Show add dialog for this overall source
             showAddSync(menu, groupCursor, account, syncMode);
 
-        } else {
+        } else if (childPosition != -1) {
             // Show remove dialog for this specific group
             final Cursor childCursor = mAdapter.getChild(groupPosition, childPosition);
-            showRemoveSync(menu, account, childCursor, syncMode);
+            showRemoveSync(menu, account, childCursor, syncMode, shouldSyncUngrouped);
         }
     }
 
     protected void showRemoveSync(ContextMenu menu, final Account account, Cursor childCursor,
-            final int syncMode) {
+            final int syncMode, final boolean shouldSyncUngrouped) {
         final long groupId = childCursor.getLong(GroupsQuery._ID);
         final CharSequence title = getGroupTitle(this, childCursor);
 
@@ -320,19 +330,20 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         menu.add(R.string.menu_sync_remove).setOnMenuItemClickListener(
                 new OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        handleRemoveSync(groupId, account, syncMode, title);
+                        handleRemoveSync(groupId, account, syncMode, title, shouldSyncUngrouped);
                         return true;
                     }
                 });
     }
 
     protected void handleRemoveSync(final long groupId, final Account account, final int syncMode,
-            CharSequence title) {
-        if (syncMode == SYNC_MODE_EVERYTHING && groupId != UNGROUPED_ID) {
+            CharSequence title, boolean shouldSyncUngrouped) {
+        if (syncMode == SYNC_MODE_EVERYTHING && groupId != UNGROUPED_ID && shouldSyncUngrouped) {
             // Warn before removing this group when it would cause ungrouped to stop syncing
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final CharSequence removeMessage = this.getString(
                     R.string.display_warn_remove_ungrouped, title);
+            builder.setTitle(R.string.menu_sync_remove);
             builder.setMessage(removeMessage);
             builder.setNegativeButton(android.R.string.cancel, null);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -348,8 +359,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         }
     }
 
-    protected void showAddSync(ContextMenu menu, Cursor groupCursor, final Account account, final int syncMode) {
-        menu.setHeaderTitle(R.string.menu_sync_add);
+    protected void showAddSync(ContextMenu menu, Cursor groupCursor, final Account account,
+            final int syncMode) {
+        menu.setHeaderTitle(R.string.dialog_sync_add);
 
         // Create single "Ungrouped" item when not synced
         final boolean ungroupedAvailable = groupCursor.getInt(SettingsQuery.SHOULD_SYNC) == 0;
@@ -366,7 +378,11 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         // Create item for each available, unsynced group
         final Cursor availableGroups = this.managedQuery(Groups.CONTENT_SUMMARY_URI,
-                GroupsQuery.PROJECTION, Groups.SHOULD_SYNC + "=0", null);
+                GroupsQuery.PROJECTION, Groups.SHOULD_SYNC + "=0 AND " + Groups.ACCOUNT_NAME
+                        + "=? AND " + Groups.ACCOUNT_TYPE + "=?", new String[] {
+                        groupCursor.getString(SettingsQuery.ACCOUNT_NAME),
+                        groupCursor.getString(SettingsQuery.ACCOUNT_TYPE)
+                }, null);
         while (availableGroups.moveToNext()) {
             // Create item this unsynced group
             final long groupId = availableGroups.getLong(GroupsQuery._ID);
@@ -538,6 +554,98 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     }
 
     /**
+     * Special {@link Cursor} that shows zero or one items based on
+     * {@link Settings#ANY_UNSYNCED} value.
+     */
+    private static class FooterCursor extends AbstractCursor {
+        private Context mContext;
+        private Cursor mCursor;
+        private int mPosition;
+
+        public FooterCursor(Context context, Cursor cursor, int position) {
+            mContext = context;
+            mCursor = cursor;
+            mPosition = position;
+        }
+
+        @Override
+        public int getCount() {
+            assertParent();
+
+            final boolean anyUnsynced = mCursor.getInt(SettingsQuery.ANY_UNSYNCED) != 0;
+            return anyUnsynced ? 1 : 0;
+        }
+
+        @Override
+        public String[] getColumnNames() {
+            return GroupsQuery.PROJECTION;
+        }
+
+        protected void assertParent() {
+            mCursor.moveToPosition(mPosition);
+        }
+
+        @Override
+        public String getString(int column) {
+            assertParent();
+            switch(column) {
+                case GroupsQuery.ACCOUNT_NAME:
+                    return mCursor.getString(SettingsQuery.ACCOUNT_NAME);
+                case GroupsQuery.ACCOUNT_TYPE:
+                    return mCursor.getString(SettingsQuery.ACCOUNT_TYPE);
+                case GroupsQuery.TITLE:
+                    return null;
+                case GroupsQuery.RES_PACKAGE:
+                    return mContext.getPackageName();
+                case GroupsQuery.TITLE_RES:
+                    return Integer.toString(UNSYNCED_ID);
+            }
+            throw new IllegalArgumentException("Requested column not available as string");
+        }
+
+        @Override
+        public short getShort(int column) {
+            throw new IllegalArgumentException("Requested column not available as short");
+        }
+
+        @Override
+        public int getInt(int column) {
+            assertParent();
+            switch(column) {
+                case GroupsQuery._ID:
+                    return UNSYNCED_ID;
+                case GroupsQuery.TITLE_RES:
+                    return R.string.display_more_groups;
+                case GroupsQuery.GROUP_VISIBLE:
+                case GroupsQuery.SUMMARY_COUNT:
+                case GroupsQuery.SUMMARY_WITH_PHONES:
+                    return FOOTER_ENTRY;
+            }
+            throw new IllegalArgumentException("Requested column not available as int");
+        }
+
+        @Override
+        public long getLong(int column) {
+            return getInt(column);
+        }
+
+        @Override
+        public float getFloat(int column) {
+            throw new IllegalArgumentException("Requested column not available as float");
+        }
+
+        @Override
+        public double getDouble(int column) {
+            throw new IllegalArgumentException("Requested column not available as double");
+        }
+
+        @Override
+        public boolean isNull(int column) {
+            return getString(column) == null;
+        }
+    }
+
+    /**
      * Adapter that shows all display groups as returned by a {@link Cursor}
      * over {@link Groups#CONTENT_SUMMARY_URI}, along with their current visible
      * status. Splits groups into sections based on {@link Account}.
@@ -600,13 +708,14 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
             final int position = groupCursor.getPosition();
             final Cursor ungroupedCursor = new HeaderCursor(mContext, groupCursor, position);
+            final Cursor unsyncedCursor = new FooterCursor(mContext, groupCursor, position);
 
             final ContentResolver resolver = mContext.getContentResolver();
             final Cursor groupsCursor = resolver.query(Groups.CONTENT_SUMMARY_URI,
                     GroupsQuery.PROJECTION, selection, selectionArgs, null);
             mActivity.startManagingCursor(groupsCursor);
 
-            return new MergeCursor(new Cursor[] { ungroupedCursor, groupsCursor });
+            return new MergeCursor(new Cursor[] { ungroupedCursor, groupsCursor, unsyncedCursor });
         }
 
         @Override
@@ -634,6 +743,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             text1.setText(title);
 //            text2.setText(descrip);
             checkbox.setChecked((membersVisible == 1));
+
+            // Hide extra views when recycled as footer
+            final boolean footerView = membersVisible == FOOTER_ENTRY;
+//            text2.setVisibility(footerView ? View.GONE : View.VISIBLE);
+            text2.setVisibility(View.GONE);
+            checkbox.setVisibility(footerView ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -643,6 +758,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                 Settings.ACCOUNT_TYPE,
                 Settings.SHOULD_SYNC,
                 Settings.UNGROUPED_VISIBLE,
+                Settings.ANY_UNSYNCED,
 //                Settings.UNGROUPED_COUNT,
 //                Settings.UNGROUPED_WITH_PHONES,
         };
@@ -651,8 +767,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final int ACCOUNT_TYPE = 1;
         final int SHOULD_SYNC = 2;
         final int UNGROUPED_VISIBLE = 3;
-//        final int UNGROUPED_COUNT = 4;
-//        final int UNGROUPED_WITH_PHONES = 5;
+        final int ANY_UNSYNCED = 4;
+//        final int UNGROUPED_COUNT = 5;
+//        final int UNGROUPED_WITH_PHONES = 6;
     }
 
     private interface GroupsQuery {
@@ -662,10 +779,10 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             Groups.RES_PACKAGE,
             Groups.TITLE_RES,
             Groups.GROUP_VISIBLE,
-//            Groups.SUMMARY_COUNT,
-//            Groups.SUMMARY_WITH_PHONES,
             Groups.ACCOUNT_NAME,
             Groups.ACCOUNT_TYPE,
+//            Groups.SUMMARY_COUNT,
+//            Groups.SUMMARY_WITH_PHONES,
         };
 
         final int _ID = 0;
@@ -673,9 +790,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final int RES_PACKAGE = 2;
         final int TITLE_RES = 3;
         final int GROUP_VISIBLE = 4;
-//        final int SUMMARY_COUNT = 5;
-//        final int SUMMARY_WITH_PHONES = 6;
         final int ACCOUNT_NAME = 5;
         final int ACCOUNT_TYPE = 6;
+        final int SUMMARY_COUNT = 7;
+        final int SUMMARY_WITH_PHONES = 8;
     }
 }
