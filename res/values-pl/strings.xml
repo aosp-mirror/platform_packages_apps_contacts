@@ -40,33 +40,24 @@
     <string name="menu_showBarcode" msgid="309973637178814132">"Pokaż kod kreskowy"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Edytuj kontakt"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Usuń kontakt"</string>
-    <string name="menu_call" msgid="7359207953236681606">"Zadzwoń"</string>
-    <string name="menu_sendSMS" msgid="5917289601666766617">"Wyślij SMS/MMS"</string>
+    <!-- no translation found for menu_call (3992595586042260618) -->
+    <skip />
+    <!-- no translation found for menu_sendSMS (5535886767547006515) -->
+    <skip />
     <string name="menu_sendEmail" msgid="7293508859242926187">"Wyślij e-mail"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Pokaż adres na mapie"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Ustaw ten numer jako domyślny"</string>
-    <!-- no translation found for menu_makeDefaultEmail (2599044610375789994) -->
-    <skip />
-    <!-- no translation found for menu_splitAggregate (7402548456225901170) -->
-    <skip />
-    <!-- no translation found for splitAggregate_title (2053462872948058798) -->
-    <skip />
-    <!-- no translation found for contactsSplitMessage (3439008547775199243) -->
-    <skip />
-    <!-- no translation found for menu_joinAggregate (5027981918265667970) -->
-    <skip />
-    <!-- no translation found for titleJoinAggregate (6970566008563147202) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateSuggestions (5494823322479834017) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateAll (7939932265026181043) -->
-    <skip />
-    <!-- no translation found for contactsJoinedMessage (7208148163607047389) -->
-    <skip />
-    <!-- no translation found for menu_contactOptions (1957061455705020617) -->
-    <skip />
-    <!-- no translation found for contactOptionsTitle (8259347644090700915) -->
-    <skip />
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Ustaw jako domyślny adres e-mail"</string>
+    <string name="menu_splitAggregate" msgid="7402548456225901170">"Podziel"</string>
+    <string name="splitAggregate_title" msgid="2053462872948058798">"Podziel kontakt"</string>
+    <string name="contactsSplitMessage" msgid="3439008547775199243">"Kontakt został podzielony"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Połącz"</string>
+    <string name="titleJoinAggregate" msgid="6970566008563147202">"Połącz kontakt"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="5494823322479834017">"Propozycje"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Wszystkie kontakty"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakty zostały połączone"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"Opcje"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Opcje"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Usuń"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ten kontakt zostanie usunięty."</string>
     <string name="menu_done" msgid="796017761764190697">"Gotowe"</string>
@@ -77,12 +68,9 @@
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetycznie"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notatki"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Dzwonek"</string>
-    <!-- no translation found for label_groups (7304551384542859026) -->
-    <skip />
-    <!-- no translation found for group_list (8583361685440161307) -->
-    <skip />
-    <!-- no translation found for menu_viewGroup (1401851715586577551) -->
-    <skip />
+    <string name="label_groups" msgid="7304551384542859026">"Grupy"</string>
+    <string name="group_list" msgid="8583361685440161307">", <xliff:g id="GROUPNAME">%s</xliff:g>"</string>
+    <string name="menu_viewGroup" msgid="1401851715586577551">"Edytuj grupy"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Imię i nazwisko"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nazwisko (fonetycznie)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Firma"</string>
@@ -92,8 +80,7 @@
     <string name="ghostData_phone" msgid="6963153888271466620">"Numer telefonu"</string>
     <string name="ghostData_email" msgid="6184537075551565919">"Adres e-mail"</string>
     <string name="ghostData_postal" msgid="652611650594951897">"Adres pocztowy"</string>
-    <!-- no translation found for ghostData_group (4504591380347534114) -->
-    <skip />
+    <string name="ghostData_group" msgid="4504591380347534114">"Wyświetl grupę"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt nie istnieje."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Utwórz nowy kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Wybierz etykietę"</string>
@@ -110,10 +97,8 @@
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"W telefonie brak dostępnych zdjęć."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Ikona kontaktu"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety niestandardowej"</string>
-    <!-- no translation found for menu_displayGroup (6022511302986343108) -->
-    <skip />
-    <!-- no translation found for displayGroups (2645969886032719891) -->
-    <skip />
+    <string name="menu_displayGroup" msgid="6022511302986343108">"Wyświetl grupy"</string>
+    <string name="displayGroups" msgid="2645969886032719891">"Wyświetl grupy"</string>
     <string name="syncGroupPreference" msgid="9028361137161162861">"Synchronizacja grup"</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importuj kontakty"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Przekieruj połączenia bezpośrednio na pocztę głosową"</string>
@@ -127,20 +112,23 @@
     <string name="select_group_title" msgid="7955698611959835612">"Grupy"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Grupa „<xliff:g id="GROUPNAME">%s</xliff:g>” jest pusta."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Wszystkie kontakty"</string>
-    <!-- no translation found for showFilterPhones (4184858075465653970) -->
-    <skip />
-    <!-- no translation found for showFilterPhonesDescrip (6644443248815191067) -->
-    <skip />
-    <!-- no translation found for headerContactGroups (1451383377487746789) -->
-    <skip />
-    <!-- no translation found for groupDescrip:other (3507881585720628389) -->
-    <!-- no translation found for groupDescripPhones:other (3816047547470490208) -->
+    <string name="showFilterPhones" msgid="4184858075465653970">"Tylko kontakty z numerami telefonów"</string>
+    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Wyświetlaj tylko kontakty zawierające numery telefonów"</string>
+    <string name="headerContactGroups" msgid="1451383377487746789">"Grupy kontaktów"</string>
+  <plurals name="groupDescrip">
+    <item quantity="other" msgid="3507881585720628389">"Liczba kontaktów: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
+  </plurals>
+  <plurals name="groupDescripPhones">
+    <item quantity="other" msgid="3816047547470490208">"Liczba kontaktów: <xliff:g id="COUNT_0">%1$d</xliff:g>, liczba kontaktów z numerami telefonów: <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g>"</item>
+  </plurals>
     <string name="syncAllGroups" msgid="7512169081224806890">"Synchronizuj wszystkie kontakty"</string>
     <string name="groupNameMyContacts" msgid="5696566165170977126">"Moje kontakty"</string>
     <string name="groupNameWithPhones" msgid="6981588604041120497">"Kontakty z numerami telefonu"</string>
     <string name="starredInAndroid" msgid="6495527538140213440">"Z gwiazdką w systemie Android"</string>
     <string name="contactCreatedToast" msgid="8740102129968688060">"Utworzono kontakt."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt został zapisany."</string>
+    <!-- no translation found for contactSavedErrorToast (9189098776225004666) -->
+    <skip />
     <string name="listSeparatorCallNumber" msgid="7115321894439629408">"Wybierz numer"</string>
     <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"Numery telefonów"</string>
     <string name="listSeparatorSendSmsMms" msgid="2480944736714739967">"Wyślij SMS/MMS"</string>
@@ -151,13 +139,11 @@
     <string name="listSeparatorMapAddress" msgid="7076401301758190804">"Pokaż adres na mapie"</string>
     <string name="listSeparatorMapAddress_edit" msgid="298711187672067985">"Adresy pocztowe"</string>
     <string name="listSeparatorOrganizations" msgid="7514083358440762504">"Organizacje"</string>
-    <!-- no translation found for listSeparatorGroups (1593940073983422450) -->
-    <skip />
+    <string name="listSeparatorGroups" msgid="1593940073983422450">"Grupy"</string>
     <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"Inne informacje"</string>
     <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"Inne opcje"</string>
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"Więcej"</string>
-    <!-- no translation found for socialStreamIconLabel (4367712449555075376) -->
-    <skip />
+    <string name="socialStreamIconLabel" msgid="4367712449555075376">"Społeczeństwo"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ulubione"</string>
     <string name="dialerIconLabel" msgid="7228520966699542850">"Telefon"</string>
@@ -173,8 +159,7 @@
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Wyczyść rejestr połączeń"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Rejestr połączeń jest pusty."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
-    <!-- no translation found for meid (6210568493746275750) -->
-    <skip />
+    <string name="meid" msgid="6210568493746275750">"Numer MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Poczta głosowa"</string>
     <string name="unknown" msgid="740067747858270469">"Nieznane"</string>
     <string name="private_num" msgid="6374339738119166953">"Numer prywatny"</string>
@@ -185,7 +170,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty z karty SIM"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Zsynchronizuj kontakty Google!"</font>" "\n"Po zsynchronizowaniu telefonu zawsze będziesz mieć kontakty pod ręką."</string>
     <string name="noContactsHelpText" msgid="2249195687463896364">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, wybierz "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="4927701496550314555">"Nie masz żadnych kontaktów."\n\n"Aby dodać kontakty, naciśnij "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" i wybierz polecenie:"\n\n" "<li><font fgcolor="#ffffffff"><b>"Synchronizacja grup"</b></font>" w celu dodania kontaktów z nowego lub istniejącego konta Google"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"Nowy kontakt"</b></font>" w celu utworzenia nowego kontaktu od początku"\n</li>\n" "<li><font fgcolor="#ffffffff"><b>"Importuj kontakty"</b></font>" w celu dodania kontaktów z karty SIM"\n</li></string>
+    <!-- no translation found for noContactsHelpTextWithSync (2179024855526352215) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpText (645951808197910024) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpTextWithSync (511505839941079550) -->
+    <skip />
+    <!-- no translation found for noFavoritesHelpText (1705381563293866510) -->
+    <skip />
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Wybierz grupy do zsynchronizowania"</string>
     <string name="liveFolder_all_label" msgid="1552523730090319259">"Wszystkie kontakty"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Oznaczone gwiazdką"</string>
@@ -220,8 +212,7 @@
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Częste połączenia"</string>
     <string name="add_contact_dlg_title" msgid="2789046541229846116">"Dodaj kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Czy dodać adres „<xliff:g id="EMAIL">%s</xliff:g>” do kontaktów?"</string>
-    <!-- no translation found for all_tab_label (4003124364397916826) -->
-    <skip />
+    <string name="all_tab_label" msgid="4003124364397916826">"Wszystkie"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"jeden"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"dwa"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"trzy"</string>
@@ -238,31 +229,27 @@
     <string name="no_sdcard_message" msgid="7791906118138538259">"Nie wykryto karty SD"</string>
     <string name="searching_vcard_title" msgid="4158580043290687793">"Wyszukiwanie danych VCard"</string>
     <string name="select_import_type_title" msgid="2443742794103731022">"Skąd chcesz zaimportować kontakty?"</string>
-    <string name="import_from_sim" msgid="3362158539070179154">"Karta SIM"</string>
-    <string name="import_from_sdcard" msgid="8854793070007530689">"Karta SD"</string>
-    <!-- no translation found for import_one_vcard_string (9059163467020328433) -->
+    <!-- no translation found for import_from_sim (3859272228033941659) -->
     <skip />
-    <!-- no translation found for import_multiple_vcard_string (3810226492811062392) -->
+    <!-- no translation found for import_from_sdcard (8550360976693202816) -->
     <skip />
-    <!-- no translation found for import_all_vcard_string (5518136113853448474) -->
+    <!-- no translation found for export_to_sdcard (2597105442616166277) -->
     <skip />
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"Importuj jeden plik vCard"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importuj wiele plików vCard"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"Importuj wszystkie pliki vCard"</string>
     <string name="searching_vcard_message" msgid="2467573749792455605">"Wyszukiwanie danych VCard w pliku VCard"</string>
     <string name="scanning_sdcard_failed_title" msgid="2788276113399585924">"Skanowanie karty SD nie powiodło się"</string>
     <string name="scanning_sdcard_failed_message" msgid="925361244069058117">"Skanowanie karty SD nie powiodło się"</string>
-    <!-- no translation found for fail_reason_io_error (5949038573678667996) -->
-    <skip />
-    <!-- no translation found for fail_reason_vcard_parse_error (8877496734269540489) -->
-    <skip />
-    <!-- no translation found for fail_reason_vcard_not_supported_error (166568606246563552) -->
-    <skip />
+    <string name="fail_reason_io_error" msgid="5949038573678667996">"Błąd wejścia/wyjścia (przyczyna: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="8877496734269540489">"Nie można zanalizować pliku vCard z nieoczekiwanego powodu."</string>
+    <string name="fail_reason_vcard_not_supported_error" msgid="166568606246563552">"Nie można zanalizować pliku vCard, mimo że prawdopodobnie ma on prawidłowy format. Bieżąca wersja go nie obsługuje."</string>
     <string name="fail_reason_no_vcard_file" msgid="1489638537002538332">"Na karcie SD nie znaleziono żadnego pliku VCard"</string>
     <string name="fail_reason_no_vcard_entry" msgid="3808734131680935043">"W wybranym zakresie nie znaleziono poprawnej pozycji VCard"</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (3659521123567134029) -->
-    <skip />
+    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Nie można zaimportować co najmniej jednego pliku (%s)."</string>
     <string name="select_vcard_title" msgid="4615933643517710543">"Wybierz plik VCard"</string>
     <string name="select_vcard_message" msgid="7028772212789057858">"Wybierz plik VCard do zaimportowania"</string>
-    <!-- no translation found for progress_shower_message (5636525578293752526) -->
-    <skip />
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="430154704397375160">"Odczytywanie danych VCard"</string>
     <string name="reading_vcard_message" msgid="7470486051482460267">"Odczytywanie plików VCard"</string>
     <string name="importing_vcard_message" msgid="2466665710812588738">"Importowanie danych VCard"</string>
@@ -285,250 +272,133 @@
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Nie można otworzyć pliku „<xliff:g id="FILE_NAME">%s</xliff:g>”: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"Kontakt <xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imiona i nazwiska oraz nazwy w Twoich kontaktach"</string>
-    <!-- no translation found for add_2sec_pause (1488865103809190124) -->
-    <skip />
-    <!-- no translation found for add_wait (8347184715316058465) -->
-    <skip />
-    <!-- no translation found for dial_button_label (7637725632722605863) -->
-    <skip />
-    <!-- no translation found for fasttrack_missing_app (1181287640680679441) -->
-    <skip />
-    <!-- no translation found for fasttrack_remember_choice (2858356075887897116) -->
-    <skip />
-    <!-- no translation found for fasttrack_missing_name (7806083820928955853) -->
-    <skip />
-    <!-- no translation found for menu_accounts (8499114602017077970) -->
-    <skip />
-    <!-- no translation found for nameLabelsGroup (2034640839640477827) -->
-    <skip />
-    <!-- no translation found for nicknameLabelsGroup (2891682101053358010) -->
-    <skip />
-    <!-- no translation found for organizationLabelsGroup (2478611760751832035) -->
-    <skip />
-    <!-- no translation found for websiteLabelsGroup (4202998982804009261) -->
-    <skip />
-    <!-- no translation found for type_home (1228039089996938949) -->
-    <skip />
-    <!-- no translation found for type_mobile (4202799691295960532) -->
-    <skip />
-    <!-- no translation found for type_work (9046581192178244575) -->
-    <skip />
-    <!-- no translation found for type_fax_work (7056833051776335751) -->
-    <skip />
-    <!-- no translation found for type_fax_home (5188151910627934239) -->
-    <skip />
-    <!-- no translation found for type_pager (6971533430192661440) -->
-    <skip />
-    <!-- no translation found for type_other (357858743316072535) -->
-    <skip />
-    <!-- no translation found for type_custom (546891906059234753) -->
-    <skip />
-    <!-- no translation found for type_short_home (7770424864090605384) -->
-    <skip />
-    <!-- no translation found for type_short_mobile (1655473281466676216) -->
-    <skip />
-    <!-- no translation found for type_short_work (4925330752504537861) -->
-    <skip />
-    <!-- no translation found for type_short_pager (2613818970827594238) -->
-    <skip />
-    <!-- no translation found for type_short_other (5669407180177236769) -->
-    <skip />
-    <!-- no translation found for type_home_2 (7576604544326827279) -->
-    <skip />
-    <!-- no translation found for type_work_2 (4033954623350210826) -->
-    <skip />
-    <!-- no translation found for type_car (1882297602515019816) -->
-    <skip />
-    <!-- no translation found for type_company_main (1757801178953730800) -->
-    <skip />
-    <!-- no translation found for type_mms (7575994898038669673) -->
-    <skip />
-    <!-- no translation found for type_radio (7376516830366758196) -->
-    <skip />
-    <!-- no translation found for type_assistant (4838160907811639910) -->
-    <skip />
-    <!-- no translation found for type_email_1 (6452852215966497668) -->
-    <skip />
-    <!-- no translation found for type_email_2 (1997291026230063227) -->
-    <skip />
-    <!-- no translation found for type_email_3 (2962324962480251941) -->
-    <skip />
-    <!-- no translation found for type_im_1 (5282555821022595430) -->
-    <skip />
-    <!-- no translation found for type_im_2 (7808341851940578010) -->
-    <skip />
-    <!-- no translation found for type_im_3 (5207327574719869469) -->
-    <skip />
-    <!-- no translation found for type_im_aim (2227683604131341761) -->
-    <skip />
-    <!-- no translation found for type_im_msn (5322977067527283958) -->
-    <skip />
-    <!-- no translation found for type_im_yahoo (8093860976582856789) -->
-    <skip />
-    <!-- no translation found for type_im_skype (7847929379814316050) -->
-    <skip />
-    <!-- no translation found for type_im_qq (764805405209877788) -->
-    <skip />
-    <!-- no translation found for type_im_google_talk (4019292000925519902) -->
-    <skip />
-    <!-- no translation found for type_im_icq (7556014886862234019) -->
-    <skip />
-    <!-- no translation found for type_im_jabber (5523148125631896131) -->
-    <skip />
-    <!-- no translation found for edit_secondary_collapse (1855127176548440583) -->
-    <skip />
-    <!-- no translation found for dialog_primary_name (5521591005692614833) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (9044704073286262197) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (3266725887008450161) -->
-    <skip />
-    <!-- no translation found for menu_sync_add (389823804276559168) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (4357317661311803984) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (2314043155909167610) -->
-    <skip />
-    <!-- no translation found for account_phone (4025734638492419713) -->
-    <skip />
-    <!-- no translation found for label_email_display_name (5537802602754309600) -->
-    <skip />
-    <!-- no translation found for call_home (1990519474420545392) -->
-    <skip />
-    <!-- no translation found for call_mobile (7502236805487609178) -->
-    <skip />
-    <!-- no translation found for call_work (5328785911463744028) -->
-    <skip />
-    <!-- no translation found for call_fax_work (7467763592359059243) -->
-    <skip />
-    <!-- no translation found for call_fax_home (8342175628887571876) -->
-    <skip />
-    <!-- no translation found for call_pager (9003902812293983281) -->
-    <skip />
-    <!-- no translation found for call_other (5605584621798108205) -->
-    <skip />
-    <!-- no translation found for call_custom (7756571794763171802) -->
-    <skip />
-    <!-- no translation found for call_home_2 (310203419023725540) -->
-    <skip />
-    <!-- no translation found for call_work_2 (4403999777434987049) -->
-    <skip />
-    <!-- no translation found for call_car (3280537320306436445) -->
-    <skip />
-    <!-- no translation found for call_company_main (6105120947138711257) -->
-    <skip />
-    <!-- no translation found for call_mms (6274041545876221437) -->
-    <skip />
-    <!-- no translation found for call_radio (8296755876398357063) -->
-    <skip />
-    <!-- no translation found for sms_home (7524332261493162995) -->
-    <skip />
-    <!-- no translation found for sms_mobile (5200107250451030769) -->
-    <skip />
-    <!-- no translation found for sms_work (2269624156655267740) -->
-    <skip />
-    <!-- no translation found for sms_fax_work (8028189067816907075) -->
-    <skip />
-    <!-- no translation found for sms_fax_home (9204042076306809634) -->
-    <skip />
-    <!-- no translation found for sms_pager (7730404569637015192) -->
-    <skip />
-    <!-- no translation found for sms_other (5131921487474531617) -->
-    <skip />
-    <!-- no translation found for sms_custom (5932736853732191825) -->
-    <skip />
-    <!-- no translation found for sms_home_2 (7944150531556566287) -->
-    <skip />
-    <!-- no translation found for sms_work_2 (1652790306127907938) -->
-    <skip />
-    <!-- no translation found for sms_car (7444227058437359641) -->
-    <skip />
-    <!-- no translation found for sms_company_main (118970873419678087) -->
-    <skip />
-    <!-- no translation found for sms_mms (4069352461380762677) -->
-    <skip />
-    <!-- no translation found for sms_radio (3329166673433967820) -->
-    <skip />
-    <!-- no translation found for email_home (8573740658148184279) -->
-    <skip />
-    <!-- no translation found for email_mobile (2042889209787989814) -->
-    <skip />
-    <!-- no translation found for email_work (2807430017302722689) -->
-    <skip />
-    <!-- no translation found for email_other (8093933498541795832) -->
-    <skip />
-    <!-- no translation found for email_custom (7548003991586214105) -->
-    <skip />
-    <!-- no translation found for email_1 (7161744123020026349) -->
-    <skip />
-    <!-- no translation found for email_2 (6410249245749339180) -->
-    <skip />
-    <!-- no translation found for email_3 (701060373041279309) -->
-    <skip />
-    <!-- no translation found for email (5668400997660065897) -->
-    <skip />
-    <!-- no translation found for map_home (1243547733423343982) -->
-    <skip />
-    <!-- no translation found for map_work (1360474076921878088) -->
-    <skip />
-    <!-- no translation found for map_other (5560707927535653892) -->
-    <skip />
-    <!-- no translation found for map_custom (6184363799976265281) -->
-    <skip />
-    <!-- no translation found for chat_aim (2588492205291249142) -->
-    <skip />
-    <!-- no translation found for chat_msn (8041633440091073484) -->
-    <skip />
-    <!-- no translation found for chat_yahoo (6629211142719943666) -->
-    <skip />
-    <!-- no translation found for chat_skype (1210045020427480566) -->
-    <skip />
-    <!-- no translation found for chat_qq (4294637812847719693) -->
-    <skip />
-    <!-- no translation found for chat_gtalk (981575737258117697) -->
-    <skip />
-    <!-- no translation found for chat_icq (8438405386153745775) -->
-    <skip />
-    <!-- no translation found for chat_jabber (7561444230307829609) -->
-    <skip />
-    <!-- no translation found for chat_other (6023619161453269469) -->
-    <skip />
-    <!-- no translation found for im_1 (1111192422266943605) -->
-    <skip />
-    <!-- no translation found for im_2 (7373299735909164246) -->
-    <skip />
-    <!-- no translation found for im_3 (2844502072341662301) -->
-    <skip />
-    <!-- no translation found for im (224369770441786285) -->
-    <skip />
-    <!-- no translation found for postal_street (8133143961580058972) -->
-    <skip />
-    <!-- no translation found for postal_pobox (4431938829180269821) -->
-    <skip />
-    <!-- no translation found for postal_neighborhood (1450783874558956739) -->
-    <skip />
-    <!-- no translation found for postal_city (6597491300084895548) -->
-    <skip />
-    <!-- no translation found for postal_region (6045263193478437672) -->
-    <skip />
-    <!-- no translation found for postal_postcode (572136414136673751) -->
-    <skip />
-    <!-- no translation found for postal_country (7638264508416368690) -->
-    <skip />
-    <!-- no translation found for name_given (1687286314106019813) -->
-    <skip />
-    <!-- no translation found for name_family (3416695586119999058) -->
-    <skip />
-    <!-- no translation found for name_prefix (59756378548779822) -->
-    <skip />
-    <!-- no translation found for name_middle (8467433655992690326) -->
-    <skip />
-    <!-- no translation found for name_suffix (3855278445375651441) -->
-    <skip />
-    <!-- no translation found for name_phonetic_given (6853570431394449191) -->
-    <skip />
-    <!-- no translation found for name_phonetic_middle (8643721493320405200) -->
-    <skip />
-    <!-- no translation found for name_phonetic_family (462095502140180305) -->
-    <skip />
+    <string name="add_2sec_pause" msgid="1488865103809190124">"Dodaj 2-sekundową pauzę"</string>
+    <string name="add_wait" msgid="8347184715316058465">"Dodaj oczekiwanie"</string>
+    <string name="dial_button_label" msgid="7637725632722605863">"Wybierz numer"</string>
+    <!-- no translation found for call_disambig_title (1911302597959335178) -->
+    <skip />
+    <!-- no translation found for sms_disambig_title (4675399294513152364) -->
+    <skip />
+    <!-- no translation found for make_primary (5829291915305113983) -->
+    <skip />
+    <string name="fasttrack_missing_app" msgid="1181287640680679441">"Nie znaleziono aplikacji do obsługi tej akcji"</string>
+    <string name="fasttrack_remember_choice" msgid="2858356075887897116">"Zapamiętaj ten wybór"</string>
+    <string name="fasttrack_missing_name" msgid="7806083820928955853">"Nieznane"</string>
+    <string name="menu_accounts" msgid="8499114602017077970">"Konta"</string>
+    <!-- no translation found for menu_import_export (3765725645491577190) -->
+    <skip />
+    <!-- no translation found for dialog_import_export (4771877268244096596) -->
+    <skip />
+    <!-- no translation found for menu_share (943789700636542260) -->
+    <skip />
+    <!-- no translation found for share_via (563121028023030093) -->
+    <skip />
+    <!-- no translation found for share_error (4374508848981697170) -->
+    <skip />
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"Nazwa"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Pseudonim"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizacja"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Adres witryny"</string>
+    <string name="type_home" msgid="1228039089996938949">"Domowy"</string>
+    <string name="type_mobile" msgid="4202799691295960532">"Komórkowy"</string>
+    <string name="type_work" msgid="9046581192178244575">"Służbowy"</string>
+    <string name="type_fax_work" msgid="7056833051776335751">"Faks służbowy"</string>
+    <string name="type_fax_home" msgid="5188151910627934239">"Faks domowy"</string>
+    <string name="type_pager" msgid="6971533430192661440">"Pager"</string>
+    <string name="type_other" msgid="357858743316072535">"Inny"</string>
+    <string name="type_custom" msgid="546891906059234753">"Niestandardowy"</string>
+    <string name="type_short_home" msgid="7770424864090605384">"D"</string>
+    <string name="type_short_mobile" msgid="1655473281466676216">"K"</string>
+    <string name="type_short_work" msgid="4925330752504537861">"S"</string>
+    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
+    <string name="type_short_other" msgid="5669407180177236769">"I"</string>
+    <string name="type_home_2" msgid="7576604544326827279">"Domowy 2"</string>
+    <string name="type_work_2" msgid="4033954623350210826">"Służbowy 2"</string>
+    <string name="type_car" msgid="1882297602515019816">"Samochód"</string>
+    <string name="type_company_main" msgid="1757801178953730800">"Firmowy główny"</string>
+    <string name="type_mms" msgid="7575994898038669673">"Wiadomość MMS"</string>
+    <string name="type_radio" msgid="7376516830366758196">"Radio"</string>
+    <string name="type_assistant" msgid="4838160907811639910">"Asystent"</string>
+    <string name="type_im_aim" msgid="2227683604131341761">"AIM"</string>
+    <string name="type_im_msn" msgid="5322977067527283958">"Windows Live"</string>
+    <string name="type_im_yahoo" msgid="8093860976582856789">"Yahoo"</string>
+    <string name="type_im_skype" msgid="7847929379814316050">"Skype"</string>
+    <string name="type_im_qq" msgid="764805405209877788">"QQ"</string>
+    <string name="type_im_google_talk" msgid="4019292000925519902">"Google Talk"</string>
+    <string name="type_im_icq" msgid="7556014886862234019">"ICQ"</string>
+    <string name="type_im_jabber" msgid="5523148125631896131">"Jabber"</string>
+    <string name="edit_secondary_collapse" msgid="1855127176548440583">"Dodatkowe informacje szczegółowe"</string>
+    <string name="dialog_primary_name" msgid="5521591005692614833">"Nazwa główna"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Utwórz kontakt na koncie"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"Usuń grupę synchronizacji"</string>
+    <!-- no translation found for dialog_sync_add (8267045393119375803) -->
+    <skip />
+    <!-- no translation found for display_more_groups (2682547080423434170) -->
+    <skip />
+    <string name="display_ungrouped" msgid="4357317661311803984">"(Kontakty rozgrupowane)"</string>
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Usunięcie grupy „<xliff:g id="GROUP">%s</xliff:g>” z ustawień synchronizacji spowoduje również usunięcie wszelkich rozgrupowanych kontaktów z tych ustawień."</string>
+    <string name="account_phone" msgid="4025734638492419713">"Tylko telefon (brak synchronizacji)"</string>
+    <string name="label_email_display_name" msgid="5537802602754309600">"Nazwa wyświetlana"</string>
+    <string name="call_home" msgid="1990519474420545392">"Telefon – domowy"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"Telefon – komórkowy"</string>
+    <string name="call_work" msgid="5328785911463744028">"Telefon – służbowy"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Telefon – faks służbowy"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"Telefon – faks domowy"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Telefon – pager"</string>
+    <string name="call_other" msgid="5605584621798108205">"Telefon – inny"</string>
+    <string name="call_custom" msgid="7756571794763171802">"Telefon – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home_2" msgid="310203419023725540">"Telefon – domowy 2"</string>
+    <string name="call_work_2" msgid="4403999777434987049">"Telefon – służbowy 2"</string>
+    <string name="call_car" msgid="3280537320306436445">"Telefon – samochód"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"Telefon – firmowy główny"</string>
+    <string name="call_mms" msgid="6274041545876221437">"Telefon – wiadomość MMS"</string>
+    <string name="call_radio" msgid="8296755876398357063">"Telefon – radio"</string>
+    <string name="sms_home" msgid="7524332261493162995">"Tekst – domowy"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"Tekst – komórkowy"</string>
+    <string name="sms_work" msgid="2269624156655267740">"Tekst – służbowy"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Tekst – faks służbowy"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"Tekst – faks domowy"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"Tekst – pager"</string>
+    <string name="sms_other" msgid="5131921487474531617">"Tekst – inny"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"Tekst – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home_2" msgid="7944150531556566287">"Tekst – domowy 2"</string>
+    <string name="sms_work_2" msgid="1652790306127907938">"Tekst – służbowy 2"</string>
+    <string name="sms_car" msgid="7444227058437359641">"Tekst – samochód"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"Tekst – firmowy główny"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"Tekst – wiadomość MMS"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"Tekst – radio"</string>
+    <string name="email_home" msgid="8573740658148184279">"Adres e-mail – domowy"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"Adres e-mail – komórkowy"</string>
+    <string name="email_work" msgid="2807430017302722689">"Adres e-mail – służbowy"</string>
+    <string name="email_other" msgid="8093933498541795832">"Adres e-mail – inny"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Adres e-mail – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"Adres e-mail"</string>
+    <string name="map_home" msgid="1243547733423343982">"Wyświetl adres domowy"</string>
+    <string name="map_work" msgid="1360474076921878088">"Wyświetl adres służbowy"</string>
+    <string name="map_other" msgid="5560707927535653892">"Wyświetl inny adres"</string>
+    <string name="map_custom" msgid="6184363799976265281">"Wyświetl adres: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"Czat w AIM"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Czat w Windows Live"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Czat w Yahoo"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Czat w Skype"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"Czat w QQ"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Czat w Google Talk"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"Czat w ICQ"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Czat w Jabberze"</string>
+    <string name="chat_other" msgid="6023619161453269469">"Czat"</string>
+    <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"Skrytka pocztowa"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"Okolica"</string>
+    <string name="postal_city" msgid="6597491300084895548">"Miasto"</string>
+    <string name="postal_region" msgid="6045263193478437672">"Województwo"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"Kod pocztowy"</string>
+    <string name="postal_country" msgid="7638264508416368690">"Kraj"</string>
+    <string name="name_given" msgid="1687286314106019813">"Imię"</string>
+    <string name="name_family" msgid="3416695586119999058">"Nazwisko"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Przedrostek nazwiska"</string>
+    <string name="name_middle" msgid="8467433655992690326">"Drugie imię"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Przyrostek nazwiska"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"Imię (fonetycznie)"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Drugie imię (fonetycznie)"</string>
+    <string name="name_phonetic_family" msgid="462095502140180305">"Nazwisko (fonetycznie)"</string>
 </resources>

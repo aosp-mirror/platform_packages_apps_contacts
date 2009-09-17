@@ -40,33 +40,24 @@
     <string name="menu_showBarcode" msgid="309973637178814132">"显示条形码"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"编辑联系人"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"删除联系人"</string>
-    <string name="menu_call" msgid="7359207953236681606">"呼叫"</string>
-    <string name="menu_sendSMS" msgid="5917289601666766617">"发送短信/彩信"</string>
+    <!-- no translation found for menu_call (3992595586042260618) -->
+    <skip />
+    <!-- no translation found for menu_sendSMS (5535886767547006515) -->
+    <skip />
     <string name="menu_sendEmail" msgid="7293508859242926187">"发送电子邮件"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"地图地址"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"设置默认号码"</string>
-    <!-- no translation found for menu_makeDefaultEmail (2599044610375789994) -->
-    <skip />
-    <!-- no translation found for menu_splitAggregate (7402548456225901170) -->
-    <skip />
-    <!-- no translation found for splitAggregate_title (2053462872948058798) -->
-    <skip />
-    <!-- no translation found for contactsSplitMessage (3439008547775199243) -->
-    <skip />
-    <!-- no translation found for menu_joinAggregate (5027981918265667970) -->
-    <skip />
-    <!-- no translation found for titleJoinAggregate (6970566008563147202) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateSuggestions (5494823322479834017) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateAll (7939932265026181043) -->
-    <skip />
-    <!-- no translation found for contactsJoinedMessage (7208148163607047389) -->
-    <skip />
-    <!-- no translation found for menu_contactOptions (1957061455705020617) -->
-    <skip />
-    <!-- no translation found for contactOptionsTitle (8259347644090700915) -->
-    <skip />
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"设置为默认电子邮件"</string>
+    <string name="menu_splitAggregate" msgid="7402548456225901170">"分离"</string>
+    <string name="splitAggregate_title" msgid="2053462872948058798">"分离联系人"</string>
+    <string name="contactsSplitMessage" msgid="3439008547775199243">"已分离联系人"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"合并"</string>
+    <string name="titleJoinAggregate" msgid="6970566008563147202">"合并联系人"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="5494823322479834017">"建议"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有联系人"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合并联系人"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"选项"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"选项"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"删除"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"将会删除此联系人。"</string>
     <string name="menu_done" msgid="796017761764190697">"完成"</string>
@@ -106,10 +97,8 @@
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"手机上没有图片。"</string>
     <string name="attachToContact" msgid="8820530304406066714">"联系人图标"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自定义标签名称"</string>
-    <!-- no translation found for menu_displayGroup (6022511302986343108) -->
-    <skip />
-    <!-- no translation found for displayGroups (2645969886032719891) -->
-    <skip />
+    <string name="menu_displayGroup" msgid="6022511302986343108">"显示群组"</string>
+    <string name="displayGroups" msgid="2645969886032719891">"显示群组"</string>
     <string name="syncGroupPreference" msgid="9028361137161162861">"编辑同步群组"</string>
     <string name="importFromSim" msgid="8383900146531125319">"导入联系人"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将呼叫发送到语音信箱"</string>
@@ -123,20 +112,23 @@
     <string name="select_group_title" msgid="7955698611959835612">"群组"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"“<xliff:g id="GROUPNAME">%s</xliff:g>”群组为空。"</string>
     <string name="showAllGroups" msgid="5164410117611094297">"所有联系人"</string>
-    <!-- no translation found for showFilterPhones (4184858075465653970) -->
-    <skip />
-    <!-- no translation found for showFilterPhonesDescrip (6644443248815191067) -->
-    <skip />
-    <!-- no translation found for headerContactGroups (1451383377487746789) -->
-    <skip />
-    <!-- no translation found for groupDescrip:other (3507881585720628389) -->
-    <!-- no translation found for groupDescripPhones:other (3816047547470490208) -->
+    <string name="showFilterPhones" msgid="4184858075465653970">"仅显示有电话号码的联系人"</string>
+    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"仅显示有电话号码的联系人"</string>
+    <string name="headerContactGroups" msgid="1451383377487746789">"联系人群组"</string>
+  <plurals name="groupDescrip">
+    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> 位联系人"</item>
+  </plurals>
+  <plurals name="groupDescripPhones">
+    <item quantity="other" msgid="3816047547470490208">"共 <xliff:g id="COUNT_0">%1$d</xliff:g> 位联系人，其中 <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> 位有电话号码"</item>
+  </plurals>
     <string name="syncAllGroups" msgid="7512169081224806890">"同步所有联系人"</string>
     <string name="groupNameMyContacts" msgid="5696566165170977126">"我的联系人"</string>
     <string name="groupNameWithPhones" msgid="6981588604041120497">"具有手机号码的联系人"</string>
     <string name="starredInAndroid" msgid="6495527538140213440">"Android 中加星标的联系人"</string>
     <string name="contactCreatedToast" msgid="8740102129968688060">"已创建联系人。"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"联系人已保存。"</string>
+    <!-- no translation found for contactSavedErrorToast (9189098776225004666) -->
+    <skip />
     <string name="listSeparatorCallNumber" msgid="7115321894439629408">"拨打电话"</string>
     <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"电话号码"</string>
     <string name="listSeparatorSendSmsMms" msgid="2480944736714739967">"发送短信/彩信"</string>
@@ -151,8 +143,7 @@
     <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"其他信息"</string>
     <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"其他选项"</string>
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"更多"</string>
-    <!-- no translation found for socialStreamIconLabel (4367712449555075376) -->
-    <skip />
+    <string name="socialStreamIconLabel" msgid="4367712449555075376">"社交"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"联系人"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="7228520966699542850">"拨号器"</string>
@@ -179,7 +170,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡联系人"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"同步您的 Google 联系人！"</font>" "\n"将您的联系人同步到您的手机，然后您在任何地方都可以与他们联系。"</string>
     <string name="noContactsHelpText" msgid="2249195687463896364">"您没有任何联系人。"\n\n"要添加联系人，请按 "<font fgcolor="#ffffffff"><b>"MENU"</b></font>" 并选择："\n" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人 "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>"以从您的 SIM 卡添加联系人"\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="4927701496550314555">"您没有任何联系人。"\n\n"要添加联系人，请按 "<font fgcolor="#ffffffff"><b>"MENU"</b></font>" 并选择："\n" "\n<li><font fgcolor="#ffffffff"><b>"编辑同步群组"</b></font>"以从新的或现有的 Google 帐户添加"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入联系人"</b></font>"以从您的 SIM 卡添加联系人"\n</li></string>
+    <!-- no translation found for noContactsHelpTextWithSync (2179024855526352215) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpText (645951808197910024) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpTextWithSync (511505839941079550) -->
+    <skip />
+    <!-- no translation found for noFavoritesHelpText (1705381563293866510) -->
+    <skip />
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"选择要同步的群组"</string>
     <string name="liveFolder_all_label" msgid="1552523730090319259">"所有联系人"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标"</string>
@@ -214,8 +212,7 @@
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"经常呼叫"</string>
     <string name="add_contact_dlg_title" msgid="2789046541229846116">"添加联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
-    <!-- no translation found for all_tab_label (4003124364397916826) -->
-    <skip />
+    <string name="all_tab_label" msgid="4003124364397916826">"全部"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"一"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"二"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"三"</string>
@@ -232,29 +229,27 @@
     <string name="no_sdcard_message" msgid="7791906118138538259">"未检测到 SD 卡"</string>
     <string name="searching_vcard_title" msgid="4158580043290687793">"正在搜索 VCard"</string>
     <string name="select_import_type_title" msgid="2443742794103731022">"您希望从何处导入联系人？"</string>
-    <string name="import_from_sim" msgid="3362158539070179154">"SIM 卡"</string>
-    <string name="import_from_sdcard" msgid="8854793070007530689">"SD 卡"</string>
-    <!-- no translation found for import_one_vcard_string (9059163467020328433) -->
+    <!-- no translation found for import_from_sim (3859272228033941659) -->
     <skip />
-    <!-- no translation found for import_multiple_vcard_string (3810226492811062392) -->
+    <!-- no translation found for import_from_sdcard (8550360976693202816) -->
     <skip />
-    <!-- no translation found for import_all_vcard_string (5518136113853448474) -->
+    <!-- no translation found for export_to_sdcard (2597105442616166277) -->
     <skip />
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"导入一个 vCard 文件"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"导入多个 vCard 文件"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"导入所有 vCard 文件"</string>
     <string name="searching_vcard_message" msgid="2467573749792455605">"正在搜索 VCard 上的 VCard 数据"</string>
     <string name="scanning_sdcard_failed_title" msgid="2788276113399585924">"扫描 SD 卡失败"</string>
     <string name="scanning_sdcard_failed_message" msgid="925361244069058117">"扫描 SD 卡失败"</string>
-    <!-- no translation found for fail_reason_io_error (5949038573678667996) -->
-    <skip />
-    <string name="fail_reason_vcard_parse_error" msgid="8877496734269540489">"由于某些意外原因而无法解析 VCard"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="166568606246563552">"虽然 VCard 的格式似乎有效，但系统无法对其进行解析，因为当前实现方案不支持该格式"</string>
+    <string name="fail_reason_io_error" msgid="5949038573678667996">"I/O 错误（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="8877496734269540489">"由于某些意外原因而无法解析 vCard"</string>
+    <string name="fail_reason_vcard_not_supported_error" msgid="166568606246563552">"虽然 vCard 似乎使用了有效的格式，但系统无法对其进行解析，因为当前的实现方案不支持该格式。"</string>
     <string name="fail_reason_no_vcard_file" msgid="1489638537002538332">"未在 SD 卡上找到 VCard 文件"</string>
     <string name="fail_reason_no_vcard_entry" msgid="3808734131680935043">"未找到与所选内容对应的有效 VCard 条目"</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (3659521123567134029) -->
-    <skip />
+    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"一个或多个文件导入失败 (%s)。"</string>
     <string name="select_vcard_title" msgid="4615933643517710543">"选择 VCard 文件"</string>
     <string name="select_vcard_message" msgid="7028772212789057858">"请选择要导入的 VCard 文件"</string>
-    <!-- no translation found for progress_shower_message (5636525578293752526) -->
-    <skip />
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="430154704397375160">"正在读取 VCard"</string>
     <string name="reading_vcard_message" msgid="7470486051482460267">"正在读取 VCard 文件"</string>
     <string name="importing_vcard_message" msgid="2466665710812588738">"正在导入 VCard 数据"</string>
@@ -280,244 +275,130 @@
     <string name="add_2sec_pause" msgid="1488865103809190124">"暂停时间延长 2 秒"</string>
     <string name="add_wait" msgid="8347184715316058465">"延长等待时间"</string>
     <string name="dial_button_label" msgid="7637725632722605863">"拨打"</string>
-    <!-- no translation found for fasttrack_missing_app (1181287640680679441) -->
-    <skip />
-    <!-- no translation found for fasttrack_remember_choice (2858356075887897116) -->
-    <skip />
-    <!-- no translation found for fasttrack_missing_name (7806083820928955853) -->
-    <skip />
-    <!-- no translation found for menu_accounts (8499114602017077970) -->
-    <skip />
-    <!-- no translation found for nameLabelsGroup (2034640839640477827) -->
-    <skip />
-    <!-- no translation found for nicknameLabelsGroup (2891682101053358010) -->
-    <skip />
-    <!-- no translation found for organizationLabelsGroup (2478611760751832035) -->
-    <skip />
-    <!-- no translation found for websiteLabelsGroup (4202998982804009261) -->
-    <skip />
-    <!-- no translation found for type_home (1228039089996938949) -->
-    <skip />
-    <!-- no translation found for type_mobile (4202799691295960532) -->
-    <skip />
-    <!-- no translation found for type_work (9046581192178244575) -->
-    <skip />
-    <!-- no translation found for type_fax_work (7056833051776335751) -->
-    <skip />
-    <!-- no translation found for type_fax_home (5188151910627934239) -->
-    <skip />
-    <!-- no translation found for type_pager (6971533430192661440) -->
-    <skip />
-    <!-- no translation found for type_other (357858743316072535) -->
-    <skip />
-    <!-- no translation found for type_custom (546891906059234753) -->
-    <skip />
-    <!-- no translation found for type_short_home (7770424864090605384) -->
-    <skip />
-    <!-- no translation found for type_short_mobile (1655473281466676216) -->
-    <skip />
-    <!-- no translation found for type_short_work (4925330752504537861) -->
-    <skip />
-    <!-- no translation found for type_short_pager (2613818970827594238) -->
-    <skip />
-    <!-- no translation found for type_short_other (5669407180177236769) -->
-    <skip />
-    <!-- no translation found for type_home_2 (7576604544326827279) -->
-    <skip />
-    <!-- no translation found for type_work_2 (4033954623350210826) -->
-    <skip />
-    <!-- no translation found for type_car (1882297602515019816) -->
-    <skip />
-    <!-- no translation found for type_company_main (1757801178953730800) -->
-    <skip />
-    <!-- no translation found for type_mms (7575994898038669673) -->
-    <skip />
-    <!-- no translation found for type_radio (7376516830366758196) -->
-    <skip />
-    <!-- no translation found for type_assistant (4838160907811639910) -->
-    <skip />
-    <!-- no translation found for type_email_1 (6452852215966497668) -->
-    <skip />
-    <!-- no translation found for type_email_2 (1997291026230063227) -->
-    <skip />
-    <!-- no translation found for type_email_3 (2962324962480251941) -->
-    <skip />
-    <!-- no translation found for type_im_1 (5282555821022595430) -->
-    <skip />
-    <!-- no translation found for type_im_2 (7808341851940578010) -->
-    <skip />
-    <!-- no translation found for type_im_3 (5207327574719869469) -->
-    <skip />
-    <!-- no translation found for type_im_aim (2227683604131341761) -->
-    <skip />
-    <!-- no translation found for type_im_msn (5322977067527283958) -->
-    <skip />
-    <!-- no translation found for type_im_yahoo (8093860976582856789) -->
-    <skip />
-    <!-- no translation found for type_im_skype (7847929379814316050) -->
-    <skip />
-    <!-- no translation found for type_im_qq (764805405209877788) -->
-    <skip />
-    <!-- no translation found for type_im_google_talk (4019292000925519902) -->
-    <skip />
-    <!-- no translation found for type_im_icq (7556014886862234019) -->
-    <skip />
-    <!-- no translation found for type_im_jabber (5523148125631896131) -->
-    <skip />
-    <!-- no translation found for edit_secondary_collapse (1855127176548440583) -->
-    <skip />
-    <!-- no translation found for dialog_primary_name (5521591005692614833) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (9044704073286262197) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (3266725887008450161) -->
-    <skip />
-    <!-- no translation found for menu_sync_add (389823804276559168) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (4357317661311803984) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (2314043155909167610) -->
-    <skip />
-    <!-- no translation found for account_phone (4025734638492419713) -->
-    <skip />
-    <!-- no translation found for label_email_display_name (5537802602754309600) -->
-    <skip />
-    <!-- no translation found for call_home (1990519474420545392) -->
-    <skip />
-    <!-- no translation found for call_mobile (7502236805487609178) -->
-    <skip />
-    <!-- no translation found for call_work (5328785911463744028) -->
-    <skip />
-    <!-- no translation found for call_fax_work (7467763592359059243) -->
-    <skip />
-    <!-- no translation found for call_fax_home (8342175628887571876) -->
-    <skip />
-    <!-- no translation found for call_pager (9003902812293983281) -->
-    <skip />
-    <!-- no translation found for call_other (5605584621798108205) -->
-    <skip />
-    <!-- no translation found for call_custom (7756571794763171802) -->
-    <skip />
-    <!-- no translation found for call_home_2 (310203419023725540) -->
-    <skip />
-    <!-- no translation found for call_work_2 (4403999777434987049) -->
-    <skip />
-    <!-- no translation found for call_car (3280537320306436445) -->
-    <skip />
-    <!-- no translation found for call_company_main (6105120947138711257) -->
-    <skip />
-    <!-- no translation found for call_mms (6274041545876221437) -->
-    <skip />
-    <!-- no translation found for call_radio (8296755876398357063) -->
-    <skip />
-    <!-- no translation found for sms_home (7524332261493162995) -->
-    <skip />
-    <!-- no translation found for sms_mobile (5200107250451030769) -->
-    <skip />
-    <!-- no translation found for sms_work (2269624156655267740) -->
-    <skip />
-    <!-- no translation found for sms_fax_work (8028189067816907075) -->
-    <skip />
-    <!-- no translation found for sms_fax_home (9204042076306809634) -->
-    <skip />
-    <!-- no translation found for sms_pager (7730404569637015192) -->
-    <skip />
-    <!-- no translation found for sms_other (5131921487474531617) -->
-    <skip />
-    <!-- no translation found for sms_custom (5932736853732191825) -->
-    <skip />
-    <!-- no translation found for sms_home_2 (7944150531556566287) -->
-    <skip />
-    <!-- no translation found for sms_work_2 (1652790306127907938) -->
-    <skip />
-    <!-- no translation found for sms_car (7444227058437359641) -->
-    <skip />
-    <!-- no translation found for sms_company_main (118970873419678087) -->
-    <skip />
-    <!-- no translation found for sms_mms (4069352461380762677) -->
-    <skip />
-    <!-- no translation found for sms_radio (3329166673433967820) -->
-    <skip />
-    <!-- no translation found for email_home (8573740658148184279) -->
-    <skip />
-    <!-- no translation found for email_mobile (2042889209787989814) -->
-    <skip />
-    <!-- no translation found for email_work (2807430017302722689) -->
-    <skip />
-    <!-- no translation found for email_other (8093933498541795832) -->
-    <skip />
-    <!-- no translation found for email_custom (7548003991586214105) -->
-    <skip />
-    <!-- no translation found for email_1 (7161744123020026349) -->
-    <skip />
-    <!-- no translation found for email_2 (6410249245749339180) -->
-    <skip />
-    <!-- no translation found for email_3 (701060373041279309) -->
-    <skip />
-    <!-- no translation found for email (5668400997660065897) -->
-    <skip />
-    <!-- no translation found for map_home (1243547733423343982) -->
-    <skip />
-    <!-- no translation found for map_work (1360474076921878088) -->
-    <skip />
-    <!-- no translation found for map_other (5560707927535653892) -->
-    <skip />
-    <!-- no translation found for map_custom (6184363799976265281) -->
-    <skip />
-    <!-- no translation found for chat_aim (2588492205291249142) -->
-    <skip />
-    <!-- no translation found for chat_msn (8041633440091073484) -->
-    <skip />
-    <!-- no translation found for chat_yahoo (6629211142719943666) -->
-    <skip />
-    <!-- no translation found for chat_skype (1210045020427480566) -->
-    <skip />
-    <!-- no translation found for chat_qq (4294637812847719693) -->
-    <skip />
-    <!-- no translation found for chat_gtalk (981575737258117697) -->
-    <skip />
-    <!-- no translation found for chat_icq (8438405386153745775) -->
-    <skip />
-    <!-- no translation found for chat_jabber (7561444230307829609) -->
-    <skip />
-    <!-- no translation found for chat_other (6023619161453269469) -->
-    <skip />
-    <!-- no translation found for im_1 (1111192422266943605) -->
-    <skip />
-    <!-- no translation found for im_2 (7373299735909164246) -->
-    <skip />
-    <!-- no translation found for im_3 (2844502072341662301) -->
-    <skip />
-    <!-- no translation found for im (224369770441786285) -->
-    <skip />
-    <!-- no translation found for postal_street (8133143961580058972) -->
-    <skip />
-    <!-- no translation found for postal_pobox (4431938829180269821) -->
-    <skip />
-    <!-- no translation found for postal_neighborhood (1450783874558956739) -->
-    <skip />
-    <!-- no translation found for postal_city (6597491300084895548) -->
-    <skip />
-    <!-- no translation found for postal_region (6045263193478437672) -->
-    <skip />
-    <!-- no translation found for postal_postcode (572136414136673751) -->
-    <skip />
-    <!-- no translation found for postal_country (7638264508416368690) -->
-    <skip />
-    <!-- no translation found for name_given (1687286314106019813) -->
-    <skip />
-    <!-- no translation found for name_family (3416695586119999058) -->
-    <skip />
-    <!-- no translation found for name_prefix (59756378548779822) -->
-    <skip />
-    <!-- no translation found for name_middle (8467433655992690326) -->
-    <skip />
-    <!-- no translation found for name_suffix (3855278445375651441) -->
-    <skip />
-    <!-- no translation found for name_phonetic_given (6853570431394449191) -->
-    <skip />
-    <!-- no translation found for name_phonetic_middle (8643721493320405200) -->
-    <skip />
-    <!-- no translation found for name_phonetic_family (462095502140180305) -->
-    <skip />
+    <!-- no translation found for call_disambig_title (1911302597959335178) -->
+    <skip />
+    <!-- no translation found for sms_disambig_title (4675399294513152364) -->
+    <skip />
+    <!-- no translation found for make_primary (5829291915305113983) -->
+    <skip />
+    <string name="fasttrack_missing_app" msgid="1181287640680679441">"未找到可处理此操作的应用程序"</string>
+    <string name="fasttrack_remember_choice" msgid="2858356075887897116">"记住此选择"</string>
+    <string name="fasttrack_missing_name" msgid="7806083820928955853">"未知"</string>
+    <string name="menu_accounts" msgid="8499114602017077970">"帐户"</string>
+    <!-- no translation found for menu_import_export (3765725645491577190) -->
+    <skip />
+    <!-- no translation found for dialog_import_export (4771877268244096596) -->
+    <skip />
+    <!-- no translation found for menu_share (943789700636542260) -->
+    <skip />
+    <!-- no translation found for share_via (563121028023030093) -->
+    <skip />
+    <!-- no translation found for share_error (4374508848981697170) -->
+    <skip />
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"名称"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"昵称"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"组织"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"网站"</string>
+    <string name="type_home" msgid="1228039089996938949">"住宅"</string>
+    <string name="type_mobile" msgid="4202799691295960532">"手机"</string>
+    <string name="type_work" msgid="9046581192178244575">"单位"</string>
+    <string name="type_fax_work" msgid="7056833051776335751">"单位传真"</string>
+    <string name="type_fax_home" msgid="5188151910627934239">"住宅传真"</string>
+    <string name="type_pager" msgid="6971533430192661440">"寻呼机"</string>
+    <string name="type_other" msgid="357858743316072535">"其他"</string>
+    <string name="type_custom" msgid="546891906059234753">"自定义"</string>
+    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
+    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
+    <string name="type_short_work" msgid="4925330752504537861">"W"</string>
+    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
+    <string name="type_short_other" msgid="5669407180177236769">"O"</string>
+    <string name="type_home_2" msgid="7576604544326827279">"住宅 2"</string>
+    <string name="type_work_2" msgid="4033954623350210826">"单位 2"</string>
+    <string name="type_car" msgid="1882297602515019816">"车载电话"</string>
+    <string name="type_company_main" msgid="1757801178953730800">"公司总机"</string>
+    <string name="type_mms" msgid="7575994898038669673">"彩信"</string>
+    <string name="type_radio" msgid="7376516830366758196">"无线装置"</string>
+    <string name="type_assistant" msgid="4838160907811639910">"助手"</string>
+    <string name="type_im_aim" msgid="2227683604131341761">"AIM"</string>
+    <string name="type_im_msn" msgid="5322977067527283958">"Windows Live"</string>
+    <string name="type_im_yahoo" msgid="8093860976582856789">"雅虎"</string>
+    <string name="type_im_skype" msgid="7847929379814316050">"Skype"</string>
+    <string name="type_im_qq" msgid="764805405209877788">"QQ"</string>
+    <string name="type_im_google_talk" msgid="4019292000925519902">"Google Talk"</string>
+    <string name="type_im_icq" msgid="7556014886862234019">"ICQ"</string>
+    <string name="type_im_jabber" msgid="5523148125631896131">"Jabber"</string>
+    <string name="edit_secondary_collapse" msgid="1855127176548440583">"附属详情"</string>
+    <string name="dialog_primary_name" msgid="5521591005692614833">"主名称"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帐户下创建联系人"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"删除同步群组"</string>
+    <!-- no translation found for dialog_sync_add (8267045393119375803) -->
+    <skip />
+    <!-- no translation found for display_more_groups (2682547080423434170) -->
+    <skip />
+    <string name="display_ungrouped" msgid="4357317661311803984">"（未分组联系人）"</string>
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"如果从同步中删除群组“<xliff:g id="GROUP">%s</xliff:g>”，则会同时删除其中所有未分组的联系人。"</string>
+    <string name="account_phone" msgid="4025734638492419713">"仅保存在手机中（不同步）"</string>
+    <string name="label_email_display_name" msgid="5537802602754309600">"显示名称"</string>
+    <string name="call_home" msgid="1990519474420545392">"呼叫住宅"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"呼叫手机"</string>
+    <string name="call_work" msgid="5328785911463744028">"呼叫单位"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"呼叫单位传真"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"呼叫住宅传真"</string>
+    <string name="call_pager" msgid="9003902812293983281">"呼叫寻呼机"</string>
+    <string name="call_other" msgid="5605584621798108205">"呼叫“其他”通讯方式"</string>
+    <string name="call_custom" msgid="7756571794763171802">"呼叫<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home_2" msgid="310203419023725540">"呼叫住宅 2"</string>
+    <string name="call_work_2" msgid="4403999777434987049">"呼叫单位 2"</string>
+    <string name="call_car" msgid="3280537320306436445">"呼叫车载电话"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"呼叫公司总机"</string>
+    <string name="call_mms" msgid="6274041545876221437">"语音彩信"</string>
+    <string name="call_radio" msgid="8296755876398357063">"呼叫无线装置"</string>
+    <string name="sms_home" msgid="7524332261493162995">"向住宅发送文本消息"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"向手机发送文本消息"</string>
+    <string name="sms_work" msgid="2269624156655267740">"向单位发送文本消息"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"向单位传真发送文本消息"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"向住宅传真发送文本消息"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"向寻呼机发送文字消息"</string>
+    <string name="sms_other" msgid="5131921487474531617">"向其他通讯工具发送文本消息"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"向<xliff:g id="CUSTOM">%s</xliff:g>发送文本消息"</string>
+    <string name="sms_home_2" msgid="7944150531556566287">"向住宅 2 发送文本消息"</string>
+    <string name="sms_work_2" msgid="1652790306127907938">"向单位 2 发送文本消息"</string>
+    <string name="sms_car" msgid="7444227058437359641">"向车载电话发送文本消息"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"向公司总机发送文本消息"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"文本彩信"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"向无线装置发送文本消息"</string>
+    <string name="email_home" msgid="8573740658148184279">"向住宅发送电子邮件"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"向手机发送电子邮件"</string>
+    <string name="email_work" msgid="2807430017302722689">"向单位发送电子邮件"</string>
+    <string name="email_other" msgid="8093933498541795832">"向其他地址发送电子邮件"</string>
+    <string name="email_custom" msgid="7548003991586214105">"向<xliff:g id="CUSTOM">%s</xliff:g>发送电子邮件"</string>
+    <string name="email" msgid="5668400997660065897">"电子邮件"</string>
+    <string name="map_home" msgid="1243547733423343982">"查看住宅地址"</string>
+    <string name="map_work" msgid="1360474076921878088">"查看单位地址"</string>
+    <string name="map_other" msgid="5560707927535653892">"查看其他地址"</string>
+    <string name="map_custom" msgid="6184363799976265281">"查看<xliff:g id="CUSTOM">%s</xliff:g>地址"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"使用 AIM 聊天"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"使用 Windows Live 聊天"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"使用雅虎软件聊天"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"使用 Skype 聊天"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"使用 QQ 聊天"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"使用 Google Talk 聊天"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 聊天"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 聊天"</string>
+    <string name="chat_other" msgid="6023619161453269469">"聊天"</string>
+    <string name="postal_street" msgid="8133143961580058972">"街道"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"信箱"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"街区"</string>
+    <string name="postal_city" msgid="6597491300084895548">"城市"</string>
+    <string name="postal_region" msgid="6045263193478437672">"省/直辖市/自治区"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"邮政编码"</string>
+    <string name="postal_country" msgid="7638264508416368690">"国家/地区"</string>
+    <string name="name_given" msgid="1687286314106019813">"名字"</string>
+    <string name="name_family" msgid="3416695586119999058">"姓氏"</string>
+    <string name="name_prefix" msgid="59756378548779822">"名称前缀"</string>
+    <string name="name_middle" msgid="8467433655992690326">"中间名"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"名称后缀"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"名字拼音"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"中间名拼音"</string>
+    <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
 </resources>
