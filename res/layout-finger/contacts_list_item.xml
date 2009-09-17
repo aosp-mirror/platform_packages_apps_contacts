@@ -22,12 +22,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
 >
-    <TextView android:id="@+id/header"
-        style="?android:attr/listSeparatorTextViewStyle"
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"
-        android:background="#444444"
-        android:gravity="center_horizontal"
+    <include
+        android:id="@+id/header"
+        layout="@layout/list_separator"
     />
 
     <View android:id="@+id/list_divider"
@@ -97,27 +94,31 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
-        <ImageView android:id="@+id/call_button"
+        <LinearLayout android:id="@+id/call_view"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:paddingLeft="14dip"
-            android:paddingRight="14dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:gravity="center"
-            android:src="@android:drawable/sym_action_call"
-            android:background="@android:drawable/list_selector_background"
-        />
-
-        <View android:id="@+id/divider"
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:layout_toLeftOf="@id/call_button"
+            android:orientation="horizontal"
             android:layout_marginLeft="11dip"
+            android:layout_alignParentRight="true">
 
-            android:background="@drawable/divider_vertical_dark"
-        />
+            <View android:id="@+id/divider"
+                android:layout_width="1dip"
+                android:layout_height="fill_parent"
+                android:background="@drawable/divider_vertical_dark"
+            />
+
+            <ImageView android:id="@+id/call_button"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:src="@android:drawable/sym_action_call"
+                android:background="@android:drawable/list_selector_background"
+            />
+
+        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

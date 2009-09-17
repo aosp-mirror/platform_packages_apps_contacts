@@ -22,8 +22,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
 >
-    <include 
-        android:id="@+id/header" 
+    <include
+        android:id="@+id/header"
         layout="@layout/list_separator"
     />
 
@@ -101,27 +101,30 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
-        <ImageView android:id="@+id/call_button"
+        <LinearLayout android:id="@+id/call_view"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:paddingLeft="14dip"
-            android:paddingRight="14dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:gravity="center"
-            android:src="@android:drawable/sym_action_call"
-            android:background="@android:drawable/list_selector_background"
-        />
-
-        <View android:id="@+id/divider"
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:layout_toLeftOf="@id/call_button"
+            android:orientation="horizontal"
             android:layout_marginLeft="11dip"
+            android:layout_alignParentRight="true">
 
-            android:background="@drawable/divider_vertical_dark"
-        />
+            <View android:id="@+id/divider"
+                android:layout_width="1dip"
+                android:layout_height="fill_parent"
+                android:background="@drawable/divider_vertical_dark"
+            />
 
+            <ImageView android:id="@+id/call_button"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:src="@android:drawable/sym_action_call"
+                android:background="@android:drawable/list_selector_background"
+            />
+
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

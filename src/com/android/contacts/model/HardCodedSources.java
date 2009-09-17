@@ -104,6 +104,34 @@ public class HardCodedSources {
             kind.actionAltHeader = new ActionAltInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
 
+            kind.typeColumn = Phone.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(Phone.TYPE_HOME, R.string.type_home, R.string.call_home,
+                    R.string.sms_home));
+            kind.typeList.add(new EditType(Phone.TYPE_MOBILE, R.string.type_mobile,
+                    R.string.call_mobile, R.string.sms_mobile));
+            kind.typeList.add(new EditType(Phone.TYPE_WORK, R.string.type_work, R.string.call_work,
+                    R.string.sms_work));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, R.string.type_fax_work,
+                    R.string.call_fax_work, R.string.sms_fax_work).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_FAX_HOME, R.string.type_fax_home,
+                    R.string.call_fax_home, R.string.sms_fax_home).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_PAGER, R.string.type_pager,
+                    R.string.call_pager, R.string.sms_pager).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_OTHER, R.string.type_other,
+                    R.string.call_other, R.string.sms_other));
+            kind.typeList.add(new EditType(Phone.TYPE_CUSTOM, R.string.type_custom,
+                    R.string.call_custom, R.string.sms_custom).setSecondary(true).setCustomColumn(
+                    Phone.LABEL));
+            kind.typeList.add(new EditType(Phone.TYPE_CAR, R.string.type_car, R.string.call_car,
+                    R.string.sms_car).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_COMPANY_MAIN, R.string.type_company_main,
+                    R.string.call_company_main, R.string.sms_company_main).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_MMS, R.string.type_mms, R.string.call_mms,
+                    R.string.sms_mms).setSecondary(true));
+            kind.typeList.add(new EditType(Phone.TYPE_RADIO, R.string.type_radio, R.string.call_radio,
+                    R.string.sms_radio).setSecondary(true));
+
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
@@ -111,12 +139,64 @@ public class HardCodedSources {
         }
 
         {
-            // GOOGLE: EMAIL
+            // FALLBACK: POSTAL
+            DataKind kind = new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
+                    R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true);
+
+            kind.actionHeader = new ActionInflater(list.resPackageName, kind);
+            // TODO: build body from various structured fields
+            kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
+
+            kind.typeColumn = StructuredPostal.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_HOME, R.string.type_home,
+                    R.string.map_home));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_WORK, R.string.type_work,
+                    R.string.map_work));
+            kind.typeList.add(new EditType(StructuredPostal.TYPE_OTHER, R.string.type_other,
+                    R.string.map_other));
+            kind.typeList
+                    .add(new EditType(StructuredPostal.TYPE_CUSTOM, R.string.type_custom,
+                            R.string.map_custom).setSecondary(true).setCustomColumn(
+                            StructuredPostal.LABEL));
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredPostal.STREET, R.string.postal_street,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POBOX, R.string.postal_pobox,
+                    FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
+                    R.string.postal_neighborhood, FLAGS_POSTAL, true));
+            kind.fieldList.add(new EditField(StructuredPostal.CITY, R.string.postal_city,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.REGION, R.string.postal_region,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE, R.string.postal_postcode,
+                    FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY, R.string.postal_country,
+                    FLAGS_POSTAL, true));
+
+            list.add(kind);
+        }
+
+        {
+            // FALLBACK: EMAIL
             DataKind kind = new DataKind(Email.CONTENT_ITEM_TYPE,
                     R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true);
 
             kind.actionHeader = new ActionInflater(list.resPackageName, kind);
             kind.actionBody = new SimpleInflater(Email.DATA);
+
+            kind.typeColumn = Email.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList
+                    .add(new EditType(Email.TYPE_HOME, R.string.type_home, R.string.email_home));
+            kind.typeList
+                    .add(new EditType(Email.TYPE_WORK, R.string.type_work, R.string.email_work));
+            kind.typeList.add(new EditType(Email.TYPE_OTHER, R.string.type_other,
+                    R.string.email_other));
+            kind.typeList.add(new EditType(Email.TYPE_CUSTOM, R.string.type_custom,
+                    R.string.email_home).setSecondary(true).setCustomColumn(Email.LABEL));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
