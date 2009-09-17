@@ -14,14 +14,12 @@
      limitations under the License.
 -->
 
-<!-- Background resource for digit buttons in the various dialpads
-	 used by the Contacts app (see dialpad.xml).
-     -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/btn_dial_pressed" />
+        android:drawable="@drawable/dial_num_1_no_vm_blk" />
     <item android:state_focused="true"
-        android:drawable="@drawable/btn_dial_selected" />
+        android:drawable="@drawable/dial_num_1_no_vm_blk" />
     <item
-        android:drawable="@drawable/btn_dial_normal" />
+        android:drawable="@drawable/dial_num_1_no_vm_wht" />
 </selector>
+
