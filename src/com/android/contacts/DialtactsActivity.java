@@ -316,18 +316,16 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Handle BACK
-        if (keyCode == KeyEvent.KEYCODE_BACK && isTaskRoot()) {
+    public void onBackPressed() {
+        if (isTaskRoot()) {
             // Instead of stopping, simply push this to the back of the stack.
             // This is only done when running at the top of the stack;
             // otherwise, we have been launched by someone else so need to
             // allow the user to go back to the caller.
             moveTaskToBack(false);
-            return true;
+        } else {
+            super.onBackPressed();
         }
-        
-        return super.onKeyDown(keyCode, event);
     }
 
     /** {@inheritDoc} */

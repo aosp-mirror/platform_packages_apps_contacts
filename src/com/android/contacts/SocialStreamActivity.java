@@ -153,16 +153,14 @@ public class SocialStreamActivity extends ListActivity implements OnClickListene
         mFastTrack.show(aggUri, mRect, Intents.MODE_MEDIUM, null);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Back key dismisses fast-track when its visible
-        if (keyCode == KeyEvent.KEYCODE_BACK && mFastTrack.isShowing()) {
+    public void onBackPressed() {
+        if (mFastTrack.isShowing()) {
+            // Back key dismisses fast-track when its visible
             mFastTrack.dismiss();
-            return true;
+        } else {
+            super.onBackPressed();
         }
-
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override
