@@ -517,8 +517,10 @@ public class EntityModifier {
         final boolean validValue = (value != null && TextUtils.isGraphic(value));
         if (!validValue || !canInsert) return;
 
-        // Find exact type, or otherwise best type
-        final int typeValue = extras.getInt(typeExtra, BaseTypes.TYPE_CUSTOM);
+        // Find exact type when requested, otherwise best available type
+        final boolean hasType = extras.containsKey(typeExtra);
+        final int typeValue = extras.getInt(typeExtra, hasType ? BaseTypes.TYPE_CUSTOM
+                : Integer.MIN_VALUE);
         final EditType editType = EntityModifier.getBestValidType(state, kind, true, typeValue);
 
         // Create data row and fill with value
