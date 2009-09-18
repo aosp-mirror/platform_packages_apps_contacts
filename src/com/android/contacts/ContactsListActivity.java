@@ -594,11 +594,11 @@ public final class ContactsListActivity extends ListActivity implements
 
     private void setEmptyText() {
         TextView empty = (TextView) findViewById(R.id.emptyText);
-        // Center the text by default
-        int gravity = Gravity.CENTER;
+        int gravity = Gravity.NO_GRAVITY;
 
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
+            gravity = Gravity.CENTER;
         } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
             empty.setText(getText(R.string.noFavoritesHelpText));
         } else {
@@ -618,7 +618,6 @@ public final class ContactsListActivity extends ListActivity implements
                     empty.setText(getText(R.string.noContactsNoSimHelpText));
                 }
             }
-            gravity = Gravity.NO_GRAVITY;
         }
         empty.setGravity(gravity);
     }
