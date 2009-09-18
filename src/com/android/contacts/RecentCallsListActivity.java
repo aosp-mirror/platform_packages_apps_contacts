@@ -656,8 +656,14 @@ public class RecentCallsListActivity extends ListActivity
      * <p>
      * Because of the shared {@link #sEditable} builder, <b>this method is not
      * thread safe</b>, and should only be called from the GUI thread.
+     * <p>
+     * If the given String object is null or empty, return an empty String.
      */
     private String formatPhoneNumber(String number) {
+        if (!TextUtils.isEmpty(number)) {
+            return "";
+        }
+
         // Cache formatting type if not already present
         if (sFormattingType == FORMATTING_TYPE_INVALID) {
             sFormattingType = PhoneNumberUtils.getFormatTypeForLocale(Locale.getDefault());
