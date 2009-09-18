@@ -91,7 +91,7 @@ public class SplitAggregateView extends ListView {
 
         mSources = Sources.getInstance(context);
 
-        final List<ContactInfo> list = loadData();
+        final List<RawContactInfo> list = loadData();
 
         setAdapter(new SplitAggregateAdapter(context, list));
         setOnItemClickListener(new OnItemClickListener() {
@@ -112,7 +112,7 @@ public class SplitAggregateView extends ListView {
     /**
      * Contact information loaded from the content provider.
      */
-    private static class ContactInfo implements Comparable<ContactInfo> {
+    private static class RawContactInfo implements Comparable<RawContactInfo> {
         final long rawContactId;
         String accountType;
         String name;
@@ -120,7 +120,7 @@ public class SplitAggregateView extends ListView {
         String email;
         String nickname;
 
-        public ContactInfo(long rawContactId) {
+        public RawContactInfo(long rawContactId) {
             this.rawContactId = rawContactId;
         }
 
@@ -140,7 +140,7 @@ public class SplitAggregateView extends ListView {
             return "";
         }
 
-        public int compareTo(ContactInfo another) {
+        public int compareTo(RawContactInfo another) {
             String thisAccount = accountType != null ? accountType : "";
             String thatAccount = another.accountType != null ? another.accountType : "";
             return thisAccount.compareTo(thatAccount);
@@ -148,21 +148,21 @@ public class SplitAggregateView extends ListView {
     }
 
     /**
-     * Loads data from the content provider, organizes it into {@link ContactInfo} objects
-     * and returns a sorted list of {@link ContactInfo}'s.
+     * Loads data from the content provider, organizes it into {@link RawContactInfo} objects
+     * and returns a sorted list of {@link RawContactInfo}'s.
      */
-    private List<ContactInfo> loadData() {
-        HashMap<Long, ContactInfo> contactInfos = new HashMap<Long, ContactInfo>();
+    private List<RawContactInfo> loadData() {
+        HashMap<Long, RawContactInfo> rawContactInfos = new HashMap<Long, RawContactInfo>();
         Uri dataUri = Uri.withAppendedPath(mAggregateUri, Data.CONTENT_DIRECTORY);
         Cursor cursor = getContext().getContentResolver().query(dataUri,
                 AGGREGATE_DATA_PROJECTION, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                long contactId = cursor.getLong(COL_RAW_CONTACT_ID);
-                ContactInfo info = contactInfos.get(contactId);
+                long rawContactId = cursor.getLong(COL_RAW_CONTACT_ID);
+                RawContactInfo info = rawContactInfos.get(rawContactId);
                 if (info == null) {
-                    info = new ContactInfo(contactId);
-                    contactInfos.put(contactId, info);
+                    info = new RawContactInfo(rawContactId);
+                    rawContactInfos.put(rawContactId, info);
                     info.accountType = cursor.getString(COL_ACCOUNT_TYPE);
                 }
 
@@ -181,12 +181,12 @@ public class SplitAggregateView extends ListView {
             cursor.close();
         }
 
-        List<ContactInfo> list = new ArrayList<ContactInfo>(contactInfos.values());
+        List<RawContactInfo> list = new ArrayList<RawContactInfo>(rawContactInfos.values());
         Collections.sort(list);
         return list;
     }
 
-    private void loadStructuredName(Cursor cursor, ContactInfo info) {
+    private void loadStructuredName(Cursor cursor, RawContactInfo info) {
         info.name = cursor.getString(COL_DISPLAY_NAME);
         if (info.name != null) {
             return;
@@ -210,19 +210,19 @@ public class SplitAggregateView extends ListView {
         }
     }
 
-    private void loadNickname(Cursor cursor, ContactInfo info) {
+    private void loadNickname(Cursor cursor, RawContactInfo info) {
         if (info.nickname == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
             info.nickname = cursor.getString(COL_DATA2);
         }
     }
 
-    private void loadEmail(Cursor cursor, ContactInfo info) {
+    private void loadEmail(Cursor cursor, RawContactInfo info) {
         if (info.email == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
             info.email = cursor.getString(COL_DATA2);
         }
     }
 
-    private void loadPhoneNumber(Cursor cursor, ContactInfo info) {
+    private void loadPhoneNumber(Cursor cursor, RawContactInfo info) {
         if (info.phone == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
             info.phone = cursor.getString(COL_DATA2);
         }
@@ -235,13 +235,13 @@ public class SplitAggregateView extends ListView {
     }
 
     /**
-     * List adapter for the list of {@link ContactInfo} objects.
+     * List adapter for the list of {@link RawContactInfo} objects.
      */
-    private class SplitAggregateAdapter extends ArrayAdapter<ContactInfo> {
+    private class SplitAggregateAdapter extends ArrayAdapter<RawContactInfo> {
 
         private LayoutInflater mInflater;
 
-        public SplitAggregateAdapter(Context context, List<ContactInfo> sources) {
+        public SplitAggregateAdapter(Context context, List<RawContactInfo> sources) {
             super(context, 0, sources);
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -261,7 +261,7 @@ public class SplitAggregateView extends ListView {
                 convertView.setTag(cache);
             }
 
-            final ContactInfo info = getItem(position);
+            final RawContactInfo info = getItem(position);
             cache.name.setText(info.name);
             cache.additionalData.setText(info.getAdditionalData());
 
