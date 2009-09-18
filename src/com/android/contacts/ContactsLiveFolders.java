@@ -16,13 +16,13 @@
 
 package com.android.contacts;
 
-import android.content.Intent;
-import android.content.Context;
-import android.net.Uri;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.provider.LiveFolders;
-import android.provider.Contacts;
 
 public class ContactsLiveFolders {
     public static class StarredContacts extends Activity {
@@ -100,8 +100,8 @@ public class ContactsLiveFolders {
         final Intent intent = new Intent();
 
         intent.setData(uri);
-        intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_BASE_INTENT, new Intent(Intent.ACTION_VIEW,
-                Contacts.People.CONTENT_URI));
+        intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_BASE_INTENT,
+                new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
         intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_NAME, name);
         intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_ICON,
                 Intent.ShortcutIconResource.fromContext(context, icon));
