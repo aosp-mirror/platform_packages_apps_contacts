@@ -92,13 +92,12 @@
     />
 
     <ImageView android:id="@+id/secondary_action_button"
-        android:layout_width="50dip"
-        android:layout_height="50dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="7dip"
         android:gravity="center"
         android:scaleType="centerInside"
-        android:background="@drawable/list_item_secondary_button"
     />
 
 </LinearLayout>
