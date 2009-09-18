@@ -344,6 +344,9 @@
     <!-- The group type that displays "Starred in Android" contacts -->
     <string name="starredInAndroid">Starred in Android</string>
 
+    <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
+    <string name="savingContact">Saving contact...</string>
+
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
 
