@@ -251,12 +251,12 @@ public final class ContactsListActivity extends ListActivity implements
     static final int SUMMARY_LOOKUP_KEY = 7;
 
     static final String[] PHONES_PROJECTION = new String[] {
-        Data._ID, //0
-        CommonDataKinds.Phone.TYPE, //1
-        CommonDataKinds.Phone.LABEL, //2
-        CommonDataKinds.Phone.NUMBER, //3
-        Contacts.DISPLAY_NAME, // 4
-        RawContacts.CONTACT_ID, // 5
+        Phone._ID, //0
+        Phone.TYPE, //1
+        Phone.LABEL, //2
+        Phone.NUMBER, //3
+        Phone.DISPLAY_NAME, // 4
+        Phone.CONTACT_ID, // 5
     };
     static final String[] LEGACY_PHONES_PROJECTION = new String[] {
         Phones._ID, //0
@@ -273,11 +273,11 @@ public final class ContactsListActivity extends ListActivity implements
     static final int PHONE_CONTACT_ID_COLUMN_INDEX = 5;
 
     static final String[] POSTALS_PROJECTION = new String[] {
-        Data._ID, //0
-        CommonDataKinds.StructuredPostal.TYPE, //1
-        CommonDataKinds.StructuredPostal.LABEL, //2
-        CommonDataKinds.StructuredPostal.DATA, //3
-        Contacts.DISPLAY_NAME, // 4
+        StructuredPostal._ID, //0
+        StructuredPostal.TYPE, //1
+        StructuredPostal.LABEL, //2
+        StructuredPostal.DATA, //3
+        StructuredPostal.DISPLAY_NAME, // 4
     };
     static final String[] LEGACY_POSTALS_PROJECTION = new String[] {
         ContactMethods._ID, //0
@@ -1758,7 +1758,7 @@ public final class ContactsListActivity extends ListActivity implements
                 phonesCursor.moveToPosition(-1);
                 while (phonesCursor.moveToNext()) {
                     if (phonesCursor.getInt(phonesCursor.
-                            getColumnIndex(Data.IS_SUPER_PRIMARY)) != 0) {
+                            getColumnIndex(Phone.IS_SUPER_PRIMARY)) != 0) {
                         // Found super primary, call it.
                         phone = phonesCursor.
                         getString(phonesCursor.getColumnIndex(Phone.NUMBER));
@@ -1790,7 +1790,7 @@ public final class ContactsListActivity extends ListActivity implements
         Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         Cursor c = getContentResolver().query(dataUri,
-                new String[] {Data._ID, Phone.NUMBER, Data.IS_SUPER_PRIMARY},
+                new String[] {Phone._ID, Phone.NUMBER, Phone.IS_SUPER_PRIMARY},
                 Data.MIMETYPE + "=?", new String[] {Phone.CONTENT_ITEM_TYPE}, null);
         if (c != null && c.moveToFirst()) {
             return c;
