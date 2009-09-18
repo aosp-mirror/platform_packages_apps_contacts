@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2009 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +36,9 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract;
-import android.provider.SocialContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.FastTrack;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
@@ -212,13 +212,13 @@ public class FastTrackWindow implements Window.Callback,
     private View getHeaderView(int mode) {
         View header = null;
         switch (mode) {
-            case Intents.MODE_SMALL:
+            case FastTrack.MODE_SMALL:
                 header = mWindow.findViewById(R.id.header_small);
                 break;
-            case Intents.MODE_MEDIUM:
+            case FastTrack.MODE_MEDIUM:
                 header = mWindow.findViewById(R.id.header_medium);
                 break;
-            case Intents.MODE_LARGE:
+            case FastTrack.MODE_LARGE:
                 header = mWindow.findViewById(R.id.header_large);
                 break;
         }
@@ -390,10 +390,10 @@ public class FastTrackWindow implements Window.Callback,
      */
     private synchronized void considerShowing() {
         if (mHasSummary && mHasSocial && mHasActions && !mShowing) {
-            if (mMode == Intents.MODE_MEDIUM && !mHasValidSocial) {
+            if (mMode == FastTrack.MODE_MEDIUM && !mHasValidSocial) {
                 // Missing valid social, swap medium for small header
                 mHeader.setVisibility(View.GONE);
-                mHeader = getHeaderView(Intents.MODE_SMALL);
+                mHeader = getHeaderView(FastTrack.MODE_SMALL);
             }
 
             // All queries have returned, pull curtain
