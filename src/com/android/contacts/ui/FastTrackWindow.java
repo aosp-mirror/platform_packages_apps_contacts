@@ -251,7 +251,6 @@ public class FastTrackWindow implements Window.Callback,
 
         setHeaderText(R.id.name, R.string.fasttrack_missing_name);
         setHeaderText(R.id.status, null);
-        setHeaderText(R.id.published, null);
         setHeaderImage(R.id.presence, null);
 
         mHasValidSocial = false;
@@ -481,14 +480,10 @@ public class FastTrackWindow implements Window.Callback,
         if (cursor == null || !cursor.moveToNext()) return;
 
         final String status = cursor.getString(SocialQuery.TITLE);
-        final long published = cursor.getLong(SocialQuery.PUBLISHED);
-        final CharSequence relativePublished = DateUtils.getRelativeTimeSpanString(published,
-                System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS);
 
         mHasValidSocial = !TextUtils.isEmpty(status);
 
         setHeaderText(R.id.status, status);
-        setHeaderText(R.id.published, relativePublished);
     }
 
     /**
