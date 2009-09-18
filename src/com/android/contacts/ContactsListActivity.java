@@ -16,15 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.Sources;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.ui.DisplayGroupsActivity;
-import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
-import com.android.contacts.util.Constants;
-
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -97,17 +89,25 @@ import android.widget.ArrayAdapter;
 import android.widget.FasttrackBadgeWidget;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.ui.DisplayGroupsActivity;
+import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
+import com.android.contacts.util.Constants;
+
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
@@ -786,8 +786,96 @@ public final class ContactsListActivity extends ListActivity implements
             case R.id.dialog_import_export: {
                 return createImportExportDialog();
             }
+            case R.string.import_from_sim:
+            case R.string.import_from_sdcard: {
+                return createSelectAccountDialog(id);
+            }
         }
         return super.onCreateDialog(id);
+    }
+
+    private class AccountSelectedListener
+        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
+
+        final private List<Account> mAccountList;
+        final private int mResId;
+
+        public AccountSelectedListener(List<Account> accountList, int resId) {
+            if (accountList == null || accountList.size() == 0) {
+                // TODO: Add all the contacts into phone-local account.
+                Log.e(TAG, "The size of Account list is 0");
+            }
+            mAccountList = accountList;
+            mResId = resId;
+        }
+
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            switch (mResId) {
+                case R.string.import_from_sim: {
+                    doImportFromSim(mAccountList.get(which));
+                    break;
+                }
+                case R.string.import_from_sdcard: {
+                    doImportFromSdCard(mAccountList.get(which));
+                    break;
+                }
+            }
+        }
+
+        public void onCancel(DialogInterface dialog) {
+            dialog.dismiss();
+        }
+    }
+
+    private Dialog createSelectAccountDialog(int resId) {
+        // A lot of codes are copied from EditContactActivity.
+        // TODO: Can we share the logic?
+        final Sources sources = Sources.getInstance(this);
+        final List<Account> accountList = sources.getAccounts(true);
+
+        // Wrap our context to inflate list items using correct theme
+        final Context dialogContext = new ContextThemeWrapper(
+                this, android.R.style.Theme_Light);
+        final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final ArrayAdapter<Account> accountAdapter =
+            new ArrayAdapter<Account>(this, android.R.layout.simple_list_item_2, accountList) {
+
+            @Override
+            public View getView(int position, View convertView,
+                    ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = dialogInflater.inflate(
+                            android.R.layout.simple_list_item_2,
+                            parent, false);
+                }
+
+                // TODO: show icon along with title
+                final TextView text1 =
+                        (TextView)convertView.findViewById(android.R.id.text1);
+                final TextView text2 =
+                        (TextView)convertView.findViewById(android.R.id.text2);
+
+                final Account account = this.getItem(position);
+                final ContactsSource source =
+                    sources.getInflatedSource(account.type,
+                            ContactsSource.LEVEL_SUMMARY);
+
+                text1.setText(source.getDisplayLabel(ContactsListActivity.this));
+                text2.setText(account.name);
+
+                return convertView;
+            }
+        };
+
+        AccountSelectedListener listener = new AccountSelectedListener(accountList, resId);
+        final AlertDialog.Builder builder =
+                new AlertDialog.Builder(this)
+                    .setTitle(R.string.dialog_new_contact_account)
+                    .setSingleChoiceItems(accountAdapter, 0, listener)
+                    .setOnCancelListener(listener);
+        return builder.create();
     }
 
     /**
@@ -833,12 +921,9 @@ public final class ContactsListActivity extends ListActivity implements
 
                 final int resId = adapter.getItem(which);
                 switch (resId) {
-                    case R.string.import_from_sim: {
-                        doImportFromSim();
-                        break;
-                    }
+                    case R.string.import_from_sim:
                     case R.string.import_from_sdcard: {
-                        doImportFromSdCard();
+                        showDialog(resId);
                         break;
                     }
                     case R.string.export_to_sdcard: {
@@ -856,16 +941,20 @@ public final class ContactsListActivity extends ListActivity implements
         return builder.create();
     }
 
-    private void doImportFromSim() {
+    private void doImportFromSim(Account account) {
         Intent importIntent = new Intent(Intent.ACTION_VIEW);
         importIntent.setType("vnd.android.cursor.item/sim-contact");
+        importIntent.putExtra("account_name", account.name);
+        importIntent.putExtra("account_type", account.type);
         importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
         startActivity(importIntent);
     }
 
-    private void doImportFromSdCard() {
-        Intent intent = new Intent(this, ImportVCardActivity.class);
-        startActivity(intent);
+    private void doImportFromSdCard(Account account) {
+        Intent importIntent = new Intent(this, ImportVCardActivity.class);
+        importIntent.putExtra("account_name", account.name);
+        importIntent.putExtra("account_type", account.type);
+        startActivity(importIntent);
     }
 
     private void doExportToSdCard() {
