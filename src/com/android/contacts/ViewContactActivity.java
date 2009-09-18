@@ -871,7 +871,7 @@ public class ViewContactActivity extends Activity
                     entry.id = id;
                     entry.uri = uri;
                     entry.mimetype = mimetype;
-                    entry.label = buildActionString(kind, entryValues, true);
+                    entry.label = buildActionString(kind, entryValues, false);
                     entry.data = buildDataString(kind, entryValues);
                     if (kind.typeColumn != null && entryValues.containsKey(kind.typeColumn)) {
                         entry.type = entryValues.getAsInteger(kind.typeColumn);
