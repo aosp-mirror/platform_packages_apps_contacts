@@ -2315,11 +2315,6 @@ public final class ContactsListActivity extends ListActivity implements
 
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
-
-            // Clear the photo bitmap cache, if there is one
-            if (mBitmapCache != null) {
-                mBitmapCache.clear();
-            }
         }
 
         private void updateIndexer(Cursor cursor) {
