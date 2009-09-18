@@ -55,7 +55,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.FasttrackBadgeWidget.WindowLarge" />
+            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium" />
         />
 
         <TextView android:id="@+id/label"
