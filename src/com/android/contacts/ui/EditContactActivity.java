@@ -16,31 +16,14 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.ScrollingTabWidget;
-import com.android.contacts.ViewContactActivity;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Editor;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntitySet;
-import com.android.contacts.model.HardCodedSources;
-import com.android.contacts.model.Sources;
-import com.android.contacts.model.Editor.EditorListener;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.ui.widget.ContactEditorView;
-import com.android.contacts.util.EmptyService;
-import com.android.contacts.util.WeakAsyncTask;
-import com.android.internal.widget.ContactHeaderWidget;
-import com.google.android.collect.Lists;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -74,10 +57,27 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.collect.Lists;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.ScrollingTabWidget;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Editor;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.HardCodedSources;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.Editor.EditorListener;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.widget.ContactEditorView;
+import com.android.contacts.util.EmptyService;
+import com.android.contacts.util.WeakAsyncTask;
+import com.android.internal.widget.ContactHeaderWidget;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Activity for editing or inserting a contact.
@@ -493,19 +493,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         return false;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Background task for persisting edited contact data, using the changes
      * defined by a set of {@link EntityDelta}. This task starts
@@ -520,6 +507,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         private static final int RESULT_SUCCESS = 1;
         private static final int RESULT_FAILURE = 2;
 
+        private long mSavedId;
+
+        private WeakReference<ProgressDialog> progress;
+
         public PersistTask(EditContactActivity target) {
             super(target);
         }
@@ -527,6 +518,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(EditContactActivity target) {
+            this.progress = new WeakReference<ProgressDialog>(ProgressDialog.show(target, null,
+                    target.getText(R.string.savingContact)));
+
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
             final Context context = target;
@@ -552,7 +546,21 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 try {
                     // Build operations and try applying
                     final ArrayList<ContentProviderOperation> diff = state.buildDiff();
-                    resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                    ContentProviderResult[] results;
+                    if (!diff.isEmpty()) {
+                         results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                         Intent intent = new Intent();
+                         final long rawContactId = getRawContactId(state, diff, results);
+                         final Uri rawContactUri = ContentUris.withAppendedId(
+                                 RawContacts.CONTENT_URI, rawContactId);
+
+                         // convert the raw contact URI to a contact URI
+                         final Uri contactLookupUri = RawContacts.getContactLookupUri(resolver,
+                                 rawContactUri);
+                         intent.setData(contactLookupUri);
+                         target.setResult(RESULT_OK, intent);
+                         target.finish();
+                    }
                     result = (diff.size() > 0) ? RESULT_SUCCESS : RESULT_UNCHANGED;
                     break;
 
@@ -574,6 +582,27 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             return result;
         }
 
+        private long getRawContactId(EntitySet state,
+                final ArrayList<ContentProviderOperation> diff,
+                final ContentProviderResult[] results) {
+            long rawContactId = state.findRawContactId();
+            if (rawContactId != -1) {
+                return rawContactId;
+            }
+
+            // we gotta do some searching for the id
+            final int diffSize = diff.size();
+            for (int i = 0; i < diffSize; i++) {
+                ContentProviderOperation operation = diff.get(i);
+                if (operation.getType() == ContentProviderOperation.TYPE_INSERT
+                        && operation.getUri().getEncodedPath().contains(
+                                RawContacts.CONTENT_URI.getEncodedPath())) {
+                    return ContentUris.parseId(results[i].uri);
+                }
+            }
+            return -1;
+        }
+
         /** {@inheritDoc} */
         @Override
         protected void onPostExecute(EditContactActivity target, Integer result) {
@@ -585,17 +614,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 Toast.makeText(context, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
+            progress.get().dismiss();
+            target.finish();
             // Stop the service that was protecting us
             context.stopService(new Intent(context, EmptyService.class));
         }
     }
-
-    /**
-     * Timeout for a {@link PersistTask} running on a background thread. This is
-     * just shorter than the ANR timeout, so that we hold off user interaction
-     * as long as possible.
-     */
-    private static final long TIMEOUT_PERSIST = 4000;
 
     /**
      * Saves or creates the contact based on the mode, and if successful
@@ -604,29 +628,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private boolean doSaveAction() {
         if (!hasValidState()) return false;
 
-        // Pass back last-selected contact
-        final Long rawContactId = this.getSelectedRawContactId();
-        if (rawContactId != null) {
-            final Intent intent = new Intent();
-            intent.putExtra(ViewContactActivity.RAW_CONTACT_ID_EXTRA, (long)rawContactId);
-            setResult(RESULT_OK, intent);
-        }
+        final PersistTask task = new PersistTask(this);
+        task.execute(mState);
 
-        try {
-            final PersistTask task = new PersistTask(this);
-            task.execute(mState);
-            task.get(TIMEOUT_PERSIST, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            // Ignore when someone cancels the operation
-        } catch (TimeoutException e) {
-            // Ignore when task is taking too long
-        } catch (ExecutionException e) {
-            // Important exceptions are handled on remote thread
-        }
-
-        // Persisting finished, or we timed out waiting on it. Either way,
-        // finish this activity, the background task will keep running.
-        this.finish();
         return true;
     }
 

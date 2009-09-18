@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -349,6 +349,7 @@
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
                 <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
             </intent-filter>
+
         </activity>
 
         <!-- Stub service used to keep our process alive long enough for
@@ -360,7 +361,7 @@
         <!-- Views the details of a single contact -->
         <activity android:name="ContactOptionsActivity"
             android:label="@string/contactOptionsTitle"
-        >   
+        >
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -377,10 +378,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             />
-        </activity>        
+        </activity>
 
         <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
-        <meta-data android:name="android.app.default_searchable" 
+        <meta-data android:name="android.app.default_searchable"
                    android:value=".ContactsListActivity" />
 
 
