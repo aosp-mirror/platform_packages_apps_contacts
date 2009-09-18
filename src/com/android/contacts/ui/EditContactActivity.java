@@ -731,6 +731,15 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             final ArrayList<Account> writable = sources.getAccounts(true);
+
+            // In the common case of a single account being writable, auto-select
+            // it without showing a dialog.
+            if (writable.size() == 1) {
+                selectAccount(writable.get(0));
+                // Signal to not show a dialog:
+                return null;
+            }
+
             final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(target,
                     android.R.layout.simple_list_item_2, writable) {
                 @Override
@@ -761,37 +770,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
                     // Create new contact based on selected source
                     final Account account = accountAdapter.getItem(which);
-                    final ContentValues values = new ContentValues();
-                    values.put(RawContacts.ACCOUNT_NAME, account.name);
-                    values.put(RawContacts.ACCOUNT_TYPE, account.type);
+                    selectAccount(account);
 
-                    // Parse any values from incoming intent
-                    final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-                    final ContactsSource source = sources.getInflatedSource(account.type,
-                            ContactsSource.LEVEL_CONSTRAINTS);
-                    final Bundle extras = target.getIntent().getExtras();
-                    EntityModifier.parseExtras(target, source, insert, extras);
-
-                    // Ensure we have some default fields
-                    EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
-                    EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
-
-                    // Create "My Contacts" membership for Google contacts
-                    // TODO: move this off into "templates" for each given source
-                    if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(source.accountType)) {
-                        HardCodedSources.attemptMyContactsMembership(insert, target);
+                    // Update the UI.
+                    EditContactActivity target = mTarget.get();
+                    if (target != null) {
+                        target.bindTabs();
+                        target.bindHeader();
                     }
-
-                    if (target.mState == null) {
-                        // Create state if none exists yet
-                        target.mState = EntitySet.fromSingle(insert);
-                    } else {
-                        // Add contact onto end of existing state
-                        target.mState.add(insert);
-                    }
-
-                    target.bindTabs();
-                    target.bindHeader();
                 }
             };
 
@@ -812,9 +798,58 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             return builder;
         }
 
+        private void selectAccount(Account account) {
+            EditContactActivity target = mTarget.get();
+            if (target == null) {
+                return;
+            }
+            final Sources sources = Sources.getInstance(target);
+            final ContentValues values = new ContentValues();
+            values.put(RawContacts.ACCOUNT_NAME, account.name);
+            values.put(RawContacts.ACCOUNT_TYPE, account.type);
+
+            // Parse any values from incoming intent
+            final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
+            final ContactsSource source = sources.getInflatedSource(account.type,
+                                                                    ContactsSource.LEVEL_CONSTRAINTS);
+            final Bundle extras = target.getIntent().getExtras();
+            EntityModifier.parseExtras(target, source, insert, extras);
+
+            // Ensure we have some default fields
+            EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
+            EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
+
+            // Create "My Contacts" membership for Google contacts
+            // TODO: move this off into "templates" for each given source
+            if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(source.accountType)) {
+                HardCodedSources.attemptMyContactsMembership(insert, target);
+            }
+
+	    // TODO: no synchronization here on target.mState.  This
+	    // runs in the background thread, but it's accessed from
+	    // multiple thread, including the UI thread.
+            if (target.mState == null) {
+                // Create state if none exists yet
+                target.mState = EntitySet.fromSingle(insert);
+            } else {
+                // Add contact onto end of existing state
+                target.mState.add(insert);
+            }
+        }
+
         @Override
         protected void onPostExecute(EditContactActivity target, AlertDialog.Builder result) {
-            target.showAndManageDialog(result.create());
+            if (result != null) {
+                // Note: null is returned when no dialog is to be
+                // shown (no multiple accounts to select between)
+                target.showAndManageDialog(result.create());
+            } else {
+                // Account was auto-selected on the background thread,
+                // but we need to update the UI still in the
+                // now-current UI thread.
+                target.bindTabs();
+                target.bindHeader();
+            }
         }
     }
 
