@@ -310,12 +310,14 @@ public class FastTrackWindow implements Window.Callback,
             // edge with top of anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_down, mAnchor.centerX());
             l.y = mAnchor.top - blockHeight + mShadowHeight;
+            l.windowAnimations = R.style.FastTrackAboveAnimation;
 
         } else {
             // Otherwise show upwards callout, aligning block top with bottom of
             // anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_up, mAnchor.centerX());
             l.y = mAnchor.bottom - mShadowHeight;
+            l.windowAnimations = R.style.FastTrackBelowAnimation;
 
         }
 
@@ -336,6 +338,14 @@ public class FastTrackWindow implements Window.Callback,
         if (!isShowing()) {
             Log.d(TAG, "not visible, ignore");
             return;
+        }
+
+        boolean hadDecor = mDecor != null;
+        
+        if (hadDecor) {
+            mWindowManager.removeView(mDecor);
+            mDecor = null;
+            mWindow.closeAllPanels();
         }
 
         // Completely hide header from current mode
@@ -360,16 +370,13 @@ public class FastTrackWindow implements Window.Callback,
         mHasSocial = false;
         mHasActions = false;
 
-        if (mDecor == null || !mShowing) {
+        if (!hadDecor || !mShowing) {
             Log.d(TAG, "not showing, ignore");
             return;
         }
 
-        mWindowManager.removeView(mDecor);
-        mDecor = null;
-        mWindow.closeAllPanels();
         mShowing = false;
-
+        
         // Notify any listeners that we've been dismissed
         if (mDismissListener != null) {
             mDismissListener.onDismiss(this);
