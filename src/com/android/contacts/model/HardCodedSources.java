@@ -16,19 +16,18 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditField;
-import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.model.ContactsSource.StringInflater;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
-
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.os.RemoteException;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Groups;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -42,6 +41,17 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.view.inputmethod.EditorInfo;
+
+import com.google.android.collect.Lists;
+
+import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditField;
+import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.ContactsSource.StringInflater;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+
+import java.util.ArrayList;
 
 /**
  * Hard-coded definition of some {@link ContactsSource} constraints, since the
@@ -465,18 +475,90 @@ public class HardCodedSources {
     private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
-        // TODO: create group when it doesnt exist (syncadapter will fold in)
+        attemptMyContactsMembership(state, context, true);
+    }
+
+    /**
+     *
+     * @param allowRecur If the group is created between querying/about to create, we recur.  But
+     *     to prevent excess recursion, we provide a flag to make sure we only do the recursion loop
+     *     once
+     */
+    private static final void attemptMyContactsMembership(EntityDelta state, Context context,
+            boolean allowRecur) {
         final ContentResolver resolver = context.getContentResolver();
-        final Cursor cursor = resolver.query(Groups.CONTENT_URI, new String[] { Groups.SOURCE_ID },
-                Groups.TITLE + "=?", new String[] { GOOGLE_MY_CONTACTS_GROUP }, null);
-        try {
-            if (cursor.moveToFirst()) {
-                final ContentValues values = new ContentValues();
-                final String sourceId = cursor.getString(0);
-                values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
-                values.put(GroupMembership.GROUP_SOURCE_ID, sourceId);
-                state.addEntry(ValuesDelta.fromAfter(values));
+        final ValuesDelta stateValues = state.getValues();
+        final String accountName = stateValues.getAsString(RawContacts.ACCOUNT_NAME);
+        final String accountType = stateValues.getAsString(RawContacts.ACCOUNT_TYPE);
+
+        Cursor cursor = resolver.query(Groups.CONTENT_URI,
+                new String[] {Groups.TITLE, Groups.SOURCE_ID, Groups.SHOULD_SYNC},
+                Groups.ACCOUNT_NAME + " =? AND " + Groups.ACCOUNT_TYPE + " =?",
+                new String[] {accountName, accountType}, null);
+
+        boolean myContactsExists = false;
+        long assignToGroupSourceId = -1;
+        while (cursor.moveToNext()) {
+            if (GOOGLE_MY_CONTACTS_GROUP.equals(cursor.getString(0))) {
+                myContactsExists = true;
             }
+            if (assignToGroupSourceId == -1 && cursor.getInt(2) != 0) {
+                assignToGroupSourceId = cursor.getInt(1);
+            }
+
+            if (myContactsExists && assignToGroupSourceId != -1) {
+                break;
+            }
+        }
+
+        try {
+            final ContentValues values = new ContentValues();
+            values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+
+            if (!myContactsExists) {
+                // create the group if it doesn't exist
+                final ContentValues newGroup = new ContentValues();
+                newGroup.put(Groups.TITLE, GOOGLE_MY_CONTACTS_GROUP);
+
+                newGroup.put(Groups.ACCOUNT_NAME, accountName);
+                newGroup.put(Groups.ACCOUNT_TYPE, accountType);
+                newGroup.put(Groups.GROUP_VISIBLE, "1");
+
+                ArrayList<ContentProviderOperation> operations =
+                    new ArrayList<ContentProviderOperation>();
+
+                operations.add(ContentProviderOperation
+                        .newAssertQuery(Groups.CONTENT_URI)
+                        .withSelection(Groups.TITLE + "=?",
+                                new String[] { GOOGLE_MY_CONTACTS_GROUP })
+                        .withExpectedCount(0).build());
+                operations.add(ContentProviderOperation
+
+                        .newInsert(Groups.CONTENT_URI)
+                        .withValues(newGroup)
+                        .build());
+                try {
+                    ContentProviderResult[] results = resolver.applyBatch(
+                            ContactsContract.AUTHORITY, operations);
+                    values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(results[1].uri));
+                } catch (RemoteException e) {
+                    throw new IllegalStateException("Problem querying for groups", e);
+                } catch (OperationApplicationException e) {
+                    // the group was created after the query but before we tried to create it
+                    if (allowRecur) {
+                        attemptMyContactsMembership(state, context, false);
+                    }
+                    return;
+                }
+            } else {
+                if (assignToGroupSourceId != -1) {
+                    values.put(GroupMembership.GROUP_SOURCE_ID, assignToGroupSourceId);
+                } else {
+                    // there are no Groups to add this contact to, so don't apply any membership
+                    // TODO: alert user that their contact will be dropped?
+                }
+            }
+            state.addEntry(ValuesDelta.fromAfter(values));
         } finally {
             cursor.close();
         }
