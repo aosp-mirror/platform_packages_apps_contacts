@@ -95,12 +95,14 @@ public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
-    private ProgressDialog mProgressDialog;
     private Handler mHandler = new Handler();
     private Account mAccount;
 
+    private ProgressDialog mProgressDialogForScanVCard;
+
     private List<VCardFile> mAllVCardFileList;
     private VCardReadThread mVCardReadThread;
+    private ProgressDialog mProgressDialogForReadVCard;
 
     private class CancelListener
         implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
@@ -185,11 +187,11 @@ public class ImportVCardActivity extends Activity {
             // Even in such cases, some should be done.
             try {
                 if (mCanonicalPath != null) {  // Read one file
-                    mProgressDialog.setProgressNumberFormat("");
-                    mProgressDialog.setProgress(0);
+                    mProgressDialogForReadVCard.setProgressNumberFormat("");
+                    mProgressDialogForReadVCard.setProgress(0);
 
                     // Count the number of VCard entries
-                    mProgressDialog.setIndeterminate(true);
+                    mProgressDialogForReadVCard.setIndeterminate(true);
                     long start;
                     if (DO_PERFORMANCE_PROFILE) {
                         start = System.currentTimeMillis();
@@ -224,18 +226,18 @@ public class ImportVCardActivity extends Activity {
                         return;
                     }
 
-                    mProgressDialog.setProgressNumberFormat(
+                    mProgressDialogForReadVCard.setProgressNumberFormat(
                             getString(R.string.reading_vcard_contacts));
-                    mProgressDialog.setIndeterminate(false);
-                    mProgressDialog.setMax(counter.getCount());
+                    mProgressDialogForReadVCard.setIndeterminate(false);
+                    mProgressDialogForReadVCard.setMax(counter.getCount());
                     String charset = detector.getEstimatedCharset();
                     doActuallyReadOneVCard(mCanonicalPath, null, charset, true, detector,
                             mErrorFileNameList);
                 } else {  // Read multiple files.
-                    mProgressDialog.setProgressNumberFormat(
+                    mProgressDialogForReadVCard.setProgressNumberFormat(
                             getString(R.string.reading_vcard_files));
-                    mProgressDialog.setMax(mSelectedVCardFileList.size());
-                    mProgressDialog.setProgress(0);
+                    mProgressDialogForReadVCard.setMax(mSelectedVCardFileList.size());
+                    mProgressDialogForReadVCard.setProgress(0);
                     
                     for (VCardFile vcardFile : mSelectedVCardFileList) {
                         if (mCanceled) {
@@ -255,12 +257,12 @@ public class ImportVCardActivity extends Activity {
                         String charset = detector.getEstimatedCharset();
                         doActuallyReadOneVCard(canonicalPath, mAccount,
                                 charset, false, detector, mErrorFileNameList);
-                        mProgressDialog.incrementProgressBy(1);
+                        mProgressDialogForReadVCard.incrementProgressBy(1);
                     }
                 }
             } finally {
                 mWakeLock.release();
-                mProgressDialog.dismiss();
+                mProgressDialogForReadVCard.dismiss();
                 // finish() is called via ErrorDisplayer() on failure.
                 if (shouldCallFinish) {
                     if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
@@ -301,7 +303,7 @@ public class ImportVCardActivity extends Activity {
             }
             builder.addEntryHandler(new EntryCommitter(mResolver));
             if (showEntryParseProgress) {
-                builder.addEntryHandler(new ProgressShower(mProgressDialog,
+                builder.addEntryHandler(new ProgressShower(mProgressDialogForReadVCard,
                         context.getString(R.string.reading_vcard_message),
                         ImportVCardActivity.this,
                         mHandler));
@@ -352,7 +354,7 @@ public class ImportVCardActivity extends Activity {
             } catch (IOException e) {
                 Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
 
-                mProgressDialog.dismiss();
+                mProgressDialogForReadVCard.dismiss();
 
                 if (errorFileNameList != null) {
                     errorFileNameList.add(canonicalPath);
@@ -387,11 +389,15 @@ public class ImportVCardActivity extends Activity {
             return true;
         }
 
-        public void onCancel(DialogInterface dialog) {
+        public void cancel() {
             mCanceled = true;
             if (mVCardParser != null) {
                 mVCardParser.cancel();
             }
+        }
+
+        public void onCancel(DialogInterface dialog) {
+            cancel();
         }
     }
 
@@ -523,7 +529,8 @@ public class ImportVCardActivity extends Activity {
                 mAllVCardFileList = null;
             }
 
-            mProgressDialog.dismiss();
+            mProgressDialogForScanVCard.dismiss();
+            mProgressDialogForScanVCard = null;
 
             if (mGotIOException) {
                 mHandler.post(new Runnable() {
@@ -686,14 +693,16 @@ public class ImportVCardActivity extends Activity {
     }
 
     private Dialog getReadingVCardDialog() {
-        String title = getString(R.string.reading_vcard_title);
-        String message = getString(R.string.reading_vcard_message);
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle(title);
-        mProgressDialog.setMessage(message);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setOnCancelListener(mVCardReadThread);
-        return mProgressDialog;
+        if (mProgressDialogForReadVCard == null) {
+            String title = getString(R.string.reading_vcard_title);
+            String message = getString(R.string.reading_vcard_message);
+            mProgressDialogForReadVCard = new ProgressDialog(this);
+            mProgressDialogForReadVCard.setTitle(title);
+            mProgressDialogForReadVCard.setMessage(message);
+            mProgressDialogForReadVCard.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialogForReadVCard.setOnCancelListener(mVCardReadThread);
+        }
+        return mProgressDialogForReadVCard;
     }
 
     @Override
@@ -717,6 +726,16 @@ public class ImportVCardActivity extends Activity {
     @Override
     protected Dialog onCreateDialog(int resId) {
         switch (resId) {
+            case R.id.dialog_searching_vcard: {
+                if (mProgressDialogForScanVCard != null) {
+                    return mProgressDialogForScanVCard;
+                } else {
+                    // It may happen in the complicated situation.
+                    // TODO: Investigate on this.
+                    Log.e(LOG_TAG, "Cached ProgressDialog object is null, which should not happen.");
+                    break;
+                }
+            }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.no_sdcard_title)
@@ -746,6 +765,7 @@ public class ImportVCardActivity extends Activity {
                 return getVCardFileSelectDialog(false);
             }
             case R.id.dialog_reading_vcard: {
+                // mVCardReadThread.start() must be called before.
                 return getReadingVCardDialog();
             }
             case R.id.dialog_io_exception: {
@@ -764,6 +784,19 @@ public class ImportVCardActivity extends Activity {
         return super.onCreateDialog(resId);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mVCardReadThread != null) {
+            // The Activity is no longer visible. Stop the thread.
+            // TODO: The Activity may be destroyed without this method being called.
+            mVCardReadThread.cancel();
+            mVCardReadThread = null;
+        }
+    }
+
+    /* public methods */
+
     /**
      * Tries to start importing VCard. If there's no SDCard available,
      * an error dialog is shown. If there is, start scanning using another thread
@@ -775,13 +808,14 @@ public class ImportVCardActivity extends Activity {
         if (!file.exists() || !file.isDirectory() || !file.canRead()) {
             showDialog(R.id.dialog_sdcard_not_found);
         } else {
+            File sdcardDirectory = new File("/sdcard");
             String title = getString(R.string.searching_vcard_title);
             String message = getString(R.string.searching_vcard_message);
-
-            mProgressDialog = ProgressDialog.show(this, title, message, true, false);
-            VCardScanThread thread = new VCardScanThread(file);
-            mProgressDialog.setOnCancelListener(thread);
+            mProgressDialogForScanVCard = ProgressDialog.show(this, title, message, true, false);
+            VCardScanThread thread = new VCardScanThread(sdcardDirectory);
+            mProgressDialogForScanVCard.setOnCancelListener(thread);
             thread.start();
+            showDialog(R.id.dialog_searching_vcard);
         }
     }
 }

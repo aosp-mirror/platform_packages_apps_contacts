@@ -31,6 +31,7 @@
     <item type="id" name="dialog_import_export" />
 
     <!-- For ImportVCardActivity -->
+    <item type="id" name="dialog_searching_vcard" />
     <item type="id" name="dialog_sdcard_not_found" />
     <item type="id" name="dialog_vcard_not_found" />
     <item type="id" name="dialog_select_import_type" />
