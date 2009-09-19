@@ -63,15 +63,24 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="7dip"
+        android:layout_marginBottom="6dip"
         android:orientation="horizontal">
+
+        <!-- Onscreen "Voicemail" button -->
+        <ImageButton android:id="@+id/voicemailButton"
+            android:layout_width="90dip"
+            android:layout_height="52dip"
+            android:layout_gravity="center_vertical"
+            android:state_enabled="false"
+            android:background="@drawable/btn_dial_voicemail"
+            android:src="@drawable/ic_dial_action_voice_mail" />
 
         <!-- Onscreen "Dial" button, used on all platforms by
              default. Its usage can be disabled using resources (see
              config.xml.) -->
         <ImageButton android:id="@+id/dialButton"
             android:layout_width="116dip"
-            android:layout_height="50dip"
+            android:layout_height="52dip"
             android:layout_gravity="center_vertical"
             android:state_enabled="false"
             android:background="@drawable/btn_dial_action"
