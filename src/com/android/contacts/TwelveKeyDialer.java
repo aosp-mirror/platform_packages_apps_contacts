@@ -93,8 +93,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private Drawable mDeleteEmptyBackground;
     private View mDigitsAndBackspace;
     private View mDialpad;
-    private View mDialButton;
     private View mVoicemailDialAndBackspaceRow;
+    private View mVoicemailButton;
+    private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
     //Member variables for dialpad options
@@ -203,6 +204,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         }
 
         mVoicemailDialAndBackspaceRow = findViewById(R.id.voicemailAndDialAndBackspace);
+
+        initVoicemailButton();
 
         // Check whether we should show the onscreen "Dial" button.
         mDialButton = mVoicemailDialAndBackspaceRow.findViewById(R.id.dialButton);
@@ -673,6 +676,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 placeCall();
                 return;
             }
+            case R.id.voicemailButton: {
+                callVoicemail();
+                vibrate();
+                return;
+            }
         }
     }
 
@@ -1043,6 +1051,25 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private void updateDialButtonStateEnabledAttr() {
         if (mDialButton != null) {
             mDialButton.setEnabled(mDigits.length() != 0);
+        }
+    }
+
+    /**
+     * Check if voicemail is enabled/accessible.
+     */
+    private void initVoicemailButton() {
+        boolean hasVoicemail = false;
+        try {
+            hasVoicemail = TelephonyManager.getDefault().getVoiceMailNumber() != null;
+        } catch (SecurityException se) {
+            // Possibly no READ_PHONE_STATE privilege.
+        }
+
+        mVoicemailButton = mVoicemailDialAndBackspaceRow.findViewById(R.id.voicemailButton);
+        if (hasVoicemail) {
+            mVoicemailButton.setOnClickListener(this);
+        } else {
+            mVoicemailButton.setEnabled(false);
         }
     }
 
