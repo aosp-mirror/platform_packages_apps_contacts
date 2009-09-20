@@ -660,7 +660,7 @@ public class RecentCallsListActivity extends ListActivity
      * If the given String object is null or empty, return an empty String.
      */
     private String formatPhoneNumber(String number) {
-        if (!TextUtils.isEmpty(number)) {
+        if (TextUtils.isEmpty(number)) {
             return "";
         }
 
