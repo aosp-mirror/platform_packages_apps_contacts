@@ -202,7 +202,7 @@ public class ViewContactActivity extends Activity
 
         mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
-        mTabWidget.setVisibility(View.INVISIBLE);
+        mTabWidget.setVisibility(View.GONE);
 
         mTabRawContactIdMap = new SparseArray<Long>();
 
@@ -388,10 +388,14 @@ public class ViewContactActivity extends Activity
     public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
         try{
             if (token == TOKEN_QUERY) {
-                clearCurrentTabs();
+//                clearCurrentTabs();
                 mEntities = readEntities(iterator);
-                bindTabs();
-                selectInitialTab();
+                // Show the aggregate badge if this contact is aggregated.
+                if (mEntities.size() > 1) {
+                    mContactHeaderWidget.showAggregateBadge(true);
+                }
+//                bindTabs();
+                bindData();
             }
         } finally {
             if (iterator != null) {
