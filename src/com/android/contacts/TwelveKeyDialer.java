@@ -89,11 +89,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private Object mToneGeneratorLock = new Object();
     private Drawable mDigitsBackground;
     private Drawable mDigitsEmptyBackground;
-    private Drawable mDeleteBackground;
-    private Drawable mDeleteEmptyBackground;
-    private View mDigitsAndBackspace;
     private View mDialpad;
-    private View mVoicemailDialAndBackspaceRow;
+    private View mVoicemailDialAndDeleteRow;
     private View mVoicemailButton;
     private View mDialButton;
     private ListView mDialpadChooser;
@@ -158,19 +155,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.getText().clear();
         }
 
-        // Set the proper background for the dial input area
-        if (mDigits.length() != 0) {
-            mDelete.setBackgroundDrawable(mDeleteBackground);
-            mDigits.setBackgroundDrawable(mDigitsBackground);
-            mDigits.setCompoundDrawablesWithIntrinsicBounds(
-                    getResources().getDrawable(R.drawable.ic_dial_number), null, null, null);
-        } else {
-            mDelete.setBackgroundDrawable(mDeleteEmptyBackground);
-            mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
-            mDigits.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-        }
-
-        updateDialButtonStateEnabledAttr();
+        updateDialAndDeleteButtonStateEnabledAttr();
     }
 
     @Override
@@ -185,11 +170,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         mDigitsBackground = r.getDrawable(R.drawable.btn_dial_textfield_active);
         //mDigitsBackground.setDither(true);
         mDigitsEmptyBackground = r.getDrawable(R.drawable.btn_dial_textfield);
-        //mDigitsEmptyBackground.setDither(true);
-        mDeleteBackground = r.getDrawable(R.drawable.btn_dial_delete_active);
-        //mDeleteBackground.setDither(true);
-        mDeleteEmptyBackground = r.getDrawable(R.drawable.btn_dial_delete);
-        //mDeleteEmptyBackground.setDither(true);
 
         mDigits = (EditText) findViewById(R.id.digits);
         mDigits.setKeyListener(DialerKeyListener.getInstance());
@@ -203,12 +183,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             setupKeypad();
         }
 
-        mVoicemailDialAndBackspaceRow = findViewById(R.id.voicemailAndDialAndBackspace);
+        mVoicemailDialAndDeleteRow = findViewById(R.id.voicemailAndDialAndDelete);
 
         initVoicemailButton();
 
         // Check whether we should show the onscreen "Dial" button.
-        mDialButton = mVoicemailDialAndBackspaceRow.findViewById(R.id.dialButton);
+        mDialButton = mVoicemailDialAndDeleteRow.findViewById(R.id.dialButton);
 
         if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
             mDialButton.setOnClickListener(this);
@@ -217,12 +197,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDialButton = null;
         }
 
-        view = findViewById(R.id.backspace);
+        view = mVoicemailDialAndDeleteRow.findViewById(R.id.deleteButton);
         view.setOnClickListener(this);
         view.setOnLongClickListener(this);
         mDelete = view;
 
-        mDigitsAndBackspace = findViewById(R.id.digitsAndBackspace);
         mDialpad = findViewById(R.id.dialpad);  // This is null in landscape mode
 
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
@@ -438,7 +417,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             showDialpadChooser(false);
         }
 
-        updateDialButtonStateEnabledAttr();
+        updateDialAndDeleteButtonStateEnabledAttr();
     }
 
     @Override
@@ -666,7 +645,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_STAR);
                 return;
             }
-            case R.id.backspace: {
+            case R.id.deleteButton: {
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
             }
@@ -688,8 +667,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         final Editable digits = mDigits.getText();
         int id = view.getId();
         switch (id) {
-            case R.id.backspace: {
+            case R.id.deleteButton: {
                 digits.clear();
+                // TODO: The framework forgets to clear the pressed
+                // status of disabled button. Until this is fixed,
+                // clear manually the pressed status. b/2133127
+                mDelete.setPressed(false);
                 return true;
             }
             case R.id.one: {
@@ -789,9 +772,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private void showDialpadChooser(boolean enabled) {
         if (enabled) {
             // Log.i(TAG, "Showing dialpad chooser!");
-            mDigitsAndBackspace.setVisibility(View.GONE);
+            mDigits.setVisibility(View.GONE);
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
-            mVoicemailDialAndBackspaceRow.setVisibility(View.GONE);
+            mVoicemailDialAndDeleteRow.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
 
             // Instantiate the DialpadChooserAdapter and hook it up to the
@@ -802,9 +785,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             }
         } else {
             // Log.i(TAG, "Displaying normal Dialer UI.");
-            mDigitsAndBackspace.setVisibility(View.VISIBLE);
+            mDigits.setVisibility(View.VISIBLE);
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
-            mVoicemailDialAndBackspaceRow.setVisibility(View.VISIBLE);
+            mVoicemailDialAndDeleteRow.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
         }
     }
@@ -1046,13 +1029,17 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     /**
-     * Update the enabledness of the "Dial" button if applicable.
+     * Update the enabledness of the "Dial" and "Backspace" buttons if applicable.
      */
-    private void updateDialButtonStateEnabledAttr() {
+    private void updateDialAndDeleteButtonStateEnabledAttr() {
+        final boolean notEmpty = mDigits.length() != 0;
+
         if (mDialButton != null) {
-            mDialButton.setEnabled(mDigits.length() != 0);
+            mDialButton.setEnabled(notEmpty);
         }
+        mDelete.setEnabled(notEmpty);
     }
+
 
     /**
      * Check if voicemail is enabled/accessible.
@@ -1065,7 +1052,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // Possibly no READ_PHONE_STATE privilege.
         }
 
-        mVoicemailButton = mVoicemailDialAndBackspaceRow.findViewById(R.id.voicemailButton);
+        mVoicemailButton = mVoicemailDialAndDeleteRow.findViewById(R.id.voicemailButton);
         if (hasVoicemail) {
             mVoicemailButton.setOnClickListener(this);
         } else {
