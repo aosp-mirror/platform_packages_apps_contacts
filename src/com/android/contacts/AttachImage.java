@@ -16,19 +16,32 @@
 
 package com.android.contacts;
 
+import com.google.android.collect.Maps;
+
 import android.app.Activity;
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.widget.Toast;
 
+import com.android.contacts.model.ExchangeSource;
+import com.android.contacts.model.GoogleSource;
+
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Provides an external interface for other applications to attach images
@@ -40,37 +53,54 @@ public class AttachImage extends Activity {
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
 
-    private static final String CONTACT_URI_KEY = "contact_uri";
+    private static final String RAW_CONTACT_URIS_KEY = "raw_contact_uris";
 
     public AttachImage() {
 
     }
 
-    /**
-     * Is the raw_contact uri for the contact the user selected
-     */
-    Uri mContactUri;
+    private Long[] rawContactIds;
+
+    private ContentResolver mContentResolver;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         if (icicle != null) {
-            mContactUri = icicle.getParcelable(CONTACT_URI_KEY);
+            rawContactIds = toClassArray(icicle.getLongArray(RAW_CONTACT_URIS_KEY));
         } else {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType(Contacts.CONTENT_ITEM_TYPE);
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
         }
+
+        mContentResolver = getContentResolver();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        if (mContactUri != null) {
-            outState.putParcelable(CONTACT_URI_KEY, mContactUri);
+        if (rawContactIds != null && rawContactIds.length != 0) {
+            outState.putLongArray(RAW_CONTACT_URIS_KEY, toPrimativeArray(rawContactIds));
         }
+    }
+
+    private static long[] toPrimativeArray(Long[] in) {
+        long[] out = new long[in.length];
+        for (int i = 0; i < in.length; i++) {
+            out[i] = in[i];
+        }
+        return out;
+    }
+
+    private static Long[] toClassArray(long[] in) {
+        Long[] out = new Long[in.length];
+        for (int i = 0; i < in.length; i++) {
+            out[i] = in[i];
+        }
+        return out;
     }
 
     @Override
@@ -98,17 +128,14 @@ public class AttachImage extends Activity {
 
             // while they're cropping, convert the contact into a raw_contact
             final long contactId = ContentUris.parseId(result.getData());
-            final long rawContactId = ContactsUtils.queryForRawContactId(getContentResolver(),
-                    contactId);
+            final ArrayList<Long> rawContactIdsList = ContactsUtils.queryForAllRawContactIds(
+                    mContentResolver, contactId);
+            rawContactIds = new Long[rawContactIdsList.size()];
+            rawContactIds = rawContactIdsList.toArray(rawContactIds);
 
-            if (rawContactId == -1) {
+            if (rawContactIds == null || rawContactIdsList.isEmpty()) {
                 Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
-
-            mContactUri = Uri.withAppendedPath(
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
-                    RawContacts.Data.CONTENT_DIRECTORY);
-
         } else if (requestCode == REQUEST_CROP_PHOTO) {
             final Bundle extras = result.getExtras();
             if (extras != null) {
@@ -118,13 +145,100 @@ public class AttachImage extends Activity {
                     photo.compress(Bitmap.CompressFormat.JPEG, 75, stream);
 
                     final ContentValues imageValues = new ContentValues();
-                    imageValues.put(Photo.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
                     imageValues.put(Photo.PHOTO, stream.toByteArray());
                     imageValues.put(RawContacts.Data.IS_SUPER_PRIMARY, 1);
-                    getContentResolver().insert(mContactUri, imageValues);
+
+                    // attach the photo to every raw contact
+                    for (Long rawContactId : rawContactIds) {
+
+                        // exchange and google only allow one image, so do an update rather than insert
+                        boolean shouldUpdate = false;
+
+                        final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                                rawContactId);
+                        final Uri rawContactDataUri = Uri.withAppendedPath(rawContactUri,
+                                RawContacts.Data.CONTENT_DIRECTORY);
+                        insertPhoto(imageValues, rawContactDataUri, true);
+                    }
                 }
             }
             finish();
+        }
+    }
+
+    /**
+     * Inserts a photo on the raw contact.
+     * @param values the photo values
+     * @param assertAccount if true, will check to verify if the account is Google or exchange,
+     *     no photos exist (Google and exchange only take one picture)
+     */
+    private void insertPhoto(ContentValues values, Uri rawContactDataUri,
+            boolean assertAccount) {
+
+        ArrayList<ContentProviderOperation> operations =
+            new ArrayList<ContentProviderOperation>();
+
+        if (assertAccount) {
+            // make sure for Google and exchange, no pictures exist
+            operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
+                    .withSelection(Photo.MIMETYPE + "=? AND "
+                            + RawContacts.ACCOUNT_TYPE + " IN (?,?)",
+                            new String[] {Photo.CONTENT_ITEM_TYPE, GoogleSource.ACCOUNT_TYPE,
+                            ExchangeSource.ACCOUNT_TYPE})
+                            .withExpectedCount(0).build());
+        }
+
+        // insert the photo
+        values.put(Photo.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
+        operations.add(ContentProviderOperation.newInsert(rawContactDataUri)
+                .withValues(values).build());
+
+        try {
+            mContentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
+        } catch (RemoteException e) {
+            throw new IllegalStateException("Problem querying raw_contacts/data", e);
+        } catch (OperationApplicationException e) {
+            // the account doesn't allow multiple photos, so update
+            if (assertAccount) {
+                updatePhoto(values, rawContactDataUri, false);
+            } else {
+                throw new IllegalStateException("Problem inserting photo into raw_contacts/data", e);
+            }
+        }
+    }
+
+    /**
+     * Tries to update the photo on the raw_contact.  If no photo exists, and allowInsert == true,
+     * then will try to {@link #updatePhoto(ContentValues, boolean)}
+     */
+    private void updatePhoto(ContentValues values, Uri rawContactDataUri,
+            boolean allowInsert) {
+        ArrayList<ContentProviderOperation> operations =
+            new ArrayList<ContentProviderOperation>();
+
+        values.remove(Photo.MIMETYPE);
+
+        // check that a photo exists
+        operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
+                .withSelection(Photo.MIMETYPE + "=?", new String[] {
+                    Photo.CONTENT_ITEM_TYPE
+                }).withExpectedCount(1).build());
+
+        // update that photo
+        operations.add(ContentProviderOperation.newUpdate(rawContactDataUri).withSelection(Photo.MIMETYPE + "=?", new String[] {
+                    Photo.CONTENT_ITEM_TYPE}).withValues(values).build());
+
+        try {
+            mContentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
+        } catch (RemoteException e) {
+            throw new IllegalStateException("Problem querying raw_contacts/data", e);
+        } catch (OperationApplicationException e) {
+            if (allowInsert) {
+                // they deleted the photo between insert and update, so insert one
+                insertPhoto(values, rawContactDataUri, false);
+            } else {
+                throw new IllegalStateException("Problem inserting photo raw_contacts/data", e);
+            }
         }
     }
 }
