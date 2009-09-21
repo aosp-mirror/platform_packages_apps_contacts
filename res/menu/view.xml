@@ -35,12 +35,12 @@
     <!-- TODO: use new split/join icons -->
     <item
         android:id="@+id/menu_split"
-        android:icon="@android:drawable/ic_menu_share"
+        android:icon="@drawable/ic_menu_split"
         android:title="@string/menu_splitAggregate" />
 
     <item
         android:id="@+id/menu_join"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_merge"
         android:title="@string/menu_joinAggregate" />
 
     <item
