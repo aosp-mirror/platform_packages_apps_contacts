@@ -133,6 +133,7 @@ public class FastTrackWindow implements Window.Callback,
     private View mFooter;
     private View mFooterDisambig;
     private ListView mResolveList;
+    private CheckableImageView mLastChiclet;
 
     /**
      * Set of {@link Action} that are associated with the aggregate currently
@@ -347,6 +348,9 @@ public class FastTrackWindow implements Window.Callback,
             mDecor = null;
             mWindow.closeAllPanels();
         }
+
+        // Release refrence to last chiclet.
+        mLastChiclet = null;
 
         // Completely hide header from current mode
         mHeader.setVisibility(View.GONE);
@@ -931,7 +935,7 @@ public class FastTrackWindow implements Window.Callback,
      * the icon provided by the {@link DataKind}.
      */
     private View inflateAction(String mimeType) {
-        ImageView view = (ImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
+        CheckableImageView view = (CheckableImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
 
         // Add direct intent if single child, otherwise flag for multiple
         ActionList children = mActions.get(mimeType);
@@ -982,14 +986,17 @@ public class FastTrackWindow implements Window.Callback,
             // If showing list, then hide and save state of down arrow
             mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
             mArrowDown.setVisibility(View.INVISIBLE);
+	    mLastChiclet.setChecked(true);
         } else {
             // If hiding list, restore any down arrow state
             mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
+	    mLastChiclet.setChecked(false);
         }
     }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
+        mLastChiclet = (CheckableImageView)v;
         final Object tag = v.getTag();
         if (tag instanceof Intent) {
             // Hide the resolution list, if present
