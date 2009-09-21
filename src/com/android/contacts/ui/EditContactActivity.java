@@ -33,6 +33,7 @@ import android.content.Entity;
 import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -41,8 +42,10 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
@@ -62,12 +65,12 @@ import com.google.android.collect.Lists;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.ScrollingTabWidget;
-import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -131,6 +134,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Build editor and listen for photo requests
         mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
         mEditor.getPhotoEditor().setEditorListener(this);
+        mEditor.setNameEditorListener(this);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -141,10 +145,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
-
+            mHeader.showStar(true);
+            mHeader.setContactUri(intent.getData(), false);
         } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
             // Trigger dialog to pick account type
             doAddAction();
+            mHeader.showStar(false);
         }
     }
 
@@ -372,20 +378,49 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     protected void bindHeader() {
         if (!hasValidState()) return;
 
-        // TODO: rebuild header widget based on internal entities
+        boolean starred = false;
 
-        // TODO: fill header bar with newly parsed data for speed
-        // TODO: handle legacy case correctly instead of assuming _id
+        ValuesDelta photoDelta = mState.getSuperPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
+        if (photoDelta != null) {
+            final byte[] photoBytes = photoDelta.getAsByteArray(Photo.PHOTO);
+            if (photoBytes != null) {
+                Bitmap photo = BitmapFactory.decodeByteArray(photoBytes, 0,
+                        photoBytes.length);
+                mHeader.setPhoto(photo);
+            }
+        }
 
-//        if (mContactId > 0) {
-//            mHeader.bindFromContactId(mContactId);
-//        }
+        ValuesDelta nameDelta = mState.getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+        if (nameDelta != null) {
+            String visibleName = getVisibleName(nameDelta);
+            if (visibleName != null) {
+                mHeader.setDisplayName(visibleName, null);
+            }
+        }
 
-//        mHeader.setDisplayName(displayName, phoneticName);
-//        mHeader.setPhoto(bitmap);
+        for (EntityDelta delta : mState) {
+            Long isCurrStarred = delta.getValues().getAsLong(RawContacts.STARRED);
+            starred = starred || (isCurrStarred != null && isCurrStarred != 0);
+        }
+        mHeader.setStared(starred);
     }
 
+    private static String getVisibleName(ValuesDelta nameDelta) {
+        final String givenName = nameDelta.getAsString(StructuredName.GIVEN_NAME);
+        final String familyName = nameDelta.getAsString(StructuredName.FAMILY_NAME);
+        final boolean hasGiven = !TextUtils.isEmpty(givenName);
+        final boolean hasFamily = !TextUtils.isEmpty(familyName);
 
+        if (hasGiven && hasFamily) {
+            return givenName + " " + familyName;
+        } else if (hasFamily) {
+            return familyName;
+        } else if (hasGiven) {
+            return givenName;
+        } else {
+            return null;
+        }
+    }
 
     /** {@inheritDoc} */
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
@@ -452,6 +487,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 // state and returned to the last-visible tab.
                 final Bitmap photo = data.getParcelableExtra("data");
                 mEditor.setPhotoBitmap(photo);
+                bindHeader();
                 break;
             }
         }
@@ -706,6 +742,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         switch (request) {
             case EditorListener.REQUEST_PICK_PHOTO: {
                 doPickPhotoAction();
+                break;
+            }
+            case EditorListener.FIELD_CHANGED: {
+                bindHeader();
                 break;
             }
         }
