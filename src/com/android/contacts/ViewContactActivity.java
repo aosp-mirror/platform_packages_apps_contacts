@@ -231,8 +231,6 @@ public class ViewContactActivity extends Activity
 
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
-
-        startEntityQuery();
     }
 
     @Override
@@ -306,10 +304,6 @@ public class ViewContactActivity extends Activity
                     ContactsSource.LEVEL_SUMMARY);
             addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(), source));
         }
-
-        selectInitialTab();
-        mTabWidget.setVisibility(View.VISIBLE);
-        mTabWidget.postInvalidate();
     }
 
     /**
@@ -342,6 +336,8 @@ public class ViewContactActivity extends Activity
 
         mTabWidget.setCurrentTab(selectedTabIndex);
         onTabSelectionChanged(selectedTabIndex, false);
+        mTabWidget.setVisibility(View.VISIBLE);
+        mTabWidget.postInvalidate();
     }
 
     private void addAllTab() {
@@ -352,9 +348,11 @@ public class ViewContactActivity extends Activity
     }
 
     public void onTabSelectionChanged(int tabIndex, boolean clicked) {
-        long rawContactId = getTabRawContactId(tabIndex);
-        mSelectedRawContactId = rawContactId;
-        bindData();
+        Long rawContactId = getTabRawContactId(tabIndex);
+        if (rawContactId != null) {
+            mSelectedRawContactId = rawContactId;
+            bindData();
+        }
     }
 
     /**
@@ -363,7 +361,7 @@ public class ViewContactActivity extends Activity
      * @param index The index of the tab in question.
      * @return The contactId associated with the tab at the specified index.
      */
-    protected long getTabRawContactId(int index) {
+    protected Long getTabRawContactId(int index) {
         return mTabRawContactIdMap.get(index);
     }
 
@@ -392,7 +390,7 @@ public class ViewContactActivity extends Activity
                 clearCurrentTabs();
                 mEntities = readEntities(iterator);
                 bindTabs();
-                bindData();
+                selectInitialTab();
             }
         } finally {
             if (iterator != null) {
@@ -851,6 +849,13 @@ public class ViewContactActivity extends Activity
                 // TODO: entry.contactId should be renamed to entry.rawContactId
                 long contactId = entValues.getAsLong(RawContacts._ID);
 
+                // This performs the tab filtering
+                if (mSelectedRawContactId != null
+                        && mSelectedRawContactId != contactId
+                        && mSelectedRawContactId != ALL_CONTACTS_ID) {
+                    continue;
+                }
+
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
 
@@ -894,13 +899,6 @@ public class ViewContactActivity extends Activity
 
                     if (!mRawContactIds.contains(entry.contactId)) {
                         mRawContactIds.add(entry.contactId);
-                    }
-
-                    // This performs the tab filtering
-                    if (mSelectedRawContactId != null
-                            && mSelectedRawContactId != entry.contactId
-                            && mSelectedRawContactId != ALL_CONTACTS_ID) {
-                        continue;
                     }
 
                     if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)
