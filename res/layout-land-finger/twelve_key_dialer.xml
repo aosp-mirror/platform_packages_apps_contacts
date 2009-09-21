@@ -20,47 +20,22 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
 >
-    <LinearLayout android:id="@+id/digitsAndBackspace"
+
+    <!-- Text field above the keypad where the digits are displayed -->
+    <EditText android:id="@+id/digits"
         android:layout_width="fill_parent"
         android:layout_height="66dip"
-        android:addStatesFromChildren="true"
-        android:gravity="center_vertical"
-        android:baselineAligned="false"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="5dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-    >
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:textSize="28sp"
+        android:freezesText="true"
+        android:background="@drawable/btn_dial_textfield"
+        android:textColor="@color/dialer_button_text"
+        android:hint="@string/dialerKeyboardHintText"
+     />
 
-        <EditText android:id="@+id/digits"
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="66dip"
-            android:maxLines="1"
-            android:scrollHorizontally="true"
-            android:textSize="28sp"
-            android:freezesText="true"
-            android:background="@drawable/btn_dial_textfield"
-            android:textColor="@color/dialer_button_text"
-            android:hint="@string/dialerKeyboardHintText"
-        />
-
-        <!--
-            The button goes at the right.
-        -->
-        <ImageButton android:id="@+id/backspace"
-            style="@android:style/Widget.Button.Inset"
-            android:src="@drawable/ic_delete_phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="66dip"
-            android:background="@drawable/btn_dial_delete"
-            android:gravity="center"
-        />
-
-    </LinearLayout>
-
-    <!-- Horizontal row of buttons (Voicemail + DialButton + Backspace.) -->
-    <LinearLayout android:id="@+id/voicemailAndDialAndBackspace"
+    <!-- Horizontal row of buttons (Voicemail + DialButton + Delete.) -->
+    <LinearLayout android:id="@+id/voicemailAndDialAndDelete"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
@@ -86,6 +61,15 @@
             android:state_enabled="false"
             android:background="@drawable/btn_dial_action"
             android:src="@drawable/ic_dial_action_call" />
+
+        <!-- Onscreen "Backspace/Delete" button -->
+        <ImageButton android:id="@+id/deleteButton"
+            android:layout_width="90dip"
+            android:layout_height="52dip"
+            android:layout_gravity="center_vertical"
+            android:state_enabled="false"
+            android:background="@drawable/btn_dial_delete"
+            android:src="@drawable/ic_dial_action_delete" />
     </LinearLayout>
 
     <!-- "Dialpad chooser" UI, shown only when the user brings up the
