@@ -50,12 +50,20 @@
             android:gravity="center"
             android:scaleType="centerInside"
         />
-    
+
         <android.widget.FasttrackBadgeWidget android:id="@+id/photo"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
             style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium" />
+        />
+
+        <ImageView android:id="@+id/noFastTrackphoto"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dip"
+            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium"
+            android:background="@null" />
         />
 
         <TextView android:id="@+id/label"

@@ -174,6 +174,8 @@ public final class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_NO_DATA = 0x04000000;
     /** Mask for showing a call button in the list */
     static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
+    /** Mask to disable fasttrack (images will show as normal images) */
+    static final int MODE_MASK_DISABLE_FASTTRACK = 0x01000000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
@@ -188,13 +190,17 @@ public final class ContactsListActivity extends ListActivity implements
     /** Show starred and the frequent */
     static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
     /** Show all contacts and pick them when clicking */
-    static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS;
+    static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
+            | MODE_MASK_DISABLE_FASTTRACK;
     /** Show all contacts as well as the option to create a new one */
-    static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
+    static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
+            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
     /** Show all people through the legacy provider and pick them when clicking */
-    static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER;
+    static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
+            | MODE_MASK_DISABLE_FASTTRACK;
     /** Show all people through the legacy provider as well as the option to create a new one */
-    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
+    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
+            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
     static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all phone numbers and pick them when clicking */
@@ -216,7 +222,7 @@ public final class ContactsListActivity extends ListActivity implements
 
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_CONTACT = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
-            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS;
+            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
 
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
@@ -1898,6 +1904,7 @@ public final class ContactsListActivity extends ListActivity implements
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
         public FasttrackBadgeWidget photoView;
+        public ImageView nonFastTrackPhotoView;
     }
 
     final static class PhotoInfo {
@@ -2195,6 +2202,7 @@ public final class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (FasttrackBadgeWidget) view.findViewById(R.id.photo);
+            cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noFastTrackphoto);
             view.setTag(cache);
 
             return view;
@@ -2261,22 +2269,34 @@ public final class ContactsListActivity extends ListActivity implements
 
             // Set the photo, if requested
             if (mDisplayPhotos) {
+                boolean useFastTrack = (mMode & MODE_MASK_DISABLE_FASTTRACK) == 0;
 
                 long photoId = 0;
                 if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
                     photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
                 }
 
-                final int position = cursor.getPosition();
-                cache.photoView.setTag(new PhotoInfo(position, photoId));
+                ImageView viewToUse;
+                if (useFastTrack) {
+                    viewToUse = cache.photoView;
+                    // Build soft lookup reference
+                    final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
+                    final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
+                    cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
+                    cache.photoView.setVisibility(View.VISIBLE);
+                    cache.nonFastTrackPhotoView.setVisibility(View.INVISIBLE);
+                } else {
+                    viewToUse = cache.nonFastTrackPhotoView;
+                    cache.photoView.setVisibility(View.INVISIBLE);
+                    cache.nonFastTrackPhotoView.setVisibility(View.VISIBLE);
+                }
 
-                // Build soft lookup reference
-                final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-                final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
-                cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
+
+                final int position = cursor.getPosition();
+                viewToUse.setTag(new PhotoInfo(position, photoId));
 
                 if (photoId == 0) {
-                    cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
+                    viewToUse.setImageResource(R.drawable.ic_contact_list_picture);
                 } else {
 
                     Bitmap photo = null;
@@ -2292,10 +2312,10 @@ public final class ContactsListActivity extends ListActivity implements
 
                     // Bind the photo, or use the fallback no photo resource
                     if (photo != null) {
-                        cache.photoView.setImageBitmap(photo);
+                        viewToUse.setImageBitmap(photo);
                     } else {
                         // Cache miss
-                        cache.photoView.setImageResource(R.drawable.ic_contact_list_picture);
+                        viewToUse.setImageResource(R.drawable.ic_contact_list_picture);
 
                         // Add it to a set of images that are populated asynchronously.
                         mItemsMissingImages.add(cache.photoView);
@@ -2303,7 +2323,7 @@ public final class ContactsListActivity extends ListActivity implements
                         if (mScrollState != OnScrollListener.SCROLL_STATE_FLING) {
 
                             // Scrolling is idle or slow, go get the image right now.
-                            sendFetchImageMessage(cache.photoView);
+                            sendFetchImageMessage(viewToUse);
                         }
                     }
                 }
