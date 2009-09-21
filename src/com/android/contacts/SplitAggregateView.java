@@ -56,19 +56,21 @@ public class SplitAggregateView extends ListView {
 
     private static final String TAG = "SplitAggregateView";
 
-    private static final String[] AGGREGATE_DATA_PROJECTION = new String[] {
-            Data.MIMETYPE, RawContacts.ACCOUNT_TYPE, Data.RAW_CONTACT_ID, Data.DATA1, Data.DATA2,
-            Data.IS_PRIMARY, StructuredName.DISPLAY_NAME
-    };
+    private interface SplitQuery {
+        String[] COLUMNS = new String[] {
+                Data.MIMETYPE, RawContacts.ACCOUNT_TYPE, Data.RAW_CONTACT_ID, Data.IS_PRIMARY,
+                StructuredName.DISPLAY_NAME, Nickname.NAME, Email.DATA, Phone.NUMBER
+        };
 
-    private static final int COL_MIMETYPE = 0;
-    private static final int COL_ACCOUNT_TYPE = 1;
-    private static final int COL_RAW_CONTACT_ID = 2;
-    private static final int COL_DATA1 = 3;
-    private static final int COL_DATA2 = 4;
-    private static final int COL_IS_PRIMARY = 5;
-    private static final int COL_DISPLAY_NAME = 6;
-
+        int MIMETYPE = 0;
+        int ACCOUNT_TYPE = 1;
+        int RAW_CONTACT_ID = 2;
+        int IS_PRIMARY = 3;
+        int DISPLAY_NAME = 4;
+        int NICKNAME = 5;
+        int EMAIL = 6;
+        int PHONE = 7;
+    }
 
     private final Uri mAggregateUri;
     private OnContactSelectedListener mListener;
@@ -155,18 +157,18 @@ public class SplitAggregateView extends ListView {
         HashMap<Long, RawContactInfo> rawContactInfos = new HashMap<Long, RawContactInfo>();
         Uri dataUri = Uri.withAppendedPath(mAggregateUri, Data.CONTENT_DIRECTORY);
         Cursor cursor = getContext().getContentResolver().query(dataUri,
-                AGGREGATE_DATA_PROJECTION, null, null, null);
+                SplitQuery.COLUMNS, null, null, null);
         try {
             while (cursor.moveToNext()) {
-                long rawContactId = cursor.getLong(COL_RAW_CONTACT_ID);
+                long rawContactId = cursor.getLong(SplitQuery.RAW_CONTACT_ID);
                 RawContactInfo info = rawContactInfos.get(rawContactId);
                 if (info == null) {
                     info = new RawContactInfo(rawContactId);
                     rawContactInfos.put(rawContactId, info);
-                    info.accountType = cursor.getString(COL_ACCOUNT_TYPE);
+                    info.accountType = cursor.getString(SplitQuery.ACCOUNT_TYPE);
                 }
 
-                String mimetype = cursor.getString(COL_MIMETYPE);
+                String mimetype = cursor.getString(SplitQuery.MIMETYPE);
                 if (StructuredName.CONTENT_ITEM_TYPE.equals(mimetype)) {
                     loadStructuredName(cursor, info);
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
@@ -187,44 +189,24 @@ public class SplitAggregateView extends ListView {
     }
 
     private void loadStructuredName(Cursor cursor, RawContactInfo info) {
-        info.name = cursor.getString(COL_DISPLAY_NAME);
-        if (info.name != null) {
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        String firstName = cursor.getString(COL_DATA1);
-        String lastName = cursor.getString(COL_DATA2);
-        if (!TextUtil.isEmpty(firstName)) {
-            sb.append(firstName);
-        }
-        if  (!TextUtil.isEmpty(firstName) && !TextUtil.isEmpty(lastName)) {
-            sb.append(" ");
-        }
-        if (!TextUtil.isEmpty(lastName)) {
-            sb.append(lastName);
-        }
-
-        if (sb.length() != 0) {
-            info.name = sb.toString();
-        }
+        info.name = cursor.getString(SplitQuery.DISPLAY_NAME);
     }
 
     private void loadNickname(Cursor cursor, RawContactInfo info) {
-        if (info.nickname == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
-            info.nickname = cursor.getString(COL_DATA2);
+        if (info.nickname == null || cursor.getInt(SplitQuery.IS_PRIMARY) != 0) {
+            info.nickname = cursor.getString(SplitQuery.NICKNAME);
         }
     }
 
     private void loadEmail(Cursor cursor, RawContactInfo info) {
-        if (info.email == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
-            info.email = cursor.getString(COL_DATA2);
+        if (info.email == null || cursor.getInt(SplitQuery.IS_PRIMARY) != 0) {
+            info.email = cursor.getString(SplitQuery.EMAIL);
         }
     }
 
     private void loadPhoneNumber(Cursor cursor, RawContactInfo info) {
-        if (info.phone == null || cursor.getInt(COL_IS_PRIMARY) != 0) {
-            info.phone = cursor.getString(COL_DATA2);
+        if (info.phone == null || cursor.getInt(SplitQuery.IS_PRIMARY) != 0) {
+            info.phone = cursor.getString(SplitQuery.PHONE);
         }
     }
 
