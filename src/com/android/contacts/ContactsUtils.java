@@ -339,17 +339,7 @@ public class ContactsUtils {
     public static View createTabIndicatorView(ViewGroup parent, ContactsSource source) {
         Drawable icon = null;
         if (source != null) {
-            final String packageName = source.resPackageName;
-            if (source.iconRes > 0) {
-                try {
-                    final Context authContext = parent.getContext().
-                            createPackageContext(packageName, 0);
-                    icon = authContext.getResources().getDrawable(source.iconRes);
-
-                } catch (PackageManager.NameNotFoundException e) {
-                    Log.d(TAG, "error getting the Package Context for " + packageName, e);
-                }
-            }
+            icon = source.getDisplayIcon(parent.getContext());
         }
         return createTabIndicatorView(parent, null, icon);
     }

@@ -33,6 +33,7 @@ import com.google.android.collect.Lists;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Entity;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -67,16 +68,12 @@ public class EntityModifierTests extends AndroidTestCase {
         mContext = getContext();
     }
 
-    /**
-     * Build a {@link ContactsSource} that has various odd constraints for
-     * testing purposes.
-     */
-    protected ContactsSource getSource() {
-        final ContactsSource list = new ContactsSource();
-        list.accountType = TEST_ACCOUNT_TYPE;
-        list.setInflatedLevel(ContactsSource.LEVEL_CONSTRAINTS);
+    public static class MockContactsSource extends ContactsSource {
+        @Override
+        protected void inflate(Context context, int inflateLevel) {
+            this.accountType = TEST_ACCOUNT_TYPE;
+            this.setInflatedLevel(ContactsSource.LEVEL_CONSTRAINTS);
 
-        {
             // Phone allows maximum 2 home, 1 work, and unlimited other, with
             // constraint of 5 numbers maximum.
             DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE, -1, -1, 10, true);
@@ -93,10 +90,16 @@ public class EntityModifierTests extends AndroidTestCase {
             kind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
             kind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
 
-            list.add(kind);
+            addKind(kind);
         }
+    }
 
-        return list;
+    /**
+     * Build a {@link ContactsSource} that has various odd constraints for
+     * testing purposes.
+     */
+    protected ContactsSource getSource() {
+        return new MockContactsSource();
     }
 
     /**

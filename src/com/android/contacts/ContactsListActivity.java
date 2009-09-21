@@ -23,6 +23,7 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 import com.android.contacts.util.Constants;
+import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -1945,7 +1946,6 @@ public final class ContactsListActivity extends ListActivity implements
         private String mAlphabet;
         private boolean mLoading = true;
         private CharSequence mUnknownNameText;
-        private SparseArray<Integer> mLocalizedLabels;
         private boolean mDisplayPhotos = false;
         private boolean mDisplayCallButton = false;
         private boolean mDisplayAdditionalData = true;
@@ -1969,19 +1969,13 @@ public final class ContactsListActivity extends ListActivity implements
             switch (mMode) {
                 case MODE_LEGACY_PICK_POSTAL:
                 case MODE_PICK_POSTAL:
-                    mLocalizedLabels = inflateLocalizedLabels(
-                            CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE);
                     mDisplaySectionHeaders = false;
                     break;
                 case MODE_LEGACY_PICK_PHONE:
                 case MODE_PICK_PHONE:
                     mDisplaySectionHeaders = false;
-                    mLocalizedLabels = inflateLocalizedLabels(
-                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
                     break;
                 default:
-                    mLocalizedLabels = inflateLocalizedLabels(
-                            CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
                     break;
             }
 
@@ -2011,29 +2005,6 @@ public final class ContactsListActivity extends ListActivity implements
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
             }
-        }
-
-        private SparseArray<Integer> inflateLocalizedLabels(String mimetype) {
-            SparseArray<Integer> localizedLabels = new SparseArray<Integer>();
-
-            Sources sources = Sources.getInstance(ContactsListActivity.this);
-
-            ContactsSource contactsSource = sources.getInflatedSource(null /*get fallback type*/,
-                    ContactsSource.LEVEL_MIMETYPES);
-            if (contactsSource == null) {
-                return localizedLabels;
-            }
-
-            DataKind kind = contactsSource.getKindForMimetype(mimetype);
-            if (kind == null) {
-                return localizedLabels;
-            }
-
-            for (EditType type : kind.typeList) {
-                localizedLabels.put(type.rawValue, type.labelRes);
-            }
-
-            return localizedLabels;
         }
 
         private class ImageFetchHandler extends Handler {
@@ -2371,18 +2342,15 @@ public final class ContactsListActivity extends ListActivity implements
             // Set the label.
             if (!cursor.isNull(typeColumnIndex)) {
                 labelView.setVisibility(View.VISIBLE);
-                int type = cursor.getInt(typeColumnIndex);
 
-                if (type != CommonDataKinds.BaseTypes.TYPE_CUSTOM) {
-                    try {
-                        labelView.setText(mLocalizedLabels.get(type));
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        labelView.setText(mLocalizedLabels.get(defaultType));
-                    }
+                final int type = cursor.getInt(typeColumnIndex);
+                final String label = cursor.getString(labelColumnIndex);
+
+                if (mMode == MODE_LEGACY_PICK_POSTAL || mMode == MODE_PICK_POSTAL) {
+                    labelView.setText(StructuredPostal.getTypeLabel(context.getResources(), type,
+                            label));
                 } else {
-                    cursor.copyStringToBuffer(labelColumnIndex, cache.labelBuffer);
-                    // Don't check size, if it's zero just don't show anything
-                    labelView.setText(cache.labelBuffer.data, 0, cache.labelBuffer.sizeCopied);
+                    labelView.setText(Phone.getTypeLabel(context.getResources(), type, label));
                 }
             } else {
                 // There is no label, hide the the view

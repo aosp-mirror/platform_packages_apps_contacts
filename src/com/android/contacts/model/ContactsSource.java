@@ -17,17 +17,14 @@
 package com.android.contacts.model;
 
 import com.google.android.collect.Lists;
-
-import org.xmlpull.v1.XmlPullParser;
+import com.google.android.collect.Maps;
 
 import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.res.XmlResourceParser;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -38,40 +35,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-
-/*
-
-<!-- example of what SourceConstraints would look like in XML -->
-<!-- NOTE: may not directly match the current structure version -->
-
-<DataKind
-    mimeType="vnd.android.cursor.item/email"
-    title="@string/title_postal"
-    icon="@drawable/icon_postal"
-    weight="12"
-    editable="true">
-
-    <!-- these are defined using string-builder-ish -->
-    <ActionHeader></ActionHeader>
-    <ActionBody socialSummary="true" />  <!-- can pull together various columns -->
-
-    <!-- ordering handles precedence the "insert/add" case -->
-    <!-- assume uniform type when missing "column", use title in place -->
-    <EditTypes column="data5" overallMax="-1">
-        <EditType rawValue="0" label="@string/type_home" specificMax="-1" />
-        <EditType rawValue="1" label="@string/type_work" specificMax="-1" secondary="true" />
-        <EditType rawValue="4" label="@string/type_custom" customColumn="data6" specificMax="-1" secondary="true" />
-    </EditTypes>
-
-    <!-- when single edit field, simplifies edit case -->
-    <EditField column="data1" title="@string/field_family_name" android:inputType="textCapWords|textPhonetic" />
-    <EditField column="data2" title="@string/field_given_name" android:minLines="2" />
-    <EditField column="data3" title="@string/field_suffix" />
-
-</DataKind>
-
-*/
 
 /**
  * Internal structure that represents constraints and styles for a specific data
@@ -80,7 +45,7 @@ import java.util.List;
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
-public class ContactsSource {
+public abstract class ContactsSource {
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
@@ -91,6 +56,7 @@ public class ContactsSource {
      * {@link Account} or for matching against {@link Data#RES_PACKAGE}.
      */
     public String resPackageName;
+    public String summaryResPackageName;
 
     public int titleRes;
     public int iconRes;
@@ -102,14 +68,17 @@ public class ContactsSource {
      */
     private ArrayList<DataKind> mKinds = Lists.newArrayList();
 
-    private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
-    private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
+    /**
+     * Lookup map of {@link #mKinds} on {@link DataKind#mimeType}.
+     */
+    private HashMap<String, DataKind> mMimeKinds = Maps.newHashMap();
 
+    public static final int LEVEL_NONE = 0;
     public static final int LEVEL_SUMMARY = 1;
     public static final int LEVEL_MIMETYPES = 2;
     public static final int LEVEL_CONSTRAINTS = 3;
 
-    private int mInflatedLevel = -1;
+    private int mInflatedLevel = LEVEL_NONE;
 
     public synchronized boolean isInflated(int inflateLevel) {
         return mInflatedLevel >= inflateLevel;
@@ -121,59 +90,51 @@ public class ContactsSource {
     }
 
     /**
-     * Ensure that the constraint rules behind this {@link ContactsSource} have
-     * been inflated. Because this may involve parsing meta-data from
-     * {@link PackageManager}, it shouldn't be called from a UI thread.
+     * Ensure that this {@link ContactsSource} has been inflated to the
+     * requested level.
      */
     public synchronized void ensureInflated(Context context, int inflateLevel) {
-        if (isInflated(inflateLevel)) return;
-        // TODO: handle inflating at multiple levels of parsing
-        mInflatedLevel = inflateLevel;
-        mKinds.clear();
-
-        // Handle some well-known sources with hard-coded constraints
-        // TODO: move these into adapter-specific XML once schema finalized
-        if (HardCodedSources.ACCOUNT_TYPE_FALLBACK.equals(accountType)) {
-            HardCodedSources.buildFallback(context, this);
-            return;
-        } else if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(accountType)) {
-            HardCodedSources.buildGoogle(context, this);
-            return;
-        } else if(HardCodedSources.ACCOUNT_TYPE_EXCHANGE.equals(accountType)) {
-            HardCodedSources.buildExchange(context, this);
-            return;
-        } else if(HardCodedSources.ACCOUNT_TYPE_FACEBOOK.equals(accountType)) {
-            HardCodedSources.buildFacebook(context, this);
-            return;
-        }
-
-        // Handle unknown sources by searching their package
-        final PackageManager pm = context.getPackageManager();
-        final Intent syncAdapter = new Intent(ACTION_SYNC_ADAPTER);
-        final List<ResolveInfo> matches = pm.queryIntentServices(syncAdapter,
-                PackageManager.GET_META_DATA);
-        for (ResolveInfo info : matches) {
-            final XmlResourceParser parser = info.activityInfo.loadXmlMetaData(pm,
-                    METADATA_CONTACTS);
-            inflate(parser);
+        if (!isInflated(inflateLevel)) {
+            inflate(context, inflateLevel);
         }
     }
 
     /**
-     * Inflate this {@link ContactsSource} from the given parser. This may only
-     * load details matching the publicly-defined schema.
+     * Perform the actual inflation to the requested level. Called by
+     * {@link #ensureInflated(Context, int)} when inflation is needed.
      */
-    protected void inflate(XmlPullParser parser) {
-        // TODO: implement basic functionality for third-party integration
-        throw new UnsupportedOperationException("Custom constraint parser not implemented");
+    protected abstract void inflate(Context context, int inflateLevel);
+
+    /**
+     * Invalidate any cache for this {@link ContactsSource}, removing all
+     * inflated data. Calling {@link #ensureInflated(Context, int)} will
+     * populate again from scratch.
+     */
+    public synchronized void invalidateCache() {
+        this.mKinds.clear();
+        this.mMimeKinds.clear();
+        setInflatedLevel(LEVEL_NONE);
     }
 
     public CharSequence getDisplayLabel(Context context) {
-        if (this.titleRes > 0) {
+        if (this.titleRes != -1 && this.summaryResPackageName != null) {
             final PackageManager pm = context.getPackageManager();
-            return pm.getText(this.resPackageName, this.titleRes, null);
+            return pm.getText(this.summaryResPackageName, this.titleRes, null);
+        } else if (this.titleRes != -1) {
+            return context.getText(this.titleRes);
         } else {
             return this.accountType;
+        }
+    }
+
+    public Drawable getDisplayIcon(Context context) {
+        if (this.titleRes != -1 && this.summaryResPackageName != null) {
+            final PackageManager pm = context.getPackageManager();
+            return pm.getDrawable(this.summaryResPackageName, this.iconRes, null);
+        } else if (this.titleRes != -1) {
+            return context.getResources().getDrawable(this.iconRes);
+        } else {
+            return null;
         }
     }
 
@@ -197,20 +158,22 @@ public class ContactsSource {
     }
 
     /**
-     * Find the {@link DataKind} for a specifc MIME-type, if it's handled by
-     * this data source.
+     * Find the {@link DataKind} for a specific MIME-type, if it's handled by
+     * this data source. If you may need a fallback {@link DataKind}, use
+     * {@link Sources#getKindOrFallback(String, String, Context, int)}.
      */
     public DataKind getKindForMimetype(String mimeType) {
-        for (DataKind kind : mKinds) {
-            if (mimeType.equals(kind.mimeType)) {
-                return kind;
-            }
-        }
-        return null;
+        return this.mMimeKinds.get(mimeType);
     }
 
-    public void add(DataKind kind) {
+    /**
+     * Add given {@link DataKind} to list of those provided by this source.
+     */
+    public DataKind addKind(DataKind kind) {
+        kind.resPackageName = this.resPackageName;
         this.mKinds.add(kind);
+        this.mMimeKinds.put(kind.mimeType, kind);
+        return kind;
     }
 
     /**
@@ -220,6 +183,7 @@ public class ContactsSource {
      * labels and editable {@link EditField}.
      */
     public static class DataKind {
+        public String resPackageName;
         public String mimeType;
         public int titleRes;
         public int iconRes;
@@ -231,6 +195,7 @@ public class ContactsSource {
         public StringInflater actionHeader;
         public StringInflater actionAltHeader;
         public StringInflater actionBody;
+        public StringInflater actionFooter;
         public boolean actionBodySocial;
         public boolean actionBodyCombine;
 
@@ -241,6 +206,9 @@ public class ContactsSource {
         public List<EditField> fieldList;
 
         public ContentValues defaultValues;
+
+        public DataKind() {
+        }
 
         public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
             this.mimeType = mimeType;
@@ -261,8 +229,8 @@ public class ContactsSource {
     public static class EditType {
         public int rawValue;
         public int labelRes;
-        public int actionRes;
-        public int actionAltRes;
+//        public int actionRes;
+//        public int actionAltRes;
         public boolean secondary;
         public int specificMax;
         public String customColumn;
@@ -271,16 +239,6 @@ public class ContactsSource {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
             this.specificMax = -1;
-        }
-
-        public EditType(int rawValue, int labelRes, int actionRes) {
-            this(rawValue, labelRes);
-            this.actionRes = actionRes;
-        }
-
-        public EditType(int rawValue, int labelRes, int actionRes, int actionAltRes) {
-            this(rawValue, labelRes, actionRes);
-            this.actionAltRes = actionAltRes;
         }
 
         public EditType setSecondary(boolean secondary) {
@@ -335,9 +293,9 @@ public class ContactsSource {
             this.inputType = inputType;
         }
 
-        public EditField(String column, int titleRes, int inputType, boolean optional) {
-            this(column, titleRes, inputType);
+        public EditField setOptional(boolean optional) {
             this.optional = optional;
+            return this;
         }
     }
 
