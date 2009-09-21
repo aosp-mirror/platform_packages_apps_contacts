@@ -540,9 +540,7 @@ public final class ContactsListActivity extends ListActivity implements
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
             final LayoutInflater inflater = getLayoutInflater();
-            View header = inflater.inflate(android.R.layout.simple_list_item_1, list, false);
-            TextView text = (TextView) header.findViewById(android.R.id.text1);
-            text.setText(R.string.pickerNewContactHeader);
+            View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
 
