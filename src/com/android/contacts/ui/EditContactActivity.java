@@ -736,12 +736,17 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
             final ArrayList<Account> writable = sources.getAccounts(true);
 
+            // No Accounts available.  Create a phone-local contact.
+            if (writable.isEmpty()) {
+                selectAccount(null);
+                return null;  // Don't show a dialog.
+            }
+
             // In the common case of a single account being writable, auto-select
             // it without showing a dialog.
             if (writable.size() == 1) {
                 selectAccount(writable.get(0));
-                // Signal to not show a dialog:
-                return null;
+                return null;  // Don't show a dialog.
             }
 
             final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(target,
@@ -802,6 +807,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             return builder;
         }
 
+        /**
+         * Sets up EditContactActivity's mState for the account selected.
+         * Runs from a background thread.
+         *
+         * @param account may be null to signal a device-local contact should
+         *     be created.
+         */
         private void selectAccount(Account account) {
             EditContactActivity target = mTarget.get();
             if (target == null) {
@@ -809,13 +821,19 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             }
             final Sources sources = Sources.getInstance(target);
             final ContentValues values = new ContentValues();
-            values.put(RawContacts.ACCOUNT_NAME, account.name);
-            values.put(RawContacts.ACCOUNT_TYPE, account.type);
+            if (account != null) {
+                values.put(RawContacts.ACCOUNT_NAME, account.name);
+                values.put(RawContacts.ACCOUNT_TYPE, account.type);
+            } else {
+                values.putNull(RawContacts.ACCOUNT_NAME);
+                values.putNull(RawContacts.ACCOUNT_TYPE);
+            }
 
             // Parse any values from incoming intent
             final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-            final ContactsSource source = sources.getInflatedSource(account.type,
-                                                                    ContactsSource.LEVEL_CONSTRAINTS);
+            final ContactsSource source = sources.getInflatedSource(
+                account != null ? account.type : null,
+                ContactsSource.LEVEL_CONSTRAINTS);
             final Bundle extras = target.getIntent().getExtras();
             EntityModifier.parseExtras(target, source, insert, extras);
 
