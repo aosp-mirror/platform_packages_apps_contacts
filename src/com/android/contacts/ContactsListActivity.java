@@ -16,6 +16,14 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.ui.DisplayGroupsActivity;
+import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
+import com.android.contacts.util.Constants;
+
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -94,14 +102,6 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
-
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.ui.DisplayGroupsActivity;
-import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
-import com.android.contacts.util.Constants;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -1137,7 +1137,8 @@ public final class ContactsListActivity extends ListActivity implements
             if (position == 0) {
                 intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             } else {
-                // Edit
+                // Edit. adjusting position by subtracting header view count.
+                position -= getListView().getHeaderViewsCount();
                 final Uri uri = getSelectedUri(position);
                 intent = new Intent(Intent.ACTION_EDIT, uri);
             }
