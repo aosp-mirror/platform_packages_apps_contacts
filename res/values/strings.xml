@@ -29,11 +29,11 @@
 
     <!-- Name of activity that allows users to create shortcuts on the home screen to dial a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
-    <string name="shortcutDialContact">Direct Dial</string>
+    <string name="shortcutDialContact">Direct dial</string>
 
     <!-- Name of activity that allows users to create shortcuts on the home screen to message (SMS) a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
-    <string name="shortcutMessageContact">Direct Message</string>
+    <string name="shortcutMessageContact">Direct message</string>
 
     <!-- Activity title when the user is selecting a contact for a shortcut. -->
     <string name="shortcutActivityTitle">Choose a contact shortcut</string>
@@ -336,7 +336,7 @@
     <string name="syncAllGroups">Sync all contacts</string>
 
     <!-- The name of the system "My Contacts" group. This should be kept in sync with the web UI -->
-    <string name="groupNameMyContacts">My Contacts</string>
+    <string name="groupNameMyContacts">My contacts</string>
 
     <!-- The group type that displays only contacts with phone numbers -->
     <string name="groupNameWithPhones">Contacts with phone numbers</string>
@@ -363,7 +363,7 @@
     <string name="listSeparatorCallNumber_edit">Phone numbers</string>
 
     <!-- Separator in the contact details list describing that the items below it will send an SMS/MMS to a phone number -->
-    <string name="listSeparatorSendSmsMms">Send Text</string>
+    <string name="listSeparatorSendSmsMms">Send text</string>
 
     <!-- Separator in the contact details list describing that the items below it will send an email -->
     <string name="listSeparatorSendEmail">Send email</string>
@@ -417,7 +417,7 @@
     <string name="liveFolderPhone">Contacts with phone numbers</string>
 
     <!-- Menu item used to send an SMS or MMS message to a phone number  -->
-    <string name="menu_sendTextMessage">Send Text message</string>
+    <string name="menu_sendTextMessage">Send text message</string>
 
     <!-- Menu item used to call a contact from the call log -->
     <string name="recentCalls_callNumber">Call <xliff:g id="name">%s</xliff:g></string>
@@ -477,35 +477,35 @@
 
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
-    <string name="noContactsHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
+    <string name="noContactsHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
-    <string name="noContactsHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
-        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to select contact groups to make visible\n</li>
+    <string name="noContactsHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which contact groups are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SIM card\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
-    <string name="noContactsNoSimHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
+    <string name="noContactsNoSimHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
-    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and select:\n
-        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to select contact groups to make visible\n</li>
+    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which contact groups are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import contacts</b></font> to add contacts from your SD card\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab -->
     <string name="noFavoritesHelpText">"You don't have any favorites.\n
         \nTo add a contact to your list of favorites:\n
-        \n<li>Touch Contacts\n</li>
+        \n<li>Touch the Contacts tab\n</li>
         \n<li>Touch the contact you want to add to your favorites\n</li>
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
@@ -514,7 +514,7 @@
     <string name="seclectSyncGroups_title">Select groups to sync</string>
 
     <!-- Live folder label for all contacts -->
-    <string name="liveFolder_all_label">All Contacts</string>
+    <string name="liveFolder_all_label">All contacts</string>
 
     <!-- Live folder label for only starred contacts -->
     <string name="liveFolder_favorites_label">Starred</string>
@@ -613,7 +613,7 @@
     <string name="favoritesFrquentSeparator">Frequently called</string>
 
     <!-- Dialog title when prompting before creating a contact -->
-    <string name="add_contact_dlg_title">Add Contact</string>
+    <string name="add_contact_dlg_title">Add contact</string>
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
@@ -708,13 +708,13 @@
     <string name="description_image_button_pound">pound</string>
 
     <!-- Dialog title shown when SD Card does not exist -->
-    <string name="no_sdcard_title">No SD Card</string>
+    <string name="no_sdcard_title">No SD card</string>
 
     <!-- Dialog message shown when SDcard does not exist -->
-    <string name="no_sdcard_message">No SD Card detected</string>
+    <string name="no_sdcard_message">No SD card detected</string>
 
     <!-- Dialog title shown when searching VCard data from SD Card -->
-    <string name="searching_vcard_title">Searching for VCard</string>
+    <string name="searching_vcard_title">Searching for vCard</string>
 
     <!-- Dialog title shown when asking a user whether import contact data from SIM or SD Card -->
     <string name="select_import_type_title">Where would you like to import contacts from?</string>
@@ -738,37 +738,37 @@
     <string name="import_all_vcard_string">Import all vCard files</string>
 
     <!-- Dialog message shown when searching VCard data from SD Card -->
-    <string name="searching_vcard_message">Searching for VCard data on VCard</string>
+    <string name="searching_vcard_message">Searching for vCard data on SD card</string>
 
     <!-- Dialog title shown when searching VCard data failed. -->
-    <string name="scanning_sdcard_failed_title">Scanning SD Card failed</string>
+    <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
 
     <!-- Dialog message shown when searching VCard data failed. -->
-    <string name="scanning_sdcard_failed_message">Scanning SD Card failed</string>
+    <string name="scanning_sdcard_failed_message">Scanning SD card failed</string>
 
     <!-- The failed reason: "I/O Error" -->
     <string name="fail_reason_io_error">I/O Error (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason: "Failed to parse VCard data" -->
-    <string name="fail_reason_vcard_parse_error">Failed to parse VCard with some unexpected reason</string>
+    <string name="fail_reason_vcard_parse_error">Failed to parse vCard for unexpected reason</string>
 
     <!-- The failed reason: "The VCard is not supported right now, but may be supported in the future" -->
-    <string name="fail_reason_vcard_not_supported_error">Failed to parse VCard though it seems in valid format, since the current implementation does not support it</string>
+    <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
     <!-- The failed reason: "There is no VCard file" -->
-    <string name="fail_reason_no_vcard_file">No VCard file found on SD Card</string>
+    <string name="fail_reason_no_vcard_file">No vCard file found on SD dard</string>
 
     <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
-    <string name="fail_reason_no_vcard_entry">No valid VCard entry found for your selection</string>
+    <string name="fail_reason_no_vcard_entry">No valid vCard entry found for your selection</string>
 
     <!-- The failed reason: "One or more files failed to be imported. (&lt;a list of file names&gt;)" -->
     <string name="fail_reason_failed_to_read_files">One or more files failed to be imported (%s).</string>
 
     <!-- Dialog title shown when a user is asked to select VCard file -->
-    <string name="select_vcard_title">Select VCard file</string>
+    <string name="select_vcard_title">Select vCard file</string>
 
     <!-- Dialog message shown when a user is asked to choose VCard file -->
-    <string name="select_vcard_message">Please select a VCard file to import</string>
+    <string name="select_vcard_message">Please select a vCard file to import</string>
 
     <!-- The message shown while reading a vCard file/entry. The first argument is like
     "Reading VCard" or "Reading VCard files" and the second is the display name of the current
@@ -776,19 +776,19 @@
     <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
 
     <!-- Dialog title shown when reading VCard data -->
-    <string name="reading_vcard_title">Reading VCard</string>
+    <string name="reading_vcard_title">Reading vCard</string>
 
     <!-- Dialog message shown when reading a VCard file -->
-    <string name="reading_vcard_message">Reading VCard file(s)</string>
+    <string name="reading_vcard_message">Reading vCard file(s)</string>
 
     <!-- Dialog message shown when importing VCard data into local database -->
-    <string name="importing_vcard_message">Importing VCard data</string>
+    <string name="importing_vcard_message">Importing vCard data</string>
 
     <!-- Dialog title shown when reading VCard data failed -->
-    <string name="reading_vcard_failed_title">Reading of VCard data has failed</string>
+    <string name="reading_vcard_failed_title">Reading of vCard data has failed</string>
 
     <!-- Dialog message shown when reading VCard data failed -->
-    <string name="reading_vcard_failed_message">VCard data could not be read\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+    <string name="reading_vcard_failed_message">Could not read vCard.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
     <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
@@ -800,22 +800,22 @@
     <string name="export_contact_list">Export contacts</string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
-    <string name="confirm_export_title">Confirmation for export</string>
+    <string name="confirm_export_title">Confirm export</string>
 
     <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
-    <string name="confirm_export_message">Is it ok to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
+    <string name="confirm_export_message">Are you sure you want to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
 
     <!-- Dialog title shown when exporting Contact data failed -->
-    <string name="exporting_contact_failed_title">Exporting contact data has failed</string>
+    <string name="exporting_contact_failed_title">Failed to export contact data</string>
 
     <!-- Dialog message shown when exporting Contact data failed -->
-    <string name="exporting_contact_failed_message">Exporting contact data has failed\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+    <string name="exporting_contact_failed_message">Failed to export contact data.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
     <!-- The failed reason: "Too many vcard files on the SD Card" -->
-    <string name="fail_reason_too_many_vcard">Too many VCard data on the SD Card</string>
+    <string name="fail_reason_too_many_vcard">Too many vCard files on the SD card</string>
 
     <!-- The failed reason: "Too long filename". This error usually does not happen. -->
-    <string name="fail_reason_too_long_filename">Too long filename is required (\"<xliff:g id="filename">%s</xliff:g>\")</string>
+    <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
 
     <!-- The failed reason: "Cannot open or create the destination directory" -->
     <string name="fail_reason_cannot_open_destination_dir">Cannot open or create the destination directory\"<xliff:g id="dir_name">%s</xliff:g>\"</string>
@@ -842,8 +842,8 @@
     <string name="search_settings_description">Names of your contacts</string>
 
     <!-- Menu items for dialpad options as part of Pause and Wait ftr -->
-    <string name="add_2sec_pause">Add 2-sec Pause</string>
-    <string name="add_wait">Add Wait</string>
+    <string name="add_2sec_pause">Add 2-sec pause</string>
+    <string name="add_wait">Add wait</string>
 
     <!-- Label for onscreen "Dial" button -->
     <string name="dial_button_label">Dial</string>
