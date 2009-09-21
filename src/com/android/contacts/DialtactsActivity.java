@@ -16,24 +16,21 @@
 
 package com.android.contacts;
 
+import com.android.internal.telephony.ITelephony;
+
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.CallLog;
-import android.provider.Contacts;
 import android.provider.CallLog.Calls;
-import android.provider.Contacts.Intents.UI;
+import android.provider.ContactsContract.Intents.UI;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.TabHost;
-import com.android.internal.telephony.ITelephony;
 
 /**
  * The dialer activity that has one tab with the virtual 12key dialer,
@@ -83,7 +80,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
         setCurrentTab(intent);
 
-        if (intent.getAction().equals(Contacts.Intents.UI.FILTER_CONTACTS_ACTION)
+        if (intent.getAction().equals(UI.FILTER_CONTACTS_ACTION)
                 && icicle == null) {
             setupFilterText(intent);
         }
@@ -235,7 +232,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         fixIntent(newIntent);
         setCurrentTab(newIntent);
         final String action = newIntent.getAction();
-        if (action.equals(Contacts.Intents.UI.FILTER_CONTACTS_ACTION)) {
+        if (action.equals(UI.FILTER_CONTACTS_ACTION)) {
             setupFilterText(newIntent);
         } else if (isDialIntent(newIntent)) {
             setupDialUri(newIntent);
@@ -282,7 +279,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
             return;
         }
-        String filter = intent.getStringExtra(Contacts.Intents.UI.FILTER_TEXT_EXTRA_KEY);
+        String filter = intent.getStringExtra(UI.FILTER_TEXT_EXTRA_KEY);
         if (filter != null && filter.length() > 0) {
             mFilterText = filter;
         }
