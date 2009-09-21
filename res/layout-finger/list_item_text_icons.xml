@@ -23,7 +23,6 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
     android:paddingLeft="9dip"
-    android:paddingRight="5dip"
     android:gravity="center_vertical"
 >
 
@@ -87,17 +86,16 @@
     <View android:id="@+id/divider"
         android:layout_width="1dip"
         android:layout_height="fill_parent"
-        android:layout_marginRight="11dip"
         android:background="@drawable/divider_vertical_dark"
     />
 
     <ImageView android:id="@+id/secondary_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="7dip"
+        android:layout_width="64dip"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:scaleType="centerInside"
+        android:scaleType="center"
+        android:background="@android:drawable/list_selector_background"
     />
 
 </LinearLayout>
