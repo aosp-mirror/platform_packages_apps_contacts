@@ -251,16 +251,7 @@ public class SplitAggregateView extends ListView {
             ContactsSource source = mSources.getInflatedSource(info.accountType,
                     ContactsSource.LEVEL_SUMMARY);
             if (source != null) {
-                final String packageName = source.resPackageName;
-                if (source.iconRes > 0) {
-                    try {
-                        final Context context = getContext().createPackageContext(packageName, 0);
-                        icon = context.getResources().getDrawable(source.iconRes);
-
-                    } catch (PackageManager.NameNotFoundException e) {
-                        Log.d(TAG, "error getting the Package Context for " + packageName, e);
-                    }
-                }
+                icon = source.getDisplayIcon(getContext());
             }
             if (icon != null) {
                 cache.sourceIcon.setImageDrawable(icon);

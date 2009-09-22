@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
@@ -39,14 +40,12 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.FastTrack;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.SocialContract.Activities;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -133,7 +132,7 @@ public class FastTrackWindow implements Window.Callback,
     private View mFooter;
     private View mFooterDisambig;
     private ListView mResolveList;
-    private CheckableImageView mLastChiclet;
+    private CheckableImageView mLastAction;
 
     /**
      * Set of {@link Action} that are associated with the aggregate currently
@@ -158,6 +157,9 @@ public class FastTrackWindow implements Window.Callback,
     private static final int TOKEN_SUMMARY = 1;
     private static final int TOKEN_SOCIAL = 2;
     private static final int TOKEN_DATA = 3;
+
+    static final boolean TRACE_LAUNCH = false;
+    static final String TRACE_TAG = "fasttrack";
 
     /**
      * Prepare a fast-track window to show in the given {@link Context}.
@@ -245,6 +247,10 @@ public class FastTrackWindow implements Window.Callback,
             return;
         }
 
+        if (TRACE_LAUNCH && !android.os.Debug.isMethodTracingActive()) {
+            android.os.Debug.startMethodTracing(TRACE_TAG);
+        }
+
         // Prepare header view for requested mode
         mMode = mode;
         mHeader = getHeaderView(mode);
@@ -330,6 +336,10 @@ public class FastTrackWindow implements Window.Callback,
         mQuerying = false;
 
         mTrack.startAnimation(mTrackAnim);
+
+        if (TRACE_LAUNCH) {
+            android.os.Debug.stopMethodTracing();
+        }
     }
 
     /**
@@ -350,7 +360,7 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         // Release refrence to last chiclet.
-        mLastChiclet = null;
+        mLastAction = null;
 
         // Completely hide header from current mode
         mHeader.setVisibility(View.GONE);
@@ -367,7 +377,7 @@ public class FastTrackWindow implements Window.Callback,
         mTrackScroll.fullScroll(View.FOCUS_LEFT);
         mWasDownArrow = false;
 
-        setResolveVisible(false);
+        setResolveVisible(false, null);
 
         mQuerying = false;
         mHasSummary = false;
@@ -576,7 +586,6 @@ public class FastTrackWindow implements Window.Callback,
      */
     private static class DataAction implements Action {
         private final Context mContext;
-        private final ContactsSource mSource;
         private final DataKind mKind;
         private final String mMimeType;
 
@@ -589,10 +598,8 @@ public class FastTrackWindow implements Window.Callback,
         /**
          * Create an action from common {@link Data} elements.
          */
-        public DataAction(Context context, ContactsSource source, String mimeType, DataKind kind,
-                Cursor cursor) {
+        public DataAction(Context context, String mimeType, DataKind kind, Cursor cursor) {
             mContext = context;
-            mSource = source;
             mKind = kind;
             mMimeType = mimeType;
 
@@ -656,13 +663,14 @@ public class FastTrackWindow implements Window.Callback,
         /** {@inheritDoc} */
         public Drawable getFallbackIcon() {
             // Bail early if no valid resources
-            if (mSource.resPackageName == null) return null;
+            final String resPackageName = mKind.resPackageName;
+            if (resPackageName == null) return null;
 
             final PackageManager pm = mContext.getPackageManager();
-            if (mAlternate && mKind.iconAltRes > 0) {
-                return pm.getDrawable(mSource.resPackageName, mKind.iconAltRes, null);
-            } else if (mKind.iconRes > 0) {
-                return pm.getDrawable(mSource.resPackageName, mKind.iconRes, null);
+            if (mAlternate && mKind.iconAltRes != -1) {
+                return pm.getDrawable(resPackageName, mKind.iconAltRes, null);
+            } else if (mKind.iconRes != -1) {
+                return pm.getDrawable(resPackageName, mKind.iconRes, null);
             } else {
                 return null;
             }
@@ -880,22 +888,21 @@ public class FastTrackWindow implements Window.Callback,
             // TODO: find the ContactsSource for this, either from accountType,
             // or through lazy-loading when resPackage is set, or default.
 
-            final ContactsSource source = sources.getInflatedSource(accountType,
+            final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
                     ContactsSource.LEVEL_MIMETYPES);
-            final DataKind kind = source.getKindForMimetype(mimeType);
 
             if (kind != null) {
                 // Build an action for this data entry, find a mapping to a UI
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
-                final Action action = new DataAction(mContext, source, mimeType, kind, cursor);
+                final Action action = new DataAction(mContext, mimeType, kind, cursor);
                 considerAdd(action, mimeType);
             }
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final Action action = new DataAction(mContext, source, Constants.MIME_SMS_ADDRESS,
-                        kind, cursor);
+                final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS, kind,
+                        cursor);
                 considerAdd(action, Constants.MIME_SMS_ADDRESS);
             }
         }
@@ -972,7 +979,7 @@ public class FastTrackWindow implements Window.Callback,
      * Helper for showing and hiding {@link #mFooterDisambig}, which will
      * correctly manage {@link #mArrowDown} as needed.
      */
-    private void setResolveVisible(boolean visible) {
+    private void setResolveVisible(boolean visible, CheckableImageView actionView) {
         // Show or hide the resolve list if needed
         boolean visibleNow = mFooterDisambig.getVisibility() == View.VISIBLE;
 
@@ -986,24 +993,25 @@ public class FastTrackWindow implements Window.Callback,
             // If showing list, then hide and save state of down arrow
             mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
             mArrowDown.setVisibility(View.INVISIBLE);
-            mLastChiclet.setChecked(true);
         } else {
             // If hiding list, restore any down arrow state
             mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
-            mLastChiclet.setChecked(false);
         }
+
+        if (mLastAction != null) mLastAction.setChecked(!visible);
+        if (actionView != null) actionView.setChecked(visible);
+        mLastAction = actionView;
     }
 
     /** {@inheritDoc} */
-    public void onClick(View v) {
-        if (v instanceof CheckableImageView) {
-            mLastChiclet = (CheckableImageView)v;
-        }
+    public void onClick(View view) {
+        final boolean isActionView = (view instanceof CheckableImageView);
+        final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
 
-        final Object tag = v.getTag();
+        final Object tag = view.getTag();
         if (tag instanceof Intent) {
             // Hide the resolution list, if present
-            setResolveVisible(false);
+            setResolveVisible(false, actionView);
             this.dismiss();
 
             try {
@@ -1017,7 +1025,7 @@ public class FastTrackWindow implements Window.Callback,
             final ActionList children = (ActionList)tag;
 
             // Show resolution list and set adapter
-            setResolveVisible(true);
+            setResolveVisible(true, actionView);
 
             mResolveList.setOnItemClickListener(this);
             mResolveList.setAdapter(new BaseAdapter() {
@@ -1066,7 +1074,7 @@ public class FastTrackWindow implements Window.Callback,
             // Back key will first dismiss any expanded resolve list, otherwise
             // it will close the entire dialog.
             if (mFooterDisambig.getVisibility() == View.VISIBLE) {
-                setResolveVisible(false);
+                setResolveVisible(false, null);
             } else {
                 dismiss();
             }
@@ -1208,6 +1216,7 @@ public class FastTrackWindow implements Window.Callback,
                 Data.MIMETYPE,
                 Data.IS_PRIMARY,
                 Data.IS_SUPER_PRIMARY,
+                Data.RAW_CONTACT_ID,
                 Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
                 Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10, Data.DATA11,
                 Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,

@@ -62,12 +62,12 @@ import com.google.android.collect.Lists;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.ScrollingTabWidget;
+import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
-import com.android.contacts.model.HardCodedSources;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -843,8 +843,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
             // Create "My Contacts" membership for Google contacts
             // TODO: move this off into "templates" for each given source
-            if (HardCodedSources.ACCOUNT_TYPE_GOOGLE.equals(source.accountType)) {
-                HardCodedSources.attemptMyContactsMembership(insert, target);
+            if (GoogleSource.ACCOUNT_TYPE.equals(source.accountType)) {
+                GoogleSource.attemptMyContactsMembership(insert, target);
             }
 
 	    // TODO: no synchronization here on target.mState.  This
