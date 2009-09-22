@@ -2017,7 +2017,15 @@ public final class ContactsListActivity extends ListActivity implements
                 switch(message.what) {
                     case FETCH_IMAGE_MSG: {
                         final ImageView imageView = (ImageView) message.obj;
+                        if (imageView == null) {
+                            break;
+                        }
+
                         final PhotoInfo info = (PhotoInfo)imageView.getTag();
+                        if (info == null) {
+                            break;
+                        }
+
                         final long photoId = info.photoId;
                         if (photoId == 0) {
                             break;
@@ -2029,7 +2037,6 @@ public final class ContactsListActivity extends ListActivity implements
                         } catch (OutOfMemoryError e) {
                             // Not enough memory for the photo, do nothing.
                         }
-
                         if (photo == null) {
                             break;
                         }
