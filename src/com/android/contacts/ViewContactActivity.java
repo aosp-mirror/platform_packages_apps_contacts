@@ -87,8 +87,8 @@ import java.util.ArrayList;
  */
 public class ViewContactActivity extends Activity
         implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener,
-        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener,
-        OnTabSelectionChangedListener {
+        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener {
+//        OnTabSelectionChangedListener {
     private static final String TAG = "ViewContact";
 
     public static final String RAW_CONTACT_ID_EXTRA = "rawContactIdExtra";
@@ -201,7 +201,7 @@ public class ViewContactActivity extends Activity
         });
 
         mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
-        mTabWidget.setTabSelectionListener(this);
+//        mTabWidget.setTabSelectionListener(this);
         mTabWidget.setVisibility(View.GONE);
 
         mTabRawContactIdMap = new SparseArray<Long>();
@@ -254,13 +254,13 @@ public class ViewContactActivity extends Activity
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mSelectedRawContactId = savedInstanceState.getLong(SELECTED_RAW_CONTACT_ID_KEY);
+//        mSelectedRawContactId = savedInstanceState.getLong(SELECTED_RAW_CONTACT_ID_KEY);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+//        outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
     }
 
     @Override
@@ -286,101 +286,101 @@ public class ViewContactActivity extends Activity
      * Override this method if you want to additional tabs and/or different
      * tabs for your activity.
      */
-    protected void bindTabs() {
-        if (mEntities.size() > 1) {
-            addAllTab();
-        }
-
-        final Sources sources = Sources.getInstance(this);
-
-        for (Entity entity : mEntities) {
-            final String accountType = entity.getEntityValues().
-                    getAsString(RawContacts.ACCOUNT_TYPE);
-            final Long rawContactId = entity.getEntityValues().
-                    getAsLong(RawContacts._ID);
-
-            // TODO: ensure inflation on background task so we don't block UI thread here
-            final ContactsSource source = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
-            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(),
-                    source));
-        }
-    }
-
-    /**
-     * Add a tab to be displayed in the {@link ScrollingTabWidget}.
-     *
-     * @param rawContactId The contact id associated with the tab.
-     * @param view A view to use as the tab indicator.
-     */
-    protected void addTab(long rawContactId, View view) {
-        mTabRawContactIdMap.put(mTabWidget.getTabCount(), rawContactId);
-        mTabWidget.addTab(view);
-    }
-
-
-    protected void clearCurrentTabs() {
-        mTabRawContactIdMap.clear();
-        mTabWidget.removeAllTabs();
-    }
-
-    protected void selectInitialTab() {
-        int selectedTabIndex = 0;
-
-        if (mSelectedRawContactId != null) {
-            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
-            if (selectedTabIndex == -1) {
-                // If there was no matching tab, just select the first;
-                selectedTabIndex = 0;
-            }
-        }
-
-        mTabWidget.setCurrentTab(selectedTabIndex);
-        onTabSelectionChanged(selectedTabIndex, false);
-        mTabWidget.setVisibility(View.VISIBLE);
-        mTabWidget.postInvalidate();
-    }
-
-    private void addAllTab() {
-        View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator,
-                mTabWidget.getTabParent(), false);
-        allTabIndicator.getBackground().setDither(true);
-        addTab(ALL_CONTACTS_ID, allTabIndicator);
-    }
-
-    public void onTabSelectionChanged(int tabIndex, boolean clicked) {
-        Long rawContactId = getTabRawContactId(tabIndex);
-        if (rawContactId != null) {
-            mSelectedRawContactId = rawContactId;
-            bindData();
-        }
-    }
-
-    /**
-     * Return the RawContact id associated with the tab at an index.
-     *
-     * @param index The index of the tab in question.
-     * @return The contactId associated with the tab at the specified index.
-     */
-    protected Long getTabRawContactId(int index) {
-        return mTabRawContactIdMap.get(index);
-    }
-
-    /**
-     * Return the tab index associated with the RawContact id.
-     *
-     * @param index The index of the tab in question.
-     * @return The contactId associated with the tab at the specified index.
-     */
-    protected int getTabIndexForRawContactId(long rawContactId) {
-        int numTabs = mTabRawContactIdMap.size();
-        for (int i=0; i < numTabs; i++) {
-            if (mTabRawContactIdMap.get(i) == rawContactId) {
-                return i;
-            }
-        }
-        return -1;
-    }
+//    protected void bindTabs() {
+//        if (mEntities.size() > 1) {
+//            addAllTab();
+//        }
+//
+//        final Sources sources = Sources.getInstance(this);
+//
+//        for (Entity entity : mEntities) {
+//            final String accountType = entity.getEntityValues().
+//                    getAsString(RawContacts.ACCOUNT_TYPE);
+//            final Long rawContactId = entity.getEntityValues().
+//                    getAsLong(RawContacts._ID);
+//
+//            // TODO: ensure inflation on background task so we don't block UI thread here
+//            final ContactsSource source = sources.getInflatedSource(accountType,
+//                    ContactsSource.LEVEL_SUMMARY);
+//            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(),
+//                    source));
+//        }
+//    }
+//
+//    /**
+//     * Add a tab to be displayed in the {@link ScrollingTabWidget}.
+//     *
+//     * @param rawContactId The contact id associated with the tab.
+//     * @param view A view to use as the tab indicator.
+//     */
+//    protected void addTab(long rawContactId, View view) {
+//        mTabRawContactIdMap.put(mTabWidget.getTabCount(), rawContactId);
+//        mTabWidget.addTab(view);
+//    }
+//
+//
+//    protected void clearCurrentTabs() {
+//        mTabRawContactIdMap.clear();
+//        mTabWidget.removeAllTabs();
+//    }
+//
+//    protected void selectInitialTab() {
+//        int selectedTabIndex = 0;
+//
+//        if (mSelectedRawContactId != null) {
+//            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
+//            if (selectedTabIndex == -1) {
+//                // If there was no matching tab, just select the first;
+//                selectedTabIndex = 0;
+//            }
+//        }
+//
+////        mTabWidget.setCurrentTab(selectedTabIndex);
+//        onTabSelectionChanged(selectedTabIndex, false);
+////        mTabWidget.setVisibility(View.VISIBLE);
+////        mTabWidget.postInvalidate();
+//    }
+//
+//    private void addAllTab() {
+//        View allTabIndicator = mInflater.inflate(R.layout.all_tab_indicator,
+//                mTabWidget.getTabParent(), false);
+//        allTabIndicator.getBackground().setDither(true);
+//        addTab(ALL_CONTACTS_ID, allTabIndicator);
+//    }
+//
+//    public void onTabSelectionChanged(int tabIndex, boolean clicked) {
+//        Long rawContactId = getTabRawContactId(tabIndex);
+//        if (rawContactId != null) {
+//            mSelectedRawContactId = rawContactId;
+//            bindData();
+//        }
+//    }
+//
+//    /**
+//     * Return the RawContact id associated with the tab at an index.
+//     *
+//     * @param index The index of the tab in question.
+//     * @return The contactId associated with the tab at the specified index.
+//     */
+//    protected Long getTabRawContactId(int index) {
+//        return mTabRawContactIdMap.get(index);
+//    }
+//
+//    /**
+//     * Return the tab index associated with the RawContact id.
+//     *
+//     * @param index The index of the tab in question.
+//     * @return The contactId associated with the tab at the specified index.
+//     */
+//    protected int getTabIndexForRawContactId(long rawContactId) {
+//        int numTabs = mTabRawContactIdMap.size();
+//        for (int i=0; i < numTabs; i++) {
+//            if (mTabRawContactIdMap.get(i) == rawContactId) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
 
 
     // QUERY CODE //
@@ -395,6 +395,7 @@ public class ViewContactActivity extends Activity
                     mContactHeaderWidget.showAggregateBadge(true);
                 }
 //                bindTabs();
+//                selectInitialTab();
                 bindData();
             }
         } finally {
@@ -493,9 +494,9 @@ public class ViewContactActivity extends Activity
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
-        // Only allow edit if we have a selected tab
-        final boolean contactSelected = (mSelectedRawContactId != null);
-        menu.findItem(R.id.menu_edit).setEnabled(contactSelected);
+        // Only allow edit when we have at least one raw_contact id
+        final boolean hasRawContact = (mRawContactIds.size() > 0);
+        menu.findItem(R.id.menu_split).setEnabled(hasRawContact);
 
         // Only allow split when more than one contact
         final boolean isAggregate = (mRawContactIds.size() > 1);
@@ -545,20 +546,27 @@ public class ViewContactActivity extends Activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
-                Long rawContactIdToEdit = mSelectedRawContactId;
-                if (rawContactIdToEdit == null) {
-                    // This shouldn't be possible. We only show the edit option if
-                    // this value is non-null.
-                    break;
+//                Long rawContactIdToEdit = mSelectedRawContactId;
+//                if (rawContactIdToEdit == null) {
+//                    // This shouldn't be possible. We only show the edit option if
+//                    // this value is non-null.
+//                    break;
+//                }
+//                if (rawContactIdToEdit == ALL_CONTACTS_ID) {
+//                    // If the "all" tab is selected, edit the next tab.
+//                    rawContactIdToEdit = getTabRawContactId(mTabWidget.getCurrentTab() + 1);
+//                }
+//                Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+//                        rawContactIdToEdit);
+//                startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
+//                        REQUEST_EDIT_CONTACT);
+                if (mRawContactIds.size() > 0) {
+                    long rawContactIdToEdit = mRawContactIds.get(0);
+                    Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                            rawContactIdToEdit);
+                    startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
+                            REQUEST_EDIT_CONTACT);
                 }
-                if (rawContactIdToEdit == ALL_CONTACTS_ID) {
-                    // If the "all" tab is selected, edit the next tab.
-                    rawContactIdToEdit = getTabRawContactId(mTabWidget.getCurrentTab() + 1);
-                }
-                Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                        rawContactIdToEdit);
-                startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
-                        REQUEST_EDIT_CONTACT);
                 break;
             }
             case R.id.menu_delete: {
@@ -685,15 +693,15 @@ public class ViewContactActivity extends Activity
                 }
                 break;
             }
-            case REQUEST_EDIT_CONTACT: {
-                if (resultCode == RESULT_OK && intent != null) {
-                    long newInitialSelectedRawContactId = intent.getLongExtra(
-                            RAW_CONTACT_ID_EXTRA, ALL_CONTACTS_ID);
-                    if (newInitialSelectedRawContactId != mSelectedRawContactId) {
-                        mSelectedRawContactId = newInitialSelectedRawContactId;
-                    }
-                }
-            }
+//            case REQUEST_EDIT_CONTACT: {
+//                if (resultCode == RESULT_OK && intent != null) {
+//                    long newInitialSelectedRawContactId = intent.getLongExtra(
+//                            RAW_CONTACT_ID_EXTRA, ALL_CONTACTS_ID);
+//                    if (newInitialSelectedRawContactId != mSelectedRawContactId) {
+//                        mSelectedRawContactId = newInitialSelectedRawContactId;
+//                    }
+//                }
+//            }
         }
     }
 
@@ -853,12 +861,12 @@ public class ViewContactActivity extends Activity
                 final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
                 final long rawContactId = entValues.getAsLong(RawContacts._ID);
 
-                // This performs the tab filtering
-                if (mSelectedRawContactId != null
-                        && mSelectedRawContactId != rawContactId
-                        && mSelectedRawContactId != ALL_CONTACTS_ID) {
-                    continue;
-                }
+//                // This performs the tab filtering
+//                if (mSelectedRawContactId != null
+//                        && mSelectedRawContactId != rawContactId
+//                        && mSelectedRawContactId != ALL_CONTACTS_ID) {
+//                    continue;
+//                }
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
