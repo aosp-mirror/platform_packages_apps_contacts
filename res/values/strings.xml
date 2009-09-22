@@ -764,6 +764,10 @@
     <!-- The failed reason: "One or more files failed to be imported. (&lt;a list of file names&gt;)" -->
     <string name="fail_reason_failed_to_read_files">One or more files failed to be imported (%s).</string>
 
+    <!-- The failed reason: "Unknown error". This message should not be shown
+         but it may in some buggy condition. -->
+    <string name="fail_reason_unknown">Unknown error</string>
+
     <!-- Dialog title shown when a user is asked to select VCard file -->
     <string name="select_vcard_title">Select vCard file</string>
 

@@ -346,7 +346,7 @@ public final class ContactsListActivity extends ListActivity implements
      */
     private String mQueryData;
 
-    private Handler mHandler = new Handler();
+    private VCardExporter mVCardExporter;
 
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
@@ -748,6 +748,21 @@ public final class ContactsListActivity extends ListActivity implements
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             searchManager.stopSearch();
         }
+
+        // When the orientation is changed or Home button is pressed, onStop() is called.
+        // Then, we stop exporting just for safety.
+        //
+        // Technically, it is because the dialog displaying the current status of export is
+        // closed on this method call and we cannot reliably restore the dialog in the current
+        // implementation, while the thread for exporting vCard is working at that time, without
+        // showing its status to users :(
+        // Also, it is probably not a strong requirment for us to both
+        // - enable users to press Home, slide hardware keyboard during the export
+        // - and also let vCard export to keep working.
+        if (mVCardExporter != null) {
+            mVCardExporter.cancelExport();
+            mVCardExporter = null;
+        }
     }
 
     @Override
@@ -814,6 +829,30 @@ public final class ContactsListActivity extends ListActivity implements
             case R.string.import_from_sim:
             case R.string.import_from_sdcard: {
                 return createSelectAccountDialog(id);
+            }
+            case R.string.fail_reason_too_many_vcard: {
+                return new AlertDialog.Builder(this)
+                    .setTitle(R.string.exporting_contact_failed_title)
+                    .setMessage(getString(R.string.exporting_contact_failed_message,
+                            getString(R.string.fail_reason_too_many_vcard)))
+                    .setPositiveButton(android.R.string.ok, null)
+                .create();
+            }
+            case R.id.dialog_confirm_export_vcard: {
+                return mVCardExporter.getExportConfirmationDialog();
+            }
+            case R.id.dialog_exporting_vcard: {
+                return mVCardExporter.getExportingVCardDialog();
+            }
+            case R.id.dialog_fail_to_export_with_reason: {
+                return mVCardExporter.getErrorDialogWithReason();
+            }
+            case R.id.dialog_sdcard_not_found: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle(R.string.no_sdcard_title)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setMessage(R.string.no_sdcard_message)
+                .setPositiveButton(android.R.string.ok, null);
             }
         }
         return super.onCreateDialog(id);
@@ -983,8 +1022,15 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private void doExportToSdCard() {
-        VCardExporter exporter = new VCardExporter(ContactsListActivity.this, mHandler);
-        exporter.startExportVCardToSdCard();
+        mVCardExporter = new VCardExporter(this);
+        mVCardExporter.startExportVCardToSdCard();
+    }
+
+    /**
+     * Used when VCardExporter finishes its exporting.
+     */
+    /* package */ void removeReferenceToVCardExporter() {
+        mVCardExporter = null;
     }
 
     @Override

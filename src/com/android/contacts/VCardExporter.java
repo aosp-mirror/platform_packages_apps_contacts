@@ -15,7 +15,9 @@
  */
 package com.android.contacts;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -47,24 +49,16 @@ public class VCardExporter {
     private final String mVCardTypeStr;
     private final Set<String> mExtensionsToConsider;
 
-    private Context mParentContext;
-    private Handler mParentHandler;
+    private ContactsListActivity mParentActivity;
     private ProgressDialog mProgressDialog;
 
-    private class ErrorMessageDisplayRunnable implements Runnable {
-        private String mReason;
-        public ErrorMessageDisplayRunnable(String reason) {
-            mReason = reason;
-        }
+    // Used temporaly when asking users to confirm the file name
+    private String mTargetFileName;
 
-        public void run() {
-            new AlertDialog.Builder(mParentContext)
-                .setTitle(getString(R.string.exporting_contact_failed_title))
-                .setMessage(getString(R.string.exporting_contact_failed_message, mReason))
-                .setPositiveButton(android.R.string.ok, null)
-                .show();
-        }
-    }
+    // String for storing error reason temporaly.
+    private String mErrorReason;
+
+    private ActualExportThread mActualExportThread;
 
     private class ConfirmListener implements DialogInterface.OnClickListener {
         private String mFileName;
@@ -75,8 +69,16 @@ public class VCardExporter {
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                startExport(mFileName);
-            } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+                mActualExportThread = new ActualExportThread(mFileName);
+                String title = getString(R.string.exporting_contact_list_title);
+                String message = getString(R.string.exporting_contact_list_message, mFileName);
+                mProgressDialog = new ProgressDialog(mParentActivity);
+                mProgressDialog.setTitle(title);
+                mProgressDialog.setMessage(message);
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                mProgressDialog.setOnCancelListener(mActualExportThread);
+                mParentActivity.showDialog(R.id.dialog_exporting_vcard);
+                mActualExportThread.start();
             }
         }
     }
@@ -89,7 +91,7 @@ public class VCardExporter {
 
         public ActualExportThread(String fileName) {
             mFileName = fileName;
-            PowerManager powerManager = (PowerManager)mParentContext.getSystemService(
+            PowerManager powerManager = (PowerManager)mParentActivity.getSystemService(
                     Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
@@ -105,21 +107,21 @@ public class VCardExporter {
                 try {
                     outputStream = new FileOutputStream(mFileName);
                 } catch (FileNotFoundException e) {
-                    String reason = getString(R.string.fail_reason_could_not_open_file,
+                    mErrorReason = getString(R.string.fail_reason_could_not_open_file,
                             mFileName, e.getMessage());
-                    mParentHandler.post(new ErrorMessageDisplayRunnable(reason));
+                    mParentActivity.showDialog(R.id.dialog_fail_to_export_with_reason);
                     return;
                 }
 
-                composer = new VCardComposer(mParentContext, mVCardTypeStr, true);
+                composer = new VCardComposer(mParentActivity, mVCardTypeStr, true);
                 // composer = new VCardComposer(mParentContext,
                 // VCardConfig.VCARD_TYPE_V30_JAPANESE_UTF8, true);
                 composer.addHandler(composer.new HandlerForOutputStream(outputStream));
 
                 if (!composer.init()) {
-                    String reason = getString(R.string.fail_reason_could_not_initialize_exporter,
+                    mErrorReason = getString(R.string.fail_reason_could_not_initialize_exporter,
                             composer.getErrorReason());
-                    mParentHandler.post(new ErrorMessageDisplayRunnable(reason));
+                    mParentActivity.showDialog(R.id.dialog_fail_to_export_with_reason);
                     return;
                 }
 
@@ -136,9 +138,9 @@ public class VCardExporter {
                     }
                     if (!composer.createOneEntry()) {
                         Log.e(LOG_TAG, "Failed to read a contact.");
-                        String reason = getString(R.string.fail_reason_error_occurred_during_export,
+                        mErrorReason = getString(R.string.fail_reason_error_occurred_during_export,
                                 composer.getErrorReason());
-                        mParentHandler.post(new ErrorMessageDisplayRunnable(reason));
+                        mParentActivity.showDialog(R.id.dialog_fail_to_export_with_reason);
                         return;
                     }
                     mProgressDialog.incrementProgressBy(1);
@@ -149,6 +151,7 @@ public class VCardExporter {
                 }
                 mWakeLock.release();
                 mProgressDialog.dismiss();
+                mParentActivity.removeReferenceToVCardExporter();
             }
         }
 
@@ -159,18 +162,20 @@ public class VCardExporter {
             }
         }
 
-        public void onCancel(DialogInterface dialog) {
+        public void cancel() {
             mCanceled = true;
+        }
+
+        public void onCancel(DialogInterface dialog) {
+            cancel();
         }
     }
 
     /**
-     * @param parentContext must not be null
-     * @param parentHandler must not be null
+     * @param parentActivity must not be null
      */
-    public VCardExporter(Context parentContext, Handler parentHandler) {
-        mParentContext = parentContext;
-        mParentHandler = parentHandler;
+    public VCardExporter(ContactsListActivity parentActivity) {
+        mParentActivity = parentActivity;
         mTargetDirectory = getString(R.string.config_export_dir);
         mFileNamePrefix = getString(R.string.config_export_file_prefix);
         mFileNameSuffix = getString(R.string.config_export_file_suffix);
@@ -191,7 +196,7 @@ public class VCardExporter {
             }
         }
 
-        Resources resources = parentContext.getResources();
+        Resources resources = parentActivity.getResources();
         mFileIndexMinimum = resources.getInteger(R.integer.config_export_file_min_index);
         mFileIndexMaximum = resources.getInteger(R.integer.config_export_file_max_index);
     }
@@ -207,24 +212,15 @@ public class VCardExporter {
                 targetDirectory.isDirectory() &&
                 targetDirectory.canRead()) &&
                 !targetDirectory.mkdirs()) {
-            new AlertDialog.Builder(mParentContext)
-                    .setTitle(R.string.no_sdcard_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setMessage(R.string.no_sdcard_message)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
+            mParentActivity.showDialog(R.id.dialog_sdcard_not_found);
         } else {
-            String fileName = getAppropriateFileName(mTargetDirectory);
-            if (TextUtils.isEmpty(fileName)) {
+            mTargetFileName = getAppropriateFileName(mTargetDirectory);
+            if (TextUtils.isEmpty(mTargetFileName)) {
+                mTargetFileName = null;
                 return;
             }
 
-            new AlertDialog.Builder(mParentContext)
-                .setTitle(R.string.confirm_export_title)
-                .setMessage(getString(R.string.confirm_export_message, fileName))
-                .setPositiveButton(android.R.string.ok, new ConfirmListener(fileName))
-                .setNegativeButton(android.R.string.cancel, null)
-                .show();
+            mParentActivity.showDialog(R.id.dialog_confirm_export_vcard);
         }
     }
 
@@ -246,8 +242,9 @@ public class VCardExporter {
             String possibleBody = String.format(bodyFormat,mFileNamePrefix, 1, mFileNameSuffix);
             if (possibleBody.length() > 8 || mFileNameExtension.length() > 3) {
                 Log.e(LOG_TAG, "This code does not allow any long file name.");
-                displayErrorMessage(getString(R.string.fail_reason_too_long_filename,
-                        String.format("%s.%s", possibleBody, mFileNameExtension)));
+                mErrorReason = getString(R.string.fail_reason_too_long_filename,
+                        String.format("%s.%s", possibleBody, mFileNameExtension));
+                mParentActivity.showDialog(R.id.dialog_fail_to_export_with_reason);
                 return null;
             }
         }
@@ -274,42 +271,55 @@ public class VCardExporter {
                 return String.format("%s/%s.%s", destDirectory, body, mFileNameExtension);
             }
         }
-        displayErrorMessage(getString(R.string.fail_reason_too_many_vcard));
+        mParentActivity.showDialog(R.string.fail_reason_too_many_vcard);
         return null;
     }
 
-    private void startExport(String fileName) {
-        ActualExportThread thread = new ActualExportThread(fileName);
-        displayReadingVCardDialog(thread, fileName);
-        thread.start();
+    public Dialog getExportConfirmationDialog() {
+        if (TextUtils.isEmpty(mTargetFileName)) {
+            Log.e(LOG_TAG, "Target file name is empty, which must not be!");
+            // This situation is not acceptable (probably a bug!), but we don't have no reason to
+            // show...
+            mErrorReason = null;
+            return getErrorDialogWithReason();
+        }
+
+        return new AlertDialog.Builder(mParentActivity)
+            .setTitle(R.string.confirm_export_title)
+            .setMessage(getString(R.string.confirm_export_message, mTargetFileName))
+            .setPositiveButton(android.R.string.ok, new ConfirmListener(mTargetFileName))
+            .setNegativeButton(android.R.string.cancel, null)
+            .create();
     }
 
-    private void displayReadingVCardDialog(DialogInterface.OnCancelListener listener,
-            String fileName) {
-        String title = getString(R.string.exporting_contact_list_title);
-        String message = getString(R.string.exporting_contact_list_message, fileName);
-        mProgressDialog = new ProgressDialog(mParentContext);
-        mProgressDialog.setTitle(title);
-        mProgressDialog.setMessage(message);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setOnCancelListener(listener);
-        mProgressDialog.show();
+    public Dialog getExportingVCardDialog() {
+        return mProgressDialog;
     }
 
-    private void displayErrorMessage(String failureReason) {
-        new AlertDialog.Builder(mParentContext)
+    public Dialog getErrorDialogWithReason() {
+        if (mErrorReason == null) {
+            Log.e(LOG_TAG, "Error reason must have been set.");
+            mErrorReason = getString(R.string.fail_reason_unknown);
+        }
+        return new AlertDialog.Builder(mParentActivity)
             .setTitle(R.string.exporting_contact_failed_title)
-            .setMessage(getString(R.string.exporting_contact_failed_message,
-                    failureReason))
+                .setMessage(getString(R.string.exporting_contact_failed_message, mErrorReason))
             .setPositiveButton(android.R.string.ok, null)
-            .show();
+            .create();
+    }
+
+    public void cancelExport() {
+        if (mActualExportThread != null) {
+            mActualExportThread.cancel();
+            mActualExportThread = null;
+        }
     }
 
     private String getString(int resId, Object... formatArgs) {
-        return mParentContext.getString(resId, formatArgs);
+        return mParentActivity.getString(resId, formatArgs);
     }
 
     private String getString(int resId) {
-        return mParentContext.getString(resId);
+        return mParentActivity.getString(resId);
     }
 }
