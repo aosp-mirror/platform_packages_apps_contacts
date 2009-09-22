@@ -391,9 +391,8 @@ public class ViewContactActivity extends Activity
 //                clearCurrentTabs();
                 mEntities = readEntities(iterator);
                 // Show the aggregate badge if this contact is aggregated.
-                if (mEntities.size() > 1) {
-                    mContactHeaderWidget.showAggregateBadge(true);
-                }
+                boolean isAggregate = mEntities.size() > 1;
+                mContactHeaderWidget.showAggregateBadge(isAggregate);
 //                bindTabs();
 //                selectInitialTab();
                 bindData();
