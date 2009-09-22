@@ -38,6 +38,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.UriMatcher;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -348,6 +349,14 @@ public final class ContactsListActivity extends ListActivity implements
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
+    // Uri matcher for contact id
+    private static final int CONTACTS_ID = 1001;
+    private static final UriMatcher CONTACTS_ID_MATCHER;
+    static {
+        CONTACTS_ID_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
+        CONTACTS_ID_MATCHER.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
+    }
+
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         private Uri mUri;
 
@@ -484,12 +493,26 @@ public final class ContactsListActivity extends ListActivity implements
         // dispatched from the SearchManager for security reasons
         // so we need to re-dispatch from here to the intended target.
         } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
+            Uri data = intent.getData();
+            Uri telUri = null;
+            if (CONTACTS_ID_MATCHER.match(data) == CONTACTS_ID) {
+                long contactId = Long.valueOf(data.getLastPathSegment());
+                final Cursor cursor = queryPhoneNumbers(contactId);
+                if (cursor != null) {
+                    if (cursor.getCount() == 1 && cursor.moveToFirst()) {
+                        int phoneNumberIndex = cursor.getColumnIndex(Phone.NUMBER);
+                        String phoneNumber = cursor.getString(phoneNumberIndex);
+                        telUri = Uri.parse("tel:" + phoneNumber);
+                    }
+                    cursor.close();
+                }
+            }
             // See if the suggestion was clicked with a search action key (call button)
             Intent newIntent;
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData());
+            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG)) && telUri != null) {
+                newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, telUri);
             } else {
-                newIntent = new Intent(Intent.ACTION_VIEW, intent.getData());
+                newIntent = new Intent(Intent.ACTION_VIEW, data);
             }
             startActivity(newIntent);
             finish();
