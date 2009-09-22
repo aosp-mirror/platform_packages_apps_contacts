@@ -983,6 +983,10 @@ public class FastTrackWindow implements Window.Callback,
         // Show or hide the resolve list if needed
         boolean visibleNow = mFooterDisambig.getVisibility() == View.VISIBLE;
 
+        if (mLastAction != null) mLastAction.setChecked(!visible);
+        if (actionView != null) actionView.setChecked(visible);
+        mLastAction = actionView;
+
         // Bail early if already in desired state
         if (visible == visibleNow) return;
 
@@ -997,10 +1001,6 @@ public class FastTrackWindow implements Window.Callback,
             // If hiding list, restore any down arrow state
             mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
         }
-
-        if (mLastAction != null) mLastAction.setChecked(!visible);
-        if (actionView != null) actionView.setChecked(visible);
-        mLastAction = actionView;
     }
 
     /** {@inheritDoc} */
