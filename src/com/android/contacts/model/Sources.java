@@ -16,38 +16,45 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
+import com.google.android.collect.Sets;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.IContentService;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SyncAdapterType;
 import android.content.pm.PackageManager;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Singleton holder for all parsed {@link ContactsSource} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class Sources {
+public class Sources extends BroadcastReceiver {
     private static final String TAG = "Sources";
-
-    public static final String ACCOUNT_TYPE_FALLBACK = HardCodedSources.ACCOUNT_TYPE_FALLBACK;
 
     private Context mContext;
 
+    private ContactsSource mFallbackSource = null;
+
     private HashMap<String, ContactsSource> mSources = Maps.newHashMap();
+    private HashSet<String> mKnownPackages = Sets.newHashSet();
 
     private static SoftReference<Sources> sInstance = null;
 
@@ -70,13 +77,58 @@ public class Sources {
      */
     private Sources(Context context) {
         mContext = context;
+
+        // Create fallback contacts source for on-phone contacts
+        mFallbackSource = new FallbackSource();
+
         loadAccounts();
+        registerIntentReceivers(context);
     }
 
     /** @hide exposed for unit tests */
     public Sources(ContactsSource... sources) {
         for (ContactsSource source : sources) {
-            mSources.put(source.accountType, source);
+            addSource(source);
+        }
+    }
+
+    protected void addSource(ContactsSource source) {
+        mSources.put(source.accountType, source);
+        mKnownPackages.add(source.resPackageName);
+    }
+
+    private void registerIntentReceivers(Context context) {
+        IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addDataScheme("package");
+
+        // We use getApplicationContext() so that the broadcast reciever can stay registered for
+        // the length of the application lifetime (instead of the calling activity's lifetime).
+        // This is so that we can notified of package changes, and purge the cache accordingly,
+        // but not be woken up if the application process isn't already running, since we will
+        // have no cache to clear at that point.
+        context.getApplicationContext().registerReceiver(this, filter);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        final String action = intent.getAction();
+        final String packageName = intent.getData().getSchemeSpecificPart();
+
+        final boolean matchingPackage = mKnownPackages.contains(packageName);
+        final boolean validAction = Intent.ACTION_PACKAGE_REMOVED.equals(action)
+                || Intent.ACTION_PACKAGE_ADDED.equals(action)
+                || Intent.ACTION_PACKAGE_CHANGED.equals(action);
+
+        if (matchingPackage && validAction) {
+            for (ContactsSource source : mSources.values()) {
+                if (TextUtils.equals(packageName, source.resPackageName)) {
+                    // Invalidate any cache for the changed package
+                    source.invalidateCache();
+                }
+            }
         }
     }
 
@@ -86,17 +138,6 @@ public class Sources {
      */
     protected void loadAccounts() {
         mSources.clear();
-
-        {
-            // Create fallback contacts source for on-phone contacts
-            final ContactsSource source = new ContactsSource();
-            source.accountType = HardCodedSources.ACCOUNT_TYPE_FALLBACK;
-            source.resPackageName = mContext.getPackageName();
-            source.titleRes = R.string.account_phone;
-            source.iconRes = R.drawable.ic_launcher_contacts;
-
-            mSources.put(source.accountType, source);
-        }
 
         final AccountManager am = AccountManager.get(mContext);
         final IContentService cs = ContentResolver.getContentService();
@@ -116,14 +157,23 @@ public class Sources {
                 final String accountType = sync.accountType;
                 final AuthenticatorDescription auth = findAuthenticator(auths, accountType);
 
-                final ContactsSource source = new ContactsSource();
+                ContactsSource source;
+                if (GoogleSource.ACCOUNT_TYPE.equals(accountType)) {
+                    source = new GoogleSource(auth.packageName);
+                } else if (ExchangeSource.ACCOUNT_TYPE.equals(accountType)) {
+                    source = new ExchangeSource(auth.packageName);
+                } else {
+                    // TODO: use syncadapter package instead, since it provides resources
+                    Log.d(TAG, "Creating external source for type=" + accountType
+                            + ", packageName=" + auth.packageName);
+                    source = new ExternalSource(auth.packageName);
+                }
+
                 source.accountType = auth.type;
-                // TODO: use syncadapter package instead, since it provides resources
-                source.resPackageName = auth.packageName;
                 source.titleRes = auth.labelId;
                 source.iconRes = auth.iconId;
 
-                mSources.put(accountType, source);
+                addSource(source);
             }
         } catch (RemoteException e) {
             Log.w(TAG, "Problem loading accounts: " + e.toString());
@@ -166,22 +216,45 @@ public class Sources {
         return matching;
     }
 
-    protected ContactsSource getSourceForType(String accountType) {
-        ContactsSource source = mSources.get(accountType);
-        if (source == null) {
-            Log.w(TAG, "Unknown account type '" + accountType + "', falling back to default");
-            source = mSources.get(ACCOUNT_TYPE_FALLBACK);
+    /**
+     * Find the best {@link DataKind} matching the requested
+     * {@link ContactsSource#accountType} and {@link DataKind#mimeType}. If no
+     * direct match found, we try searching {@link #mFallbackSource}.
+     */
+    public DataKind getKindOrFallback(String accountType, String mimeType, Context context,
+            int inflateLevel) {
+        DataKind kind = null;
+
+        // Try finding source and kind matching request
+        final ContactsSource source = mSources.get(accountType);
+        if (source != null) {
+            source.ensureInflated(context, inflateLevel);
+            kind = source.getKindForMimetype(mimeType);
         }
-        return source;
+
+        if (kind == null) {
+            // Nothing found, so try fallback as last resort
+            mFallbackSource.ensureInflated(context, inflateLevel);
+            kind = mFallbackSource.getKindForMimetype(mimeType);
+        }
+
+        if (kind == null) {
+            Log.w(TAG, "Unknown type=" + accountType + ", mime=" + mimeType);
+        }
+
+        return kind;
     }
 
     /**
      * Return {@link ContactsSource} for the given account type.
      */
     public ContactsSource getInflatedSource(String accountType, int inflateLevel) {
-        final ContactsSource source = getSourceForType(accountType);
-        if (source == null || source.isInflated(inflateLevel)) {
-            // Found inflated, so return directly
+        // Try finding specific source, otherwise use fallback
+        ContactsSource source = mSources.get(accountType);
+        if (source == null) source = mFallbackSource;
+
+        if (source.isInflated(inflateLevel)) {
+            // Already inflated, so return directly
             return source;
         } else {
             // Not inflated, but requested that we force-inflate

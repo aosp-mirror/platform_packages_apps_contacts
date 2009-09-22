@@ -35,6 +35,10 @@ public final class FastTrackActivity extends Activity implements FastTrackWindow
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        if (FastTrackWindow.TRACE_LAUNCH) {
+            android.os.Debug.startMethodTracing(FastTrackWindow.TRACE_TAG);
+        }
+
         // Use our local window token for now
         final Intent intent = getIntent();
         final Uri lookupUri = intent.getData();

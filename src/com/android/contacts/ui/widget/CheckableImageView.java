@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui;
+package com.android.contacts.ui.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -49,7 +49,7 @@ public class CheckableImageView extends ImageView implements Checkable {
     public void toggle() {
         setChecked(!mChecked);
     }
-    
+
     public boolean isChecked() {
         return mChecked;
     }

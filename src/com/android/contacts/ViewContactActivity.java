@@ -302,7 +302,8 @@ public class ViewContactActivity extends Activity
             // TODO: ensure inflation on background task so we don't block UI thread here
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_SUMMARY);
-            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(), source));
+            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(),
+                    source));
         }
     }
 
@@ -846,12 +847,11 @@ public class ViewContactActivity extends Activity
             for (Entity entity: mEntities) {
                 final ContentValues entValues = entity.getEntityValues();
                 final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
-                // TODO: entry.contactId should be renamed to entry.rawContactId
-                long contactId = entValues.getAsLong(RawContacts._ID);
+                final long rawContactId = entValues.getAsLong(RawContacts._ID);
 
                 // This performs the tab filtering
                 if (mSelectedRawContactId != null
-                        && mSelectedRawContactId != contactId
+                        && mSelectedRawContactId != rawContactId
                         && mSelectedRawContactId != ALL_CONTACTS_ID) {
                     continue;
                 }
@@ -859,26 +859,19 @@ public class ViewContactActivity extends Activity
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
 
-                    ContentValues entryValues = subValue.values;
+                    final ContentValues entryValues = subValue.values;
+                    entryValues.put(Data.RAW_CONTACT_ID, rawContactId);
+
                     final String mimetype = entryValues.getAsString(Data.MIMETYPE);
-                    if (mimetype == null || accountType == null) {
-                        continue;
-                    }
+                    if (mimetype == null) continue;
 
-                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                    final DataKind kind = sources.getKindOrFallback(accountType, mimetype, this,
                             ContactsSource.LEVEL_MIMETYPES);
-                    if (contactsSource == null) {
-                        continue;
-                    }
-
-                    DataKind kind = contactsSource.getKindForMimetype(mimetype);
-                    if (kind == null) {
-                        continue;
-                    }
+                    if (kind == null) continue;
 
                     final long id = entryValues.getAsLong(Data._ID);
                     final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-                    entry.contactId = contactId;
+                    entry.contactId = rawContactId;
                     entry.id = id;
                     entry.uri = uri;
                     entry.mimetype = mimetype;
@@ -888,12 +881,12 @@ public class ViewContactActivity extends Activity
                         entry.type = entryValues.getAsInteger(kind.typeColumn);
                     }
                     if (kind.iconRes > 0) {
+                        entry.resPackageName = kind.resPackageName;
                         entry.actionIcon = kind.iconRes;
                     }
 
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(entry.data)) {
-                        Log.w(TAG, "empty data for contact method " + id);
                         continue;
                     }
 
@@ -938,10 +931,6 @@ public class ViewContactActivity extends Activity
                             // Build email entries
                             entry.intent = new Intent(Intent.ACTION_SENDTO,
                                     Uri.fromParts("mailto", entry.data, null));
-                            // Temporary hack until we get real label resources for exchange.
-                            if (TextUtils.isEmpty(entry.label)) {
-                                entry.label = getString(R.string.email).toLowerCase();
-                            }
                             entry.isPrimary = isSuperPrimary;
                             mEmailEntries.add(entry);
                         } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
@@ -995,8 +984,11 @@ public class ViewContactActivity extends Activity
                         entry.intent = null;
                         entry.maxLines = 10;
                         mOtherEntries.add(entry);
+                    } else {
+                        // Handle showing custom
+                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
+                        mOtherEntries.add(entry);
                     }
-
 
                     // TODO(emillar) Add group entries
                     //              // Build the group entries
@@ -1069,6 +1061,7 @@ public class ViewContactActivity extends Activity
      * A basic structure with the data for a contact entry in the list.
      */
     static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+        public String resPackageName = null;
         public int actionIcon = -1;
         public boolean isPrimary = false;
         public int presenceIcon = -1;
@@ -1225,7 +1218,15 @@ public class ViewContactActivity extends Activity
             // Set the action icon
             ImageView action = views.actionIcon;
             if (entry.actionIcon != -1) {
-                action.setImageDrawable(resources.getDrawable(entry.actionIcon));
+                Drawable actionIcon;
+                if (entry.resPackageName != null) {
+                    // Load external resources through PackageManager
+                    actionIcon = mContext.getPackageManager().getDrawable(entry.resPackageName,
+                            entry.actionIcon, null);
+                } else {
+                    actionIcon = resources.getDrawable(entry.actionIcon);
+                }
+                action.setImageDrawable(actionIcon);
                 action.setVisibility(View.VISIBLE);
             } else {
                 // Things should still line up as if there was an icon, so make it invisible
