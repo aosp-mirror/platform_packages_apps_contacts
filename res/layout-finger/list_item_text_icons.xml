@@ -76,10 +76,10 @@
     />
 
     <ImageView android:id="@+id/action_icon"
-        android:layout_width="32dip"
-        android:layout_height="32dip"
-        android:layout_marginLeft="7dip"
-        android:layout_marginRight="7dip"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="14dip"
+        android:layout_marginRight="14dip"
         android:gravity="center"
         android:scaleType="centerInside"
     />
@@ -87,19 +87,15 @@
     <View android:id="@+id/divider"
         android:layout_width="1dip"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="5dip"
         android:background="@drawable/divider_vertical_dark"
     />
 
     <ImageView android:id="@+id/secondary_action_button"
-        android:layout_width="64dip"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dip"
-        android:layout_marginRight="7dip"
+        android:paddingLeft="14dip"
+        android:paddingRight="14dip"
         android:gravity="center"
         android:scaleType="center"
         android:background="@android:drawable/list_selector_background"
