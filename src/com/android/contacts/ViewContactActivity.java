@@ -945,7 +945,7 @@ public class ViewContactActivity extends Activity
                             String host = null;
 
                             if (TextUtils.isEmpty(entry.label)) {
-                                entry.label = getString(R.string.chat_other).toLowerCase();
+                                entry.label = getString(R.string.chat).toLowerCase();
                             }
 
                             if (protocolObj instanceof Number) {
