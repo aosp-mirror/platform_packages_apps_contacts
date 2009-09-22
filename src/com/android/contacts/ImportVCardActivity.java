@@ -789,7 +789,21 @@ public class ImportVCardActivity extends Activity {
         super.onStop();
         if (mVCardReadThread != null) {
             // The Activity is no longer visible. Stop the thread.
-            // TODO: The Activity may be destroyed without this method being called.
+            mVCardReadThread.cancel();
+            mVCardReadThread = null;
+        }
+
+        // ImportVCardActivity should not be persistent. In other words, if there's some
+        // event calling onStop(), this Activity should finish its work and give the main
+        // screen back to the caller Activity.
+        finish();
+    }
+
+    @Override
+    public void finalize() {
+        if (mVCardReadThread != null) {
+            // Not sure this procedure is really needed, but just in case...
+            Log.w(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
             mVCardReadThread.cancel();
             mVCardReadThread = null;
         }
