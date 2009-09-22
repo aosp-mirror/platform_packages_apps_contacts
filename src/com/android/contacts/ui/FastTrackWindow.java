@@ -983,8 +983,8 @@ public class FastTrackWindow implements Window.Callback,
         // Show or hide the resolve list if needed
         boolean visibleNow = mFooterDisambig.getVisibility() == View.VISIBLE;
 
-        if (mLastAction != null) mLastAction.setChecked(!visible);
-        if (actionView != null) actionView.setChecked(visible);
+        if (mLastAction != null) mLastAction.setChecked(false);
+        if (actionView != null) actionView.setChecked(true);
         mLastAction = actionView;
 
         // Bail early if already in desired state
