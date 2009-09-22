@@ -40,4 +40,9 @@
     <item type="id" name="dialog_reading_vcard" />
     <item type="id" name="dialog_io_exception" />
 
+    <!-- For ExportVCard -->
+    <item type="id" name="dialog_confirm_export_vcard" />
+    <item type="id" name="dialog_exporting_vcard" />
+    <item type="id" name="dialog_fail_to_export_with_reason" />
+
 </resources>
