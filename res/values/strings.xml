@@ -911,6 +911,9 @@
     <!-- Single-character overlay for other phone numbers when creating desktop shortcuts -->
     <string name="type_short_other">O</string>
 
+    <!-- In edit dialog, shown if the contact is marked as being read-only -->
+    <string name="edit_read_only">This contact is read-only</string>
+
     <!-- Shown as the header title over a collapsible section that, by default, hides
          secondary contact detail edit fields, such as birthday. -->
     <string name="edit_secondary_collapse">Secondary details</string>
