@@ -167,6 +167,7 @@ public class Sources extends BroadcastReceiver {
                     Log.d(TAG, "Creating external source for type=" + accountType
                             + ", packageName=" + auth.packageName);
                     source = new ExternalSource(auth.packageName);
+                    source.readOnly = !sync.supportsUploading();
                 }
 
                 source.accountType = auth.type;
