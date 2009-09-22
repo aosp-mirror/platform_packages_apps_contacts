@@ -51,6 +51,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -577,11 +578,7 @@ public final class ContactsListActivity extends ListActivity implements
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
 
-        if (mMode == MODE_JOIN_CONTACT) {
-            mQueryHandler = new SuggestionsQueryHandler(this, mQueryAggregateId);
-        } else {
-            mQueryHandler = new QueryHandler(this);
-        }
+        mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
 
         // TODO(jham) redesign this
@@ -1566,6 +1563,17 @@ public final class ContactsListActivity extends ListActivity implements
         }
     }
 
+    private Uri getJoinSuggestionsUri(String filter) {
+        Builder builder = Contacts.CONTENT_URI.buildUpon();
+        builder.appendEncodedPath(String.valueOf(mQueryAggregateId));
+        builder.appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY);
+        if (!TextUtils.isEmpty(filter)) {
+            builder.appendEncodedPath(Uri.encode(filter));
+        }
+        builder.appendQueryParameter("limit", String.valueOf(MAX_SUGGESTIONS));
+        return builder.build();
+    }
+
     private static String getSortOrder(String[] projectionType) {
         /* if (Locale.getDefault().equals(Locale.JAPAN) &&
                 projectionType == AGGREGATES_PRIMARY_PHONE_PROJECTION) {
@@ -1582,6 +1590,7 @@ public final class ContactsListActivity extends ListActivity implements
 
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
+        mQueryHandler.setLoadingJoinSuggestions(false);
 
         String[] projection = getProjectionForQuery();
         Uri uri = getUriToQuery();
@@ -1661,12 +1670,8 @@ public final class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_JOIN_CONTACT:
-                Uri suggestionsUri = Contacts.CONTENT_URI.buildUpon()
-                        .appendEncodedPath(String.valueOf(mQueryAggregateId))
-                        .appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY)
-                        .appendQueryParameter("limit", String.valueOf(MAX_SUGGESTIONS))
-                        .build();
-                mQueryHandler.startQuery(QUERY_TOKEN, null, suggestionsUri, projection,
+                mQueryHandler.setLoadingJoinSuggestions(true);
+                mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
                         null, null, null);
                 break;
         }
@@ -1733,6 +1738,17 @@ public final class ContactsListActivity extends ListActivity implements
 
             case MODE_LEGACY_PICK_PHONE: {
                 //TODO: Support filtering here (bug 2092503)
+                break;
+            }
+
+            case MODE_JOIN_CONTACT: {
+
+                // We are on a background thread. Run queries one after the other synchronously
+                Cursor cursor = resolver.query(getJoinSuggestionsUri(filter), projection, null,
+                        null, null);
+                mAdapter.setSuggestionsCursor(cursor);
+                return resolver.query(getContactFilterUri(filter), projection,
+                        getContactSelection(), null, getSortOrder(projection));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
@@ -1844,16 +1860,39 @@ public final class ContactsListActivity extends ListActivity implements
 
     private static class QueryHandler extends AsyncQueryHandler {
         protected final WeakReference<ContactsListActivity> mActivity;
+        protected boolean mLoadingJoinSuggestions = false;
 
         public QueryHandler(Context context) {
             super(context.getContentResolver());
             mActivity = new WeakReference<ContactsListActivity>((ContactsListActivity) context);
         }
 
+        public void setLoadingJoinSuggestions(boolean flag) {
+            mLoadingJoinSuggestions = flag;
+        }
+
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
             final ContactsListActivity activity = mActivity.get();
             if (activity != null && !activity.isFinishing()) {
+
+                // Whenever we get a suggestions cursor, we need to immediately kick off
+                // another query for the complete list of contacts
+                if (cursor != null && mLoadingJoinSuggestions) {
+                    mLoadingJoinSuggestions = false;
+                    if (cursor.getCount() > 0) {
+                        activity.mAdapter.setSuggestionsCursor(cursor);
+                    } else {
+                        activity.mAdapter.setSuggestionsCursor(null);
+                    }
+
+                    startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
+                            CONTACTS_SUMMARY_PROJECTION,
+                            Contacts._ID + " != " + activity.mQueryAggregateId, null,
+                            getSortOrder(CONTACTS_SUMMARY_PROJECTION));
+                    return;
+                }
+
                 activity.mAdapter.setLoading(false);
                 activity.getListView().clearTextFilter();
                 activity.mAdapter.changeCursor(cursor);
@@ -1867,46 +1906,6 @@ public final class ContactsListActivity extends ListActivity implements
                     activity.mListHasFocus = false;
                     activity.mListState = null;
                 }
-            } else {
-                cursor.close();
-            }
-        }
-    }
-
-    /**
-     * Query handler for the suggestions query used in the Join Contacts UI.  Once the
-     * suggestions query is complete, the handler launches an A-Z query.  The entire search is only
-     * done once the second query is complete.
-     */
-    private static final class SuggestionsQueryHandler extends QueryHandler {
-        boolean mSuggestionsQueryComplete;
-        private final long mAggregateId;
-
-        public SuggestionsQueryHandler(Context context, long aggregateId) {
-            super(context);
-            mAggregateId = aggregateId;
-        }
-
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            if (mSuggestionsQueryComplete) {
-                super.onQueryComplete(token, cookie, cursor);
-                return;
-            }
-
-            mSuggestionsQueryComplete = true;
-
-            final ContactsListActivity activity = mActivity.get();
-            if (activity != null && !activity.isFinishing()) {
-                if (cursor.getCount() > 0) {
-                    activity.mAdapter.setSuggestionsCursor(cursor);
-                } else {
-                    activity.mAdapter.setSuggestionsCursor(null);
-                }
-                startQuery(QUERY_TOKEN, null, Contacts.CONTENT_URI, CONTACTS_SUMMARY_PROJECTION,
-                        Contacts._ID + " != " + mAggregateId, null,
-                        getSortOrder(CONTACTS_SUMMARY_PROJECTION));
-
             } else {
                 cursor.close();
             }
@@ -2340,7 +2339,7 @@ public final class ContactsListActivity extends ListActivity implements
                         viewToUse.setImageResource(R.drawable.ic_contact_list_picture);
 
                         // Add it to a set of images that are populated asynchronously.
-                        mItemsMissingImages.add(cache.photoView);
+                        mItemsMissingImages.add(viewToUse);
 
                         if (mScrollState != OnScrollListener.SCROLL_STATE_FLING) {
 
@@ -2428,6 +2427,7 @@ public final class ContactsListActivity extends ListActivity implements
 
         @Override
         public void changeCursor(Cursor cursor) {
+
             // Get the split between starred and frequent items, if the mode is strequent
             mFrequentSeparatorPos = ListView.INVALID_POSITION;
             if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
