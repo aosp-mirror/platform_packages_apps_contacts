@@ -56,6 +56,8 @@ import android.widget.TextView;
 public class ContactEditorView extends RelativeLayout implements OnClickListener {
     private LayoutInflater mInflater;
 
+    private TextView mReadOnly;
+
     private PhotoEditorView mPhoto;
     private GenericEditorView mName;
 
@@ -88,6 +90,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
+
+        mReadOnly = (TextView)findViewById(R.id.edit_read_only);
 
         mName = (GenericEditorView)findViewById(R.id.edit_name);
         mName.setMinimumHeight(photoSize);
@@ -169,6 +173,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
+
+        mReadOnly.setVisibility(source.readOnly ? View.VISIBLE : View.GONE);
 
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
