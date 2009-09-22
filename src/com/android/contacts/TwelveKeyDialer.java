@@ -155,6 +155,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.getText().clear();
         }
 
+        final boolean notEmpty = mDigits.length() != 0;
+        if (notEmpty) {
+            mDigits.setBackgroundDrawable(mDigitsBackground);
+        } else {
+            mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
+        }
+
         updateDialAndDeleteButtonStateEnabledAttr();
     }
 
@@ -165,10 +172,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // Set the content view
         setContentView(getContentViewResource());
 
-        // Load up the resources for the text field and delete button
+        // Load up the resources for the text field.
         Resources r = getResources();
         mDigitsBackground = r.getDrawable(R.drawable.btn_dial_textfield_active);
-        //mDigitsBackground.setDither(true);
         mDigitsEmptyBackground = r.getDrawable(R.drawable.btn_dial_textfield);
 
         mDigits = (EditText) findViewById(R.id.digits);
