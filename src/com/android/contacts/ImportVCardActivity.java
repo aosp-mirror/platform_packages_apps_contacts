@@ -264,7 +264,7 @@ public class ImportVCardActivity extends Activity {
                 mWakeLock.release();
                 mProgressDialogForReadVCard.dismiss();
                 // finish() is called via ErrorDisplayer() on failure.
-                if (shouldCallFinish) {
+                if (shouldCallFinish && !isFinishing()) {
                     if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
                         finish();
                     } else {
@@ -796,7 +796,9 @@ public class ImportVCardActivity extends Activity {
         // ImportVCardActivity should not be persistent. In other words, if there's some
         // event calling onStop(), this Activity should finish its work and give the main
         // screen back to the caller Activity.
-        finish();
+        if (!isFinishing()) {
+            finish();
+        }
     }
 
     @Override
