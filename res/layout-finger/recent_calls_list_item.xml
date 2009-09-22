@@ -78,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
         android:layout_toRightOf="@id/label"
+        android:layout_toLeftOf="@id/date"
         android:layout_alignBaseline="@id/label"
         android:layout_alignWithParentIfMissing="true"
 
@@ -91,11 +92,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/call_type_icon"
         android:layout_above="@id/label"
         android:layout_alignWithParentIfMissing="true"
 
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:singleLine="true"
+        android:ellipsize="marquee"
         android:gravity="center_vertical"
     />
 
