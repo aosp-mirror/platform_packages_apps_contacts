@@ -342,7 +342,7 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         boolean hadDecor = mDecor != null;
-        
+
         if (hadDecor) {
             mWindowManager.removeView(mDecor);
             mDecor = null;
@@ -380,7 +380,7 @@ public class FastTrackWindow implements Window.Callback,
         }
 
         mShowing = false;
-        
+
         // Notify any listeners that we've been dismissed
         if (mDismissListener != null) {
             mDismissListener.onDismiss(this);
@@ -986,17 +986,20 @@ public class FastTrackWindow implements Window.Callback,
             // If showing list, then hide and save state of down arrow
             mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
             mArrowDown.setVisibility(View.INVISIBLE);
-	    mLastChiclet.setChecked(true);
+            mLastChiclet.setChecked(true);
         } else {
             // If hiding list, restore any down arrow state
             mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
-	    mLastChiclet.setChecked(false);
+            mLastChiclet.setChecked(false);
         }
     }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
-        mLastChiclet = (CheckableImageView)v;
+        if (v instanceof CheckableImageView) {
+            mLastChiclet = (CheckableImageView)v;
+        }
+
         final Object tag = v.getTag();
         if (tag instanceof Intent) {
             // Hide the resolution list, if present
