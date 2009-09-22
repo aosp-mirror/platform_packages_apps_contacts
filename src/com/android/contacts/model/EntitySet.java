@@ -21,6 +21,7 @@ import com.google.android.collect.Lists;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
@@ -30,6 +31,7 @@ import android.os.RemoteException;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -82,11 +84,28 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
     }
 
     /**
-     * Merge the "after" values from the given {@link EntitySet}.
+     * Merge the "after" values from the given {@link EntitySet}, discarding any
+     * previous "after" states. This is typically used when re-parenting user
+     * edits onto an updated {@link EntitySet}.
      */
-    public void mergeAfter(EntitySet remote) {
-        // TODO: write this folding logic to re-parent
-        throw new UnsupportedOperationException();
+    public static EntitySet mergeAfter(EntitySet local, EntitySet remote) {
+        if (local == null) local = new EntitySet();
+
+        // For each entity in the remote set, try matching over existing
+        for (EntityDelta remoteEntity : remote) {
+            final Long rawContactId = remoteEntity.getValues().getId();
+
+            // Find or create local match and merge
+            final EntityDelta localEntity = local.getByRawContactId(rawContactId);
+            final EntityDelta merged = EntityDelta.mergeAfter(localEntity, remoteEntity);
+
+            if (localEntity == null && merged != null) {
+                // No local entry before, so insert
+                local.add(merged);
+            }
+        }
+
+        return local;
     }
 
     /**
@@ -173,7 +192,7 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
     /**
      * Find {@link RawContacts#_ID} of the requested {@link EntityDelta}.
      */
-    public long getRawContactId(int index) {
+    public Long getRawContactId(int index) {
         if (index >= 0 && index < this.size()) {
             final EntityDelta delta = this.get(index);
             final ValuesDelta values = delta.getValues();
@@ -181,16 +200,22 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
                 return values.getAsLong(RawContacts._ID);
             }
         }
-        return 0;
+        return null;
+    }
+
+    public EntityDelta getByRawContactId(Long rawContactId) {
+        final int index = this.indexOfRawContactId(rawContactId);
+        return (index == -1) ? null : this.get(index);
     }
 
     /**
      * Find index of given {@link RawContacts#_ID} when present.
      */
     public int indexOfRawContactId(Long rawContactId) {
+        if (rawContactId == null) return -1;
         final int size = this.size();
         for (int i = 0; i < size; i++) {
-            final long currentId = getRawContactId(i);
+            final Long currentId = getRawContactId(i);
             if (currentId == rawContactId) {
                 return i;
             }
