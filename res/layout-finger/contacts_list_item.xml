@@ -30,7 +30,7 @@
     <View android:id="@+id/list_divider"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/divider_horizontal_dark"
+        android:background="@*android:drawable/divider_horizontal_dark_opaque"
     />
 
     <RelativeLayout
@@ -38,17 +38,49 @@
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:paddingLeft="14dip"
     >
-
-        <ImageView android:id="@+id/presence"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="5dip"
-            android:layout_centerVertical="true"
-
-            android:gravity="center"
-            android:scaleType="centerInside"
-        />
+    
+        <LinearLayout android:id="@+id/right_side"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="11dip"
+            android:layout_alignParentRight="true">
+            
+            <ImageView android:id="@+id/presence"
+                android:layout_width="32dip"
+                android:layout_height="32dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+    
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerInside"
+            />
+            
+            <LinearLayout android:id="@+id/call_view"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+    
+                <View android:id="@+id/divider"
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:background="@*android:drawable/divider_vertical_dark_opaque"
+                />
+    
+                <ImageView android:id="@+id/call_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="14dip"
+                    android:paddingRight="14dip"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:src="@android:drawable/sym_action_call"
+                    android:background="@android:drawable/list_selector_background"
+                />
+    
+            </LinearLayout>
+    
+        </LinearLayout>
 
         <TextView android:id="@+id/label"
             android:layout_width="wrap_content"
@@ -70,7 +102,7 @@
             android:layout_marginLeft="5dip"
             android:layout_toRightOf="@id/label"
             android:layout_alignBaseline="@id/label"
-            android:layout_toLeftOf="@id/presence"
+            android:layout_toLeftOf="@id/right_side"
             android:layout_alignWithParentIfMissing="true"
 
             android:singleLine="true"
@@ -85,7 +117,7 @@
             android:layout_alignWithParentIfMissing="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/presence"
+            android:layout_toLeftOf="@id/right_side"
             android:layout_marginBottom="1dip"
 
             android:singleLine="true"
@@ -93,32 +125,6 @@
             android:gravity="center_vertical|left"
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
-
-        <LinearLayout android:id="@+id/call_view"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:layout_marginLeft="11dip"
-            android:layout_alignParentRight="true">
-
-            <View android:id="@+id/divider"
-                android:layout_width="1dip"
-                android:layout_height="fill_parent"
-                android:background="@drawable/divider_vertical_dark"
-            />
-
-            <ImageView android:id="@+id/call_button"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:paddingLeft="14dip"
-                android:paddingRight="14dip"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:src="@android:drawable/sym_action_call"
-                android:background="@android:drawable/list_selector_background"
-            />
-
-        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>
