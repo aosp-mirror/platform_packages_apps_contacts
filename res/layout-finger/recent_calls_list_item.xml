@@ -33,12 +33,12 @@
     />
 
     <View android:id="@+id/divider"
-        android:layout_width="1dip"
+        android:layout_width="1px"
         android:layout_height="fill_parent"
         android:layout_toLeftOf="@id/call_icon"
         android:layout_marginLeft="11dip"
 
-        android:background="@drawable/divider_vertical_dark"
+        android:background="@*android:drawable/divider_vertical_dark_opaque"
     />
 
     <ImageView android:id="@+id/call_type_icon"
