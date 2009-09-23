@@ -212,6 +212,8 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateOrganization(ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.typeOverallMax = 1;
+
             kind.typeColumn = Organization.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildOrgType(Organization.TYPE_WORK).setSpecificMax(1));
