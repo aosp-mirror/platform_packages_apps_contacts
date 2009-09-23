@@ -1571,7 +1571,7 @@ public final class ContactsListActivity extends ListActivity implements
             Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
             cursor = getContentResolver().query(photoUri, new String[] {Photo.PHOTO},
                     null, null, null);
-            if (cursor.moveToFirst()) {
+            if (cursor != null && cursor.moveToFirst()) {
                 bm = ContactsUtils.loadContactPhoto(cursor, 0, options);
             }
         } finally {
