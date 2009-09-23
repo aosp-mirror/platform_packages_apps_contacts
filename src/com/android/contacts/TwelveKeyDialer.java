@@ -82,6 +82,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     /** The DTMF tone volume relative to other sounds in the stream */
     private static final int TONE_RELATIVE_VOLUME = 50;
 
+    /** Play the vibrate pattern only once. */
+    private static final int VIBRATE_NO_REPEAT = -1;
+
     private EditText mDigits;
     private View mDelete;
     private MenuItem mAddToContactMenuItem;
@@ -108,7 +111,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     // Vibration (haptic feedback) for dialer key presses.
     private Vibrator mVibrator;
     private boolean mVibrateOn;
-    private long mVibrateDuration;
+    private long[] mVibratePattern;
 
 
     /** Identifier for the "Add Call" intent extra. */
@@ -218,12 +221,10 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             super.onRestoreInstanceState(icicle);
         }
 
-        // Initialize vibration parameters.
         // TODO: We might eventually need to make mVibrateOn come from a
         // user preference rather than a per-platform resource, in which
         // case we would need to update it in onResume() rather than here.
-        mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
-        mVibrateDuration = (long) r.getInteger(R.integer.config_dialer_key_vibrate_duration);
+        initVibrationPattern(r);
     }
 
     @Override
@@ -984,7 +985,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         if (mVibrator == null) {
             mVibrator = new Vibrator();
         }
-        mVibrator.vibrate(mVibrateDuration);
+        mVibrator.vibrate(mVibratePattern, VIBRATE_NO_REPEAT);
     }
 
     /**
@@ -1063,6 +1064,35 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mVoicemailButton.setOnClickListener(this);
         } else {
             mVoicemailButton.setEnabled(false);
+        }
+    }
+
+    /**
+     * Initialize the vibration parameters.
+     * @param r The Resources with the vibration parameters.
+     */
+    private void initVibrationPattern(Resources r) {
+        int[] pattern = null;
+        try {
+            mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
+            pattern = r.getIntArray(com.android.internal.R.array.config_virtualKeyVibePattern);
+            if (null == pattern) {
+                Log.e(TAG, "Vibrate pattern is null.");
+                mVibrateOn = false;
+            }
+        } catch (Resources.NotFoundException nfe) {
+            Log.e(TAG, "Vibrate control bool or pattern missing.", nfe);
+            mVibrateOn = false;
+        }
+
+        if (!mVibrateOn) {
+            return;
+        }
+
+        // int[] to long[] conversion.
+        mVibratePattern = new long[pattern.length];
+        for (int i = 0; i < pattern.length; i++) {
+            mVibratePattern[i] = pattern[i];
         }
     }
 
