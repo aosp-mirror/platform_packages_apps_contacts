@@ -215,7 +215,11 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     }
 
     /**
-     * Prepare dialog for entering a custom label.
+     * Prepare dialog for entering a custom label. The input value is trimmed: white spaces before
+     * and after the input text is removed.
+     * <p>
+     * If the final value is empty, this change request is ignored;
+     * no empty text is allowed in any custom label.
      */
     public Dialog createCustomDialog() {
         final EditText customType = new EditText(mContext);
@@ -228,13 +232,14 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                final String customText = customType.getText().toString();
-                mEntry.put(mType.customColumn, customText);
-                rebuildLabel();
+                final String customText = customType.getText().toString().trim();
+                if (!TextUtils.isEmpty(customText)) {
+                    mEntry.put(mType.customColumn, customText);
+                    rebuildLabel();
+                }
             }
         });
 
-        // TODO: handle canceled case by reverting to previous type?
         builder.setNegativeButton(android.R.string.cancel, null);
 
         return builder.create();
