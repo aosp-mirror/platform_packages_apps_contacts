@@ -503,9 +503,8 @@
     </string>
 
     <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab -->
-    <string name="noFavoritesHelpText">"You don't have any favorites.\n
-        \nTo add a contact to your list of favorites:\n
-        \n<li>Touch the Contacts tab\n</li>
+    <string name="noFavoritesHelpText">"You don't have any favorites.\n\nTo add a contact to your list of favorites:\n
+        <li>Touch the Contacts tab\n</li>
         \n<li>Touch the contact you want to add to your favorites\n</li>
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
