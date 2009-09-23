@@ -260,7 +260,9 @@ public class ViewContactActivity extends Activity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+	if (mSelectedRawContactId != null) {
+            outState.putLong(SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+        }
     }
 
     @Override
