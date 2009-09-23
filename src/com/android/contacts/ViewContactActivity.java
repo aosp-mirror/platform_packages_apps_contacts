@@ -963,8 +963,7 @@ public class ViewContactActivity extends Activity
 
                             if (protocolObj instanceof Number) {
                                 int protocol = ((Number) protocolObj).intValue();
-                                host = ContactsUtils.lookupProviderNameFromId(
-                                        protocol).toLowerCase();
+                                host = ContactsUtils.lookupProviderNameFromId(protocol);
                                 if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
                                         || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
                                     entry.maxLabelLines = 2;
@@ -975,9 +974,10 @@ public class ViewContactActivity extends Activity
                             }
 
                             // Only add the intent if there is a valid host
+                            //  host is null for CommonDataKinds.Im.PROTOCOL_CUSTOM
                             if (!TextUtils.isEmpty(host)) {
                                 entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                        constructImToUrl(host, entry.data));
+                                        constructImToUrl(host.toLowerCase(), entry.data));
                             }
                             //TODO(emillar) Add in presence info
                             /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
