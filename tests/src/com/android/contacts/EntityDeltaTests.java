@@ -93,8 +93,8 @@ public class EntityDeltaTests extends AndroidTestCase {
         final EntityDelta dest = EntityDelta.fromBefore(before);
 
         // Merge modified values and assert they match
-        dest.mergeAfter(source);
-        assertEquals("Unexpected change when merging", source, dest);
+        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesInsert() {
@@ -104,14 +104,14 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Add a new row and pass across parcel, should be same
         final ContentValues phone = new ContentValues();
-        phone.put(Data.MIMETYPE, Phone.MIMETYPE);
+        phone.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Merge modified values and assert they match
-        dest.mergeAfter(source);
-        assertEquals("Unexpected change when merging", source, dest);
+        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesUpdate() {
@@ -124,8 +124,8 @@ public class EntityDeltaTests extends AndroidTestCase {
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Merge modified values and assert they match
-        dest.mergeAfter(source);
-        assertEquals("Unexpected change when merging", source, dest);
+        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesDelete() {
@@ -138,8 +138,8 @@ public class EntityDeltaTests extends AndroidTestCase {
         child.markDeleted();
 
         // Merge modified values and assert they match
-        dest.mergeAfter(source);
-        assertEquals("Unexpected change when merging", source, dest);
+        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        assertEquals("Unexpected change when merging", source, merged);
     }
 
     /**
@@ -221,7 +221,7 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
-        phone.put(Data.MIMETYPE, Phone.MIMETYPE);
+        phone.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
         source.addEntry(ValuesDelta.fromAfter(phone));
@@ -261,7 +261,7 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
-        phone.put(Data.MIMETYPE, Phone.MIMETYPE);
+        phone.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
         source.addEntry(ValuesDelta.fromAfter(phone));
@@ -386,7 +386,7 @@ public class EntityDeltaTests extends AndroidTestCase {
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
-        phone.put(Data.MIMETYPE, Phone.MIMETYPE);
+        phone.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
         phone.put(Phone.TYPE, Phone.TYPE_WORK);
         source.addEntry(ValuesDelta.fromAfter(phone));
