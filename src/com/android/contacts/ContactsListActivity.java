@@ -1719,7 +1719,7 @@ public final class ContactsListActivity extends ListActivity implements
             case MODE_JOIN_CONTACT:
                 mQueryHandler.setLoadingJoinSuggestions(true);
                 mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
-                        null, null, null);
+                        Contacts._ID + " != " + mQueryAggregateId, null, null);
                 break;
         }
     }
@@ -1795,7 +1795,8 @@ public final class ContactsListActivity extends ListActivity implements
                         null, null);
                 mAdapter.setSuggestionsCursor(cursor);
                 return resolver.query(getContactFilterUri(filter), projection,
-                        getContactSelection(), null, getSortOrder(projection));
+                        Contacts._ID + " != " + mQueryAggregateId, null,
+                        getSortOrder(projection));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
