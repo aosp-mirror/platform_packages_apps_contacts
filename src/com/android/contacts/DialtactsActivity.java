@@ -33,9 +33,11 @@ import android.view.Window;
 import android.widget.TabHost;
 
 /**
- * The dialer activity that has one tab with the virtual 12key dialer,
- * and another tab with recent calls in it. This is the container and the tabs
- * are embedded using intents.
+ * The dialer activity that has one tab with the virtual 12key
+ * dialer, a tab with recent calls in it, a tab with the contacts and
+ * a tab with the favorite. This is the container and the tabs are
+ * embedded using intents.
+ * The dialer tab's title is 'phone', a more common name (see strings.xml).
  */
 public class DialtactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
     private static final String TAG = "Dailtacts";
@@ -46,7 +48,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private static final int TAB_INDEX_CALL_LOG = 1;
     private static final int TAB_INDEX_CONTACTS = 2;
     private static final int TAB_INDEX_FAVORITES = 3;
-    
+
     static final String EXTRA_IGNORE_STATE = "ignore-state";
 
     /** Name of the dialtacts shared preferences */
@@ -56,7 +58,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
 
     private TabHost mTabHost;
-    private String mFilterText;    
+    private String mFilterText;
     private Uri mDialUri;
 
     @Override
@@ -65,7 +67,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
         final Intent intent = getIntent();
         fixIntent(intent);
-        
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialer_activity);
 
@@ -89,7 +91,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     @Override
     protected void onPause() {
         super.onPause();
-        
+
         int currentTabIndex = mTabHost.getCurrentTab();
         if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
             SharedPreferences.Editor editor = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE)
@@ -98,7 +100,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             editor.commit();
         }
     }
-    
+
     private void fixIntent(Intent intent) {
         // This should be cleaned up: the call key used to send an Intent
         // that just said to go to the recent calls list.  It now sends this
@@ -109,7 +111,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             setIntent(intent);
         }
     }
-    
+
     private void setupCallLogTab() {
         // Force the class since overriding tab entries doesn't work
         Intent intent = new Intent("com.android.phone.action.RECENT_CALLS");
@@ -153,10 +155,10 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     /**
      * Returns true if the intent is due to hitting the green send key while in a call.
-     * 
+     *
      * @param intent the intent that launched this activity
      * @param recentCallsRequest true if the intent is requesting to view recent calls
-     * @return true if the intent is due to hitting the green send key while in a call 
+     * @return true if the intent is due to hitting the green send key while in a call
      */
     private boolean isSendKeyWhileInCall(final Intent intent, final boolean recentCallsRequest) {
         // If there is a call in progress go to the call screen
@@ -178,7 +180,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     /**
      * Sets the current tab based on the intent's request type
-     * 
+     *
      * @param recentCallsRequest true is the recent calls tab is desired, false otherwise
      */
     private void setCurrentTab(Intent intent) {
@@ -188,7 +190,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             finish();
             return;
         }
-        
+
         // Dismiss menu provided by any children activities
         Activity activity = getLocalActivityManager().
                 getActivity(mTabHost.getCurrentTabTag());
@@ -253,13 +255,13 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         }
         return false;
     }
-    
+
     /**
      * Retrieves the filter text stored in {@link #setupFilterText(Intent)}.
      * This text originally came from a FILTER_CONTACTS_ACTION intent received
      * by this activity. The stored text will then be cleared after after this
      * method returns.
-     * 
+     *
      * @return The stored filter text
      */
     public String getAndClearFilterText() {
@@ -271,7 +273,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     /**
      * Stores the filter text associated with a FILTER_CONTACTS_ACTION intent.
      * This is so child activities can check if they are supposed to display a filter.
-     * 
+     *
      * @param intent The intent received in {@link #onNewIntent(Intent)}
      */
     private void setupFilterText(Intent intent) {
@@ -289,7 +291,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
      * Retrieves the uri stored in {@link #setupDialUri(Intent)}. This uri
      * originally came from a dial intent received by this activity. The stored
      * uri will then be cleared after after this method returns.
-     * 
+     *
      * @return The stored uri
      */
     public Uri getAndClearDialUri() {
@@ -301,7 +303,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     /**
      * Stores the uri associated with a dial intent. This is so child activities can
      * check if they are supposed to display new dial info.
-     * 
+     *
      * @param intent The intent received in {@link #onNewIntent(Intent)}
      */
     private void setupDialUri(Intent intent) {
