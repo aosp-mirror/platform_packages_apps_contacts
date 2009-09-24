@@ -16,15 +16,24 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.util.EmptyService;
+import com.android.contacts.util.WeakAsyncTask;
+import com.google.android.collect.Sets;
+
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
@@ -36,6 +45,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Settings;
 import android.view.ContextMenu;
@@ -52,13 +62,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
-import com.google.android.collect.Sets;
-
-import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
-import com.android.contacts.util.WeakAsyncTask;
-
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -90,6 +94,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
     private View mHeaderPhones;
     private View mHeaderSeparator;
+
+    private static final Uri sDelayedSettings = Settings.CONTENT_URI.buildUpon()
+            .appendQueryParameter(Contacts.DELAY_STARRED_UPDATE, "1").build();
+
+    private static final Uri sDelayedGroups = Groups.CONTENT_URI.buildUpon()
+            .appendQueryParameter(Contacts.DELAY_STARRED_UPDATE, "1").build();
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -253,13 +263,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final ContentResolver resolver = getContentResolver();
         final ContentValues values = new ContentValues();
 
-        // TODO: heavy update, perhaps push to background query
         if (id == UNGROUPED_ID) {
             // Handle persisting for ungrouped through Settings
             values.put(Settings.UNGROUPED_VISIBLE, checkbox.isChecked() ? 1 : 0);
 
             final Cursor settings = mAdapter.getGroup(groupPosition);
-            final int count = resolver.update(Settings.CONTENT_URI, values, Groups.ACCOUNT_NAME
+            final int count = resolver.update(sDelayedSettings, values, Groups.ACCOUNT_NAME
                     + "=? AND " + Groups.ACCOUNT_TYPE + "=?", new String[] {
                     settings.getString(SettingsQuery.ACCOUNT_NAME),
                     settings.getString(SettingsQuery.ACCOUNT_TYPE)
@@ -271,7 +280,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             // Handle persisting for normal group
             values.put(Groups.GROUP_VISIBLE, checkbox.isChecked() ? 1 : 0);
 
-            final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, id);
+            final Uri groupUri = ContentUris.withAppendedId(sDelayedGroups, id);
             final int count = resolver.update(groupUri, values, null, null);
         }
 
@@ -412,7 +421,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         if (groupId == UNGROUPED_ID) {
             // Updating the overall syncing flag for this account
             values.put(Settings.SHOULD_SYNC, shouldSync ? 1 : 0);
-            resolver.update(Settings.CONTENT_URI, values, Settings.ACCOUNT_NAME + "=? AND "
+            resolver.update(sDelayedSettings, values, Settings.ACCOUNT_NAME + "=? AND "
                     + Settings.ACCOUNT_TYPE + "=?", new String[] {
                     account.name, account.type
             });
@@ -421,7 +430,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                 // If syncing mode is everything, force-enable all children groups
                 values.clear();
                 values.put(Groups.SHOULD_SYNC, shouldSync ? 1 : 0);
-                resolver.update(Groups.CONTENT_URI, values, Groups.ACCOUNT_NAME + "=? AND "
+                resolver.update(sDelayedGroups, values, Groups.ACCOUNT_NAME + "=? AND "
                         + Groups.ACCOUNT_TYPE + "=?", new String[] {
                         account.name, account.type
                 });
@@ -429,19 +438,84 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         } else {
             // Treat as normal group
             values.put(Groups.SHOULD_SYNC, shouldSync ? 1 : 0);
-            resolver.update(Groups.CONTENT_URI, values, Groups._ID + "=" + groupId, null);
+            resolver.update(sDelayedGroups, values, Groups._ID + "=" + groupId, null);
 
             if (syncMode == SYNC_MODE_EVERYTHING && !shouldSync) {
                 // Remove "everything" from sync, user has already been warned
                 values.clear();
                 values.put(Settings.SHOULD_SYNC, shouldSync ? 1 : 0);
-                resolver.update(Settings.CONTENT_URI, values, Settings.ACCOUNT_NAME + "=? AND "
+                resolver.update(sDelayedSettings, values, Settings.ACCOUNT_NAME + "=? AND "
                         + Settings.ACCOUNT_TYPE + "=?", new String[] {
                         account.name, account.type
                 });
             }
         }
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onBackPressed() {
+        // TODO: somehow update visibility when user leaves through a different
+        // path, never actually pressing the back key
+        new UpdateTask(this).execute();
+    }
+
+    /**
+     * Background task that uses {@link Contacts#FORCE_STARRED_UPDATE} to force
+     * update of {@link Contacts#IN_VISIBLE_GROUP}, showing spinner dialog to
+     * user while updating.
+     */
+    public static class UpdateTask extends WeakAsyncTask<Void, Void, Void, Activity> {
+        private WeakReference<ProgressDialog> mProgress;
+
+        public UpdateTask(Activity target) {
+            super(target);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        protected void onPreExecute(Activity target) {
+            final Context context = target;
+
+            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target, null,
+                    target.getText(R.string.savingDisplayGroups)));
+
+            // Before starting this task, start an empty service to protect our
+            // process from being reclaimed by the system.
+            context.startService(new Intent(context, EmptyService.class));
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        protected Void doInBackground(Activity target, Void... params) {
+            final Context context = target;
+
+            final ContentValues values = new ContentValues();
+            final ContentResolver resolver = context.getContentResolver();
+
+            // Push through an empty update to trigger forced refresh
+            final Uri forcedGroups = Groups.CONTENT_URI.buildUpon().appendQueryParameter(
+                    Contacts.FORCE_STARRED_UPDATE, "1").build();
+            resolver.update(forcedGroups, values, null, null);
+
+            return null;
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        protected void onPostExecute(Activity target, Void result) {
+            final Context context = target;
+
+            final ProgressDialog dialog = mProgress.get();
+            if (dialog != null) dialog.dismiss();
+
+            target.finish();
+
+            // Stop the service that was protecting us
+            context.stopService(new Intent(context, EmptyService.class));
+        }
+    }
+
 
     /**
      * Return the best title for the {@link Groups} entry at the current
