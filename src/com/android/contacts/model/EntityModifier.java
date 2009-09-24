@@ -33,11 +33,9 @@ import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -380,12 +378,8 @@ public class EntityModifier {
                     continue;
                 }
 
-                // Test and remove this row if empty and it isn't a photo from google
-                final boolean isGoogleSource = TextUtils.equals(GoogleSource.ACCOUNT_TYPE,
-                        entry.getAsString(RawContacts.ACCOUNT_TYPE));
-                final boolean isPhoto = TextUtils.equals(Photo.CONTENT_ITEM_TYPE, kind.mimeType);
-                final boolean isGooglePhoto = isPhoto && isGoogleSource;
-                if (EntityModifier.isEmpty(entry, kind) && !isGooglePhoto) {
+                // Test and remove this row if empty
+                if (EntityModifier.isEmpty(entry, kind)) {
                     // TODO: remove this verbose logging
                     Log.w(TAG, "Trimming: " + entry.toString());
                     entry.markDeleted();
