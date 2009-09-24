@@ -33,11 +33,17 @@
         android:title="@string/menu_contactOptions" />
 
     <!-- TODO: use new split/join icons -->
+    
     <item
-        android:id="@+id/menu_split"
-        android:icon="@drawable/ic_menu_split"
-        android:title="@string/menu_splitAggregate" />
-
+        android:id="@+id/menu_show_sources"
+        android:icon="@drawable/ic_menu_sources"
+        android:title="@string/menu_showSources" />
+    
+    <item
+        android:id="@+id/menu_hide_sources"
+        android:icon="@drawable/ic_menu_sources"
+        android:title="@string/menu_hideSources" />
+        
     <item
         android:id="@+id/menu_join"
         android:icon="@drawable/ic_menu_merge"

@@ -14,33 +14,46 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.contacts.ReverseZOrderLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_root_view"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-        
+    
     <com.android.internal.widget.ContactHeaderWidget
         android:id="@+id/contact_header_widget"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
-
-    <com.android.contacts.ScrollingTabWidget android:id="@+id/tab_widget"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    
-    <FrameLayout android:id="@android:id/tabcontent"
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1">
         
-        <View
-            android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/below_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <!-- <View
+            android:id="@+id/buffer_view"
             android:layout_height="wrap_content"
-            android:background="@drawable/title_bar_shadow"
-        />
-    </FrameLayout>
-    
+            android:layout_width="fill_parent"
+        /> -->
+        
+        <com.android.contacts.ScrollingTabWidget android:id="@+id/tab_widget"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        
+        <FrameLayout android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
             
-</LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_bar_shadow"
+            />
+        </FrameLayout>
+        
+    </LinearLayout>
+            
+</com.android.contacts.ReverseZOrderLinearLayout>
 
