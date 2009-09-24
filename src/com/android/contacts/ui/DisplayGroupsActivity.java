@@ -17,6 +17,7 @@
 package com.android.contacts.ui;
 
 import com.android.contacts.R;
+import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.EmptyService;
@@ -305,14 +306,18 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final int childPosition = ExpandableListView.getPackedPositionChild(info.packedPosition);
 
         final Cursor groupCursor = mAdapter.getGroup(groupPosition);
+        final String accountName = groupCursor.getString(SettingsQuery.ACCOUNT_NAME);
+        final String accountType = groupCursor.getString(SettingsQuery.ACCOUNT_TYPE);
+
         // TODO: read sync mode through <sync-adapter> definition
-        final int syncMode = SYNC_MODE_EVERYTHING;
+        int syncMode = SYNC_MODE_UNSUPPORTED;
+	if (accountType.equals(GoogleSource.ACCOUNT_TYPE)) {
+	    syncMode = SYNC_MODE_EVERYTHING;
+	}
 
         // Ignore when selective syncing unsupported
         if (syncMode == SYNC_MODE_UNSUPPORTED) return;
 
-        final String accountName = groupCursor.getString(SettingsQuery.ACCOUNT_NAME);
-        final String accountType = groupCursor.getString(SettingsQuery.ACCOUNT_TYPE);
         final Account account = new Account(accountName, accountType);
 
         final boolean shouldSyncUngrouped = groupCursor.getInt(SettingsQuery.SHOULD_SYNC) != 0;
