@@ -74,6 +74,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     protected boolean mHideOptional = true;
 
     protected EditType mType;
+    // Used only when a user tries to use custom label.
+    private EditType mPendingType;
 
     public GenericEditorView(Context context) {
         super(context);
@@ -221,7 +223,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
      * If the final value is empty, this change request is ignored;
      * no empty text is allowed in any custom label.
      */
-    public Dialog createCustomDialog() {
+    private Dialog createCustomDialog() {
         final EditText customType = new EditText(mContext);
         customType.setInputType(INPUT_TYPE_CUSTOM);
         customType.requestFocus();
@@ -234,6 +236,10 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
                 if (!TextUtils.isEmpty(customText)) {
+                    // Now we're sure it's ok to actually change the type value.
+                    mType = mPendingType;
+                    mPendingType = null;
+                    mEntry.put(mKind.typeColumn, mType.rawValue);
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
                 }
@@ -274,18 +280,22 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             }
         };
 
-        final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+        final DialogInterface.OnClickListener clickListener =
+                new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                // User picked type, so write to entry
-                mType = validTypes.get(which);
-                mEntry.put(mKind.typeColumn, mType.rawValue);
-
                 if (mType.customColumn != null) {
-                    // Show custom label dialog if requested by type
+                    // Show custom label dialog if requested by type.
+                    //
+                    // Only when the custum value input in the next step is correct one.
+                    // this method also set the type value to what the user requested here.
+                    mPendingType = validTypes.get(which);
                     createCustomDialog().show();
                 } else {
+                    // User picked type, and we're sure it's ok to actually write the entry.
+                    mType = validTypes.get(which);
+                    mEntry.put(mKind.typeColumn, mType.rawValue);
                     rebuildLabel();
                 }
             }
