@@ -345,7 +345,10 @@
     <string name="starredInAndroid">Starred in Android</string>
 
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
-    <string name="savingContact">Saving contact...</string>
+    <string name="savingContact">Saving contact\u2026</string>
+
+    <!-- Displayed in a spinner dialog as user changes to display groups are saved -->
+    <string name="savingDisplayGroups">Saving display groups\u2026</string>
 
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
