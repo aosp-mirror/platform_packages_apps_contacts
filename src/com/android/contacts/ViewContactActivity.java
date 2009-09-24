@@ -862,6 +862,11 @@ public class ViewContactActivity extends Activity
                 final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
                 final long rawContactId = entValues.getAsLong(RawContacts._ID);
 
+                if (!mRawContactIds.contains(rawContactId)) {
+                    mRawContactIds.add(rawContactId);
+                }
+
+
 //                // This performs the tab filtering
 //                if (mSelectedRawContactId != null
 //                        && mSelectedRawContactId != rawContactId
@@ -901,10 +906,6 @@ public class ViewContactActivity extends Activity
                     // Don't crash if the data is bogus
                     if (TextUtils.isEmpty(entry.data)) {
                         continue;
-                    }
-
-                    if (!mRawContactIds.contains(entry.contactId)) {
-                        mRawContactIds.add(entry.contactId);
                     }
 
                     if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)
