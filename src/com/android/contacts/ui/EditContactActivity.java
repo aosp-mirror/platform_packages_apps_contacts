@@ -765,8 +765,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     final ContactsSource source = sources.getInflatedSource(account.type,
                             ContactsSource.LEVEL_SUMMARY);
 
-                    text1.setText(source.getDisplayLabel(target));
-                    text2.setText(account.name);
+                    text1.setText(account.name);
+                    text2.setText(source.getDisplayLabel(target));
 
                     return convertView;
                 }

@@ -926,8 +926,8 @@ public final class ContactsListActivity extends ListActivity implements
                     sources.getInflatedSource(account.type,
                             ContactsSource.LEVEL_SUMMARY);
 
-                text1.setText(source.getDisplayLabel(ContactsListActivity.this));
-                text2.setText(account.name);
+                text1.setText(account.name);
+                text2.setText(source.getDisplayLabel(ContactsListActivity.this));
 
                 return convertView;
             }
