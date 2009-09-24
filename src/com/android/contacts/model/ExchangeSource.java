@@ -123,6 +123,8 @@ public class ExchangeSource extends FallbackSource {
             kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true).setSpecificMax(1));
             kind.typeList
                     .add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true).setSpecificMax(1));
+            kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
+                    .setSpecificMax(1).setCustomColumn(Phone.LABEL));
             kind.typeList.add(buildPhoneType(Phone.TYPE_CUSTOM).setSecondary(true)
                     .setSpecificMax(1).setCustomColumn(Phone.LABEL));
 
