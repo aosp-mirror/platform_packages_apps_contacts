@@ -1175,6 +1175,8 @@ public class FastTrackWindow implements Window.Callback,
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // Only try detecting outside events on down-press
             mDecor.getHitRect(mRect);
+	    mRect.top = mRect.top + mDecor.getPaddingTop();
+	    mRect.bottom = mRect.bottom - mDecor.getPaddingBottom();
             final int x = (int)event.getX();
             final int y = (int)event.getY();
             if (!mRect.contains(x, y)) {
