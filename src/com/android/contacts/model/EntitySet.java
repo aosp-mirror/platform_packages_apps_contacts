@@ -216,7 +216,7 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
         final int size = this.size();
         for (int i = 0; i < size; i++) {
             final Long currentId = getRawContactId(i);
-            if (currentId == rawContactId) {
+            if (rawContactId.equals(currentId)) {
                 return i;
             }
         }
