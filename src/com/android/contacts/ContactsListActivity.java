@@ -2248,7 +2248,9 @@ public final class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (FasttrackBadgeWidget) view.findViewById(R.id.photo);
-            cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
+            if (cache.photoView != null) {
+                cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
+            }
             cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noFastTrackphoto);
             view.setTag(cache);
 
