@@ -26,6 +26,7 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.EntityIterator;
@@ -66,6 +67,8 @@ import android.view.animation.Interpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -85,7 +88,7 @@ import java.util.Set;
  */
 public class FastTrackWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
-        AbsListView.OnItemClickListener {
+        AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
     private static final String TAG = "FastTrackWindow";
 
     /**
@@ -119,6 +122,7 @@ public class FastTrackWindow implements Window.Callback,
     private boolean mHasSocial = false;
     private boolean mHasValidSocial = false;
     private boolean mHasActions = false;
+    private boolean mMakePrimary = false;
 
     private ImageView mArrowUp;
     private ImageView mArrowDown;
@@ -133,6 +137,7 @@ public class FastTrackWindow implements Window.Callback,
     private View mFooterDisambig;
     private ListView mResolveList;
     private CheckableImageView mLastAction;
+    private CheckBox mSetPrimaryCheckBox;
 
     /**
      * Set of {@link Action} that are associated with the aggregate currently
@@ -189,6 +194,9 @@ public class FastTrackWindow implements Window.Callback,
         mFooter = mWindow.findViewById(R.id.footer);
         mFooterDisambig = mWindow.findViewById(R.id.footer_disambig);
         mResolveList = (ListView)mWindow.findViewById(android.R.id.list);
+        mSetPrimaryCheckBox = (CheckBox)mWindow.findViewById(android.R.id.checkbox);
+
+        mSetPrimaryCheckBox.setOnCheckedChangeListener(this);
 
         // Prepare track entrance animation
         mTrackAnim = AnimationUtils.loadAnimation(mContext, R.anim.fasttrack);
@@ -563,6 +571,12 @@ public class FastTrackWindow implements Window.Callback,
         return cursor.getString(index);
     }
 
+    /** Read {@link int} from the given {@link Cursor}. */
+    private static int getAsInt(Cursor cursor, String columnName) {
+        final int index = cursor.getColumnIndex(columnName);
+        return cursor.getInt(index);
+    }
+
     /**
      * Abstract definition of an action that could be performed, along with
      * string description and icon.
@@ -578,6 +592,17 @@ public class FastTrackWindow implements Window.Callback,
          * Build an {@link Intent} that will perform this action.
          */
         public Intent getIntent();
+
+        /**
+         * Checks if the contact data for this action is primary.
+         */
+        public Boolean isPrimary();
+
+        /**
+         * Returns a lookup (@link Uri) for the contact data item.
+         */
+        public Uri getDataUri();
+
     }
 
     /**
@@ -594,11 +619,14 @@ public class FastTrackWindow implements Window.Callback,
         private Intent mIntent;
 
         private boolean mAlternate;
+        private Uri mDataUri;
+        private boolean mIsPrimary;
 
         /**
          * Create an action from common {@link Data} elements.
          */
-        public DataAction(Context context, String mimeType, DataKind kind, Cursor cursor) {
+        public DataAction(Context context, String mimeType, DataKind kind,
+                long dataId, Cursor cursor) {
             mContext = context;
             mKind = kind;
             mMimeType = mimeType;
@@ -611,9 +639,15 @@ public class FastTrackWindow implements Window.Callback,
                 mHeader = mKind.actionHeader.inflateUsing(context, cursor);
             }
 
+            if (getAsInt(cursor, Data.IS_SUPER_PRIMARY) != 0) {
+                mIsPrimary = true;
+            }
+
             if (mKind.actionBody != null) {
                 mBody = mKind.actionBody.inflateUsing(context, cursor);
             }
+
+            mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
 
             // Handle well-known MIME-types with special care
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -639,9 +673,7 @@ public class FastTrackWindow implements Window.Callback,
 
             } else {
                 // Otherwise fall back to default VIEW action
-                final long dataId = cursor.getLong(DataQuery._ID);
-                final Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
-                mIntent = new Intent(Intent.ACTION_VIEW, dataUri);
+                mIntent = new Intent(Intent.ACTION_VIEW, mDataUri);
             }
         }
 
@@ -658,6 +690,16 @@ public class FastTrackWindow implements Window.Callback,
         /** {@inheritDoc} */
         public String getMimeType() {
             return mMimeType;
+        }
+
+        /** {@inheritDoc} */
+        public Uri getDataUri() {
+            return mDataUri;
+        }
+
+        /** {@inheritDoc} */
+        public Boolean isPrimary() {
+            return mIsPrimary;
         }
 
         /** {@inheritDoc} */
@@ -719,6 +761,17 @@ public class FastTrackWindow implements Window.Callback,
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mId);
             return new Intent(Intent.ACTION_VIEW, contactUri);
         }
+
+        /** {@inheritDoc} */
+        public Boolean isPrimary() {
+            return null;
+        }
+
+        /** {@inheritDoc} */
+        public Uri getDataUri() {
+            return null;
+        }
+
     }
 
     /**
@@ -868,6 +921,7 @@ public class FastTrackWindow implements Window.Callback,
             final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
             final String resPackage = cursor.getString(DataQuery.RES_PACKAGE);
             final String mimeType = cursor.getString(DataQuery.MIMETYPE);
+            final long dataId = cursor.getLong(DataQuery._ID);
 
             // Skip this data item if MIME-type excluded
             if (isMimeExcluded(mimeType)) continue;
@@ -895,14 +949,14 @@ public class FastTrackWindow implements Window.Callback,
                 // Build an action for this data entry, find a mapping to a UI
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
-                final Action action = new DataAction(mContext, mimeType, kind, cursor);
+                final Action action = new DataAction(mContext, mimeType, kind, dataId, cursor);
                 considerAdd(action, mimeType);
             }
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS, kind,
-                        cursor);
+                final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
+                        kind, dataId, cursor);
                 considerAdd(action, Constants.MIME_SMS_ADDRESS);
             }
         }
@@ -943,14 +997,24 @@ public class FastTrackWindow implements Window.Callback,
      */
     private View inflateAction(String mimeType) {
         CheckableImageView view = (CheckableImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
+        boolean isActionSet = false;
 
         // Add direct intent if single child, otherwise flag for multiple
         ActionList children = mActions.get(mimeType);
         Action firstInfo = children.get(0);
         if (children.size() == 1) {
-            view.setTag(firstInfo.getIntent());
+            view.setTag(firstInfo);
         } else {
-            view.setTag(children);
+            for (Action action: children) {
+              if (action.isPrimary()) {
+                  view.setTag(action);
+                  isActionSet = true;
+                  break;
+              }
+            }
+            if (!isActionSet) {
+                view.setTag(children);
+            }
         }
 
         // Set icon and listen for clicks
@@ -1007,16 +1071,26 @@ public class FastTrackWindow implements Window.Callback,
     public void onClick(View view) {
         final boolean isActionView = (view instanceof CheckableImageView);
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
-
         final Object tag = view.getTag();
-        if (tag instanceof Intent) {
+        if (tag instanceof Action) {
             // Hide the resolution list, if present
             setResolveVisible(false, actionView);
             this.dismiss();
 
             try {
                 // Incoming tag is concrete intent, so try launching
-                mContext.startActivity((Intent)tag);
+                final Action action = (Action)tag;
+                mContext.startActivity(action.getIntent());
+
+                if (mMakePrimary) {
+                    ContentValues values = new ContentValues(1);
+                    values.put(Data.IS_SUPER_PRIMARY, 1);
+                    final Uri dataUri = action.getDataUri();
+                    if (dataUri != null) {
+                        mContext.getContentResolver().update(dataUri, values, null, null);
+                    }
+                }
+
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.fasttrack_missing_app, Toast.LENGTH_SHORT).show();
             }
@@ -1056,7 +1130,7 @@ public class FastTrackWindow implements Window.Callback,
                     text1.setText(action.getHeader());
                     text2.setText(action.getBody());
 
-                    convertView.setTag(action.getIntent());
+                    convertView.setTag(action);
                     return convertView;
                 }
             });
@@ -1065,6 +1139,10 @@ public class FastTrackWindow implements Window.Callback,
             onWindowAttributesChanged(mWindow.getAttributes());
 
         }
+    }
+
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        mMakePrimary = isChecked;
     }
 
     /** {@inheritDoc} */
