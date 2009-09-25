@@ -437,6 +437,14 @@ public class FallbackSource extends ContactsSource {
             return type == BaseTypes.TYPE_CUSTOM;
         }
 
+        protected String getTypeColumn() {
+            return Phone.TYPE;
+        }
+
+        protected String getLabelColumn() {
+            return Phone.LABEL;
+        }
+
         protected CharSequence getTypeLabel(Resources res, Integer type, CharSequence label) {
             final int labelRes = getTypeLabelResource(type);
             if (type == null) {
@@ -449,14 +457,14 @@ public class FallbackSource extends ContactsSource {
         }
 
         public CharSequence inflateUsing(Context context, Cursor cursor) {
-            final Integer type = cursor.getInt(cursor.getColumnIndex(Phone.TYPE));
-            final String label = cursor.getString(cursor.getColumnIndex(Phone.LABEL));
+            final Integer type = cursor.getInt(cursor.getColumnIndex(getTypeColumn()));
+            final String label = cursor.getString(cursor.getColumnIndex(getLabelColumn()));
             return getTypeLabel(context.getResources(), type, label);
         }
 
         public CharSequence inflateUsing(Context context, ContentValues values) {
-            final Integer type = values.getAsInteger(Phone.TYPE);
-            final String label = values.getAsString(Phone.LABEL);
+            final Integer type = values.getAsInteger(getTypeColumn());
+            final String label = values.getAsString(getLabelColumn());
             return getTypeLabel(context.getResources(), type, label);
         }
     }
@@ -559,6 +567,16 @@ public class FallbackSource extends ContactsSource {
     }
 
     public static class ImActionInflater extends CommonInflater {
+        @Override
+        protected String getTypeColumn() {
+            return Im.PROTOCOL;
+        }
+
+        @Override
+        protected String getLabelColumn() {
+            return Im.CUSTOM_PROTOCOL;
+        }
+
         @Override
         protected int getTypeLabelResource(Integer type) {
             if (type == null) return R.string.chat;
