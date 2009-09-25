@@ -23,6 +23,7 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.DialogInterface;
@@ -67,6 +68,8 @@ public final class ShowOrCreateActivity extends Activity implements
     };
 
     static final int CONTACT_ID_INDEX = 0;
+
+    static final int CREATE_CONTACT_DIALOG = 1;
 
     static final int QUERY_TOKEN = 42;
 
@@ -189,24 +192,33 @@ public final class ShowOrCreateActivity extends Activity implements
                 finish();
 
             } else {
+	        showDialog(CREATE_CONTACT_DIALOG);
+           }
+        }
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch(id) {
+	    case CREATE_CONTACT_DIALOG:
                 // Prompt user to insert or edit contact
-                Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                final Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 createIntent.putExtras(mCreateExtras);
                 createIntent.setType(RawContacts.CONTENT_ITEM_TYPE);
 
-                CharSequence message = getResources().getString(
+                final CharSequence message = getResources().getString(
                         R.string.add_contact_dlg_message_fmt, mCreateDescrip);
 
-                new AlertDialog.Builder(this)
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.add_contact_dlg_title)
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
                                 new IntentClickListener(this, createIntent))
                         .setNegativeButton(android.R.string.cancel,
                                 new IntentClickListener(this, null))
-                        .show();
-            }
+                        .create();
         }
+	return super.onCreateDialog(id);
     }
 
     /** {@inheritDoc} */
