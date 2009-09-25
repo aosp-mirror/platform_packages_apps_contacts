@@ -26,7 +26,6 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
@@ -40,7 +39,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +97,9 @@ public class EntityModifierTests extends AndroidTestCase {
      * testing purposes.
      */
     protected ContactsSource getSource() {
-        return new MockContactsSource();
+        final ContactsSource source = new MockContactsSource();
+        source.ensureInflated(getContext(), ContactsSource.LEVEL_CONSTRAINTS);
+        return source;
     }
 
     /**

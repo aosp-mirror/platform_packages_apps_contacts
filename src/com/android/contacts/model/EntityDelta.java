@@ -59,6 +59,9 @@ import java.util.Set;
 public class EntityDelta implements Parcelable {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
+    private static final String TAG = "EntityDelta";
+    private static final boolean LOGV = true;
+
     /**
      * Direct values from {@link Entity#getEntityValues()}.
      */
@@ -97,28 +100,41 @@ public class EntityDelta implements Parcelable {
      * existing "after" states. This is typically used when re-parenting changes
      * onto an updated {@link Entity}.
      */
-    public void mergeAfter(EntityDelta remote) {
-        // Always take after values from new state
-        this.mValues.mAfter = remote.mValues.mAfter;
+    public static EntityDelta mergeAfter(EntityDelta local, EntityDelta remote) {
+        // Bail early if trying to merge delete with missing local
+        if (local == null && remote.mValues.isDelete()) return null;
 
-        // TODO: log before/after versions to track re-parenting
+        // Create local version if none exists yet
+        if (local == null) local = new EntityDelta();
+
+        if (LOGV) {
+            final Long localVersion = (local.mValues == null) ? -1 : local.mValues
+                    .getAsLong(RawContacts.VERSION);
+            final Long remoteVersion = remote.mValues.getAsLong(RawContacts.VERSION);
+            Log.d(TAG, "Re-parenting from original version " + remoteVersion + " to "
+                    + localVersion);
+        }
+
+        // Create values if needed, and merge "after" changes
+        local.mValues = ValuesDelta.mergeAfter(local.mValues, remote.mValues);
 
         // Find matching local entry for each remote values, or create
         for (ArrayList<ValuesDelta> mimeEntries : remote.mEntries.values()) {
             for (ValuesDelta remoteEntry : mimeEntries) {
                 final Long childId = remoteEntry.getId();
 
-                ValuesDelta localEntry = this.getEntry(childId);
-                if (localEntry == null) {
-                    // Is "insert", or "before" record is missing, so now "insert"
-                    localEntry = ValuesDelta.fromAfter(remoteEntry.mAfter);
-                    this.addEntry(localEntry);
-                } else {
-                    // Existing entry "update"
-                    localEntry.mAfter = remoteEntry.mAfter;
+                // Find or create local match and merge
+                final ValuesDelta localEntry = local.getEntry(childId);
+                final ValuesDelta merged = ValuesDelta.mergeAfter(localEntry, remoteEntry);
+
+                if (localEntry == null && merged != null) {
+                    // No local entry before, so insert
+                    local.addEntry(merged);
                 }
             }
         }
+
+        return local;
     }
 
     public ValuesDelta getValues() {
@@ -181,9 +197,10 @@ public class EntityDelta implements Parcelable {
         return mEntries.containsKey(mimeType);
     }
 
-    public void addEntry(ValuesDelta entry) {
+    public ValuesDelta addEntry(ValuesDelta entry) {
         final String mimeType = entry.getMimetype();
         getMimeEntries(mimeType, true).add(entry);
+        return entry;
     }
 
     /**
@@ -585,6 +602,44 @@ public class EntityDelta implements Parcelable {
             }
 
             return keys;
+        }
+
+        /**
+         * Return complete set of "before" and "after" values mixed together,
+         * giving full state regardless of edits.
+         */
+        public ContentValues getCompleteValues() {
+            final ContentValues values = new ContentValues();
+            if (mBefore != null) {
+                values.putAll(mBefore);
+            }
+            if (mAfter != null) {
+                values.putAll(mAfter);
+            }
+            return values;
+        }
+
+        /**
+         * Merge the "after" values from the given {@link ValuesDelta},
+         * discarding any existing "after" state. This is typically used when
+         * re-parenting changes onto an updated {@link Entity}.
+         */
+        public static ValuesDelta mergeAfter(ValuesDelta local, ValuesDelta remote) {
+            // Bail early if trying to merge delete with missing local
+            if (local == null && remote.isDelete()) return null;
+
+            // Create local version if none exists yet
+            if (local == null) local = new ValuesDelta();
+
+            if (!local.beforeExists()) {
+                // Any "before" record is missing, so take all values as "insert"
+                local.mAfter = remote.getCompleteValues();
+            } else {
+                // Existing "update" with only "after" values
+                local.mAfter = remote.mAfter;
+            }
+
+            return local;
         }
 
         @Override
