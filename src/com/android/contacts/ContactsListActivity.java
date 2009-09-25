@@ -2604,6 +2604,10 @@ public final class ContactsListActivity extends ListActivity implements
                 return -1;
             }
 
+            if (sectionIndex < 0 || sectionIndex >= mSectionPositions.length) {
+                return -1;
+            }
+
             if (mIndexer == null) {
                 Cursor cursor = mAdapter.getCursor();
                 if (cursor == null) {
