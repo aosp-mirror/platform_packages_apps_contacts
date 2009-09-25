@@ -419,5 +419,7 @@
         <activity android:name=".ImportVCardActivity"
             android:theme="@style/BackgroundOnly" />
 
+        <activity android:name=".ExportVCardActivity"
+            android:theme="@style/BackgroundOnly" />
     </application>
 </manifest>

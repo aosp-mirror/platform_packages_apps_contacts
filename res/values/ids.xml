@@ -42,8 +42,7 @@
     <item type="id" name="dialog_error_with_message" />
 
     <!-- For ExportVCard -->
-    <item type="id" name="dialog_confirm_export_vcard" />
-    <item type="id" name="dialog_exporting_vcard" />
+    <item type="id" name="dialog_export_confirmation" />
     <item type="id" name="dialog_fail_to_export_with_reason" />
 
 </resources>
