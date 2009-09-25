@@ -2374,10 +2374,25 @@ public final class ContactsListActivity extends ListActivity implements
                 }
             }
 
+            ImageView presenceView = cache.presenceView;
+            if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
+                // Set the proper icon (star or presence or nothing)
+                int serverStatus;
+                if (!cursor.isNull(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
+                    serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
+                    presenceView.setImageResource(
+                            Presence.getPresenceIconResourceId(serverStatus));
+                    presenceView.setVisibility(View.VISIBLE);
+                } else {
+                    presenceView.setVisibility(View.GONE);
+                }
+            } else {
+                presenceView.setVisibility(View.GONE);
+            }
+
             if (!displayAdditionalData) {
                 cache.dataView.setVisibility(View.GONE);
                 cache.labelView.setVisibility(View.GONE);
-                cache.presenceView.setVisibility(View.GONE);
                 return;
             }
 
@@ -2409,23 +2424,6 @@ public final class ContactsListActivity extends ListActivity implements
                 // There is no label, hide the the view
                 labelView.setVisibility(View.GONE);
             }
-
-            // Set the proper icon (star or presence or nothing)
-            ImageView presenceView = cache.presenceView;
-            if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
-                int serverStatus;
-                if (!cursor.isNull(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
-                    serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
-                    presenceView.setImageResource(
-                            Presence.getPresenceIconResourceId(serverStatus));
-                    presenceView.setVisibility(View.VISIBLE);
-                } else {
-                    presenceView.setVisibility(View.GONE);
-                }
-            } else {
-                presenceView.setVisibility(View.GONE);
-            }
-
         }
 
         private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
