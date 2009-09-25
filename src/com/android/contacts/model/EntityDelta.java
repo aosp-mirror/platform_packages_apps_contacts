@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
@@ -215,7 +216,7 @@ public class EntityDelta implements Parcelable {
         // Search all children for requested entry
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
             for (ValuesDelta entry : mimeEntries) {
-                if (entry.getId() == childId) {
+                if (childId.equals(entry.getId())) {
                     return entry;
                 }
             }
@@ -616,6 +617,7 @@ public class EntityDelta implements Parcelable {
             if (mAfter != null) {
                 values.putAll(mAfter);
             }
+            values.remove(ContactsContract.CommonDataKinds.GroupMembership.GROUP_SOURCE_ID);
             return values;
         }
 
