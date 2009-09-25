@@ -21,7 +21,7 @@
 
     <!-- Title for the activity that dials the phone.  This is the name
          used in the Launcher icon. -->
-    <string name="launcherDialer">Dialer</string>
+    <string name="launcherDialer">Phone</string>
 
     <!-- Name of activity that allows users to create shortcuts on the home screen to a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
@@ -411,7 +411,7 @@
     <string name="contactsFavoritesLabel">Favorites</string>
 
     <!-- The description text for the dialer tab. Space is limited for this string, so the shorter the better -->
-    <string name="dialerIconLabel">Dialer</string>
+    <string name="dialerIconLabel">Phone</string>
 
     <!-- The description text for the call log tab. Space is limited for this string, so the shorter the better -->
     <string name="recentCallsIconLabel">Call log</string>
