@@ -104,6 +104,25 @@ public class ImportVCardActivity extends Activity {
     private VCardReadThread mVCardReadThread;
     private ProgressDialog mProgressDialogForReadVCard;
 
+    private String mErrorMessage;
+
+    private class DialogDisplayer implements Runnable {
+        private final int mResId;
+        public DialogDisplayer(int resId) {
+            mResId = resId;
+        }
+        public DialogDisplayer(String errorMessage) {
+            mResId = R.id.dialog_error_with_message;
+            mErrorMessage = errorMessage;
+        }
+        public void run() {
+            // Show the Dialog only when the parent Activity is still alive.
+            if (!ImportVCardActivity.this.isFinishing()) {
+                showDialog(mResId);
+            }
+        }
+    }
+
     private class CancelListener
         implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
         public void onClick(DialogInterface dialog, int which) {
@@ -116,27 +135,6 @@ public class ImportVCardActivity extends Activity {
     }
 
     private CancelListener mCancelListener = new CancelListener();
-
-    private class ErrorDisplayer implements Runnable {
-        private String mErrorMessage;
-
-        public ErrorDisplayer(String errorMessage) {
-            mErrorMessage = errorMessage;
-        }
-
-        public void run() {
-            String message =
-                getString(R.string.reading_vcard_failed_message, mErrorMessage);
-            AlertDialog.Builder builder =
-                new AlertDialog.Builder(ImportVCardActivity.this)
-                    .setTitle(getString(R.string.reading_vcard_failed_title))
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setMessage(message)
-                    .setOnCancelListener(mCancelListener)
-                    .setPositiveButton(android.R.string.ok, mCancelListener);
-            builder.show();
-        }
-    }
 
     private class VCardReadThread extends Thread
             implements DialogInterface.OnCancelListener {
@@ -263,7 +261,7 @@ public class ImportVCardActivity extends Activity {
             } finally {
                 mWakeLock.release();
                 mProgressDialogForReadVCard.dismiss();
-                // finish() is called via ErrorDisplayer() on failure.
+                // finish() is called via mCancelListener, which is used in DialogDisplayer.
                 if (shouldCallFinish && !isFinishing()) {
                     if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
                         finish();
@@ -279,7 +277,7 @@ public class ImportVCardActivity extends Activity {
                             builder.append(fileName);
                         }
                         
-                        mHandler.post(new ErrorDisplayer(
+                        mHandler.post(new DialogDisplayer(
                                 getString(R.string.fail_reason_failed_to_read_files,
                                         builder.toString())));
                     }
@@ -359,7 +357,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(canonicalPath);
                 } else {
-                    mHandler.post(new ErrorDisplayer(
+                    mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_io_error,
                                     e.getMessage())));
                 }
@@ -371,7 +369,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(canonicalPath);
                 } else {
-                    mHandler.post(new ErrorDisplayer(
+                    mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_not_supported_error) +
                             " (" + e.getMessage() + ")"));
                 }
@@ -380,7 +378,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(canonicalPath);
                 } else {
-                    mHandler.post(new ErrorDisplayer(
+                    mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_parse_error) +
                             " (" + e.getMessage() + ")"));
                 }
@@ -602,17 +600,9 @@ public class ImportVCardActivity extends Activity {
         } else if (size == 1) {
             importOneVCardFromSDCard(mAllVCardFileList.get(0).getCanonicalPath());
         } else if (getResources().getBoolean(R.bool.config_allow_users_select_all_vcard_import)) {
-            mHandler.post(new Runnable() {
-                public void run() {
-                    showDialog(R.id.dialog_select_import_type);
-                }
-            });
+            mHandler.post(new DialogDisplayer(R.id.dialog_select_import_type));
         } else {
-            mHandler.post(new Runnable() {
-                public void run() {
-                    showDialog(R.id.dialog_select_one_vcard);
-                }
-            });
+            mHandler.post(new DialogDisplayer(R.id.dialog_select_one_vcard));
         }
     }
     
@@ -773,6 +763,20 @@ public class ImportVCardActivity extends Activity {
                         getString(R.string.fail_reason_io_error)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.scanning_sdcard_failed_title)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+            case R.id.dialog_error_with_message: {
+                String message = mErrorMessage;
+                if (TextUtils.isEmpty(message)) {
+                    Log.e(LOG_TAG, "Error message is null while it must not.");
+                    message = getString(R.string.fail_reason_unknown);
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.reading_vcard_failed_title))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(message)
                     .setOnCancelListener(mCancelListener)

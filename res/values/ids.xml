@@ -39,6 +39,7 @@
     <item type="id" name="dialog_select_multiple_vcard" />
     <item type="id" name="dialog_reading_vcard" />
     <item type="id" name="dialog_io_exception" />
+    <item type="id" name="dialog_error_with_message" />
 
     <!-- For ExportVCard -->
     <item type="id" name="dialog_confirm_export_vcard" />
