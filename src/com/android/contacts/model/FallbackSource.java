@@ -140,6 +140,9 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
+
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
                     FLAGS_PERSON_NAME));
@@ -345,7 +348,6 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
         }
@@ -364,6 +366,9 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
+
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
         }
