@@ -480,34 +480,38 @@
 
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
-    <string name="noContactsHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
-    <string name="noContactsHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which contact groups are visible\n</li>
+    <string name="noContactsHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which groups of contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
-    <string name="noContactsNoSimHelpText">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsNoSimHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
-    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which contact groups are visible\n</li>
+    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display groups</b></font> to change which groups of contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab -->
     <string name="noFavoritesHelpText">"You don't have any favorites.\n\nTo add a contact to your list of favorites:\n
-        <li>Touch the Contacts tab\n</li>
+        <li>Touch the <b>Contacts</b> tab\n</li>
         \n<li>Touch the contact you want to add to your favorites\n</li>
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>

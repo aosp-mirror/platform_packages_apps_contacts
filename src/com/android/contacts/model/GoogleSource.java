@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
 
+import android.accounts.Account;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -153,10 +154,19 @@ public class GoogleSource extends FallbackSource {
     }
 
     // TODO: this should come from resource in the future
+    // Note that frameworks/base/core/java/android/pim/vcard/ContactStruct.java also wants
+    // this String.
     private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
-        attemptMyContactsMembership(state, context, true);
+        final ValuesDelta stateValues = state.getValues();
+        final String accountName = stateValues.getAsString(RawContacts.ACCOUNT_NAME);
+        final String accountType = stateValues.getAsString(RawContacts.ACCOUNT_TYPE);
+        attemptMyContactsMembership(state, accountName, accountType, context, true);
+    }
+
+    public static final void createMyContactsIfNotExist(Account account, Context context) {
+        attemptMyContactsMembership(null, account.name, account.type, context, true);
     }
 
     /**
@@ -165,12 +175,10 @@ public class GoogleSource extends FallbackSource {
      *     to prevent excess recursion, we provide a flag to make sure we only do the recursion loop
      *     once
      */
-    private static final void attemptMyContactsMembership(EntityDelta state, Context context,
-            boolean allowRecur) {
+    private static final void attemptMyContactsMembership(EntityDelta state,
+                final String accountName, final String accountType, Context context,
+                boolean allowRecur) {
         final ContentResolver resolver = context.getContentResolver();
-        final ValuesDelta stateValues = state.getValues();
-        final String accountName = stateValues.getAsString(RawContacts.ACCOUNT_NAME);
-        final String accountType = stateValues.getAsString(RawContacts.ACCOUNT_TYPE);
 
         Cursor cursor = resolver.query(Groups.CONTENT_URI,
                 new String[] {Groups.TITLE, Groups.SOURCE_ID, Groups.SHOULD_SYNC},
@@ -190,6 +198,10 @@ public class GoogleSource extends FallbackSource {
             if (myContactsExists && assignToGroupSourceId != -1) {
                 break;
             }
+        }
+
+        if (myContactsExists && state == null) {
+            return;
         }
 
         try {
@@ -227,7 +239,8 @@ public class GoogleSource extends FallbackSource {
                 } catch (OperationApplicationException e) {
                     // the group was created after the query but before we tried to create it
                     if (allowRecur) {
-                        attemptMyContactsMembership(state, context, false);
+                        attemptMyContactsMembership(
+                                state, accountName, accountType, context, false);
                     }
                     return;
                 }
@@ -239,7 +252,9 @@ public class GoogleSource extends FallbackSource {
                     // TODO: alert user that their contact will be dropped?
                 }
             }
-            state.addEntry(ValuesDelta.fromAfter(values));
+            if (state != null) {
+                state.addEntry(ValuesDelta.fromAfter(values));
+            }
         } finally {
             cursor.close();
         }
