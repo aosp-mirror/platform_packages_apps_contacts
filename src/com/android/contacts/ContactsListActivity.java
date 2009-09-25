@@ -17,13 +17,11 @@
 package com.android.contacts;
 
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 import com.android.contacts.util.Constants;
-import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -64,7 +62,6 @@ import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.PeopleColumns;
 import android.provider.Contacts.Phones;
-import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
@@ -80,7 +77,6 @@ import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -305,6 +301,15 @@ public final class ContactsListActivity extends ListActivity implements
 
     static final String KEY_PICKER_MODE = "picker_mode";
 
+    /*
+     * TODO: Will be commented in the really near future. Similar commented out codes will be done.
+     *       These are for make vCard exporter code understard two additional options:
+     *       "export contacts in the phone only" and
+     *       "export all contacts without caring Account information".
+     * static final Account sExportPhoneLocalAccount;
+     * static final Account sExportAllAccount;
+     */
+
     private ContactItemListAdapter mAdapter;
 
     int mMode = MODE_DEFAULT;
@@ -353,10 +358,12 @@ public final class ContactsListActivity extends ListActivity implements
 
     // Uri matcher for contact id
     private static final int CONTACTS_ID = 1001;
-    private static final UriMatcher CONTACTS_ID_MATCHER;
+    private static final UriMatcher sContactsIdMatcher;
     static {
-        CONTACTS_ID_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
-        CONTACTS_ID_MATCHER.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
+        sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        sContactsIdMatcher.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
+        /*sExportPhoneLocalAccount = new Account("Phone-local Account", "phone-local");
+        sExportAllAccount = new Account("All account", "all");*/
     }
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
@@ -497,7 +504,7 @@ public final class ContactsListActivity extends ListActivity implements
         } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
             Uri data = intent.getData();
             Uri telUri = null;
-            if (CONTACTS_ID_MATCHER.match(data) == CONTACTS_ID) {
+            if (sContactsIdMatcher.match(data) == CONTACTS_ID) {
                 long contactId = Long.valueOf(data.getLastPathSegment());
                 final Cursor cursor = queryPhoneNumbers(contactId);
                 if (cursor != null) {
@@ -827,7 +834,8 @@ public final class ContactsListActivity extends ListActivity implements
                 return createImportExportDialog();
             }
             case R.string.import_from_sim:
-            case R.string.import_from_sdcard: {
+            case R.string.import_from_sdcard:
+            case R.string.export_to_sdcard: {
                 return createSelectAccountDialog(id);
             }
             case R.string.fail_reason_too_many_vcard: {
@@ -866,8 +874,7 @@ public final class ContactsListActivity extends ListActivity implements
 
         public AccountSelectedListener(List<Account> accountList, int resId) {
             if (accountList == null || accountList.size() == 0) {
-                // TODO: Add all the contacts into phone-local account.
-                Log.e(TAG, "The size of Account list is 0");
+                Log.e(TAG, "The size of Account list is 0.");
             }
             mAccountList = accountList;
             mResId = resId;
@@ -884,6 +891,8 @@ public final class ContactsListActivity extends ListActivity implements
                     doImportFromSdCard(mAccountList.get(which));
                     break;
                 }
+                /*case R.string.export_to_sdcard: {
+                }*/
             }
         }
 
@@ -893,10 +902,18 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private Dialog createSelectAccountDialog(int resId) {
-        // A lot of codes are copied from EditContactActivity.
-        // TODO: Can we share the logic?
+        final boolean isExport = (resId == R.string.export_to_sdcard);
+        final boolean displayWritableOnly = !isExport;
+
         final Sources sources = Sources.getInstance(this);
-        final List<Account> accountList = sources.getAccounts(true);
+        final List<Account> accountList = sources.getAccounts(displayWritableOnly);
+
+        /*if (isExport) {
+            accountList.add(sExportPhoneLocalAccount);
+            accountList.add(sExportAllAccount);
+        }*/
+
+        // Assume accountList.size() > 1
 
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(
@@ -987,12 +1004,17 @@ public final class ContactsListActivity extends ListActivity implements
                 switch (resId) {
                     case R.string.import_from_sim:
                     case R.string.import_from_sdcard: {
-                        showDialog(resId);
+                        handleImportExportRequest(resId);
                         break;
                     }
                     case R.string.export_to_sdcard: {
+                        // TODO: use handleImportExportRequest()
                         doExportToSdCard();
                         break;
+                    }
+                    default: {
+                        Log.e(TAG, "Unexpected resource: " +
+                                getResources().getResourceEntryName(resId));
                     }
                 }
             }
@@ -1005,19 +1027,73 @@ public final class ContactsListActivity extends ListActivity implements
         return builder.create();
     }
 
+    private void handleImportExportRequest(int resId) {
+        /*final boolean isExport = (resId == R.string.export_to_sdcard);
+        if (isExport) {
+            // We're sure there are at least two Account ("phone-local" and "all").
+            // Go to account selection every time.
+            showDialog(R.string.export_to_sdcard);
+            return;
+        }*/
+
+        // As for import, there's three possibilities
+        // - more than one accounts -> ask the user
+        // - just one account -> use the account without asking the user
+        // - no account -> use phone-local storage without asking the user
+
+        final Sources sources = Sources.getInstance(this);
+        final List<Account> accountList = sources.getAccounts(true);
+        final int size = accountList.size();
+        Account account;
+        if (size > 1) {
+            showDialog(resId);
+            return;
+        } else if (size == 1) {
+            account = accountList.get(0);
+        } else {
+            account = null;
+        }
+        switch (resId) {
+            case R.string.import_from_sim: {
+                doImportFromSim(account);
+                break;
+            }
+            case R.string.import_from_sdcard: {
+                doImportFromSdCard(account);
+                break;
+            }
+            /*case R.string.export_to_sdcard: {
+                doExportToSdCard(account);
+                break;
+            }*/
+        }
+    }
+
     private void doImportFromSim(Account account) {
+        if (account != null) {
+            GoogleSource.createMyContactsIfNotExist(account, this);
+        }
+
         Intent importIntent = new Intent(Intent.ACTION_VIEW);
         importIntent.setType("vnd.android.cursor.item/sim-contact");
-        importIntent.putExtra("account_name", account.name);
-        importIntent.putExtra("account_type", account.type);
+        if (account != null) {
+            importIntent.putExtra("account_name", account.name);
+            importIntent.putExtra("account_type", account.type);
+        }
         importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
         startActivity(importIntent);
     }
 
     private void doImportFromSdCard(Account account) {
+        if (account != null) {
+            GoogleSource.createMyContactsIfNotExist(account, this);
+        }
+
         Intent importIntent = new Intent(this, ImportVCardActivity.class);
-        importIntent.putExtra("account_name", account.name);
-        importIntent.putExtra("account_type", account.type);
+        if (account != null) {
+            importIntent.putExtra("account_name", account.name);
+            importIntent.putExtra("account_type", account.type);
+        }
         startActivity(importIntent);
     }
 
