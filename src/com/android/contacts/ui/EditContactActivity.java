@@ -279,8 +279,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      */
     protected EntityDelta getSelectedEntityDelta() {
         final Long rawContactId = getSelectedRawContactId();
-        final int stateIndex = mState.indexOfRawContactId(rawContactId);
-        return mState.get(stateIndex);
+        return mState.getByRawContactId(rawContactId);
     }
 
     /**
@@ -391,9 +390,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         // Find entity and source for selected tab
         final EntityDelta entity = this.getSelectedEntityDelta();
-        final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        if (entity == null) return;
 
         final Sources sources = Sources.getInstance(this);
+        final String accountType = entity.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
         final ContactsSource source = sources.getInflatedSource(accountType,
                 ContactsSource.LEVEL_CONSTRAINTS);
 
@@ -885,6 +885,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             public void onClick(DialogInterface dialog, int which) {
                 // Mark the currently selected contact for deletion
                 final EntityDelta delta = getSelectedEntityDelta();
+                if (delta == null) return;
                 delta.markDeleted();
 
                 bindTabs();
