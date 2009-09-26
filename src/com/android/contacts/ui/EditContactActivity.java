@@ -121,6 +121,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         mHeader = (ContactHeaderWidget)this.findViewById(R.id.contact_header_widget);
         mHeader.setContactHeaderListener(this);
         mHeader.showStar(true);
+        mHeader.enableClickListeners();
 
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
@@ -402,19 +403,16 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     }
 
     /** {@inheritDoc} */
-    public void onDisplayNameLongClick(View view) {
+    public void onDisplayNameClick(View view) {
         if (!hasValidState()) return;
         showAndManageDialog(createNameDialog());
     }
 
     /** {@inheritDoc} */
-    public void onPhotoLongClick(View view) {
+    public void onPhotoClick(View view) {
         if (!hasValidState()) return;
         showAndManageDialog(createPhotoDialog());
     }
-
-
-
 
     /** {@inheritDoc} */
     public void onClick(View view) {
@@ -427,7 +425,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 break;
         }
     }
-
 
     /** {@inheritDoc} */
     @Override
