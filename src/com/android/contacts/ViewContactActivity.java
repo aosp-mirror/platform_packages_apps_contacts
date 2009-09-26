@@ -608,6 +608,7 @@ public class ViewContactActivity extends Activity
         }
 
         ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        menu.setHeaderTitle(R.string.contactOptionsTitle);
         if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
             menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
