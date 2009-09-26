@@ -42,7 +42,6 @@ import java.util.ArrayList;
 
 public class GoogleSource extends FallbackSource {
     public static final String ACCOUNT_TYPE = "com.google.GAIA";
-
     public GoogleSource(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
@@ -160,6 +159,7 @@ public class GoogleSource extends FallbackSource {
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
         final ValuesDelta stateValues = state.getValues();
+	stateValues.setFromTemplate(true);
         final String accountName = stateValues.getAsString(RawContacts.ACCOUNT_NAME);
         final String accountType = stateValues.getAsString(RawContacts.ACCOUNT_TYPE);
         attemptMyContactsMembership(state, accountName, accountType, context, true);
