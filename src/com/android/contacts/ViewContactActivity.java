@@ -958,99 +958,88 @@ public class ViewContactActivity extends Activity
                         continue;
                     }
 
-                    if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)
-                            || CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)
-                            || CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.equals(mimetype)
-                            || CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                        final boolean isSuperPrimary = entryValues.getAsInteger(
-                                Data.IS_SUPER_PRIMARY) != 0;
+                    final boolean isSuperPrimary = entryValues.getAsInteger(
+                            Data.IS_SUPER_PRIMARY) != 0;
 
-                        if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                            // Build phone entries
-                            mNumPhoneNumbers++;
+                    if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build phone entries
+                        mNumPhoneNumbers++;
 
-                            entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                    Uri.fromParts("tel", entry.data, null));
-                            entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
-                                    Uri.fromParts("sms", entry.data, null));
-                            entry.data = PhoneNumberUtils.stripSeparators(entry.data);
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                Uri.fromParts("tel", entry.data, null));
+                        entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts("sms", entry.data, null));
+                        entry.data = PhoneNumberUtils.stripSeparators(entry.data);
 
-                            // If data is empty, don't show it.
-                            if (TextUtils.isEmpty(entry.data)) {
-                                Log.w(TAG, "empty data for contact method " + id);
-                                continue;
+                        entry.isPrimary = isSuperPrimary;
+                        mPhoneEntries.add(entry);
+
+                        if (entry.type == CommonDataKinds.Phone.TYPE_MOBILE
+                                || mShowSmsLinksForAllPhones) {
+                            // Add an SMS entry
+                            if (kind.iconAltRes > 0) {
+                                entry.secondaryActionIcon = kind.iconAltRes;
                             }
+                        }
+                    } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build email entries
+                        entry.intent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts("mailto", entry.data, null));
+                        entry.isPrimary = isSuperPrimary;
+                        mEmailEntries.add(entry);
+                    } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
+                            equals(mimetype)) {
+                        // Build postal entries
+                        entry.maxLines = 4;
+                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
+                        mPostalEntries.add(entry);
+                    } else if (CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build im entries
+                        Object protocolObj = entryValues.getAsInteger(CommonDataKinds.Im.PROTOCOL);
+                        String host = null;
 
-                            entry.isPrimary = isSuperPrimary;
-                            mPhoneEntries.add(entry);
+                        if (TextUtils.isEmpty(entry.label)) {
+                            entry.label = getString(R.string.chat).toLowerCase();
+                        }
 
-                            if (entry.type == CommonDataKinds.Phone.TYPE_MOBILE
-                                    || mShowSmsLinksForAllPhones) {
-                                // Add an SMS entry
-                                if (kind.iconAltRes > 0) {
-                                    entry.secondaryActionIcon = kind.iconAltRes;
-                                }
+                        if (protocolObj instanceof Number) {
+                            int protocol = ((Number) protocolObj).intValue();
+                            host = ContactsUtils.lookupProviderNameFromId(protocol);
+                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
+                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
+                                entry.maxLabelLines = 2;
                             }
-                        } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                            // Build email entries
+                        } else if (protocolObj != null) {
+                            String providerName = (String) protocolObj;
+                            host = providerName.toLowerCase();
+                        }
+
+                        // Only add the intent if there is a valid host
+                        //  host is null for CommonDataKinds.Im.PROTOCOL_CUSTOM
+                        if (!TextUtils.isEmpty(host)) {
                             entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                    Uri.fromParts("mailto", entry.data, null));
-                            entry.isPrimary = isSuperPrimary;
-                            mEmailEntries.add(entry);
-                        } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
-                                equals(mimetype)) {
-                            // Build postal entries
-                            entry.maxLines = 4;
-                            entry.intent = new Intent(Intent.ACTION_VIEW, uri);
-                            mPostalEntries.add(entry);
-                        } else if (CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                            // Build im entries
-                            Object protocolObj = entryValues.getAsInteger(Data.DATA5);
-                            String host = null;
-
-                            if (TextUtils.isEmpty(entry.label)) {
-                                entry.label = getString(R.string.chat).toLowerCase();
-                            }
-
-                            if (protocolObj instanceof Number) {
-                                int protocol = ((Number) protocolObj).intValue();
-                                host = ContactsUtils.lookupProviderNameFromId(protocol);
-                                if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
-                                        || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
-                                    entry.maxLabelLines = 2;
-                                }
-                            } else if (protocolObj != null) {
-                                String providerName = (String) protocolObj;
-                                host = providerName.toLowerCase();
-                            }
-
-                            // Only add the intent if there is a valid host
-                            //  host is null for CommonDataKinds.Im.PROTOCOL_CUSTOM
-                            if (!TextUtils.isEmpty(host)) {
-                                entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                        constructImToUrl(host.toLowerCase(), entry.data));
-                            }
-                            //TODO(emillar) Add in presence info
+                                    constructImToUrl(host.toLowerCase(), entry.data));
+                        }
+                        //TODO(emillar) Add in presence info
                             /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
                             entry.presenceIcon = Presence.getPresenceIconResourceId(
                                     aggCursor.getInt(METHODS_STATUS_COLUMN));
                             entry.status = ...
                         }*/
-                            mImEntries.add(entry);
-                        }
-                    } else if (CommonDataKinds.Organization.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                        // Build organization entries
+                        mImEntries.add(entry);
+                    } else if (CommonDataKinds.Organization.CONTENT_ITEM_TYPE.equals(mimetype)
+                            || CommonDataKinds.Nickname.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                        // Build organization and note entries
+                        entry.uri = null;
                         mOrganizationEntries.add(entry);
                     } else if (CommonDataKinds.Note.CONTENT_ITEM_TYPE.equals(mimetype)) {
                         // Build note entries
-                        entry.id = 0;
                         entry.uri = null;
-                        entry.intent = null;
                         entry.maxLines = 10;
                         mOtherEntries.add(entry);
                     } else {
                         // Handle showing custom
-                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
+                        entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
                         mOtherEntries.add(entry);
                     }
 
