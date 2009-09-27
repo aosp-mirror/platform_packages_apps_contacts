@@ -116,7 +116,7 @@
     <string name="menu_makeDefaultNumber">Make default number</string>
 
     <!-- Menu item that makes an email address the default for a contact. The default email used
-    	 when you try to email a contact without specifying a specific address. -->
+         when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
@@ -130,6 +130,10 @@
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
+    
+    <!-- Menu item to toggle the tabs that show where the contact data comes from. -->
+    <string name="menu_showSources">Show sources</string>
+    <string name="menu_hideSources">Hide sources</string>
 
     <!-- Activity title for the Join Contact list -->
     <string name="titleJoinAggregate">Join contact</string>
@@ -1108,5 +1112,10 @@
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
+    
+    <!-- The title for the action to remove a contact from an aggregated contact -->
+    <string name="split_label">Split</string>
+    <!-- The explanation of what "split" will do. This needs word-smithing. -->
+    <string name="split_explanation">Make this data its own contact.</string>
 
 </resources>
