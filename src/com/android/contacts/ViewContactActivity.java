@@ -74,13 +74,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,6 +135,7 @@ public class ViewContactActivity extends Activity
     protected ScrollingTabWidget mTabWidget;
     protected ContactHeaderWidget mContactHeaderWidget;
     protected View mBelowHeader;
+    protected TextView mAccountName;
     protected View mBufferView;
     private NotifyingAsyncQueryHandler mHandler;
 
@@ -218,6 +217,7 @@ public class ViewContactActivity extends Activity
         mTabsVisible = false;
 
         mBelowHeader = findViewById(R.id.below_header);
+        mAccountName = (TextView) findViewById(R.id.account_name);
 
         mTabRawContactIdMap = new SparseArray<Long>();
 
@@ -939,6 +939,14 @@ public class ViewContactActivity extends Activity
                 // This performs the tab filtering
                 if (mSelectedRawContactId != null && mSelectedRawContactId != rawContactId) {
                     continue;
+                }
+
+                if (mTabsVisible) {
+                    final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
+                    mAccountName.setText(getString(R.string.account_name_format, accountName));
+                    mAccountName.setVisibility(View.VISIBLE);
+                } else {
+                    mAccountName.setVisibility(View.GONE);
                 }
 
                 for (NamedContentValues subValue : entity.getSubValues()) {

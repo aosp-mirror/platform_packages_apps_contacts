@@ -36,6 +36,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
         
+        <TextView android:id="@+id/account_name"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:textColor="@*android:color/dim_foreground_dark"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:background="@drawable/section_dark"
+            android:paddingLeft="7dp"
+            android:gravity="left|center_vertical"
+            android:visibility="gone" />
+
         <FrameLayout android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
