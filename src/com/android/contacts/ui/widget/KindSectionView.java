@@ -50,6 +50,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
     private DataKind mKind;
     private EntityDelta mState;
+    private boolean mReadOnly;
 
     public KindSectionView(Context context) {
         super(context);
@@ -87,9 +88,10 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // Ignore requests
     }
 
-    public void setState(DataKind kind, EntityDelta state) {
+    public void setState(DataKind kind, EntityDelta state, boolean readOnly) {
         mKind = kind;
         mState = state;
+        mReadOnly = readOnly;
 
         // TODO: handle resources from remote packages
         mTitle.setText(kind.titleRes);
@@ -114,7 +116,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
             final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
                     R.layout.item_generic_editor, mEditors, false);
-            editor.setValues(mKind, entry, mState);
+            editor.setValues(mKind, entry, mState, mReadOnly);
             editor.setEditorListener(this);
             editor.setId(entry.getViewId());
             mEditors.addView(editor);
@@ -129,7 +131,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
     protected void updateAddEnabled() {
         // Set enabled state on the "add" view
         final boolean canInsert = EntityModifier.canInsert(mState, mKind);
-        mAdd.setEnabled(canInsert);
+	final boolean isEnabled = !mReadOnly && canInsert;
+        mAdd.setEnabled(isEnabled);
     }
 
     /** {@inheritDoc} */
