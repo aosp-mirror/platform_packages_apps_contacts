@@ -17,4 +17,7 @@
 <resources>
     <dimen name="fasttrack_shadow">37dip</dimen>
     <dimen name="edit_photo_size">76dip</dimen>
+        
+    <!-- The height of the ScrollingTabWidget -->
+    <dimen name="tab_height">40dip</dimen>
 </resources>

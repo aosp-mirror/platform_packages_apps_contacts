@@ -16,8 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditField;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
@@ -31,9 +29,9 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -215,7 +213,7 @@ public class EntityDelta implements Parcelable {
         // Search all children for requested entry
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
             for (ValuesDelta entry : mimeEntries) {
-                if (entry.getId() == childId) {
+                if (childId.equals(entry.getId())) {
                     return entry;
                 }
             }
@@ -436,9 +434,9 @@ public class EntityDelta implements Parcelable {
      * or delete operations based on a "before" {@link Entity} snapshot.
      */
     public static class ValuesDelta implements Parcelable {
-        private ContentValues mBefore;
-        private ContentValues mAfter;
-        private String mIdColumn = BaseColumns._ID;
+        protected ContentValues mBefore;
+        protected ContentValues mAfter;
+        protected String mIdColumn = BaseColumns._ID;
 
         /**
          * Next value to assign to {@link #mIdColumn} when building an insert
@@ -446,9 +444,9 @@ public class EntityDelta implements Parcelable {
          * we can concretely reference this {@link ValuesDelta} before it has
          * been persisted.
          */
-        private static int sNextInsertId = -1;
+        protected static int sNextInsertId = -1;
 
-        private ValuesDelta() {
+        protected ValuesDelta() {
         }
 
         /**
@@ -506,6 +504,20 @@ public class EntityDelta implements Parcelable {
             }
         }
 
+        public Integer getAsInteger(String key) {
+            return getAsInteger(key, null);
+        }
+
+        public Integer getAsInteger(String key, Integer defaultValue) {
+            if (mAfter != null && mAfter.containsKey(key)) {
+                return mAfter.getAsInteger(key);
+            } else if (mBefore != null && mBefore.containsKey(key)) {
+                return mBefore.getAsInteger(key);
+            } else {
+                return defaultValue;
+            }
+        }
+
         public String getMimetype() {
             return getAsString(Data.MIMETYPE);
         }
@@ -548,6 +560,11 @@ public class EntityDelta implements Parcelable {
         public boolean isUpdate() {
             // When "after" has some changes, action is "update"
             return beforeExists() && (mAfter != null && mAfter.size() > 0);
+        }
+
+        public boolean isNoop() {
+            // When "after" has no changes, action is no-op
+            return beforeExists() && (mAfter != null && mAfter.size() == 0);
         }
 
         public boolean isInsert() {
@@ -616,6 +633,7 @@ public class EntityDelta implements Parcelable {
             if (mAfter != null) {
                 values.putAll(mAfter);
             }
+            values.remove(ContactsContract.CommonDataKinds.GroupMembership.GROUP_SOURCE_ID);
             return values;
         }
 

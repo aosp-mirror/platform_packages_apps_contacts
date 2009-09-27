@@ -2516,9 +2516,14 @@ public final class ContactsListActivity extends ListActivity implements
                 if (getPositionForSection(section) == position) {
                     cache.header.setText(mIndexer.getSections()[section].toString());
                     cache.header.setVisibility(View.VISIBLE);
-                    cache.divider.setVisibility(View.GONE);
                 } else {
                     cache.header.setVisibility(View.GONE);
+                }
+
+                // move the divider for the last item in a section
+                if (getPositionForSection(section + 1) - 1 == position) {
+                    cache.divider.setVisibility(View.GONE);
+                } else {
                     cache.divider.setVisibility(View.VISIBLE);
                 }
             }
@@ -2596,6 +2601,10 @@ public final class ContactsListActivity extends ListActivity implements
 
         public int getPositionForSection(int sectionIndex) {
             if (mMode == MODE_STARRED) {
+                return -1;
+            }
+
+            if (sectionIndex < 0 || sectionIndex >= mSectionPositions.length) {
                 return -1;
             }
 
