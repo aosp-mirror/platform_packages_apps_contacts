@@ -103,6 +103,7 @@ public class ViewContactActivity extends Activity
     private static final int DIALOG_CONFIRM_DELETE = 1;
 
     private static final int REQUEST_JOIN_CONTACT = 1;
+    private static final int REQUEST_EDIT_CONTACT = 2;
 
     public static final int MENU_ITEM_MAKE_DEFAULT = 3;
 
@@ -151,7 +152,9 @@ public class ViewContactActivity extends Activity
     protected static final int TAB_ACCOUNT_NAME_COLUMN_INDEX = 1;
     protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
 
-    protected static final String SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContact";
+    private static final String SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContactKey";
+    private static final String SAVED_STATE_TABS_VISIBLE_KEY = "tabsVisibleKey";
+
     protected Long mSelectedRawContactId = null;
 
     private static final int TOKEN_QUERY = 0;
@@ -247,9 +250,27 @@ public class ViewContactActivity extends Activity
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        long restoredRawContactId = savedInstanceState.getLong(
+                SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY, -1);
+        mSelectedRawContactId = restoredRawContactId != -1 ? restoredRawContactId : null;
+        mTabsVisible = savedInstanceState.getBoolean(SAVED_STATE_TABS_VISIBLE_KEY);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mSelectedRawContactId != null) {
+            outState.putLong(SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
+
+        }
+        outState.putBoolean(SAVED_STATE_TABS_VISIBLE_KEY, mTabsVisible);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        showTabs(false, false /*no animation*/);
         startEntityQuery();
     }
 
@@ -371,80 +392,69 @@ public class ViewContactActivity extends Activity
         return -1;
     }
 
-    protected void showTabs(boolean show, boolean animate) {
+    protected void showTabs(boolean show) {
         if (mTabsVisible == show) {
             return;
         }
 
         float tabHeight = getResources().getDimension(R.dimen.tab_height);
         if (show) {
-            if (animate) {
-                TranslateAnimation showAnimation = new TranslateAnimation(
-                        Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                        Animation.ABSOLUTE, -tabHeight, Animation.ABSOLUTE, 0);
-                showAnimation.setDuration(getResources().getInteger(
-                        android.R.integer.config_longAnimTime));
+            TranslateAnimation showAnimation = new TranslateAnimation(
+                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
+                    Animation.ABSOLUTE, -tabHeight, Animation.ABSOLUTE, 0);
+            showAnimation.setDuration(getResources().getInteger(
+                    android.R.integer.config_longAnimTime));
 
-                showAnimation.setAnimationListener(new AnimationListener() {
-                    public void onAnimationEnd(Animation animation) {
-                        selectInitialTab();
-                        bindData();
-                    }
+            showAnimation.setAnimationListener(new AnimationListener() {
+                public void onAnimationEnd(Animation animation) {
+                    selectInitialTab();
+                    bindData();
+                }
 
-                    public void onAnimationRepeat(Animation animation) {
-                    }
+                public void onAnimationRepeat(Animation animation) {
+                }
 
-                    public void onAnimationStart(Animation animation) {
-                    }
+                public void onAnimationStart(Animation animation) {
+                }
 
-                });
+            });
 
-                mBelowHeader.startAnimation(showAnimation);
-            }
+            mBelowHeader.startAnimation(showAnimation);
             mTabWidget.setVisibility(View.VISIBLE);
             mTabsVisible = true;
             clearCurrentTabs();
             bindTabs();
-            if (!animate) {
-                selectInitialTab();
-                bindData();
-            }
         } else {
-            if (animate) {
-                TranslateAnimation hideTabsAnimation = new TranslateAnimation(
-                        Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                        Animation.ABSOLUTE, 0, Animation.ABSOLUTE, -tabHeight);
-                hideTabsAnimation.setDuration(getResources().getInteger(
-                        android.R.integer.config_longAnimTime));
-                hideTabsAnimation.setAnimationListener(new AnimationListener() {
-                    public void onAnimationEnd(Animation animation) {
-                        bindData();
-                    }
+            TranslateAnimation hideTabsAnimation = new TranslateAnimation(
+                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
+                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, -tabHeight);
+            hideTabsAnimation.setDuration(getResources().getInteger(
+                    android.R.integer.config_longAnimTime));
+            hideTabsAnimation.setAnimationListener(new AnimationListener() {
+                public void onAnimationEnd(Animation animation) {
+                    bindData();
+                }
 
-                    public void onAnimationRepeat(Animation animation) {
-                    }
+                public void onAnimationRepeat(Animation animation) {
+                }
 
-                    public void onAnimationStart(Animation animation) {
-                    }
+                public void onAnimationStart(Animation animation) {
+                }
 
-                });
+            });
 
-                TranslateAnimation hideListAnimation = new TranslateAnimation(
-                        Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                        Animation.ABSOLUTE, tabHeight, Animation.ABSOLUTE, 0);
-                hideListAnimation.setDuration(getResources().getInteger(
-                        android.R.integer.config_longAnimTime));
+            TranslateAnimation hideListAnimation = new TranslateAnimation(
+                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
+                    Animation.ABSOLUTE, tabHeight, Animation.ABSOLUTE, 0);
+            hideListAnimation.setDuration(getResources().getInteger(
+                    android.R.integer.config_longAnimTime));
 
 
-                mTabWidget.startAnimation(hideTabsAnimation);
-                mTabContentLayout.startAnimation(hideListAnimation);
-            }
+            mTabWidget.startAnimation(hideTabsAnimation);
+            mTabContentLayout.startAnimation(hideListAnimation);
             mTabWidget.setVisibility(View.GONE);
             mTabsVisible = false;
             mSelectedRawContactId = null;
-            if (!animate) {
-                bindData();
-            }
         }
     }
 
@@ -459,9 +469,12 @@ public class ViewContactActivity extends Activity
                 boolean isAggregate = mEntities.size() > 1;
                 mContactHeaderWidget.showAggregateBadge(isAggregate);
                 if (mTabsVisible) {
+                    mTabWidget.setVisibility(View.VISIBLE);
                     clearCurrentTabs();
                     bindTabs();
                     selectInitialTab();
+                } else {
+                    mTabWidget.setVisibility(View.GONE);
                 }
                 bindData();
             }
@@ -619,11 +632,11 @@ public class ViewContactActivity extends Activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_show_sources: {
-                showTabs(true, true /*animate*/);
+                showTabs(true);
                 break;
             }
             case R.id.menu_hide_sources: {
-                showTabs(false, true /*animate*/);
+                showTabs(false);
                 break;
             }
             case R.id.menu_edit: {
@@ -638,7 +651,8 @@ public class ViewContactActivity extends Activity
                 }
                 Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                         rawContactIdToEdit);
-                startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
+                startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
+                        REQUEST_EDIT_CONTACT);
                 break;
             }
             case R.id.menu_delete: {
@@ -754,6 +768,8 @@ public class ViewContactActivity extends Activity
                 final long contactId = ContentUris.parseId(intent.getData());
                 joinAggregate(contactId);
             }
+        } else if (requestCode == REQUEST_EDIT_CONTACT) {
+            mTabsVisible = false;
         }
     }
 
