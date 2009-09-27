@@ -17,45 +17,36 @@
 package com.android.contacts;
 
 
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.ui.FastTrackWindow;
-import com.android.contacts.util.Constants;
-
-import java.io.ByteArrayInputStream;
-
-import android.provider.Contacts.People.Phones;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
-
-import java.io.InputStream;
-
-import android.net.Uri;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.Contacts;
 import android.provider.Im.ProviderNames;
-import android.database.Cursor;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.util.Constants;
+
+import java.util.ArrayList;
 
 public class ContactsUtils {
 
@@ -302,6 +293,26 @@ public class ContactsUtils {
             }
         }
         return rawContactId;
+    }
+
+    public static ArrayList<Long> queryForAllRawContactIds(ContentResolver cr, long contactId) {
+        Cursor rawContactIdCursor = null;
+        ArrayList<Long> rawContactIds = new ArrayList<Long>();
+        try {
+            rawContactIdCursor = cr.query(RawContacts.CONTENT_URI,
+                    new String[] {RawContacts._ID},
+                    RawContacts.CONTACT_ID + "=" + contactId, null, null);
+            if (rawContactIdCursor != null) {
+                while (rawContactIdCursor.moveToNext()) {
+                    rawContactIds.add(rawContactIdCursor.getLong(0));
+                }
+            }
+        } finally {
+            if (rawContactIdCursor != null) {
+                rawContactIdCursor.close();
+            }
+        }
+        return rawContactIds;
     }
 
 
