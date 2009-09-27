@@ -453,7 +453,11 @@ public class RecentCallsListActivity extends ListActivity
                 // Format the cached call_log phone number
                 formattedNumber = formatPhoneNumber(number);
             }
-            // Set the text lines
+            // Set the text lines and call icon.
+            // Assumes the call back feature is on most of the
+            // time. For private and unknown numbers: hide it.
+            views.callView.setVisibility(View.VISIBLE);
+
             if (!TextUtils.isEmpty(name)) {
                 views.line1View.setText(name);
                 views.labelView.setVisibility(View.VISIBLE);
@@ -470,8 +474,10 @@ public class RecentCallsListActivity extends ListActivity
             } else {
                 if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
                     number = getString(R.string.unknown);
+                    views.callView.setVisibility(View.INVISIBLE);
                 } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
                     number = getString(R.string.private_num);
+                    views.callView.setVisibility(View.INVISIBLE);
                 } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
                     number = getString(R.string.payphone);
                 } else if (number.equals(mVoiceMailNumber)) {
