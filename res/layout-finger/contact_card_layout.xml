@@ -29,13 +29,8 @@
         android:id="@+id/below_header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        
-        <!-- <View
-            android:id="@+id/buffer_view"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-        /> -->
+        android:orientation="vertical"
+        android:layout_weight="1">
         
         <com.android.contacts.ScrollingTabWidget android:id="@+id/tab_widget"
             android:layout_width="fill_parent"
