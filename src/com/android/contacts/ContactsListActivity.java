@@ -234,7 +234,7 @@ public final class ContactsListActivity extends ListActivity implements
         Contacts.DISPLAY_NAME, // 1
         Contacts.STARRED, //2
         Contacts.TIMES_CONTACTED, //3
-        Presence.PRESENCE_STATUS, //4
+        Contacts.CONTACT_PRESENCE, //4
         Contacts.PHOTO_ID, //5
         Contacts.HAS_PHONE_NUMBER, //6
         Contacts.LOOKUP_KEY, //7
