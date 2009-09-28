@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.CallLog.Calls;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -42,10 +43,12 @@ import java.util.Random;
  *
  *   runtest contacts
  * or
- *   adb shell am instrument -w com.android.contacts.tests/android.test.InstrumentationTestRunner
+ *   adb shell am instrument \
+ *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 
-public class RecentCallsListActivityTests extends ActivityInstrumentationTestCase2<RecentCallsListActivity> {
+public class RecentCallsListActivityTests
+        extends ActivityInstrumentationTestCase2<RecentCallsListActivity> {
     static private final String TAG = "RecentCallsListActivityTests";
     static private final String[] CALL_LOG_PROJECTION = new String[] {
             Calls._ID,
@@ -108,6 +111,7 @@ public class RecentCallsListActivityTests extends ActivityInstrumentationTestCas
      * Use 2 passes, one where new views are created and one where
      * half of the total views are updated and the other half created.
      */
+    @MediumTest
     public void testCallViewIsNotVisibleForPrivateAndUnknownNumbers() {
         final int SIZE = 100;
         mList = new View[SIZE];
