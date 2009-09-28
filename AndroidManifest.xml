@@ -62,7 +62,7 @@
         <!-- Tab container for TwelveKeyDialer and RecentCallsList -->
         <activity android:name="DialtactsActivity"
             android:label="@string/launcherDialer"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/DialtactsTheme"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_phone"
