@@ -17,38 +17,39 @@
 package com.android.contacts.ui;
 
 import com.android.contacts.R;
-import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.google.android.collect.Sets;
+import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.EntityIterator;
 import android.content.Intent;
+import android.content.OperationApplicationException;
 import android.content.SharedPreferences;
+import android.content.ContentProviderOperation.Builder;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
-import android.database.AbstractCursor;
 import android.database.Cursor;
-import android.database.CursorWrapper;
-import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Settings;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -56,8 +57,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.AdapterView;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
-import android.widget.CursorTreeAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -65,20 +66,17 @@ import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
 public final class DisplayGroupsActivity extends ExpandableListActivity implements
-        AdapterView.OnItemClickListener {
+        AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "DisplayGroupsActivity";
-
-    private static final int UNGROUPED_ID = -2;
-    private static final int UNSYNCED_ID = -3;
-
-    private static final int FOOTER_ENTRY = -4;
 
     public interface Prefs {
         public static final String DISPLAY_ONLY_PHONES = "only_phones";
@@ -87,7 +85,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     }
 
     private ExpandableListView mList;
-    private DisplayGroupsAdapter mAdapter;
+    private DisplayAdapter mAdapter;
 
     private SharedPreferences mPrefs;
 
@@ -96,16 +94,10 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     private View mHeaderPhones;
     private View mHeaderSeparator;
 
-    private static final Uri sDelayedSettings = Settings.CONTENT_URI.buildUpon()
-            .appendQueryParameter(Contacts.DELAY_STARRED_UPDATE, "1").build();
-
-    private static final Uri sDelayedGroups = Groups.CONTENT_URI.buildUpon()
-            .appendQueryParameter(Contacts.DELAY_STARRED_UPDATE, "1").build();
-
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(android.R.layout.expandable_list_content);
+        setContentView(R.layout.act_display_groups);
 
         mList = getExpandableListView();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -116,6 +108,8 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         mHeaderPhones = inflater.inflate(R.layout.display_header, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
         mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
+        mDisplayPhones.setChecked(mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
+                Prefs.DISPLAY_ONLY_PHONES_DEFAULT));
         {
             final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
             final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
@@ -123,7 +117,6 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             text2.setText(R.string.showFilterPhonesDescrip);
         }
         mList.addHeaderView(mHeaderPhones, null, true);
-
 
         // Add the separator before showing the detailed group list.
         mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
@@ -133,91 +126,475 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         }
         mList.addHeaderView(mHeaderSeparator, null, false);
 
-        mAdapter = new DisplayGroupsAdapter(null, this, this);
-
-        boolean displayOnlyPhones = mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
-                Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
-
-        mDisplayPhones.setChecked(displayOnlyPhones);
-
-        mAdapter.setChildDescripWithPhones(displayOnlyPhones);
-
-        setListAdapter(mAdapter);
+        findViewById(R.id.btn_done).setOnClickListener(this);
+        findViewById(R.id.btn_discard).setOnClickListener(this);
 
         // Catch clicks on the header views
         mList.setOnItemClickListener(this);
         mList.setOnCreateContextMenuListener(this);
 
         // Start background query to find account details
-        new QuerySettingsTask(this).execute();
+        new QueryGroupsTask(this).execute();
     }
 
-    private static class QuerySettingsTask extends
-            WeakAsyncTask<Void, Void, Cursor, DisplayGroupsActivity> {
-        public QuerySettingsTask(DisplayGroupsActivity target) {
+    /**
+     * Background operation to build set of {@link AccountDisplay} for each
+     * {@link Sources#getAccounts(boolean)} that provides groups.
+     */
+    private static class QueryGroupsTask extends
+            WeakAsyncTask<Void, Void, AccountSet, DisplayGroupsActivity> {
+        public QueryGroupsTask(DisplayGroupsActivity target) {
             super(target);
         }
 
         @Override
-        protected Cursor doInBackground(DisplayGroupsActivity target, Void... params) {
+        protected AccountSet doInBackground(DisplayGroupsActivity target,
+                Void... params) {
             final Context context = target;
             final Sources sources = Sources.getInstance(context);
-
-            // Query to find Settings for all data sources
             final ContentResolver resolver = context.getContentResolver();
-            final Cursor cursor = resolver.query(ContactsContract.Settings.CONTENT_URI,
-                    SettingsQuery.PROJECTION, null, null, null);
-            target.startManagingCursor(cursor);
 
-            // Make records for each account known by Settings
-            final HashSet<Account> knownAccounts = Sets.newHashSet();
-            while (cursor.moveToNext()) {
-                final String accountName = cursor.getString(SettingsQuery.ACCOUNT_NAME);
-                final String accountType = cursor.getString(SettingsQuery.ACCOUNT_TYPE);
-                final Account account = new Account(accountName, accountType);
-                knownAccounts.add(account);
+            // Inflate groups entry for each account
+            final AccountSet accounts = new AccountSet();
+            for (Account account : sources.getAccounts(false)) {
+                accounts.add(new AccountDisplay(resolver, account.name, account.type));
             }
 
-            // Assert that Settings exist for each data source
-            boolean changedSettings = false;
-            final ArrayList<Account> expectedAccounts = sources.getAccounts(false);
-            for (Account account : expectedAccounts) {
-                if (!knownAccounts.contains(account)) {
-                    // Expected account that doesn't exist yet in Settings
-                    final ContentValues values = new ContentValues();
-                    values.put(Settings.ACCOUNT_NAME, account.name);
-                    values.put(Settings.ACCOUNT_TYPE, account.type);
-                    resolver.insert(Settings.CONTENT_URI, values);
-
-                    // Make sure we requery to catch this insert
-                    changedSettings = true;
-                }
-            }
-
-            if (changedSettings) {
-                // Catch any new sources discovered above
-                cursor.requery();
-            }
-
-            // Wrap cursor to provide _id column
-            final Cursor settingsCursor = new CursorWrapper(cursor) {
-                @Override
-                public long getLong(int columnIndex) {
-                    if (columnIndex == -1) {
-                        return this.getPosition();
-                    } else {
-                        return super.getLong(columnIndex);
-                    }
-                }
-            };
-
-            return settingsCursor;
+            return accounts;
         }
 
         @Override
-        protected void onPostExecute(DisplayGroupsActivity target, Cursor result) {
-            // Update cursor for data sources
-            target.mAdapter.setGroupCursor(result);
+        protected void onPostExecute(DisplayGroupsActivity target, AccountSet result) {
+            // Build adapter to show available groups
+            final Context context = target;
+            final DisplayAdapter adapter = new DisplayAdapter(context, result);
+            target.setListAdapter(adapter);
+        }
+    }
+
+    public void setListAdapter(DisplayAdapter adapter) {
+        mAdapter = adapter;
+        mAdapter.setChildDescripWithPhones(mDisplayPhones.isChecked());
+        super.setListAdapter(mAdapter);
+    }
+
+    private static final int DEFAULT_SHOULD_SYNC = 1;
+    private static final int DEFAULT_VISIBLE = 0;
+
+    /**
+     * Entry holding any changes to {@link Groups} or {@link Settings} rows,
+     * such as {@link Groups#SHOULD_SYNC} or {@link Groups#GROUP_VISIBLE}.
+     */
+    protected static class GroupDelta extends ValuesDelta {
+        private boolean mUngrouped = false;
+
+        private GroupDelta() {
+            super();
+        }
+
+        /**
+         * Build {@link GroupDelta} from the {@link Settings} row for the given
+         * {@link Settings#ACCOUNT_NAME} and {@link Settings#ACCOUNT_TYPE}.
+         */
+        public static GroupDelta fromSettings(ContentResolver resolver, String accountName,
+                String accountType) {
+            final Uri settingsUri = Settings.CONTENT_URI.buildUpon()
+                    .appendQueryParameter(Settings.ACCOUNT_NAME, accountName)
+                    .appendQueryParameter(Settings.ACCOUNT_TYPE, accountType).build();
+            final Cursor cursor = resolver.query(settingsUri, new String[] {
+                    Settings.SHOULD_SYNC, Settings.UNGROUPED_VISIBLE
+            }, null, null, null);
+
+            try {
+                final ContentValues values = new ContentValues();
+                values.put(Settings.ACCOUNT_NAME, accountName);
+                values.put(Settings.ACCOUNT_TYPE, accountType);
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    // Read existing values when present
+                    values.put(Settings.SHOULD_SYNC, cursor.getInt(0));
+                    values.put(Settings.UNGROUPED_VISIBLE, cursor.getInt(1));
+                    return fromBefore(values).setUngrouped();
+                } else {
+                    // Nothing found, so treat as create
+                    values.put(Settings.SHOULD_SYNC, DEFAULT_SHOULD_SYNC);
+                    values.put(Settings.UNGROUPED_VISIBLE, DEFAULT_VISIBLE);
+                    return fromAfter(values).setUngrouped();
+                }
+            } finally {
+                if (cursor != null) cursor.close();
+            }
+        }
+
+        public static GroupDelta fromBefore(ContentValues before) {
+            final GroupDelta entry = new GroupDelta();
+            entry.mBefore = before;
+            entry.mAfter = new ContentValues();
+            return entry;
+        }
+
+        public static GroupDelta fromAfter(ContentValues after) {
+            final GroupDelta entry = new GroupDelta();
+            entry.mBefore = null;
+            entry.mAfter = after;
+            return entry;
+        }
+
+        protected GroupDelta setUngrouped() {
+            mUngrouped = true;
+            return this;
+        }
+
+        @Override
+        public boolean beforeExists() {
+            return mBefore != null;
+        }
+
+        public boolean getShouldSync() {
+            return getAsInteger(mUngrouped ? Settings.SHOULD_SYNC : Groups.SHOULD_SYNC,
+                    DEFAULT_SHOULD_SYNC) != 0;
+        }
+
+        public boolean getVisible() {
+            return getAsInteger(mUngrouped ? Settings.UNGROUPED_VISIBLE : Groups.GROUP_VISIBLE,
+                    DEFAULT_VISIBLE) != 0;
+        }
+
+        public void putShouldSync(boolean shouldSync) {
+            put(mUngrouped ? Settings.SHOULD_SYNC : Groups.SHOULD_SYNC, shouldSync ? 1 : 0);
+        }
+
+        public void putVisible(boolean visible) {
+            put(mUngrouped ? Settings.UNGROUPED_VISIBLE : Groups.GROUP_VISIBLE, visible ? 1 : 0);
+        }
+
+        public CharSequence getTitle(Context context) {
+            if (mUngrouped) {
+                return context.getText(R.string.display_ungrouped);
+            } else {
+                final Integer titleRes = getAsInteger(Groups.TITLE_RES);
+                if (titleRes != null) {
+                    final String packageName = getAsString(Groups.RES_PACKAGE);
+                    return context.getPackageManager().getText(packageName, titleRes, null);
+                } else {
+                    return getAsString(Groups.TITLE);
+                }
+            }
+        }
+
+        /**
+         * Build a possible {@link ContentProviderOperation} to persist any
+         * changes to the {@link Groups} or {@link Settings} row described by
+         * this {@link GroupDelta}.
+         */
+        public ContentProviderOperation buildDiff() {
+            if (isNoop()) {
+                return null;
+            } else if (isUpdate()) {
+                // When has changes and "before" exists, then "update"
+                final Builder builder = ContentProviderOperation
+                        .newUpdate(mUngrouped ? Settings.CONTENT_URI : Groups.CONTENT_URI);
+                if (mUngrouped) {
+                    builder.withSelection(Settings.ACCOUNT_NAME + "=? AND " + Settings.ACCOUNT_TYPE
+                            + "=?", new String[] {
+                            this.getAsString(Settings.ACCOUNT_NAME),
+                            this.getAsString(Settings.ACCOUNT_TYPE)
+                    });
+                } else {
+                    builder.withSelection(Groups._ID + "=" + this.getId(), null);
+                }
+                builder.withValues(mAfter);
+                return builder.build();
+            } else if (isInsert() && mUngrouped) {
+                // Only allow inserts for Settings
+                mAfter.remove(mIdColumn);
+                final Builder builder = ContentProviderOperation.newInsert(Settings.CONTENT_URI);
+                builder.withValues(mAfter);
+                return builder.build();
+            } else {
+                throw new IllegalStateException("Unexpected delete or insert");
+            }
+        }
+    }
+
+    /**
+     * {@link Comparator} to sort by {@link Groups#_ID}.
+     */
+    private static Comparator<GroupDelta> sIdComparator = new Comparator<GroupDelta>() {
+        public int compare(GroupDelta object1, GroupDelta object2) {
+            return object1.getViewId() - object2.getViewId();
+        }
+    };
+
+    /**
+     * Set of all {@link AccountDisplay} entries, one for each source.
+     */
+    protected static class AccountSet extends ArrayList<AccountDisplay> {
+        public ArrayList<ContentProviderOperation> buildDiff() {
+            final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+            for (AccountDisplay account : this) {
+                account.buildDiff(diff);
+            }
+            return diff;
+        }
+    }
+
+    /**
+     * {@link GroupDelta} details for a single {@link Account}, usually shown as
+     * children under a single expandable group.
+     */
+    protected static class AccountDisplay {
+        public String mName;
+        public String mType;
+
+        public GroupDelta mUngrouped;
+        public ArrayList<GroupDelta> mSyncedGroups = Lists.newArrayList();
+        public ArrayList<GroupDelta> mUnsyncedGroups = Lists.newArrayList();
+
+        /**
+         * Build an {@link AccountDisplay} covering all {@link Groups} under the
+         * given {@link Account}.
+         */
+        public AccountDisplay(ContentResolver resolver, String accountName, String accountType) {
+            mName = accountName;
+            mType = accountType;
+
+            // Create single entry handling ungrouped status
+            mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType);
+            addGroup(mUngrouped);
+
+            final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
+                    .appendQueryParameter(Groups.ACCOUNT_NAME, accountName)
+                    .appendQueryParameter(Groups.ACCOUNT_TYPE, accountType).build();
+            EntityIterator iterator = null;
+            try {
+                // Create entries for each known group
+                iterator = resolver.queryEntities(groupsUri, null, null, null);
+                while (iterator.hasNext()) {
+                    final ContentValues values = iterator.next().getEntityValues();
+                    final GroupDelta group = GroupDelta.fromBefore(values);
+                    addGroup(group);
+                }
+            } catch (RemoteException e) {
+                Log.w(TAG, "Problem reading groups: " + e.toString());
+            } finally {
+                if (iterator != null) iterator.close();
+            }
+        }
+
+        /**
+         * Add the given {@link GroupDelta} internally, filing based on its
+         * {@link GroupDelta#getShouldSync()} status.
+         */
+        private void addGroup(GroupDelta group) {
+            if (group.getShouldSync()) {
+                mSyncedGroups.add(group);
+            } else {
+                mUnsyncedGroups.add(group);
+            }
+        }
+
+        /**
+         * Set the {@link GroupDelta#putShouldSync(boolean)} value for all
+         * children {@link GroupDelta} rows.
+         */
+        public void setShouldSync(boolean shouldSync) {
+            final Iterator<GroupDelta> oppositeChildren = shouldSync ?
+                    mUnsyncedGroups.iterator() : mSyncedGroups.iterator();
+            while (oppositeChildren.hasNext()) {
+                final GroupDelta child = oppositeChildren.next();
+                setShouldSync(child, shouldSync, false);
+                oppositeChildren.remove();
+            }
+        }
+
+        public void setShouldSync(GroupDelta child, boolean shouldSync) {
+            setShouldSync(child, shouldSync, true);
+        }
+
+        /**
+         * Set {@link GroupDelta#putShouldSync(boolean)}, and file internally
+         * based on updated state.
+         */
+        public void setShouldSync(GroupDelta child, boolean shouldSync, boolean attemptRemove) {
+            child.putShouldSync(shouldSync);
+            if (shouldSync) {
+                if (attemptRemove) {
+                    mUnsyncedGroups.remove(child);
+                }
+                mSyncedGroups.add(child);
+                Collections.sort(mSyncedGroups, sIdComparator);
+            } else {
+                if (attemptRemove) {
+                    mSyncedGroups.remove(child);
+                }
+                mUnsyncedGroups.add(child);
+            }
+        }
+
+        /**
+         * Build set of {@link ContentProviderOperation} to persist any user
+         * changes to {@link GroupDelta} rows under this {@link Account}.
+         */
+        public void buildDiff(ArrayList<ContentProviderOperation> diff) {
+            for (GroupDelta group : mSyncedGroups) {
+                final ContentProviderOperation oper = group.buildDiff();
+                if (oper != null) diff.add(oper);
+            }
+            for (GroupDelta group : mUnsyncedGroups) {
+                final ContentProviderOperation oper = group.buildDiff();
+                if (oper != null) diff.add(oper);
+            }
+        }
+    }
+
+    /**
+     * {@link ExpandableListAdapter} that shows {@link GroupDelta} settings,
+     * grouped by {@link Account} source. Shows footer row when any groups are
+     * unsynced, as determined through {@link AccountDisplay#mUnsyncedGroups}.
+     */
+    protected static class DisplayAdapter extends BaseExpandableListAdapter {
+        private Context mContext;
+        private LayoutInflater mInflater;
+        private Sources mSources;
+
+        private AccountSet mAccounts;
+
+        private boolean mChildWithPhones = false;
+
+        public DisplayAdapter(Context context, AccountSet accounts) {
+            mContext = context;
+            mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mSources = Sources.getInstance(context);
+
+            mAccounts = accounts;
+        }
+
+        /**
+         * In group descriptions, show the number of contacts with phone
+         * numbers, in addition to the total contacts.
+         */
+        public void setChildDescripWithPhones(boolean withPhones) {
+            mChildWithPhones = withPhones;
+        }
+
+        /** {@inheritDoc} */
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+                View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.display_child, parent, false);
+            }
+
+            final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
+            final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+            final CheckBox checkbox = (CheckBox)convertView.findViewById(android.R.id.checkbox);
+
+            final AccountDisplay account = mAccounts.get(groupPosition);
+            final GroupDelta child = (GroupDelta)this.getChild(groupPosition, childPosition);
+            if (child != null) {
+                // Handle normal group, with title and checkbox
+                final boolean groupVisible = child.getVisible();
+                checkbox.setVisibility(View.VISIBLE);
+                checkbox.setChecked(groupVisible);
+
+                final CharSequence groupTitle = child.getTitle(mContext);
+                text1.setText(groupTitle);
+
+//              final int count = cursor.getInt(GroupsQuery.SUMMARY_COUNT);
+//              final int withPhones = cursor.getInt(GroupsQuery.SUMMARY_WITH_PHONES);
+
+//              final CharSequence descrip = mContext.getResources().getQuantityString(
+//                      mChildWithPhones ? R.plurals.groupDescripPhones : R.plurals.groupDescrip,
+//                      count, count, withPhones);
+
+//              text2.setText(descrip);
+                text2.setVisibility(View.GONE);
+            } else {
+                // When unknown child, this is "more" footer view
+                checkbox.setVisibility(View.GONE);
+                text1.setText(R.string.display_more_groups);
+                text2.setVisibility(View.GONE);
+            }
+
+            return convertView;
+        }
+
+        /** {@inheritDoc} */
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+                ViewGroup parent) {
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.display_group, parent, false);
+            }
+
+            final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
+            final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+
+            final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
+
+            final ContactsSource source = mSources.getInflatedSource(account.mType,
+                    ContactsSource.LEVEL_SUMMARY);
+
+            text1.setText(account.mName);
+            text2.setText(source.getDisplayLabel(mContext));
+            text2.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
+
+            return convertView;
+        }
+
+        /** {@inheritDoc} */
+        public Object getChild(int groupPosition, int childPosition) {
+            final AccountDisplay account = mAccounts.get(groupPosition);
+            final boolean validChild = childPosition >= 0
+                    && childPosition < account.mSyncedGroups.size();
+            if (validChild) {
+                return account.mSyncedGroups.get(childPosition);
+            } else {
+                return null;
+            }
+        }
+
+        /** {@inheritDoc} */
+        public long getChildId(int groupPosition, int childPosition) {
+            final GroupDelta child = (GroupDelta)getChild(groupPosition, childPosition);
+            if (child != null) {
+                final Long childId = child.getId();
+                return childId != null ? childId : Long.MIN_VALUE;
+            } else {
+                return Long.MIN_VALUE;
+            }
+        }
+
+        /** {@inheritDoc} */
+        public int getChildrenCount(int groupPosition) {
+            // Count is any synced groups, plus possible footer
+            final AccountDisplay account = mAccounts.get(groupPosition);
+            final boolean anyHidden = account.mUnsyncedGroups.size() > 0;
+            return account.mSyncedGroups.size() + (anyHidden ? 1 : 0);
+        }
+
+        /** {@inheritDoc} */
+        public Object getGroup(int groupPosition) {
+            return mAccounts.get(groupPosition);
+        }
+
+        /** {@inheritDoc} */
+        public int getGroupCount() {
+            return mAccounts.size();
+        }
+
+        /** {@inheritDoc} */
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        /** {@inheritDoc} */
+        public boolean hasStableIds() {
+            return true;
+        }
+
+        /** {@inheritDoc} */
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
         }
     }
 
@@ -229,7 +606,20 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         switch (view.getId()) {
             case R.id.header_phones: {
                 mDisplayPhones.toggle();
-                setDisplayOnlyPhones(mDisplayPhones.isChecked());
+                break;
+            }
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_done: {
+                this.doSaveAction();
+                break;
+            }
+            case R.id.btn_discard: {
+                this.finish();
                 break;
             }
         }
@@ -255,36 +645,19 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      * usually mean toggling its visible state.
      */
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+    public boolean onChildClick(ExpandableListView parent, View view, int groupPosition,
             int childPosition, long id) {
-        final CheckBox checkbox = (CheckBox)v.findViewById(android.R.id.checkbox);
-        checkbox.toggle();
+        final CheckBox checkbox = (CheckBox)view.findViewById(android.R.id.checkbox);
 
-        // Build visibility update and send down to database
-        final ContentResolver resolver = getContentResolver();
-        final ContentValues values = new ContentValues();
-
-        if (id == UNGROUPED_ID) {
-            // Handle persisting for ungrouped through Settings
-            values.put(Settings.UNGROUPED_VISIBLE, checkbox.isChecked() ? 1 : 0);
-
-            final Cursor settings = mAdapter.getGroup(groupPosition);
-            final int count = resolver.update(sDelayedSettings, values, Groups.ACCOUNT_NAME
-                    + "=? AND " + Groups.ACCOUNT_TYPE + "=?", new String[] {
-                    settings.getString(SettingsQuery.ACCOUNT_NAME),
-                    settings.getString(SettingsQuery.ACCOUNT_TYPE)
-            });
-        } else if (id == UNSYNCED_ID) {
-            // Open context menu for bringing back unsynced
-            this.openContextMenu(v);
+        final AccountDisplay account = (AccountDisplay)mAdapter.getGroup(groupPosition);
+        final GroupDelta child = (GroupDelta)mAdapter.getChild(groupPosition, childPosition);
+        if (child != null) {
+            checkbox.toggle();
+            child.putVisible(checkbox.isChecked());
         } else {
-            // Handle persisting for normal group
-            values.put(Groups.GROUP_VISIBLE, checkbox.isChecked() ? 1 : 0);
-
-            final Uri groupUri = ContentUris.withAppendedId(sDelayedGroups, id);
-            final int count = resolver.update(groupUri, values, null, null);
+            // Open context menu for bringing back unsynced
+            this.openContextMenu(view);
         }
-
         return true;
     }
 
@@ -294,9 +667,19 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     private static final int SYNC_MODE_UNGROUPED = 1;
     private static final int SYNC_MODE_EVERYTHING = 2;
 
+    protected int getSyncMode(AccountDisplay account) {
+        // TODO: read sync mode through <sync-adapter> definition
+        if (GoogleSource.ACCOUNT_TYPE.equals(account.mType)) {
+            return SYNC_MODE_EVERYTHING;
+        } else {
+            return SYNC_MODE_UNSUPPORTED;
+        }
+    }
+
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
+    public void onCreateContextMenu(ContextMenu menu, View view,
+            ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
 
         // Bail if not working with expandable long-press, or if not child
         if (!(menuInfo instanceof ExpandableListContextMenuInfo)) return;
@@ -305,54 +688,42 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         final int groupPosition = ExpandableListView.getPackedPositionGroup(info.packedPosition);
         final int childPosition = ExpandableListView.getPackedPositionChild(info.packedPosition);
 
-        final Cursor groupCursor = mAdapter.getGroup(groupPosition);
-        final String accountName = groupCursor.getString(SettingsQuery.ACCOUNT_NAME);
-        final String accountType = groupCursor.getString(SettingsQuery.ACCOUNT_TYPE);
+        // Skip long-press on expandable parents
+        if (childPosition == -1) return;
 
-        // TODO: read sync mode through <sync-adapter> definition
-        int syncMode = SYNC_MODE_UNSUPPORTED;
-	if (accountType.equals(GoogleSource.ACCOUNT_TYPE)) {
-	    syncMode = SYNC_MODE_EVERYTHING;
-	}
+        final AccountDisplay account = (AccountDisplay)mAdapter.getGroup(groupPosition);
+        final GroupDelta child = (GroupDelta)mAdapter.getChild(groupPosition, childPosition);
 
         // Ignore when selective syncing unsupported
+        final int syncMode = getSyncMode(account);
         if (syncMode == SYNC_MODE_UNSUPPORTED) return;
 
-        final Account account = new Account(accountName, accountType);
-
-        final boolean shouldSyncUngrouped = groupCursor.getInt(SettingsQuery.SHOULD_SYNC) != 0;
-        final boolean anyUnsynced = groupCursor.getInt(SettingsQuery.ANY_UNSYNCED) != 0;
-        final boolean lastChild = (childPosition == (mAdapter.getChildrenCount(groupPosition) - 1));
-
-        if (anyUnsynced && lastChild) {
-            // Show add dialog for this overall source
-            showAddSync(menu, groupCursor, account, syncMode);
-
-        } else if (childPosition != -1) {
-            // Show remove dialog for this specific group
-            final Cursor childCursor = mAdapter.getChild(groupPosition, childPosition);
-            showRemoveSync(menu, account, childCursor, syncMode, shouldSyncUngrouped);
+        if (child != null) {
+            showRemoveSync(menu, account, child, syncMode);
+        } else {
+            showAddSync(menu, account, syncMode);
         }
     }
 
-    protected void showRemoveSync(ContextMenu menu, final Account account, Cursor childCursor,
-            final int syncMode, final boolean shouldSyncUngrouped) {
-        final long groupId = childCursor.getLong(GroupsQuery._ID);
-        final CharSequence title = getGroupTitle(this, childCursor);
+    protected void showRemoveSync(ContextMenu menu, final AccountDisplay account,
+            final GroupDelta child, final int syncMode) {
+        final CharSequence title = child.getTitle(this);
 
         menu.setHeaderTitle(title);
         menu.add(R.string.menu_sync_remove).setOnMenuItemClickListener(
                 new OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        handleRemoveSync(groupId, account, syncMode, title, shouldSyncUngrouped);
+                        handleRemoveSync(account, child, syncMode, title);
                         return true;
                     }
                 });
     }
 
-    protected void handleRemoveSync(final long groupId, final Account account, final int syncMode,
-            CharSequence title, boolean shouldSyncUngrouped) {
-        if (syncMode == SYNC_MODE_EVERYTHING && groupId != UNGROUPED_ID && shouldSyncUngrouped) {
+    protected void handleRemoveSync(final AccountDisplay account, final GroupDelta child,
+            final int syncMode, CharSequence title) {
+        final boolean shouldSyncUngrouped = account.mUngrouped.getShouldSync();
+        if (syncMode == SYNC_MODE_EVERYTHING && shouldSyncUngrouped
+                && !child.equals(account.mUngrouped)) {
             // Warn before removing this group when it would cause ungrouped to stop syncing
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final CharSequence removeMessage = this.getString(
@@ -362,96 +733,38 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             builder.setNegativeButton(android.R.string.cancel, null);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    // Mark this group to not sync
-                    setGroupShouldSync(groupId, account, syncMode, false);
+                    // Mark both this group and ungrouped to stop syncing
+                    account.setShouldSync(account.mUngrouped, false);
+                    account.setShouldSync(child, false);
+                    mAdapter.notifyDataSetChanged();
                 }
             });
             builder.show();
         } else {
             // Mark this group to not sync
-            setGroupShouldSync(groupId, account, syncMode, false);
+            account.setShouldSync(child, false);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
-    protected void showAddSync(ContextMenu menu, Cursor groupCursor, final Account account,
-            final int syncMode) {
+    protected void showAddSync(ContextMenu menu, final AccountDisplay account, final int syncMode) {
         menu.setHeaderTitle(R.string.dialog_sync_add);
 
-        // Create single "Ungrouped" item when not synced
-        final boolean ungroupedAvailable = groupCursor.getInt(SettingsQuery.SHOULD_SYNC) == 0;
-        if (ungroupedAvailable) {
-            menu.add(R.string.display_ungrouped).setOnMenuItemClickListener(
-                    new OnMenuItemClickListener() {
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Adding specific group for syncing
-                            setGroupShouldSync(UNGROUPED_ID, account, syncMode, true);
-                            return true;
-                        }
-                    });
-        }
-
         // Create item for each available, unsynced group
-        final Cursor availableGroups = this.managedQuery(Groups.CONTENT_SUMMARY_URI,
-                GroupsQuery.PROJECTION, Groups.SHOULD_SYNC + "=0 AND " + Groups.ACCOUNT_NAME
-                        + "=? AND " + Groups.ACCOUNT_TYPE + "=?", new String[] {
-                        groupCursor.getString(SettingsQuery.ACCOUNT_NAME),
-                        groupCursor.getString(SettingsQuery.ACCOUNT_TYPE)
-                }, null);
-        while (availableGroups.moveToNext()) {
-            // Create item this unsynced group
-            final long groupId = availableGroups.getLong(GroupsQuery._ID);
-            final CharSequence title = getGroupTitle(this, availableGroups);
-            menu.add(title).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem item) {
-                    // Adding specific group for syncing
-                    setGroupShouldSync(groupId, account, syncMode, true);
-                    return true;
-                }
-            });
-        }
-    }
-
-    /**
-     * Mark the {@link Groups#SHOULD_SYNC} state of the given group.
-     */
-    protected void setGroupShouldSync(long groupId, Account account, int syncMode, boolean shouldSync) {
-        final ContentResolver resolver = getContentResolver();
-        final ContentValues values = new ContentValues();
-
-        if (syncMode == SYNC_MODE_UNSUPPORTED) {
-            // Ignore changes when source doesn't support syncing
-            return;
-        }
-
-        if (groupId == UNGROUPED_ID) {
-            // Updating the overall syncing flag for this account
-            values.put(Settings.SHOULD_SYNC, shouldSync ? 1 : 0);
-            resolver.update(sDelayedSettings, values, Settings.ACCOUNT_NAME + "=? AND "
-                    + Settings.ACCOUNT_TYPE + "=?", new String[] {
-                    account.name, account.type
-            });
-
-            if (syncMode == SYNC_MODE_EVERYTHING && shouldSync) {
-                // If syncing mode is everything, force-enable all children groups
-                values.clear();
-                values.put(Groups.SHOULD_SYNC, shouldSync ? 1 : 0);
-                resolver.update(sDelayedGroups, values, Groups.ACCOUNT_NAME + "=? AND "
-                        + Groups.ACCOUNT_TYPE + "=?", new String[] {
-                        account.name, account.type
-                });
-            }
-        } else {
-            // Treat as normal group
-            values.put(Groups.SHOULD_SYNC, shouldSync ? 1 : 0);
-            resolver.update(sDelayedGroups, values, Groups._ID + "=" + groupId, null);
-
-            if (syncMode == SYNC_MODE_EVERYTHING && !shouldSync) {
-                // Remove "everything" from sync, user has already been warned
-                values.clear();
-                values.put(Settings.SHOULD_SYNC, shouldSync ? 1 : 0);
-                resolver.update(sDelayedSettings, values, Settings.ACCOUNT_NAME + "=? AND "
-                        + Settings.ACCOUNT_TYPE + "=?", new String[] {
-                        account.name, account.type
+        for (final GroupDelta child : account.mUnsyncedGroups) {
+            if (!child.getShouldSync()) {
+                final CharSequence title = child.getTitle(this);
+                menu.add(title).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        // Adding specific group for syncing
+                        if (child.mUngrouped && syncMode == SYNC_MODE_EVERYTHING) {
+                            account.setShouldSync(true);
+                        } else {
+                            account.setShouldSync(child, true);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                        return true;
+                    }
                 });
             }
         }
@@ -460,17 +773,21 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
-        // TODO: somehow update visibility when user leaves through a different
-        // path, never actually pressing the back key
-        new UpdateTask(this).execute();
+        doSaveAction();
+    }
+
+    private void doSaveAction() {
+        if (mAdapter == null) return;
+        setDisplayOnlyPhones(mDisplayPhones.isChecked());
+        new UpdateTask(this).execute(mAdapter.mAccounts);
     }
 
     /**
-     * Background task that uses {@link Contacts#FORCE_STARRED_UPDATE} to force
-     * update of {@link Contacts#IN_VISIBLE_GROUP}, showing spinner dialog to
-     * user while updating.
+     * Background task that persists changes to {@link Groups#GROUP_VISIBLE},
+     * showing spinner dialog to user while updating.
      */
-    public static class UpdateTask extends WeakAsyncTask<Void, Void, Void, Activity> {
+    public static class UpdateTask extends
+            WeakAsyncTask<AccountSet, Void, Void, Activity> {
         private WeakReference<ProgressDialog> mProgress;
 
         public UpdateTask(Activity target) {
@@ -482,8 +799,8 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         protected void onPreExecute(Activity target) {
             final Context context = target;
 
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target, null,
-                    target.getText(R.string.savingDisplayGroups)));
+            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, null,
+                    context.getText(R.string.savingDisplayGroups)));
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -492,16 +809,21 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         /** {@inheritDoc} */
         @Override
-        protected Void doInBackground(Activity target, Void... params) {
+        protected Void doInBackground(Activity target, AccountSet... params) {
             final Context context = target;
-
             final ContentValues values = new ContentValues();
             final ContentResolver resolver = context.getContentResolver();
 
-            // Push through an empty update to trigger forced refresh
-            final Uri forcedGroups = Groups.CONTENT_URI.buildUpon().appendQueryParameter(
-                    Contacts.FORCE_STARRED_UPDATE, "1").build();
-            resolver.update(forcedGroups, values, null, null);
+            try {
+                // Build changes and persist in transaction
+                final AccountSet set = params[0];
+                final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+                resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Problem saving display groups", e);
+            } catch (OperationApplicationException e) {
+                Log.e(TAG, "Problem saving display groups", e);
+            }
 
             return null;
         }
@@ -519,359 +841,5 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             // Stop the service that was protecting us
             context.stopService(new Intent(context, EmptyService.class));
         }
-    }
-
-
-    /**
-     * Return the best title for the {@link Groups} entry at the current
-     * {@link Cursor} position.
-     */
-    protected static CharSequence getGroupTitle(Context context, Cursor cursor) {
-        final PackageManager pm = context.getPackageManager();
-        if (!cursor.isNull(GroupsQuery.TITLE_RES)) {
-            final String packageName = cursor.getString(GroupsQuery.RES_PACKAGE);
-            final int titleRes = cursor.getInt(GroupsQuery.TITLE_RES);
-            return pm.getText(packageName, titleRes, null);
-        } else {
-            return cursor.getString(GroupsQuery.TITLE);
-        }
-    }
-
-    /**
-     * Special {@link Cursor} that shows zero or one items based on
-     * {@link Settings#SHOULD_SYNC} value. This header only supports
-     * {@link #SYNC_MODE_UNGROUPED} and {@link #SYNC_MODE_UNSUPPORTED}.
-     */
-    private static class HeaderCursor extends AbstractCursor {
-        private Context mContext;
-        private Cursor mCursor;
-        private int mPosition;
-
-        public HeaderCursor(Context context, Cursor cursor, int position) {
-            mContext = context;
-            mCursor = cursor;
-            mPosition = position;
-        }
-
-        @Override
-        public int getCount() {
-            assertParent();
-
-            final boolean shouldSync = mCursor.getInt(SettingsQuery.SHOULD_SYNC) != 0;
-            return shouldSync ? 1 : 0;
-        }
-
-        @Override
-        public String[] getColumnNames() {
-            return GroupsQuery.PROJECTION;
-        }
-
-        protected void assertParent() {
-            mCursor.moveToPosition(mPosition);
-        }
-
-        @Override
-        public String getString(int column) {
-            assertParent();
-            switch(column) {
-                case GroupsQuery.ACCOUNT_NAME:
-                    return mCursor.getString(SettingsQuery.ACCOUNT_NAME);
-                case GroupsQuery.ACCOUNT_TYPE:
-                    return mCursor.getString(SettingsQuery.ACCOUNT_TYPE);
-                case GroupsQuery.TITLE:
-                    return null;
-                case GroupsQuery.RES_PACKAGE:
-                    return mContext.getPackageName();
-                case GroupsQuery.TITLE_RES:
-                    return Integer.toString(UNGROUPED_ID);
-            }
-            throw new IllegalArgumentException("Requested column not available as string");
-        }
-
-        @Override
-        public short getShort(int column) {
-            throw new IllegalArgumentException("Requested column not available as short");
-        }
-
-        @Override
-        public int getInt(int column) {
-            assertParent();
-            switch(column) {
-                case GroupsQuery._ID:
-                    return UNGROUPED_ID;
-                case GroupsQuery.TITLE_RES:
-                    return R.string.display_ungrouped;
-                case GroupsQuery.GROUP_VISIBLE:
-                    return mCursor.getInt(SettingsQuery.UNGROUPED_VISIBLE);
-//                case GroupsQuery.SUMMARY_COUNT:
-//                    return mCursor.getInt(SettingsQuery.UNGROUPED_COUNT);
-//                case GroupsQuery.SUMMARY_WITH_PHONES:
-//                    return mCursor.getInt(SettingsQuery.UNGROUPED_WITH_PHONES);
-            }
-            throw new IllegalArgumentException("Requested column not available as int");
-        }
-
-        @Override
-        public long getLong(int column) {
-            return getInt(column);
-        }
-
-        @Override
-        public float getFloat(int column) {
-            throw new IllegalArgumentException("Requested column not available as float");
-        }
-
-        @Override
-        public double getDouble(int column) {
-            throw new IllegalArgumentException("Requested column not available as double");
-        }
-
-        @Override
-        public boolean isNull(int column) {
-            return getString(column) == null;
-        }
-    }
-
-    /**
-     * Special {@link Cursor} that shows zero or one items based on
-     * {@link Settings#ANY_UNSYNCED} value.
-     */
-    private static class FooterCursor extends AbstractCursor {
-        private Context mContext;
-        private Cursor mCursor;
-        private int mPosition;
-
-        public FooterCursor(Context context, Cursor cursor, int position) {
-            mContext = context;
-            mCursor = cursor;
-            mPosition = position;
-        }
-
-        @Override
-        public int getCount() {
-            assertParent();
-
-            final boolean anyUnsynced = mCursor.getInt(SettingsQuery.ANY_UNSYNCED) != 0;
-            return anyUnsynced ? 1 : 0;
-        }
-
-        @Override
-        public String[] getColumnNames() {
-            return GroupsQuery.PROJECTION;
-        }
-
-        protected void assertParent() {
-            mCursor.moveToPosition(mPosition);
-        }
-
-        @Override
-        public String getString(int column) {
-            assertParent();
-            switch(column) {
-                case GroupsQuery.ACCOUNT_NAME:
-                    return mCursor.getString(SettingsQuery.ACCOUNT_NAME);
-                case GroupsQuery.ACCOUNT_TYPE:
-                    return mCursor.getString(SettingsQuery.ACCOUNT_TYPE);
-                case GroupsQuery.TITLE:
-                    return null;
-                case GroupsQuery.RES_PACKAGE:
-                    return mContext.getPackageName();
-                case GroupsQuery.TITLE_RES:
-                    return Integer.toString(UNSYNCED_ID);
-            }
-            throw new IllegalArgumentException("Requested column not available as string");
-        }
-
-        @Override
-        public short getShort(int column) {
-            throw new IllegalArgumentException("Requested column not available as short");
-        }
-
-        @Override
-        public int getInt(int column) {
-            assertParent();
-            switch(column) {
-                case GroupsQuery._ID:
-                    return UNSYNCED_ID;
-                case GroupsQuery.TITLE_RES:
-                    return R.string.display_more_groups;
-                case GroupsQuery.GROUP_VISIBLE:
-                case GroupsQuery.SUMMARY_COUNT:
-                case GroupsQuery.SUMMARY_WITH_PHONES:
-                    return FOOTER_ENTRY;
-            }
-            throw new IllegalArgumentException("Requested column not available as int");
-        }
-
-        @Override
-        public long getLong(int column) {
-            return getInt(column);
-        }
-
-        @Override
-        public float getFloat(int column) {
-            throw new IllegalArgumentException("Requested column not available as float");
-        }
-
-        @Override
-        public double getDouble(int column) {
-            throw new IllegalArgumentException("Requested column not available as double");
-        }
-
-        @Override
-        public boolean isNull(int column) {
-            return getString(column) == null;
-        }
-    }
-
-    /**
-     * Adapter that shows all display groups as returned by a {@link Cursor}
-     * over {@link Groups#CONTENT_SUMMARY_URI}, along with their current visible
-     * status. Splits groups into sections based on {@link Account}.
-     */
-    private static class DisplayGroupsAdapter extends CursorTreeAdapter {
-        private Context mContext;
-        private Activity mActivity;
-        private LayoutInflater mInflater;
-        private Sources mSources;
-
-        private boolean mChildWithPhones = false;
-
-        public DisplayGroupsAdapter(Cursor cursor, Context context, Activity activity) {
-            super(cursor, context, true);
-
-            mContext = context;
-            mActivity = activity;
-            mSources = Sources.getInstance(mContext);
-            mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        /**
-         * In group descriptions, show the number of contacts with phone
-         * numbers, in addition to the total contacts.
-         */
-        public void setChildDescripWithPhones(boolean withPhones) {
-            mChildWithPhones = withPhones;
-        }
-
-        @Override
-        protected View newGroupView(Context context, Cursor cursor, boolean isExpanded,
-                ViewGroup parent) {
-            return mInflater.inflate(R.layout.display_group, parent, false);
-        }
-
-        @Override
-        protected void bindGroupView(View view, Context context, Cursor cursor, boolean isExpanded) {
-            final TextView text1 = (TextView)view.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)view.findViewById(android.R.id.text2);
-
-            final String accountName = cursor.getString(SettingsQuery.ACCOUNT_NAME);
-            final String accountType = cursor.getString(SettingsQuery.ACCOUNT_TYPE);
-
-            final ContactsSource source = mSources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
-
-            text1.setText(source.getDisplayLabel(mContext));
-            text2.setText(accountName);
-            text2.setVisibility(accountName == null ? View.GONE : View.VISIBLE);
-        }
-
-        @Override
-        protected Cursor getChildrenCursor(Cursor groupCursor) {
-            final String selection = Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE
-                    + "=? AND " + Groups.SHOULD_SYNC + "=1";
-            final String[] selectionArgs = new String[] {
-                    groupCursor.getString(SettingsQuery.ACCOUNT_NAME),
-                    groupCursor.getString(SettingsQuery.ACCOUNT_TYPE)
-            };
-
-            final int position = groupCursor.getPosition();
-            final Cursor ungroupedCursor = new HeaderCursor(mContext, groupCursor, position);
-            final Cursor unsyncedCursor = new FooterCursor(mContext, groupCursor, position);
-
-            final ContentResolver resolver = mContext.getContentResolver();
-            final Cursor groupsCursor = resolver.query(Groups.CONTENT_SUMMARY_URI,
-                    GroupsQuery.PROJECTION, selection, selectionArgs, null);
-            mActivity.startManagingCursor(groupsCursor);
-
-            return new MergeCursor(new Cursor[] { ungroupedCursor, groupsCursor, unsyncedCursor });
-        }
-
-        @Override
-        protected View newChildView(Context context, Cursor cursor, boolean isLastChild,
-                ViewGroup parent) {
-            return mInflater.inflate(R.layout.display_child, parent, false);
-        }
-
-        @Override
-        protected void bindChildView(View view, Context context, Cursor cursor, boolean isLastChild) {
-            final TextView text1 = (TextView)view.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)view.findViewById(android.R.id.text2);
-            final CheckBox checkbox = (CheckBox)view.findViewById(android.R.id.checkbox);
-
-//            final int count = cursor.getInt(GroupsQuery.SUMMARY_COUNT);
-//            final int withPhones = cursor.getInt(GroupsQuery.SUMMARY_WITH_PHONES);
-            final int membersVisible = cursor.getInt(GroupsQuery.GROUP_VISIBLE);
-
-            // Read title, but override with string resource when present
-            final CharSequence title = getGroupTitle(mContext, cursor);
-//            final CharSequence descrip = mContext.getResources().getQuantityString(
-//                    mChildWithPhones ? R.plurals.groupDescripPhones : R.plurals.groupDescrip,
-//                    count, count, withPhones);
-
-            text1.setText(title);
-//            text2.setText(descrip);
-            checkbox.setChecked((membersVisible == 1));
-
-            // Hide extra views when recycled as footer
-            final boolean footerView = membersVisible == FOOTER_ENTRY;
-//            text2.setVisibility(footerView ? View.GONE : View.VISIBLE);
-            text2.setVisibility(View.GONE);
-            checkbox.setVisibility(footerView ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    private interface SettingsQuery {
-        final String[] PROJECTION = new String[] {
-                Settings.ACCOUNT_NAME,
-                Settings.ACCOUNT_TYPE,
-                Settings.SHOULD_SYNC,
-                Settings.UNGROUPED_VISIBLE,
-                Settings.ANY_UNSYNCED,
-//                Settings.UNGROUPED_COUNT,
-//                Settings.UNGROUPED_WITH_PHONES,
-        };
-
-        final int ACCOUNT_NAME = 0;
-        final int ACCOUNT_TYPE = 1;
-        final int SHOULD_SYNC = 2;
-        final int UNGROUPED_VISIBLE = 3;
-        final int ANY_UNSYNCED = 4;
-//        final int UNGROUPED_COUNT = 5;
-//        final int UNGROUPED_WITH_PHONES = 6;
-    }
-
-    private interface GroupsQuery {
-        final String[] PROJECTION = new String[] {
-            Groups._ID,
-            Groups.TITLE,
-            Groups.RES_PACKAGE,
-            Groups.TITLE_RES,
-            Groups.GROUP_VISIBLE,
-            Groups.ACCOUNT_NAME,
-            Groups.ACCOUNT_TYPE,
-//            Groups.SUMMARY_COUNT,
-//            Groups.SUMMARY_WITH_PHONES,
-        };
-
-        final int _ID = 0;
-        final int TITLE = 1;
-        final int RES_PACKAGE = 2;
-        final int TITLE_RES = 3;
-        final int GROUP_VISIBLE = 4;
-        final int ACCOUNT_NAME = 5;
-        final int ACCOUNT_TYPE = 6;
-        final int SUMMARY_COUNT = 7;
-        final int SUMMARY_WITH_PHONES = 8;
     }
 }
