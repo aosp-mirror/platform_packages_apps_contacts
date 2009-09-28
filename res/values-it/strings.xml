@@ -299,34 +299,11 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nickname"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizzazione"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Sito web"</string>
-    <string name="type_home" msgid="1228039089996938949">"Casa"</string>
-    <string name="type_mobile" msgid="4202799691295960532">"Cellulare"</string>
-    <string name="type_work" msgid="9046581192178244575">"Ufficio"</string>
-    <string name="type_fax_work" msgid="7056833051776335751">"Fax ufficio"</string>
-    <string name="type_fax_home" msgid="5188151910627934239">"Fax casa"</string>
-    <string name="type_pager" msgid="6971533430192661440">"Cercapersone"</string>
-    <string name="type_other" msgid="357858743316072535">"Altro"</string>
-    <string name="type_custom" msgid="546891906059234753">"Personalizzato"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
-    <string name="type_home_2" msgid="7576604544326827279">"Casa 2"</string>
-    <string name="type_work_2" msgid="4033954623350210826">"Ufficio 2"</string>
-    <string name="type_car" msgid="1882297602515019816">"Automobile"</string>
-    <string name="type_company_main" msgid="1757801178953730800">"Azienda, principale"</string>
-    <string name="type_mms" msgid="7575994898038669673">"MMS"</string>
-    <string name="type_radio" msgid="7376516830366758196">"Segnale cellulare"</string>
-    <string name="type_assistant" msgid="4838160907811639910">"Assistente"</string>
-    <string name="type_im_aim" msgid="2227683604131341761">"AIM"</string>
-    <string name="type_im_msn" msgid="5322977067527283958">"Windows Live"</string>
-    <string name="type_im_yahoo" msgid="8093860976582856789">"Yahoo"</string>
-    <string name="type_im_skype" msgid="7847929379814316050">"Skype"</string>
-    <string name="type_im_qq" msgid="764805405209877788">"QQ"</string>
-    <string name="type_im_google_talk" msgid="4019292000925519902">"Google Talk"</string>
-    <string name="type_im_icq" msgid="7556014886862234019">"ICQ"</string>
-    <string name="type_im_jabber" msgid="5523148125631896131">"Jabber"</string>
     <string name="edit_secondary_collapse" msgid="1855127176548440583">"Dettagli secondari"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"Nome principale"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crea contatto sotto account"</string>
@@ -345,10 +322,7 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Chiama n. fax ufficio"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Chiama n. fax casa"</string>
     <string name="call_pager" msgid="9003902812293983281">"Chiama n. cercapersone"</string>
-    <string name="call_other" msgid="5605584621798108205">"Chiama altro"</string>
     <string name="call_custom" msgid="7756571794763171802">"Chiama n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home_2" msgid="310203419023725540">"Chiama n. casa 2"</string>
-    <string name="call_work_2" msgid="4403999777434987049">"Chiama n. ufficio 2"</string>
     <string name="call_car" msgid="3280537320306436445">"Chiama n. automobile"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Chiama n. azienda, principale"</string>
     <string name="call_mms" msgid="6274041545876221437">"Chiama n. MMS"</string>
@@ -361,8 +335,6 @@
     <string name="sms_pager" msgid="7730404569637015192">"Invia SMS a n. cercapersone"</string>
     <string name="sms_other" msgid="5131921487474531617">"Invia SMS ad altro"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Invia SMS a n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home_2" msgid="7944150531556566287">"Invia SMS a n. casa 2"</string>
-    <string name="sms_work_2" msgid="1652790306127907938">"Invia SMS a n. ufficio 2"</string>
     <string name="sms_car" msgid="7444227058437359641">"Invia SMS a n. automobile"</string>
     <string name="sms_company_main" msgid="118970873419678087">"Invia SMS a n. azienda, principale"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Invia SMS a n. MMS"</string>
@@ -385,7 +357,6 @@
     <string name="chat_gtalk" msgid="981575737258117697">"Chatta tramite Google Talk"</string>
     <string name="chat_icq" msgid="8438405386153745775">"Chatta tramite ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatta tramite Jabber"</string>
-    <string name="chat_other" msgid="6023619161453269469">"Chatta"</string>
     <string name="postal_street" msgid="8133143961580058972">"Indirizzo postale"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Casella postale"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Zona"</string>

@@ -299,34 +299,11 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Pseudonim"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizacja"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Adres witryny"</string>
-    <string name="type_home" msgid="1228039089996938949">"Domowy"</string>
-    <string name="type_mobile" msgid="4202799691295960532">"Komórkowy"</string>
-    <string name="type_work" msgid="9046581192178244575">"Służbowy"</string>
-    <string name="type_fax_work" msgid="7056833051776335751">"Faks służbowy"</string>
-    <string name="type_fax_home" msgid="5188151910627934239">"Faks domowy"</string>
-    <string name="type_pager" msgid="6971533430192661440">"Pager"</string>
-    <string name="type_other" msgid="357858743316072535">"Inny"</string>
-    <string name="type_custom" msgid="546891906059234753">"Niestandardowy"</string>
     <string name="type_short_home" msgid="7770424864090605384">"D"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"K"</string>
     <string name="type_short_work" msgid="4925330752504537861">"S"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"I"</string>
-    <string name="type_home_2" msgid="7576604544326827279">"Domowy 2"</string>
-    <string name="type_work_2" msgid="4033954623350210826">"Służbowy 2"</string>
-    <string name="type_car" msgid="1882297602515019816">"Samochód"</string>
-    <string name="type_company_main" msgid="1757801178953730800">"Firmowy główny"</string>
-    <string name="type_mms" msgid="7575994898038669673">"Wiadomość MMS"</string>
-    <string name="type_radio" msgid="7376516830366758196">"Radio"</string>
-    <string name="type_assistant" msgid="4838160907811639910">"Asystent"</string>
-    <string name="type_im_aim" msgid="2227683604131341761">"AIM"</string>
-    <string name="type_im_msn" msgid="5322977067527283958">"Windows Live"</string>
-    <string name="type_im_yahoo" msgid="8093860976582856789">"Yahoo"</string>
-    <string name="type_im_skype" msgid="7847929379814316050">"Skype"</string>
-    <string name="type_im_qq" msgid="764805405209877788">"QQ"</string>
-    <string name="type_im_google_talk" msgid="4019292000925519902">"Google Talk"</string>
-    <string name="type_im_icq" msgid="7556014886862234019">"ICQ"</string>
-    <string name="type_im_jabber" msgid="5523148125631896131">"Jabber"</string>
     <string name="edit_secondary_collapse" msgid="1855127176548440583">"Dodatkowe informacje szczegółowe"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"Nazwa główna"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Utwórz kontakt na koncie"</string>
@@ -345,10 +322,7 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Telefon – faks służbowy"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Telefon – faks domowy"</string>
     <string name="call_pager" msgid="9003902812293983281">"Telefon – pager"</string>
-    <string name="call_other" msgid="5605584621798108205">"Telefon – inny"</string>
     <string name="call_custom" msgid="7756571794763171802">"Telefon – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home_2" msgid="310203419023725540">"Telefon – domowy 2"</string>
-    <string name="call_work_2" msgid="4403999777434987049">"Telefon – służbowy 2"</string>
     <string name="call_car" msgid="3280537320306436445">"Telefon – samochód"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Telefon – firmowy główny"</string>
     <string name="call_mms" msgid="6274041545876221437">"Telefon – wiadomość MMS"</string>
@@ -361,8 +335,6 @@
     <string name="sms_pager" msgid="7730404569637015192">"Tekst – pager"</string>
     <string name="sms_other" msgid="5131921487474531617">"Tekst – inny"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Tekst – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home_2" msgid="7944150531556566287">"Tekst – domowy 2"</string>
-    <string name="sms_work_2" msgid="1652790306127907938">"Tekst – służbowy 2"</string>
     <string name="sms_car" msgid="7444227058437359641">"Tekst – samochód"</string>
     <string name="sms_company_main" msgid="118970873419678087">"Tekst – firmowy główny"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Tekst – wiadomość MMS"</string>
@@ -385,7 +357,6 @@
     <string name="chat_gtalk" msgid="981575737258117697">"Czat w Google Talk"</string>
     <string name="chat_icq" msgid="8438405386153745775">"Czat w ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Czat w Jabberze"</string>
-    <string name="chat_other" msgid="6023619161453269469">"Czat"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Skrytka pocztowa"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Okolica"</string>

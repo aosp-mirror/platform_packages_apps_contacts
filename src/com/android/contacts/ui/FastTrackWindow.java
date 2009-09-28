@@ -495,7 +495,7 @@ public class FastTrackWindow implements Window.Callback,
         // TODO: switch to provider-specific presence dots instead of using
         // overall summary dot.
         final String name = cursor.getString(SummaryQuery.DISPLAY_NAME);
-        final int status = cursor.getInt(SummaryQuery.PRESENCE_STATUS);
+        final int status = cursor.getInt(SummaryQuery.CONTACT_PRESENCE);
         final Drawable statusIcon = getPresenceIcon(status);
 
         setHeaderText(R.id.name, name);
@@ -1268,14 +1268,14 @@ public class FastTrackWindow implements Window.Callback,
         final String[] PROJECTION = new String[] {
                 Contacts.DISPLAY_NAME,
                 Contacts.PHOTO_ID,
-                Contacts.PRESENCE_STATUS,
-                Contacts.PRESENCE_CUSTOM_STATUS,
+                Contacts.CONTACT_PRESENCE,
+                Contacts.CONTACT_STATUS,
         };
 
         final int DISPLAY_NAME = 0;
         final int PHOTO_ID = 1;
-        final int PRESENCE_STATUS = 2;
-        final int PRESENCE_CUSTOM_STATUS = 3;
+        final int CONTACT_PRESENCE = 2;
+        final int CONTACT_STATUS = 3;
     }
 
     private interface SocialQuery {
