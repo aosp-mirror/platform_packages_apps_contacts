@@ -130,7 +130,7 @@
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
-    
+
     <!-- Menu item to toggle the tabs that show where the contact data comes from. -->
     <string name="menu_showSources">Show sources</string>
     <string name="menu_hideSources">Hide sources</string>
@@ -300,6 +300,9 @@
 
     <!-- The text displayed when the contacts list is empty while displaying all contacts -->
     <string name="noContacts">No contacts.</string>
+
+    <!-- The text displayed when the contacts list is empty while displaying results after searching contacts -->
+    <string name="noMatchingContacts">No matching contacts found.</string>
 
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
@@ -1130,7 +1133,7 @@
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
-    
+
     <!-- The title for the action to remove a contact from an aggregated contact -->
     <string name="split_label">Split</string>
     <!-- The explanation of what "split" will do. This needs word-smithing. -->

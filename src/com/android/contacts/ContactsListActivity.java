@@ -620,6 +620,8 @@ public final class ContactsListActivity extends ListActivity implements
             gravity = Gravity.CENTER;
         } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
             empty.setText(getText(R.string.noFavoritesHelpText));
+        } else if (mMode == MODE_QUERY) {
+             empty.setText(getText(R.string.noMatchingContacts));
         } else {
             boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
                     .hasIccCard();
