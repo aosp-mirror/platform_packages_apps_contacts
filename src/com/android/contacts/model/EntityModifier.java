@@ -389,7 +389,7 @@ public class EntityModifier {
                     // TODO: remove this verbose logging
                     Log.w(TAG, "Trimming: " + entry.toString());
                     entry.markDeleted();
-                } else {
+                } else if (!entry.isFromTemplate()) {
                     hasValues = true;
                 }
             }
