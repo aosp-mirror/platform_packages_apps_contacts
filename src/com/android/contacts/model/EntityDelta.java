@@ -437,6 +437,7 @@ public class EntityDelta implements Parcelable {
         protected ContentValues mBefore;
         protected ContentValues mAfter;
         protected String mIdColumn = BaseColumns._ID;
+        private boolean mFromTemplate;
 
         /**
          * Next value to assign to {@link #mIdColumn} when building an insert
@@ -541,6 +542,14 @@ public class EntityDelta implements Parcelable {
         public boolean isPrimary() {
             final Long isPrimary = getAsLong(Data.IS_PRIMARY);
             return isPrimary == null ? false : isPrimary != 0;
+        }
+
+        public void setFromTemplate(boolean isFromTemplate) {
+            mFromTemplate = isFromTemplate;
+        }
+
+        public boolean isFromTemplate() {
+            return mFromTemplate;
         }
 
         public boolean beforeExists() {
