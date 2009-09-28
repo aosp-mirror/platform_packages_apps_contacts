@@ -531,22 +531,14 @@ public class ImportVCardActivity extends Activity {
             mProgressDialogForScanVCard = null;
 
             if (mGotIOException) {
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        showDialog(R.id.dialog_io_exception);
-                    }
-                });
+                mHandler.post(new DialogDisplayer(R.id.dialog_io_exception));
             } else if (mCanceled) {
                 finish();
             } else {
                 int size = mAllVCardFileList.size();
                 final Context context = ImportVCardActivity.this;
                 if (size == 0) {
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            showDialog(R.id.dialog_vcard_not_found);
-                        }
-                    });
+                    mHandler.post(new DialogDisplayer(R.id.dialog_vcard_not_found));
                 } else {
                     startVCardSelectAndImport();
                 }

@@ -810,6 +810,12 @@
     <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
 
+    <!-- The message for exporting all contacts in the phone, without caring its Account -->
+    <string name="export_all_contacts">All contacts</string>
+
+    <!-- The message for exporting only contacts is the phone locally, which are not associated with any account -->
+    <string name="export_phone_local_only">Locally stored contacts</string>
+
     <!-- The menu item that launches VCard export activity -->
     <string name="export_contact_list">Export contacts</string>
 
@@ -824,6 +830,9 @@
 
     <!-- Dialog message shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_message">Failed to export contact data.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+
+    <!-- The failed reason: "There is no exportable contact" -->
+    <string name="fail_reason_no_exportable_contact">There is no exportable contact</string>
 
     <!-- The failed reason: "Too many vcard files on the SD Card" -->
     <string name="fail_reason_too_many_vcard">Too many vCard files on the SD card</string>
@@ -845,6 +854,15 @@
 
     <!-- The failed reason: "Error occured during export" -->
     <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
+
+    <!-- The error reason the vCard composer emits: "Failed to get database information" -->
+    <string name="composer_failed_to_get_database_infomation">Failed to get database information</string>
+
+    <!-- The error reason the vCard composer emits: "There is no exportable contact. You might choose un-exportable data" -->
+    <string name="composer_has_no_exportable_contact">There is no exportable contact. You might choose un-exportable data</string>
+
+    <!-- The error reason the vCard composer emits: "The vCard composer object is not correctly initialized" -->
+    <string name="composer_not_initialized">The vCard composer is not correctly initialized</string>
 
     <!-- The failed reason: "Could not open a specific file" -->
     <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
