@@ -670,9 +670,13 @@ public class ViewContactActivity extends Activity
                 return true;
             }
             case R.id.menu_share: {
+                // TODO: Keep around actual LOOKUP_KEY, or formalize method of extracting
+                final String lookupKey = mLookupUri.getPathSegments().get(2);
+                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+
                 final Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType(Contacts.CONTENT_ITEM_TYPE);
-                intent.putExtra(Intent.EXTRA_STREAM, mLookupUri);
+                intent.setType(Contacts.CONTENT_VCARD_TYPE);
+                intent.putExtra(Intent.EXTRA_STREAM, shareUri);
 
                 // Launch chooser to share contact via
                 final CharSequence chooseTitle = getText(R.string.share_via);
