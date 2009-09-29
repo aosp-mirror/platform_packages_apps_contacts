@@ -566,14 +566,9 @@ public class ContactsListActivity extends ListActivity implements
             list.setTextFilterEnabled(true);
         }
 
-        final LayoutInflater inflater = getLayoutInflater();
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            View totalContacts = inflater.inflate(R.layout.total_contacts, list, false);
-            list.addHeaderView(totalContacts);
-        }
-
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
+            final LayoutInflater inflater = getLayoutInflater();
             View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
@@ -584,11 +579,6 @@ public class ContactsListActivity extends ListActivity implements
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
-
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
-            totalContacts.setVisibility(View.VISIBLE);
-        }
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -1093,13 +1083,6 @@ public class ContactsListActivity extends ListActivity implements
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
-
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            if (position == 0) {
-                return;
-            }
-            position--;
-        }
 
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
@@ -2071,6 +2054,9 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public int getItemViewType(int position) {
+            if (position == 0 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                return IGNORE_ITEM_VIEW_TYPE;
+            }
             if (getSeparatorId(position) != 0) {
                 // We don't want the separator view to be recycled.
                 return IGNORE_ITEM_VIEW_TYPE;
@@ -2083,6 +2069,17 @@ public class ContactsListActivity extends ListActivity implements
             if (!mDataValid) {
                 throw new IllegalStateException(
                         "this should only be called when the cursor is valid");
+            }
+
+            // handle the total contacts item
+            if (position == 0 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                final LayoutInflater inflater = getLayoutInflater();
+                TextView totalContacts = (TextView) inflater.inflate(R.layout.total_contacts,
+                        parent, false);
+                int stringId = mDisplayOnlyPhones ? R.string.listTotalPhoneContacts
+                        : R.string.listTotalAllContacts;
+                totalContacts.setText(getString(stringId, getCount()));
+                return totalContacts;
             }
 
             // Handle the separator specially
@@ -2380,12 +2377,6 @@ public class ContactsListActivity extends ListActivity implements
             }
 
             super.changeCursor(cursor);
-            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-                TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
-                int stringId = mDisplayOnlyPhones
-                    ? R.string.listTotalPhoneContacts : R.string.listTotalAllContacts;
-                totalContacts.setText(getString(stringId, cursorCount));
-            }
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
         }
@@ -2497,6 +2488,12 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public boolean isEnabled(int position) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                if (position == 0) {
+                    return false;
+                }
+                position--;
+            }
             if (mSuggestionsCursorCount > 0) {
                 return position != 0 && position != mSuggestionsCursorCount + 1;
             }
@@ -2519,6 +2516,9 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         private int getRealPosition(int pos) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                pos--;
+            }
             if (mSuggestionsCursorCount != 0) {
                 // When showing suggestions, we have 2 additional list items: the "Suggestions"
                 // and "All contacts" separators.
