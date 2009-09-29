@@ -49,7 +49,7 @@ public interface Editor {
      * builds any needed views. Any changes performed by the user will be
      * written back to that same object.
      */
-    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state);
+    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly);
 
     /**
      * Add a specific {@link EditorListener} to this {@link Editor}.
