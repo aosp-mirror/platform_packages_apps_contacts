@@ -408,6 +408,12 @@
     <!-- Section header in the Edit Contacts screen for the "Add more items" button -->
     <string name="listSeparatorMore_edit">More</string>
 
+    <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
+    <string name="listTotalPhoneContacts"><xliff:g id="num">%s</xliff:g> contacts with phone numbers</string>
+
+    <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
+    <string name="listTotalAllContacts"><xliff:g id="num">%s</xliff:g> contacts</string>
+
     <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
     <string name="socialStreamIconLabel">Social</string>
 

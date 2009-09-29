@@ -16,12 +16,11 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.util.Constants;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -175,11 +174,13 @@ public final class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
     /** Mask to disable fasttrack (images will show as normal images) */
     static final int MODE_MASK_DISABLE_FASTTRACK = 0x01000000;
+    /** Mask to show the total number of contacts at the top */
+    static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
     /** Default mode */
-    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS;
+    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
     /** Custom mode */
     static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
@@ -556,9 +557,14 @@ public final class ContactsListActivity extends ListActivity implements
             list.setTextFilterEnabled(true);
         }
 
+        final LayoutInflater inflater = getLayoutInflater();
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            View totalContacts = inflater.inflate(R.layout.total_contacts, list, false);
+            list.addHeaderView(totalContacts);
+        }
+
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
-            final LayoutInflater inflater = getLayoutInflater();
             View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
@@ -569,6 +575,11 @@ public final class ContactsListActivity extends ListActivity implements
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
+
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
+            totalContacts.setVisibility(View.VISIBLE);
+        }
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -1064,6 +1075,13 @@ public final class ContactsListActivity extends ListActivity implements
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
+
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            if (position == 0) {
+                return;
+            }
+            position--;
+        }
 
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
@@ -2326,7 +2344,9 @@ public final class ContactsListActivity extends ListActivity implements
 
             // Get the split between starred and frequent items, if the mode is strequent
             mFrequentSeparatorPos = ListView.INVALID_POSITION;
-            if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
+            int cursorCount = 0;
+            if (cursor != null && (cursorCount = cursor.getCount()) > 0
+                    && mMode == MODE_STREQUENT) {
                 cursor.move(-1);
                 for (int i = 0; cursor.moveToNext(); i++) {
                     int starred = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
@@ -2341,7 +2361,12 @@ public final class ContactsListActivity extends ListActivity implements
             }
 
             super.changeCursor(cursor);
-
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
+                int stringId = mDisplayOnlyPhones
+                    ? R.string.listTotalPhoneContacts : R.string.listTotalAllContacts;
+                totalContacts.setText(getString(stringId, cursorCount));
+            }
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
         }
