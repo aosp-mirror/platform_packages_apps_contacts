@@ -24,6 +24,7 @@ import com.android.contacts.model.Sources;
 
 import android.accounts.Account;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -70,11 +71,11 @@ public class AccountSelectionUtil {
         }
     }
 
-    public static void displaySelectAccountDialog(Context context, int resId) {
-        displaySelectAccountDialog(context, resId, null);
+    public static Dialog getSelectAccountDialog(Context context, int resId) {
+        return getSelectAccountDialog(context, resId, null);
     }
 
-    public static void displaySelectAccountDialog(Context context, int resId,
+    public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnCancelListener onCancelListener) {
         final Sources sources = Sources.getInstance(context);
         final List<Account> writableAccountList = sources.getAccounts(true);
@@ -119,11 +120,11 @@ public class AccountSelectionUtil {
 
         AccountSelectedListener accountSelectedListener =
             new AccountSelectedListener(context, writableAccountList, resId);
-        new AlertDialog.Builder(context)
+        return new AlertDialog.Builder(context)
             .setTitle(R.string.dialog_new_contact_account)
             .setSingleChoiceItems(accountAdapter, 0, accountSelectedListener)
             .setOnCancelListener(accountSelectedListener)
-            .show();
+            .create();
     }
 
     public static void doImport(Context context, int resId, Account account) {
