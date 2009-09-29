@@ -1156,6 +1156,6 @@
     <string name="split_explanation">Make this data its own contact.</string>
     
     <!-- Formatting string for account name -->
-    <string name="account_name_format">From account: <xliff:g id="account" example="user@gmail.com">%s</xliff:g></string>
+    <string name="account_name_format">From <xliff:g id="source" example="Gmail">%1$s</xliff:g> account: <xliff:g id="account" example="user@gmail.com">%2$s</xliff:g></string>
 
 </resources>
