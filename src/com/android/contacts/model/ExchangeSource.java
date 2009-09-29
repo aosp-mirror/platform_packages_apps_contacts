@@ -125,8 +125,6 @@ public class ExchangeSource extends FallbackSource {
                     .add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true).setSpecificMax(1));
             kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
                     .setSpecificMax(1).setCustomColumn(Phone.LABEL));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_CUSTOM).setSecondary(true)
-                    .setSpecificMax(1).setCustomColumn(Phone.LABEL));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));

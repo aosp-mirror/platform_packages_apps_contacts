@@ -74,13 +74,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,6 +135,7 @@ public class ViewContactActivity extends Activity
     protected ScrollingTabWidget mTabWidget;
     protected ContactHeaderWidget mContactHeaderWidget;
     protected View mBelowHeader;
+    protected TextView mAccountName;
     protected View mBufferView;
     private NotifyingAsyncQueryHandler mHandler;
 
@@ -218,6 +217,7 @@ public class ViewContactActivity extends Activity
         mTabsVisible = false;
 
         mBelowHeader = findViewById(R.id.below_header);
+        mAccountName = (TextView) findViewById(R.id.account_name);
 
         mTabRawContactIdMap = new SparseArray<Long>();
 
@@ -608,6 +608,7 @@ public class ViewContactActivity extends Activity
         }
 
         ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        menu.setHeaderTitle(R.string.contactOptionsTitle);
         if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
             menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
@@ -669,9 +670,13 @@ public class ViewContactActivity extends Activity
                 return true;
             }
             case R.id.menu_share: {
+                // TODO: Keep around actual LOOKUP_KEY, or formalize method of extracting
+                final String lookupKey = mLookupUri.getPathSegments().get(2);
+                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+
                 final Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType(Contacts.CONTENT_ITEM_TYPE);
-                intent.putExtra(Intent.EXTRA_STREAM, mLookupUri);
+                intent.setType(Contacts.CONTENT_VCARD_TYPE);
+                intent.putExtra(Intent.EXTRA_STREAM, shareUri);
 
                 // Launch chooser to share contact via
                 final CharSequence chooseTitle = getText(R.string.share_via);
@@ -938,6 +943,14 @@ public class ViewContactActivity extends Activity
                 // This performs the tab filtering
                 if (mSelectedRawContactId != null && mSelectedRawContactId != rawContactId) {
                     continue;
+                }
+
+                if (mTabsVisible) {
+                    final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
+                    mAccountName.setText(getString(R.string.account_name_format, accountName));
+                    mAccountName.setVisibility(View.VISIBLE);
+                } else {
+                    mAccountName.setVisibility(View.GONE);
                 }
 
                 for (NamedContentValues subValue : entity.getSubValues()) {

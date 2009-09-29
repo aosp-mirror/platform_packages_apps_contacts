@@ -195,11 +195,6 @@
             </intent-filter>
 
             <intent-filter>
-                <action android:name="com.android.contacts.action.JOIN_AGGREGATE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
@@ -238,6 +233,18 @@
                 android:resource="@xml/searchable"
             />
         </activity>
+
+        <!-- An activity for joining contacts -->
+        <activity android:name="ContactsListActivity$JoinContactActivity"
+            android:theme="@style/TallTitleBarTheme"
+            android:clearTaskOnLaunch="true"
+        >
+            <intent-filter>
+                <action android:name="com.android.contacts.action.JOIN_AGGREGATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 
         <!-- Used to select display and sync groups -->
         <activity android:name=".ui.DisplayGroupsActivity" android:label="@string/displayGroups" />
@@ -419,5 +426,7 @@
         <activity android:name=".ImportVCardActivity"
             android:theme="@style/BackgroundOnly" />
 
+        <activity android:name=".ExportVCardActivity"
+            android:theme="@style/BackgroundOnly" />
     </application>
 </manifest>

@@ -16,11 +16,10 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
+import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
 
 import android.accounts.Account;
@@ -87,6 +86,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -117,8 +117,13 @@ import java.util.Locale;
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
-public final class ContactsListActivity extends ListActivity implements
+public class ContactsListActivity extends ListActivity implements
         View.OnCreateContextMenuListener, View.OnClickListener {
+
+    public static class JoinContactActivity extends ContactsListActivity {
+
+    }
+
     private static final String TAG = "ContactsListActivity";
 
     private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
@@ -175,11 +180,13 @@ public final class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
     /** Mask to disable fasttrack (images will show as normal images) */
     static final int MODE_MASK_DISABLE_FASTTRACK = 0x01000000;
+    /** Mask to show the total number of contacts at the top */
+    static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
 
     /** Unknown mode */
     static final int MODE_UNKNOWN = 0;
     /** Default mode */
-    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS;
+    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
     /** Custom mode */
     static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
@@ -301,15 +308,6 @@ public final class ContactsListActivity extends ListActivity implements
 
     static final String KEY_PICKER_MODE = "picker_mode";
 
-    /*
-     * TODO: Will be commented in the really near future. Similar commented out codes will be done.
-     *       These are for make vCard exporter code understard two additional options:
-     *       "export contacts in the phone only" and
-     *       "export all contacts without caring Account information".
-     * static final Account sExportPhoneLocalAccount;
-     * static final Account sExportAllAccount;
-     */
-
     private ContactItemListAdapter mAdapter;
 
     int mMode = MODE_DEFAULT;
@@ -351,8 +349,6 @@ public final class ContactsListActivity extends ListActivity implements
      */
     private String mQueryData;
 
-    private VCardExporter mVCardExporter;
-
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
@@ -362,8 +358,6 @@ public final class ContactsListActivity extends ListActivity implements
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sContactsIdMatcher.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
-        /*sExportPhoneLocalAccount = new Account("Phone-local Account", "phone-local");
-        sExportAllAccount = new Account("All account", "all");*/
     }
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
@@ -393,8 +387,6 @@ public final class ContactsListActivity extends ListActivity implements
 
         final String action = intent.getAction();
         mMode = MODE_UNKNOWN;
-
-        setContentView(R.layout.contacts_list_content);
 
         Log.i(TAG, "Called with action: " + action);
         if (UI.LIST_DEFAULT.equals(action)) {
@@ -541,6 +533,7 @@ public final class ContactsListActivity extends ListActivity implements
             return;
         }
 
+
         if (JOIN_AGGREGATE.equals(action)) {
             mMode = MODE_JOIN_CONTACT;
             mQueryAggregateId = intent.getLongExtra(EXTRA_AGGREGATE_ID, -1);
@@ -550,16 +543,21 @@ public final class ContactsListActivity extends ListActivity implements
                 setResult(RESULT_CANCELED);
                 finish();
             }
-
-            setTitle(R.string.titleJoinAggregate);
         }
 
         if (mMode == MODE_UNKNOWN) {
             mMode = MODE_DEFAULT;
         }
 
+        if (mMode == MODE_JOIN_CONTACT) {
+            setContentView(R.layout.contacts_list_content_join);
+        } else {
+            setContentView(R.layout.contacts_list_content);
+        }
+
         // Setup the UI
         final ListView list = getListView();
+
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
         list.setDividerHeight(0);
@@ -569,9 +567,14 @@ public final class ContactsListActivity extends ListActivity implements
             list.setTextFilterEnabled(true);
         }
 
+        final LayoutInflater inflater = getLayoutInflater();
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            View totalContacts = inflater.inflate(R.layout.total_contacts, list, false);
+            list.addHeaderView(totalContacts);
+        }
+
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
-            final LayoutInflater inflater = getLayoutInflater();
             View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
@@ -582,6 +585,11 @@ public final class ContactsListActivity extends ListActivity implements
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
+
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
+            totalContacts.setVisibility(View.VISIBLE);
+        }
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -625,6 +633,10 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private void setEmptyText() {
+        if (mMode == MODE_JOIN_CONTACT) {
+            return;
+        }
+
         TextView empty = (TextView) findViewById(R.id.emptyText);
         int gravity = Gravity.NO_GRAVITY;
 
@@ -633,6 +645,8 @@ public final class ContactsListActivity extends ListActivity implements
             gravity = Gravity.CENTER;
         } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
             empty.setText(getText(R.string.noFavoritesHelpText));
+        } else if (mMode == MODE_QUERY) {
+             empty.setText(getText(R.string.noMatchingContacts));
         } else {
             boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
                     .hasIccCard();
@@ -747,6 +761,7 @@ public final class ContactsListActivity extends ListActivity implements
         // be there and show up while the new query is happening. After the async query finished
         // in response to onRestart() setLoading(false) will be called.
         mAdapter.setLoading(true);
+        mAdapter.setSuggestionsCursor(null);
         mAdapter.changeCursor(null);
         mAdapter.clearImageFetching();
 
@@ -754,21 +769,6 @@ public final class ContactsListActivity extends ListActivity implements
             // Make sure the search box is closed
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             searchManager.stopSearch();
-        }
-
-        // When the orientation is changed or Home button is pressed, onStop() is called.
-        // Then, we stop exporting just for safety.
-        //
-        // Technically, it is because the dialog displaying the current status of export is
-        // closed on this method call and we cannot reliably restore the dialog in the current
-        // implementation, while the thread for exporting vCard is working at that time, without
-        // showing its status to users :(
-        // Also, it is probably not a strong requirment for us to both
-        // - enable users to press Home, slide hardware keyboard during the export
-        // - and also let vCard export to keep working.
-        if (mVCardExporter != null) {
-            mVCardExporter.cancelExport();
-            mVCardExporter = null;
         }
     }
 
@@ -812,7 +812,7 @@ public final class ContactsListActivity extends ListActivity implements
                 return true;
             }
             case R.id.menu_import_export: {
-                showDialog(R.id.dialog_import_export);
+                displayImportExportDialog();
                 return true;
             }
             case R.id.menu_accounts: {
@@ -830,31 +830,6 @@ public final class ContactsListActivity extends ListActivity implements
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
-            case R.id.dialog_import_export: {
-                return createImportExportDialog();
-            }
-            case R.string.import_from_sim:
-            case R.string.import_from_sdcard:
-            case R.string.export_to_sdcard: {
-                return createSelectAccountDialog(id);
-            }
-            case R.string.fail_reason_too_many_vcard: {
-                return new AlertDialog.Builder(this)
-                    .setTitle(R.string.exporting_contact_failed_title)
-                    .setMessage(getString(R.string.exporting_contact_failed_message,
-                            getString(R.string.fail_reason_too_many_vcard)))
-                    .setPositiveButton(android.R.string.ok, null)
-                .create();
-            }
-            case R.id.dialog_confirm_export_vcard: {
-                return mVCardExporter.getExportConfirmationDialog();
-            }
-            case R.id.dialog_exporting_vcard: {
-                return mVCardExporter.getExportingVCardDialog();
-            }
-            case R.id.dialog_fail_to_export_with_reason: {
-                return mVCardExporter.getErrorDialogWithReason();
-            }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.no_sdcard_title)
@@ -866,104 +841,11 @@ public final class ContactsListActivity extends ListActivity implements
         return super.onCreateDialog(id);
     }
 
-    private class AccountSelectedListener
-        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
-
-        final private List<Account> mAccountList;
-        final private int mResId;
-
-        public AccountSelectedListener(List<Account> accountList, int resId) {
-            if (accountList == null || accountList.size() == 0) {
-                Log.e(TAG, "The size of Account list is 0.");
-            }
-            mAccountList = accountList;
-            mResId = resId;
-        }
-
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            switch (mResId) {
-                case R.string.import_from_sim: {
-                    doImportFromSim(mAccountList.get(which));
-                    break;
-                }
-                case R.string.import_from_sdcard: {
-                    doImportFromSdCard(mAccountList.get(which));
-                    break;
-                }
-                /*case R.string.export_to_sdcard: {
-                }*/
-            }
-        }
-
-        public void onCancel(DialogInterface dialog) {
-            dialog.dismiss();
-        }
-    }
-
-    private Dialog createSelectAccountDialog(int resId) {
-        final boolean isExport = (resId == R.string.export_to_sdcard);
-        final boolean displayWritableOnly = !isExport;
-
-        final Sources sources = Sources.getInstance(this);
-        final List<Account> accountList = sources.getAccounts(displayWritableOnly);
-
-        /*if (isExport) {
-            accountList.add(sExportPhoneLocalAccount);
-            accountList.add(sExportAllAccount);
-        }*/
-
-        // Assume accountList.size() > 1
-
-        // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(
-                this, android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final ArrayAdapter<Account> accountAdapter =
-            new ArrayAdapter<Account>(this, android.R.layout.simple_list_item_2, accountList) {
-
-            @Override
-            public View getView(int position, View convertView,
-                    ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = dialogInflater.inflate(
-                            android.R.layout.simple_list_item_2,
-                            parent, false);
-                }
-
-                // TODO: show icon along with title
-                final TextView text1 =
-                        (TextView)convertView.findViewById(android.R.id.text1);
-                final TextView text2 =
-                        (TextView)convertView.findViewById(android.R.id.text2);
-
-                final Account account = this.getItem(position);
-                final ContactsSource source =
-                    sources.getInflatedSource(account.type,
-                            ContactsSource.LEVEL_SUMMARY);
-
-                text1.setText(account.name);
-                text2.setText(source.getDisplayLabel(ContactsListActivity.this));
-
-                return convertView;
-            }
-        };
-
-        AccountSelectedListener listener = new AccountSelectedListener(accountList, resId);
-        final AlertDialog.Builder builder =
-                new AlertDialog.Builder(this)
-                    .setTitle(R.string.dialog_new_contact_account)
-                    .setSingleChoiceItems(accountAdapter, 0, listener)
-                    .setOnCancelListener(listener);
-        return builder.create();
-    }
-
     /**
      * Create a {@link Dialog} that allows the user to pick from a bulk import
      * or bulk export task across all contacts.
      */
-    private Dialog createImportExportDialog() {
+    private void displayImportExportDialog() {
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
         final Resources res = dialogContext.getResources();
@@ -996,7 +878,8 @@ public final class ContactsListActivity extends ListActivity implements
             adapter.add(R.string.export_to_sdcard);
         }
 
-        final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+        final DialogInterface.OnClickListener clickListener =
+                new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
@@ -1004,12 +887,13 @@ public final class ContactsListActivity extends ListActivity implements
                 switch (resId) {
                     case R.string.import_from_sim:
                     case R.string.import_from_sdcard: {
-                        handleImportExportRequest(resId);
+                        handleImportRequest(resId);
                         break;
                     }
                     case R.string.export_to_sdcard: {
-                        // TODO: use handleImportExportRequest()
-                        doExportToSdCard();
+                        Context context = ContactsListActivity.this;
+                        Intent exportIntent = new Intent(context, ExportVCardActivity.class);
+                        context.startActivity(exportIntent);
                         break;
                     }
                     default: {
@@ -1020,93 +904,27 @@ public final class ContactsListActivity extends ListActivity implements
             }
         };
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_import_export);
-        builder.setNegativeButton(android.R.string.cancel, null);
-        builder.setSingleChoiceItems(adapter, -1, clickListener);
-        return builder.create();
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.dialog_import_export)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setSingleChoiceItems(adapter, -1, clickListener)
+            .show();
     }
 
-    private void handleImportExportRequest(int resId) {
-        /*final boolean isExport = (resId == R.string.export_to_sdcard);
-        if (isExport) {
-            // We're sure there are at least two Account ("phone-local" and "all").
-            // Go to account selection every time.
-            showDialog(R.string.export_to_sdcard);
-            return;
-        }*/
-
-        // As for import, there's three possibilities
+    private void handleImportRequest(int resId) {
+        // There's three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
-
         final Sources sources = Sources.getInstance(this);
         final List<Account> accountList = sources.getAccounts(true);
         final int size = accountList.size();
-        Account account;
         if (size > 1) {
             showDialog(resId);
             return;
-        } else if (size == 1) {
-            account = accountList.get(0);
-        } else {
-            account = null;
-        }
-        switch (resId) {
-            case R.string.import_from_sim: {
-                doImportFromSim(account);
-                break;
-            }
-            case R.string.import_from_sdcard: {
-                doImportFromSdCard(account);
-                break;
-            }
-            /*case R.string.export_to_sdcard: {
-                doExportToSdCard(account);
-                break;
-            }*/
-        }
-    }
-
-    private void doImportFromSim(Account account) {
-        if (account != null) {
-            GoogleSource.createMyContactsIfNotExist(account, this);
         }
 
-        Intent importIntent = new Intent(Intent.ACTION_VIEW);
-        importIntent.setType("vnd.android.cursor.item/sim-contact");
-        if (account != null) {
-            importIntent.putExtra("account_name", account.name);
-            importIntent.putExtra("account_type", account.type);
-        }
-        importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
-        startActivity(importIntent);
-    }
-
-    private void doImportFromSdCard(Account account) {
-        if (account != null) {
-            GoogleSource.createMyContactsIfNotExist(account, this);
-        }
-
-        Intent importIntent = new Intent(this, ImportVCardActivity.class);
-        if (account != null) {
-            importIntent.putExtra("account_name", account.name);
-            importIntent.putExtra("account_type", account.type);
-        }
-        startActivity(importIntent);
-    }
-
-    private void doExportToSdCard() {
-        mVCardExporter = new VCardExporter(this);
-        mVCardExporter.startExportVCardToSdCard();
-    }
-
-    /**
-     * Used when VCardExporter finishes its exporting.
-     */
-    /* package */ void removeReferenceToVCardExporter() {
-        mVCardExporter = null;
+        AccountSelectionUtil.doImport(this, resId, (size == 1 ? accountList.get(0) : null));
     }
 
     @Override
@@ -1272,6 +1090,13 @@ public final class ContactsListActivity extends ListActivity implements
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
+
+        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            if (position == 0) {
+                return;
+            }
+            position--;
+        }
 
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
@@ -1795,7 +1620,7 @@ public final class ContactsListActivity extends ListActivity implements
             case MODE_JOIN_CONTACT:
                 mQueryHandler.setLoadingJoinSuggestions(true);
                 mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
-                        Contacts._ID + " != " + mQueryAggregateId, null, null);
+                        null, null, null);
                 break;
         }
     }
@@ -1871,8 +1696,8 @@ public final class ContactsListActivity extends ListActivity implements
                         null, null);
                 mAdapter.setSuggestionsCursor(cursor);
                 return resolver.query(getContactFilterUri(filter), projection,
-                        Contacts._ID + " != " + mQueryAggregateId, null,
-                        getSortOrder(projection));
+                        Contacts._ID + " != " + mQueryAggregateId + " AND " + CLAUSE_ONLY_VISIBLE,
+                        null, getSortOrder(projection));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
@@ -2012,7 +1837,8 @@ public final class ContactsListActivity extends ListActivity implements
 
                     startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
                             CONTACTS_SUMMARY_PROJECTION,
-                            Contacts._ID + " != " + activity.mQueryAggregateId, null,
+                            Contacts._ID + " != " + activity.mQueryAggregateId
+                                    + " AND " + CLAUSE_ONLY_VISIBLE, null,
                             getSortOrder(CONTACTS_SUMMARY_PROJECTION));
                     return;
                 }
@@ -2534,7 +2360,9 @@ public final class ContactsListActivity extends ListActivity implements
 
             // Get the split between starred and frequent items, if the mode is strequent
             mFrequentSeparatorPos = ListView.INVALID_POSITION;
-            if (cursor != null && cursor.getCount() > 0 && mMode == MODE_STREQUENT) {
+            int cursorCount = 0;
+            if (cursor != null && (cursorCount = cursor.getCount()) > 0
+                    && mMode == MODE_STREQUENT) {
                 cursor.move(-1);
                 for (int i = 0; cursor.moveToNext(); i++) {
                     int starred = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
@@ -2549,7 +2377,12 @@ public final class ContactsListActivity extends ListActivity implements
             }
 
             super.changeCursor(cursor);
-
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
+                int stringId = mDisplayOnlyPhones
+                    ? R.string.listTotalPhoneContacts : R.string.listTotalAllContacts;
+                totalContacts.setText(getString(stringId, cursorCount));
+            }
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
         }

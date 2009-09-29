@@ -130,13 +130,20 @@
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
-    
+
     <!-- Menu item to toggle the tabs that show where the contact data comes from. -->
     <string name="menu_showSources">Show sources</string>
     <string name="menu_hideSources">Hide sources</string>
 
     <!-- Activity title for the Join Contact list -->
     <string name="titleJoinAggregate">Join contact</string>
+
+    <!-- Heading of the Join Contact screen -->
+    <string name="titleJoinContactDataWith">Join contact data with:</string>
+
+    <!-- Info blurb on the Join Contact screen -->
+    <string name="blurbJoinContactDataWith">Contact data will be combined with
+        another contact selected from the list.</string>
 
     <!-- List separator for the Join Contact list: Suggestions -->
     <string name="separatorJoinAggregateSuggestions">Suggestions</string>
@@ -301,6 +308,9 @@
     <!-- The text displayed when the contacts list is empty while displaying all contacts -->
     <string name="noContacts">No contacts.</string>
 
+    <!-- The text displayed when the contacts list is empty while displaying results after searching contacts -->
+    <string name="noMatchingContacts">No matching contacts found.</string>
+
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
 
@@ -404,6 +414,12 @@
 
     <!-- Section header in the Edit Contacts screen for the "Add more items" button -->
     <string name="listSeparatorMore_edit">More</string>
+
+    <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
+    <string name="listTotalPhoneContacts"><xliff:g id="num">%s</xliff:g> contacts with phone numbers</string>
+
+    <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
+    <string name="listTotalAllContacts"><xliff:g id="num">%s</xliff:g> contacts</string>
 
     <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
     <string name="socialStreamIconLabel">Social</string>
@@ -810,6 +826,12 @@
     <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
 
+    <!-- The message for exporting all contacts in the phone, without caring its Account -->
+    <string name="export_all_contacts">All contacts</string>
+
+    <!-- The message for exporting only contacts is the phone locally, which are not associated with any account -->
+    <string name="export_phone_local_only">Locally stored contacts</string>
+
     <!-- The menu item that launches VCard export activity -->
     <string name="export_contact_list">Export contacts</string>
 
@@ -824,6 +846,9 @@
 
     <!-- Dialog message shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_message">Failed to export contact data.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+
+    <!-- The failed reason: "There is no exportable contact" -->
+    <string name="fail_reason_no_exportable_contact">There is no exportable contact</string>
 
     <!-- The failed reason: "Too many vcard files on the SD Card" -->
     <string name="fail_reason_too_many_vcard">Too many vCard files on the SD card</string>
@@ -845,6 +870,15 @@
 
     <!-- The failed reason: "Error occured during export" -->
     <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
+
+    <!-- The error reason the vCard composer emits: "Failed to get database information" -->
+    <string name="composer_failed_to_get_database_infomation">Failed to get database information</string>
+
+    <!-- The error reason the vCard composer emits: "There is no exportable contact. You might choose un-exportable data" -->
+    <string name="composer_has_no_exportable_contact">There is no exportable contact. You might choose un-exportable data</string>
+
+    <!-- The error reason the vCard composer emits: "The vCard composer object is not correctly initialized" -->
+    <string name="composer_not_initialized">The vCard composer is not correctly initialized</string>
 
     <!-- The failed reason: "Could not open a specific file" -->
     <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
@@ -1112,10 +1146,13 @@
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
-    
+
     <!-- The title for the action to remove a contact from an aggregated contact -->
     <string name="split_label">Split</string>
     <!-- The explanation of what "split" will do. This needs word-smithing. -->
     <string name="split_explanation">Make this data its own contact.</string>
+    
+    <!-- Formatting string for account name -->
+    <string name="account_name_format">From account: <xliff:g id="account" example="user@gmail.com">%s</xliff:g></string>
 
 </resources>

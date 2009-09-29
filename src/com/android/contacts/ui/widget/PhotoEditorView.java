@@ -74,7 +74,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     }
 
     /** {@inheritDoc} */
-    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state) {
+    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly) {
         mEntry = values;
         if (values != null) {
             // Try decoding photo if actual entry
@@ -85,6 +85,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
 
                 setScaleType(ImageView.ScaleType.CENTER_CROP);
                 setImageBitmap(photo);
+		setEnabled(!readOnly);
                 mHasSetPhoto = true;
             } else {
                 resetDefault();

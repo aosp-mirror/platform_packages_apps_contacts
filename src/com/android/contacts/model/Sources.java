@@ -24,6 +24,7 @@ import com.google.android.collect.Sets;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
+import android.accounts.OnAccountsUpdatedListener;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -46,10 +47,11 @@ import java.util.HashSet;
  * Singleton holder for all parsed {@link ContactsSource} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class Sources extends BroadcastReceiver {
+public class Sources extends BroadcastReceiver implements OnAccountsUpdatedListener {
     private static final String TAG = "Sources";
 
-    private Context mContext;
+    private Context mApplicationContext;
+    private AccountManager mAccountManager;
 
     private ContactsSource mFallbackSource = null;
 
@@ -76,13 +78,22 @@ public class Sources extends BroadcastReceiver {
      * Internal constructor that only performs initial parsing.
      */
     private Sources(Context context) {
-        mContext = context;
+        mApplicationContext = context.getApplicationContext();
+        mAccountManager = AccountManager.get(mApplicationContext);
 
         // Create fallback contacts source for on-phone contacts
         mFallbackSource = new FallbackSource();
 
-        loadAccounts();
-        registerIntentReceivers(context);
+        queryAccounts();
+
+        // Request updates when packages or accounts change
+        final IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addDataScheme("package");
+
+        mApplicationContext.registerReceiver(this, filter);
+        mAccountManager.addOnAccountsUpdatedListener(this, null, false);
     }
 
     /** @hide exposed for unit tests */
@@ -97,49 +108,50 @@ public class Sources extends BroadcastReceiver {
         mKnownPackages.add(source.resPackageName);
     }
 
-    private void registerIntentReceivers(Context context) {
-        IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
-        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
-        filter.addDataScheme("package");
-
-        // We use getApplicationContext() so that the broadcast reciever can stay registered for
-        // the length of the application lifetime (instead of the calling activity's lifetime).
-        // This is so that we can notified of package changes, and purge the cache accordingly,
-        // but not be woken up if the application process isn't already running, since we will
-        // have no cache to clear at that point.
-        context.getApplicationContext().registerReceiver(this, filter);
-    }
-
     /** {@inheritDoc} */
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         final String packageName = intent.getData().getSchemeSpecificPart();
 
-        final boolean matchingPackage = mKnownPackages.contains(packageName);
-        final boolean validAction = Intent.ACTION_PACKAGE_REMOVED.equals(action)
+        if (Intent.ACTION_PACKAGE_REMOVED.equals(action)
                 || Intent.ACTION_PACKAGE_ADDED.equals(action)
-                || Intent.ACTION_PACKAGE_CHANGED.equals(action);
-
-        if (matchingPackage && validAction) {
-            for (ContactsSource source : mSources.values()) {
-                if (TextUtils.equals(packageName, source.resPackageName)) {
-                    // Invalidate any cache for the changed package
-                    source.invalidateCache();
-                }
+                || Intent.ACTION_PACKAGE_CHANGED.equals(action)) {
+            final boolean knownPackage = mKnownPackages.contains(packageName);
+            if (knownPackage) {
+                // Invalidate cache of existing source
+                invalidateCache(packageName);
+            } else {
+                // Unknown source, so reload from scratch
+                queryAccounts();
             }
         }
+    }
+
+    protected void invalidateCache(String packageName) {
+        for (ContactsSource source : mSources.values()) {
+            if (TextUtils.equals(packageName, source.resPackageName)) {
+                // Invalidate any cache for the changed package
+                source.invalidateCache();
+            }
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void onAccountsUpdated(Account[] accounts) {
+        // Refresh to catch any changed accounts
+        queryAccounts();
     }
 
     /**
      * Blocking call to load all {@link AuthenticatorDescription} known by the
      * {@link AccountManager} on the system.
      */
-    protected void loadAccounts() {
+    protected synchronized void queryAccounts() {
         mSources.clear();
+        mKnownPackages.clear();
 
-        final AccountManager am = AccountManager.get(mContext);
+        final AccountManager am = mAccountManager;
         final IContentService cs = ContentResolver.getContentService();
 
         try {
@@ -200,7 +212,7 @@ public class Sources extends BroadcastReceiver {
      * returned may require inflation before they can be used.
      */
     public ArrayList<Account> getAccounts(boolean writableOnly) {
-        final AccountManager am = AccountManager.get(mContext);
+        final AccountManager am = mAccountManager;
         final Account[] accounts = am.getAccounts();
         final ArrayList<Account> matching = Lists.newArrayList();
 
@@ -259,7 +271,7 @@ public class Sources extends BroadcastReceiver {
             return source;
         } else {
             // Not inflated, but requested that we force-inflate
-            source.ensureInflated(mContext, inflateLevel);
+            source.ensureInflated(mApplicationContext, inflateLevel);
             return source;
         }
     }
