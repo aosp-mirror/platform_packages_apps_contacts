@@ -139,7 +139,7 @@
     <string name="titleJoinAggregate">Join contact</string>
 
     <!-- Heading of the Join Contact screen -->
-    <string name="titleJoinContactDataWith">Join contact data with:</string>
+    <string name="titleJoinContactDataWith">Join contacts</string>
 
     <!-- Info blurb on the Join Contact screen -->
     <string name="blurbJoinContactDataWith">Contact data will be combined with
@@ -334,7 +334,7 @@
     <string name="showFilterPhonesDescrip">Only display contacts that have phone numbers</string>
 
     <!-- The header over the list of all contacts groups -->
-    <string name="headerContactGroups">Contact groups</string>
+    <string name="headerContactGroups">Choose contacts to display</string>
 
     <!-- The description of a group with the total number of contacts -->
     <plurals name="groupDescrip">
@@ -361,8 +361,8 @@
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
-    <!-- Displayed in a spinner dialog as user changes to display groups are saved -->
-    <string name="savingDisplayGroups">Saving display groups\u2026</string>
+    <!-- Displayed in a spinner dialog as user changes to display options are saved -->
+    <string name="savingDisplayGroups">Saving display options\u2026</string>
 
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
