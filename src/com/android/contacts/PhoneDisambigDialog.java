@@ -17,8 +17,9 @@
 package com.android.contacts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
+
+import com.android.contacts.Collapser.Collapsible;
 
 import android.app.AlertDialog;
 import android.content.ContentUris;
@@ -28,12 +29,13 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.SimpleCursorAdapter;
+import android.widget.ListAdapter;
 
 /**
  * Class used for displaying a dialog with a list of phone numbers of which
@@ -47,6 +49,8 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
     private AlertDialog mDialog;
     private boolean mSendSms;
     private Cursor mPhonesCursor;
+    private ListAdapter mPhonesAdapter;
+    private ArrayList<PhoneItem> mPhoneItemList;
 
     public PhoneDisambigDialog(Context context, Cursor phonesCursor) {
         this(context, phonesCursor, false /*make call*/);
@@ -57,6 +61,11 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
         mSendSms = sendSms;
         mPhonesCursor = phonesCursor;
 
+        mPhoneItemList = makePhoneItemsList(phonesCursor);
+        Collapser.collapseList(mPhoneItemList);
+
+        mPhonesAdapter = new PhonesAdapter(mContext, mPhoneItemList);
+
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         View setPrimaryView = inflater.
@@ -66,9 +75,10 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
 
         // Need to show disambig dialogue.
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext).
-            setCursor(mPhonesCursor, this, Phone.NUMBER).
-                    setTitle(sendSms ? R.string.sms_disambig_title : R.string.call_disambig_title).
-                    setView(setPrimaryView);
+                setAdapter(mPhonesAdapter, this).
+                        setTitle(sendSms ?
+                                R.string.sms_disambig_title : R.string.call_disambig_title).
+                        setView(setPrimaryView);
 
         mDialog = dialogBuilder.create();
     }
@@ -77,18 +87,25 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
      * Show the dialog.
      */
     public void show() {
+        if (mPhoneItemList.size() == 1) {
+            // If there is only one after collapse, just select it, and close;
+            onClick(mDialog, 0);
+            return;
+        }
         mDialog.show();
     }
 
     public void onClick(DialogInterface dialog, int which) {
-        if (mPhonesCursor.moveToPosition(which)) {
-            long id = mPhonesCursor.getLong(mPhonesCursor.getColumnIndex(Data._ID));
-            String phone = mPhonesCursor.getString(mPhonesCursor.getColumnIndex(Phone.NUMBER));
+        if (mPhoneItemList.size() > which && which >= 0) {
+            PhoneItem phoneItem = mPhoneItemList.get(which);
+            long id = phoneItem.id;
+            String phone = phoneItem.phoneNumber;
+
             if (mMakePrimary) {
                 ContentValues values = new ContentValues(1);
                 values.put(Data.IS_SUPER_PRIMARY, 1);
-                mContext.getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, id),
-                        values, null, null);
+                mContext.getContentResolver().update(ContentUris.
+                        withAppendedId(Data.CONTENT_URI, id), values, null, null);
             }
 
             if (mSendSms) {
@@ -107,5 +124,57 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
 
     public void onDismiss(DialogInterface dialog) {
         mPhonesCursor.close();
+    }
+
+    private static class PhonesAdapter extends ArrayAdapter<PhoneItem> {
+
+        public PhonesAdapter(Context context, List<PhoneItem> objects) {
+            super(context, android.R.layout.simple_dropdown_item_1line,
+                    android.R.id.text1, objects);
+        }
+    }
+
+    private class PhoneItem implements Collapsible<PhoneItem> {
+
+        String phoneNumber;
+        long id;
+
+        public PhoneItem(String newPhoneNumber, long newId) {
+            phoneNumber = newPhoneNumber;
+            id = newId;
+        }
+
+        public boolean collapseWith(PhoneItem phoneItem) {
+            if (!shouldCollapseWith(phoneItem)) {
+                return false;
+            }
+            // Just keep the number and id we already have.
+            return true;
+        }
+
+        public boolean shouldCollapseWith(PhoneItem phoneItem) {
+            if (PhoneNumberUtils.compare(PhoneDisambigDialog.this.mContext,
+                    phoneNumber, phoneItem.phoneNumber)) {
+                return true;
+            }
+            return false;
+        }
+
+        public String toString() {
+            return phoneNumber;
+        }
+    }
+
+    private ArrayList<PhoneItem> makePhoneItemsList(Cursor phonesCursor) {
+        ArrayList<PhoneItem> phoneList = new ArrayList<PhoneItem>();
+
+        phonesCursor.moveToPosition(-1);
+        while (phonesCursor.moveToNext()) {
+            long id = phonesCursor.getLong(phonesCursor.getColumnIndex(Data._ID));
+            String phone = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+            phoneList.add(new PhoneItem(phone, id));
+        }
+
+        return phoneList;
     }
 }
