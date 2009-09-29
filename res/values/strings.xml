@@ -1138,5 +1138,8 @@
     <string name="split_label">Split</string>
     <!-- The explanation of what "split" will do. This needs word-smithing. -->
     <string name="split_explanation">Make this data its own contact.</string>
+    
+    <!-- Formatting string for account name -->
+    <string name="account_name_format">From account: <xliff:g id="account" example="user@gmail.com">%s</xliff:g></string>
 
 </resources>
