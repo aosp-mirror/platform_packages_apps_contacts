@@ -18,16 +18,11 @@
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="launcherDialer" msgid="140610573639849799">"Opkald"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
-    <!-- no translation found for shortcutDialContact (7165340343023469996) -->
-    <skip />
-    <!-- no translation found for shortcutMessageContact (3025782962770298900) -->
-    <skip />
-    <!-- no translation found for shortcutActivityTitle (6642877210643565436) -->
-    <skip />
-    <!-- no translation found for callShortcutActivityTitle (6065749861423648991) -->
-    <skip />
-    <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
-    <skip />
+    <string name="shortcutDialContact" msgid="7165340343023469996">"Direkte opkald"</string>
+    <string name="shortcutMessageContact" msgid="3025782962770298900">"Direkte besked"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Vælg en kontaktgenvej"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Vælg et nummer at ringe til"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Vælg et nummer at sende besked til"</string>
     <string name="starredList" msgid="4817256136413959463">"Stjernemarkerede"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ofte"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favorit"</string>
@@ -178,30 +173,18 @@
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Ofte ringet til"</string>
     <string name="add_contact_dlg_title" msgid="2789046541229846116">"Tilføj kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Føj \"<xliff:g id="EMAIL">%s</xliff:g>\" til kontakter?"</string>
-    <!-- no translation found for description_image_button_one (1740638037139856139) -->
-    <skip />
-    <!-- no translation found for description_image_button_two (5882638439003731308) -->
-    <skip />
-    <!-- no translation found for description_image_button_three (8709731759376015180) -->
-    <skip />
-    <!-- no translation found for description_image_button_four (3530239685642246130) -->
-    <skip />
-    <!-- no translation found for description_image_button_five (1182465427501188413) -->
-    <skip />
-    <!-- no translation found for description_image_button_six (2093656269261415475) -->
-    <skip />
-    <!-- no translation found for description_image_button_seven (2450357020447676481) -->
-    <skip />
-    <!-- no translation found for description_image_button_eight (6969435115163287801) -->
-    <skip />
-    <!-- no translation found for description_image_button_nine (7857248695662558323) -->
-    <skip />
-    <!-- no translation found for description_image_button_star (3365919907520767866) -->
-    <skip />
-    <!-- no translation found for description_image_button_zero (4133108949401820710) -->
-    <skip />
-    <!-- no translation found for description_image_button_pound (3039765597595889230) -->
-    <skip />
+    <string name="description_image_button_one" msgid="1740638037139856139">"et"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"to"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"tre"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"fire"</string>
+    <string name="description_image_button_five" msgid="1182465427501188413">"fem"</string>
+    <string name="description_image_button_six" msgid="2093656269261415475">"seks"</string>
+    <string name="description_image_button_seven" msgid="2450357020447676481">"syv"</string>
+    <string name="description_image_button_eight" msgid="6969435115163287801">"otte"</string>
+    <string name="description_image_button_nine" msgid="7857248695662558323">"ni"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"stjernemarker"</string>
+    <string name="description_image_button_zero" msgid="4133108949401820710">"nul"</string>
+    <string name="description_image_button_pound" msgid="3039765597595889230">"pund"</string>
     <string name="no_sdcard_title" msgid="6455416795090113715">"Der er ikke noget SD-kort"</string>
     <string name="no_sdcard_message" msgid="7791906118138538259">"Der blev ikke fundet noget SD-kort"</string>
     <string name="searching_vcard_title" msgid="4158580043290687793">"Søger efter VCard"</string>
@@ -226,34 +209,19 @@
     <string name="reading_vcard_failed_message" msgid="780588344175743735">"VCard-data kunne ikke læses"\n"Årsag til fejl: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
-    <!-- no translation found for export_contact_list (3165097742175874384) -->
-    <skip />
-    <!-- no translation found for confirm_export_title (1693047909433122854) -->
-    <skip />
-    <!-- no translation found for confirm_export_message (63482084706768079) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_title (1455264422455075858) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_message (1426451081541603512) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (5416992255233341607) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_long_filename (7105223965196949065) -->
-    <skip />
-    <!-- no translation found for fail_reason_cannot_open_destination_dir (1739293936432987758) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_message (5640326540405486055) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (4943708332700987376) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (2151165129433831202) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_open_file (4013520943128739511) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_progress (560522409559101193) -->
-    <skip />
-    <!-- no translation found for search_settings_description (2675223022992445813) -->
-    <skip />
+    <string name="export_contact_list" msgid="3165097742175874384">"Eksporter kontakter"</string>
+    <string name="confirm_export_title" msgid="1693047909433122854">"Bekræftelse af eksport"</string>
+    <string name="confirm_export_message" msgid="63482084706768079">"Er det ok at eksportere din liste over kontakter til \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <string name="exporting_contact_failed_title" msgid="1455264422455075858">"Kontaktdata blev ikke eksporteret"</string>
+    <string name="exporting_contact_failed_message" msgid="1426451081541603512">"Kontaktdata blev ikke eksporteret"\n"Årsag til mislykket forsøg: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_too_many_vcard" msgid="5416992255233341607">"Der er for mange VCard-data på SD-kortet"</string>
+    <string name="fail_reason_too_long_filename" msgid="7105223965196949065">"Der kræves et for langt filnavn (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"Destinationsmappen \"<xliff:g id="DIR_NAME">%s</xliff:g>\" kan ikke åbnes eller oprettes"</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
+    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Kontaktdata eksporteres til \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Eksportfunktionen kunne ikke startes: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Der opstod en fejl under eksport: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" kunne ikke åbnes: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
 </resources>

@@ -18,16 +18,11 @@
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="launcherDialer" msgid="140610573639849799">"다이얼러"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
-    <!-- no translation found for shortcutDialContact (7165340343023469996) -->
-    <skip />
-    <!-- no translation found for shortcutMessageContact (3025782962770298900) -->
-    <skip />
-    <!-- no translation found for shortcutActivityTitle (6642877210643565436) -->
-    <skip />
-    <!-- no translation found for callShortcutActivityTitle (6065749861423648991) -->
-    <skip />
-    <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
-    <skip />
+    <string name="shortcutDialContact" msgid="7165340343023469996">"바로 전화 걸기"</string>
+    <string name="shortcutMessageContact" msgid="3025782962770298900">"바로 메시지 보내기"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"연락처 바로가기 선택"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"통화할 번호 선택"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"메시지를 보낼 번호 선택"</string>
     <string name="starredList" msgid="4817256136413959463">"중요주소록"</string>
     <string name="frequentList" msgid="7154768136473953056">"자주 사용하는 연락처"</string>
     <string name="strequentList" msgid="5640192862059373511">"즐겨찾기"</string>
@@ -178,30 +173,18 @@
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"자주 통화한 목록"</string>
     <string name="add_contact_dlg_title" msgid="2789046541229846116">"연락처 추가"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 주소록에 추가하겠습니까?"</string>
-    <!-- no translation found for description_image_button_one (1740638037139856139) -->
-    <skip />
-    <!-- no translation found for description_image_button_two (5882638439003731308) -->
-    <skip />
-    <!-- no translation found for description_image_button_three (8709731759376015180) -->
-    <skip />
-    <!-- no translation found for description_image_button_four (3530239685642246130) -->
-    <skip />
-    <!-- no translation found for description_image_button_five (1182465427501188413) -->
-    <skip />
-    <!-- no translation found for description_image_button_six (2093656269261415475) -->
-    <skip />
-    <!-- no translation found for description_image_button_seven (2450357020447676481) -->
-    <skip />
-    <!-- no translation found for description_image_button_eight (6969435115163287801) -->
-    <skip />
-    <!-- no translation found for description_image_button_nine (7857248695662558323) -->
-    <skip />
-    <!-- no translation found for description_image_button_star (3365919907520767866) -->
-    <skip />
-    <!-- no translation found for description_image_button_zero (4133108949401820710) -->
-    <skip />
-    <!-- no translation found for description_image_button_pound (3039765597595889230) -->
-    <skip />
+    <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"3"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"4"</string>
+    <string name="description_image_button_five" msgid="1182465427501188413">"5"</string>
+    <string name="description_image_button_six" msgid="2093656269261415475">"6"</string>
+    <string name="description_image_button_seven" msgid="2450357020447676481">"7"</string>
+    <string name="description_image_button_eight" msgid="6969435115163287801">"8"</string>
+    <string name="description_image_button_nine" msgid="7857248695662558323">"9"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"별"</string>
+    <string name="description_image_button_zero" msgid="4133108949401820710">"0"</string>
+    <string name="description_image_button_pound" msgid="3039765597595889230">"#"</string>
     <string name="no_sdcard_title" msgid="6455416795090113715">"SD 카드 없음"</string>
     <string name="no_sdcard_message" msgid="7791906118138538259">"SD 카드가 발견되지 않았습니다."</string>
     <string name="searching_vcard_title" msgid="4158580043290687793">"VCard 검색"</string>
@@ -226,34 +209,19 @@
     <string name="reading_vcard_failed_message" msgid="780588344175743735">"VCard 데이터를 읽을 수 없습니다."\n"실패 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"주소록 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개 중 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"파일 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개 중 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개"</string>
-    <!-- no translation found for export_contact_list (3165097742175874384) -->
-    <skip />
-    <!-- no translation found for confirm_export_title (1693047909433122854) -->
-    <skip />
-    <!-- no translation found for confirm_export_message (63482084706768079) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_title (1455264422455075858) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_message (1426451081541603512) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (5416992255233341607) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_long_filename (7105223965196949065) -->
-    <skip />
-    <!-- no translation found for fail_reason_cannot_open_destination_dir (1739293936432987758) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_message (5640326540405486055) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (4943708332700987376) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (2151165129433831202) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_open_file (4013520943128739511) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_progress (560522409559101193) -->
-    <skip />
-    <!-- no translation found for search_settings_description (2675223022992445813) -->
-    <skip />
+    <string name="export_contact_list" msgid="3165097742175874384">"연락처 내보내기"</string>
+    <string name="confirm_export_title" msgid="1693047909433122854">"내보내기 확인"</string>
+    <string name="confirm_export_message" msgid="63482084706768079">"연락처 목록을 \'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'(으)로 내보내시겠습니까?"</string>
+    <string name="exporting_contact_failed_title" msgid="1455264422455075858">"연락처 데이터를 내보내지 못했습니다."</string>
+    <string name="exporting_contact_failed_message" msgid="1426451081541603512">"연락처 데이터를 내보내지 못했습니다."\n"실패 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_too_many_vcard" msgid="5416992255233341607">"SD 카드에 VCard 데이터가 너무 많습니다."</string>
+    <string name="fail_reason_too_long_filename" msgid="7105223965196949065">"파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
+    <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"대상 디렉토리(\'<xliff:g id="DIR_NAME">%s</xliff:g>\')를 열거나 만들 수 없습니다."</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"연락처 데이터 내보내기"</string>
+    <string name="exporting_contact_list_message" msgid="5640326540405486055">"연락처 데이터를 \'<xliff:g id="FILE_NAME">%s</xliff:g>\'(으)로 내보내는 중"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"내보내기를 초기화하지 못했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"내보내는 중에 오류가 발생했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
 </resources>

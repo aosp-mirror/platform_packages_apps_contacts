@@ -81,7 +81,7 @@
     <string name="attachToContact" msgid="8820530304406066714">"Kontaktikon"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Egendefinert etikett"</string>
     <string name="menu_displayGroup" msgid="4603480747214476335">"Vis gruppe"</string>
-    <string name="syncGroupPreference" msgid="9028361137161162861">"Rediger synkr. Grp."</string>
+    <string name="syncGroupPreference" msgid="9028361137161162861">"Rediger synkr. grp."</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importer kontakter"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send anrop direkte til telefonsvarer."</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Anrop blir sendt direkte til telefonsvarer."</string>
@@ -125,7 +125,7 @@
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Rediger nummer før anrop"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Legg til kontakter"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Fjern fra anropslogg"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Nullstill anropslogg"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Tøm anropslogg"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Anropsloggen er tom."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="voicemail" msgid="3851469869202611441">"Telefonsvarer"</string>
@@ -211,17 +211,17 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
     <string name="export_contact_list" msgid="3165097742175874384">"Eksporter kontakter"</string>
     <string name="confirm_export_title" msgid="1693047909433122854">"Eksportbekreftelse"</string>
-    <string name="confirm_export_message" msgid="63482084706768079">"Ønsker du å eksportere kontaktlisten din til «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
+    <string name="confirm_export_message" msgid="63482084706768079">"Vil du eksportere kontaktlisten din til «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
     <string name="exporting_contact_failed_title" msgid="1455264422455075858">"Kunne ikke eksportere kontaktlisten"</string>
-    <string name="exporting_contact_failed_message" msgid="1426451081541603512">"Kunne ikke eksportere kontaktlisten"\n"Feilårsak: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
+    <string name="exporting_contact_failed_message" msgid="1426451081541603512">"Eksport av kontaktdata mislyktes"\n"Årsak til feil: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_too_many_vcard" msgid="5416992255233341607">"For mange VCard-datafiler på minnekortet"</string>
-    <string name="fail_reason_too_long_filename" msgid="7105223965196949065">"Filnavnet ble for langt («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
+    <string name="fail_reason_too_long_filename" msgid="7105223965196949065">"For langt filnavn kreves («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
     <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"Kan ikke åpne eller opprette målkatalogen «<xliff:g id="DIR_NAME">%s</xliff:g>»"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Eksporterer kontaktdata til «<xliff:g id="FILE_NAME">%s</xliff:g>»"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Kunne ikke starte eksporteringen: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"En feil oppsto under eksportering: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Klarte ikke å åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Det oppstod feil ved eksport: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kunne ikke åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
 </resources>
