@@ -1605,7 +1605,7 @@ public final class ContactsListActivity extends ListActivity implements
             case MODE_JOIN_CONTACT:
                 mQueryHandler.setLoadingJoinSuggestions(true);
                 mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
-                        Contacts._ID + " != " + mQueryAggregateId, null, null);
+                        null, null, null);
                 break;
         }
     }
@@ -1681,8 +1681,8 @@ public final class ContactsListActivity extends ListActivity implements
                         null, null);
                 mAdapter.setSuggestionsCursor(cursor);
                 return resolver.query(getContactFilterUri(filter), projection,
-                        Contacts._ID + " != " + mQueryAggregateId, null,
-                        getSortOrder(projection));
+                        Contacts._ID + " != " + mQueryAggregateId + " AND " + CLAUSE_ONLY_VISIBLE,
+                        null, getSortOrder(projection));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
@@ -1822,7 +1822,8 @@ public final class ContactsListActivity extends ListActivity implements
 
                     startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
                             CONTACTS_SUMMARY_PROJECTION,
-                            Contacts._ID + " != " + activity.mQueryAggregateId, null,
+                            Contacts._ID + " != " + activity.mQueryAggregateId
+                                    + " AND " + CLAUSE_ONLY_VISIBLE, null,
                             getSortOrder(CONTACTS_SUMMARY_PROJECTION));
                     return;
                 }
