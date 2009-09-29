@@ -181,7 +181,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 }
             } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
-                selection = RawContacts._ID + "=" + rawContactId;
+                selection = Data.RAW_CONTACT_ID + "=" + rawContactId;
             }
 
             target.mQuerySelection = selection;
