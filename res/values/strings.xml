@@ -138,6 +138,13 @@
     <!-- Activity title for the Join Contact list -->
     <string name="titleJoinAggregate">Join contact</string>
 
+    <!-- Heading of the Join Contact screen -->
+    <string name="titleJoinContactDataWith">Join contact data with:</string>
+
+    <!-- Info blurb on the Join Contact screen -->
+    <string name="blurbJoinContactDataWith">Contact data will be combined with
+        another contact selected from the list.</string>
+
     <!-- List separator for the Join Contact list: Suggestions -->
     <string name="separatorJoinAggregateSuggestions">Suggestions</string>
 
