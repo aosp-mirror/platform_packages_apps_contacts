@@ -39,38 +39,42 @@ public final class Collapser {
      */
     public interface Collapsible<T> {
         public boolean collapseWith(T t);
-        public String getCollapseKey();
+        public boolean shouldCollapseWith(T t);
     }
 
     /**
      * Collapses a list of Collapsible items into a list of collapsed items. Items are collapsed
-     * if they produce equal collapseKeys {@Link Collapsible#getCollapseKey()}, and are collapsed
-     * through the {@Link Collapsible#doCollapseWith(Object)} function implemented by the data item.
+     * if {@link Collapsible#shouldCollapseWith(Object) return strue, and are collapsed
+     * through the {@Link Collapsible#collapseWith(Object)} function implemented by the data item.
      *
      * @param list ArrayList of Objects of type <T extends Collapsible<T>> to be collapsed.
      */
     public static <T extends Collapsible<T>> void collapseList(ArrayList<T> list) {
-        HashMap<String, T> collapseMap = new HashMap<String, T>();
-        ArrayList<String> collapseKeys = new ArrayList<String>();
 
         int listSize = list.size();
-        for (int j = 0; j < listSize; j++) {
-            T entry = list.get(j);
-            String collapseKey = entry.getCollapseKey();
-            if (!collapseMap.containsKey(collapseKey)) {
-                collapseMap.put(collapseKey, entry);
-                collapseKeys.add(collapseKey);
-            } else {
-                collapseMap.get(collapseKey).collapseWith(entry);
+
+        for (int i = 0; i < listSize; i++) {
+            T iItem = list.get(i);
+            if (iItem != null) {
+                for (int j = i + 1; j < listSize; j++) {
+                    T jItem = list.get(j);
+                    if (jItem != null) {
+                        if (iItem.shouldCollapseWith(jItem)) {
+                            iItem.collapseWith(jItem);
+                            list.set(j, null);
+                        }
+                    }
+                }
             }
         }
 
-        if (collapseKeys.size() < listSize) {
-            list.clear();
-            Iterator<String> itr = collapseKeys.iterator();
-            while (itr.hasNext()) {
-                list.add(collapseMap.get(itr.next()));
+        // Remove the null items
+        Iterator<T> itr = list.iterator();
+        while (itr.hasNext()) {
+            if (itr.next() == null) {
+                itr.remove();
             }
         }
+
     }
 }
