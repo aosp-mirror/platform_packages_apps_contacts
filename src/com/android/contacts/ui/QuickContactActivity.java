@@ -22,6 +22,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.QuickContact;
+import android.util.Log;
 
 /**
  * Stub translucent activity that just shows {@link QuickContactWindow} floating
@@ -30,18 +31,35 @@ import android.provider.ContactsContract.QuickContact;
  */
 public final class QuickContactActivity extends Activity implements
         QuickContactWindow.OnDismissListener {
+    private static final String TAG = "FastTrackActivity";
+
+    static final boolean LOGV = true;
+    static final boolean FORCE_CREATE = false;
+
     private QuickContactWindow mQuickContact;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        this.onNewIntent(getIntent());
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (LOGV) Log.d(TAG, "onNewIntent");
 
         if (QuickContactWindow.TRACE_LAUNCH) {
             android.os.Debug.startMethodTracing(QuickContactWindow.TRACE_TAG);
         }
 
+        if (mQuickContact == null || FORCE_CREATE) {
+            if (LOGV) Log.d(TAG, "Preparing window");
+            mQuickContact = new QuickContactWindow(this, this);
+        }
+
         // Use our local window token for now
-        final Intent intent = getIntent();
         final Uri lookupUri = intent.getData();
         final Bundle extras = intent.getExtras();
 
@@ -50,19 +68,44 @@ public final class QuickContactActivity extends Activity implements
         final int mode = extras.getInt(QuickContact.EXTRA_MODE, QuickContact.MODE_MEDIUM);
         final String[] excludeMimes = extras.getStringArray(QuickContact.EXTRA_EXCLUDE_MIMES);
 
-        mQuickContact = new QuickContactWindow(this, this);
         mQuickContact.show(lookupUri, target, mode, excludeMimes);
     }
 
+    /** {@inheritDoc} */
     @Override
-    protected void onStop() {
-        super.onStop();
+    public void onBackPressed() {
+        if (LOGV) Log.w(TAG, "Unexpected back captured by stub activity");
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (LOGV) Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (LOGV) Log.d(TAG, "onDestroy");
+
         mQuickContact.dismiss();
     }
 
     /** {@inheritDoc} */
     public void onDismiss(QuickContactWindow dialog) {
-        // When dismissed, finish this activity
-        finish();
+        if (LOGV) Log.d(TAG, "onDismiss");
+
+        if (isTaskRoot() && !FORCE_CREATE) {
+            if (LOGV) Log.d(TAG, "Moving task to back");
+
+            // Instead of stopping, simply push this to the back of the stack.
+            // This is only done when running at the top of the stack;
+            // otherwise, we have been launched by someone else so need to
+            // allow the user to go back to the caller.
+            moveTaskToBack(false);
+        } else {
+            finish();
+        }
     }
 }

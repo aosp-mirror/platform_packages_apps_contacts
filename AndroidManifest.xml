@@ -265,7 +265,9 @@
              temporary hack until we add better framework support. -->
         <activity
             android:name=".ui.QuickContactActivity"
-            android:theme="@style/FullyTranslucent.QuickContact">
+            android:theme="@style/FullyTranslucent.QuickContact"
+            android:launchMode="singleTop"
+            android:taskAffinity="android.task.fasttrack">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.QUICK_CONTACT" />
