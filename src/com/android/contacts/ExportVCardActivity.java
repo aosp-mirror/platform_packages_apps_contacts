@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.pim.vcard.VCardComposer;
-import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -148,10 +147,12 @@ public class ExportVCardActivity extends Activity {
                 }
 
                 composer = new VCardComposer(ExportVCardActivity.this, mVCardTypeStr, true);
-                // composer = new VCardComposer(ExportVCardActivity,
-                // VCardConfig.VCARD_TYPE_V30_JAPANESE_UTF8, true);
+                /*int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
+                        VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
+                composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);*/
+
                 composer.addHandler(composer.new HandlerForOutputStream(outputStream));
- 
+
                 if (!composer.init()) {
                     final String errorReason = composer.getErrorReason();
                     Log.e(LOG_TAG, "initialization of vCard composer failed: " + errorReason);
