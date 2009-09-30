@@ -18,12 +18,7 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +27,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 /*
@@ -82,6 +76,7 @@ public class ScrollingTabWidget extends RelativeLayout
         mTabsScrollWrapper = (HorizontalScrollView) mInflater.inflate(
                 R.layout.tab_layout, this, false);
         mTabsView = (TabStripView) mTabsScrollWrapper.findViewById(android.R.id.tabs);
+        View accountNameView = mInflater.inflate(R.layout.tab_account_name, this, false);
 
         mLeftArrowView.setVisibility(View.INVISIBLE);
         mRightArrowView.setVisibility(View.INVISIBLE);
@@ -89,6 +84,7 @@ public class ScrollingTabWidget extends RelativeLayout
         addView(mTabsScrollWrapper);
         addView(mLeftArrowView);
         addView(mRightArrowView);
+        addView(accountNameView);
     }
 
     @Override
