@@ -1028,6 +1028,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 digits.replace(selectionStart, selectionStart, newDigits);
             } else {
                 digits.replace(selectionStart, selectionEnd, newDigits);
+                // Unselect: back to a regular cursor, just pass the character inserted.
+                mDigits.setSelection(selectionStart + 1);
             }
         } else {
             int len = mDigits.length();

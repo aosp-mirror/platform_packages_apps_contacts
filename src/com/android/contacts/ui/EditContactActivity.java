@@ -121,12 +121,12 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Header bar is filled later after queries finish
         mHeader = (ContactHeaderWidget)this.findViewById(R.id.contact_header_widget);
         mHeader.setContactHeaderListener(this);
-        mHeader.showStar(true);
+        mHeader.showStar(false);
         mHeader.enableClickListeners();
 
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
-        mAccountName = (TextView)this.findViewById(R.id.account_name);
+        mAccountName = (TextView)mTabWidget.findViewById(R.id.account_name);
 
         // Build editor and listen for photo requests
         mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
@@ -181,7 +181,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 }
             } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
-                selection = RawContacts._ID + "=" + rawContactId;
+                selection = Data.RAW_CONTACT_ID + "=" + rawContactId;
             }
 
             target.mQuerySelection = selection;
@@ -402,7 +402,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final ContactsSource source = sources.getInflatedSource(accountType,
                 ContactsSource.LEVEL_CONSTRAINTS);
 
-        mAccountName.setText(getString(R.string.account_name_format, accountName));
+        mAccountName.setText(getString(R.string.account_name_format,
+                source.getDisplayLabel(this), accountName));
         mAccountName.setVisibility(View.VISIBLE);
 
         // Assign editor state based on entity and source

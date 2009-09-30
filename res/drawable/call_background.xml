@@ -14,11 +14,13 @@
      limitations under the License.
 -->
 
-<resources>
-    <dimen name="fasttrack_shadow">37dip</dimen>
-    <dimen name="edit_photo_size">76dip</dimen>
-        
-    <!-- The height of the ScrollingTabWidget -->
-    <dimen name="tab_height">40dip</dimen>
-    <dimen name="account_name_height">25dip</dimen>
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_window_focused="false"
+        android:drawable="@android:color/transparent" />
+    <item android:state_focused="false" android:state_pressed="true"
+        android:drawable="@*android:drawable/list_selector_background_transition" />
+    <item android:state_focused="false" android:state_pressed="false"
+        android:drawable="@android:drawable/screen_background_dark"/>
+
+</selector>

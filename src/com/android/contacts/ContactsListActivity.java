@@ -40,6 +40,7 @@ import android.content.UriMatcher;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -86,7 +87,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -161,6 +161,14 @@ public class ContactsListActivity extends ListActivity implements
      */
     public static final String EXTRA_AGGREGATE_ID =
             "com.android.contacts.action.AGGREGATE_ID";
+    /**
+     * Used with {@link #JOIN_AGGREGATE} to give it the name of the aggregation target.
+     * <p>
+     * Type: STRING
+     */
+    public static final String EXTRA_AGGREGATE_NAME =
+            "com.android.contacts.action.AGGREGATE_NAME";
+
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -352,9 +360,21 @@ public class ContactsListActivity extends ListActivity implements
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
+    /**
+     * In the {@link #MODE_JOIN} determines whether we display a list item with the label
+     * "Show all contacts" or actually show all contacts
+     */
+    private boolean mJoinModeShowAllContacts;
+
+    /**
+     * The ID of the special item described above.
+     */
+    private static final long JOIN_MODE_SHOW_ALL_CONTACTS_ID = -2;
+
     // Uri matcher for contact id
     private static final int CONTACTS_ID = 1001;
     private static final UriMatcher sContactsIdMatcher;
+
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sContactsIdMatcher.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
@@ -551,6 +571,15 @@ public class ContactsListActivity extends ListActivity implements
 
         if (mMode == MODE_JOIN_CONTACT) {
             setContentView(R.layout.contacts_list_content_join);
+            TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
+            String contactName = intent.getStringExtra(EXTRA_AGGREGATE_NAME);
+            if (contactName == null) {
+                contactName = "";
+            }
+
+            String blurb = getString(R.string.blurbJoinContactDataWith, contactName);
+            blurbView.setText(blurb);
+            mJoinModeShowAllContacts = true;
         } else {
             setContentView(R.layout.contacts_list_content);
         }
@@ -567,14 +596,9 @@ public class ContactsListActivity extends ListActivity implements
             list.setTextFilterEnabled(true);
         }
 
-        final LayoutInflater inflater = getLayoutInflater();
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            View totalContacts = inflater.inflate(R.layout.total_contacts, list, false);
-            list.addHeaderView(totalContacts);
-        }
-
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
+            final LayoutInflater inflater = getLayoutInflater();
             View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
@@ -585,11 +609,6 @@ public class ContactsListActivity extends ListActivity implements
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
         getListView().setOnScrollListener(mAdapter);
-
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
-            totalContacts.setVisibility(View.VISIBLE);
-        }
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -830,6 +849,10 @@ public class ContactsListActivity extends ListActivity implements
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
+            case R.string.import_from_sim:
+            case R.string.import_from_sdcard: {
+                return AccountSelectionUtil.getSelectAccountDialog(this, id);
+            }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.no_sdcard_title)
@@ -1091,13 +1114,6 @@ public class ContactsListActivity extends ListActivity implements
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
 
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-            if (position == 0) {
-                return;
-            }
-            position--;
-        }
-
         if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
             Intent intent;
             if (position == 0) {
@@ -1129,7 +1145,12 @@ public class ContactsListActivity extends ListActivity implements
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } else if (mMode == MODE_JOIN_CONTACT) {
-                returnPickerResult(null, null, uri, id);
+                if (id == JOIN_MODE_SHOW_ALL_CONTACTS_ID) {
+                    mJoinModeShowAllContacts = false;
+                    startQuery();
+                } else {
+                    returnPickerResult(null, null, uri, id);
+                }
             } else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -1541,7 +1562,14 @@ public class ContactsListActivity extends ListActivity implements
         mQueryHandler.setLoadingJoinSuggestions(false);
 
         String[] projection = getProjectionForQuery();
+        String callingPackage = getCallingPackage();
         Uri uri = getUriToQuery();
+        if (!TextUtils.isEmpty(callingPackage)) {
+            uri = uri.buildUpon()
+                    .appendQueryParameter(ContactsContract.REQUESTING_PACKAGE_PARAM_KEY,
+                            callingPackage)
+                    .build();
+        }
 
         // Kick off the new query
         switch (mMode) {
@@ -1695,12 +1723,22 @@ public class ContactsListActivity extends ListActivity implements
                 Cursor cursor = resolver.query(getJoinSuggestionsUri(filter), projection, null,
                         null, null);
                 mAdapter.setSuggestionsCursor(cursor);
+                mJoinModeShowAllContacts = false;
                 return resolver.query(getContactFilterUri(filter), projection,
                         Contacts._ID + " != " + mQueryAggregateId + " AND " + CLAUSE_ONLY_VISIBLE,
                         null, getSortOrder(projection));
             }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
+    }
+
+    private Cursor getShowAllContactsLabelCursor(String[] projection) {
+        MatrixCursor matrixCursor = new MatrixCursor(projection);
+        Object[] row = new Object[projection.length];
+        // The only columns we care about is the id
+        row[SUMMARY_ID_COLUMN_INDEX] = JOIN_MODE_SHOW_ALL_CONTACTS_ID;
+        matrixCursor.addRow(row);
+        return matrixCursor;
     }
 
     /**
@@ -1754,7 +1792,7 @@ public class ContactsListActivity extends ListActivity implements
                             getColumnIndex(Phone.IS_SUPER_PRIMARY)) != 0) {
                         // Found super primary, call it.
                         phone = phonesCursor.
-                        getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+                                getString(phonesCursor.getColumnIndex(Phone.NUMBER));
                         break;
                     }
                 }
@@ -1832,15 +1870,21 @@ public class ContactsListActivity extends ListActivity implements
                     if (cursor.getCount() > 0) {
                         activity.mAdapter.setSuggestionsCursor(cursor);
                     } else {
+                        cursor.close();
                         activity.mAdapter.setSuggestionsCursor(null);
                     }
 
-                    startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
-                            CONTACTS_SUMMARY_PROJECTION,
-                            Contacts._ID + " != " + activity.mQueryAggregateId
-                                    + " AND " + CLAUSE_ONLY_VISIBLE, null,
-                            getSortOrder(CONTACTS_SUMMARY_PROJECTION));
-                    return;
+                    if (activity.mAdapter.mSuggestionsCursorCount == 0
+                            || !activity.mJoinModeShowAllContacts) {
+                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
+                                CONTACTS_SUMMARY_PROJECTION,
+                                Contacts._ID + " != " + activity.mQueryAggregateId
+                                        + " AND " + CLAUSE_ONLY_VISIBLE, null,
+                                getSortOrder(CONTACTS_SUMMARY_PROJECTION));
+                        return;
+                    }
+
+                    cursor = activity.getShowAllContactsLabelCursor(CONTACTS_SUMMARY_PROJECTION);
                 }
 
                 activity.mAdapter.setLoading(false);
@@ -2068,6 +2112,12 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public int getItemViewType(int position) {
+            if (position == 0 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                return IGNORE_ITEM_VIEW_TYPE;
+            }
+            if (isShowAllContactsItemPosition(position)) {
+                return IGNORE_ITEM_VIEW_TYPE;
+            }
             if (getSeparatorId(position) != 0) {
                 // We don't want the separator view to be recycled.
                 return IGNORE_ITEM_VIEW_TYPE;
@@ -2080,6 +2130,23 @@ public class ContactsListActivity extends ListActivity implements
             if (!mDataValid) {
                 throw new IllegalStateException(
                         "this should only be called when the cursor is valid");
+            }
+
+            // handle the total contacts item
+            if (position == 0 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                final LayoutInflater inflater = getLayoutInflater();
+                TextView totalContacts = (TextView) inflater.inflate(R.layout.total_contacts,
+                        parent, false);
+                int stringId = mDisplayOnlyPhones ? R.string.listTotalPhoneContacts
+                        : R.string.listTotalAllContacts;
+                totalContacts.setText(getString(stringId, getCount()));
+                return totalContacts;
+            }
+
+            if (isShowAllContactsItemPosition(position)) {
+                LayoutInflater inflater =
+                    (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                return inflater.inflate(R.layout.contacts_list_show_all_item, parent, false);
             }
 
             // Handle the separator specially
@@ -2116,6 +2183,11 @@ public class ContactsListActivity extends ListActivity implements
             bindView(v, mContext, cursor);
             bindSectionHeader(v, realPosition, mDisplaySectionHeaders && !showingSuggestion);
             return v;
+        }
+
+        private boolean isShowAllContactsItemPosition(int position) {
+            return mMode == MODE_JOIN_CONTACT && mJoinModeShowAllContacts
+                    && mSuggestionsCursorCount != 0 && position == mSuggestionsCursorCount + 2;
         }
 
         private int getSeparatorId(int position) {
@@ -2377,12 +2449,6 @@ public class ContactsListActivity extends ListActivity implements
             }
 
             super.changeCursor(cursor);
-            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-                TextView totalContacts = (TextView) findViewById(R.id.totalContactsText);
-                int stringId = mDisplayOnlyPhones
-                    ? R.string.listTotalPhoneContacts : R.string.listTotalAllContacts;
-                totalContacts.setText(getString(stringId, cursorCount));
-            }
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
         }
@@ -2494,6 +2560,12 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public boolean isEnabled(int position) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                if (position == 0) {
+                    return false;
+                }
+                position--;
+            }
             if (mSuggestionsCursorCount > 0) {
                 return position != 0 && position != mSuggestionsCursorCount + 1;
             }
@@ -2516,6 +2588,9 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         private int getRealPosition(int pos) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                pos--;
+            }
             if (mSuggestionsCursorCount != 0) {
                 // When showing suggestions, we have 2 additional list items: the "Suggestions"
                 // and "All contacts" separators.

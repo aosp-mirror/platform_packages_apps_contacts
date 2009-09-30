@@ -215,9 +215,9 @@ public class ViewContactActivity extends Activity
         mTabWidget.setTabSelectionListener(this);
         mTabWidget.setVisibility(View.GONE);
         mTabsVisible = false;
+        mAccountName = (TextView) mTabWidget.findViewById(R.id.account_name);
 
         mBelowHeader = findViewById(R.id.below_header);
-        mAccountName = (TextView) findViewById(R.id.account_name);
 
         mTabRawContactIdMap = new SparseArray<Long>();
 
@@ -397,12 +397,14 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        float tabHeight = getResources().getDimension(R.dimen.tab_height);
+        final Resources resources = getResources();
+        final float tabHeight = resources.getDimension(R.dimen.tab_height)
+            + resources.getDimension(R.dimen.account_name_height);
         if (show) {
             TranslateAnimation showAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, -tabHeight, Animation.ABSOLUTE, 0);
-            showAnimation.setDuration(getResources().getInteger(
+            showAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
 
             showAnimation.setAnimationListener(new AnimationListener() {
@@ -428,7 +430,7 @@ public class ViewContactActivity extends Activity
             TranslateAnimation hideTabsAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, -tabHeight);
-            hideTabsAnimation.setDuration(getResources().getInteger(
+            hideTabsAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
             hideTabsAnimation.setAnimationListener(new AnimationListener() {
                 public void onAnimationEnd(Animation animation) {
@@ -446,7 +448,7 @@ public class ViewContactActivity extends Activity
             TranslateAnimation hideListAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, tabHeight, Animation.ABSOLUTE, 0);
-            hideListAnimation.setDuration(getResources().getInteger(
+            hideListAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
 
 
@@ -761,8 +763,15 @@ public class ViewContactActivity extends Activity
      * Shows a list of aggregates that can be joined into the currently viewed aggregate.
      */
     public void showJoinAggregateActivity() {
+        String displayName = null;
+        if (mCursor.moveToFirst()) {
+            displayName = mCursor.getString(0);
+        }
         Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
         intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, ContentUris.parseId(mUri));
+        if (displayName != null) {
+            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
+        }
         startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 
@@ -945,13 +954,11 @@ public class ViewContactActivity extends Activity
                     continue;
                 }
 
-                if (mTabsVisible) {
-                    final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
-                    mAccountName.setText(getString(R.string.account_name_format, accountName));
-                    mAccountName.setVisibility(View.VISIBLE);
-                } else {
-                    mAccountName.setVisibility(View.GONE);
-                }
+                final ContactsSource source = sources.getInflatedSource(accountType,
+                        ContactsSource.LEVEL_SUMMARY);
+                final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
+                mAccountName.setText(getString(R.string.account_name_format,
+                        source.getDisplayLabel(this), accountName));
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
@@ -1154,7 +1161,7 @@ public class ViewContactActivity extends Activity
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+    class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
         public String resPackageName = null;
         public int actionIcon = -1;
         public boolean isPrimary = false;
@@ -1169,7 +1176,7 @@ public class ViewContactActivity extends Activity
 
         public boolean collapseWith(ViewEntry entry) {
             // assert equal collapse keys
-            if (!getCollapseKey().equals(entry.getCollapseKey())) {
+            if (!shouldCollapseWith(entry)) {
                 return false;
             }
 
@@ -1201,16 +1208,43 @@ public class ViewContactActivity extends Activity
             return true;
         }
 
-        public String getCollapseKey() {
-            StringBuilder hashSb = new StringBuilder();
-            hashSb.append(data);
-            hashSb.append(mimetype);
-            hashSb.append((intent != null && intent.getAction() != null)
-                    ? intent.getAction() : "");
-            hashSb.append((secondaryIntent != null && secondaryIntent.getAction() != null)
-                    ? secondaryIntent.getAction() : "");
-            hashSb.append(actionIcon);
-            return hashSb.toString();
+        public boolean shouldCollapseWith(ViewEntry entry) {
+            if (entry == null) {
+                return false;
+            }
+
+            if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
+                    && Phone.CONTENT_ITEM_TYPE.equals(entry.mimetype)) {
+                if (!PhoneNumberUtils.compare(ViewContactActivity.this, data, entry.data)) {
+                    return false;
+                }
+            } else {
+                if (!equals(data, entry.data)) {
+                    return false;
+                }
+            }
+
+            if (!equals(mimetype, entry.mimetype)
+                    || !intentCollapsible(intent, entry.intent)
+                    || !intentCollapsible(secondaryIntent, entry.secondaryIntent)
+                    || actionIcon != entry.actionIcon) {
+                return false;
+            }
+
+            return true;
+        }
+
+        private boolean equals(Object a, Object b) {
+            return a==b || (a != null && a.equals(b));
+        }
+
+        private boolean intentCollapsible(Intent a, Intent b) {
+            if (a == b) {
+                return true;
+            } else if ((a != null && b != null) && equals(a.getAction(), b.getAction())) {
+                return true;
+            }
+            return false;
         }
     }
 

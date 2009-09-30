@@ -187,6 +187,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      */
     protected static class GroupDelta extends ValuesDelta {
         private boolean mUngrouped = false;
+        private boolean mAccountHasGroups;
 
         private GroupDelta() {
             super();
@@ -197,7 +198,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
          * {@link Settings#ACCOUNT_NAME} and {@link Settings#ACCOUNT_TYPE}.
          */
         public static GroupDelta fromSettings(ContentResolver resolver, String accountName,
-                String accountType) {
+                String accountType, boolean accountHasGroups) {
             final Uri settingsUri = Settings.CONTENT_URI.buildUpon()
                     .appendQueryParameter(Settings.ACCOUNT_NAME, accountName)
                     .appendQueryParameter(Settings.ACCOUNT_TYPE, accountType).build();
@@ -214,12 +215,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                     // Read existing values when present
                     values.put(Settings.SHOULD_SYNC, cursor.getInt(0));
                     values.put(Settings.UNGROUPED_VISIBLE, cursor.getInt(1));
-                    return fromBefore(values).setUngrouped();
+                    return fromBefore(values).setUngrouped(accountHasGroups);
                 } else {
                     // Nothing found, so treat as create
                     values.put(Settings.SHOULD_SYNC, DEFAULT_SHOULD_SYNC);
                     values.put(Settings.UNGROUPED_VISIBLE, DEFAULT_VISIBLE);
-                    return fromAfter(values).setUngrouped();
+                    return fromAfter(values).setUngrouped(accountHasGroups);
                 }
             } finally {
                 if (cursor != null) cursor.close();
@@ -240,8 +241,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             return entry;
         }
 
-        protected GroupDelta setUngrouped() {
+        protected GroupDelta setUngrouped(boolean accountHasGroups) {
             mUngrouped = true;
+            mAccountHasGroups = accountHasGroups;
             return this;
         }
 
@@ -270,7 +272,11 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         public CharSequence getTitle(Context context) {
             if (mUngrouped) {
-                return context.getText(R.string.display_ungrouped);
+                if (mAccountHasGroups) {
+                    return context.getText(R.string.display_ungrouped);
+                } else {
+                    return context.getText(R.string.display_all_contacts);
+                }
             } else {
                 final Integer titleRes = getAsInteger(Groups.TITLE_RES);
                 if (titleRes != null) {
@@ -359,9 +365,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             mName = accountName;
             mType = accountType;
 
-            // Create single entry handling ungrouped status
-            mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType);
-            addGroup(mUngrouped);
+            boolean hasGroups = false;
 
             final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
                     .appendQueryParameter(Groups.ACCOUNT_NAME, accountName)
@@ -374,12 +378,17 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                     final ContentValues values = iterator.next().getEntityValues();
                     final GroupDelta group = GroupDelta.fromBefore(values);
                     addGroup(group);
+                    hasGroups = true;
                 }
             } catch (RemoteException e) {
                 Log.w(TAG, "Problem reading groups: " + e.toString());
             } finally {
                 if (iterator != null) iterator.close();
             }
+
+            // Create single entry handling ungrouped status
+            mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType, hasGroups);
+            addGroup(mUngrouped);
         }
 
         /**

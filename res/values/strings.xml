@@ -139,14 +139,16 @@
     <string name="titleJoinAggregate">Join contact</string>
 
     <!-- Heading of the Join Contact screen -->
-    <string name="titleJoinContactDataWith">Join contact data with:</string>
+    <string name="titleJoinContactDataWith">Join contacts</string>
 
     <!-- Info blurb on the Join Contact screen -->
-    <string name="blurbJoinContactDataWith">Contact data will be combined with
-        another contact selected from the list.</string>
+    <string name="blurbJoinContactDataWith">Select the contact you want to join with <xliff:g id="name">%s</xliff:g>.</string>
+
+    <!-- An item in the Join Contact activity that opens up the full contact A-Z list -->
+    <string name="showAllContactsJoinItem">Show all contacts</string>
 
     <!-- List separator for the Join Contact list: Suggestions -->
-    <string name="separatorJoinAggregateSuggestions">Suggestions</string>
+    <string name="separatorJoinAggregateSuggestions">Suggested contacts</string>
 
     <!-- List separator for the Join Contact list: A-Z -->
     <string name="separatorJoinAggregateAll">All contacts</string>
@@ -334,7 +336,7 @@
     <string name="showFilterPhonesDescrip">Only display contacts that have phone numbers</string>
 
     <!-- The header over the list of all contacts groups -->
-    <string name="headerContactGroups">Contact groups</string>
+    <string name="headerContactGroups">Choose contacts to display</string>
 
     <!-- The description of a group with the total number of contacts -->
     <plurals name="groupDescrip">
@@ -361,8 +363,8 @@
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
-    <!-- Displayed in a spinner dialog as user changes to display groups are saved -->
-    <string name="savingDisplayGroups">Saving display groups\u2026</string>
+    <!-- Displayed in a spinner dialog as user changes to display options are saved -->
+    <string name="savingDisplayGroups">Saving display options\u2026</string>
 
     <!-- Toast displayed when a contact is created -->
     <string name="contactCreatedToast">Contact created.</string>
@@ -969,9 +971,12 @@
     <string name="dialog_sync_add">Add sync group</string>
     <string name="display_more_groups">More groups\u2026</string>
 
+    <!-- List title for a special contacts group that covers all contacts.-->
+    <string name="display_ungrouped">All Other Contacts</string>
+
     <!-- List title for a special contacts group that covers all contacts that
-         aren't members of any other group.  -->
-    <string name="display_ungrouped">(Ungrouped contacts)</string>
+         aren't members of any other group. -->
+    <string name="display_all_contacts">All Contacts</string>
 
     <!-- Warning message given to users just before they remove a currently syncing
          group that would also cause all ungrouped contacts to stop syncing. -->
@@ -1153,6 +1158,6 @@
     <string name="split_explanation">Make this data its own contact.</string>
     
     <!-- Formatting string for account name -->
-    <string name="account_name_format">From account: <xliff:g id="account" example="user@gmail.com">%s</xliff:g></string>
+    <string name="account_name_format">From <xliff:g id="source" example="Gmail">%1$s</xliff:g> account: <xliff:g id="account" example="user@gmail.com">%2$s</xliff:g></string>
 
 </resources>

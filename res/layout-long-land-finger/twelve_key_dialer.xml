@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2006 The Android Open Source Project
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -25,20 +25,18 @@
     <!-- TODO: Use a textAppearance to control the display of the number -->
     <EditText android:id="@+id/digits"
         android:layout_width="fill_parent"
-        android:layout_height="67dip"
-        android:layout_marginBottom="6dip"
+        android:layout_height="74dip"
+        android:layout_marginBottom="30dip"
+        android:layout_marginTop="1dip"
         android:gravity="center"
         android:maxLines="1"
         android:scrollHorizontally="true"
-        android:textSize="33sp"
+        android:textSize="34sp"
         android:freezesText="true"
         android:background="@drawable/btn_dial_textfield"
         android:textColor="@color/dialer_button_text"
-        android:focusableInTouchMode="false"
-    />
-
-    <!-- Keypad section -->
-    <include layout="@layout/dialpad" />
+        android:hint="@string/dialerKeyboardHintText"
+     />
 
     <!-- Horizontal row of buttons (Voicemail + DialButton + Delete.) -->
     <include layout="@layout/voicemail_dial_delete" />
@@ -46,11 +44,11 @@
     <!-- "Dialpad chooser" UI, shown only when the user brings up the
          Dialer while a call is already in progress.
          When this UI is visible, the other Dialer elements
-         (the textfield/button and the dialpad) are hidden. -->
+         (the textfield and button) are hidden. -->
     <ListView android:id="@+id/dialpadChooser"
         android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:footerDividersEnabled="true"
     />
 
 </LinearLayout>
