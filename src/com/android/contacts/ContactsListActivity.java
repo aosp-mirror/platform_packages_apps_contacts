@@ -93,7 +93,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
-import android.widget.FasttrackBadgeWidget;
+import android.widget.QuickContactBadge;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -552,7 +552,6 @@ public class ContactsListActivity extends ListActivity implements
             finish();
             return;
         }
-
 
         if (JOIN_AGGREGATE.equals(action)) {
             mMode = MODE_JOIN_CONTACT;
@@ -1918,7 +1917,7 @@ public class ContactsListActivity extends ListActivity implements
         public TextView dataView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
-        public FasttrackBadgeWidget photoView;
+        public QuickContactBadge photoView;
         public ImageView nonFastTrackPhotoView;
     }
 
@@ -1930,7 +1929,7 @@ public class ContactsListActivity extends ListActivity implements
             this.position = position;
             this.photoId = photoId;
         }
-        public FasttrackBadgeWidget photoView;
+        public QuickContactBadge photoView;
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter
@@ -2221,8 +2220,8 @@ public class ContactsListActivity extends ListActivity implements
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
-            cache.photoView = (FasttrackBadgeWidget) view.findViewById(R.id.photo);
-            cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noFastTrackphoto);
+            cache.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
+            cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             view.setTag(cache);
 
             return view;
