@@ -675,6 +675,7 @@ public class FastTrackWindow implements Window.Callback,
                 // Otherwise fall back to default VIEW action
                 mIntent = new Intent(Intent.ACTION_VIEW, mDataUri);
             }
+	    mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
         /** {@inheritDoc} */
@@ -759,7 +760,9 @@ public class FastTrackWindow implements Window.Callback,
         /** {@inheritDoc} */
         public Intent getIntent() {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mId);
-            return new Intent(Intent.ACTION_VIEW, contactUri);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);
+	    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    return intent;
         }
 
         /** {@inheritDoc} */
