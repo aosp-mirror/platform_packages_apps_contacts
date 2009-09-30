@@ -25,14 +25,15 @@
             android:layout_height="wrap_content" 
             android:orientation="horizontal"
             android:background="@*android:drawable/title_bar_medium"
-            android:padding="5dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:gravity="center_vertical"
             >
     
         <ImageView
             android:layout_width="48dip"
             android:layout_height="48dip"
-            android:src="@drawable/ic_menu_merge"
+            android:src="@drawable/ic_join"
             android:gravity="center"
             android:scaleType="fitCenter"
         />
@@ -48,9 +49,11 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
             />
             <TextView
+                android:id="@+id/join_contact_blurb"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/blurbJoinContactDataWith"
+                android:layout_marginTop="-2dip"
+                android:maxLines="2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
             />
         </LinearLayout>
