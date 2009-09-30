@@ -962,7 +962,7 @@
 
     <!-- Shown as the header title over a collapsible section that, by default, hides
          secondary contact detail edit fields, such as birthday. -->
-    <string name="edit_secondary_collapse">Secondary details</string>
+    <string name="edit_secondary_collapse">More</string>
 
     <string name="dialog_primary_name">Primary name</string>
     <string name="dialog_new_contact_account">Create contact under account</string>
