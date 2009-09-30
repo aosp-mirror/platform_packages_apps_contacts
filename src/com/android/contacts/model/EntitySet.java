@@ -16,22 +16,24 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+
+import com.google.android.collect.Lists;
+
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import java.util.ArrayList;
 
@@ -221,6 +223,30 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
             }
         }
         return -1;
+    }
+
+    public ValuesDelta getSuperPrimaryEntry(final String mimeType) {
+        ValuesDelta primary = null;
+        ValuesDelta randomEntry = null;
+        for (EntityDelta delta : this) {
+            final ArrayList<ValuesDelta> mimeEntries = delta.getMimeEntries(mimeType);
+            if (mimeEntries == null) return null;
+
+            for (ValuesDelta entry : mimeEntries) {
+                if (entry.isSuperPrimary()) {
+                    return entry;
+                } else if (primary == null && entry.isPrimary()) {
+                    primary = entry;
+                } else if (randomEntry == null) {
+                    randomEntry = entry;
+                }
+            }
+        }
+        // When no direct super primary, return something
+        if (primary != null) {
+            return primary;
+        }
+        return randomEntry;
     }
 
     /** {@inheritDoc} */

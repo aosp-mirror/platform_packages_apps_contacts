@@ -17,14 +17,13 @@
 package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
+import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.Editor;
-import com.android.contacts.model.Editor.EditorListener;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -152,6 +151,9 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     public void onFieldChanged(String column, String value) {
         // Field changes are saved directly
         mEntry.put(column, value);
+        if (mListener != null) {
+            mListener.onRequest(EditorListener.FIELD_CHANGED);
+        }
     }
 
     private void rebuildValues() {
