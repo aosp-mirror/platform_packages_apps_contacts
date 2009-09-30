@@ -17,7 +17,7 @@
 <!-- looks like Widget.TextView.ListSeparator -->
 <TextView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/account_name"
-    android:background="@drawable/section_dark"
+    android:background="@drawable/bg_infobar_new"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/account_name_height"
     android:layout_below="@+id/tab_scroll_view"

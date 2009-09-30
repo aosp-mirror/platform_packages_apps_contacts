@@ -947,8 +947,11 @@ public class ViewContactActivity extends Activity
                     continue;
                 }
 
+                final ContactsSource source = sources.getInflatedSource(accountType,
+                        ContactsSource.LEVEL_SUMMARY);
                 final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
-                mAccountName.setText(getString(R.string.account_name_format, accountName));
+                mAccountName.setText(getString(R.string.account_name_format,
+                        source.getDisplayLabel(this), accountName));
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();

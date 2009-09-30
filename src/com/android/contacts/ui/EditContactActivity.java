@@ -402,7 +402,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         final ContactsSource source = sources.getInflatedSource(accountType,
                 ContactsSource.LEVEL_CONSTRAINTS);
 
-        mAccountName.setText(getString(R.string.account_name_format, accountName));
+        mAccountName.setText(getString(R.string.account_name_format,
+                source.getDisplayLabel(this), accountName));
+        mAccountName.setVisibility(View.VISIBLE);
 
         // Assign editor state based on entity and source
         mEditor.setState(entity, source);
