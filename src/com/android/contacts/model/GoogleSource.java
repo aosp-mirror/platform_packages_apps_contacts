@@ -41,7 +41,7 @@ import android.provider.ContactsContract.Contacts.Data;
 import java.util.ArrayList;
 
 public class GoogleSource extends FallbackSource {
-    public static final String ACCOUNT_TYPE = "com.google.GAIA";
+    public static final String ACCOUNT_TYPE = "com.google";
     public GoogleSource(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
