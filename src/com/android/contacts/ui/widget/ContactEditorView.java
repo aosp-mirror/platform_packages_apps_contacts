@@ -35,7 +35,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -205,6 +204,9 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
                 parent.addView(section);
             }
         }
+        final int secondaryVisibility = mSecondary.getChildCount() > 0 ? View.VISIBLE : View.GONE;
+        mSecondary.setVisibility(secondaryVisibility);
+        mSecondaryHeader.setVisibility(secondaryVisibility);
     }
 
     /**
