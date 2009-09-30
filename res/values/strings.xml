@@ -772,7 +772,7 @@
     <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
 
     <!-- Dialog message shown when searching VCard data failed. -->
-    <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason: "I/O Error" -->
     <string name="fail_reason_io_error">I/O Error</string>
