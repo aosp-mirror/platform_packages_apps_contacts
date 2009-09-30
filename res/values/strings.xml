@@ -144,8 +144,11 @@
     <!-- Info blurb on the Join Contact screen -->
     <string name="blurbJoinContactDataWith">Select the contact you want to join with <xliff:g id="name">%s</xliff:g>.</string>
 
+    <!-- An item in the Join Contact activity that opens up the full contact A-Z list -->
+    <string name="showAllContactsJoinItem">Show all contacts</string>
+
     <!-- List separator for the Join Contact list: Suggestions -->
-    <string name="separatorJoinAggregateSuggestions">Suggestions</string>
+    <string name="separatorJoinAggregateSuggestions">Suggested contacts</string>
 
     <!-- List separator for the Join Contact list: A-Z -->
     <string name="separatorJoinAggregateAll">All contacts</string>
