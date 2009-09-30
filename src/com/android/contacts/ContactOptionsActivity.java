@@ -52,13 +52,13 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
     private TextView mRingtoneTitle;
     private CheckBox mSendToVoicemailCheckbox;
 
-    private Uri mAggregateUri;
+    private Uri mLookupUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAggregateUri = getIntent().getData();
+        mLookupUri = getIntent().getData();
 
         setContentView(R.layout.contact_options);
 
@@ -176,7 +176,7 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
 
     private boolean loadData() {
         Cursor c =
-                getContentResolver().query(mAggregateUri, AGGREGATES_PROJECTION, null, null, null);
+                getContentResolver().query(mLookupUri, AGGREGATES_PROJECTION, null, null, null);
         try {
             if (!c.moveToFirst()) {
                 return false;
@@ -195,7 +195,7 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
         ContentValues values = new ContentValues(2);
         values.put(Contacts.CUSTOM_RINGTONE, mCustomRingtone);
         values.put(Contacts.SEND_TO_VOICEMAIL, mSendToVoicemail);
-        getContentResolver().update(mAggregateUri, values, null, null);
+        getContentResolver().update(mLookupUri, values, null, null);
     }
 }
 

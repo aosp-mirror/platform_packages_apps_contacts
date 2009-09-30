@@ -108,7 +108,6 @@ public class ViewContactActivity extends Activity
     private static final String SPLIT_MIMETYPE = "split_mimetype";
 
     protected Uri mLookupUri;
-    private Uri mUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
@@ -174,7 +173,7 @@ public class ViewContactActivity extends Activity
 
     public void onClick(DialogInterface dialog, int which) {
         closeCursor();
-        getContentResolver().delete(mUri, null, null);
+        getContentResolver().delete(mLookupUri, null, null);
         finish();
     }
 
@@ -492,6 +491,14 @@ public class ViewContactActivity extends Activity
         // Empty
     }
 
+    private long getRefreshedContactId() {
+        Uri freshContactUri = Contacts.lookupContact(getContentResolver(), mLookupUri);
+        if (freshContactUri != null) {
+            return ContentUris.parseId(freshContactUri);
+        }
+        return -1;
+    }
+
     private ArrayList<Entity> readEntities(EntityIterator iterator) {
         ArrayList<Entity> entities = new ArrayList<Entity>();
         try {
@@ -507,15 +514,15 @@ public class ViewContactActivity extends Activity
     private void startEntityQuery() {
         closeCursor();
 
-        mUri = null;
+        Uri uri = null;
         if (mLookupUri != null) {
             mLookupUri = Contacts.getLookupUri(getContentResolver(), mLookupUri);
             if (mLookupUri != null) {
-                mUri = Contacts.lookupContact(getContentResolver(), mLookupUri);
+                uri = Contacts.lookupContact(getContentResolver(), mLookupUri);
             }
         }
 
-        if (mUri == null) {
+        if (uri == null) {
 
             // TODO either figure out a way to prevent a flash of black background or
             // use some other UI than a toast
@@ -525,11 +532,11 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        mCursor = mResolver.query(Uri.withAppendedPath(mUri, Contacts.Data.CONTENT_DIRECTORY),
+        mCursor = mResolver.query(Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY),
                 new String[] {Contacts.DISPLAY_NAME}, null, null, null);
         mCursor.registerContentObserver(mObserver);
 
-        long contactId = ContentUris.parseId(mUri);
+        long contactId = ContentUris.parseId(uri);
         mHandler.startQueryEntities(TOKEN_QUERY, null,
                 RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
 
@@ -725,54 +732,22 @@ public class ViewContactActivity extends Activity
     }
 
     /**
-     * Shows a dialog that contains a list of all constituent contacts in this aggregate.
-     * The user picks a contact to be split into its own aggregate or clicks Cancel.
-     */
-    private void showSplitAggregateDialog() {
-        // Wrap this dialog in a specific theme so that list items have correct text color.
-        final ContextThemeWrapper dialogContext =
-                new ContextThemeWrapper(this, android.R.style.Theme_Light);
-        AlertDialog.Builder builder =
-                new AlertDialog.Builder(dialogContext);
-        builder.setTitle(getString(R.string.splitAggregate_title));
-
-        final SplitAggregateView view = new SplitAggregateView(dialogContext, mUri);
-        builder.setView(view);
-
-        builder.setInverseBackgroundForced(true);
-        builder.setCancelable(true);
-        builder.setNegativeButton(android.R.string.cancel,
-                new OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        final AlertDialog dialog = builder.create();
-
-        view.setOnContactSelectedListener(new OnContactSelectedListener() {
-            public void onContactSelected(long rawContactId) {
-                dialog.dismiss();
-                splitContact(rawContactId);
-            }
-        });
-
-        dialog.show();
-    }
-
-    /**
      * Shows a list of aggregates that can be joined into the currently viewed aggregate.
      */
     public void showJoinAggregateActivity() {
-        String displayName = null;
-        if (mCursor.moveToFirst()) {
-            displayName = mCursor.getString(0);
+        long freshId = getRefreshedContactId();
+        if (freshId > 0) {
+            String displayName = null;
+            if (mCursor.moveToFirst()) {
+                displayName = mCursor.getString(0);
+            }
+            Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
+            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, freshId);
+            if (displayName != null) {
+                intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
+            }
+            startActivityForResult(intent, REQUEST_JOIN_CONTACT);
         }
-        Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
-        intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, ContentUris.parseId(mUri));
-        if (displayName != null) {
-            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
-        }
-        startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 
     @Override
@@ -831,7 +806,7 @@ public class ViewContactActivity extends Activity
 
     private void showOptionsActivity() {
         final Intent intent = new Intent(this, ContactOptionsActivity.class);
-        intent.setData(mUri);
+        intent.setData(mLookupUri);
         startActivity(intent);
     }
 
@@ -870,8 +845,13 @@ public class ViewContactActivity extends Activity
                     }
                 } else if (mNumPhoneNumbers != 0) {
                     // There isn't anything selected, call the default number
-                    Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, mUri);
-                    startActivity(intent);
+                    long freshContactId = getRefreshedContactId();
+                    if (freshContactId > 0) {
+                        Uri hardContacUri = ContentUris.withAppendedId(
+                                Contacts.CONTENT_URI, freshContactId);
+                        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, hardContacUri);
+                        startActivity(intent);
+                    }
                 }
                 return true;
             }
@@ -939,7 +919,7 @@ public class ViewContactActivity extends Activity
         Sources sources = Sources.getInstance(this);
 
         // Build up method entries
-        if (mUri != null) {
+        if (mLookupUri != null) {
             for (Entity entity: mEntities) {
                 final ContentValues entValues = entity.getEntityValues();
                 final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
