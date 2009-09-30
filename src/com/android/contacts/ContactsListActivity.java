@@ -2138,7 +2138,8 @@ public class ContactsListActivity extends ListActivity implements
                         parent, false);
                 int stringId = mDisplayOnlyPhones ? R.string.listTotalPhoneContacts
                         : R.string.listTotalAllContacts;
-                totalContacts.setText(getString(stringId, getCount()));
+
+                totalContacts.setText(getString(stringId, getRealCount()));
                 return totalContacts;
             }
 
@@ -2570,17 +2571,31 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public int getCount() {
+            if (!mDataValid) {
+                return 0;
+            }
+            int superCount = super.getCount();
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                superCount++;
+            }
             if (mSuggestionsCursorCount != 0) {
                 // When showing suggestions, we have 2 additional list items: the "Suggestions"
                 // and "All contacts" headers.
-                return mSuggestionsCursorCount + super.getCount() + 2;
+                return mSuggestionsCursorCount + superCount + 2;
             }
             else if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
                 // When showing strequent list, we have an additional list item - the separator.
-                return super.getCount() + 1;
+                return superCount + 1;
             } else {
-                return super.getCount();
+                return superCount;
             }
+        }
+
+        /**
+         * Gets the actual count of contacts and excludes all the headers.
+         */
+        public int getRealCount() {
+            return super.getCount();
         }
 
         private int getRealPosition(int pos) {
