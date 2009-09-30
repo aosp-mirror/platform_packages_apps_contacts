@@ -22,6 +22,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.content.Context;
@@ -34,6 +35,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,8 +175,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
-	mPhoto.setEnabled(!source.readOnly);
-	mName.setEnabled(!source.readOnly);
+        mPhoto.setEnabled(!source.readOnly);
+        mName.setEnabled(!source.readOnly);
 
         mReadOnly.setVisibility(source.readOnly ? View.VISIBLE : View.GONE);
 
@@ -203,5 +205,12 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
                 parent.addView(section);
             }
         }
+    }
+
+    /**
+     * Sets the {@link EditorListener} on the name field
+     */
+    public void setNameEditorListener(EditorListener listener) {
+        mName.setEditorListener(listener);
     }
 }
