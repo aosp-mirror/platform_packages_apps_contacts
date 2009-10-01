@@ -299,7 +299,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             } else if (isUpdate()) {
                 // When has changes and "before" exists, then "update"
                 final Builder builder = ContentProviderOperation
-                        .newUpdate(mUngrouped ? Settings.CONTENT_URI : Groups.CONTENT_URI);
+                        .newUpdate(mUngrouped ? Settings.CONTENT_URI : addCallerIsSyncAdapterParameter(Groups.CONTENT_URI));
                 if (mUngrouped) {
                     builder.withSelection(Settings.ACCOUNT_NAME + "=? AND " + Settings.ACCOUNT_TYPE
                             + "=?", new String[] {
@@ -321,6 +321,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
                 throw new IllegalStateException("Unexpected delete or insert");
             }
         }
+    }
+
+    private static Uri addCallerIsSyncAdapterParameter(Uri uri) {
+        return uri.buildUpon()
+	        .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+		.build();
     }
 
     /**
