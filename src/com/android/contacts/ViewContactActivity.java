@@ -17,8 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.Collapser.Collapsible;
-import com.android.contacts.ScrollingTabWidget.OnTabSelectionChangedListener;
-import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -40,7 +38,6 @@ import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Entity.NamedContentValues;
 import android.content.res.Resources;
 import android.database.ContentObserver;
@@ -62,9 +59,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.ContextMenu;
-import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,9 +69,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -551,7 +543,7 @@ public class ViewContactActivity extends Activity
         } else if (requestCode == REQUEST_EDIT_CONTACT) {
             if (resultCode == EditContactActivity.RESULT_CLOSE_VIEW_ACTIVITY) {
                 finish();
-            } else {
+            } else if (resultCode == Activity.RESULT_OK) {
                 mLookupUri = intent.getData();
                 if (mLookupUri == null) {
                     finish();

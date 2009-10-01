@@ -272,4 +272,14 @@ public class ExchangeSource extends FallbackSource {
 
         return kind;
     }
+
+    @Override
+    public int getHeaderColor(Context context) {
+        return 0xff876b47;
+    }
+
+    @Override
+    public int getSideBarColor(Context context) {
+        return 0xffc6ab8c;
+    }
 }

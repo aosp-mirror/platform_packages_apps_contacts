@@ -621,4 +621,14 @@ public class FallbackSource extends ContactsSource {
             }
         }
     }
+
+    @Override
+    public int getHeaderColor(Context context) {
+        return 0xff7f93bc;
+    }
+
+    @Override
+    public int getSideBarColor(Context context) {
+        return 0xffbdc7b8;
+    }
 }
