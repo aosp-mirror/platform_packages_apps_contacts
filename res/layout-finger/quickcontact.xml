@@ -18,7 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fasttrack_drop_shadow">
+    android:background="@drawable/quickcontact_drop_shadow">
 
     <FrameLayout
         android:id="@+id/header"
@@ -31,21 +31,21 @@
             android:inflatedId="@+id/header_small"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout="@layout/fasttrack_header_small" />
+            android:layout="@layout/quickcontact_header_small" />
 
         <ViewStub
             android:id="@+id/header_medium"
             android:inflatedId="@+id/header_medium"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout="@layout/fasttrack_header_med" />
+            android:layout="@layout/quickcontact_header_med" />
 
         <ViewStub
             android:id="@+id/header_large"
             android:inflatedId="@+id/header_large"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout="@layout/fasttrack_header_large" />
+            android:layout="@layout/quickcontact_header_large" />
 
     </FrameLayout>
 
@@ -55,11 +55,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:fadingEdgeLength="0dip"
-        android:background="@drawable/fasttrack_slider_background"
+        android:background="@drawable/quickcontact_slider_background"
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/fasttrack"
+            android:id="@+id/quickcontact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="4dip"
@@ -69,12 +69,12 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fasttrack_slider_grip_left" />
+                android:src="@drawable/quickcontact_slider_grip_left" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fasttrack_slider_grip_right" />
+                android:src="@drawable/quickcontact_slider_grip_right" />
 
         </LinearLayout>
 
@@ -85,14 +85,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:background="@drawable/fasttrack_bottom_frame" />
+        android:background="@drawable/quickcontact_bottom_frame" />
 
     <LinearLayout
         android:id="@+id/footer_disambig"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:background="@drawable/fasttrack_disambig_bottom_bg"
+        android:background="@drawable/quickcontact_disambig_bottom_bg"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -101,8 +101,8 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
 	    android:layout_weight="1"
-            android:background="@color/fasttrack_disambig"
-            android:divider="@drawable/fasttrack_disambig_divider"
+            android:background="@color/quickcontact_disambig"
+            android:divider="@drawable/quickcontact_disambig_divider"
             android:cacheColorHint="@null" />
 
         <CheckBox
@@ -114,9 +114,9 @@
             android:minHeight="60dip"
             android:textColor="#f000"
             android:textStyle="bold"
-            android:text="@string/fasttrack_remember_choice"
+            android:text="@string/quickcontact_remember_choice"
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
-            android:button="@drawable/fasttrack_disambig_checkbox" />
+            android:button="@drawable/quickcontact_disambig_checkbox" />
 
     </LinearLayout>
 
@@ -124,7 +124,7 @@
         android:id="@+id/arrow_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/fasttrack_arrow_up" />
+        android:src="@drawable/quickcontact_arrow_up" />
 
     <ImageView
         android:id="@+id/arrow_down"
@@ -132,6 +132,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-1dip"
         android:layout_below="@id/footer"
-        android:src="@drawable/fasttrack_arrow_down" />
+        android:src="@drawable/quickcontact_arrow_down" />
 
 </RelativeLayout>

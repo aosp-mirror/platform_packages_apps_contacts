@@ -14,10 +14,18 @@
      limitations under the License.
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header_small"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/fasttrack_top_frame"
-    android:orientation="horizontal" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true">
+
+    <item android:state_checked="true"
+        android:drawable="@drawable/quickcontact_slider_btn_on" />
+    <item android:state_window_focused="false"
+        android:drawable="@drawable/quickcontact_slider_btn_normal" />
+    <item android:state_pressed="true"
+        android:drawable="@drawable/quickcontact_slider_btn_pressed" />
+    <item android:state_focused="true"
+        android:drawable="@drawable/quickcontact_slider_btn_selected" />
+    <item
+        android:drawable="@drawable/quickcontact_slider_btn_normal" />
+
+</selector>

@@ -21,22 +21,23 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.FastTrack;
+import android.provider.ContactsContract.QuickContact;
 
 /**
- * Stub translucent activity that just shows {@link FastTrackWindow} floating
+ * Stub translucent activity that just shows {@link QuickContactWindow} floating
  * above the caller. This temporary hack should eventually be replaced with
  * direct framework support.
  */
-public final class FastTrackActivity extends Activity implements FastTrackWindow.OnDismissListener {
-    private FastTrackWindow mFastTrack;
+public final class QuickContactActivity extends Activity implements
+        QuickContactWindow.OnDismissListener {
+    private QuickContactWindow mQuickContact;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        if (FastTrackWindow.TRACE_LAUNCH) {
-            android.os.Debug.startMethodTracing(FastTrackWindow.TRACE_TAG);
+        if (QuickContactWindow.TRACE_LAUNCH) {
+            android.os.Debug.startMethodTracing(QuickContactWindow.TRACE_TAG);
         }
 
         // Use our local window token for now
@@ -45,22 +46,22 @@ public final class FastTrackActivity extends Activity implements FastTrackWindow
         final Bundle extras = intent.getExtras();
 
         // Read requested parameters for displaying
-        final Rect target = (Rect)extras.getParcelable(FastTrack.EXTRA_TARGET_RECT);
-        final int mode = extras.getInt(FastTrack.EXTRA_MODE, FastTrack.MODE_MEDIUM);
-        final String[] excludeMimes = extras.getStringArray(FastTrack.EXTRA_EXCLUDE_MIMES);
+        final Rect target = (Rect)extras.getParcelable(QuickContact.EXTRA_TARGET_RECT);
+        final int mode = extras.getInt(QuickContact.EXTRA_MODE, QuickContact.MODE_MEDIUM);
+        final String[] excludeMimes = extras.getStringArray(QuickContact.EXTRA_EXCLUDE_MIMES);
 
-        mFastTrack = new FastTrackWindow(this, this);
-        mFastTrack.show(lookupUri, target, mode, excludeMimes);
+        mQuickContact = new QuickContactWindow(this, this);
+        mQuickContact.show(lookupUri, target, mode, excludeMimes);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mFastTrack.dismiss();
+        mQuickContact.dismiss();
     }
 
     /** {@inheritDoc} */
-    public void onDismiss(FastTrackWindow dialog) {
+    public void onDismiss(QuickContactWindow dialog) {
         // When dismissed, finish this activity
         finish();
     }
