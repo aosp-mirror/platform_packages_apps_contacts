@@ -954,6 +954,8 @@
     <string name="organizationLabelsGroup">Organization</string>
     <!-- Header that expands to list all website types when editing a website of a contact -->
     <string name="websiteLabelsGroup">Website</string>
+    <!-- Header that expands to list all event types when editing an event of a contact -->
+    <string name="eventLabelsGroup">Event</string>
 
     <!-- Single-character overlay for home phone numbers when creating desktop shortcuts -->
     <string name="type_short_home">H</string>
@@ -1165,7 +1167,7 @@
     <string name="split_label">Split</string>
     <!-- The explanation of what "split" will do. This needs word-smithing. -->
     <string name="split_explanation">Make this data its own contact.</string>
-    
+
     <!-- Formatting string for account name -->
     <string name="account_name_format">From <xliff:g id="source" example="Gmail">%1$s</xliff:g> account: <xliff:g id="account" example="user@gmail.com">%2$s</xliff:g></string>
 

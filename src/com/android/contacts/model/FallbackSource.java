@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -74,6 +75,7 @@ public class FallbackSource extends ContactsSource {
         inflatePhoto(inflateLevel);
         inflateNote(inflateLevel);
         inflateWebsite(inflateLevel);
+        inflateEvent(inflateLevel);
 
         setInflatedLevel(inflateLevel);
 
@@ -376,6 +378,19 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
+    protected DataKind inflateEvent(int inflateLevel) {
+        DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
+        if (kind == null) {
+            kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
+                    R.string.eventLabelsGroup, -1, 150, false));
+            kind.secondary = true;
+            kind.actionHeader = new EventActionInflater();
+            kind.actionBody = new SimpleInflater(Event.START_DATE);
+        }
+
+        return kind;
+    }
+
     /**
      * Simple inflater that assumes a string resource has a "%s" that will be
      * filled from the given column.
@@ -555,6 +570,13 @@ public class FallbackSource extends ContactsSource {
                 case Email.TYPE_MOBILE: return R.string.email_mobile;
                 default: return R.string.email_custom;
             }
+        }
+    }
+
+    public static class EventActionInflater extends CommonInflater {
+        @Override
+        protected int getTypeLabelResource(Integer type) {
+            return Event.getTypeResource(type);
         }
     }
 

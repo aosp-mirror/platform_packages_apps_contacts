@@ -61,6 +61,7 @@ public class GoogleSource extends FallbackSource {
         inflatePhoto(inflateLevel);
         inflateNote(inflateLevel);
         inflateWebsite(inflateLevel);
+        inflateEvent(inflateLevel);
 
         // TODO: GOOGLE: GROUPMEMBERSHIP
 
