@@ -86,6 +86,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -116,8 +117,13 @@ import java.util.Locale;
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
-public final class ContactsListActivity extends ListActivity implements
+public class ContactsListActivity extends ListActivity implements
         View.OnCreateContextMenuListener, View.OnClickListener {
+
+    public static class JoinContactActivity extends ContactsListActivity {
+
+    }
+
     private static final String TAG = "ContactsListActivity";
 
     private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
@@ -382,8 +388,6 @@ public final class ContactsListActivity extends ListActivity implements
         final String action = intent.getAction();
         mMode = MODE_UNKNOWN;
 
-        setContentView(R.layout.contacts_list_content);
-
         Log.i(TAG, "Called with action: " + action);
         if (UI.LIST_DEFAULT.equals(action)) {
             mMode = MODE_DEFAULT;
@@ -529,6 +533,7 @@ public final class ContactsListActivity extends ListActivity implements
             return;
         }
 
+
         if (JOIN_AGGREGATE.equals(action)) {
             mMode = MODE_JOIN_CONTACT;
             mQueryAggregateId = intent.getLongExtra(EXTRA_AGGREGATE_ID, -1);
@@ -538,16 +543,21 @@ public final class ContactsListActivity extends ListActivity implements
                 setResult(RESULT_CANCELED);
                 finish();
             }
-
-            setTitle(R.string.titleJoinAggregate);
         }
 
         if (mMode == MODE_UNKNOWN) {
             mMode = MODE_DEFAULT;
         }
 
+        if (mMode == MODE_JOIN_CONTACT) {
+            setContentView(R.layout.contacts_list_content_join);
+        } else {
+            setContentView(R.layout.contacts_list_content);
+        }
+
         // Setup the UI
         final ListView list = getListView();
+
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
         list.setDividerHeight(0);
@@ -623,6 +633,10 @@ public final class ContactsListActivity extends ListActivity implements
     }
 
     private void setEmptyText() {
+        if (mMode == MODE_JOIN_CONTACT) {
+            return;
+        }
+
         TextView empty = (TextView) findViewById(R.id.emptyText);
         int gravity = Gravity.NO_GRAVITY;
 
@@ -747,6 +761,7 @@ public final class ContactsListActivity extends ListActivity implements
         // be there and show up while the new query is happening. After the async query finished
         // in response to onRestart() setLoading(false) will be called.
         mAdapter.setLoading(true);
+        mAdapter.setSuggestionsCursor(null);
         mAdapter.changeCursor(null);
         mAdapter.clearImageFetching();
 
