@@ -358,8 +358,8 @@ public class ImportVCardActivity extends Activity {
                     errorFileNameList.add(canonicalPath);
                 } else {
                     mHandler.post(new DialogDisplayer(
-                            getString(R.string.fail_reason_io_error,
-                                    e.getMessage())));
+                            getString(R.string.fail_reason_io_error) +
+                                    ": " + e.getLocalizedMessage()));
                 }
                 return false;
             } catch (VCardNotSupportedException e) {

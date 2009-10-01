@@ -772,10 +772,10 @@
     <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
 
     <!-- Dialog message shown when searching VCard data failed. -->
-    <string name="scanning_sdcard_failed_message">Scanning SD card failed</string>
+    <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason: "I/O Error" -->
-    <string name="fail_reason_io_error">I/O Error (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <string name="fail_reason_io_error">I/O Error</string>
 
     <!-- The failed reason: "Failed to parse VCard data" -->
     <string name="fail_reason_vcard_parse_error">Failed to parse vCard for unexpected reason</string>
@@ -784,7 +784,7 @@
     <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
     <!-- The failed reason: "There is no VCard file" -->
-    <string name="fail_reason_no_vcard_file">No vCard file found on SD dard</string>
+    <string name="fail_reason_no_vcard_file">No vCard file found on the SD card</string>
 
     <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
     <string name="fail_reason_no_vcard_entry">No valid vCard entry found for your selection</string>
