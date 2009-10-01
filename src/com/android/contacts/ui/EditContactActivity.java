@@ -16,53 +16,6 @@
 
 package com.android.contacts.ui;
 
-import android.accounts.Account;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Entity;
-import android.content.Intent;
-import android.content.OperationApplicationException;
-import android.content.ContentProviderOperation.Builder;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.RemoteException;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.AggregationExceptions;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.provider.ContactsContract.Contacts.Data;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
@@ -82,15 +35,57 @@ import com.android.contacts.util.WeakAsyncTask;
 import com.android.internal.widget.ContactHeaderWidget;
 import com.google.android.collect.Lists;
 
+import android.accounts.Account;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Entity;
+import android.content.Intent;
+import android.content.OperationApplicationException;
+import android.content.ContentProviderOperation.Builder;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.RemoteException;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.AggregationExceptions;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Contacts.Data;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
  * Activity for editing or inserting a contact.
  */
-public final class EditContactActivity extends Activity implements View.OnClickListener,
-        ScrollingTabWidget.OnTabSelectionChangedListener,
-        ContactHeaderWidget.ContactHeaderListener, EditorListener {
+public final class EditContactActivity extends Activity
+        implements View.OnClickListener, EditorListener {
     private static final String TAG = "EditContactActivity";
 
     /** The launch code when picking a photo and the raw data is returned */
@@ -100,7 +95,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final int REQUEST_JOIN_CONTACT = 3022;
 
     private static final String KEY_EDIT_STATE = "state";
-    private static final String KEY_SELECTED_RAW_CONTACT = "selected";
 
     /** The result code when view activity should close after edit returns */
     public static final int RESULT_CLOSE_VIEW_ACTIVITY = 777;
@@ -110,46 +104,27 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public static final int SAVE_MODE_JOIN = 2;
 
 
-    private String mQuerySelection;
+    String mQuerySelection;
 
-    private ScrollingTabWidget mTabWidget;
-    private ContactHeaderWidget mHeader;
-    private TextView mAccountName;
-
-    private ContactEditorView mEditor;
-
-    private EntitySet mState;
     private long mContactIdForJoin;
+    EntitySet mState;
 
+    /** The linear layout holding the ContactEditorViews */
+    LinearLayout mContent;
+    
     private ArrayList<Dialog> mManagedDialogs = Lists.newArrayList();
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        final Context context = this;
-        final LayoutInflater inflater = this.getLayoutInflater();
-
         final Intent intent = getIntent();
         final String action = intent.getAction();
-        final Bundle extras = intent.getExtras();
 
         setContentView(R.layout.act_edit);
 
-        // Header bar is filled later after queries finish
-        mHeader = (ContactHeaderWidget)this.findViewById(R.id.contact_header_widget);
-        mHeader.setContactHeaderListener(this);
-        mHeader.showStar(false);
-        mHeader.enableClickListeners();
-
-        mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
-        mTabWidget.setTabSelectionListener(this);
-        mAccountName = (TextView)mTabWidget.findViewById(R.id.account_name);
-
         // Build editor and listen for photo requests
-        mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
-        mEditor.getPhotoEditor().setEditorListener(this);
-        mEditor.setNameEditorListener(this);
+        mContent = (LinearLayout) findViewById(R.id.editors);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -160,12 +135,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
-            mHeader.showStar(true);
-            mHeader.setContactUri(intent.getData(), false);
         } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
             // Trigger dialog to pick account type
             doAddAction();
-            mHeader.showStar(false);
         }
     }
 
@@ -227,8 +199,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         @Override
         protected void onPostExecute(EditContactActivity target, Void result) {
             // Bind UI to new background state
-            target.bindTabs();
-            target.bindHeader();
+            target.bindEditors();
         }
     }
 
@@ -239,7 +210,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         if (hasValidState()) {
             // Store entities with modifications
             outState.putParcelable(KEY_EDIT_STATE, mState);
-            outState.putLong(KEY_SELECTED_RAW_CONTACT, getSelectedRawContactId());
         }
 
         super.onSaveInstanceState(outState);
@@ -250,15 +220,8 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Read modifications from instance
         mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
 
-        bindTabs();
-        bindHeader();
+        bindEditors();
 
-        if (hasValidState()) {
-            final Long selectedId = savedInstanceState.getLong(KEY_SELECTED_RAW_CONTACT);
-            setSelectedRawContactId(selectedId);
-        }
-
-        // Restore selected tab and any focus
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -285,44 +248,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /**
      * Show this {@link Dialog} and manage with the {@link Activity}.
      */
-    private void showAndManageDialog(Dialog dialog) {
+    void showAndManageDialog(Dialog dialog) {
         startManagingDialog(dialog);
         dialog.show();
-    }
-
-    /**
-     * Return the {@link RawContacts#_ID} of the currently selected tab.
-     */
-    protected Long getSelectedRawContactId() {
-        final int tabIndex = mTabWidget.getCurrentTab();
-        return this.mTabRawContacts.get(tabIndex);
-    }
-
-    /**
-     * Return the {@link EntityDelta} for the currently selected tab.
-     */
-    protected EntityDelta getSelectedEntityDelta() {
-        final Long rawContactId = getSelectedRawContactId();
-        return mState.getByRawContactId(rawContactId);
-    }
-
-    /**
-     * Set the selected tab based on the given {@link RawContacts#_ID}.
-     */
-    protected void setSelectedRawContactId(Long rawContactId) {
-        int tabIndex = 0;
-
-        // Find index of requested contact
-        final int size = mTabRawContacts.size();
-        for (int i = 0; i < size; i++) {
-            if (mTabRawContacts.valueAt(i) == rawContactId) {
-                tabIndex = i;
-                break;
-            }
-        }
-
-        mTabWidget.setCurrentTab(tabIndex);
-        this.onTabSelectionChanged(tabIndex, false);
     }
 
     /**
@@ -336,128 +264,46 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
 
     /**
-     * Map from {@link #mTabWidget} indexes to {@link RawContacts#_ID}, usually
-     * used when mapping to {@link #mState}.
+     * An array of the raw contacts in the order they appear in the list.
      */
-    private SparseArray<Long> mTabRawContacts = new SparseArray<Long>();
-
+    private EntityDelta[] mEntities;
 
     /**
-     * Rebuild tabs to match our underlying {@link #mState} object, usually
+     * Rebuild the editors to match our underlying {@link #mState} object, usually
      * called once we've parsed {@link Entity} data or have inserted a new
      * {@link RawContacts}.
      */
-    protected void bindTabs() {
+    protected void bindEditors() {
         if (!hasValidState()) return;
 
+        final LayoutInflater inflater = (LayoutInflater) getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
         final Sources sources = Sources.getInstance(this);
-        final Long selectedRawContactId = this.getSelectedRawContactId();
 
-        // Remove any existing tabs and rebuild any visible
-        mTabWidget.removeAllTabs();
-        mTabRawContacts.clear();
-        for (EntityDelta entity : mState) {
+        // Remove any existing editors and rebuild any visible
+
+        mContent.removeAllViews();
+        mEntities = new EntityDelta[mState.size()];
+        int size = mState.size();
+        for (int i = 0; i < size; i++) {
+            // TODO ensure proper ordering of entities in the list
+            EntityDelta entity = mState.get(i);
             final ValuesDelta values = entity.getValues();
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final Long rawContactId = values.getAsLong(RawContacts._ID);
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
 
-            final int tabIndex = mTabWidget.getTabCount();
-            final View tabView = ContactsUtils.createTabIndicatorView(
-                    mTabWidget.getTabParent(), source);
-            mTabWidget.addTab(tabView);
-            mTabRawContacts.put(tabIndex, rawContactId);
-        }
-
-        final boolean hasActiveTabs = mTabWidget.getTabCount() > 0;
-        if (hasActiveTabs) {
-            // Focus on last selected contact
-            this.setSelectedRawContactId(selectedRawContactId);
-        } else {
-            // Nothing remains to edit, save and bail entirely
-            this.doSaveAction(SAVE_MODE_DEFAULT);
+            ContactEditorView editor = (ContactEditorView) inflater.inflate(
+                    R.layout.item_contact_editor, mContent, false);
+            mContent.addView(editor);
+            editor.setState(entity, source);
+            mEntities[i] = entity;
         }
 
         // Show editor now that we've loaded state
-        mEditor.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * Bind our header based on {@link #mState}, which include any edits.
-     * Usually called once {@link Entity} data has been loaded, or after a
-     * primary {@link Data} change.
-     */
-    protected void bindHeader() {
-        if (!hasValidState()) return;
-
-        boolean starred = false;
-
-        ValuesDelta photoDelta = mState.getSuperPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-        if (photoDelta != null) {
-            final byte[] photoBytes = photoDelta.getAsByteArray(Photo.PHOTO);
-            if (photoBytes != null) {
-                Bitmap photo = BitmapFactory.decodeByteArray(photoBytes, 0,
-                        photoBytes.length);
-                mHeader.setPhoto(photo);
-            }
-        }
-
-        ValuesDelta nameDelta = mState.getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
-        if (nameDelta != null) {
-            String visibleName = getVisibleName(nameDelta);
-            if (visibleName != null) {
-                mHeader.setDisplayName(visibleName, null);
-            }
-        }
-
-        for (EntityDelta delta : mState) {
-            Long isCurrStarred = delta.getValues().getAsLong(RawContacts.STARRED);
-            starred = starred || (isCurrStarred != null && isCurrStarred != 0);
-        }
-        mHeader.setStared(starred);
-    }
-
-    private static String getVisibleName(ValuesDelta nameDelta) {
-        final String givenName = nameDelta.getAsString(StructuredName.GIVEN_NAME);
-        final String familyName = nameDelta.getAsString(StructuredName.FAMILY_NAME);
-        final boolean hasGiven = !TextUtils.isEmpty(givenName);
-        final boolean hasFamily = !TextUtils.isEmpty(familyName);
-
-        if (hasGiven && hasFamily) {
-            return givenName + " " + familyName;
-        } else if (hasFamily) {
-            return familyName;
-        } else if (hasGiven) {
-            return givenName;
-        } else {
-            return null;
-        }
-    }
-
-    /** {@inheritDoc} */
-    public void onTabSelectionChanged(int tabIndex, boolean clicked) {
-        if (!hasValidState()) return;
-
-        // Find entity and source for selected tab
-        final EntityDelta entity = this.getSelectedEntityDelta();
-        if (entity == null) return;
-
-        final Sources sources = Sources.getInstance(this);
-        final ValuesDelta values = entity.getValues();
-        final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-        final String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        final ContactsSource source = sources.getInflatedSource(accountType,
-                ContactsSource.LEVEL_CONSTRAINTS);
-
-        mAccountName.setText(getString(R.string.account_name_format,
-                source.getDisplayLabel(this), accountName));
-        mAccountName.setVisibility(View.VISIBLE);
-
-        // Assign editor state based on entity and source
-        mEditor.setState(entity, source);
+        mContent.setVisibility(View.VISIBLE);
     }
 
     /** {@inheritDoc} */
@@ -498,12 +344,13 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         switch (requestCode) {
             case PHOTO_PICKED_WITH_DATA: {
+/*
                 // When reaching this point, we've already inflated our tab
                 // state and returned to the last-visible tab.
                 final Bitmap photo = data.getParcelableExtra("data");
                 mEditor.setPhotoBitmap(photo);
-                bindHeader();
                 break;
+*/
             }
 
             case REQUEST_JOIN_CONTACT: {
@@ -525,17 +372,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        final boolean hasPhotoEditor = mEditor.hasPhotoEditor();
-        final boolean hasSetPhoto = mEditor.hasSetPhoto();
-
-        menu.findItem(R.id.menu_photo_add).setVisible(hasPhotoEditor);
-        menu.findItem(R.id.menu_photo_remove).setVisible(hasSetPhoto);
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_done:
@@ -546,10 +382,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 return doAddAction();
             case R.id.menu_delete:
                 return doDeleteAction();
-            case R.id.menu_photo_add:
-                return doPickPhotoAction();
-            case R.id.menu_photo_remove:
-                return doRemovePhotoAction();
             case R.id.menu_split:
                 return doSplitContactAction();
             case R.id.menu_join:
@@ -692,7 +524,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * Saves or creates the contact based on the mode, and if successful
      * finishes the activity.
      */
-    private boolean doSaveAction(int saveMode) {
+    boolean doSaveAction(int saveMode) {
         if (!hasValidState()) return false;
 
         final PersistTask task = new PersistTask(this, saveMode);
@@ -858,17 +690,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         return true;
     }
 
-    /**
-     * Clear any existing photo under the currently selected tab.
-     */
-    public boolean doRemovePhotoAction() {
-        if (!hasValidState()) return false;
-
-        // Remove photo from selected contact
-        mEditor.setPhotoBitmap(null);
-        return true;
-    }
-
     /** {@inheritDoc} */
     public void onDeleted(Editor editor) {
         // Ignore any editor deletes
@@ -884,7 +705,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 break;
             }
             case EditorListener.FIELD_CHANGED: {
-                bindHeader();
                 break;
             }
         }
@@ -976,8 +796,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                     // Update the UI.
                     EditContactActivity target = mTarget.get();
                     if (target != null) {
-                        target.bindTabs();
-                        target.bindHeader();
+                        target.bindEditors();
                     }
                 }
             };
@@ -1061,8 +880,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 // Account was auto-selected on the background thread,
                 // but we need to update the UI still in the
                 // now-current UI thread.
-                target.bindTabs();
-                target.bindHeader();
+                target.bindEditors();
             }
         }
     }
@@ -1076,13 +894,14 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         builder.setMessage(R.string.deleteConfirmation);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                // Mark the currently selected contact for deletion
-                final EntityDelta delta = getSelectedEntityDelta();
-                if (delta == null) return;
-                delta.markDeleted();
+                // Mark all raw contacts for deletion
+                for (EntityDelta delta : mState) {
+                    delta.markDeleted();
+                }
 
-                bindTabs();
-                bindHeader();
+                // Save the deletes
+                doSaveAction(SAVE_MODE_DEFAULT);
+                finish();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, null);
@@ -1138,9 +957,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 final ValuesDelta structuredName = allNames.get(which);
                 structuredName.put(Data.IS_PRIMARY, 1);
                 structuredName.put(Data.IS_SUPER_PRIMARY, 1);
-
-                // Update header based on edited values
-                bindHeader();
             }
         };
 

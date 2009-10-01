@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,60 +14,48 @@
      limitations under the License.
 -->
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:orientation="vertical"
+>
+
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_weight="1"
+        android:fillViewport="true"
+    >
+
+        <LinearLayout android:id="@+id/editors"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+        />
+
+    </ScrollView>
 
     <LinearLayout
-        android:id="@+id/panel"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@android:style/ButtonBar"
+    >
 
-        <com.android.internal.widget.ContactHeaderWidget
-            android:id="@+id/contact_header_widget"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-        <com.android.contacts.ScrollingTabWidget
-            android:id="@+id/tab_widget"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-        <include
-            android:id="@android:id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-            android:fillViewport="true"
-            android:visibility="invisible"
-            layout="@layout/item_contact_editor" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <Button android:id="@+id/btn_done"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="@android:style/ButtonBar">
+            android:layout_weight="1"
+            android:text="@string/menu_done"
+        />
 
-            <Button
-                android:id="@+id/btn_done"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/menu_done" />
-
-            <Button
-                android:id="@+id/btn_discard"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/menu_doNotSave" />
-
-        </LinearLayout>
+        <Button android:id="@+id/btn_discard"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/menu_doNotSave"
+        />
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>
