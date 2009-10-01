@@ -126,7 +126,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
         mTabWidget.setTabSelectionListener(this);
-        mAccountName = (TextView)this.findViewById(R.id.account_name);
+        mAccountName = (TextView)mTabWidget.findViewById(R.id.account_name);
 
         // Build editor and listen for photo requests
         mEditor = (ContactEditorView)this.findViewById(android.R.id.tabcontent);
@@ -403,7 +403,6 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 ContactsSource.LEVEL_CONSTRAINTS);
 
         mAccountName.setText(getString(R.string.account_name_format, accountName));
-        mAccountName.setVisibility(View.VISIBLE);
 
         // Assign editor state based on entity and source
         mEditor.setState(entity, source);

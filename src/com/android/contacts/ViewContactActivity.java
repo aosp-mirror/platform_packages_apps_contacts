@@ -215,9 +215,9 @@ public class ViewContactActivity extends Activity
         mTabWidget.setTabSelectionListener(this);
         mTabWidget.setVisibility(View.GONE);
         mTabsVisible = false;
+        mAccountName = (TextView) mTabWidget.findViewById(R.id.account_name);
 
         mBelowHeader = findViewById(R.id.below_header);
-        mAccountName = (TextView) findViewById(R.id.account_name);
 
         mTabRawContactIdMap = new SparseArray<Long>();
 
@@ -397,12 +397,14 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        float tabHeight = getResources().getDimension(R.dimen.tab_height);
+        final Resources resources = getResources();
+        final float tabHeight = resources.getDimension(R.dimen.tab_height)
+            + resources.getDimension(R.dimen.account_name_height);
         if (show) {
             TranslateAnimation showAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, -tabHeight, Animation.ABSOLUTE, 0);
-            showAnimation.setDuration(getResources().getInteger(
+            showAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
 
             showAnimation.setAnimationListener(new AnimationListener() {
@@ -428,7 +430,7 @@ public class ViewContactActivity extends Activity
             TranslateAnimation hideTabsAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, -tabHeight);
-            hideTabsAnimation.setDuration(getResources().getInteger(
+            hideTabsAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
             hideTabsAnimation.setAnimationListener(new AnimationListener() {
                 public void onAnimationEnd(Animation animation) {
@@ -446,7 +448,7 @@ public class ViewContactActivity extends Activity
             TranslateAnimation hideListAnimation = new TranslateAnimation(
                     Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
                     Animation.ABSOLUTE, tabHeight, Animation.ABSOLUTE, 0);
-            hideListAnimation.setDuration(getResources().getInteger(
+            hideListAnimation.setDuration(resources.getInteger(
                     android.R.integer.config_longAnimTime));
 
 
@@ -945,13 +947,8 @@ public class ViewContactActivity extends Activity
                     continue;
                 }
 
-                if (mTabsVisible) {
-                    final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
-                    mAccountName.setText(getString(R.string.account_name_format, accountName));
-                    mAccountName.setVisibility(View.VISIBLE);
-                } else {
-                    mAccountName.setVisibility(View.GONE);
-                }
+                final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
+                mAccountName.setText(getString(R.string.account_name_format, accountName));
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
