@@ -173,6 +173,8 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
+	mPhoto.setEnabled(!source.readOnly);
+	mName.setEnabled(!source.readOnly);
 
         mReadOnly.setVisibility(source.readOnly ? View.VISIBLE : View.GONE);
 
@@ -185,18 +187,18 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mName.setValues(kind, primary, state);
+                mName.setValues(kind, primary, state, source.readOnly);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(kind, primary, state);
+                mPhoto.setValues(kind, primary, state, source.readOnly);
             } else {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
                 final ViewGroup parent = kind.secondary ? mSecondary : mGeneral;
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, parent, false);
-                section.setState(kind, state);
+                section.setState(kind, state, source.readOnly);
                 section.setId(kind.weight);
                 parent.addView(section);
             }
