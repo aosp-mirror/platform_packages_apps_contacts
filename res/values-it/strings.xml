@@ -281,9 +281,9 @@
     <skip />
     <!-- no translation found for make_primary (5829291915305113983) -->
     <skip />
-    <string name="fasttrack_missing_app" msgid="1181287640680679441">"Nessuna applicazione trovata in grado di gestire questa azione"</string>
-    <string name="fasttrack_remember_choice" msgid="2858356075887897116">"Memorizza questa scelta"</string>
-    <string name="fasttrack_missing_name" msgid="7806083820928955853">"Sconosciuto"</string>
+    <string name="quickcontact_missing_app" msgid="1181287640680679441">"Nessuna applicazione trovata in grado di gestire questa azione"</string>
+    <string name="quickcontact_remember_choice" msgid="2858356075887897116">"Memorizza questa scelta"</string>
+    <string name="quickcontact_missing_name" msgid="7806083820928955853">"Sconosciuto"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Account"</string>
     <!-- no translation found for menu_import_export (3765725645491577190) -->
     <skip />

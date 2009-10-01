@@ -15,7 +15,7 @@
 -->
 
 <resources>
-    <dimen name="fasttrack_shadow">37dip</dimen>
+    <dimen name="quickcontact_shadow">37dip</dimen>
     <dimen name="edit_photo_size">76dip</dimen>
         
     <!-- The height of the ScrollingTabWidget -->

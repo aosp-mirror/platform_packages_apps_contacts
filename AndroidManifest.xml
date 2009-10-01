@@ -261,11 +261,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Used to show FastTrack window over a translucent activity, which is a
+        <!-- Used to show QuickContact window over a translucent activity, which is a
              temporary hack until we add better framework support. -->
         <activity
-            android:name=".ui.FastTrackActivity"
-            android:theme="@style/FullyTranslucent.FastTrack">
+            android:name=".ui.QuickContactActivity"
+            android:theme="@style/FullyTranslucent.QuickContact">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.FAST_TRACK" />
