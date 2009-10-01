@@ -102,8 +102,11 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
+import com.android.contacts.model.ContactsSource;
+
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -306,6 +309,12 @@ public class ContactsListActivity extends ListActivity implements
         ContactMethods.DATA, //3
         People.DISPLAY_NAME, // 4
     };
+    static final String[] RAW_CONTACTS_PROJECTION = new String[] {
+        RawContacts._ID, //0
+        RawContacts.CONTACT_ID, //1
+        RawContacts.ACCOUNT_TYPE, //2
+    };
+
     static final int POSTAL_ID_COLUMN_INDEX = 0;
     static final int POSTAL_TYPE_COLUMN_INDEX = 1;
     static final int POSTAL_LABEL_COLUMN_INDEX = 2;
@@ -324,6 +333,7 @@ public class ContactsListActivity extends ListActivity implements
     private String mQuery;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
+    private Uri mSelectedContactUri;
 
 //    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
@@ -331,6 +341,10 @@ public class ContactsListActivity extends ListActivity implements
     private Uri mGroupUri;
 
     private long mQueryAggregateId;
+
+    private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
+    private int  mWritableSourcesCnt;
+    private int  mReadOnlySourcesCnt;
 
     /**
      * Used to keep track of the scroll state of the list.
@@ -388,7 +402,15 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         public void onClick(DialogInterface dialog, int which) {
-            getContentResolver().delete(mUri, null, null);
+	    if (mReadOnlySourcesCnt > 0) {
+	        for (long rawContactIdToDelete: mWritableRawContactIds) {
+		    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                            rawContactIdToDelete);
+                    getContentResolver().delete(rawContactUri, null, null);
+		}
+            } else {
+	        getContentResolver().delete(mUri, null, null);
+            }
         }
     }
 
@@ -854,11 +876,44 @@ public class ContactsListActivity extends ListActivity implements
             }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(R.string.no_sdcard_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage(R.string.no_sdcard_message)
-                .setPositiveButton(android.R.string.ok, null);
+                        .setTitle(R.string.no_sdcard_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.no_sdcard_message)
+                        .setPositiveButton(android.R.string.ok, null);
+		break;
             }
+	    case R.id.dialog_delete_contact_confirmation: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.deleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
+                break;
+            }
+            case R.id.dialog_cannot_delete_readonly_contact: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactWarning)
+                        .setPositiveButton(android.R.string.ok, null);
+		break;
+            }
+            case R.id.dialog_readonly_contact_delete_confirmation: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
+                }
+	    case R.id.dialog_multiple_contact_delete_confirmation: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.multipleContactDeleteConfirmation)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
+                }
+
         }
         return super.onCreateDialog(id);
     }
@@ -1061,8 +1116,8 @@ public class ContactsListActivity extends ListActivity implements
             }
 
             case MENU_ITEM_DELETE: {
-                final Uri selectedUri = getContactUri(info.position);
-                doContactDelete(selectedUri);
+                mSelectedContactUri = getContactUri(info.position);
+                doContactDelete();
                 return true;
             }
         }
@@ -1082,8 +1137,8 @@ public class ContactsListActivity extends ListActivity implements
             case KeyEvent.KEYCODE_DEL: {
                 final int position = getListView().getSelectedItemPosition();
                 if (position != ListView.INVALID_POSITION) {
-                    final Uri selectedUri = getContactUri(position);
-                    doContactDelete(selectedUri);
+                    mSelectedContactUri = getContactUri(position);
+                    doContactDelete();
                     return true;
                 }
                 break;
@@ -1096,14 +1151,41 @@ public class ContactsListActivity extends ListActivity implements
     /**
      * Prompt the user before deleting the given {@link Contacts} entry.
      */
-    protected void doContactDelete(Uri contactUri) {
-        new AlertDialog.Builder(ContactsListActivity.this)
-            .setTitle(R.string.deleteConfirmation_title)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setMessage(R.string.deleteConfirmation)
-            .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DeleteClickListener(contactUri))
-            .show();
+    protected void doContactDelete() {
+        mReadOnlySourcesCnt = 0;
+	mWritableSourcesCnt = 0;
+        mWritableRawContactIds.clear();
+
+	if (mSelectedContactUri != null) {
+            Cursor c = getContentResolver().query(RawContacts.CONTENT_URI,
+	            RAW_CONTACTS_PROJECTION, RawContacts.CONTACT_ID + "="
+		    + ContentUris.parseId(mSelectedContactUri), null, null);
+            Sources sources = Sources.getInstance(ContactsListActivity.this);
+            if (c != null) {
+                while (c.moveToNext()) {
+                    final String accountType = c.getString(2);
+		    final long rawContactId = c.getLong(0);
+                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                            ContactsSource.LEVEL_SUMMARY);
+                    if (contactsSource != null && contactsSource.readOnly) {
+                        mReadOnlySourcesCnt += 1;
+                    } else {
+                        mWritableSourcesCnt += 1;
+			mWritableRawContactIds.add(rawContactId);
+		    }
+                 }
+            }
+            c.close();
+	    if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
+	        showDialog(R.id.dialog_readonly_contact_delete_confirmation);
+	    } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+	        showDialog(R.id.dialog_cannot_delete_readonly_contact);
+	    } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+	        showDialog(R.id.dialog_multiple_contact_delete_confirmation);
+            } else {
+	        showDialog(R.id.dialog_delete_contact_confirmation);
+	    }
+	}
     }
 
     @Override
