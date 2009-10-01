@@ -121,7 +121,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
         // Header bar is filled later after queries finish
         mHeader = (ContactHeaderWidget)this.findViewById(R.id.contact_header_widget);
         mHeader.setContactHeaderListener(this);
-        mHeader.showStar(true);
+        mHeader.showStar(false);
         mHeader.enableClickListeners();
 
         mTabWidget = (ScrollingTabWidget)this.findViewById(R.id.tab_widget);
