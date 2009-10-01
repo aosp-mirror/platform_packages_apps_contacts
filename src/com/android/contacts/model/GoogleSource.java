@@ -260,4 +260,14 @@ public class GoogleSource extends FallbackSource {
             cursor.close();
         }
     }
+
+    @Override
+    public int getHeaderColor(Context context) {
+        return 0xff000000;
+    }
+
+    @Override
+    public int getSideBarColor(Context context) {
+        return 0xffffffff;
+    }
 }

@@ -77,7 +77,7 @@ import java.util.List;
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
-public class ExternalSource extends ContactsSource {
+public class ExternalSource extends FallbackSource {
     private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
@@ -109,6 +109,10 @@ public class ExternalSource extends ContactsSource {
             if (parser == null) continue;
             inflate(context, parser);
         }
+
+        // Bring in name and photo from fallback source, which are non-optional
+        inflateStructuredName(inflateLevel);
+        inflatePhoto(inflateLevel);
 
         setInflatedLevel(inflateLevel);
     }
@@ -259,5 +263,15 @@ public class ExternalSource extends ContactsSource {
             final SocialCache.Status status = SocialCache.getLatestStatus(context, rawContactId);
             return mPublishedMode ? inflatePublished(status.published) : status.title;
         }
+    }
+
+    @Override
+    public int getHeaderColor(Context context) {
+        return 0xff7f93bc;
+    }
+
+    @Override
+    public int getSideBarColor(Context context) {
+        return 0xffbdc7d8;
     }
 }

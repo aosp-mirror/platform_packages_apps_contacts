@@ -138,6 +138,10 @@ public abstract class ContactsSource {
         }
     }
 
+    abstract public int getHeaderColor(Context context);
+
+    abstract public int getSideBarColor(Context context);
+    
     /**
      * {@link Comparator} to sort by {@link DataKind#weight}.
      */
