@@ -22,6 +22,7 @@ import com.android.contacts.SplitAggregateView.OnContactSelectedListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.ui.EditContactActivity;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
@@ -90,11 +91,8 @@ import java.util.ArrayList;
  */
 public class ViewContactActivity extends Activity
         implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener,
-        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener,
-        OnTabSelectionChangedListener {
+        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener {
     private static final String TAG = "ViewContact";
-
-    public static final String RAW_CONTACT_ID_EXTRA = "rawContactIdExtra";
 
     private static final boolean SHOW_SEPARATORS = false;
 
@@ -106,8 +104,6 @@ public class ViewContactActivity extends Activity
     private static final int REQUEST_EDIT_CONTACT = 2;
 
     public static final int MENU_ITEM_MAKE_DEFAULT = 3;
-
-    private static final String SPLIT_MIMETYPE = "split_mimetype";
 
     protected Uri mLookupUri;
     private ContentResolver mResolver;
@@ -127,35 +123,15 @@ public class ViewContactActivity extends Activity
     /* package */ ArrayList<ViewEntry> mOrganizationEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
-    /* package */ ArrayList<ViewEntry> mSplitEntry = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
     private Cursor mCursor;
 
-    private SparseArray<Long> mTabRawContactIdMap;
-    protected ScrollingTabWidget mTabWidget;
     protected ContactHeaderWidget mContactHeaderWidget;
-    protected View mBelowHeader;
-    protected TextView mAccountName;
-    protected View mBufferView;
     private NotifyingAsyncQueryHandler mHandler;
 
     protected LayoutInflater mInflater;
 
-    //Projection used for the query that determines which tabs to add.
-    protected static final String[] TAB_PROJECTION = new String[] {
-        RawContacts._ID,
-        RawContacts.ACCOUNT_NAME,
-        RawContacts.ACCOUNT_TYPE
-    };
-    protected static final int TAB_CONTACT_ID_COLUMN_INDEX = 0;
-    protected static final int TAB_ACCOUNT_NAME_COLUMN_INDEX = 1;
-    protected static final int TAB_ACCOUNT_TYPE_COLUMN_INDEX = 2;
-
-    private static final String SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY = "selectedRawContactKey";
-    private static final String SAVED_STATE_TABS_VISIBLE_KEY = "tabsVisibleKey";
-
-    protected Long mSelectedRawContactId = null;
     protected int mReadOnlySourcesCnt;
     protected int mWritableSourcesCnt;
     protected ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
@@ -195,8 +171,6 @@ public class ViewContactActivity extends Activity
     private boolean mShowSmsLinksForAllPhones;
     private ArrayList<Entity> mEntities = null;
 
-    private boolean mTabsVisible;
-
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -223,16 +197,6 @@ public class ViewContactActivity extends Activity
             Contacts.CONTENT_ITEM_TYPE
         });
 
-        mTabWidget = (ScrollingTabWidget) findViewById(R.id.tab_widget);
-        mTabWidget.setTabSelectionListener(this);
-        mTabWidget.setVisibility(View.GONE);
-        mTabsVisible = false;
-        mAccountName = (TextView) mTabWidget.findViewById(R.id.account_name);
-
-        mBelowHeader = findViewById(R.id.below_header);
-
-        mTabRawContactIdMap = new SparseArray<Long>();
-
         mHandler = new NotifyingAsyncQueryHandler(this, this);
 
         mListView = new ListView(this);
@@ -255,29 +219,9 @@ public class ViewContactActivity extends Activity
         mSections.add(mOrganizationEntries);
         mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
-        mSections.add(mSplitEntry);
 
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        long restoredRawContactId = savedInstanceState.getLong(
-                SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY, -1);
-        mSelectedRawContactId = restoredRawContactId != -1 ? restoredRawContactId : null;
-        mTabsVisible = savedInstanceState.getBoolean(SAVED_STATE_TABS_VISIBLE_KEY);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mSelectedRawContactId != null) {
-            outState.putLong(SAVED_STATE_SELECTED_RAW_CONTACT_ID_KEY, mSelectedRawContactId);
-
-        }
-        outState.putBoolean(SAVED_STATE_TABS_VISIBLE_KEY, mTabsVisible);
     }
 
     @Override
@@ -332,182 +276,12 @@ public class ViewContactActivity extends Activity
         return null;
     }
 
-
-    // TAB CODE //
-    /**
-     * Adds a tab for each {@link RawContacts} associated with this contact.
-     * Override this method if you want to additional tabs and/or different
-     * tabs for your activity.
-     */
-    protected void bindTabs() {
-        final Sources sources = Sources.getInstance(this);
-
-        for (Entity entity : mEntities) {
-            final String accountType = entity.getEntityValues().
-                    getAsString(RawContacts.ACCOUNT_TYPE);
-            final Long rawContactId = entity.getEntityValues().
-                    getAsLong(RawContacts._ID);
-
-            // TODO: ensure inflation on background task so we don't block UI thread here
-            final ContactsSource source = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
-            addTab(rawContactId, ContactsUtils.createTabIndicatorView(mTabWidget.getTabParent(),
-                    source));
-        }
-    }
-
-    /**
-     * Add a tab to be displayed in the {@link ScrollingTabWidget}.
-     *
-     * @param rawContactId The contact id associated with the tab.
-     * @param view A view to use as the tab indicator.
-     */
-    protected void addTab(long rawContactId, View view) {
-        mTabRawContactIdMap.put(mTabWidget.getTabCount(), rawContactId);
-        mTabWidget.addTab(view);
-    }
-
-
-    protected void clearCurrentTabs() {
-        mTabRawContactIdMap.clear();
-        mTabWidget.removeAllTabs();
-    }
-
-    protected void selectInitialTab() {
-        int selectedTabIndex = 0;
-
-        if (mSelectedRawContactId != null) {
-            selectedTabIndex = getTabIndexForRawContactId(mSelectedRawContactId);
-            if (selectedTabIndex == -1) {
-                // If there was no matching tab, just select the first;
-                selectedTabIndex = 0;
-            }
-        }
-
-        mTabWidget.setCurrentTab(selectedTabIndex);
-        onTabSelectionChanged(selectedTabIndex, false);
-    }
-
-    public void onTabSelectionChanged(int tabIndex, boolean clicked) {
-        Long rawContactId = getTabRawContactId(tabIndex);
-        if (rawContactId != null) {
-            mSelectedRawContactId = rawContactId;
-            bindData();
-        }
-    }
-
-    /**
-     * Return the RawContact id associated with the tab at an index.
-     *
-     * @param index The index of the tab in question.
-     * @return The contactId associated with the tab at the specified index.
-     */
-    protected Long getTabRawContactId(int index) {
-        return mTabRawContactIdMap.get(index);
-    }
-
-    /**
-     * Return the tab index associated with the RawContact id.
-     *
-     * @param index The index of the tab in question.
-     * @return The contactId associated with the tab at the specified index.
-     */
-    protected int getTabIndexForRawContactId(long rawContactId) {
-        int numTabs = mTabRawContactIdMap.size();
-        for (int i=0; i < numTabs; i++) {
-            if (mTabRawContactIdMap.get(i) == rawContactId) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    protected void showTabs(boolean show) {
-        if (mTabsVisible == show) {
-            return;
-        }
-
-        final Resources resources = getResources();
-        final float tabHeight = resources.getDimension(R.dimen.tab_height)
-            + resources.getDimension(R.dimen.account_name_height);
-        if (show) {
-            TranslateAnimation showAnimation = new TranslateAnimation(
-                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                    Animation.ABSOLUTE, -tabHeight, Animation.ABSOLUTE, 0);
-            showAnimation.setDuration(resources.getInteger(
-                    android.R.integer.config_longAnimTime));
-
-            showAnimation.setAnimationListener(new AnimationListener() {
-                public void onAnimationEnd(Animation animation) {
-                    selectInitialTab();
-                    bindData();
-                }
-
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                public void onAnimationStart(Animation animation) {
-                }
-
-            });
-
-            mBelowHeader.startAnimation(showAnimation);
-            mTabWidget.setVisibility(View.VISIBLE);
-            mTabsVisible = true;
-            clearCurrentTabs();
-            bindTabs();
-        } else {
-            TranslateAnimation hideTabsAnimation = new TranslateAnimation(
-                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, -tabHeight);
-            hideTabsAnimation.setDuration(resources.getInteger(
-                    android.R.integer.config_longAnimTime));
-            hideTabsAnimation.setAnimationListener(new AnimationListener() {
-                public void onAnimationEnd(Animation animation) {
-                    bindData();
-                }
-
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                public void onAnimationStart(Animation animation) {
-                }
-
-            });
-
-            TranslateAnimation hideListAnimation = new TranslateAnimation(
-                    Animation.ABSOLUTE, 0, Animation.ABSOLUTE, 0,
-                    Animation.ABSOLUTE, tabHeight, Animation.ABSOLUTE, 0);
-            hideListAnimation.setDuration(resources.getInteger(
-                    android.R.integer.config_longAnimTime));
-
-
-            mTabWidget.startAnimation(hideTabsAnimation);
-            mTabContentLayout.startAnimation(hideListAnimation);
-            mTabWidget.setVisibility(View.GONE);
-            mTabsVisible = false;
-            mSelectedRawContactId = null;
-        }
-    }
-
-
     // QUERY CODE //
     /** {@inheritDoc} */
     public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
         try{
             if (token == TOKEN_QUERY) {
                 mEntities = readEntities(iterator);
-                // Show the aggregate badge if this contact is aggregated.
-                boolean isAggregate = mEntities.size() > 1;
-                mContactHeaderWidget.showAggregateBadge(isAggregate);
-                if (mTabsVisible) {
-                    mTabWidget.setVisibility(View.VISIBLE);
-                    clearCurrentTabs();
-                    bindTabs();
-                    selectInitialTab();
-                } else {
-                    mTabWidget.setVisibility(View.GONE);
-                }
                 bindData();
             }
         } finally {
@@ -614,16 +388,6 @@ public class ViewContactActivity extends Activity
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
-        // If tabWidget is not shown enable "show sources", otherwise
-        // enable "hide sources"
-        if (mTabsVisible) {
-            menu.findItem(R.id.menu_show_sources).setVisible(false);
-            menu.findItem(R.id.menu_hide_sources).setVisible(true);
-        } else {
-            menu.findItem(R.id.menu_show_sources).setVisible(true);
-            menu.findItem(R.id.menu_hide_sources).setVisible(false);
-        }
-
         // Only allow edit when we have at least one raw_contact id
         final boolean hasRawContact = (mRawContactIds.size() > 0);
         menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
@@ -667,32 +431,18 @@ public class ViewContactActivity extends Activity
         } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
         }
-        // TODO(emillar): add back with group support.
-        /* else if (entry.mimetype.equals()) {
-            menu.add(0, 0, 0, R.string.menu_viewGroup).setIntent(entry.intent);
-            } */
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_show_sources: {
-                showTabs(true);
-                break;
-            }
-            case R.id.menu_hide_sources: {
-                showTabs(false);
-                break;
-            }
             case R.id.menu_edit: {
-                Long rawContactIdToEdit = mSelectedRawContactId;
-                if (rawContactIdToEdit == null) {
-                    if (mRawContactIds.size() > 0) {
-                        rawContactIdToEdit = mRawContactIds.get(0);
-                    } else {
-                        // There is no rawContact to edit.
-                        break;
-                    }
+                Long rawContactIdToEdit = null;
+                if (mRawContactIds.size() > 0) {
+                    rawContactIdToEdit = mRawContactIds.get(0);
+                } else {
+                    // There is no rawContact to edit.
+                    break;
                 }
                 Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                         rawContactIdToEdit);
@@ -799,7 +549,10 @@ public class ViewContactActivity extends Activity
                 joinAggregate(contactId);
             }
         } else if (requestCode == REQUEST_EDIT_CONTACT) {
-            mTabsVisible = false;
+            // TODO: Bring this back
+            if (resultCode == EditContactActivity.RESULT_CLOSE_VIEW_ACTIVITY) {
+                finish();
+            }
         }
     }
 
@@ -916,9 +669,7 @@ public class ViewContactActivity extends Activity
         ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
         if (entry != null) {
             Intent intent = entry.intent;
-            if (entry.mimetype == SPLIT_MIMETYPE) {
-                splitContact(entry.id);
-            } else if (intent != null) {
+            if (intent != null) {
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
@@ -978,23 +729,6 @@ public class ViewContactActivity extends Activity
                 if (!mRawContactIds.contains(rawContactId)) {
                     mRawContactIds.add(rawContactId);
                 }
-
-                // This performs the tab filtering
-                if (mSelectedRawContactId != null && mSelectedRawContactId != rawContactId) {
-                    continue;
-                }
-
-                final ContactsSource source = sources.getInflatedSource(accountType,
-                        ContactsSource.LEVEL_SUMMARY);
-	        if (source.readOnly) {
-		    mReadOnlySourcesCnt += 1;
-		} else {
-		    mWritableSourcesCnt += 1;
-                    mWritableRawContactIds.add(rawContactId);
-		}
-                final String accountName = entValues.getAsString(RawContacts.ACCOUNT_NAME);
-                mAccountName.setText(getString(R.string.account_name_format,
-                        source.getDisplayLabel(this), accountName));
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
@@ -1114,63 +848,7 @@ public class ViewContactActivity extends Activity
                         entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
                         mOtherEntries.add(entry);
                     }
-
                 }
-
-                if (mSelectedRawContactId != null &&
-                        mSelectedRawContactId == rawContactId
-                        && mEntities.size() > 1) {
-                    ViewEntry entry = new ViewEntry();
-                    entry.mimetype = SPLIT_MIMETYPE;
-                    entry.id = rawContactId;
-                    entry.label = getString(R.string.split_label);
-                    entry.data = getString(R.string.split_explanation);
-                    entry.actionIcon = R.drawable.ic_list_split;
-                    mSplitEntry.add(entry);
-                }
-                    // TODO(emillar) Add group entries
-                    //              // Build the group entries
-                    //              final Uri groupsUri = Uri.withAppendedPath(mUri, GroupMembership.CONTENT_DIRECTORY);
-                    //              Cursor groupCursor = mResolver.query(groupsUri, ContactsListActivity.GROUPS_PROJECTION,
-                    //                      null, null, Groups.DEFAULT_SORT_ORDER);
-                    //              if (groupCursor != null) {
-                    //                  try {
-                    //                      StringBuilder sb = new StringBuilder();
-                    //
-                    //                      while (groupCursor.moveToNext()) {
-                    //                          String systemId = groupCursor.getString(
-                    //                                  ContactsListActivity.GROUPS_COLUMN_INDEX_SYSTEM_ID);
-                    //
-                    //                          if (systemId != null || Groups.GROUP_MY_CONTACTS.equals(systemId)) {
-                    //                              continue;
-                    //                          }
-                    //
-                    //                          String name = groupCursor.getString(ContactsListActivity.GROUPS_COLUMN_INDEX_NAME);
-                    //                          if (!TextUtils.isEmpty(name)) {
-                    //                              if (sb.length() == 0) {
-                    //                                  sb.append(name);
-                    //                              } else {
-                    //                                  sb.append(getString(R.string.group_list, name));
-                    //                              }
-                    //                          }
-                    //                      }
-                    //
-                    //                      if (sb.length() > 0) {
-                    //                          ViewEntry entry = new ViewEntry();
-                    //                          entry.kind = ContactEntryAdapter.Entry.KIND_GROUP;
-                    //                          entry.label = getString(R.string.label_groups);
-                    //                          entry.data = sb.toString();
-                    //                          entry.intent = new Intent(Intent.ACTION_EDIT, mUri);
-                    //
-                    //                          // TODO: Add an icon for the groups item.
-                    //
-                    //                          mGroupEntries.add(entry);
-                    //                      }
-                    //                  } finally {
-                    //                      groupCursor.close();
-                    //                  }
-                    //              }
-
             }
         }
     }
