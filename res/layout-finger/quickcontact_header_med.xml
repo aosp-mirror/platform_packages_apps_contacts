@@ -20,7 +20,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minHeight="45dip"
-    android:background="@drawable/fasttrack_top_frame"
+    android:background="@drawable/quickcontact_top_frame"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dip"
-        android:src="@drawable/fasttrack_frame_divider_med" />
+        android:src="@drawable/quickcontact_frame_divider_med" />
 
     <ImageView
         android:id="@+id/source"

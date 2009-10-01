@@ -18,6 +18,6 @@
     <color name="textColorIconOverlay">#fff</color>
     <color name="textColorIconOverlayShadow">#000</color>
     <color name="sect_secondary">#4fff</color>
-    <color name="fasttrack_disambig">#f2f2f2</color>
-    <color name="fasttrack_disambig_divider">#afafaf</color>
+    <color name="quickcontact_disambig">#f2f2f2</color>
+    <color name="quickcontact_disambig_divider">#afafaf</color>
 </resources>

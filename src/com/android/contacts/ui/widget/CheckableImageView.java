@@ -23,7 +23,7 @@ import android.widget.ImageView;
 
 /**
  * A special variation of ImageView that can be used as a checkable object.
- * This is used as the background view of fasttrack chiclet, which is in checked state
+ * This is used as the background view of quickcontact chiclet, which is in checked state
  * when disambig list is shown. Otherwise, it works identically to a ImageView.
  */
 public class CheckableImageView extends ImageView implements Checkable {

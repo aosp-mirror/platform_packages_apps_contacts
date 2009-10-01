@@ -20,7 +20,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minHeight="87dip"
-    android:background="@drawable/fasttrack_top_frame"
+    android:background="@drawable/quickcontact_top_frame"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dip"
-        android:src="@drawable/fasttrack_slider_presence_active"
+        android:src="@drawable/quickcontact_slider_presence_active"
         android:scaleType="centerInside" />
 
 </LinearLayout>

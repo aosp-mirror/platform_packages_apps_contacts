@@ -189,8 +189,8 @@ public class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_NO_DATA = 0x04000000;
     /** Mask for showing a call button in the list */
     static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
-    /** Mask to disable fasttrack (images will show as normal images) */
-    static final int MODE_MASK_DISABLE_FASTTRACK = 0x01000000;
+    /** Mask to disable quickcontact (images will show as normal images) */
+    static final int MODE_MASK_DISABLE_QUIKCCONTACT = 0x01000000;
     /** Mask to show the total number of contacts at the top */
     static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
 
@@ -208,16 +208,16 @@ public class ContactsListActivity extends ListActivity implements
     static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
-            | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts as well as the option to create a new one */
     static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
-            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider and pick them when clicking */
     static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
-            | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider as well as the option to create a new one */
-    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
-            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER
+            | MODE_MASK_CREATE_NEW | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
     static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all phone numbers and pick them when clicking */
@@ -239,7 +239,7 @@ public class ContactsListActivity extends ListActivity implements
 
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_CONTACT = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
-            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
 
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
@@ -2000,7 +2000,7 @@ public class ContactsListActivity extends ListActivity implements
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
         public QuickContactBadge photoView;
-        public ImageView nonFastTrackPhotoView;
+        public ImageView nonQuickContactPhotoView;
     }
 
     final static class PhotoInfo {
@@ -2304,7 +2304,7 @@ public class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
-            cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
+            cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             view.setTag(cache);
 
             return view;
@@ -2371,7 +2371,7 @@ public class ContactsListActivity extends ListActivity implements
 
             // Set the photo, if requested
             if (mDisplayPhotos) {
-                boolean useFastTrack = (mMode & MODE_MASK_DISABLE_FASTTRACK) == 0;
+                boolean useQuickContact = (mMode & MODE_MASK_DISABLE_QUIKCCONTACT) == 0;
 
                 long photoId = 0;
                 if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
@@ -2379,18 +2379,18 @@ public class ContactsListActivity extends ListActivity implements
                 }
 
                 ImageView viewToUse;
-                if (useFastTrack) {
+                if (useQuickContact) {
                     viewToUse = cache.photoView;
                     // Build soft lookup reference
                     final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
                     final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
                     cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
                     cache.photoView.setVisibility(View.VISIBLE);
-                    cache.nonFastTrackPhotoView.setVisibility(View.INVISIBLE);
+                    cache.nonQuickContactPhotoView.setVisibility(View.INVISIBLE);
                 } else {
-                    viewToUse = cache.nonFastTrackPhotoView;
+                    viewToUse = cache.nonQuickContactPhotoView;
                     cache.photoView.setVisibility(View.INVISIBLE);
-                    cache.nonFastTrackPhotoView.setVisibility(View.VISIBLE);
+                    cache.nonQuickContactPhotoView.setVisibility(View.VISIBLE);
                 }
 
 

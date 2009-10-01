@@ -281,9 +281,9 @@
     <skip />
     <!-- no translation found for make_primary (5829291915305113983) -->
     <skip />
-    <string name="fasttrack_missing_app" msgid="1181287640680679441">"找不到可以處理這個動作的應用程式"</string>
-    <string name="fasttrack_remember_choice" msgid="2858356075887897116">"記住這個選擇"</string>
-    <string name="fasttrack_missing_name" msgid="7806083820928955853">"不明"</string>
+    <string name="quickcontact_missing_app" msgid="1181287640680679441">"找不到可以處理這個動作的應用程式"</string>
+    <string name="quickcontact_remember_choice" msgid="2858356075887897116">"記住這個選擇"</string>
+    <string name="quickcontact_missing_name" msgid="7806083820928955853">"不明"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帳戶"</string>
     <!-- no translation found for menu_import_export (3765725645491577190) -->
     <skip />

@@ -40,7 +40,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.FastTrack;
+import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -86,17 +86,17 @@ import java.util.Set;
  * Window that shows fast-track contact details for a specific
  * {@link Contacts#_ID}.
  */
-public class FastTrackWindow implements Window.Callback,
+public class QuickContactWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
         AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
-    private static final String TAG = "FastTrackWindow";
+    private static final String TAG = "QuickContactWindow";
 
     /**
-     * Interface used to allow the person showing a {@link FastTrackWindow} to
+     * Interface used to allow the person showing a {@link QuickContactWindow} to
      * know when the window has been dismissed.
      */
     public interface OnDismissListener {
-        public void onDismiss(FastTrackWindow dialog);
+        public void onDismiss(QuickContactWindow dialog);
     }
 
     private final Context mContext;
@@ -164,13 +164,13 @@ public class FastTrackWindow implements Window.Callback,
     private static final int TOKEN_DATA = 3;
 
     static final boolean TRACE_LAUNCH = false;
-    static final String TRACE_TAG = "fasttrack";
+    static final String TRACE_TAG = "quickcontact";
 
     /**
      * Prepare a fast-track window to show in the given {@link Context}.
      */
-    public FastTrackWindow(Context context) {
-        mContext = new ContextThemeWrapper(context, R.style.FastTrack);
+    public QuickContactWindow(Context context) {
+        mContext = new ContextThemeWrapper(context, R.style.QuickContact);
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
@@ -178,7 +178,7 @@ public class FastTrackWindow implements Window.Callback,
         mWindow.setCallback(this);
         mWindow.setWindowManager(mWindowManager, null, null);
 
-        mWindow.setContentView(R.layout.fasttrack);
+        mWindow.setContentView(R.layout.quickcontact);
 
         mArrowUp = (ImageView)mWindow.findViewById(R.id.arrow_up);
         mArrowDown = (ImageView)mWindow.findViewById(R.id.arrow_down);
@@ -186,9 +186,9 @@ public class FastTrackWindow implements Window.Callback,
         mResolveCache = new ResolveCache(mContext);
 
         final Resources res = mContext.getResources();
-        mShadowHeight = res.getDimensionPixelSize(R.dimen.fasttrack_shadow);
+        mShadowHeight = res.getDimensionPixelSize(R.dimen.quickcontact_shadow);
 
-        mTrack = (ViewGroup)mWindow.findViewById(R.id.fasttrack);
+        mTrack = (ViewGroup)mWindow.findViewById(R.id.quickcontact);
         mTrackScroll = (HorizontalScrollView)mWindow.findViewById(R.id.scroll);
 
         mFooter = mWindow.findViewById(R.id.footer);
@@ -199,7 +199,7 @@ public class FastTrackWindow implements Window.Callback,
         mSetPrimaryCheckBox.setOnCheckedChangeListener(this);
 
         // Prepare track entrance animation
-        mTrackAnim = AnimationUtils.loadAnimation(mContext, R.anim.fasttrack);
+        mTrackAnim = AnimationUtils.loadAnimation(mContext, R.anim.quickcontact);
         mTrackAnim.setInterpolator(new Interpolator() {
             public float getInterpolation(float t) {
                 // Pushes past the target area, then snaps back into place.
@@ -215,7 +215,7 @@ public class FastTrackWindow implements Window.Callback,
      * notify the given {@link OnDismissListener} each time this dialog is
      * dismissed.
      */
-    public FastTrackWindow(Context context, OnDismissListener dismissListener) {
+    public QuickContactWindow(Context context, OnDismissListener dismissListener) {
         this(context);
         mDismissListener = dismissListener;
     }
@@ -223,13 +223,13 @@ public class FastTrackWindow implements Window.Callback,
     private View getHeaderView(int mode) {
         View header = null;
         switch (mode) {
-            case FastTrack.MODE_SMALL:
+            case QuickContact.MODE_SMALL:
                 header = mWindow.findViewById(R.id.header_small);
                 break;
-            case FastTrack.MODE_MEDIUM:
+            case QuickContact.MODE_MEDIUM:
                 header = mWindow.findViewById(R.id.header_medium);
                 break;
-            case FastTrack.MODE_LARGE:
+            case QuickContact.MODE_LARGE:
                 header = mWindow.findViewById(R.id.header_large);
                 break;
         }
@@ -264,7 +264,7 @@ public class FastTrackWindow implements Window.Callback,
         mHeader = getHeaderView(mode);
         mExcludeMimes = excludeMimes;
 
-        setHeaderText(R.id.name, R.string.fasttrack_missing_name);
+        setHeaderText(R.id.name, R.string.quickcontact_missing_name);
         setHeaderText(R.id.status, null);
         setHeaderImage(R.id.presence, null);
 
@@ -325,14 +325,14 @@ public class FastTrackWindow implements Window.Callback,
             // edge with top of anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_down, mAnchor.centerX());
             l.y = mAnchor.top - blockHeight + mShadowHeight;
-            l.windowAnimations = R.style.FastTrackAboveAnimation;
+            l.windowAnimations = R.style.QuickContactAboveAnimation;
 
         } else {
             // Otherwise show upwards callout, aligning block top with bottom of
             // anchor area, and adjusting to inset arrow.
             showArrow(R.id.arrow_up, mAnchor.centerX());
             l.y = mAnchor.bottom - mShadowHeight;
-            l.windowAnimations = R.style.FastTrackBelowAnimation;
+            l.windowAnimations = R.style.QuickContactBelowAnimation;
 
         }
 
@@ -418,10 +418,10 @@ public class FastTrackWindow implements Window.Callback,
      */
     private synchronized void considerShowing() {
         if (mHasSummary && mHasSocial && mHasActions && !mShowing) {
-            if (mMode == FastTrack.MODE_MEDIUM && !mHasValidSocial) {
+            if (mMode == QuickContact.MODE_MEDIUM && !mHasValidSocial) {
                 // Missing valid social, swap medium for small header
                 mHeader.setVisibility(View.GONE);
-                mHeader = getHeaderView(FastTrack.MODE_SMALL);
+                mHeader = getHeaderView(QuickContact.MODE_SMALL);
             }
 
             // All queries have returned, pull curtain
@@ -546,21 +546,21 @@ public class FastTrackWindow implements Window.Callback,
         int resId = -1;
         switch (status) {
             case Presence.AVAILABLE:
-                resId = R.drawable.fasttrack_slider_presence_active;
+                resId = R.drawable.quickcontact_slider_presence_active;
                 break;
             case Presence.IDLE:
             case Presence.AWAY:
-                resId = R.drawable.fasttrack_slider_presence_away;
+                resId = R.drawable.quickcontact_slider_presence_away;
                 break;
             case Presence.DO_NOT_DISTURB:
-                resId = R.drawable.fasttrack_slider_presence_busy;
+                resId = R.drawable.quickcontact_slider_presence_busy;
                 break;
             case Presence.INVISIBLE:
-                resId = R.drawable.fasttrack_slider_presence_inactive;
+                resId = R.drawable.quickcontact_slider_presence_inactive;
                 break;
             case Presence.OFFLINE:
             default:
-                resId = R.drawable.fasttrack_slider_presence_inactive;
+                resId = R.drawable.quickcontact_slider_presence_inactive;
         }
         return mContext.getResources().getDrawable(resId);
     }
@@ -999,7 +999,8 @@ public class FastTrackWindow implements Window.Callback,
      * the icon provided by the {@link DataKind}.
      */
     private View inflateAction(String mimeType) {
-        CheckableImageView view = (CheckableImageView)mInflater.inflate(R.layout.fasttrack_item, mTrack, false);
+        CheckableImageView view = (CheckableImageView)mInflater.inflate(
+                R.layout.quickcontact_item, mTrack, false);
         boolean isActionSet = false;
 
         // Add direct intent if single child, otherwise flag for multiple
@@ -1095,7 +1096,8 @@ public class FastTrackWindow implements Window.Callback,
                 }
 
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(mContext, R.string.fasttrack_missing_app, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.quickcontact_missing_app, Toast.LENGTH_SHORT)
+                        .show();
             }
         } else if (tag instanceof ActionList) {
             // Incoming tag is a MIME-type, so show resolution list
@@ -1120,7 +1122,8 @@ public class FastTrackWindow implements Window.Callback,
 
                 public View getView(int position, View convertView, ViewGroup parent) {
                     if (convertView == null) {
-                        convertView = mInflater.inflate(R.layout.fasttrack_resolve_item, parent, false);
+                        convertView = mInflater.inflate(
+                                R.layout.quickcontact_resolve_item, parent, false);
                     }
 
                     // Set action title based on summary value

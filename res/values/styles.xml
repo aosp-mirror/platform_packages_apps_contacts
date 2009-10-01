@@ -52,15 +52,15 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="FullyTranslucent.FastTrack">
+    <style name="FullyTranslucent.QuickContact">
         <!-- This is a hack because we want to be able to animate away the
-             FastTrack window, and we close its containing activity at the
+             QuickContact window, and we close its containing activity at the
              same time.  So put in a dummy animation so this guy sticks around
              while the fast track window is animating. -->
         <item name="android:windowAnimationStyle">@style/DummyAnimation</item>
     </style>
 
-    <style name="FastTrack">
+    <style name="QuickContact">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
@@ -71,14 +71,14 @@
         -->
     </style>
 
-    <style name="FastTrackAboveAnimation">
-        <item name="android:windowEnterAnimation">@anim/fasttrack_above_enter</item>
-        <item name="android:windowExitAnimation">@anim/fasttrack_above_exit</item>
+    <style name="QuickContactAboveAnimation">
+        <item name="android:windowEnterAnimation">@anim/quickcontact_above_enter</item>
+        <item name="android:windowExitAnimation">@anim/quickcontact_above_exit</item>
     </style>
 
-    <style name="FastTrackBelowAnimation">
-        <item name="android:windowEnterAnimation">@anim/fasttrack_below_enter</item>
-        <item name="android:windowExitAnimation">@anim/fasttrack_below_exit</item>
+    <style name="QuickContactBelowAnimation">
+        <item name="android:windowEnterAnimation">@anim/quickcontact_below_enter</item>
+        <item name="android:windowExitAnimation">@anim/quickcontact_below_exit</item>
     </style>
 
     <style name="DummyAnimation">
