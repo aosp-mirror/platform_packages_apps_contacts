@@ -875,45 +875,44 @@ public class ContactsListActivity extends ListActivity implements
                 return AccountSelectionUtil.getSelectAccountDialog(this, id);
             }
             case R.id.dialog_sdcard_not_found: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.no_sdcard_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.no_sdcard_message)
-                        .setPositiveButton(android.R.string.ok, null);
-		break;
+                        .setPositiveButton(android.R.string.ok, null).create();
             }
-	    case R.id.dialog_delete_contact_confirmation: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+            case R.id.dialog_delete_contact_confirmation: {
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.deleteConfirmation)
                         .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
-                break;
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
             }
             case R.id.dialog_cannot_delete_readonly_contact: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.readOnlyContactWarning)
-                        .setPositiveButton(android.R.string.ok, null);
-		break;
+                        .setPositiveButton(android.R.string.ok, null).create();
             }
             case R.id.dialog_readonly_contact_delete_confirmation: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.readOnlyContactDeleteConfirmation)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
-                }
-	    case R.id.dialog_multiple_contact_delete_confirmation: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
+            }
+            case R.id.dialog_multiple_contact_delete_confirmation: {
+                return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.multipleContactDeleteConfirmation)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener(mSelectedContactUri));
-                }
-
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
+            }
         }
         return super.onCreateDialog(id);
     }

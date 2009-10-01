@@ -34,5 +34,6 @@ public class Constants {
     public static final String SCHEME_TEL = "tel";
     public static final String SCHEME_SMSTO = "smsto";
     public static final String SCHEME_MAILTO = "mailto";
+    public static final String SCHEME_IMTO = "imto";
 
 }
