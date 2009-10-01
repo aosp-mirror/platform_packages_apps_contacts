@@ -165,7 +165,16 @@
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 
-    <!-- Confirmation dialog contents after users selects to delete a contact. -->
+    <!-- Warning dialog contents after users selects to delete a ReadOnly contact. -->
+    <string name="readOnlyContactWarning">You cannot delete contacts from read-only accounts.</string>
+
+    <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
+    <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. The information from read-only accounts will not be deleted.</string>
+
+    <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
+    <string name="multipleContactDeleteConfirmation">Deleting this contact will delete information from multiple accounts.</string>
+
+    <!-- Confirmation dialog contents after users selects to delete a Writable contact. -->
     <string name="deleteConfirmation">This contact will be deleted.</string>
 
     <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
