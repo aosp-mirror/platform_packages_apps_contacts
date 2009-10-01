@@ -1154,7 +1154,7 @@ public class ViewContactActivity extends Activity
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+    class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
         public String resPackageName = null;
         public int actionIcon = -1;
         public boolean isPrimary = false;
@@ -1169,7 +1169,7 @@ public class ViewContactActivity extends Activity
 
         public boolean collapseWith(ViewEntry entry) {
             // assert equal collapse keys
-            if (!getCollapseKey().equals(entry.getCollapseKey())) {
+            if (!shouldCollapseWith(entry)) {
                 return false;
             }
 
@@ -1201,16 +1201,43 @@ public class ViewContactActivity extends Activity
             return true;
         }
 
-        public String getCollapseKey() {
-            StringBuilder hashSb = new StringBuilder();
-            hashSb.append(data);
-            hashSb.append(mimetype);
-            hashSb.append((intent != null && intent.getAction() != null)
-                    ? intent.getAction() : "");
-            hashSb.append((secondaryIntent != null && secondaryIntent.getAction() != null)
-                    ? secondaryIntent.getAction() : "");
-            hashSb.append(actionIcon);
-            return hashSb.toString();
+        public boolean shouldCollapseWith(ViewEntry entry) {
+            if (entry == null) {
+                return false;
+            }
+
+            if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
+                    && Phone.CONTENT_ITEM_TYPE.equals(entry.mimetype)) {
+                if (!PhoneNumberUtils.compare(ViewContactActivity.this, data, entry.data)) {
+                    return false;
+                }
+            } else {
+                if (!equals(data, entry.data)) {
+                    return false;
+                }
+            }
+
+            if (!equals(mimetype, entry.mimetype)
+                    || !intentCollapsible(intent, entry.intent)
+                    || !intentCollapsible(secondaryIntent, entry.secondaryIntent)
+                    || actionIcon != entry.actionIcon) {
+                return false;
+            }
+
+            return true;
+        }
+
+        private boolean equals(Object a, Object b) {
+            return a==b || (a != null && a.equals(b));
+        }
+
+        private boolean intentCollapsible(Intent a, Intent b) {
+            if (a == b) {
+                return true;
+            } else if ((a != null && b != null) && equals(a.getAction(), b.getAction())) {
+                return true;
+            }
+            return false;
         }
     }
 

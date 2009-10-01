@@ -1754,7 +1754,7 @@ public class ContactsListActivity extends ListActivity implements
                             getColumnIndex(Phone.IS_SUPER_PRIMARY)) != 0) {
                         // Found super primary, call it.
                         phone = phonesCursor.
-                        getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+                                getString(phonesCursor.getColumnIndex(Phone.NUMBER));
                         break;
                     }
                 }
