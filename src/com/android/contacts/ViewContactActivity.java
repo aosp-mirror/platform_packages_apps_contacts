@@ -763,8 +763,15 @@ public class ViewContactActivity extends Activity
      * Shows a list of aggregates that can be joined into the currently viewed aggregate.
      */
     public void showJoinAggregateActivity() {
+        String displayName = null;
+        if (mCursor.moveToFirst()) {
+            displayName = mCursor.getString(0);
+        }
         Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
         intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, ContentUris.parseId(mUri));
+        if (displayName != null) {
+            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
+        }
         startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 

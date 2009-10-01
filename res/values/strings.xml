@@ -142,8 +142,7 @@
     <string name="titleJoinContactDataWith">Join contacts</string>
 
     <!-- Info blurb on the Join Contact screen -->
-    <string name="blurbJoinContactDataWith">Contact data will be combined with
-        another contact selected from the list.</string>
+    <string name="blurbJoinContactDataWith">Select the contact you want to join with <xliff:g id="name">%s</xliff:g>.</string>
 
     <!-- List separator for the Join Contact list: Suggestions -->
     <string name="separatorJoinAggregateSuggestions">Suggestions</string>

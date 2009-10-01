@@ -160,6 +160,14 @@ public class ContactsListActivity extends ListActivity implements
      */
     public static final String EXTRA_AGGREGATE_ID =
             "com.android.contacts.action.AGGREGATE_ID";
+    /**
+     * Used with {@link #JOIN_AGGREGATE} to give it the name of the aggregation target.
+     * <p>
+     * Type: STRING
+     */
+    public static final String EXTRA_AGGREGATE_NAME =
+            "com.android.contacts.action.AGGREGATE_NAME";
+
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -550,6 +558,15 @@ public class ContactsListActivity extends ListActivity implements
 
         if (mMode == MODE_JOIN_CONTACT) {
             setContentView(R.layout.contacts_list_content_join);
+            TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
+            String contactName = intent.getStringExtra(EXTRA_AGGREGATE_NAME);
+            if (contactName == null) {
+                contactName = "";
+            }
+
+            String blurb = getString(R.string.blurbJoinContactDataWith, contactName);
+            blurbView.setText(blurb);
+
         } else {
             setContentView(R.layout.contacts_list_content);
         }
