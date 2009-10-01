@@ -1527,7 +1527,10 @@ public class ContactsListActivity extends ListActivity implements
         mQueryHandler.setLoadingJoinSuggestions(false);
 
         String[] projection = getProjectionForQuery();
-        Uri uri = getUriToQuery();
+        Uri uri = getUriToQuery().buildUpon()
+                .appendQueryParameter(ContactsContract.REQUESTING_PACKAGE_PARAM_KEY,
+                        getCallingPackage())
+                .build();
 
         // Kick off the new query
         switch (mMode) {
