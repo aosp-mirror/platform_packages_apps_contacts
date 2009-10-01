@@ -106,7 +106,7 @@ public class EntityDelta implements Parcelable {
         if (local == null) local = new EntityDelta();
 
         if (LOGV) {
-            final Long localVersion = (local.mValues == null) ? -1 : local.mValues
+            final Long localVersion = (local.mValues == null) ? null : local.mValues
                     .getAsLong(RawContacts.VERSION);
             final Long remoteVersion = remote.mValues.getAsLong(RawContacts.VERSION);
             Log.d(TAG, "Re-parenting from original version " + remoteVersion + " to "

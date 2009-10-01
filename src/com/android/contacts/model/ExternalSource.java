@@ -109,6 +109,8 @@ public class ExternalSource extends ContactsSource {
             if (parser == null) continue;
             inflate(context, parser);
         }
+
+        setInflatedLevel(inflateLevel);
     }
 
     /**

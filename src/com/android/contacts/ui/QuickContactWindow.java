@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -24,6 +25,8 @@ import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
+import com.google.android.collect.Lists;
+import com.google.android.collect.Sets;
 
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
@@ -31,23 +34,34 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.EntityIterator;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
-import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.SocialContract.Activities;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.Pool;
+import android.util.Poolable;
+import android.util.PoolableManager;
+import android.util.Pools;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -55,11 +69,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.Window.Callback;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -76,19 +92,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Window that shows fast-track contact details for a specific
- * {@link Contacts#_ID}.
+ * Window that shows QuickContact dialog for a specific {@link Contacts#_ID}.
  */
 public class QuickContactWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
-        AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
+        AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener, KeyEvent.Callback {
     private static final String TAG = "QuickContactWindow";
 
     /**
@@ -113,15 +130,13 @@ public class QuickContactWindow implements Window.Callback,
     private OnDismissListener mDismissListener;
     private ResolveCache mResolveCache;
 
-    private long mAggId;
+    private Uri mLookupUri;
     private Rect mAnchor;
 
     private int mShadowHeight;
 
-    private boolean mHasSummary = false;
-    private boolean mHasSocial = false;
     private boolean mHasValidSocial = false;
-    private boolean mHasActions = false;
+    private boolean mHasData = false;
     private boolean mMakePrimary = false;
 
     private ImageView mArrowUp;
@@ -139,35 +154,59 @@ public class QuickContactWindow implements Window.Callback,
     private CheckableImageView mLastAction;
     private CheckBox mSetPrimaryCheckBox;
 
+    private int mWindowRecycled = 0;
+    private int mActionRecycled = 0;
+
     /**
      * Set of {@link Action} that are associated with the aggregate currently
-     * displayed by this fast-track window, represented as a map from
-     * {@link String} MIME-type to {@link ActionList}.
+     * displayed by this dialog, represented as a map from {@link String}
+     * MIME-type to {@link ActionList}.
      */
     private ActionMap mActions = new ActionMap();
+
+    /**
+     * Pool of unused {@link CheckableImageView} that have previously been
+     * inflated, and are ready to be recycled through {@link #obtainView()}.
+     */
+    private LinkedList<View> mActionPool = new LinkedList<View>();
 
     private String[] mExcludeMimes;
 
     /**
-     * Specific mime-types that should be bumped to the front of the fast-track.
-     * Other mime-types not appearing in this list follow in alphabetic order.
+     * Specific MIME-types that should be bumped to the front of the dialog.
+     * Other MIME-types not appearing in this list follow in alphabetic order.
      */
     private static final String[] ORDERED_MIMETYPES = new String[] {
-        Phone.CONTENT_ITEM_TYPE,
-        Contacts.CONTENT_ITEM_TYPE,
-        Constants.MIME_SMS_ADDRESS,
-        Email.CONTENT_ITEM_TYPE,
+            Phone.CONTENT_ITEM_TYPE,
+            Contacts.CONTENT_ITEM_TYPE,
+            Constants.MIME_SMS_ADDRESS,
+            Email.CONTENT_ITEM_TYPE,
     };
 
-    private static final int TOKEN_SUMMARY = 1;
-    private static final int TOKEN_SOCIAL = 2;
-    private static final int TOKEN_DATA = 3;
+    /**
+     * Specific list {@link ApplicationInfo#packageName} of apps that are
+     * prefered <strong>only</strong> for the purposes of default icons when
+     * multiple {@link ResolveInfo} are found to match. This only happens when
+     * the user has not selected a default app yet, and they will still be
+     * presented with the system disambiguation dialog.
+     */
+    private static final HashSet<String> sPreferResolve = Sets.newHashSet(new String[] {
+            "com.android.email",
+            "com.android.calendar",
+            "com.android.contacts",
+            "com.android.mms",
+            "com.android.phone",
+    });
+
+    private static final int TOKEN_DATA = 1;
+
+    static final boolean LOGD = false;
 
     static final boolean TRACE_LAUNCH = false;
     static final String TRACE_TAG = "quickcontact";
 
     /**
-     * Prepare a fast-track window to show in the given {@link Context}.
+     * Prepare a dialog to show in the given {@link Context}.
      */
     public QuickContactWindow(Context context) {
         mContext = new ContextThemeWrapper(context, R.style.QuickContact);
@@ -208,12 +247,13 @@ public class QuickContactWindow implements Window.Callback,
                 return 1.2f - inner * inner;
             }
         });
+
+        mHandler = new NotifyingAsyncQueryHandler(mContext, this);
     }
 
     /**
-     * Prepare a fast-track window to show in the given {@link Context}, and
-     * notify the given {@link OnDismissListener} each time this dialog is
-     * dismissed.
+     * Prepare a dialog to show in the given {@link Context}, and notify the
+     * given {@link OnDismissListener} each time this dialog is dismissed.
      */
     public QuickContactWindow(Context context, OnDismissListener dismissListener) {
         this(context);
@@ -246,10 +286,10 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Start showing a fast-track window for the given {@link Contacts#_ID}
-     * pointing towards the given location.
+     * Start showing a dialog for the given {@link Contacts#_ID} pointing
+     * towards the given location.
      */
-    public void show(Uri contactUri, Rect anchor, int mode, String[] excludeMimes) {
+    public void show(Uri lookupUri, Rect anchor, int mode, String[] excludeMimes) {
         if (mShowing || mQuerying) {
             Log.w(TAG, "already in process of showing");
             return;
@@ -260,29 +300,61 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         // Prepare header view for requested mode
+        mLookupUri = lookupUri;
+        mAnchor = new Rect(anchor);
         mMode = mode;
-        mHeader = getHeaderView(mode);
         mExcludeMimes = excludeMimes;
 
+        mHeader = getHeaderView(mode);
+
         setHeaderText(R.id.name, R.string.quickcontact_missing_name);
+
         setHeaderText(R.id.status, null);
+        setHeaderText(R.id.timestamp, null);
+
         setHeaderImage(R.id.presence, null);
+        setHeaderImage(R.id.source, null);
 
         mHasValidSocial = false;
-
-        mAggId = ContentUris.parseId(contactUri);
-        mAnchor = new Rect(anchor);
         mQuerying = true;
 
-        Uri aggSummary = ContentUris.withAppendedId(Contacts.CONTENT_URI, mAggId);
-        Uri aggSocial = ContentUris.withAppendedId(Activities.CONTENT_CONTACT_STATUS_URI, mAggId);
-        Uri aggData = Uri.withAppendedPath(aggSummary, Contacts.Data.CONTENT_DIRECTORY);
+        // Start background query for data, but only select photo rows when they
+        // directly match the super-primary PHOTO_ID.
+        final Uri dataUri = getDataUri(lookupUri);
+        mHandler.cancelOperation(TOKEN_DATA);
 
-        // Start data query in background
-        mHandler = new NotifyingAsyncQueryHandler(mContext, this);
-        mHandler.startQuery(TOKEN_SUMMARY, null, aggSummary, SummaryQuery.PROJECTION, null, null, null);
-        mHandler.startQuery(TOKEN_SOCIAL, null, aggSocial, SocialQuery.PROJECTION, null, null, null);
-        mHandler.startQuery(TOKEN_DATA, null, aggData, DataQuery.PROJECTION, null, null, null);
+        // Only request photo data when required by mode
+        if (mMode == QuickContact.MODE_LARGE) {
+            // Select photos, but only super-primary
+            mHandler.startQuery(TOKEN_DATA, null, dataUri, DataQuery.PROJECTION, Data.MIMETYPE
+                    + "!=? OR (" + Data.MIMETYPE + "=? AND " + Data._ID + "=" + Contacts.PHOTO_ID
+                    + ")", new String[] { Photo.CONTENT_ITEM_TYPE, Photo.CONTENT_ITEM_TYPE }, null);
+        } else {
+            // Exclude all photos from cursor
+            mHandler.startQuery(TOKEN_DATA, null, dataUri, DataQuery.PROJECTION, Data.MIMETYPE
+                    + "!=?", new String[] { Photo.CONTENT_ITEM_TYPE }, null);
+        }
+    }
+
+    /**
+     * Build a {@link Uri} into the {@link Data} table for the requested
+     * {@link Contacts#CONTENT_LOOKUP_URI} style {@link Uri}.
+     */
+    private Uri getDataUri(Uri lookupUri) {
+        // TODO: Formalize method of extracting LOOKUP_KEY
+        final List<String> path = lookupUri.getPathSegments();
+        final boolean validLookup = path.size() >= 3 && "lookup".equals(path.get(1));
+        if (!validLookup) {
+            // We only accept valid lookup-style Uris
+            throw new IllegalArgumentException("Expecting lookup-style Uri");
+        } else if (path.size() == 3) {
+            // No direct _ID provided, so force a lookup
+            lookupUri = Contacts.lookupContact(mContext.getContentResolver(), lookupUri);
+        }
+
+        final long contactId = ContentUris.parseId(lookupUri);
+        return Uri.withAppendedPath(ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
+                Contacts.Data.CONTENT_DIRECTORY);
     }
 
     /**
@@ -302,7 +374,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Actual internal method to show this fast-track window. Called only by
+     * Actual internal method to show this dialog. Called only by
      * {@link #considerShowing()} when all data requirements have been met.
      */
     private void showInternal() {
@@ -347,66 +419,69 @@ public class QuickContactWindow implements Window.Callback,
 
         if (TRACE_LAUNCH) {
             android.os.Debug.stopMethodTracing();
+            Log.d(TAG, "Window recycled " + mWindowRecycled + " times, chiclets "
+                    + mActionRecycled + " times");
         }
     }
 
     /**
-     * Dismiss this fast-track window if showing.
+     * Dismiss this dialog if showing.
      */
     public void dismiss() {
+        // Notify any listeners that we've been dismissed
+        if (mDismissListener != null) {
+            mDismissListener.onDismiss(this);
+        }
+
         if (!isShowing()) {
-            Log.d(TAG, "not visible, ignore");
+            if (LOGD) Log.d(TAG, "not visible, ignore");
             return;
         }
 
         boolean hadDecor = mDecor != null;
-
         if (hadDecor) {
             mWindowManager.removeView(mDecor);
             mDecor = null;
             mWindow.closeAllPanels();
         }
 
-        // Release refrence to last chiclet.
+        // Release reference to last chiclet.
         mLastAction = null;
 
         // Completely hide header from current mode
         mHeader.setVisibility(View.GONE);
 
         // Cancel any pending queries
-        mHandler.cancelOperation(TOKEN_SUMMARY);
-        mHandler.cancelOperation(TOKEN_SOCIAL);
         mHandler.cancelOperation(TOKEN_DATA);
 
         // Clear track actions and scroll to hard left
         mResolveCache.clear();
         mActions.clear();
-        mTrack.removeViews(1, mTrack.getChildCount() - 2);
+
+        // Recycle any chiclets in use
+        while (mTrack.getChildCount() > 2) {
+            this.releaseView(mTrack.getChildAt(1));
+            mTrack.removeViewAt(1);
+        }
+
         mTrackScroll.fullScroll(View.FOCUS_LEFT);
         mWasDownArrow = false;
 
         setResolveVisible(false, null);
 
         mQuerying = false;
-        mHasSummary = false;
-        mHasSocial = false;
-        mHasActions = false;
 
         if (!hadDecor || !mShowing) {
-            Log.d(TAG, "not showing, ignore");
+            if (LOGD) Log.d(TAG, "not showing, ignore");
             return;
         }
 
         mShowing = false;
-
-        // Notify any listeners that we've been dismissed
-        if (mDismissListener != null) {
-            mDismissListener.onDismiss(this);
-        }
+        mWindowRecycled++;
     }
 
     /**
-     * Returns true if this fast-track window is showing or querying.
+     * Returns true if this dialog is showing or querying.
      */
     public boolean isShowing() {
         return mShowing || mQuerying;
@@ -417,7 +492,7 @@ public class QuickContactWindow implements Window.Callback,
      * {@link #showInternal()} when all data items are present.
      */
     private synchronized void considerShowing() {
-        if (mHasSummary && mHasSocial && mHasActions && !mShowing) {
+        if (mHasData && !mShowing) {
             if (mMode == QuickContact.MODE_MEDIUM && !mHasValidSocial) {
                 // Missing valid social, swap medium for small header
                 mHeader.setVisibility(View.GONE);
@@ -438,20 +513,8 @@ public class QuickContactWindow implements Window.Callback,
             return;
         }
 
-        switch (token) {
-            case TOKEN_SUMMARY:
-                handleSummary(cursor);
-                mHasSummary = true;
-                break;
-            case TOKEN_SOCIAL:
-                handleSocial(cursor);
-                mHasSocial = true;
-                break;
-            case TOKEN_DATA:
-                handleData(cursor);
-                mHasActions = true;
-                break;
-        }
+        handleData(cursor);
+        mHasData = true;
 
         if (!cursor.isClosed()) {
             cursor.close();
@@ -470,6 +533,7 @@ public class QuickContactWindow implements Window.Callback,
         final View view = mHeader.findViewById(id);
         if (view instanceof TextView) {
             ((TextView)view).setText(value);
+            view.setVisibility(TextUtils.isEmpty(value) ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -483,36 +547,8 @@ public class QuickContactWindow implements Window.Callback,
         final View view = mHeader.findViewById(id);
         if (view instanceof ImageView) {
             ((ImageView)view).setImageDrawable(drawable);
+            view.setVisibility(drawable == null ? View.GONE : View.VISIBLE);
         }
-    }
-
-    /**
-     * Handle the result from the {@link #TOKEN_SUMMARY} query.
-     */
-    private void handleSummary(Cursor cursor) {
-        if (cursor == null || !cursor.moveToNext()) return;
-
-        // TODO: switch to provider-specific presence dots instead of using
-        // overall summary dot.
-        final String name = cursor.getString(SummaryQuery.DISPLAY_NAME);
-        final int status = cursor.getInt(SummaryQuery.CONTACT_PRESENCE);
-        final Drawable statusIcon = getPresenceIcon(status);
-
-        setHeaderText(R.id.name, name);
-        setHeaderImage(R.id.presence, statusIcon);
-    }
-
-    /**
-     * Handle the result from the {@link #TOKEN_SOCIAL} query.
-     */
-    private void handleSocial(Cursor cursor) {
-        if (cursor == null || !cursor.moveToNext()) return;
-
-        final String status = cursor.getString(SocialQuery.TITLE);
-
-        mHasValidSocial = !TextUtils.isEmpty(status);
-
-        setHeaderText(R.id.status, status);
     }
 
     /**
@@ -521,18 +557,18 @@ public class QuickContactWindow implements Window.Callback,
     private Drawable getPresenceIcon(int status) {
         int resId = -1;
         switch (status) {
-            case Presence.AVAILABLE:
+            case StatusUpdates.AVAILABLE:
                 resId = android.R.drawable.presence_online;
                 break;
-            case Presence.IDLE:
-            case Presence.AWAY:
+            case StatusUpdates.IDLE:
+            case StatusUpdates.AWAY:
                 resId = android.R.drawable.presence_away;
                 break;
-            case Presence.DO_NOT_DISTURB:
+            case StatusUpdates.DO_NOT_DISTURB:
                 resId = android.R.drawable.presence_busy;
                 break;
         }
-        if (resId > 0) {
+        if (resId != -1) {
             return mContext.getResources().getDrawable(resId);
         } else {
             return null;
@@ -540,25 +576,25 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Find the Fast-Track-specific presence icon for showing in chiclets.
+     * Find the QuickContact-specific presence icon for showing in chiclets.
      */
     private Drawable getTrackPresenceIcon(int status) {
         int resId = -1;
         switch (status) {
-            case Presence.AVAILABLE:
+            case StatusUpdates.AVAILABLE:
                 resId = R.drawable.quickcontact_slider_presence_active;
                 break;
-            case Presence.IDLE:
-            case Presence.AWAY:
+            case StatusUpdates.IDLE:
+            case StatusUpdates.AWAY:
                 resId = R.drawable.quickcontact_slider_presence_away;
                 break;
-            case Presence.DO_NOT_DISTURB:
+            case StatusUpdates.DO_NOT_DISTURB:
                 resId = R.drawable.quickcontact_slider_presence_busy;
                 break;
-            case Presence.INVISIBLE:
+            case StatusUpdates.INVISIBLE:
                 resId = R.drawable.quickcontact_slider_presence_inactive;
                 break;
-            case Presence.OFFLINE:
+            case StatusUpdates.OFFLINE:
             default:
                 resId = R.drawable.quickcontact_slider_presence_inactive;
         }
@@ -571,7 +607,7 @@ public class QuickContactWindow implements Window.Callback,
         return cursor.getString(index);
     }
 
-    /** Read {@link int} from the given {@link Cursor}. */
+    /** Read {@link Integer} from the given {@link Cursor}. */
     private static int getAsInt(Cursor cursor, String columnName) {
         final int index = cursor.getColumnIndex(columnName);
         return cursor.getInt(index);
@@ -602,7 +638,6 @@ public class QuickContactWindow implements Window.Callback,
          * Returns a lookup (@link Uri) for the contact data item.
          */
         public Uri getDataUri();
-
     }
 
     /**
@@ -671,11 +706,34 @@ public class QuickContactWindow implements Window.Callback,
                     mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 }
 
-            } else {
+            } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
+                        getAsString(cursor, Data.MIMETYPE));
+                final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
+                        getAsInt(cursor, Im.PROTOCOL);
+
+                String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
+                String data = getAsString(cursor, isEmail ? Email.DATA : Im.DATA);
+                if (protocol != Im.PROTOCOL_CUSTOM) {
+                    // Try bringing in a well-known host for specific protocols
+                    host = ContactsUtils.lookupProviderNameFromId(protocol);
+                }
+
+                if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
+                    final String authority = host.toLowerCase();
+                    final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                            authority).appendPath(data).build();
+                    mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
+                }
+            }
+
+            if (mIntent == null) {
                 // Otherwise fall back to default VIEW action
                 mIntent = new Intent(Intent.ACTION_VIEW, mDataUri);
             }
-	    mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Always launch as new task, since we're like a launcher
+            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
         /** {@inheritDoc} */
@@ -730,11 +788,11 @@ public class QuickContactWindow implements Window.Callback,
      */
     private static class ProfileAction implements Action {
         private final Context mContext;
-        private final long mId;
+        private final Uri mLookupUri;
 
-        public ProfileAction(Context context, long contactId) {
+        public ProfileAction(Context context, Uri lookupUri) {
             mContext = context;
-            mId = contactId;
+            mLookupUri = lookupUri;
         }
 
         /** {@inheritDoc} */
@@ -759,8 +817,7 @@ public class QuickContactWindow implements Window.Callback,
 
         /** {@inheritDoc} */
         public Intent getIntent() {
-            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mId);
-            final Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
 	    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    return intent;
         }
@@ -816,8 +873,16 @@ public class QuickContactWindow implements Window.Callback,
                 final List<ResolveInfo> matches = mPackageManager.queryIntentActivities(intent,
                         PackageManager.MATCH_DEFAULT_ONLY);
 
-                if (matches.size() > 0) {
-                    final ResolveInfo bestResolve = matches.get(0);
+                // Pick first match, otherwise best found
+                ResolveInfo bestResolve = null;
+                final int size = matches.size();
+                if (size == 1) {
+                    bestResolve = matches.get(0);
+                } else if (size > 1) {
+                    bestResolve = getBestResolve(matches);
+                }
+
+                if (bestResolve != null) {
                     final Drawable icon = bestResolve.loadIcon(mPackageManager);
 
                     entry.bestResolve = bestResolve;
@@ -827,6 +892,32 @@ public class QuickContactWindow implements Window.Callback,
 
             mCache.put(mimeType, entry);
             return entry;
+        }
+
+        /**
+         * Best {@link ResolveInfo} when multiple found. Ties are broken by
+         * selecting first from the {QuickContactWindow#sPreferResolve} list of
+         * preferred packages, second by apps that live on the system partition,
+         * otherwise the app from the top of the list. This is
+         * <strong>only</strong> used for selecting a default icon for
+         * displaying in the track, and does not shortcut the system
+         * {@link Intent} disambiguation dialog.
+         */
+        protected ResolveInfo getBestResolve(List<ResolveInfo> matches) {
+            // Accept any package from prefer list, otherwise first system app
+            ResolveInfo firstSystem = null;
+            for (ResolveInfo info : matches) {
+                final boolean isSystem = (info.activityInfo.applicationInfo.flags
+                        & ApplicationInfo.FLAG_SYSTEM) != 0;
+                final boolean isPrefer = QuickContactWindow.sPreferResolve
+                        .contains(info.activityInfo.applicationInfo.packageName);
+
+                if (isPrefer) return info;
+                if (isSystem && firstSystem != null) firstSystem = info;
+            }
+
+            // Return first system found, otherwise first from list
+            return firstSystem != null ? firstSystem : matches.get(0);
         }
 
         /**
@@ -906,6 +997,99 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
+     * Internal storage for the latest social status, as built when walking
+     * across a {@Link DataQuery} query. Will always keep record of at
+     * least the first status it encounters, but will replace it with newer
+     * statuses, as determined by timestamps.
+     */
+    private static class LatestStatus {
+        private String mStatus = null;
+        private long mTimestamp = -1;
+
+        private String mResPackage = null;
+        private int mIconRes = -1;
+        private int mLabelRes = -1;
+
+        private int getCursorInt(Cursor cursor, int columnIndex, int missingValue) {
+            if (cursor.isNull(columnIndex)) return missingValue;
+            return cursor.getInt(columnIndex);
+        }
+
+        /**
+         * Attempt updating this {@link LatestStatus} based on values at the
+         * current row of the given {@link Cursor}. Assumes that query
+         * projection was {@link DataQuery#PROJECTION}.
+         */
+        public void possibleUpdate(Cursor cursor) {
+            final boolean hasStatus = !cursor.isNull(DataQuery.STATUS);
+            final boolean hasTimestamp = !cursor.isNull(DataQuery.STATUS_TIMESTAMP);
+
+            // Bail early when not valid status, or when previous status was
+            // found and we can't compare this one.
+            if (!hasStatus) return;
+            if (isValid() && !hasTimestamp) return;
+
+            if (hasTimestamp) {
+                // Compare timestamps and bail if older status
+                final long newTimestamp = cursor.getLong(DataQuery.STATUS_TIMESTAMP);
+                if (newTimestamp < mTimestamp) return;
+
+                mTimestamp = newTimestamp;
+            }
+
+            // Fill in remaining details from cursor
+            mStatus = cursor.getString(DataQuery.STATUS);
+            mResPackage = cursor.getString(DataQuery.STATUS_RES_PACKAGE);
+            mIconRes = getCursorInt(cursor, DataQuery.STATUS_ICON, -1);
+            mLabelRes = getCursorInt(cursor, DataQuery.STATUS_LABEL, -1);
+        }
+
+        public boolean isValid() {
+            return !TextUtils.isEmpty(mStatus);
+        }
+
+        public CharSequence getStatus() {
+            return mStatus;
+        }
+
+        /**
+         * Build any timestamp and label into a single string.
+         */
+        public CharSequence getTimestampLabel(Context context) {
+            final PackageManager pm = context.getPackageManager();
+
+            final boolean validTimestamp = mTimestamp > 0;
+            final boolean validLabel = mResPackage != null && mLabelRes != -1;
+
+            final CharSequence timeClause = validTimestamp ? DateUtils.getRelativeTimeSpanString(
+                    mTimestamp, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_RELATIVE) : null;
+            final CharSequence labelClause = validLabel ? pm.getText(mResPackage, mLabelRes,
+                    null) : null;
+
+            if (validTimestamp && validLabel) {
+                return context.getString(
+                        com.android.internal.R.string.contact_status_update_attribution_with_date,
+                        timeClause, labelClause);
+            } else if (validLabel) {
+                return context.getString(
+                        com.android.internal.R.string.contact_status_update_attribution,
+                        labelClause);
+            } else if (validTimestamp) {
+                return timeClause;
+            } else {
+                return null;
+            }
+        }
+
+        public Drawable getIcon(Context context) {
+            final PackageManager pm = context.getPackageManager();
+            final boolean validIcon = mResPackage != null && mIconRes != -1;
+            return validIcon ? pm.getDrawable(mResPackage, mIconRes, null) : null;
+        }
+    }
+
+    /**
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
@@ -913,37 +1097,36 @@ public class QuickContactWindow implements Window.Callback,
 
         if (!isMimeExcluded(Contacts.CONTENT_ITEM_TYPE)) {
             // Add the profile shortcut action
-            final Action action = new ProfileAction(mContext, mAggId);
+            final Action action = new ProfileAction(mContext, mLookupUri);
             mActions.collect(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
+        final LatestStatus status = new LatestStatus();
         final Sources sources = Sources.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
+        Bitmap photoBitmap = null;
         while (cursor.moveToNext()) {
+            final long dataId = cursor.getLong(DataQuery._ID);
             final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
             final String resPackage = cursor.getString(DataQuery.RES_PACKAGE);
             final String mimeType = cursor.getString(DataQuery.MIMETYPE);
-            final long dataId = cursor.getLong(DataQuery._ID);
+
+            // Handle any social status updates from this row
+            status.possibleUpdate(cursor);
 
             // Skip this data item if MIME-type excluded
             if (isMimeExcluded(mimeType)) continue;
 
-            // Handle when a photo appears in the various data items
-            // TODO: accept a photo only if its marked as primary
-            // TODO: move to using photo thumbnail columns, when they exist
-            // TODO: launch photo as separate TOKEN query, only for large
-//            if (photoView != null && Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-//                final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
-//                final byte[] photoBlob = cursor.getBlob(colPhoto);
-//                final Bitmap photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0,
-//                        photoBlob.length);
-//                photoView.setImageBitmap(photoBitmap);
-//                continue;
-//            }
-
-            // TODO: find the ContactsSource for this, either from accountType,
-            // or through lazy-loading when resPackage is set, or default.
+            // Handle photos included as data row
+            if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final int colPhoto = cursor.getColumnIndex(Photo.PHOTO);
+                final byte[] photoBlob = cursor.getBlob(colPhoto);
+                if (photoBlob != null) {
+                    photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
+                }
+                continue;
+            }
 
             final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
                     ContactsSource.LEVEL_MIMETYPES);
@@ -961,6 +1144,51 @@ public class QuickContactWindow implements Window.Callback,
                 final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
                         kind, dataId, cursor);
                 considerAdd(action, Constants.MIME_SMS_ADDRESS);
+            }
+
+            // Handle Email rows with presence data as Im entry
+            final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
+            if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final DataKind imKind = sources.getKindOrFallback(accountType,
+                        Im.CONTENT_ITEM_TYPE, mContext, ContactsSource.LEVEL_MIMETYPES);
+                if (imKind != null) {
+                    final Action action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
+                            dataId, cursor);
+                    considerAdd(action, Im.CONTENT_ITEM_TYPE);
+                }
+            }
+        }
+
+        if (cursor.moveToLast()) {
+            // Read contact information from last data row
+            final String name = cursor.getString(DataQuery.DISPLAY_NAME);
+            final int presence = cursor.getInt(DataQuery.CONTACT_PRESENCE);
+            final Drawable statusIcon = getPresenceIcon(presence);
+
+            setHeaderText(R.id.name, name);
+            setHeaderImage(R.id.presence, statusIcon);
+        }
+
+        if (photoView != null) {
+            // Place photo when discovered in data, otherwise hide
+            photoView.setVisibility(photoBitmap != null ? View.VISIBLE : View.GONE);
+            photoView.setImageBitmap(photoBitmap);
+        }
+
+        mHasValidSocial = status.isValid();
+        if (mHasValidSocial && mMode != QuickContact.MODE_SMALL) {
+            // Update status when valid was found
+            setHeaderText(R.id.status, status.getStatus());
+            setHeaderText(R.id.timestamp, status.getTimestampLabel(mContext));
+
+            final Drawable icon = status.getIcon(mContext);
+            setHeaderImage(R.id.source, icon);
+
+            if (mMode == QuickContact.MODE_MEDIUM) {
+                // Hide medium divider when missing icon
+                final boolean validIcon = icon != null;
+                mHeader.findViewById(R.id.source_divider).setVisibility(
+                        validIcon ? View.VISIBLE : View.GONE);
             }
         }
 
@@ -995,12 +1223,34 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
+     * Obtain a new {@link CheckableImageView} for a new chiclet, either by
+     * recycling one from {@link #mActionPool}, or by inflating a new one. When
+     * finished, use {@link #releaseView(View)} to return back into the pool for
+     * later recycling.
+     */
+    private synchronized View obtainView() {
+        View view = mActionPool.poll();
+        if (view == null || QuickContactActivity.FORCE_CREATE) {
+            view = mInflater.inflate(R.layout.quickcontact_item, mTrack, false);
+        }
+        return view;
+    }
+
+    /**
+     * Return the given {@link CheckableImageView} into our internal pool for
+     * possible recycling during another pass.
+     */
+    private synchronized void releaseView(View view) {
+        mActionPool.offer(view);
+        mActionRecycled++;
+    }
+
+    /**
      * Inflate the in-track view for the action of the given MIME-type. Will use
      * the icon provided by the {@link DataKind}.
      */
     private View inflateAction(String mimeType) {
-        CheckableImageView view = (CheckableImageView)mInflater.inflate(
-                R.layout.quickcontact_item, mTrack, false);
+        final CheckableImageView view = (CheckableImageView)obtainView();
         boolean isActionSet = false;
 
         // Add direct intent if single child, otherwise flag for multiple
@@ -1009,12 +1259,12 @@ public class QuickContactWindow implements Window.Callback,
         if (children.size() == 1) {
             view.setTag(firstInfo);
         } else {
-            for (Action action: children) {
-              if (action.isPrimary()) {
-                  view.setTag(action);
-                  isActionSet = true;
-                  break;
-              }
+            for (Action action : children) {
+                if (action.isPrimary()) {
+                    view.setTag(action);
+                    isActionSet = true;
+                    break;
+                }
             }
             if (!isActionSet) {
                 view.setTag(children);
@@ -1024,6 +1274,7 @@ public class QuickContactWindow implements Window.Callback,
         // Set icon and listen for clicks
         final CharSequence descrip = mResolveCache.getDescription(firstInfo);
         final Drawable icon = mResolveCache.getIcon(firstInfo);
+        view.setChecked(false);
         view.setContentDescription(descrip);
         view.setImageDrawable(icon);
         view.setOnClickListener(this);
@@ -1038,8 +1289,8 @@ public class QuickContactWindow implements Window.Callback,
 
     /**
      * Flag indicating if {@link #mArrowDown} was visible during the last call
-     * to {@link #setResolveVisible(boolean)}. Used to decide during a later
-     * call if the arrow should be restored.
+     * to {@link #setResolveVisible(boolean, CheckableImageView)}. Used to
+     * decide during a later call if the arrow should be restored.
      */
     private boolean mWasDownArrow = false;
 
@@ -1151,20 +1402,54 @@ public class QuickContactWindow implements Window.Callback,
         mMakePrimary = isChecked;
     }
 
+    private void onBackPressed() {
+        // Back key will first dismiss any expanded resolve list, otherwise
+        // it will close the entire dialog.
+        if (mFooterDisambig.getVisibility() == View.VISIBLE) {
+            setResolveVisible(false, null);
+        } else {
+            dismiss();
+        }
+    }
+
     /** {@inheritDoc} */
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN
-                && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            // Back key will first dismiss any expanded resolve list, otherwise
-            // it will close the entire dialog.
-            if (mFooterDisambig.getVisibility() == View.VISIBLE) {
-                setResolveVisible(false, null);
-            } else {
-                dismiss();
-            }
+        if (mWindow.superDispatchKeyEvent(event)) {
             return true;
         }
-        return mWindow.superDispatchKeyEvent(event);
+        return event.dispatch(this, mDecor != null
+                ? mDecor.getKeyDispatcherState() : null, this);
+    }
+
+    /** {@inheritDoc} */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            event.startTracking();
+            return true;
+        }
+
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
+                && !event.isCanceled()) {
+            onBackPressed();
+            return true;
+        }
+
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
+        return false;
     }
 
     /** {@inheritDoc} */
@@ -1181,8 +1466,8 @@ public class QuickContactWindow implements Window.Callback,
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // Only try detecting outside events on down-press
             mDecor.getHitRect(mRect);
-	    mRect.top = mRect.top + mDecor.getPaddingTop();
-	    mRect.bottom = mRect.bottom - mDecor.getPaddingBottom();
+            mRect.top = mRect.top + mDecor.getPaddingTop();
+            mRect.bottom = mRect.bottom - mDecor.getPaddingBottom();
             final int x = (int)event.getX();
             final int y = (int)event.getY();
             if (!mRect.contains(x, y)) {
@@ -1197,8 +1482,9 @@ public class QuickContactWindow implements Window.Callback,
         if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             dismiss();
             return true;
+        } else {
+            return mWindow.superDispatchTouchEvent(event);
         }
-        return mWindow.superDispatchTouchEvent(event);
     }
 
     /** {@inheritDoc} */
@@ -1270,49 +1556,50 @@ public class QuickContactWindow implements Window.Callback,
         // No actions
     }
 
-    private interface SummaryQuery {
-        final String[] PROJECTION = new String[] {
-                Contacts.DISPLAY_NAME,
-                Contacts.PHOTO_ID,
-                Contacts.CONTACT_PRESENCE,
-                Contacts.CONTACT_STATUS,
-        };
-
-        final int DISPLAY_NAME = 0;
-        final int PHOTO_ID = 1;
-        final int CONTACT_PRESENCE = 2;
-        final int CONTACT_STATUS = 3;
-    }
-
-    private interface SocialQuery {
-        final String[] PROJECTION = new String[] {
-                Activities.PUBLISHED,
-                Activities.TITLE,
-        };
-
-        final int PUBLISHED = 0;
-        final int TITLE = 1;
-    }
-
     private interface DataQuery {
         final String[] PROJECTION = new String[] {
                 Data._ID,
+
                 RawContacts.ACCOUNT_TYPE,
+                Contacts.STARRED,
+                Contacts.DISPLAY_NAME,
+                Contacts.CONTACT_PRESENCE,
+
+                Data.STATUS,
+                Data.STATUS_RES_PACKAGE,
+                Data.STATUS_ICON,
+                Data.STATUS_LABEL,
+                Data.STATUS_TIMESTAMP,
+                Data.PRESENCE,
+
                 Data.RES_PACKAGE,
                 Data.MIMETYPE,
                 Data.IS_PRIMARY,
                 Data.IS_SUPER_PRIMARY,
                 Data.RAW_CONTACT_ID,
+
                 Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
                 Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10, Data.DATA11,
                 Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
         };
 
         final int _ID = 0;
+
         final int ACCOUNT_TYPE = 1;
-        final int RES_PACKAGE = 2;
-        final int MIMETYPE = 3;
-        final int IS_PRIMARY = 4;
-        final int IS_SUPER_PRIMARY = 5;
+        final int STARRED = 2;
+        final int DISPLAY_NAME = 3;
+        final int CONTACT_PRESENCE = 4;
+
+        final int STATUS = 5;
+        final int STATUS_RES_PACKAGE = 6;
+        final int STATUS_ICON = 7;
+        final int STATUS_LABEL = 8;
+        final int STATUS_TIMESTAMP = 9;
+        final int PRESENCE = 10;
+
+        final int RES_PACKAGE = 11;
+        final int MIMETYPE = 12;
+        final int IS_PRIMARY = 13;
+        final int IS_SUPER_PRIMARY = 14;
     }
 }

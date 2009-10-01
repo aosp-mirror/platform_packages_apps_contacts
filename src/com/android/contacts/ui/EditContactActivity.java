@@ -637,7 +637,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
                 } catch (OperationApplicationException e) {
                     // Version consistency failed, re-parent change and try again
-                    Log.w(TAG, "Version consistency failed, re-parenting", e);
+                    Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
                     final EntitySet newState = EntitySet.fromQuery(resolver,
                             target.mQuerySelection, null, null);
                     state = EntitySet.mergeAfter(newState, state);
