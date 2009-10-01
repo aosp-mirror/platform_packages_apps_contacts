@@ -75,18 +75,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <android.widget.FasttrackBadgeWidget android:id="@+id/photo"
+        <android.widget.QuickContactBadge android:id="@+id/photo"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium" />
+            style="@*android:style/Widget.QuickContactBadge.WindowMedium" />
         />
 
-        <ImageView android:id="@+id/noFastTrackphoto"
+        <ImageView android:id="@+id/noQuickContactPhoto"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium"
+            style="@*android:style/Widget.QuickContactBadge.WindowMedium"
             android:background="@null" />
         />
 
