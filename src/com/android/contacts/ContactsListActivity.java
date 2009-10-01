@@ -1987,7 +1987,8 @@ public class ContactsListActivity extends ListActivity implements
     }
 
     final static class ContactListItemCache {
-        public TextView header;
+        public View header;
+        public TextView headerText;
         public View divider;
         public TextView nameView;
         public View callView;
@@ -2291,7 +2292,8 @@ public class ContactsListActivity extends ListActivity implements
             final View view = super.newView(context, cursor, parent);
 
             final ContactListItemCache cache = new ContactListItemCache();
-            cache.header = (TextView) view.findViewById(R.id.header);
+            cache.header = view.findViewById(R.id.header);
+            cache.headerText = (TextView)view.findViewById(R.id.header_text);
             cache.divider = view.findViewById(R.id.list_divider);
             cache.nameView = (TextView) view.findViewById(R.id.name);
             cache.callView = view.findViewById(R.id.call_view);
@@ -2490,8 +2492,13 @@ public class ContactsListActivity extends ListActivity implements
             } else {
                 final int section = getSectionForPosition(position);
                 if (getPositionForSection(section) == position) {
-                    cache.header.setText(mIndexer.getSections()[section].toString());
-                    cache.header.setVisibility(View.VISIBLE);
+                    String title = mIndexer.getSections()[section].toString().trim();
+                    if (!TextUtils.isEmpty(title)) {
+                        cache.headerText.setText(title);
+                        cache.header.setVisibility(View.VISIBLE);
+                    } else {
+                        cache.header.setVisibility(View.GONE);
+                    }
                 } else {
                     cache.header.setVisibility(View.GONE);
                 }
