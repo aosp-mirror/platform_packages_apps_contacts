@@ -42,6 +42,7 @@ public interface Editor {
         public void onRequest(int request);
 
         public static final int REQUEST_PICK_PHOTO = 1;
+        public static final int FIELD_CHANGED = 2;
     }
 
     /**

@@ -106,7 +106,7 @@ public class EntityDelta implements Parcelable {
         if (local == null) local = new EntityDelta();
 
         if (LOGV) {
-            final Long localVersion = (local.mValues == null) ? -1 : local.mValues
+            final Long localVersion = (local.mValues == null) ? null : local.mValues
                     .getAsLong(RawContacts.VERSION);
             final Long remoteVersion = remote.mValues.getAsLong(RawContacts.VERSION);
             Log.d(TAG, "Re-parenting from original version " + remoteVersion + " to "
@@ -158,6 +158,44 @@ public class EntityDelta implements Parcelable {
         }
 
         // When no direct primary, return something
+        return mimeEntries.size() > 0 ? mimeEntries.get(0) : null;
+    }
+
+    /**
+     * calls {@link #getSuperPrimaryEntry(String, boolean)} with true
+     * @see #getSuperPrimaryEntry(String, boolean)
+     */
+    public ValuesDelta getSuperPrimaryEntry(String mimeType) {
+        return getSuperPrimaryEntry(mimeType, true);
+    }
+
+    /**
+     * Returns the super-primary entry for the given mime type
+     * @param forceSelection if true, will try to return some value even if a super-primary
+     *     doesn't exist (may be a primary, or just a random item
+     * @return
+     */
+    public ValuesDelta getSuperPrimaryEntry(String mimeType, boolean forceSelection) {
+        final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
+        if (mimeEntries == null) return null;
+
+        ValuesDelta primary = null;
+        for (ValuesDelta entry : mimeEntries) {
+            if (entry.isSuperPrimary()) {
+                return entry;
+            } else if (entry.isPrimary()) {
+                primary = entry;
+            }
+        }
+
+        if (!forceSelection) {
+            return null;
+        }
+
+        // When no direct super primary, return something
+        if (primary != null) {
+            return primary;
+        }
         return mimeEntries.size() > 0 ? mimeEntries.get(0) : null;
     }
 
@@ -550,6 +588,11 @@ public class EntityDelta implements Parcelable {
 
         public boolean isFromTemplate() {
             return mFromTemplate;
+        }
+
+        public boolean isSuperPrimary() {
+            final Long isSuperPrimary = getAsLong(Data.IS_SUPER_PRIMARY);
+            return isSuperPrimary == null ? false : isSuperPrimary != 0;
         }
 
         public boolean beforeExists() {

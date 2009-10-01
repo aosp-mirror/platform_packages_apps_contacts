@@ -93,7 +93,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
-import android.widget.FasttrackBadgeWidget;
+import android.widget.QuickContactBadge;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -102,8 +102,11 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
+import com.android.contacts.model.ContactsSource;
+
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -186,8 +189,8 @@ public class ContactsListActivity extends ListActivity implements
     static final int MODE_MASK_NO_DATA = 0x04000000;
     /** Mask for showing a call button in the list */
     static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
-    /** Mask to disable fasttrack (images will show as normal images) */
-    static final int MODE_MASK_DISABLE_FASTTRACK = 0x01000000;
+    /** Mask to disable quickcontact (images will show as normal images) */
+    static final int MODE_MASK_DISABLE_QUIKCCONTACT = 0x01000000;
     /** Mask to show the total number of contacts at the top */
     static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
 
@@ -205,16 +208,16 @@ public class ContactsListActivity extends ListActivity implements
     static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
     /** Show all contacts and pick them when clicking */
     static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
-            | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts as well as the option to create a new one */
     static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
-            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider and pick them when clicking */
     static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
-            | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider as well as the option to create a new one */
-    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
-            | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER
+            | MODE_MASK_CREATE_NEW | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
     static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all phone numbers and pick them when clicking */
@@ -236,7 +239,7 @@ public class ContactsListActivity extends ListActivity implements
 
     /** Show join suggestions followed by an A-Z list */
     static final int MODE_JOIN_CONTACT = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
-            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_FASTTRACK;
+            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
 
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
@@ -306,6 +309,12 @@ public class ContactsListActivity extends ListActivity implements
         ContactMethods.DATA, //3
         People.DISPLAY_NAME, // 4
     };
+    static final String[] RAW_CONTACTS_PROJECTION = new String[] {
+        RawContacts._ID, //0
+        RawContacts.CONTACT_ID, //1
+        RawContacts.ACCOUNT_TYPE, //2
+    };
+
     static final int POSTAL_ID_COLUMN_INDEX = 0;
     static final int POSTAL_TYPE_COLUMN_INDEX = 1;
     static final int POSTAL_LABEL_COLUMN_INDEX = 2;
@@ -324,6 +333,7 @@ public class ContactsListActivity extends ListActivity implements
     private String mQuery;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
+    private Uri mSelectedContactUri;
 
 //    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
@@ -331,6 +341,10 @@ public class ContactsListActivity extends ListActivity implements
     private Uri mGroupUri;
 
     private long mQueryAggregateId;
+
+    private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
+    private int  mWritableSourcesCnt;
+    private int  mReadOnlySourcesCnt;
 
     /**
      * Used to keep track of the scroll state of the list.
@@ -388,7 +402,15 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         public void onClick(DialogInterface dialog, int which) {
-            getContentResolver().delete(mUri, null, null);
+	    if (mReadOnlySourcesCnt > 0) {
+	        for (long rawContactIdToDelete: mWritableRawContactIds) {
+		    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                            rawContactIdToDelete);
+                    getContentResolver().delete(rawContactUri, null, null);
+		}
+            } else {
+	        getContentResolver().delete(mUri, null, null);
+            }
         }
     }
 
@@ -552,7 +574,6 @@ public class ContactsListActivity extends ListActivity implements
             finish();
             return;
         }
-
 
         if (JOIN_AGGREGATE.equals(action)) {
             mMode = MODE_JOIN_CONTACT;
@@ -854,11 +875,43 @@ public class ContactsListActivity extends ListActivity implements
                 return AccountSelectionUtil.getSelectAccountDialog(this, id);
             }
             case R.id.dialog_sdcard_not_found: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(R.string.no_sdcard_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage(R.string.no_sdcard_message)
-                .setPositiveButton(android.R.string.ok, null);
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.no_sdcard_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.no_sdcard_message)
+                        .setPositiveButton(android.R.string.ok, null).create();
+            }
+            case R.id.dialog_delete_contact_confirmation: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.deleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
+            }
+            case R.id.dialog_cannot_delete_readonly_contact: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactWarning)
+                        .setPositiveButton(android.R.string.ok, null).create();
+            }
+            case R.id.dialog_readonly_contact_delete_confirmation: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
+            }
+            case R.id.dialog_multiple_contact_delete_confirmation: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.multipleContactDeleteConfirmation)
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
             }
         }
         return super.onCreateDialog(id);
@@ -1062,8 +1115,8 @@ public class ContactsListActivity extends ListActivity implements
             }
 
             case MENU_ITEM_DELETE: {
-                final Uri selectedUri = getContactUri(info.position);
-                doContactDelete(selectedUri);
+                mSelectedContactUri = getContactUri(info.position);
+                doContactDelete();
                 return true;
             }
         }
@@ -1083,8 +1136,8 @@ public class ContactsListActivity extends ListActivity implements
             case KeyEvent.KEYCODE_DEL: {
                 final int position = getListView().getSelectedItemPosition();
                 if (position != ListView.INVALID_POSITION) {
-                    final Uri selectedUri = getContactUri(position);
-                    doContactDelete(selectedUri);
+                    mSelectedContactUri = getContactUri(position);
+                    doContactDelete();
                     return true;
                 }
                 break;
@@ -1097,14 +1150,41 @@ public class ContactsListActivity extends ListActivity implements
     /**
      * Prompt the user before deleting the given {@link Contacts} entry.
      */
-    protected void doContactDelete(Uri contactUri) {
-        new AlertDialog.Builder(ContactsListActivity.this)
-            .setTitle(R.string.deleteConfirmation_title)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setMessage(R.string.deleteConfirmation)
-            .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DeleteClickListener(contactUri))
-            .show();
+    protected void doContactDelete() {
+        mReadOnlySourcesCnt = 0;
+	mWritableSourcesCnt = 0;
+        mWritableRawContactIds.clear();
+
+	if (mSelectedContactUri != null) {
+            Cursor c = getContentResolver().query(RawContacts.CONTENT_URI,
+	            RAW_CONTACTS_PROJECTION, RawContacts.CONTACT_ID + "="
+		    + ContentUris.parseId(mSelectedContactUri), null, null);
+            Sources sources = Sources.getInstance(ContactsListActivity.this);
+            if (c != null) {
+                while (c.moveToNext()) {
+                    final String accountType = c.getString(2);
+		    final long rawContactId = c.getLong(0);
+                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                            ContactsSource.LEVEL_SUMMARY);
+                    if (contactsSource != null && contactsSource.readOnly) {
+                        mReadOnlySourcesCnt += 1;
+                    } else {
+                        mWritableSourcesCnt += 1;
+			mWritableRawContactIds.add(rawContactId);
+		    }
+                 }
+            }
+            c.close();
+	    if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
+	        showDialog(R.id.dialog_readonly_contact_delete_confirmation);
+	    } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+	        showDialog(R.id.dialog_cannot_delete_readonly_contact);
+	    } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+	        showDialog(R.id.dialog_multiple_contact_delete_confirmation);
+            } else {
+	        showDialog(R.id.dialog_delete_contact_confirmation);
+	    }
+	}
     }
 
     @Override
@@ -1918,8 +1998,8 @@ public class ContactsListActivity extends ListActivity implements
         public TextView dataView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
-        public FasttrackBadgeWidget photoView;
-        public ImageView nonFastTrackPhotoView;
+        public QuickContactBadge photoView;
+        public ImageView nonQuickContactPhotoView;
     }
 
     final static class PhotoInfo {
@@ -1930,7 +2010,7 @@ public class ContactsListActivity extends ListActivity implements
             this.position = position;
             this.photoId = photoId;
         }
-        public FasttrackBadgeWidget photoView;
+        public QuickContactBadge photoView;
     }
 
     private final class ContactItemListAdapter extends ResourceCursorAdapter
@@ -2139,7 +2219,8 @@ public class ContactsListActivity extends ListActivity implements
                         parent, false);
                 int stringId = mDisplayOnlyPhones ? R.string.listTotalPhoneContacts
                         : R.string.listTotalAllContacts;
-                totalContacts.setText(getString(stringId, getCount()));
+
+                totalContacts.setText(getString(stringId, getRealCount()));
                 return totalContacts;
             }
 
@@ -2221,11 +2302,8 @@ public class ContactsListActivity extends ListActivity implements
             cache.labelView = (TextView) view.findViewById(R.id.label);
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
-            cache.photoView = (FasttrackBadgeWidget) view.findViewById(R.id.photo);
-            if (cache.photoView != null) {
-                cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
-            }
-            cache.nonFastTrackPhotoView = (ImageView) view.findViewById(R.id.noFastTrackphoto);
+            cache.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
+            cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             view.setTag(cache);
 
             return view;
@@ -2292,7 +2370,7 @@ public class ContactsListActivity extends ListActivity implements
 
             // Set the photo, if requested
             if (mDisplayPhotos) {
-                boolean useFastTrack = (mMode & MODE_MASK_DISABLE_FASTTRACK) == 0;
+                boolean useQuickContact = (mMode & MODE_MASK_DISABLE_QUIKCCONTACT) == 0;
 
                 long photoId = 0;
                 if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
@@ -2300,18 +2378,18 @@ public class ContactsListActivity extends ListActivity implements
                 }
 
                 ImageView viewToUse;
-                if (useFastTrack) {
+                if (useQuickContact) {
                     viewToUse = cache.photoView;
                     // Build soft lookup reference
                     final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
                     final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
                     cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
                     cache.photoView.setVisibility(View.VISIBLE);
-                    cache.nonFastTrackPhotoView.setVisibility(View.INVISIBLE);
+                    cache.nonQuickContactPhotoView.setVisibility(View.INVISIBLE);
                 } else {
-                    viewToUse = cache.nonFastTrackPhotoView;
+                    viewToUse = cache.nonQuickContactPhotoView;
                     cache.photoView.setVisibility(View.INVISIBLE);
-                    cache.nonFastTrackPhotoView.setVisibility(View.VISIBLE);
+                    cache.nonQuickContactPhotoView.setVisibility(View.VISIBLE);
                 }
 
 
@@ -2574,17 +2652,31 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public int getCount() {
+            if (!mDataValid) {
+                return 0;
+            }
+            int superCount = super.getCount();
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+                superCount++;
+            }
             if (mSuggestionsCursorCount != 0) {
                 // When showing suggestions, we have 2 additional list items: the "Suggestions"
                 // and "All contacts" headers.
-                return mSuggestionsCursorCount + super.getCount() + 2;
+                return mSuggestionsCursorCount + superCount + 2;
             }
             else if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
                 // When showing strequent list, we have an additional list item - the separator.
-                return super.getCount() + 1;
+                return superCount + 1;
             } else {
-                return super.getCount();
+                return superCount;
             }
+        }
+
+        /**
+         * Gets the actual count of contacts and excludes all the headers.
+         */
+        public int getRealCount() {
+            return super.getCount();
         }
 
         private int getRealPosition(int pos) {

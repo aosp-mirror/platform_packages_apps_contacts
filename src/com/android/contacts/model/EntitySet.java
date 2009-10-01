@@ -16,22 +16,24 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+
+import com.google.android.collect.Lists;
+
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,8 @@ import java.util.ArrayList;
  * and applying another {@link EntitySet} over it.
  */
 public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
+    private boolean mSplitRawContacts;
+
     private EntitySet() {
     }
 
@@ -126,14 +130,21 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
         }
 
         final int assertMark = diff.size();
+        int backRefs[] = new int[size()];
+
+        int rawContactIndex = 0;
 
         // Second pass builds actual operations
         for (EntityDelta delta : this) {
             final int firstBatch = diff.size();
+            backRefs[rawContactIndex++] = firstBatch;
             delta.buildDiff(diff);
 
             // Only create rules for inserts
             if (!delta.isContactInsert()) continue;
+
+            // If we are going to split all contacts, there is no point in first combining them
+            if (mSplitRawContacts) continue;
 
             if (rawContactId != -1) {
                 // Has existing contact, so bind to it strongly
@@ -155,6 +166,10 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
             }
         }
 
+        if (mSplitRawContacts) {
+            buildSplitContactDiff(diff, backRefs);
+        }
+
         // No real changes if only left with asserts
         if (diff.size() == assertMark) {
             diff.clear();
@@ -172,6 +187,47 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
                 .newUpdate(AggregationExceptions.CONTENT_URI);
         builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_TOGETHER);
         return builder;
+    }
+
+    /**
+     * Builds {@link AggregationExceptions} to split all constituent raw contacts into
+     * separate contacts.
+     */
+    private void buildSplitContactDiff(final ArrayList<ContentProviderOperation> diff,
+            int[] backRefs) {
+        int count = size();
+        for (int i = 0; i < count; i++) {
+            for (int j = 0; j < count; j++) {
+                if (i != j) {
+                    buildSplitContactDiff(diff, i, j, backRefs);
+                }
+            }
+        }
+    }
+
+    /**
+     * Construct a {@link AggregationExceptions#TYPE_KEEP_SEPARATE}.
+     */
+    private void buildSplitContactDiff(ArrayList<ContentProviderOperation> diff, int index1,
+            int index2, int[] backRefs) {
+        Builder builder =
+                ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
+        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_SEPARATE);
+
+        Long rawContactId1 = get(index1).getValues().getAsLong(RawContacts._ID);
+        if (rawContactId1 != null && rawContactId1 >= 0) {
+            builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
+        } else {
+            builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID1, backRefs[index1]);
+        }
+
+        Long rawContactId2 = get(index2).getValues().getAsLong(RawContacts._ID);
+        if (rawContactId2 != null && rawContactId2 >= 0) {
+            builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
+        } else {
+            builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID2, backRefs[index2]);
+        }
+        diff.add(builder.build());
     }
 
     /**
@@ -221,6 +277,34 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
             }
         }
         return -1;
+    }
+
+    public ValuesDelta getSuperPrimaryEntry(final String mimeType) {
+        ValuesDelta primary = null;
+        ValuesDelta randomEntry = null;
+        for (EntityDelta delta : this) {
+            final ArrayList<ValuesDelta> mimeEntries = delta.getMimeEntries(mimeType);
+            if (mimeEntries == null) return null;
+
+            for (ValuesDelta entry : mimeEntries) {
+                if (entry.isSuperPrimary()) {
+                    return entry;
+                } else if (primary == null && entry.isPrimary()) {
+                    primary = entry;
+                } else if (randomEntry == null) {
+                    randomEntry = entry;
+                }
+            }
+        }
+        // When no direct super primary, return something
+        if (primary != null) {
+            return primary;
+        }
+        return randomEntry;
+    }
+
+    public void splitRawContacts() {
+        mSplitRawContacts = true;
     }
 
     /** {@inheritDoc} */

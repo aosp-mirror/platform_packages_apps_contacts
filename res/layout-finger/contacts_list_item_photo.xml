@@ -30,7 +30,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
-        android:paddingLeft="5dip"
+        android:paddingLeft="4dip"
     >
 
         <LinearLayout android:id="@+id/right_side"
@@ -58,7 +58,9 @@
                 <View android:id="@+id/divider"
                     android:layout_width="1px"
                     android:layout_height="fill_parent"
-                    android:background="@*android:drawable/divider_vertical_dark_opaque"
+                    android:layout_marginTop="5dip"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/divider_vertical_dark"
                 />
 
                 <com.android.contacts.ui.widget.DontPressWithParentImageView android:id="@+id/call_button"
@@ -75,18 +77,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <android.widget.FasttrackBadgeWidget android:id="@+id/photo"
+        <android.widget.QuickContactBadge android:id="@+id/photo"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium" />
+            style="@*android:style/Widget.QuickContactBadge.WindowMedium" />
         />
 
-        <ImageView android:id="@+id/noFastTrackphoto"
+        <ImageView android:id="@+id/noQuickContactPhoto"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.FasttrackBadgeWidget.WindowMedium"
+            style="@*android:style/Widget.QuickContactBadge.WindowMedium"
             android:background="@null" />
         />
 

@@ -22,6 +22,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.content.Context;
@@ -34,12 +35,14 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -53,7 +56,7 @@ import android.widget.TextView;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends RelativeLayout implements OnClickListener {
+public class ContactEditorView extends LinearLayout implements OnClickListener {
     private LayoutInflater mInflater;
 
     private TextView mReadOnly;
@@ -71,6 +74,12 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
     private Drawable mSecondaryOpen;
     private Drawable mSecondaryClosed;
 
+    private View mHeader;
+    private View mSideBar;
+    private ImageView mHeaderIcon;
+    private TextView mHeaderAccountType;
+    private TextView mHeaderAccountName;
+    
     public ContactEditorView(Context context) {
         super(context);
     }
@@ -100,6 +109,12 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
         mSecondary = (ViewGroup)findViewById(R.id.sect_secondary);
 
+        mHeader = findViewById(R.id.header);
+        mSideBar = findViewById(R.id.color_bar);
+        mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
+        mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
+        mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
+        
         mSecondaryHeader = (TextView)findViewById(R.id.head_secondary);
         mSecondaryHeader.setOnClickListener(this);
 
@@ -169,15 +184,35 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
 
+        // Fill in the header info
+        mHeader.setBackgroundColor(source.getHeaderColor(mContext));
+        mSideBar.setBackgroundColor(source.getSideBarColor(mContext));
+        ValuesDelta values = state.getValues();
+        String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        if (TextUtils.isEmpty(accountName)) {
+            // TODO get from resource
+            accountName = "Local contact";
+        }
+        mHeaderAccountName.setText(accountName);
+        mHeaderAccountType.setText(source.getDisplayLabel(mContext));
+        mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
+
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
-	mPhoto.setEnabled(!source.readOnly);
-	mName.setEnabled(!source.readOnly);
+        mPhoto.setEnabled(!source.readOnly);
+        mName.setEnabled(!source.readOnly);
 
-        mReadOnly.setVisibility(source.readOnly ? View.VISIBLE : View.GONE);
-
+        boolean readOnly = source.readOnly;
+        if (readOnly) {
+            mGeneral.setVisibility(View.GONE);
+            mSecondary.setVisibility(View.GONE);
+            mSecondaryHeader.setVisibility(View.GONE);
+        } else {
+            mReadOnly.setVisibility(View.GONE);
+        }
+    
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
             // Skip kind of not editable
@@ -192,7 +227,7 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
                 mPhoto.setValues(kind, primary, state, source.readOnly);
-            } else {
+            } else if (!readOnly) {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
                 final ViewGroup parent = kind.secondary ? mSecondary : mGeneral;
@@ -203,5 +238,15 @@ public class ContactEditorView extends RelativeLayout implements OnClickListener
                 parent.addView(section);
             }
         }
+        final int secondaryVisibility = mSecondary.getChildCount() > 0 ? View.VISIBLE : View.GONE;
+        mSecondary.setVisibility(secondaryVisibility);
+        mSecondaryHeader.setVisibility(secondaryVisibility);
+    }
+
+    /**
+     * Sets the {@link EditorListener} on the name field
+     */
+    public void setNameEditorListener(EditorListener listener) {
+        mName.setEditorListener(listener);
     }
 }

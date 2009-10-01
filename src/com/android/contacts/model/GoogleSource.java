@@ -61,6 +61,7 @@ public class GoogleSource extends FallbackSource {
         inflatePhoto(inflateLevel);
         inflateNote(inflateLevel);
         inflateWebsite(inflateLevel);
+        inflateEvent(inflateLevel);
 
         // TODO: GOOGLE: GROUPMEMBERSHIP
 
@@ -258,5 +259,15 @@ public class GoogleSource extends FallbackSource {
         } finally {
             cursor.close();
         }
+    }
+
+    @Override
+    public int getHeaderColor(Context context) {
+        return 0xff000000;
+    }
+
+    @Override
+    public int getSideBarColor(Context context) {
+        return 0xffffffff;
     }
 }

@@ -38,13 +38,12 @@
         android:title="@string/menu_deleteContact" />
 
     <item
-        android:id="@+id/menu_photo_add"
-        android:icon="@drawable/ic_menu_add_picture"
-        android:title="@string/addPicture" />
+        android:id="@+id/menu_split"
+        android:icon="@drawable/ic_menu_merge"
+        android:title="@string/menu_splitAggregate" />
 
     <item
-        android:id="@+id/menu_photo_remove"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/removePicture" />
-
+        android:id="@+id/menu_join"
+        android:icon="@drawable/ic_menu_merge"
+        android:title="@string/menu_joinAggregate" />
 </menu>

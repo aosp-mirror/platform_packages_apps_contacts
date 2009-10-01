@@ -90,6 +90,16 @@ public class EntityModifierTests extends AndroidTestCase {
 
             addKind(kind);
         }
+
+        @Override
+        public int getHeaderColor(Context context) {
+            return 0;
+        }
+
+        @Override
+        public int getSideBarColor(Context context) {
+            return 0xffffff;
+        }
     }
 
     /**
