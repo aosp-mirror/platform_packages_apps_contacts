@@ -56,8 +56,8 @@ import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -549,9 +549,13 @@ public class ViewContactActivity extends Activity
                 joinAggregate(contactId);
             }
         } else if (requestCode == REQUEST_EDIT_CONTACT) {
-            // TODO: Bring this back
             if (resultCode == EditContactActivity.RESULT_CLOSE_VIEW_ACTIVITY) {
                 finish();
+            } else {
+                mLookupUri = intent.getData();
+                if (mLookupUri == null) {
+                    finish();
+                }
             }
         }
     }
@@ -906,8 +910,8 @@ public class ViewContactActivity extends Activity
             maxLabelLines = Math.max(maxLabelLines, entry.maxLabelLines);
 
             // Choose the presence with the highest precedence.
-            if (Presence.getPresencePrecedence(status)
-                    < Presence.getPresencePrecedence(entry.status)) {
+            if (StatusUpdates.getPresencePrecedence(status)
+                    < StatusUpdates.getPresencePrecedence(entry.status)) {
                 status = entry.status;
             }
 
@@ -1081,7 +1085,7 @@ public class ViewContactActivity extends Activity
                 presenceIcon = resources.getDrawable(entry.presenceIcon);
             } else if (entry.status != -1) {
                 presenceIcon = resources.getDrawable(
-                        Presence.getPresenceIconResourceId(entry.status));
+                        StatusUpdates.getPresenceIconResourceId(entry.status));
             }
             ImageView presenceIconView = views.presenceIcon;
             if (presenceIcon != null) {
