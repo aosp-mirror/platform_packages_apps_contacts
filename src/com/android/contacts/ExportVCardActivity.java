@@ -51,6 +51,7 @@ public class ExportVCardActivity extends Activity {
     private Set<String> mExtensionsToConsider;
 
     private ProgressDialog mProgressDialog;
+    private String mExportingFileName;
 
     private Handler mHandler = new Handler();
 
@@ -101,15 +102,8 @@ public class ExportVCardActivity extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 mActualExportThread = new ActualExportThread(mFileName);
-                String title = getString(R.string.exporting_contact_list_title);
-                String message = getString(R.string.exporting_contact_list_message, mFileName);
-                mProgressDialog = new ProgressDialog(ExportVCardActivity.this);
-                mProgressDialog.setTitle(title);
-                mProgressDialog.setMessage(message);
-                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                mProgressDialog.setOnCancelListener(mActualExportThread);
-                mProgressDialog.show();
                 mActualExportThread.start();
+                showDialog(R.id.dialog_exporting_vcard);
             }
         }
     }
@@ -117,11 +111,10 @@ public class ExportVCardActivity extends Activity {
     private class ActualExportThread extends Thread
             implements DialogInterface.OnCancelListener {
         private PowerManager.WakeLock mWakeLock;
-        private String mFileName;
         private boolean mCanceled = false;
 
         public ActualExportThread(String fileName) {
-            mFileName = fileName;
+            mExportingFileName = fileName;
             PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
@@ -136,11 +129,11 @@ public class ExportVCardActivity extends Activity {
             try {
                 OutputStream outputStream = null;
                 try {
-                    outputStream = new FileOutputStream(mFileName);
+                    outputStream = new FileOutputStream(mExportingFileName);
                 } catch (FileNotFoundException e) {
                     final String errorReason =
                         getString(R.string.fail_reason_could_not_open_file,
-                                mFileName, e.getMessage());
+                                mExportingFileName, e.getMessage());
                     shouldCallFinish = false;
                     mHandler.post(new ErrorReasonDisplayer(errorReason));
                     return;
@@ -291,9 +284,27 @@ public class ExportVCardActivity extends Activity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setMessage(R.string.no_sdcard_message)
                 .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+            case R.id.dialog_exporting_vcard: {
+                return getExportingVCardDialog();
             }
         }
         return super.onCreateDialog(id);
+    }
+
+    private Dialog getExportingVCardDialog() {
+        if (mProgressDialog == null) {
+            String title = getString(R.string.exporting_contact_list_title);
+            String message = getString(R.string.exporting_contact_list_message,
+                    mExportingFileName);
+            mProgressDialog = new ProgressDialog(ExportVCardActivity.this);
+            mProgressDialog.setTitle(title);
+            mProgressDialog.setMessage(message);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialog.setOnCancelListener(mActualExportThread);
+        }
+        return mProgressDialog;
     }
 
     @Override
