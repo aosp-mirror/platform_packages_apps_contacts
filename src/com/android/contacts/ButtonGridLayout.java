@@ -85,7 +85,7 @@ public class ButtonGridLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-          // Measure the first child and get it's size
+        // Measure the first child and get it's size
         View child = getChildAt(0);
         child.measure(MeasureSpec.UNSPECIFIED , MeasureSpec.UNSPECIFIED);
 
