@@ -47,4 +47,13 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/removePicture" />
 
+    <item
+        android:id="@+id/menu_split"
+        android:icon="@drawable/ic_menu_merge"
+        android:title="@string/menu_splitAggregate" />
+
+    <item
+        android:id="@+id/menu_join"
+        android:icon="@drawable/ic_menu_merge"
+        android:title="@string/menu_joinAggregate" />
 </menu>

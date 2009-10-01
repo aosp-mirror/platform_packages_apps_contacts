@@ -96,6 +96,9 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_SELECTED_RAW_CONTACT = "selected";
 
+    /** The result code when view activity should close after edit returns */
+    public static final int RESULT_CLOSE_VIEW_ACTIVITY = 777;
+
     private String mQuerySelection;
 
     private ScrollingTabWidget mTabWidget;
@@ -363,7 +366,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
             this.setSelectedRawContactId(selectedRawContactId);
         } else {
             // Nothing remains to edit, save and bail entirely
-            this.doSaveAction();
+            this.doSaveAction(RESULT_OK);
         }
 
         // Show editor now that we've loaded state
@@ -461,7 +464,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_done:
-                doSaveAction();
+                doSaveAction(RESULT_OK);
                 break;
             case R.id.btn_discard:
                 doRevertAction();
@@ -472,7 +475,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     /** {@inheritDoc} */
     @Override
     public void onBackPressed() {
-        doSaveAction();
+        doSaveAction(RESULT_OK);
     }
 
     /** {@inheritDoc} */
@@ -519,7 +522,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_done:
-                return doSaveAction();
+                return doSaveAction(RESULT_OK);
             case R.id.menu_discard:
                 return doRevertAction();
             case R.id.menu_add:
@@ -530,6 +533,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 return doPickPhotoAction();
             case R.id.menu_photo_remove:
                 return doRemovePhotoAction();
+            case R.id.menu_split:
+                return doSplitContactAction();
+            case R.id.menu_join:
+                return doJoinContactAction();
         }
         return false;
     }
@@ -552,8 +559,11 @@ public final class EditContactActivity extends Activity implements View.OnClickL
 
         private WeakReference<ProgressDialog> progress;
 
-        public PersistTask(EditContactActivity target) {
+        private final int mResultCode;
+
+        public PersistTask(EditContactActivity target, int resultCode) {
             super(target);
+            mResultCode = resultCode;
         }
 
         /** {@inheritDoc} */
@@ -599,7 +609,7 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                          final Uri contactLookupUri = RawContacts.getContactLookupUri(resolver,
                                  rawContactUri);
                          intent.setData(contactLookupUri);
-                         target.setResult(RESULT_OK, intent);
+                         target.setResult(mResultCode, intent);
                          target.finish();
                     }
                     result = (diff.size() > 0) ? RESULT_SUCCESS : RESULT_UNCHANGED;
@@ -665,10 +675,10 @@ public final class EditContactActivity extends Activity implements View.OnClickL
      * Saves or creates the contact based on the mode, and if successful
      * finishes the activity.
      */
-    private boolean doSaveAction() {
+    private boolean doSaveAction(int resultCode) {
         if (!hasValidState()) return false;
 
-        final PersistTask task = new PersistTask(this);
+        final PersistTask task = new PersistTask(this, resultCode);
         task.execute(mState);
 
         return true;
@@ -749,6 +759,16 @@ public final class EditContactActivity extends Activity implements View.OnClickL
                 break;
             }
         }
+    }
+
+    private boolean doSplitContactAction() {
+        mState.splitRawContacts();
+        return doSaveAction(RESULT_CLOSE_VIEW_ACTIVITY);
+    }
+
+    private boolean doJoinContactAction() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 
