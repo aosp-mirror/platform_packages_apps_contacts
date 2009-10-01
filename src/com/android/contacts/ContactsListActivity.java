@@ -86,7 +86,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -830,6 +829,10 @@ public class ContactsListActivity extends ListActivity implements
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
+            case R.string.import_from_sim:
+            case R.string.import_from_sdcard: {
+                return AccountSelectionUtil.getSelectAccountDialog(this, id);
+            }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.no_sdcard_title)
