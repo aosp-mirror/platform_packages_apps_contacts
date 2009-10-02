@@ -427,10 +427,31 @@
     <string name="listSeparatorMore_edit">More</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
-    <string name="listTotalPhoneContacts"><xliff:g id="num">%s</xliff:g> contacts with phone numbers</string>
+    <plurals name="listTotalPhoneContacts">
+        <item quantity="one">Displaying 1 contact with phone number</item>
+        <item quantity="other">Displaying <xliff:g id="count">%d</xliff:g> contacts with phone numbers</item>
+    </plurals>
+
+    <!-- Displayed at the top of the contacts showing the zero as total number of contacts visible when "Only contacts with phones" is selected -->
+    <string name="listTotalPhoneContactsZero">No visible contacts with phone numbers</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
-    <string name="listTotalAllContacts"><xliff:g id="num">%s</xliff:g> contacts</string>
+    <plurals name="listTotalAllContacts">
+        <item quantity="one">Displaying 1 contact</item>
+        <item quantity="other">Displaying <xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Only contacts with phones" not selected -->
+    <string name="listTotalAllContactsZero">No visible contacts</string>
+
+    <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected -->
+    <plurals name="listFoundAllContacts">
+        <item quantity="one">Found 1 contact</item>
+        <item quantity="other">Found <xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected -->
+    <string name="listFoundAllContactsZero">Contact not found</string>
 
     <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
     <string name="socialStreamIconLabel">Social</string>

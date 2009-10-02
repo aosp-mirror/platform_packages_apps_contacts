@@ -233,7 +233,7 @@ public class ContactsListActivity extends ListActivity implements
             56 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     static final int MODE_GROUP = 57 | MODE_MASK_SHOW_PHOTOS;
     /** Run a search query */
-    static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER;
+    static final int MODE_QUERY = 60 | MODE_MASK_NO_FILTER | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
     /** Run a search query in PICK mode, but that still launches to VIEW */
     static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER;
 
@@ -2215,14 +2215,7 @@ public class ContactsListActivity extends ListActivity implements
 
             // handle the total contacts item
             if (position == 0 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
-                final LayoutInflater inflater = getLayoutInflater();
-                TextView totalContacts = (TextView) inflater.inflate(R.layout.total_contacts,
-                        parent, false);
-                int stringId = mDisplayOnlyPhones ? R.string.listTotalPhoneContacts
-                        : R.string.listTotalAllContacts;
-
-                totalContacts.setText(getString(stringId, getRealCount()));
-                return totalContacts;
+                return getTotalContactCountView(parent);
             }
 
             if (isShowAllContactsItemPosition(position)) {
@@ -2265,6 +2258,40 @@ public class ContactsListActivity extends ListActivity implements
             bindView(v, mContext, cursor);
             bindSectionHeader(v, realPosition, mDisplaySectionHeaders && !showingSuggestion);
             return v;
+        }
+
+        private View getTotalContactCountView(ViewGroup parent) {
+            final LayoutInflater inflater = getLayoutInflater();
+            TextView totalContacts = (TextView) inflater.inflate(R.layout.total_contacts,
+                    parent, false);
+
+            String text;
+            int count = getRealCount();
+
+            if (mMode == MODE_QUERY || !TextUtils.isEmpty(getListView().getTextFilter())) {
+                text = getQuantityText(count, R.string.listFoundAllContactsZero,
+                        R.plurals.listFoundAllContacts);
+            } else {
+                if (mDisplayOnlyPhones) {
+                    text = getQuantityText(count, R.string.listTotalPhoneContactsZero,
+                            R.plurals.listTotalPhoneContacts);
+                } else {
+                    text = getQuantityText(count, R.string.listTotalAllContactsZero,
+                            R.plurals.listTotalAllContacts);
+                }
+            }
+            totalContacts.setText(text);
+            return totalContacts;
+        }
+
+        // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
+        private String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
+            if (count == 0) {
+                return getString(zeroResourceId);
+            } else {
+                String format = getResources().getQuantityText(pluralResourceId, count).toString();
+                return String.format(format, count);
+            }
         }
 
         private boolean isShowAllContactsItemPosition(int position) {
