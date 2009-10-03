@@ -24,7 +24,7 @@ import com.google.android.collect.Sets;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
-import android.accounts.OnAccountsUpdatedListener;
+import android.accounts.OnAccountsUpdateListener;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -47,7 +47,7 @@ import java.util.HashSet;
  * Singleton holder for all parsed {@link ContactsSource} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class Sources extends BroadcastReceiver implements OnAccountsUpdatedListener {
+public class Sources extends BroadcastReceiver implements OnAccountsUpdateListener {
     private static final String TAG = "Sources";
 
     private Context mApplicationContext;
