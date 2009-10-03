@@ -19,7 +19,6 @@ package com.android.contacts.ui;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.ScrollingTabWidget;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
@@ -30,10 +29,8 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
-import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.android.internal.widget.ContactHeaderWidget;
 import com.google.android.collect.Lists;
 
 import android.accounts.Account;
@@ -396,6 +393,14 @@ public final class EditContactActivity extends Activity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.edit, menu);
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
         return true;
     }
 
@@ -725,8 +730,27 @@ public final class EditContactActivity extends Activity
     }
 
     private boolean doSplitContactAction() {
-        mState.splitRawContacts();
-        return doSaveAction(SAVE_MODE_SPLIT);
+        if (!hasValidState()) return false;
+
+        showAndManageDialog(createSplitDialog());
+        return true;
+    }
+
+    private Dialog createSplitDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.splitConfirmation_title);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setMessage(R.string.splitConfirmation);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Split the contacts
+                mState.splitRawContacts();
+                doSaveAction(SAVE_MODE_SPLIT);
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setCancelable(false);
+        return builder.create();
     }
 
     private boolean doJoinContactAction() {
