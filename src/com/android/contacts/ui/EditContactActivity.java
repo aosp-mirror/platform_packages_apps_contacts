@@ -358,15 +358,13 @@ public final class EditContactActivity extends Activity
         switch (requestCode) {
             case PHOTO_PICKED_WITH_DATA: {
                 ContactEditorView requestingEditor = null;
-                if (mRawContactIdRequestingPhoto > 0) {
-                    for (int i = 0; i < mContent.getChildCount(); i++) {
-                        View childView = mContent.getChildAt(i);
-                        if (childView instanceof ContactEditorView) {
-                            ContactEditorView editor = (ContactEditorView) childView;
-                            if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
-                                requestingEditor = editor;
-                                break;
-                            }
+                for (int i = 0; i < mContent.getChildCount(); i++) {
+                    View childView = mContent.getChildAt(i);
+                    if (childView instanceof ContactEditorView) {
+                        ContactEditorView editor = (ContactEditorView) childView;
+                        if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
+                            requestingEditor = editor;
+                            break;
                         }
                     }
                 }

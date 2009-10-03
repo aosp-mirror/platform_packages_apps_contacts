@@ -1328,27 +1328,27 @@ public class QuickContactWindow implements Window.Callback,
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
         final Object tag = view.getTag();
         if (tag instanceof Action) {
+            // Incoming tag is concrete intent, so try launching
+            final Action action = (Action)tag;
+
+            try {
+                mContext.startActivity(action.getIntent());
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(mContext, R.string.quickcontact_missing_app, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
             // Hide the resolution list, if present
             setResolveVisible(false, actionView);
             this.dismiss();
 
-            try {
-                // Incoming tag is concrete intent, so try launching
-                final Action action = (Action)tag;
-                mContext.startActivity(action.getIntent());
-
-                if (mMakePrimary) {
-                    ContentValues values = new ContentValues(1);
-                    values.put(Data.IS_SUPER_PRIMARY, 1);
-                    final Uri dataUri = action.getDataUri();
-                    if (dataUri != null) {
-                        mContext.getContentResolver().update(dataUri, values, null, null);
-                    }
+            if (mMakePrimary) {
+                ContentValues values = new ContentValues(1);
+                values.put(Data.IS_SUPER_PRIMARY, 1);
+                final Uri dataUri = action.getDataUri();
+                if (dataUri != null) {
+                    mContext.getContentResolver().update(dataUri, values, null, null);
                 }
-
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(mContext, R.string.quickcontact_missing_app, Toast.LENGTH_SHORT)
-                        .show();
             }
         } else if (tag instanceof ActionList) {
             // Incoming tag is a MIME-type, so show resolution list
