@@ -91,6 +91,7 @@ public class ViewContactActivity extends Activity
     private static final int DIALOG_CONFIRM_DELETE = 1;
     private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
     private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
+    private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
 
     private static final int REQUEST_JOIN_CONTACT = 1;
     private static final int REQUEST_EDIT_CONTACT = 2;
@@ -146,15 +147,7 @@ public class ViewContactActivity extends Activity
 
     public void onClick(DialogInterface dialog, int which) {
         closeCursor();
-	if (mReadOnlySourcesCnt > 0) {
-	    for (long rawContactIdToDelete: mWritableRawContactIds) {
-		final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                        rawContactIdToDelete);
-                getContentResolver().delete(rawContactUri, null, null);
-            }
-        } else {
-	    getContentResolver().delete(mLookupUri, null, null);
-	}
+        getContentResolver().delete(mLookupUri, null, null);
         finish();
     }
 
@@ -264,6 +257,15 @@ public class ViewContactActivity extends Activity
                         .setPositiveButton(android.R.string.ok, this)
                         .setCancelable(false)
                         .create();
+	    case DIALOG_CONFIRM_READONLY_HIDE: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactWarning)
+                        .setPositiveButton(android.R.string.ok, this)
+			.create();
+            }
+
         }
         return null;
     }
@@ -384,10 +386,6 @@ public class ViewContactActivity extends Activity
         final boolean hasRawContact = (mRawContactIds.size() > 0);
         menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
 
-        // Disable delete for readonly contact
-	if (mWritableSourcesCnt == 0) {
-            menu.findItem(R.id.menu_delete).setEnabled(false);
-        }
         return true;
     }
 
@@ -446,7 +444,9 @@ public class ViewContactActivity extends Activity
                 // Get confirmation
 		if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_DELETE);
-		} else if (mWritableSourcesCnt > 1) {
+		} else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+		} else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
 		    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
 		} else {
 		    showDialog(DIALOG_CONFIRM_DELETE);
@@ -649,7 +649,9 @@ public class ViewContactActivity extends Activity
             case KeyEvent.KEYCODE_DEL: {
 		if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_DELETE);
-		} else if (mWritableSourcesCnt > 1) {
+		} else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+		} else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
 		    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
 		} else {
 		    showDialog(DIALOG_CONFIRM_DELETE);
@@ -725,6 +727,15 @@ public class ViewContactActivity extends Activity
                 if (!mRawContactIds.contains(rawContactId)) {
                     mRawContactIds.add(rawContactId);
                 }
+                ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                        ContactsSource.LEVEL_SUMMARY);
+                if (contactsSource != null && contactsSource.readOnly) {
+                    mReadOnlySourcesCnt += 1;
+                } else {
+                    mWritableSourcesCnt += 1;
+		    mWritableRawContactIds.add(rawContactId);
+		}
+
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
                     ViewEntry entry = new ViewEntry();
