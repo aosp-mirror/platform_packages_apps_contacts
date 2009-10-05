@@ -120,13 +120,21 @@
     <string name="menu_makeDefaultEmail">Make default email</string>
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
-    <string name="menu_splitAggregate">Split</string>
+    <string name="menu_splitAggregate">Separate</string>
 
     <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
     <string name="splitAggregate_title">Split contact</string>
 
     <!-- Toast shown after a contact has been split from an aggregate by a user action -->
-    <string name="contactsSplitMessage">Contact split</string>
+    <string name="contactsSplitMessage">Contacts separated</string>
+
+    <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
+    <string name="splitConfirmation_title">Separate Contact</string>
+
+    <!-- Confirmation dialog for separating contacts into multiple instances  -->
+    <string name="splitConfirmation">Are you sure you want to separate this single contact
+        into multiple contacts: one for each set of contact information that was joined into it?
+    </string>
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
@@ -166,10 +174,10 @@
     <string name="deleteConfirmation_title">Delete</string>
 
     <!-- Warning dialog contents after users selects to delete a ReadOnly contact. -->
-    <string name="readOnlyContactWarning">You cannot delete contacts from read-only accounts.</string>
+    <string name="readOnlyContactWarning">You cannot delete contacts from read-only accounts, but you can hide them in your contacts lists.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
-    <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. The information from read-only accounts will not be deleted.</string>
+    <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
     <string name="multipleContactDeleteConfirmation">Deleting this contact will delete information from multiple accounts.</string>

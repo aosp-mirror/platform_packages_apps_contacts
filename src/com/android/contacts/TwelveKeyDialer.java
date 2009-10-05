@@ -162,6 +162,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         if (notEmpty) {
             mDigits.setBackgroundDrawable(mDigitsBackground);
         } else {
+            mDigits.setCursorVisible(false);
             mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
         }
 
@@ -184,6 +185,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
+        mDigits.setInputType(android.text.InputType.TYPE_NULL);  // Don't show IME when focused.
+
         maybeAddNumberFormatting();
 
         // Check for the presence of the keypad
@@ -656,8 +659,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
             }
-            case R.id.dialButton:
-            case R.id.digits: {
+            case R.id.dialButton: {
                 vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
                 return;
@@ -665,6 +667,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             case R.id.voicemailButton: {
                 callVoicemail();
                 vibrate();
+                return;
+            }
+            case R.id.digits: {
+                if (mDigits.length() != 0) {
+                    mDigits.setCursorVisible(true);
+                }
                 return;
             }
         }

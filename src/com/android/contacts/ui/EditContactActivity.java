@@ -19,7 +19,6 @@ package com.android.contacts.ui;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.ScrollingTabWidget;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
@@ -30,10 +29,8 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
-import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.android.internal.widget.ContactHeaderWidget;
 import com.google.android.collect.Lists;
 
 import android.accounts.Account;
@@ -108,6 +105,10 @@ public final class EditContactActivity extends Activity
 
     private long mRawContactIdRequestingPhoto = -1;
 
+    private static final int DIALOG_CONFIRM_DELETE = 1;
+    private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
+    private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
+    private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
 
     String mQuerySelection;
 
@@ -241,6 +242,48 @@ public final class EditContactActivity extends Activity
                 dialog.dismiss();
             }
         }
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_CONFIRM_DELETE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.deleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
+                        .setCancelable(false)
+                        .create();
+            case DIALOG_CONFIRM_READONLY_DELETE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
+                        .setCancelable(false)
+                        .create();
+            case DIALOG_CONFIRM_MULTIPLE_DELETE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.multipleContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
+                        .setCancelable(false)
+                        .create();
+            case DIALOG_CONFIRM_READONLY_HIDE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactWarning)
+                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
+                        .setCancelable(false)
+                        .create();
+        }
+        return null;
     }
 
     /**
@@ -396,6 +439,14 @@ public final class EditContactActivity extends Activity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.edit, menu);
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
         return true;
     }
 
@@ -561,6 +612,20 @@ public final class EditContactActivity extends Activity
         return true;
     }
 
+    private class DeleteClickListener implements DialogInterface.OnClickListener {
+
+        public void onClick(DialogInterface dialog, int which) {
+            Sources sources = Sources.getInstance(EditContactActivity.this);
+            // Mark all raw contacts for deletion
+            for (EntityDelta delta : mState) {
+                delta.markDeleted();
+            }
+            // Save the deletes
+            doSaveAction(SAVE_MODE_DEFAULT);
+            finish();
+        }
+    }
+
     private void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
         switch (saveMode) {
             case SAVE_MODE_DEFAULT:
@@ -697,9 +762,30 @@ public final class EditContactActivity extends Activity
      */
     private boolean doDeleteAction() {
         if (!hasValidState()) return false;
+        int readOnlySourcesCnt = 0;
+	int writableSourcesCnt = 0;
+        Sources sources = Sources.getInstance(EditContactActivity.this);
+        for (EntityDelta delta : mState) {
+	    final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_CONSTRAINTS);
+            if (contactsSource != null && contactsSource.readOnly) {
+                readOnlySourcesCnt += 1;
+            } else {
+                writableSourcesCnt += 1;
+            }
+	}
 
-        showAndManageDialog(createDeleteDialog());
-        return true;
+        if (readOnlySourcesCnt > 0 && writableSourcesCnt > 0) {
+	    showDialog(DIALOG_CONFIRM_READONLY_DELETE);
+	} else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
+	    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+	} else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
+	    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+        } else {
+	    showDialog(DIALOG_CONFIRM_DELETE);
+	}
+	return true;
     }
 
     /**
@@ -725,8 +811,27 @@ public final class EditContactActivity extends Activity
     }
 
     private boolean doSplitContactAction() {
-        mState.splitRawContacts();
-        return doSaveAction(SAVE_MODE_SPLIT);
+        if (!hasValidState()) return false;
+
+        showAndManageDialog(createSplitDialog());
+        return true;
+    }
+
+    private Dialog createSplitDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.splitConfirmation_title);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setMessage(R.string.splitConfirmation);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Split the contacts
+                mState.splitRawContacts();
+                doSaveAction(SAVE_MODE_SPLIT);
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setCancelable(false);
+        return builder.create();
     }
 
     private boolean doJoinContactAction() {

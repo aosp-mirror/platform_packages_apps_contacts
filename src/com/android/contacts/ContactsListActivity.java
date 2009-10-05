@@ -402,15 +402,7 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         public void onClick(DialogInterface dialog, int which) {
-	    if (mReadOnlySourcesCnt > 0) {
-	        for (long rawContactIdToDelete: mWritableRawContactIds) {
-		    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                            rawContactIdToDelete);
-                    getContentResolver().delete(rawContactUri, null, null);
-		}
-            } else {
-	        getContentResolver().delete(mUri, null, null);
-            }
+            getContentResolver().delete(mUri, null, null);
         }
     }
 
@@ -890,18 +882,21 @@ public class ContactsListActivity extends ListActivity implements
                         .setPositiveButton(android.R.string.ok,
                                 new DeleteClickListener(mSelectedContactUri)).create();
             }
-            case R.id.dialog_cannot_delete_readonly_contact: {
+            case R.id.dialog_readonly_contact_hide_confirmation: {
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.readOnlyContactWarning)
-                        .setPositiveButton(android.R.string.ok, null).create();
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok,
+                                new DeleteClickListener(mSelectedContactUri)).create();
             }
             case R.id.dialog_readonly_contact_delete_confirmation: {
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.readOnlyContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
                                 new DeleteClickListener(mSelectedContactUri)).create();
             }
@@ -910,6 +905,7 @@ public class ContactsListActivity extends ListActivity implements
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.multipleContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
                                 new DeleteClickListener(mSelectedContactUri)).create();
             }
@@ -1178,7 +1174,7 @@ public class ContactsListActivity extends ListActivity implements
 	    if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
 	        showDialog(R.id.dialog_readonly_contact_delete_confirmation);
 	    } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-	        showDialog(R.id.dialog_cannot_delete_readonly_contact);
+	        showDialog(R.id.dialog_readonly_contact_hide_confirmation);
 	    } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
 	        showDialog(R.id.dialog_multiple_contact_delete_confirmation);
             } else {
