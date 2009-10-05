@@ -140,6 +140,6 @@
     <View android:id="@+id/list_divider"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/divider_dark_opaque"
+        android:background="@*android:drawable/divider_horizontal_dark_opaque"
     />
 </LinearLayout>
