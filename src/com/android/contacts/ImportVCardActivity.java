@@ -334,6 +334,10 @@ public class ImportVCardActivity extends Activity {
                         is.close();
                     } catch (IOException e) {
                     }
+                    if (builder instanceof VCardDataBuilder) {
+                        // Let the object clean up internal temporal objects,
+                        ((VCardDataBuilder)builder).clear();
+                    }
                     is = new FileInputStream(canonicalPath);
 
                     try {
