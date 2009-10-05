@@ -29,13 +29,13 @@
         android:layout_width="50dip"
         android:layout_height="56dip"
         android:layout_marginLeft="15dip"
-        android:layout_marginRight="15dip"
         style="@*android:style/Widget.QuickContactBadge.WindowLarge" />
 
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginLeft="15dip"
         android:paddingRight="8dip"
         android:orientation="vertical">
 
