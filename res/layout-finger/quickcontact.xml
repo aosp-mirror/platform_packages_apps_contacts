@@ -18,6 +18,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/quickcontact_shadow_horiz"
+    android:paddingRight="@dimen/quickcontact_shadow_horiz"
     android:background="@drawable/quickcontact_drop_shadow">
 
     <FrameLayout
@@ -132,6 +134,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-1dip"
         android:layout_below="@id/footer"
+        android:src="@drawable/quickcontact_arrow_down" />
+
+    <ImageView
+        android:id="@+id/arrow_down_stub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-1dip"
+        android:layout_below="@id/footer_disambig"
+        android:visibility="invisible"
         android:src="@drawable/quickcontact_arrow_down" />
 
 </RelativeLayout>
