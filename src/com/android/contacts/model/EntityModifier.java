@@ -85,7 +85,10 @@ public class EntityModifier {
 
         if (!hasChild && kind != null) {
             // Create child when none exists and valid kind
-            insertChild(state, kind);
+            final ValuesDelta child = insertChild(state, kind);
+            if (kind.mimeType.equals(Photo.CONTENT_ITEM_TYPE)) {
+                child.setFromTemplate(true);
+            }
         }
     }
 
@@ -321,7 +324,6 @@ public class EntityModifier {
     public static ValuesDelta insertChild(EntityDelta state, DataKind kind, EditType type) {
         // Bail early if invalid kind
         if (kind == null) return null;
-
         final ContentValues after = new ContentValues();
 
         // Our parent CONTACT_ID is provided later
@@ -338,7 +340,7 @@ public class EntityModifier {
         }
 
         final ValuesDelta child = ValuesDelta.fromAfter(after);
-        state.addEntry(child);
+	state.addEntry(child);
         return child;
     }
 
@@ -385,6 +387,7 @@ public class EntityModifier {
                         state.getValues().getAsString(RawContacts.ACCOUNT_TYPE));
                 final boolean isPhoto = TextUtils.equals(Photo.CONTENT_ITEM_TYPE, kind.mimeType);
                 final boolean isGooglePhoto = isPhoto && isGoogleSource;
+
                 if (EntityModifier.isEmpty(entry, kind) && !isGooglePhoto) {
                     // TODO: remove this verbose logging
                     Log.w(TAG, "Trimming: " + entry.toString());
@@ -394,7 +397,6 @@ public class EntityModifier {
                 }
             }
         }
-
         if (!hasValues) {
             // Trim overall entity if no children exist
             state.markDeleted();
