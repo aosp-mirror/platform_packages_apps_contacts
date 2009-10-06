@@ -23,6 +23,7 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
+import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Lists;
@@ -712,6 +713,13 @@ public class QuickContactWindow implements Window.Callback,
                 final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
                         getAsInt(cursor, Im.PROTOCOL);
 
+                if (isEmail) {
+                    // Use Google Talk string when using Email, and clear data
+                    // Uri so we don't try saving Email as primary.
+                    mHeader = context.getText(R.string.chat_gtalk);
+                    mDataUri = null;
+                }
+
                 String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
                 String data = getAsString(cursor, isEmail ? Email.DATA : Im.DATA);
                 if (protocol != Im.PROTOCOL_CUSTOM) {
@@ -997,99 +1005,6 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Internal storage for the latest social status, as built when walking
-     * across a {@Link DataQuery} query. Will always keep record of at
-     * least the first status it encounters, but will replace it with newer
-     * statuses, as determined by timestamps.
-     */
-    private static class LatestStatus {
-        private String mStatus = null;
-        private long mTimestamp = -1;
-
-        private String mResPackage = null;
-        private int mIconRes = -1;
-        private int mLabelRes = -1;
-
-        private int getCursorInt(Cursor cursor, int columnIndex, int missingValue) {
-            if (cursor.isNull(columnIndex)) return missingValue;
-            return cursor.getInt(columnIndex);
-        }
-
-        /**
-         * Attempt updating this {@link LatestStatus} based on values at the
-         * current row of the given {@link Cursor}. Assumes that query
-         * projection was {@link DataQuery#PROJECTION}.
-         */
-        public void possibleUpdate(Cursor cursor) {
-            final boolean hasStatus = !cursor.isNull(DataQuery.STATUS);
-            final boolean hasTimestamp = !cursor.isNull(DataQuery.STATUS_TIMESTAMP);
-
-            // Bail early when not valid status, or when previous status was
-            // found and we can't compare this one.
-            if (!hasStatus) return;
-            if (isValid() && !hasTimestamp) return;
-
-            if (hasTimestamp) {
-                // Compare timestamps and bail if older status
-                final long newTimestamp = cursor.getLong(DataQuery.STATUS_TIMESTAMP);
-                if (newTimestamp < mTimestamp) return;
-
-                mTimestamp = newTimestamp;
-            }
-
-            // Fill in remaining details from cursor
-            mStatus = cursor.getString(DataQuery.STATUS);
-            mResPackage = cursor.getString(DataQuery.STATUS_RES_PACKAGE);
-            mIconRes = getCursorInt(cursor, DataQuery.STATUS_ICON, -1);
-            mLabelRes = getCursorInt(cursor, DataQuery.STATUS_LABEL, -1);
-        }
-
-        public boolean isValid() {
-            return !TextUtils.isEmpty(mStatus);
-        }
-
-        public CharSequence getStatus() {
-            return mStatus;
-        }
-
-        /**
-         * Build any timestamp and label into a single string.
-         */
-        public CharSequence getTimestampLabel(Context context) {
-            final PackageManager pm = context.getPackageManager();
-
-            final boolean validTimestamp = mTimestamp > 0;
-            final boolean validLabel = mResPackage != null && mLabelRes != -1;
-
-            final CharSequence timeClause = validTimestamp ? DateUtils.getRelativeTimeSpanString(
-                    mTimestamp, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS,
-                    DateUtils.FORMAT_ABBREV_RELATIVE) : null;
-            final CharSequence labelClause = validLabel ? pm.getText(mResPackage, mLabelRes,
-                    null) : null;
-
-            if (validTimestamp && validLabel) {
-                return context.getString(
-                        com.android.internal.R.string.contact_status_update_attribution_with_date,
-                        timeClause, labelClause);
-            } else if (validLabel) {
-                return context.getString(
-                        com.android.internal.R.string.contact_status_update_attribution,
-                        labelClause);
-            } else if (validTimestamp) {
-                return timeClause;
-            } else {
-                return null;
-            }
-        }
-
-        public Drawable getIcon(Context context) {
-            final PackageManager pm = context.getPackageManager();
-            final boolean validIcon = mResPackage != null && mIconRes != -1;
-            return validIcon ? pm.getDrawable(mResPackage, mIconRes, null) : null;
-        }
-    }
-
-    /**
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
@@ -1101,7 +1016,7 @@ public class QuickContactWindow implements Window.Callback,
             mActions.collect(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
-        final LatestStatus status = new LatestStatus();
+        final DataStatus status = new DataStatus();
         final Sources sources = Sources.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
