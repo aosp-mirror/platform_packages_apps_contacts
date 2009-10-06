@@ -31,7 +31,7 @@ import android.util.Log;
  */
 public final class QuickContactActivity extends Activity implements
         QuickContactWindow.OnDismissListener {
-    private static final String TAG = "FastTrackActivity";
+    private static final String TAG = "QuickContactActivity";
 
     static final boolean LOGV = true;
     static final boolean FORCE_CREATE = false;

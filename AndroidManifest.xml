@@ -267,7 +267,8 @@
             android:name=".ui.QuickContactActivity"
             android:theme="@style/FullyTranslucent.QuickContact"
             android:launchMode="singleTop"
-            android:taskAffinity="android.task.fasttrack">
+            android:excludeFromRecents="true"
+            android:taskAffinity="android.task.quickcontact">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.QUICK_CONTACT" />
