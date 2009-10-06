@@ -87,6 +87,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
                 setImageBitmap(photo);
 		setEnabled(!readOnly);
                 mHasSetPhoto = true;
+                mEntry.setFromTemplate(false);
             } else {
                 resetDefault();
             }
@@ -125,6 +126,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
             mEntry.put(Photo.PHOTO, out.toByteArray());
             setImageBitmap(photo);
             mHasSetPhoto = true;
+            mEntry.setFromTemplate(false);
         } catch (IOException e) {
             Log.w(TAG, "Unable to serialize photo: " + e.toString());
         }
@@ -135,6 +137,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(R.drawable.ic_menu_add_picture);
         mHasSetPhoto = false;
+        mEntry.setFromTemplate(true);
     }
 
     /** {@inheritDoc} */
