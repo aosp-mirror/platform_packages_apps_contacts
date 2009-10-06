@@ -2303,6 +2303,9 @@ public class ContactsListActivity extends ListActivity implements
             cache.dataView = (TextView) view.findViewById(R.id.data);
             cache.presenceView = (ImageView) view.findViewById(R.id.presence);
             cache.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
+            if (cache.photoView != null) {
+                cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
+            }
             cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             view.setTag(cache);
 
