@@ -18,7 +18,6 @@ package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -61,6 +60,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
     private LayoutInflater mInflater;
 
     private TextView mReadOnly;
+    private TextView mReadOnlyName;
 
     private PhotoEditorView mPhoto;
     private GenericEditorView mName;
@@ -75,7 +75,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
     private Drawable mSecondaryOpen;
     private Drawable mSecondaryClosed;
 
-    private View mHeader;
+    private View mHeaderColorBar;
     private View mSideBar;
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
@@ -109,10 +109,12 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
 
+        mReadOnlyName = (TextView) findViewById(R.id.read_only_name);
+
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
         mSecondary = (ViewGroup)findViewById(R.id.sect_secondary);
 
-        mHeader = findViewById(R.id.header);
+        mHeaderColorBar = findViewById(R.id.header_color_bar);
         mSideBar = findViewById(R.id.color_bar);
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
@@ -188,16 +190,18 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
 
         // Fill in the header info
-        mHeader.setBackgroundColor(source.getHeaderColor(mContext));
+        mHeaderColorBar.setBackgroundColor(source.getHeaderColor(mContext));
         mSideBar.setBackgroundColor(source.getSideBarColor(mContext));
         ValuesDelta values = state.getValues();
         String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        if (TextUtils.isEmpty(accountName)) {
-            // TODO get from resource
-            accountName = "Local contact";
+        CharSequence accountType = source.getDisplayLabel(mContext);
+        if (TextUtils.isEmpty(accountType)) {
+            accountType = mContext.getString(R.string.account_phone);
+        } else {
+            mHeaderAccountName.setText(
+                    mContext.getString(R.string.from_account_format, accountName));
         }
-        mHeaderAccountName.setText(accountName);
-        mHeaderAccountType.setText(source.getDisplayLabel(mContext));
+        mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
         mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
@@ -210,12 +214,22 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         mName.setEnabled(!source.readOnly);
 
         boolean readOnly = source.readOnly;
+        // Show and hide the appropriate views
         if (readOnly) {
             mGeneral.setVisibility(View.GONE);
             mSecondary.setVisibility(View.GONE);
             mSecondaryHeader.setVisibility(View.GONE);
+            mName.setVisibility(View.GONE);
+            mReadOnly.setVisibility(View.VISIBLE);
+            mReadOnly.setText(mContext.getString(R.string.contact_read_only, accountType));
+            mReadOnlyName.setVisibility(View.VISIBLE);
         } else {
+            mGeneral.setVisibility(View.VISIBLE);
+            mSecondary.setVisibility(View.VISIBLE);
+            mSecondaryHeader.setVisibility(View.VISIBLE);
+            mName.setVisibility(View.VISIBLE);
             mReadOnly.setVisibility(View.GONE);
+            mReadOnlyName.setVisibility(View.GONE);
         }
 
         // Create editor sections for each possible data kind
@@ -227,7 +241,12 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mName.setValues(kind, primary, state, source.readOnly);
+                if (!readOnly) {
+                    mName.setValues(kind, primary, state, source.readOnly);
+                } else {
+                    String displayName = primary.getAsString(StructuredName.DISPLAY_NAME);
+                    mReadOnlyName.setText(displayName);
+                }
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);

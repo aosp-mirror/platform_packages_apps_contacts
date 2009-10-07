@@ -183,11 +183,11 @@ public class ExternalSource extends FallbackSource {
 
     @Override
     public int getHeaderColor(Context context) {
-        return 0xff7f93bc;
+        return 0xff6d86b4;
     }
 
     @Override
     public int getSideBarColor(Context context) {
-        return 0xffbdc7d8;
+        return 0xff6d86b4;
     }
 }
