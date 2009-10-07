@@ -26,10 +26,10 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="50dip"
-        android:layout_height="56dip"
+        android:layout_width="54dip"
+        android:layout_height="57dip"
         android:layout_marginLeft="15dip"
-        style="@*android:style/Widget.QuickContactBadge.WindowLarge" />
+        android:background="@drawable/quickcontact_photo_frame" />
 
     <LinearLayout
         android:layout_width="0dip"
