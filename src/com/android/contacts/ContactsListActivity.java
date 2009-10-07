@@ -395,14 +395,8 @@ public class ContactsListActivity extends ListActivity implements
     }
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
-        private Uri mUri;
-
-        public DeleteClickListener(Uri uri) {
-            mUri = uri;
-        }
-
         public void onClick(DialogInterface dialog, int which) {
-            getContentResolver().delete(mUri, null, null);
+            getContentResolver().delete(mSelectedContactUri, null, null);
         }
     }
 
@@ -880,7 +874,7 @@ public class ContactsListActivity extends ListActivity implements
                         .setMessage(R.string.deleteConfirmation)
                         .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener(mSelectedContactUri)).create();
+                                new DeleteClickListener()).create();
             }
             case R.id.dialog_readonly_contact_hide_confirmation: {
                 return new AlertDialog.Builder(this)
@@ -889,7 +883,7 @@ public class ContactsListActivity extends ListActivity implements
                         .setMessage(R.string.readOnlyContactWarning)
                         .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener(mSelectedContactUri)).create();
+                                new DeleteClickListener()).create();
             }
             case R.id.dialog_readonly_contact_delete_confirmation: {
                 return new AlertDialog.Builder(this)
@@ -898,7 +892,7 @@ public class ContactsListActivity extends ListActivity implements
                         .setMessage(R.string.readOnlyContactDeleteConfirmation)
                         .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener(mSelectedContactUri)).create();
+                                new DeleteClickListener()).create();
             }
             case R.id.dialog_multiple_contact_delete_confirmation: {
                 return new AlertDialog.Builder(this)
@@ -907,7 +901,7 @@ public class ContactsListActivity extends ListActivity implements
                         .setMessage(R.string.multipleContactDeleteConfirmation)
                         .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener(mSelectedContactUri)).create();
+                                new DeleteClickListener()).create();
             }
         }
         return super.onCreateDialog(id);
@@ -1148,39 +1142,39 @@ public class ContactsListActivity extends ListActivity implements
      */
     protected void doContactDelete() {
         mReadOnlySourcesCnt = 0;
-	mWritableSourcesCnt = 0;
+        mWritableSourcesCnt = 0;
         mWritableRawContactIds.clear();
 
-	if (mSelectedContactUri != null) {
-            Cursor c = getContentResolver().query(RawContacts.CONTENT_URI,
-	            RAW_CONTACTS_PROJECTION, RawContacts.CONTACT_ID + "="
-		    + ContentUris.parseId(mSelectedContactUri), null, null);
+        if (mSelectedContactUri != null) {
+            Cursor c = getContentResolver().query(RawContacts.CONTENT_URI, RAW_CONTACTS_PROJECTION,
+                    RawContacts.CONTACT_ID + "=" + ContentUris.parseId(mSelectedContactUri), null,
+                    null);
             Sources sources = Sources.getInstance(ContactsListActivity.this);
             if (c != null) {
                 while (c.moveToNext()) {
                     final String accountType = c.getString(2);
-		    final long rawContactId = c.getLong(0);
+                    final long rawContactId = c.getLong(0);
                     ContactsSource contactsSource = sources.getInflatedSource(accountType,
                             ContactsSource.LEVEL_SUMMARY);
                     if (contactsSource != null && contactsSource.readOnly) {
                         mReadOnlySourcesCnt += 1;
                     } else {
                         mWritableSourcesCnt += 1;
-			mWritableRawContactIds.add(rawContactId);
-		    }
-                 }
+                        mWritableRawContactIds.add(rawContactId);
+                    }
+                }
             }
             c.close();
-	    if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
-	        showDialog(R.id.dialog_readonly_contact_delete_confirmation);
-	    } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-	        showDialog(R.id.dialog_readonly_contact_hide_confirmation);
-	    } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-	        showDialog(R.id.dialog_multiple_contact_delete_confirmation);
+            if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
+                showDialog(R.id.dialog_readonly_contact_delete_confirmation);
+            } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                showDialog(R.id.dialog_readonly_contact_hide_confirmation);
+            } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+                showDialog(R.id.dialog_multiple_contact_delete_confirmation);
             } else {
-	        showDialog(R.id.dialog_delete_contact_confirmation);
-	    }
-	}
+                showDialog(R.id.dialog_delete_contact_confirmation);
+            }
+        }
     }
 
     @Override
