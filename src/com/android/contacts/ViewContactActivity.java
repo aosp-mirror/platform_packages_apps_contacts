@@ -823,7 +823,6 @@ public class ViewContactActivity extends Activity
                                 Uri.fromParts(Constants.SCHEME_TEL, entry.data, null));
                         entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null));
-                        entry.data = PhoneNumberUtils.stripSeparators(entry.data);
 
                         entry.isPrimary = isSuperPrimary;
                         mPhoneEntries.add(entry);
