@@ -46,31 +46,33 @@
     <string name="menu_viewAddress" msgid="1814744325763202024">"Dirección del mapa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Crear número predeterminado"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Crear correo electrónico predeterminado"</string>
-    <string name="menu_splitAggregate" msgid="7402548456225901170">"Dividir"</string>
+    <!-- no translation found for menu_splitAggregate (8368636463748691868) -->
+    <skip />
     <string name="splitAggregate_title" msgid="2053462872948058798">"Dividir contacto"</string>
-    <string name="contactsSplitMessage" msgid="3439008547775199243">"División de contacto"</string>
+    <!-- no translation found for contactsSplitMessage (5253490235863170269) -->
+    <skip />
+    <!-- no translation found for splitConfirmation_title (6716467920283502570) -->
+    <skip />
+    <!-- no translation found for splitConfirmation (1150797297503944823) -->
+    <skip />
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unirse"</string>
     <string name="menu_showSources" msgid="885215611438295455">"Mostrar fuentes"</string>
     <string name="menu_hideSources" msgid="71367585820555477">"Ocultar fuentes"</string>
     <string name="titleJoinAggregate" msgid="6970566008563147202">"Unirse al contacto"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unirse a contactos"</string>
-    <!-- no translation found for blurbJoinContactDataWith (995870557595050304) -->
-    <skip />
-    <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selecciona el contacto al que quieras unirte con <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos los contactos"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Unión de contactos"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opciones"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opciones"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Suprimir"</string>
-    <!-- no translation found for readOnlyContactWarning (1523906860865526049) -->
+    <!-- no translation found for readOnlyContactWarning (1390849295342594265) -->
     <skip />
-    <!-- no translation found for readOnlyContactDeleteConfirmation (56308694573221640) -->
+    <!-- no translation found for readOnlyContactDeleteConfirmation (2137170726670196909) -->
     <skip />
-    <!-- no translation found for multipleContactDeleteConfirmation (938900978442960800) -->
-    <skip />
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Eliminar este contacto suprimirá la información de mútliples cuentas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contacto se suprimirá."</string>
     <string name="menu_done" msgid="796017761764190697">"Finalizado"</string>
     <string name="menu_doNotSave" msgid="2174577548513895144">"Revertir"</string>
@@ -157,6 +159,18 @@
     <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"Otra información"</string>
     <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"Otras opciones"</string>
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"Más"</string>
+    <!-- no translation found for listTotalPhoneContacts:one (8721111084815668845) -->
+    <!-- no translation found for listTotalPhoneContacts:other (6133262880804110289) -->
+    <!-- no translation found for listTotalPhoneContactsZero (2756295259674938869) -->
+    <skip />
+    <!-- no translation found for listTotalAllContacts:one (1096068709488455155) -->
+    <!-- no translation found for listTotalAllContacts:other (2865867557378939630) -->
+    <!-- no translation found for listTotalAllContactsZero (6811347506748072822) -->
+    <skip />
+    <!-- no translation found for listFoundAllContacts:one (2830107332033967280) -->
+    <!-- no translation found for listFoundAllContacts:other (7752927996850263152) -->
+    <!-- no translation found for listFoundAllContactsZero (5554368784319460828) -->
+    <skip />
     <string name="socialStreamIconLabel" msgid="4367712449555075376">"Social"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>
@@ -247,13 +261,11 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos los archivos de vCard"</string>
     <string name="searching_vcard_message" msgid="6917522333561434546">"Buscando datos de vCard en la tarjeta SD"</string>
     <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"No se ha podido explorar la tarjeta SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (3761992500690182922) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"No se ha podido explorar la tarjeta SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error de E/S"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No se ha podido analizar vCard debido a un motivo inesperado"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"No se ha podido analizar vCard aunque el formato parece válido, ya que la implementación actual no lo admite"</string>
-    <!-- no translation found for fail_reason_no_vcard_file (6376516175882881595) -->
-    <skip />
+    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"No se ha encontrado un archivo de vCard en la Tarjeta SD."</string>
     <string name="fail_reason_no_vcard_entry" msgid="4733290752474073143">"No se ha encontrado ninguna entrada válida de vCard para tu selección"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No se pudieron importar uno o más archivos (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Error desconocido"</string>
@@ -294,12 +306,9 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Llamar con"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Texto con"</string>
     <string name="make_primary" msgid="5829291915305113983">"Recuerda esta opción"</string>
-    <!-- no translation found for quickcontact_missing_app (4600366393134289038) -->
-    <skip />
-    <!-- no translation found for quickcontact_remember_choice (5964536411579749424) -->
-    <skip />
-    <!-- no translation found for quickcontact_missing_name (5590266114306996632) -->
-    <skip />
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"No se encontró una aplicación para manejar esta acción."</string>
+    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Recuerda esta opción."</string>
+    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Desconocido"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Cuentas"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/Exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/Exportar contactos"</string>
@@ -310,25 +319,21 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Apodo"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organización"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Sitio web"</string>
-    <!-- no translation found for eventLabelsGroup (8069912895912714412) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="8069912895912714412">"Evento"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"Lun."</string>
     <string name="type_short_work" msgid="4925330752504537861">"Mié."</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"Oct."</string>
     <string name="edit_read_only" msgid="8158629550655830981">"Este contacto es de sólo lectura"</string>
-    <!-- no translation found for edit_secondary_collapse (5371618426594477103) -->
-    <skip />
+    <string name="edit_secondary_collapse" msgid="5371618426594477103">"Más"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"Nombre principal"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear contacto según la cuenta"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminar grupo de sincronización"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Agregar grupo de sincronización"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Más grupos…"</string>
-    <!-- no translation found for display_ungrouped (4602580795576261158) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (6846131371214707956) -->
-    <skip />
+    <string name="display_ungrouped" msgid="4602580795576261158">"Todos los otros contactos"</string>
+    <string name="display_all_contacts" msgid="6846131371214707956">"Todos los contactos"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Al suprimir \"<xliff:g id="GROUP">%s</xliff:g>\" de sincronización también se suprimirá cualquier contacto no agrupado de la sincronización."</string>
     <string name="account_phone" msgid="4025734638492419713">"Sólo telefónicamente (no sincronizado)"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"Mostrar el nombre"</string>
@@ -410,6 +415,5 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Nombre familiar fonético"</string>
     <string name="split_label" msgid="8262112659919449087">"Dividir"</string>
     <string name="split_explanation" msgid="1824739956426973592">"Transformar a estos datos en el contacto propio."</string>
-    <!-- no translation found for account_name_format (4421123930035299208) -->
-    <skip />
+    <string name="account_name_format" msgid="4421123930035299208">"De <xliff:g id="SOURCE">%1$s</xliff:g> la cuenta: <xliff:g id="ACCOUNT">%2$s</xliff:g>"</string>
 </resources>
