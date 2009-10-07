@@ -82,6 +82,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -168,7 +169,6 @@ public class ViewContactActivity extends Activity
         finish();
     }
 
-    private FrameLayout mTabContentLayout;
     private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
 
@@ -200,13 +200,11 @@ public class ViewContactActivity extends Activity
 
         mHandler = new NotifyingAsyncQueryHandler(this, this);
 
-        mListView = new ListView(this);
+        mListView = (ListView) findViewById(R.id.contact_data);
         mListView.setOnCreateContextMenuListener(this);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
-
-        mTabContentLayout = (FrameLayout) findViewById(android.R.id.tabcontent);
-        mTabContentLayout.addView(mListView);
+        mListView.setEmptyView((ScrollView) findViewById(android.R.id.empty));
 
         mResolver = getContentResolver();
 
@@ -273,13 +271,13 @@ public class ViewContactActivity extends Activity
                         .setPositiveButton(android.R.string.ok, this)
                         .setCancelable(false)
                         .create();
-	    case DIALOG_CONFIRM_READONLY_HIDE: {
+            case DIALOG_CONFIRM_READONLY_HIDE: {
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(R.string.readOnlyContactWarning)
                         .setPositiveButton(android.R.string.ok, this)
-			.create();
+                        .create();
             }
 
         }
@@ -509,15 +507,15 @@ public class ViewContactActivity extends Activity
             }
             case R.id.menu_delete: {
                 // Get confirmation
-		if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
+                if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_DELETE);
-		} else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_HIDE);
-		} else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-		    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
-		} else {
-		    showDialog(DIALOG_CONFIRM_DELETE);
-		}
+                } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+                    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+                } else {
+                    showDialog(DIALOG_CONFIRM_DELETE);
+                }
                 return true;
             }
             case R.id.menu_join: {
@@ -714,15 +712,15 @@ public class ViewContactActivity extends Activity
             }
 
             case KeyEvent.KEYCODE_DEL: {
-		if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
+                if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_DELETE);
-		} else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
                     showDialog(DIALOG_CONFIRM_READONLY_HIDE);
-		} else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-		    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
-		} else {
-		    showDialog(DIALOG_CONFIRM_DELETE);
-		}
+                } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+                    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+                } else {
+                    showDialog(DIALOG_CONFIRM_DELETE);
+                }
                 return true;
             }
         }
@@ -792,8 +790,8 @@ public class ViewContactActivity extends Activity
                     mReadOnlySourcesCnt += 1;
                 } else {
                     mWritableSourcesCnt += 1;
-		    mWritableRawContactIds.add(rawContactId);
-		}
+                    mWritableRawContactIds.add(rawContactId);
+                }
 
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
