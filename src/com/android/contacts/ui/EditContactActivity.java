@@ -512,7 +512,7 @@ public final class EditContactActivity extends Activity
             // Attempt to persist changes
             int tries = 0;
             Integer result = RESULT_FAILURE;
-            while (tries < PERSIST_TRIES) {
+            while (tries++ < PERSIST_TRIES) {
                 try {
                     // Build operations and try applying
                     final ArrayList<ContentProviderOperation> diff = state.buildDiff();
