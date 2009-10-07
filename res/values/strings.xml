@@ -1212,4 +1212,6 @@
     <!-- Text used to explain that a contact cannot be edited since the data is read only -->
     <string name="contact_read_only"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact information is not editable on this device.</string>
 
+    <!-- Text describing that a contact has no information available other than name and photo -->
+    <string name="no_contact_details">No additional information for this contact</string>
 </resources>
