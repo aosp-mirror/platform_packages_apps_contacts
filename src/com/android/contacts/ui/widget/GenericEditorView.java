@@ -113,9 +113,10 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         mDelete.setVisibility(deletable ? View.VISIBLE : View.INVISIBLE);
     }
 
+    @Override
     public void setEnabled(boolean enabled) {
         mLabel.setEnabled(enabled);
-	final int count = mFields.getChildCount();
+        final int count = mFields.getChildCount();
         for (int pos = 0; pos < count; pos++) {
             final View v = mFields.getChildAt(pos);
             v.setEnabled(enabled);
@@ -168,9 +169,9 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         mKind = kind;
         mEntry = entry;
         mState = state;
-	mReadOnly = readOnly;
+        mReadOnly = readOnly;
 
-	final boolean enabled = !readOnly;
+        final boolean enabled = !readOnly;
 
         if (!entry.isVisible()) {
             // Hide ourselves entirely if deleted
@@ -183,7 +184,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
         mLabel.setVisibility(hasTypes ? View.VISIBLE : View.GONE);
-	mLabel.setEnabled(enabled);
+        mLabel.setEnabled(enabled);
         if (hasTypes) {
             mType = EntityModifier.getCurrentType(entry, kind);
             rebuildLabel();
@@ -224,7 +225,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             final boolean couldHide = (TextUtils.isEmpty(value) && field.optional);
             final boolean willHide = (mHideOptional && couldHide);
             fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
-	    fieldView.setEnabled(enabled);
+            fieldView.setEnabled(enabled);
             hidePossible = hidePossible || couldHide;
 
             mFields.addView(fieldView);
@@ -232,7 +233,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         // When hiding fields, place expandable
         mMore.setVisibility(hidePossible ? View.VISIBLE : View.GONE);
-	mMore.setEnabled(enabled);
+        mMore.setEnabled(enabled);
     }
 
     /**
@@ -304,16 +305,17 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                if (mType.customColumn != null) {
+                final EditType selected = validTypes.get(which);
+                if (selected.customColumn != null) {
                     // Show custom label dialog if requested by type.
                     //
                     // Only when the custum value input in the next step is correct one.
                     // this method also set the type value to what the user requested here.
-                    mPendingType = validTypes.get(which);
+                    mPendingType = selected;
                     createCustomDialog().show();
                 } else {
                     // User picked type, and we're sure it's ok to actually write the entry.
-                    mType = validTypes.get(which);
+                    mType = selected;
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     rebuildLabel();
                 }
