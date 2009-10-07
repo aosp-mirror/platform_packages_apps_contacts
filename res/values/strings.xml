@@ -120,13 +120,21 @@
     <string name="menu_makeDefaultEmail">Make default email</string>
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
-    <string name="menu_splitAggregate">Split</string>
+    <string name="menu_splitAggregate">Separate</string>
 
     <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
     <string name="splitAggregate_title">Split contact</string>
 
     <!-- Toast shown after a contact has been split from an aggregate by a user action -->
-    <string name="contactsSplitMessage">Contact split</string>
+    <string name="contactsSplitMessage">Contacts separated</string>
+
+    <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
+    <string name="splitConfirmation_title">Separate Contact</string>
+
+    <!-- Confirmation dialog for separating contacts into multiple instances  -->
+    <string name="splitConfirmation">Are you sure you want to separate this single contact
+        into multiple contacts: one for each set of contact information that was joined into it?
+    </string>
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
