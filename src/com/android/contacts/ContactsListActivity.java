@@ -2101,8 +2101,13 @@ public class ContactsListActivity extends ListActivity implements
                             break;
                         }
 
-                        Bitmap photo = mBitmapCache.get(photoId).get();
+                        SoftReference<Bitmap> photoRef = mBitmapCache.get(photoId);
+                        if (photoRef == null) {
+                            break;
+                        }
+                        Bitmap photo = photoRef.get();
                         if (photo == null) {
+                            mBitmapCache.remove(photoId);
                             break;
                         }
 
