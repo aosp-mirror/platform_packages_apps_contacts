@@ -30,6 +30,7 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
+import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.internal.widget.ContactHeaderWidget;
@@ -53,6 +54,7 @@ import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -85,7 +87,7 @@ import java.util.ArrayList;
  * Activity for editing or inserting a contact.
  */
 public final class EditContactActivity extends Activity
-        implements View.OnClickListener, EditorListener {
+        implements View.OnClickListener {
     private static final String TAG = "EditContactActivity";
 
     /** The launch code when picking a photo and the raw data is returned */
@@ -95,6 +97,7 @@ public final class EditContactActivity extends Activity
     private static final int REQUEST_JOIN_CONTACT = 3022;
 
     private static final String KEY_EDIT_STATE = "state";
+    private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
 
     /** The result code when view activity should close after edit returns */
     public static final int RESULT_CLOSE_VIEW_ACTIVITY = 777;
@@ -102,6 +105,8 @@ public final class EditContactActivity extends Activity
     public static final int SAVE_MODE_DEFAULT = 0;
     public static final int SAVE_MODE_SPLIT = 1;
     public static final int SAVE_MODE_JOIN = 2;
+
+    private long mRawContactIdRequestingPhoto = -1;
 
 
     String mQuerySelection;
@@ -111,7 +116,7 @@ public final class EditContactActivity extends Activity
 
     /** The linear layout holding the ContactEditorViews */
     LinearLayout mContent;
-    
+
     private ArrayList<Dialog> mManagedDialogs = Lists.newArrayList();
 
     @Override
@@ -212,6 +217,7 @@ public final class EditContactActivity extends Activity
             outState.putParcelable(KEY_EDIT_STATE, mState);
         }
 
+        outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         super.onSaveInstanceState(outState);
     }
 
@@ -219,7 +225,8 @@ public final class EditContactActivity extends Activity
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         // Read modifications from instance
         mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
-
+        mRawContactIdRequestingPhoto = savedInstanceState.getLong(
+                KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
         bindEditors();
 
         super.onRestoreInstanceState(savedInstanceState);
@@ -261,13 +268,6 @@ public final class EditContactActivity extends Activity
         return mState != null && mState.size() > 0;
     }
 
-
-
-    /**
-     * An array of the raw contacts in the order they appear in the list.
-     */
-    private EntityDelta[] mEntities;
-
     /**
      * Rebuild the editors to match our underlying {@link #mState} object, usually
      * called once we've parsed {@link Entity} data or have inserted a new
@@ -283,7 +283,6 @@ public final class EditContactActivity extends Activity
         // Remove any existing editors and rebuild any visible
 
         mContent.removeAllViews();
-        mEntities = new EntityDelta[mState.size()];
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             // TODO ensure proper ordering of entities in the list
@@ -294,12 +293,26 @@ public final class EditContactActivity extends Activity
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final ContactsSource source = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
+            final long rawContactId = values.getAsLong(RawContacts._ID);
 
             ContactEditorView editor = (ContactEditorView) inflater.inflate(
                     R.layout.item_contact_editor, mContent, false);
+            editor.getPhotoEditor().setEditorListener(new EditorListener() {
+
+                public void onDeleted(Editor editor) {
+                }
+
+                public void onRequest(int request) {
+                    if (!hasValidState()) return;
+
+                    if (request == EditorListener.REQUEST_PICK_PHOTO) {
+                        doPickPhotoAction(rawContactId);
+                    }
+                }
+            });
+
             mContent.addView(editor);
             editor.setState(entity, source);
-            mEntities[i] = entity;
         }
 
         // Show editor now that we've loaded state
@@ -344,13 +357,30 @@ public final class EditContactActivity extends Activity
 
         switch (requestCode) {
             case PHOTO_PICKED_WITH_DATA: {
-/*
-                // When reaching this point, we've already inflated our tab
-                // state and returned to the last-visible tab.
-                final Bitmap photo = data.getParcelableExtra("data");
-                mEditor.setPhotoBitmap(photo);
+                ContactEditorView requestingEditor = null;
+                if (mRawContactIdRequestingPhoto > 0) {
+                    for (int i = 0; i < mContent.getChildCount(); i++) {
+                        View childView = mContent.getChildAt(i);
+                        if (childView instanceof ContactEditorView) {
+                            ContactEditorView editor = (ContactEditorView) childView;
+                            if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
+                                requestingEditor = editor;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (requestingEditor != null) {
+                    final Bitmap photo = data.getParcelableExtra("data");
+                    requestingEditor.setPhotoBitmap(photo);
+                    mRawContactIdRequestingPhoto = -1;
+                } else {
+                    // The contact that requested the photo is no longer present.
+                    // TODO: Show error message
+                }
+
                 break;
-*/
             }
 
             case REQUEST_JOIN_CONTACT: {
@@ -677,13 +707,14 @@ public final class EditContactActivity extends Activity
     /**
      * Pick a specific photo to be added under the currently selected tab.
      */
-    private boolean doPickPhotoAction() {
+    private boolean doPickPhotoAction(long rawContactId) {
         if (!hasValidState()) return false;
 
         try {
             // Launch picker to choose photo for selected contact
             final Intent intent = ContactsUtils.getPhotoPickIntent();
             startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
+            mRawContactIdRequestingPhoto = rawContactId;
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
@@ -693,21 +724,6 @@ public final class EditContactActivity extends Activity
     /** {@inheritDoc} */
     public void onDeleted(Editor editor) {
         // Ignore any editor deletes
-    }
-
-    /** {@inheritDoc} */
-    public void onRequest(int request) {
-        if (!hasValidState()) return;
-
-        switch (request) {
-            case EditorListener.REQUEST_PICK_PHOTO: {
-                doPickPhotoAction();
-                break;
-            }
-            case EditorListener.FIELD_CHANGED: {
-                break;
-            }
-        }
     }
 
     private boolean doSplitContactAction() {
