@@ -24,7 +24,7 @@
 >
     <include
         android:id="@+id/header"
-        layout="@layout/list_separator"
+        layout="@layout/list_section"
     />
 
     <RelativeLayout
@@ -140,6 +140,6 @@
     <View android:id="@+id/list_divider"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@*android:drawable/divider_horizontal_dark_opaque"
+        android:background="@drawable/divider_dark_opaque"
     />
 </LinearLayout>
