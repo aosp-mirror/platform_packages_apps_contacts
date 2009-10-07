@@ -22,9 +22,12 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.EditContactActivity;
 import com.android.contacts.util.Constants;
+import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.ContactHeaderWidget;
+import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -55,7 +58,13 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -77,6 +86,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Displays the details of a specific contact.
@@ -129,7 +139,14 @@ public class ViewContactActivity extends Activity
     protected int mWritableSourcesCnt;
     protected ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
 
-    private static final int TOKEN_QUERY = 0;
+    private static final int TOKEN_ENTITIES = 0;
+    private static final int TOKEN_STATUSES = 1;
+
+    private boolean mHasEntities = false;
+    private boolean mHasStatuses = false;
+
+    private ArrayList<Entity> mEntities = Lists.newArrayList();
+    private HashMap<Long, DataStatus> mStatuses = Maps.newHashMap();
 
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
@@ -154,7 +171,6 @@ public class ViewContactActivity extends Activity
     private FrameLayout mTabContentLayout;
     private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
-    private ArrayList<Entity> mEntities = null;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -273,11 +289,10 @@ public class ViewContactActivity extends Activity
     // QUERY CODE //
     /** {@inheritDoc} */
     public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        try{
-            if (token == TOKEN_QUERY) {
-                mEntities = readEntities(iterator);
-                bindData();
-            }
+        try {
+            // Read incoming entities and consider binding
+            readEntities(iterator);
+            considerBindData();
         } finally {
             if (iterator != null) {
                 iterator.close();
@@ -287,7 +302,15 @@ public class ViewContactActivity extends Activity
 
     /** {@inheritDoc} */
     public void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        // Empty
+        try {
+            // Read available social rows and consider binding
+            readStatuses(cursor);
+            considerBindData();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     private long getRefreshedContactId() {
@@ -298,19 +321,40 @@ public class ViewContactActivity extends Activity
         return -1;
     }
 
-    private ArrayList<Entity> readEntities(EntityIterator iterator) {
-        ArrayList<Entity> entities = new ArrayList<Entity>();
+    /**
+     * Read from the given {@link EntityIterator} to build internal set of
+     * {@link #mEntities} for data display.
+     */
+    private synchronized void readEntities(EntityIterator iterator) {
+        mEntities.clear();
         try {
             while (iterator.hasNext()) {
-                entities.add(iterator.next());
+                mEntities.add(iterator.next());
             }
+            mHasEntities = true;
         } catch (RemoteException e) {
+            Log.w(TAG, "Problem reading contact data: " + e.toString());
         }
-
-        return entities;
     }
 
-    private void startEntityQuery() {
+    /**
+     * Read from the given {@link Cursor} and build a set of {@link DataStatus}
+     * objects to match any valid statuses found.
+     */
+    private synchronized void readStatuses(Cursor cursor) {
+        mStatuses.clear();
+
+        // Walk found statuses, creating internal row for each
+        while (cursor.moveToNext()) {
+            final DataStatus status = new DataStatus(cursor);
+            final long dataId = cursor.getLong(StatusQuery._ID);
+            mStatuses.put(dataId, status);
+        }
+
+        mHasStatuses = true;
+    }
+
+    private synchronized void startEntityQuery() {
         closeCursor();
 
         Uri uri = null;
@@ -331,13 +375,24 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        mCursor = mResolver.query(Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY),
+        final Uri dataUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
+
+        // Keep stub cursor open on side to watch for change events
+        mCursor = mResolver.query(dataUri,
                 new String[] {Contacts.DISPLAY_NAME}, null, null, null);
         mCursor.registerContentObserver(mObserver);
 
-        long contactId = ContentUris.parseId(uri);
-        mHandler.startQueryEntities(TOKEN_QUERY, null,
-                RawContacts.CONTENT_URI, RawContacts.CONTACT_ID + "=" + contactId, null, null);
+        final long contactId = ContentUris.parseId(uri);
+
+        // Clear flags and start queries to data and status
+        mHasEntities = false;
+        mHasStatuses = false;
+
+        mHandler.startQueryEntities(TOKEN_ENTITIES, null, RawContacts.CONTENT_URI,
+                RawContacts.CONTACT_ID + "=" + contactId, null, null);
+        mHandler.startQuery(TOKEN_STATUSES, null, dataUri, StatusQuery.PROJECTION,
+                        StatusUpdates.PRESENCE + " IS NOT NULL OR " + StatusUpdates.STATUS
+                                + " IS NOT NULL", null, null);
 
         mContactHeaderWidget.bindFromContactLookupUri(mLookupUri);
     }
@@ -347,6 +402,17 @@ public class ViewContactActivity extends Activity
             mCursor.unregisterContentObserver(mObserver);
             mCursor.close();
             mCursor = null;
+        }
+    }
+
+    /**
+     * Consider binding views after any of several background queries has
+     * completed. We check internal flags and only bind when all data has
+     * arrived.
+     */
+    private void considerBindData() {
+        if (mHasEntities && mHasStatuses) {
+            bindData();
         }
     }
 
@@ -360,6 +426,7 @@ public class ViewContactActivity extends Activity
         Collapser.collapseList(mSmsEntries);
         Collapser.collapseList(mEmailEntries);
         Collapser.collapseList(mPostalEntries);
+        Collapser.collapseList(mImEntries);
 
         if (mAdapter == null) {
             mAdapter = new ViewAdapter(this, mSections);
@@ -689,15 +756,6 @@ public class ViewContactActivity extends Activity
         //TODO: implement this when we have the sonification APIs
     }
 
-    private Uri constructImToUrl(String host, String data) {
-        // don't encode the url, because the Activity Manager can't find using the encoded url
-        StringBuilder buf = new StringBuilder("imto://");
-        buf.append(host);
-        buf.append('/');
-        buf.append(data);
-        return Uri.parse(buf.toString());
-    }
-
     /**
      * Build up the entries to display on the screen.
      *
@@ -712,10 +770,11 @@ public class ViewContactActivity extends Activity
 
         mRawContactIds.clear();
         mReadOnlySourcesCnt = 0;
-	mWritableSourcesCnt = 0;
+        mWritableSourcesCnt = 0;
         mWritableRawContactIds.clear();
 
-        Sources sources = Sources.getInstance(this);
+        final Context context = this;
+        final Sources sources = Sources.getInstance(context);
 
         // Build up method entries
         if (mLookupUri != null) {
@@ -738,51 +797,32 @@ public class ViewContactActivity extends Activity
 
 
                 for (NamedContentValues subValue : entity.getSubValues()) {
-                    ViewEntry entry = new ViewEntry();
-
                     final ContentValues entryValues = subValue.values;
                     entryValues.put(Data.RAW_CONTACT_ID, rawContactId);
 
-                    final String mimetype = entryValues.getAsString(Data.MIMETYPE);
-                    if (mimetype == null) continue;
+                    final long dataId = entryValues.getAsLong(Data._ID);
+                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+                    if (mimeType == null) continue;
 
-                    final DataKind kind = sources.getKindOrFallback(accountType, mimetype, this,
+                    final DataKind kind = sources.getKindOrFallback(accountType, mimeType, this,
                             ContactsSource.LEVEL_MIMETYPES);
                     if (kind == null) continue;
 
-                    final long id = entryValues.getAsLong(Data._ID);
-                    final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-                    entry.contactId = rawContactId;
-                    entry.id = id;
-                    entry.uri = uri;
-                    entry.mimetype = mimetype;
-                    entry.label = buildActionString(kind, entryValues, false);
-                    entry.data = buildDataString(kind, entryValues);
-                    if (kind.typeColumn != null && entryValues.containsKey(kind.typeColumn)) {
-                        entry.type = entryValues.getAsInteger(kind.typeColumn);
-                    }
-                    if (kind.iconRes > 0) {
-                        entry.resPackageName = kind.resPackageName;
-                        entry.actionIcon = kind.iconRes;
-                    }
+                    final ViewEntry entry = ViewEntry.fromValues(context, mimeType, kind,
+                            rawContactId, dataId, entryValues);
 
-                    // Don't crash if the data is bogus
-                    if (TextUtils.isEmpty(entry.data)) {
-                        continue;
-                    }
-
+                    final boolean hasData = !TextUtils.isEmpty(entry.data);
                     final boolean isSuperPrimary = entryValues.getAsInteger(
                             Data.IS_SUPER_PRIMARY) != 0;
 
-                    if (CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                    if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build phone entries
                         mNumPhoneNumbers++;
 
                         entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                Uri.fromParts("tel", entry.data, null));
+                                Uri.fromParts(Constants.SCHEME_TEL, entry.data, null));
                         entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("sms", entry.data, null));
-                        entry.data = PhoneNumberUtils.stripSeparators(entry.data);
+                                Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null));
 
                         entry.isPrimary = isSuperPrimary;
                         mPhoneEntries.add(entry);
@@ -794,106 +834,160 @@ public class ViewContactActivity extends Activity
                                 entry.secondaryActionIcon = kind.iconAltRes;
                             }
                         }
-                    } else if (CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                    } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build email entries
                         entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("mailto", entry.data, null));
+                                Uri.fromParts(Constants.SCHEME_MAILTO, entry.data, null));
                         entry.isPrimary = isSuperPrimary;
                         mEmailEntries.add(entry);
-                    } else if (CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE.
-                            equals(mimetype)) {
+
+                        // When Email rows have status, create additional Im row
+                        final DataStatus status = mStatuses.get(entry.id);
+                        if (status != null) {
+                            final String imMime = Im.CONTENT_ITEM_TYPE;
+                            final DataKind imKind = sources.getKindOrFallback(accountType,
+                                    imMime, this, ContactsSource.LEVEL_MIMETYPES);
+                            final ViewEntry imEntry = ViewEntry.fromValues(context,
+                                    imMime, imKind, rawContactId, dataId, entryValues);
+                            imEntry.intent = ContactsUtils.buildImIntent(entryValues);
+                            imEntry.applyStatus(status, false);
+                            mImEntries.add(imEntry);
+                        }
+                    } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build postal entries
                         entry.maxLines = 4;
-                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
+                        entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
                         mPostalEntries.add(entry);
-                    } else if (CommonDataKinds.Im.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                        // Build im entries
-                        Object protocolObj = entryValues.getAsInteger(CommonDataKinds.Im.PROTOCOL);
-                        String host = null;
-
+                    } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build IM entries
+                        entry.intent = ContactsUtils.buildImIntent(entryValues);
                         if (TextUtils.isEmpty(entry.label)) {
                             entry.label = getString(R.string.chat).toLowerCase();
                         }
 
-                        if (protocolObj instanceof Number) {
-                            int protocol = ((Number) protocolObj).intValue();
-                            host = ContactsUtils.lookupProviderNameFromId(protocol);
-                            if (protocol == CommonDataKinds.Im.PROTOCOL_GOOGLE_TALK
-                                    || protocol == CommonDataKinds.Im.PROTOCOL_MSN) {
-                                entry.maxLabelLines = 2;
-                            }
-                        } else if (protocolObj != null) {
-                            String providerName = (String) protocolObj;
-                            host = providerName.toLowerCase();
+                        // Apply presence and status details when available
+                        final DataStatus status = mStatuses.get(entry.id);
+                        if (status != null) {
+                            entry.applyStatus(status, false);
                         }
-
-                        // Only add the intent if there is a valid host
-                        //  host is null for CommonDataKinds.Im.PROTOCOL_CUSTOM
-                        if (!TextUtils.isEmpty(host)) {
-                            entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                    constructImToUrl(host.toLowerCase(), entry.data));
-                        }
-                        //TODO(emillar) Add in presence info
-                            /*if (!aggCursor.isNull(METHODS_STATUS_COLUMN)) {
-                            entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                    aggCursor.getInt(METHODS_STATUS_COLUMN));
-                            entry.status = ...
-                        }*/
                         mImEntries.add(entry);
-                    } else if (CommonDataKinds.Organization.CONTENT_ITEM_TYPE.equals(mimetype)
-                            || CommonDataKinds.Nickname.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                    } else if ((Organization.CONTENT_ITEM_TYPE.equals(mimeType)
+                            || Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) && hasData) {
                         // Build organization and note entries
                         entry.uri = null;
                         mOrganizationEntries.add(entry);
-                    } else if (CommonDataKinds.Note.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                    } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build note entries
                         entry.uri = null;
                         entry.maxLines = 10;
                         mOtherEntries.add(entry);
                     } else {
-                        // Handle showing custom
+                        // Handle showing custom rows
                         entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
-                        mOtherEntries.add(entry);
+
+                        // Use social summary when requested by external source
+                        final DataStatus status = mStatuses.get(entry.id);
+                        final boolean hasSocial = kind.actionBodySocial && status != null;
+                        if (hasSocial) {
+                            entry.applyStatus(status, true);
+                        }
+
+                        if (hasSocial || hasData) {
+                            mOtherEntries.add(entry);
+                        }
                     }
                 }
             }
         }
     }
 
-    String buildActionString(DataKind kind, ContentValues values, boolean lowerCase) {
+    static String buildActionString(DataKind kind, ContentValues values, boolean lowerCase,
+            Context context) {
         if (kind.actionHeader == null) {
             return null;
         }
-        CharSequence actionHeader = kind.actionHeader.inflateUsing(this, values);
+        CharSequence actionHeader = kind.actionHeader.inflateUsing(context, values);
         if (actionHeader == null) {
             return null;
         }
         return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
     }
 
-    String buildDataString(DataKind kind, ContentValues values) {
+    static String buildDataString(DataKind kind, ContentValues values, Context context) {
         if (kind.actionBody == null) {
             return null;
         }
-        CharSequence actionBody = kind.actionBody.inflateUsing(this, values);
+        CharSequence actionBody = kind.actionBody.inflateUsing(context, values);
         return actionBody == null ? null : actionBody.toString();
     }
 
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+        public Context context = null;
         public String resPackageName = null;
         public int actionIcon = -1;
         public boolean isPrimary = false;
-        public int presenceIcon = -1;
         public int secondaryActionIcon = -1;
         public Intent intent;
         public Intent secondaryIntent = null;
-        public int status = -1;
         public int maxLabelLines = 1;
         public ArrayList<Long> ids = new ArrayList<Long>();
         public int collapseCount = 0;
+
+        public int presence = -1;
+        public int presenceIcon = -1;
+
+        public CharSequence footerLine = null;
+
+        private ViewEntry() {
+        }
+
+        /**
+         * Build new {@link ViewEntry} and populate from the given values.
+         */
+        public static ViewEntry fromValues(Context context, String mimeType, DataKind kind,
+                long rawContactId, long dataId, ContentValues values) {
+            final ViewEntry entry = new ViewEntry();
+            entry.context = context;
+            entry.contactId = rawContactId;
+            entry.id = dataId;
+            entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
+            entry.mimetype = mimeType;
+            entry.label = buildActionString(kind, values, false, context);
+            entry.data = buildDataString(kind, values, context);
+
+            if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
+                entry.type = values.getAsInteger(kind.typeColumn);
+            }
+            if (kind.iconRes > 0) {
+                entry.resPackageName = kind.resPackageName;
+                entry.actionIcon = kind.iconRes;
+            }
+
+            return entry;
+        }
+
+        /**
+         * Apply given {@link DataStatus} values over this {@link ViewEntry}
+         *
+         * @param fillData When true, the given status replaces {@link #data}
+         *            and {@link #footerLine}. Otherwise only {@link #presence}
+         *            is updated.
+         */
+        public ViewEntry applyStatus(DataStatus status, boolean fillData) {
+            presence = status.getPresence();
+            presenceIcon = (presence == -1) ? -1 :
+                    StatusUpdates.getPresenceIconResourceId(this.presence);
+
+            if (fillData && status.isValid()) {
+                this.data = status.getStatus().toString();
+                this.footerLine = status.getTimestampLabel(context);
+            }
+
+            return this;
+        }
 
         public boolean collapseWith(ViewEntry entry) {
             // assert equal collapse keys
@@ -913,9 +1007,9 @@ public class ViewContactActivity extends Activity
             maxLabelLines = Math.max(maxLabelLines, entry.maxLabelLines);
 
             // Choose the presence with the highest precedence.
-            if (StatusUpdates.getPresencePrecedence(status)
-                    < StatusUpdates.getPresencePrecedence(entry.status)) {
-                status = entry.status;
+            if (StatusUpdates.getPresencePrecedence(presence)
+                    < StatusUpdates.getPresencePrecedence(entry.presence)) {
+                presence = entry.presence;
             }
 
             // If any of the collapsed entries are primary make the whole thing primary.
@@ -936,7 +1030,7 @@ public class ViewContactActivity extends Activity
 
             if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
                     && Phone.CONTENT_ITEM_TYPE.equals(entry.mimetype)) {
-                if (!PhoneNumberUtils.compare(ViewContactActivity.this, data, entry.data)) {
+                if (!PhoneNumberUtils.compare(this.context, data, entry.data)) {
                     return false;
                 }
             } else {
@@ -973,6 +1067,7 @@ public class ViewContactActivity extends Activity
     static class ViewCache {
         public TextView label;
         public TextView data;
+        public TextView footer;
         public ImageView actionIcon;
         public ImageView presenceIcon;
         public ImageView primaryIcon;
@@ -1015,6 +1110,7 @@ public class ViewContactActivity extends Activity
                 views = new ViewCache();
                 views.label = (TextView) v.findViewById(android.R.id.text1);
                 views.data = (TextView) v.findViewById(android.R.id.text2);
+                views.footer = (TextView) v.findViewById(R.id.footer);
                 views.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
                 views.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
                 views.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
@@ -1061,6 +1157,14 @@ public class ViewContactActivity extends Activity
                 setMaxLines(data, entry.maxLines);
             }
 
+            // Set the footer
+            if (!TextUtils.isEmpty(entry.footerLine)) {
+                views.footer.setText(entry.footerLine);
+                views.footer.setVisibility(View.VISIBLE);
+            } else {
+                views.footer.setVisibility(View.GONE);
+            }
+
             // Set the primary icon
             views.primaryIcon.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
 
@@ -1086,9 +1190,9 @@ public class ViewContactActivity extends Activity
             Drawable presenceIcon = null;
             if (entry.presenceIcon != -1) {
                 presenceIcon = resources.getDrawable(entry.presenceIcon);
-            } else if (entry.status != -1) {
+            } else if (entry.presence != -1) {
                 presenceIcon = resources.getDrawable(
-                        StatusUpdates.getPresenceIconResourceId(entry.status));
+                        StatusUpdates.getPresenceIconResourceId(entry.presence));
             }
             ImageView presenceIconView = views.presenceIcon;
             if (presenceIcon != null) {
@@ -1125,5 +1229,19 @@ public class ViewContactActivity extends Activity
                 textView.setEllipsize(null);
             }
         }
+    }
+
+    private interface StatusQuery {
+        final String[] PROJECTION = new String[] {
+                Data._ID,
+                Data.STATUS,
+                Data.STATUS_RES_PACKAGE,
+                Data.STATUS_ICON,
+                Data.STATUS_LABEL,
+                Data.STATUS_TIMESTAMP,
+                Data.PRESENCE,
+        };
+
+        final int _ID = 0;
     }
 }

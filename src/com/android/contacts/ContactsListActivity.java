@@ -111,6 +111,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
  * brought back in as we add back that functionality.
@@ -388,6 +391,8 @@ public class ContactsListActivity extends ListActivity implements
     // Uri matcher for contact id
     private static final int CONTACTS_ID = 1001;
     private static final UriMatcher sContactsIdMatcher;
+
+    private static ExecutorService sImageFetchThreadPool;
 
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -2021,6 +2026,7 @@ public class ContactsListActivity extends ListActivity implements
         private Cursor mSuggestionsCursor;
         private int mSuggestionsCursorCount;
         private ImageFetchHandler mHandler;
+        private ImageDbFetcher mImageFetcher;
         private static final int FETCH_IMAGE_MSG = 1;
 
         public ContactItemListAdapter(Context context) {
@@ -2095,17 +2101,15 @@ public class ContactsListActivity extends ListActivity implements
                             break;
                         }
 
-                        Bitmap photo = null;
-                        try {
-                            photo = ContactsUtils.loadContactPhoto(mContext, photoId, null);
-                        } catch (OutOfMemoryError e) {
-                            // Not enough memory for the photo, do nothing.
-                        }
-                        if (photo == null) {
+                        SoftReference<Bitmap> photoRef = mBitmapCache.get(photoId);
+                        if (photoRef == null) {
                             break;
                         }
-
-                        mBitmapCache.put(photoId, new SoftReference<Bitmap>(photo));
+                        Bitmap photo = photoRef.get();
+                        if (photo == null) {
+                            mBitmapCache.remove(photoId);
+                            break;
+                        }
 
                         // Make sure the photoId on this image view has not changed
                         // while we were loading the image.
@@ -2124,6 +2128,50 @@ public class ContactsListActivity extends ListActivity implements
 
             public void clearImageFecthing() {
                 removeMessages(FETCH_IMAGE_MSG);
+            }
+        }
+
+        private class ImageDbFetcher implements Runnable {
+            long mPhotoId;
+            private ImageView mImageView;
+
+            public ImageDbFetcher(long photoId, ImageView imageView) {
+                this.mPhotoId = photoId;
+                this.mImageView = imageView;
+            }
+
+            public void run() {
+                if (ContactsListActivity.this.isFinishing()) {
+                    return;
+                }
+
+                if (Thread.currentThread().interrupted()) {
+                    // shutdown has been called.
+                    return;
+                }
+                Bitmap photo = null;
+                try {
+                    photo = ContactsUtils.loadContactPhoto(mContext, mPhotoId, null);
+                } catch (OutOfMemoryError e) {
+                    // Not enough memory for the photo, do nothing.
+                }
+
+                if (photo == null) {
+                    return;
+                }
+
+                mBitmapCache.put(mPhotoId, new SoftReference<Bitmap>(photo));
+
+                if (Thread.currentThread().interrupted()) {
+                    // shutdown has been called.
+                    return;
+                }
+
+                // Update must happen on UI thread
+                Message msg = new Message();
+                msg.what = FETCH_IMAGE_MSG;
+                msg.obj = mImageView;
+                mHandler.sendMessage(msg);
             }
         }
 
@@ -2680,7 +2728,9 @@ public class ContactsListActivity extends ListActivity implements
                 return 0;
             }
             int superCount = super.getCount();
-            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 && superCount > 0) {
+                // We don't want to count this header if it's the only thing visible, so that
+                // the empty text will display.
                 superCount++;
             }
             if (mSuggestionsCursorCount != 0) {
@@ -2775,14 +2825,42 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         private void sendFetchImageMessage(ImageView view) {
-            Message msg = new Message();
-            msg.what = FETCH_IMAGE_MSG;
-            msg.obj = view;
-            mHandler.sendMessage(msg);
+            final PhotoInfo info = (PhotoInfo) view.getTag();
+            if (info == null) {
+                return;
+            }
+            final long photoId = info.photoId;
+            if (photoId == 0) {
+                return;
+            }
+            mImageFetcher = new ImageDbFetcher(photoId, view);
+            synchronized (ContactsListActivity.this) {
+                // can't sync on sImageFetchThreadPool.
+                if (sImageFetchThreadPool == null) {
+                    // Don't use more than 3 threads at a time to update. The thread pool will be
+                    // shared by all contact items.
+                    sImageFetchThreadPool = Executors.newFixedThreadPool(3);
+                }
+                sImageFetchThreadPool.execute(mImageFetcher);
+            }
         }
 
-        /** Clear all pending messages on the {@link ImageFetchHandler} */
+
+        /**
+         * Stop the image fetching for ALL contacts, if one is in progress we'll
+         * not query the database.
+         *
+         * TODO: move this method to ContactsListActivity, it does not apply to the current
+         * contact.
+         */
         public void clearImageFetching() {
+            synchronized (ContactsListActivity.this) {
+                if (sImageFetchThreadPool != null) {
+                    sImageFetchThreadPool.shutdownNow();
+                    sImageFetchThreadPool = null;
+                }
+            }
+
             mHandler.clearImageFecthing();
         }
     }

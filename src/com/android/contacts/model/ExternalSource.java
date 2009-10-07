@@ -19,18 +19,12 @@ package com.android.contacts.model;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
-import android.database.Cursor;
-import android.provider.ContactsContract.Data;
-import android.provider.SocialContract.Activities;
-import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.Xml;
 
@@ -172,8 +166,7 @@ public class ExternalSource extends FallbackSource {
                         false);
                 if (detailSocialSummary) {
                     // Inflate social summary when requested
-                    kind.actionBody = new SocialInflater(false);
-                    kind.actionFooter = new SocialInflater(true);
+                    kind.actionBodySocial = true;
                 } else {
                     // Otherwise inflate specific column as summary
                     kind.actionBody = new FallbackSource.SimpleInflater(detailColumn);
@@ -185,83 +178,6 @@ public class ExternalSource extends FallbackSource {
             throw new IllegalStateException("Problem reading XML", e);
         } catch (IOException e) {
             throw new IllegalStateException("Problem reading XML", e);
-        }
-    }
-
-    /**
-     * Temporary cache to hold recent social data.
-     */
-    private static class SocialCache {
-        private static Status sLastStatus = null;
-
-        public static class Status {
-            public long rawContactId;
-            public CharSequence title;
-            public long published;
-        }
-
-        public static synchronized Status getLatestStatus(Context context, long rawContactId) {
-            if (sLastStatus == null || sLastStatus.rawContactId != rawContactId) {
-                // Cache missing, or miss, so query directly
-                sLastStatus = queryLatestStatus(context, rawContactId);
-            }
-            return sLastStatus;
-        }
-
-        private static Status queryLatestStatus(Context context, long rawContactId) {
-            // Find latest social update by this person, filtering to show only
-            // original content and avoid replies.
-            final ContentResolver resolver = context.getContentResolver();
-            final Cursor cursor = resolver.query(Activities.CONTENT_URI, new String[] {
-                Activities.TITLE, Activities.PUBLISHED
-            }, Activities.AUTHOR_CONTACT_ID + "=" + rawContactId + " AND "
-                    + Activities.IN_REPLY_TO + " IS NULL", null, Activities.PUBLISHED + " DESC");
-
-            final Status status = new Status();
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    status.title = cursor.getString(0);
-                    status.published = cursor.getLong(1);
-                }
-            } finally {
-                if (cursor != null) cursor.close();
-            }
-            return status;
-        }
-    }
-
-    /**
-     * Inflater that will return the latest {@link Activities#TITLE} and
-     * {@link Activities#PUBLISHED} for the given {@link Data#RAW_CONTACT_ID}.
-     */
-    protected static class SocialInflater implements StringInflater {
-        private final boolean mPublishedMode;
-
-        public SocialInflater(boolean publishedMode) {
-            mPublishedMode = publishedMode;
-        }
-
-        protected CharSequence inflatePublished(long published) {
-            return DateUtils.getRelativeTimeSpanString(published, System.currentTimeMillis(),
-                    DateUtils.MINUTE_IN_MILLIS);
-        }
-
-        /** {@inheritDoc} */
-        public CharSequence inflateUsing(Context context, Cursor cursor) {
-            final Long rawContactId = cursor.getLong(cursor.getColumnIndex(Data.RAW_CONTACT_ID));
-            if (rawContactId == null) return null;
-
-            final SocialCache.Status status = SocialCache.getLatestStatus(context, rawContactId);
-            return mPublishedMode ? inflatePublished(status.published) : status.title;
-        }
-
-        /** {@inheritDoc} */
-        public CharSequence inflateUsing(Context context, ContentValues values) {
-            final Long rawContactId = values.getAsLong(Data.RAW_CONTACT_ID);
-            if (rawContactId == null) return null;
-
-            final SocialCache.Status status = SocialCache.getLatestStatus(context, rawContactId);
-            return mPublishedMode ? inflatePublished(status.published) : status.title;
         }
     }
 
