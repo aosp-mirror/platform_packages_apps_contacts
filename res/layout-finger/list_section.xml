@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="25dip"
-    android:background="@drawable/section_dark"
+    android:background="@*android:drawable/dark_header"
     >
     <TextView
         android:id="@+id/header_text"
@@ -28,14 +28,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:textStyle="bold"
-        android:textColor="#ffbfbfbf"
+        android:textColor="@*android:color/dim_foreground_dark"
         android:textSize="14sp"
         android:gravity="center"
-    />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/divider_dark_opaque"
     />
 </RelativeLayout>
