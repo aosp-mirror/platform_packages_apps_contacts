@@ -1117,18 +1117,20 @@ public final class EditContactActivity extends Activity
         }
 
         // Check account name
-        String oneAccount = one.getValues().getAsString(RawContacts.ACCOUNT_NAME);
-        if (oneAccount == null) oneAccount = "null";
-        String twoAccount = two.getValues().getAsString(RawContacts.ACCOUNT_NAME);
-        if (twoAccount == null) twoAccount = "null";
+        ValuesDelta oneValues = one.getValues();
+        String oneAccount = oneValues.getAsString(RawContacts.ACCOUNT_NAME);
+        if (oneAccount == null) oneAccount = "";
+        ValuesDelta twoValues = two.getValues();
+        String twoAccount = twoValues.getAsString(RawContacts.ACCOUNT_NAME);
+        if (twoAccount == null) twoAccount = "";
         value = oneAccount.compareTo(twoAccount);
         if (value != 0) {
             return value;
         }
 
         // Both are in the same account, fall back to contact ID
-        int oneId = one.getValues().getAsInteger(RawContacts._ID);
-        int twoId = two.getValues().getAsInteger(RawContacts._ID);
-        return oneId -twoId;
+        long oneId = oneValues.getAsLong(RawContacts._ID);
+        long twoId = twoValues.getAsLong(RawContacts._ID);
+        return (int)(oneId - twoId);
     }
 }

@@ -197,7 +197,8 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         CharSequence accountType = source.getDisplayLabel(mContext);
         if (TextUtils.isEmpty(accountType)) {
             accountType = mContext.getString(R.string.account_phone);
-        } else {
+        }
+        if (!TextUtils.isEmpty(accountName)) {
             mHeaderAccountName.setText(
                     mContext.getString(R.string.from_account_format, accountName));
         }
