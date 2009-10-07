@@ -263,11 +263,11 @@ public class GoogleSource extends FallbackSource {
 
     @Override
     public int getHeaderColor(Context context) {
-        return 0xff000000;
+        return 0xff89c2c2;
     }
 
     @Override
     public int getSideBarColor(Context context) {
-        return 0xffffffff;
+        return 0xff5bb4b4;
     }
 }
