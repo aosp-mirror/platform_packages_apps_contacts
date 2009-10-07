@@ -19,6 +19,7 @@ package com.android.contacts;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -220,6 +221,31 @@ public class ContactsUtils {
                 return ProviderNames.QQ;
         }
         return null;
+    }
+
+    /**
+     * Build {@link Intent} to launch an action for the given {@link Im} or
+     * {@link Email} row. Returns null when missing protocol or data.
+     */
+    public static Intent buildImIntent(ContentValues values) {
+        final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
+        final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : values.getAsInteger(Im.PROTOCOL);
+
+        String host = values.getAsString(Im.CUSTOM_PROTOCOL);
+        String data = values.getAsString(isEmail ? Email.DATA : Im.DATA);
+        if (protocol != Im.PROTOCOL_CUSTOM) {
+            // Try bringing in a well-known host for specific protocols
+            host = ContactsUtils.lookupProviderNameFromId(protocol);
+        }
+
+        if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
+            final String authority = host.toLowerCase();
+            final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                    authority).appendPath(data).build();
+            return new Intent(Intent.ACTION_SENDTO, imUri);
+        } else {
+            return null;
+        }
     }
 
     public static Intent getPhotoPickIntent() {
