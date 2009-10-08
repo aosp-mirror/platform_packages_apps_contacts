@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
@@ -412,7 +413,7 @@ public class EntityModifier {
         for (EditField field : kind.fieldList) {
             // If any field has values, we're not empty
             final String value = values.getAsString(field.column);
-            if (!TextUtils.isEmpty(value)) {
+            if (ContactsUtils.isGraphic(value)) {
                 hasValues = true;
             }
         }
@@ -437,12 +438,12 @@ public class EntityModifier {
             final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
 
             final String name = extras.getString(Insert.NAME);
-            if (!TextUtils.isEmpty(name) && TextUtils.isGraphic(name)) {
+            if (ContactsUtils.isGraphic(name)) {
                 child.put(StructuredName.GIVEN_NAME, name);
             }
 
             final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
-            if (!TextUtils.isEmpty(phoneticName) && TextUtils.isGraphic(phoneticName)) {
+            if (ContactsUtils.isGraphic(phoneticName)) {
                 child.put(StructuredName.PHONETIC_GIVEN_NAME, phoneticName);
             }
         }
