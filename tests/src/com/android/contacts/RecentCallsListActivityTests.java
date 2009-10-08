@@ -276,7 +276,7 @@ public class RecentCallsListActivityTests
             duration = mRnd.nextInt(10 * 60);  // 0 - 10 minutes random.
         }
         row.add(duration);  // duration
-        if (mVoicemail.equals(number)) {
+        if (mVoicemail != null && mVoicemail.equals(number)) {
             assertEquals(Calls.OUTGOING_TYPE, type);
         }
         row.add(type);  // type
@@ -309,7 +309,10 @@ public class RecentCallsListActivityTests
      * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
      */
     private void insertVoicemail(long date, int duration) {
-        insert(mVoicemail, date, duration, Calls.OUTGOING_TYPE);
+        // mVoicemail may be null
+        if (mVoicemail != null) {
+            insert(mVoicemail, date, duration, Calls.OUTGOING_TYPE);
+        }
     }
 
     /**
