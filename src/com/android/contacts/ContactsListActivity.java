@@ -166,14 +166,15 @@ public class ContactsListActivity extends ListActivity implements
      */
     public static final String EXTRA_AGGREGATE_ID =
             "com.android.contacts.action.AGGREGATE_ID";
+
     /**
      * Used with {@link #JOIN_AGGREGATE} to give it the name of the aggregation target.
      * <p>
      * Type: STRING
      */
+    @Deprecated
     public static final String EXTRA_AGGREGATE_NAME =
             "com.android.contacts.action.AGGREGATE_NAME";
-
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -592,12 +593,9 @@ public class ContactsListActivity extends ListActivity implements
         if (mMode == MODE_JOIN_CONTACT) {
             setContentView(R.layout.contacts_list_content_join);
             TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
-            String contactName = intent.getStringExtra(EXTRA_AGGREGATE_NAME);
-            if (contactName == null) {
-                contactName = "";
-            }
 
-            String blurb = getString(R.string.blurbJoinContactDataWith, contactName);
+            String blurb = getString(R.string.blurbJoinContactDataWith,
+                    getContactDisplayName(mQueryAggregateId));
             blurbView.setText(blurb);
             mJoinModeShowAllContacts = true;
         } else {
@@ -655,6 +653,28 @@ public class ContactsListActivity extends ListActivity implements
 //        } finally {
 //            resolver.releaseProvider(provider);
 //        }
+    }
+
+    private String getContactDisplayName(long contactId) {
+        String contactName = null;
+        Cursor c = getContentResolver().query(
+                ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
+                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        try {
+            if (c != null && c.moveToFirst()) {
+                contactName = c.getString(0);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        if (contactName == null) {
+            contactName = "";
+        }
+
+        return contactName;
     }
 
     private int[] mLocation = new int[2];
