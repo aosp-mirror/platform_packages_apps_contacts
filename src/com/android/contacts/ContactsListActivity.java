@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
@@ -93,16 +94,14 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
-import android.widget.QuickContactBadge;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.QuickContactBadge;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
-
-import com.android.contacts.model.ContactsSource;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -111,7 +110,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -168,14 +166,15 @@ public class ContactsListActivity extends ListActivity implements
      */
     public static final String EXTRA_AGGREGATE_ID =
             "com.android.contacts.action.AGGREGATE_ID";
+
     /**
      * Used with {@link #JOIN_AGGREGATE} to give it the name of the aggregation target.
      * <p>
      * Type: STRING
      */
+    @Deprecated
     public static final String EXTRA_AGGREGATE_NAME =
             "com.android.contacts.action.AGGREGATE_NAME";
-
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -258,8 +257,18 @@ public class ContactsListActivity extends ListActivity implements
         Contacts.TIMES_CONTACTED, //3
         Contacts.CONTACT_PRESENCE, //4
         Contacts.PHOTO_ID, //5
-        Contacts.HAS_PHONE_NUMBER, //6
-        Contacts.LOOKUP_KEY, //7
+        Contacts.LOOKUP_KEY, //6
+        Contacts.HAS_PHONE_NUMBER, //7
+    };
+    static final String[] CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL = new String[] {
+        Contacts._ID, // 0
+        Contacts.DISPLAY_NAME, // 1
+        Contacts.STARRED, //2
+        Contacts.TIMES_CONTACTED, //3
+        Contacts.CONTACT_PRESENCE, //4
+        Contacts.PHOTO_ID, //5
+        Contacts.LOOKUP_KEY, //6
+        // email lookup doesn't included HAS_PHONE_NUMBER OR LOOKUP_KEY in projection
     };
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
         People._ID, // 0
@@ -274,8 +283,8 @@ public class ContactsListActivity extends ListActivity implements
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
     static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 4;
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
-    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 6;
-    static final int SUMMARY_LOOKUP_KEY = 7;
+    static final int SUMMARY_LOOKUP_KEY = 6;
+    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 7;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -334,7 +343,6 @@ public class ContactsListActivity extends ListActivity implements
     int mMode = MODE_DEFAULT;
 
     private QueryHandler mQueryHandler;
-    private String mQuery;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
     private Uri mSelectedContactUri;
@@ -521,8 +529,8 @@ public class ContactsListActivity extends ListActivity implements
             } else {
                 // Otherwise handle the more normal search case
                 mMode = MODE_QUERY;
+                mQueryData = getIntent().getStringExtra(SearchManager.QUERY);
             }
-            mMode = MODE_QUERY;
 
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
@@ -585,12 +593,9 @@ public class ContactsListActivity extends ListActivity implements
         if (mMode == MODE_JOIN_CONTACT) {
             setContentView(R.layout.contacts_list_content_join);
             TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
-            String contactName = intent.getStringExtra(EXTRA_AGGREGATE_NAME);
-            if (contactName == null) {
-                contactName = "";
-            }
 
-            String blurb = getString(R.string.blurbJoinContactDataWith, contactName);
+            String blurb = getString(R.string.blurbJoinContactDataWith,
+                    getContactDisplayName(mQueryAggregateId));
             blurbView.setText(blurb);
             mJoinModeShowAllContacts = true;
         } else {
@@ -648,6 +653,28 @@ public class ContactsListActivity extends ListActivity implements
 //        } finally {
 //            resolver.releaseProvider(provider);
 //        }
+    }
+
+    private String getContactDisplayName(long contactId) {
+        String contactName = null;
+        Cursor c = getContentResolver().query(
+                ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
+                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        try {
+            if (c != null && c.moveToFirst()) {
+                contactName = c.getString(0);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        if (contactName == null) {
+            contactName = "";
+        }
+
+        return contactName;
     }
 
     private int[] mLocation = new int[2];
@@ -1420,6 +1447,7 @@ public class ContactsListActivity extends ListActivity implements
     Uri getUriToQuery() {
         switch(mMode) {
             case MODE_JOIN_CONTACT:
+                return getJoinSuggestionsUri(null);
             case MODE_FREQUENT:
             case MODE_STARRED:
             case MODE_DEFAULT:
@@ -1454,8 +1482,16 @@ public class ContactsListActivity extends ListActivity implements
                     return Uri.withAppendedPath(Phone.CONTENT_FILTER_URI, Uri.encode(mQueryData));
                 }
             }
+            case MODE_QUERY: {
+                return getContactFilterUri(mQueryData);
+            }
+            case MODE_GROUP: {
+                return mGroupUri;
+            }
+            default: {
+                throw new IllegalStateException("Can't generate URI: Unsupported Mode.");
+            }
         }
-        return null;
     }
 
     /**
@@ -1549,7 +1585,7 @@ public class ContactsListActivity extends ListActivity implements
             }
             case MODE_QUERY_PICK_TO_VIEW: {
                 if (mQueryMode == QUERY_MODE_MAILTO) {
-                    return CONTACTS_SUMMARY_PROJECTION;
+                    return CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL;
                 } else if (mQueryMode == QUERY_MODE_TEL) {
                     return PHONES_PROJECTION;
                 }
@@ -1651,7 +1687,7 @@ public class ContactsListActivity extends ListActivity implements
         switch (mMode) {
             case MODE_GROUP:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        mGroupUri, projection, getContactSelection(), null,
+                        uri, projection, getContactSelection(), null,
                         getSortOrder(projection));
                 break;
 
@@ -1672,8 +1708,7 @@ public class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_QUERY: {
-                mQuery = getIntent().getStringExtra(SearchManager.QUERY);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getContactFilterUri(mQuery),
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection, null, null,
                         getSortOrder(projection));
                 break;
@@ -1715,7 +1750,7 @@ public class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_LEGACY_PICK_POSTAL:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getUriToQuery(),
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection,
                         ContactMethods.KIND + "=" + android.provider.Contacts.KIND_POSTAL, null,
                         getSortOrder(projection));
@@ -1723,7 +1758,7 @@ public class ContactsListActivity extends ListActivity implements
 
             case MODE_JOIN_CONTACT:
                 mQueryHandler.setLoadingJoinSuggestions(true);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection,
                         null, null, null);
                 break;
         }
@@ -1952,7 +1987,8 @@ public class ContactsListActivity extends ListActivity implements
 
                     if (activity.mAdapter.mSuggestionsCursorCount == 0
                             || !activity.mJoinModeShowAllContacts) {
-                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
+                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(
+                                        activity.mQueryData),
                                 CONTACTS_SUMMARY_PROJECTION,
                                 Contacts._ID + " != " + activity.mQueryAggregateId
                                         + " AND " + CLAUSE_ONLY_VISIBLE, null,
@@ -2706,7 +2742,9 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public boolean areAllItemsEnabled() {
-            return mMode != MODE_STARRED;
+            return mMode != MODE_STARRED 
+                && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) == 0
+                && mSuggestionsCursorCount == 0;
         }
 
         @Override
@@ -2717,6 +2755,7 @@ public class ContactsListActivity extends ListActivity implements
                 }
                 position--;
             }
+            
             if (mSuggestionsCursorCount > 0) {
                 return position != 0 && position != mSuggestionsCursorCount + 1;
             }
