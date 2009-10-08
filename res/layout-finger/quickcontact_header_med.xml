@@ -53,19 +53,4 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/source_divider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dip"
-        android:src="@drawable/quickcontact_frame_divider_med" />
-
-    <ImageView
-        android:id="@+id/source"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:layout_marginLeft="13dip"
-        android:layout_marginRight="16dip"
-        android:scaleType="centerInside" />
-
 </LinearLayout>
