@@ -1200,4 +1200,18 @@
     <!-- Formatting string for account name -->
     <string name="account_name_format">From <xliff:g id="source" example="Gmail">%1$s</xliff:g> account: <xliff:g id="account" example="user@gmail.com">%2$s</xliff:g></string>
 
+    <!-- String describing which account type a contact came from when editing it -->
+    <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
+
+    <!-- String describing which account a contact came from when editing it -->
+    <string name="from_account_format">from <xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
+
+    <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
+    <string name="use_photo_as_primary">Use this photo</string>
+
+    <!-- Text used to explain that a contact cannot be edited since the data is read only -->
+    <string name="contact_read_only"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact information is not editable on this device.</string>
+
+    <!-- Text describing that a contact has no information available other than name and photo -->
+    <string name="no_contact_details">No additional information for this contact</string>
 </resources>

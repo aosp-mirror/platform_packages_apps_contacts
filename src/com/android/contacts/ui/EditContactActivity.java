@@ -79,12 +79,14 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Activity for editing or inserting a contact.
  */
 public final class EditContactActivity extends Activity
-        implements View.OnClickListener {
+        implements View.OnClickListener, Comparator<EntityDelta> {
     private static final String TAG = "EditContactActivity";
 
     /** The launch code when picking a photo and the raw data is returned */
@@ -323,8 +325,10 @@ public final class EditContactActivity extends Activity
                 Context.LAYOUT_INFLATER_SERVICE);
         final Sources sources = Sources.getInstance(this);
 
-        // Remove any existing editors and rebuild any visible
+        // Sort the editors
+        Collections.sort(mState, this);
 
+        // Remove any existing editors and rebuild any visible
         mContent.removeAllViews();
         int size = mState.size();
         for (int i = 0; i < size; i++) {
@@ -360,18 +364,6 @@ public final class EditContactActivity extends Activity
 
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
-    }
-
-    /** {@inheritDoc} */
-    public void onDisplayNameClick(View view) {
-        if (!hasValidState()) return;
-        showAndManageDialog(createNameDialog());
-    }
-
-    /** {@inheritDoc} */
-    public void onPhotoClick(View view) {
-        if (!hasValidState()) return;
-        showAndManageDialog(createPhotoDialog());
     }
 
     /** {@inheritDoc} */
@@ -791,7 +783,7 @@ public final class EditContactActivity extends Activity
     /**
      * Pick a specific photo to be added under the currently selected tab.
      */
-    private boolean doPickPhotoAction(long rawContactId) {
+    boolean doPickPhotoAction(long rawContactId) {
         if (!hasValidState()) return false;
 
         try {
@@ -1028,11 +1020,6 @@ public final class EditContactActivity extends Activity
         return builder.create();
     }
 
-    private Dialog createPhotoDialog() {
-        // TODO: build dialog for picking primary photo
-        return null;
-    }
-
     /**
      * Create dialog for selecting primary display name.
      */
@@ -1085,4 +1072,63 @@ public final class EditContactActivity extends Activity
         return builder.create();
     }
 
+    /**
+     * Compare EntityDeltas for sorting the stack of editors.
+     */
+    public int compare(EntityDelta one, EntityDelta two) {
+        // Check direct equality
+        if (one.equals(two)) {
+            return 0;
+        }
+
+        final Sources sources = Sources.getInstance(this);
+        String accountType = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        final ContactsSource oneSource = sources.getInflatedSource(accountType,
+                ContactsSource.LEVEL_SUMMARY);
+        accountType = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        final ContactsSource twoSource = sources.getInflatedSource(accountType,
+                ContactsSource.LEVEL_SUMMARY);
+
+        // Check read-only
+        if (oneSource.readOnly && !twoSource.readOnly) {
+            return 1;
+        } else if (twoSource.readOnly && !oneSource.readOnly) {
+            return -1;
+        }
+
+        // Check account type
+        boolean skipAccountTypeCheck = false;
+        boolean oneIsGoogle = oneSource instanceof GoogleSource;
+        boolean twoIsGoogle = twoSource instanceof GoogleSource;
+        if (oneIsGoogle && !twoIsGoogle) {
+            return -1;
+        } else if (twoIsGoogle && !oneIsGoogle) {
+            return 1;
+        } else {
+            skipAccountTypeCheck = true;
+        }
+
+        int value;
+        if (!skipAccountTypeCheck) {
+            value = oneSource.accountType.compareTo(twoSource.accountType);
+            if (value != 0) {
+                return value;
+            }
+        }
+
+        // Check account name
+        String oneAccount = one.getValues().getAsString(RawContacts.ACCOUNT_NAME);
+        if (oneAccount == null) oneAccount = "null";
+        String twoAccount = two.getValues().getAsString(RawContacts.ACCOUNT_NAME);
+        if (twoAccount == null) twoAccount = "null";
+        value = oneAccount.compareTo(twoAccount);
+        if (value != 0) {
+            return value;
+        }
+
+        // Both are in the same account, fall back to contact ID
+        int oneId = one.getValues().getAsInteger(RawContacts._ID);
+        int twoId = two.getValues().getAsInteger(RawContacts._ID);
+        return oneId -twoId;
+    }
 }
