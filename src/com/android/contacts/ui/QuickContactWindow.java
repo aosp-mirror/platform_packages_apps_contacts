@@ -320,7 +320,6 @@ public class QuickContactWindow implements Window.Callback,
         setHeaderText(R.id.timestamp, null);
 
         setHeaderImage(R.id.presence, null);
-        setHeaderImage(R.id.source, null);
 
         resetTrack();
 
@@ -1149,16 +1148,6 @@ public class QuickContactWindow implements Window.Callback,
             // Update status when valid was found
             setHeaderText(R.id.status, status.getStatus());
             setHeaderText(R.id.timestamp, status.getTimestampLabel(mContext));
-
-            final Drawable icon = status.getIcon(mContext);
-            setHeaderImage(R.id.source, icon);
-
-            if (mMode == QuickContact.MODE_MEDIUM) {
-                // Hide medium divider when missing icon
-                final boolean validIcon = icon != null;
-                mHeader.findViewById(R.id.source_divider).setVisibility(
-                        validIcon ? View.VISIBLE : View.GONE);
-            }
         }
 
         // Turn our list of actions into UI elements, starting with common types
