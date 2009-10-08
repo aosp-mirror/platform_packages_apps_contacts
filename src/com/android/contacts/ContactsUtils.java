@@ -229,6 +229,11 @@ public class ContactsUtils {
      */
     public static Intent buildImIntent(ContentValues values) {
         final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
+
+        if (!isEmail && !isProtocolValid(values)) {
+            return null;
+        }
+
         final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : values.getAsInteger(Im.PROTOCOL);
 
         String host = values.getAsString(Im.CUSTOM_PROTOCOL);
@@ -246,6 +251,19 @@ public class ContactsUtils {
         } else {
             return null;
         }
+    }
+
+    private static boolean isProtocolValid(ContentValues values) {
+        String protocolString = values.getAsString(Im.PROTOCOL);
+        if (protocolString == null) {
+            return false;
+        }
+        try {
+            Integer.valueOf(protocolString);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     public static Intent getPhotoPickIntent() {
