@@ -100,7 +100,8 @@ public class EntityDelta implements Parcelable {
      */
     public static EntityDelta mergeAfter(EntityDelta local, EntityDelta remote) {
         // Bail early if trying to merge delete with missing local
-        if (local == null && remote.mValues.isDelete()) return null;
+        final ValuesDelta remoteValues = remote.mValues;
+        if (local == null && (remoteValues.isDelete() || remoteValues.isTransient())) return null;
 
         // Create local version if none exists yet
         if (local == null) local = new EntityDelta();
@@ -513,6 +514,10 @@ public class EntityDelta implements Parcelable {
             return entry;
         }
 
+        public ContentValues getAfter() {
+            return mAfter;
+        }
+
         public String getAsString(String key) {
             if (mAfter != null && mAfter.containsKey(key)) {
                 return mAfter.getAsString(key);
@@ -609,6 +614,11 @@ public class EntityDelta implements Parcelable {
             return beforeExists() && (mAfter == null);
         }
 
+        public boolean isTransient() {
+            // When no "before" or "after", is transient
+            return (mBefore == null) && (mAfter == null);
+        }
+
         public boolean isUpdate() {
             // When "after" has some changes, action is "update"
             return beforeExists() && (mAfter != null && mAfter.size() > 0);
@@ -696,7 +706,7 @@ public class EntityDelta implements Parcelable {
          */
         public static ValuesDelta mergeAfter(ValuesDelta local, ValuesDelta remote) {
             // Bail early if trying to merge delete with missing local
-            if (local == null && remote.isDelete()) return null;
+            if (local == null && (remote.isDelete() || remote.isTransient())) return null;
 
             // Create local version if none exists yet
             if (local == null) local = new ValuesDelta();
