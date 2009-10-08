@@ -77,6 +77,7 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
@@ -1355,6 +1356,7 @@ public class ContactsListActivity extends ListActivity implements
     private Bitmap generatePhoneNumberIcon(long contactId, int type, int actionResId) {
         final Resources r = getResources();
         boolean drawPhoneOverlay = true;
+        final float scaleDensity = getResources().getDisplayMetrics().scaledDensity;
 
         Bitmap photo = loadContactPhoto(contactId, null);
         if (photo == null) {
@@ -1406,11 +1408,11 @@ public class ContactsListActivity extends ListActivity implements
         }
         if (overlay != null) {
             Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
-            textPaint.setTextSize(20.0f);
+            textPaint.setTextSize(20.0f * scaleDensity);
             textPaint.setTypeface(Typeface.DEFAULT_BOLD);
             textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
             textPaint.setShadowLayer(3f, 1, 1, r.getColor(R.color.textColorIconOverlayShadow));
-            canvas.drawText(overlay, 2, 16, textPaint);
+            canvas.drawText(overlay, 2 * scaleDensity, 16 * scaleDensity, textPaint);
         }
 
         // Draw the phone action icon as an overlay
@@ -1419,7 +1421,8 @@ public class ContactsListActivity extends ListActivity implements
             if (phoneIcon != null) {
                 src.set(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
                 int iconWidth = icon.getWidth();
-                dst.set(iconWidth - 20, -1, iconWidth, 19);
+                dst.set(iconWidth - ((int) (20 * scaleDensity)), -1,
+                        iconWidth, ((int) (19 * scaleDensity)));
                 canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
             }
         }
@@ -2742,7 +2745,7 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public boolean areAllItemsEnabled() {
-            return mMode != MODE_STARRED 
+            return mMode != MODE_STARRED
                 && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) == 0
                 && mSuggestionsCursorCount == 0;
         }
@@ -2755,7 +2758,7 @@ public class ContactsListActivity extends ListActivity implements
                 }
                 position--;
             }
-            
+
             if (mSuggestionsCursorCount > 0) {
                 return position != 0 && position != mSuggestionsCursorCount + 1;
             }
