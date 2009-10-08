@@ -320,7 +320,6 @@ public class QuickContactWindow implements Window.Callback,
         setHeaderText(R.id.timestamp, null);
 
         setHeaderImage(R.id.presence, null);
-        setHeaderImage(R.id.source, null);
 
         resetTrack();
 
@@ -751,28 +750,30 @@ public class QuickContactWindow implements Window.Callback,
             } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
                         getAsString(cursor, Data.MIMETYPE));
-                final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
-                        getAsInt(cursor, Im.PROTOCOL);
+                if (isEmail || isProtocolValid(cursor)) {
+                    final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
+                            getAsInt(cursor, Im.PROTOCOL);
 
-                if (isEmail) {
-                    // Use Google Talk string when using Email, and clear data
-                    // Uri so we don't try saving Email as primary.
-                    mHeader = context.getText(R.string.chat_gtalk);
-                    mDataUri = null;
-                }
+                    if (isEmail) {
+                        // Use Google Talk string when using Email, and clear data
+                        // Uri so we don't try saving Email as primary.
+                        mHeader = context.getText(R.string.chat_gtalk);
+                        mDataUri = null;
+                    }
 
-                String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
-                String data = getAsString(cursor, isEmail ? Email.DATA : Im.DATA);
-                if (protocol != Im.PROTOCOL_CUSTOM) {
-                    // Try bringing in a well-known host for specific protocols
-                    host = ContactsUtils.lookupProviderNameFromId(protocol);
-                }
+                    String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
+                    String data = getAsString(cursor, isEmail ? Email.DATA : Im.DATA);
+                    if (protocol != Im.PROTOCOL_CUSTOM) {
+                        // Try bringing in a well-known host for specific protocols
+                        host = ContactsUtils.lookupProviderNameFromId(protocol);
+                    }
 
-                if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
-                    final String authority = host.toLowerCase();
-                    final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
-                            authority).appendPath(data).build();
-                    mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
+                    if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
+                        final String authority = host.toLowerCase();
+                        final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                                authority).appendPath(data).build();
+                        mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
+                    }
                 }
             }
 
@@ -783,6 +784,19 @@ public class QuickContactWindow implements Window.Callback,
 
             // Always launch as new task, since we're like a launcher
             mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        }
+
+        private boolean isProtocolValid(Cursor cursor) {
+            final int columnIndex = cursor.getColumnIndex(Im.PROTOCOL);
+            if (cursor.isNull(columnIndex)) {
+                return false;
+            }
+            try {
+                Integer.valueOf(cursor.getString(columnIndex));
+            } catch (NumberFormatException e) {
+                return false;
+            }
+            return true;
         }
 
         /** {@inheritDoc} */
@@ -1149,16 +1163,6 @@ public class QuickContactWindow implements Window.Callback,
             // Update status when valid was found
             setHeaderText(R.id.status, status.getStatus());
             setHeaderText(R.id.timestamp, status.getTimestampLabel(mContext));
-
-            final Drawable icon = status.getIcon(mContext);
-            setHeaderImage(R.id.source, icon);
-
-            if (mMode == QuickContact.MODE_MEDIUM) {
-                // Hide medium divider when missing icon
-                final boolean validIcon = icon != null;
-                mHeader.findViewById(R.id.source_divider).setVisibility(
-                        validIcon ? View.VISIBLE : View.GONE);
-            }
         }
 
         // Turn our list of actions into UI elements, starting with common types

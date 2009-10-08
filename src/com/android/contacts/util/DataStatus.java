@@ -98,6 +98,9 @@ public class DataStatus {
     public CharSequence getTimestampLabel(Context context) {
         final PackageManager pm = context.getPackageManager();
 
+        // Use local package for resources when none requested
+        if (mResPackage == null) mResPackage = context.getPackageName();
+
         final boolean validTimestamp = mTimestamp > 0;
         final boolean validLabel = mResPackage != null && mLabelRes != -1;
 
@@ -124,6 +127,10 @@ public class DataStatus {
 
     public Drawable getIcon(Context context) {
         final PackageManager pm = context.getPackageManager();
+
+        // Use local package for resources when none requested
+        if (mResPackage == null) mResPackage = context.getPackageName();
+
         final boolean validIcon = mResPackage != null && mIconRes != -1;
         return validIcon ? pm.getDrawable(mResPackage, mIconRes, null) : null;
     }
