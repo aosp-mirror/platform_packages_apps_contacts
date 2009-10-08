@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui.widget;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
@@ -222,7 +223,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             });
 
             // Hide field when empty and optional value
-            final boolean couldHide = (TextUtils.isEmpty(value) && field.optional);
+            final boolean couldHide = (!ContactsUtils.isGraphic(value) && field.optional);
             final boolean willHide = (mHideOptional && couldHide);
             fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
             fieldView.setEnabled(enabled);
@@ -255,7 +256,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
-                if (!TextUtils.isEmpty(customText)) {
+                if (ContactsUtils.isGraphic(customText)) {
                     // Now we're sure it's ok to actually change the type value.
                     mType = mPendingType;
                     mPendingType = null;
