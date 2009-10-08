@@ -90,6 +90,11 @@ class VCardFile {
 /**
  * Class for importing vCard. Several user interaction will be required while reading
  * (selecting a file, waiting a moment, etc.)
+ *
+ * Note that this Activity assumes that the instance is a "one-shot Activity", which will be
+ * finished (with the method {@link Activity#finish()}) after the import and never reuse
+ * any Dialog in the instance. So this code is careless about the management around managed
+ * dialogs stuffs (like how onCreateDialog() is used).
  */
 public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
@@ -677,20 +682,6 @@ public class ImportVCardActivity extends Activity {
         return builder.create();
     }
 
-    private Dialog getReadingVCardDialog() {
-        if (mProgressDialogForReadVCard == null) {
-            String title = getString(R.string.reading_vcard_title);
-            String message = getString(R.string.reading_vcard_message);
-            mProgressDialogForReadVCard = new ProgressDialog(this);
-            mProgressDialogForReadVCard.setTitle(title);
-            mProgressDialogForReadVCard.setMessage(message);
-            mProgressDialogForReadVCard.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mProgressDialogForReadVCard.setOnCancelListener(mVCardReadThread);
-            mVCardReadThread.start();
-        }
-        return mProgressDialogForReadVCard;
-    }
-
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -752,7 +743,17 @@ public class ImportVCardActivity extends Activity {
                 return getVCardFileSelectDialog(false);
             }
             case R.id.dialog_reading_vcard: {
-                return getReadingVCardDialog();
+                if (mProgressDialogForReadVCard == null) {
+                    String title = getString(R.string.reading_vcard_title);
+                    String message = getString(R.string.reading_vcard_message);
+                    mProgressDialogForReadVCard = new ProgressDialog(this);
+                    mProgressDialogForReadVCard.setTitle(title);
+                    mProgressDialogForReadVCard.setMessage(message);
+                    mProgressDialogForReadVCard.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    mProgressDialogForReadVCard.setOnCancelListener(mVCardReadThread);
+                    mVCardReadThread.start();
+                }
+                return mProgressDialogForReadVCard;
             }
             case R.id.dialog_io_exception: {
                 String message = (getString(R.string.scanning_sdcard_failed_message,
