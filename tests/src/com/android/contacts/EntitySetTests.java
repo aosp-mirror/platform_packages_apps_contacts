@@ -21,7 +21,10 @@ import static android.content.ContentProviderOperation.TYPE_DELETE;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
+import com.android.contacts.EntityModifierTests.MockContactsSource;
+import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
@@ -33,11 +36,12 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.util.Log;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
@@ -58,8 +62,13 @@ public class EntitySetTests extends AndroidTestCase {
     public static final long PHONE_GREEN = 21;
     public static final long PHONE_BLUE = 22;
 
+    public static final long EMAIL_YELLOW = 25;
+
     public static final long VER_FIRST = 100;
     public static final long VER_SECOND = 200;
+
+    public static final String TEST_PHONE = "555-1212";
+    public static final String TEST_ACCOUNT = "org.example.test";
 
     public EntitySetTests() {
         super();
@@ -68,6 +77,23 @@ public class EntitySetTests extends AndroidTestCase {
     @Override
     public void setUp() {
         mContext = getContext();
+    }
+
+    /**
+     * Build a {@link ContactsSource} that has various odd constraints for
+     * testing purposes.
+     */
+    protected ContactsSource getSource() {
+        final ContactsSource source = new MockContactsSource();
+        source.ensureInflated(getContext(), ContactsSource.LEVEL_CONSTRAINTS);
+        return source;
+    }
+
+    private ContentValues getValues(ContentProviderOperation operation)
+            throws NoSuchFieldException, IllegalAccessException {
+        final Field field = ContentProviderOperation.class.getDeclaredField("mValues");
+        field.setAccessible(true);
+        return (ContentValues) field.get(operation);
     }
 
     protected static EntityDelta getUpdate(long rawContactId) {
@@ -109,7 +135,7 @@ public class EntitySetTests extends AndroidTestCase {
     protected static EntityDelta buildAfterEntity(ContentValues... entries) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
-        contact.putNull(RawContacts.ACCOUNT_NAME);
+        contact.put(RawContacts.ACCOUNT_TYPE, TEST_ACCOUNT);
         final EntityDelta after = new EntityDelta(ValuesDelta.fromAfter(contact));
         for (ContentValues entry : entries) {
             after.addEntry(ValuesDelta.fromAfter(entry));
@@ -127,6 +153,15 @@ public class EntitySetTests extends AndroidTestCase {
         values.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         values.put(Phone.NUMBER, value);
         values.put(Phone.TYPE, Phone.TYPE_HOME);
+        return values;
+    }
+
+    protected static ContentValues buildEmail(long emailId) {
+        final ContentValues values = new ContentValues();
+        values.put(Data._ID, emailId);
+        values.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        values.put(Email.DATA, Long.toString(emailId));
+        values.put(Email.TYPE, Email.TYPE_HOME);
         return values;
     }
 
@@ -148,11 +183,27 @@ public class EntitySetTests extends AndroidTestCase {
             final ContentProviderOperation expected = pattern[i];
             final ContentProviderOperation found = diff.get(i);
 
+            assertEquals("Unexpected uri", expected.getUri(), found.getUri());
+
             final String expectedType = getStringForType(expected.getType());
             final String foundType = getStringForType(found.getType());
-
             assertEquals("Unexpected type", expectedType, foundType);
-            assertEquals("Unexpected uri", expected.getUri(), found.getUri());
+
+            if (expected.getType() == TYPE_DELETE) continue;
+
+            try {
+                final ContentValues expectedValues = getValues(expected);
+                final ContentValues foundValues = getValues(found);
+
+                expectedValues.remove(BaseColumns._ID);
+                foundValues.remove(BaseColumns._ID);
+
+                assertEquals("Unexpected values", expectedValues, foundValues);
+            } catch (NoSuchFieldException e) {
+                fail(e.toString());
+            } catch (IllegalAccessException e) {
+                fail(e.toString());
+            }
         }
     }
 
@@ -166,9 +217,48 @@ public class EntitySetTests extends AndroidTestCase {
         }
     }
 
-    protected static ContentProviderOperation buildOper(Uri uri, int type) {
+    protected static ContentProviderOperation buildAssertVersion(long version) {
         final ContentValues values = new ContentValues();
-        values.put(BaseColumns._ID, 4);
+        values.put(RawContacts.VERSION, version);
+        return buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT, values);
+    }
+
+    protected static ContentProviderOperation buildAggregationModeUpdate(int mode) {
+        final ContentValues values = new ContentValues();
+        values.put(RawContacts.AGGREGATION_MODE, mode);
+        return buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE, values);
+    }
+
+    protected static ContentProviderOperation buildUpdateAggregationSuspended() {
+        return buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_SUSPENDED);
+    }
+
+    protected static ContentProviderOperation buildUpdateAggregationDefault() {
+        return buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_DEFAULT);
+    }
+
+    protected static ContentProviderOperation buildUpdateAggregationKeepTogether(long rawContactId) {
+        final ContentValues values = new ContentValues();
+        values.put(AggregationExceptions.RAW_CONTACT_ID1, rawContactId);
+        values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_TOGETHER);
+        return buildOper(AggregationExceptions.CONTENT_URI, TYPE_UPDATE, values);
+    }
+
+    protected static ContentValues buildDataInsert(ValuesDelta values, long rawContactId) {
+        final ContentValues insertValues = values.getCompleteValues();
+        insertValues.put(Data.RAW_CONTACT_ID, rawContactId);
+        return insertValues;
+    }
+
+    protected static ContentProviderOperation buildDelete(Uri uri) {
+        return buildOper(uri, TYPE_DELETE, (ContentValues)null);
+    }
+
+    protected static ContentProviderOperation buildOper(Uri uri, int type, ValuesDelta values) {
+        return buildOper(uri, type, values.getCompleteValues());
+    }
+
+    protected static ContentProviderOperation buildOper(Uri uri, int type, ContentValues values) {
         switch (type) {
             case TYPE_ASSERT:
                 return ContentProviderOperation.newAssertQuery(uri).withValues(values).build();
@@ -258,7 +348,8 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
         final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
@@ -268,73 +359,84 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataLocalUpdateRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
         final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
         // Change the local number to trigger update
-        getPhone(first, CONTACT_BOB, PHONE_RED).put(Phone.NUMBER, "555-1212");
+        final ValuesDelta phone = getPhone(first, CONTACT_BOB, PHONE_RED);
+        phone.put(Phone.NUMBER, TEST_PHONE);
+
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_UPDATE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_UPDATE, phone.getAfter()),
+                buildUpdateAggregationDefault());
 
         // Merge in the second version, verify diff matches
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_UPDATE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_UPDATE, phone.getAfter()),
+                buildUpdateAggregationDefault());
     }
 
     public void testMergeDataLocalUpdateRemoteDelete() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_GREEN)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
+        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+                buildPhone(PHONE_GREEN)));
 
         // Change the local number to trigger update
-        getPhone(first, CONTACT_BOB, PHONE_RED).put(Phone.NUMBER, "555-1212");
+        final ValuesDelta phone = getPhone(first, CONTACT_BOB, PHONE_RED);
+        phone.put(Phone.NUMBER, TEST_PHONE);
+
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_UPDATE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_UPDATE, phone.getAfter()),
+                buildUpdateAggregationDefault());
 
         // Merge in the second version, verify that our update changed to
         // insert, since RED was deleted on remote side
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, buildDataInsert(phone, CONTACT_BOB)),
+                buildUpdateAggregationDefault());
     }
 
     public void testMergeDataLocalDeleteRemoteUpdate() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(
-                PHONE_RED, "555-1212")));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
+        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+                buildPhone(PHONE_RED, TEST_PHONE)));
 
         // Delete phone locally
-        getPhone(first, CONTACT_BOB, PHONE_RED).markDeleted();
+        final ValuesDelta phone = getPhone(first, CONTACT_BOB, PHONE_RED);
+        phone.markDeleted();
+
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_DELETE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildDelete(Data.CONTENT_URI),
+                buildUpdateAggregationDefault());
 
         // Merge in the second version, verify that our delete remains
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_DELETE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildUpdateAggregationSuspended(),
+                buildDelete(Data.CONTENT_URI),
+                buildUpdateAggregationDefault());
     }
 
     public void testMergeDataLocalInsertRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
         final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
@@ -342,57 +444,61 @@ public class EntitySetTests extends AndroidTestCase {
         final ValuesDelta bluePhone = ValuesDelta.fromAfter(buildPhone(PHONE_BLUE));
         first.getByRawContactId(CONTACT_BOB).addEntry(bluePhone);
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, buildDataInsert(bluePhone, CONTACT_BOB)),
+                buildUpdateAggregationDefault());
 
         // Merge in the second version, verify that our insert remains
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, buildDataInsert(bluePhone, CONTACT_BOB)),
+                buildUpdateAggregationDefault());
     }
 
     public void testMergeRawContactLocalInsertRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)),
-                buildBeforeEntity(CONTACT_MARY, VER_SECOND, buildPhone(PHONE_RED)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
+        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+                buildPhone(PHONE_RED)), buildBeforeEntity(CONTACT_MARY, VER_SECOND,
+                buildPhone(PHONE_RED)));
 
         // Add new contact locally, should remain insert
-        final EntityDelta joeContact = buildAfterEntity(buildPhone(PHONE_BLUE));
+        final ContentValues joePhoneInsert = buildPhone(PHONE_BLUE);
+        final EntityDelta joeContact = buildAfterEntity(joePhoneInsert);
+        final ContentValues joeContactInsert = joeContact.getValues().getCompleteValues();
         first.add(joeContact);
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(AggregationExceptions.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, joeContactInsert),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, joePhoneInsert),
+                buildUpdateAggregationKeepTogether(CONTACT_BOB));
 
         // Merge in the second version, verify that our insert remains
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(AggregationExceptions.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildAssertVersion(VER_SECOND),
+                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, joeContactInsert),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, joePhoneInsert),
+                buildUpdateAggregationKeepTogether(CONTACT_BOB));
     }
 
     public void testMergeRawContactLocalDeleteRemoteDelete() {
         final EntitySet first = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)),
-                buildBeforeEntity(CONTACT_MARY, VER_SECOND, buildPhone(PHONE_RED)));
+                buildBeforeEntity(CONTACT_MARY, VER_FIRST, buildPhone(PHONE_RED)));
         final EntitySet second = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)));
 
         // Remove contact locally
         first.getByRawContactId(CONTACT_MARY).markDeleted();
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_DELETE));
+                buildAssertVersion(VER_FIRST),
+                buildAssertVersion(VER_FIRST),
+                buildDelete(RawContacts.CONTENT_URI));
 
         // Merge in the second version, verify that our delete isn't needed
         final EntitySet merged = EntitySet.mergeAfter(second, first);
@@ -402,36 +508,71 @@ public class EntitySetTests extends AndroidTestCase {
     public void testMergeRawContactLocalUpdateRemoteDelete() {
         final EntitySet first = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)),
-                buildBeforeEntity(CONTACT_MARY, VER_SECOND, buildPhone(PHONE_RED)));
+                buildBeforeEntity(CONTACT_MARY, VER_FIRST, buildPhone(PHONE_RED)));
         final EntitySet second = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)));
 
         // Perform local update
-        getPhone(first, CONTACT_MARY, PHONE_RED).put(Phone.NUMBER, "555-1212");
+        final ValuesDelta phone = getPhone(first, CONTACT_MARY, PHONE_RED);
+        phone.put(Phone.NUMBER, TEST_PHONE);
         assertDiffPattern(first,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE),
-                buildOper(Data.CONTENT_URI, TYPE_UPDATE),
-                buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_FIRST),
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_UPDATE, phone.getAfter()),
+                buildUpdateAggregationDefault());
+
+        final ContentValues phoneInsert = phone.getCompleteValues();
+        final ContentValues contactInsert = first.getByRawContactId(CONTACT_MARY).getValues()
+                .getCompleteValues();
 
         // Merge and verify that update turned into insert
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertDiffPattern(merged,
-                buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT),
-                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT),
-                buildOper(Data.CONTENT_URI, TYPE_INSERT),
-                buildOper(AggregationExceptions.CONTENT_URI, TYPE_UPDATE));
+                buildAssertVersion(VER_SECOND),
+                buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, contactInsert),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, phoneInsert),
+                buildUpdateAggregationKeepTogether(CONTACT_BOB));
     }
 
     public void testMergeUsesNewVersion() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)));
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildPhone(PHONE_RED)));
+        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+                buildPhone(PHONE_RED)));
 
         assertEquals((Long)VER_FIRST, getVersion(first, CONTACT_BOB));
         assertEquals((Long)VER_SECOND, getVersion(second, CONTACT_BOB));
 
         final EntitySet merged = EntitySet.mergeAfter(second, first);
         assertEquals((Long)VER_SECOND, getVersion(merged, CONTACT_BOB));
+    }
+
+    public void testMergeAfterEnsureAndTrim() {
+        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+                buildEmail(EMAIL_YELLOW)));
+        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+                buildEmail(EMAIL_YELLOW)));
+
+        // Ensure we have at least one phone
+        final ContactsSource source = getSource();
+        final EntityDelta bobContact = first.getByRawContactId(CONTACT_BOB);
+        EntityModifier.ensureKindExists(bobContact, source, Phone.CONTENT_ITEM_TYPE);
+        final ValuesDelta bobPhone = bobContact.getSuperPrimaryEntry(Phone.CONTENT_ITEM_TYPE, true);
+
+        // Make sure the update would insert a row
+        assertDiffPattern(first,
+                buildAssertVersion(VER_FIRST),
+                buildUpdateAggregationSuspended(),
+                buildOper(Data.CONTENT_URI, TYPE_INSERT, buildDataInsert(bobPhone, CONTACT_BOB)),
+                buildUpdateAggregationDefault());
+
+        // Trim values and ensure that we don't insert things
+        EntityModifier.trimEmpty(bobContact, source);
+        assertDiffPattern(first);
+
+        // Now re-parent the change, which should remain no-op
+        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        assertDiffPattern(merged);
     }
 }
