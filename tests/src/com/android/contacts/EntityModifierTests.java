@@ -36,6 +36,7 @@ import android.content.Context;
 import android.content.Entity;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -87,6 +88,16 @@ public class EntityModifierTests extends AndroidTestCase {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
             kind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
+
+            addKind(kind);
+
+            // Email is unlimited
+            kind = new DataKind(Email.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+
+            kind.typeOverallMax = -1;
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Email.DATA, -1, -1));
 
             addKind(kind);
         }
