@@ -27,6 +27,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.google.android.collect.Lists;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
@@ -89,20 +90,20 @@ public class EntitySetTests extends AndroidTestCase {
         return source;
     }
 
-    private ContentValues getValues(ContentProviderOperation operation)
+    static ContentValues getValues(ContentProviderOperation operation)
             throws NoSuchFieldException, IllegalAccessException {
         final Field field = ContentProviderOperation.class.getDeclaredField("mValues");
         field.setAccessible(true);
         return (ContentValues) field.get(operation);
     }
 
-    protected static EntityDelta getUpdate(long rawContactId) {
+    static EntityDelta getUpdate(long rawContactId) {
         final Entity before = EntityDeltaTests.getEntity(rawContactId,
                 EntityDeltaTests.TEST_PHONE_ID);
         return EntityDelta.fromBefore(before);
     }
 
-    protected static EntityDelta getInsert() {
+    static EntityDelta getInsert() {
         final ContentValues after = new ContentValues();
         after.put(RawContacts.ACCOUNT_NAME, EntityDeltaTests.TEST_ACCOUNT_NAME);
         after.put(RawContacts.SEND_TO_VOICEMAIL, 1);
@@ -111,7 +112,7 @@ public class EntitySetTests extends AndroidTestCase {
         return new EntityDelta(values);
     }
 
-    protected static EntitySet buildSet(EntityDelta... deltas) {
+    static EntitySet buildSet(EntityDelta... deltas) {
         final EntitySet set = EntitySet.fromSingle(deltas[0]);
         for (int i = 1; i < deltas.length; i++) {
             set.add(deltas[i]);
@@ -119,7 +120,7 @@ public class EntitySetTests extends AndroidTestCase {
         return set;
     }
 
-    protected static EntityDelta buildBeforeEntity(long rawContactId, long version,
+    static EntityDelta buildBeforeEntity(long rawContactId, long version,
             ContentValues... entries) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
@@ -132,7 +133,7 @@ public class EntitySetTests extends AndroidTestCase {
         return EntityDelta.fromBefore(before);
     }
 
-    protected static EntityDelta buildAfterEntity(ContentValues... entries) {
+    static EntityDelta buildAfterEntity(ContentValues... entries) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
         contact.put(RawContacts.ACCOUNT_TYPE, TEST_ACCOUNT);
@@ -143,11 +144,11 @@ public class EntitySetTests extends AndroidTestCase {
         return after;
     }
 
-    protected static ContentValues buildPhone(long phoneId) {
+    static ContentValues buildPhone(long phoneId) {
         return buildPhone(phoneId, Long.toString(phoneId));
     }
 
-    protected static ContentValues buildPhone(long phoneId, String value) {
+    static ContentValues buildPhone(long phoneId, String value) {
         final ContentValues values = new ContentValues();
         values.put(Data._ID, phoneId);
         values.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
@@ -156,7 +157,7 @@ public class EntitySetTests extends AndroidTestCase {
         return values;
     }
 
-    protected static ContentValues buildEmail(long emailId) {
+    static ContentValues buildEmail(long emailId) {
         final ContentValues values = new ContentValues();
         values.put(Data._ID, emailId);
         values.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
@@ -165,19 +166,29 @@ public class EntitySetTests extends AndroidTestCase {
         return values;
     }
 
-    protected static void insertPhone(EntitySet set, long rawContactId, ContentValues values) {
+    static void insertPhone(EntitySet set, long rawContactId, ContentValues values) {
         final EntityDelta match = set.getByRawContactId(rawContactId);
         match.addEntry(ValuesDelta.fromAfter(values));
     }
 
-    protected static ValuesDelta getPhone(EntitySet set, long rawContactId, long dataId) {
+    static ValuesDelta getPhone(EntitySet set, long rawContactId, long dataId) {
         final EntityDelta match = set.getByRawContactId(rawContactId);
         return match.getEntry(dataId);
     }
 
-    protected void assertDiffPattern(EntitySet set, ContentProviderOperation... pattern) {
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+    static void assertDiffPattern(EntityDelta delta, ContentProviderOperation... pattern) {
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        delta.buildAssert(diff);
+        delta.buildDiff(diff);
+        assertDiffPattern(diff, pattern);
+    }
 
+    static void assertDiffPattern(EntitySet set, ContentProviderOperation... pattern) {
+        assertDiffPattern(set.buildDiff(), pattern);
+    }
+
+    static void assertDiffPattern(ArrayList<ContentProviderOperation> diff,
+            ContentProviderOperation... pattern) {
         assertEquals("Unexpected operations", pattern.length, diff.size());
         for (int i = 0; i < pattern.length; i++) {
             final ContentProviderOperation expected = pattern[i];
@@ -207,7 +218,7 @@ public class EntitySetTests extends AndroidTestCase {
         }
     }
 
-    protected static String getStringForType(int type) {
+    static String getStringForType(int type) {
         switch (type) {
             case TYPE_ASSERT: return "TYPE_ASSERT";
             case TYPE_INSERT: return "TYPE_INSERT";
@@ -217,48 +228,48 @@ public class EntitySetTests extends AndroidTestCase {
         }
     }
 
-    protected static ContentProviderOperation buildAssertVersion(long version) {
+    static ContentProviderOperation buildAssertVersion(long version) {
         final ContentValues values = new ContentValues();
         values.put(RawContacts.VERSION, version);
         return buildOper(RawContacts.CONTENT_URI, TYPE_ASSERT, values);
     }
 
-    protected static ContentProviderOperation buildAggregationModeUpdate(int mode) {
+    static ContentProviderOperation buildAggregationModeUpdate(int mode) {
         final ContentValues values = new ContentValues();
         values.put(RawContacts.AGGREGATION_MODE, mode);
         return buildOper(RawContacts.CONTENT_URI, TYPE_UPDATE, values);
     }
 
-    protected static ContentProviderOperation buildUpdateAggregationSuspended() {
+    static ContentProviderOperation buildUpdateAggregationSuspended() {
         return buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_SUSPENDED);
     }
 
-    protected static ContentProviderOperation buildUpdateAggregationDefault() {
+    static ContentProviderOperation buildUpdateAggregationDefault() {
         return buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_DEFAULT);
     }
 
-    protected static ContentProviderOperation buildUpdateAggregationKeepTogether(long rawContactId) {
+    static ContentProviderOperation buildUpdateAggregationKeepTogether(long rawContactId) {
         final ContentValues values = new ContentValues();
         values.put(AggregationExceptions.RAW_CONTACT_ID1, rawContactId);
         values.put(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_TOGETHER);
         return buildOper(AggregationExceptions.CONTENT_URI, TYPE_UPDATE, values);
     }
 
-    protected static ContentValues buildDataInsert(ValuesDelta values, long rawContactId) {
+    static ContentValues buildDataInsert(ValuesDelta values, long rawContactId) {
         final ContentValues insertValues = values.getCompleteValues();
         insertValues.put(Data.RAW_CONTACT_ID, rawContactId);
         return insertValues;
     }
 
-    protected static ContentProviderOperation buildDelete(Uri uri) {
+    static ContentProviderOperation buildDelete(Uri uri) {
         return buildOper(uri, TYPE_DELETE, (ContentValues)null);
     }
 
-    protected static ContentProviderOperation buildOper(Uri uri, int type, ValuesDelta values) {
+    static ContentProviderOperation buildOper(Uri uri, int type, ValuesDelta values) {
         return buildOper(uri, type, values.getCompleteValues());
     }
 
-    protected static ContentProviderOperation buildOper(Uri uri, int type, ContentValues values) {
+    static ContentProviderOperation buildOper(Uri uri, int type, ContentValues values) {
         switch (type) {
             case TYPE_ASSERT:
                 return ContentProviderOperation.newAssertQuery(uri).withValues(values).build();
@@ -272,7 +283,7 @@ public class EntitySetTests extends AndroidTestCase {
         return null;
     }
 
-    protected static Long getVersion(EntitySet set, Long rawContactId) {
+    static Long getVersion(EntitySet set, Long rawContactId) {
         return set.getByRawContactId(rawContactId).getValues().getAsLong(RawContacts.VERSION);
     }
 
@@ -280,7 +291,7 @@ public class EntitySetTests extends AndroidTestCase {
      * Count number of {@link AggregationExceptions} updates contained in the
      * given list of {@link ContentProviderOperation}.
      */
-    protected static int countExceptionUpdates(ArrayList<ContentProviderOperation> diff) {
+    static int countExceptionUpdates(ArrayList<ContentProviderOperation> diff) {
         int updateCount = 0;
         for (ContentProviderOperation oper : diff) {
             if (AggregationExceptions.CONTENT_URI.equals(oper.getUri())

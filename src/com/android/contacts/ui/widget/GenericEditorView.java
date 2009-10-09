@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui.widget;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
@@ -30,8 +31,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
-import android.text.TextUtils;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
@@ -199,7 +201,11 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             if (field.titleRes > 0) {
                 fieldView.setHint(field.titleRes);
             }
-            fieldView.setInputType(field.inputType);
+            int inputType = field.inputType;
+            fieldView.setInputType(inputType);
+            if (inputType == InputType.TYPE_CLASS_PHONE) {
+                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+            }
             fieldView.setMinLines(field.minLines);
 
             // Read current value from state
@@ -222,7 +228,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             });
 
             // Hide field when empty and optional value
-            final boolean couldHide = (TextUtils.isEmpty(value) && field.optional);
+            final boolean couldHide = (!ContactsUtils.isGraphic(value) && field.optional);
             final boolean willHide = (mHideOptional && couldHide);
             fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
             fieldView.setEnabled(enabled);
@@ -255,7 +261,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
-                if (!TextUtils.isEmpty(customText)) {
+                if (ContactsUtils.isGraphic(customText)) {
                     // Now we're sure it's ok to actually change the type value.
                     mType = mPendingType;
                     mPendingType = null;
