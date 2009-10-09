@@ -25,7 +25,7 @@
     <!-- Left side color bar -->
     <ImageView
         android:id="@+id/color_bar"
-        android:layout_width="5dip"
+        android:layout_width="4dip"
         android:layout_height="fill_parent"
     />
 
@@ -133,7 +133,7 @@
 
         <View android:id="@+id/head_secondary_divider"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1px"
             android:background="?android:attr/listDivider" />
 
         <TextView
