@@ -31,8 +31,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
-import android.text.TextUtils;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
@@ -200,7 +201,11 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             if (field.titleRes > 0) {
                 fieldView.setHint(field.titleRes);
             }
-            fieldView.setInputType(field.inputType);
+            int inputType = field.inputType;
+            fieldView.setInputType(inputType);
+            if (inputType == InputType.TYPE_CLASS_PHONE) {
+                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+            }
             fieldView.setMinLines(field.minLines);
 
             // Read current value from state

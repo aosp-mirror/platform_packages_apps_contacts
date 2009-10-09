@@ -45,6 +45,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     private EditorListener mListener;
 
     private boolean mHasSetPhoto = false;
+    private boolean mReadOnly;
 
     public PhotoEditorView(Context context) {
         super(context);
@@ -76,6 +77,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     /** {@inheritDoc} */
     public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly) {
         mEntry = values;
+        mReadOnly = readOnly;
         if (values != null) {
             // Try decoding photo if actual entry
             final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);
@@ -85,7 +87,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
 
                 setScaleType(ImageView.ScaleType.CENTER_CROP);
                 setImageBitmap(photo);
-		setEnabled(!readOnly);
+                setEnabled(true);
                 mHasSetPhoto = true;
                 mEntry.setFromTemplate(false);
             } else {
@@ -125,17 +127,34 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
 
             mEntry.put(Photo.PHOTO, out.toByteArray());
             setImageBitmap(photo);
+            setEnabled(true);
             mHasSetPhoto = true;
             mEntry.setFromTemplate(false);
+
+            // When the user chooses a new photo mark it as super primary
+            mEntry.put(Photo.IS_SUPER_PRIMARY, 1);
         } catch (IOException e) {
             Log.w(TAG, "Unable to serialize photo: " + e.toString());
         }
     }
 
+    /**
+     * Set the super primary bit on the photo.
+     */
+    public void setSuperPrimary(boolean superPrimary) {
+        mEntry.put(Photo.IS_SUPER_PRIMARY, superPrimary ? 1 : 0);
+    }
+
     protected void resetDefault() {
         // Invalid photo, show default "add photo" place-holder
         setScaleType(ImageView.ScaleType.CENTER);
-        setImageResource(R.drawable.ic_menu_add_picture);
+        if (mReadOnly) {
+            setImageResource(R.drawable.ic_contact_picture);
+            setEnabled(false);
+        } else {
+            setImageResource(R.drawable.ic_menu_add_picture);
+            setEnabled(true);
+        }
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);
     }
