@@ -52,6 +52,8 @@ import java.util.List;
 public class EntityModifierTests extends AndroidTestCase {
     public static final String TAG = "EntityModifierTests";
 
+    public static final long VER_FIRST = 100;
+
     private static final long TEST_ID = 4;
     private static final String TEST_PHONE = "218-555-1212";
 
@@ -344,6 +346,59 @@ public class EntityModifierTests extends AndroidTestCase {
             assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
+    }
+
+    public void testTrimEmptySpaces() {
+        final ContactsSource source = getSource();
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Test row that has type values, but values are spaces
+        final EntityDelta state = EntitySetTests.buildBeforeEntity(TEST_ID, VER_FIRST);
+        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        values.put(Phone.NUMBER, "   ");
+
+        // Build diff, expecting insert for data row and update enforcement
+        EntitySetTests.assertDiffPattern(state,
+                EntitySetTests.buildAssertVersion(VER_FIRST),
+                EntitySetTests.buildUpdateAggregationSuspended(),
+                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntitySetTests.buildDataInsert(values, TEST_ID)),
+                EntitySetTests.buildUpdateAggregationDefault());
+
+        // Trim empty rows and try again, expecting delete of overall contact
+        EntityModifier.trimEmpty(state, source);
+        EntitySetTests.assertDiffPattern(state,
+                EntitySetTests.buildAssertVersion(VER_FIRST),
+                EntitySetTests.buildDelete(RawContacts.CONTENT_URI));
+    }
+
+    public void testTrimLeaveValid() {
+        final ContactsSource source = getSource();
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+
+        // Test row that has type values with valid number
+        final EntityDelta state = EntitySetTests.buildBeforeEntity(TEST_ID, VER_FIRST);
+        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        values.put(Phone.NUMBER, TEST_PHONE);
+
+        // Build diff, expecting insert for data row and update enforcement
+        EntitySetTests.assertDiffPattern(state,
+                EntitySetTests.buildAssertVersion(VER_FIRST),
+                EntitySetTests.buildUpdateAggregationSuspended(),
+                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntitySetTests.buildDataInsert(values, TEST_ID)),
+                EntitySetTests.buildUpdateAggregationDefault());
+
+        // Trim empty rows and try again, expecting no differences
+        EntityModifier.trimEmpty(state, source);
+        EntitySetTests.assertDiffPattern(state,
+                EntitySetTests.buildAssertVersion(VER_FIRST),
+                EntitySetTests.buildUpdateAggregationSuspended(),
+                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntitySetTests.buildDataInsert(values, TEST_ID)),
+                EntitySetTests.buildUpdateAggregationDefault());
     }
 
     public void testTrimEmptyUntouched() {
