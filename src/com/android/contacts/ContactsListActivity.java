@@ -750,6 +750,11 @@ public class ContactsListActivity extends ListActivity implements
     protected void onResume() {
         super.onResume();
 
+        // Force cache to reload so we don't show stale photos.
+        if (mAdapter.mBitmapCache != null) {
+            mAdapter.mBitmapCache.clear();
+        }
+
         mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
         boolean runQuery = true;
         Activity parent = getParent();
