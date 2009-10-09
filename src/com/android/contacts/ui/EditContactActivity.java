@@ -26,9 +26,11 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.ContactEditorView;
+import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
@@ -81,6 +83,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Activity for editing or inserting a contact.
@@ -344,19 +347,9 @@ public final class EditContactActivity extends Activity
 
             ContactEditorView editor = (ContactEditorView) inflater.inflate(
                     R.layout.item_contact_editor, mContent, false);
-            editor.getPhotoEditor().setEditorListener(new EditorListener() {
-
-                public void onDeleted(Editor editor) {
-                }
-
-                public void onRequest(int request) {
-                    if (!hasValidState()) return;
-
-                    if (request == EditorListener.REQUEST_PICK_PHOTO) {
-                        doPickPhotoAction(rawContactId);
-                    }
-                }
-            });
+            PhotoEditorView photoEditor = editor.getPhotoEditor();
+            photoEditor.setEditorListener(new PhotoListener(rawContactId, source.readOnly,
+                    photoEditor));
 
             mContent.addView(editor);
             editor.setState(entity, source);
@@ -364,6 +357,107 @@ public final class EditContactActivity extends Activity
 
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Class that listens to requests coming from photo editors
+     */
+    private class PhotoListener implements EditorListener, DialogInterface.OnClickListener {
+        private long mRawContactId;
+        private boolean mReadOnly;
+        private PhotoEditorView mEditor;
+
+        public PhotoListener(long rawContactId, boolean readOnly, PhotoEditorView editor) {
+            mRawContactId = rawContactId;
+            mReadOnly = readOnly;
+            mEditor = editor;
+        }
+
+        public void onDeleted(Editor editor) {
+            // Do nothing
+        }
+
+        public void onRequest(int request) {
+            if (!hasValidState()) return;
+
+            if (request == EditorListener.REQUEST_PICK_PHOTO) {
+                if (mEditor.hasSetPhoto()) {
+                    // There is an existing photo, offer to remove, replace, or promoto to primary
+                    createPhotoDialog().show();
+                } else if (!mReadOnly) {
+                    // No photo set and not read-only, try to set the photo
+                    doPickPhotoAction(mRawContactId);
+                }
+            }
+        }
+
+        /**
+         * Prepare dialog for picking a new {@link EditType} or entering a
+         * custom label. This dialog is limited to the valid types as determined
+         * by {@link EntityModifier}.
+         */
+        public Dialog createPhotoDialog() {
+            Context context = EditContactActivity.this;
+
+            // Wrap our context to inflate list items using correct theme
+            final Context dialogContext = new ContextThemeWrapper(context,
+                    android.R.style.Theme_Light);
+
+            String[] choices;
+            if (mReadOnly) {
+                choices = new String[1];
+                choices[0] = getString(R.string.use_photo_as_primary);
+            } else {
+                choices = new String[3];
+                choices[0] = getString(R.string.use_photo_as_primary);
+                choices[1] = getString(R.string.removePicture);
+                choices[2] = getString(R.string.changePicture);
+            }
+            final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
+                    android.R.layout.simple_list_item_1, choices);
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
+            builder.setTitle(R.string.attachToContact);
+            builder.setSingleChoiceItems(adapter, -1, this);
+            return builder.create();
+        }
+
+        /**
+         * Called when something in the dialog is clicked
+         */
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+
+            switch (which) {
+                case 0:
+                    // Set the photo as super primary
+                    mEditor.setSuperPrimary(true);
+
+                    // And set all other photos as not super primary
+                    int count = mContent.getChildCount();
+                    for (int i = 0; i < count; i++) {
+                        View childView = mContent.getChildAt(i);
+                        if (childView instanceof ContactEditorView) {
+                            ContactEditorView editor = (ContactEditorView) childView;
+                            PhotoEditorView photoEditor = editor.getPhotoEditor();
+                            if (!photoEditor.equals(mEditor)) {
+                                photoEditor.setSuperPrimary(false);
+                            }
+                        }
+                    }
+                    break;
+
+                case 1:
+                    // Remove the photo
+                    mEditor.setPhotoBitmap(null);
+                    break;
+
+                case 2:
+                    // Pick a new photo for the contact
+                    doPickPhotoAction(mRawContactId);
+                    break;
+            }
+        }
     }
 
     /** {@inheritDoc} */
