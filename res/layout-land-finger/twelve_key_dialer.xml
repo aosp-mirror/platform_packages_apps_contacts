@@ -21,7 +21,10 @@
     android:orientation="vertical"
 >
 
-    <!-- Text field above the keypad where the digits are displayed -->
+    <!-- Text field above the keypad where the digits are displayed.
+         It's type is set to PHONE (to put the keyboard in the right
+         config) in the java code.
+    -->
     <!-- TODO: Use a textAppearance to control the display of the number -->
     <EditText android:id="@+id/digits"
         android:layout_width="fill_parent"
