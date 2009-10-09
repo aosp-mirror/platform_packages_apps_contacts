@@ -185,7 +185,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
-        mDigits.setInputType(android.text.InputType.TYPE_NULL);  // Don't show IME when focused.
 
         maybeAddNumberFormatting();
 
@@ -214,7 +213,16 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         view.setOnLongClickListener(this);
         mDelete = view;
 
-        mDialpad = findViewById(R.id.dialpad);  // This is null in landscape mode
+        mDialpad = findViewById(R.id.dialpad);  // This is null in landscape mode.
+
+        // In landscape we put the keyboard in phone mode.
+        // In portrait we prevent the soft keyboard to show since the
+        // dialpad acts as one already.
+        if (null == mDialpad) {
+            mDigits.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
+        } else {
+            mDigits.setInputType(android.text.InputType.TYPE_NULL);
+        }
 
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
         mDialpadChooser = (ListView) findViewById(R.id.dialpadChooser);
