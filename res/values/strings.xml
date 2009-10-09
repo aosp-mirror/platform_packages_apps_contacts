@@ -321,6 +321,9 @@
     <!-- The button/menu item that allows you to add a picture to a contact -->
     <string name="addPicture">Add icon</string>
 
+    <!-- The button/menu item that allows you to change an existing contact picture -->
+    <string name="changePicture">Change icon</string>
+
     <!-- The menu item that allows you to remove a picture from a contact -->
     <string name="removePicture">Remove icon</string>
 

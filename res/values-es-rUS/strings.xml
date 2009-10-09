@@ -105,6 +105,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Las llamadas se envían directamente a un correo de voz."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Predeterminado"</string>
     <string name="addPicture" msgid="1594679312161537678">"Agregar ícono"</string>
+    <string name="changePicture">Cambiar icono</string>
     <string name="removePicture" msgid="3041230993155966350">"Eliminar ícono"</string>
     <string name="noContacts" msgid="8579310973261953559">"No hay contactos."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"No hay contactos con números de teléfono."</string>
