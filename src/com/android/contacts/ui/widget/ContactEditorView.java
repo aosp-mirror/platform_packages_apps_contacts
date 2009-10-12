@@ -28,7 +28,6 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import android.content.Context;
 import android.content.Entity;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -42,7 +41,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -56,17 +54,12 @@ import android.widget.TextView;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends LinearLayout implements OnClickListener {
-    private LayoutInflater mInflater;
-
+public class ContactEditorView extends BaseContactEditorView implements OnClickListener {
     private TextView mReadOnly;
     private TextView mReadOnlyName;
 
-    private PhotoEditorView mPhoto;
     private View mPhotoStub;
     private GenericEditorView mName;
-
-    private boolean mHasPhotoEditor = false;
 
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
@@ -133,33 +126,6 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         this.setSecondaryVisible(false);
     }
 
-    /**
-     * Assign the given {@link Bitmap} to the internal {@link PhotoEditorView}
-     * for the {@link EntityDelta} currently being edited.
-     */
-    public void setPhotoBitmap(Bitmap bitmap) {
-        mPhoto.setPhotoBitmap(bitmap);
-    }
-
-    /**
-     * Return true if the current {@link RawContacts} supports {@link Photo},
-     * which means that {@link PhotoEditorView} is enabled.
-     */
-    public boolean hasPhotoEditor() {
-        return mHasPhotoEditor;
-    }
-
-    /**
-     * Return true if internal {@link PhotoEditorView} has a {@link Photo} set.
-     */
-    public boolean hasSetPhoto() {
-        return mPhoto.hasSetPhoto();
-    }
-
-    public PhotoEditorView getPhotoEditor() {
-        return mPhoto;
-    }
-
     /** {@inheritDoc} */
     public void onClick(View v) {
         // Toggle visibility of secondary kinds
@@ -182,6 +148,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
      * {@link EntityDelta} state and the {@link ContactsSource} that
      * apply to that state.
      */
+    @Override
     public void setState(EntityDelta state, ContactsSource source) {
         // Remove any existing sections
         mGeneral.removeAllViews();
@@ -287,10 +254,12 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
     /**
      * Sets the {@link EditorListener} on the name field
      */
+    @Override
     public void setNameEditorListener(EditorListener listener) {
         mName.setEditorListener(listener);
     }
 
+    @Override
     public long getRawContactId() {
         return mRawContactId;
     }
