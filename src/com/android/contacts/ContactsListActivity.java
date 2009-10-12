@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
@@ -93,16 +94,14 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AlphabetIndexer;
 import android.widget.ArrayAdapter;
-import android.widget.QuickContactBadge;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.QuickContactBadge;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
-
-import com.android.contacts.model.ContactsSource;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -111,7 +110,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -2727,7 +2725,9 @@ public class ContactsListActivity extends ListActivity implements
 
         @Override
         public boolean areAllItemsEnabled() {
-            return mMode != MODE_STARRED;
+            return mMode != MODE_STARRED 
+                && (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) == 0
+                && mSuggestionsCursorCount == 0;
         }
 
         @Override
@@ -2738,6 +2738,7 @@ public class ContactsListActivity extends ListActivity implements
                 }
                 position--;
             }
+            
             if (mSuggestionsCursorCount > 0) {
                 return position != 0 && position != mSuggestionsCursorCount + 1;
             }
