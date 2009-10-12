@@ -34,7 +34,9 @@
         android:freezesText="true"
         android:background="@drawable/btn_dial_textfield"
         android:textColor="@color/dialer_button_text"
-        android:focusableInTouchMode="false"
+        android:focusableInTouchMode="true"
+        android:editable="true"
+        android:cursorVisible="false"
     />
 
     <!-- Keypad section -->
