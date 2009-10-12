@@ -63,21 +63,30 @@
                 android:paddingLeft="3dip"
                 android:src="@drawable/ic_default_number"
             />
+
         </LinearLayout>
-        
+
+        <TextView
+            android:id="@+id/footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <ImageView android:id="@+id/presence_icon"
-        android:layout_width="32dip"
-        android:layout_height="32dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
         android:gravity="center"
         android:scaleType="centerInside"
     />
 
     <ImageView android:id="@+id/action_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
         android:layout_marginLeft="14dip"
         android:layout_marginRight="14dip"
         android:gravity="center"

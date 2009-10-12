@@ -199,9 +199,8 @@ public abstract class ContactsSource {
         public StringInflater actionHeader;
         public StringInflater actionAltHeader;
         public StringInflater actionBody;
-        public StringInflater actionFooter;
-        public boolean actionBodySocial;
-        public boolean actionBodyCombine;
+
+        public boolean actionBodySocial = false;
 
         public String typeColumn;
         public int typeOverallMax;
