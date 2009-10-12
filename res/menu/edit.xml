@@ -39,7 +39,7 @@
 
     <item
         android:id="@+id/menu_split"
-        android:icon="@drawable/ic_menu_merge"
+        android:icon="@drawable/ic_menu_split"
         android:title="@string/menu_splitAggregate" />
 
     <item
