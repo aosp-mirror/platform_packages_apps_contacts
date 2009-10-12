@@ -17,11 +17,11 @@
 <com.android.contacts.ui.widget.CheckableImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="59dip"
-    android:layout_height="52dip"
+    android:layout_height="51dip"
     android:paddingLeft="12dip"
     android:paddingRight="12dip"
     android:paddingTop="8dip"
-    android:paddingBottom="9dip"
+    android:paddingBottom="8dip"
     android:scaleType="centerInside"
     android:focusable="true"
     android:clickable="true"

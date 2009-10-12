@@ -41,13 +41,14 @@ public final class QuickContactActivity extends Activity implements
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        if (LOGV) Log.d(TAG, "onCreate");
+
         this.onNewIntent(getIntent());
     }
 
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
         if (LOGV) Log.d(TAG, "onNewIntent");
 
         if (QuickContactWindow.TRACE_LAUNCH) {
@@ -82,14 +83,15 @@ public final class QuickContactActivity extends Activity implements
     protected void onPause() {
         super.onPause();
         if (LOGV) Log.d(TAG, "onPause");
+
+        // Dismiss any dialog when pausing
+        mQuickContact.dismiss();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (LOGV) Log.d(TAG, "onDestroy");
-
-        mQuickContact.dismiss();
     }
 
     /** {@inheritDoc} */
@@ -97,8 +99,6 @@ public final class QuickContactActivity extends Activity implements
         if (LOGV) Log.d(TAG, "onDismiss");
 
         if (isTaskRoot() && !FORCE_CREATE) {
-            if (LOGV) Log.d(TAG, "Moving task to back");
-
             // Instead of stopping, simply push this to the back of the stack.
             // This is only done when running at the top of the stack;
             // otherwise, we have been launched by someone else so need to
