@@ -258,8 +258,18 @@ public class ContactsListActivity extends ListActivity implements
         Contacts.TIMES_CONTACTED, //3
         Contacts.CONTACT_PRESENCE, //4
         Contacts.PHOTO_ID, //5
-        Contacts.HAS_PHONE_NUMBER, //6
-        Contacts.LOOKUP_KEY, //7
+        Contacts.LOOKUP_KEY, //6
+        Contacts.HAS_PHONE_NUMBER, //7
+    };
+    static final String[] CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL = new String[] {
+        Contacts._ID, // 0
+        Contacts.DISPLAY_NAME, // 1
+        Contacts.STARRED, //2
+        Contacts.TIMES_CONTACTED, //3
+        Contacts.CONTACT_PRESENCE, //4
+        Contacts.PHOTO_ID, //5
+        Contacts.LOOKUP_KEY, //6
+        // email lookup doesn't included HAS_PHONE_NUMBER OR LOOKUP_KEY in projection
     };
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
         People._ID, // 0
@@ -274,8 +284,8 @@ public class ContactsListActivity extends ListActivity implements
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
     static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 4;
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
-    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 6;
-    static final int SUMMARY_LOOKUP_KEY = 7;
+    static final int SUMMARY_LOOKUP_KEY = 6;
+    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 7;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -334,7 +344,6 @@ public class ContactsListActivity extends ListActivity implements
     int mMode = MODE_DEFAULT;
 
     private QueryHandler mQueryHandler;
-    private String mQuery;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
     private Uri mSelectedContactUri;
@@ -521,8 +530,8 @@ public class ContactsListActivity extends ListActivity implements
             } else {
                 // Otherwise handle the more normal search case
                 mMode = MODE_QUERY;
+                mQueryData = getIntent().getStringExtra(SearchManager.QUERY);
             }
-            mMode = MODE_QUERY;
 
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
@@ -1420,6 +1429,7 @@ public class ContactsListActivity extends ListActivity implements
     Uri getUriToQuery() {
         switch(mMode) {
             case MODE_JOIN_CONTACT:
+                return getJoinSuggestionsUri(null);
             case MODE_FREQUENT:
             case MODE_STARRED:
             case MODE_DEFAULT:
@@ -1454,8 +1464,16 @@ public class ContactsListActivity extends ListActivity implements
                     return Uri.withAppendedPath(Phone.CONTENT_FILTER_URI, Uri.encode(mQueryData));
                 }
             }
+            case MODE_QUERY: {
+                return getContactFilterUri(mQueryData);
+            }
+            case MODE_GROUP: {
+                return mGroupUri;
+            }
+            default: {
+                throw new IllegalStateException("Can't generate URI: Unsupported Mode.");
+            }
         }
-        return null;
     }
 
     /**
@@ -1549,7 +1567,7 @@ public class ContactsListActivity extends ListActivity implements
             }
             case MODE_QUERY_PICK_TO_VIEW: {
                 if (mQueryMode == QUERY_MODE_MAILTO) {
-                    return CONTACTS_SUMMARY_PROJECTION;
+                    return CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL;
                 } else if (mQueryMode == QUERY_MODE_TEL) {
                     return PHONES_PROJECTION;
                 }
@@ -1651,7 +1669,7 @@ public class ContactsListActivity extends ListActivity implements
         switch (mMode) {
             case MODE_GROUP:
                 mQueryHandler.startQuery(QUERY_TOKEN, null,
-                        mGroupUri, projection, getContactSelection(), null,
+                        uri, projection, getContactSelection(), null,
                         getSortOrder(projection));
                 break;
 
@@ -1672,8 +1690,7 @@ public class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_QUERY: {
-                mQuery = getIntent().getStringExtra(SearchManager.QUERY);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getContactFilterUri(mQuery),
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection, null, null,
                         getSortOrder(projection));
                 break;
@@ -1715,7 +1732,7 @@ public class ContactsListActivity extends ListActivity implements
                 break;
 
             case MODE_LEGACY_PICK_POSTAL:
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getUriToQuery(),
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection,
                         ContactMethods.KIND + "=" + android.provider.Contacts.KIND_POSTAL, null,
                         getSortOrder(projection));
@@ -1723,7 +1740,7 @@ public class ContactsListActivity extends ListActivity implements
 
             case MODE_JOIN_CONTACT:
                 mQueryHandler.setLoadingJoinSuggestions(true);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, getJoinSuggestionsUri(null), projection,
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection,
                         null, null, null);
                 break;
         }
@@ -1952,7 +1969,8 @@ public class ContactsListActivity extends ListActivity implements
 
                     if (activity.mAdapter.mSuggestionsCursorCount == 0
                             || !activity.mJoinModeShowAllContacts) {
-                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(activity.mQuery),
+                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(
+                                        activity.mQueryData),
                                 CONTACTS_SUMMARY_PROJECTION,
                                 Contacts._ID + " != " + activity.mQueryAggregateId
                                         + " AND " + CLAUSE_ONLY_VISIBLE, null,
