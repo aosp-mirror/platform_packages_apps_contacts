@@ -59,7 +59,7 @@ public class AttachImage extends Activity {
 
     }
 
-    private Long[] rawContactIds;
+    private Long[] mRawContactIds;
 
     private ContentResolver mContentResolver;
 
@@ -68,7 +68,7 @@ public class AttachImage extends Activity {
         super.onCreate(icicle);
 
         if (icicle != null) {
-            rawContactIds = toClassArray(icicle.getLongArray(RAW_CONTACT_URIS_KEY));
+            mRawContactIds = toClassArray(icicle.getLongArray(RAW_CONTACT_URIS_KEY));
         } else {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType(Contacts.CONTENT_ITEM_TYPE);
@@ -82,12 +82,15 @@ public class AttachImage extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        if (rawContactIds != null && rawContactIds.length != 0) {
-            outState.putLongArray(RAW_CONTACT_URIS_KEY, toPrimativeArray(rawContactIds));
+        if (mRawContactIds != null && mRawContactIds.length != 0) {
+            outState.putLongArray(RAW_CONTACT_URIS_KEY, toPrimativeArray(mRawContactIds));
         }
     }
 
     private static long[] toPrimativeArray(Long[] in) {
+        if (in == null) {
+            return null;
+        }
         long[] out = new long[in.length];
         for (int i = 0; i < in.length; i++) {
             out[i] = in[i];
@@ -96,6 +99,9 @@ public class AttachImage extends Activity {
     }
 
     private static Long[] toClassArray(long[] in) {
+        if (in == null) {
+            return null;
+        }
         Long[] out = new Long[in.length];
         for (int i = 0; i < in.length; i++) {
             out[i] = in[i];
@@ -130,15 +136,15 @@ public class AttachImage extends Activity {
             final long contactId = ContentUris.parseId(result.getData());
             final ArrayList<Long> rawContactIdsList = ContactsUtils.queryForAllRawContactIds(
                     mContentResolver, contactId);
-            rawContactIds = new Long[rawContactIdsList.size()];
-            rawContactIds = rawContactIdsList.toArray(rawContactIds);
+            mRawContactIds = new Long[rawContactIdsList.size()];
+            mRawContactIds = rawContactIdsList.toArray(mRawContactIds);
 
-            if (rawContactIds == null || rawContactIdsList.isEmpty()) {
+            if (mRawContactIds == null || rawContactIdsList.isEmpty()) {
                 Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == REQUEST_CROP_PHOTO) {
             final Bundle extras = result.getExtras();
-            if (extras != null) {
+            if (extras != null && mRawContactIds != null) {
                 Bitmap photo = extras.getParcelable("data");
                 if (photo != null) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -149,7 +155,7 @@ public class AttachImage extends Activity {
                     imageValues.put(RawContacts.Data.IS_SUPER_PRIMARY, 1);
 
                     // attach the photo to every raw contact
-                    for (Long rawContactId : rawContactIds) {
+                    for (Long rawContactId : mRawContactIds) {
 
                         // exchange and google only allow one image, so do an update rather than insert
                         boolean shouldUpdate = false;
