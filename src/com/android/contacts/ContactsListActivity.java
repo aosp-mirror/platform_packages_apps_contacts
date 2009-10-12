@@ -2726,7 +2726,9 @@ public class ContactsListActivity extends ListActivity implements
                 return 0;
             }
             int superCount = super.getCount();
-            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0) {
+            if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 && superCount > 0) {
+                // We don't want to count this header if it's the only thing visible, so that
+                // the empty text will display.
                 superCount++;
             }
             if (mSuggestionsCursorCount != 0) {
