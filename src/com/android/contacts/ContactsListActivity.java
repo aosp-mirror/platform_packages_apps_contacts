@@ -123,6 +123,7 @@ import java.util.concurrent.Executors;
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
+@SuppressWarnings("deprecation")
 public class ContactsListActivity extends ListActivity implements
         View.OnCreateContextMenuListener, View.OnClickListener {
 
