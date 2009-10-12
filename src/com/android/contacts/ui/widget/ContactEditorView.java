@@ -18,6 +18,7 @@ package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -79,7 +80,9 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
-    
+
+    private long mRawContactId = -1;
+
     public ContactEditorView(Context context) {
         super(context);
     }
@@ -114,7 +117,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
         mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
-        
+
         mSecondaryHeader = (TextView)findViewById(R.id.head_secondary);
         mSecondaryHeader.setOnClickListener(this);
 
@@ -197,6 +200,8 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         mHeaderAccountType.setText(source.getDisplayLabel(mContext));
         mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
 
+        mRawContactId = values.getAsLong(RawContacts._ID);
+
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
@@ -212,7 +217,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         } else {
             mReadOnly.setVisibility(View.GONE);
         }
-    
+
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
             // Skip kind of not editable
@@ -248,5 +253,9 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
      */
     public void setNameEditorListener(EditorListener listener) {
         mName.setEditorListener(listener);
+    }
+
+    public long getRawContactId() {
+        return mRawContactId;
     }
 }
