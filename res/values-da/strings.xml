@@ -133,7 +133,7 @@
     <string name="private_num" msgid="6374339738119166953">"Privat nummer"</string>
     <string name="payphone" msgid="4864313342828942922">"Betalingstelefon"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Brug tastatur til at ringe op"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring for at tilføje et opkald"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring og tilføj et opkald"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Indlæser fra SIM-kort ..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synkroniser dine Google-kontakter!"</font>\n"Når du har synkroniseret din telefon, bliver dine kontakter tilgængelige, uanset hvor du befinder dig."</string>

@@ -133,7 +133,7 @@
     <string name="private_num" msgid="6374339738119166953">"Privat nummer"</string>
     <string name="payphone" msgid="4864313342828942922">"Telefonautomat"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Använd tangentbordet när du ringer"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring om du vill lägga till ett samtal"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring/lägga till"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Läser in från SIM-kort…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter från SIM-kort"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synka dina Google-kontakter!"</font>" "\n"När du har synkat med telefonen kan du använda dina kontakter var du än är."</string>

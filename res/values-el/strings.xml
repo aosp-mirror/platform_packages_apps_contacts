@@ -16,7 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList" msgid="8661624236494819731">"Επαφές"</string>
-    <string name="launcherDialer" msgid="140610573639849799">"Πρόγρ.κλήσ."</string>
+    <string name="launcherDialer" msgid="140610573639849799">"Κλήσεις"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Επαφή"</string>
     <string name="shortcutDialContact" msgid="7165340343023469996">"Άμεση κλήση"</string>
     <string name="shortcutMessageContact" msgid="3025782962770298900">"Άμεσο μήνυμα"</string>
@@ -115,8 +115,8 @@
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"Περισσότερα"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Επαφές"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Αγαπ."</string>
-    <string name="dialerIconLabel" msgid="7228520966699542850">"Πρόγρ. κλήσ."</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Αρχ.καταγρ.κλήσ."</string>
+    <string name="dialerIconLabel" msgid="7228520966699542850">"Κλήσεις"</string>
+    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Αρχείο"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Όλες οι επαφές"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Επαφές με αστέρι"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Επαφές με αριθμούς τηλεφώνου"</string>

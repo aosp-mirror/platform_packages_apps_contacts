@@ -159,8 +159,8 @@
     <string name="ringtone_spinner" msgid="7317823545379736528">"Мелодия: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items" msgid="7754115197545456663">"Добавить сведения"</string>
     <string name="actionCall" msgid="695145166039381504">"Вызов: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail" msgid="3870371552333656807">"Электронная почта <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText" msgid="6399049224844880108">"Отправить текстовое сообщение <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail" msgid="3870371552333656807">"Эл. почта: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText" msgid="6399049224844880108">"Послать SMS: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionChat" msgid="31079429748650300">"Начать чат в <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap" msgid="1977955782051732775">"Адрес <xliff:g id="TYPE">%s</xliff:g> на карте"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Входящие вызовы"</string>

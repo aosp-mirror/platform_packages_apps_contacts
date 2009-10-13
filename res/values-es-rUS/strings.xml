@@ -62,7 +62,7 @@
     <string name="ghostData_im" msgid="7737174936595812794">"Nombre de MI"</string>
     <string name="ghostData_notes" msgid="3044201271296187724">"Mi nota"</string>
     <string name="ghostData_phone" msgid="6963153888271466620">"Número de teléfono"</string>
-    <string name="ghostData_email" msgid="6184537075551565919">"Dirección de correo electrónico"</string>
+    <string name="ghostData_email" msgid="6184537075551565919">"Dirección de correo elec."</string>
     <string name="ghostData_postal" msgid="652611650594951897">"Dirección postal"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"El contacto no existe."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear nuevo contacto"</string>
@@ -81,7 +81,7 @@
     <string name="attachToContact" msgid="8820530304406066714">"Ícono de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre personalizado de etiqueta"</string>
     <string name="menu_displayGroup" msgid="4603480747214476335">"Mostrar grupo"</string>
-    <string name="syncGroupPreference" msgid="9028361137161162861">"Editar grupos sincroniz."</string>
+    <string name="syncGroupPreference" msgid="9028361137161162861">"Editar grupos sincr."</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importar contactos"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al correo de voz"</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Las llamadas se envían directamente a un correo de voz."</string>

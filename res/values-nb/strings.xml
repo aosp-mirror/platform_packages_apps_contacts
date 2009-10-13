@@ -133,7 +133,7 @@
     <string name="private_num" msgid="6374339738119166953">"Skjult nummer"</string>
     <string name="payphone" msgid="4864313342828942922">"Telefonkiosk"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Bruk tastaturet for å ringe"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring for å legge til en samtale"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring for å legge til"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Henter fra SIM-kort…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synkroniser Google-kontaktene dine!"</font>" "\n"Etter å ha synkronisert telefonen vil kontaktene dine bli tilgjengelig overalt."</string>
