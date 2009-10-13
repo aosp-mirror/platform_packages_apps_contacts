@@ -2466,8 +2466,10 @@ public class ContactsListActivity extends ListActivity implements
                 cache.nameView.setText(mUnknownNameText);
             }
 
+            boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+
             // Make the call button visible if requested.
-            if (mDisplayCallButton) {
+            if (mDisplayCallButton && hasPhone) {
                 int pos = cursor.getPosition();
                 cache.callView.setVisibility(View.VISIBLE);
                 cache.callButton.setTag(pos);
