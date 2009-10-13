@@ -164,11 +164,14 @@ public class ExternalSource extends FallbackSource {
                 final boolean detailSocialSummary = a.getBoolean(
                         com.android.internal.R.styleable.ContactsDataKind_detailSocialSummary,
                         false);
+
                 if (detailSocialSummary) {
                     // Inflate social summary when requested
                     kind.actionBodySocial = true;
-                } else {
-                    // Otherwise inflate specific column as summary
+                }
+
+                if (detailColumn != null) {
+                    // Inflate specific column as summary
                     kind.actionBody = new FallbackSource.SimpleInflater(detailColumn);
                 }
 
