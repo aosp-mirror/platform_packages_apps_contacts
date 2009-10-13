@@ -63,12 +63,14 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
     private TextView mReadOnlyName;
 
     private PhotoEditorView mPhoto;
+    private View mPhotoStub;
     private GenericEditorView mName;
 
     private boolean mHasPhotoEditor = false;
 
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
+    private boolean mSecondaryVisible;
 
     private TextView mSecondaryHeader;
 
@@ -100,6 +102,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
                 Context.LAYOUT_INFLATER_SERVICE);
 
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
+        mPhotoStub = findViewById(R.id.stub_photo);
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
@@ -171,6 +174,7 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
         mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(makeVisible ? mSecondaryOpen
                 : mSecondaryClosed, null, null, null);
+        mSecondaryVisible = makeVisible;
     }
 
     /**
@@ -218,16 +222,12 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
         // Show and hide the appropriate views
         if (readOnly) {
             mGeneral.setVisibility(View.GONE);
-            mSecondary.setVisibility(View.GONE);
-            mSecondaryHeader.setVisibility(View.GONE);
             mName.setVisibility(View.GONE);
             mReadOnly.setVisibility(View.VISIBLE);
             mReadOnly.setText(mContext.getString(R.string.contact_read_only, accountType));
             mReadOnlyName.setVisibility(View.VISIBLE);
         } else {
             mGeneral.setVisibility(View.VISIBLE);
-            mSecondary.setVisibility(View.VISIBLE);
-            mSecondaryHeader.setVisibility(View.VISIBLE);
             mName.setVisibility(View.VISIBLE);
             mReadOnly.setVisibility(View.GONE);
             mReadOnlyName.setVisibility(View.GONE);
@@ -252,6 +252,11 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
                 mPhoto.setValues(kind, primary, state, source.readOnly);
+                if (readOnly && !mPhoto.hasSetPhoto()) {
+                    mPhotoStub.setVisibility(View.GONE);
+                } else {
+                    mPhotoStub.setVisibility(View.VISIBLE);
+                }
             } else if (!readOnly) {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
@@ -263,9 +268,20 @@ public class ContactEditorView extends LinearLayout implements OnClickListener {
                 parent.addView(section);
             }
         }
-        final int secondaryVisibility = mSecondary.getChildCount() > 0 ? View.VISIBLE : View.GONE;
-        mSecondary.setVisibility(secondaryVisibility);
-        mSecondaryHeader.setVisibility(secondaryVisibility);
+
+        if (!readOnly && mSecondary.getChildCount() > 0) {
+            // There exist secondary elements, show the header and honor mSecondaryVisible
+            mSecondaryHeader.setVisibility(View.VISIBLE);
+            if (mSecondaryVisible) {
+                mSecondary.setVisibility(View.VISIBLE);
+            } else {
+                mSecondary.setVisibility(View.GONE);
+            }
+        } else {
+            // There are no secondary elements, hide the whole thing
+            mSecondaryHeader.setVisibility(View.GONE);
+            mSecondary.setVisibility(View.GONE);
+        }
     }
 
     /**
