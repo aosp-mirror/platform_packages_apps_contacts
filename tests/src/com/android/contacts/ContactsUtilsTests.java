@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
@@ -97,5 +98,62 @@ public class ContactsUtilsTests extends AndroidTestCase {
 
     public void testIsGraphicPunctuation() throws Exception {
         assertTrue(ContactsUtils.isGraphic("."));
+    }
+
+    public void testAreObjectsEqual() throws Exception {
+        assertTrue("null:null", ContactsUtils.areObjectsEqual(null, null));
+        assertTrue("1:1", ContactsUtils.areObjectsEqual(1, 1));
+
+        assertFalse("null:1", ContactsUtils.areObjectsEqual(null, 1));
+        assertFalse("1:null", ContactsUtils.areObjectsEqual(1, null));
+        assertFalse("1:2", ContactsUtils.areObjectsEqual(1, 2));
+    }
+
+    public void testAreDataEqual() throws Exception {
+        checkAreDataEqual("1", true, null, null, null, null);
+        checkAreDataEqual("2", true, "a", "b", "a", "b");
+
+        checkAreDataEqual("11", false, "a", null, null, null);
+        checkAreDataEqual("12", false, null, "a", null, null);
+        checkAreDataEqual("13", false, null, null, "a", null);
+        checkAreDataEqual("14", false, null, null, null, "a");
+
+        checkAreDataEqual("21", false, "a", "b", null, null);
+        checkAreDataEqual("22", false, "a", "b", "a", null);
+        checkAreDataEqual("23", false, "a", "b", null, "b");
+        checkAreDataEqual("24", false, "a", "b", "a", "x");
+        checkAreDataEqual("25", false, "a", "b", "x", "b");
+
+        checkAreDataEqual("31", false, null, null, "a", "b");
+        checkAreDataEqual("32", false, "a", null, "a", "b");
+        checkAreDataEqual("33", false, null, "b", "a", "b");
+        checkAreDataEqual("34", false, "a", "x", "a", "b");
+        checkAreDataEqual("35", false, "x", "b", "a", "b");
+
+        checkAreDataEqual("41", true, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
+                null);
+        checkAreDataEqual("42", true, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "1");
+
+        checkAreDataEqual("51", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "2");
+        checkAreDataEqual("52", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, null);
+        checkAreDataEqual("53", false, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE, "2");
+    }
+
+    private void checkAreDataEqual(String message, boolean expected, CharSequence mimetype1,
+            CharSequence data1, CharSequence mimetype2, CharSequence data2) {
+        assertEquals(message, expected,
+                ContactsUtils.areDataEqual(mContext, mimetype1, data1, mimetype2, data2));
+    }
+
+    public void testAreIntentActionEqual() throws Exception {
+        assertTrue("1", ContactsUtils.areIntentActionEqual(null, null));
+        assertTrue("1", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent("a")));
+
+        assertFalse("11", ContactsUtils.areIntentActionEqual(new Intent("a"), null));
+        assertFalse("12", ContactsUtils.areIntentActionEqual(null, new Intent("a")));
+
+        assertFalse("21", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent()));
+        assertFalse("22", ContactsUtils.areIntentActionEqual(new Intent(), new Intent("b")));
+        assertFalse("23", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent("b")));
     }
 }
