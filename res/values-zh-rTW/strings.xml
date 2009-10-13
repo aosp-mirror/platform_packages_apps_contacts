@@ -15,213 +15,522 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="contactsList">"聯絡人"</string>
-    <string name="launcherDialer">"撥號"</string>
-    <string name="shortcutContact">"聯絡人"</string>
-    <string name="shortcutDialContact">"直接撥號"</string>
-    <string name="shortcutMessageContact">"直接傳訊"</string>
-    <string name="shortcutActivityTitle">"選擇聯絡人捷徑"</string>
-    <string name="callShortcutActivityTitle">"選擇去電號碼"</string>
-    <string name="messageShortcutActivityTitle">"選擇傳訊號碼"</string>
-    <string name="starredList">"已標記星號"</string>
-    <string name="frequentList">"經常聯絡"</string>
-    <string name="strequentList">"我的最愛"</string>
-    <string name="viewContactTitle">"聯絡人詳細資料"</string>
-    <string name="viewContactDesription">"檢視聯絡人"</string>
-    <string name="editContactDescription">"編輯聯絡人"</string>
-    <string name="insertContactDescription">"建立聯絡人"</string>
-    <string name="searchHint">"搜尋聯絡人"</string>
-    <string name="menu_search">"搜尋"</string>
-    <string name="menu_newContact">"新增聯絡人"</string>
-    <string name="menu_viewContact">"檢視聯絡人"</string>
-    <string name="menu_callNumber">"撥打電話給 <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_addStar">"新增至我的最愛"</string>
-    <string name="menu_removeStar">"從我的最愛中移除"</string>
-    <string name="menu_showBarcode">"顯示條碼"</string>
-    <string name="menu_editContact">"編輯聯絡人"</string>
-    <string name="menu_deleteContact">"刪除聯絡人"</string>
-    <string name="menu_call">"通話"</string>
-    <string name="menu_sendSMS">"傳送 SMS/MMS"</string>
-    <string name="menu_sendEmail">"傳送電子郵件"</string>
-    <string name="menu_viewAddress">"在地圖上顯示地址"</string>
-    <string name="menu_makeDefaultNumber">"設為預設號碼"</string>
-    <string name="deleteConfirmation_title">"刪除"</string>
-    <string name="deleteConfirmation">"刪除此聯絡人？"</string>
-    <string name="menu_done">"完成"</string>
-    <string name="menu_doNotSave">"取消"</string>
-    <string name="editContact_title_edit">"編輯聯絡人"</string>
-    <string name="editContact_title_insert">"新增聯絡人"</string>
-    <string name="menu_addItem">"更多資訊"</string>
-    <string name="label_phonetic_name">"拼音"</string>
-    <string name="label_notes">"附註"</string>
-    <string name="label_ringtone">"鈴聲"</string>
-    <string name="ghostData_name">"姓名"</string>
-    <string name="ghostData_phonetic_name">"姓名拼音"</string>
-    <string name="ghostData_company">"公司"</string>
-    <string name="ghostData_title">"職位"</string>
-    <string name="ghostData_im">"即時訊息帳號"</string>
-    <string name="ghostData_notes">"我的附註"</string>
-    <string name="ghostData_phone">"電話號碼"</string>
-    <string name="ghostData_email">"電子郵件地址"</string>
-    <string name="ghostData_postal">"郵寄地址"</string>
-    <string name="invalidContactMessage">"聯絡人不存在。"</string>
-    <string name="pickerNewContactHeader">"建立新聯絡人"</string>
-    <string name="selectLabel">"選取標籤"</string>
-    <string name="phoneLabelsGroup">"電話"</string>
-    <string name="emailLabelsGroup">"電子郵件"</string>
-    <string name="imLabelsGroup">"即時訊息"</string>
-    <string name="postalLabelsGroup">"郵寄地址"</string>
-    <string name="otherLabelsGroup">"其他"</string>
+    <string name="contactsList" msgid="8661624236494819731">"聯絡人"</string>
+    <!-- no translation found for launcherDialer (8636288196618486553) -->
+    <skip />
+    <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
+    <!-- no translation found for shortcutDialContact (746622101599186779) -->
+    <skip />
+    <!-- no translation found for shortcutMessageContact (2460337253595976198) -->
+    <skip />
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"選擇聯絡人捷徑"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
+    <string name="starredList" msgid="4817256136413959463">"已標記星號"</string>
+    <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
+    <string name="strequentList" msgid="5640192862059373511">"我的最愛"</string>
+    <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
+    <string name="viewContactDesription" msgid="214186610887547860">"檢視聯絡人"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
+    <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
+    <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
+    <string name="menu_search" msgid="9147752853603483719">"搜尋"</string>
+    <string name="menu_newContact" msgid="1209922412763274638">"新增聯絡人"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
+    <string name="menu_callNumber" msgid="5142851348489387516">"撥打電話給 <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"新增至我的最愛"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"從我的最愛中移除"</string>
+    <string name="menu_showBarcode" msgid="309973637178814132">"顯示條碼"</string>
+    <string name="menu_editContact" msgid="3452858480713561396">"編輯聯絡人"</string>
+    <string name="menu_deleteContact" msgid="1916555454274101750">"刪除聯絡人"</string>
+    <!-- no translation found for menu_call (3992595586042260618) -->
+    <skip />
+    <!-- no translation found for menu_sendSMS (5535886767547006515) -->
+    <skip />
+    <string name="menu_sendEmail" msgid="7293508859242926187">"傳送電子郵件"</string>
+    <string name="menu_viewAddress" msgid="1814744325763202024">"在地圖上顯示地址"</string>
+    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"設為預設號碼"</string>
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"設為預設電子郵件"</string>
+    <!-- no translation found for menu_splitAggregate (8368636463748691868) -->
+    <skip />
+    <string name="splitAggregate_title" msgid="2053462872948058798">"分割聯絡人"</string>
+    <!-- no translation found for contactsSplitMessage (5253490235863170269) -->
+    <skip />
+    <!-- no translation found for splitConfirmation_title (6716467920283502570) -->
+    <skip />
+    <!-- no translation found for splitConfirmation (1150797297503944823) -->
+    <skip />
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"合併"</string>
+    <!-- no translation found for menu_showSources (885215611438295455) -->
+    <skip />
+    <!-- no translation found for menu_hideSources (71367585820555477) -->
+    <skip />
+    <string name="titleJoinAggregate" msgid="6970566008563147202">"合併聯絡人"</string>
+    <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (995870557595050304) -->
+    <skip />
+    <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
+    <skip />
+    <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
+    <skip />
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"選項"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"選項"</string>
+    <string name="deleteConfirmation_title" msgid="6394309508930335204">"刪除"</string>
+    <!-- no translation found for readOnlyContactWarning (1390849295342594265) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (2137170726670196909) -->
+    <skip />
+    <!-- no translation found for multipleContactDeleteConfirmation (938900978442960800) -->
+    <skip />
+    <string name="deleteConfirmation" msgid="811706994761610640">"刪除此聯絡人？"</string>
+    <string name="menu_done" msgid="796017761764190697">"完成"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"取消"</string>
+    <string name="editContact_title_edit" msgid="7678695190666836093">"編輯聯絡人"</string>
+    <string name="editContact_title_insert" msgid="9125600232291405757">"新增聯絡人"</string>
+    <string name="menu_addItem" msgid="6106836852570790250">"更多資訊"</string>
+    <string name="label_phonetic_name" msgid="2288082649573927286">"拼音"</string>
+    <string name="label_notes" msgid="8337354953278341042">"附註"</string>
+    <string name="label_ringtone" msgid="8833166825330686244">"鈴聲"</string>
+    <string name="label_groups" msgid="7304551384542859026">"群組"</string>
+    <string name="group_list" msgid="8583361685440161307">"、<xliff:g id="GROUPNAME">%s</xliff:g>"</string>
+    <string name="menu_viewGroup" msgid="1401851715586577551">"編輯群組"</string>
+    <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
+    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
+    <string name="ghostData_title" msgid="7662602222400641187">"職位"</string>
+    <string name="ghostData_im" msgid="7737174936595812794">"即時訊息帳號"</string>
+    <string name="ghostData_notes" msgid="3044201271296187724">"我的附註"</string>
+    <string name="ghostData_phone" msgid="6963153888271466620">"電話號碼"</string>
+    <string name="ghostData_email" msgid="6184537075551565919">"電子郵件地址"</string>
+    <string name="ghostData_postal" msgid="652611650594951897">"郵寄地址"</string>
+    <string name="ghostData_group" msgid="4504591380347534114">"顯示群組"</string>
+    <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
+    <string name="selectLabel" msgid="4255424123394910733">"選取標籤"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"電子郵件"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"即時訊息"</string>
+    <string name="postalLabelsGroup" msgid="1618078212734693682">"郵寄地址"</string>
+    <string name="otherLabelsGroup" msgid="6584626043193000238">"其他"</string>
   <string-array name="otherLabels">
-    <item>"機構"</item>
-    <item>"附註"</item>
+    <item msgid="8287841928119937597">"機構"</item>
+    <item msgid="7196592230748086755">"附註"</item>
   </string-array>
-    <string name="errorDialogTitle">"沒有相片"</string>
-    <string name="photoPickerNotFoundText">"手機上沒有相片 。"</string>
-    <string name="attachToContact">"聯絡人圖示"</string>
-    <string name="customLabelPickerTitle">"自訂標籤名稱"</string>
-    <string name="menu_displayGroup">"顯示群組"</string>
-    <string name="syncGroupPreference">"編輯同步處理群組"</string>
-    <string name="importFromSim">"匯入聯絡人"</string>
-    <string name="send_to_voicemail_checkbox">"直接將來電轉到語音信箱"</string>
-    <string name="send_to_voicemail_view">"來電已直接轉至語音信箱。"</string>
-    <string name="default_ringtone">"預設值"</string>
-    <string name="addPicture">"新增圖示"</string>
-    <string name="removePicture">"移除圖示"</string>
-    <string name="noContacts">"沒有聯絡人。"</string>
-    <string name="noContactsWithPhoneNumbers">"沒有包含電話號碼的聯絡人資訊。"</string>
-    <string name="noFavorites">"沒有我的最愛。"</string>
-    <string name="select_group_title">"群組"</string>
-    <string name="groupEmpty">"您的「<xliff:g id="GROUPNAME">%s</xliff:g>」群組是空的。"</string>
-    <string name="showAllGroups">"所有聯絡人"</string>
-    <string name="syncAllGroups">"同步處理所有聯絡人"</string>
-    <string name="groupNameMyContacts">"我的聯絡人"</string>
-    <string name="groupNameWithPhones">"包含電話號碼的聯絡人資訊"</string>
-    <string name="starredInAndroid">"在 Android 中標有星號的聯絡人"</string>
-    <string name="contactCreatedToast">"已建立聯絡人。"</string>
-    <string name="contactSavedToast">"聯絡人已儲存。"</string>
-    <string name="listSeparatorCallNumber">"撥打號碼"</string>
-    <string name="listSeparatorCallNumber_edit">"電話號碼"</string>
-    <string name="listSeparatorSendSmsMms">"傳送  SMS/MMS"</string>
-    <string name="listSeparatorSendEmail">"傳送電子郵件"</string>
-    <string name="listSeparatorSendEmail_edit">"電子郵件地址"</string>
-    <string name="listSeparatorSendIm">"傳送即時訊息"</string>
-    <string name="listSeparatorSendIm_edit">"即時通訊地址"</string>
-    <string name="listSeparatorMapAddress">"在地圖上顯示地址"</string>
-    <string name="listSeparatorMapAddress_edit">"聯絡地址"</string>
-    <string name="listSeparatorOrganizations">"組織"</string>
-    <string name="listSeparatorOtherInformation">"其他資訊"</string>
-    <string name="listSeparatorOtherInformation_edit">"其他選項"</string>
-    <string name="listSeparatorMore_edit">"更多"</string>
-    <string name="contactsIconLabel">"聯絡人"</string>
-    <string name="contactsFavoritesLabel">"我的最愛"</string>
-    <string name="dialerIconLabel">"撥號"</string>
-    <string name="recentCallsIconLabel">"通話記錄"</string>
-    <string name="liveFolderAll">"全部聯絡人"</string>
-    <string name="liveFolderFavorites">"有星號標記的聯絡人"</string>
-    <string name="liveFolderPhone">"有電話號碼的聯絡人"</string>
-    <string name="menu_sendTextMessage">"傳送  SMS 訊息"</string>
-    <string name="recentCalls_callNumber">"撥電話給<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall">"撥打電話前編輯號碼"</string>
-    <string name="recentCalls_addToContact">"新增至聯絡人"</string>
-    <string name="recentCalls_removeFromRecentList">"從通話記錄中移除"</string>
-    <string name="recentCalls_deleteAll">"清除通話記錄"</string>
-    <string name="recentCalls_empty">"無通話記錄。"</string>
-    <string name="imei">"IMEI"</string>
-    <string name="voicemail">"語音留言"</string>
-    <string name="unknown">"未知的"</string>
-    <string name="private_num">"私人號碼"</string>
-    <string name="payphone">"公共電話"</string>
-    <string name="dialerKeyboardHintText">"使用鍵盤撥號"</string>
-    <string name="dialerDialpadHintText">"撥號即可新增通話"</string>
-    <string name="simContacts_emptyLoading">"從  SIM 卡讀取中…"</string>
-    <string name="simContacts_title">"SIM 卡聯絡人"</string>
-    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">" 同步處理您的 Google 聯絡人！"</font>" "\n" 與手機同步處理後，無論您走到哪，都可存取聯絡人資訊。"</string>
-    <string name="noContactsHelpText">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人 "</font>"]：建立新聯絡人"\n</li>" "\n<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
-    <string name="noContactsHelpTextWithSync">"您沒有聯絡人。"\n\n"如要新增聯絡人，請按 ["<font fgcolor="#ffffffff"><b></b>"選單"</font>"] 並選取下列選項："\n\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"編輯同步處理群組"</font>"]：加入新的或既有的 Google 帳戶聯絡人"\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"新增聯絡人"</font>"]：建立新聯絡人 "\n</li>\n" "<li>"["<font fgcolor="#ffffffff"><b></b>"匯入聯絡人"</font>"]：加入 SIM 卡中的聯絡人"\n</li></string>
-    <string name="seclectSyncGroups_title">"選取要同步處理的群組"</string>
-    <string name="liveFolder_all_label">"全部聯絡人"</string>
-    <string name="liveFolder_favorites_label">"星號標記"</string>
-    <string name="liveFolder_phones_label">"電話"</string>
-    <string name="dialer_useDtmfDialpad">"使用觸控音按鍵"</string>
-    <string name="dialer_returnToInCallScreen">"返回進行中的通話"</string>
-    <string name="dialer_addAnotherCall">"新增通話"</string>
-    <string name="callDetailTitle">"通話詳細資料"</string>
-    <string name="toast_call_detail_error">"無法解讀通話要求詳細資訊。"</string>
-    <string name="call_type">"類型"</string>
-    <string name="type_incoming">"來電"</string>
-    <string name="type_outgoing">"撥出電話"</string>
-    <string name="type_missed">"未接來電"</string>
-    <string name="call_time">"時間"</string>
-    <string name="datetime_relative">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
-    <string name="call_duration">"持續時間"</string>
-    <string name="header_actions">"操作"</string>
-    <string name="ringtone_spinner">"鈴聲：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
-    <string name="add_more_items">"新增更多項目"</string>
-    <string name="actionCall">"撥打 <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail">"傳送電子郵件至<xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText">"傳送簡訊至 <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionChat">"透過 <xliff:g id="TYPE">%s</xliff:g> 進行即時通訊"</string>
-    <string name="actionMap">"檢視<xliff:g id="TYPE">%s</xliff:g>地址"</string>
-    <string name="actionIncomingCall">"來電"</string>
-    <string name="detailIncomingCallsGoToVoicemail">"來電將直接轉到語音信箱"</string>
-    <string name="detailsRingtone">"設為<xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
-    <string name="callBack">"回播電話"</string>
-    <string name="callAgain">"重撥"</string>
-    <string name="returnCall">"回電"</string>
-    <string name="callDetailsDurationFormat">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
-    <string name="favoritesFrquentSeparator">"常用聯絡人"</string>
-    <string name="add_contact_dlg_title">"新增聯絡人"</string>
-    <string name="add_contact_dlg_message_fmt">"要將「<xliff:g id="EMAIL">%s</xliff:g>」新增為聯絡人嗎？"</string>
-    <string name="description_image_button_one">"1"</string>
-    <string name="description_image_button_two">"2"</string>
-    <string name="description_image_button_three">"3"</string>
-    <string name="description_image_button_four">"4"</string>
-    <string name="description_image_button_five">"5"</string>
-    <string name="description_image_button_six">"6"</string>
-    <string name="description_image_button_seven">"7"</string>
-    <string name="description_image_button_eight">"8"</string>
-    <string name="description_image_button_nine">"9"</string>
-    <string name="description_image_button_star">"星號"</string>
-    <string name="description_image_button_zero">"0"</string>
-    <string name="description_image_button_pound">"磅"</string>
-    <string name="no_sdcard_title">"無 SD 卡"</string>
-    <string name="no_sdcard_message">"未偵測到 SD 卡"</string>
-    <string name="searching_vcard_title">"正在搜尋 VCard"</string>
-    <string name="select_import_type_title">"您要從哪裡匯入聯絡人？"</string>
-    <string name="import_from_sim">"SIM 卡"</string>
-    <string name="import_from_sdcard">"SD 卡"</string>
-    <string name="import_all_vcard_string">"匯入所有 VCard 檔案"</string>
-    <string name="import_one_vcard_string">"匯入一個 VCard 檔案"</string>
-    <string name="searching_vcard_message">"正在搜尋 VCard 資料"</string>
-    <string name="scanning_sdcard_failed_title">"無法掃描 SD 卡"</string>
-    <string name="scanning_sdcard_failed_message">"無法掃描 SD 卡"</string>
-    <string name="fail_reason_io_error">"I/O 錯誤"</string>
-    <string name="fail_reason_vcard_parse_error">"無法剖析 VCard"</string>
-    <string name="fail_reason_no_vcard_file">"SD 卡上沒有 VCard 檔案"</string>
-    <string name="fail_reason_no_vcard_entry">"您所選的檔案沒有有效的 VCard 項目"</string>
-    <string name="select_vcard_title">"選取 VCard 檔案"</string>
-    <string name="select_vcard_message">"請選取要匯入的 VCard 檔案"</string>
-    <string name="reading_vcard_title">"讀取 VCard"</string>
-    <string name="reading_vcard_message">"正在讀取 VCard 檔案"</string>
-    <string name="importing_vcard_message">"正在匯入 VCard 資料"</string>
-    <string name="reading_vcard_failed_title">"無法讀取 VCard 資料"</string>
-    <string name="reading_vcard_failed_message">"無法讀取 VCard 資料"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
-    <string name="reading_vcard_contacts">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
-    <string name="reading_vcard_files">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 個"</string>
-    <string name="export_contact_list">"匯出聯絡人"</string>
-    <string name="confirm_export_title">"確認匯出"</string>
-    <string name="confirm_export_message">"可以將聯絡人清單匯出至「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」嗎？"</string>
-    <string name="exporting_contact_failed_title">"無法匯出聯絡人資料"</string>
-    <string name="exporting_contact_failed_message">"無法匯出聯絡人資料"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
-    <string name="fail_reason_too_many_vcard">"SD 卡上儲存的 VCard 資料過多"</string>
-    <string name="fail_reason_cannot_open_destination_dir">"無法開啟或建立目標目錄「<xliff:g id="DIR_NAME">%s</xliff:g>」"</string>
-    <string name="exporting_contact_list_title">"正在匯出聯絡人資料"</string>
-    <string name="exporting_contact_list_message">"正在將聯絡人資料匯出至「<xliff:g id="FILE_NAME">%s</xliff:g>」"</string>
-    <string name="fail_reason_could_not_initialize_exporter">"無法初始化匯出程式：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
-    <string name="fail_reason_error_occurred_during_export">"匯出時發生錯誤：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
-    <string name="fail_reason_could_not_open_file">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
-    <!-- no translation found for search_settings_description (1422183266726984096) -->
+    <string name="errorDialogTitle" msgid="475272869218091715">"沒有相片"</string>
+    <string name="photoPickerNotFoundText" msgid="431331662154342581">"手機上沒有相片 。"</string>
+    <string name="attachToContact" msgid="8820530304406066714">"聯絡人圖示"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"自訂標籤名稱"</string>
+    <!-- no translation found for menu_displayGroup (5655505437727616553) -->
+    <skip />
+    <!-- no translation found for displayGroups (2278964020773993336) -->
+    <skip />
+    <string name="syncGroupPreference" msgid="9028361137161162861">"編輯同步處理群組"</string>
+    <string name="importFromSim" msgid="8383900146531125319">"匯入聯絡人"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
+    <string name="send_to_voicemail_view" msgid="9124400414311776864">"來電已直接轉至語音信箱。"</string>
+    <string name="default_ringtone" msgid="9099988849649827972">"預設值"</string>
+    <string name="addPicture" msgid="1594679312161537678">"新增圖示"</string>
+    <!-- no translation found for changePicture (2943329047610967714) -->
+    <skip />
+    <string name="removePicture" msgid="3041230993155966350">"移除圖示"</string>
+    <string name="noContacts" msgid="8579310973261953559">"沒有聯絡人。"</string>
+    <!-- no translation found for noMatchingContacts (4266283206853990471) -->
+    <skip />
+    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
+    <string name="noFavorites" msgid="812766386743315815">"沒有我的最愛。"</string>
+    <string name="select_group_title" msgid="7955698611959835612">"群組"</string>
+    <string name="groupEmpty" msgid="6661950109828194595">"您的「<xliff:g id="GROUPNAME">%s</xliff:g>」群組是空的。"</string>
+    <string name="showAllGroups" msgid="5164410117611094297">"所有聯絡人"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"僅顯示有電話號碼的聯絡人"</string>
+    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"僅顯示有電話號碼的聯絡人"</string>
+    <!-- no translation found for headerContactGroups (2426134991932503843) -->
+    <skip />
+  <plurals name="groupDescrip">
+    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> 位聯絡人"</item>
+  </plurals>
+  <plurals name="groupDescripPhones">
+    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> 位聯絡人，<xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> 組電話號碼"</item>
+  </plurals>
+    <string name="syncAllGroups" msgid="7512169081224806890">"同步處理所有聯絡人"</string>
+    <!-- no translation found for groupNameMyContacts (277995505294105439) -->
+    <skip />
+    <string name="groupNameWithPhones" msgid="6981588604041120497">"包含電話號碼的聯絡人資訊"</string>
+    <string name="starredInAndroid" msgid="6495527538140213440">"在 Android 中標有星號的聯絡人"</string>
+    <!-- no translation found for savingContact (4075751076741924939) -->
+    <skip />
+    <!-- no translation found for savingDisplayGroups (2133152192716475939) -->
+    <skip />
+    <string name="contactCreatedToast" msgid="8740102129968688060">"已建立聯絡人。"</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
+    <!-- no translation found for contactSavedErrorToast (9189098776225004666) -->
+    <skip />
+    <string name="listSeparatorCallNumber" msgid="7115321894439629408">"撥打號碼"</string>
+    <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"電話號碼"</string>
+    <!-- no translation found for listSeparatorSendSmsMms (5351657038532024412) -->
+    <skip />
+    <string name="listSeparatorSendEmail" msgid="5395590830304525721">"傳送電子郵件"</string>
+    <string name="listSeparatorSendEmail_edit" msgid="6859593624213634454">"電子郵件地址"</string>
+    <string name="listSeparatorSendIm" msgid="2209260633185984105">"傳送即時訊息"</string>
+    <string name="listSeparatorSendIm_edit" msgid="3793290685553377986">"即時通訊地址"</string>
+    <string name="listSeparatorMapAddress" msgid="7076401301758190804">"在地圖上顯示地址"</string>
+    <string name="listSeparatorMapAddress_edit" msgid="298711187672067985">"聯絡地址"</string>
+    <string name="listSeparatorOrganizations" msgid="7514083358440762504">"組織"</string>
+    <string name="listSeparatorGroups" msgid="1593940073983422450">"群組"</string>
+    <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"其他資訊"</string>
+    <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"其他選項"</string>
+    <string name="listSeparatorMore_edit" msgid="858454837482243176">"更多"</string>
+    <!-- no translation found for listTotalPhoneContacts:one (8721111084815668845) -->
+    <!-- no translation found for listTotalPhoneContacts:other (6133262880804110289) -->
+    <!-- no translation found for listTotalPhoneContactsZero (2756295259674938869) -->
+    <skip />
+    <!-- no translation found for listTotalAllContacts:one (1096068709488455155) -->
+    <!-- no translation found for listTotalAllContacts:other (2865867557378939630) -->
+    <!-- no translation found for listTotalAllContactsZero (6811347506748072822) -->
+    <skip />
+    <!-- no translation found for listFoundAllContacts:one (2830107332033967280) -->
+    <!-- no translation found for listFoundAllContacts:other (7752927996850263152) -->
+    <!-- no translation found for listFoundAllContactsZero (5554368784319460828) -->
+    <skip />
+    <string name="socialStreamIconLabel" msgid="4367712449555075376">"社交"</string>
+    <string name="contactsIconLabel" msgid="7666609097606552806">"聯絡人"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>
+    <!-- no translation found for dialerIconLabel (6500826552823403796) -->
+    <skip />
+    <string name="recentCallsIconLabel" msgid="1419116422359067949">"通話記錄"</string>
+    <string name="liveFolderAll" msgid="4789010460767506206">"全部聯絡人"</string>
+    <string name="liveFolderFavorites" msgid="3100957542927222282">"有星號標記的聯絡人"</string>
+    <string name="liveFolderPhone" msgid="3739376066610926780">"有電話號碼的聯絡人"</string>
+    <!-- no translation found for menu_sendTextMessage (6937343460284499306) -->
+    <skip />
+    <string name="recentCalls_callNumber" msgid="1756372533999226126">"撥電話給<xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"撥打電話前編輯號碼"</string>
+    <string name="recentCalls_addToContact" msgid="1429899535546487008">"新增至聯絡人"</string>
+    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"從通話記錄中移除"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"清除通話記錄"</string>
+    <string name="recentCalls_empty" msgid="247053222448663107">"無通話記錄。"</string>
+    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
+    <string name="meid" msgid="6210568493746275750">"MEID"</string>
+    <string name="voicemail" msgid="3851469869202611441">"語音留言"</string>
+    <string name="unknown" msgid="740067747858270469">"未知的"</string>
+    <string name="private_num" msgid="6374339738119166953">"私人號碼"</string>
+    <string name="payphone" msgid="4864313342828942922">"公共電話"</string>
+    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"使用鍵盤撥號"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"撥號即可新增通話"</string>
+    <string name="simContacts_emptyLoading" msgid="6700035985448642408">"從  SIM 卡讀取中…"</string>
+    <string name="simContacts_title" msgid="27341688347689769">"SIM 卡聯絡人"</string>
+    <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">" 同步處理您的 Google 聯絡人！"</font>" "\n" 與手機同步處理後，無論您走到哪，都可存取聯絡人資訊。"</string>
+    <!-- no translation found for noContactsHelpText (6788487368878712350) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (3734101165712848179) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpText (6553845386917463292) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpTextWithSync (1122296298361373488) -->
+    <skip />
+    <!-- no translation found for noFavoritesHelpText (3744655776704833277) -->
+    <skip />
+    <string name="seclectSyncGroups_title" msgid="1235432026231325655">"選取要同步處理的群組"</string>
+    <!-- no translation found for liveFolder_all_label (5961411940473276616) -->
+    <skip />
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"星號標記"</string>
+    <string name="liveFolder_phones_label" msgid="1709786878793436245">"電話"</string>
+    <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"使用觸控音按鍵"</string>
+    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"返回進行中的通話"</string>
+    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"新增通話"</string>
+    <string name="callDetailTitle" msgid="5340227785196217938">"通話詳細資料"</string>
+    <string name="toast_call_detail_error" msgid="7200975244804730096">"無法解讀通話要求詳細資訊。"</string>
+    <string name="call_type" msgid="3213526349444862087">"類型"</string>
+    <string name="type_incoming" msgid="6502076603836088532">"來電"</string>
+    <string name="type_outgoing" msgid="343108709599392641">"撥出電話"</string>
+    <string name="type_missed" msgid="2720502601640509542">"未接來電"</string>
+    <string name="call_time" msgid="5805575214626630975">"時間"</string>
+    <string name="datetime_relative" msgid="2906207446040994658">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
+    <string name="call_duration" msgid="3941950339482985532">"持續時間"</string>
+    <string name="header_actions" msgid="229583643365836321">"操作"</string>
+    <string name="ringtone_spinner" msgid="7317823545379736528">"鈴聲：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
+    <string name="add_more_items" msgid="7754115197545456663">"新增更多項目"</string>
+    <string name="actionCall" msgid="695145166039381504">"撥打 <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail" msgid="3870371552333656807">"傳送電子郵件至<xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText" msgid="6399049224844880108">"傳送簡訊至 <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionChat" msgid="31079429748650300">"透過 <xliff:g id="TYPE">%s</xliff:g> 進行即時通訊"</string>
+    <string name="actionMap" msgid="1977955782051732775">"檢視<xliff:g id="TYPE">%s</xliff:g>地址"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"來電"</string>
+    <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"來電將直接轉到語音信箱"</string>
+    <string name="detailsRingtone" msgid="4052108748982701775">"設為<xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    <string name="callBack" msgid="5498224409038809224">"回播電話"</string>
+    <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
+    <string name="returnCall" msgid="8171961914203617813">"回電"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"常用聯絡人"</string>
+    <!-- no translation found for add_contact_dlg_title (2896685845822146494) -->
+    <skip />
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」新增為聯絡人嗎？"</string>
+    <string name="all_tab_label" msgid="4003124364397916826">"全部"</string>
+    <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"3"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"4"</string>
+    <string name="description_image_button_five" msgid="1182465427501188413">"5"</string>
+    <string name="description_image_button_six" msgid="2093656269261415475">"6"</string>
+    <string name="description_image_button_seven" msgid="2450357020447676481">"7"</string>
+    <string name="description_image_button_eight" msgid="6969435115163287801">"8"</string>
+    <string name="description_image_button_nine" msgid="7857248695662558323">"9"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"星號"</string>
+    <string name="description_image_button_zero" msgid="4133108949401820710">"0"</string>
+    <string name="description_image_button_pound" msgid="3039765597595889230">"磅"</string>
+    <!-- no translation found for no_sdcard_title (5911758680339949273) -->
+    <skip />
+    <!-- no translation found for no_sdcard_message (6019391476490445358) -->
+    <skip />
+    <!-- no translation found for searching_vcard_title (4970508055399376813) -->
+    <skip />
+    <string name="select_import_type_title" msgid="2443742794103731022">"您要從哪裡匯入聯絡人？"</string>
+    <!-- no translation found for import_from_sim (3859272228033941659) -->
+    <skip />
+    <!-- no translation found for import_from_sdcard (8550360976693202816) -->
+    <skip />
+    <!-- no translation found for export_to_sdcard (2597105442616166277) -->
+    <skip />
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"匯入一個 vCard 檔案"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"匯入多個 vCard 檔案"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"匯入所有 vCard 檔案"</string>
+    <!-- no translation found for searching_vcard_message (6917522333561434546) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_title (3506782007953167180) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (3761992500690182922) -->
+    <skip />
+    <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 錯誤"</string>
+    <!-- no translation found for fail_reason_vcard_parse_error (1201233722762680214) -->
+    <skip />
+    <!-- no translation found for fail_reason_vcard_not_supported_error (655208100451286027) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_vcard_file (6376516175882881595) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_vcard_entry (4733290752474073143) -->
+    <skip />
+    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"無法匯入一或多個檔案 (%s)。"</string>
+    <!-- no translation found for fail_reason_unknown (999034019513096768) -->
+    <skip />
+    <!-- no translation found for select_vcard_title (3968948173786172468) -->
+    <skip />
+    <!-- no translation found for select_vcard_message (221189184212818304) -->
+    <skip />
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <!-- no translation found for reading_vcard_title (4723433501579653199) -->
+    <skip />
+    <!-- no translation found for reading_vcard_message (6381368920030748743) -->
+    <skip />
+    <!-- no translation found for importing_vcard_message (4046655384673753503) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_title (4923008144735294994) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_message (5684089173948287107) -->
+    <skip />
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 個"</string>
+    <!-- no translation found for export_all_contacts (2873892623335194071) -->
+    <skip />
+    <!-- no translation found for export_phone_local_only (3380497955409896761) -->
+    <skip />
+    <string name="export_contact_list" msgid="3165097742175874384">"匯出聯絡人"</string>
+    <!-- no translation found for confirm_export_title (7648747763127442983) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (3875683519257829750) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (585823094820602526) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (4151348002470298092) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_exportable_contact (4919714086648344495) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (7084146295639672658) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_long_filename (1915716071321839166) -->
+    <skip />
+    <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"無法開啟或建立目標目錄「<xliff:g id="DIR_NAME">%s</xliff:g>」"</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"正在匯出聯絡人資料"</string>
+    <string name="exporting_contact_list_message" msgid="5640326540405486055">"正在將聯絡人資料匯出至「<xliff:g id="FILE_NAME">%s</xliff:g>」"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"無法初始化匯出程式：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"匯出時發生錯誤：「<xliff:g id="EXACT_REASON">%s</xliff:g>」"</string>
+    <!-- no translation found for composer_failed_to_get_database_infomation (3723109558155169053) -->
+    <skip />
+    <!-- no translation found for composer_has_no_exportable_contact (2239503301380653777) -->
+    <skip />
+    <!-- no translation found for composer_not_initialized (8041534450748388843) -->
+    <skip />
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
+    <!-- no translation found for add_2sec_pause (9214012315201040129) -->
+    <skip />
+    <!-- no translation found for add_wait (3360818652790319634) -->
+    <skip />
+    <string name="dial_button_label" msgid="7637725632722605863">"撥號"</string>
+    <!-- no translation found for call_disambig_title (1911302597959335178) -->
+    <skip />
+    <!-- no translation found for sms_disambig_title (4675399294513152364) -->
+    <skip />
+    <!-- no translation found for make_primary (5829291915305113983) -->
+    <skip />
+    <!-- no translation found for quickcontact_missing_app (4600366393134289038) -->
+    <skip />
+    <!-- no translation found for quickcontact_remember_choice (5964536411579749424) -->
+    <skip />
+    <!-- no translation found for quickcontact_missing_name (5590266114306996632) -->
+    <skip />
+    <string name="menu_accounts" msgid="8499114602017077970">"帳戶"</string>
+    <!-- no translation found for menu_import_export (3765725645491577190) -->
+    <skip />
+    <!-- no translation found for dialog_import_export (4771877268244096596) -->
+    <skip />
+    <!-- no translation found for menu_share (943789700636542260) -->
+    <skip />
+    <!-- no translation found for share_via (563121028023030093) -->
+    <skip />
+    <!-- no translation found for share_error (4374508848981697170) -->
+    <skip />
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"姓名"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"暱稱"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"機構"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"網站"</string>
+    <!-- no translation found for eventLabelsGroup (8069912895912714412) -->
+    <skip />
+    <string name="type_short_home" msgid="7770424864090605384">"住家"</string>
+    <string name="type_short_mobile" msgid="1655473281466676216">"行動"</string>
+    <string name="type_short_work" msgid="4925330752504537861">"工作"</string>
+    <string name="type_short_pager" msgid="2613818970827594238">"呼叫器"</string>
+    <string name="type_short_other" msgid="5669407180177236769">"其他"</string>
+    <!-- no translation found for edit_read_only (8158629550655830981) -->
+    <skip />
+    <!-- no translation found for edit_secondary_collapse (5371618426594477103) -->
+    <skip />
+    <string name="dialog_primary_name" msgid="5521591005692614833">"主要名稱"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帳戶下建立聯絡人"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"移除同步處理群組"</string>
+    <!-- no translation found for dialog_sync_add (8267045393119375803) -->
+    <skip />
+    <!-- no translation found for display_more_groups (2682547080423434170) -->
+    <skip />
+    <!-- no translation found for display_ungrouped (4602580795576261158) -->
+    <skip />
+    <!-- no translation found for display_all_contacts (6846131371214707956) -->
+    <skip />
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"如果從同步處理群組中移除「<xliff:g id="GROUP">%s</xliff:g>」群組，系統也會從同步處理群組中移除所有未分組的聯絡人。"</string>
+    <string name="account_phone" msgid="4025734638492419713">"僅儲存於手機 (不會同步處理)"</string>
+    <string name="label_email_display_name" msgid="5537802602754309600">"顯示名稱"</string>
+    <string name="call_custom" msgid="7756571794763171802">"去電<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1990519474420545392">"去電住家電話"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"去電行動裝置"</string>
+    <string name="call_work" msgid="5328785911463744028">"去電公司電話"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"去電公司傳真"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"去電住家傳真"</string>
+    <string name="call_pager" msgid="9003902812293983281">"去電呼叫器"</string>
+    <string name="call_other" msgid="5605584621798108205">"去電其他電話"</string>
+    <!-- no translation found for call_callback (1910165691349426858) -->
+    <skip />
+    <string name="call_car" msgid="3280537320306436445">"去電汽車電話"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"去電公司代表號"</string>
+    <!-- no translation found for call_isdn (1541590690193403411) -->
+    <skip />
+    <!-- no translation found for call_main (6082900571803441339) -->
+    <skip />
+    <!-- no translation found for call_other_fax (7777261153532968503) -->
+    <skip />
+    <string name="call_radio" msgid="8296755876398357063">"去電無線電"</string>
+    <!-- no translation found for call_telex (2223170774548648114) -->
+    <skip />
+    <!-- no translation found for call_tty_tdd (8951266948204379604) -->
+    <skip />
+    <!-- no translation found for call_work_mobile (8707874281430105394) -->
+    <skip />
+    <!-- no translation found for call_work_pager (3419348514157949008) -->
+    <skip />
+    <!-- no translation found for call_assistant (2141641383068514308) -->
+    <skip />
+    <string name="call_mms" msgid="6274041545876221437">"去電 MMS"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"傳送簡訊至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7524332261493162995">"傳送簡訊至住家電話"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"傳送簡訊至行動裝置"</string>
+    <string name="sms_work" msgid="2269624156655267740">"傳送簡訊至公司電話"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"傳送簡訊至公司傳真"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"傳送簡訊至住家傳真"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"傳送簡訊至呼叫器"</string>
+    <string name="sms_other" msgid="5131921487474531617">"傳送簡訊至其他裝置"</string>
+    <!-- no translation found for sms_callback (5004824430094288752) -->
+    <skip />
+    <string name="sms_car" msgid="7444227058437359641">"傳送簡訊至汽車電話"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"傳送簡訊至公司代表號"</string>
+    <!-- no translation found for sms_isdn (8153785037515047845) -->
+    <skip />
+    <!-- no translation found for sms_main (8621625784504541679) -->
+    <skip />
+    <!-- no translation found for sms_other_fax (3930666870074006114) -->
+    <skip />
+    <string name="sms_radio" msgid="3329166673433967820">"傳送簡訊至無線電"</string>
+    <!-- no translation found for sms_telex (9034802430065267848) -->
+    <skip />
+    <!-- no translation found for sms_tty_tdd (6782284969132531532) -->
+    <skip />
+    <!-- no translation found for sms_work_mobile (2459939960512702560) -->
+    <skip />
+    <!-- no translation found for sms_work_pager (5566924423316960597) -->
+    <skip />
+    <!-- no translation found for sms_assistant (2773424339923116234) -->
+    <skip />
+    <string name="sms_mms" msgid="4069352461380762677">"傳送 MMS 簡訊"</string>
+    <string name="email_home" msgid="8573740658148184279">"傳送電子郵件至住家電子郵件地址"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"傳送電子郵件至行動裝置"</string>
+    <string name="email_work" msgid="2807430017302722689">"傳送電子郵件至公司電子郵件地址"</string>
+    <string name="email_other" msgid="8093933498541795832">"傳送電子郵件至其他電子郵件地址"</string>
+    <string name="email_custom" msgid="7548003991586214105">"傳送電子郵件至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"傳送電子郵件"</string>
+    <string name="map_home" msgid="1243547733423343982">"檢視住家地址"</string>
+    <string name="map_work" msgid="1360474076921878088">"檢視公司地址"</string>
+    <string name="map_other" msgid="5560707927535653892">"檢視其他地址"</string>
+    <string name="map_custom" msgid="6184363799976265281">"檢視<xliff:g id="CUSTOM">%s</xliff:g>地址"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"使用 AIM 進行即時通訊"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"使用 Windows Live 進行即時通訊"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"使用 Yahoo 進行即時通訊"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"使用 Skype 進行即時通訊"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"使用 QQ 進行即時通訊"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"使用 Google Talk 進行即時通訊"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 進行即時通訊"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 進行即時通訊"</string>
+    <!-- no translation found for chat (9025361898797412245) -->
+    <skip />
+    <string name="postal_street" msgid="8133143961580058972">"街道"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"郵政信箱"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"鄰"</string>
+    <string name="postal_city" msgid="6597491300084895548">"鄉/鎮/市/區"</string>
+    <string name="postal_region" msgid="6045263193478437672">"州/省"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"郵遞區號"</string>
+    <string name="postal_country" msgid="7638264508416368690">"國家/地區"</string>
+    <string name="name_given" msgid="1687286314106019813">"名字"</string>
+    <string name="name_family" msgid="3416695586119999058">"姓氏"</string>
+    <string name="name_prefix" msgid="59756378548779822">"姓名前稱銜"</string>
+    <string name="name_middle" msgid="8467433655992690326">"中間名"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"姓名後稱銜"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"名字 (拼音)"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
+    <string name="name_phonetic_family" msgid="462095502140180305">"姓氏 (拼音)"</string>
+    <!-- no translation found for split_label (8262112659919449087) -->
+    <skip />
+    <!-- no translation found for split_explanation (1824739956426973592) -->
+    <skip />
+    <!-- no translation found for account_name_format (4421123930035299208) -->
+    <skip />
+    <!-- no translation found for account_type_format (718948015590343010) -->
+    <skip />
+    <!-- no translation found for from_account_format (687567483928582084) -->
+    <skip />
+    <!-- no translation found for use_photo_as_primary (8807110122951157246) -->
+    <skip />
+    <!-- no translation found for contact_read_only (1203216914575723978) -->
+    <skip />
+    <!-- no translation found for no_contact_details (6754415338321837001) -->
     <skip />
 </resources>
