@@ -36,6 +36,14 @@ import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Class for exporting vCard.
+ *
+ * Note that this Activity assumes that the instance is a "one-shot Activity", which will be
+ * finished (with the method {@link Activity#finish()}) after the export and never reuse
+ * any Dialog in the instance. So this code is careless about the management around managed
+ * dialogs stuffs (like how onCreateDialog() is used).
+ */
 public class ExportVCardActivity extends Activity {
     private static final String LOG_TAG = "ExportVCardActivity";
 
