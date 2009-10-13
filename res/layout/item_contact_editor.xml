@@ -67,6 +67,7 @@
 
                 android:textSize="24sp"
                 android:textColor="?android:attr/textColorPrimary"
+                android:singleLine="true"
             />
 
             <TextView android:id="@+id/header_account_name"
@@ -78,6 +79,7 @@
 
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?android:attr/textColorPrimary"
+                android:singleLine="true"
             />
 
             <View
