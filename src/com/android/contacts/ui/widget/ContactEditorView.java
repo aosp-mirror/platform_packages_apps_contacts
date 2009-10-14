@@ -161,8 +161,6 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
 
         // Fill in the header info
-        mHeaderColorBar.setBackgroundColor(source.getHeaderColor(mContext));
-        mSideBar.setBackgroundColor(source.getSideBarColor(mContext));
         ValuesDelta values = state.getValues();
         String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         CharSequence accountType = source.getDisplayLabel(mContext);
