@@ -685,8 +685,9 @@ public class ContactsListActivity extends ListActivity implements
     public void onClick(View v) {
         if (v.getId() == R.id.call_button) {
             final int position = (Integer) v.getTag();
-            Cursor c =  (Cursor) mAdapter.getItem(position);
+            Cursor c = mAdapter.getCursor();
             if (c != null) {
+                c.moveToPosition(position);
                 callContact(c);
             }
         }
