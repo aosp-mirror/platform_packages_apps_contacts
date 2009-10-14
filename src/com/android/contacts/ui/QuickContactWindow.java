@@ -1313,7 +1313,7 @@ public class QuickContactWindow implements Window.Callback,
             }
 
             // Hide the resolution list, if present
-            setResolveVisible(false, actionView);
+            setResolveVisible(false, null);
             this.dismiss();
 
             if (makePrimary) {
