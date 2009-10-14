@@ -20,4 +20,6 @@
     <color name="sect_secondary">#4fff</color>
     <color name="quickcontact_disambig">#f2f2f2</color>
     <color name="quickcontact_disambig_divider">#afafaf</color>
+
+    <color name="edit_divider">#ff666666</color>
 </resources>
