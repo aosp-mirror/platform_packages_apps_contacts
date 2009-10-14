@@ -16,10 +16,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList" msgid="8661624236494819731">"Контакты"</string>
-    <string name="launcherDialer" msgid="140610573639849799">"Телефон"</string>
+    <!-- no translation found for launcherDialer (8636288196618486553) -->
+    <skip />
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
-    <string name="shortcutDialContact" msgid="7165340343023469996">"Прямой набор"</string>
-    <string name="shortcutMessageContact" msgid="3025782962770298900">"Прямое сообщение"</string>
+    <!-- no translation found for shortcutDialContact (746622101599186779) -->
+    <skip />
+    <!-- no translation found for shortcutMessageContact (2460337253595976198) -->
+    <skip />
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт для быстрого вызова"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выбрать номер для вызова"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
@@ -48,17 +51,40 @@
     <string name="menu_viewAddress" msgid="1814744325763202024">"Адрес на карте"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Сделать номером по умолчанию"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Использовать этот адрес по умолчанию"</string>
-    <string name="menu_splitAggregate" msgid="7402548456225901170">"Разделить"</string>
+    <!-- no translation found for menu_splitAggregate (8368636463748691868) -->
+    <skip />
     <string name="splitAggregate_title" msgid="2053462872948058798">"Разделить контакт"</string>
-    <string name="contactsSplitMessage" msgid="3439008547775199243">"Разделение контакта"</string>
+    <!-- no translation found for contactsSplitMessage (5253490235863170269) -->
+    <skip />
+    <!-- no translation found for splitConfirmation_title (6716467920283502570) -->
+    <skip />
+    <!-- no translation found for splitConfirmation (1150797297503944823) -->
+    <skip />
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Присоединить"</string>
+    <!-- no translation found for menu_showSources (885215611438295455) -->
+    <skip />
+    <!-- no translation found for menu_hideSources (71367585820555477) -->
+    <skip />
     <string name="titleJoinAggregate" msgid="6970566008563147202">"Присоединить контакт"</string>
-    <string name="separatorJoinAggregateSuggestions" msgid="5494823322479834017">"Предложения"</string>
+    <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (995870557595050304) -->
+    <skip />
+    <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
+    <skip />
+    <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
+    <skip />
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Все контакты"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Контакты присоединились"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Параметры"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Параметры"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Удалить"</string>
+    <!-- no translation found for readOnlyContactWarning (1390849295342594265) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (2137170726670196909) -->
+    <skip />
+    <!-- no translation found for multipleContactDeleteConfirmation (938900978442960800) -->
+    <skip />
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
     <string name="menu_done" msgid="796017761764190697">"Готово"</string>
     <string name="menu_doNotSave" msgid="2174577548513895144">"Отменить изменения"</string>
@@ -97,16 +123,22 @@
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"В телефоне нет картинок."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Значок контакта"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Особая метка"</string>
-    <string name="menu_displayGroup" msgid="6022511302986343108">"Показать группы"</string>
-    <string name="displayGroups" msgid="2645969886032719891">"Показать группы"</string>
+    <!-- no translation found for menu_displayGroup (5655505437727616553) -->
+    <skip />
+    <!-- no translation found for displayGroups (2278964020773993336) -->
+    <skip />
     <string name="syncGroupPreference" msgid="9028361137161162861">"Изменить группы синхронизации"</string>
     <string name="importFromSim" msgid="8383900146531125319">"Импортировать контакты"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Звонки направляются в голосовую почту"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"По умолчанию"</string>
     <string name="addPicture" msgid="1594679312161537678">"Добавить значок"</string>
+    <!-- no translation found for changePicture (2943329047610967714) -->
+    <skip />
     <string name="removePicture" msgid="3041230993155966350">"Удалить значок"</string>
     <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
+    <!-- no translation found for noMatchingContacts (4266283206853990471) -->
+    <skip />
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Нет контактов с номерами телефонов."</string>
     <string name="noFavorites" msgid="812766386743315815">"Нет избранных."</string>
     <string name="select_group_title" msgid="7955698611959835612">"Группы"</string>
@@ -114,7 +146,8 @@
     <string name="showAllGroups" msgid="5164410117611094297">"Все контакты"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Только контакты с телефонными номерами"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Отображать только контакты, содержащие номера телефонов"</string>
-    <string name="headerContactGroups" msgid="1451383377487746789">"Группы контактов"</string>
+    <!-- no translation found for headerContactGroups (2426134991932503843) -->
+    <skip />
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"Контактов: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
@@ -122,16 +155,22 @@
     <item quantity="other" msgid="3816047547470490208">"Контактов: <xliff:g id="COUNT_0">%1$d</xliff:g>; с тел. номерами: <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g>"</item>
   </plurals>
     <string name="syncAllGroups" msgid="7512169081224806890">"Синхронизировать все контакты"</string>
-    <string name="groupNameMyContacts" msgid="5696566165170977126">"Мои контакты"</string>
+    <!-- no translation found for groupNameMyContacts (277995505294105439) -->
+    <skip />
     <string name="groupNameWithPhones" msgid="6981588604041120497">"Контакты с номерами телефонов"</string>
     <string name="starredInAndroid" msgid="6495527538140213440">"Помеченные в Android"</string>
+    <!-- no translation found for savingContact (4075751076741924939) -->
+    <skip />
+    <!-- no translation found for savingDisplayGroups (2133152192716475939) -->
+    <skip />
     <string name="contactCreatedToast" msgid="8740102129968688060">"Контакт создан."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
     <!-- no translation found for contactSavedErrorToast (9189098776225004666) -->
     <skip />
     <string name="listSeparatorCallNumber" msgid="7115321894439629408">"Набрать номер"</string>
     <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"Номера телефонов"</string>
-    <string name="listSeparatorSendSmsMms" msgid="2480944736714739967">"Отправить SMS/MMS"</string>
+    <!-- no translation found for listSeparatorSendSmsMms (5351657038532024412) -->
+    <skip />
     <string name="listSeparatorSendEmail" msgid="5395590830304525721">"Отправить письмо"</string>
     <string name="listSeparatorSendEmail_edit" msgid="6859593624213634454">"Адреса электронной почты"</string>
     <string name="listSeparatorSendIm" msgid="2209260633185984105">"Отправить мгновенное сообщение"</string>
@@ -143,15 +182,29 @@
     <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"Другая информация"</string>
     <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"Другие параметры"</string>
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"Добавить"</string>
+    <!-- no translation found for listTotalPhoneContacts:one (8721111084815668845) -->
+    <!-- no translation found for listTotalPhoneContacts:other (6133262880804110289) -->
+    <!-- no translation found for listTotalPhoneContactsZero (2756295259674938869) -->
+    <skip />
+    <!-- no translation found for listTotalAllContacts:one (1096068709488455155) -->
+    <!-- no translation found for listTotalAllContacts:other (2865867557378939630) -->
+    <!-- no translation found for listTotalAllContactsZero (6811347506748072822) -->
+    <skip />
+    <!-- no translation found for listFoundAllContacts:one (2830107332033967280) -->
+    <!-- no translation found for listFoundAllContacts:other (7752927996850263152) -->
+    <!-- no translation found for listFoundAllContactsZero (5554368784319460828) -->
+    <skip />
     <string name="socialStreamIconLabel" msgid="4367712449555075376">"Социальные"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Контакты"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Избранные"</string>
-    <string name="dialerIconLabel" msgid="7228520966699542850">"Телефон"</string>
+    <!-- no translation found for dialerIconLabel (6500826552823403796) -->
+    <skip />
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Вызовы"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Все контакты"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Помеченные контакты"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Контакты с номерами телефонов"</string>
-    <string name="menu_sendTextMessage" msgid="455561537582270625">"Отправить SMS-сообщение"</string>
+    <!-- no translation found for menu_sendTextMessage (6937343460284499306) -->
+    <skip />
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Вызов: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Изменить номер и вызвать"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Добавить в контакты"</string>
@@ -169,17 +222,19 @@
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Загрузка с SIM-карты…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Контакты на SIM-карте"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Синхронизируйте контакты Google."</font>" "\n"После синхронизации с телефоном ваши контакты будут доступны отовсюду."</string>
-    <string name="noContactsHelpText" msgid="2249195687463896364">"У вас нет контактов."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать новый контакт с нуля"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортировать контакты"</b></font>", чтобы добавить контакты с SIM-карты"\n</li></string>
-    <!-- no translation found for noContactsHelpTextWithSync (2179024855526352215) -->
+    <!-- no translation found for noContactsHelpText (6788487368878712350) -->
     <skip />
-    <!-- no translation found for noContactsNoSimHelpText (645951808197910024) -->
+    <!-- no translation found for noContactsHelpTextWithSync (3734101165712848179) -->
     <skip />
-    <!-- no translation found for noContactsNoSimHelpTextWithSync (511505839941079550) -->
+    <!-- no translation found for noContactsNoSimHelpText (6553845386917463292) -->
     <skip />
-    <!-- no translation found for noFavoritesHelpText (1705381563293866510) -->
+    <!-- no translation found for noContactsNoSimHelpTextWithSync (1122296298361373488) -->
+    <skip />
+    <!-- no translation found for noFavoritesHelpText (3744655776704833277) -->
     <skip />
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Выбрать группы для синхронизации"</string>
-    <string name="liveFolder_all_label" msgid="1552523730090319259">"Все контакты"</string>
+    <!-- no translation found for liveFolder_all_label (5961411940473276616) -->
+    <skip />
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Помеченные"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефоны"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Использовать тональный набор"</string>
@@ -198,8 +253,8 @@
     <string name="ringtone_spinner" msgid="7317823545379736528">"Мелодия: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items" msgid="7754115197545456663">"Добавить сведения"</string>
     <string name="actionCall" msgid="695145166039381504">"Вызов: <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail" msgid="3870371552333656807">"Электронная почта <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText" msgid="6399049224844880108">"Отправить текстовое сообщение <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail" msgid="3870371552333656807">"Эл. почта: <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionText" msgid="6399049224844880108">"Послать SMS: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionChat" msgid="31079429748650300">"Начать чат в <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap" msgid="1977955782051732775">"Адрес <xliff:g id="TYPE">%s</xliff:g> на карте"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Входящие вызовы"</string>
@@ -210,7 +265,8 @@
     <string name="returnCall" msgid="8171961914203617813">"Перезвонить"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>:<xliff:g id="SECONDS">%s</xliff:g>"</string>
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Часто вызываемые"</string>
-    <string name="add_contact_dlg_title" msgid="2789046541229846116">"Добление контакта"</string>
+    <!-- no translation found for add_contact_dlg_title (2896685845822146494) -->
+    <skip />
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Добавить в контакты <xliff:g id="EMAIL">%s</xliff:g>?"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"Все"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"один"</string>
@@ -225,9 +281,12 @@
     <string name="description_image_button_star" msgid="3365919907520767866">"пометить"</string>
     <string name="description_image_button_zero" msgid="4133108949401820710">"нуль"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"решетка"</string>
-    <string name="no_sdcard_title" msgid="6455416795090113715">"Нет SD-карты"</string>
-    <string name="no_sdcard_message" msgid="7791906118138538259">"SD-карта не обнаружена"</string>
-    <string name="searching_vcard_title" msgid="4158580043290687793">"Поиск VCard"</string>
+    <!-- no translation found for no_sdcard_title (5911758680339949273) -->
+    <skip />
+    <!-- no translation found for no_sdcard_message (6019391476490445358) -->
+    <skip />
+    <!-- no translation found for searching_vcard_title (4970508055399376813) -->
+    <skip />
     <string name="select_import_type_title" msgid="2443742794103731022">"Откуда импортировать контакты?"</string>
     <!-- no translation found for import_from_sim (3859272228033941659) -->
     <skip />
@@ -238,42 +297,78 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Импорт одного файла VCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Импорт нескольких файлов vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Импорт всех файлов VCard"</string>
-    <string name="searching_vcard_message" msgid="2467573749792455605">"Поиск данных VCard в файле VCard"</string>
-    <string name="scanning_sdcard_failed_title" msgid="2788276113399585924">"Не удалось сканировать SD-карту"</string>
-    <string name="scanning_sdcard_failed_message" msgid="925361244069058117">"Не удалось сканировать SD-карту"</string>
-    <string name="fail_reason_io_error" msgid="5949038573678667996">"Ошибка ввода-вывода: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_vcard_parse_error" msgid="8877496734269540489">"Не удается выполнить синтаксический анализ VCard по неизвестной причине"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="166568606246563552">"Не удается выполнить синтаксический анализ VCard. Формат файла является допустимым, однако не поддерживается в текущей реализации."</string>
-    <string name="fail_reason_no_vcard_file" msgid="1489638537002538332">"На SD-карте не найдены файлы VCard"</string>
-    <string name="fail_reason_no_vcard_entry" msgid="3808734131680935043">"Нет подходящих записей VCard"</string>
+    <!-- no translation found for searching_vcard_message (6917522333561434546) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_title (3506782007953167180) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (3761992500690182922) -->
+    <skip />
+    <string name="fail_reason_io_error" msgid="5922864781066136340">"Ошибка ввода-вывода"</string>
+    <!-- no translation found for fail_reason_vcard_parse_error (1201233722762680214) -->
+    <skip />
+    <!-- no translation found for fail_reason_vcard_not_supported_error (655208100451286027) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_vcard_file (6376516175882881595) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_vcard_entry (4733290752474073143) -->
+    <skip />
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Не удалось импортировать один или несколько файлов (%s)."</string>
-    <string name="select_vcard_title" msgid="4615933643517710543">"Выбор файла VCard"</string>
-    <string name="select_vcard_message" msgid="7028772212789057858">"Выберите файл VCard для импорта"</string>
+    <!-- no translation found for fail_reason_unknown (999034019513096768) -->
+    <skip />
+    <!-- no translation found for select_vcard_title (3968948173786172468) -->
+    <skip />
+    <!-- no translation found for select_vcard_message (221189184212818304) -->
+    <skip />
     <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_title" msgid="430154704397375160">"Чтение VCard"</string>
-    <string name="reading_vcard_message" msgid="7470486051482460267">"Чтение файлов VCard"</string>
-    <string name="importing_vcard_message" msgid="2466665710812588738">"Импорт данных VCard"</string>
-    <string name="reading_vcard_failed_title" msgid="5042366466147724748">"Не удается считать данные VCard"</string>
-    <string name="reading_vcard_failed_message" msgid="780588344175743735">"Не удается прочитать данные VCard"\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <!-- no translation found for reading_vcard_title (4723433501579653199) -->
+    <skip />
+    <!-- no translation found for reading_vcard_message (6381368920030748743) -->
+    <skip />
+    <!-- no translation found for importing_vcard_message (4046655384673753503) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_title (4923008144735294994) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_message (5684089173948287107) -->
+    <skip />
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"Контакт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"Файл <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <!-- no translation found for export_all_contacts (2873892623335194071) -->
+    <skip />
+    <!-- no translation found for export_phone_local_only (3380497955409896761) -->
+    <skip />
     <string name="export_contact_list" msgid="3165097742175874384">"Экспорт контактов"</string>
-    <string name="confirm_export_title" msgid="1693047909433122854">"Подтверждение экспорта"</string>
-    <string name="confirm_export_message" msgid="63482084706768079">"Экспортировать список контактов в \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="exporting_contact_failed_title" msgid="1455264422455075858">"Не удалось экспортировать данные контакта"</string>
-    <string name="exporting_contact_failed_message" msgid="1426451081541603512">"Не удается экспортировать данные контактов"\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_too_many_vcard" msgid="5416992255233341607">"Слишком много данных VCard на SD-карте"</string>
-    <string name="fail_reason_too_long_filename" msgid="7105223965196949065">"Слишком длинное имя файла (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <!-- no translation found for confirm_export_title (7648747763127442983) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (3875683519257829750) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (585823094820602526) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (4151348002470298092) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_exportable_contact (4919714086648344495) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (7084146295639672658) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_long_filename (1915716071321839166) -->
+    <skip />
     <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"Не удается открыть или создать целевой каталог \"<xliff:g id="DIR_NAME">%s</xliff:g>\""</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Экспорт данных контакта"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Экспорт данных контакта в \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Не удается запустить функцию экспорта: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Ошибка при экспорте: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <!-- no translation found for composer_failed_to_get_database_infomation (3723109558155169053) -->
+    <skip />
+    <!-- no translation found for composer_has_no_exportable_contact (2239503301380653777) -->
+    <skip />
+    <!-- no translation found for composer_not_initialized (8041534450748388843) -->
+    <skip />
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Не удается открыть \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"Контакт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контактов"</string>
-    <string name="add_2sec_pause" msgid="1488865103809190124">"Добавить двухсекундную паузу"</string>
-    <string name="add_wait" msgid="8347184715316058465">"Добавить ожидание"</string>
+    <!-- no translation found for add_2sec_pause (9214012315201040129) -->
+    <skip />
+    <!-- no translation found for add_wait (3360818652790319634) -->
+    <skip />
     <string name="dial_button_label" msgid="7637725632722605863">"Набор"</string>
     <!-- no translation found for call_disambig_title (1911302597959335178) -->
     <skip />
@@ -281,9 +376,12 @@
     <skip />
     <!-- no translation found for make_primary (5829291915305113983) -->
     <skip />
-    <string name="quickcontact_missing_app" msgid="1181287640680679441">"Отсутствует приложение для обработки этого действия"</string>
-    <string name="quickcontact_remember_choice" msgid="2858356075887897116">"Запомнить выбранное"</string>
-    <string name="quickcontact_missing_name" msgid="7806083820928955853">"Неизвестно"</string>
+    <!-- no translation found for quickcontact_missing_app (4600366393134289038) -->
+    <skip />
+    <!-- no translation found for quickcontact_remember_choice (5964536411579749424) -->
+    <skip />
+    <!-- no translation found for quickcontact_missing_name (5590266114306996632) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Аккаунты"</string>
     <!-- no translation found for menu_import_export (3765725645491577190) -->
     <skip />
@@ -299,12 +397,17 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Псевдоним"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организация"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Веб-сайт"</string>
+    <!-- no translation found for eventLabelsGroup (8069912895912714412) -->
+    <skip />
     <string name="type_short_home" msgid="7770424864090605384">"Д"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"М"</string>
     <string name="type_short_work" msgid="4925330752504537861">"Р"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"П"</string>
     <string name="type_short_other" msgid="5669407180177236769">"Др"</string>
-    <string name="edit_secondary_collapse" msgid="1855127176548440583">"Дополнительные подробности"</string>
+    <!-- no translation found for edit_read_only (8158629550655830981) -->
+    <skip />
+    <!-- no translation found for edit_secondary_collapse (5371618426594477103) -->
+    <skip />
     <string name="dialog_primary_name" msgid="5521591005692614833">"Основное имя"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Создать контакт в аккаунте"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Удалить группу синхронизации"</string>
@@ -312,21 +415,44 @@
     <skip />
     <!-- no translation found for display_more_groups (2682547080423434170) -->
     <skip />
-    <string name="display_ungrouped" msgid="4357317661311803984">"(Несгруппированные контакты)"</string>
+    <!-- no translation found for display_ungrouped (4602580795576261158) -->
+    <skip />
+    <!-- no translation found for display_all_contacts (6846131371214707956) -->
+    <skip />
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Удаление группы \"<xliff:g id="GROUP">%s</xliff:g>\" из синхронизации также приведет к удалению любых несгруппированных контактов из синхронизации."</string>
     <string name="account_phone" msgid="4025734638492419713">"Только телефон (несинхронизирован)"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"Показать имя"</string>
+    <string name="call_custom" msgid="7756571794763171802">"Позвонить (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="call_home" msgid="1990519474420545392">"Позвонить (дом.)"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Позвонить (моб.)"</string>
     <string name="call_work" msgid="5328785911463744028">"Позвонить (раб.)"</string>
     <string name="call_fax_work" msgid="7467763592359059243">"Позвонить (раб. факс)"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Позвонить (дом. факс)"</string>
     <string name="call_pager" msgid="9003902812293983281">"Позвонить (пейджер)"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Позвонить (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
+    <string name="call_other" msgid="5605584621798108205">"Позвонить (другое)"</string>
+    <!-- no translation found for call_callback (1910165691349426858) -->
+    <skip />
     <string name="call_car" msgid="3280537320306436445">"Позвонить (автомоб.)"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Позвонить (раб., осн.)"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Позвонить (MMS)"</string>
+    <!-- no translation found for call_isdn (1541590690193403411) -->
+    <skip />
+    <!-- no translation found for call_main (6082900571803441339) -->
+    <skip />
+    <!-- no translation found for call_other_fax (7777261153532968503) -->
+    <skip />
     <string name="call_radio" msgid="8296755876398357063">"Позвонить (радиотел.)"</string>
+    <!-- no translation found for call_telex (2223170774548648114) -->
+    <skip />
+    <!-- no translation found for call_tty_tdd (8951266948204379604) -->
+    <skip />
+    <!-- no translation found for call_work_mobile (8707874281430105394) -->
+    <skip />
+    <!-- no translation found for call_work_pager (3419348514157949008) -->
+    <skip />
+    <!-- no translation found for call_assistant (2141641383068514308) -->
+    <skip />
+    <string name="call_mms" msgid="6274041545876221437">"Позвонить (MMS)"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"SMS (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="sms_home" msgid="7524332261493162995">"SMS (дом.)"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"SMS (моб.)"</string>
     <string name="sms_work" msgid="2269624156655267740">"SMS (дом.)"</string>
@@ -334,11 +460,28 @@
     <string name="sms_fax_home" msgid="9204042076306809634">"SMS (дом. факс)"</string>
     <string name="sms_pager" msgid="7730404569637015192">"SMS (пейджер)"</string>
     <string name="sms_other" msgid="5131921487474531617">"SMS (другое)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"SMS (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
+    <!-- no translation found for sms_callback (5004824430094288752) -->
+    <skip />
     <string name="sms_car" msgid="7444227058437359641">"SMS (автомоб.)"</string>
     <string name="sms_company_main" msgid="118970873419678087">"SMS (раб., осн.)"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"MMS"</string>
+    <!-- no translation found for sms_isdn (8153785037515047845) -->
+    <skip />
+    <!-- no translation found for sms_main (8621625784504541679) -->
+    <skip />
+    <!-- no translation found for sms_other_fax (3930666870074006114) -->
+    <skip />
     <string name="sms_radio" msgid="3329166673433967820">"SMS (радиотел.)"</string>
+    <!-- no translation found for sms_telex (9034802430065267848) -->
+    <skip />
+    <!-- no translation found for sms_tty_tdd (6782284969132531532) -->
+    <skip />
+    <!-- no translation found for sms_work_mobile (2459939960512702560) -->
+    <skip />
+    <!-- no translation found for sms_work_pager (5566924423316960597) -->
+    <skip />
+    <!-- no translation found for sms_assistant (2773424339923116234) -->
+    <skip />
+    <string name="sms_mms" msgid="4069352461380762677">"MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Эл. почта (дом.)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Эл. почта (моб.)"</string>
     <string name="email_work" msgid="2807430017302722689">"Эл. почта (раб.)"</string>
@@ -357,6 +500,8 @@
     <string name="chat_gtalk" msgid="981575737258117697">"Чат через Google Talk"</string>
     <string name="chat_icq" msgid="8438405386153745775">"Чат через ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Чат через Jabber"</string>
+    <!-- no translation found for chat (9025361898797412245) -->
+    <skip />
     <string name="postal_street" msgid="8133143961580058972">"Улица"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Почтовый ящик"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Окружение"</string>
@@ -372,4 +517,20 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Имя (фонетическая запись)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Отчество (фонетическая запись)"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Фамилия (фонетическая запись)"</string>
+    <!-- no translation found for split_label (8262112659919449087) -->
+    <skip />
+    <!-- no translation found for split_explanation (1824739956426973592) -->
+    <skip />
+    <!-- no translation found for account_name_format (4421123930035299208) -->
+    <skip />
+    <!-- no translation found for account_type_format (718948015590343010) -->
+    <skip />
+    <!-- no translation found for from_account_format (687567483928582084) -->
+    <skip />
+    <!-- no translation found for use_photo_as_primary (8807110122951157246) -->
+    <skip />
+    <!-- no translation found for contact_read_only (1203216914575723978) -->
+    <skip />
+    <!-- no translation found for no_contact_details (6754415338321837001) -->
+    <skip />
 </resources>
