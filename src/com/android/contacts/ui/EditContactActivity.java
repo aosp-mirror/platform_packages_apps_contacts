@@ -29,7 +29,7 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.ui.widget.ContactEditorView;
+import com.android.contacts.ui.widget.BaseContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
@@ -83,7 +83,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * Activity for editing or inserting a contact.
@@ -345,8 +344,14 @@ public final class EditContactActivity extends Activity
                     ContactsSource.LEVEL_CONSTRAINTS);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
-            ContactEditorView editor = (ContactEditorView) inflater.inflate(
-                    R.layout.item_contact_editor, mContent, false);
+            BaseContactEditorView editor;
+            if (!source.readOnly) {
+                editor = (BaseContactEditorView) inflater.inflate(R.layout.item_contact_editor,
+                        mContent, false);
+            } else {
+                editor = (BaseContactEditorView) inflater.inflate(
+                        R.layout.item_read_only_contact_editor, mContent, false);
+            }
             PhotoEditorView photoEditor = editor.getPhotoEditor();
             photoEditor.setEditorListener(new PhotoListener(rawContactId, source.readOnly,
                     photoEditor));
@@ -437,8 +442,8 @@ public final class EditContactActivity extends Activity
                     int count = mContent.getChildCount();
                     for (int i = 0; i < count; i++) {
                         View childView = mContent.getChildAt(i);
-                        if (childView instanceof ContactEditorView) {
-                            ContactEditorView editor = (ContactEditorView) childView;
+                        if (childView instanceof BaseContactEditorView) {
+                            BaseContactEditorView editor = (BaseContactEditorView) childView;
                             PhotoEditorView photoEditor = editor.getPhotoEditor();
                             if (!photoEditor.equals(mEditor)) {
                                 photoEditor.setSuperPrimary(false);
@@ -486,11 +491,11 @@ public final class EditContactActivity extends Activity
 
         switch (requestCode) {
             case PHOTO_PICKED_WITH_DATA: {
-                ContactEditorView requestingEditor = null;
+                BaseContactEditorView requestingEditor = null;
                 for (int i = 0; i < mContent.getChildCount(); i++) {
                     View childView = mContent.getChildAt(i);
-                    if (childView instanceof ContactEditorView) {
-                        ContactEditorView editor = (ContactEditorView) childView;
+                    if (childView instanceof BaseContactEditorView) {
+                        BaseContactEditorView editor = (BaseContactEditorView) childView;
                         if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
                             requestingEditor = editor;
                             break;
