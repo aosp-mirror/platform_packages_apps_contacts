@@ -2334,7 +2334,7 @@ public class ContactsListActivity extends ListActivity implements
             }
 
             View v;
-            if (convertView == null) {
+            if (convertView == null || convertView.getTag() == null) {
                 v = newView(mContext, cursor, parent);
             } else {
                 v = convertView;
