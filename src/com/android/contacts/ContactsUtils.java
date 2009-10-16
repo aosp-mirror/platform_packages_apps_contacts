@@ -37,6 +37,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.Im.ProviderNames;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -423,5 +424,48 @@ public class ContactsUtils {
      */
     public static boolean isGraphic(CharSequence str) {
         return !TextUtils.isEmpty(str) && TextUtils.isGraphic(str);
+    }
+
+    /**
+     * Returns true if two objects are considered equal.  Two null references are equal here.
+     */
+    public static boolean areObjectsEqual(Object a, Object b) {
+        return a == b || (a != null && a.equals(b));
+    }
+
+    /**
+     * Returns true if two data with mimetypes which represent values in contact entries are
+     * considered equal.
+     */
+    public static final boolean areDataEqual(Context context, CharSequence mimetype1,
+            CharSequence data1, CharSequence mimetype2, CharSequence data2) {
+        if (TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype1)
+                && TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype2)) {
+            if (data1 == data2) {
+                return true;
+            }
+            if (data1 == null || data2 == null) {
+                return false;
+            }
+            return PhoneNumberUtils.compare(context, data1.toString(), data2.toString());
+        } else {
+            if (mimetype1 == mimetype2 && data1 == data2) {
+                return true;
+            }
+            return TextUtils.equals(mimetype1, mimetype2) && TextUtils.equals(data1, data2);
+        }
+    }
+
+    /**
+     * Returns true if two {@link Intent}s are both null, or have the same action.
+     */
+    public static final boolean areIntentActionEqual(Intent a, Intent b) {
+        if (a == b) {
+            return true;
+        }
+        if (a == null || b == null) {
+            return false;
+        }
+        return TextUtils.equals(a.getAction(), b.getAction());
     }
 }

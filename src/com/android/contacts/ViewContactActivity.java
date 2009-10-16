@@ -1026,38 +1026,18 @@ public class ViewContactActivity extends Activity
                 return false;
             }
 
-            if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
-                    && Phone.CONTENT_ITEM_TYPE.equals(entry.mimetype)) {
-                if (!PhoneNumberUtils.compare(this.context, data, entry.data)) {
-                    return false;
-                }
-            } else {
-                if (!equals(data, entry.data)) {
-                    return false;
-                }
+            if (!ContactsUtils.areDataEqual(context, mimetype, data, entry.mimetype, entry.data)) {
+                return false;
             }
 
-            if (!equals(mimetype, entry.mimetype)
-                    || !intentCollapsible(intent, entry.intent)
-                    || !intentCollapsible(secondaryIntent, entry.secondaryIntent)
+            if (!TextUtils.equals(mimetype, entry.mimetype)
+                    || !ContactsUtils.areIntentActionEqual(intent, entry.intent)
+                    || !ContactsUtils.areIntentActionEqual(secondaryIntent, entry.secondaryIntent)
                     || actionIcon != entry.actionIcon) {
                 return false;
             }
 
             return true;
-        }
-
-        private boolean equals(Object a, Object b) {
-            return a==b || (a != null && a.equals(b));
-        }
-
-        private boolean intentCollapsible(Intent a, Intent b) {
-            if (a == b) {
-                return true;
-            } else if ((a != null && b != null) && equals(a.getAction(), b.getAction())) {
-                return true;
-            }
-            return false;
         }
     }
 
