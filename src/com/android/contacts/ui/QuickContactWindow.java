@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.Collapser;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
@@ -87,6 +88,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -658,7 +660,7 @@ public class QuickContactWindow implements Window.Callback,
      * Abstract definition of an action that could be performed, along with
      * string description and icon.
      */
-    private interface Action {
+    private interface Action extends Collapser.Collapsible<Action> {
         public CharSequence getHeader();
         public CharSequence getBody();
 
@@ -844,6 +846,39 @@ public class QuickContactWindow implements Window.Callback,
         public Intent getIntent() {
             return mIntent;
         }
+
+        /** {@inheritDoc} */
+        public boolean collapseWith(Action other) {
+            if (!shouldCollapseWith(other)) {
+                return false;
+            }
+            return true;
+        }
+
+        /** {@inheritDoc} */
+        public boolean shouldCollapseWith(Action t) {
+            if (t == null) {
+                return false;
+            }
+            if (!(t instanceof DataAction)) {
+                Log.e(TAG, "t must be DataAction");
+                return false;
+            }
+            DataAction other = (DataAction)t;
+            if (!ContactsUtils.areObjectsEqual(mKind, other.mKind)) {
+                return false;
+            }
+            if (!ContactsUtils.areDataEqual(mContext, mMimeType, mBody, other.mMimeType,
+                    other.mBody)) {
+                return false;
+            }
+            if (!TextUtils.equals(mMimeType, other.mMimeType)
+                    || !ContactsUtils.areIntentActionEqual(mIntent, other.mIntent)
+                    ) {
+                return false;
+            }
+            return true;
+        }
     }
 
     /**
@@ -895,6 +930,15 @@ public class QuickContactWindow implements Window.Callback,
             return null;
         }
 
+        /** {@inheritDoc} */
+        public boolean collapseWith(Action t) {
+            return false; // Never dup.
+        }
+
+        /** {@inheritDoc} */
+        public boolean shouldCollapseWith(Action t) {
+            return false; // Never dup.
+        }
     }
 
     /**
@@ -1039,7 +1083,7 @@ public class QuickContactWindow implements Window.Callback,
      * Provide a strongly-typed {@link LinkedList} that holds a list of
      * {@link Action} objects.
      */
-    private class ActionList extends LinkedList<Action> {
+    private class ActionList extends ArrayList<Action> {
     }
 
     /**
@@ -1219,8 +1263,8 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Inflate the in-track view for the action of the given MIME-type. Will use
-     * the icon provided by the {@link DataKind}.
+     * Inflate the in-track view for the action of the given MIME-type, collapsing duplicate values.
+     * Will use the icon provided by the {@link DataKind}.
      */
     private View inflateAction(String mimeType) {
         final CheckableImageView view = (CheckableImageView)obtainView();
@@ -1228,6 +1272,9 @@ public class QuickContactWindow implements Window.Callback,
 
         // Add direct intent if single child, otherwise flag for multiple
         ActionList children = mActions.get(mimeType);
+        if (children.size() > 1) {
+            Collapser.collapseList(children);
+        }
         Action firstInfo = children.get(0);
         if (children.size() == 1) {
             view.setTag(firstInfo);
