@@ -116,6 +116,20 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     /** Identifier for the "Add Call" intent extra. */
     static final String ADD_CALL_MODE_KEY = "add_call_mode";
+
+    /**
+     * Identifier for intent extra for sending an empty Flash message for
+     * CDMA networks. This message is used by the network to simulate a
+     * press/depress of the "hookswitch" of a landline phone. Aka "empty flash".
+     *
+     * TODO: Using an intent extra to tell the phone to send this flash is a
+     * temporary measure. To be replaced with an ITelephony call in the future.
+     * TODO: Keep in sync with the string defined in OutgoingCallBroadcaster.java
+     * in Phone app until this is replaced with the ITelephony API.
+     */
+    static final String EXTRA_SEND_EMPTY_FLASH
+            = "com.android.phone.extra.SEND_EMPTY_FLASH";
+
     /** Indicates if we are opening this dialer to add a call from the InCallScreen. */
     private boolean mIsAddCallMode;
 
@@ -568,7 +582,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
-                if (mIsAddCallMode && (TextUtils.isEmpty(mDigits.getText().toString()))) {
+                if (phoneIsCdma()) {
+                    // If we're CDMA, regardless of where we are adding a call from (either
+                    // InCallScreen or Dialtacts), the user may need to send an empty
+                    // flash command to the network. So let's call placeCall() regardless
+                    // and placeCall will handle this functionality for us.
+                    placeCall();
+                } else if (mIsAddCallMode && (TextUtils.isEmpty(mDigits.getText().toString()))) {
                     // if we are adding a call from the InCallScreen and the phone
                     // number entered is empty, we just close the dialer to expose
                     // the InCallScreen under it.
@@ -724,17 +744,32 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     void placeCall() {
         final String number = mDigits.getText().toString();
-        if (number == null || !TextUtils.isGraphic(number)) {
-            // There is no number entered.
-            playTone(ToneGenerator.TONE_PROP_NACK);
-            return;
-        }
+        boolean sendEmptyFlash = false;
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                 Uri.fromParts("tel", number, null));
+        if (number == null || !TextUtils.isGraphic(number)) {
+            // There is no number entered.
+            if (phoneIsCdma() && phoneIsOffhook()) {
+                // We only want to send this empty flash extra if we're CDMA and the
+                // phone is offhook (don't want to send if ringing or dialing)
+                intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
+                sendEmptyFlash = true;
+            } else {
+                playTone(ToneGenerator.TONE_PROP_NACK);
+                return;
+            }
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();
-        finish();
+        // Don't finish TwelveKeyDialer yet if we're sending a blank flash for CDMA. CDMA
+        // networks use Flash messages when special processing needs to be done, mainly for
+        // 3-way or call waiting scenarios. Presumably, here we're in a special 3-way scenario
+        // where the network needs a blank flash before being able to add the new participant.
+        // (This is not the case with all 3-way calls, just certain CDMA infrastructures.)
+        if (!sendEmptyFlash) {
+            finish();
+        }
     }
 
 
@@ -992,6 +1027,36 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     /**
+     * @return true if the phone is a CDMA phone type
+     */
+    private boolean phoneIsCdma() {
+        boolean isCdma = false;
+        try {
+            ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+            if (phone != null) {
+                isCdma = (phone.getActivePhoneType() == TelephonyManager.PHONE_TYPE_CDMA);
+            }
+        } catch (RemoteException e) {
+            Log.w(TAG, "phone.getActivePhoneType() failed", e);
+        }
+        return isCdma;
+    }
+
+    /**
+     * @return true if the phone state is OFFHOOK
+     */
+    private boolean phoneIsOffhook() {
+        boolean phoneOffhook = false;
+        try {
+            ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+            if (phone != null) phoneOffhook = phone.isOffhook();
+        } catch (RemoteException e) {
+            Log.w(TAG, "phone.isOffhook() failed", e);
+        }
+        return phoneOffhook;
+    }
+
+    /**
      * Triggers haptic feedback (if enabled) for dialer key presses.
      */
     private synchronized void vibrate() {
@@ -1059,8 +1124,15 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private void updateDialAndDeleteButtonStateEnabledAttr() {
         final boolean notEmpty = mDigits.length() != 0;
 
-        if (mDialButton != null) {
-            mDialButton.setEnabled(notEmpty);
+        // If we're already on a CDMA call, then we want to enable the Call button
+        if (phoneIsCdma() && phoneIsOffhook()) {
+            if (mDialButton != null) {
+                mDialButton.setEnabled(true);
+            }
+        } else {
+            if (mDialButton != null) {
+                mDialButton.setEnabled(notEmpty);
+            }
         }
         mDelete.setEnabled(notEmpty);
     }
