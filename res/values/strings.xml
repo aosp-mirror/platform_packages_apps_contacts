@@ -914,13 +914,16 @@
     <!-- The failed reason: "Error occured during export" -->
     <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
 
-    <!-- The error reason the vCard composer emits: "Failed to get database information" -->
+    <!-- The error reason the vCard composer emits: "Failed to get database information"
+         This "may" happen when database is corrupted or something is going wrong. Usually users should not see this text. -->
     <string name="composer_failed_to_get_database_infomation">Failed to get database information</string>
 
-    <!-- The error reason the vCard composer emits: "There is no exportable contact. You might choose un-exportable data" -->
-    <string name="composer_has_no_exportable_contact">There is no exportable contact. You might choose un-exportable data</string>
+    <!-- The error reason the vCard composer emits: "There is no exportable contact. The contacts may be prohibited from being prohibeted outside the phone."
+    This error message is shown when the user actually have no contact (e.g. just after data-wiping), or, data providers of the contact list prohibits their contacts from being exported to outside world via vcard exporter, etc. -->
+    <string name="composer_has_no_exportable_contact">There is no exportable contact. If you have actualy have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data provider.</string>
 
-    <!-- The error reason the vCard composer emits: "The vCard composer object is not correctly initialized" -->
+    <!-- The error reason the vCard composer emits: "The vCard composer object is not correctly initialized"
+    Users should not usually see this error message. -->
     <string name="composer_not_initialized">The vCard composer is not correctly initialized</string>
 
     <!-- The failed reason: "Could not open a specific file" -->
