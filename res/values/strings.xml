@@ -890,16 +890,22 @@
     <!-- Dialog message shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_message">Failed to export contact data.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
-    <!-- The failed reason: "There is no exportable contact" -->
+    <!-- The failed reason shown when there's no contact which is allowed to be exported.
+         Note that user may have contacts data but all of them are probably not allowed to be
+         exported because of security/permission reasons. -->
     <string name="fail_reason_no_exportable_contact">There is no exportable contact</string>
 
-    <!-- The failed reason: "Too many vcard files on the SD Card" -->
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. -->
     <string name="fail_reason_too_many_vcard">Too many vCard files on the SD card</string>
 
-    <!-- The failed reason: "Too long filename". This error usually does not happen. -->
+    <!-- The failed reason shown when the given file name is too long for the system.
+         The length limit of each file is different in each Android device, so we don't need to
+         mention it here. -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
 
-    <!-- The failed reason: "Cannot open or create the destination directory" -->
+    <!-- The reason why the contacts import/export failed, meaning a designated file or directory
+         cannot be opened/created because of some permission, security, or any other reasons. -->
     <string name="fail_reason_cannot_open_destination_dir">Cannot open or create the destination directory\"<xliff:g id="dir_name">%s</xliff:g>\"</string>
 
     <!-- Dialog title shown when the application is exporting contact data outside -->
@@ -908,25 +914,29 @@
     <!-- Message shown when the application is exporting contact data outside -->
     <string name="exporting_contact_list_message">Exporting contact data to \"<xliff:g id="file_name">%s</xliff:g>\"</string>
 
-    <!-- The failed reason: "Could not initialize the exporter" -->
+    <!-- The failed reason shown when contacts exporter fails to be initialized.
+         Some exact reason must follow this. -->
     <string name="fail_reason_could_not_initialize_exporter">Could not initialize the exporter: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
 
-    <!-- The failed reason: "Error occured during export" -->
+    <!-- The failed reason shown when some error happend during contacts export.
+         Some exact reason must follow this. -->
     <string name="fail_reason_error_occurred_during_export">Error occured during export: \"<xliff:g id="exact_reason">%s</xliff:g>\"</string>
 
-    <!-- The error reason the vCard composer emits: "Failed to get database information"
-         This "may" happen when database is corrupted or something is going wrong. Usually users should not see this text. -->
+    <!-- The error reason the vCard composer "may" emit when database is corrupted or
+         something is going wrong. Usually users should not see this text. -->
     <string name="composer_failed_to_get_database_infomation">Failed to get database information</string>
 
-    <!-- The error reason the vCard composer emits: "There is no exportable contact. The contacts may be prohibited from being prohibeted outside the phone."
-    This error message is shown when the user actually have no contact (e.g. just after data-wiping), or, data providers of the contact list prohibits their contacts from being exported to outside world via vcard exporter, etc. -->
+    <!-- This error message shown when the user actually have no contact
+         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
+         contacts from being exported to outside world via vcard exporter, etc. -->
     <string name="composer_has_no_exportable_contact">There is no exportable contact. If you have actualy have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data provider.</string>
 
-    <!-- The error reason the vCard composer emits: "The vCard composer object is not correctly initialized"
-    Users should not usually see this error message. -->
+    <!-- The error reason the vCard composer may emit when vCard composer is not initialized
+         even when needed.
+         Users should not usually see this error message. -->
     <string name="composer_not_initialized">The vCard composer is not correctly initialized</string>
 
-    <!-- The failed reason: "Could not open a specific file" -->
+    <!-- The failed reason shown when vCard importer/exporter could not open a specified file. -->
     <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
 
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
