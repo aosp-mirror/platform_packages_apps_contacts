@@ -29,7 +29,6 @@
     <EditText android:id="@+id/digits"
         android:layout_width="fill_parent"
         android:layout_height="74dip"
-        android:layout_marginBottom="20dip"
         android:gravity="center"
         android:maxLines="1"
         android:scrollHorizontally="true"
@@ -40,6 +39,7 @@
         android:focusableInTouchMode="true"
         android:editable="true"
         android:cursorVisible="false"
+        android:layout_weight="0"
     />
 
     <!-- Keypad section -->
