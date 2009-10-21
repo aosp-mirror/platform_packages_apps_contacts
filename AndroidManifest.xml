@@ -342,7 +342,7 @@
         <activity
             android:name=".ui.EditContactActivity"
             android:label="@string/editContactDescription"
-            android:windowSoftInputMode="stateVisible|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />
