@@ -797,44 +797,55 @@
     <!-- Action that exports all contacts to SD Card -->
     <string name="export_to_sdcard">Export to SD card</string>
 
-    <!-- "Import one vCard file" -->
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
     <string name="import_one_vcard_string">Import one vCard file</string>
 
-    <!-- "Import more than one vCard -->
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
     <string name="import_multiple_vcard_string">Import multiple vCard files</string>
 
-    <!-- "Import all vCard files" -->
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
     <string name="import_all_vcard_string">Import all vCard files</string>
 
     <!-- Dialog message shown when searching VCard data from SD Card -->
     <string name="searching_vcard_message">Searching for vCard data on SD card</string>
 
-    <!-- Dialog title shown when searching VCard data failed. -->
+    <!-- Dialog title shown when scanning VCard data failed. -->
     <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
 
-    <!-- Dialog message shown when searching VCard data failed. -->
+    <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should -->
     <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
-    <!-- The failed reason: "I/O Error" -->
+    <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
+         emitted some I/O error. Exact reason will be appended by the system. -->
     <string name="fail_reason_io_error">I/O Error</string>
 
-    <!-- The failed reason: "Failed to parse VCard data" -->
+    <!-- The failed reason shown when vCard parser was not able to be parsed by the current vCard
+         implementation. This might happen even when the input vCard is completely valid, though
+         we believe it is rather rare in the actual world. -->
     <string name="fail_reason_vcard_parse_error">Failed to parse vCard for unexpected reason</string>
 
-    <!-- The failed reason: "The VCard is not supported right now, but may be supported in the future" -->
+    <!-- The failed reason shown when the current vCard importer cannot parse the file since the
+         parser is incomplete (actually, there's missing part in the current vCard parser, though
+         our understanding is that the functionality missed by the current vCard parser
+         is rarely needed in the actual vCard...). -->
     <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
-    <!-- The failed reason: "There is no VCard file" -->
+    <!-- The failed reason shown when the system could not find any vCard file
+         (with extension ".vcf" in SDCard.) -->
     <string name="fail_reason_no_vcard_file">No vCard file found on the SD card</string>
 
-    <!-- The failed reason: "There is no valid VCard entry in the file(s)" -->
-    <string name="fail_reason_no_vcard_entry">No valid vCard entry found for your selection</string>
-
-    <!-- The failed reason: "One or more files failed to be imported. (&lt;a list of file names&gt;)" -->
+    <!-- The failed reason shown when the import of some of vCard files failed during multiple vCard
+         files import. It includes the case where all files were failed to be imported. -->
     <string name="fail_reason_failed_to_read_files">One or more files failed to be imported (%s).</string>
 
-    <!-- The failed reason: "Unknown error". This message should not be shown
-         but it may in some buggy condition. -->
+    <!-- The failed reason which should not be shown but it may in some buggy condition. -->
     <string name="fail_reason_unknown">Unknown error</string>
 
     <!-- Dialog title shown when a user is asked to select VCard file -->
@@ -936,7 +947,8 @@
          Users should not usually see this error message. -->
     <string name="composer_not_initialized">The vCard composer is not correctly initialized</string>
 
-    <!-- The failed reason shown when vCard importer/exporter could not open a specified file. -->
+    <!-- The failed reason shown when vCard importer/exporter could not open the file
+         specified by a user. The file name should be in the message. -->
     <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
 
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
