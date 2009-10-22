@@ -46,11 +46,11 @@
     <string name="menu_viewAddress" msgid="1814744325763202024">"Dirección del mapa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Crear número predeterminado"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Crear correo electrónico predeterminado"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Dividir"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
     <string name="splitAggregate_title" msgid="2053462872948058798">"Dividir contacto"</string>
-    <string name="contactsSplitMessage" msgid="5253490235863170269">"Contactos divididos"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Dividir contacto"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"¿Estás seguro de que quieres dividir este contacto único en varios contactos (uno para cada conjunto de información que se añadió a él)?"</string>
+    <string name="contactsSplitMessage" msgid="5253490235863170269">"Contactos separados"</string>
+    <string name="splitConfirmation_title" msgid="6716467920283502570">"Separar contacto"</string>
+    <string name="splitConfirmation" msgid="1150797297503944823">"¿Estás seguro de que deseas separar este contacto individual en varios contactos: uno para cada grupo de información de contacto que se unió a él?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unirse"</string>
     <string name="menu_showSources" msgid="885215611438295455">"Mostrar fuentes"</string>
     <string name="menu_hideSources" msgid="71367585820555477">"Ocultar fuentes"</string>
@@ -64,8 +64,8 @@
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opciones"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opciones"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Suprimir"</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"No puedes eliminar contactos de las cuentas de solo lectura, pero puedes ocultarlos en las listas de contactos."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en las listas de contactos, pero no se eliminará."</string>
+    <string name="readOnlyContactWarning" msgid="1390849295342594265">"No puedes borrar contactos desde cuentas de solo lectura, pero puedes ocultar tus listas de contactos."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en tus listas de contactos, pero no se eliminará."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Eliminar este contacto suprimirá la información de mútliples cuentas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contacto se suprimirá."</string>
     <string name="menu_done" msgid="796017761764190697">"Finalizado"</string>
@@ -86,7 +86,7 @@
     <string name="ghostData_im" msgid="7737174936595812794">"Nombre de MI"</string>
     <string name="ghostData_notes" msgid="3044201271296187724">"Mi nota"</string>
     <string name="ghostData_phone" msgid="6963153888271466620">"Número de teléfono"</string>
-    <string name="ghostData_email" msgid="6184537075551565919">"Dirección de correo electrónico"</string>
+    <string name="ghostData_email" msgid="6184537075551565919">"Dirección de correo elec."</string>
     <string name="ghostData_postal" msgid="652611650594951897">"Dirección postal"</string>
     <string name="ghostData_group" msgid="4504591380347534114">"Mostrar grupo"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"El contacto no existe."</string>
@@ -107,7 +107,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre personalizado de etiqueta"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Mostrar opciones"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Mostrar opciones"</string>
-    <string name="syncGroupPreference" msgid="9028361137161162861">"Editar grupos sincroniz."</string>
+    <string name="syncGroupPreference" msgid="9028361137161162861">"Editar grupos sincr."</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importar contactos"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al correo de voz"</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Las llamadas se envían directamente a un correo de voz."</string>
@@ -155,20 +155,20 @@
     <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"Otras opciones"</string>
     <string name="listSeparatorMore_edit" msgid="858454837482243176">"Más"</string>
   <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="8721111084815668845">"Mostrando un contacto con número de teléfono"</item>
-    <item quantity="other" msgid="6133262880804110289">"Mostrando <xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
+    <item quantity="one" msgid="8721111084815668845">"Mostrando 1 contacto con el número de teléfono"</item>
+    <item quantity="other" msgid="6133262880804110289">"Se muestran <xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono."</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"No hay ningún contacto visible con número de teléfono."</string>
+    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"No hay contactos visibles con números de teléfono."</string>
   <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="1096068709488455155">"Mostrando un contacto"</item>
+    <item quantity="one" msgid="1096068709488455155">"Mostrando 1 contacto"</item>
     <item quantity="other" msgid="2865867557378939630">"Mostrando <xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"No hay contactos visibles."</string>
+    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"No hay contactos visibles"</string>
   <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="2830107332033967280">"Se ha encontrado un contacto."</item>
-    <item quantity="other" msgid="7752927996850263152">"Se han encontrado <xliff:g id="COUNT">%d</xliff:g> contactos."</item>
+    <item quantity="one" msgid="2830107332033967280">"Se encontró 1 contacto"</item>
+    <item quantity="other" msgid="7752927996850263152">"Se encontraron <xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
-    <string name="listFoundAllContactsZero" msgid="5554368784319460828">"No se ha encontrado el contacto."</string>
+    <string name="listFoundAllContactsZero" msgid="5554368784319460828">"No se ha encontrado este contacto."</string>
     <string name="socialStreamIconLabel" msgid="4367712449555075376">"Social"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>
@@ -414,9 +414,9 @@
     <string name="split_label" msgid="8262112659919449087">"Dividir"</string>
     <string name="split_explanation" msgid="1824739956426973592">"Transformar a estos datos en el contacto propio."</string>
     <string name="account_name_format" msgid="4421123930035299208">"De <xliff:g id="SOURCE">%1$s</xliff:g> la cuenta: <xliff:g id="ACCOUNT">%2$s</xliff:g>"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contacto"</string>
     <string name="from_account_format" msgid="687567483928582084">"de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizar esta foto"</string>
-    <string name="contact_read_only" msgid="1203216914575723978">"No se puede editar la información del contacto de <xliff:g id="SOURCE">%1$s</xliff:g> en este dispositivo."</string>
+    <string name="use_photo_as_primary" msgid="8807110122951157246">"Usar esta foto"</string>
+    <string name="contact_read_only" msgid="1203216914575723978">"La información de <xliff:g id="SOURCE">%1$s</xliff:g> contactos no se puede editar en este dispositivo."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"No hay información adicional para este contacto."</string>
 </resources>

@@ -22,10 +22,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="24dip"
+    android:layout_marginTop="6dip"
+    android:layout_weight="1"
     android:orientation="horizontal">
 
-    <!-- Onscreen "Voicemail" button -->
+    <!-- Onscreen "Voicemail" button.
+         The width is 75 (from the mocks) + 12 of padding from the
+         9patch, total is 87.
+    -->
     <ImageButton android:id="@+id/voicemailButton"
         android:layout_width="87dip"
         android:layout_height="58dip"
@@ -45,7 +49,10 @@
         android:background="@drawable/btn_dial_action"
         android:src="@drawable/ic_dial_action_call" />
 
-    <!-- Onscreen "Backspace/Delete" button -->
+    <!-- Onscreen "Backspace/Delete" button
+         The width is 75 (from the mocks) + 12 of padding from the
+         9patch, total is 87.
+    -->
     <ImageButton android:id="@+id/deleteButton"
         android:layout_width="87dip"
         android:layout_height="58dip"
