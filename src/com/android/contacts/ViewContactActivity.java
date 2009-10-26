@@ -46,7 +46,9 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.ParseException;
 import android.net.Uri;
+import android.net.WebAddress;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -65,6 +67,7 @@ import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -878,6 +881,18 @@ public class ViewContactActivity extends Activity
                         // Build note entries
                         entry.uri = null;
                         entry.maxLines = 10;
+                        mOtherEntries.add(entry);
+                    } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build note entries
+                        entry.uri = null;
+                        entry.maxLines = 10;
+                        try {
+                            WebAddress webAddress = new WebAddress(entry.data);
+                            entry.intent = new Intent(Intent.ACTION_VIEW, 
+                                    Uri.parse(webAddress.toString()));
+                        } catch (ParseException e) {
+                            Log.e(TAG, "Couldn't parse website: " + entry.data);
+                        }
                         mOtherEntries.add(entry);
                     } else {
                         // Handle showing custom rows
