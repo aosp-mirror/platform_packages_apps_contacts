@@ -32,6 +32,7 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.util.Log;
 import android.view.View;
 
@@ -695,7 +696,11 @@ public class EntityDelta implements Parcelable {
             if (mAfter != null) {
                 values.putAll(mAfter);
             }
-            values.remove(ContactsContract.CommonDataKinds.GroupMembership.GROUP_SOURCE_ID);
+            if (values.containsKey(GroupMembership.GROUP_ROW_ID)) {
+                // Clear to avoid double-definitions, and prefer rows
+                values.remove(GroupMembership.GROUP_SOURCE_ID);
+            }
+
             return values;
         }
 
