@@ -217,11 +217,11 @@ public class ContactsListActivity extends ListActivity implements
     static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
             | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider and pick them when clicking */
-    static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
+    static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER
             | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider as well as the option to create a new one */
     static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER
-            | MODE_MASK_CREATE_NEW | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
+            | MODE_MASK_CREATE_NEW | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
     static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW;
     /** Show all phone numbers and pick them when clicking */
@@ -2472,7 +2472,8 @@ public class ContactsListActivity extends ListActivity implements
                 cache.nameView.setText(mUnknownNameText);
             }
 
-            boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+            boolean hasPhone = cursor.getColumnCount() >= SUMMARY_HAS_PHONE_COLUMN_INDEX
+                    && cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
 
             // Make the call button visible if requested.
             if (mDisplayCallButton && hasPhone) {
