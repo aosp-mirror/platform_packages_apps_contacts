@@ -136,11 +136,11 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
 
     private class PhoneItem implements Collapsible<PhoneItem> {
 
-        String phoneNumber;
-        long id;
+        final String phoneNumber;
+        final long id;
 
         public PhoneItem(String newPhoneNumber, long newId) {
-            phoneNumber = newPhoneNumber;
+            phoneNumber = (newPhoneNumber != null ? newPhoneNumber : "");
             id = newId;
         }
 
@@ -160,6 +160,7 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
             return false;
         }
 
+        @Override
         public String toString() {
             return phoneNumber;
         }
