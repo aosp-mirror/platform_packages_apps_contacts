@@ -366,8 +366,8 @@
     <string name="call_radio" msgid="8296755876398357063">"Bellen naar radio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Telex bellen"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Tekststelefoon bellen"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Bellen naar werkmobiel"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Bellen naar werkpager"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Bellen naar mobiel werk"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Bellen naar pager werk"</string>
     <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g> bellen"</string>
     <string name="call_mms" msgid="6274041545876221437">"Bellen via MMS"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Sms\'en naar <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -387,7 +387,7 @@
     <string name="sms_radio" msgid="3329166673433967820">"Sms\'en naar radio"</string>
     <string name="sms_telex" msgid="9034802430065267848">"Sms\'en naar telex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Sms\'en naar teksttelefoon"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Sms\'en naar werkmobiel"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"Sms\'en naar mobiel werk"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Sms\'en naar werkpager"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Sms\'en naar <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Sms\'en via MMS"</string>
