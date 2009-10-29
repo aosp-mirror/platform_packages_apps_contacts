@@ -51,7 +51,6 @@ import com.android.contacts.util.Constants;
 import java.util.ArrayList;
 
 public class ContactsUtils {
-
     private static final String TAG = "ContactsUtils";
     /**
      * Build the display title for the {@link Data#CONTENT_URI} entry in the
@@ -387,7 +386,6 @@ public class ContactsUtils {
     /**
      * Utility for creating a standard tab indicator view.
      *
-     * @param context The label to display in the tab indicator. If null, not label will be displayed.
      * @param parent The parent ViewGroup to attach the new view to.
      * @param source The {@link ContactsSource} to build the tab view from.
      * @return The tab indicator View.
@@ -402,6 +400,9 @@ public class ContactsUtils {
 
     /**
      * Kick off an intent to initiate a call.
+     *
+     * @param phoneNumber must not be null.
+     * @throws NullPointerException when the given argument is null.
      */
     public static void initiateCall(Context context, CharSequence phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
@@ -411,6 +412,9 @@ public class ContactsUtils {
 
     /**
      * Kick off an intent to initiate an Sms/Mms message.
+     *
+     * @param phoneNumber must not be null.
+     * @throws NullPointerException when the given argument is null.
      */
     public static void initiateSms(Context context, CharSequence phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_SENDTO,
