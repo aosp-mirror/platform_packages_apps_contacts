@@ -720,10 +720,28 @@ public final class EditContactActivity extends Activity
     private void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
         switch (saveMode) {
             case SAVE_MODE_DEFAULT:
-                if (success) {
-                    Intent intent = new Intent();
-                    intent.setData(contactLookupUri);
-                    setResult(RESULT_OK, intent);
+                if (success && contactLookupUri != null) {
+                    final Intent resultIntent = new Intent();
+
+                    final Uri requestData = getIntent().getData();
+                    final String requestAuthority = requestData == null ? null : requestData
+                            .getAuthority();
+
+                    if (android.provider.Contacts.AUTHORITY.equals(requestAuthority)) {
+                        // Build legacy Uri when requested by caller
+                        final long contactId = ContentUris.parseId(Contacts.lookupContact(
+                                getContentResolver(), contactLookupUri));
+                        final Uri legacyUri = ContentUris.withAppendedId(
+                                android.provider.Contacts.People.CONTENT_URI, contactId);
+                        resultIntent.setData(legacyUri);
+                    } else {
+                        // Otherwise pass back a lookup-style Uri
+                        resultIntent.setData(contactLookupUri);
+                    }
+
+                    setResult(RESULT_OK, resultIntent);
+                } else {
+                    setResult(RESULT_CANCELED, null);
                 }
                 finish();
                 break;
