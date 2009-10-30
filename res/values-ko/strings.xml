@@ -113,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"수신전화가 바로 음성메일로 연결됩니다."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"기본값"</string>
     <string name="addPicture" msgid="1594679312161537678">"아이콘 추가"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"변경 아이콘"</string>
     <string name="removePicture" msgid="3041230993155966350">"아이콘 삭제"</string>
     <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>

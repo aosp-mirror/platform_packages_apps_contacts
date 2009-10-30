@@ -113,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"As chamadas são enviadas directamente para o correio de voz."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Predefinido"</string>
     <string name="addPicture" msgid="1594679312161537678">"Adicionar ícone"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"Alterar ícone"</string>
     <string name="removePicture" msgid="3041230993155966350">"Remover ícone"</string>
     <string name="noContacts" msgid="8579310973261953559">"Sem contactos."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Não foram encontrados contactos correspondentes."</string>
