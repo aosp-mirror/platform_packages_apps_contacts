@@ -113,7 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Anrop blir sendt direkte til telefonsvarer."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standardvalg"</string>
     <string name="addPicture" msgid="1594679312161537678">"Legg til ikon"</string>
-    <string name="changePicture" msgid="2943329047610967714">"Bytt ikon"</string>
+    <string name="changePicture" msgid="2943329047610967714">"Endre ikon"</string>
     <string name="removePicture" msgid="3041230993155966350">"Fjern ikon"</string>
     <string name="noContacts" msgid="8579310973261953559">"Ingen kontakter."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Fant ingen kontakter."</string>
