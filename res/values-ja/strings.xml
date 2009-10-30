@@ -113,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"この番号にかけるとボイスメールに転送されます。"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"端末既定"</string>
     <string name="addPicture" msgid="1594679312161537678">"アイコンを追加"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"アイコンを変更"</string>
     <string name="removePicture" msgid="3041230993155966350">"アイコンを削除"</string>
     <string name="noContacts" msgid="8579310973261953559">"連絡先がありません。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"一致する連絡先が見つかりません。"</string>

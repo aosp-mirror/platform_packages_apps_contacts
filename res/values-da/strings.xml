@@ -113,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Opkald sendes direkte til voicemail."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
     <string name="addPicture" msgid="1594679312161537678">"Tilføj ikon"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"Skift ikon"</string>
     <string name="removePicture" msgid="3041230993155966350">"Fjern ikon"</string>
     <string name="noContacts" msgid="8579310973261953559">"Der er ingen kontakter."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Der blev ikke fundet nogen matchende kontaktpersoner."</string>
