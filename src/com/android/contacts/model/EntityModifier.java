@@ -409,6 +409,9 @@ public class EntityModifier {
      * terms of {@link DataKind#fieldList}.
      */
     public static boolean isEmpty(ValuesDelta values, DataKind kind) {
+        // No defined fields mean this row is always empty
+        if (kind.fieldList == null) return true;
+
         boolean hasValues = false;
         for (EditField field : kind.fieldList) {
             // If any field has values, we're not empty
