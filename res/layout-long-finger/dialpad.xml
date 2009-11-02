@@ -18,7 +18,7 @@
      Tall screen version with taller buttons.
  -->
 
-<com.android.contacts.ButtonGridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.phone.ButtonGridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialpad"
     android:paddingLeft="7dp"
     android:paddingRight="7dp"
@@ -136,4 +136,4 @@
             android:soundEffectsEnabled="false"
             android:contentDescription="@string/description_image_button_pound"
         />
-</com.android.contacts.ButtonGridLayout>
+</com.android.phone.ButtonGridLayout>
