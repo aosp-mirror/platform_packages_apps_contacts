@@ -571,14 +571,6 @@ public class EntityDelta implements Parcelable {
             return getAsLong(mIdColumn);
         }
 
-        /**
-         * Return a valid integer value suitable for {@link View#setId(int)}.
-         */
-        public int getViewId() {
-            final Long id = this.getId();
-            return (id == null) ? View.NO_ID : id.intValue();
-        }
-
         public void setIdColumn(String idColumn) {
             mIdColumn = idColumn;
         }

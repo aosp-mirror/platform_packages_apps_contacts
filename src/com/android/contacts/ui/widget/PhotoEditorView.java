@@ -21,6 +21,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.Editor;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -75,9 +76,13 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     }
 
     /** {@inheritDoc} */
-    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly) {
+    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly,
+            ViewIdGenerator vig) {
         mEntry = values;
         mReadOnly = readOnly;
+
+        setId(vig.getId(state, kind, values, 0));
+
         if (values != null) {
             // Try decoding photo if actual entry
             final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);

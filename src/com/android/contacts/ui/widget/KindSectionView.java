@@ -23,6 +23,7 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.provider.ContactsContract.Data;
@@ -51,6 +52,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
     private DataKind mKind;
     private EntityDelta mState;
     private boolean mReadOnly;
+
+    private ViewIdGenerator mViewIdGenerator;
 
     public KindSectionView(Context context) {
         super(context);
@@ -88,10 +91,13 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // Ignore requests
     }
 
-    public void setState(DataKind kind, EntityDelta state, boolean readOnly) {
+    public void setState(DataKind kind, EntityDelta state, boolean readOnly, ViewIdGenerator vig) {
         mKind = kind;
         mState = state;
         mReadOnly = readOnly;
+        mViewIdGenerator = vig;
+
+        setId(mViewIdGenerator.getId(state, kind, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // TODO: handle resources from remote packages
         mTitle.setText(kind.titleRes);
@@ -116,9 +122,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
             final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
                     R.layout.item_generic_editor, mEditors, false);
-            editor.setValues(mKind, entry, mState, mReadOnly);
+            editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
             editor.setEditorListener(this);
-            editor.setId(entry.getViewId());
             mEditors.addView(editor);
         }
     }
@@ -138,9 +143,16 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
     /** {@inheritDoc} */
     public void onClick(View v) {
         // Insert a new child and rebuild
-        EntityModifier.insertChild(mState, mKind);
+        final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
         this.rebuildFromState();
         this.updateAddEnabled();
         this.updateEditorsVisible();
+
+        // Find the newly added EditView and set focus.
+        final int newFieldId = mViewIdGenerator.getId(mState, mKind, newValues, 0);
+        final View newField = findViewById(newFieldId);
+        if (newField != null) {
+            newField.requestFocus();
+        }
     }
 }
