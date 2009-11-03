@@ -414,6 +414,9 @@ public class ContactsListActivity extends ListActivity implements
             getContentResolver().delete(mSelectedContactUri, null, null);
         }
     }
+    
+    // The size of a home screen shortcut icon.
+    private int mIconSize;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -421,6 +424,8 @@ public class ContactsListActivity extends ListActivity implements
 
         // Resolve the intent
         final Intent intent = getIntent();
+        
+        mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
 
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
@@ -1309,9 +1314,9 @@ public class ContactsListActivity extends ListActivity implements
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
                 // This is a simple shortcut to view a contact.
                 shortcutIntent = new Intent(mShortcutAction, uri);
-                final Bitmap icon = loadContactPhoto(id, null);
+                Bitmap icon = loadContactPhoto(id, null);
                 if (icon != null) {
-                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, scaleToAppIconSize(icon));
                 } else {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                             Intent.ShortcutIconResource.fromContext(this,
@@ -1375,10 +1380,9 @@ public class ContactsListActivity extends ListActivity implements
                 return null;
             }
         }
-
+        
         // Setup the drawing classes
-        int iconSize = (int) r.getDimension(android.R.dimen.app_icon_size);
-        Bitmap icon = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+        Bitmap icon = createShortcutBitmap();
         Canvas canvas = new Canvas(icon);
 
         // Copy in the photo
@@ -1386,7 +1390,7 @@ public class ContactsListActivity extends ListActivity implements
         photoPaint.setDither(true);
         photoPaint.setFilterBitmap(true);
         Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
-        Rect dst = new Rect(0,0, iconSize,iconSize);
+        Rect dst = new Rect(0,0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
 
         // Create an overlay for the phone number type
@@ -1434,6 +1438,26 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         return icon;
+    }
+    
+    private Bitmap scaleToAppIconSize(Bitmap photo) {
+        // Setup the drawing classes
+        Bitmap icon = createShortcutBitmap();
+        Canvas canvas = new Canvas(icon);
+
+        // Copy in the photo
+        Paint photoPaint = new Paint();
+        photoPaint.setDither(true);
+        photoPaint.setFilterBitmap(true);
+        Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
+        Rect dst = new Rect(0,0, mIconSize, mIconSize);
+        canvas.drawBitmap(photo, src, dst, photoPaint);
+        
+        return icon;
+    }
+    
+    private Bitmap createShortcutBitmap() {
+        return Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
     }
 
     /**
