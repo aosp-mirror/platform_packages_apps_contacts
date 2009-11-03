@@ -5,7 +5,8 @@ LOCAL_MODULE_TAGS := user
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client
+LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client \
+                               com.android.phone.common
 
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
