@@ -18,6 +18,7 @@ package com.android.contacts.model;
 
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.provider.ContactsContract.Data;
 
@@ -50,7 +51,8 @@ public interface Editor {
      * builds any needed views. Any changes performed by the user will be
      * written back to that same object.
      */
-    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly);
+    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly,
+            ViewIdGenerator vig);
 
     /**
      * Add a specific {@link EditorListener} to this {@link Editor}.

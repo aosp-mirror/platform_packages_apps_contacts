@@ -24,6 +24,7 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.content.Entity;
@@ -149,13 +150,15 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, ContactsSource source) {
+    public void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig) {
         // Remove any existing sections
         mGeneral.removeAllViews();
         mSecondary.removeAllViews();
 
         // Bail if invalid state or source
         if (state == null || source == null) return;
+
+        setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
@@ -208,7 +211,7 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
                 if (!readOnly) {
-                    mName.setValues(kind, primary, state, source.readOnly);
+                    mName.setValues(kind, primary, state, source.readOnly, vig);
                 } else {
                     String displayName = primary.getAsString(StructuredName.DISPLAY_NAME);
                     mReadOnlyName.setText(displayName);
@@ -216,7 +219,7 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(kind, primary, state, source.readOnly);
+                mPhoto.setValues(kind, primary, state, source.readOnly, vig);
                 if (readOnly && !mPhoto.hasSetPhoto()) {
                     mPhotoStub.setVisibility(View.GONE);
                 } else {
@@ -228,8 +231,7 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
                 final ViewGroup parent = kind.secondary ? mSecondary : mGeneral;
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, parent, false);
-                section.setState(kind, state, source.readOnly);
-                section.setId(kind.weight);
+                section.setState(kind, state, source.readOnly, vig);
                 parent.addView(section);
             }
         }

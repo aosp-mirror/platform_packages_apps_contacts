@@ -24,6 +24,7 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.content.Entity;
@@ -101,7 +102,7 @@ class ReadOnlyContactEditorView extends BaseContactEditorView {
      * TODO: make this more generic using data from the source
      */
     @Override
-    public void setState(EntityDelta state, ContactsSource source) {
+    public void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig) {
         // Remove any existing sections
         mGeneral.removeAllViews();
 
@@ -135,7 +136,7 @@ class ReadOnlyContactEditorView extends BaseContactEditorView {
             EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
             mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-            mPhoto.setValues(kind, primary, state, source.readOnly);
+            mPhoto.setValues(kind, primary, state, source.readOnly, vig);
             if (!mHasPhotoEditor || !mPhoto.hasSetPhoto()) {
                 mPhotoStub.setVisibility(View.GONE);
             } else {
