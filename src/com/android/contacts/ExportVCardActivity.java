@@ -110,7 +110,6 @@ public class ExportVCardActivity extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 mActualExportThread = new ActualExportThread(mFileName);
-                mActualExportThread.start();
                 showDialog(R.id.dialog_exporting_vcard);
             }
         }
@@ -295,24 +294,21 @@ public class ExportVCardActivity extends Activity {
                 return builder.create();
             }
             case R.id.dialog_exporting_vcard: {
-                return getExportingVCardDialog();
+                if (mProgressDialog == null) {
+                    String title = getString(R.string.exporting_contact_list_title);
+                    String message = getString(R.string.exporting_contact_list_message,
+                            mExportingFileName);
+                    mProgressDialog = new ProgressDialog(ExportVCardActivity.this);
+                    mProgressDialog.setTitle(title);
+                    mProgressDialog.setMessage(message);
+                    mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    mProgressDialog.setOnCancelListener(mActualExportThread);
+                    mActualExportThread.start();
+                }
+                return mProgressDialog;
             }
         }
         return super.onCreateDialog(id);
-    }
-
-    private Dialog getExportingVCardDialog() {
-        if (mProgressDialog == null) {
-            String title = getString(R.string.exporting_contact_list_title);
-            String message = getString(R.string.exporting_contact_list_message,
-                    mExportingFileName);
-            mProgressDialog = new ProgressDialog(ExportVCardActivity.this);
-            mProgressDialog.setTitle(title);
-            mProgressDialog.setMessage(message);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mProgressDialog.setOnCancelListener(mActualExportThread);
-        }
-        return mProgressDialog;
     }
 
     @Override
