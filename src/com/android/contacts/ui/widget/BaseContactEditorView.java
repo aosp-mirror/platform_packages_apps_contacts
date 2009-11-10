@@ -22,6 +22,7 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.content.Entity;
@@ -95,7 +96,7 @@ public abstract class BaseContactEditorView extends LinearLayout {
      * {@link EntityDelta} state and the {@link ContactsSource} that
      * apply to that state.
      */
-    public abstract void setState(EntityDelta state, ContactsSource source);
+    public abstract void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig);
 
     /**
      * Sets the {@link EditorListener} on the name field

@@ -30,6 +30,7 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.BaseContactEditorView;
+import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
@@ -99,6 +100,7 @@ public final class EditContactActivity extends Activity
 
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
+    private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
     /** The result code when view activity should close after edit returns */
     public static final int RESULT_CLOSE_VIEW_ACTIVITY = 777;
@@ -124,6 +126,8 @@ public final class EditContactActivity extends Activity
 
     private ArrayList<Dialog> mManagedDialogs = Lists.newArrayList();
 
+    private ViewIdGenerator mViewIdGenerator;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -148,6 +152,11 @@ public final class EditContactActivity extends Activity
         } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
             // Trigger dialog to pick account type
             doAddAction();
+        }
+
+        if (icicle == null) {
+            // If icicle is non-null, onRestoreInstanceState() will restore the generator.
+            mViewIdGenerator = new ViewIdGenerator();
         }
     }
 
@@ -223,6 +232,7 @@ public final class EditContactActivity extends Activity
         }
 
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
+        outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
         super.onSaveInstanceState(outState);
     }
 
@@ -232,6 +242,7 @@ public final class EditContactActivity extends Activity
         mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
         mRawContactIdRequestingPhoto = savedInstanceState.getLong(
                 KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
+        mViewIdGenerator = savedInstanceState.getParcelable(KEY_VIEW_ID_GENERATOR);
         bindEditors();
 
         super.onRestoreInstanceState(savedInstanceState);
@@ -357,7 +368,7 @@ public final class EditContactActivity extends Activity
                     photoEditor));
 
             mContent.addView(editor);
-            editor.setState(entity, source);
+            editor.setState(entity, source, mViewIdGenerator);
         }
 
         // Show editor now that we've loaded state
