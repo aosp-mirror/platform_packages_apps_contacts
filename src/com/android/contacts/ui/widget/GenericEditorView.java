@@ -25,6 +25,7 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.ViewIdGenerator;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -78,6 +79,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     protected EditType mType;
     // Used only when a user tries to use custom label.
     private EditType mPendingType;
+
+    private ViewIdGenerator mViewIdGenerator;
 
     public GenericEditorView(Context context) {
         super(context);
@@ -160,18 +163,21 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     }
 
     private void rebuildValues() {
-        setValues(mKind, mEntry, mState, mReadOnly);
+        setValues(mKind, mEntry, mState, mReadOnly, mViewIdGenerator);
     }
 
     /**
      * Prepare this editor using the given {@link DataKind} for defining
      * structure and {@link ValuesDelta} describing the content to edit.
      */
-    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly) {
+    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
+            ViewIdGenerator vig) {
         mKind = kind;
         mEntry = entry;
         mState = state;
         mReadOnly = readOnly;
+        mViewIdGenerator = vig;
+        setId(vig.getId(state, kind, entry, ViewIdGenerator.NO_VIEW_INDEX));
 
         final boolean enabled = !readOnly;
 
@@ -195,9 +201,11 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         // Build out set of fields
         mFields.removeAllViews();
         boolean hidePossible = false;
+        int n = 0;
         for (EditField field : kind.fieldList) {
             // Inflate field from definition
             EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, mFields, false);
+            fieldView.setId(vig.getId(state, kind, entry, n++));
             if (field.titleRes > 0) {
                 fieldView.setHint(field.titleRes);
             }

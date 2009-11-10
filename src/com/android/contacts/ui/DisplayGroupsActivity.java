@@ -334,7 +334,15 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      */
     private static Comparator<GroupDelta> sIdComparator = new Comparator<GroupDelta>() {
         public int compare(GroupDelta object1, GroupDelta object2) {
-            return object1.getViewId() - object2.getViewId();
+            final long id1 = object1.getId();
+            final long id2 = object2.getId();
+            if (id1 < id2) {
+                return -1;
+            } else if (id1 > id2) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     };
 
