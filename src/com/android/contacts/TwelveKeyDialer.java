@@ -80,7 +80,10 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private static final int TONE_LENGTH_MS = 150;
 
     /** The DTMF tone volume relative to other sounds in the stream */
-    private static final int TONE_RELATIVE_VOLUME = 50;
+    private static final int TONE_RELATIVE_VOLUME = 80;
+
+    /** Stream type used to play the DTMF tones off call, and mapped to the volume control keys */
+    private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_MUSIC;
 
     /** Play the vibrate pattern only once. */
     private static final int VIBRATE_NO_REPEAT = -1;
@@ -404,8 +407,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_DTMF,
-                            TONE_RELATIVE_VOLUME);
+                    // we want the user to be able to control the volume of the dial tones
+                    // outside of a call, so we use the stream type that is also mapped to the
+                    // volume control keys for this activity
+                    mToneGenerator = new ToneGenerator(DIAL_TONE_STREAM_TYPE, TONE_RELATIVE_VOLUME);
+                    setVolumeControlStream(DIAL_TONE_STREAM_TYPE);
                 } catch (RuntimeException e) {
                     Log.w(TAG, "Exception caught while creating local tone generator: " + e);
                     mToneGenerator = null;
