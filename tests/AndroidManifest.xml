@@ -26,5 +26,11 @@
         android:targetPackage="com.android.contacts"
         android:label="Contacts app tests">
     </instrumentation>
+    
+    <instrumentation android:name="com.android.contacts.ContactsLaunchPerformance"
+        android:targetPackage="com.android.contacts"
+        android:label="Contacts launch performance">
+    </instrumentation>
+    
 
 </manifest> 
