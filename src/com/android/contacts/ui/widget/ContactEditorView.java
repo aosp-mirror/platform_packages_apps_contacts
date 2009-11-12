@@ -30,6 +30,8 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -62,6 +64,7 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
     private View mPhotoStub;
     private GenericEditorView mName;
 
+    private boolean mIsSourceReadOnly;
     private ViewGroup mGeneral;
     private ViewGroup mSecondary;
     private boolean mSecondaryVisible;
@@ -136,12 +139,22 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
 
     /**
      * Set the visibility of secondary sections, along with header icon.
+     *
+     * <p>If the source is read-only and there's no secondary fields, the entire secondary section
+     * will be hidden.
      */
     private void setSecondaryVisible(boolean makeVisible) {
-        mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
-        mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(makeVisible ? mSecondaryOpen
-                : mSecondaryClosed, null, null, null);
         mSecondaryVisible = makeVisible;
+
+        if (!mIsSourceReadOnly && mSecondary.getChildCount() > 0) {
+            mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
+            mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(
+                    makeVisible ? mSecondaryOpen : mSecondaryClosed, null, null, null);
+        } else {
+            mSecondaryHeader.setVisibility(View.GONE);
+            mSecondary.setVisibility(View.GONE);
+
+        }
     }
 
     /**
@@ -159,6 +172,8 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         if (state == null || source == null) return;
 
         setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
+
+        mIsSourceReadOnly = source.readOnly;
 
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
@@ -183,12 +198,11 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
-        mPhoto.setEnabled(!source.readOnly);
-        mName.setEnabled(!source.readOnly);
+        mPhoto.setEnabled(!mIsSourceReadOnly);
+        mName.setEnabled(!mIsSourceReadOnly);
 
-        boolean readOnly = source.readOnly;
         // Show and hide the appropriate views
-        if (readOnly) {
+        if (mIsSourceReadOnly) {
             mGeneral.setVisibility(View.GONE);
             mName.setVisibility(View.GONE);
             mReadOnly.setVisibility(View.VISIBLE);
@@ -210,8 +224,8 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                if (!readOnly) {
-                    mName.setValues(kind, primary, state, source.readOnly, vig);
+                if (!mIsSourceReadOnly) {
+                    mName.setValues(kind, primary, state, mIsSourceReadOnly, vig);
                 } else {
                     String displayName = primary.getAsString(StructuredName.DISPLAY_NAME);
                     mReadOnlyName.setText(displayName);
@@ -219,36 +233,24 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(kind, primary, state, source.readOnly, vig);
-                if (readOnly && !mPhoto.hasSetPhoto()) {
+                mPhoto.setValues(kind, primary, state, mIsSourceReadOnly, vig);
+                if (mIsSourceReadOnly && !mPhoto.hasSetPhoto()) {
                     mPhotoStub.setVisibility(View.GONE);
                 } else {
                     mPhotoStub.setVisibility(View.VISIBLE);
                 }
-            } else if (!readOnly) {
+            } else if (!mIsSourceReadOnly) {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
                 final ViewGroup parent = kind.secondary ? mSecondary : mGeneral;
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, parent, false);
-                section.setState(kind, state, source.readOnly, vig);
+                section.setState(kind, state, mIsSourceReadOnly, vig);
                 parent.addView(section);
             }
         }
 
-        if (!readOnly && mSecondary.getChildCount() > 0) {
-            // There exist secondary elements, show the header and honor mSecondaryVisible
-            mSecondaryHeader.setVisibility(View.VISIBLE);
-            if (mSecondaryVisible) {
-                mSecondary.setVisibility(View.VISIBLE);
-            } else {
-                mSecondary.setVisibility(View.GONE);
-            }
-        } else {
-            // There are no secondary elements, hide the whole thing
-            mSecondaryHeader.setVisibility(View.GONE);
-            mSecondary.setVisibility(View.GONE);
-        }
+        setSecondaryVisible(mSecondaryVisible);
     }
 
     /**
@@ -262,5 +264,58 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
     @Override
     public long getRawContactId() {
         return mRawContactId;
+    }
+
+    private static class SavedState extends BaseSavedState {
+        public boolean mSecondaryVisible;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            mSecondaryVisible = (in.readInt() == 0 ? false : true);
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(mSecondaryVisible ? 1 : 0);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
+
+    /**
+     * Saves the visibility of the secondary field.
+     */
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+
+        ss.mSecondaryVisible = mSecondaryVisible;
+        return ss;
+    }
+
+    /**
+     * Restores the visibility of the secondary field.
+     */
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        setSecondaryVisible(ss.mSecondaryVisible);
     }
 }
