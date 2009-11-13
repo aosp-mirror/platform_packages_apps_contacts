@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.tests;
+package com.android.contacts;
 
 import android.app.Activity;
 import android.test.LaunchPerformanceBase;

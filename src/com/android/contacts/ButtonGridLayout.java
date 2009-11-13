@@ -18,14 +18,46 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View.MeasureSpec;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.MeasureSpec;
 
+/**
+ * Create a 4x3 grid of dial buttons.
+ *
+ * It was easier and more efficient to do it this way than use
+ * standard layouts. It's perfectly fine (and actually encouraged) to
+ * use custom layouts rather than piling up standard layouts.
+ *
+ * The horizontal and vertical spacings between buttons are controlled
+ * by the amount of padding (attributes on the ButtonGridLayout element):
+ *   - horizontal = left + right padding and
+ *   - vertical = top + bottom padding.
+ *
+ * This class assumes that all the buttons have the same size.
+ * The buttons will be bottom aligned in their view on layout.
+ *
+ * Invocation: onMeasure is called first by the framework to know our
+ * size. Then onLayout is invoked to layout the buttons.
+ */
+// TODO: Blindly layout the buttons w/o checking if we overrun the
+// bottom-right corner.
 public class ButtonGridLayout extends ViewGroup {
+    private final int COLUMNS = 3;
+    private final int ROWS = 4;
 
-    private final int mColumns = 3;
-    
+    // Width and height of a button
+    private int mButtonWidth;
+    private int mButtonHeight;
+
+    // Width and height of a button + padding.
+    private int mWidthInc;
+    private int mHeightInc;
+
+    // Height of the dialpad. Used to align it at the bottom of the
+    // view.
+    private int mHeight;
+
     public ButtonGridLayout(Context context) {
         super(context);
     }
@@ -37,61 +69,47 @@ public class ButtonGridLayout extends ViewGroup {
     public ButtonGridLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-    
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int y = mPaddingTop;
-        final int rows = getRows();
-        final View child0 = getChildAt(0);
-        final int yInc = (getHeight() - mPaddingTop - mPaddingBottom) / rows;
-        final int xInc = (getWidth() - mPaddingLeft - mPaddingRight) / mColumns;
-        final int childWidth = child0.getMeasuredWidth();
-        final int childHeight = child0.getMeasuredHeight();
-        final int xOffset = (xInc - childWidth) / 2;
-        final int yOffset = (yInc - childHeight) / 2;
-        
-        for (int row = 0; row < rows; row++) {
+        int i = 0;
+        // The last row is bottom aligned.
+        int y = (b - t) - mHeight + mPaddingTop;
+        for (int row = 0; row < ROWS; row++) {
             int x = mPaddingLeft;
-            for (int col = 0; col < mColumns; col++) {
-                int cell = row * mColumns + col;
-                if (cell >= getChildCount()) {
-                    break;
-                }
-                View child = getChildAt(cell);
-                child.layout(x + xOffset, y + yOffset, 
-                        x + xOffset + childWidth, 
-                        y + yOffset + childHeight);
-                x += xInc;
-            }
-            y += yInc;
-        }
-    }
+            for (int col = 0; col < COLUMNS; col++) {
+                View child = getChildAt(i);
 
-    private int getRows() {
-        return (getChildCount() + mColumns - 1) / mColumns; 
-    }
-    
+                child.layout(x, y, x + mButtonWidth, y + mButtonHeight);
+
+                x += mWidthInc;
+                i++;
+            }
+            y += mHeightInc;
+        }
+      }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = mPaddingLeft + mPaddingRight;
-        int height = mPaddingTop + mPaddingBottom;
-        
         // Measure the first child and get it's size
         View child = getChildAt(0);
         child.measure(MeasureSpec.UNSPECIFIED , MeasureSpec.UNSPECIFIED);
-        int childWidth = child.getMeasuredWidth();
-        int childHeight = child.getMeasuredHeight();
+
         // Make sure the other children are measured as well, to initialize
         for (int i = 1; i < getChildCount(); i++) {
-            getChildAt(0).measure(MeasureSpec.UNSPECIFIED , MeasureSpec.UNSPECIFIED);
+            getChildAt(i).measure(MeasureSpec.UNSPECIFIED , MeasureSpec.UNSPECIFIED);
         }
-        // All cells are going to be the size of the first child
-        width += mColumns * childWidth;
-        height += getRows() * childHeight;
-        
-        width = resolveSize(width, widthMeasureSpec);
-        height = resolveSize(height, heightMeasureSpec);
+
+        // Store these to be reused in onLayout.
+        mButtonWidth = child.getMeasuredWidth();
+        mButtonHeight = child.getMeasuredHeight();
+        mWidthInc = mButtonWidth + mPaddingLeft + mPaddingRight;
+        mHeightInc = mButtonHeight + mPaddingTop + mPaddingBottom;
+        mHeight = ROWS * mHeightInc;
+
+        final int width = resolveSize(COLUMNS * mWidthInc, widthMeasureSpec);
+        final int height = resolveSize(mHeight, heightMeasureSpec);
+
         setMeasuredDimension(width, height);
     }
-
 }

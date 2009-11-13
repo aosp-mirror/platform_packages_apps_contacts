@@ -10,8 +10,6 @@ LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
 
-LOCAL_STATIC_JAVA_LIBRARIES := googlelogin-client
-
 include $(BUILD_PACKAGE)
 
 # Use the folloing include to make our test apk.

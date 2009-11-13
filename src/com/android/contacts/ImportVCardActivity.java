@@ -16,30 +16,36 @@
 
 package com.android.contacts;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.syncml.pim.VBuilder;
-import android.syncml.pim.VBuilderCollection;
-import android.syncml.pim.VParser;
-import android.syncml.pim.vcard.VCardDataBuilder;
-import android.syncml.pim.vcard.VCardEntryCounter;
-import android.syncml.pim.vcard.VCardException;
-import android.syncml.pim.vcard.VCardNestedException;
-import android.syncml.pim.vcard.VCardParser_V21;
-import android.syncml.pim.vcard.VCardParser_V30;
-import android.syncml.pim.vcard.VCardSourceDetector;
-import android.syncml.pim.vcard.VCardVersionException;
+import android.pim.vcard.EntryCommitter;
+import android.pim.vcard.VCardBuilder;
+import android.pim.vcard.VCardBuilderCollection;
+import android.pim.vcard.VCardConfig;
+import android.pim.vcard.VCardDataBuilder;
+import android.pim.vcard.VCardEntryCounter;
+import android.pim.vcard.VCardParser_V21;
+import android.pim.vcard.VCardParser_V30;
+import android.pim.vcard.VCardSourceDetector;
+import android.pim.vcard.exception.VCardException;
+import android.pim.vcard.exception.VCardNestedException;
+import android.pim.vcard.exception.VCardNotSupportedException;
+import android.pim.vcard.exception.VCardVersionException;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
@@ -48,10 +54,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.Vector;
 
@@ -87,9 +95,34 @@ public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
-    private ProgressDialog mProgressDialog;
     private Handler mHandler = new Handler();
-    private boolean mLastNameComesBeforeFirstName;
+    private Account mAccount;
+
+    private ProgressDialog mProgressDialogForScanVCard;
+
+    private List<VCardFile> mAllVCardFileList;
+    private VCardScanThread mVCardScanThread;
+    private VCardReadThread mVCardReadThread;
+    private ProgressDialog mProgressDialogForReadVCard;
+
+    private String mErrorMessage;
+
+    private class DialogDisplayer implements Runnable {
+        private final int mResId;
+        public DialogDisplayer(int resId) {
+            mResId = resId;
+        }
+        public DialogDisplayer(String errorMessage) {
+            mResId = R.id.dialog_error_with_message;
+            mErrorMessage = errorMessage;
+        }
+        public void run() {
+            // Show the Dialog only when the parent Activity is still alive.
+            if (!ImportVCardActivity.this.isFinishing()) {
+                showDialog(mResId);
+            }
+        }
+    }
 
     private class CancelListener
         implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
@@ -104,45 +137,26 @@ public class ImportVCardActivity extends Activity {
 
     private CancelListener mCancelListener = new CancelListener();
 
-    private class ErrorDisplayer implements Runnable {
-        private String mErrorMessage;
-
-        public ErrorDisplayer(String errorMessage) {
-            mErrorMessage = errorMessage;
-        }
-
-        public void run() {
-            String message =
-                getString(R.string.reading_vcard_failed_message, mErrorMessage);
-            AlertDialog.Builder builder =
-                new AlertDialog.Builder(ImportVCardActivity.this)
-                    .setTitle(getString(R.string.reading_vcard_failed_title))
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setMessage(message)
-                    .setOnCancelListener(mCancelListener)
-                    .setPositiveButton(android.R.string.ok, mCancelListener);
-            builder.show();
-        }
-    }
-
     private class VCardReadThread extends Thread
             implements DialogInterface.OnCancelListener {
-        private String mCanonicalPath;
-        private List<VCardFile> mVCardFileList;
         private ContentResolver mResolver;
         private VCardParser_V21 mVCardParser;
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
+        private String mCanonicalPath;
+
+        private List<VCardFile> mSelectedVCardFileList;
+        private List<String> mErrorFileNameList;
 
         public VCardReadThread(String canonicalPath) {
             mCanonicalPath = canonicalPath;
-            mVCardFileList = null;
             init();
         }
 
-        public VCardReadThread(List<VCardFile> vcardFileList) {
+        public VCardReadThread(final List<VCardFile> selectedVCardFileList) {
             mCanonicalPath = null;
-            mVCardFileList = vcardFileList;
+            mSelectedVCardFileList = selectedVCardFileList;
+            mErrorFileNameList = new ArrayList<String>();
             init();
         }
 
@@ -165,35 +179,37 @@ public class ImportVCardActivity extends Activity {
 
         @Override
         public void run() {
+            boolean shouldCallFinish = true;
             mWakeLock.acquire();
             // Some malicious vCard data may make this thread broken
             // (e.g. OutOfMemoryError).
             // Even in such cases, some should be done.
             try {
-                if (mCanonicalPath != null) {
-                    mProgressDialog.setProgressNumberFormat("");
-                    mProgressDialog.setProgress(0);
+                if (mCanonicalPath != null) {  // Read one file
+                    mProgressDialogForReadVCard.setProgressNumberFormat("");
+                    mProgressDialogForReadVCard.setProgress(0);
 
                     // Count the number of VCard entries
-                    mProgressDialog.setIndeterminate(true);
+                    mProgressDialogForReadVCard.setIndeterminate(true);
                     long start;
                     if (DO_PERFORMANCE_PROFILE) {
                         start = System.currentTimeMillis();
                     }
                     VCardEntryCounter counter = new VCardEntryCounter();
                     VCardSourceDetector detector = new VCardSourceDetector();
-                    VBuilderCollection builderCollection = new VBuilderCollection(
+                    VCardBuilderCollection builderCollection = new VCardBuilderCollection(
                             Arrays.asList(counter, detector));
+
                     boolean result;
                     try {
-                        result = readOneVCard(mCanonicalPath,
-                                VParser.DEFAULT_CHARSET, builderCollection, null, true);
+                        result = readOneVCardFile(mCanonicalPath,
+                                VCardConfig.DEFAULT_CHARSET, builderCollection, null, true, null);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
-                            result = readOneVCard(mCanonicalPath,
-                                    VParser.DEFAULT_CHARSET, counter, detector, false);
+                            result = readOneVCardFile(mCanonicalPath,
+                                    VCardConfig.DEFAULT_CHARSET, counter, detector, false, null);
                         } catch (VCardNestedException e2) {
                             result = false;
                             Log.e(LOG_TAG, "Must not reach here. " + e2);
@@ -205,21 +221,24 @@ public class ImportVCardActivity extends Activity {
                                 time + " ms");
                     }
                     if (!result) {
+                        shouldCallFinish = false;
                         return;
                     }
 
-                    mProgressDialog.setProgressNumberFormat(
+                    mProgressDialogForReadVCard.setProgressNumberFormat(
                             getString(R.string.reading_vcard_contacts));
-                    mProgressDialog.setIndeterminate(false);
-                    mProgressDialog.setMax(counter.getCount());
+                    mProgressDialogForReadVCard.setIndeterminate(false);
+                    mProgressDialogForReadVCard.setMax(counter.getCount());
                     String charset = detector.getEstimatedCharset();
-                    doActuallyReadOneVCard(charset, true, detector);
-                } else {
-                    mProgressDialog.setProgressNumberFormat(
+                    doActuallyReadOneVCard(mCanonicalPath, null, charset, true, detector,
+                            mErrorFileNameList);
+                } else {  // Read multiple files.
+                    mProgressDialogForReadVCard.setProgressNumberFormat(
                             getString(R.string.reading_vcard_files));
-                    mProgressDialog.setMax(mVCardFileList.size());
-                    mProgressDialog.setProgress(0);
-                    for (VCardFile vcardFile : mVCardFileList) {
+                    mProgressDialogForReadVCard.setMax(mSelectedVCardFileList.size());
+                    mProgressDialogForReadVCard.setProgress(0);
+                    
+                    for (VCardFile vcardFile : mSelectedVCardFileList) {
                         if (mCanceled) {
                             return;
                         }
@@ -227,66 +246,81 @@ public class ImportVCardActivity extends Activity {
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
-                            if (!readOneVCard(canonicalPath, VParser.DEFAULT_CHARSET, detector,
-                                    null, true)) {
+                            if (!readOneVCardFile(canonicalPath, VCardConfig.DEFAULT_CHARSET,
+                                    detector, null, true, mErrorFileNameList)) {
                                 continue;
                             }
                         } catch (VCardNestedException e) {
                             // Assume that VCardSourceDetector was able to detect the source.
                         }
                         String charset = detector.getEstimatedCharset();
-                        doActuallyReadOneVCard(charset, false, detector);
-                        mProgressDialog.incrementProgressBy(1);
+                        doActuallyReadOneVCard(canonicalPath, mAccount,
+                                charset, false, detector, mErrorFileNameList);
+                        mProgressDialogForReadVCard.incrementProgressBy(1);
                     }
                 }
             } finally {
                 mWakeLock.release();
-                mProgressDialog.dismiss();
-                finish();
-            }
-        }
-
-        private void doActuallyReadOneVCard(String charset, boolean doIncrementProgress,
-                VCardSourceDetector detector) {
-            VCardDataBuilder builder;
-            final Context context = ImportVCardActivity.this;
-            if (charset != null) {
-                builder = new VCardDataBuilder(mResolver,
-                        mProgressDialog,
-                        context.getString(R.string.reading_vcard_message),
-                        mHandler,
-                        charset,
-                        charset,
-                        false,
-                        mLastNameComesBeforeFirstName);
-            } else {
-                builder = new VCardDataBuilder(mResolver,
-                        mProgressDialog,
-                        context.getString(R.string.reading_vcard_message),
-                        mHandler,
-                        null,
-                        null,
-                        false,
-                        mLastNameComesBeforeFirstName);
-                charset = VParser.DEFAULT_CHARSET;
-            }
-            if (doIncrementProgress) {
-                builder.setOnProgressRunnable(new Runnable() {
-                    public void run() {
-                        mProgressDialog.incrementProgressBy(1);
+                mProgressDialogForReadVCard.dismiss();
+                // finish() is called via mCancelListener, which is used in DialogDisplayer.
+                if (shouldCallFinish && !isFinishing()) {
+                    if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
+                        finish();
+                    } else {
+                        StringBuilder builder = new StringBuilder();
+                        boolean first = true;
+                        for (String fileName : mErrorFileNameList) {
+                            if (first) {
+                                first = false;
+                            } else {
+                                builder.append(", ");
+                            }
+                            builder.append(fileName);
+                        }
+                        
+                        mHandler.post(new DialogDisplayer(
+                                getString(R.string.fail_reason_failed_to_read_files,
+                                        builder.toString())));
                     }
-                });
+                }
             }
-            try {
-                readOneVCard(mCanonicalPath, charset, builder, detector, false);
-            } catch (VCardNestedException e) {
-                Log.e(LOG_TAG, "Must not reach here.");
-            }
-            builder.showDebugInfo();
         }
 
-        private boolean readOneVCard(String canonicalPath, String charset, VBuilder builder,
-                VCardSourceDetector detector, boolean throwNestedException)
+        private boolean doActuallyReadOneVCard(String canonicalPath, Account account,
+                String charset, boolean showEntryParseProgress,
+                VCardSourceDetector detector, List<String> errorFileNameList) {
+            final Context context = ImportVCardActivity.this;
+            VCardDataBuilder builder;
+            final String currentLanguage = Locale.getDefault().getLanguage();
+            int vcardType = VCardConfig.getVCardTypeFromString(
+                    context.getString(R.string.config_import_vcard_type));
+            if (charset != null) {
+                builder = new VCardDataBuilder(charset, charset, false, vcardType, mAccount);
+            } else {
+                charset = VCardConfig.DEFAULT_CHARSET;
+                builder = new VCardDataBuilder(null, null, false, vcardType, mAccount);
+            }
+            builder.addEntryHandler(new EntryCommitter(mResolver));
+            if (showEntryParseProgress) {
+                builder.addEntryHandler(new ProgressShower(mProgressDialogForReadVCard,
+                        context.getString(R.string.reading_vcard_message),
+                        ImportVCardActivity.this,
+                        mHandler));
+            }
+
+            try {
+                if (!readOneVCardFile(canonicalPath, charset, builder, detector, false, null)) {
+                    return false;
+                }
+            } catch (VCardNestedException e) {
+                Log.e(LOG_TAG, "Never reach here.");
+            }
+            return true;
+        }
+
+        private boolean readOneVCardFile(String canonicalPath, String charset,
+                VCardBuilder builder, VCardSourceDetector detector,
+                boolean throwNestedException, List<String> errorFileNameList)
                 throws VCardNestedException {
             FileInputStream is;
             try {
@@ -316,63 +350,77 @@ public class ImportVCardActivity extends Activity {
                         }
                     }
                 }
-                mVCardParser.showDebugInfo();
             } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException was emitted: " + e);
+                Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
 
-                mProgressDialog.dismiss();
+                mProgressDialogForReadVCard.dismiss();
 
-                mHandler.post(new ErrorDisplayer(
-                        getString(R.string.fail_reason_io_error) +
-                        " (" + e.getMessage() + ")"));
-                return false;
-            } catch (VCardNestedException e) {
-                if (throwNestedException) {
-                    throw e;
+                if (errorFileNameList != null) {
+                    errorFileNameList.add(canonicalPath);
                 } else {
-                    Log.e(LOG_TAG, "VCardNestedException was emitted: " + e);
-                    mHandler.post(new ErrorDisplayer(
+                    mHandler.post(new DialogDisplayer(
+                            getString(R.string.fail_reason_io_error) +
+                                    ": " + e.getLocalizedMessage()));
+                }
+                return false;
+            } catch (VCardNotSupportedException e) {
+                if ((e instanceof VCardNestedException) && throwNestedException) {
+                    throw (VCardNestedException)e;
+                }
+                if (errorFileNameList != null) {
+                    errorFileNameList.add(canonicalPath);
+                } else {
+                    mHandler.post(new DialogDisplayer(
+                            getString(R.string.fail_reason_vcard_not_supported_error) +
+                            " (" + e.getMessage() + ")"));
+                }
+                return false;
+            } catch (VCardException e) {
+                if (errorFileNameList != null) {
+                    errorFileNameList.add(canonicalPath);
+                } else {
+                    mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_parse_error) +
                             " (" + e.getMessage() + ")"));
-                    return false;
                 }
-            } catch (VCardException e) {
-                Log.e(LOG_TAG, "VCardException was emitted: " + e);
-
-                mHandler.post(new ErrorDisplayer(
-                        getString(R.string.fail_reason_vcard_parse_error) +
-                        " (" + e.getMessage() + ")"));
                 return false;
             }
             return true;
         }
 
-        public void onCancel(DialogInterface dialog) {
+        public void cancel() {
             mCanceled = true;
             if (mVCardParser != null) {
                 mVCardParser.cancel();
             }
         }
+
+        public void onCancel(DialogInterface dialog) {
+            cancel();
+        }
     }
 
     private class ImportTypeSelectedListener implements
             DialogInterface.OnClickListener {
-        public static final int IMPORT_ALL = 0;
-        public static final int IMPORT_ONE = 1;
-
-        private List<VCardFile> mVCardFileList;
+        public static final int IMPORT_ONE = 0;
+        public static final int IMPORT_MULTIPLE = 1;
+        public static final int IMPORT_ALL = 2;
+        public static final int IMPORT_TYPE_SIZE = 3;
+        
         private int mCurrentIndex;
-
-        public ImportTypeSelectedListener(List<VCardFile> vcardFileList) {
-            mVCardFileList = vcardFileList;
-        }
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                if (mCurrentIndex == IMPORT_ALL) {
-                    importAllVCardFromSDCard(mVCardFileList);
-                } else {
-                    showVCardFileSelectDialog(mVCardFileList);
+                switch (mCurrentIndex) {
+                case IMPORT_ALL:
+                    importMultipleVCardFromSDCard(mAllVCardFileList);
+                    break;
+                case IMPORT_MULTIPLE:
+                    showDialog(R.id.dialog_select_multiple_vcard);
+                    break;
+                default:
+                    showDialog(R.id.dialog_select_one_vcard);
+                    break;
                 }
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
                 finish();
@@ -381,24 +429,55 @@ public class ImportVCardActivity extends Activity {
             }
         }
     }
-
-    private class VCardSelectedListener implements DialogInterface.OnClickListener {
-        private List<VCardFile> mVCardFileList;
+    
+    private class VCardSelectedListener implements
+            DialogInterface.OnClickListener, DialogInterface.OnMultiChoiceClickListener {
         private int mCurrentIndex;
+        private Set<Integer> mSelectedIndexSet;
 
-        public VCardSelectedListener(List<VCardFile> vcardFileList) {
-            mVCardFileList = vcardFileList;
+        public VCardSelectedListener(boolean multipleSelect) {
             mCurrentIndex = 0;
+            if (multipleSelect) {
+                mSelectedIndexSet = new HashSet<Integer>();
+            }
         }
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                importOneVCardFromSDCard(mVCardFileList.get(mCurrentIndex).getCanonicalPath());
+                if (mSelectedIndexSet != null) {
+                    List<VCardFile> selectedVCardFileList = new ArrayList<VCardFile>();
+                    int size = mAllVCardFileList.size();
+                    // We'd like to sort the files by its index, so we do not use Set iterator. 
+                    for (int i = 0; i < size; i++) {
+                        if (mSelectedIndexSet.contains(i)) {
+                            selectedVCardFileList.add(mAllVCardFileList.get(i));
+                        }
+                    }
+                    importMultipleVCardFromSDCard(selectedVCardFileList);
+                } else {
+                    importOneVCardFromSDCard(mAllVCardFileList.get(mCurrentIndex).getCanonicalPath());
+                }
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
                 finish();
             } else {
                 // Some file is selected.
                 mCurrentIndex = which;
+                if (mSelectedIndexSet != null) {
+                    if (mSelectedIndexSet.contains(which)) {
+                        mSelectedIndexSet.remove(which);
+                    } else {
+                        mSelectedIndexSet.add(which);
+                    }
+                }
+            }
+        }
+
+        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+            if (mSelectedIndexSet == null || (mSelectedIndexSet.contains(which) == isChecked)) {
+                Log.e(LOG_TAG, String.format("Inconsist state in index %d (%s)", which,
+                        mAllVCardFileList.get(which).getCanonicalPath()));
+            } else {
+                onClick(dialog, which);
             }
         }
     }
@@ -412,9 +491,6 @@ public class ImportVCardActivity extends Activity {
         private boolean mGotIOException;
         private File mRootDirectory;
 
-        // null when search operation is canceled.
-        private List<VCardFile> mVCardFiles;
-
         // To avoid recursive link.
         private Set<String> mCheckedPaths;
         private PowerManager.WakeLock mWakeLock;
@@ -427,7 +503,6 @@ public class ImportVCardActivity extends Activity {
             mGotIOException = false;
             mRootDirectory = sdcardDirectory;
             mCheckedPaths = new HashSet<String>();
-            mVCardFiles = new Vector<VCardFile>();
             PowerManager powerManager = (PowerManager)ImportVCardActivity.this.getSystemService(
                     Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
@@ -437,6 +512,7 @@ public class ImportVCardActivity extends Activity {
 
         @Override
         public void run() {
+            mAllVCardFileList = new Vector<VCardFile>();
             try {
                 mWakeLock.acquire();
                 getVCardFileRecursively(mRootDirectory);
@@ -449,59 +525,24 @@ public class ImportVCardActivity extends Activity {
             }
 
             if (mCanceled) {
-                mVCardFiles = null;
+                mAllVCardFileList = null;
             }
 
-            mProgressDialog.dismiss();
+            mProgressDialogForScanVCard.dismiss();
+            mProgressDialogForScanVCard = null;
 
             if (mGotIOException) {
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        String message = (getString(R.string.scanning_sdcard_failed_message,
-                                getString(R.string.fail_reason_io_error)));
-
-                        AlertDialog.Builder builder =
-                            new AlertDialog.Builder(ImportVCardActivity.this)
-                                .setTitle(R.string.scanning_sdcard_failed_title)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .setMessage(message)
-                                .setOnCancelListener(mCancelListener)
-                                .setPositiveButton(android.R.string.ok, mCancelListener);
-                        builder.show();
-                    }
-                });
+                mHandler.post(new DialogDisplayer(R.id.dialog_io_exception));
             } else if (mCanceled) {
                 finish();
             } else {
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        int size = mVCardFiles.size();
-                        final Context context = ImportVCardActivity.this;
-                        if (size == 0) {
-                            String message = (getString(R.string.scanning_sdcard_failed_message,
-                                    getString(R.string.fail_reason_no_vcard_file)));
-
-                            AlertDialog.Builder builder =
-                                new AlertDialog.Builder(context)
-                                    .setTitle(R.string.scanning_sdcard_failed_title)
-                                    .setMessage(message)
-                                    .setOnCancelListener(mCancelListener)
-                                    .setPositiveButton(android.R.string.ok, mCancelListener);
-                            builder.show();
-                            return;
-                        } else if (context.getResources().getBoolean(
-                                R.bool.config_import_all_vcard_from_sdcard_automatically)) {
-                            importAllVCardFromSDCard(mVCardFiles);
-                        } else if (size == 1) {
-                            importOneVCardFromSDCard(mVCardFiles.get(0).getCanonicalPath());
-                        } else if (context.getResources().getBoolean(
-                                R.bool.config_allow_users_select_all_vcard_import)) {
-                            showSelectImportTypeDialog(mVCardFiles);
-                        } else {
-                            showVCardFileSelectDialog(mVCardFiles);
-                        }
-                    }
-                });
+                int size = mAllVCardFileList.size();
+                final Context context = ImportVCardActivity.this;
+                if (size == 0) {
+                    mHandler.post(new DialogDisplayer(R.id.dialog_vcard_not_found));
+                } else {
+                    startVCardSelectAndImport();
+                }
             }
         }
 
@@ -529,7 +570,7 @@ public class ImportVCardActivity extends Activity {
                     String fileName = file.getName();
                     VCardFile vcardFile = new VCardFile(
                             fileName, canonicalPath, file.lastModified());
-                    mVCardFiles.add(vcardFile);
+                    mAllVCardFileList.add(vcardFile);
                 }
             }
         }
@@ -545,43 +586,60 @@ public class ImportVCardActivity extends Activity {
         }
     }
 
+    private void startVCardSelectAndImport() {
+        int size = mAllVCardFileList.size();
+        if (getResources().getBoolean(R.bool.config_import_all_vcard_from_sdcard_automatically)) {
+            importMultipleVCardFromSDCard(mAllVCardFileList);
+        } else if (size == 1) {
+            importOneVCardFromSDCard(mAllVCardFileList.get(0).getCanonicalPath());
+        } else if (getResources().getBoolean(R.bool.config_allow_users_select_all_vcard_import)) {
+            mHandler.post(new DialogDisplayer(R.id.dialog_select_import_type));
+        } else {
+            mHandler.post(new DialogDisplayer(R.id.dialog_select_one_vcard));
+        }
+    }
     
-    private void importOneVCardFromSDCard(String canonicalPath) {
-        VCardReadThread thread = new VCardReadThread(canonicalPath);
-        showReadingVCardDialog(thread);
-        thread.start();
+    private void importMultipleVCardFromSDCard(final List<VCardFile> selectedVCardFileList) {
+        mHandler.post(new Runnable() {
+            public void run() {
+                mVCardReadThread = new VCardReadThread(selectedVCardFileList);
+                showDialog(R.id.dialog_reading_vcard);
+            }
+        });
     }
 
-    private void importAllVCardFromSDCard(List<VCardFile> vcardFileList) {
-        VCardReadThread thread = new VCardReadThread(vcardFileList);
-        showReadingVCardDialog(thread);
-        thread.start();
+    private void importOneVCardFromSDCard(final String canonicalPath) {
+        mHandler.post(new Runnable() {
+            public void run() {
+                mVCardReadThread = new VCardReadThread(canonicalPath);
+                showDialog(R.id.dialog_reading_vcard);
+            }
+        });
     }
 
-    private void showSelectImportTypeDialog(List<VCardFile> vcardFileList) {
+    private Dialog getSelectImportTypeDialog() {
         DialogInterface.OnClickListener listener =
-            new ImportTypeSelectedListener(vcardFileList);
-        AlertDialog.Builder builder =
-            new AlertDialog.Builder(ImportVCardActivity.this)
-                .setTitle(R.string.select_vcard_title)
-                .setPositiveButton(android.R.string.ok, listener)
-                .setOnCancelListener(mCancelListener)
-                .setNegativeButton(android.R.string.cancel, mCancelListener);
+            new ImportTypeSelectedListener();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+            .setTitle(R.string.select_vcard_title)
+            .setPositiveButton(android.R.string.ok, listener)
+            .setOnCancelListener(mCancelListener)
+            .setNegativeButton(android.R.string.cancel, mCancelListener);
 
-        String[] items = new String[2];
-        items[ImportTypeSelectedListener.IMPORT_ALL] =
-            getString(R.string.import_all_vcard_string);
+        String[] items = new String[ImportTypeSelectedListener.IMPORT_TYPE_SIZE];
         items[ImportTypeSelectedListener.IMPORT_ONE] =
             getString(R.string.import_one_vcard_string);
-        builder.setSingleChoiceItems(items,
-                ImportTypeSelectedListener.IMPORT_ALL, listener);
-        builder.show();
+        items[ImportTypeSelectedListener.IMPORT_MULTIPLE] =
+            getString(R.string.import_multiple_vcard_string);
+        items[ImportTypeSelectedListener.IMPORT_ALL] =
+            getString(R.string.import_all_vcard_string);
+        builder.setSingleChoiceItems(items, ImportTypeSelectedListener.IMPORT_ONE, listener);
+        return builder.create();
     }
 
-    private void showVCardFileSelectDialog(List<VCardFile> vcardFileList) {
-        int size = vcardFileList.size();
-        DialogInterface.OnClickListener listener =
-            new VCardSelectedListener(vcardFileList);
+    private Dialog getVCardFileSelectDialog(boolean multipleSelect) {
+        int size = mAllVCardFileList.size();
+        VCardSelectedListener listener = new VCardSelectedListener(multipleSelect);
         AlertDialog.Builder builder =
             new AlertDialog.Builder(this)
                 .setTitle(R.string.select_vcard_title)
@@ -592,7 +650,7 @@ public class ImportVCardActivity extends Activity {
         CharSequence[] items = new CharSequence[size];
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (int i = 0; i < size; i++) {
-            VCardFile vcardFile = vcardFileList.get(i);
+            VCardFile vcardFile = mAllVCardFileList.get(i);
             SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
             stringBuilder.append(vcardFile.getName());
             stringBuilder.append('\n');
@@ -607,30 +665,149 @@ public class ImportVCardActivity extends Activity {
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             items[i] = stringBuilder;
         }
-        builder.setSingleChoiceItems(items, 0, listener);
-        builder.show();
+        if (multipleSelect) {
+            builder.setMultiChoiceItems(items, (boolean[])null, listener);
+        } else {
+            builder.setSingleChoiceItems(items, 0, listener);
+        }
+        return builder.create();
     }
 
-    private void showReadingVCardDialog(DialogInterface.OnCancelListener listener) {
-        String title = getString(R.string.reading_vcard_title);
-        String message = getString(R.string.reading_vcard_message);
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle(title);
-        mProgressDialog.setMessage(message);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setOnCancelListener(listener);
-        mProgressDialog.show();
+    private Dialog getReadingVCardDialog() {
+        if (mProgressDialogForReadVCard == null) {
+            String title = getString(R.string.reading_vcard_title);
+            String message = getString(R.string.reading_vcard_message);
+            mProgressDialogForReadVCard = new ProgressDialog(this);
+            mProgressDialogForReadVCard.setTitle(title);
+            mProgressDialogForReadVCard.setMessage(message);
+            mProgressDialogForReadVCard.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialogForReadVCard.setOnCancelListener(mVCardReadThread);
+            mVCardReadThread.start();
+        }
+        return mProgressDialogForReadVCard;
     }
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        mLastNameComesBeforeFirstName = getResources().getBoolean(
-                com.android.internal.R.bool.config_lastname_comes_before_firstname);
+        Intent intent = getIntent();
+        if (intent != null) {
+            final String accountName = intent.getStringExtra("account_name");
+            final String accountType = intent.getStringExtra("account_type");
+            if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
+                mAccount = new Account(accountName, accountType);
+            }
+        } else {
+            Log.e(LOG_TAG, "intent does not exist");
+        }
 
         startImportVCardFromSdCard();
     }
+
+    @Override
+    protected Dialog onCreateDialog(int resId) {
+        switch (resId) {
+            case R.id.dialog_searching_vcard: {
+                if (mProgressDialogForScanVCard == null) {
+                    String title = getString(R.string.searching_vcard_title);
+                    String message = getString(R.string.searching_vcard_message);
+                    mProgressDialogForScanVCard =
+                        ProgressDialog.show(this, title, message, true, false);
+                    mProgressDialogForScanVCard.setOnCancelListener(mVCardScanThread);
+                    mVCardScanThread.start();
+                }
+                return mProgressDialogForScanVCard;
+            }
+            case R.id.dialog_sdcard_not_found: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(R.string.no_sdcard_title)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(R.string.no_sdcard_message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+            case R.id.dialog_vcard_not_found: {
+                String message = (getString(R.string.scanning_sdcard_failed_message,
+                        getString(R.string.fail_reason_no_vcard_file)));
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(R.string.scanning_sdcard_failed_title)
+                    .setMessage(message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+            case R.id.dialog_select_import_type: {
+                return getSelectImportTypeDialog();
+            }
+            case R.id.dialog_select_multiple_vcard: {
+                return getVCardFileSelectDialog(true);
+            }
+            case R.id.dialog_select_one_vcard: {
+                return getVCardFileSelectDialog(false);
+            }
+            case R.id.dialog_reading_vcard: {
+                return getReadingVCardDialog();
+            }
+            case R.id.dialog_io_exception: {
+                String message = (getString(R.string.scanning_sdcard_failed_message,
+                        getString(R.string.fail_reason_io_error)));
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(R.string.scanning_sdcard_failed_title)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+            case R.id.dialog_error_with_message: {
+                String message = mErrorMessage;
+                if (TextUtils.isEmpty(message)) {
+                    Log.e(LOG_TAG, "Error message is null while it must not.");
+                    message = getString(R.string.fail_reason_unknown);
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.reading_vcard_failed_title))
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
+            }
+        }
+
+        return super.onCreateDialog(resId);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mVCardReadThread != null) {
+            // The Activity is no longer visible. Stop the thread.
+            mVCardReadThread.cancel();
+            mVCardReadThread = null;
+        }
+
+        // ImportVCardActivity should not be persistent. In other words, if there's some
+        // event calling onStop(), this Activity should finish its work and give the main
+        // screen back to the caller Activity.
+        if (!isFinishing()) {
+            finish();
+        }
+    }
+
+    @Override
+    public void finalize() {
+        if (mVCardReadThread != null) {
+            // Not sure this procedure is really needed, but just in case...
+            Log.w(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
+            mVCardReadThread.cancel();
+            mVCardReadThread = null;
+        }
+    }
+
+    /* public methods */
 
     /**
      * Tries to start importing VCard. If there's no SDCard available,
@@ -641,21 +818,11 @@ public class ImportVCardActivity extends Activity {
     public void startImportVCardFromSdCard() {
         File file = new File("/sdcard");
         if (!file.exists() || !file.isDirectory() || !file.canRead()) {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.no_sdcard_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setMessage(R.string.no_sdcard_message)
-                    .setOnCancelListener(mCancelListener)
-                    .setPositiveButton(android.R.string.ok, mCancelListener)
-                    .show();
+            showDialog(R.id.dialog_sdcard_not_found);
         } else {
-            String title = getString(R.string.searching_vcard_title);
-            String message = getString(R.string.searching_vcard_message);
-
-            mProgressDialog = ProgressDialog.show(this, title, message, true, false);
-            VCardScanThread thread = new VCardScanThread(file);
-            mProgressDialog.setOnCancelListener(thread);
-            thread.start();
+            File sdcardDirectory = new File("/sdcard");
+            mVCardScanThread = new VCardScanThread(sdcardDirectory);
+            showDialog(R.id.dialog_searching_vcard);
         }
     }
 }

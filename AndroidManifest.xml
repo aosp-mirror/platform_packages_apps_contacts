@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,9 +15,10 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.android.contacts"
-        android:sharedUserId="android.uid.shared"
+    package="com.android.contacts"
+    android:sharedUserId="android.uid.shared"
 >
+
     <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -27,6 +28,8 @@
     <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.mail" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:label="@string/contactsList"
@@ -60,7 +63,7 @@
         <!-- Tab container for TwelveKeyDialer and RecentCallsList -->
         <activity android:name="DialtactsActivity"
             android:label="@string/launcherDialer"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/DialtactsTheme"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_phone"
@@ -108,8 +111,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        
-        <!-- An empty activity that presents the DialtactActivity's Contacts tab -->
+
+        <!-- Tab container for Activity Stream and Contacts -->
         <activity-alias android:name="DialtactsContactsEntryActivity"
             android:targetActivity="DialtactsActivity"
             android:label="@string/contactsList"
@@ -119,14 +122,16 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
-            
+
             <intent-filter>
                 <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -136,15 +141,13 @@
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
         <activity-alias android:name="DialtactsFavoritesEntryActivity"
             android:targetActivity="DialtactsActivity"
-            android:label="@string/strequentList"
-            android:icon="@drawable/ic_launcher_contacts"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity-alias>
-        
+
         <!-- The actual list of contacts, usually embedded in ContactsActivity -->
         <activity android:name="ContactsListActivity"
             android:label="@string/contactsList"
@@ -179,7 +182,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
-            
+
             <intent-filter android:label="@string/frequentList">
                 <action android:name="com.android.contacts.action.LIST_FREQUENT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -196,29 +199,30 @@
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
-<!--
-            <intent-filter android:label="Add To Contacts">
-                <action android:name="com.android.contacts.action.ADD_CONTACT" />
-                <category android:name="android.intent.category.SELECTED_ALTERNATIVE" />
-                <data android:scheme="mailto" />
-                <data android:scheme="tel" />
-            </intent-filter>
--->
+
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/person" />
-                <data android:mimeType="vnd.android.cursor.dir/phone" />
-                <data android:mimeType="vnd.android.cursor.dir/postal-address" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/phone" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/postal-address" android:host="contacts" />
             </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
-                <data android:mimeType="vnd.android.cursor.item/phone" />
-                <data android:mimeType="vnd.android.cursor.item/postal-address" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/phone_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/phone" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address_v2" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address" android:host="contacts" />
             </intent-filter>
 
             <intent-filter>
@@ -231,13 +235,46 @@
             />
         </activity>
 
-        <activity android:name="ShowOrCreateActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        <!-- An activity for joining contacts -->
+        <activity android:name="ContactsListActivity$JoinContactActivity"
+            android:theme="@style/TallTitleBarTheme"
+            android:clearTaskOnLaunch="true"
+        >
+            <intent-filter>
+                <action android:name="com.android.contacts.action.JOIN_AGGREGATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- Used to select display and sync groups -->
+        <activity android:name=".ui.DisplayGroupsActivity" android:label="@string/displayGroups" />
+
+        <activity
+            android:name=".ui.ShowOrCreateActivity"
+            android:theme="@style/FullyTranslucent">
+
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="mailto" />
                 <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+
+        <!-- Used to show QuickContact window over a translucent activity, which is a
+             temporary hack until we add better framework support. -->
+        <activity
+            android:name=".ui.QuickContactActivity"
+            android:theme="@style/FullyTranslucent.QuickContact"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:taskAffinity="android.task.quickcontact">
+
+            <intent-filter>
+                <action android:name="com.android.contacts.action.QUICK_CONTACT" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
@@ -256,7 +293,7 @@
         <activity-alias android:name="alias.DialShortcut"
             android:targetActivity="ContactsListActivity"
             android:label="@string/shortcutDialContact"
-            android:icon="@drawable/ic_launcher_shortcut_contact">
+            android:icon="@drawable/ic_launcher_shortcut_directdial">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -268,7 +305,7 @@
         <activity-alias android:name="alias.MessageShortcut"
             android:targetActivity="ContactsListActivity"
             android:label="@string/shortcutMessageContact"
-            android:icon="@drawable/ic_launcher_shortcut_contact">
+            android:icon="@drawable/ic_launcher_shortcut_directmessage">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -291,27 +328,54 @@
         <!-- Views the details of a single contact -->
         <activity android:name="ViewContactActivity"
             android:label="@string/viewContactTitle"
-            android:theme="@style/TallTitleBarTheme"
-        >
+            android:theme="@style/TallTitleBarTheme">
+
             <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
-        <!-- Edits the details of a single contact -->
-        <activity android:name="EditContactActivity"
-                android:windowSoftInputMode="stateVisible|adjustResize">
+        <!-- Edit or insert details for a contact -->
+        <activity
+            android:name=".ui.EditContactActivity"
+            android:label="@string/editContactDescription"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
+
             <intent-filter android:label="@string/insertContactDescription">
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Stub service used to keep our process alive long enough for
+             background threads to finish their operations. -->
+        <service
+            android:name=".util.EmptyService"
+            android:exported="false" />
+
+        <!-- Views the details of a single contact -->
+        <activity android:name="ContactOptionsActivity"
+            android:label="@string/contactOptionsTitle"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -325,15 +389,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             />
-        </activity>        
-
-        <!-- Activity used to select the groups that should be synced -->
-        <activity android:name="ContactsGroupSyncSelector"
-            android:label="@string/seclectSyncGroups_title"
-        />
+        </activity>
 
         <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
-        <meta-data android:name="android.app.default_searchable" 
+        <meta-data android:name="android.app.default_searchable"
                    android:value=".ContactsListActivity" />
 
 
@@ -371,8 +430,7 @@
         <activity android:name=".ImportVCardActivity"
             android:theme="@style/BackgroundOnly" />
 
+        <activity android:name=".ExportVCardActivity"
+            android:theme="@style/BackgroundOnly" />
     </application>
 </manifest>
-
-
-
