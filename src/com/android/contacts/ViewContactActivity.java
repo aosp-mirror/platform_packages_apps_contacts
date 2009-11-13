@@ -138,6 +138,8 @@ public class ViewContactActivity extends Activity
 
     protected int mReadOnlySourcesCnt;
     protected int mWritableSourcesCnt;
+    protected boolean mAllRestricted;
+
     protected ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
 
     private static final int TOKEN_ENTITIES = 0;
@@ -451,6 +453,9 @@ public class ViewContactActivity extends Activity
         final boolean hasRawContact = (mRawContactIds.size() > 0);
         menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
 
+        // Only allow share when unrestricted contacts available
+        menu.findItem(R.id.menu_share).setEnabled(!mAllRestricted);
+
         return true;
     }
 
@@ -527,6 +532,8 @@ public class ViewContactActivity extends Activity
                 return true;
             }
             case R.id.menu_share: {
+                if (mAllRestricted) return false;
+
                 // TODO: Keep around actual LOOKUP_KEY, or formalize method of extracting
                 final String lookupKey = mLookupUri.getPathSegments().get(2);
                 final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
@@ -767,8 +774,11 @@ public class ViewContactActivity extends Activity
         }
 
         mRawContactIds.clear();
+
         mReadOnlySourcesCnt = 0;
         mWritableSourcesCnt = 0;
+        mAllRestricted = true;
+
         mWritableRawContactIds.clear();
 
         final Context context = this;
@@ -780,6 +790,10 @@ public class ViewContactActivity extends Activity
                 final ContentValues entValues = entity.getEntityValues();
                 final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
                 final long rawContactId = entValues.getAsLong(RawContacts._ID);
+
+                // Mark when this contact has any unrestricted components
+                final boolean isRestricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED) != 0;
+                if (!isRestricted) mAllRestricted = false;
 
                 if (!mRawContactIds.contains(rawContactId)) {
                     mRawContactIds.add(rawContactId);
