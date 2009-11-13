@@ -56,12 +56,9 @@
     <string name="menu_hideSources" msgid="71367585820555477">"Bronnen verbergen"</string>
     <string name="titleJoinAggregate" msgid="6970566008563147202">"Contact samenvoegen"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Contacten samenvoegen"</string>
-    <!-- no translation found for blurbJoinContactDataWith (995870557595050304) -->
-    <skip />
-    <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
-    <skip />
-    <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selecteer het contact dat u met <xliff:g id="NAME">%s</xliff:g> wilt samenvoegen."</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacten zijn samengevoegd"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opties"</string>
@@ -69,8 +66,7 @@
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Verwijderen"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"U kunt contacten niet verwijderen uit alleen-lezen accounts, maar u kunt ze verbergen in uw contactenlijst."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dit contact bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
-    <!-- no translation found for multipleContactDeleteConfirmation (938900978442960800) -->
-    <skip />
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
     <string name="menu_done" msgid="796017761764190697">"Gereed"</string>
     <string name="menu_doNotSave" msgid="2174577548513895144">"Terugkeren"</string>
@@ -117,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Oproepen worden rechtstreeks naar voicemail verzonden."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standaard"</string>
     <string name="addPicture" msgid="1594679312161537678">"Pictogram toevoegen"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"Pictogram wijzigen"</string>
     <string name="removePicture" msgid="3041230993155966350">"Pictogram verwijderen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Geen contacten."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Kan geen overeenkomende contacten vinden."</string>
@@ -264,13 +259,11 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle vCard-bestanden importeren"</string>
     <string name="searching_vcard_message" msgid="6917522333561434546">"Zoeken naar vCard-gegevens op SD-kaart"</string>
     <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"Scannen van SD-kaart is mislukt"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (3761992500690182922) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"Scannen van SD-kaart is mislukt: (Reden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O-fout"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Parseren van vCard is mislukt om onbekende reden"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Kan vCard niet parseren, ook al lijkt de indeling geldig. vCard wordt niet ondersteund door de huidige implementatie"</string>
-    <!-- no translation found for fail_reason_no_vcard_file (6376516175882881595) -->
-    <skip />
+    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"Geen vCard-bestand gevonden op SD-kaart"</string>
     <string name="fail_reason_no_vcard_entry" msgid="4733290752474073143">"Geen geldig vCard-item gevonden voor uw selectie"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Een of meer bestanden kunnen niet worden geïmporteerd (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Onbekende fout"</string>
@@ -311,12 +304,9 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Bellen met"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Sms\'en met"</string>
     <string name="make_primary" msgid="5829291915305113983">"Deze keuze onthouden"</string>
-    <!-- no translation found for quickcontact_missing_app (4600366393134289038) -->
-    <skip />
-    <!-- no translation found for quickcontact_remember_choice (5964536411579749424) -->
-    <skip />
-    <!-- no translation found for quickcontact_missing_name (5590266114306996632) -->
-    <skip />
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Er is geen toepassing gevonden om deze actie uit te voeren"</string>
+    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Deze keuze onthouden"</string>
+    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Accounts"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importeren/exporteren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Contacten importeren/exporteren"</string>
@@ -327,25 +317,21 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Bijnaam"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisatie"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Website"</string>
-    <!-- no translation found for eventLabelsGroup (8069912895912714412) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="8069912895912714412">"Afspraak"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="edit_read_only" msgid="8158629550655830981">"Dit contact is alleen-lezen"</string>
-    <!-- no translation found for edit_secondary_collapse (5371618426594477103) -->
-    <skip />
+    <string name="edit_secondary_collapse" msgid="5371618426594477103">"Meer"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"Primaire naam"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Contact in account maken"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Synchronisatiegroep verwijderen"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Synchronisatiegroep toevoegen"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Meer groepen…"</string>
-    <!-- no translation found for display_ungrouped (4602580795576261158) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (6846131371214707956) -->
-    <skip />
+    <string name="display_ungrouped" msgid="4602580795576261158">"Alle andere contacten"</string>
+    <string name="display_all_contacts" msgid="6846131371214707956">"Alle contacten"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Als u \'<xliff:g id="GROUP">%s</xliff:g>\' verwijdert uit de synchronisatie, worden ook contacten die niet bij een groep horen uit de synchronisatie verwijderd."</string>
     <string name="account_phone" msgid="4025734638492419713">"Alleen voor telefoon (niet gesynchroniseerd)"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"Weergavenaam"</string>
@@ -427,8 +413,7 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetische achternaam"</string>
     <string name="split_label" msgid="8262112659919449087">"Splitsen"</string>
     <string name="split_explanation" msgid="1824739956426973592">"Maak van deze gegevens een nieuw contact."</string>
-    <!-- no translation found for account_name_format (4421123930035299208) -->
-    <skip />
+    <string name="account_name_format" msgid="4421123930035299208">"Van <xliff:g id="SOURCE">%1$s</xliff:g>-account: <xliff:g id="ACCOUNT">%2$s</xliff:g>"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
     <string name="from_account_format" msgid="687567483928582084">"van <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Deze foto gebruiken"</string>
