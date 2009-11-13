@@ -113,8 +113,7 @@
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Οι κλήσεις στέλνονται απευθείας στον αυτόματο τηλεφωνητή."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Προεπιλογή"</string>
     <string name="addPicture" msgid="1594679312161537678">"Προσθήκη εικονιδίου"</string>
-    <!-- no translation found for changePicture (2943329047610967714) -->
-    <skip />
+    <string name="changePicture" msgid="2943329047610967714">"Αλλαγή εικονιδίου"</string>
     <string name="removePicture" msgid="3041230993155966350">"Κατάργηση εικονιδίου"</string>
     <string name="noContacts" msgid="8579310973261953559">"Δεν υπάρχουν επαφές."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Δεν βρέθηκαν επαφές που να αντιστοιχούν."</string>
