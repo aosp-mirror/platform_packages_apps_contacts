@@ -124,7 +124,7 @@
     <string name="showAllGroups" msgid="5164410117611094297">"Все контакты"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Только контакты с телефонными номерами"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Отображать только контакты, содержащие номера телефонов"</string>
-    <string name="headerContactGroups" msgid="2426134991932503843">"Выберите контакты, которые нужно отображать"</string>
+    <string name="headerContactGroups" msgid="2426134991932503843">"Выберите контакты для показа"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"Контактов: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
