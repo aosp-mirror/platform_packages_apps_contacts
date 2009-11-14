@@ -230,7 +230,7 @@
     <string name="callBack" msgid="5498224409038809224">"Oddzwoń"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zadzwoń ponownie"</string>
     <string name="returnCall" msgid="8171961914203617813">"Połączenie zwrotne"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Częste połączenia"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Dodaj kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Czy dodać adres „<xliff:g id="EMAIL">%s</xliff:g>” do kontaktów?"</string>
@@ -398,7 +398,7 @@
     <string name="chat" msgid="9025361898797412245">"Czat"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Skrytka pocztowa"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Okolica"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"Dzielnica"</string>
     <string name="postal_city" msgid="6597491300084895548">"Miasto"</string>
     <string name="postal_region" msgid="6045263193478437672">"Województwo"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Kod pocztowy"</string>

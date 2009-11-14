@@ -35,7 +35,7 @@
     <string name="menu_newContact" msgid="1209922412763274638">"Neuer Kontakt"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kontakt anzeigen"</string>
     <string name="menu_callNumber" msgid="5142851348489387516">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Favoriten hinzufügen"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Zu Favoriten hinzufügen"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Aus Favoriten entfernen"</string>
     <string name="menu_showBarcode" msgid="309973637178814132">"Barcode anzeigen"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Kontakt bearbeiten"</string>
@@ -44,18 +44,18 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Textnachricht an Kontakt"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"E-Mail senden"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Adresse auf der Karte"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Als Standardnummer festlegen"</string>
+    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Als Standardnr. festlegen"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Standard-E-Mail festlegen"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Unterteilen"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Teilen"</string>
     <string name="splitAggregate_title" msgid="2053462872948058798">"Kontakt teilen"</string>
     <string name="contactsSplitMessage" msgid="5253490235863170269">"Kontakte unterteilt"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Kontakt unterteilen"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Sind Sie sicher, dass Sie diesen Kontakt in mehrere Kontakte unterteilen möchten, einen für jedes darin enthaltene Kontaktdetail?"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Anfügen"</string>
+    <string name="splitConfirmation_title" msgid="6716467920283502570">"Kontakt teilen"</string>
+    <string name="splitConfirmation" msgid="1150797297503944823">"Sind Sie sicher, dass Sie diesen Kontakt in mehrere Kontakte teilen möchten, einen für jedes darin enthaltene Kontaktdetail?"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Zusammenführen"</string>
     <string name="menu_showSources" msgid="885215611438295455">"Quellen anzeigen"</string>
     <string name="menu_hideSources" msgid="71367585820555477">"Quellen ausblenden"</string>
     <string name="titleJoinAggregate" msgid="6970566008563147202">"Kontakt verknüpfen"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontakte anfügen"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontakte zusammenführen"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Wählen Sie den Kontakt aus, den Sie mit <xliff:g id="NAME">%s</xliff:g> verknüpfen möchten."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle Kontakte anzeigen"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Vorgeschlagene Kontakte"</string>
@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Gruppen"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Ihre Gruppe \"<xliff:g id="GROUPNAME">%s</xliff:g>\" ist leer."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Alle Kontakte"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Nur Kontakte mit Telefonen"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Nur Kontakte mit Telefon"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Nur Kontakte mit Telefonnummern anzeigen"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Kontakte zum Anzeigen auswählen"</string>
   <plurals name="groupDescrip">
@@ -195,10 +195,10 @@
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Ladevorgang von SIM-Karte läuft..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakte auf SIM-Karte"</string>
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synchronisieren Sie Ihre Google-Kontakte!"</font>" "\n"Nach der Synchronisierung stehen Ihnen Ihre Kontakte überall zur Verfügung."</string>
-    <string name="noContactsHelpText" msgid="6788487368878712350">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Es können keine Kontakte angezeigt werden. Wenn Sie gerade ein Konto hinzugefügt haben, kann es einige Minuten dauern, bis die Kontakte synchronisiert sind."\n\n"Drücken Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n" "</li>\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Es können keine Kontakte angezeigt werden. Wenn Sie gerade ein Konto hinzugefügt haben, kann es einige Minuten dauern, bis die Kontakte synchronisiert sind."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
+    <string name="noContactsHelpText" msgid="6788487368878712350">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten hinzuzufügen oder zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Es können keine Kontakte angezeigt werden. Wenn Sie gerade ein Konto hinzugefügt haben, kann es einige Minuten dauern, bis die Kontakte synchronisiert sind."\n\n"Drücken Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten hinzuzufügen oder zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n" "</li>\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten hinzuzufügen oder zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Es können keine Kontakte angezeigt werden. Wenn Sie gerade ein Konto hinzugefügt haben, kann es einige Minuten dauern, bis die Kontakte synchronisiert sind."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten hinzuzufügen oder zu konfigurieren, die mit dem Telefon synchronisiert werden können."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Sie haben keine Favoriten."\n\n"So fügen Sie einen Kontakt zu Ihrer Favoritenliste hinzu:"\n\n"        "<li>"Tippen Sie auf die Registerkarte "<b>"Kontakte"</b>"."\n</li>" "\n<li>"Tippen Sie auf den Kontakt, den Sie zu Ihren Favoriten hinzufügen möchten."\n</li>" "\n<li>"Tippen Sie auf die Markierung neben dem Kontaktnamen."\n</li></string>
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Zu synchronisierende Gruppen auswählen"</string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle Kontakte"</string>
@@ -230,7 +230,7 @@
     <string name="callBack" msgid="5498224409038809224">"Rückruf"</string>
     <string name="callAgain" msgid="3197312117049874778">"Erneut anrufen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Zurückrufen"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> Minuten, <xliff:g id="SECONDS">%s</xliff:g> Sekunden"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> Min. <xliff:g id="SECONDS">%s</xliff:g> Sek."</string>
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Häufig angerufen"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Kontakt hinzufügen"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" zu den Kontakten hinzufügen?"</string>
@@ -301,8 +301,8 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 Sekunden Pause hinzufügen"</string>
     <string name="add_wait" msgid="3360818652790319634">"Warten hinzufügen"</string>
     <string name="dial_button_label" msgid="7637725632722605863">"Wählen"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Anrufen mit"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Textnachricht schreiben mit"</string>
+    <string name="call_disambig_title" msgid="1911302597959335178">"Anruf bei"</string>
+    <string name="sms_disambig_title" msgid="4675399294513152364">"Textnachricht schreiben an"</string>
     <string name="make_primary" msgid="5829291915305113983">"Diese Auswahl speichern"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Für diese Aktion wurde keine Anwendung gefunden."</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Diese Auswahl speichern"</string>
@@ -310,8 +310,8 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kontakte importieren/exportieren"</string>
-    <string name="menu_share" msgid="943789700636542260">"Freigeben"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt freigeben über"</string>
+    <string name="menu_share" msgid="943789700636542260">"Weiterleiten"</string>
+    <string name="share_via" msgid="563121028023030093">"Kontakt weiterleiten über"</string>
     <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht freigegeben werden."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
@@ -377,7 +377,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Textnachricht an Pager (geschäftlich)"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Textnachricht an <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Text (MMS)"</string>
-    <string name="email_home" msgid="8573740658148184279">"E-Mail-Startseite"</string>
+    <string name="email_home" msgid="8573740658148184279">"E-Mail (privat)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-Mail (mobil)"</string>
     <string name="email_work" msgid="2807430017302722689">"E-Mail (Arbeit)"</string>
     <string name="email_other" msgid="8093933498541795832">"E-Mail (sonstige)"</string>

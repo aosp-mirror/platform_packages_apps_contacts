@@ -211,11 +211,11 @@
     <string name="toast_call_detail_error" msgid="7200975244804730096">"无法读取所请求呼叫的详细信息。"</string>
     <string name="call_type" msgid="3213526349444862087">"类型"</string>
     <string name="type_incoming" msgid="6502076603836088532">"来电"</string>
-    <string name="type_outgoing" msgid="343108709599392641">"外拨电话"</string>
+    <string name="type_outgoing" msgid="343108709599392641">"拨出电话"</string>
     <string name="type_missed" msgid="2720502601640509542">"未接电话"</string>
     <string name="call_time" msgid="5805575214626630975">"时间"</string>
     <string name="datetime_relative" msgid="2906207446040994658">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
-    <string name="call_duration" msgid="3941950339482985532">"持续时间"</string>
+    <string name="call_duration" msgid="3941950339482985532">"通话时间"</string>
     <string name="header_actions" msgid="229583643365836321">"操作"</string>
     <string name="ringtone_spinner" msgid="7317823545379736528">"铃声：<xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items" msgid="7754115197545456663">"添加更多项"</string>
@@ -231,7 +231,7 @@
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
     <string name="returnCall" msgid="8171961914203617813">"回拨"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
-    <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"经常呼叫"</string>
+    <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"常用联系人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"添加联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"全部"</string>
@@ -336,7 +336,7 @@
     <string name="account_phone" msgid="4025734638492419713">"仅保存在手机中（不同步）"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"显示名称"</string>
     <string name="call_custom" msgid="7756571794763171802">"呼叫<xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"呼叫住宅"</string>
+    <string name="call_home" msgid="1990519474420545392">"呼叫住宅电话"</string>
     <string name="call_mobile" msgid="7502236805487609178">"呼叫手机"</string>
     <string name="call_work" msgid="5328785911463744028">"呼叫单位"</string>
     <string name="call_fax_work" msgid="7467763592359059243">"呼叫单位传真"</string>
@@ -356,31 +356,31 @@
     <string name="call_work_pager" msgid="3419348514157949008">"呼叫单位寻呼机"</string>
     <string name="call_assistant" msgid="2141641383068514308">"呼叫<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"呼叫彩信号码"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"向<xliff:g id="CUSTOM">%s</xliff:g>发送文本消息"</string>
-    <string name="sms_home" msgid="7524332261493162995">"向住宅发送文本消息"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"向手机发送文本消息"</string>
-    <string name="sms_work" msgid="2269624156655267740">"向单位发送文本消息"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"向单位传真发送文本消息"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"向住宅传真发送文本消息"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"向<xliff:g id="CUSTOM">%s</xliff:g>发送短信"</string>
+    <string name="sms_home" msgid="7524332261493162995">"向住宅电话发送短信"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"向手机发送短信"</string>
+    <string name="sms_work" msgid="2269624156655267740">"向单位电话发送短信"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"向单位传真机发送短信"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"向住宅传真机发送短信"</string>
     <string name="sms_pager" msgid="7730404569637015192">"向寻呼机发送文字消息"</string>
-    <string name="sms_other" msgid="5131921487474531617">"向其他手机号码发送文本消息"</string>
+    <string name="sms_other" msgid="5131921487474531617">"向其他手机发送短信"</string>
     <string name="sms_callback" msgid="5004824430094288752">"向回拨号码发送短信"</string>
-    <string name="sms_car" msgid="7444227058437359641">"向车载电话发送文本消息"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"向公司总机发送文本消息"</string>
+    <string name="sms_car" msgid="7444227058437359641">"向车载电话发送短信"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"向公司总机发送短信"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"向 ISDN 发送短信"</string>
     <string name="sms_main" msgid="8621625784504541679">"向总机发送短信"</string>
     <string name="sms_other_fax" msgid="3930666870074006114">"向其他传真发送短信"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"向无线装置发送文本消息"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"向无线装置发送短信"</string>
     <string name="sms_telex" msgid="9034802430065267848">"向电报发送短信"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"向 TTY/TDD 发送短信"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"向单位手机发送短信"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"向单位寻呼机发送短信"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"向<xliff:g id="ASSISTANT">%s</xliff:g>发送短信"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"向彩信号码发送文本消息"</string>
-    <string name="email_home" msgid="8573740658148184279">"向住宅发送电子邮件"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"向彩信号码发送短信"</string>
+    <string name="email_home" msgid="8573740658148184279">"向住宅邮箱发送电子邮件"</string>
     <string name="email_mobile" msgid="2042889209787989814">"向手机发送电子邮件"</string>
-    <string name="email_work" msgid="2807430017302722689">"向单位发送电子邮件"</string>
-    <string name="email_other" msgid="8093933498541795832">"向其他地址发送电子邮件"</string>
+    <string name="email_work" msgid="2807430017302722689">"向单位邮箱发送电子邮件"</string>
+    <string name="email_other" msgid="8093933498541795832">"向其他邮箱发送电子邮件"</string>
     <string name="email_custom" msgid="7548003991586214105">"向<xliff:g id="CUSTOM">%s</xliff:g>发送电子邮件"</string>
     <string name="email" msgid="5668400997660065897">"电子邮件"</string>
     <string name="map_home" msgid="1243547733423343982">"查看住宅地址"</string>

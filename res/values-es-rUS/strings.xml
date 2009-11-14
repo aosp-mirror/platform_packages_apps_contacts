@@ -93,7 +93,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear nuevo contacto"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleccionar etiqueta"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo electrónico"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo elec."</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Mensajería instantánea"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Dirección postal"</string>
     <string name="otherLabelsGroup" msgid="6584626043193000238">"Otros"</string>
