@@ -44,19 +44,19 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar mensagem de texto para o contato"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar e-mail"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Endereço no mapa"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Criar número padrão"</string>
+    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Tornar o número padrão"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Tornar o e-mail padrão"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
     <string name="splitAggregate_title" msgid="2053462872948058798">"Dividir contato"</string>
     <string name="contactsSplitMessage" msgid="5253490235863170269">"Contatos separados"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separar contato"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Tem certeza de que deseja separar este único contato em diversos contatos, um para cada conjunto de informações de contato unificado?"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Participar"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
     <string name="menu_showSources" msgid="885215611438295455">"Mostrar fontes"</string>
     <string name="menu_hideSources" msgid="71367585820555477">"Ocultar fontes"</string>
-    <string name="titleJoinAggregate" msgid="6970566008563147202">"Integrar contato"</string>
+    <string name="titleJoinAggregate" msgid="6970566008563147202">"Unir contato"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unir contatos"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selecione o contato que deseja mesclar com <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selecione o contato que deseja unir com <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contatos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contatos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contatos"</string>
@@ -197,7 +197,7 @@
     <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">" Sincronize seus contatos do Google!"</font>" "\n"Após sincronizar para o seu telefone, seus contatos estarão disponíveis em qualquer lugar que você vá."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Você não tem contatos para exibir (se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos.)"\n\n"Para adicionar contatos, pressione"<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, pressione  "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Você não tem contatos para exibir (se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos.)"\n\n"Para adicionar contatos, pressione"<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Você não tem nenhum favorito."\n\n"Para adicionar um contato à sua lista de favoritos:"\n\n"        "<li>"Toque na guia "<b>"Contatos"</b>\n</li>" "\n<li>"Toque no contato que deseja adicionar aos seus favoritos"\n</li>" "\n<li>"Toque na estrela ao lado do nome do contato"\n</li></string>
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Selecionar grupos para sincronizar"</string>
@@ -380,8 +380,8 @@
     <string name="email_home" msgid="8573740658148184279">"E-mail (residencial)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar e-mail para celular"</string>
     <string name="email_work" msgid="2807430017302722689">"E-mail (comercial)"</string>
-    <string name="email_other" msgid="8093933498541795832">"Enviar e-mail para outras pessoas"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Enviar e-mail para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_other" msgid="8093933498541795832">"E-mail (outros)"</string>
+    <string name="email_custom" msgid="7548003991586214105">"E-mail (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver endereço residencial"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver endereço comercial"</string>

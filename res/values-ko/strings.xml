@@ -210,7 +210,7 @@
     <string name="callDetailTitle" msgid="5340227785196217938">"통화 세부정보"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"요청한 통화의 세부정보를 읽지 못했습니다."</string>
     <string name="call_type" msgid="3213526349444862087">"유형"</string>
-    <string name="type_incoming" msgid="6502076603836088532">"수신 전화"</string>
+    <string name="type_incoming" msgid="6502076603836088532">"수신전화"</string>
     <string name="type_outgoing" msgid="343108709599392641">"발신 통화"</string>
     <string name="type_missed" msgid="2720502601640509542">"부재중 전화"</string>
     <string name="call_time" msgid="5805575214626630975">"시간"</string>
@@ -224,7 +224,7 @@
     <string name="actionText" msgid="6399049224844880108">"문자(<xliff:g id="TYPE">%s</xliff:g>)"</string>
     <string name="actionChat" msgid="31079429748650300">"<xliff:g id="TYPE">%s</xliff:g>로 채팅"</string>
     <string name="actionMap" msgid="1977955782051732775">"<xliff:g id="TYPE">%s</xliff:g> 주소 보기"</string>
-    <string name="actionIncomingCall" msgid="6028930669817038600">"수신 전화"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"수신전화"</string>
     <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"바로 음성메일로 연결됩니다."</string>
     <string name="detailsRingtone" msgid="4052108748982701775">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>(으)로 설정"</string>
     <string name="callBack" msgid="5498224409038809224">"통화"</string>
