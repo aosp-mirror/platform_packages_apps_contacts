@@ -41,7 +41,7 @@
     <string name="menu_editContact" msgid="3452858480713561396">"Modifica contatto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Elimina contatto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Chiama contatto"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia testo a n. contatto"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia SMS a n. contatto"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Invia email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Indirizzo su mappa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Rendi numero predefinito"</string>
@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Gruppi"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Il gruppo \"<xliff:g id="GROUPNAME">%s</xliff:g>\" è vuoto."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Tutti i contatti"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Solo contatti con numeri di telefono"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Solo contatti con numeri di tel."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Visualizza solo i contatti con numeri di telefono"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Scegli i contatti da visualizzare"</string>
   <plurals name="groupDescrip">
@@ -142,7 +142,7 @@
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errore, impossibile salvare le modifiche ai contatti."</string>
     <string name="listSeparatorCallNumber" msgid="7115321894439629408">"Componi numero"</string>
     <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"Numeri di telefono"</string>
-    <string name="listSeparatorSendSmsMms" msgid="5351657038532024412">"Invia testo"</string>
+    <string name="listSeparatorSendSmsMms" msgid="5351657038532024412">"Invia SMS"</string>
     <string name="listSeparatorSendEmail" msgid="5395590830304525721">"Invia email"</string>
     <string name="listSeparatorSendEmail_edit" msgid="6859593624213634454">"Indirizzi email"</string>
     <string name="listSeparatorSendIm" msgid="2209260633185984105">"Invia messagio chat"</string>
@@ -375,7 +375,7 @@
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Invia SMS a n. TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"Invia SMS a n. cellulare ufficio"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Invia SMS a n. cercapersone ufficio"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Invia testo a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"Invia SMS ad <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Invia SMS a n. MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Invia email a ind. casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Invia email a ind. cellulare"</string>
