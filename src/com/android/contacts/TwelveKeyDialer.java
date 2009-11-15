@@ -34,6 +34,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -44,6 +45,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
@@ -73,14 +75,18 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         AdapterView.OnItemClickListener, TextWatcher {
 
     private static final String TAG = "TwelveKeyDialer";
-    
-    private static final int STOP_TONE = 1;
 
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
-    
+
     /** The DTMF tone volume relative to other sounds in the stream */
-    private static final int TONE_RELATIVE_VOLUME = 50;
+    private static final int TONE_RELATIVE_VOLUME = 80;
+
+    /** Stream type used to play the DTMF tones off call, and mapped to the volume control keys */
+    private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_MUSIC;
+
+    /** Play the vibrate pattern only once. */
+    private static final int VIBRATE_NO_REPEAT = -1;
 
     private EditText mDigits;
     private View mDelete;
@@ -89,18 +95,44 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private Object mToneGeneratorLock = new Object();
     private Drawable mDigitsBackground;
     private Drawable mDigitsEmptyBackground;
-    private Drawable mDeleteBackground;
-    private Drawable mDeleteEmptyBackground;
-    private View mDigitsAndBackspace;
     private View mDialpad;
+    private View mVoicemailDialAndDeleteRow;
+    private View mVoicemailButton;
+    private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
+    //Member variables for dialpad options
+    private MenuItem m2SecPauseMenuItem;
+    private MenuItem mWaitMenuItem;
+    private static final int MENU_ADD_CONTACTS = 1;
+    private static final int MENU_2S_PAUSE = 2;
+    private static final int MENU_WAIT = 3;
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
-    
+
+    // Vibration (haptic feedback) for dialer key presses.
+    private Vibrator mVibrator;
+    private boolean mVibrateOn;
+    private long[] mVibratePattern;
+
+
     /** Identifier for the "Add Call" intent extra. */
     static final String ADD_CALL_MODE_KEY = "add_call_mode";
+
+    /**
+     * Identifier for intent extra for sending an empty Flash message for
+     * CDMA networks. This message is used by the network to simulate a
+     * press/depress of the "hookswitch" of a landline phone. Aka "empty flash".
+     *
+     * TODO: Using an intent extra to tell the phone to send this flash is a
+     * temporary measure. To be replaced with an ITelephony call in the future.
+     * TODO: Keep in sync with the string defined in OutgoingCallBroadcaster.java
+     * in Phone app until this is replaced with the ITelephony API.
+     */
+    static final String EXTRA_SEND_EMPTY_FLASH
+            = "com.android.phone.extra.SEND_EMPTY_FLASH";
+
     /** Indicates if we are opening this dialer to add a call from the InCallScreen. */
     private boolean mIsAddCallMode;
 
@@ -133,7 +165,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     public void onTextChanged(CharSequence input, int start, int before, int changeCount) {
         // Do nothing
-        // DTMF Tones do not need to be played here any longer - 
+        // DTMF Tones do not need to be played here any longer -
         // the DTMF dialer handles that functionality now.
     }
 
@@ -143,17 +175,15 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.getText().clear();
         }
 
-        // Set the proper background for the dial input area
-        if (mDigits.length() != 0) {
-            mDelete.setBackgroundDrawable(mDeleteBackground);
+        final boolean notEmpty = mDigits.length() != 0;
+        if (notEmpty) {
             mDigits.setBackgroundDrawable(mDigitsBackground);
-            mDigits.setCompoundDrawablesWithIntrinsicBounds(
-                    getResources().getDrawable(R.drawable.ic_dial_number), null, null, null);
         } else {
-            mDelete.setBackgroundDrawable(mDeleteEmptyBackground);
+            mDigits.setCursorVisible(false);
             mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
-            mDigits.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         }
+
+        updateDialAndDeleteButtonStateEnabledAttr();
     }
 
     @Override
@@ -163,21 +193,16 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // Set the content view
         setContentView(getContentViewResource());
 
-        // Load up the resources for the text field and delete button
+        // Load up the resources for the text field.
         Resources r = getResources();
         mDigitsBackground = r.getDrawable(R.drawable.btn_dial_textfield_active);
-        //mDigitsBackground.setDither(true);
         mDigitsEmptyBackground = r.getDrawable(R.drawable.btn_dial_textfield);
-        //mDigitsEmptyBackground.setDither(true);
-        mDeleteBackground = r.getDrawable(R.drawable.btn_dial_delete_active);
-        //mDeleteBackground.setDither(true);
-        mDeleteEmptyBackground = r.getDrawable(R.drawable.btn_dial_delete);
-        //mDeleteEmptyBackground.setDither(true);
 
         mDigits = (EditText) findViewById(R.id.digits);
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
+
         maybeAddNumberFormatting();
 
         // Check for the presence of the keypad
@@ -186,13 +211,35 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             setupKeypad();
         }
 
-        view = findViewById(R.id.backspace);
+        mVoicemailDialAndDeleteRow = findViewById(R.id.voicemailAndDialAndDelete);
+
+        initVoicemailButton();
+
+        // Check whether we should show the onscreen "Dial" button.
+        mDialButton = mVoicemailDialAndDeleteRow.findViewById(R.id.dialButton);
+
+        if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
+            mDialButton.setOnClickListener(this);
+        } else {
+            mDialButton.setVisibility(View.GONE); // It's VISIBLE by default
+            mDialButton = null;
+        }
+
+        view = mVoicemailDialAndDeleteRow.findViewById(R.id.deleteButton);
         view.setOnClickListener(this);
         view.setOnLongClickListener(this);
         mDelete = view;
 
-        mDigitsAndBackspace = (View) findViewById(R.id.digitsAndBackspace);
-        mDialpad = (View) findViewById(R.id.dialpad);  // This is null in landscape mode
+        mDialpad = findViewById(R.id.dialpad);  // This is null in landscape mode.
+
+        // In landscape we put the keyboard in phone mode.
+        // In portrait we prevent the soft keyboard to show since the
+        // dialpad acts as one already.
+        if (null == mDialpad) {
+            mDigits.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
+        } else {
+            mDigits.setInputType(android.text.InputType.TYPE_NULL);
+        }
 
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
         mDialpadChooser = (ListView) findViewById(R.id.dialpadChooser);
@@ -202,44 +249,23 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             super.onRestoreInstanceState(icicle);
         }
 
-        // If the mToneGenerator creation fails, just continue without it.  It is
-        // a local audio signal, and is not as important as the dtmf tone itself.
-        synchronized (mToneGeneratorLock) {
-            if (mToneGenerator == null) {
-                try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_RING,
-                            TONE_RELATIVE_VOLUME);
-                } catch (RuntimeException e) {
-                    Log.w(TAG, "Exception caught while creating local tone generator: " + e);
-                    mToneGenerator = null;
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        synchronized(mToneGeneratorLock) {
-            if (mToneGenerator != null) {
-                mToneStopper.removeMessages(STOP_TONE);
-                mToneGenerator.release();
-                mToneGenerator = null;
-            }
-        }
+        // TODO: We might eventually need to make mVibrateOn come from a
+        // user preference rather than a per-platform resource, in which
+        // case we would need to update it in onResume() rather than here.
+        initVibrationPattern(r);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle icicle) {
         // Do nothing, state is restored in onCreate() if needed
     }
-    
+
     protected void maybeAddNumberFormatting() {
         mDigits.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
-    
+
     /**
-     * Overridden by subclasses to control the resource used by the content view. 
+     * Overridden by subclasses to control the resource used by the content view.
      */
     protected int getContentViewResource() {
         return R.layout.twelve_key_dialer;
@@ -333,7 +359,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         setIntent(newIntent);
         resolveIntent();
     }
-    
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -344,7 +370,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // will always happen after onRestoreSavedInstanceState().
         mDigits.addTextChangedListener(this);
     }
-    
+
     private void setupKeypad() {
         // Setup the listeners for the buttons
         View view = findViewById(R.id.one);
@@ -371,25 +397,28 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
-        
+
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
 
-        // if the mToneGenerator creation fails, just continue without it.  It is 
+        // if the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
-                    mToneGenerator = new ToneGenerator(AudioManager.STREAM_RING,
-                            TONE_RELATIVE_VOLUME);
+                    // we want the user to be able to control the volume of the dial tones
+                    // outside of a call, so we use the stream type that is also mapped to the
+                    // volume control keys for this activity
+                    mToneGenerator = new ToneGenerator(DIAL_TONE_STREAM_TYPE, TONE_RELATIVE_VOLUME);
+                    setVolumeControlStream(DIAL_TONE_STREAM_TYPE);
                 } catch (RuntimeException e) {
                     Log.w(TAG, "Exception caught while creating local tone generator: " + e);
                     mToneGenerator = null;
                 }
             }
         }
-        
+
         Activity parent = getParent();
         // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
         // digits in the dialer field.
@@ -425,6 +454,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // be visible if the phone is idle!
             showDialpadChooser(false);
         }
+
+        updateDialAndDeleteButtonStateEnabledAttr();
     }
 
     @Override
@@ -436,7 +467,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             // have a window token yet in onCreate / onNewIntent
             InputMethodManager inputMethodManager = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(mDigits.getWindowToken(), 0);            
+            inputMethodManager.hideSoftInputFromWindow(mDigits.getWindowToken(), 0);
         }
     }
 
@@ -450,7 +481,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
         synchronized(mToneGeneratorLock) {
             if (mToneGenerator != null) {
-                mToneStopper.removeMessages(STOP_TONE);
                 mToneGenerator.release();
                 mToneGenerator = null;
             }
@@ -459,9 +489,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mAddToContactMenuItem = menu.add(0, 0, 0, R.string.recentCalls_addToContact)
+        mAddToContactMenuItem = menu.add(0, MENU_ADD_CONTACTS, 0, R.string.recentCalls_addToContact)
                 .setIcon(android.R.drawable.ic_menu_add);
-
+        m2SecPauseMenuItem = menu.add(0, MENU_2S_PAUSE, 0, R.string.add_2sec_pause)
+                .setIcon(R.drawable.ic_menu_2sec_pause);
+        mWaitMenuItem = menu.add(0, MENU_WAIT, 0, R.string.add_wait)
+                .setIcon(R.drawable.ic_menu_wait);
         return true;
     }
 
@@ -475,6 +508,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         CharSequence digits = mDigits.getText();
         if (digits == null || !TextUtils.isGraphic(digits)) {
             mAddToContactMenuItem.setVisible(false);
+            m2SecPauseMenuItem.setVisible(false);
+            mWaitMenuItem.setVisible(false);
         } else {
             // Put the current digits string into an intent
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
@@ -482,6 +517,41 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             intent.setType(People.CONTENT_ITEM_TYPE);
             mAddToContactMenuItem.setIntent(intent);
             mAddToContactMenuItem.setVisible(true);
+
+            // Check out whether to show Pause & Wait option menu items
+            int selectionStart;
+            int selectionEnd;
+            String strDigits = digits.toString();
+
+            selectionStart = mDigits.getSelectionStart();
+            selectionEnd = mDigits.getSelectionEnd();
+
+            if (selectionStart != -1) {
+                if (selectionStart > selectionEnd) {
+                    // swap it as we want start to be less then end
+                    int tmp = selectionStart;
+                    selectionStart = selectionEnd;
+                    selectionEnd = tmp;
+                }
+
+                if (selectionStart != 0) {
+                    // Pause can be visible if cursor is not in the begining
+                    m2SecPauseMenuItem.setVisible(true);
+
+                    // For Wait to be visible set of condition to meet
+                    mWaitMenuItem.setVisible(showWait(selectionStart,
+                                                      selectionEnd, strDigits));
+                } else {
+                    // cursor in the beginning both pause and wait to be invisible
+                    m2SecPauseMenuItem.setVisible(false);
+                    mWaitMenuItem.setVisible(false);
+                }
+            } else {
+                // cursor is not selected so assume new digit is added to the end
+                int strLength = strDigits.length();
+                mWaitMenuItem.setVisible(showWait(strLength,
+                                                      strLength, strDigits));
+            }
         }
         return true;
     }
@@ -503,7 +573,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return true;
             }
             case KeyEvent.KEYCODE_1: {
-                long timeDiff = SystemClock.uptimeMillis() - event.getDownTime(); 
+                long timeDiff = SystemClock.uptimeMillis() - event.getDownTime();
                 if (timeDiff >= ViewConfiguration.getLongPressTimeout()) {
                     // Long press detected, call voice mail
                     callVoicemail();
@@ -518,7 +588,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
-                if (mIsAddCallMode && (TextUtils.isEmpty(mDigits.getText().toString()))) {
+                if (phoneIsCdma()) {
+                    // If we're CDMA, regardless of where we are adding a call from (either
+                    // InCallScreen or Dialtacts), the user may need to send an empty
+                    // flash command to the network. So let's call placeCall() regardless
+                    // and placeCall will handle this functionality for us.
+                    placeCall();
+                } else if (mIsAddCallMode && (TextUtils.isEmpty(mDigits.getText().toString()))) {
                     // if we are adding a call from the InCallScreen and the phone
                     // number entered is empty, we just close the dialer to expose
                     // the InCallScreen under it.
@@ -532,8 +608,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         }
         return super.onKeyUp(keyCode, event);
     }
-    
+
     private void keyPressed(int keyCode) {
+        vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
     }
@@ -612,12 +689,24 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_STAR);
                 return;
             }
-            case R.id.backspace: {
+            case R.id.deleteButton: {
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
             }
-            case R.id.digits: {
+            case R.id.dialButton: {
+                vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
+                return;
+            }
+            case R.id.voicemailButton: {
+                callVoicemail();
+                vibrate();
+                return;
+            }
+            case R.id.digits: {
+                if (mDigits.length() != 0) {
+                    mDigits.setCursorVisible(true);
+                }
                 return;
             }
         }
@@ -627,8 +716,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         final Editable digits = mDigits.getText();
         int id = view.getId();
         switch (id) {
-            case R.id.backspace: {
+            case R.id.deleteButton: {
                 digits.clear();
+                // TODO: The framework forgets to clear the pressed
+                // status of disabled button. Until this is fixed,
+                // clear manually the pressed status. b/2133127
+                mDelete.setPressed(false);
                 return true;
             }
             case R.id.one: {
@@ -657,35 +750,34 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     void placeCall() {
         final String number = mDigits.getText().toString();
-        if (number == null || !TextUtils.isGraphic(number)) {
-            // There is no number entered.
-            playTone(ToneGenerator.TONE_PROP_NACK);
-            return;
-        }
+        boolean sendEmptyFlash = false;
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                 Uri.fromParts("tel", number, null));
+        if (number == null || !TextUtils.isGraphic(number)) {
+            // There is no number entered.
+            if (phoneIsCdma() && phoneIsOffhook()) {
+                // We only want to send this empty flash extra if we're CDMA and the
+                // phone is offhook (don't want to send if ringing or dialing)
+                intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
+                sendEmptyFlash = true;
+            } else {
+                playTone(ToneGenerator.TONE_PROP_NACK);
+                return;
+            }
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();
-        finish();
+        // Don't finish TwelveKeyDialer yet if we're sending a blank flash for CDMA. CDMA
+        // networks use Flash messages when special processing needs to be done, mainly for
+        // 3-way or call waiting scenarios. Presumably, here we're in a special 3-way scenario
+        // where the network needs a blank flash before being able to add the new participant.
+        // (This is not the case with all 3-way calls, just certain CDMA infrastructures.)
+        if (!sendEmptyFlash) {
+            finish();
+        }
     }
 
-    Handler mToneStopper = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case STOP_TONE:
-                    synchronized(mToneGeneratorLock) {
-                        if (mToneGenerator == null) {
-                            Log.w(TAG, "mToneStopper: mToneGenerator == null");
-                        } else {
-                            mToneGenerator.stopTone();
-                        }
-                    }
-                    break;
-            }
-        }
-    };
 
     /**
      * Plays the specified tone for TONE_LENGTH_MS milliseconds.
@@ -719,13 +811,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 Log.w(TAG, "playTone: mToneGenerator == null, tone: "+tone);
                 return;
             }
-            
-            // Remove pending STOP_TONE messages
-            mToneStopper.removeMessages(STOP_TONE);
-    
+
             // Start the new tone (will stop any playing tone)
-            mToneGenerator.startTone(tone);
-            mToneStopper.sendEmptyMessageDelayed(STOP_TONE, TONE_LENGTH_MS);
+            mToneGenerator.startTone(tone, TONE_LENGTH_MS);
         }
     }
 
@@ -748,8 +836,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private void showDialpadChooser(boolean enabled) {
         if (enabled) {
             // Log.i(TAG, "Showing dialpad chooser!");
-            mDigitsAndBackspace.setVisibility(View.GONE);
+            mDigits.setVisibility(View.GONE);
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
+            mVoicemailDialAndDeleteRow.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
 
             // Instantiate the DialpadChooserAdapter and hook it up to the
@@ -760,8 +849,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             }
         } else {
             // Log.i(TAG, "Displaying normal Dialer UI.");
-            mDigitsAndBackspace.setVisibility(View.VISIBLE);
+            mDigits.setVisibility(View.VISIBLE);
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
+            mVoicemailDialAndDeleteRow.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
         }
     }
@@ -940,5 +1030,191 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             Log.w(TAG, "phone.isIdle() failed", e);
         }
         return phoneInUse;
+    }
+
+    /**
+     * @return true if the phone is a CDMA phone type
+     */
+    private boolean phoneIsCdma() {
+        boolean isCdma = false;
+        try {
+            ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+            if (phone != null) {
+                isCdma = (phone.getActivePhoneType() == TelephonyManager.PHONE_TYPE_CDMA);
+            }
+        } catch (RemoteException e) {
+            Log.w(TAG, "phone.getActivePhoneType() failed", e);
+        }
+        return isCdma;
+    }
+
+    /**
+     * @return true if the phone state is OFFHOOK
+     */
+    private boolean phoneIsOffhook() {
+        boolean phoneOffhook = false;
+        try {
+            ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+            if (phone != null) phoneOffhook = phone.isOffhook();
+        } catch (RemoteException e) {
+            Log.w(TAG, "phone.isOffhook() failed", e);
+        }
+        return phoneOffhook;
+    }
+
+    /**
+     * Triggers haptic feedback (if enabled) for dialer key presses.
+     */
+    private synchronized void vibrate() {
+        if (!mVibrateOn) {
+            return;
+        }
+        if (mVibrator == null) {
+            mVibrator = new Vibrator();
+        }
+        mVibrator.vibrate(mVibratePattern, VIBRATE_NO_REPEAT);
+    }
+
+    /**
+     * Returns true whenever any one of the options from the menu is selected.
+     * Code changes to support dialpad options
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_2S_PAUSE:
+                updateDialString(",");
+                return true;
+            case MENU_WAIT:
+                updateDialString(";");
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Updates the dial string (mDigits) after inserting a Pause character (,)
+     * or Wait character (;).
+     */
+    private void updateDialString(String newDigits) {
+        int selectionStart;
+        int selectionEnd;
+
+        // SpannableStringBuilder editable_text = new SpannableStringBuilder(mDigits.getText());
+        int anchor = mDigits.getSelectionStart();
+        int point = mDigits.getSelectionEnd();
+
+        selectionStart = Math.min(anchor, point);
+        selectionEnd = Math.max(anchor, point);
+
+        Editable digits = mDigits.getText();
+        if (selectionStart != -1 ) {
+            if (selectionStart == selectionEnd) {
+                // then there is no selection. So insert the pause at this
+                // position and update the mDigits.
+                digits.replace(selectionStart, selectionStart, newDigits);
+            } else {
+                digits.replace(selectionStart, selectionEnd, newDigits);
+                // Unselect: back to a regular cursor, just pass the character inserted.
+                mDigits.setSelection(selectionStart + 1);
+            }
+        } else {
+            int len = mDigits.length();
+            digits.replace(len, len, newDigits);
+        }
+    }
+
+    /**
+     * Update the enabledness of the "Dial" and "Backspace" buttons if applicable.
+     */
+    private void updateDialAndDeleteButtonStateEnabledAttr() {
+        final boolean notEmpty = mDigits.length() != 0;
+
+        // If we're already on a CDMA call, then we want to enable the Call button
+        if (phoneIsCdma() && phoneIsOffhook()) {
+            if (mDialButton != null) {
+                mDialButton.setEnabled(true);
+            }
+        } else {
+            if (mDialButton != null) {
+                mDialButton.setEnabled(notEmpty);
+            }
+        }
+        mDelete.setEnabled(notEmpty);
+    }
+
+
+    /**
+     * Check if voicemail is enabled/accessible.
+     */
+    private void initVoicemailButton() {
+        boolean hasVoicemail = false;
+        try {
+            hasVoicemail = TelephonyManager.getDefault().getVoiceMailNumber() != null;
+        } catch (SecurityException se) {
+            // Possibly no READ_PHONE_STATE privilege.
+        }
+
+        mVoicemailButton = mVoicemailDialAndDeleteRow.findViewById(R.id.voicemailButton);
+        if (hasVoicemail) {
+            mVoicemailButton.setOnClickListener(this);
+        } else {
+            mVoicemailButton.setEnabled(false);
+        }
+    }
+
+    /**
+     * Initialize the vibration parameters.
+     * @param r The Resources with the vibration parameters.
+     */
+    private void initVibrationPattern(Resources r) {
+        int[] pattern = null;
+        try {
+            mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
+            pattern = r.getIntArray(com.android.internal.R.array.config_virtualKeyVibePattern);
+            if (null == pattern) {
+                Log.e(TAG, "Vibrate pattern is null.");
+                mVibrateOn = false;
+            }
+        } catch (Resources.NotFoundException nfe) {
+            Log.e(TAG, "Vibrate control bool or pattern missing.", nfe);
+            mVibrateOn = false;
+        }
+
+        if (!mVibrateOn) {
+            return;
+        }
+
+        // int[] to long[] conversion.
+        mVibratePattern = new long[pattern.length];
+        for (int i = 0; i < pattern.length; i++) {
+            mVibratePattern[i] = pattern[i];
+        }
+    }
+
+    /**
+     * This function return true if Wait menu item can be shown
+     * otherwise returns false. Assumes the passed string is non-empty
+     * and the 0th index check is not required.
+     */
+    private boolean showWait(int start, int end, String digits) {
+        if (start == end) {
+            // visible false in this case
+            if (start > digits.length()) return false;
+
+            // preceding char is ';', so visible should be false
+            if (digits.charAt(start-1) == ';') return false;
+
+            // next char is ';', so visible should be false
+            if ((digits.length() > start) && (digits.charAt(start) == ';')) return false;
+        } else {
+            // visible false in this case
+            if (start > digits.length() || end > digits.length()) return false;
+
+            // In this case we need to just check for ';' preceding to start
+            // or next to end
+            if (digits.charAt(start-1) == ';') return false;
+        }
+        return true;
     }
 }

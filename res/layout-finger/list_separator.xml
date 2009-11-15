@@ -17,4 +17,6 @@
 <!-- Layout used for list separators. -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     style="?android:attr/listSeparatorTextViewStyle"
+    android:textColor="@*android:color/dim_foreground_dark"
+    android:gravity="center_horizontal"
 />

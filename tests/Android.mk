@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 # We only want this apk build for tests.
 LOCAL_MODULE_TAGS := tests
-LOCAL_CERTIFICATE := platform
+LOCAL_CERTIFICATE := shared
 
 LOCAL_JAVA_LIBRARIES := android.test.runner
 

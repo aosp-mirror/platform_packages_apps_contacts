@@ -16,119 +16,108 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.ContactEntryAdapter.CONTACT_CUSTOM_RINGTONE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_NOTES_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PHONETIC_NAME_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_SEND_TO_VOICEMAIL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.CONTACT_STARRED_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_AUX_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_DATA_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_KIND_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_STATUS_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.METHODS_WITH_PRESENCE_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_COMPANY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TITLE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.ORGANIZATIONS_TYPE_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ID_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_ISPRIMARY_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_LABEL_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_NUMBER_COLUMN;
-import static com.android.contacts.ContactEntryAdapter.PHONES_PROJECTION;
-import static com.android.contacts.ContactEntryAdapter.PHONES_TYPE_COLUMN;
-
+import com.android.contacts.Collapser.Collapsible;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.ui.EditContactActivity;
+import com.android.contacts.util.Constants;
+import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.telephony.ITelephony;
+import com.android.internal.widget.ContactHeaderWidget;
+import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Entity;
+import android.content.EntityIterator;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.Entity.NamedContentValues;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemClock;
-import android.provider.Contacts;
-import android.provider.Im;
-import android.provider.Contacts.ContactMethods;
-import android.provider.Contacts.Organizations;
-import android.provider.Contacts.People;
-import android.provider.Contacts.Phones;
-import android.provider.Contacts.Presence;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.AggregationExceptions;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StatusUpdates;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Displays the details of a specific contact.
  */
-public class ViewContactActivity extends ListActivity 
-        implements View.OnCreateContextMenuListener, View.OnClickListener,
-        DialogInterface.OnClickListener {
+public class ViewContactActivity extends Activity
+        implements View.OnCreateContextMenuListener, DialogInterface.OnClickListener,
+        AdapterView.OnItemClickListener, NotifyingAsyncQueryHandler.AsyncQueryListener {
     private static final String TAG = "ViewContact";
-    private static final String SHOW_BARCODE_INTENT = "com.google.zxing.client.android.ENCODE";
 
     private static final boolean SHOW_SEPARATORS = false;
-    
-    private static final String[] PHONE_KEYS = {
-        Contacts.Intents.Insert.PHONE,
-        Contacts.Intents.Insert.SECONDARY_PHONE,
-        Contacts.Intents.Insert.TERTIARY_PHONE
-    };
-
-    private static final String[] EMAIL_KEYS = {
-        Contacts.Intents.Insert.EMAIL,
-        Contacts.Intents.Insert.SECONDARY_EMAIL,
-        Contacts.Intents.Insert.TERTIARY_EMAIL
-    };
 
     private static final int DIALOG_CONFIRM_DELETE = 1;
+    private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
+    private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
+    private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
 
-    public static final int MENU_ITEM_DELETE = 1;
-    public static final int MENU_ITEM_MAKE_DEFAULT = 2;
-    public static final int MENU_ITEM_SHOW_BARCODE = 3;
+    private static final int REQUEST_JOIN_CONTACT = 1;
+    private static final int REQUEST_EDIT_CONTACT = 2;
 
-    private Uri mUri;
+    public static final int MENU_ITEM_MAKE_DEFAULT = 3;
+
+    protected Uri mLookupUri;
     private ContentResolver mResolver;
     private ViewAdapter mAdapter;
     private int mNumPhoneNumbers = 0;
+
+    /**
+     * A list of distinct contact IDs included in the current contact.
+     */
+    private ArrayList<Long> mRawContactIds = new ArrayList<Long>();
 
     /* package */ ArrayList<ViewEntry> mPhoneEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mSmsEntries = new ArrayList<ViewEntry>();
@@ -136,12 +125,32 @@ public class ViewContactActivity extends ListActivity
     /* package */ ArrayList<ViewEntry> mPostalEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOrganizationEntries = new ArrayList<ViewEntry>();
+    /* package */ ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
     private Cursor mCursor;
-    private boolean mObserverRegistered;
-    
+
+    protected ContactHeaderWidget mContactHeaderWidget;
+    private NotifyingAsyncQueryHandler mHandler;
+
+    protected LayoutInflater mInflater;
+
+    protected int mReadOnlySourcesCnt;
+    protected int mWritableSourcesCnt;
+    protected boolean mAllRestricted;
+
+    protected ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
+
+    private static final int TOKEN_ENTITIES = 0;
+    private static final int TOKEN_STATUSES = 1;
+
+    private boolean mHasEntities = false;
+    private boolean mHasStatuses = false;
+
+    private ArrayList<Entity> mEntities = Lists.newArrayList();
+    private HashMap<Long, DataStatus> mStatuses = Maps.newHashMap();
+
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
         public boolean deliverSelfNotifications() {
@@ -150,75 +159,55 @@ public class ViewContactActivity extends ListActivity
 
         @Override
         public void onChange(boolean selfChange) {
-            if (mCursor != null && !mCursor.isClosed()){
-                dataChanged();
+            if (mCursor != null && !mCursor.isClosed()) {
+                startEntityQuery();
             }
         }
     };
 
     public void onClick(DialogInterface dialog, int which) {
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mCursor.unregisterContentObserver(mObserver);
-                mObserverRegistered = false;
-            }
-            mCursor.close();
-            mCursor = null;
-        }
-        getContentResolver().delete(mUri, null, null);
+        closeCursor();
+        getContentResolver().delete(mLookupUri, null, null);
         finish();
     }
 
-    public void onClick(View view) {
-        if (!mObserverRegistered) {
-            return;
-        }
-        switch (view.getId()) {
-            case R.id.star: {
-                int oldStarredState = mCursor.getInt(CONTACT_STARRED_COLUMN);
-                ContentValues values = new ContentValues(1);
-                values.put(People.STARRED, oldStarredState == 1 ? 0 : 1);
-                getContentResolver().update(mUri, values, null, null);
-                break;
-            }
-        }
-    }
-
-    private TextView mNameView;
-    private TextView mPhoneticNameView;  // may be null in some locales
-    private ImageView mPhotoView;
-    private int mNoPhotoResource;
-    private CheckBox mStarView;
+    private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        setContentView(R.layout.view_contact);
-        getListView().setOnCreateContextMenuListener(this);
+        final Intent intent = getIntent();
+        Uri data = intent.getData();
+        String authority = data.getAuthority();
+        if (ContactsContract.AUTHORITY.equals(authority)) {
+            mLookupUri = data;
+        } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
+            final long rawContactId = ContentUris.parseId(data);
+            mLookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
 
-        mNameView = (TextView) findViewById(R.id.name);
-        mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
-        mPhotoView = (ImageView) findViewById(R.id.photo);
-        mStarView = (CheckBox) findViewById(R.id.star);
-        mStarView.setOnClickListener(this);
-
-        // Set the photo with a random "no contact" image
-        long now = SystemClock.elapsedRealtime();
-        int num = (int) now & 0xf;
-        if (num < 9) {
-            // Leaning in from right, common
-            mNoPhotoResource = R.drawable.ic_contact_picture;
-        } else if (num < 14) {
-            // Leaning in from left uncommon
-            mNoPhotoResource = R.drawable.ic_contact_picture_2;
-        } else {
-            // Coming in from the top, rare
-            mNoPhotoResource = R.drawable.ic_contact_picture_3;
         }
+        mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        mUri = getIntent().getData();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.contact_card_layout);
+
+        mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
+        mContactHeaderWidget.showStar(true);
+        mContactHeaderWidget.setExcludeMimes(new String[] {
+            Contacts.CONTENT_ITEM_TYPE
+        });
+
+        mHandler = new NotifyingAsyncQueryHandler(this, this);
+
+        mListView = (ListView) findViewById(R.id.contact_data);
+        mListView.setOnCreateContextMenuListener(this);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        mListView.setOnItemClickListener(this);
+        mListView.setEmptyView((ScrollView) findViewById(android.R.id.empty));
+
         mResolver = getContentResolver();
 
         // Build the list of sections. The order they're added to mSections dictates the
@@ -229,45 +218,29 @@ public class ViewContactActivity extends ListActivity
         mSections.add(mImEntries);
         mSections.add(mPostalEntries);
         mSections.add(mOrganizationEntries);
+        mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
 
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
-
-        mCursor = mResolver.query(mUri, CONTACT_PROJECTION, null, null, null);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mObserverRegistered = true;
-        mCursor.registerContentObserver(mObserver);
-        dataChanged();
+        startEntityQuery();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mObserverRegistered = false;
-                mCursor.unregisterContentObserver(mObserver);
-            }
-            mCursor.deactivate();
-        }
+        closeCursor();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        if (mCursor != null) {
-            if (mObserverRegistered) {
-                mCursor.unregisterContentObserver(mObserver);
-                mObserverRegistered = false;
-            }
-            mCursor.close();
-        }
+        closeCursor();
     }
 
     @Override
@@ -282,81 +255,208 @@ public class ViewContactActivity extends ListActivity
                         .setPositiveButton(android.R.string.ok, this)
                         .setCancelable(false)
                         .create();
+            case DIALOG_CONFIRM_READONLY_DELETE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, this)
+                        .setCancelable(false)
+                        .create();
+            case DIALOG_CONFIRM_MULTIPLE_DELETE:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.multipleContactDeleteConfirmation)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, this)
+                        .setCancelable(false)
+                        .create();
+            case DIALOG_CONFIRM_READONLY_HIDE: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.deleteConfirmation_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.readOnlyContactWarning)
+                        .setPositiveButton(android.R.string.ok, this)
+                        .create();
+            }
+
         }
         return null;
     }
 
-    private void dataChanged() {
-        mCursor.requery();
-        if (mCursor.moveToFirst()) {
-            // Set the name
-            String name = mCursor.getString(CONTACT_NAME_COLUMN);
-            if (TextUtils.isEmpty(name)) {
-                mNameView.setText(getText(android.R.string.unknownName));
-            } else {
-                mNameView.setText(name);
+    // QUERY CODE //
+    /** {@inheritDoc} */
+    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
+        try {
+            // Read incoming entities and consider binding
+            readEntities(iterator);
+            considerBindData();
+        } finally {
+            if (iterator != null) {
+                iterator.close();
             }
+        }
+    }
 
-            if (mPhoneticNameView != null) {
-                String phoneticName = mCursor.getString(CONTACT_PHONETIC_NAME_COLUMN);
-                mPhoneticNameView.setText(phoneticName);
+    /** {@inheritDoc} */
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        try {
+            // Read available social rows and consider binding
+            readStatuses(cursor);
+            considerBindData();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
+        }
+    }
 
-            // Load the photo
-            mPhotoView.setImageBitmap(People.loadContactPhoto(this, mUri, mNoPhotoResource,
-                    null /* use the default options */));
+    private long getRefreshedContactId() {
+        Uri freshContactUri = Contacts.lookupContact(getContentResolver(), mLookupUri);
+        if (freshContactUri != null) {
+            return ContentUris.parseId(freshContactUri);
+        }
+        return -1;
+    }
 
-            // Set the star
-            mStarView.setChecked(mCursor.getInt(CONTACT_STARRED_COLUMN) == 1 ? true : false);
-
-            // Build up the contact entries
-            buildEntries(mCursor);
-            if (mAdapter == null) {
-                mAdapter = new ViewAdapter(this, mSections);
-                setListAdapter(mAdapter);
-            } else {
-                mAdapter.setSections(mSections, SHOW_SEPARATORS);
+    /**
+     * Read from the given {@link EntityIterator} to build internal set of
+     * {@link #mEntities} for data display.
+     */
+    private synchronized void readEntities(EntityIterator iterator) {
+        mEntities.clear();
+        try {
+            while (iterator.hasNext()) {
+                mEntities.add(iterator.next());
             }
-        } else {
+            mHasEntities = true;
+        } catch (RemoteException e) {
+            Log.w(TAG, "Problem reading contact data: " + e.toString());
+        }
+    }
+
+    /**
+     * Read from the given {@link Cursor} and build a set of {@link DataStatus}
+     * objects to match any valid statuses found.
+     */
+    private synchronized void readStatuses(Cursor cursor) {
+        mStatuses.clear();
+
+        // Walk found statuses, creating internal row for each
+        while (cursor.moveToNext()) {
+            final DataStatus status = new DataStatus(cursor);
+            final long dataId = cursor.getLong(StatusQuery._ID);
+            mStatuses.put(dataId, status);
+        }
+
+        mHasStatuses = true;
+    }
+
+    private synchronized void startEntityQuery() {
+        closeCursor();
+
+        Uri uri = null;
+        if (mLookupUri != null) {
+            mLookupUri = Contacts.getLookupUri(getContentResolver(), mLookupUri);
+            if (mLookupUri != null) {
+                uri = Contacts.lookupContact(getContentResolver(), mLookupUri);
+            }
+        }
+
+        if (uri == null) {
+
+            // TODO either figure out a way to prevent a flash of black background or
+            // use some other UI than a toast
             Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "invalid contact uri: " + mUri);
+            Log.e(TAG, "invalid contact uri: " + mLookupUri);
             finish();
+            return;
+        }
+
+        final Uri dataUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
+
+        // Keep stub cursor open on side to watch for change events
+        mCursor = mResolver.query(dataUri,
+                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        mCursor.registerContentObserver(mObserver);
+
+        final long contactId = ContentUris.parseId(uri);
+
+        // Clear flags and start queries to data and status
+        mHasEntities = false;
+        mHasStatuses = false;
+
+        mHandler.startQueryEntities(TOKEN_ENTITIES, null, RawContacts.CONTENT_URI,
+                RawContacts.CONTACT_ID + "=" + contactId, null, null);
+        mHandler.startQuery(TOKEN_STATUSES, null, dataUri, StatusQuery.PROJECTION,
+                        StatusUpdates.PRESENCE + " IS NOT NULL OR " + StatusUpdates.STATUS
+                                + " IS NOT NULL", null, null);
+
+        mContactHeaderWidget.bindFromContactLookupUri(mLookupUri);
+    }
+
+    private void closeCursor() {
+        if (mCursor != null) {
+            mCursor.unregisterContentObserver(mObserver);
+            mCursor.close();
+            mCursor = null;
+        }
+    }
+
+    /**
+     * Consider binding views after any of several background queries has
+     * completed. We check internal flags and only bind when all data has
+     * arrived.
+     */
+    private void considerBindData() {
+        if (mHasEntities && mHasStatuses) {
+            bindData();
+        }
+    }
+
+    private void bindData() {
+
+        // Build up the contact entries
+        buildEntries();
+
+        // Collapse similar data items in select sections.
+        Collapser.collapseList(mPhoneEntries);
+        Collapser.collapseList(mSmsEntries);
+        Collapser.collapseList(mEmailEntries);
+        Collapser.collapseList(mPostalEntries);
+        Collapser.collapseList(mImEntries);
+
+        if (mAdapter == null) {
+            mAdapter = new ViewAdapter(this, mSections);
+            mListView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setSections(mSections, SHOW_SEPARATORS);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 0, 0, R.string.menu_editContact)
-                .setIcon(android.R.drawable.ic_menu_edit)
-                .setIntent(new Intent(Intent.ACTION_EDIT, mUri))
-                .setAlphabeticShortcut('e');
-        menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact)
-                .setIcon(android.R.drawable.ic_menu_delete);
+        super.onCreateOptionsMenu(menu);
 
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view, menu);
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // Perform this check each time the menu is about to be shown, because the Barcode Scanner
-        // could be installed or uninstalled at any time.
-        if (isBarcodeScannerInstalled()) {
-            if (menu.findItem(MENU_ITEM_SHOW_BARCODE) == null) {
-                menu.add(0, MENU_ITEM_SHOW_BARCODE, 0, R.string.menu_showBarcode)
-                        .setIcon(R.drawable.ic_menu_show_barcode);
-            }
-        } else {
-            menu.removeItem(MENU_ITEM_SHOW_BARCODE);
-        }
-        return true;
-    }
 
-    private boolean isBarcodeScannerInstalled() {
-        final Intent intent = new Intent(SHOW_BARCODE_INTENT);
-        ResolveInfo ri = getPackageManager().resolveActivity(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        return ri != null;
+        // Only allow edit when we have at least one raw_contact id
+        final boolean hasRawContact = (mRawContactIds.size() > 0);
+        menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
+
+        // Only allow share when unrestricted contacts available
+        menu.findItem(R.id.menu_share).setEnabled(!mAllRestricted);
+
+        return true;
     }
 
     @Override
@@ -376,103 +476,212 @@ public class ViewContactActivity extends ListActivity
         }
 
         ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
-        switch (entry.kind) {
-            case Contacts.KIND_PHONE: {
-                menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-                menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.auxIntent);
-                if (entry.primaryIcon == -1) {
-                    menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
-                }
-                break;
+        menu.setHeaderTitle(R.string.contactOptionsTitle);
+        if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
+            menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
+            if (!entry.isPrimary) {
+                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
             }
-
-            case Contacts.KIND_EMAIL: {
-                menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
-                break;
+        } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
+            if (!entry.isPrimary) {
+                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
             }
-
-            case Contacts.KIND_POSTAL: {
-                menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
-                break;
-            }
+        } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
+            menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_ITEM_DELETE: {
+            case R.id.menu_edit: {
+                Long rawContactIdToEdit = null;
+                if (mRawContactIds.size() > 0) {
+                    rawContactIdToEdit = mRawContactIds.get(0);
+                } else {
+                    // There is no rawContact to edit.
+                    break;
+                }
+                Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                        rawContactIdToEdit);
+                startActivityForResult(new Intent(Intent.ACTION_EDIT, rawContactUri),
+                        REQUEST_EDIT_CONTACT);
+                break;
+            }
+            case R.id.menu_delete: {
                 // Get confirmation
-                showDialog(DIALOG_CONFIRM_DELETE);
+                if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_DELETE);
+                } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+                } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+                    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+                } else {
+                    showDialog(DIALOG_CONFIRM_DELETE);
+                }
                 return true;
             }
-            case MENU_ITEM_SHOW_BARCODE:
-                if (mCursor.moveToFirst()) {
-                    Intent intent = new Intent(SHOW_BARCODE_INTENT);
-                    intent.putExtra("ENCODE_TYPE", "CONTACT_TYPE");
-                    Bundle bundle = new Bundle();
-                    String name = mCursor.getString(CONTACT_NAME_COLUMN);
-                    if (!TextUtils.isEmpty(name)) {
-                        // Correctly handle when section headers are hidden
-                        int sepAdjust = SHOW_SEPARATORS ? 1 : 0;
-                        
-                        bundle.putString(Contacts.Intents.Insert.NAME, name);
-                        // The 0th ViewEntry in each ArrayList below is a separator item
-                        int entriesToAdd = Math.min(mPhoneEntries.size() - sepAdjust, PHONE_KEYS.length);
-                        for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mPhoneEntries.get(x + sepAdjust);
-                            bundle.putString(PHONE_KEYS[x], entry.data);
-                        }
-                        entriesToAdd = Math.min(mEmailEntries.size() - sepAdjust, EMAIL_KEYS.length);
-                        for (int x = 0; x < entriesToAdd; x++) {
-                            ViewEntry entry = mEmailEntries.get(x + sepAdjust);
-                            bundle.putString(EMAIL_KEYS[x], entry.data);
-                        }
-                        if (mPostalEntries.size() >= 1 + sepAdjust) {
-                            ViewEntry entry = mPostalEntries.get(sepAdjust);
-                            bundle.putString(Contacts.Intents.Insert.POSTAL, entry.data);
-                        }
-                        intent.putExtra("ENCODE_DATA", bundle);
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            // The check in onPrepareOptionsMenu() should make this impossible, but
-                            // for safety I'm catching the exception rather than crashing. Ideally
-                            // I'd call Menu.removeItem() here too, but I don't see a way to get
-                            // the options menu.
-                            Log.e(TAG, "Show barcode menu item was clicked but Barcode Scanner " +
-                                    "was not installed.");
-                        }
-                        return true;
-                    }
+            case R.id.menu_join: {
+                showJoinAggregateActivity();
+                return true;
+            }
+            case R.id.menu_options: {
+                showOptionsActivity();
+                return true;
+            }
+            case R.id.menu_share: {
+                if (mAllRestricted) return false;
+
+                // TODO: Keep around actual LOOKUP_KEY, or formalize method of extracting
+                final String lookupKey = mLookupUri.getPathSegments().get(2);
+                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+
+                final Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType(Contacts.CONTENT_VCARD_TYPE);
+                intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+
+                // Launch chooser to share contact via
+                final CharSequence chooseTitle = getText(R.string.share_via);
+                final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
+
+                try {
+                    startActivity(chooseIntent);
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
                 }
-                break;
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
-                AdapterView.AdapterContextMenuInfo info;
-                try {
-                     info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                } catch (ClassCastException e) {
-                    Log.e(TAG, "bad menuInfo", e);
-                    break;
+                if (makeItemDefault(item)) {
+                    return true;
                 }
-
-                ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position,
-                        SHOW_SEPARATORS);
-                ContentValues values = new ContentValues(1);
-                values.put(People.PRIMARY_PHONE_ID, entry.id);
-                getContentResolver().update(mUri, values, null, null);
-                dataChanged();
-                return true;
+                break;
             }
         }
+
         return super.onContextItemSelected(item);
+    }
+
+    private boolean makeItemDefault(MenuItem item) {
+        ViewEntry entry = getViewEntryForMenuItem(item);
+        if (entry == null) {
+            return false;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(1);
+        values.put(Data.IS_SUPER_PRIMARY, 1);
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
+                values, null, null);
+        startEntityQuery();
+        return true;
+    }
+
+    /**
+     * Shows a list of aggregates that can be joined into the currently viewed aggregate.
+     */
+    public void showJoinAggregateActivity() {
+        long freshId = getRefreshedContactId();
+        if (freshId > 0) {
+            String displayName = null;
+            if (mCursor.moveToFirst()) {
+                displayName = mCursor.getString(0);
+            }
+            Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
+            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, freshId);
+            if (displayName != null) {
+                intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
+            }
+            startActivityForResult(intent, REQUEST_JOIN_CONTACT);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == REQUEST_JOIN_CONTACT) {
+            if (resultCode == RESULT_OK && intent != null) {
+                final long contactId = ContentUris.parseId(intent.getData());
+                joinAggregate(contactId);
+            }
+        } else if (requestCode == REQUEST_EDIT_CONTACT) {
+            if (resultCode == EditContactActivity.RESULT_CLOSE_VIEW_ACTIVITY) {
+                finish();
+            } else if (resultCode == Activity.RESULT_OK) {
+                mLookupUri = intent.getData();
+                if (mLookupUri == null) {
+                    finish();
+                }
+            }
+        }
+    }
+
+    private void splitContact(long rawContactId) {
+        setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_SEPARATE);
+
+        // The split operation may have removed the original aggregate contact, so we need
+        // to requery everything
+        Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_LONG).show();
+        startEntityQuery();
+    }
+
+    private void joinAggregate(final long contactId) {
+        Cursor c = mResolver.query(RawContacts.CONTENT_URI, new String[] {RawContacts._ID},
+                RawContacts.CONTACT_ID + "=" + contactId, null, null);
+
+        try {
+            while(c.moveToNext()) {
+                long rawContactId = c.getLong(0);
+                setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_TOGETHER);
+            }
+        } finally {
+            c.close();
+        }
+
+        Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+        startEntityQuery();
+    }
+
+    /**
+     * Given a contact ID sets an aggregation exception to either join the contact with the
+     * current aggregate or split off.
+     */
+    protected void setAggregationException(long rawContactId, int exceptionType) {
+        ContentValues values = new ContentValues(3);
+        for (long aRawContactId : mRawContactIds) {
+            if (aRawContactId != rawContactId) {
+                values.put(AggregationExceptions.RAW_CONTACT_ID1, aRawContactId);
+                values.put(AggregationExceptions.RAW_CONTACT_ID2, rawContactId);
+                values.put(AggregationExceptions.TYPE, exceptionType);
+                mResolver.update(AggregationExceptions.CONTENT_URI, values, null, null);
+            }
+        }
+    }
+
+    private void showOptionsActivity() {
+        final Intent intent = new Intent(this, ContactOptionsActivity.class);
+        intent.setData(mLookupUri);
+        startActivity(intent);
+    }
+
+    private ViewEntry getViewEntryForMenuItem(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info;
+        try {
+             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        } catch (ClassCastException e) {
+            Log.e(TAG, "bad menuInfo", e);
+            return null;
+        }
+
+        return ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
     }
 
     @Override
@@ -490,23 +699,35 @@ public class ViewContactActivity extends ListActivity
                     // Fall through and try to call the contact
                 }
 
-                int index = getListView().getSelectedItemPosition();
+                int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
                     ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
-                    if (entry.kind == Contacts.KIND_PHONE) {
-                        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
-                        startActivity(intent);
+                    if (entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
+                        startActivity(entry.intent);
                     }
                 } else if (mNumPhoneNumbers != 0) {
                     // There isn't anything selected, call the default number
-                    Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, mUri);
-                    startActivity(intent);
+                    long freshContactId = getRefreshedContactId();
+                    if (freshContactId > 0) {
+                        Uri hardContacUri = ContentUris.withAppendedId(
+                                Contacts.CONTENT_URI, freshContactId);
+                        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, hardContacUri);
+                        startActivity(intent);
+                    }
                 }
                 return true;
             }
 
             case KeyEvent.KEYCODE_DEL: {
-                showDialog(DIALOG_CONFIRM_DELETE);
+                if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_DELETE);
+                } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+                    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+                } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+                    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+                } else {
+                    showDialog(DIALOG_CONFIRM_DELETE);
+                }
                 return true;
             }
         }
@@ -514,8 +735,7 @@ public class ViewContactActivity extends ListActivity
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    public void onItemClick(AdapterView parent, View v, int position, long id) {
         ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
         if (entry != null) {
             Intent intent = entry.intent;
@@ -542,412 +762,351 @@ public class ViewContactActivity extends ListActivity
     }
 
     /**
-     * Build separator entries for all of the sections.
-     */
-    private void buildSeparators() {
-        ViewEntry separator;
-        
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorCallNumber);
-        mPhoneEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendSmsMms);
-        mSmsEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendEmail);
-        mEmailEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorSendIm);
-        mImEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorMapAddress);
-        mPostalEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorOrganizations);
-        mOrganizationEntries.add(separator);
-
-        separator = new ViewEntry();
-        separator.kind = ViewEntry.KIND_SEPARATOR;
-        separator.data = getString(R.string.listSeparatorOtherInformation);
-        mOtherEntries.add(separator);
-    }
-
-    private Uri constructImToUrl(String host, String data) {
-	    // don't encode the url, because the Activity Manager can't find using the encoded url
-        StringBuilder buf = new StringBuilder("imto://");
-        buf.append(host);
-        buf.append('/');
-        buf.append(data);
-        return Uri.parse(buf.toString());
-    }
-
-    /**
      * Build up the entries to display on the screen.
-     * 
+     *
      * @param personCursor the URI for the contact being displayed
      */
-    private final void buildEntries(Cursor personCursor) {
+    private final void buildEntries() {
         // Clear out the old entries
         final int numSections = mSections.size();
         for (int i = 0; i < numSections; i++) {
             mSections.get(i).clear();
         }
 
-        if (SHOW_SEPARATORS) {
-            buildSeparators();
-        }
+        mRawContactIds.clear();
 
-        // Build up the phone entries
-        final Uri phonesUri = Uri.withAppendedPath(mUri, People.Phones.CONTENT_DIRECTORY);
-        final Cursor phonesCursor = mResolver.query(phonesUri, PHONES_PROJECTION, null, null,
-                Phones.ISPRIMARY + " DESC");
+        mReadOnlySourcesCnt = 0;
+        mWritableSourcesCnt = 0;
+        mAllRestricted = true;
 
-        if (phonesCursor != null) {
-            while (phonesCursor.moveToNext()) {
-                final int type = phonesCursor.getInt(PHONES_TYPE_COLUMN);
-                final String number = phonesCursor.getString(PHONES_NUMBER_COLUMN);
-                final String label = phonesCursor.getString(PHONES_LABEL_COLUMN);
-                final boolean isPrimary = phonesCursor.getInt(PHONES_ISPRIMARY_COLUMN) == 1;
-                final long id = phonesCursor.getLong(PHONES_ID_COLUMN);
-                final Uri uri = ContentUris.withAppendedId(phonesUri, id);
+        mWritableRawContactIds.clear();
 
-                // Don't crash if the number is bogus
-                if (TextUtils.isEmpty(number)) {
-                    Log.w(TAG, "empty number for phone " + id);
-                    continue;
+        final Context context = this;
+        final Sources sources = Sources.getInstance(context);
+
+        // Build up method entries
+        if (mLookupUri != null) {
+            for (Entity entity: mEntities) {
+                final ContentValues entValues = entity.getEntityValues();
+                final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
+                final long rawContactId = entValues.getAsLong(RawContacts._ID);
+
+                // Mark when this contact has any unrestricted components
+                final boolean isRestricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED) != 0;
+                if (!isRestricted) mAllRestricted = false;
+
+                if (!mRawContactIds.contains(rawContactId)) {
+                    mRawContactIds.add(rawContactId);
+                }
+                ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                        ContactsSource.LEVEL_SUMMARY);
+                if (contactsSource != null && contactsSource.readOnly) {
+                    mReadOnlySourcesCnt += 1;
+                } else {
+                    mWritableSourcesCnt += 1;
+                    mWritableRawContactIds.add(rawContactId);
                 }
 
-                mNumPhoneNumbers++;
-                
-                // Add a phone number entry
-                final ViewEntry entry = new ViewEntry();
-                final CharSequence displayLabel = Phones.getDisplayLabel(this, type, label);
-                entry.label = buildActionString(R.string.actionCall, displayLabel, true);
-                entry.data = number;
-                entry.id = id;
-                entry.uri = uri;
-                entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, entry.uri);
-                entry.auxIntent = new Intent(Intent.ACTION_SENDTO,
-                        Uri.fromParts("sms", number, null));
-                entry.kind = Contacts.KIND_PHONE;
-                if (isPrimary) {
-                    entry.primaryIcon = R.drawable.ic_default_number;
-                }
-                entry.actionIcon = android.R.drawable.sym_action_call;
-                mPhoneEntries.add(entry);
 
-                if (type == Phones.TYPE_MOBILE || mShowSmsLinksForAllPhones) {
-                    // Add an SMS entry
-                    ViewEntry smsEntry = new ViewEntry();
-                    smsEntry.label = buildActionString(R.string.actionText, displayLabel, true);
-                    smsEntry.data = number;
-                    smsEntry.id = id;
-                    smsEntry.uri = uri;
-                    smsEntry.intent = entry.auxIntent;
-                    smsEntry.kind = ViewEntry.KIND_SMS;
-                    smsEntry.actionIcon = R.drawable.sym_action_sms;
-                    mSmsEntries.add(smsEntry);
-                }
-            }
+                for (NamedContentValues subValue : entity.getSubValues()) {
+                    final ContentValues entryValues = subValue.values;
+                    entryValues.put(Data.RAW_CONTACT_ID, rawContactId);
 
-            phonesCursor.close();
-        }
+                    final long dataId = entryValues.getAsLong(Data._ID);
+                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+                    if (mimeType == null) continue;
 
-        // Build the contact method entries
-        final Uri methodsUri = Uri.withAppendedPath(mUri, People.ContactMethods.CONTENT_DIRECTORY);
-        Cursor methodsCursor = mResolver.query(
-                Uri.withAppendedPath(mUri, "contact_methods_with_presence"),
-                METHODS_WITH_PRESENCE_PROJECTION, null, null, null);
+                    final DataKind kind = sources.getKindOrFallback(accountType, mimeType, this,
+                            ContactsSource.LEVEL_MIMETYPES);
+                    if (kind == null) continue;
 
-        if (methodsCursor != null) {
-            String[] protocolStrings = getResources().getStringArray(android.R.array.imProtocols);
+                    final ViewEntry entry = ViewEntry.fromValues(context, mimeType, kind,
+                            rawContactId, dataId, entryValues);
 
-            while (methodsCursor.moveToNext()) {
-                final int kind = methodsCursor.getInt(METHODS_KIND_COLUMN);
-                final String label = methodsCursor.getString(METHODS_LABEL_COLUMN);
-                final String data = methodsCursor.getString(METHODS_DATA_COLUMN);
-                final int type = methodsCursor.getInt(METHODS_TYPE_COLUMN);
-                final long id = methodsCursor.getLong(METHODS_ID_COLUMN);
-                final Uri uri = ContentUris.withAppendedId(methodsUri, id);
+                    final boolean hasData = !TextUtils.isEmpty(entry.data);
+                    final boolean isSuperPrimary = entryValues.getAsInteger(
+                            Data.IS_SUPER_PRIMARY) != 0;
 
-                // Don't crash if the data is bogus
-                if (TextUtils.isEmpty(data)) {
-                    Log.w(TAG, "empty data for contact method " + id);
-                    continue;
-                }
+                    if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build phone entries
+                        mNumPhoneNumbers++;
 
-                ViewEntry entry = new ViewEntry();
-                entry.id = id;
-                entry.uri = uri;
-                entry.kind = kind;
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                Uri.fromParts(Constants.SCHEME_TEL, entry.data, null));
+                        entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null));
 
-                switch (kind) {
-                    case Contacts.KIND_EMAIL:
-                        entry.label = buildActionString(R.string.actionEmail,
-                                ContactMethods.getDisplayLabel(this, kind, type, label), true);
-                        entry.data = data;
-                        entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("mailto", data, null));
-                        entry.actionIcon = android.R.drawable.sym_action_email;
-                        mEmailEntries.add(entry);
-                        break;
+                        entry.isPrimary = isSuperPrimary;
+                        mPhoneEntries.add(entry);
 
-                    case Contacts.KIND_POSTAL:
-                        entry.label = buildActionString(R.string.actionMap,
-                                ContactMethods.getDisplayLabel(this, kind, type, label), true);
-                        entry.data = data;
-                        entry.maxLines = 4;
-                        entry.intent = new Intent(Intent.ACTION_VIEW, uri);
-                        entry.actionIcon = R.drawable.sym_action_map;
-                        mPostalEntries.add(entry);
-                        break;
-
-                    case Contacts.KIND_IM: {
-                        Object protocolObj = ContactMethods.decodeImProtocol(
-                                methodsCursor.getString(METHODS_AUX_DATA_COLUMN));
-                        String host;
-                        if (protocolObj instanceof Number) {
-                            int protocol = ((Number) protocolObj).intValue();
-                            entry.label = buildActionString(R.string.actionChat,
-                                    protocolStrings[protocol], false);
-                            host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
-                            if (protocol == ContactMethods.PROTOCOL_GOOGLE_TALK
-                                    || protocol == ContactMethods.PROTOCOL_MSN) {
-                                entry.maxLabelLines = 2;
+                        if (entry.type == CommonDataKinds.Phone.TYPE_MOBILE
+                                || mShowSmsLinksForAllPhones) {
+                            // Add an SMS entry
+                            if (kind.iconAltRes > 0) {
+                                entry.secondaryActionIcon = kind.iconAltRes;
                             }
-                        } else {
-                            String providerName = (String) protocolObj;
-                            entry.label = buildActionString(R.string.actionChat,
-                                    providerName, false);
-                            host = providerName.toLowerCase();
+                        }
+                    } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build email entries
+                        entry.intent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts(Constants.SCHEME_MAILTO, entry.data, null));
+                        entry.isPrimary = isSuperPrimary;
+                        mEmailEntries.add(entry);
+
+                        // When Email rows have status, create additional Im row
+                        final DataStatus status = mStatuses.get(entry.id);
+                        if (status != null) {
+                            final String imMime = Im.CONTENT_ITEM_TYPE;
+                            final DataKind imKind = sources.getKindOrFallback(accountType,
+                                    imMime, this, ContactsSource.LEVEL_MIMETYPES);
+                            final ViewEntry imEntry = ViewEntry.fromValues(context,
+                                    imMime, imKind, rawContactId, dataId, entryValues);
+                            imEntry.intent = ContactsUtils.buildImIntent(entryValues);
+                            imEntry.applyStatus(status, false);
+                            mImEntries.add(imEntry);
+                        }
+                    } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build postal entries
+                        entry.maxLines = 4;
+                        entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
+                        mPostalEntries.add(entry);
+                    } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build IM entries
+                        entry.intent = ContactsUtils.buildImIntent(entryValues);
+                        if (TextUtils.isEmpty(entry.label)) {
+                            entry.label = getString(R.string.chat).toLowerCase();
                         }
 
-                        // Only add the intent if there is a valid host
-                        if (!TextUtils.isEmpty(host)) {
-                            entry.intent = new Intent(Intent.ACTION_SENDTO,
-                                    constructImToUrl(host, data));
+                        // Apply presence and status details when available
+                        final DataStatus status = mStatuses.get(entry.id);
+                        if (status != null) {
+                            entry.applyStatus(status, false);
                         }
-                        entry.data = data;
-                        if (!methodsCursor.isNull(METHODS_STATUS_COLUMN)) {
-                            entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                    methodsCursor.getInt(METHODS_STATUS_COLUMN));
-                        }
-                        entry.actionIcon = android.R.drawable.sym_action_chat;
                         mImEntries.add(entry);
-                        break;
-                    }
-                }
-            }
-
-            methodsCursor.close();
-        }
-
-        // Build IM entries for things we have presence info about but not explicit IM entries for
-        long personId = ContentUris.parseId(mUri);
-        String[] projection = new String[] {
-                Presence.IM_HANDLE, // 0
-                Presence.IM_PROTOCOL, // 1
-                Presence.PRESENCE_STATUS, // 2
-        };
-        Cursor presenceCursor = mResolver.query(Presence.CONTENT_URI, projection,
-                Presence.PERSON_ID + "=" + personId, null, null);
-        if (presenceCursor != null) {
-            try {
-                while (presenceCursor.moveToNext()) {
-                    // Find the display info for the provider
-                    String data = presenceCursor.getString(0);
-                    String label;
-                    Object protocolObj = ContactMethods.decodeImProtocol(
-                            presenceCursor.getString(1));
-                    String host;
-                    if (protocolObj instanceof Number) {
-                        int protocol = ((Number) protocolObj).intValue();
-                        label = getResources().getStringArray(
-                                android.R.array.imProtocols)[protocol];
-                        host = ContactMethods.lookupProviderNameFromId(protocol).toLowerCase();
+                    } else if ((Organization.CONTENT_ITEM_TYPE.equals(mimeType)
+                            || Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) && hasData) {
+                        // Build organization and note entries
+                        entry.uri = null;
+                        mOrganizationEntries.add(entry);
+                    } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build note entries
+                        entry.uri = null;
+                        entry.maxLines = 10;
+                        mOtherEntries.add(entry);
                     } else {
-                        String providerName = (String) protocolObj;
-                        label = providerName;
-                        host = providerName.toLowerCase();
-                    }
+                        // Handle showing custom rows
+                        entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
 
-                    if (TextUtils.isEmpty(host)) {
-                        // A valid provider name is required
-                        continue;
-                    }
+                        // Use social summary when requested by external source
+                        final DataStatus status = mStatuses.get(entry.id);
+                        final boolean hasSocial = kind.actionBodySocial && status != null;
+                        if (hasSocial) {
+                            entry.applyStatus(status, true);
+                        }
 
-
-                    Intent intent = new Intent(Intent.ACTION_SENDTO, constructImToUrl(host, data));
-
-                    // Check to see if there is already an entry for this IM account
-                    boolean addEntry = true;
-                    int numImEntries = mImEntries.size();
-                    for (int i = 0; i < numImEntries; i++) {
-                        // Check to see if the intent point to the same thing, if so we won't
-                        // add this entry to the list since there is already an explict entry
-                        // for the IM account
-                        Intent existingIntent = mImEntries.get(i).intent;
-                        if (intent.filterEquals(existingIntent)) {
-                            addEntry = false;
-                            break;
+                        if (hasSocial || hasData) {
+                            mOtherEntries.add(entry);
                         }
                     }
-
-                    // Add the entry if an existing one wasn't found
-                    if (addEntry) {
-                        ViewEntry entry = new ViewEntry();
-                        entry.kind = Contacts.KIND_IM;
-                        entry.data = data;
-                        entry.label = label;
-                        entry.intent = intent;
-                        entry.actionIcon = android.R.drawable.sym_action_chat;
-                        entry.presenceIcon = Presence.getPresenceIconResourceId(
-                                presenceCursor.getInt(2));
-                        entry.maxLabelLines = 2;
-                        mImEntries.add(entry);
-                    }
-                }
-            } finally {
-                presenceCursor.close();
-            }
-        }
-
-        // Build the organization entries
-        final Uri organizationsUri = Uri.withAppendedPath(mUri, Organizations.CONTENT_DIRECTORY);
-        Cursor organizationsCursor = mResolver.query(organizationsUri, ORGANIZATIONS_PROJECTION,
-                null, null, null);
-
-        if (organizationsCursor != null) {
-            while (organizationsCursor.moveToNext()) {
-                ViewEntry entry = new ViewEntry();
-                entry.id = organizationsCursor.getLong(ORGANIZATIONS_ID_COLUMN);
-                entry.uri = ContentUris.withAppendedId(organizationsUri, entry.id);
-                entry.kind = Contacts.KIND_ORGANIZATION;
-                entry.label = organizationsCursor.getString(ORGANIZATIONS_COMPANY_COLUMN);
-                entry.data = organizationsCursor.getString(ORGANIZATIONS_TITLE_COLUMN);
-                entry.actionIcon = R.drawable.sym_action_organization;
-/*
-                entry.label = Organizations.getDisplayLabel(this,
-                        organizationsCursor.getInt(ORGANIZATIONS_TYPE_COLUMN),
-                        organizationsCursor.getString(ORGANIZATIONS_LABEL_COLUMN)).toString();
-*/
-                mOrganizationEntries.add(entry);
-            }
-
-            organizationsCursor.close();
-        }
-
-
-        // Build the other entries
-        String note = personCursor.getString(CONTACT_NOTES_COLUMN);
-        if (!TextUtils.isEmpty(note)) {
-            ViewEntry entry = new ViewEntry();
-            entry.label = getString(R.string.label_notes);
-            entry.data = note;
-            entry.id = 0;
-            entry.kind = ViewEntry.KIND_CONTACT;
-            entry.uri = null;
-            entry.intent = null;
-            entry.maxLines = 10;
-            entry.actionIcon = R.drawable.sym_note;
-            mOtherEntries.add(entry);
-        }
-        
-        // Build the ringtone entry
-        String ringtoneStr = personCursor.getString(CONTACT_CUSTOM_RINGTONE_COLUMN);
-        if (!TextUtils.isEmpty(ringtoneStr)) {
-            // Get the URI
-            Uri ringtoneUri = Uri.parse(ringtoneStr);
-            if (ringtoneUri != null) {
-                Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
-                if (ringtone != null) {
-                    ViewEntry entry = new ViewEntry();
-                    entry.label = getString(R.string.label_ringtone);
-                    entry.data = ringtone.getTitle(this);
-                    entry.kind = ViewEntry.KIND_CONTACT;
-                    entry.uri = ringtoneUri;
-                    entry.actionIcon = R.drawable.sym_ringtone;
-                    mOtherEntries.add(entry);
                 }
             }
         }
-
-        // Build the send directly to voice mail entry
-        boolean sendToVoicemail = personCursor.getInt(CONTACT_SEND_TO_VOICEMAIL_COLUMN) == 1;
-        if (sendToVoicemail) {
-            ViewEntry entry = new ViewEntry();
-            entry.label = getString(R.string.actionIncomingCall);
-            entry.data = getString(R.string.detailIncomingCallsGoToVoicemail);
-            entry.kind = ViewEntry.KIND_CONTACT;
-            entry.actionIcon = R.drawable.sym_send_to_voicemail;
-            mOtherEntries.add(entry);
-        }
     }
 
-    String buildActionString(int actionResId, CharSequence type, boolean lowerCase) {
-        // If there is no type just display an empty string
-        if (type == null) {
-            type = "";
+    static String buildActionString(DataKind kind, ContentValues values, boolean lowerCase,
+            Context context) {
+        if (kind.actionHeader == null) {
+            return null;
         }
-
-        if (lowerCase) {
-            return getString(actionResId, type.toString().toLowerCase());
-        } else {
-            return getString(actionResId, type.toString());
+        CharSequence actionHeader = kind.actionHeader.inflateUsing(context, values);
+        if (actionHeader == null) {
+            return null;
         }
+        return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
     }
-    
+
+    static String buildDataString(DataKind kind, ContentValues values, Context context) {
+        if (kind.actionBody == null) {
+            return null;
+        }
+        CharSequence actionBody = kind.actionBody.inflateUsing(context, values);
+        return actionBody == null ? null : actionBody.toString();
+    }
+
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    final static class ViewEntry extends ContactEntryAdapter.Entry {
-        public int primaryIcon = -1;
-        public Intent intent;
-        public Intent auxIntent = null;
-        public int presenceIcon = -1;
+    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+        public Context context = null;
+        public String resPackageName = null;
         public int actionIcon = -1;
+        public boolean isPrimary = false;
+        public int secondaryActionIcon = -1;
+        public Intent intent;
+        public Intent secondaryIntent = null;
         public int maxLabelLines = 1;
+        public ArrayList<Long> ids = new ArrayList<Long>();
+        public int collapseCount = 0;
+
+        public int presence = -1;
+        public int presenceIcon = -1;
+
+        public CharSequence footerLine = null;
+
+        private ViewEntry() {
+        }
+
+        /**
+         * Build new {@link ViewEntry} and populate from the given values.
+         */
+        public static ViewEntry fromValues(Context context, String mimeType, DataKind kind,
+                long rawContactId, long dataId, ContentValues values) {
+            final ViewEntry entry = new ViewEntry();
+            entry.context = context;
+            entry.contactId = rawContactId;
+            entry.id = dataId;
+            entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
+            entry.mimetype = mimeType;
+            entry.label = buildActionString(kind, values, false, context);
+            entry.data = buildDataString(kind, values, context);
+
+            if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
+                entry.type = values.getAsInteger(kind.typeColumn);
+            }
+            if (kind.iconRes > 0) {
+                entry.resPackageName = kind.resPackageName;
+                entry.actionIcon = kind.iconRes;
+            }
+
+            return entry;
+        }
+
+        /**
+         * Apply given {@link DataStatus} values over this {@link ViewEntry}
+         *
+         * @param fillData When true, the given status replaces {@link #data}
+         *            and {@link #footerLine}. Otherwise only {@link #presence}
+         *            is updated.
+         */
+        public ViewEntry applyStatus(DataStatus status, boolean fillData) {
+            presence = status.getPresence();
+            presenceIcon = (presence == -1) ? -1 :
+                    StatusUpdates.getPresenceIconResourceId(this.presence);
+
+            if (fillData && status.isValid()) {
+                this.data = status.getStatus().toString();
+                this.footerLine = status.getTimestampLabel(context);
+            }
+
+            return this;
+        }
+
+        public boolean collapseWith(ViewEntry entry) {
+            // assert equal collapse keys
+            if (!shouldCollapseWith(entry)) {
+                return false;
+            }
+
+            // Choose the label associated with the highest type precedence.
+            if (TypePrecedence.getTypePrecedence(mimetype, type)
+                    > TypePrecedence.getTypePrecedence(entry.mimetype, entry.type)) {
+                type = entry.type;
+                label = entry.label;
+            }
+
+            // Choose the max of the maxLines and maxLabelLines values.
+            maxLines = Math.max(maxLines, entry.maxLines);
+            maxLabelLines = Math.max(maxLabelLines, entry.maxLabelLines);
+
+            // Choose the presence with the highest precedence.
+            if (StatusUpdates.getPresencePrecedence(presence)
+                    < StatusUpdates.getPresencePrecedence(entry.presence)) {
+                presence = entry.presence;
+            }
+
+            // If any of the collapsed entries are primary make the whole thing primary.
+            isPrimary = entry.isPrimary ? true : isPrimary;
+
+            // uri, and contactdId, shouldn't make a difference. Just keep the original.
+
+            // Keep track of all the ids that have been collapsed with this one.
+            ids.add(entry.id);
+            collapseCount++;
+            return true;
+        }
+
+        public boolean shouldCollapseWith(ViewEntry entry) {
+            if (entry == null) {
+                return false;
+            }
+
+            if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
+                    && Phone.CONTENT_ITEM_TYPE.equals(entry.mimetype)) {
+                if (!PhoneNumberUtils.compare(this.context, data, entry.data)) {
+                    return false;
+                }
+            } else {
+                if (!equals(data, entry.data)) {
+                    return false;
+                }
+            }
+
+            if (!equals(mimetype, entry.mimetype)
+                    || !intentCollapsible(intent, entry.intent)
+                    || !intentCollapsible(secondaryIntent, entry.secondaryIntent)
+                    || actionIcon != entry.actionIcon) {
+                return false;
+            }
+
+            return true;
+        }
+
+        private boolean equals(Object a, Object b) {
+            return a==b || (a != null && a.equals(b));
+        }
+
+        private boolean intentCollapsible(Intent a, Intent b) {
+            if (a == b) {
+                return true;
+            } else if ((a != null && b != null) && equals(a.getAction(), b.getAction())) {
+                return true;
+            }
+            return false;
+        }
     }
 
-    private static final class ViewAdapter extends ContactEntryAdapter<ViewEntry> {
-        /** Cache of the children views of a row */
-        static class ViewCache {
-            public TextView label;
-            public TextView data;
-            public ImageView actionIcon;
-            public ImageView presenceIcon;
-            
-            // Need to keep track of this too
-            ViewEntry entry;
-        }
-        
+    /** Cache of the children views of a row */
+    static class ViewCache {
+        public TextView label;
+        public TextView data;
+        public TextView footer;
+        public ImageView actionIcon;
+        public ImageView presenceIcon;
+        public ImageView primaryIcon;
+        public ImageView secondaryActionButton;
+        public View secondaryActionDivider;
+
+        // Need to keep track of this too
+        ViewEntry entry;
+    }
+
+    private final class ViewAdapter extends ContactEntryAdapter<ViewEntry>
+            implements View.OnClickListener {
+
+
         ViewAdapter(Context context, ArrayList<ArrayList<ViewEntry>> sections) {
             super(context, sections, SHOW_SEPARATORS);
         }
 
+        public void onClick(View v) {
+            Intent intent = (Intent) v.getTag();
+            startActivity(intent);
+        }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewEntry entry = getEntry(mSections, position, false); 
+            ViewEntry entry = getEntry(mSections, position, false);
             View v;
-
-            // Handle separators specially
-            if (entry.kind == ViewEntry.KIND_SEPARATOR) {
-                TextView separator = (TextView) mInflater.inflate(
-                        R.layout.list_separator, parent, SHOW_SEPARATORS);
-                separator.setText(entry.data);
-                return separator;
-            }
 
             ViewCache views;
 
@@ -963,8 +1122,14 @@ public class ViewContactActivity extends ListActivity
                 views = new ViewCache();
                 views.label = (TextView) v.findViewById(android.R.id.text1);
                 views.data = (TextView) v.findViewById(android.R.id.text2);
-                views.actionIcon = (ImageView) v.findViewById(R.id.icon1);
-                views.presenceIcon = (ImageView) v.findViewById(R.id.icon2);
+                views.footer = (TextView) v.findViewById(R.id.footer);
+                views.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
+                views.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
+                views.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
+                views.secondaryActionButton = (ImageView) v.findViewById(
+                        R.id.secondary_action_button);
+                views.secondaryActionButton.setOnClickListener(this);
+                views.secondaryActionDivider = v.findViewById(R.id.divider);
                 v.setTag(views);
             }
 
@@ -995,14 +1160,38 @@ public class ViewContactActivity extends ListActivity
             // Set the data
             TextView data = views.data;
             if (data != null) {
-                data.setText(entry.data);
+                if (entry.mimetype.equals(Phone.CONTENT_ITEM_TYPE)
+                        || entry.mimetype.equals(Constants.MIME_SMS_ADDRESS)) {
+                    data.setText(PhoneNumberUtils.formatNumber(entry.data));
+                } else {
+                    data.setText(entry.data);
+                }
                 setMaxLines(data, entry.maxLines);
             }
+
+            // Set the footer
+            if (!TextUtils.isEmpty(entry.footerLine)) {
+                views.footer.setText(entry.footerLine);
+                views.footer.setVisibility(View.VISIBLE);
+            } else {
+                views.footer.setVisibility(View.GONE);
+            }
+
+            // Set the primary icon
+            views.primaryIcon.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
 
             // Set the action icon
             ImageView action = views.actionIcon;
             if (entry.actionIcon != -1) {
-                action.setImageDrawable(resources.getDrawable(entry.actionIcon));
+                Drawable actionIcon;
+                if (entry.resPackageName != null) {
+                    // Load external resources through PackageManager
+                    actionIcon = mContext.getPackageManager().getDrawable(entry.resPackageName,
+                            entry.actionIcon, null);
+                } else {
+                    actionIcon = resources.getDrawable(entry.actionIcon);
+                }
+                action.setImageDrawable(actionIcon);
                 action.setVisibility(View.VISIBLE);
             } else {
                 // Things should still line up as if there was an icon, so make it invisible
@@ -1011,18 +1200,34 @@ public class ViewContactActivity extends ListActivity
 
             // Set the presence icon
             Drawable presenceIcon = null;
-            if (entry.primaryIcon != -1) {
-                presenceIcon = resources.getDrawable(entry.primaryIcon);
-            } else if (entry.presenceIcon != -1) {
+            if (entry.presenceIcon != -1) {
                 presenceIcon = resources.getDrawable(entry.presenceIcon);
+            } else if (entry.presence != -1) {
+                presenceIcon = resources.getDrawable(
+                        StatusUpdates.getPresenceIconResourceId(entry.presence));
+            }
+            ImageView presenceIconView = views.presenceIcon;
+            if (presenceIcon != null) {
+                presenceIconView.setImageDrawable(presenceIcon);
+                presenceIconView.setVisibility(View.VISIBLE);
+            } else {
+                presenceIconView.setVisibility(View.GONE);
             }
 
-            ImageView presence = views.presenceIcon;
-            if (presenceIcon != null) {
-                presence.setImageDrawable(presenceIcon);
-                presence.setVisibility(View.VISIBLE);
+            // Set the secondary action button
+            ImageView secondaryActionView = views.secondaryActionButton;
+            Drawable secondaryActionIcon = null;
+            if (entry.secondaryActionIcon != -1) {
+                secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
+            }
+            if (entry.secondaryIntent != null && secondaryActionIcon != null) {
+                secondaryActionView.setImageDrawable(secondaryActionIcon);
+                secondaryActionView.setTag(entry.secondaryIntent);
+                secondaryActionView.setVisibility(View.VISIBLE);
+                views.secondaryActionDivider.setVisibility(View.VISIBLE);
             } else {
-                presence.setVisibility(View.GONE);
+                secondaryActionView.setVisibility(View.GONE);
+                views.secondaryActionDivider.setVisibility(View.GONE);
             }
         }
 
@@ -1036,5 +1241,19 @@ public class ViewContactActivity extends ListActivity
                 textView.setEllipsize(null);
             }
         }
+    }
+
+    private interface StatusQuery {
+        final String[] PROJECTION = new String[] {
+                Data._ID,
+                Data.STATUS,
+                Data.STATUS_RES_PACKAGE,
+                Data.STATUS_ICON,
+                Data.STATUS_LABEL,
+                Data.STATUS_TIMESTAMP,
+                Data.PRESENCE,
+        };
+
+        final int _ID = 0;
     }
 }
