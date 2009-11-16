@@ -30,11 +30,11 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.pim.vcard.EntryCommitter;
-import android.pim.vcard.VCardBuilder;
-import android.pim.vcard.VCardBuilderCollection;
+import android.pim.vcard.VCardEntryCommitter;
+import android.pim.vcard.VCardInterpreter;
+import android.pim.vcard.VCardInterPreterCollection;
 import android.pim.vcard.VCardConfig;
-import android.pim.vcard.VCardDataBuilder;
+import android.pim.vcard.VCardEntryConstructor;
 import android.pim.vcard.VCardEntryCounter;
 import android.pim.vcard.VCardParser_V21;
 import android.pim.vcard.VCardParser_V30;
@@ -202,7 +202,7 @@ public class ImportVCardActivity extends Activity {
                     }
                     VCardEntryCounter counter = new VCardEntryCounter();
                     VCardSourceDetector detector = new VCardSourceDetector();
-                    VCardBuilderCollection builderCollection = new VCardBuilderCollection(
+                    VCardInterPreterCollection builderCollection = new VCardInterPreterCollection(
                             Arrays.asList(counter, detector));
 
                     boolean result;
@@ -295,17 +295,17 @@ public class ImportVCardActivity extends Activity {
                 String charset, boolean showEntryParseProgress,
                 VCardSourceDetector detector, List<String> errorFileNameList) {
             final Context context = ImportVCardActivity.this;
-            VCardDataBuilder builder;
+            VCardEntryConstructor builder;
             final String currentLanguage = Locale.getDefault().getLanguage();
             int vcardType = VCardConfig.getVCardTypeFromString(
                     context.getString(R.string.config_import_vcard_type));
             if (charset != null) {
-                builder = new VCardDataBuilder(charset, charset, false, vcardType, mAccount);
+                builder = new VCardEntryConstructor(charset, charset, false, vcardType, mAccount);
             } else {
                 charset = VCardConfig.DEFAULT_CHARSET;
-                builder = new VCardDataBuilder(null, null, false, vcardType, mAccount);
+                builder = new VCardEntryConstructor(null, null, false, vcardType, mAccount);
             }
-            builder.addEntryHandler(new EntryCommitter(mResolver));
+            builder.addEntryHandler(new VCardEntryCommitter(mResolver));
             if (showEntryParseProgress) {
                 builder.addEntryHandler(new ProgressShower(mProgressDialogForReadVCard,
                         context.getString(R.string.reading_vcard_message),
@@ -324,7 +324,7 @@ public class ImportVCardActivity extends Activity {
         }
 
         private boolean readOneVCardFile(String canonicalPath, String charset,
-                VCardBuilder builder, VCardSourceDetector detector,
+                VCardInterpreter builder, VCardSourceDetector detector,
                 boolean throwNestedException, List<String> errorFileNameList)
                 throws VCardNestedException {
             FileInputStream is;
@@ -339,9 +339,9 @@ public class ImportVCardActivity extends Activity {
                         is.close();
                     } catch (IOException e) {
                     }
-                    if (builder instanceof VCardDataBuilder) {
+                    if (builder instanceof VCardEntryConstructor) {
                         // Let the object clean up internal temporal objects,
-                        ((VCardDataBuilder)builder).clear();
+                        ((VCardEntryConstructor)builder).clear();
                     }
                     is = new FileInputStream(canonicalPath);
 
