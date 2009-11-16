@@ -18,12 +18,12 @@ package com.android.contacts;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
-import android.pim.vcard.ContactStruct;
-import android.pim.vcard.EntryHandler;
+import android.pim.vcard.VCardEntry;
+import android.pim.vcard.VCardEntryHandler;
 import android.pim.vcard.VCardConfig;
 import android.util.Log;
 
-public class ProgressShower implements EntryHandler {
+public class ProgressShower implements VCardEntryHandler {
     public static final String LOG_TAG = "vcard.ProgressShower"; 
 
     private final Context mContext;
@@ -34,9 +34,9 @@ public class ProgressShower implements EntryHandler {
     private long mTime;
     
     private class ShowProgressRunnable implements Runnable {
-        private ContactStruct mContact;
+        private VCardEntry mContact;
         
-        public ShowProgressRunnable(ContactStruct contact) {
+        public ShowProgressRunnable(VCardEntry contact) {
             mContact = contact;
         }
         
@@ -57,10 +57,10 @@ public class ProgressShower implements EntryHandler {
         mProgressMessage = progressMessage;
     }
 
-    public void onParsingStart() {
+    public void onStart() {
     }
 
-    public void onEntryCreated(ContactStruct contactStruct) {
+    public void onEntryCreated(VCardEntry contactStruct) {
         long start = System.currentTimeMillis();
         
         if (!contactStruct.isIgnorable()) {
@@ -78,7 +78,7 @@ public class ProgressShower implements EntryHandler {
         mTime += System.currentTimeMillis() - start;
     }
 
-    public void onParsingEnd() {
+    public void onEnd() {
         if (VCardConfig.showPerformanceLog()) {
             Log.d(LOG_TAG,
                     String.format("Time to progress a dialog: %d ms", mTime));
