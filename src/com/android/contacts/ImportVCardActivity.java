@@ -32,7 +32,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.pim.vcard.VCardEntryCommitter;
 import android.pim.vcard.VCardInterpreter;
-import android.pim.vcard.VCardInterPreterCollection;
+import android.pim.vcard.VCardInterpreterCollection;
 import android.pim.vcard.VCardConfig;
 import android.pim.vcard.VCardEntryConstructor;
 import android.pim.vcard.VCardEntryCounter;
@@ -202,7 +202,7 @@ public class ImportVCardActivity extends Activity {
                     }
                     VCardEntryCounter counter = new VCardEntryCounter();
                     VCardSourceDetector detector = new VCardSourceDetector();
-                    VCardInterPreterCollection builderCollection = new VCardInterPreterCollection(
+                    VCardInterpreterCollection builderCollection = new VCardInterpreterCollection(
                             Arrays.asList(counter, detector));
 
                     boolean result;
