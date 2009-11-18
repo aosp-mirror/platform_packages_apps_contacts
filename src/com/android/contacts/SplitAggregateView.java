@@ -18,7 +18,6 @@ package com.android.contacts;
 
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
-import com.google.common.util.text.TextUtil;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
