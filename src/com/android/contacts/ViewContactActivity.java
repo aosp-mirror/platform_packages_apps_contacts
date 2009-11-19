@@ -154,6 +154,13 @@ public class ViewContactActivity extends Activity
     private ArrayList<Entity> mEntities = Lists.newArrayList();
     private HashMap<Long, DataStatus> mStatuses = Maps.newHashMap();
 
+    /**
+     * The view shown if the detail list is empty.
+     * We set this to the list view when first bind the adapter, so that it won't be shown while
+     * we're loading data.
+     */
+    private View mEmptyView;
+
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
         public boolean deliverSelfNotifications() {
@@ -209,7 +216,8 @@ public class ViewContactActivity extends Activity
         mListView.setOnCreateContextMenuListener(this);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
-        mListView.setEmptyView((ScrollView) findViewById(android.R.id.empty));
+        // Don't set it to mListView yet.  We do so later when we bind the adapter.
+        mEmptyView = findViewById(android.R.id.empty);
 
         mResolver = getContentResolver();
 
@@ -437,6 +445,7 @@ public class ViewContactActivity extends Activity
         } else {
             mAdapter.setSections(mSections, SHOW_SEPARATORS);
         }
+        mListView.setEmptyView(mEmptyView);
     }
 
     @Override
@@ -902,7 +911,7 @@ public class ViewContactActivity extends Activity
                         entry.maxLines = 10;
                         try {
                             WebAddress webAddress = new WebAddress(entry.data);
-                            entry.intent = new Intent(Intent.ACTION_VIEW, 
+                            entry.intent = new Intent(Intent.ACTION_VIEW,
                                     Uri.parse(webAddress.toString()));
                         } catch (ParseException e) {
                             Log.e(TAG, "Couldn't parse website: " + entry.data);
