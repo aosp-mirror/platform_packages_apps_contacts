@@ -33,12 +33,13 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -483,6 +484,36 @@ public class EntityModifier {
             final DataKind kind = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
             fixupLegacyImType(extras);
             parseExtras(state, kind, extras, Insert.IM_PROTOCOL, Insert.IM_HANDLE, Im.DATA);
+        }
+
+        // Organization
+        final boolean hasOrg = extras.containsKey(Insert.COMPANY)
+                || extras.containsKey(Insert.JOB_TITLE);
+        final DataKind kindOrg = source.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
+        if (hasOrg && EntityModifier.canInsert(state, kindOrg)) {
+            final ValuesDelta child = EntityModifier.insertChild(state, kindOrg);
+
+            final String company = extras.getString(Insert.COMPANY);
+            if (ContactsUtils.isGraphic(company)) {
+                child.put(Organization.COMPANY, company);
+            }
+
+            final String title = extras.getString(Insert.JOB_TITLE);
+            if (ContactsUtils.isGraphic(title)) {
+                child.put(Organization.TITLE, title);
+            }
+        }
+
+        // Notes
+        final boolean hasNotes = extras.containsKey(Insert.NOTES);
+        final DataKind kindNotes = source.getKindForMimetype(Note.CONTENT_ITEM_TYPE);
+        if (hasNotes && EntityModifier.canInsert(state, kindNotes)) {
+            final ValuesDelta child = EntityModifier.insertChild(state, kindNotes);
+
+            final String notes = extras.getString(Insert.NOTES);
+            if (ContactsUtils.isGraphic(notes)) {
+                child.put(Note.NOTE, notes);
+            }
         }
     }
 
