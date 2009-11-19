@@ -34,10 +34,16 @@ import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
+import android.os.Bundle;
+import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
@@ -56,6 +62,10 @@ public class EntityModifierTests extends AndroidTestCase {
 
     private static final long TEST_ID = 4;
     private static final String TEST_PHONE = "218-555-1212";
+    private static final String TEST_NAME = "Adam Young";
+    private static final String TEST_NAME2 = "Breanne Duren";
+    private static final String TEST_IM = "example@example.com";
+    private static final String TEST_POSTAL = "1600 Amphitheatre Parkway";
 
     private static final String TEST_ACCOUNT_NAME = "unittest@example.com";
     private static final String TEST_ACCOUNT_TYPE = "com.example.unittest";
@@ -95,12 +105,24 @@ public class EntityModifierTests extends AndroidTestCase {
 
             // Email is unlimited
             kind = new DataKind(Email.CONTENT_ITEM_TYPE, -1, -1, 10, true);
-
             kind.typeOverallMax = -1;
-
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Email.DATA, -1, -1));
+            addKind(kind);
 
+            // IM is only one
+            kind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            kind.typeOverallMax = 1;
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Im.DATA, -1, -1));
+            addKind(kind);
+
+            // Organization is only one
+            kind = new DataKind(Organization.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            kind.typeOverallMax = 1;
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
+            kind.fieldList.add(new EditField(Organization.TITLE, -1, -1));
             addKind(kind);
         }
 
@@ -661,5 +683,74 @@ public class EntityModifierTests extends AndroidTestCase {
             assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
+    }
+
+    public void testParseExtrasExistingName() {
+        final ContactsSource source = getSource();
+        final DataKind kindName = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+
+        // Build "before" name
+        final ContentValues first = new ContentValues();
+        first.put(Data._ID, TEST_ID);
+        first.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
+        first.put(StructuredName.GIVEN_NAME, TEST_NAME);
+
+        // Parse extras, making sure we keep single name
+        final EntityDelta state = getEntity(TEST_ID, first);
+        final Bundle extras = new Bundle();
+        extras.putString(Insert.NAME, TEST_NAME2);
+        EntityModifier.parseExtras(mContext, source, state, extras);
+
+        final int nameCount = state.getMimeEntriesCount(StructuredName.CONTENT_ITEM_TYPE, true);
+        assertEquals("Unexpected names", 1, nameCount);
+    }
+
+    public void testParseExtrasIgnoreLimit() {
+        final ContactsSource source = getSource();
+        final DataKind kindIm = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
+
+        // Build "before" IM
+        final ContentValues first = new ContentValues();
+        first.put(Data._ID, TEST_ID);
+        first.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        first.put(Im.DATA, TEST_IM);
+
+        final EntityDelta state = getEntity(TEST_ID, first);
+        final int beforeCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
+
+        // We should ignore data that doesn't fit source rules, since source
+        // only allows single Im
+        final Bundle extras = new Bundle();
+        extras.putInt(Insert.IM_PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        extras.putString(Insert.IM_HANDLE, TEST_IM);
+        EntityModifier.parseExtras(mContext, source, state, extras);
+
+        final int afterCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
+        assertEquals("Broke source rules", beforeCount, afterCount);
+    }
+
+    public void testParseExtrasIgnoreUnhandled() {
+        final ContactsSource source = getSource();
+        final EntityDelta state = getEntity(TEST_ID);
+
+        // We should silently ignore types unsupported by source
+        final Bundle extras = new Bundle();
+        extras.putString(Insert.POSTAL, TEST_POSTAL);
+        EntityModifier.parseExtras(mContext, source, state, extras);
+
+        assertNull("Broke source rules", state.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
+    }
+
+    public void testParseExtrasJobTitle() {
+        final ContactsSource source = getSource();
+        final EntityDelta state = getEntity(TEST_ID);
+
+        // Make sure that we create partial Organizations
+        final Bundle extras = new Bundle();
+        extras.putString(Insert.JOB_TITLE, TEST_NAME);
+        EntityModifier.parseExtras(mContext, source, state, extras);
+
+        final int count = state.getMimeEntries(Organization.CONTENT_ITEM_TYPE).size();
+        assertEquals("Expected to create organization", 1, count);
     }
 }
