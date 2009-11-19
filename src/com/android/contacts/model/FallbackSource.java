@@ -267,6 +267,7 @@ public class FallbackSource extends ContactsSource {
         if (kind == null) {
             kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true));
+            kind.secondary = true;
             kind.actionHeader = new ImActionInflater();
             kind.actionBody = new SimpleInflater(Im.DATA);
         }
