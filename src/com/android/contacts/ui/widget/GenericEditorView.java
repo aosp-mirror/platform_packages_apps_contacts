@@ -32,6 +32,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
@@ -368,6 +370,74 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 rebuildValues();
                 break;
             }
+        }
+    }
+
+    private static class SavedState extends BaseSavedState {
+        public boolean mHideOptional;
+        public int[] mVisibilities;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            mVisibilities = new int[in.readInt()];
+            in.readIntArray(mVisibilities);
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(mVisibilities.length);
+            out.writeIntArray(mVisibilities);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
+
+    /**
+     * Saves the visibility of the child EditTexts, and mHideOptional.
+     */
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+
+        ss.mHideOptional = mHideOptional;
+
+        final int numChildren = mFields.getChildCount();
+        ss.mVisibilities = new int[numChildren];
+        for (int i = 0; i < numChildren; i++) {
+            ss.mVisibilities[i] = mFields.getChildAt(i).getVisibility();
+        }
+
+        return ss;
+    }
+
+    /**
+     * Restores the visibility of the child EditTexts, and mHideOptional.
+     */
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        mHideOptional = ss.mHideOptional;
+
+        int numChildren = Math.min(mFields.getChildCount(), ss.mVisibilities.length);
+        for (int i = 0; i < numChildren; i++) {
+            mFields.getChildAt(i).setVisibility(ss.mVisibilities[i]);
         }
     }
 }
