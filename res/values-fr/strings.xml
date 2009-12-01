@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Groupes"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Votre groupe \"<xliff:g id="GROUPNAME">%s</xliff:g>\" est vide."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Tous les contacts"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Uniquement les contacts avec un téléphone"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Contacts avec un n° de tél."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Afficher uniquement les contacts avec un numéro de téléphone"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Choisissez les contacts à afficher."</string>
   <plurals name="groupDescrip">
@@ -172,7 +172,7 @@
     <string name="socialStreamIconLabel" msgid="4367712449555075376">"Social"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contacts"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Tel."</string>
+    <string name="dialerIconLabel" msgid="6500826552823403796">"Tél."</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Appels"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Tous les contacts"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Contacts suivis"</string>
@@ -199,7 +199,7 @@
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Vous n\'avez aucun contact à afficher."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favori."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n" "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Aucun favori."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n" "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Sélectionner les groupes à synchroniser"</string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tous les contacts"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Suivis"</string>
