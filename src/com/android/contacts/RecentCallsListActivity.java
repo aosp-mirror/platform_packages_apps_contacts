@@ -235,6 +235,15 @@ public class RecentCallsListActivity extends ListActivity
             mLabelArray = getResources().getTextArray(com.android.internal.R.array.phoneTypes);
         }
 
+        /**
+         * Requery on background thread when {@link Cursor} changes.
+         */
+        @Override
+        protected void onContentChanged() {
+            // Start async requery
+            startQuery();
+        }
+
         void setLoading(boolean loading) {
             mLoading = loading;
         }
