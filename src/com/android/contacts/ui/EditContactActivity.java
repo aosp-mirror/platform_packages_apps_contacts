@@ -147,9 +147,11 @@ public final class EditContactActivity extends Activity
         final boolean hasIncomingState = icicle != null && icicle.containsKey(KEY_EDIT_STATE);
 
         if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
+            setTitle(R.string.editContact_title_edit);
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
         } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
+            setTitle(R.string.editContact_title_insert);
             // Trigger dialog to pick account type
             doAddAction();
         }
