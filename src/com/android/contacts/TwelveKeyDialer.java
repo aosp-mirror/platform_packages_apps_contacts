@@ -34,7 +34,6 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.os.Vibrator;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -66,6 +65,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.internal.telephony.ITelephony;
+import com.android.phone.HapticFeedback;
 
 /**
  * Dialer activity that displays the typical twelve key interface.
@@ -84,9 +84,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     /** Stream type used to play the DTMF tones off call, and mapped to the volume control keys */
     private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_MUSIC;
-
-    /** Play the vibrate pattern only once. */
-    private static final int VIBRATE_NO_REPEAT = -1;
 
     private EditText mDigits;
     private View mDelete;
@@ -112,10 +109,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private boolean mDTMFToneEnabled;
 
     // Vibration (haptic feedback) for dialer key presses.
-    private Vibrator mVibrator;
-    private boolean mVibrateOn;
-    private long[] mVibratePattern;
-
+    private HapticFeedback mHaptic = new HapticFeedback();
 
     /** Identifier for the "Add Call" intent extra. */
     static final String ADD_CALL_MODE_KEY = "add_call_mode";
@@ -249,10 +243,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             super.onRestoreInstanceState(icicle);
         }
 
-        // TODO: We might eventually need to make mVibrateOn come from a
-        // user preference rather than a per-platform resource, in which
-        // case we would need to update it in onResume() rather than here.
-        initVibrationPattern(r);
+        try {
+            mHaptic.init(this, r.getBoolean(R.bool.config_enable_dialer_key_vibration));
+        } catch (Resources.NotFoundException nfe) {
+             Log.e(TAG, "Vibrate control bool missing.", nfe);
+        }
+
     }
 
     @Override
@@ -401,6 +397,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
+
+        // Retrieve the haptic feedback setting.
+        mHaptic.checkSystemSetting();
 
         // if the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
@@ -610,7 +609,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     private void keyPressed(int keyCode) {
-        vibrate();
+        mHaptic.vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
     }
@@ -694,13 +693,13 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return;
             }
             case R.id.dialButton: {
-                vibrate();  // Vibrate here too, just like we do for the regular keys
+                mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
                 return;
             }
             case R.id.voicemailButton: {
                 callVoicemail();
-                vibrate();
+                mHaptic.vibrate();
                 return;
             }
             case R.id.digits: {
@@ -1062,18 +1061,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         return phoneOffhook;
     }
 
-    /**
-     * Triggers haptic feedback (if enabled) for dialer key presses.
-     */
-    private synchronized void vibrate() {
-        if (!mVibrateOn) {
-            return;
-        }
-        if (mVibrator == null) {
-            mVibrator = new Vibrator();
-        }
-        mVibrator.vibrate(mVibratePattern, VIBRATE_NO_REPEAT);
-    }
 
     /**
      * Returns true whenever any one of the options from the menu is selected.
@@ -1160,35 +1147,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mVoicemailButton.setOnClickListener(this);
         } else {
             mVoicemailButton.setEnabled(false);
-        }
-    }
-
-    /**
-     * Initialize the vibration parameters.
-     * @param r The Resources with the vibration parameters.
-     */
-    private void initVibrationPattern(Resources r) {
-        int[] pattern = null;
-        try {
-            mVibrateOn = r.getBoolean(R.bool.config_enable_dialer_key_vibration);
-            pattern = r.getIntArray(com.android.internal.R.array.config_virtualKeyVibePattern);
-            if (null == pattern) {
-                Log.e(TAG, "Vibrate pattern is null.");
-                mVibrateOn = false;
-            }
-        } catch (Resources.NotFoundException nfe) {
-            Log.e(TAG, "Vibrate control bool or pattern missing.", nfe);
-            mVibrateOn = false;
-        }
-
-        if (!mVibrateOn) {
-            return;
-        }
-
-        // int[] to long[] conversion.
-        mVibratePattern = new long[pattern.length];
-        for (int i = 0; i < pattern.length; i++) {
-            mVibratePattern[i] = pattern[i];
         }
     }
 
