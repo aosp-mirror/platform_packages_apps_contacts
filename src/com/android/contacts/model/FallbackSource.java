@@ -16,9 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.google.android.collect.Lists;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
@@ -35,8 +32,14 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
+
+import com.google.android.collect.Lists;
+
+import com.android.contacts.R;
+
+import java.util.Locale;
 
 public class FallbackSource extends ContactsSource {
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
@@ -109,23 +112,42 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            final boolean useJapaneseOrder =
+                Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
                     FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                    FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                    FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                    FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                    FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+            if (useJapaneseOrder) {
+                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME));
+                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME));
+                kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                        FLAGS_PERSON_NAME).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+            } else {
+                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME));
+                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME));
+                kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                        FLAGS_PERSON_NAME).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+            }
         }
 
         return kind;
@@ -234,6 +256,8 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            final boolean useJapaneseOrder =
+                Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
@@ -243,20 +267,38 @@ public class FallbackSource extends ContactsSource {
                     .setCustomColumn(StructuredPostal.LABEL));
 
             kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(StructuredPostal.STREET, R.string.postal_street,
-                    FLAGS_POSTAL));
-            kind.fieldList.add(new EditField(StructuredPostal.POBOX, R.string.postal_pobox,
-                    FLAGS_POSTAL).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
-                    R.string.postal_neighborhood, FLAGS_POSTAL).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredPostal.CITY, R.string.postal_city,
-                    FLAGS_POSTAL));
-            kind.fieldList.add(new EditField(StructuredPostal.REGION, R.string.postal_region,
-                    FLAGS_POSTAL));
-            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE, R.string.postal_postcode,
-                    FLAGS_POSTAL));
-            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY, R.string.postal_country,
-                    FLAGS_POSTAL).setOptional(true));
+
+            if (useJapaneseOrder) {
+                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                        R.string.postal_postcode, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                        R.string.postal_region, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                        R.string.postal_city, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
+                        R.string.postal_neighborhood, FLAGS_POSTAL).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                        R.string.postal_street, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.POBOX,
+                        R.string.postal_pobox, FLAGS_POSTAL).setOptional(true));
+            } else {
+                kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                        R.string.postal_street, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.POBOX,
+                        R.string.postal_pobox, FLAGS_POSTAL).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
+                        R.string.postal_neighborhood, FLAGS_POSTAL).setOptional(true));
+                kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                        R.string.postal_city, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                        R.string.postal_region, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                        R.string.postal_postcode, FLAGS_POSTAL));
+                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
+            }
         }
 
         return kind;
