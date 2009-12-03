@@ -42,6 +42,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 /**
  * Singleton holder for all parsed {@link ContactsSource} available on the
@@ -87,12 +88,17 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
         queryAccounts();
 
         // Request updates when packages or accounts change
-        final IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+        IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-
         mApplicationContext.registerReceiver(this, filter);
+
+        // Request updates when locale is changed so that the order of each field will
+        // be able to be changed on the locale change.
+        filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
+        mApplicationContext.registerReceiver(this, filter);
+
         mAccountManager.addOnAccountsUpdatedListener(this, null, false);
     }
 
@@ -112,11 +118,11 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
-        final String packageName = intent.getData().getSchemeSpecificPart();
 
         if (Intent.ACTION_PACKAGE_REMOVED.equals(action)
                 || Intent.ACTION_PACKAGE_ADDED.equals(action)
                 || Intent.ACTION_PACKAGE_CHANGED.equals(action)) {
+            final String packageName = intent.getData().getSchemeSpecificPart();
             final boolean knownPackage = mKnownPackages.contains(packageName);
             if (knownPackage) {
                 // Invalidate cache of existing source
@@ -125,6 +131,8 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
                 // Unknown source, so reload from scratch
                 queryAccounts();
             }
+        } else if (Intent.ACTION_LOCALE_CHANGED.equals(action)) {
+            invalidateAllCache();
         }
     }
 
@@ -134,6 +142,13 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
                 // Invalidate any cache for the changed package
                 source.invalidateCache();
             }
+        }
+    }
+
+    protected void invalidateAllCache() {
+        mFallbackSource.invalidateCache();
+        for (ContactsSource source : mSources.values()) {
+            source.invalidateCache();
         }
     }
 
@@ -233,6 +248,8 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
      * Find the best {@link DataKind} matching the requested
      * {@link ContactsSource#accountType} and {@link DataKind#mimeType}. If no
      * direct match found, we try searching {@link #mFallbackSource}.
+     * When fourceRefresh is set to true, cache is refreshed and inflation of each
+     * EditField will occur.
      */
     public DataKind getKindOrFallback(String accountType, String mimeType, Context context,
             int inflateLevel) {
