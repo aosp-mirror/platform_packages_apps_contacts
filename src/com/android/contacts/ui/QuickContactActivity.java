@@ -65,11 +65,28 @@ public final class QuickContactActivity extends Activity implements
         final Bundle extras = intent.getExtras();
 
         // Read requested parameters for displaying
-        final Rect target = (Rect)extras.getParcelable(QuickContact.EXTRA_TARGET_RECT);
+        final Rect target = getTargetRect(intent);
         final int mode = extras.getInt(QuickContact.EXTRA_MODE, QuickContact.MODE_MEDIUM);
         final String[] excludeMimes = extras.getStringArray(QuickContact.EXTRA_EXCLUDE_MIMES);
 
         mQuickContact.show(lookupUri, target, mode, excludeMimes);
+    }
+
+    private Rect getTargetRect(Intent intent) {
+        Rect target = intent.getSourceBounds();
+        if (target != null) {
+            return target;
+        }
+        final Bundle extras = intent.getExtras();
+        try {
+            target = (Rect)extras.getParcelable(QuickContact.EXTRA_TARGET_RECT);
+            if (target != null) {
+                return target;
+            }
+        } catch (ClassCastException ex) {
+            // fall through
+        }
+        return new Rect(0, 0, 0, 0);
     }
 
     /** {@inheritDoc} */
