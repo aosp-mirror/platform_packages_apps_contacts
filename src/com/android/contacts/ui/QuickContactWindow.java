@@ -28,7 +28,6 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Sets;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -56,7 +55,6 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -192,13 +190,12 @@ public class QuickContactWindow implements Window.Callback,
      * the user has not selected a default app yet, and they will still be
      * presented with the system disambiguation dialog.
      */
-    private static final HashSet<String> sPreferResolve = Sets.newHashSet(new String[] {
+    private static final HashSet<String> sPreferResolve = Sets.newHashSet(
             "com.android.email",
             "com.android.calendar",
             "com.android.contacts",
             "com.android.mms",
-            "com.android.phone",
-    });
+            "com.android.phone");
 
     private static final int TOKEN_DATA = 1;
 
@@ -285,7 +282,7 @@ public class QuickContactWindow implements Window.Callback,
             // Inflate actual header if we picked a stub
             final ViewStub stub = (ViewStub)header;
             header = stub.inflate();
-        } else {
+        } else if (header != null) {
             header.setVisibility(View.VISIBLE);
         }
 
@@ -579,11 +576,6 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** Assign this image to the view, if found in {@link #mHeader}. */
-    private void setHeaderImage(int id, int resId) {
-        setHeaderImage(id, mContext.getResources().getDrawable(resId));
-    }
-
-    /** Assign this image to the view, if found in {@link #mHeader}. */
     private void setHeaderImage(int id, Drawable drawable) {
         final View view = mHeader.findViewById(id);
         if (view instanceof ImageView) {
@@ -620,7 +612,7 @@ public class QuickContactWindow implements Window.Callback,
      * Find the QuickContact-specific presence icon for showing in chiclets.
      */
     private Drawable getTrackPresenceIcon(int status) {
-        int resId = -1;
+        int resId;
         switch (status) {
             case StatusUpdates.AVAILABLE:
                 resId = R.drawable.quickcontact_slider_presence_active;
@@ -902,7 +894,6 @@ public class QuickContactWindow implements Window.Callback,
      * queries, keyed internally on MIME-type.
      */
     private static class ResolveCache {
-        private Context mContext;
         private PackageManager mPackageManager;
 
         /**
@@ -917,7 +908,6 @@ public class QuickContactWindow implements Window.Callback,
         private HashMap<String, Entry> mCache = new HashMap<String, Entry>();
 
         public ResolveCache(Context context) {
-            mContext = context;
             mPackageManager = context.getPackageManager();
         }
 
@@ -1092,7 +1082,6 @@ public class QuickContactWindow implements Window.Callback,
         while (cursor.moveToNext()) {
             final long dataId = cursor.getLong(DataQuery._ID);
             final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
-            final String resPackage = cursor.getString(DataQuery.RES_PACKAGE);
             final String mimeType = cursor.getString(DataQuery.MIMETYPE);
 
             // Handle any social status updates from this row
@@ -1353,7 +1342,6 @@ public class QuickContactWindow implements Window.Callback,
 
                     // Set action title based on summary value
                     final Action action = (Action)getItem(position);
-                    final Drawable icon = mResolveCache.getIcon(action);
 
                     TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
                     TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
