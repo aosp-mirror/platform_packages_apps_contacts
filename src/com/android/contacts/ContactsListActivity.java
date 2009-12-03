@@ -388,7 +388,7 @@ public class ContactsListActivity extends ListActivity implements
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
     /**
-     * In the {@link #MODE_JOIN} determines whether we display a list item with the label
+     * In the {@link #MODE_JOIN_CONTACT} determines whether we display a list item with the label
      * "Show all contacts" or actually show all contacts
      */
     private boolean mJoinModeShowAllContacts;
@@ -1313,8 +1313,17 @@ public class ContactsListActivity extends ListActivity implements
             Intent shortcutIntent;
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
                 // This is a simple shortcut to view a contact.
-                shortcutIntent = new Intent(mShortcutAction, uri);
-                Bitmap icon = loadContactPhoto(id, null);
+                shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
+                shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+    
+                shortcutIntent.setData(uri);
+                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
+                        ContactsContract.QuickContact.MODE_LARGE);
+                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
+                        (String[]) null);
+
+                final Bitmap icon = loadContactPhoto(id, null);
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, scaleToAppIconSize(icon));
                 } else {
@@ -1650,8 +1659,8 @@ public class ContactsListActivity extends ListActivity implements
     }
 
     /**
-     * Return the selection arguments for a default query based on
-     * {@link #mDisplayAll} and {@link #mDisplayOnlyPhones} flags.
+     * Return the selection arguments for a default query based on the
+     * {@link #mDisplayOnlyPhones} flag.
      */
     private String getContactSelection() {
         if (mDisplayOnlyPhones) {
@@ -2215,7 +2224,7 @@ public class ContactsListActivity extends ListActivity implements
                     return;
                 }
 
-                if (Thread.currentThread().interrupted()) {
+                if (Thread.interrupted()) {
                     // shutdown has been called.
                     return;
                 }
@@ -2232,7 +2241,7 @@ public class ContactsListActivity extends ListActivity implements
 
                 mBitmapCache.put(mPhotoId, new SoftReference<Bitmap>(photo));
 
-                if (Thread.currentThread().interrupted()) {
+                if (Thread.interrupted()) {
                     // shutdown has been called.
                     return;
                 }
