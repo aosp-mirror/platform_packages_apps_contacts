@@ -24,4 +24,7 @@
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>
     <dimen name="account_name_height">25dip</dimen>
+    
+    <dimen name="contact_shortcut_frame_width">50dip</dimen>    
+    <dimen name="contact_shortcut_frame_height">56dip</dimen>    
 </resources>
