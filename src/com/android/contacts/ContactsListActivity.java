@@ -103,6 +103,7 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
+import android.*;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -111,6 +112,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -1323,7 +1325,7 @@ public class ContactsListActivity extends ListActivity implements
                 shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
                         (String[]) null);
 
-                final Bitmap icon = loadContactPhoto(id, null);
+                final Bitmap icon = framePhoto(loadContactPhoto(id, null));
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, scaleToAppIconSize(icon));
                 } else {
@@ -1362,6 +1364,33 @@ public class ContactsListActivity extends ListActivity implements
             setResult(RESULT_OK, intent.setData(uri));
         }
         finish();
+    }
+
+    private Bitmap framePhoto(Bitmap photo) {
+        final Resources r = getResources();
+        final Drawable frame = r.getDrawable(com.android.internal.R.drawable.quickcontact_badge);
+
+        final int width = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_width);
+        final int height = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_height);
+
+        frame.setBounds(0, 0, width, height);
+
+        final Rect padding = new Rect();
+        frame.getPadding(padding);
+
+        final Rect source = new Rect(0, 0, photo.getWidth(), photo.getHeight());
+        final Rect destination = new Rect(padding.left, padding.top,
+                width - padding.right, height - padding.bottom);
+
+        final int d = Math.max(width, height);
+        final Bitmap b = Bitmap.createBitmap(d, d, Bitmap.Config.ARGB_8888);
+        final Canvas c = new Canvas(b);
+
+        c.translate((d - width) / 2.0f, (d - height) / 2.0f);
+        frame.draw(c);
+        c.drawBitmap(photo, source, destination, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+        return b;
     }
 
     /**
@@ -1642,6 +1671,7 @@ public class ContactsListActivity extends ListActivity implements
     private Bitmap loadContactPhoto(long contactId, BitmapFactory.Options options) {
         Cursor cursor = null;
         Bitmap bm = null;
+
         try {
             Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
@@ -1655,6 +1685,17 @@ public class ContactsListActivity extends ListActivity implements
                 cursor.close();
             }
         }
+
+        if (bm == null) {
+            final int[] fallbacks = {
+                R.drawable.ic_contact_picture,
+                R.drawable.ic_contact_picture_2,
+                R.drawable.ic_contact_picture_3
+            };
+            bm = BitmapFactory.decodeResource(getResources(),
+                    fallbacks[new Random().nextInt(fallbacks.length)]);
+        }
+
         return bm;
     }
 
