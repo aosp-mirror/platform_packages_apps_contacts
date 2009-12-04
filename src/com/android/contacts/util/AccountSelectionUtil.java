@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.net.Uri;
 
 import java.util.List;
 
@@ -44,6 +45,10 @@ import java.util.List;
 public class AccountSelectionUtil {
     // TODO: maybe useful for EditContactActivity.java...
     private static final String LOG_TAG = "AccountSelectionUtil";
+
+    public static boolean mVCardShare = false;
+
+    public static Uri mPath;
 
     private static class AccountSelectedListener
             implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
@@ -165,6 +170,13 @@ public class AccountSelectionUtil {
             importIntent.putExtra("account_name", account.name);
             importIntent.putExtra("account_type", account.type);
         }
+
+        if (mVCardShare) {
+            importIntent.setAction(Intent.ACTION_VIEW);
+            importIntent.setData(mPath);
+        }
+        mVCardShare = false;
+        mPath = null;
         context.startActivity(importIntent);
     }
 }
