@@ -574,7 +574,7 @@ public final class EditContactActivity extends Activity
         private static final int RESULT_SUCCESS = 1;
         private static final int RESULT_FAILURE = 2;
 
-        private WeakReference<ProgressDialog> progress;
+        private WeakReference<ProgressDialog> mProgress;
 
         private int mSaveMode;
         private Uri mContactLookupUri = null;
@@ -587,7 +587,7 @@ public final class EditContactActivity extends Activity
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(EditContactActivity target) {
-            this.progress = new WeakReference<ProgressDialog>(ProgressDialog.show(target, null,
+            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target, null,
                     target.getText(R.string.savingContact)));
 
             // Before starting this task, start an empty service to protect our
@@ -674,6 +674,7 @@ public final class EditContactActivity extends Activity
         @Override
         protected void onPostExecute(EditContactActivity target, Integer result) {
             final Context context = target;
+            final ProgressDialog progress = mProgress.get();
 
             if (result == RESULT_SUCCESS && mSaveMode != SAVE_MODE_JOIN) {
                 Toast.makeText(context, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
@@ -681,7 +682,10 @@ public final class EditContactActivity extends Activity
                 Toast.makeText(context, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            progress.get().dismiss();
+            // Only dismiss when valid reference and still showing
+            if (progress != null && progress.isShowing()) {
+                progress.dismiss();
+            }
 
             // Stop the service that was protecting us
             context.stopService(new Intent(context, EmptyService.class));
