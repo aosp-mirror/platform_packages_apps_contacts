@@ -221,11 +221,6 @@ public final class ShowOrCreateActivity extends Activity implements
 	return super.onCreateDialog(id);
     }
 
-    /** {@inheritDoc} */
-    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        // No actions
-    }
-
     /**
      * Listener for {@link DialogInterface} that launches a given {@link Intent}
      * when clicked. When clicked, this also closes the parent using
