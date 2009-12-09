@@ -255,9 +255,7 @@ public final class EditContactActivity extends Activity
         super.onDestroy();
 
         for (Dialog dialog : mManagedDialogs) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
+            dismissDialog(dialog);
         }
     }
 
@@ -318,6 +316,20 @@ public final class EditContactActivity extends Activity
     void showAndManageDialog(Dialog dialog) {
         startManagingDialog(dialog);
         dialog.show();
+    }
+
+    /**
+     * Dismiss the given {@link Dialog}.
+     */
+    static void dismissDialog(Dialog dialog) {
+        try {
+            // Only dismiss when valid reference and still showing
+            if (dialog != null && dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Ignoring exception while dismissing dialog: " + e.toString());
+        }
     }
 
     /**
@@ -695,10 +707,7 @@ public final class EditContactActivity extends Activity
                 Toast.makeText(context, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            // Only dismiss when valid reference and still showing
-            if (progress != null && progress.isShowing()) {
-                progress.dismiss();
-            }
+            dismissDialog(progress);
 
             // Stop the service that was protecting us
             context.stopService(new Intent(context, EmptyService.class));
