@@ -323,6 +323,18 @@ public class QuickContactWindow implements Window.Callback,
             android.os.Debug.startMethodTracing(TRACE_TAG);
         }
 
+        // Validate incoming parameters
+        final boolean validMode = (mode == QuickContact.MODE_SMALL
+                || mode == QuickContact.MODE_MEDIUM || mode == QuickContact.MODE_LARGE);
+        if (!validMode) {
+            throw new IllegalArgumentException("Invalid mode, expecting MODE_LARGE, "
+                    + "MODE_MEDIUM, or MODE_SMALL");
+        }
+
+        if (anchor == null) {
+            throw new IllegalArgumentException("Missing anchor rectangle");
+        }
+
         // Prepare header view for requested mode
         mLookupUri = lookupUri;
         mAnchor = new Rect(anchor);
