@@ -59,6 +59,7 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.RawContactsEntity;
 import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -297,31 +298,27 @@ public class ViewContactActivity extends Activity
         return null;
     }
 
-    // QUERY CODE //
     /** {@inheritDoc} */
-    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        try {
-            // Read incoming entities and consider binding
-            readEntities(iterator);
-            considerBindData();
-        } finally {
-            if (iterator != null) {
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        if (token == TOKEN_STATUSES) {
+            try {
+                // Read available social rows and consider binding
+                readStatuses(cursor);
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        } else {
+            EntityIterator iterator = RawContacts.newEntityIterator(cursor);
+            try {
+                // Read incoming entities and consider binding
+                readEntities(iterator);
+            } finally {
                 iterator.close();
             }
         }
-    }
-
-    /** {@inheritDoc} */
-    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        try {
-            // Read available social rows and consider binding
-            readStatuses(cursor);
-            considerBindData();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
+        considerBindData();
     }
 
     private long getRefreshedContactId() {
@@ -399,7 +396,7 @@ public class ViewContactActivity extends Activity
         mHasEntities = false;
         mHasStatuses = false;
 
-        mHandler.startQueryEntities(TOKEN_ENTITIES, null, RawContacts.CONTENT_URI,
+        mHandler.startQuery(TOKEN_ENTITIES, null, RawContactsEntity.CONTENT_URI, null,
                 RawContacts.CONTACT_ID + "=" + contactId, null, null);
         mHandler.startQuery(TOKEN_STATUSES, null, dataUri, StatusQuery.PROJECTION,
                         StatusUpdates.PRESENCE + " IS NOT NULL OR " + StatusUpdates.STATUS

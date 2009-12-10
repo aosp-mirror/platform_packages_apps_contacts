@@ -21,15 +21,13 @@ import android.content.ContentResolver;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
-import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.RawContactsEntity;
 
 import com.google.android.collect.Lists;
 
@@ -65,26 +63,24 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
      */
     public static EntitySet fromQuery(ContentResolver resolver, String selection,
             String[] selectionArgs, String sortOrder) {
-        EntityIterator iterator = null;
-        final EntitySet state = new EntitySet();
+        EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
+                RawContactsEntity.CONTENT_URI, null, selection, selectionArgs,
+                sortOrder));
         try {
+            final EntitySet state = new EntitySet();
             // Perform background query to pull contact details
-            iterator = resolver.queryEntities(RawContacts.CONTENT_URI, selection, selectionArgs,
-                    sortOrder);
             while (iterator.hasNext()) {
                 // Read all contacts into local deltas to prepare for edits
                 final Entity before = iterator.next();
                 final EntityDelta entity = EntityDelta.fromBefore(before);
                 state.add(entity);
             }
+            return state;
         } catch (RemoteException e) {
             throw new IllegalStateException("Problem querying contact details", e);
         } finally {
-            if (iterator != null) {
-                iterator.close();
-            }
+            iterator.close();
         }
-        return state;
     }
 
     /**

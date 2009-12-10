@@ -1554,11 +1554,6 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
-    public void onQueryEntitiesComplete(int token, Object cookie, EntityIterator iterator) {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
     public void onAttachedToWindow() {
         // No actions
     }
