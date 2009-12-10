@@ -379,30 +379,29 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             mName = accountName;
             mType = accountType;
 
-            boolean hasGroups = false;
-
             final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
                     .appendQueryParameter(Groups.ACCOUNT_NAME, accountName)
                     .appendQueryParameter(Groups.ACCOUNT_TYPE, accountType).build();
-            EntityIterator iterator = null;
+            EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
+                    groupsUri, null, null, null, null));
             try {
+                boolean hasGroups = false;
+
                 // Create entries for each known group
-                iterator = resolver.queryEntities(groupsUri, null, null, null);
                 while (iterator.hasNext()) {
                     final ContentValues values = iterator.next().getEntityValues();
                     final GroupDelta group = GroupDelta.fromBefore(values);
                     addGroup(group);
                     hasGroups = true;
                 }
+                // Create single entry handling ungrouped status
+                mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType, hasGroups);
+                addGroup(mUngrouped);
             } catch (RemoteException e) {
                 Log.w(TAG, "Problem reading groups: " + e.toString());
             } finally {
-                if (iterator != null) iterator.close();
+                iterator.close();
             }
-
-            // Create single entry handling ungrouped status
-            mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType, hasGroups);
-            addGroup(mUngrouped);
         }
 
         /**
