@@ -55,6 +55,8 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -175,14 +177,29 @@ public class QuickContactWindow implements Window.Callback,
     private String[] mExcludeMimes;
 
     /**
-     * Specific MIME-types that should be bumped to the front of the dialog.
-     * Other MIME-types not appearing in this list follow in alphabetic order.
+     * {@link #PRECEDING_MIMETYPES} and {@link #FOLLOWING_MIMETYPES} are used to sort MIME-types.
+     *
+     * <p>The MIME-types in {@link #PRECEDING_MIMETYPES} appear in the front of the dialog,
+     * in the order in the array.
+     *
+     * <p>The ones in {@link #FOLLOWING_MIMETYPES} appear in the end of the dialog, in alphabetical
+     * order.
+     *
+     * <p>The rest go between them, in the order in the array.
      */
-    private static final String[] ORDERED_MIMETYPES = new String[] {
+    private static final String[] PRECEDING_MIMETYPES = new String[] {
             Phone.CONTENT_ITEM_TYPE,
             Contacts.CONTENT_ITEM_TYPE,
             Constants.MIME_SMS_ADDRESS,
             Email.CONTENT_ITEM_TYPE,
+    };
+
+    /**
+     * See {@link #PRECEDING_MIMETYPES}.
+     */
+    private static final String[] FOLLOWING_MIMETYPES = new String[] {
+            StructuredPostal.CONTENT_ITEM_TYPE,
+            Website.CONTENT_ITEM_TYPE,
     };
 
     /**
@@ -197,7 +214,8 @@ public class QuickContactWindow implements Window.Callback,
             "com.android.calendar",
             "com.android.contacts",
             "com.android.mms",
-            "com.android.phone");
+            "com.android.phone",
+            "com.android.browser");
 
     private static final int TOKEN_DATA = 1;
 
@@ -741,6 +759,12 @@ public class QuickContactWindow implements Window.Callback,
                     mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 }
 
+            } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final String url = getAsString(cursor, Website.URL);
+                if (!TextUtils.isEmpty(url)) {
+                    mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                }
+
             } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
                         getAsString(cursor, Data.MIMETYPE));
@@ -1198,22 +1222,39 @@ public class QuickContactWindow implements Window.Callback,
             setHeaderText(R.id.timestamp, status.getTimestampLabel(mContext));
         }
 
-        // Turn our list of actions into UI elements, starting with common types
-        final Set<String> containedTypes = mActions.keySet();
-        for (String mimeType : ORDERED_MIMETYPES) {
+        // Turn our list of actions into UI elements
+
+        // Index where we start adding child views.
+        int index = mTrack.getChildCount() - 1;
+
+        // All the mime-types to add.
+        final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
+
+        // First, add PRECEDING_MIMETYPES, which are most common.
+        for (String mimeType : PRECEDING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
-                final int index = mTrack.getChildCount() - 1;
-                mTrack.addView(inflateAction(mimeType), index);
+                mTrack.addView(inflateAction(mimeType), index++);
                 containedTypes.remove(mimeType);
             }
         }
 
-        // Then continue with remaining MIME-types in alphabetical order
+        // Keep the current index to append non PRECEDING/FOLLOWING items.
+        final int indexAfterPreceding = index;
+
+        // Then, add FOLLOWING_MIMETYPES, which are least common.
+        for (String mimeType : FOLLOWING_MIMETYPES) {
+            if (containedTypes.contains(mimeType)) {
+                mTrack.addView(inflateAction(mimeType), index++);
+                containedTypes.remove(mimeType);
+            }
+        }
+
+        // Go back to just after PRECEDING_MIMETYPES, and append the rest.
+        index = indexAfterPreceding;
         final String[] remainingTypes = containedTypes.toArray(new String[containedTypes.size()]);
         Arrays.sort(remainingTypes);
         for (String mimeType : remainingTypes) {
-            final int index = mTrack.getChildCount() - 1;
-            mTrack.addView(inflateAction(mimeType), index);
+            mTrack.addView(inflateAction(mimeType), index++);
         }
     }
 
