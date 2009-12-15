@@ -147,13 +147,13 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         mSecondaryVisible = makeVisible;
 
         if (!mIsSourceReadOnly && mSecondary.getChildCount() > 0) {
-            mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
+            mSecondaryHeader.setVisibility(View.VISIBLE);
             mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(
                     makeVisible ? mSecondaryOpen : mSecondaryClosed, null, null, null);
+            mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
         } else {
             mSecondaryHeader.setVisibility(View.GONE);
             mSecondary.setVisibility(View.GONE);
-
         }
     }
 
