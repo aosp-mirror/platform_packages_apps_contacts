@@ -81,15 +81,15 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.QuickContactBadge.WindowMedium" />
+            style="?android:attr/quickContactBadgeStyleWindowMedium"
         />
 
         <ImageView android:id="@+id/noQuickContactPhoto"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dip"
-            style="@*android:style/Widget.QuickContactBadge.WindowMedium"
-            android:background="@null" />
+            android:background="@null"
+            style="?android:attr/quickContactBadgeStyleWindowMedium"
         />
 
         <TextView android:id="@+id/label"
