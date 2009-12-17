@@ -17,6 +17,9 @@
 package com.android.contacts;
 
 
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.util.Constants;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -36,7 +39,6 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.Im.ProviderNames;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -44,9 +46,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.util.Constants;
 
 import java.util.ArrayList;
 
@@ -189,6 +188,19 @@ public class ContactsUtils {
         }
 
         return photoBm;
+    }
+
+    // TODO find a proper place for the canonical version of these
+    public interface ProviderNames {
+        String YAHOO = "Yahoo";
+        String GTALK = "GTalk";
+        String MSN = "MSN";
+        String ICQ = "ICQ";
+        String AIM = "AIM";
+        String XMPP = "XMPP";
+        String JABBER = "JABBER";
+        String SKYPE = "SKYPE";
+        String QQ = "QQ";
     }
 
     /**
