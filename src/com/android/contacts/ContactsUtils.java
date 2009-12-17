@@ -205,7 +205,7 @@ public class ContactsUtils {
 
     /**
      * This looks up the provider name defined in
-     * {@link android.provider.Im.ProviderNames} from the predefined IM protocol id.
+     * ProviderNames from the predefined IM protocol id.
      * This is used for interacting with the IM application.
      *
      * @param protocol the protocol ID
