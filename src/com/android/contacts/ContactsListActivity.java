@@ -250,9 +250,6 @@ public class ContactsListActivity extends ListActivity implements
     /** Maximum number of suggestions shown for joining aggregates */
     static final int MAX_SUGGESTIONS = 4;
 
-    static final String NAME_COLUMN = Contacts.DISPLAY_NAME;
-    //static final String SORT_STRING = People.SORT_STRING;
-
     static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
         Contacts._ID, // 0
         Contacts.DISPLAY_NAME, // 1
@@ -416,7 +413,7 @@ public class ContactsListActivity extends ListActivity implements
             getContentResolver().delete(mSelectedContactUri, null, null);
         }
     }
-    
+
     // The size of a home screen shortcut icon.
     private int mIconSize;
 
@@ -426,7 +423,7 @@ public class ContactsListActivity extends ListActivity implements
 
         // Resolve the intent
         final Intent intent = getIntent();
-        
+
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
 
         // Allow the title to be set to a custom String using an extra on the intent
@@ -1318,7 +1315,7 @@ public class ContactsListActivity extends ListActivity implements
                 shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
                 shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-    
+
                 shortcutIntent.setData(uri);
                 shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
                         ContactsContract.QuickContact.MODE_LARGE);
@@ -1418,7 +1415,7 @@ public class ContactsListActivity extends ListActivity implements
                 return null;
             }
         }
-        
+
         // Setup the drawing classes
         Bitmap icon = createShortcutBitmap();
         Canvas canvas = new Canvas(icon);
@@ -1477,7 +1474,7 @@ public class ContactsListActivity extends ListActivity implements
 
         return icon;
     }
-    
+
     private Bitmap scaleToAppIconSize(Bitmap photo) {
         // Setup the drawing classes
         Bitmap icon = createShortcutBitmap();
@@ -1490,10 +1487,10 @@ public class ContactsListActivity extends ListActivity implements
         Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
         Rect dst = new Rect(0,0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
-        
+
         return icon;
     }
-    
+
     private Bitmap createShortcutBitmap() {
         return Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
     }
@@ -1746,7 +1743,7 @@ public class ContactsListActivity extends ListActivity implements
             return NAME_COLUMN + " COLLATE LOCALIZED ASC";
         } */
 
-        return NAME_COLUMN + " COLLATE LOCALIZED ASC";
+        return Contacts.SORT_KEY_PRIMARY;
     }
 
     void startQuery() {
