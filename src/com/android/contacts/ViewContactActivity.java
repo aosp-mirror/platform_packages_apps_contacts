@@ -144,6 +144,8 @@ public class ViewContactActivity extends Activity
     protected int mWritableSourcesCnt;
     protected boolean mAllRestricted;
 
+    protected Uri mPrimaryPhoneUri = null;
+
     protected ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
 
     private static final int TOKEN_ENTITIES = 0;
@@ -714,15 +716,11 @@ public class ViewContactActivity extends Activity
                     if (entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         startActivity(entry.intent);
                     }
-                } else if (mNumPhoneNumbers != 0) {
+                } else if (mPrimaryPhoneUri != null) {
                     // There isn't anything selected, call the default number
-                    long freshContactId = getRefreshedContactId();
-                    if (freshContactId > 0) {
-                        Uri hardContacUri = ContentUris.withAppendedId(
-                                Contacts.CONTENT_URI, freshContactId);
-                        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, hardContacUri);
-                        startActivity(intent);
-                    }
+                    final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                            mPrimaryPhoneUri);
+                    startActivity(intent);
                 }
                 return true;
             }
@@ -787,6 +785,7 @@ public class ViewContactActivity extends Activity
         mReadOnlySourcesCnt = 0;
         mWritableSourcesCnt = 0;
         mAllRestricted = true;
+        mPrimaryPhoneUri = null;
 
         mWritableRawContactIds.clear();
 
@@ -844,6 +843,9 @@ public class ViewContactActivity extends Activity
                                 Uri.fromParts(Constants.SCHEME_TEL, entry.data, null));
                         entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
                                 Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null));
+
+                        // Remember super-primary phone
+                        if (isSuperPrimary) mPrimaryPhoneUri = entry.uri;
 
                         entry.isPrimary = isSuperPrimary;
                         mPhoneEntries.add(entry);
