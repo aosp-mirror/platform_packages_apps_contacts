@@ -295,7 +295,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             if (uri != null) {
                 if ("tel".equals(uri.getScheme())) {
                     // Put the requested number into the input area
-                    String data = uri.getSchemeSpecificPart();
+                    String data = uri.toString().substring("tel:".length());
                     setFormattedDigits(data);
                 } else {
                     String type = intent.getType();
