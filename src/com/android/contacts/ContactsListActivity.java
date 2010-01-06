@@ -259,6 +259,7 @@ public class ContactsListActivity extends ListActivity implements
         Contacts.PHOTO_ID, //5
         Contacts.LOOKUP_KEY, //6
         Contacts.HAS_PHONE_NUMBER, //7
+        Contacts.SORT_KEY_PRIMARY, //8
     };
     static final String[] CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL = new String[] {
         Contacts._ID, // 0
@@ -285,6 +286,7 @@ public class ContactsListActivity extends ListActivity implements
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
     static final int SUMMARY_LOOKUP_KEY = 6;
     static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 7;
+    static final int SUMMARY_SORT_KEY_PRIMARY = 8;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -2301,11 +2303,11 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
-            /* if (Locale.getDefault().getLanguage().equals(Locale.JAPAN.getLanguage())) {
-                return new JapaneseContactListIndexer(cursor, SORT_STRING_INDEX);
-            } else { */
+            if (Locale.getDefault().getLanguage().equals(Locale.JAPAN.getLanguage())) {
+                return new JapaneseContactListIndexer(cursor, SUMMARY_SORT_KEY_PRIMARY);
+            } else {
                 return new AlphabetIndexer(cursor, SUMMARY_NAME_COLUMN_INDEX, mAlphabet);
-            /* } */
+            }
         }
 
         /**
