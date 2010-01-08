@@ -18,7 +18,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
@@ -95,7 +95,7 @@
     
     <View android:id="@+id/divider"
         android:layout_width="1px"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="5dip"
         android:layout_marginBottom="5dip"
         android:background="@drawable/divider_vertical_dark"
@@ -103,7 +103,7 @@
 
     <ImageView android:id="@+id/secondary_action_button"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:paddingLeft="14dip"
         android:paddingRight="14dip"

@@ -18,19 +18,19 @@
 
 <com.android.contacts.ui.widget.KindSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical">
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:id="@+id/kind_header"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginLeft="14dip"
@@ -63,7 +63,7 @@
 
     <LinearLayout
         android:id="@+id/kind_editors"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="6dip"
         android:orientation="vertical" />

@@ -17,7 +17,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/header_medium"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="51dip"
     android:background="@drawable/quickcontact_top_frame"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/status"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="end"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/timestamp"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="end"

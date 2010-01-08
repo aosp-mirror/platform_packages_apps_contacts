@@ -18,7 +18,7 @@
 -->
 
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
 >
@@ -28,14 +28,14 @@
     />
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:paddingLeft="14dip"
     >
 
         <LinearLayout android:id="@+id/right_side"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginLeft="11dip"
             android:layout_alignParentRight="true">
@@ -52,12 +52,12 @@
 
             <LinearLayout android:id="@+id/call_view"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <View android:id="@+id/divider"
                     android:layout_width="1px"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dip"
                     android:layout_marginBottom="5dip"
                     android:background="@drawable/divider_vertical_dark"
@@ -65,7 +65,7 @@
 
                 <com.android.contacts.ui.widget.DontPressWithParentImageView android:id="@+id/call_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:paddingLeft="14dip"
                     android:paddingRight="14dip"
                     android:layout_centerVertical="true"
@@ -124,7 +124,7 @@
     </RelativeLayout>
 
     <View android:id="@+id/list_divider"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@*android:drawable/divider_horizontal_dark_opaque"
     />

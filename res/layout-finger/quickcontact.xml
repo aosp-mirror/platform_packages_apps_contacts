@@ -16,7 +16,7 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/quickcontact_shadow_horiz"
     android:paddingRight="@dimen/quickcontact_shadow_horiz"
@@ -24,28 +24,28 @@
 
     <FrameLayout
         android:id="@+id/header"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip">
 
         <ViewStub
             android:id="@+id/header_small"
             android:inflatedId="@+id/header_small"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout="@layout/quickcontact_header_small" />
 
         <ViewStub
             android:id="@+id/header_medium"
             android:inflatedId="@+id/header_medium"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout="@layout/quickcontact_header_med" />
 
         <ViewStub
             android:id="@+id/header_large"
             android:inflatedId="@+id/header_large"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout="@layout/quickcontact_header_large" />
 
@@ -53,7 +53,7 @@
 
     <HorizontalScrollView
         android:id="@+id/scroll"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:fadingEdgeLength="0dip"
@@ -84,14 +84,14 @@
 
     <FrameLayout
         android:id="@+id/footer"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
         android:background="@drawable/quickcontact_bottom_frame" />
 
     <LinearLayout
         android:id="@+id/footer_disambig"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
         android:background="@drawable/quickcontact_disambig_bottom_bg"
@@ -100,7 +100,7 @@
 
         <ListView
             android:id="@android:id/list"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
             android:background="@color/quickcontact_disambig"
@@ -109,7 +109,7 @@
 
         <CheckBox
             android:id="@android:id/checkbox"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dip"
             android:layout_marginRight="19dip"
