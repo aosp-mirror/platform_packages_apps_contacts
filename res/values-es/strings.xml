@@ -380,7 +380,7 @@
     <string name="email_home" msgid="8573740658148184279">"Enviar email a casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar email al móvil"</string>
     <string name="email_work" msgid="2807430017302722689">"Enviar email a trabajo"</string>
-    <string name="email_other" msgid="8093933498541795832">"Enviar email a otro"</string>
+    <string name="email_other" msgid="8093933498541795832">"Enviar correo electrónico"</string>
     <string name="email_custom" msgid="7548003991586214105">"Correo electrónico <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Correo electrónico"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección de casa"</string>
@@ -403,12 +403,12 @@
     <string name="postal_region" msgid="6045263193478437672">"Provincia/Estado"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Código postal"</string>
     <string name="postal_country" msgid="7638264508416368690">"País"</string>
-    <string name="name_given" msgid="1687286314106019813">"Nombre de pila"</string>
+    <string name="name_given" msgid="1687286314106019813">"Nombre"</string>
     <string name="name_family" msgid="3416695586119999058">"Apellidos"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefijo del nombre"</string>
     <string name="name_middle" msgid="8467433655992690326">"Segundo nombre"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Sufijo del nombre"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"Nombre de pila fonético"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"Nombre fonético"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nombre fonético"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Apellido fonético"</string>
     <string name="split_label" msgid="8262112659919449087">"Desagrupar"</string>

@@ -41,7 +41,7 @@
     <string name="menu_editContact" msgid="3452858480713561396">"Modifica contatto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Elimina contatto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Chiama contatto"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia testo a n. contatto"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia SMS a contatto"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Invia email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Indirizzo su mappa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Rendi numero predefinito"</string>
@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Gruppi"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Il gruppo \"<xliff:g id="GROUPNAME">%s</xliff:g>\" è vuoto."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Tutti i contatti"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Solo contatti con numeri di telefono"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Solo contatti con numeri di tel."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Visualizza solo i contatti con numeri di telefono"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Scegli i contatti da visualizzare"</string>
   <plurals name="groupDescrip">
@@ -142,7 +142,7 @@
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errore, impossibile salvare le modifiche ai contatti."</string>
     <string name="listSeparatorCallNumber" msgid="7115321894439629408">"Componi numero"</string>
     <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"Numeri di telefono"</string>
-    <string name="listSeparatorSendSmsMms" msgid="5351657038532024412">"Invia testo"</string>
+    <string name="listSeparatorSendSmsMms" msgid="5351657038532024412">"Invia SMS"</string>
     <string name="listSeparatorSendEmail" msgid="5395590830304525721">"Invia email"</string>
     <string name="listSeparatorSendEmail_edit" msgid="6859593624213634454">"Indirizzi email"</string>
     <string name="listSeparatorSendIm" msgid="2209260633185984105">"Invia messagio chat"</string>
@@ -336,12 +336,12 @@
     <string name="account_phone" msgid="4025734638492419713">"Solo su telefono (non sincronizzato)"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"Nome visualizzato"</string>
     <string name="call_custom" msgid="7756571794763171802">"Chiama n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Chiama n. casa"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Chiama n. cellulare"</string>
-    <string name="call_work" msgid="5328785911463744028">"Chiama n. ufficio"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Chiama n. fax ufficio"</string>
+    <string name="call_home" msgid="1990519474420545392">"Chiama casa"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"Chiama cellulare"</string>
+    <string name="call_work" msgid="5328785911463744028">"Chiama ufficio"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Chiama fax ufficio"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Chiama n. fax casa"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Chiama n. cercapersone"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Chiama cercapersone"</string>
     <string name="call_other" msgid="5605584621798108205">"Chiama altro"</string>
     <string name="call_callback" msgid="1910165691349426858">"Chiama n. callback"</string>
     <string name="call_car" msgid="3280537320306436445">"Chiama n. automobile"</string>
@@ -349,18 +349,18 @@
     <string name="call_isdn" msgid="1541590690193403411">"Chiama n. ISDN"</string>
     <string name="call_main" msgid="6082900571803441339">"Chiama n. principale"</string>
     <string name="call_other_fax" msgid="7777261153532968503">"Chiama n. altro fax"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Chiama n. segnale cellulare"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Chiama n. telex"</string>
+    <string name="call_radio" msgid="8296755876398357063">"Chiama radiotelefono"</string>
+    <string name="call_telex" msgid="2223170774548648114">"Chiama telex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Chiama n. TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Chiama n. cellulare ufficio"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Chiama n. cercapersone ufficio"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Chiama cellulare lavoro"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Chiama cercapersone ufficio"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Chiama <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Chiama n. MMS"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Invia SMS a n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"Invia SMS a n. casa"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Invia SMS a n. cellulare"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Invia SMS a n. ufficio"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Invia SMS a n. fax ufficio"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"Invia SMS a cellulare"</string>
+    <string name="sms_work" msgid="2269624156655267740">"Invia SMS a ufficio"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Invia SMS a fax ufficio"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Invia SMS a n. fax casa"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Invia SMS a n. cercapersone"</string>
     <string name="sms_other" msgid="5131921487474531617">"Invia SMS ad altro"</string>
@@ -370,12 +370,12 @@
     <string name="sms_isdn" msgid="8153785037515047845">"Invia SMS a n. ISDN"</string>
     <string name="sms_main" msgid="8621625784504541679">"Invia SMS a n. principale"</string>
     <string name="sms_other_fax" msgid="3930666870074006114">"Invia SMS a n. altro fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Invia SMS a n. segnale cellulare"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"Invia SMS a radiotelefono"</string>
     <string name="sms_telex" msgid="9034802430065267848">"Invia SMS a n. telex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Invia SMS a n. TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Invia SMS a n. cellulare ufficio"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Invia SMS a n. cercapersone ufficio"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Invia testo a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"Invia SMS a cellulare lavoro"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"Invia SMS a cercapersone ufficio"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"Invia SMS ad <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Invia SMS a n. MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Invia email a ind. casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Invia email a ind. cellulare"</string>
@@ -383,18 +383,18 @@
     <string name="email_other" msgid="8093933498541795832">"Invia email ad altro"</string>
     <string name="email_custom" msgid="7548003991586214105">"Invia email a ind. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Email"</string>
-    <string name="map_home" msgid="1243547733423343982">"Visualizza indirizzo di casa"</string>
+    <string name="map_home" msgid="1243547733423343982">"Visualizza indirizzo casa"</string>
     <string name="map_work" msgid="1360474076921878088">"Visualizza indirizzo ufficio"</string>
     <string name="map_other" msgid="5560707927535653892">"Visualizza altro indirizzo"</string>
     <string name="map_custom" msgid="6184363799976265281">"Visualizza indirizzo <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Chatta tramite AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Chatta tramite Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Chatta tramite Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Chatta tramite Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Chatta tramite QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Chatta tramite Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Chatta tramite ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Chatta tramite Jabber"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"Chatta su AIM"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Chatta su Windows Live"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Chatta su Yahoo"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Chatta su Skype"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"Chatta su QQ"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Chatta su Google Talk"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"Chatta su ICQ"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Chatta su Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatta"</string>
     <string name="postal_street" msgid="8133143961580058972">"Indirizzo postale"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Casella postale"</string>

@@ -30,7 +30,7 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Afficher le contact"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modifier le contact"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Créer un contact"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Rechercher des contacts"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Rech. des contacts"</string>
     <string name="menu_search" msgid="9147752853603483719">"Rechercher"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Nouveau contact"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Afficher le contact"</string>
@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Groupes"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Votre groupe \"<xliff:g id="GROUPNAME">%s</xliff:g>\" est vide."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Tous les contacts"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Uniquement les contacts avec un téléphone"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Contacts avec un n° de tél."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Afficher uniquement les contacts avec un numéro de téléphone"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Choisissez les contacts à afficher."</string>
   <plurals name="groupDescrip">
@@ -172,7 +172,7 @@
     <string name="socialStreamIconLabel" msgid="4367712449555075376">"Social"</string>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contacts"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Tel."</string>
+    <string name="dialerIconLabel" msgid="6500826552823403796">"Tél."</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Appels"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Tous les contacts"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Contacts suivis"</string>
@@ -199,7 +199,7 @@
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Vous n\'avez aucun contact à afficher."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Aucun favori."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n" "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
     <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Sélectionner les groupes à synchroniser"</string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tous les contacts"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Suivis"</string>
@@ -220,7 +220,7 @@
     <string name="ringtone_spinner" msgid="7317823545379736528">"Sonnerie : <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
     <string name="add_more_items" msgid="7754115197545456663">"Ajouter d\'autres éléments"</string>
     <string name="actionCall" msgid="695145166039381504">"Appeler <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail" msgid="3870371552333656807">"Envoyer un e-mail à <xliff:g id="TYPE">%s</xliff:g>"</string>
+    <string name="actionEmail" msgid="3870371552333656807">"Env. e-mail à <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionText" msgid="6399049224844880108">"Envoyer un SMS (<xliff:g id="TYPE">%s</xliff:g>)"</string>
     <string name="actionChat" msgid="31079429748650300">"Chatter via <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap" msgid="1977955782051732775">"Afficher l\'adresse <xliff:g id="TYPE">%s</xliff:g>"</string>
@@ -377,14 +377,14 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Envoyer un SMS vers téléavertisseur (bureau)"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Envoyer un message texte à <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Envoyer un MMS"</string>
-    <string name="email_home" msgid="8573740658148184279">"Envoyer un e-mail au domicile"</string>
+    <string name="email_home" msgid="8573740658148184279">"Env. e-mail domicile"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Envoyer un e-mail sur le mobile"</string>
-    <string name="email_work" msgid="2807430017302722689">"Envoyer un e-mail au bureau"</string>
+    <string name="email_work" msgid="2807430017302722689">"Env. e-mail bureau"</string>
     <string name="email_other" msgid="8093933498541795832">"Envoyer un e-mail à autre adresse"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Envoyer un e-mail à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Env. e-mail à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Envoyer un e-mail"</string>
-    <string name="map_home" msgid="1243547733423343982">"Afficher l\'adresse personnelle"</string>
-    <string name="map_work" msgid="1360474076921878088">"Afficher l\'adresse professionnelle"</string>
+    <string name="map_home" msgid="1243547733423343982">"Afficher adresse perso"</string>
+    <string name="map_work" msgid="1360474076921878088">"Afficher adresse prof."</string>
     <string name="map_other" msgid="5560707927535653892">"Afficher autre adresse"</string>
     <string name="map_custom" msgid="6184363799976265281">"Afficher adresse <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Chatter via AIM"</string>

@@ -86,7 +86,7 @@
     <string name="ghostData_im" msgid="7737174936595812794">"Nazwa na czacie"</string>
     <string name="ghostData_notes" msgid="3044201271296187724">"Moja notatka"</string>
     <string name="ghostData_phone" msgid="6963153888271466620">"Numer telefonu"</string>
-    <string name="ghostData_email" msgid="6184537075551565919">"Adres e-mail"</string>
+    <string name="ghostData_email" msgid="6184537075551565919">"E-mail"</string>
     <string name="ghostData_postal" msgid="652611650594951897">"Adres pocztowy"</string>
     <string name="ghostData_group" msgid="4504591380347534114">"Wyświetl grupę"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt nie istnieje."</string>
@@ -230,7 +230,7 @@
     <string name="callBack" msgid="5498224409038809224">"Oddzwoń"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zadzwoń ponownie"</string>
     <string name="returnCall" msgid="8171961914203617813">"Połączenie zwrotne"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Częste połączenia"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Dodaj kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Czy dodać adres „<xliff:g id="EMAIL">%s</xliff:g>” do kontaktów?"</string>
@@ -335,30 +335,30 @@
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Usunięcie grupy „<xliff:g id="GROUP">%s</xliff:g>” z ustawień synchronizacji spowoduje również usunięcie wszelkich rozgrupowanych kontaktów z tych ustawień."</string>
     <string name="account_phone" msgid="4025734638492419713">"Tylko telefon (brak synchronizacji)"</string>
     <string name="label_email_display_name" msgid="5537802602754309600">"Nazwa wyświetlana"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Telefon – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Telefon – domowy"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Telefon – komórkowy"</string>
-    <string name="call_work" msgid="5328785911463744028">"Telefon – służbowy"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Telefon – faks służbowy"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Telefon – faks domowy"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Telefon – pager"</string>
-    <string name="call_other" msgid="5605584621798108205">"Telefon – inny"</string>
+    <string name="call_custom" msgid="7756571794763171802">"Połącz – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1990519474420545392">"Połącz – domowy"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"Połącz – komórka"</string>
+    <string name="call_work" msgid="5328785911463744028">"Połącz – służbowy"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Połącz – faks służbowy"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"Połącz – faks domowy"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Połącz – pager"</string>
+    <string name="call_other" msgid="5605584621798108205">"Połącz – inny"</string>
     <string name="call_callback" msgid="1910165691349426858">"Zadzwoń – połączenie zwrotne"</string>
-    <string name="call_car" msgid="3280537320306436445">"Telefon – samochód"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Telefon – firmowy główny"</string>
+    <string name="call_car" msgid="3280537320306436445">"Połącz – samochód"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"Połącz – firmowy główny"</string>
     <string name="call_isdn" msgid="1541590690193403411">"Zadzwoń – ISDN"</string>
     <string name="call_main" msgid="6082900571803441339">"Zadzwoń pod nr główny"</string>
     <string name="call_other_fax" msgid="7777261153532968503">"Połącz – inny faks"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Telefon – radio"</string>
+    <string name="call_radio" msgid="8296755876398357063">"Połącz – radio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Połącz – teleks"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Zadzwoń – TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Zadzwoń – służbowy komórkowy"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Zadzwoń – pager służbowy"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Połącz – służbowa komórka"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Połącz – pager służbowy"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Zadzwoń – <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Telefon – wiadomość MMS"</string>
+    <string name="call_mms" msgid="6274041545876221437">"Połącz – MMS"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Tekst – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"Tekst – domowy"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Tekst – komórkowy"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"SMS – komórka"</string>
     <string name="sms_work" msgid="2269624156655267740">"Tekst – służbowy"</string>
     <string name="sms_fax_work" msgid="8028189067816907075">"Tekst – faks służbowy"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Tekst – faks domowy"</string>
@@ -373,16 +373,16 @@
     <string name="sms_radio" msgid="3329166673433967820">"Tekst – radio"</string>
     <string name="sms_telex" msgid="9034802430065267848">"SMS – teleks"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS – TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS – służbowy komórkowy"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS – służbowa komórka"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS – pager służbowy"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS – <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Tekst – wiadomość MMS"</string>
-    <string name="email_home" msgid="8573740658148184279">"Adres e-mail – domowy"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"Adres e-mail – komórkowy"</string>
-    <string name="email_work" msgid="2807430017302722689">"Adres e-mail – służbowy"</string>
-    <string name="email_other" msgid="8093933498541795832">"Adres e-mail – inny"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Adres e-mail – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Adres e-mail"</string>
+    <string name="email_home" msgid="8573740658148184279">"E-mail – domowy"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"E-mail – komórka"</string>
+    <string name="email_work" msgid="2807430017302722689">"E-mail – służbowy"</string>
+    <string name="email_other" msgid="8093933498541795832">"E-mail – inny"</string>
+    <string name="email_custom" msgid="7548003991586214105">"E-mail – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="map_home" msgid="1243547733423343982">"Wyświetl adres domowy"</string>
     <string name="map_work" msgid="1360474076921878088">"Wyświetl adres służbowy"</string>
     <string name="map_other" msgid="5560707927535653892">"Wyświetl inny adres"</string>
@@ -398,7 +398,7 @@
     <string name="chat" msgid="9025361898797412245">"Czat"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Skrytka pocztowa"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Okolica"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"Dzielnica"</string>
     <string name="postal_city" msgid="6597491300084895548">"Miasto"</string>
     <string name="postal_region" msgid="6045263193478437672">"Województwo"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Kod pocztowy"</string>

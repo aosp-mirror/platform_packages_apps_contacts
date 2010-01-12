@@ -103,6 +103,7 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
+import android.*;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -111,6 +112,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -388,7 +390,7 @@ public class ContactsListActivity extends ListActivity implements
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
     /**
-     * In the {@link #MODE_JOIN} determines whether we display a list item with the label
+     * In the {@link #MODE_JOIN_CONTACT} determines whether we display a list item with the label
      * "Show all contacts" or actually show all contacts
      */
     private boolean mJoinModeShowAllContacts;
@@ -1308,8 +1310,17 @@ public class ContactsListActivity extends ListActivity implements
             Intent shortcutIntent;
             if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
                 // This is a simple shortcut to view a contact.
-                shortcutIntent = new Intent(mShortcutAction, uri);
-                final Bitmap icon = loadContactPhoto(id, null);
+                shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
+                shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+    
+                shortcutIntent.setData(uri);
+                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
+                        ContactsContract.QuickContact.MODE_LARGE);
+                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
+                        (String[]) null);
+
+                final Bitmap icon = framePhoto(loadContactPhoto(id, null));
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
                 } else {
@@ -1348,6 +1359,33 @@ public class ContactsListActivity extends ListActivity implements
             setResult(RESULT_OK, intent.setData(uri));
         }
         finish();
+    }
+
+    private Bitmap framePhoto(Bitmap photo) {
+        final Resources r = getResources();
+        final Drawable frame = r.getDrawable(com.android.internal.R.drawable.quickcontact_badge);
+
+        final int width = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_width);
+        final int height = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_height);
+
+        frame.setBounds(0, 0, width, height);
+
+        final Rect padding = new Rect();
+        frame.getPadding(padding);
+
+        final Rect source = new Rect(0, 0, photo.getWidth(), photo.getHeight());
+        final Rect destination = new Rect(padding.left, padding.top,
+                width - padding.right, height - padding.bottom);
+
+        final int d = Math.max(width, height);
+        final Bitmap b = Bitmap.createBitmap(d, d, Bitmap.Config.ARGB_8888);
+        final Canvas c = new Canvas(b);
+
+        c.translate((d - width) / 2.0f, (d - height) / 2.0f);
+        frame.draw(c);
+        c.drawBitmap(photo, source, destination, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+        return b;
     }
 
     /**
@@ -1609,6 +1647,7 @@ public class ContactsListActivity extends ListActivity implements
     private Bitmap loadContactPhoto(long contactId, BitmapFactory.Options options) {
         Cursor cursor = null;
         Bitmap bm = null;
+
         try {
             Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
@@ -1622,12 +1661,23 @@ public class ContactsListActivity extends ListActivity implements
                 cursor.close();
             }
         }
+
+        if (bm == null) {
+            final int[] fallbacks = {
+                R.drawable.ic_contact_picture,
+                R.drawable.ic_contact_picture_2,
+                R.drawable.ic_contact_picture_3
+            };
+            bm = BitmapFactory.decodeResource(getResources(),
+                    fallbacks[new Random().nextInt(fallbacks.length)]);
+        }
+
         return bm;
     }
 
     /**
-     * Return the selection arguments for a default query based on
-     * {@link #mDisplayAll} and {@link #mDisplayOnlyPhones} flags.
+     * Return the selection arguments for a default query based on the
+     * {@link #mDisplayOnlyPhones} flag.
      */
     private String getContactSelection() {
         if (mDisplayOnlyPhones) {
@@ -2191,7 +2241,7 @@ public class ContactsListActivity extends ListActivity implements
                     return;
                 }
 
-                if (Thread.currentThread().interrupted()) {
+                if (Thread.interrupted()) {
                     // shutdown has been called.
                     return;
                 }
@@ -2208,7 +2258,7 @@ public class ContactsListActivity extends ListActivity implements
 
                 mBitmapCache.put(mPhotoId, new SoftReference<Bitmap>(photo));
 
-                if (Thread.currentThread().interrupted()) {
+                if (Thread.interrupted()) {
                     // shutdown has been called.
                     return;
                 }

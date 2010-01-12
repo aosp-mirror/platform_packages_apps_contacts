@@ -210,7 +210,7 @@
     <string name="callDetailTitle" msgid="5340227785196217938">"통화 세부정보"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"요청한 통화의 세부정보를 읽지 못했습니다."</string>
     <string name="call_type" msgid="3213526349444862087">"유형"</string>
-    <string name="type_incoming" msgid="6502076603836088532">"수신 전화"</string>
+    <string name="type_incoming" msgid="6502076603836088532">"수신전화"</string>
     <string name="type_outgoing" msgid="343108709599392641">"발신 통화"</string>
     <string name="type_missed" msgid="2720502601640509542">"부재중 전화"</string>
     <string name="call_time" msgid="5805575214626630975">"시간"</string>
@@ -224,7 +224,7 @@
     <string name="actionText" msgid="6399049224844880108">"문자(<xliff:g id="TYPE">%s</xliff:g>)"</string>
     <string name="actionChat" msgid="31079429748650300">"<xliff:g id="TYPE">%s</xliff:g>로 채팅"</string>
     <string name="actionMap" msgid="1977955782051732775">"<xliff:g id="TYPE">%s</xliff:g> 주소 보기"</string>
-    <string name="actionIncomingCall" msgid="6028930669817038600">"수신 전화"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"수신전화"</string>
     <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"바로 음성메일로 연결됩니다."</string>
     <string name="detailsRingtone" msgid="4052108748982701775">"<xliff:g id="RINGTONE_NAME">%s</xliff:g>(으)로 설정"</string>
     <string name="callBack" msgid="5498224409038809224">"통화"</string>
@@ -342,7 +342,7 @@
     <string name="call_fax_work" msgid="7467763592359059243">"직장 팩스로 전화걸기"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"집 팩스로 전화걸기"</string>
     <string name="call_pager" msgid="9003902812293983281">"호출기로 전화걸기"</string>
-    <string name="call_other" msgid="5605584621798108205">"기타 연락처로 전화걸기"</string>
+    <string name="call_other" msgid="5605584621798108205">"다른 연락처로 전화걸기"</string>
     <string name="call_callback" msgid="1910165691349426858">"콜백 번호로 전화 걸기"</string>
     <string name="call_car" msgid="3280537320306436445">"카폰으로 전화걸기"</string>
     <string name="call_company_main" msgid="6105120947138711257">"회사 기본전화로 전화걸기"</string>
@@ -363,7 +363,7 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"직장 팩스로 문자 보내기"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"집 팩스로 문자 보내기"</string>
     <string name="sms_pager" msgid="7730404569637015192">"호출기로 문자 보내기"</string>
-    <string name="sms_other" msgid="5131921487474531617">"기타 연락처로 문자 보내기"</string>
+    <string name="sms_other" msgid="5131921487474531617">"다른 연락처로 문자 보내기"</string>
     <string name="sms_callback" msgid="5004824430094288752">"콜백 번호로 문자 보내기"</string>
     <string name="sms_car" msgid="7444227058437359641">"카폰으로 문자 보내기"</string>
     <string name="sms_company_main" msgid="118970873419678087">"회사 기본전화로 문자 보내기"</string>
@@ -380,7 +380,7 @@
     <string name="email_home" msgid="8573740658148184279">"집으로 이메일 보내기"</string>
     <string name="email_mobile" msgid="2042889209787989814">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="2807430017302722689">"직장으로 이메일 보내기"</string>
-    <string name="email_other" msgid="8093933498541795832">"기타 연락처로 이메일 보내기"</string>
+    <string name="email_other" msgid="8093933498541795832">"다른 연락처로 이메일 보내기"</string>
     <string name="email_custom" msgid="7548003991586214105">"이메일(<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="email" msgid="5668400997660065897">"이메일"</string>
     <string name="map_home" msgid="1243547733423343982">"집 주소 보기"</string>

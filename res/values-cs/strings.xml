@@ -69,7 +69,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Smazáním tohoto kontaktu smažete informace z více účtů."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tento kontakt bude smazán."</string>
     <string name="menu_done" msgid="796017761764190697">"Hotovo"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Vrátit"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"Vrátit zpět"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Upravit kontakt"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nový kontakt"</string>
     <string name="menu_addItem" msgid="6106836852570790250">"Další informace"</string>
@@ -109,7 +109,7 @@
     <string name="displayGroups" msgid="2278964020773993336">"Možnosti zobrazení"</string>
     <string name="syncGroupPreference" msgid="9028361137161162861">"Upravit synchronizaci"</string>
     <string name="importFromSim" msgid="8383900146531125319">"Importovat kontakty"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Odesílat hovory přímo do hlasové pošty"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Přesměrovat hovory přímo do hlasové schránky"</string>
     <string name="send_to_voicemail_view" msgid="9124400414311776864">"Hovory jsou přesměrovány přímo do hlasové schránky."</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Výchozí"</string>
     <string name="addPicture" msgid="1594679312161537678">"Přidat ikonu"</string>
@@ -122,7 +122,7 @@
     <string name="select_group_title" msgid="7955698611959835612">"Skupiny"</string>
     <string name="groupEmpty" msgid="6661950109828194595">"Skupina <xliff:g id="GROUPNAME">%s</xliff:g> je prázdná."</string>
     <string name="showAllGroups" msgid="5164410117611094297">"Všechny kontakty"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Pouze kontakty s telefonními čísly"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Pouze kontakty s telefony"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Zobrazit pouze kontakty s telefonními čísly"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Zvolte kontakty, které budou zobrazeny"</string>
   <plurals name="groupDescrip">
@@ -180,7 +180,7 @@
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Odeslat textovou zprávu"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Volat kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Před voláním upravit číslo"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Přidat mezi kontakty"</string>
+    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Přidat do kontaktů"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Odstranit z hovorů"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Vymazat hovory"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Záznam hovorů je prázdný."</string>
@@ -225,7 +225,7 @@
     <string name="actionChat" msgid="31079429748650300">"Chatovat pomocí služby <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionMap" msgid="1977955782051732775">"Zobrazit adresu: <xliff:g id="TYPE">%s</xliff:g>"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Příchozí volání"</string>
-    <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"Budou odeslány přímo do hlasové pošty."</string>
+    <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"Budou přesměrovány přímo do hlasové schránky"</string>
     <string name="detailsRingtone" msgid="4052108748982701775">"Nastavit vyzvánění <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
     <string name="callBack" msgid="5498224409038809224">"Zavolat zpět"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zavolat znovu"</string>
@@ -308,7 +308,7 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Zapamatovat tuto volbu"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Neznámé"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Importovat nebo exportovat"</string>
+    <string name="menu_import_export" msgid="3765725645491577190">"Importovat/Exportovat"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importovat nebo exportovat kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Sdílet"</string>
     <string name="share_via" msgid="563121028023030093">"Sdílet kontakt pomocí"</string>
@@ -380,7 +380,7 @@
     <string name="email_home" msgid="8573740658148184279">"E-mail domů"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-mail na mobil"</string>
     <string name="email_work" msgid="2807430017302722689">"E-mail do práce"</string>
-    <string name="email_other" msgid="8093933498541795832">"E-mail ostatní"</string>
+    <string name="email_other" msgid="8093933498541795832">"E-mail (další)"</string>
     <string name="email_custom" msgid="7548003991586214105">"E-mail <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="map_home" msgid="1243547733423343982">"Zobrazit adresu domů"</string>
