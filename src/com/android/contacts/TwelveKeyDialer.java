@@ -65,6 +65,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.internal.telephony.ITelephony;
+import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
 
 /**
@@ -73,7 +74,7 @@ import com.android.phone.HapticFeedback;
 public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher {
-
+    private static final String EMPTY_NUMBER = "";
     private static final String TAG = "TwelveKeyDialer";
 
     /** The length of DTMF tones in milliseconds */
@@ -104,6 +105,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     private static final int MENU_ADD_CONTACTS = 1;
     private static final int MENU_2S_PAUSE = 2;
     private static final int MENU_WAIT = 3;
+
+    // Last number dialed, retrieved asynchronously from the call DB
+    // in onCreate. This number is displayed when the user hits the
+    // send key and cleared in onPause.
+    CallLogAsync mCallLog = new CallLogAsync();
+    private String mLastNumberDialed = EMPTY_NUMBER;
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
@@ -176,7 +183,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
         }
 
-        updateDialAndDeleteButtonStateEnabledAttr();
+        updateDialAndDeleteButtonEnabledState();
     }
 
     @Override
@@ -392,6 +399,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
+        // Query the last dialed number. Do it first because hitting
+        // the DB is 'slow'. This call is asynchronous.
+        queryLastOutgoingCall();
 
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
@@ -453,7 +463,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             showDialpadChooser(false);
         }
 
-        updateDialAndDeleteButtonStateEnabledAttr();
+        updateDialAndDeleteButtonEnabledState();
     }
 
     @Override
@@ -483,6 +493,9 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 mToneGenerator = null;
             }
         }
+        // TODO: I wonder if we should not check if the AsyncTask that
+        // lookup the last dialed number has completed.
+        mLastNumberDialed = EMPTY_NUMBER;  // Since we are going to query again, free stale number.
     }
 
     @Override
@@ -745,7 +758,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
 
     void callVoicemail() {
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                Uri.fromParts("voicemail", "", null));
+                Uri.fromParts("voicemail", EMPTY_NUMBER, null));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();
@@ -760,12 +773,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             if (phoneIsCdma() && phoneIsOffhook()) {
                 // We only want to send this empty flash extra if we're CDMA and the
                 // phone is offhook (don't want to send if ringing or dialing)
+                intent.setData(Uri.fromParts("tel", EMPTY_NUMBER, null));
                 intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
                 sendEmptyFlash = true;
-                intent.setData(Uri.fromParts("tel", "", null));
-            } else if (!phoneIsOffhook()) {
-                // TODO: If there is an outgoing number in the call history, use it.
-                // Something like mDigits.setText(mLastDialedNumber);
+            } else if (!phoneIsOffhook() && !TextUtils.isEmpty(mLastNumberDialed)) {
+                mDigits.setText(mLastNumberDialed);
                 return;
             } else {
                 // TODO: Is this dead code? Hit only if phoneIsOffHook
@@ -1129,20 +1141,23 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     /**
      * Update the enabledness of the "Dial" and "Backspace" buttons if applicable.
      */
-    private void updateDialAndDeleteButtonStateEnabledAttr() {
-        final boolean notEmpty = !isDigitsEmpty();
+    private void updateDialAndDeleteButtonEnabledState() {
+        final boolean digitsNotEmpty = !isDigitsEmpty();
 
-        // If we're already on a CDMA call, then we want to enable the Call button
-        if (phoneIsCdma() && phoneIsOffhook()) {
-            if (mDialButton != null) {
-                mDialButton.setEnabled(true);
-            }
-        } else {
-            if (mDialButton != null) {
-                mDialButton.setEnabled(notEmpty);
+        if (mDialButton != null) {
+            // If we're already on a CDMA call, then we want to enable
+            // the Call button so we can send a flash.
+            if (phoneIsOffhook()) {
+                mDialButton.setEnabled(phoneIsCdma());
+            } else {
+                // Not in a call, enable the button if digits have
+                // been entered or if there is a last dialed number
+                // that could be redialed.
+                mDialButton.setEnabled(digitsNotEmpty ||
+                                       !TextUtils.isEmpty(mLastNumberDialed));
             }
         }
-        mDelete.setEnabled(notEmpty);
+        mDelete.setEnabled(digitsNotEmpty);
     }
 
 
@@ -1196,5 +1211,28 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
      */
     private boolean isDigitsEmpty() {
         return mDigits.length() == 0;
+    }
+
+    /**
+     * Starts the asyn query to get the last dialed/outgoing
+     * number. When the background query finishes, mLastNumberDialed
+     * is set to the last dialed number or an empty string if none
+     * exists yet.
+     */
+    private void queryLastOutgoingCall() {
+        mLastNumberDialed = EMPTY_NUMBER;
+        CallLogAsync.GetLastOutgoingCallArgs lastCallArgs =
+                new CallLogAsync.GetLastOutgoingCallArgs(
+                    this,
+                    new CallLogAsync.OnLastOutgoingCallComplete() {
+                        public void lastOutgoingCall(String number) {
+                            // TODO: Filter out emergency numbers if
+                            // the carrier does not want redial for
+                            // these.
+                            mLastNumberDialed = number;
+                            updateDialAndDeleteButtonEnabledState();
+                        }
+                    });
+        mCallLog.getLastOutgoingCall(lastCallArgs);
     }
 }
