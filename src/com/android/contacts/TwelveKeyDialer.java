@@ -587,21 +587,26 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
-                if (phoneIsCdma()) {
-                    // If we're CDMA, regardless of where we are adding a call from (either
-                    // InCallScreen or Dialtacts), the user may need to send an empty
-                    // flash command to the network. So let's call placeCall() regardless
-                    // and placeCall will handle this functionality for us.
-                    placeCall();
-                } else if (mIsAddCallMode && isDigitsEmpty()) {
-                    // if we are adding a call from the InCallScreen and the phone
-                    // number entered is empty, we just close the dialer to expose
-                    // the InCallScreen under it.
+                // TODO: In dialButtonPressed we do some of these
+                // tests again. We should try to consolidate them in
+                // one place.
+                if (!phoneIsCdma() && mIsAddCallMode && isDigitsEmpty()) {
+                    // For CDMA phones, we always call
+                    // dialButtonPressed() because we may need to send
+                    // an empty flash command to the network.
+                    // Otherwise, if we are adding a call from the
+                    // InCallScreen and the phone number entered is
+                    // empty, we just close the dialer to expose the
+                    // InCallScreen under it.
                     finish();
-                } else {
-                    // otherwise, we place the call.
-                    placeCall();
                 }
+
+                // If we're CDMA, regardless of where we are adding a call from (either
+                // InCallScreen or Dialtacts), the user may need to send an empty
+                // flash command to the network. So let's call dialButtonPressed() regardless
+                // and dialButtonPressed will handle this functionality for us.
+                // otherwise, we place the call.
+                dialButtonPressed();
                 return true;
             }
         }
@@ -618,7 +623,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         switch (view.getId()) {
             case R.id.digits:
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    placeCall();
+                    dialButtonPressed();
                     return true;
                 }
                 break;
@@ -694,7 +699,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             }
             case R.id.dialButton: {
                 mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
-                placeCall();
+                dialButtonPressed();
                 return;
             }
             case R.id.voicemailButton: {
@@ -747,23 +752,33 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         finish();
     }
 
-    void placeCall() {
+    void dialButtonPressed() {
         final String number = mDigits.getText().toString();
         boolean sendEmptyFlash = false;
-        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                Uri.fromParts("tel", number, null));
-        if (number == null || !TextUtils.isGraphic(number)) {
-            // There is no number entered.
+        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED);
+        if (isDigitsEmpty()) { // There is no number entered.
             if (phoneIsCdma() && phoneIsOffhook()) {
                 // We only want to send this empty flash extra if we're CDMA and the
                 // phone is offhook (don't want to send if ringing or dialing)
                 intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
                 sendEmptyFlash = true;
+                intent.setData(Uri.fromParts("tel", "", null));
+            } else if (!phoneIsOffhook()) {
+                // TODO: If there is an outgoing number in the call history, use it.
+                // Something like mDigits.setText(mLastDialedNumber);
+                return;
             } else {
+                // TODO: Is this dead code? Hit only if phoneIsOffHook
+                // and dial button is pressed. Can this happen? How
+                // does this compare to the finish() called in
+                // onKeyUp? Should this play tone be moved there?
                 playTone(ToneGenerator.TONE_PROP_NACK);
                 return;
             }
+        } else {  // There is a number.
+            intent.setData(Uri.fromParts("tel", number, null));
         }
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();
