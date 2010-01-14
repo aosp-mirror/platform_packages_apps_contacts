@@ -35,6 +35,11 @@
         <item name="android:src">@drawable/ic_btn_round_more</item>
     </style>
 
+    <style name="LessButton">
+        <item name="android:background">@drawable/btn_circle</item>
+        <item name="android:src">@drawable/ic_btn_round_less</item>
+    </style>
+
     <style name="TallTitleBarTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>

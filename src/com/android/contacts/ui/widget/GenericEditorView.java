@@ -70,6 +70,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     protected ViewGroup mFields;
     protected View mDelete;
     protected View mMore;
+    protected View mLess;
 
     protected DataKind mKind;
     protected ValuesDelta mEntry;
@@ -108,6 +109,9 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         mMore = findViewById(R.id.edit_more);
         mMore.setOnClickListener(this);
+
+        mLess = findViewById(R.id.edit_less);
+        mLess.setOnClickListener(this);
     }
 
     protected EditorListener mListener;
@@ -129,6 +133,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             v.setEnabled(enabled);
         }
         mMore.setEnabled(enabled);
+        mLess.setEnabled(enabled);
     }
 
     /**
@@ -248,8 +253,15 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         }
 
         // When hiding fields, place expandable
-        mMore.setVisibility(hidePossible ? View.VISIBLE : View.GONE);
+        if (hidePossible) {
+            mMore.setVisibility(mHideOptional ? View.VISIBLE : View.GONE);
+            mLess.setVisibility(mHideOptional ? View.GONE : View.VISIBLE);
+        } else {
+            mMore.setVisibility(View.GONE);
+            mLess.setVisibility(View.GONE);
+        }
         mMore.setEnabled(enabled);
+        mLess.setEnabled(enabled);
     }
 
     /**
@@ -365,7 +377,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 }
                 break;
             }
-            case R.id.edit_more: {
+            case R.id.edit_more:
+            case R.id.edit_less: {
                 mHideOptional = !mHideOptional;
                 rebuildValues();
                 break;
