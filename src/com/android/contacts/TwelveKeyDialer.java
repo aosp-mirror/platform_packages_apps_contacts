@@ -169,8 +169,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             mDigits.getText().clear();
         }
 
-        final boolean notEmpty = mDigits.length() != 0;
-        if (notEmpty) {
+        if (!isDigitsEmpty()) {
             mDigits.setBackgroundDrawable(mDigitsBackground);
         } else {
             mDigits.setCursorVisible(false);
@@ -504,15 +503,16 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             return false;
         }
 
-        CharSequence digits = mDigits.getText();
-        if (digits == null || !TextUtils.isGraphic(digits)) {
+        if (isDigitsEmpty()) {
             mAddToContactMenuItem.setVisible(false);
             m2SecPauseMenuItem.setVisible(false);
             mWaitMenuItem.setVisible(false);
         } else {
+            CharSequence digits = mDigits.getText();
+
             // Put the current digits string into an intent
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.putExtra(Insert.PHONE, mDigits.getText());
+            intent.putExtra(Insert.PHONE, digits);
             intent.setType(People.CONTENT_ITEM_TYPE);
             mAddToContactMenuItem.setIntent(intent);
             mAddToContactMenuItem.setVisible(true);
@@ -593,7 +593,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                     // flash command to the network. So let's call placeCall() regardless
                     // and placeCall will handle this functionality for us.
                     placeCall();
-                } else if (mIsAddCallMode && (TextUtils.isEmpty(mDigits.getText().toString()))) {
+                } else if (mIsAddCallMode && isDigitsEmpty()) {
                     // if we are adding a call from the InCallScreen and the phone
                     // number entered is empty, we just close the dialer to expose
                     // the InCallScreen under it.
@@ -703,7 +703,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return;
             }
             case R.id.digits: {
-                if (mDigits.length() != 0) {
+                if (!isDigitsEmpty()) {
                     mDigits.setCursorVisible(true);
                 }
                 return;
@@ -724,7 +724,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 return true;
             }
             case R.id.one: {
-                if (digits.length() == 0) {
+                if (isDigitsEmpty()) {
                     callVoicemail();
                     return true;
                 }
@@ -1115,7 +1115,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
      * Update the enabledness of the "Dial" and "Backspace" buttons if applicable.
      */
     private void updateDialAndDeleteButtonStateEnabledAttr() {
-        final boolean notEmpty = mDigits.length() != 0;
+        final boolean notEmpty = !isDigitsEmpty();
 
         // If we're already on a CDMA call, then we want to enable the Call button
         if (phoneIsCdma() && phoneIsOffhook()) {
@@ -1174,5 +1174,12 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             if (digits.charAt(start-1) == ';') return false;
         }
         return true;
+    }
+
+    /**
+     * @return true if the widget with the phone number digits is empty.
+     */
+    private boolean isDigitsEmpty() {
+        return mDigits.length() != 0;
     }
 }
