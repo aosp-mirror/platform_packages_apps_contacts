@@ -805,6 +805,20 @@ public final class EditContactActivity extends Activity
         startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 
+    private interface JoinContactQuery {
+        String[] PROJECTION = {
+                RawContacts._ID,
+                RawContacts.CONTACT_ID,
+                RawContacts.NAME_VERIFIED,
+        };
+
+        String SELECTION = RawContacts.CONTACT_ID + "=? OR " + RawContacts.CONTACT_ID + "=?";
+
+        int _ID = 0;
+        int CONTACT_ID = 1;
+        int NAME_VERIFIED = 2;
+    }
+
     /**
      * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
      */
@@ -814,16 +828,24 @@ public final class EditContactActivity extends Activity
         // Load raw contact IDs for all raw contacts involved - currently edited and selected
         // in the join UIs
         Cursor c = resolver.query(RawContacts.CONTENT_URI,
-                new String[] {RawContacts._ID},
-                RawContacts.CONTACT_ID + "=" + contactId
-                + " OR " + RawContacts.CONTACT_ID + "=" + mContactIdForJoin, null, null);
+                JoinContactQuery.PROJECTION,
+                JoinContactQuery.SELECTION,
+                new String[]{String.valueOf(contactId), String.valueOf(mContactIdForJoin)}, null);
 
         long rawContactIds[];
+        long verifiedNameRawContactId = -1;
         try {
             rawContactIds = new long[c.getCount()];
             for (int i = 0; i < rawContactIds.length; i++) {
                 c.moveToNext();
-                rawContactIds[i] = c.getLong(0);
+                long rawContactId = c.getLong(JoinContactQuery._ID);
+                rawContactIds[i] = rawContactId;
+                if (c.getLong(JoinContactQuery.CONTACT_ID) == mContactIdForJoin) {
+                    if (verifiedNameRawContactId == -1
+                            || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0) {
+                        verifiedNameRawContactId = rawContactId;
+                    }
+                }
             }
         } finally {
             c.close();
@@ -838,6 +860,13 @@ public final class EditContactActivity extends Activity
                 }
             }
         }
+
+        // Mark the original contact as "name verified" to make sure that the contact
+        // display name does not change as a result of the join
+        Builder builder = ContentProviderOperation.newUpdate(
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, verifiedNameRawContactId));
+        builder.withValue(RawContacts.NAME_VERIFIED, 1);
+        operations.add(builder.build());
 
         // Apply all aggregation exceptions as one batch
         try {
