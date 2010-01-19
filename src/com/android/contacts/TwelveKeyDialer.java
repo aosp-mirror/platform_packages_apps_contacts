@@ -1180,6 +1180,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
      * @return true if the widget with the phone number digits is empty.
      */
     private boolean isDigitsEmpty() {
-        return mDigits.length() != 0;
+        return mDigits.length() == 0;
     }
 }
