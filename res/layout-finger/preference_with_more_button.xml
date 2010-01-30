@@ -15,7 +15,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/entry_ringtone"
+    android:id="@+id/preference"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingRight="?android:attr/scrollbarSize"

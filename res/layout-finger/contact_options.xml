@@ -20,7 +20,7 @@
     android:orientation="vertical"
 >
 
-    <include layout="@layout/edit_contact_entry_ringtone" android:id="@+id/ringtone" />
+    <include layout="@layout/preference_with_more_button" android:id="@+id/ringtone" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dip"

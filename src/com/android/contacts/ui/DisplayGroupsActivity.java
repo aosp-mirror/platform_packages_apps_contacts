@@ -28,6 +28,7 @@ import com.google.android.collect.Lists;
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
@@ -61,6 +62,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
@@ -84,15 +86,27 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
     }
 
+    private static final int DIALOG_SORT_ORDER = 1;
+    private static final int DIALOG_DISPLAY_ORDER = 2;
+
     private ExpandableListView mList;
     private DisplayAdapter mAdapter;
 
     private SharedPreferences mPrefs;
+    private ContactsPreferences mContactsPrefs;
 
     private CheckBox mDisplayPhones;
 
     private View mHeaderPhones;
     private View mHeaderSeparator;
+
+    private View mSortOrderView;
+    private TextView mSortOrderTextView;
+    private int mSortOrder;
+
+    private View mDisplayOrderView;
+    private TextView mDisplayOrderTextView;
+    private int mDisplayOrder;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -101,11 +115,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         mList = getExpandableListView();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mContactsPrefs = new ContactsPreferences(this);
 
         final LayoutInflater inflater = getLayoutInflater();
 
         // Add the "Only contacts with phones" header modifier.
-        mHeaderPhones = inflater.inflate(R.layout.display_header, mList, false);
+        mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
         mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
         mDisplayPhones.setChecked(mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
@@ -116,7 +131,11 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
             text1.setText(R.string.showFilterPhones);
             text2.setText(R.string.showFilterPhonesDescrip);
         }
+
         mList.addHeaderView(mHeaderPhones, null, true);
+
+        addSortOrderView();
+        addDisplayOrderView();
 
         // Add the separator before showing the detailed group list.
         mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
@@ -133,8 +152,166 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         mList.setOnItemClickListener(this);
         mList.setOnCreateContextMenuListener(this);
 
+        mSortOrder = mContactsPrefs.getSortOrder();
+        mDisplayOrder = mContactsPrefs.getDisplayOrder();
+
         // Start background query to find account details
         new QueryGroupsTask(this).execute();
+    }
+
+    private void addSortOrderView() {
+        final LayoutInflater inflater = getLayoutInflater();
+        mSortOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
+        View preferenceLayout = mSortOrderView.findViewById(R.id.preference);
+        preferenceLayout.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                showDialog(DIALOG_SORT_ORDER);
+            }
+        });
+
+        TextView label = (TextView)preferenceLayout.findViewById(R.id.label);
+        label.setText(getString(R.string.display_options_sort_list_by));
+
+        mSortOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
+        mList.addHeaderView(mSortOrderView, null, false);
+    }
+
+    private void addDisplayOrderView() {
+        final LayoutInflater inflater = getLayoutInflater();
+
+        mDisplayOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
+        View preferenceLayout = mDisplayOrderView.findViewById(R.id.preference);
+        preferenceLayout.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                showDialog(DIALOG_DISPLAY_ORDER);
+            }
+        });
+
+        TextView label = (TextView)preferenceLayout.findViewById(R.id.label);
+        label.setText(getString(R.string.display_options_view_names_as));
+
+        mDisplayOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
+        mList.addHeaderView(mDisplayOrderView, null, false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bindView();
+    }
+
+    private void bindView() {
+        mSortOrderTextView.setText(
+                mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY
+                        ? getString(R.string.display_options_sort_by_given_name)
+                        : getString(R.string.display_options_sort_by_family_name));
+
+        mDisplayOrderTextView.setText(
+                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY
+                        ? getString(R.string.display_options_view_given_name_first)
+                        : getString(R.string.display_options_view_family_name_first));
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_SORT_ORDER:
+                return createSortOrderDialog();
+            case DIALOG_DISPLAY_ORDER:
+                return createDisplayOrderDialog();
+        }
+
+        return null;
+    }
+
+    private Dialog createSortOrderDialog() {
+        String[] items = new String[] {
+                getString(R.string.display_options_sort_by_given_name),
+                getString(R.string.display_options_sort_by_family_name),
+        };
+
+        return new AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle(R.string.display_options_sort_list_by)
+            .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        setSortOrder(dialog);
+                        dialog.dismiss();
+                    }
+                })
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        setSortOrder(dialog);
+                    }
+                })
+            .setNegativeButton(android.R.string.cancel, null)
+            .create();
+    }
+
+    private Dialog createDisplayOrderDialog() {
+        String[] items = new String[] {
+                getString(R.string.display_options_view_given_name_first),
+                getString(R.string.display_options_view_family_name_first),
+        };
+
+        return new AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle(R.string.display_options_view_names_as)
+            .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        setDisplayOrder(dialog);
+                        dialog.dismiss();
+                    }
+                })
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        setDisplayOrder(dialog);
+                    }
+                })
+            .setNegativeButton(android.R.string.cancel, null)
+            .create();
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        switch (id) {
+            case DIALOG_SORT_ORDER:
+                setCheckedItem(dialog,
+                        mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY ? 0 : 1);
+                break;
+            case DIALOG_DISPLAY_ORDER:
+                setCheckedItem(dialog,
+                        mSortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY ? 0 : 1);
+                break;
+        }
+    }
+
+    private void setCheckedItem(Dialog dialog, int position) {
+        ListView listView = ((AlertDialog)dialog).getListView();
+        listView.setItemChecked(position, true);
+        listView.setSelection(position);
+    }
+
+    protected void setSortOrder(DialogInterface dialog) {
+        ListView listView = ((AlertDialog)dialog).getListView();
+        int checked = listView.getCheckedItemPosition();
+        mSortOrder = checked == 0
+                ? ContactsContract.Preferences.SORT_ORDER_PRIMARY
+                : ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE;
+
+        bindView();
+    }
+
+    protected void setDisplayOrder(DialogInterface dialog) {
+        ListView listView = ((AlertDialog)dialog).getListView();
+        int checked = listView.getCheckedItemPosition();
+        mDisplayOrder = checked == 0
+                ? ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY
+                : ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE;
+
+        bindView();
     }
 
     /**
@@ -799,6 +976,9 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     }
 
     private void doSaveAction() {
+        mContactsPrefs.setSortOrder(mSortOrder);
+        mContactsPrefs.setDisplayOrder(mDisplayOrder);
+
         if (mAdapter == null) return;
         setDisplayOnlyPhones(mDisplayPhones.isChecked());
         new UpdateTask(this).execute(mAdapter.mAccounts);
