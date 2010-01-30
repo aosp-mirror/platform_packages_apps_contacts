@@ -16,8 +16,10 @@
 
 package com.android.contacts;
 
+import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
+import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.ui.DisplayGroupsActivity;
 import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -77,7 +79,6 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
@@ -103,7 +104,6 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
-import android.*;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -151,6 +151,8 @@ public class ContactsListActivity extends ListActivity implements
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
+
+    private static final int TEXT_HIGHLIGHTING_ANIMATION_DURATION = 350;
 
     /**
      * The action for the join contact activity.
@@ -251,42 +253,48 @@ public class ContactsListActivity extends ListActivity implements
     static final int MAX_SUGGESTIONS = 4;
 
     static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
-        Contacts._ID, // 0
-        Contacts.DISPLAY_NAME, // 1
-        Contacts.STARRED, //2
-        Contacts.TIMES_CONTACTED, //3
-        Contacts.CONTACT_PRESENCE, //4
-        Contacts.PHOTO_ID, //5
-        Contacts.LOOKUP_KEY, //6
-        Contacts.HAS_PHONE_NUMBER, //7
-        Contacts.SORT_KEY_PRIMARY, //8
+        Contacts._ID,                       // 0
+        Contacts.DISPLAY_NAME_PRIMARY,      // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
+        Contacts.SORT_KEY_PRIMARY,          // 3
+        Contacts.STARRED,                   // 4
+        Contacts.TIMES_CONTACTED,           // 5
+        Contacts.CONTACT_PRESENCE,          // 6
+        Contacts.PHOTO_ID,                  // 7
+        Contacts.LOOKUP_KEY,                // 8
+        Contacts.HAS_PHONE_NUMBER,          // 9
     };
     static final String[] CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL = new String[] {
-        Contacts._ID, // 0
-        Contacts.DISPLAY_NAME, // 1
-        Contacts.STARRED, //2
-        Contacts.TIMES_CONTACTED, //3
-        Contacts.CONTACT_PRESENCE, //4
-        Contacts.PHOTO_ID, //5
-        Contacts.LOOKUP_KEY, //6
+        Contacts._ID,                       // 0
+        Contacts.DISPLAY_NAME_PRIMARY,      // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
+        Contacts.SORT_KEY_PRIMARY,          // 3
+        Contacts.STARRED,                   // 4
+        Contacts.TIMES_CONTACTED,           // 5
+        Contacts.CONTACT_PRESENCE,          // 6
+        Contacts.PHOTO_ID,                  // 7
+        Contacts.LOOKUP_KEY,                // 8
         // email lookup doesn't included HAS_PHONE_NUMBER OR LOOKUP_KEY in projection
     };
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
-        People._ID, // 0
-        People.DISPLAY_NAME, // 1
-        People.STARRED, //2
-        PeopleColumns.TIMES_CONTACTED, //3
-        People.PRESENCE_STATUS, //4
+        People._ID,                         // 0
+        People.DISPLAY_NAME,                // 1
+        People.DISPLAY_NAME,                // 2
+        People.DISPLAY_NAME,                // 3
+        People.STARRED,                     // 4
+        PeopleColumns.TIMES_CONTACTED,      // 5
+        People.PRESENCE_STATUS,             // 6
     };
     static final int SUMMARY_ID_COLUMN_INDEX = 0;
-    static final int SUMMARY_NAME_COLUMN_INDEX = 1;
-    static final int SUMMARY_STARRED_COLUMN_INDEX = 2;
-    static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 3;
-    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 4;
-    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 5;
-    static final int SUMMARY_LOOKUP_KEY = 6;
-    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 7;
-    static final int SUMMARY_SORT_KEY_PRIMARY = 8;
+    static final int SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
+    static final int SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
+    static final int SUMMARY_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
+    static final int SUMMARY_STARRED_COLUMN_INDEX = 4;
+    static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 5;
+    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
+    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
+    static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
+    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 9;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -416,8 +424,51 @@ public class ContactsListActivity extends ListActivity implements
         }
     }
 
+    /**
+     * A {@link TextHighlightingAnimation} that redraws just the contact display name in a
+     * list item.
+     */
+    private static class NameHighlightingAnimation extends TextHighlightingAnimation {
+        private final ListView mListView;
+
+        private NameHighlightingAnimation(ListView listView, int duration) {
+            super(duration);
+            this.mListView = listView;
+        }
+
+        /**
+         * Redraws all visible items of the list corresponding to contacts
+         */
+        @Override
+        protected void invalidate() {
+            int childCount = mListView.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View listItem = mListView.getChildAt(i);
+                Object tag = listItem.getTag();
+                if (tag instanceof ContactListItemCache) {
+                    ((ContactListItemCache)tag).nameView.invalidate();
+                }
+            }
+        }
+
+        @Override
+        protected void onAnimationStarted() {
+            mListView.setScrollingCacheEnabled(false);
+        }
+
+        @Override
+        protected void onAnimationEnded() {
+            mListView.setScrollingCacheEnabled(true);
+        }
+    }
+
     // The size of a home screen shortcut icon.
     private int mIconSize;
+    private ContactsPreferences mContactsPrefs;
+    private int mDisplayOrder;
+    private int mSortOrder;
+    private boolean mHighlightWhenScrolling;
+    private TextHighlightingAnimation mHighlightingAnimation;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -427,6 +478,7 @@ public class ContactsListActivity extends ListActivity implements
         final Intent intent = getIntent();
 
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
+        mContactsPrefs = new ContactsPreferences(this);
 
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
@@ -611,6 +663,8 @@ public class ContactsListActivity extends ListActivity implements
 
         // Setup the UI
         final ListView list = getListView();
+        mHighlightingAnimation =
+                new NameHighlightingAnimation(list, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
 
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
@@ -684,8 +738,14 @@ public class ContactsListActivity extends ListActivity implements
         return contactName;
     }
 
-    private int[] mLocation = new int[2];
-    private Rect mRect = new Rect();
+
+    private int getSummaryDisplayNameColumnIndex() {
+        if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
+        } else {
+            return SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
+        }
+    }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
@@ -1090,7 +1150,7 @@ public class ContactsListActivity extends ListActivity implements
         Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
 
         // Setup the menu header
-        menu.setHeaderTitle(cursor.getString(SUMMARY_NAME_COLUMN_INDEX));
+        menu.setHeaderTitle(cursor.getString(getSummaryDisplayNameColumnIndex()));
 
         // View contact details
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
@@ -1278,7 +1338,7 @@ public class ContactsListActivity extends ListActivity implements
                     || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
                 if (mShortcutAction != null) {
                     Cursor c = (Cursor) mAdapter.getItem(position);
-                    returnPickerResult(c, c.getString(SUMMARY_NAME_COLUMN_INDEX), uri, id);
+                    returnPickerResult(c, c.getString(getSummaryDisplayNameColumnIndex()), uri, id);
                 } else {
                     returnPickerResult(null, null, uri, id);
                 }
@@ -1584,7 +1644,7 @@ public class ContactsListActivity extends ListActivity implements
             default: {
                 // Build and return soft, lookup reference
                 final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-                final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
+                final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
                 return Contacts.getLookupUri(contactId, lookupKey);
             }
         }
@@ -1737,15 +1797,12 @@ public class ContactsListActivity extends ListActivity implements
         return builder.build();
     }
 
-    private static String getSortOrder(String[] projectionType) {
-        /* if (Locale.getDefault().equals(Locale.JAPAN) &&
-                projectionType == AGGREGATES_PRIMARY_PHONE_PROJECTION) {
-            return SORT_STRING + " ASC";
+    private String getSortOrder(String[] projectionType) {
+        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+            return Contacts.SORT_KEY_PRIMARY;
         } else {
-            return NAME_COLUMN + " COLLATE LOCALIZED ASC";
-        } */
-
-        return Contacts.SORT_KEY_PRIMARY;
+            return Contacts.SORT_KEY_ALTERNATIVE;
+        }
     }
 
     void startQuery() {
@@ -1754,6 +1811,20 @@ public class ContactsListActivity extends ListActivity implements
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
         mQueryHandler.setLoadingJoinSuggestions(false);
+
+        mSortOrder = mContactsPrefs.getSortOrder();
+        mDisplayOrder = mContactsPrefs.getDisplayOrder();
+
+        // When sort order and display order contradict each other, we want to
+        // highlight the part of the name used for sorting.
+        mHighlightWhenScrolling = false;
+        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
+                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
+            mHighlightWhenScrolling = true;
+        } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
+                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            mHighlightWhenScrolling = true;
+        }
 
         String[] projection = getProjectionForQuery();
         String callingPackage = getCallingPackage();
@@ -2074,7 +2145,7 @@ public class ContactsListActivity extends ListActivity implements
                                 CONTACTS_SUMMARY_PROJECTION,
                                 Contacts._ID + " != " + activity.mQueryAggregateId
                                         + " AND " + CLAUSE_ONLY_VISIBLE, null,
-                                getSortOrder(CONTACTS_SUMMARY_PROJECTION));
+                                activity.getSortOrder(CONTACTS_SUMMARY_PROJECTION));
                         return;
                     }
 
@@ -2109,12 +2180,13 @@ public class ContactsListActivity extends ListActivity implements
         public ImageView callButton;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
-        public CharArrayBuffer labelBuffer = new CharArrayBuffer(128);
         public TextView dataView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
         public QuickContactBadge photoView;
         public ImageView nonQuickContactPhotoView;
+        public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
+        public TextWithHighlighting textWithHighlighting;
     }
 
     final static class PhotoInfo {
@@ -2146,6 +2218,7 @@ public class ContactsListActivity extends ListActivity implements
         private int mSuggestionsCursorCount;
         private ImageFetchHandler mHandler;
         private ImageDbFetcher mImageFetcher;
+
         private static final int FETCH_IMAGE_MSG = 1;
 
         public ContactItemListAdapter(Context context) {
@@ -2304,9 +2377,10 @@ public class ContactsListActivity extends ListActivity implements
 
         private SectionIndexer getNewIndexer(Cursor cursor) {
             if (Locale.getDefault().getLanguage().equals(Locale.JAPAN.getLanguage())) {
-                return new JapaneseContactListIndexer(cursor, SUMMARY_SORT_KEY_PRIMARY);
+                return new JapaneseContactListIndexer(cursor,
+                        SUMMARY_SORT_KEY_PRIMARY_COLUMN_INDEX);
             } else {
-                return new AlphabetIndexer(cursor, SUMMARY_NAME_COLUMN_INDEX, mAlphabet);
+                return new AlphabetIndexer(cursor, getSummaryDisplayNameColumnIndex(), mAlphabet);
             }
         }
 
@@ -2493,8 +2567,8 @@ public class ContactsListActivity extends ListActivity implements
                 cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
             }
             cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
+            cache.textWithHighlighting = mHighlightingAnimation.createTextWithHighlighting();
             view.setTag(cache);
-
             return view;
         }
 
@@ -2510,6 +2584,7 @@ public class ContactsListActivity extends ListActivity implements
             int defaultType;
             int nameColumnIndex;
             boolean displayAdditionalData = mDisplayAdditionalData;
+            boolean highlightingEnabled = false;
             switch(mMode) {
                 case MODE_PICK_PHONE:
                 case MODE_LEGACY_PICK_PHONE: {
@@ -2530,12 +2605,13 @@ public class ContactsListActivity extends ListActivity implements
                     break;
                 }
                 default: {
-                    nameColumnIndex = SUMMARY_NAME_COLUMN_INDEX;
+                    nameColumnIndex = getSummaryDisplayNameColumnIndex();
                     dataColumnIndex = -1;
                     typeColumnIndex = -1;
                     labelColumnIndex = -1;
                     defaultType = Phone.TYPE_HOME;
                     displayAdditionalData = false;
+                    highlightingEnabled = mHighlightWhenScrolling && mMode != MODE_STREQUENT;
                 }
             }
 
@@ -2543,7 +2619,12 @@ public class ContactsListActivity extends ListActivity implements
             cursor.copyStringToBuffer(nameColumnIndex, cache.nameBuffer);
             int size = cache.nameBuffer.sizeCopied;
             if (size != 0) {
-                cache.nameView.setText(cache.nameBuffer.data, 0, size);
+                if (highlightingEnabled) {
+                    buildDisplayNameWithHighlighting(cache.nameView, cursor, cache.nameBuffer,
+                            cache.highlightedTextBuffer, cache.textWithHighlighting);
+                } else {
+                    cache.nameView.setText(cache.nameBuffer.data, 0, size);
+                }
             } else {
                 cache.nameView.setText(mUnknownNameText);
             }
@@ -2574,7 +2655,7 @@ public class ContactsListActivity extends ListActivity implements
                     viewToUse = cache.photoView;
                     // Build soft lookup reference
                     final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-                    final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY);
+                    final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
                     cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
                     cache.photoView.setVisibility(View.VISIBLE);
                     cache.nonQuickContactPhotoView.setVisibility(View.INVISIBLE);
@@ -2672,6 +2753,25 @@ public class ContactsListActivity extends ListActivity implements
                 // There is no label, hide the the view
                 labelView.setVisibility(View.GONE);
             }
+        }
+
+        /**
+         * Computes the span of the display name that has highlighted parts and configures
+         * the display name text view accordingly.
+         */
+        private void buildDisplayNameWithHighlighting(TextView textView, Cursor cursor,
+                CharArrayBuffer buffer1, CharArrayBuffer buffer2,
+                TextWithHighlighting textWithHighlighting) {
+            int oppositeDisplayOrderColumnIndex;
+            if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                oppositeDisplayOrderColumnIndex = SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
+            } else {
+                oppositeDisplayOrderColumnIndex = SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
+            }
+            cursor.copyStringToBuffer(oppositeDisplayOrderColumnIndex, buffer2);
+
+            textWithHighlighting.setText(buffer1, buffer2);
+            textView.setText(textWithHighlighting);
         }
 
         private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
@@ -2937,6 +3037,14 @@ public class ContactsListActivity extends ListActivity implements
         }
 
         public void onScrollStateChanged(AbsListView view, int scrollState) {
+            if (mHighlightWhenScrolling) {
+                if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
+                    mHighlightingAnimation.startHighlighting();
+                } else {
+                    mHighlightingAnimation.stopHighlighting();
+                }
+            }
+
             mScrollState = scrollState;
             if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
                 // If we are in a fling, stop loading images.
