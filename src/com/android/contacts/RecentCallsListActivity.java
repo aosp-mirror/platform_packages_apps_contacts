@@ -16,6 +16,9 @@
 
 package com.android.contacts;
 
+import com.android.internal.telephony.CallerInfo;
+import com.android.internal.telephony.ITelephony;
+
 import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.AsyncQueryHandler;
@@ -23,9 +26,11 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteDiskIOException;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteFullException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -38,10 +43,10 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
+import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.Contacts.Intents.Insert;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
@@ -50,6 +55,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,16 +66,12 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
-import com.android.internal.telephony.CallerInfo;
-import com.android.internal.telephony.ITelephony;
-
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Locale;
-import java.lang.ref.WeakReference;
 
 /**
  * Displays a list of call log entries.
@@ -143,6 +145,8 @@ public class RecentCallsListActivity extends ListActivity
         TextView dateView;
         ImageView iconView;
         View callView;
+        ImageView groupIndicator;
+        TextView groupSize;
     }
 
     static final class CallerInfoQuery {
@@ -171,7 +175,7 @@ public class RecentCallsListActivity extends ListActivity
     private static int sFormattingType = FORMATTING_TYPE_INVALID;
 
     /** Adapter class to fill in data for the Call Log */
-    final class RecentCallsAdapter extends ResourceCursorAdapter
+    final class RecentCallsAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
         HashMap<String,ContactInfo> mContactInfo;
         private final LinkedList<CallerInfoQuery> mRequests;
@@ -188,6 +192,12 @@ public class RecentCallsListActivity extends ListActivity
         private Drawable mDrawableIncoming;
         private Drawable mDrawableOutgoing;
         private Drawable mDrawableMissed;
+
+        /**
+         * Reusable char array buffers.
+         */
+        private CharArrayBuffer mBuffer1 = new CharArrayBuffer(128);
+        private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
 
         public void onClick(View view) {
             String number = (String) view.getTag();
@@ -220,7 +230,7 @@ public class RecentCallsListActivity extends ListActivity
         };
 
         public RecentCallsAdapter() {
-            super(RecentCallsListActivity.this, R.layout.recent_calls_list_item, null);
+            super(RecentCallsListActivity.this);
 
             mContactInfo = new HashMap<String,ContactInfo>();
             mRequests = new LinkedList<CallerInfoQuery>();
@@ -388,8 +398,116 @@ public class RecentCallsListActivity extends ListActivity
         }
 
         @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            View view = super.newView(context, cursor, parent);
+        protected void addGroups(Cursor cursor) {
+
+            int count = cursor.getCount();
+            if (count == 0) {
+                return;
+            }
+
+            int groupItemCount = 1;
+
+            CharArrayBuffer currentValue = mBuffer1;
+            CharArrayBuffer value = mBuffer2;
+            cursor.moveToFirst();
+            cursor.copyStringToBuffer(NUMBER_COLUMN_INDEX, currentValue);
+            int currentCallType = cursor.getInt(CALL_TYPE_COLUMN_INDEX);
+            for (int i = 1; i < count; i++) {
+                cursor.moveToNext();
+                cursor.copyStringToBuffer(NUMBER_COLUMN_INDEX, value);
+                boolean sameNumber = equalPhoneNumbers(value, currentValue);
+
+                // Group adjacent calls with the same number. Make an exception
+                // for the latest item if it was a missed call.  We don't want
+                // a missed call to be hidden inside a group.
+                if (sameNumber && currentCallType != Calls.MISSED_TYPE) {
+                    groupItemCount++;
+                } else {
+                    if (groupItemCount > 1) {
+                        addGroup(i - groupItemCount, groupItemCount, false);
+                    }
+
+                    groupItemCount = 1;
+
+                    // Swap buffers
+                    CharArrayBuffer temp = currentValue;
+                    currentValue = value;
+                    value = temp;
+
+                    // If we have just examined a row following a missed call, make
+                    // sure that it is grouped with subsequent calls from the same number
+                    // even if it was also missed.
+                    if (sameNumber && currentCallType == Calls.MISSED_TYPE) {
+                        currentCallType = 0;       // "not a missed call"
+                    } else {
+                        currentCallType = cursor.getInt(CALL_TYPE_COLUMN_INDEX);
+                    }
+                }
+            }
+            if (groupItemCount > 1) {
+                addGroup(count - groupItemCount, groupItemCount, false);
+            }
+        }
+
+        protected boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
+
+            // TODO add PhoneNumberUtils.compare(CharSequence, CharSequence) to avoid
+            // string allocation
+            return PhoneNumberUtils.compare(new String(buffer1.data, 0, buffer1.sizeCopied),
+                    new String(buffer2.data, 0, buffer2.sizeCopied));
+        }
+
+
+        @Override
+        protected View newStandAloneView(Context context, ViewGroup parent) {
+            LayoutInflater inflater =
+                    (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.recent_calls_list_item, parent, false);
+            findAndCacheViews(view);
+            return view;
+        }
+
+        @Override
+        protected void bindStandAloneView(View view, Context context, Cursor cursor) {
+            bindView(context, view, cursor);
+        }
+
+        @Override
+        protected View newChildView(Context context, ViewGroup parent) {
+            LayoutInflater inflater =
+                    (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.recent_calls_list_child_item, parent, false);
+            findAndCacheViews(view);
+            return view;
+        }
+
+        @Override
+        protected void bindChildView(View view, Context context, Cursor cursor) {
+            bindView(context, view, cursor);
+        }
+
+        @Override
+        protected View newGroupView(Context context, ViewGroup parent) {
+            LayoutInflater inflater =
+                    (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.recent_calls_list_group_item, parent, false);
+            findAndCacheViews(view);
+            return view;
+        }
+
+        @Override
+        protected void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
+                boolean expanded) {
+            final RecentCallsListItemViews views = (RecentCallsListItemViews) view.getTag();
+            int groupIndicator = expanded
+                    ? com.android.internal.R.drawable.expander_ic_maximized
+                    : com.android.internal.R.drawable.expander_ic_minimized;
+            views.groupIndicator.setImageResource(groupIndicator);
+            views.groupSize.setText("(" + groupSize + ")");
+            bindView(context, view, cursor);
+        }
+
+        private void findAndCacheViews(View view) {
 
             // Get the views to bind to
             RecentCallsListItemViews views = new RecentCallsListItemViews();
@@ -400,15 +518,12 @@ public class RecentCallsListActivity extends ListActivity
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
             views.callView = view.findViewById(R.id.call_icon);
             views.callView.setOnClickListener(this);
-
+            views.groupIndicator = (ImageView) view.findViewById(R.id.groupIndicator);
+            views.groupSize = (TextView) view.findViewById(R.id.groupSize);
             view.setTag(views);
-
-            return view;
         }
 
-
-        @Override
-        public void bindView(View view, Context context, Cursor c) {
+        public void bindView(Context context, View view, Cursor c) {
             final RecentCallsListItemViews views = (RecentCallsListItemViews) view.getTag();
 
             String number = c.getString(NUMBER_COLUMN_INDEX);
@@ -501,7 +616,6 @@ public class RecentCallsListActivity extends ListActivity
                 views.labelView.setVisibility(View.GONE);
             }
 
-            int type = c.getInt(CALL_TYPE_COLUMN_INDEX);
             long date = c.getLong(DATE_COLUMN_INDEX);
 
             // Set the date/time field by mixing relative and absolute times.
@@ -510,19 +624,22 @@ public class RecentCallsListActivity extends ListActivity
             views.dateView.setText(DateUtils.getRelativeTimeSpanString(date,
                     System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags));
 
-            // Set the icon
-            switch (type) {
-                case Calls.INCOMING_TYPE:
-                    views.iconView.setImageDrawable(mDrawableIncoming);
-                    break;
+            if (views.iconView != null) {
+                int type = c.getInt(CALL_TYPE_COLUMN_INDEX);
+                // Set the icon
+                switch (type) {
+                    case Calls.INCOMING_TYPE:
+                        views.iconView.setImageDrawable(mDrawableIncoming);
+                        break;
 
-                case Calls.OUTGOING_TYPE:
-                    views.iconView.setImageDrawable(mDrawableOutgoing);
-                    break;
+                    case Calls.OUTGOING_TYPE:
+                        views.iconView.setImageDrawable(mDrawableOutgoing);
+                        break;
 
-                case Calls.MISSED_TYPE:
-                    views.iconView.setImageDrawable(mDrawableMissed);
-                    break;
+                    case Calls.MISSED_TYPE:
+                        views.iconView.setImageDrawable(mDrawableMissed);
+                        break;
+                }
             }
 
             // Listen for the first draw
@@ -819,12 +936,24 @@ public class RecentCallsListActivity extends ListActivity
 
         switch (item.getItemId()) {
             case MENU_ITEM_DELETE: {
-                Cursor cursor = mAdapter.getCursor();
-                if (cursor != null) {
-                    cursor.moveToPosition(menuInfo.position);
-                    cursor.deleteRow();
+                Cursor cursor = (Cursor)mAdapter.getItem(menuInfo.position);
+                int groupSize = 1;
+                if (mAdapter.isGroupHeader(menuInfo.position)) {
+                    groupSize = mAdapter.getGroupSize(menuInfo.position);
                 }
-                return true;
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < groupSize; i++) {
+                    if (i != 0) {
+                        sb.append(",");
+                        cursor.moveToNext();
+                    }
+                    long id = cursor.getLong(ID_COLUMN_INDEX);
+                    sb.append(id);
+                }
+
+                getContentResolver().delete(Calls.CONTENT_URI, Calls._ID + " IN (" + sb + ")",
+                        null);
             }
         }
         return super.onContextItemSelected(item);
@@ -946,8 +1075,12 @@ public class RecentCallsListActivity extends ListActivity
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        Intent intent = new Intent(this, CallDetailActivity.class);
-        intent.setData(ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI, id));
-        startActivity(intent);
+        if (mAdapter.isGroupHeader(position)) {
+            mAdapter.toggleGroup(position);
+        } else {
+            Intent intent = new Intent(this, CallDetailActivity.class);
+            intent.setData(ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI, id));
+            startActivity(intent);
+        }
     }
 }

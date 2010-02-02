@@ -97,7 +97,7 @@ public class RecentCallsListActivityTests
 
     @Override
     public void setUp() {
-        mActivity = (RecentCallsListActivity) getActivity();
+        mActivity = getActivity();
         mVoicemail = mActivity.mVoiceMailNumber;
         mAdapter = mActivity.mAdapter;
         mParentView = new FrameLayout(mActivity);
@@ -224,9 +224,9 @@ public class RecentCallsListActivityTests
         mCursor.moveToLast();
         while(!mCursor.isBeforeFirst()) {
             if (null == mList[i]) {
-                mList[i] = mAdapter.newView(mActivity, mCursor, mParentView);
+                mList[i] = mAdapter.newStandAloneView(mActivity, mParentView);
             }
-            mAdapter.bindView(mList[i], mActivity, mCursor);
+            mAdapter.bindStandAloneView(mList[i], mActivity, mCursor);
             mCursor.moveToPrevious();
             i++;
         }

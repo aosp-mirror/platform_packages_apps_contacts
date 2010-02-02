@@ -18,6 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:paddingLeft="7dip"
+    android:background="@drawable/list_item_background_secondary"
 >
 
     <com.android.contacts.ui.widget.DontPressWithParentImageView android:id="@+id/call_icon"
@@ -29,7 +30,7 @@
 
         android:gravity="center_vertical"
         android:src="@android:drawable/sym_action_call"
-        android:background="@drawable/call_background"
+        android:background="@drawable/call_background_secondary"
     />
 
     <include layout="@layout/recent_calls_list_item_layout"/>
