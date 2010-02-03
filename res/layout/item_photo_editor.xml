@@ -24,4 +24,5 @@
     android:cropToPadding="true"
     android:scaleType="center"
     android:background="@drawable/btn_contact_picture"
+    android:contentDescription="@string/description_contact_photo"
     android:gravity="center" />

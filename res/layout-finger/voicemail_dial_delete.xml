@@ -34,6 +34,7 @@
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_voicemail"
+        android:contentDescription="@string/description_voicemail_button"
         android:src="@drawable/ic_dial_action_voice_mail" />
 
     <!-- Onscreen "Dial" button, used on all platforms by
@@ -45,6 +46,7 @@
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_action"
+        android:contentDescription="@string/description_dial_button"
         android:src="@drawable/ic_dial_action_call" />
 
     <!-- Onscreen "Backspace/Delete" button
@@ -57,6 +59,7 @@
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_delete"
+        android:contentDescription="@string/description_delete_button"
         android:src="@drawable/ic_dial_action_delete" />
 </LinearLayout>
 

@@ -776,6 +776,48 @@
     -->
     <string name="description_image_button_pound">pound</string>
 
+    <!-- String describing the Voicemail ImageButton
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_voicemail_button">voicemail</string>
+
+    <!-- String describing the Dial ImageButton
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_dial_button">dial</string>
+
+    <!-- String describing the Delete/Backspace ImageButton
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_delete_button">backspace</string>
+
+    <!-- String describing the digits text box containing the number to dial.
+
+         Used by AccessibilityService to announce the purpose of the view.
+    -->
+    <string name="description_digits_edittext">number to dial</string>
+
+    <!-- String describing the Contact Photo Image
+
+         Used by AccessibilityService to announce the purpose of the view.
+    -->
+    <string name="description_contact_photo">contact photo</string>
+
+    <!-- String describing the Contact Editor Minus button
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_minus_button">minus</string>
+
+    <!-- String describing the Contact Editor Plus button
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_plus_button">plus</string>
+
     <!-- Dialog title shown when SD Card does not exist -->
     <string name="no_sdcard_title">No SD card</string>
 
