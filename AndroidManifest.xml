@@ -249,7 +249,7 @@
 
 
         <!-- Used to select display and sync groups -->
-        <activity android:name=".ui.DisplayGroupsActivity" android:label="@string/displayGroups" />
+        <activity android:name=".ui.ContactsPreferencesActivity" android:label="@string/displayGroups" />
 
         <activity
             android:name=".ui.ShowOrCreateActivity"

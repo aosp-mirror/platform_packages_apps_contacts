@@ -76,7 +76,7 @@ import java.util.Iterator;
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
-public final class DisplayGroupsActivity extends ExpandableListActivity implements
+public final class ContactsPreferencesActivity extends ExpandableListActivity implements
         AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "DisplayGroupsActivity";
 
@@ -111,7 +111,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.act_display_groups);
+        setContentView(R.layout.contacts_preferences);
 
         mList = getExpandableListView();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -119,31 +119,12 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        // Add the "Only contacts with phones" header modifier.
-        mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
-        mHeaderPhones.setId(R.id.header_phones);
-        mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
-        mDisplayPhones.setChecked(mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
-                Prefs.DISPLAY_ONLY_PHONES_DEFAULT));
-        {
-            final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
-            text1.setText(R.string.showFilterPhones);
-            text2.setText(R.string.showFilterPhonesDescrip);
-        }
-
-        mList.addHeaderView(mHeaderPhones, null, true);
-
-        addSortOrderView();
-        addDisplayOrderView();
-
-        // Add the separator before showing the detailed group list.
-        mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
-        {
-            final TextView text1 = (TextView)mHeaderSeparator;
-            text1.setText(R.string.headerContactGroups);
-        }
-        mList.addHeaderView(mHeaderSeparator, null, false);
+        addWithPhonesOnlyPreferenceView(inflater);
+        addDivider(inflater);
+        addSortOrderPreferenceView(inflater);
+        addDivider(inflater);
+        addDisplayOrderPreferenceView(inflater);
+        addDisplayGroupHeader(inflater);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -159,9 +140,27 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         new QueryGroupsTask(this).execute();
     }
 
-    private void addSortOrderView() {
-        final LayoutInflater inflater = getLayoutInflater();
+    private LayoutInflater addWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
+        // Add the "Only contacts with phones" header modifier.
+        mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
+        mHeaderPhones.setId(R.id.header_phones);
+        mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
+        mDisplayPhones.setChecked(mPrefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
+                Prefs.DISPLAY_ONLY_PHONES_DEFAULT));
+        {
+            final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
+            final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
+            text1.setText(R.string.showFilterPhones);
+            text2.setText(R.string.showFilterPhonesDescrip);
+        }
+
+        mList.addHeaderView(mHeaderPhones, null, true);
+        return inflater;
+    }
+
+    private void addSortOrderPreferenceView(LayoutInflater inflater) {
         mSortOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
+
         View preferenceLayout = mSortOrderView.findViewById(R.id.preference);
         preferenceLayout.setOnClickListener(new View.OnClickListener() {
 
@@ -177,9 +176,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         mList.addHeaderView(mSortOrderView, null, false);
     }
 
-    private void addDisplayOrderView() {
-        final LayoutInflater inflater = getLayoutInflater();
-
+    private void addDisplayOrderPreferenceView(LayoutInflater inflater) {
         mDisplayOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
         View preferenceLayout = mDisplayOrderView.findViewById(R.id.preference);
         preferenceLayout.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +191,21 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
 
         mDisplayOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
         mList.addHeaderView(mDisplayOrderView, null, false);
+    }
+
+    private void addDivider(LayoutInflater inflater) {
+        View divider = inflater.inflate(R.layout.horizontal_divider, mList, false);
+        mList.addHeaderView(divider, null, false);
+    }
+
+    private void addDisplayGroupHeader(LayoutInflater inflater) {
+        // Add the separator before showing the detailed group list.
+        mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
+        {
+            final TextView text1 = (TextView)mHeaderSeparator;
+            text1.setText(R.string.headerContactGroups);
+        }
+        mList.addHeaderView(mHeaderSeparator, null, false);
     }
 
     @Override
@@ -215,7 +227,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id, Bundle args) {
         switch (id) {
             case DIALOG_SORT_ORDER:
                 return createSortOrderDialog();
@@ -233,7 +245,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         };
 
         return new AlertDialog.Builder(this)
-            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setIcon(com.android.internal.R.drawable.ic_dialog_menu_generic)
             .setTitle(R.string.display_options_sort_list_by)
             .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -257,7 +269,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         };
 
         return new AlertDialog.Builder(this)
-            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setIcon(com.android.internal.R.drawable.ic_dialog_menu_generic)
             .setTitle(R.string.display_options_view_names_as)
             .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -275,7 +287,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     }
 
     @Override
-    protected void onPrepareDialog(int id, Dialog dialog) {
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
         switch (id) {
             case DIALOG_SORT_ORDER:
                 setCheckedItem(dialog,
@@ -319,13 +331,13 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
      * {@link Sources#getAccounts(boolean)} that provides groups.
      */
     private static class QueryGroupsTask extends
-            WeakAsyncTask<Void, Void, AccountSet, DisplayGroupsActivity> {
-        public QueryGroupsTask(DisplayGroupsActivity target) {
+            WeakAsyncTask<Void, Void, AccountSet, ContactsPreferencesActivity> {
+        public QueryGroupsTask(ContactsPreferencesActivity target) {
             super(target);
         }
 
         @Override
-        protected AccountSet doInBackground(DisplayGroupsActivity target,
+        protected AccountSet doInBackground(ContactsPreferencesActivity target,
                 Void... params) {
             final Context context = target;
             final Sources sources = Sources.getInstance(context);
@@ -341,7 +353,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
         }
 
         @Override
-        protected void onPostExecute(DisplayGroupsActivity target, AccountSet result) {
+        protected void onPostExecute(ContactsPreferencesActivity target, AccountSet result) {
             // Build adapter to show available groups
             final Context context = target;
             final DisplayAdapter adapter = new DisplayAdapter(context, result);
@@ -503,7 +515,7 @@ public final class DisplayGroupsActivity extends ExpandableListActivity implemen
     private static Uri addCallerIsSyncAdapterParameter(Uri uri) {
         return uri.buildUpon()
 	        .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
-		.build();
+	        .build();
     }
 
     /**

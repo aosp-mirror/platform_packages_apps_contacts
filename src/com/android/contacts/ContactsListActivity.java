@@ -20,8 +20,8 @@ import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
-import com.android.contacts.ui.DisplayGroupsActivity;
-import com.android.contacts.ui.DisplayGroupsActivity.Prefs;
+import com.android.contacts.ui.ContactsPreferencesActivity;
+import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
 
@@ -930,7 +930,7 @@ public class ContactsListActivity extends ListActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_display_groups: {
-                final Intent intent = new Intent(this, DisplayGroupsActivity.class);
+                final Intent intent = new Intent(this, ContactsPreferencesActivity.class);
                 startActivityForResult(intent, SUBACTIVITY_DISPLAY_GROUP);
                 return true;
             }
