@@ -419,13 +419,20 @@ public abstract class GroupingListAdapter extends BaseAdapter {
 
     public Object getItem(int position) {
         obtainPositionMetadata(mPositionMetadata, position);
-        mCursor.moveToPosition(mPositionMetadata.cursorPosition);
-        return mCursor;
+        if (mCursor.moveToPosition(mPositionMetadata.cursorPosition)) {
+            return mCursor;
+        } else {
+            return null;
+        }
     }
 
     public long getItemId(int position) {
-        getItem(position);
-        return mCursor.getLong(mRowIdColumnIndex);
+        Object item = getItem(position);
+        if (item != null) {
+            return mCursor.getLong(mRowIdColumnIndex);
+        } else {
+            return -1;
+        }
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
