@@ -108,6 +108,7 @@ import android.widget.QuickContactBadge;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.WeakReference;
@@ -428,6 +429,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final UriMatcher sContactsIdMatcher;
 
     private ContactPhotoLoader mPhotoLoader;
+
+    final String[] sLookupProjection = new String[] {
+            Contacts.LOOKUP_KEY
+    };
 
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -1166,6 +1171,19 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         .setPositiveButton(android.R.string.ok,
                                 new DeleteClickListener()).create();
             }
+            case R.id.dialog_share_confirmation: {
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.confirm_share_visible_contacts_title)
+                        .setMessage(getString(R.string.confirm_share_visible_contacts_message))
+                        .setPositiveButton(android.R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == DialogInterface.BUTTON_POSITIVE) {
+                                    doShareVisibleContacts();
+                                }
+                            }
+                        }).create();
+            }
         }
         return super.onCreateDialog(id);
     }
@@ -1206,6 +1224,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
             adapter.add(R.string.export_to_sdcard);
         }
+        if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
+            adapter.add(R.string.share_visible_contacts);
+        }
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {
@@ -1225,6 +1246,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         context.startActivity(exportIntent);
                         break;
                     }
+                    case R.string.share_visible_contacts: {
+                        showDialog(R.id.dialog_share_confirmation);
+                        break;
+                    }
                     default: {
                         Log.e(TAG, "Unexpected resource: " +
                                 getResources().getResourceEntryName(resId));
@@ -1238,6 +1263,31 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             .setNegativeButton(android.R.string.cancel, null)
             .setSingleChoiceItems(adapter, -1, clickListener)
             .show();
+    }
+
+    private void doShareVisibleContacts() {
+        final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
+                sLookupProjection, getContactSelection(), null, null);
+        try {
+            if (!cursor.moveToFirst()) {
+                Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            ArrayList<Uri> uriList = new ArrayList<Uri>();
+            for (;!cursor.isAfterLast(); cursor.moveToNext()) {
+                uriList.add(Uri.withAppendedPath(
+                        Contacts.CONTENT_VCARD_URI,
+                        cursor.getString(0)));
+            }
+
+            final Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+            intent.setType(Contacts.CONTENT_VCARD_TYPE);
+            intent.putExtra(Intent.EXTRA_STREAM, uriList);
+            startActivity(intent);
+        } finally {
+            cursor.close();
+        }
     }
 
     private void handleImportRequest(int resId) {
