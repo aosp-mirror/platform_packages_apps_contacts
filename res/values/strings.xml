@@ -337,6 +337,9 @@
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
 
     <!-- The text displayed when the contacts list is empty while displaying favorite contacts -->
+    <string name="noMatchingFilteredContacts">Tap the search button to perform a full search.</string>
+    
+    <!-- The text displayed when the contacts list is empty while displaying favorite contacts -->
     <string name="noFavorites">No favorites.</string>
 
     <!-- Title for group selection dialog. The dialog contains a list of contact groups that the
@@ -463,6 +466,12 @@
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected -->
     <string name="listFoundAllContactsZero">Contact not found</string>
+
+    <!-- Displayed at the top of the contacts showing the total number of contacts found when typing search query -->
+    <plurals name="searchFoundContacts">
+        <item quantity="one">1 contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
 
     <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
     <string name="socialStreamIconLabel">Social</string>
@@ -1302,4 +1311,10 @@
     
     <!-- An allowable value for the "view names as" contact display option  -->
     <string name="display_options_view_family_name_first">Family name first</string>
+    
+    <!-- Gray hint displayed in the search field in Contacts when empty -->
+    <string name="search_bar_hint">Search contacts</string>
+    
+    <!-- Hint displayed underneath the search button in Contacts-->
+    <string name="search_more_hint">Search to find more</string>
 </resources>

@@ -14,14 +14,37 @@
      limitations under the License.
 -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/totalContactsText"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="25dip"
-    android:textColor="#ffbfbfbf"
-    android:textSize="14sp"
-    android:textStyle="normal"
+    android:layout_height="28dip"
     android:background="@drawable/infobar_dark"
-    android:paddingLeft="7dp"
-    android:gravity="center"
-/>
+    android:paddingLeft="5dp"
+    android:paddingRight="7dp"
+    >
+
+    <TextView 
+        android:id="@+id/totalContactsText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="#ffbfbfbf"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical"
+    />
+
+    <TextView 
+        android:id="@+id/searchForMoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="#ffbfbfbf"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:text="@string/search_more_hint"
+        android:visibility="gone"
+    />
+
+</RelativeLayout>
