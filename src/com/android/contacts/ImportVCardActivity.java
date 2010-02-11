@@ -48,6 +48,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.net.Uri;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -111,6 +112,8 @@ public class ImportVCardActivity extends Activity {
     private ProgressDialog mProgressDialogForReadVCard;
 
     private String mErrorMessage;
+
+    private boolean mNeedReview = false;
 
     private class DialogDisplayer implements Runnable {
         private final int mResId;
@@ -271,6 +274,19 @@ public class ImportVCardActivity extends Activity {
                 if (shouldCallFinish && !isFinishing()) {
                     if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
                         finish();
+                        // TODO: Send out ACTION_EDIT intent here to review the
+                        // incoming contact
+                        if (mNeedReview) {
+                            mNeedReview = false;
+                            Log.v("importVCardActivity", "Prepare to review the imported contact");
+                            Uri uri = null; // TODO: need get the uri of the
+                                            // incoming contact
+                            Intent editIntent = new Intent(Intent.ACTION_EDIT, uri);
+                            if (editIntent != null) {
+                                //startActivity(editIntent);
+                            }
+
+                        }
                     } else {
                         StringBuilder builder = new StringBuilder();
                         boolean first = true;
@@ -697,9 +713,20 @@ public class ImportVCardActivity extends Activity {
             Log.e(LOG_TAG, "intent does not exist");
         }
 
-        startImportVCardFromSdCard();
+        final String action = intent.getAction();
+        final Uri path = intent.getData();
+        Log.v(LOG_TAG, "action = " + action + " ; path = " + path);
+        if (Intent.ACTION_VIEW.equals(action)) {
+            mNeedReview = true;
+            // Import the file directly and then go to EDIT screen
+            if (path.toString().toLowerCase().endsWith(".vcf")) {
+                String cannonicalPath = path.getPath();
+                importOneVCardFromSDCard(cannonicalPath);
+            }
+        } else {
+            startImportVCardFromSdCard();
+        }
     }
-
     @Override
     protected Dialog onCreateDialog(int resId) {
         switch (resId) {
