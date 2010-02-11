@@ -19,6 +19,8 @@
     android:sharedUserId="android.uid.shared"
 >
 
+    <original-package android:name="com.android.contacts" />
+
     <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
