@@ -771,13 +771,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Configures search UI.
      */
     private void setupSearchView() {
-        mSearchView = findViewById(R.id.searchView);
-        mSearchEditText = (SearchEditText)mSearchView.findViewById(R.id.search_src_text);
-        mSearchEditText.addTextChangedListener(this);
-        mSearchEditText.setOnEditorActionListener(this);
+        if ((mMode & MODE_MASK_NO_FILTER) == 0) {
+            mSearchView = findViewById(R.id.searchView);
+            mSearchEditText = (SearchEditText)mSearchView.findViewById(R.id.search_src_text);
+            mSearchEditText.addTextChangedListener(this);
+            mSearchEditText.setOnEditorActionListener(this);
 
-        ImageButton searchButton = (ImageButton)mSearchView.findViewById(R.id.search_btn);
-        searchButton.setOnClickListener(this);
+            ImageButton searchButton = (ImageButton)mSearchView.findViewById(R.id.search_btn);
+            searchButton.setOnClickListener(this);
+        }
     }
 
     private boolean isPickerMode() {
@@ -926,11 +928,16 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     private String getTextFilter() {
-        return mSearchEditText.getText().toString();
+        if (mSearchEditText != null) {
+            return mSearchEditText.getText().toString();
+        }
+        return null;
     }
 
     private void setTextFilter(String filterText) {
-        mSearchEditText.setText(filterText);
+        if (mSearchEditText != null) {
+            mSearchEditText.setText(filterText);
+        }
     }
 
     @Override
