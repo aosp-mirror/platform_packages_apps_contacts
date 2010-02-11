@@ -14,7 +14,9 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pinned_header_list_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,10 +25,12 @@
         layout="@layout/search_bar"
         android:visibility="gone"/>
 
-    <ListView android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fastScrollEnabled="true"
+    <view
+        class="com.android.contacts.PinnedHeaderListView" 
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
     />
 
     <ScrollView android:id="@android:id/empty"
@@ -46,4 +50,5 @@
             android:lineSpacingMultiplier="0.92"
         />
     </ScrollView>
+
 </LinearLayout>

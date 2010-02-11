@@ -40,6 +40,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.UriMatcher;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -47,6 +48,7 @@ import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -496,6 +498,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private View mSearchView;
     private SearchEditText mSearchEditText;
 
+    /**
+     * An approximation of the background color of the pinned header. This color
+     * is used when the pinned header is being pushed up.  At that point the header
+     * "fades away".  Rather than computing a faded bitmap based on the 9-patch
+     * normally used for the background, we will use a solid color, which will
+     * provide better performance and reduced complexity.
+     */
+    private int mPinnedHeaderBackgroundColor;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -718,6 +729,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private void setupListView() {
         final ListView list = getListView();
+        final LayoutInflater inflater = getLayoutInflater();
+
         mHighlightingAnimation =
                 new NameHighlightingAnimation(list, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
 
@@ -729,7 +742,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         if ((mMode & MODE_MASK_CREATE_NEW) != 0) {
             // Add the header for creating a new contact
-            final LayoutInflater inflater = getLayoutInflater();
             View header = inflater.inflate(R.layout.create_new_contact, list, false);
             list.addHeaderView(header);
         }
@@ -739,6 +751,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
+
+        if (list instanceof PinnedHeaderListView) {
+            mPinnedHeaderBackgroundColor =
+                    getResources().getColor(R.color.pinned_header_background);
+            PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)list;
+            View pinnedHeader = inflater.inflate(R.layout.list_section, list, false);
+            pinnedHeaderList.setPinnedHeaderView(pinnedHeader);
+        }
+
         list.setOnScrollListener(mAdapter);
         list.setOnKeyListener(this);
 
@@ -2411,8 +2432,14 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public QuickContactBadge photoView;
     }
 
+    final static class PinnedHeaderCache {
+        public TextView titleView;
+        public ColorStateList textColor;
+        public Drawable background;
+    }
+
     private final class ContactItemListAdapter extends ResourceCursorAdapter
-            implements SectionIndexer, OnScrollListener {
+            implements SectionIndexer, OnScrollListener, PinnedHeaderListView.PinnedHeaderAdapter {
         private SectionIndexer mIndexer;
         private String mAlphabet;
         private boolean mLoading = true;
@@ -3254,7 +3281,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                 int totalItemCount) {
-            // no op
+            if (view instanceof PinnedHeaderListView) {
+                ((PinnedHeaderListView)view).configureHeaderView(firstVisibleItem);
+            }
         }
 
         public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -3319,6 +3348,70 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
 
             mHandler.clearImageFecthing();
+        }
+
+        /**
+         * Computes the state of the pinned header.  It can be invisible, fully
+         * visible or partially pushed up out of the view.
+         */
+        public int getPinnedHeaderState(int position) {
+            if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
+                return PINNED_HEADER_GONE;
+            }
+
+            int realPosition = getRealPosition(position);
+            if (realPosition < 0) {
+                return PINNED_HEADER_GONE;
+            }
+
+            // The header should get pushed up if the top item shown
+            // is the last item in a section for a particular letter.
+            int section = getSectionForPosition(realPosition);
+            int nextSectionPosition = getPositionForSection(section + 1);
+            if (nextSectionPosition != -1 && realPosition == nextSectionPosition - 1) {
+                return PINNED_HEADER_PUSHED_UP;
+            }
+
+            return PINNED_HEADER_VISIBLE;
+        }
+
+        /**
+         * Configures the pinned header by setting the appropriate text label
+         * and also adjusting color if necessary.  The color needs to be
+         * adjusted when the pinned header is being pushed up from the view.
+         */
+        public void configurePinnedHeader(View header, int position, int alpha) {
+            PinnedHeaderCache cache = (PinnedHeaderCache)header.getTag();
+            if (cache == null) {
+                cache = new PinnedHeaderCache();
+                cache.titleView = (TextView)header.findViewById(R.id.header_text);
+                cache.textColor = cache.titleView.getTextColors();
+                cache.background = header.getBackground();
+                header.setTag(cache);
+            }
+
+            int realPosition = getRealPosition(position);
+            int section = getSectionForPosition(realPosition);
+
+            String title = mIndexer.getSections()[section].toString().trim();
+            cache.titleView.setText(title);
+
+            if (alpha == 255) {
+                // Opaque: use the default background, and the original text color
+                header.setBackgroundDrawable(cache.background);
+                cache.titleView.setTextColor(cache.textColor);
+            } else {
+                // Faded: use a solid color approximation of the background, and
+                // a translucent text color
+                header.setBackgroundColor(Color.rgb(
+                        Color.red(mPinnedHeaderBackgroundColor) * alpha / 255,
+                        Color.green(mPinnedHeaderBackgroundColor) * alpha / 255,
+                        Color.blue(mPinnedHeaderBackgroundColor) * alpha / 255));
+
+                int textColor = cache.textColor.getDefaultColor();
+                cache.titleView.setTextColor(Color.argb(alpha,
+                        Color.red(textColor), Color.green(textColor), Color.blue(textColor)));
+            }
         }
     }
 }
