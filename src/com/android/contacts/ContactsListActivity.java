@@ -691,6 +691,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
 
         setupListView();
+        setupSearchView();
 
         mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
@@ -749,10 +750,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Configures search UI.
      */
     private void setupSearchView() {
-        if (mSearchView != null) {
-            return;
-        }
-
         mSearchView = findViewById(R.id.searchView);
         mSearchEditText = (SearchEditText)mSearchView.findViewById(R.id.search_src_text);
         mSearchEditText.addTextChangedListener(this);
@@ -1024,7 +1021,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      *            auto shown automatically.
      */
     private void startSearchMode(boolean showKeyboard) {
-        setupSearchView();
         View tabs = findTabWidget();
         if (tabs != null) {
             tabs.setVisibility(View.GONE);
