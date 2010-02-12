@@ -3330,9 +3330,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             synchronized (ContactsListActivity.this) {
                 // can't sync on sImageFetchThreadPool.
                 if (sImageFetchThreadPool == null) {
-                    // Don't use more than 3 threads at a time to update. The thread pool will be
-                    // shared by all contact items.
-                    sImageFetchThreadPool = Executors.newFixedThreadPool(3);
+                    // TODO: redesign this so that all DB interaction happens
+                    // on a single background thread and loads photos in bulk.
+                    sImageFetchThreadPool = Executors.newFixedThreadPool(1);
                 }
                 sImageFetchThreadPool.execute(mImageFetcher);
             }
