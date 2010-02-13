@@ -752,7 +752,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mAdapter = new ContactItemListAdapter(this);
         setListAdapter(mAdapter);
 
-        if (list instanceof PinnedHeaderListView) {
+        if (list instanceof PinnedHeaderListView && mAdapter.getDisplaySectionHeadersEnabled()) {
             mPinnedHeaderBackgroundColor =
                     getResources().getColor(R.color.pinned_header_background);
             PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)list;
@@ -2512,6 +2512,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
                 mDisplaySectionHeaders = false;
             }
+        }
+
+        public boolean getDisplaySectionHeadersEnabled() {
+            return mDisplaySectionHeaders;
         }
 
         private class ImageFetchHandler extends Handler {
