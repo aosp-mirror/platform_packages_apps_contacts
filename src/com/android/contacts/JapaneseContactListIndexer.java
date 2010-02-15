@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import java.util.Map;
+
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.util.Log;
@@ -30,8 +32,10 @@ import android.widget.SectionIndexer;
 public final class JapaneseContactListIndexer extends DataSetObserver implements SectionIndexer {
     private static String TAG = "JapaneseContactListIndexer";
 
-    static private final String[] sSections = {
+    private static final String[] sSections = {
             " ", // Sections of SectionIndexer should start with " " (some components assume it).
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+            "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             "\u3042", "\u304B", "\u3055", "\u305F", "\u306A", // a, ka, sa, ta, na 
             "\u306F", "\u307E", "\u3084", "\u3089", "\u308F", // ha, ma, ya, ra, wa
             "\uFF21", "\uFF22", "\uFF23", "\uFF24", "\uFF25", // full-width ABCDE
@@ -42,8 +46,32 @@ public final class JapaneseContactListIndexer extends DataSetObserver implements
             "\uFF40", // full-width Z
             "\u6570", "\u8A18" // alphabets, numbers, symbols
             };
-    static private final int sSectionsLength = sSections.length;
-    
+    private static final int sSectionsLength = sSections.length;
+
+    /**
+     * Converts given character into half-width ascii. If it is small ascii, it is translated
+     * into large ascii.
+     * This method is temporal huck until fixing the issue in which Ascii comes before Kana-s.
+     * Note that names starting from symbols corrupt the indexer.
+     *
+     * The current ICU mapping used in the locale ja merges full-width/half-width Asciis into
+     * one without caring its order. This mapping translates the unified characters into
+     * full-width capitalized ascii.
+     * TODO: Similar method should exist in public API. vCard code also has similar mapping.
+     */
+    private static int toHalfWidthCapitalizedAscii(int codePoint) {
+       if (0x61 <= codePoint && codePoint <= 0x7A) {
+           return codePoint - 0x20;  // half-width small ascii -> half-width capitalized ascii.
+       } else if ((0xFF01 <= codePoint && codePoint <= 0xFF40) ||
+               (0xFF5B <= codePoint && codePoint <= 0xFF5E)) {
+           return codePoint - (0xFF01 - 0x0020);
+       } else if (0xFF41 <= codePoint && codePoint <= 0xFF5A) {
+           return codePoint - (0xFF41 - 0x0041);
+       } else {
+           return codePoint;
+       }
+    }
+
     private int mColumnIndex;
     private Cursor mDataCursor;
     private SparseIntArray mStringMap;
@@ -153,7 +181,7 @@ public final class JapaneseContactListIndexer extends DataSetObserver implements
                 Log.e(TAG, "sort_name is null or its length is 0. index: " + pos);
                 continue;
             }
-            int codePoint = sort_name.codePointAt(0);
+            int codePoint = toHalfWidthCapitalizedAscii(sort_name.codePointAt(0));
             if (codePoint >= getSectionCodePoint(sectionIndex)) {
                 break;
             }
