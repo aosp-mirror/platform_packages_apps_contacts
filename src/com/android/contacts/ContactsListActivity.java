@@ -95,7 +95,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -123,11 +122,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-/*TODO(emillar) I commented most of the code that deals with modes and filtering. It should be
- * brought back in as we add back that functionality.
- */
-
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -434,6 +428,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int CONTACTS_ID = 1001;
     private static final UriMatcher sContactsIdMatcher;
 
+    private ContactPhotoLoader mPhotoLoader;
     private static ExecutorService sImageFetchThreadPool;
 
     static {
@@ -516,6 +511,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         mContactsPrefs = new ContactsPreferences(this);
+        mPhotoLoader = new ContactPhotoLoader(this, R.drawable.ic_contact_list_picture);
 
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
@@ -895,13 +891,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mPhotoLoader.stop();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-
-        // Force cache to reload so we don't show stale photos.
-        if (mAdapter.mBitmapCache != null) {
-            mAdapter.mBitmapCache.clear();
-        }
+        mPhotoLoader.resume();
 
         mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
         boolean runQuery = true;
@@ -977,7 +975,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         mAdapter.setSuggestionsCursor(null);
         mAdapter.changeCursor(null);
-        mAdapter.clearImageFetching();
 
         if (mMode == MODE_QUERY) {
             // Make sure the search box is closed
@@ -2454,22 +2451,18 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         private boolean mDisplayPhotos = false;
         private boolean mDisplayCallButton = false;
         private boolean mDisplayAdditionalData = true;
-        private HashMap<Long, SoftReference<Bitmap>> mBitmapCache = null;
         private HashSet<ImageView> mItemsMissingImages = null;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
         private int[] mSectionPositions;
         private Cursor mSuggestionsCursor;
         private int mSuggestionsCursorCount;
-        private ImageFetchHandler mHandler;
-        private ImageDbFetcher mImageFetcher;
 
         private static final int FETCH_IMAGE_MSG = 1;
 
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
 
-            mHandler = new ImageFetchHandler();
             mAlphabet = context.getString(com.android.internal.R.string.fast_scroll_alphabet);
 
             mUnknownNameText = context.getText(android.R.string.unknownName);
@@ -2505,8 +2498,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
                 mDisplayPhotos = true;
                 setViewResource(R.layout.contacts_list_item_photo);
-                mBitmapCache = new HashMap<Long, SoftReference<Bitmap>>();
-                mItemsMissingImages = new HashSet<ImageView>();
             }
 
             if (mMode == MODE_STREQUENT || mMode == MODE_FREQUENT) {
@@ -2516,104 +2507,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         public boolean getDisplaySectionHeadersEnabled() {
             return mDisplaySectionHeaders;
-        }
-
-        private class ImageFetchHandler extends Handler {
-
-            @Override
-            public void handleMessage(Message message) {
-                if (ContactsListActivity.this.isFinishing()) {
-                    return;
-                }
-                switch(message.what) {
-                    case FETCH_IMAGE_MSG: {
-                        final ImageView imageView = (ImageView) message.obj;
-                        if (imageView == null) {
-                            break;
-                        }
-
-                        final PhotoInfo info = (PhotoInfo)imageView.getTag();
-                        if (info == null) {
-                            break;
-                        }
-
-                        final long photoId = info.photoId;
-                        if (photoId == 0) {
-                            break;
-                        }
-
-                        SoftReference<Bitmap> photoRef = mBitmapCache.get(photoId);
-                        if (photoRef == null) {
-                            break;
-                        }
-                        Bitmap photo = photoRef.get();
-                        if (photo == null) {
-                            mBitmapCache.remove(photoId);
-                            break;
-                        }
-
-                        // Make sure the photoId on this image view has not changed
-                        // while we were loading the image.
-                        synchronized (imageView) {
-                            final PhotoInfo updatedInfo = (PhotoInfo)imageView.getTag();
-                            long currentPhotoId = updatedInfo.photoId;
-                            if (currentPhotoId == photoId) {
-                                imageView.setImageBitmap(photo);
-                                mItemsMissingImages.remove(imageView);
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-
-            public void clearImageFecthing() {
-                removeMessages(FETCH_IMAGE_MSG);
-            }
-        }
-
-        private class ImageDbFetcher implements Runnable {
-            long mPhotoId;
-            private ImageView mImageView;
-
-            public ImageDbFetcher(long photoId, ImageView imageView) {
-                this.mPhotoId = photoId;
-                this.mImageView = imageView;
-            }
-
-            public void run() {
-                if (ContactsListActivity.this.isFinishing()) {
-                    return;
-                }
-
-                if (Thread.interrupted()) {
-                    // shutdown has been called.
-                    return;
-                }
-                Bitmap photo = null;
-                try {
-                    photo = ContactsUtils.loadContactPhoto(mContext, mPhotoId, null);
-                } catch (OutOfMemoryError e) {
-                    // Not enough memory for the photo, do nothing.
-                }
-
-                if (photo == null) {
-                    return;
-                }
-
-                mBitmapCache.put(mPhotoId, new SoftReference<Bitmap>(photo));
-
-                if (Thread.interrupted()) {
-                    // shutdown has been called.
-                    return;
-                }
-
-                // Update must happen on UI thread
-                Message msg = new Message();
-                msg.what = FETCH_IMAGE_MSG;
-                msg.obj = mImageView;
-                mHandler.sendMessage(msg);
-            }
         }
 
         public void setSuggestionsCursor(Cursor cursor) {
@@ -2925,40 +2818,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
 
                 final int position = cursor.getPosition();
-                viewToUse.setTag(new PhotoInfo(position, photoId));
-
-                if (photoId == 0) {
-                    viewToUse.setImageResource(R.drawable.ic_contact_list_picture);
-                } else {
-
-                    Bitmap photo = null;
-
-                    // Look for the cached bitmap
-                    SoftReference<Bitmap> ref = mBitmapCache.get(photoId);
-                    if (ref != null) {
-                        photo = ref.get();
-                        if (photo == null) {
-                            mBitmapCache.remove(photoId);
-                        }
-                    }
-
-                    // Bind the photo, or use the fallback no photo resource
-                    if (photo != null) {
-                        viewToUse.setImageBitmap(photo);
-                    } else {
-                        // Cache miss
-                        viewToUse.setImageResource(R.drawable.ic_contact_list_picture);
-
-                        // Add it to a set of images that are populated asynchronously.
-                        mItemsMissingImages.add(viewToUse);
-
-                        if (mScrollState != OnScrollListener.SCROLL_STATE_FLING) {
-
-                            // Scrolling is idle or slow, go get the image right now.
-                            sendFetchImageMessage(viewToUse);
-                        }
-                    }
-                }
+                mPhotoLoader.loadPhoto(viewToUse, photoId);
             }
 
             ImageView presenceView = cache.presenceView;
@@ -3308,57 +3168,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             mScrollState = scrollState;
             if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
-                // If we are in a fling, stop loading images.
-                clearImageFetching();
+                mPhotoLoader.pause();
             } else if (mDisplayPhotos) {
-                processMissingImageItems(view);
+                mPhotoLoader.resume();
             }
-        }
-
-        private void processMissingImageItems(AbsListView view) {
-            for (ImageView iv : mItemsMissingImages) {
-                sendFetchImageMessage(iv);
-            }
-        }
-
-        private void sendFetchImageMessage(ImageView view) {
-            final PhotoInfo info = (PhotoInfo) view.getTag();
-            if (info == null) {
-                return;
-            }
-            final long photoId = info.photoId;
-            if (photoId == 0) {
-                return;
-            }
-            mImageFetcher = new ImageDbFetcher(photoId, view);
-            synchronized (ContactsListActivity.this) {
-                // can't sync on sImageFetchThreadPool.
-                if (sImageFetchThreadPool == null) {
-                    // TODO: redesign this so that all DB interaction happens
-                    // on a single background thread and loads photos in bulk.
-                    sImageFetchThreadPool = Executors.newFixedThreadPool(1);
-                }
-                sImageFetchThreadPool.execute(mImageFetcher);
-            }
-        }
-
-
-        /**
-         * Stop the image fetching for ALL contacts, if one is in progress we'll
-         * not query the database.
-         *
-         * TODO: move this method to ContactsListActivity, it does not apply to the current
-         * contact.
-         */
-        public void clearImageFetching() {
-            synchronized (ContactsListActivity.this) {
-                if (sImageFetchThreadPool != null) {
-                    sImageFetchThreadPool.shutdownNow();
-                    sImageFetchThreadPool = null;
-                }
-            }
-
-            mHandler.clearImageFecthing();
         }
 
         /**
