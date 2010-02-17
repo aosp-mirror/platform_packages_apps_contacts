@@ -2453,12 +2453,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         private Cursor mSuggestionsCursor;
         private int mSuggestionsCursorCount;
 
-        private static final int FETCH_IMAGE_MSG = 1;
-
         public ContactItemListAdapter(Context context) {
             super(context, R.layout.contacts_list_item, null, false);
 
-            mHandler = new ImageFetchHandler();
             mUnknownNameText = context.getText(android.R.string.unknownName);
             switch (mMode) {
                 case MODE_LEGACY_PICK_POSTAL:
