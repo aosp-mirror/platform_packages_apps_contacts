@@ -48,6 +48,7 @@
         android:layout_toLeftOf="@id/divider"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dip"
+        android:layout_marginLeft="10dip"
 
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
@@ -86,8 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/divider"
-        android:layout_above="@id/label"
+        android:layout_above="@id/date"
         android:layout_alignWithParentIfMissing="true"
+        android:layout_marginBottom="-10dip"
 
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:singleLine="true"

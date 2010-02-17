@@ -40,6 +40,7 @@
         android:layout_toLeftOf="@id/divider"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dip"
+        android:layout_marginLeft="10dip"
 
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
