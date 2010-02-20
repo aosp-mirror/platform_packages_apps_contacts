@@ -44,6 +44,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ContactPhotoLoader implements Callback {
 
+    private static final String LOADER_THREAD_NAME = "ContactPhotoLoader";
+
     /**
      * Type of message sent by the UI thread to itself to indicate that some photos
      * need to be loaded.
@@ -57,6 +59,8 @@ public class ContactPhotoLoader implements Callback {
     private static final int MESSAGE_PHOTOS_LOADED = 2;
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    private final String[] COLUMNS = new String[] { Photo._ID, Photo.PHOTO };
 
     /**
      * The resource ID of the image to be used when the photo is unavailable or being
@@ -299,8 +303,10 @@ public class ContactPhotoLoader implements Callback {
     /**
      * Populates an array of photo IDs that need to be loaded.
      */
-    private void obtainPhotoIdsToLoad(ArrayList<String> photoIds) {
+    private void obtainPhotoIdsToLoad(ArrayList<Long> photoIds,
+            ArrayList<String> photoIdsAsStrings) {
         photoIds.clear();
+        photoIdsAsStrings.clear();
 
         /*
          * Since the call is made from the loader thread, the map could be
@@ -317,7 +323,8 @@ public class ContactPhotoLoader implements Callback {
             if (holder.state == BitmapHolder.NEEDED) {
                 // Assuming atomic behavior
                 holder.state = BitmapHolder.LOADING;
-                photoIds.add(id.toString());
+                photoIds.add(id);
+                photoIdsAsStrings.add(id.toString());
             }
         }
     }
@@ -326,12 +333,10 @@ public class ContactPhotoLoader implements Callback {
      * The thread that performs loading of photos from the database.
      */
     private class LoaderThread extends HandlerThread implements Callback {
-        private static final String LOADER_THREAD_NAME = "ContactPhotoLoader";
-        private final String[] COLUMNS = new String[] { Photo._ID, Photo.PHOTO };
-
         private final ContentResolver mResolver;
         private final StringBuilder mStringBuilder = new StringBuilder();
-        private final ArrayList<String> mPhotoIds = Lists.newArrayList();
+        private final ArrayList<Long> mPhotoIds = Lists.newArrayList();
+        private final ArrayList<String> mPhotoIdsAsStrings = Lists.newArrayList();
         private Handler mLoaderThreadHandler;
 
         public LoaderThread(ContentResolver resolver) {
@@ -360,7 +365,7 @@ public class ContactPhotoLoader implements Callback {
         }
 
         private void loadPhotosFromDatabase() {
-            obtainPhotoIdsToLoad(mPhotoIds);
+            obtainPhotoIdsToLoad(mPhotoIds, mPhotoIdsAsStrings);
 
             int count = mPhotoIds.size();
             if (count == 0) {
@@ -382,7 +387,7 @@ public class ContactPhotoLoader implements Callback {
                 cursor = mResolver.query(Data.CONTENT_URI,
                         COLUMNS,
                         mStringBuilder.toString(),
-                        mPhotoIds.toArray(EMPTY_STRING_ARRAY),
+                        mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
                         null);
 
                 if (cursor != null) {
@@ -390,12 +395,19 @@ public class ContactPhotoLoader implements Callback {
                         Long id = cursor.getLong(0);
                         byte[] bytes = cursor.getBlob(1);
                         cacheBitmap(id, bytes);
+                        mPhotoIds.remove(id);
                     }
                 }
             } finally {
                 if (cursor != null) {
                     cursor.close();
                 }
+            }
+
+            // Remaining photos were not found in the database - mark the cache accordingly.
+            count = mPhotoIds.size();
+            for (int i = 0; i < count; i++) {
+                cacheBitmap(mPhotoIds.get(i), null);
             }
         }
     }
