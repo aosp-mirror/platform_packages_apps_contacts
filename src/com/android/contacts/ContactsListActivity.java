@@ -239,7 +239,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             51 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     /** Show all postal addresses and pick them when clicking */
     static final int MODE_PICK_POSTAL =
-            55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE;
+            55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     /** Show all postal addresses and pick them when clicking */
     static final int MODE_LEGACY_PICK_POSTAL =
             56 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
