@@ -63,6 +63,7 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
         setContentView(R.layout.contact_options);
 
         View ringtoneLayout = findViewById(R.id.ringtone);
+        ringtoneLayout.setFocusable(true);
         ringtoneLayout.setOnClickListener(this);
         TextView label = (TextView)findViewById(R.id.label);
         label.setText(getString(R.string.label_ringtone));

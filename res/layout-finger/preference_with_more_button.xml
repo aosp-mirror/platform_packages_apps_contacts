@@ -23,8 +23,6 @@
     android:background="@android:drawable/list_selector_background"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:focusable="true"
-    android:clickable="true"
     >
 
     <RelativeLayout
