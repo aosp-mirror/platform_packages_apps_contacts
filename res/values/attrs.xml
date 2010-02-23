@@ -13,27 +13,26 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <!-- Maps a contact kind or mime-type to a RemoteViews XML formatter -->
     <declare-styleable name="Mapping">
         <!-- Mime-type handled by this mapping -->
-        <attr name="mimeType" format="string" />
+        <attr name="mimeType" format="string"/>
         <!-- RemoteViews XML that should be used to format this data -->
-        <attr name="remoteViews" format="reference" />
+        <attr name="remoteViews" format="reference"/>
         <!-- Icon that should be used to represent this data -->
-        <attr name="icon" format="reference" />
+        <attr name="icon" format="reference"/>
         <!-- Column in data table to summarize this data -->
-        <attr name="summaryColumn" format="string" />
+        <attr name="summaryColumn" format="string"/>
         <!-- Column in data table to show details of this data -->
-        <attr name="detailColumn" format="string" />
+        <attr name="detailColumn" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="EdgeTriggerView">
-        <attr name="edgeWidth" format="dimension" />
+        <attr name="edgeWidth" format="dimension"/>
         <attr name="listenEdges">
-            <flag name="left" value="0x01" />
-            <flag name="right" value="0x02" />
+            <flag name="left" value="0x01"/>
+            <flag name="right" value="0x02"/>
         </attr>
     </declare-styleable>
 

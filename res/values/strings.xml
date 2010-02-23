@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for the activity that shows contacts.  This is the name
          used in the Launcher icon. -->
@@ -90,9 +89,6 @@
     <!-- Menu item used to remove a star from a contact, making the contact no longer show up at the top of favorites -->
     <string name="menu_removeStar">Remove from favorites</string>
 
-    <!-- Optional menu item to encode the current contact as a QR Code using Barcode Scanner. -->
-    <string name="menu_showBarcode">Show barcode</string>
-
     <!-- Menu item used to edit a specific contact -->
     <string name="menu_editContact">Edit contact</string>
 
@@ -122,9 +118,6 @@
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
 
-    <!-- Dialog title for the list of constituent contacts in the split aggregate dialog. -->
-    <string name="splitAggregate_title">Split contact</string>
-
     <!-- Toast shown after a contact has been split from an aggregate by a user action -->
     <string name="contactsSplitMessage">Contacts separated</string>
 
@@ -138,13 +131,6 @@
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
-
-    <!-- Menu item to toggle the tabs that show where the contact data comes from. -->
-    <string name="menu_showSources">Show sources</string>
-    <string name="menu_hideSources">Hide sources</string>
-
-    <!-- Activity title for the Join Contact list -->
-    <string name="titleJoinAggregate">Join contact</string>
 
     <!-- Heading of the Join Contact screen -->
     <string name="titleJoinContactDataWith">Join contacts</string>
@@ -197,9 +183,6 @@
     <!-- The title of the activity that creates a new contact -->
     <string name="editContact_title_insert">New contact</string>
 
-    <!-- Button that adds more info to a contact, like a new phone number, email address, or postal address -->
-    <string name="menu_addItem">More info</string>
-
     <!-- The label describing the phonetic pronunciation/reading of a contact name -->
     <string name="label_phonetic_name">Phonetic</string>
 
@@ -208,15 +191,6 @@
 
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
-
-    <!-- The label for a list of all the groups that the contact is associated with -->
-    <string name="label_groups">Groups</string>
-
-    <!-- Provides a delimeter in a list of groups. For example, "g1, g2" has ", g2" generated using this string -->
-    <string name="group_list">, <xliff:g id="groupName">%s</xliff:g></string>
-
-    <!-- Menu item used to send user to the edit contact screen -->
-    <string name="menu_viewGroup">Edit groups</string>
 
     <!-- Hint text for the contact name when editing -->
     <string name="ghostData_name">First and Last</string>
@@ -229,24 +203,6 @@
 
     <!-- Hint text for the organization position when editing -->
     <string name="ghostData_title">Position</string>
-
-    <!-- Hint text for an IM account when editing -->
-    <string name="ghostData_im">IM name</string>
-
-    <!-- Hint text for the notes field when editing -->
-    <string name="ghostData_notes">My note</string>
-
-    <!-- Hint text for the phone number field when editing -->
-    <string name="ghostData_phone">Phone number</string>
-
-    <!-- Hint text for the email address field when editing -->
-    <string name="ghostData_email">Email address</string>
-
-    <!-- Hint text for the postal address field when editing -->
-    <string name="ghostData_postal">Postal address</string>
-
-    <!-- Hint text for the group field when editing -->
-    <string name="ghostData_group">Display group</string>
 
     <!-- Message displayed in a toast when you try to view the details of a contact that
          for some reason doesn't exist anymore. -->
@@ -271,9 +227,6 @@
     <!-- Header that expands to list all of the types of postal addresses when editing or creating an postal address for a contact -->
     <string name="postalLabelsGroup">Postal address</string>
 
-    <!-- Header that expands to list other types of data you can add to a contact, like notes and organizations -->
-    <string name="otherLabelsGroup">Other</string>
-
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
     <skip/>
     <!-- The labels that are under the otherLabelsGroup when editing a contact. -->
@@ -283,9 +236,6 @@
         <!-- A note associated with a contact -->
         <item>Note</item>
     </string-array>
-
-    <!-- Title of the dialog that appears if there are no pictures from which to create an icon for a contact -->
-    <string name="errorDialogTitle">No pictures</string>
 
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
     <string name="photoPickerNotFoundText">No pictures are available on the phone.</string>
@@ -303,23 +253,11 @@
     <!-- Title of activity that lets user pick which contact groups to display -->
     <string name="displayGroups">Display options</string>
 
-    <!-- The menu item that leads to the settings for contact syncing -->
-    <string name="syncGroupPreference">Edit sync groups</string>
-
-    <!-- The menu item that launches the SIM card import activity -->
-    <string name="importFromSim">Import contacts</string>
-
     <!-- Check box label that allows calls to the contact to be sent directly to voicemail -->
     <string name="send_to_voicemail_checkbox">Send calls directly to voicemail</string>
 
-    <!-- String letting the user know that calls from the contact they're viewing will be sent directly to voicemail -->
-    <string name="send_to_voicemail_view">Calls are sent directly to voicemail.</string>
-
     <!-- String used to indicate that a contact doesn't have a custom ringtone -->
     <string name="default_ringtone">Default</string>
-
-    <!-- The button/menu item that allows you to add a picture to a contact -->
-    <string name="addPicture">Add icon</string>
 
     <!-- The button/menu item that allows you to change an existing contact picture -->
     <string name="changePicture">Change icon</string>
@@ -335,22 +273,6 @@
 
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
-
-    <!-- The text displayed when the contacts list is empty while displaying favorite contacts -->
-    <string name="noMatchingFilteredContacts">Tap the search button to perform a full search.</string>
-    
-    <!-- The text displayed when the contacts list is empty while displaying favorite contacts -->
-    <string name="noFavorites">No favorites.</string>
-
-    <!-- Title for group selection dialog. The dialog contains a list of contact groups that the
-         user can pick from, indicating they only want to see the contacts in that group. -->
-    <string name="select_group_title">Groups</string>
-
-    <!-- The text displayed when the contacts list is empty while displaying a single group of contacts -->
-    <string name="groupEmpty">Your \"<xliff:g id="groupName">%s</xliff:g>\" group is empty.</string>
-
-    <!-- The description of all groups when asking the user what they want to display -->
-    <string name="showAllGroups">All contacts</string>
 
     <!-- The title of the filter to only show contacts with phone numbers -->
     <string name="showFilterPhones">Only contacts with phones</string>
@@ -371,74 +293,17 @@
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts, <xliff:g id="countWithPhones">%2$d</xliff:g> with phones</item>
     </plurals>
 
-    <!-- The setting to sync all contacts from the server -->
-    <string name="syncAllGroups">Sync all contacts</string>
-
-    <!-- The name of the system "My Contacts" group. This should be kept in sync with the web UI -->
-    <string name="groupNameMyContacts">My contacts</string>
-
-    <!-- The group type that displays only contacts with phone numbers -->
-    <string name="groupNameWithPhones">Contacts with phone numbers</string>
-
-    <!-- The group type that displays "Starred in Android" contacts -->
-    <string name="starredInAndroid">Starred in Android</string>
-
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
     <!-- Displayed in a spinner dialog as user changes to display options are saved -->
     <string name="savingDisplayGroups">Saving display options\u2026</string>
 
-    <!-- Toast displayed when a contact is created -->
-    <string name="contactCreatedToast">Contact created.</string>
-
     <!-- Toast displayed when a contact is saved -->
     <string name="contactSavedToast">Contact saved.</string>
 
     <!-- Toast displayed when saving a contact failed -->
     <string name="contactSavedErrorToast">Error, unable to save contact changes.</string>
-
-    <!-- Separator in the contact details list describing that the items below it will place a call when clicked -->
-    <string name="listSeparatorCallNumber">Dial number</string>
-
-    <!-- Section header in the Edit Contacts screen for phone numbers -->
-    <string name="listSeparatorCallNumber_edit">Phone numbers</string>
-
-    <!-- Separator in the contact details list describing that the items below it will send an SMS/MMS to a phone number -->
-    <string name="listSeparatorSendSmsMms">Send text</string>
-
-    <!-- Separator in the contact details list describing that the items below it will send an email -->
-    <string name="listSeparatorSendEmail">Send email</string>
-
-    <!-- Section header in the Edit Contacts screen for E-mail addresses -->
-    <string name="listSeparatorSendEmail_edit">Email addresses</string>
-
-    <!-- Separator in the contact details list describing that the items below it will send an IM -->
-    <string name="listSeparatorSendIm">Send instant message</string>
-
-    <!-- Section header in the Edit Contacts screen for Instant messanger accounts -->
-    <string name="listSeparatorSendIm_edit">Chat addresses</string>
-
-    <!-- Separator in the contact details list describing that the items below it will open maps with the given address -->
-    <string name="listSeparatorMapAddress">Map address</string>
-
-    <!-- Section header in the Edit Contacts screen for map addresses -->
-    <string name="listSeparatorMapAddress_edit">Postal addresses</string>
-
-    <!-- Separator in the contact details list describing that the items below are non-actionable organization information -->
-    <string name="listSeparatorOrganizations">Organizations</string>
-
-    <!-- Separator in the contact details list describing that the items below are non-actionable group information -->
-    <string name="listSeparatorGroups">Groups</string>
-
-    <!-- Separator in the contact details list describing that the items below are random other non-actionable information about a contact -->
-    <string name="listSeparatorOtherInformation">Other information</string>
-
-    <!-- Section header in the Edit Contacts screen for other options, such as setting ringtone -->
-    <string name="listSeparatorOtherInformation_edit">Other options</string>
-
-    <!-- Section header in the Edit Contacts screen for the "Add more items" button -->
-    <string name="listSeparatorMore_edit">More</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
@@ -472,9 +337,6 @@
         <item quantity="one">1 contact</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
     </plurals>
-
-    <!-- The description text for the social activity stream tab. Space is limited for this string, so the shorter the better -->
-    <string name="socialStreamIconLabel">Social</string>
 
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsIconLabel">Contacts</string>
@@ -546,11 +408,6 @@
     <!-- Dialog title displayed when loading a phone number from the SIM card for speed dial -->
     <string name="simContacts_title">SIM card contacts</string>
 
-    <!-- Displayed when a user is prompted to setup a Google account for syncing -->
-    <string name="contactsSyncPlug"><font fgcolor="#ffffffff">Sync your Google contacts!</font>
-    \nAfter syncing to your phone, your contacts will be available to you wherever you go.</string>
-
-
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
     <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
@@ -589,7 +446,7 @@
     </string>
 
     <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
-    <string name="seclectSyncGroups_title">Select groups to sync</string>
+    
 
     <!-- Live folder label for all contacts -->
     <string name="liveFolder_all_label">All contacts</string>
@@ -621,9 +478,6 @@
     <!-- Toast for call detail screen when couldn't read the requested details -->
     <string name="toast_call_detail_error">Couldn\'t read details for the requested call.</string>
 
-    <!-- In call detail screen, label for call type -->
-    <string name="call_type">Type</string>
-
     <!-- Title for incoming call details screen -->
     <string name="type_incoming">Incoming call</string>
 
@@ -633,47 +487,8 @@
     <!-- Title for missed call details screen -->
     <string name="type_missed">Missed call</string>
 
-    <!-- In call detail screen, label for call date/time -->
-    <string name="call_time">Time</string>
-
-    <!-- In call detail screen, combine date/time string and relative time to give verbose call date/time -->
-    <string name="datetime_relative">"<xliff:g id="datetime" example="Dec 31, 2007, 11:00 am">%1$s</xliff:g> (<xliff:g id="relative" example="4 hours ago">%2$s</xliff:g>)"</string>
-
-    <!-- In call detail screen, label for call duration -->
-    <string name="call_duration">Duration</string>
-
-    <!-- In call detail screen, header title for actions section -->
-    <string name="header_actions">Actions</string>
-
-    <!-- In edit contact screen, combine the actual ringtone name with prefix for placement in spinner -->
-    <string name="ringtone_spinner">"Ringtone: <xliff:g id="ringtone" example="Caribbean Ice">%1$s</xliff:g>"</string>
-
-    <!-- In edit contact screen, add more info spinner title -->
-    <string name="add_more_items">Add more items</string>
-
-    <!-- Action string for calling a phone number. -->
-    <string name="actionCall">Call <xliff:g id="type" example="mobile">%s</xliff:g></string>
-
-    <!-- Action string for sending an email to an email address. -->
-    <string name="actionEmail">Email <xliff:g id="type" example="home">%s</xliff:g></string>
-
-    <!-- Action string for sending a text message to a phone number. -->
-    <string name="actionText">Text <xliff:g id="type" example="mobile">%s</xliff:g></string>
-
-    <!-- Action string for sending an instant message to a chat buddy. -->
-    <string name="actionChat">Chat using <xliff:g id="type" example="Google Talk">%s</xliff:g></string>
-
-    <!-- Action string for viewing an address on a map. -->
-    <string name="actionMap">View <xliff:g id="type" example="home">%s</xliff:g> address</string>
-
     <!-- Description for incoming calls going to voice mail vs. not -->
     <string name="actionIncomingCall">Incoming calls</string>
-
-    <!-- Detail text for incoming calls going to voice mail -->
-    <string name="detailIncomingCallsGoToVoicemail">Will be sent directly to voicemail</string>
-
-    <!-- Description of what the contact specific ringtone is set to -->
-    <string name="detailsRingtone">Set to <xliff:g id="ringtone_name" example="Flutey Phone">%s</xliff:g></string>
 
     <!-- Action string for calling back a number in the call log -->
     <string name="callBack">Call back</string>
@@ -698,8 +513,6 @@
 
     <!-- Label for the all data tab in the view and edit card -->
     <string name="all_tab_label">All</string>
-
-    <!-- Content description values -->
 
     <!-- String describing the image on ImageButton one
 
@@ -836,9 +649,6 @@
     <!-- Dialog title shown when searching VCard data from SD Card -->
     <string name="searching_vcard_title">Searching for vCard</string>
 
-    <!-- Dialog title shown when asking a user whether import contact data from SIM or SD Card -->
-    <string name="select_import_type_title">Where would you like to import contacts from?</string>
-
     <!-- Action string for selecting SIM for importing contacts -->
     <string name="import_from_sim">Import from SIM card</string>
 
@@ -847,9 +657,6 @@
 
     <!-- Action that exports all contacts to SD Card -->
     <string name="export_to_sdcard">Export to SD card</string>
-
-    <!-- Action that shares visible contacts -->
-    <string name="share_visible_contacts">Share visible contacts</string>
 
     <!-- One of alternatives shown when the system allows a user to select how many vCard files
          should be imported. This message shows only when the system is certain that there's more
@@ -905,9 +712,6 @@
     <!-- Dialog title shown when a user is asked to select VCard file -->
     <string name="select_vcard_title">Select vCard file</string>
 
-    <!-- Dialog message shown when a user is asked to choose VCard file -->
-    <string name="select_vcard_message">Please select a vCard file to import</string>
-
     <!-- The message shown while reading a vCard file/entry. The first argument is like
     "Reading VCard" or "Reading VCard files" and the second is the display name of the current
     data being parsed -->
@@ -919,14 +723,8 @@
     <!-- Dialog message shown when reading a VCard file -->
     <string name="reading_vcard_message">Reading vCard file(s)</string>
 
-    <!-- Dialog message shown when importing VCard data into local database -->
-    <string name="importing_vcard_message">Importing vCard data</string>
-
     <!-- Dialog title shown when reading VCard data failed -->
     <string name="reading_vcard_failed_title">Reading of vCard data has failed</string>
-
-    <!-- Dialog message shown when reading VCard data failed -->
-    <string name="reading_vcard_failed_message">Could not read vCard.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
     <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
@@ -934,28 +732,11 @@
     <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
 
-    <!-- The message for exporting all contacts in the phone, without caring its Account -->
-    <string name="export_all_contacts">All contacts</string>
-
-    <!-- The message for exporting only contacts is the phone locally, which are not associated with any account -->
-    <string name="export_phone_local_only">Locally stored contacts</string>
-
-    <!-- The menu item that launches VCard export activity -->
-    <string name="export_contact_list">Export contacts</string>
-
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_title">Confirm export</string>
 
     <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_message">Are you sure you want to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
-
-    <!-- Dialog title shown when a user confirms whether he/she does bulk sharing (visible contacts) -->
-    <string name="confirm_share_visible_contacts_title">Confirm bulk sharing</string>
-
-    <!-- Dialog message shown when a user confirms whether he/she really wants to do bulk sharing (via Bluetooth, etc.)
-         (visible contacts)
-      -->
-    <string name="confirm_share_visible_contacts_message">Are you sure you want to share all visible contacts?</string>
 
     <!-- Dialog title shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_title">Failed to export contact data</string>
@@ -976,10 +757,6 @@
          The length limit of each file is different in each Android device, so we don't need to
          mention it here. -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
-
-    <!-- The reason why the contacts import/export failed, meaning a designated file or directory
-         cannot be opened/created because of some permission, security, or any other reasons. -->
-    <string name="fail_reason_cannot_open_destination_dir">Cannot open or create the destination directory\"<xliff:g id="dir_name">%s</xliff:g>\"</string>
 
     <!-- Dialog title shown when the application is exporting contact data outside -->
     <string name="exporting_contact_list_title">Exporting contact data</string>
@@ -1022,9 +799,6 @@
     <!-- Menu items for dialpad options as part of Pause and Wait ftr -->
     <string name="add_2sec_pause">Add 2-sec pause</string>
     <string name="add_wait">Add wait</string>
-
-    <!-- Label for onscreen "Dial" button -->
-    <string name="dial_button_label">Dial</string>
 
     <!-- Title for the call disambiguation dialog -->
     <string name="call_disambig_title">Call using</string>
@@ -1116,10 +890,6 @@
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
     <string name="account_phone">Phone-only (unsynced)</string>
-
-    <!-- The label describing the display name field of an Email address, allowing the
-         user to give a specific name to describe this address. -->
-    <string name="label_email_display_name">Display name</string>
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
@@ -1281,14 +1051,6 @@
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
-
-    <!-- The title for the action to remove a contact from an aggregated contact -->
-    <string name="split_label">Split</string>
-    <!-- The explanation of what "split" will do. This needs word-smithing. -->
-    <string name="split_explanation">Make this data its own contact.</string>
-
-    <!-- Formatting string for account name -->
-    <string name="account_name_format">From <xliff:g id="source" example="Gmail">%1$s</xliff:g> account: <xliff:g id="account" example="user@gmail.com">%2$s</xliff:g></string>
 
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>

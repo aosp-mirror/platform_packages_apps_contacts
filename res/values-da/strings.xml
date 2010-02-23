@@ -13,8 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
@@ -37,7 +36,7 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Ring til <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Føj til favoritter"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
-    <string name="menu_showBarcode" msgid="309973637178814132">"Vis stregkode"</string>
+    
     <string name="menu_editContact" msgid="3452858480713561396">"Rediger kontakt"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Slet kontakt"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring til kontakt"</string>
@@ -47,14 +46,14 @@
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Gør til standardnummer"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Benyt e-mail som standard"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Opdel"</string>
-    <string name="splitAggregate_title" msgid="2053462872948058798">"Opdel kontakt"</string>
+    
     <string name="contactsSplitMessage" msgid="5253490235863170269">"Kontakterne blev opdelt"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Opdel kontakt"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Er du sikker på, at du vil opdele denne ene kontakt i flere kontakter: én for hver sæt af de indeholdte kontaktoplysninger?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Føj til"</string>
-    <string name="menu_showSources" msgid="885215611438295455">"Vis kilder"</string>
-    <string name="menu_hideSources" msgid="71367585820555477">"Skjul kilder"</string>
-    <string name="titleJoinAggregate" msgid="6970566008563147202">"Føj til kontakt"</string>
+    
+    
+    
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Føj til kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Vælg den kontakt, du ønsker at forbinde til <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
@@ -72,23 +71,23 @@
     <string name="menu_doNotSave" msgid="2174577548513895144">"Annuller"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Rediger kontakt"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Ny kontakt"</string>
-    <string name="menu_addItem" msgid="6106836852570790250">"Få flere oplysninger"</string>
+    
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisk"</string>
     <string name="label_notes" msgid="8337354953278341042">"Noter"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Ringetone"</string>
-    <string name="label_groups" msgid="7304551384542859026">"Grupper"</string>
-    <string name="group_list" msgid="8583361685440161307">", <xliff:g id="GROUPNAME">%s</xliff:g>"</string>
-    <string name="menu_viewGroup" msgid="1401851715586577551">"Rediger grupper"</string>
+    
+    
+    
     <string name="ghostData_name" msgid="6490954238641157585">"Fornavn og efternavn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Virksomhed"</string>
     <string name="ghostData_title" msgid="7662602222400641187">"Stilling"</string>
-    <string name="ghostData_im" msgid="7737174936595812794">"IM-navn"</string>
-    <string name="ghostData_notes" msgid="3044201271296187724">"Min note"</string>
-    <string name="ghostData_phone" msgid="6963153888271466620">"Telefonnummer"</string>
-    <string name="ghostData_email" msgid="6184537075551565919">"E-mail-adresse"</string>
-    <string name="ghostData_postal" msgid="652611650594951897">"Postadresse"</string>
-    <string name="ghostData_group" msgid="4504591380347534114">"Vis gruppe"</string>
+    
+    
+    
+    
+    
+    
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten eksisterer ikke."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Vælg etiket"</string>
@@ -96,32 +95,32 @@
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Postadresse"</string>
-    <string name="otherLabelsGroup" msgid="6584626043193000238">"Andre"</string>
+    
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisation"</item>
     <item msgid="7196592230748086755">"Note"</item>
   </string-array>
-    <string name="errorDialogTitle" msgid="475272869218091715">"Der er ingen billeder"</string>
+    
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"Der er ingen tilgængelige billeder på telefonen."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Kontaktikon"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Navn på tilpasset etiket"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Indstillinger for visning"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Indstillinger for visning"</string>
-    <string name="syncGroupPreference" msgid="9028361137161162861">"Rediger grupper, synk."</string>
-    <string name="importFromSim" msgid="8383900146531125319">"Importer kontakter"</string>
+    
+    
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til voicemail"</string>
-    <string name="send_to_voicemail_view" msgid="9124400414311776864">"Opkald sendes direkte til voicemail."</string>
+    
     <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
-    <string name="addPicture" msgid="1594679312161537678">"Tilføj ikon"</string>
+    
     <string name="changePicture" msgid="2943329047610967714">"Skift ikon"</string>
     <string name="removePicture" msgid="3041230993155966350">"Fjern ikon"</string>
     <string name="noContacts" msgid="8579310973261953559">"Der er ingen kontakter."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Der blev ikke fundet nogen matchende kontakter."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Der er ingen kontakter med telefonnumre."</string>
-    <string name="noFavorites" msgid="812766386743315815">"Der er ingen favoritter."</string>
-    <string name="select_group_title" msgid="7955698611959835612">"Grupper"</string>
-    <string name="groupEmpty" msgid="6661950109828194595">"Din gruppe \"<xliff:g id="GROUPNAME">%s</xliff:g>\" er tom."</string>
-    <string name="showAllGroups" msgid="5164410117611094297">"Alle kontakter"</string>
+    
+    
+    
+    
     <string name="showFilterPhones" msgid="4184858075465653970">"Kun kontakter med telefoner"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Vis kun kontakter med telefonnumre"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Vælg de kontakter, der skal vises"</string>
@@ -131,29 +130,29 @@
   <plurals name="groupDescripPhones">
     <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> kontakter, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> med telefoner"</item>
   </plurals>
-    <string name="syncAllGroups" msgid="7512169081224806890">"Synkroniser alle kontakter"</string>
-    <string name="groupNameMyContacts" msgid="277995505294105439">"Mine kontakter"</string>
-    <string name="groupNameWithPhones" msgid="6981588604041120497">"Kontakter med telefonnumre"</string>
-    <string name="starredInAndroid" msgid="6495527538140213440">"Stjernemarkerede i Android"</string>
+    
+    
+    
+    
     <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt ..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Gemmer indstillinger for visning …"</string>
-    <string name="contactCreatedToast" msgid="8740102129968688060">"Kontakt oprettet."</string>
+    
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er gemt."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fejl, kunne ikke gemme ændringer af kontakter"</string>
-    <string name="listSeparatorCallNumber" msgid="7115321894439629408">"Ring til nummer"</string>
-    <string name="listSeparatorCallNumber_edit" msgid="2999167270900823334">"Telefonnumre"</string>
-    <string name="listSeparatorSendSmsMms" msgid="5351657038532024412">"Send sms"</string>
-    <string name="listSeparatorSendEmail" msgid="5395590830304525721">"Send e-mail"</string>
-    <string name="listSeparatorSendEmail_edit" msgid="6859593624213634454">"E-mail-adresser"</string>
-    <string name="listSeparatorSendIm" msgid="2209260633185984105">"Send chatbesked"</string>
-    <string name="listSeparatorSendIm_edit" msgid="3793290685553377986">"Chatadresser"</string>
-    <string name="listSeparatorMapAddress" msgid="7076401301758190804">"Kortadresse"</string>
-    <string name="listSeparatorMapAddress_edit" msgid="298711187672067985">"Postadresse"</string>
-    <string name="listSeparatorOrganizations" msgid="7514083358440762504">"Organisationer"</string>
-    <string name="listSeparatorGroups" msgid="1593940073983422450">"Grupper"</string>
-    <string name="listSeparatorOtherInformation" msgid="7844959649638482329">"Andre oplysninger"</string>
-    <string name="listSeparatorOtherInformation_edit" msgid="1326921768011367750">"Andre indstillinger"</string>
-    <string name="listSeparatorMore_edit" msgid="858454837482243176">"Flere"</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="8721111084815668845">"Viser 1 kontakt med telefonnummer"</item>
     <item quantity="other" msgid="6133262880804110289">"Viser <xliff:g id="COUNT">%d</xliff:g> kontakter med telefonnumre"</item>
@@ -169,7 +168,7 @@
     <item quantity="other" msgid="7752927996850263152">"Fandt <xliff:g id="COUNT">%d</xliff:g> kontakter"</item>
   </plurals>
     <string name="listFoundAllContactsZero" msgid="5554368784319460828">"Kontakten blev ikke fundet"</string>
-    <string name="socialStreamIconLabel" msgid="4367712449555075376">"Sociale"</string>
+    
     <string name="contactsIconLabel" msgid="7666609097606552806">"Kontakter"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
@@ -194,13 +193,13 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring og tilføj et opkald"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Indlæser fra SIM-kort ..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
-    <string name="contactsSyncPlug" msgid="7248276704957313698"><font fgcolor="#ffffffff">"Synkroniser dine Google-kontakter!"</font>\n"Når du har synkroniseret din telefon, bliver dine kontakter tilgængelige, uanset hvor du befinder dig."</string>
+    
     <string name="noContactsHelpText" msgid="6788487368878712350">"Du har ingen kontakter, der kan vises."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, som du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt helt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Du har ingen kontakter, der kan vises. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakter)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontaktner, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Du har ingen kontakter, der kan vises."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Du har ingen kontakter, der kan vises. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakterne)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Sådan føjer du en kontakt til din liste over favoritter:"\n\n" "<li>"Tryk på fanen "<b>"Kontakter"</b>\n</li>" "\n<li>"Tryk på den kontakt, du ønsker at føje til dine foretrukne"\n</li>" "\n<li>"Tryk på stjerne ud for kontaktens navn"\n</li></string>
-    <string name="seclectSyncGroups_title" msgid="1235432026231325655">"Vælg grupper, der skal synkroniseres"</string>
+    
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle kontakter"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Stjernemarkerede"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoner"</string>
@@ -209,24 +208,24 @@
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Tilføj opk."</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Opkaldsdetaljer"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Detaljerne for det anmodede opkald kunne ikke læses."</string>
-    <string name="call_type" msgid="3213526349444862087">"Type"</string>
+    
     <string name="type_incoming" msgid="6502076603836088532">"Indgående opkald"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Udgående opkald"</string>
     <string name="type_missed" msgid="2720502601640509542">"Ubesvarede opkald"</string>
-    <string name="call_time" msgid="5805575214626630975">"Tid"</string>
-    <string name="datetime_relative" msgid="2906207446040994658">"<xliff:g id="DATETIME">%1$s</xliff:g> (<xliff:g id="RELATIVE">%2$s</xliff:g>)"</string>
-    <string name="call_duration" msgid="3941950339482985532">"Varighed"</string>
-    <string name="header_actions" msgid="229583643365836321">"Handlinger"</string>
-    <string name="ringtone_spinner" msgid="7317823545379736528">"Ringetone: <xliff:g id="RINGTONE">%1$s</xliff:g>"</string>
-    <string name="add_more_items" msgid="7754115197545456663">"Tilføj flere emner"</string>
-    <string name="actionCall" msgid="695145166039381504">"Ring til <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionEmail" msgid="3870371552333656807">"E-mail til <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionText" msgid="6399049224844880108">"Tekst <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionChat" msgid="31079429748650300">"Chat ved hjælp af <xliff:g id="TYPE">%s</xliff:g>"</string>
-    <string name="actionMap" msgid="1977955782051732775">"Vis <xliff:g id="TYPE">%s</xliff:g> adresse"</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string name="actionIncomingCall" msgid="6028930669817038600">"Indgående opkald"</string>
-    <string name="detailIncomingCallsGoToVoicemail" msgid="9163373178772231307">"Sendes direkte til voicemail"</string>
-    <string name="detailsRingtone" msgid="4052108748982701775">"Angiv som <xliff:g id="RINGTONE_NAME">%s</xliff:g>"</string>
+    
+    
     <string name="callBack" msgid="5498224409038809224">"Ring tilbage"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring op igen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Ring tilbage"</string>
@@ -250,7 +249,7 @@
     <string name="no_sdcard_title" msgid="5911758680339949273">"Der er intet SD-kort"</string>
     <string name="no_sdcard_message" msgid="6019391476490445358">"Der blev ikke fundet noget SD-kort"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Søger efter vCard"</string>
-    <string name="select_import_type_title" msgid="2443742794103731022">"Hvor ønsker du at importere kontakter fra?"</string>
+    
     <string name="import_from_sim" msgid="3859272228033941659">"Importer fra SIM-kort"</string>
     <string name="import_from_sdcard" msgid="8550360976693202816">"Importer fra SD-kort"</string>
     <string name="export_to_sdcard" msgid="2597105442616166277">"Eksporter til SD-kort"</string>
@@ -267,18 +266,18 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"En eller flere filer blev ikke importeret (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Ukendt fejl"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Vælg vCard-fil"</string>
-    <string name="select_vcard_message" msgid="221189184212818304">"Vælg en vCard-fil, der skal importeres"</string>
+    
     <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"Læser vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"Læser vCard-fil(er)"</string>
-    <string name="importing_vcard_message" msgid="4046655384673753503">"Importerer vCard-data"</string>
+    
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Læsning af vCard-data mislykkedes"</string>
-    <string name="reading_vcard_failed_message" msgid="5684089173948287107">"vCard kunne ikke læses."\n"Årsag til fejl: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
-    <string name="export_all_contacts" msgid="2873892623335194071">"Alle kontakter"</string>
-    <string name="export_phone_local_only" msgid="3380497955409896761">"Kontakter, som er lagret lokalt"</string>
-    <string name="export_contact_list" msgid="3165097742175874384">"Eksporter kontakter"</string>
+    
+    
+    
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekræft eksport"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Er du sikker på, at du vil eksportere listen over kontakter til \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Eksport af kontaktdata mislykkedes"</string>
@@ -286,21 +285,21 @@
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Der er ingen kontakter, der kan eksporteres"</string>
     <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"Der er for mange vCard-data på SD-kortet"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Det krævede filnavn er for langt (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="fail_reason_cannot_open_destination_dir" msgid="1739293936432987758">"Destinationsmappen \"<xliff:g id="DIR_NAME">%s</xliff:g>\" kan ikke åbnes eller oprettes"</string>
+    
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Kontaktdata eksporteres til \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Eksportfunktionen kunne ikke startes: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Der opstod en fejl under eksport: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Kunne ikke hente databaseoplysninger"</string>
     <!-- no translation found for composer_has_no_exportable_contact (754734132189369094) -->
-    <skip />
+    <skip/>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard-oprettelse ikke korrekt initialiseret"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" kunne ikke åbnes: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Tilføj pause på 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Tilføj Vent"</string>
-    <string name="dial_button_label" msgid="7637725632722605863">"Ring til"</string>
+    
     <string name="call_disambig_title" msgid="1911302597959335178">"Ring ved hjælp af"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Send sms ved hjælp af"</string>
     <string name="make_primary" msgid="5829291915305113983">"Husk dette valg"</string>
@@ -334,7 +333,7 @@
     <string name="display_all_contacts" msgid="6846131371214707956">"Alle kontakter"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Hvis \'<xliff:g id="GROUP">%s</xliff:g>\' fjernes fra synkronisering, vil kontakter, der ikke er i grupper, også fjernes fra synkroniseringen."</string>
     <string name="account_phone" msgid="4025734638492419713">"Kun telefon (ikke synkroniseret)"</string>
-    <string name="label_email_display_name" msgid="5537802602754309600">"Visningsnavn"</string>
+    
     <string name="call_custom" msgid="7756571794763171802">"Ring til <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Ring hjem"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Ring til mobil"</string>
@@ -411,9 +410,9 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Fonetisk fornavn"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetisk mellemnavn"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetisk efternavn"</string>
-    <string name="split_label" msgid="8262112659919449087">"Opdel"</string>
-    <string name="split_explanation" msgid="1824739956426973592">"Gør disse data til en selvstændig kontakt"</string>
-    <string name="account_name_format" msgid="4421123930035299208">"Fra <xliff:g id="SOURCE">%1$s</xliff:g>-konto: <xliff:g id="ACCOUNT">%2$s</xliff:g>"</string>
+    
+    
+    
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <string name="from_account_format" msgid="687567483928582084">"fra <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Brug dette billede"</string>
