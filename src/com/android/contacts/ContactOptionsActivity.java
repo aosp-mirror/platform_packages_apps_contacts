@@ -198,6 +198,16 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
         values.put(Contacts.SEND_TO_VOICEMAIL, mSendToVoicemail);
         getContentResolver().update(mLookupUri, values, null, null);
     }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
+        }
+    }
 }
 
 

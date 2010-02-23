@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="4dip"
-        android:paddingRight="4dip"
+        android:paddingRight="10dip"
         android:paddingTop="6dip"
         android:paddingBottom="0dip"        
         >
@@ -62,19 +62,10 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:inputType="textNoSuggestions"
-                android:imeOptions="actionGo|flagNoExtractUi"
+                android:imeOptions="flagNoExtractUi"
                 android:hint="@string/search_bar_hint"
+                android:drawableRight="@drawable/magnifying_glass"
                 android:freezesText="true"
-            />
-
-            <ImageButton
-                android:id="@+id/search_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/btn_search_dialog"
-                android:src="@drawable/ic_btn_search"
-                android:layout_marginLeft="4dip"
-                android:layout_marginBottom="4dip"               
             />
         </LinearLayout>
         

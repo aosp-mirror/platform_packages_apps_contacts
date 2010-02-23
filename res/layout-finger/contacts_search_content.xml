@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2008 The Android Open Source Project
+<!-- Copyright (C) 2010 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,38 +14,29 @@
      limitations under the License.
 -->
 
-<LinearLayout 
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pinned_header_list_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/translucent_search_background"
         >
 
-    <view
-        class="com.android.contacts.PinnedHeaderListView" 
+    <include android:id="@+id/searchView"
+        layout="@layout/search_bar"/>
+
+    <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fastScrollEnabled="true"
+        android:background="@android:color/background_dark"
     />
 
-    <ScrollView android:id="@android:id/empty"
+    <!-- Transparent filler -->
+    <View android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-    >
-        <TextView android:id="@+id/emptyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/noContacts"
-            android:textSize="20sp"
-            android:textColor="?android:attr/textColorSecondary"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
-            android:paddingTop="10dip"
-            android:lineSpacingMultiplier="0.92"
-        />
-    </ScrollView>
-
+    />
 </LinearLayout>

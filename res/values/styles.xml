@@ -20,6 +20,10 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="ContactsSearchTheme" parent="@android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/ContactsSearchAnimation</item>
+    </style>
+
     <style name="MinusButton">
         <item name="android:background">@drawable/btn_circle</item>
         <item name="android:src">@drawable/ic_btn_round_minus</item>
@@ -88,8 +92,12 @@
         <item name="android:windowExitAnimation">@anim/quickcontact_below_exit</item>
     </style>
 
+    <style name="ContactsSearchAnimation">
+        <item name="android:windowEnterAnimation">@anim/search_bar_enter</item>
+        <item name="android:windowExitAnimation">@anim/search_bar_exit</item>
+    </style>
+
     <style name="DummyAnimation">
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
-
 </resources>

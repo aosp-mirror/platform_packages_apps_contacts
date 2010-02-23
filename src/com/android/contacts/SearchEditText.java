@@ -17,60 +17,53 @@
 package com.android.contacts;
 
 import android.content.Context;
-import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.inputmethod.InputMethodManager;
+import android.view.KeyEvent;
 import android.widget.EditText;
 
 /**
- * A custom text editor that optionally automatically brings up the soft
- * keyboard when first focused.
+ * A custom text editor that helps automatically dismiss the activity along with the soft
+ * keyboard.
  */
 public class SearchEditText extends EditText {
 
-    private boolean mAutoShowKeyboard;
+    private boolean mMagnifyingGlassShown = true;
+    private Drawable mMagnifyingGlass;
 
     public SearchEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mMagnifyingGlass = getCompoundDrawables()[2];
     }
 
     /**
-     * Automatically show the soft keyboard when the field gets focus.  This is a
-     * single-shot setting - it is reset as soon as the keyboard is shown.
+     * Conditionally shows a magnifying glass icon on the right side of the text field
+     * when the text it empty.
      */
-    public void setAutoShowKeyboard(boolean flag) {
-        mAutoShowKeyboard = flag;
-    }
-
     @Override
-    public void onWindowFocusChanged(boolean hasWindowFocus) {
-        super.onWindowFocusChanged(hasWindowFocus);
-        if (hasWindowFocus && mAutoShowKeyboard) {
-            showKeyboard();
+    public boolean onPreDraw() {
+        boolean emptyText = TextUtils.isEmpty(getText());
+        if (mMagnifyingGlassShown != emptyText) {
+            mMagnifyingGlassShown = emptyText;
+            if (mMagnifyingGlassShown) {
+                setCompoundDrawables(null, null, mMagnifyingGlass, null);
+            } else {
+                setCompoundDrawables(null, null, null, null);
+            }
+            return false;
         }
-    }
-
-    @Override
-    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if (focused && mAutoShowKeyboard) {
-            showKeyboard();
-        }
+        return super.onPreDraw();
     }
 
     /**
-     * Explicitly brings up the soft keyboard if necessary.
+     * Forwards the onKeyPreIme call to the view's activity.
      */
-    private void showKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager)getContext().getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        inputManager.showSoftInput(this, 0);
-        mAutoShowKeyboard = false;
-    }
-
-    public void hideKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager)getContext().getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getWindowToken(), 0);
+    @Override
+    public boolean onKeyPreIme(int keyCode, KeyEvent event) {
+        if (((ContactsListActivity)getContext()).onKeyPreIme(keyCode, event)) {
+            return true;
+        }
+        return super.onKeyPreIme(keyCode, event);
     }
 }

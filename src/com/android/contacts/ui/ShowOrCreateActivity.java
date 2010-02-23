@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 import com.android.contacts.util.Constants;
@@ -244,6 +245,16 @@ public final class ShowOrCreateActivity extends Activity implements
                 mParent.startActivity(mIntent);
             }
             mParent.finish();
+        }
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
         }
     }
 }

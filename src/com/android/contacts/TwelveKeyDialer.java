@@ -16,6 +16,10 @@
 
 package com.android.contacts;
 
+import com.android.internal.telephony.ITelephony;
+import com.android.phone.CallLogAsync;
+import com.android.phone.HapticFeedback;
+
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -29,22 +33,19 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.provider.Contacts.Intents.Insert;
+import android.provider.Settings;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.Contacts.PhonesColumns;
-import android.provider.Settings;
+import android.provider.Contacts.Intents.Insert;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
@@ -64,13 +65,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.internal.telephony.ITelephony;
-import com.android.phone.CallLogAsync;
-import com.android.phone.HapticFeedback;
-
 /**
  * Dialer activity that displays the typical twelve key interface.
  */
+@SuppressWarnings("deprecation")
 public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher {
@@ -1234,5 +1232,15 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                         }
                     });
         mCallLog.getLastOutgoingCall(lastCallArgs);
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
+        }
     }
 }

@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.GoogleSource;
@@ -1052,6 +1053,16 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
             // Stop the service that was protecting us
             context.stopService(new Intent(context, EmptyService.class));
+        }
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
         }
     }
 }

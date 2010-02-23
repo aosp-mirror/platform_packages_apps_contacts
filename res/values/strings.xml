@@ -1326,6 +1326,7 @@
     <!-- Gray hint displayed in the search field in Contacts when empty -->
     <string name="search_bar_hint">Search contacts</string>
     
-    <!-- Hint displayed underneath the search button in Contacts-->
-    <string name="search_more_hint">Search to find more</string>
+    <!-- Button displayed underneath the list of filtered visible contacts -->
+    <string name="search_for_all_contacts">Search for all contacts</string>
+
 </resources>

@@ -34,17 +34,4 @@
         android:gravity="center_vertical"
     />
 
-    <TextView 
-        android:id="@+id/searchForMoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textColor="#ffbfbfbf"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
-        android:text="@string/search_more_hint"
-        android:visibility="gone"
-    />
-
 </RelativeLayout>

@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
@@ -1304,5 +1305,15 @@ public final class EditContactActivity extends Activity
         long oneId = oneValues.getAsLong(RawContacts._ID);
         long twoId = twoValues.getAsLong(RawContacts._ID);
         return (int)(oneId - twoId);
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
+        }
     }
 }

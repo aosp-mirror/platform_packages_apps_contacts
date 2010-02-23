@@ -135,10 +135,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
 
-            <intent-filter>
-                <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity-alias>
 
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
@@ -249,6 +245,17 @@
             </intent-filter>
         </activity>
 
+        <!-- The contacts search/filter UI -->
+        <activity android:name="ContactsListActivity$ContactsSearchActivity"
+            android:theme="@style/ContactsSearchTheme"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustPan"
+        >
+            <intent-filter>
+                <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
+            </intent-filter>
+        </activity>
 
         <!-- Used to select display and sync groups -->
         <activity android:name=".ui.ContactsPreferencesActivity" android:label="@string/displayGroups" />
