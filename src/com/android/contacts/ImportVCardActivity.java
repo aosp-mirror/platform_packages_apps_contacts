@@ -27,15 +27,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.pim.vcard.VCardEntryCommitter;
-import android.pim.vcard.VCardInterpreter;
-import android.pim.vcard.VCardInterpreterCollection;
 import android.pim.vcard.VCardConfig;
+import android.pim.vcard.VCardEntryCommitter;
 import android.pim.vcard.VCardEntryConstructor;
 import android.pim.vcard.VCardEntryCounter;
+import android.pim.vcard.VCardInterpreter;
+import android.pim.vcard.VCardInterpreterCollection;
 import android.pim.vcard.VCardParser_V21;
 import android.pim.vcard.VCardParser_V30;
 import android.pim.vcard.VCardSourceDetector;
@@ -48,7 +50,6 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
-import android.net.Uri;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -577,6 +578,12 @@ public class ImportVCardActivity extends Activity {
                 throw new CanceledException();
             }
 
+            // e.g. secured directory may return null toward listFiles().
+            final File[] files = directory.listFiles();
+            if (files == null) {
+                Log.w(LOG_TAG, "listFiles() returned null (directory: " + directory + ")");
+                return;
+            }
             for (File file : directory.listFiles()) {
                 if (mCanceled) {
                     throw new CanceledException();
@@ -727,6 +734,7 @@ public class ImportVCardActivity extends Activity {
             startImportVCardFromSdCard();
         }
     }
+
     @Override
     protected Dialog onCreateDialog(int resId) {
         switch (resId) {
@@ -848,12 +856,12 @@ public class ImportVCardActivity extends Activity {
      * This method should be called from a thread with a looper (like Activity).
      */
     public void startImportVCardFromSdCard() {
-        File file = new File("/sdcard");
+        // TODO: should use getExternalStorageState().
+        final File file = Environment.getExternalStorageDirectory();
         if (!file.exists() || !file.isDirectory() || !file.canRead()) {
             showDialog(R.id.dialog_sdcard_not_found);
         } else {
-            File sdcardDirectory = new File("/sdcard");
-            mVCardScanThread = new VCardScanThread(sdcardDirectory);
+            mVCardScanThread = new VCardScanThread(file);
             showDialog(R.id.dialog_searching_vcard);
         }
     }
