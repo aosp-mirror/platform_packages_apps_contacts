@@ -162,35 +162,23 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         mSortOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
 
         View preferenceLayout = mSortOrderView.findViewById(R.id.preference);
-        preferenceLayout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                showDialog(DIALOG_SORT_ORDER);
-            }
-        });
 
         TextView label = (TextView)preferenceLayout.findViewById(R.id.label);
         label.setText(getString(R.string.display_options_sort_list_by));
 
         mSortOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
-        mList.addHeaderView(mSortOrderView, null, false);
+        mList.addHeaderView(mSortOrderView, null, true);
     }
 
     private void addDisplayOrderPreferenceView(LayoutInflater inflater) {
         mDisplayOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
         View preferenceLayout = mDisplayOrderView.findViewById(R.id.preference);
-        preferenceLayout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                showDialog(DIALOG_DISPLAY_ORDER);
-            }
-        });
 
         TextView label = (TextView)preferenceLayout.findViewById(R.id.label);
         label.setText(getString(R.string.display_options_view_names_as));
 
         mDisplayOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
-        mList.addHeaderView(mDisplayOrderView, null, false);
+        mList.addHeaderView(mDisplayOrderView, null, true);
     }
 
     private void addDivider(LayoutInflater inflater) {
@@ -295,7 +283,8 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
                 break;
             case DIALOG_DISPLAY_ORDER:
                 setCheckedItem(dialog,
-                        mSortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY ? 0 : 1);
+                        mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY
+                                ? 0 : 1);
                 break;
         }
     }
@@ -814,11 +803,20 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
      * are usually the global modifier checkboxes.
      */
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (view.getId()) {
-            case R.id.header_phones: {
-                mDisplayPhones.toggle();
-                break;
-            }
+        Log.d(TAG, "OnItemClick, position=" + position + ", id=" + id);
+        if (view == mHeaderPhones) {
+            mDisplayPhones.toggle();
+            return;
+        }
+        if (view == mDisplayOrderView) {
+            Log.d(TAG, "Showing Display Order dialog");
+            showDialog(DIALOG_DISPLAY_ORDER);
+            return;
+        }
+        if (view == mSortOrderView) {
+            Log.d(TAG, "Showing Sort Order dialog");
+            showDialog(DIALOG_SORT_ORDER);
+            return;
         }
     }
 
