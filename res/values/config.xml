@@ -34,6 +34,9 @@
     <!-- Flag indicating whether Contacts app is allowed to export contacts to SDCard -->
     <bool name="config_allow_export_to_sdcard">true</bool>
 
+    <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
+    <bool name="config_allow_share_visible_contacts">true</bool>
+
     <!-- If true, enable vibration (haptic feedback) for dialer key presses.
          The pattern is set on a per-platform basis using config_virtualKeyVibePattern.
          TODO: If enough users are annoyed by this, we might eventually
