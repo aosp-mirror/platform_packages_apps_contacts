@@ -242,11 +242,6 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
                         dialog.dismiss();
                     }
                 })
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        setSortOrder(dialog);
-                    }
-                })
             .setNegativeButton(android.R.string.cancel, null)
             .create();
     }
@@ -264,11 +259,6 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
                     public void onClick(DialogInterface dialog, int whichButton) {
                         setDisplayOrder(dialog);
                         dialog.dismiss();
-                    }
-                })
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        setDisplayOrder(dialog);
                     }
                 })
             .setNegativeButton(android.R.string.cancel, null)
