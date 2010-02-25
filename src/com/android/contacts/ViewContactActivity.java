@@ -128,6 +128,7 @@ public class ViewContactActivity extends Activity
     /* package */ ArrayList<ViewEntry> mEmailEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mPostalEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
+    /* package */ ArrayList<ViewEntry> mNicknameEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOrganizationEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     /* package */ ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
@@ -231,6 +232,7 @@ public class ViewContactActivity extends Activity
         mSections.add(mEmailEntries);
         mSections.add(mImEntries);
         mSections.add(mPostalEntries);
+        mSections.add(mNicknameEntries);
         mSections.add(mOrganizationEntries);
         mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
@@ -894,11 +896,15 @@ public class ViewContactActivity extends Activity
                             entry.applyStatus(status, false);
                         }
                         mImEntries.add(entry);
-                    } else if ((Organization.CONTENT_ITEM_TYPE.equals(mimeType)
-                            || Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) && hasData) {
-                        // Build organization and note entries
+                    } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType) &&
+                            (hasData || !TextUtils.isEmpty(entry.label))) {
+                        // Build organization entries
                         entry.uri = null;
                         mOrganizationEntries.add(entry);
+                    } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build nickname entries
+                        entry.uri = null;
+                        mNicknameEntries.add(entry);
                     } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build note entries
                         entry.uri = null;
