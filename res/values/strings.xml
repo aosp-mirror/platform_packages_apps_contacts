@@ -1100,4 +1100,10 @@
     <!-- Button displayed underneath the list of filtered visible contacts -->
     <string name="search_for_all_contacts">Search for all contacts</string>
 
+    <!-- Data type: organization -->
+    <string name="organization">Company</string>
+
+    <!-- Data type: nickname -->
+    <string name="nickname">Nickname</string>
+
 </resources>

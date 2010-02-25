@@ -44,6 +44,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -71,7 +72,10 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.SearchSnippetColumns;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
@@ -295,8 +299,24 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Contacts.CONTACT_PRESENCE,          // 6
         Contacts.PHOTO_ID,                  // 7
         Contacts.LOOKUP_KEY,                // 8
-        // email lookup doesn't included HAS_PHONE_NUMBER OR LOOKUP_KEY in projection
+        // email lookup doesn't included HAS_PHONE_NUMBER in projection
     };
+
+    static final String[] CONTACTS_SUMMARY_FILTER_PROJECTION = new String[] {
+        Contacts._ID,                       // 0
+        Contacts.DISPLAY_NAME_PRIMARY,      // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
+        Contacts.SORT_KEY_PRIMARY,          // 3
+        Contacts.STARRED,                   // 4
+        Contacts.TIMES_CONTACTED,           // 5
+        Contacts.CONTACT_PRESENCE,          // 6
+        Contacts.PHOTO_ID,                  // 7
+        Contacts.LOOKUP_KEY,                // 8
+        Contacts.HAS_PHONE_NUMBER,          // 9
+        SearchSnippetColumns.SNIPPET_MIMETYPE, // 10
+        SearchSnippetColumns.SNIPPET_DATA,     // 11
+    };
+
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
         People._ID,                         // 0
         People.DISPLAY_NAME,                // 1
@@ -316,6 +336,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
     static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
     static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 9;
+    static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 10;
+    static final int SUMMARY_SNIPPET_DATA_COLUMN_INDEX = 11;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -407,6 +429,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private boolean mSearchMode;
     private boolean mShowNumberOfContacts;
+
+    private boolean mShowSearchSnippets;
 
     private String mInitialFilter;
 
@@ -526,6 +550,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // context for the search queries.
         if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             mSearchMode = true;
+            mShowSearchSnippets = true;
             Bundle extras = intent.getExtras();
             if (extras != null) {
                 mInitialFilter = extras.getString(UI.FILTER_TEXT_EXTRA_KEY);
@@ -656,6 +681,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             } else {
                 // Otherwise handle the more normal search case
                 mMode = MODE_QUERY;
+                mShowSearchSnippets = true;
                 mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
             }
         } else if (ACTION_SEARCH_FOR_SHORTCUT.equals(action)) {
@@ -1980,14 +2006,18 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             case MODE_STREQUENT:
             case MODE_FREQUENT:
             case MODE_STARRED:
-            case MODE_QUERY:
-            case MODE_QUERY_PICK:
             case MODE_DEFAULT:
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_GROUP:
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT: {
-                return CONTACTS_SUMMARY_PROJECTION;
+                return mSearchMode
+                        ? CONTACTS_SUMMARY_FILTER_PROJECTION
+                        : CONTACTS_SUMMARY_PROJECTION;
+            }
+            case MODE_QUERY:
+            case MODE_QUERY_PICK: {
+                return CONTACTS_SUMMARY_FILTER_PROJECTION;
             }
             case MODE_LEGACY_PICK_PERSON:
             case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
@@ -2065,11 +2095,17 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     private Uri getContactFilterUri(String filter) {
+        Uri baseUri;
         if (!TextUtils.isEmpty(filter)) {
-            return buildSectionIndexerUri(
-                    Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter)));
+            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter));
         } else {
-            return CONTACTS_CONTENT_URI_WITH_LETTER_COUNTS;
+            baseUri = Contacts.CONTENT_URI;
+        }
+
+        if (mAdapter.getDisplaySectionHeadersEnabled()) {
+            return buildSectionIndexerUri(baseUri);
+        } else {
+            return baseUri;
         }
     }
 
@@ -2443,7 +2479,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     cursor = activity.getShowAllContactsLabelCursor(CONTACTS_SUMMARY_PROJECTION);
                 }
 
-//                activity.setTextFilter(null);
                 activity.mAdapter.changeCursor(cursor);
 
                 // Now that the cursor is populated again, it's possible to restore the list state
@@ -2467,6 +2502,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
         public TextView dataView;
+        public TextView snippetLabelView;
+        public TextView snippetDataView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
         public QuickContactBadge photoView;
@@ -2531,7 +2568,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
                 mDisplayPhotos = true;
-                setViewResource(R.layout.contacts_list_item_photo);
+                if (mShowSearchSnippets) {
+                    setViewResource(R.layout.contacts_list_item_photo_and_snippet);
+                } else {
+                    setViewResource(R.layout.contacts_list_item_photo);
+                }
             }
         }
 
@@ -2757,6 +2798,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
             cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             cache.textWithHighlighting = mHighlightingAnimation.createTextWithHighlighting();
+            cache.snippetLabelView = (TextView)view.findViewById(R.id.snippet_label);
+            cache.snippetDataView = (TextView)view.findViewById(R.id.snippet_data);
+
             view.setTag(cache);
             return view;
         }
@@ -2874,6 +2918,29 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 }
             } else {
                 presenceView.setVisibility(View.GONE);
+            }
+
+            if (mShowSearchSnippets) {
+                boolean showSnippet = false;
+                String snippetMimeType = cursor.getString(SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX);
+                String snippetValue = cursor.getString(SUMMARY_SNIPPET_DATA_COLUMN_INDEX);
+                if (!TextUtils.isEmpty(snippetValue)) {
+                    if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                        cache.snippetLabelView.setText(R.string.email);
+                        cache.snippetDataView.setText(snippetValue);
+                        showSnippet = true;
+                    } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                        cache.snippetLabelView.setText(R.string.organization);
+                        cache.snippetDataView.setText(snippetValue);
+                        showSnippet = true;
+                    } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                        cache.snippetLabelView.setText(R.string.nickname);
+                        cache.snippetDataView.setText(snippetValue);
+                        showSnippet = true;
+                    }
+                }
+                cache.snippetLabelView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
+                cache.snippetDataView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
             }
 
             if (!displayAdditionalData) {
