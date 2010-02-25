@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents.UI;
 
@@ -54,10 +55,15 @@ public class ContactsSearchManager {
         Intent intent = new Intent();
         intent.setData(ContactsContract.Contacts.CONTENT_URI);
         intent.setAction(UI.FILTER_CONTACTS_ACTION);
+
+        Intent originalIntent = context.getIntent();
+        Bundle originalExtras = originalIntent.getExtras();
+        if (originalExtras != null) {
+            intent.putExtras(originalExtras);
+        }
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, initialQuery);
-        intent.putExtra(ORIGINAL_ACTION_EXTRA_KEY, context.getIntent().getAction());
-        intent.putExtra(ORIGINAL_COMPONENT_EXTRA_KEY,
-                context.getIntent().getComponent().getClassName());
+        intent.putExtra(ORIGINAL_ACTION_EXTRA_KEY, originalIntent.getAction());
+        intent.putExtra(ORIGINAL_COMPONENT_EXTRA_KEY, originalIntent.getComponent().getClassName());
         return intent;
     }
 }
