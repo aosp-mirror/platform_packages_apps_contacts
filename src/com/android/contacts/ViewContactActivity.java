@@ -908,7 +908,7 @@ public class ViewContactActivity extends Activity
                     } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build note entries
                         entry.uri = null;
-                        entry.maxLines = 10;
+                        entry.maxLines = 100;
                         mOtherEntries.add(entry);
                     } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build note entries
