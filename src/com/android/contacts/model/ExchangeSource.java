@@ -110,7 +110,7 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateNickname(ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 1;
+            kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
@@ -246,8 +246,7 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateOrganization(ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 1;
-
+            kind.isList = false;
             kind.typeColumn = Organization.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildOrgType(Organization.TYPE_WORK).setSpecificMax(1));
@@ -284,8 +283,6 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateNote(ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 1;
-
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
         }
@@ -298,7 +295,7 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateWebsite(ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 1;
+            kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));

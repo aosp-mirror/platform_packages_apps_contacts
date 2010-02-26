@@ -141,7 +141,7 @@ public abstract class ContactsSource {
     abstract public int getHeaderColor(Context context);
 
     abstract public int getSideBarColor(Context context);
-    
+
     /**
      * {@link Comparator} to sort by {@link DataKind#weight}.
      */
@@ -196,6 +196,12 @@ public abstract class ContactsSource {
         public boolean secondary;
         public boolean editable;
 
+        /**
+         * If this is true (default), the user can add and remove values.
+         * If false, the editor will always show a single field (which might be empty).
+         */
+        public boolean isList;
+
         public StringInflater actionHeader;
         public StringInflater actionAltHeader;
         public StringInflater actionBody;
@@ -203,6 +209,11 @@ public abstract class ContactsSource {
         public boolean actionBodySocial = false;
 
         public String typeColumn;
+
+        /**
+         * Maximum number of values allowed in the list. -1 represents infinity.
+         * If {@link DataKind#isList} is false, this value is ignored.
+         */
         public int typeOverallMax;
 
         public List<EditType> typeList;
@@ -219,6 +230,7 @@ public abstract class ContactsSource {
             this.iconRes = iconRes;
             this.weight = weight;
             this.editable = editable;
+            this.isList = true;
             this.typeOverallMax = -1;
         }
     }

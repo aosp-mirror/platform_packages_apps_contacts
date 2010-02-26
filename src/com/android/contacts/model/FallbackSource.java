@@ -16,6 +16,9 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.R;
+import com.google.android.collect.Lists;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
@@ -32,12 +35,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
-
-import com.google.android.collect.Lists;
-
-import com.android.contacts.R;
 
 import java.util.Locale;
 
@@ -159,6 +157,7 @@ public class FallbackSource extends ContactsSource {
             kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
                     R.string.nicknameLabelsGroup, -1, 115, true));
             kind.secondary = true;
+            kind.isList = false;
             kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
             kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
@@ -387,6 +386,7 @@ public class FallbackSource extends ContactsSource {
         if (kind == null) {
             kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
                     R.string.label_notes, R.drawable.sym_note, 110, true));
+            kind.isList = false;
             kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.label_notes);
             kind.actionBody = new SimpleInflater(Note.NOTE);

@@ -32,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
     private ViewGroup mEditors;
     private View mAdd;
+    private ImageView mAddPlusButton;
     private TextView mTitle;
 
     private DataKind mKind;
@@ -77,6 +79,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         mAdd = findViewById(R.id.kind_header);
         mAdd.setOnClickListener(this);
 
+        mAddPlusButton = (ImageView) findViewById(R.id.kind_plus);
+
         mTitle = (TextView)findViewById(R.id.kind_title);
     }
 
@@ -102,6 +106,9 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // TODO: handle resources from remote packages
         mTitle.setText(kind.titleRes);
 
+        // Only show the add button if this is a list
+        mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.GONE);
+
         this.rebuildFromState();
         this.updateAddEnabled();
         this.updateEditorsVisible();
@@ -114,17 +121,44 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // Remove any existing editors
         mEditors.removeAllViews();
 
-        // Build individual editors for each entry
-        if (!mState.hasMimeEntries(mKind.mimeType)) return;
-        for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
-            // Skip entries that aren't visible
-            if (!entry.isVisible()) continue;
+        // Check if we are displaying anything here
+        boolean hasEntries = mState.hasMimeEntries(mKind.mimeType);
 
-            final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
-                    R.layout.item_generic_editor, mEditors, false);
-            editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
-            editor.setEditorListener(this);
-            mEditors.addView(editor);
+        if (!mKind.isList) {
+            if (hasEntries) {
+                // we might have no visible entries. check that, too
+                for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
+                    if (!entry.isVisible()) {
+                        hasEntries = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!hasEntries) {
+                EntityModifier.insertChild(mState, mKind);
+                hasEntries = true;
+            }
+        }
+
+        if (hasEntries) {
+            int entryIndex = 0;
+            for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
+                // Skip entries that aren't visible
+                if (!entry.isVisible()) continue;
+
+                final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
+                        R.layout.item_generic_editor, mEditors, false);
+                editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
+                // older versions of android had lists where we now have a single value
+                // in these cases we should show the remove button for all but the first value
+                // to ensure that nothing is removed
+                editor.mDelete.setVisibility((mKind.isList || (entryIndex != 0))
+                        ? View.VISIBLE : View.GONE);
+                editor.setEditorListener(this);
+                mEditors.addView(editor);
+                entryIndex++;
+            }
         }
     }
 
@@ -136,12 +170,17 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
     protected void updateAddEnabled() {
         // Set enabled state on the "add" view
         final boolean canInsert = EntityModifier.canInsert(mState, mKind);
-	final boolean isEnabled = !mReadOnly && canInsert;
+        final boolean isEnabled = !mReadOnly && canInsert;
         mAdd.setEnabled(isEnabled);
     }
 
     /** {@inheritDoc} */
     public void onClick(View v) {
+        // if this is not a list the plus button is not visible but the user might have clicked
+        // the text.
+        if (!mKind.isList)
+            return;
+
         // Insert a new child and rebuild
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
         this.rebuildFromState();
