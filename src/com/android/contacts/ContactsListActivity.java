@@ -1666,9 +1666,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 finish();
             } else if (mMode == MODE_PICK_PHONE || mMode == MODE_QUERY_PICK_PHONE) {
                 Cursor c = (Cursor) mAdapter.getItem(position);
-                long contactId = c.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
-                returnPickerResult(c, c.getString(PHONE_DISPLAY_NAME_COLUMN_INDEX),
-                        ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId));
+                returnPickerResult(c, c.getString(PHONE_DISPLAY_NAME_COLUMN_INDEX), uri);
             } else if ((mMode & MODE_MASK_PICKER) != 0) {
                 Cursor c = (Cursor) mAdapter.getItem(position);
                 returnPickerResult(c, c.getString(getSummaryDisplayNameColumnIndex()), uri);
@@ -1690,10 +1688,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     /**
-     * @param contactUri In most cases, this should be a lookup {@link Uri}, possibly
+     * @param selectedUri In most cases, this should be a lookup {@link Uri}, possibly
      *            generated through {@link Contacts#getLookupUri(long, String)}.
      */
-    private void returnPickerResult(Cursor c, String name, Uri contactUri) {
+    private void returnPickerResult(Cursor c, String name, Uri selectedUri) {
         final Intent intent = new Intent();
 
         if (mShortcutAction != null) {
@@ -1704,13 +1702,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
-                shortcutIntent.setData(contactUri);
+                shortcutIntent.setData(selectedUri);
                 shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
                         ContactsContract.QuickContact.MODE_LARGE);
                 shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
                         (String[]) null);
 
-                final Bitmap icon = framePhoto(loadContactPhoto(contactUri, null));
+                final Bitmap icon = framePhoto(loadContactPhoto(selectedUri, null));
                 if (icon != null) {
                     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, scaleToAppIconSize(icon));
                 } else {
@@ -1737,7 +1735,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 shortcutIntent = new Intent(mShortcutAction, phoneUri);
 
                 intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
-                        generatePhoneNumberIcon(contactUri, type, resid));
+                        generatePhoneNumberIcon(selectedUri, type, resid));
             }
             shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
@@ -1745,7 +1743,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             setResult(RESULT_OK, intent);
         } else {
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-            setResult(RESULT_OK, intent.setData(contactUri));
+            setResult(RESULT_OK, intent.setData(selectedUri));
         }
         finish();
     }
@@ -2071,13 +2069,29 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return CONTACTS_SUMMARY_PROJECTION;
     }
 
-    private Bitmap loadContactPhoto(Uri lookupUri, BitmapFactory.Options options) {
+    private Bitmap loadContactPhoto(Uri selectedUri, BitmapFactory.Options options) {
+        Uri contactUri = null;
+        if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(selectedUri))) {
+            // TODO we should have a "photo" directory under the lookup URI itself
+            contactUri = Contacts.lookupContact(getContentResolver(), selectedUri);
+        } else {
+
+            Cursor cursor = getContentResolver().query(selectedUri,
+                    new String[] { Data.CONTACT_ID }, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    final long contactId = cursor.getLong(0);
+                    contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                }
+            } finally {
+                if (cursor != null) cursor.close();
+            }
+        }
+
         Cursor cursor = null;
         Bitmap bm = null;
 
         try {
-            // TODO we should have a "photo" directory under the lookup URI itself
-            Uri contactUri = Contacts.lookupContact(getContentResolver(), lookupUri);
             Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
             cursor = getContentResolver().query(photoUri, new String[] {Photo.PHOTO},
                     null, null, null);
