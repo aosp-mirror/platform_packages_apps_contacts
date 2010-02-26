@@ -102,7 +102,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
             />
 
-            <TextView android:id="@+id/snippet_label"
+            <TextView android:id="@+id/snippet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name"
@@ -113,22 +113,9 @@
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-            />
-
-            <TextView android:id="@+id/snippet_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/snippet_label"
-                android:layout_alignBaseline="@id/snippet_label"
-                android:layout_marginLeft="5dip"
-                android:layout_alignWithParentIfMissing="true"
-
-                android:singleLine="true"
-                android:ellipsize="marquee"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold"
+                
             />
-
         </RelativeLayout>
     </RelativeLayout>
 

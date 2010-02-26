@@ -319,7 +319,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Contacts.LOOKUP_KEY,                // 8
         Contacts.HAS_PHONE_NUMBER,          // 9
         SearchSnippetColumns.SNIPPET_MIMETYPE, // 10
-        SearchSnippetColumns.SNIPPET_DATA,     // 11
+        SearchSnippetColumns.SNIPPET_DATA1,     // 11
+        SearchSnippetColumns.SNIPPET_DATA4,     // 12
     };
 
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
@@ -342,7 +343,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
     static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 9;
     static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 10;
-    static final int SUMMARY_SNIPPET_DATA_COLUMN_INDEX = 11;
+    static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 11;
+    static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 12;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -2522,8 +2524,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public TextView labelView;
         public TextView dataView;
-        public TextView snippetLabelView;
-        public TextView snippetDataView;
+        public TextView snippetView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public ImageView presenceView;
         public QuickContactBadge photoView;
@@ -2819,8 +2820,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
             cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
             cache.textWithHighlighting = mHighlightingAnimation.createTextWithHighlighting();
-            cache.snippetLabelView = (TextView)view.findViewById(R.id.snippet_label);
-            cache.snippetDataView = (TextView)view.findViewById(R.id.snippet_data);
+            cache.snippetView = (TextView)view.findViewById(R.id.snippet);
 
             view.setTag(cache);
             return view;
@@ -2943,27 +2943,38 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             // TODO: make sure that when mShowSearchSnippets is true, the
             // snippet views are available
-            if (mShowSearchSnippets && cache.snippetLabelView != null) {
+            if (mShowSearchSnippets && cache.snippetView != null) {
                 boolean showSnippet = false;
                 String snippetMimeType = cursor.getString(SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX);
-                String snippetValue = cursor.getString(SUMMARY_SNIPPET_DATA_COLUMN_INDEX);
-                if (!TextUtils.isEmpty(snippetValue)) {
-                    if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                        cache.snippetLabelView.setText(R.string.email);
-                        cache.snippetDataView.setText(snippetValue);
+                if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                    String email = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
+                    if (!TextUtils.isEmpty(email)) {
+                        cache.snippetView.setText(email);
                         showSnippet = true;
-                    } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                        cache.snippetLabelView.setText(R.string.organization);
-                        cache.snippetDataView.setText(snippetValue);
+                    }
+                } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                    String company = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
+                    String title = cursor.getString(SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
+                    if (!TextUtils.isEmpty(company)) {
+                        if (!TextUtils.isEmpty(title)) {
+                            cache.snippetView.setText(company + " / " + title);
+                        } else {
+                            cache.snippetView.setText(company);
+                        }
                         showSnippet = true;
-                    } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                        cache.snippetLabelView.setText(R.string.nickname);
-                        cache.snippetDataView.setText(snippetValue);
+                    } else if (!TextUtils.isEmpty(title)) {
+                        cache.snippetView.setText(title);
+                        showSnippet = true;
+                    }
+                } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+                    String nickname = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
+                    if (!TextUtils.isEmpty(nickname)) {
+                        cache.snippetView.setText(nickname);
                         showSnippet = true;
                     }
                 }
-                cache.snippetLabelView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
-                cache.snippetDataView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
+
+                cache.snippetView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
             }
 
             if (!displayAdditionalData) {
