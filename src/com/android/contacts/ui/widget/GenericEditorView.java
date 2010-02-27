@@ -290,6 +290,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
+                    if (!mFields.hasFocus())
+                        mFields.requestFocus();
                 }
             }
         });
@@ -346,6 +348,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                     mType = selected;
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     rebuildLabel();
+                    if (!mFields.hasFocus())
+                        mFields.requestFocus();
                 }
             }
         };
