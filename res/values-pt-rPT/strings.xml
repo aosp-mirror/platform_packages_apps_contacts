@@ -13,7 +13,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefone"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
@@ -36,7 +37,6 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Telefonar a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Adicionar aos favoritos"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Remover dos favoritos"</string>
-    
     <string name="menu_editContact" msgid="3452858480713561396">"Editar contacto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ligar para contacto"</string>
@@ -46,14 +46,10 @@
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Utilizar como número predefinido"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Predefinir e-mail"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
-    
     <string name="contactsSplitMessage" msgid="5253490235863170269">"Contactos separados"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separar contacto"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Tem a certeza de que quer separar este contacto único em vários contactos: um para cada conjunto de informações de contacto que lhe foi agregado?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Associar"</string>
-    
-    
-    
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Associar contactos"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Seleccione o contacto que pretende associar a <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
@@ -71,23 +67,13 @@
     <string name="menu_doNotSave" msgid="2174577548513895144">"Reverter"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Editar contacto"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Novo contacto"</string>
-    
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonético"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notas"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Toque"</string>
-    
-    
-    
     <string name="ghostData_name" msgid="6490954238641157585">"Primeiro e último"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nome fonético"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
     <string name="ghostData_title" msgid="7662602222400641187">"Cargo"</string>
-    
-    
-    
-    
-    
-    
     <string name="invalidContactMessage" msgid="5816991830260044593">"O contacto não existe."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Criar novo contacto"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleccionar etiqueta"</string>
@@ -95,32 +81,22 @@
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"MI"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Endereço postal"</string>
-    
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organização"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"Não existem imagens disponíveis no telefone."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Ícone de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nome da etiqueta personalizada"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Opções de visualização"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Opções de visualização"</string>
-    
-    
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar as chamadas directamente para o correio de voz"</string>
-    
     <string name="default_ringtone" msgid="9099988849649827972">"Predefinido"</string>
-    
     <string name="changePicture" msgid="2943329047610967714">"Alterar ícone"</string>
     <string name="removePicture" msgid="3041230993155966350">"Remover ícone"</string>
     <string name="noContacts" msgid="8579310973261953559">"Sem contactos."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Não foram encontrados contactos correspondentes."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Sem contactos com números de telefone."</string>
-    
-    
-    
-    
     <string name="showFilterPhones" msgid="4184858075465653970">"Apenas contactos com telefones"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Apresentar apenas contactos que tenham números de telefone"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Escolher contactos a apresentar"</string>
@@ -130,29 +106,10 @@
   <plurals name="groupDescripPhones">
     <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> contactos, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> com telefone"</item>
   </plurals>
-    
-    
-    
-    
     <string name="savingContact" msgid="4075751076741924939">"A guardar contacto..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"A guardar opções de visualização..."</string>
-    
     <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Erro, impossível guardar alterações do contacto."</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="8721111084815668845">"1 contacto com número de telefone"</item>
     <item quantity="other" msgid="6133262880804110289">"<xliff:g id="COUNT">%d</xliff:g> contactos com números de telefone"</item>
@@ -168,7 +125,10 @@
     <item quantity="other" msgid="7752927996850263152">"Foram encontrados <xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
     <string name="listFoundAllContactsZero" msgid="5554368784319460828">"Contacto não encontrado"</string>
-    
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="916648718690661777">"1 contacto"</item>
+    <item quantity="other" msgid="5660384247071761844">"<xliff:g id="COUNT">%d</xliff:g> contactos"</item>
+  </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefone"</string>
@@ -193,13 +153,11 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Marcar para adicionar uma chamada"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"A carregar a partir do cartão SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contactos no cartão SIM"</string>
-    
     <string name="noContactsHelpText" msgid="6788487368878712350">"Não tem contactos para apresentar."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar um novo contacto de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Não tem contactos para apresentar (se acabou de adicionar uma conta, pode demorar alguns minutos a sincronizar os contactos)."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com os contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de visualização"</b></font>" para alterar os contactos visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar uma nova conta de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Não tem contactos para apresentar."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar um novo contacto de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Não tem contactos para apresentar (se acabou de adicionar uma conta, pode demorar alguns minutos a sincronizar os contactos)."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com os contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de visualização"</b></font>" para alterar os contactos visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar uma nova conta de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Não tem favoritos."\n\n"Para adicionar um contacto à sua lista de favoritos:"\n\n"        "<li>"Toque no separador "<b>"Contactos"</b>" "\n</li>" "\n<li>"Toque no contacto que pretende adicionar aos favoritos"\n</li>" "\n<li>"Toque na estrela junto ao nome do contacto"\n</li></string>
-    
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Todos os contactos"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Marcado com estrela"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefones"</string>
@@ -208,24 +166,10 @@
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Adicionar chamada"</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Detalhes da chamada"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Não foi possível ler os detalhes da chamada solicitada."</string>
-    
     <string name="type_incoming" msgid="6502076603836088532">"Chamada recebida"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Chamada efectuada"</string>
     <string name="type_missed" msgid="2720502601640509542">"Chamada não atendida"</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="actionIncomingCall" msgid="6028930669817038600">"Chamadas recebidas"</string>
-    
-    
     <string name="callBack" msgid="5498224409038809224">"Chamada de retorno"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ligar novamente"</string>
     <string name="returnCall" msgid="8171961914203617813">"Devolver chamada"</string>
@@ -246,13 +190,20 @@
     <string name="description_image_button_star" msgid="3365919907520767866">"estrela"</string>
     <string name="description_image_button_zero" msgid="4133108949401820710">"zero"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"libra"</string>
+    <string name="description_voicemail_button" msgid="3402506823655455591">"correio de voz"</string>
+    <string name="description_dial_button" msgid="1274091017188142646">"marcar"</string>
+    <string name="description_delete_button" msgid="6263102114033407382">"retrocesso"</string>
+    <string name="description_digits_edittext" msgid="8760207516497016437">"número a marcar"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"fotografia do contacto"</string>
+    <string name="description_minus_button" msgid="387136707700230172">"menos"</string>
+    <string name="description_plus_button" msgid="515164827856229880">"mais"</string>
     <string name="no_sdcard_title" msgid="5911758680339949273">"Nenhum cartão SD"</string>
     <string name="no_sdcard_message" msgid="6019391476490445358">"Não foi detectado nenhum cartão SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"A procurar vCard"</string>
-    
     <string name="import_from_sim" msgid="3859272228033941659">"Importar do cartão SIM"</string>
     <string name="import_from_sdcard" msgid="8550360976693202816">"Importar do cartão SD"</string>
     <string name="export_to_sdcard" msgid="2597105442616166277">"Exportar para cartão SD"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Partilhar contactos visíveis"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar um ficheiro VCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar vários ficheiros vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos os ficheiros VCard"</string>
@@ -266,40 +217,33 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"A importação de um ou vários ficheiros falhou (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Erro desconhecido"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleccionar ficheiro vCard"</string>
-    
     <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"A ler vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"A ler ficheiro(s) vCard"</string>
-    
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Falha na leitura de dados do vCard"</string>
-    
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> ficheiros"</string>
-    
-    
-    
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmar exportação"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Tem a certeza de que pretende exportar a lista de contactos para \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Confirmar partilha em massa"</string>
+    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Tem a certeza de que pretende partilhar todos os contactos visíveis?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Falha ao exportar dados de contacto"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Falha na exportação de dados de contacto."\n"Motivo da falha: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Não existe um contacto exportável"</string>
     <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"Demasiados ficheiros vCard no cartão SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Nome de ficheiro demasiado longo (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exportar dados do contacto"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exportar dados do contacto para \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Não foi possível iniciar o exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Erro ocorrido durante a exportação: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Falha na obtenção de informações da base de dados"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (754734132189369094) -->
-    <skip/>
+    <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Não existe nenhum contacto exportável. Se tiver realmente contactos no telefone, a sua exportação para fora do telefone por parte de alguns fornecedores de dados pode não ser autorizada."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"O compositor vCard não foi inicializado correctamente"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Não foi possível abrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nomes dos contactos"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Adicionar pausa de 2 seg."</string>
     <string name="add_wait" msgid="3360818652790319634">"Adicionar espera"</string>
-    
     <string name="call_disambig_title" msgid="1911302597959335178">"Ligar utilizando"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS utilizando"</string>
     <string name="make_primary" msgid="5829291915305113983">"Memorizar esta escolha"</string>
@@ -333,7 +277,6 @@
     <string name="display_all_contacts" msgid="6846131371214707956">"Todos os contactos"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Ao remover \"<xliff:g id="GROUP">%s</xliff:g>\" da sincronização, removerá também quaisquer contactos não agrupados."</string>
     <string name="account_phone" msgid="4025734638492419713">"Apenas telefone (não sincronizado)"</string>
-    
     <string name="call_custom" msgid="7756571794763171802">"Ligar para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Ligar para residência"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Ligar para telemóvel"</string>
@@ -341,13 +284,15 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Ligar para fax do emprego"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Ligar para o fax da residência"</string>
     <string name="call_pager" msgid="9003902812293983281">"Ligar para pager"</string>
-    <string name="call_other" msgid="5605584621798108205">"Ligar para outros"</string>
+    <!-- no translation found for call_other (8563753966926932052) -->
+    <skip />
     <string name="call_callback" msgid="1910165691349426858">"Ligar para rechamada"</string>
     <string name="call_car" msgid="3280537320306436445">"Ligar para automóvel"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Ligar para telefone principal da empresa"</string>
     <string name="call_isdn" msgid="1541590690193403411">"Ligar para RDIS"</string>
     <string name="call_main" msgid="6082900571803441339">"Ligar para telefone principal"</string>
-    <string name="call_other_fax" msgid="7777261153532968503">"Ligar para outro fax"</string>
+    <!-- no translation found for call_other_fax (5745314124619636674) -->
+    <skip />
     <string name="call_radio" msgid="8296755876398357063">"Ligar para rádio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Ligar para telex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Ligar para telefone TTY/TDD"</string>
@@ -362,13 +307,15 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"Enviar SMS para fax do emprego"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Enviar SMS para fax da residência"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Enviar SMS para pager"</string>
-    <string name="sms_other" msgid="5131921487474531617">"Enviar SMS para outros"</string>
+    <!-- no translation found for sms_other (806127844607642331) -->
+    <skip />
     <string name="sms_callback" msgid="5004824430094288752">"Enviar SMS de resposta"</string>
     <string name="sms_car" msgid="7444227058437359641">"Enviar SMS para automóvel"</string>
     <string name="sms_company_main" msgid="118970873419678087">"Enviar SMS para telefone principal da empresa"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"SMS para RDIS"</string>
     <string name="sms_main" msgid="8621625784504541679">"Enviar SMS para telefone principal"</string>
-    <string name="sms_other_fax" msgid="3930666870074006114">"Enviar SMS para outro fax"</string>
+    <!-- no translation found for sms_other_fax (3888842199855843152) -->
+    <skip />
     <string name="sms_radio" msgid="3329166673433967820">"Enviar SMS para rádio"</string>
     <string name="sms_telex" msgid="9034802430065267848">"Enviar SMS para telex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar SMS para telefone TTY/TDD"</string>
@@ -379,12 +326,14 @@
     <string name="email_home" msgid="8573740658148184279">"Enviar e-mail para residência"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar e-mail para telemóvel"</string>
     <string name="email_work" msgid="2807430017302722689">"Enviar e-mail para emprego"</string>
-    <string name="email_other" msgid="8093933498541795832">"Enviar e-mail para outro"</string>
+    <!-- no translation found for email_other (3454004077967657109) -->
+    <skip />
     <string name="email_custom" msgid="7548003991586214105">"Enviar e-mail a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver endereço da residência"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver endereço do emprego"</string>
-    <string name="map_other" msgid="5560707927535653892">"Ver outros endereços"</string>
+    <!-- no translation found for map_other (3817820803587012641) -->
+    <skip />
     <string name="map_custom" msgid="6184363799976265281">"Ver endereço de <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Chat utilizando AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Chat utilizando Windows Live"</string>
@@ -410,12 +359,18 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Fonética do segundo nome"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonética do primeiro apelido"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonética do segundo apelido"</string>
-    
-    
-    
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="from_account_format" msgid="687567483928582084">"de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizar esta fotografia"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Não é possível editar as informações de contacto do <xliff:g id="SOURCE">%1$s</xliff:g> neste dispositivo."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Não há informações adicionais para este contacto"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ordenar lista por"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome próprio"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Apelido"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizar nomes de contactos como"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nome próprio em primeiro lugar"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Apelido em primeiro lugar"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"Pesquisar contactos"</string>
+    <!-- no translation found for search_for_all_contacts (6644963335787294131) -->
+    <skip />
 </resources>
