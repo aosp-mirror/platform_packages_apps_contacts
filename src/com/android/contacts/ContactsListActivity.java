@@ -3246,6 +3246,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             if (mSuggestionsCursorCount != 0 && pos <= mSuggestionsCursorCount) {
                 mSuggestionsCursor.moveToPosition(getRealPosition(pos));
                 return mSuggestionsCursor;
+            } else if (isSearchAllContactsItemPosition(pos)){
+                return null;
             } else {
                 return super.getItem(getRealPosition(pos));
             }
@@ -3259,6 +3261,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 } else {
                     return 0;
                 }
+            } else if (isSearchAllContactsItemPosition(pos)) {
+                return 0;
             }
             return super.getItemId(getRealPosition(pos));
         }
