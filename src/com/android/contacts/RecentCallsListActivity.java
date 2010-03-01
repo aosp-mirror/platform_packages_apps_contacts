@@ -19,13 +19,17 @@ package com.android.contacts;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.AsyncQueryHandler;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
@@ -122,6 +126,8 @@ public class RecentCallsListActivity extends ListActivity
 
     private static final int QUERY_TOKEN = 53;
     private static final int UPDATE_TOKEN = 54;
+
+    private static final int DIALOG_CONFIRM_DELETE_ALL = 1;
 
     RecentCallsAdapter mAdapter;
     private QueryHandler mQueryHandler;
@@ -903,13 +909,34 @@ public class RecentCallsListActivity extends ListActivity
     }
 
     @Override
+    protected Dialog onCreateDialog(int id, Bundle args) {
+        switch (id) {
+            case DIALOG_CONFIRM_DELETE_ALL:
+                return new AlertDialog.Builder(this)
+                    .setTitle(R.string.clearCallLogConfirmation_title)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage(R.string.clearCallLogConfirmation)
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            getContentResolver().delete(Calls.CONTENT_URI, null, null);
+                            // TODO The change notification should do this automatically, but it
+                            // isn't working right now. Remove this when the change notification
+                            // is working properly.
+                            startQuery();
+                        }
+                    })
+                    .setCancelable(false)
+                    .create();
+        }
+        return null;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_DELETE_ALL: {
-                getContentResolver().delete(Calls.CONTENT_URI, null, null);
-                //TODO The change notification should do this automatically, but it isn't working
-                // right now. Remove this when the change notification is working properly.
-                startQuery();
+                showDialog(DIALOG_CONFIRM_DELETE_ALL);
                 return true;
             }
 

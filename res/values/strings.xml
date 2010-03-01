@@ -374,6 +374,12 @@
     <!-- Text displayed when the call log is empty -->
     <string name="recentCalls_empty">Call log is empty.</string>
 
+    <!-- Title of the confirmation dialog for clearing the call log  -->
+    <string name="clearCallLogConfirmation_title">Clear call log</string>
+
+    <!-- Confirmation dialog for clearing the call log  -->
+    <string name="clearCallLogConfirmation">Are you sure you want to clear the call log?</string>
+
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
 
