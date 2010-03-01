@@ -401,8 +401,9 @@
         </activity>
 
         <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
-        <meta-data android:name="android.app.default_searchable"
-                   android:value=".ContactsListActivity" />
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".ContactsListActivity" />
 
 
         <!-- LIVE FOLDERS -->
