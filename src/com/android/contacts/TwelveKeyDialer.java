@@ -397,6 +397,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
+
         // Query the last dialed number. Do it first because hitting
         // the DB is 'slow'. This call is asynchronous.
         queryLastOutgoingCall();
@@ -767,21 +768,23 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         final String number = mDigits.getText().toString();
         boolean sendEmptyFlash = false;
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED);
+
         if (isDigitsEmpty()) { // There is no number entered.
             if (phoneIsCdma() && phoneIsOffhook()) {
-                // We only want to send this empty flash extra if we're CDMA and the
-                // phone is offhook (don't want to send if ringing or dialing)
+                // On CDMA phones, if we're already on a call, pressing
+                // the Dial button without entering any digits means "send
+                // an empty flash."
                 intent.setData(Uri.fromParts("tel", EMPTY_NUMBER, null));
                 intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
                 sendEmptyFlash = true;
-            } else if (!phoneIsOffhook() && !TextUtils.isEmpty(mLastNumberDialed)) {
+            } else if (!TextUtils.isEmpty(mLastNumberDialed)) {
+                // Otherwise, pressing the Dial button without entering
+                // any digits means "recall the last number dialed".
                 mDigits.setText(mLastNumberDialed);
                 return;
             } else {
-                // TODO: Is this dead code? Hit only if phoneIsOffHook
-                // and dial button is pressed. Can this happen? How
-                // does this compare to the finish() called in
-                // onKeyUp? Should this play tone be moved there?
+                // Rare case: there's no "last number dialed".  There's
+                // nothing useful for the Dial button to do in this case.
                 playTone(ToneGenerator.TONE_PROP_NACK);
                 return;
             }
@@ -792,6 +795,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();
+
         // Don't finish TwelveKeyDialer yet if we're sending a blank flash for CDMA. CDMA
         // networks use Flash messages when special processing needs to be done, mainly for
         // 3-way or call waiting scenarios. Presumably, here we're in a special 3-way scenario
@@ -1143,13 +1147,15 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         final boolean digitsNotEmpty = !isDigitsEmpty();
 
         if (mDialButton != null) {
-            // If we're already on a CDMA call, then we want to enable
-            // the Call button so we can send a flash.
-            if (phoneIsOffhook()) {
-                mDialButton.setEnabled(phoneIsCdma());
+            // On CDMA phones, if we're already on a call, we *always*
+            // enable the Dial button (since you can press it without
+            // entering any digits to send an empty flash.)
+            if (phoneIsCdma() && phoneIsOffhook()) {
+                mDialButton.setEnabled(true);
             } else {
-                // Not in a call, enable the button if digits have
-                // been entered or if there is a last dialed number
+                // Common case: GSM, or CDMA but not on a call.
+                // Enable the Dial button if some digits have
+                // been entered, or if there is a last dialed number
                 // that could be redialed.
                 mDialButton.setEnabled(digitsNotEmpty ||
                                        !TextUtils.isEmpty(mLastNumberDialed));
