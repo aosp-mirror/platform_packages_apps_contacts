@@ -2523,7 +2523,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     activity.mListState = null;
                 }
             } else {
-                cursor.close();
+                if (cursor != null) {
+                    cursor.close();
+                }
             }
         }
     }
