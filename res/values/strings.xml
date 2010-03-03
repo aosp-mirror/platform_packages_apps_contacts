@@ -508,8 +508,8 @@
     <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
     <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
 
-    <!-- A list separator for the Favorites tab indicating that items below it are frequently called contacts rather than starred contacts -->
-    <string name="favoritesFrquentSeparator">Frequently called</string>
+    <!-- A list separator for the Favorites tab indicating that items below it are frequently contacted contacts rather than starred contacts -->
+    <string name="favoritesFrquentSeparator">Frequently contacted</string>
 
     <!-- Dialog title when prompting before creating a contact -->
     <string name="add_contact_dlg_title">Add contact</string>
