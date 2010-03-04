@@ -58,8 +58,10 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
@@ -81,6 +83,8 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,6 +95,7 @@ import java.util.Comparator;
  */
 public final class EditContactActivity extends Activity
         implements View.OnClickListener, Comparator<EntityDelta> {
+
     private static final String TAG = "EditContactActivity";
 
     /** The launch code when picking a photo and the raw data is returned */
@@ -98,6 +103,9 @@ public final class EditContactActivity extends Activity
 
     /** The launch code when a contact to join with is returned */
     private static final int REQUEST_JOIN_CONTACT = 3022;
+
+    /** The launch code when taking a picture */
+    private static final int CAMERA_WITH_DATA = 3023;
 
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
@@ -116,6 +124,10 @@ public final class EditContactActivity extends Activity
     private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
     private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
     private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
+
+    private static final int ICON_SIZE = 96;
+
+    private static final String TEMP_FILENAME = "camera-t.jpg";
 
     String mQuerySelection;
 
@@ -541,6 +553,11 @@ public final class EditContactActivity extends Activity
                 break;
             }
 
+            case CAMERA_WITH_DATA: {
+                doCropPhoto();
+                break;
+            }
+
             case REQUEST_JOIN_CONTACT: {
                 if (resultCode == RESULT_OK && data != null) {
                     final long contactId = ContentUris.parseId(data.getData());
@@ -959,15 +976,135 @@ public final class EditContactActivity extends Activity
     boolean doPickPhotoAction(long rawContactId) {
         if (!hasValidState()) return false;
 
+        mRawContactIdRequestingPhoto = rawContactId;
+
+        showAndManageDialog(createPickPhotoDialog());
+
+        return true;
+    }
+
+    /**
+     * Creates a dialog offering two options: take a photo or pick a photo from the gallery.
+     */
+    private Dialog createPickPhotoDialog() {
+        Context context = EditContactActivity.this;
+
+        // Wrap our context to inflate list items using correct theme
+        final Context dialogContext = new ContextThemeWrapper(context,
+                android.R.style.Theme_Light);
+
+        String[] choices;
+        choices = new String[2];
+        choices[0] = getString(R.string.take_photo);
+        choices[1] = getString(R.string.pick_photo);
+        final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
+                android.R.layout.simple_list_item_1, choices);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
+        builder.setTitle(R.string.attachToContact);
+        builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                switch(which) {
+                    case 0:
+                        doTakePhoto();
+                        break;
+                    case 1:
+                        doPickPhotoFromGallery();
+                        break;
+                }
+            }
+        });
+        return builder.create();
+    }
+
+    /**
+     * Launches Camera to take a picture and store it in a temporary file.
+     */
+    protected void doTakePhoto() {
         try {
-            // Launch picker to choose photo for selected contact
-            final Intent intent = ContactsUtils.getPhotoPickIntent();
-            startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
-            mRawContactIdRequestingPhoto = rawContactId;
+            // Launch camera to take photo for selected contact
+            final Intent intent = getTakePickIntent();
+            startActivityForResult(intent, CAMERA_WITH_DATA);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
-        return true;
+    }
+
+    /**
+     * Constructs an intent for capturing a photo and storing it in a temporary file.
+     */
+    public static Intent getTakePickIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
+        final File f = new File(Environment.getExternalStorageDirectory(), TEMP_FILENAME);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        return intent;
+    }
+
+    /**
+     * Sends a newly acquired photo to Gallery for cropping
+     */
+    protected void doCropPhoto() {
+        try {
+
+            // Add the image to the media store
+            final File f = new File(Environment.getExternalStorageDirectory(), TEMP_FILENAME);
+            final String photoUri = MediaStore.Images.Media.insertImage(getContentResolver(),
+                    f.getAbsolutePath(), null, null);
+
+            // Delete the temporary file
+            f.delete();
+
+            // Launch gallery to crop the photo
+            final Intent intent = getCropImageIntent(Uri.parse(photoUri));
+            startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
+        } catch (Exception e) {
+            Log.e(TAG, "Cannot crop image", e);
+            Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Constructs an intent for image cropping.
+     */
+    public static Intent getCropImageIntent(Uri photoUri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(photoUri, "image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", ICON_SIZE);
+        intent.putExtra("outputY", ICON_SIZE);
+        intent.putExtra("return-data", true);
+        return intent;
+    }
+
+    /**
+     * Launches Gallery to pick a photo.
+     */
+    protected void doPickPhotoFromGallery() {
+        try {
+            // Launch picker to choose photo for selected contact
+            final Intent intent = getPhotoPickIntent();
+            startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Constructs an intent for picking a photo from Gallery, cropping it and returning the bitmap.
+     */
+    public static Intent getPhotoPickIntent() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", ICON_SIZE);
+        intent.putExtra("outputY", ICON_SIZE);
+        intent.putExtra("return-data", true);
+        return intent;
     }
 
     /** {@inheritDoc} */

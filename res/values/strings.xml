@@ -1106,4 +1106,9 @@
     <!-- Button displayed underneath the list of filtered visible contacts -->
     <string name="search_for_all_contacts">Search for all contacts</string>
 
+    <!-- An option in the 'change photo' or 'pick photo' dialog -->
+    <string name="take_photo">Take photo</string>
+
+    <!-- An option in the 'change photo' or 'pick photo' dialog -->
+    <string name="pick_photo">Select photo from Gallery</string>
 </resources>

@@ -278,18 +278,6 @@ public class ContactsUtils {
         return true;
     }
 
-    public static Intent getPhotoPickIntent() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-        intent.setType("image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 96);
-        intent.putExtra("outputY", 96);
-        intent.putExtra("return-data", true);
-        return intent;
-    }
-
     public static long queryForContactId(ContentResolver cr, long rawContactId) {
         Cursor contactIdCursor = null;
         long contactId = -1;
