@@ -44,7 +44,6 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -831,7 +830,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
         list.setDividerHeight(0);
-        list.setFocusable((mMode & MODE_MASK_NO_FILTER) == 0);
         list.setOnCreateContextMenuListener(this);
 
         mAdapter = new ContactItemListAdapter(this);
@@ -1561,25 +1559,29 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mWritableRawContactIds.clear();
 
         if (mSelectedContactUri != null) {
+            Sources sources = Sources.getInstance(ContactsListActivity.this);
             Cursor c = getContentResolver().query(RawContacts.CONTENT_URI, RAW_CONTACTS_PROJECTION,
                     RawContacts.CONTACT_ID + "=" + ContentUris.parseId(mSelectedContactUri), null,
                     null);
-            Sources sources = Sources.getInstance(ContactsListActivity.this);
             if (c != null) {
-                while (c.moveToNext()) {
-                    final String accountType = c.getString(2);
-                    final long rawContactId = c.getLong(0);
-                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                            ContactsSource.LEVEL_SUMMARY);
-                    if (contactsSource != null && contactsSource.readOnly) {
-                        mReadOnlySourcesCnt += 1;
-                    } else {
-                        mWritableSourcesCnt += 1;
-                        mWritableRawContactIds.add(rawContactId);
+                try {
+                    while (c.moveToNext()) {
+                        final String accountType = c.getString(2);
+                        final long rawContactId = c.getLong(0);
+                        ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                                ContactsSource.LEVEL_SUMMARY);
+                        if (contactsSource != null && contactsSource.readOnly) {
+                            mReadOnlySourcesCnt += 1;
+                        } else {
+                            mWritableSourcesCnt += 1;
+                            mWritableRawContactIds.add(rawContactId);
+                        }
                     }
+                } finally {
+                    c.close();
                 }
             }
-            c.close();
+
             if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
                 showDialog(R.id.dialog_readonly_contact_delete_confirmation);
             } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
