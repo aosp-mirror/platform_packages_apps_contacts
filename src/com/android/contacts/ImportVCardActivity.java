@@ -52,8 +52,8 @@ import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -152,18 +152,17 @@ public class ImportVCardActivity extends Activity {
         private VCardParser_V21 mVCardParser;
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
-        private String mCanonicalPath;
+        private Uri mUri;
 
         private List<VCardFile> mSelectedVCardFileList;
         private List<String> mErrorFileNameList;
 
-        public VCardReadThread(String canonicalPath) {
-            mCanonicalPath = canonicalPath;
+        public VCardReadThread(Uri uri) {
+            mUri = uri;
             init();
         }
 
         public VCardReadThread(final List<VCardFile> selectedVCardFileList) {
-            mCanonicalPath = null;
             mSelectedVCardFileList = selectedVCardFileList;
             mErrorFileNameList = new ArrayList<String>();
             init();
@@ -194,7 +193,7 @@ public class ImportVCardActivity extends Activity {
             // (e.g. OutOfMemoryError).
             // Even in such cases, some should be done.
             try {
-                if (mCanonicalPath != null) {  // Read one file
+                if (mUri != null) {  // Read one vCard expressed by mUri
                     mProgressDialogForReadVCard.setProgressNumberFormat("");
                     mProgressDialogForReadVCard.setProgress(0);
 
@@ -211,13 +210,13 @@ public class ImportVCardActivity extends Activity {
 
                     boolean result;
                     try {
-                        result = readOneVCardFile(mCanonicalPath,
+                        result = readOneVCardFile(mUri,
                                 VCardConfig.DEFAULT_CHARSET, builderCollection, null, true, null);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
-                            result = readOneVCardFile(mCanonicalPath,
+                            result = readOneVCardFile(mUri,
                                     VCardConfig.DEFAULT_CHARSET, counter, detector, false, null);
                         } catch (VCardNestedException e2) {
                             result = false;
@@ -239,23 +238,23 @@ public class ImportVCardActivity extends Activity {
                     mProgressDialogForReadVCard.setIndeterminate(false);
                     mProgressDialogForReadVCard.setMax(counter.getCount());
                     String charset = detector.getEstimatedCharset();
-                    doActuallyReadOneVCard(mCanonicalPath, null, charset, true, detector,
+                    doActuallyReadOneVCard(mUri, null, charset, true, detector,
                             mErrorFileNameList);
                 } else {  // Read multiple files.
                     mProgressDialogForReadVCard.setProgressNumberFormat(
                             getString(R.string.reading_vcard_files));
                     mProgressDialogForReadVCard.setMax(mSelectedVCardFileList.size());
                     mProgressDialogForReadVCard.setProgress(0);
-                    
+
                     for (VCardFile vcardFile : mSelectedVCardFileList) {
                         if (mCanceled) {
                             return;
                         }
-                        String canonicalPath = vcardFile.getCanonicalPath();
+                        final Uri uri = Uri.parse("file://" + vcardFile.getCanonicalPath());
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
-                            if (!readOneVCardFile(canonicalPath, VCardConfig.DEFAULT_CHARSET,
+                            if (!readOneVCardFile(uri, VCardConfig.DEFAULT_CHARSET,
                                     detector, null, true, mErrorFileNameList)) {
                                 continue;
                             }
@@ -263,7 +262,7 @@ public class ImportVCardActivity extends Activity {
                             // Assume that VCardSourceDetector was able to detect the source.
                         }
                         String charset = detector.getEstimatedCharset();
-                        doActuallyReadOneVCard(canonicalPath, mAccount,
+                        doActuallyReadOneVCard(uri, mAccount,
                                 charset, false, detector, mErrorFileNameList);
                         mProgressDialogForReadVCard.incrementProgressBy(1);
                     }
@@ -308,7 +307,7 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
-        private boolean doActuallyReadOneVCard(String canonicalPath, Account account,
+        private boolean doActuallyReadOneVCard(Uri uri, Account account,
                 String charset, boolean showEntryParseProgress,
                 VCardSourceDetector detector, List<String> errorFileNameList) {
             final Context context = ImportVCardActivity.this;
@@ -331,7 +330,7 @@ public class ImportVCardActivity extends Activity {
             }
 
             try {
-                if (!readOneVCardFile(canonicalPath, charset, builder, detector, false, null)) {
+                if (!readOneVCardFile(uri, charset, builder, detector, false, null)) {
                     return false;
                 }
             } catch (VCardNestedException e) {
@@ -340,13 +339,13 @@ public class ImportVCardActivity extends Activity {
             return true;
         }
 
-        private boolean readOneVCardFile(String canonicalPath, String charset,
+        private boolean readOneVCardFile(Uri uri, String charset,
                 VCardInterpreter builder, VCardSourceDetector detector,
                 boolean throwNestedException, List<String> errorFileNameList)
                 throws VCardNestedException {
-            FileInputStream is;
+            InputStream is;
             try {
-                is = new FileInputStream(canonicalPath);
+                is = mResolver.openInputStream(uri);
                 mVCardParser = new VCardParser_V21(detector);
 
                 try {
@@ -360,7 +359,7 @@ public class ImportVCardActivity extends Activity {
                         // Let the object clean up internal temporal objects,
                         ((VCardEntryConstructor)builder).clear();
                     }
-                    is = new FileInputStream(canonicalPath);
+                    is = mResolver.openInputStream(uri);
 
                     try {
                         mVCardParser = new VCardParser_V30();
@@ -382,7 +381,7 @@ public class ImportVCardActivity extends Activity {
                 mProgressDialogForReadVCard.dismiss();
 
                 if (errorFileNameList != null) {
-                    errorFileNameList.add(canonicalPath);
+                    errorFileNameList.add(uri.toString());
                 } else {
                     mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_io_error) +
@@ -394,7 +393,7 @@ public class ImportVCardActivity extends Activity {
                     throw (VCardNestedException)e;
                 }
                 if (errorFileNameList != null) {
-                    errorFileNameList.add(canonicalPath);
+                    errorFileNameList.add(uri.toString());
                 } else {
                     mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_not_supported_error) +
@@ -403,7 +402,7 @@ public class ImportVCardActivity extends Activity {
                 return false;
             } catch (VCardException e) {
                 if (errorFileNameList != null) {
-                    errorFileNameList.add(canonicalPath);
+                    errorFileNameList.add(uri.toString());
                 } else {
                     mHandler.post(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_parse_error) +
@@ -481,7 +480,9 @@ public class ImportVCardActivity extends Activity {
                     }
                     importMultipleVCardFromSDCard(selectedVCardFileList);
                 } else {
-                    importOneVCardFromSDCard(mAllVCardFileList.get(mCurrentIndex).getCanonicalPath());
+                    String canonicalPath = mAllVCardFileList.get(mCurrentIndex).getCanonicalPath();
+                    final Uri uri = Uri.parse("file://" + canonicalPath);
+                    importOneVCardFromSDCard(uri);
                 }
             } else if (which == DialogInterface.BUTTON_NEGATIVE) {
                 finish();
@@ -623,7 +624,9 @@ public class ImportVCardActivity extends Activity {
         if (getResources().getBoolean(R.bool.config_import_all_vcard_from_sdcard_automatically)) {
             importMultipleVCardFromSDCard(mAllVCardFileList);
         } else if (size == 1) {
-            importOneVCardFromSDCard(mAllVCardFileList.get(0).getCanonicalPath());
+            String canonicalPath = mAllVCardFileList.get(0).getCanonicalPath();
+            Uri uri = Uri.parse("file://" + canonicalPath);
+            importOneVCardFromSDCard(uri);
         } else if (getResources().getBoolean(R.bool.config_allow_users_select_all_vcard_import)) {
             mHandler.post(new DialogDisplayer(R.id.dialog_select_import_type));
         } else {
@@ -640,10 +643,10 @@ public class ImportVCardActivity extends Activity {
         });
     }
 
-    private void importOneVCardFromSDCard(final String canonicalPath) {
+    private void importOneVCardFromSDCard(final Uri uri) {
         mHandler.post(new Runnable() {
             public void run() {
-                mVCardReadThread = new VCardReadThread(canonicalPath);
+                mVCardReadThread = new VCardReadThread(uri);
                 showDialog(R.id.dialog_reading_vcard);
             }
         });
@@ -721,15 +724,15 @@ public class ImportVCardActivity extends Activity {
         }
 
         final String action = intent.getAction();
-        final Uri path = intent.getData();
-        Log.v(LOG_TAG, "action = " + action + " ; path = " + path);
+        final Uri uri = intent.getData();
+        Log.v(LOG_TAG, "action = " + action + " ; path = " + uri);
         if (Intent.ACTION_VIEW.equals(action)) {
-            mNeedReview = true;
             // Import the file directly and then go to EDIT screen
-            if (path.toString().toLowerCase().endsWith(".vcf")) {
-                String cannonicalPath = path.getPath();
-                importOneVCardFromSDCard(cannonicalPath);
-            }
+            mNeedReview = true;
+        }
+
+        if (uri != null) {
+            importOneVCardFromSDCard(uri);
         } else {
             startImportVCardFromSdCard();
         }
