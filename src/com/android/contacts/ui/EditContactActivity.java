@@ -16,8 +16,8 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.ContactsListActivity;
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
@@ -31,7 +31,6 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.widget.BaseContactEditorView;
-import com.android.contacts.ui.widget.ContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
@@ -84,7 +83,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,7 +125,7 @@ public final class EditContactActivity extends Activity
 
     private static final int ICON_SIZE = 96;
 
-    private static final String TEMP_FILENAME = "camera-t.jpg";
+    private static final String TEMP_FILENAME = "com.android.contacts.icon-temp.jpg";
 
     String mQuerySelection;
 
