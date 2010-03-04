@@ -3183,6 +3183,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return 0;
             }
             int superCount = super.getCount();
+
             if (mShowNumberOfContacts && (mSearchMode || superCount > 0)) {
                 // We don't want to count this header if it's the only thing visible, so that
                 // the empty text will display.
@@ -3191,6 +3192,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             if (mSearchMode) {
                 // Last element in the list is the "Find
+                superCount++;
+            }
+
+            // We do not show the "Create New" button in Search mode
+            if ((mMode & MODE_MASK_CREATE_NEW) != 0 && !mSearchMode) {
+                // Count the "Create new contact" line
                 superCount++;
             }
 
