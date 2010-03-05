@@ -1528,7 +1528,7 @@ public class QuickContactWindow implements Window.Callback,
      * window, which usually means we should dismiss.
      */
     protected void detectEventOutside(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN && mDecor != null) {
             // Only try detecting outside events on down-press
             mDecor.getHitRect(mRect);
             mRect.top = mRect.top + mShadowTouch;
