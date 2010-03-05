@@ -2450,7 +2450,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         Cursor c = getContentResolver().query(dataUri,
-                new String[] {Phone._ID, Phone.NUMBER, Phone.IS_SUPER_PRIMARY},
+                new String[] {Phone._ID, Phone.NUMBER, Phone.IS_SUPER_PRIMARY,
+                        RawContacts.ACCOUNT_TYPE, Phone.TYPE, Phone.LABEL},
                 Data.MIMETYPE + "=?", new String[] {Phone.CONTENT_ITEM_TYPE}, null);
         if (c != null && c.moveToFirst()) {
             return c;

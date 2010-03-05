@@ -16,10 +16,11 @@
 
 package com.android.contacts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.android.contacts.Collapser.Collapsible;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.StringInflater;
 
 import android.app.AlertDialog;
 import android.content.ContentUris;
@@ -28,14 +29,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class used for displaying a dialog with a list of phone numbers of which
@@ -64,7 +71,7 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
         mPhoneItemList = makePhoneItemsList(phonesCursor);
         Collapser.collapseList(mPhoneItemList);
 
-        mPhonesAdapter = new PhonesAdapter(mContext, mPhoneItemList);
+        mPhonesAdapter = new PhonesAdapter(mContext, mPhoneItemList, mSendSms);
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
@@ -127,21 +134,51 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
     }
 
     private static class PhonesAdapter extends ArrayAdapter<PhoneItem> {
+        private final boolean sendSms;
+        private final Sources mSources;
 
-        public PhonesAdapter(Context context, List<PhoneItem> objects) {
-            super(context, android.R.layout.simple_dropdown_item_1line,
-                    android.R.id.text1, objects);
+        public PhonesAdapter(Context context, List<PhoneItem> objects, boolean sendSms) {
+            super(context, R.layout.phone_disambig_item,
+                    android.R.id.text2, objects);
+            this.sendSms = sendSms;
+            mSources = Sources.getInstance(context);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+
+            PhoneItem item = getItem(position);
+            ContactsSource source = mSources.getInflatedSource(item.accountType,
+                    ContactsSource.LEVEL_SUMMARY);
+
+            // Obtain a string representation of the phone type specific to the
+            // ContactSource associated with that phone number
+            TextView typeView = (TextView)view.findViewById(android.R.id.text1);
+            DataKind kind = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+            ContentValues values = new ContentValues();
+            values.put(Phone.TYPE, item.type);
+            values.put(Phone.LABEL, item.label);
+            StringInflater header = sendSms ? kind.actionAltHeader : kind.actionHeader;
+            typeView.setText(header.inflateUsing(getContext(), values));
+            return view;
         }
     }
 
     private class PhoneItem implements Collapsible<PhoneItem> {
 
-        final String phoneNumber;
         final long id;
+        final String phoneNumber;
+        final String accountType;
+        final long type;
+        final String label;
 
-        public PhoneItem(String newPhoneNumber, long newId) {
-            phoneNumber = (newPhoneNumber != null ? newPhoneNumber : "");
-            id = newId;
+        public PhoneItem(long id, String phoneNumber, String accountType, int type, String label) {
+            this.id = id;
+            this.phoneNumber = (phoneNumber != null ? phoneNumber : "");
+            this.accountType = accountType;
+            this.type = type;
+            this.label = label;
         }
 
         public boolean collapseWith(PhoneItem phoneItem) {
@@ -173,7 +210,12 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
         while (phonesCursor.moveToNext()) {
             long id = phonesCursor.getLong(phonesCursor.getColumnIndex(Data._ID));
             String phone = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.NUMBER));
-            phoneList.add(new PhoneItem(phone, id));
+            String accountType =
+                    phonesCursor.getString(phonesCursor.getColumnIndex(RawContacts.ACCOUNT_TYPE));
+            int type = phonesCursor.getInt(phonesCursor.getColumnIndex(Phone.TYPE));
+            String label = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.LABEL));
+
+            phoneList.add(new PhoneItem(id, phone, accountType, type, label));
         }
 
         return phoneList;
