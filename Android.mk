@@ -10,6 +10,8 @@ LOCAL_STATIC_JAVA_LIBRARIES := com.android.phone.common
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
 
+LOCAL_PROGUARD_FLAGS := -include $(LOCAL_PATH)/proguard.flags
+
 include $(BUILD_PACKAGE)
 
 # Use the folloing include to make our test apk.

@@ -1,0 +1,14 @@
+-keep class com.android.contacts.model.Sources {
+  public <init>(...);
+}
+
+# TODO: Instead of keeping the following two functions we could as well just remove them completely
+# as they are only used in test code
+
+-keep class com.android.contacts.model.EntityDelta {
+  public com.android.contacts.model.EntityDelta$ValuesDelta getSuperPrimaryEntry(java.lang.String,boolean);
+}
+
+-keep class com.android.contacts.model.EntityDelta$ValuesDelta {
+  public android.content.ContentValues getAfter();
+}
