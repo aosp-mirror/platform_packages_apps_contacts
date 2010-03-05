@@ -19,7 +19,6 @@ package com.android.contacts;
 import com.android.internal.util.ArrayUtils;
 
 import android.content.Context;
-import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
@@ -163,6 +162,9 @@ public abstract class GroupingListAdapter extends BaseAdapter {
             mCursor.close();
         }
         mCursor = cursor;
+        resetCache();
+        findGroups();
+
         if (cursor != null) {
             cursor.registerContentObserver(mChangeObserver);
             cursor.registerDataSetObserver(mDataSetObserver);
@@ -173,8 +175,6 @@ public abstract class GroupingListAdapter extends BaseAdapter {
             notifyDataSetInvalidated();
         }
 
-        resetCache();
-        findGroups();
     }
 
     public Cursor getCursor() {
@@ -418,6 +418,10 @@ public abstract class GroupingListAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
+        if (mCursor == null) {
+            return null;
+        }
+
         obtainPositionMetadata(mPositionMetadata, position);
         if (mCursor.moveToPosition(mPositionMetadata.cursorPosition)) {
             return mCursor;

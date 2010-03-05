@@ -758,10 +758,7 @@ public class RecentCallsListActivity extends ListActivity
     protected void onDestroy() {
         super.onDestroy();
         mAdapter.stopRequestProcessing();
-        Cursor cursor = mAdapter.getCursor();
-        if (cursor != null && !cursor.isClosed()) {
-            cursor.close();
-        }
+        mAdapter.changeCursor(null);
     }
 
     @Override
