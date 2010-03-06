@@ -115,17 +115,16 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         setContentView(R.layout.contacts_preferences);
 
         mList = getExpandableListView();
+        mList.setHeaderDividersEnabled(true);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mContactsPrefs = new ContactsPreferences(this);
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        addWithPhonesOnlyPreferenceView(inflater);
-        addDivider(inflater);
-        addSortOrderPreferenceView(inflater);
-        addDivider(inflater);
-        addDisplayOrderPreferenceView(inflater);
-        addDisplayGroupHeader(inflater);
+        createWithPhonesOnlyPreferenceView(inflater);
+        createSortOrderPreferenceView(inflater);
+        createDisplayOrderPreferenceView(inflater);
+        createDisplayGroupHeader(inflater);
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -136,12 +135,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
         mSortOrder = mContactsPrefs.getSortOrder();
         mDisplayOrder = mContactsPrefs.getDisplayOrder();
-
-        // Start background query to find account details
-        new QueryGroupsTask(this).execute();
     }
 
-    private LayoutInflater addWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
+    private void createWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
         // Add the "Only contacts with phones" header modifier.
         mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
@@ -154,12 +150,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
             text1.setText(R.string.showFilterPhones);
             text2.setText(R.string.showFilterPhonesDescrip);
         }
-
-        mList.addHeaderView(mHeaderPhones, null, true);
-        return inflater;
     }
 
-    private void addSortOrderPreferenceView(LayoutInflater inflater) {
+    private void createSortOrderPreferenceView(LayoutInflater inflater) {
         mSortOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
 
         View preferenceLayout = mSortOrderView.findViewById(R.id.preference);
@@ -168,10 +161,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         label.setText(getString(R.string.display_options_sort_list_by));
 
         mSortOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
-        mList.addHeaderView(mSortOrderView, null, true);
     }
 
-    private void addDisplayOrderPreferenceView(LayoutInflater inflater) {
+    private void createDisplayOrderPreferenceView(LayoutInflater inflater) {
         mDisplayOrderView = inflater.inflate(R.layout.preference_with_more_button, mList, false);
         View preferenceLayout = mDisplayOrderView.findViewById(R.id.preference);
 
@@ -179,28 +171,44 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         label.setText(getString(R.string.display_options_view_names_as));
 
         mDisplayOrderTextView = (TextView)preferenceLayout.findViewById(R.id.data);
-        mList.addHeaderView(mDisplayOrderView, null, true);
     }
 
-    private void addDivider(LayoutInflater inflater) {
-        View divider = inflater.inflate(R.layout.horizontal_divider, mList, false);
-        mList.addHeaderView(divider, null, false);
-    }
-
-    private void addDisplayGroupHeader(LayoutInflater inflater) {
+    private void createDisplayGroupHeader(LayoutInflater inflater) {
         // Add the separator before showing the detailed group list.
         mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
         {
             final TextView text1 = (TextView)mHeaderSeparator;
             text1.setText(R.string.headerContactGroups);
         }
-        mList.addHeaderView(mHeaderSeparator, null, false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mList.removeHeaderView(mHeaderPhones);
+        mList.removeHeaderView(mSortOrderView);
+        mList.removeHeaderView(mDisplayOrderView);
+        mList.removeHeaderView(mHeaderSeparator);
+
+        // List adapter needs to be reset, because header views cannot be added
+        // to a list with an existing adapter.
+        setListAdapter(null);
+
+        mList.addHeaderView(mHeaderPhones, null, true);
+        if (mContactsPrefs.isSortOrderUserChangeable()) {
+            mList.addHeaderView(mSortOrderView, null, true);
+        }
+
+        if (mContactsPrefs.isSortOrderUserChangeable()) {
+            mList.addHeaderView(mDisplayOrderView, null, true);
+        }
+
+        mList.addHeaderView(mHeaderSeparator, null, false);
+
         bindView();
+
+        // Start background query to find account details
+        new QueryGroupsTask(this).execute();
     }
 
     private void bindView() {
@@ -343,7 +351,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
     public void setListAdapter(DisplayAdapter adapter) {
         mAdapter = adapter;
-        mAdapter.setChildDescripWithPhones(mDisplayPhones.isChecked());
+        if (mAdapter != null) {
+            mAdapter.setChildDescripWithPhones(mDisplayPhones.isChecked());
+        }
         super.setListAdapter(mAdapter);
     }
 

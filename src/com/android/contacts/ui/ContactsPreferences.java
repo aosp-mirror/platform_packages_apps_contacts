@@ -16,6 +16,8 @@
 
 package com.android.contacts.ui;
 
+import com.android.contacts.R;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
@@ -34,7 +36,6 @@ public final class ContactsPreferences  {
     private int mDisplayOrder = -1;
     private SettingsObserver mSettingsObserver;
 
-    // TODO listen to locale changes
     public ContactsPreferences(Context context) {
         mContext = context;
         mContentResolver = context.getContentResolver();
@@ -44,16 +45,22 @@ public final class ContactsPreferences  {
     }
 
     public boolean isSortOrderUserChangeable() {
-        // TODO this should be locale-specific
-        return true;
+        return mContext.getResources().getBoolean(R.bool.config_sort_order_user_changeable);
     }
 
     private int getDefaultSortOrder() {
-        // TODO this should be locale-specific
-        return ContactsContract.Preferences.SORT_ORDER_PRIMARY;
+        if (mContext.getResources().getBoolean(R.bool.config_default_sort_order_primary)) {
+            return ContactsContract.Preferences.SORT_ORDER_PRIMARY;
+        } else {
+            return ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE;
+        }
     }
 
     public int getSortOrder() {
+        if (!isSortOrderUserChangeable()) {
+            return getDefaultSortOrder();
+        }
+
         if (mSortOrder == -1) {
             try {
                 mSortOrder = Settings.System.getInt(mContext.getContentResolver(),
@@ -72,16 +79,22 @@ public final class ContactsPreferences  {
     }
 
     public boolean isDisplayOrderUserChangeable() {
-        // TOD this should be locale-specific
-        return true;
+        return mContext.getResources().getBoolean(R.bool.config_display_order_user_changeable);
     }
 
     private int getDefaultDisplayOrder() {
-        // TODO this should be locale-specific
-        return ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY;
+        if (mContext.getResources().getBoolean(R.bool.config_default_display_order_primary)) {
+            return ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY;
+        } else {
+            return ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE;
+        }
     }
 
     public int getDisplayOrder() {
+        if (!isDisplayOrderUserChangeable()) {
+            return getDefaultDisplayOrder();
+        }
+
         if (mDisplayOrder == -1) {
             try {
                 mDisplayOrder = Settings.System.getInt(mContext.getContentResolver(),

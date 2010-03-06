@@ -82,4 +82,15 @@
          (which can be overridden on a per-product basis.) -->
     <bool name="config_show_onscreen_dial_button">true</bool>
 
+    <!-- If true, an option is shown in Display Options UI to choose a sort order -->
+    <bool name="config_sort_order_user_changeable">true</bool>
+
+    <!-- If true, the default sort order is primary (i.e. by given name) -->
+    <bool name="config_default_sort_order_primary">true</bool>
+
+    <!-- If true, an option is shown in Display Options UI to choose a name display order -->
+    <bool name="config_display_order_user_changeable">true</bool>
+
+    <!-- If true, the default sort order is primary (i.e. by given name) -->
+    <bool name="config_default_display_order_primary">true</bool>
 </resources>
