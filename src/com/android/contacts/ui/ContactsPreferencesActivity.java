@@ -118,6 +118,7 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         mList.setHeaderDividersEnabled(true);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mContactsPrefs = new ContactsPreferences(this);
+        mAdapter = new DisplayAdapter(this);
 
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -204,6 +205,8 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         }
 
         mList.addHeaderView(mHeaderSeparator, null, false);
+
+        setListAdapter(mAdapter);
 
         bindView();
 
@@ -342,19 +345,8 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
         @Override
         protected void onPostExecute(ContactsPreferencesActivity target, AccountSet result) {
-            // Build adapter to show available groups
-            final Context context = target;
-            final DisplayAdapter adapter = new DisplayAdapter(context, result);
-            target.setListAdapter(adapter);
+            target.mAdapter.setAccounts(result);
         }
-    }
-
-    public void setListAdapter(DisplayAdapter adapter) {
-        mAdapter = adapter;
-        if (mAdapter != null) {
-            mAdapter.setChildDescripWithPhones(mDisplayPhones.isChecked());
-        }
-        super.setListAdapter(mAdapter);
     }
 
     private static final int DEFAULT_SHOULD_SYNC = 1;
@@ -658,17 +650,19 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         private Context mContext;
         private LayoutInflater mInflater;
         private Sources mSources;
-
         private AccountSet mAccounts;
 
         private boolean mChildWithPhones = false;
 
-        public DisplayAdapter(Context context, AccountSet accounts) {
+        public DisplayAdapter(Context context) {
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mSources = Sources.getInstance(context);
+        }
 
+        public void setAccounts(AccountSet accounts) {
             mAccounts = accounts;
+            notifyDataSetChanged();
         }
 
         /**
@@ -780,6 +774,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
         /** {@inheritDoc} */
         public int getGroupCount() {
+            if (mAccounts == null) {
+                return 0;
+            }
             return mAccounts.size();
         }
 
