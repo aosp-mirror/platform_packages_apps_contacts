@@ -291,7 +291,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Contacts.CONTACT_PRESENCE,          // 6
         Contacts.PHOTO_ID,                  // 7
         Contacts.LOOKUP_KEY,                // 8
-        Contacts.HAS_PHONE_NUMBER,          // 9
+        Contacts.PHONETIC_NAME,             // 9
+        Contacts.HAS_PHONE_NUMBER,          // 10
     };
     static final String[] CONTACTS_SUMMARY_PROJECTION_FROM_EMAIL = new String[] {
         Contacts._ID,                       // 0
@@ -303,6 +304,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Contacts.CONTACT_PRESENCE,          // 6
         Contacts.PHOTO_ID,                  // 7
         Contacts.LOOKUP_KEY,                // 8
+        Contacts.PHONETIC_NAME,             // 9
         // email lookup doesn't included HAS_PHONE_NUMBER in projection
     };
 
@@ -316,10 +318,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Contacts.CONTACT_PRESENCE,          // 6
         Contacts.PHOTO_ID,                  // 7
         Contacts.LOOKUP_KEY,                // 8
-        Contacts.HAS_PHONE_NUMBER,          // 9
-        SearchSnippetColumns.SNIPPET_MIMETYPE, // 10
-        SearchSnippetColumns.SNIPPET_DATA1,     // 11
-        SearchSnippetColumns.SNIPPET_DATA4,     // 12
+        Contacts.PHONETIC_NAME,             // 9
+        Contacts.HAS_PHONE_NUMBER,          // 10
+        SearchSnippetColumns.SNIPPET_MIMETYPE, // 11
+        SearchSnippetColumns.SNIPPET_DATA1,     // 12
+        SearchSnippetColumns.SNIPPET_DATA4,     // 13
     };
 
     static final String[] LEGACY_PEOPLE_PROJECTION = new String[] {
@@ -340,10 +343,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
     static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
     static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
-    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 9;
-    static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 10;
-    static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 11;
-    static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 12;
+    static final int SUMMARY_PHONETIC_NAME_COLUMN_INDEX = 9;
+    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 10;
+    static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 11;
+    static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 12;
+    static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 13;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -2550,6 +2554,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public ImageView nonQuickContactPhotoView;
         public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
         public TextWithHighlighting textWithHighlighting;
+        public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
     }
 
     final static class PinnedHeaderCache {
@@ -2856,6 +2861,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             int labelColumnIndex;
             int defaultType;
             int nameColumnIndex;
+            int phoneticNameColumnIndex;
             boolean displayAdditionalData = mDisplayAdditionalData;
             boolean highlightingEnabled = false;
             switch(mMode) {
@@ -2863,6 +2869,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 case MODE_LEGACY_PICK_PHONE:
                 case MODE_QUERY_PICK_PHONE: {
                     nameColumnIndex = PHONE_DISPLAY_NAME_COLUMN_INDEX;
+                    phoneticNameColumnIndex = -1;
                     dataColumnIndex = PHONE_NUMBER_COLUMN_INDEX;
                     typeColumnIndex = PHONE_TYPE_COLUMN_INDEX;
                     labelColumnIndex = PHONE_LABEL_COLUMN_INDEX;
@@ -2872,6 +2879,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 case MODE_PICK_POSTAL:
                 case MODE_LEGACY_PICK_POSTAL: {
                     nameColumnIndex = POSTAL_DISPLAY_NAME_COLUMN_INDEX;
+                    phoneticNameColumnIndex = -1;
                     dataColumnIndex = POSTAL_ADDRESS_COLUMN_INDEX;
                     typeColumnIndex = POSTAL_TYPE_COLUMN_INDEX;
                     labelColumnIndex = POSTAL_LABEL_COLUMN_INDEX;
@@ -2880,6 +2888,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 }
                 default: {
                     nameColumnIndex = getSummaryDisplayNameColumnIndex();
+                    phoneticNameColumnIndex = SUMMARY_PHONETIC_NAME_COLUMN_INDEX;
                     dataColumnIndex = -1;
                     typeColumnIndex = -1;
                     labelColumnIndex = -1;
@@ -2998,7 +3007,21 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             if (!displayAdditionalData) {
                 cache.dataView.setVisibility(View.GONE);
-                cache.labelView.setVisibility(View.GONE);
+
+                if (phoneticNameColumnIndex != -1) {
+
+                    // Set the name
+                    cursor.copyStringToBuffer(phoneticNameColumnIndex, cache.phoneticNameBuffer);
+                    int phoneticNameSize = cache.phoneticNameBuffer.sizeCopied;
+                    if (phoneticNameSize != 0) {
+                        cache.labelView.setText(cache.phoneticNameBuffer.data, 0, phoneticNameSize);
+                        cache.labelView.setVisibility(View.VISIBLE);
+                    } else {
+                        cache.labelView.setVisibility(View.GONE);
+                    }
+                } else {
+                    cache.labelView.setVisibility(View.GONE);
+                }
                 return;
             }
 
