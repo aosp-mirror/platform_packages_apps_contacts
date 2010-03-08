@@ -51,17 +51,17 @@ public class GoogleSource extends FallbackSource {
     @Override
     protected void inflate(Context context, int inflateLevel) {
 
-        inflateStructuredName(inflateLevel);
-        inflateNickname(inflateLevel);
-        inflatePhone(inflateLevel);
-        inflateEmail(inflateLevel);
-        inflateStructuredPostal(inflateLevel);
-        inflateIm(inflateLevel);
-        inflateOrganization(inflateLevel);
-        inflatePhoto(inflateLevel);
-        inflateNote(inflateLevel);
-        inflateWebsite(inflateLevel);
-        inflateEvent(inflateLevel);
+        inflateStructuredName(context, inflateLevel);
+        inflateNickname(context, inflateLevel);
+        inflatePhone(context, inflateLevel);
+        inflateEmail(context, inflateLevel);
+        inflateStructuredPostal(context, inflateLevel);
+        inflateIm(context, inflateLevel);
+        inflateOrganization(context, inflateLevel);
+        inflatePhoto(context, inflateLevel);
+        inflateNote(context, inflateLevel);
+        inflateWebsite(context, inflateLevel);
+        inflateEvent(context, inflateLevel);
 
         // TODO: GOOGLE: GROUPMEMBERSHIP
 
@@ -70,18 +70,18 @@ public class GoogleSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateStructuredName(int inflateLevel) {
-        return super.inflateStructuredName(inflateLevel);
+    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
+        return super.inflateStructuredName(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflateNickname(int inflateLevel) {
-        return super.inflateNickname(inflateLevel);
+    protected DataKind inflateNickname(Context context, int inflateLevel) {
+        return super.inflateNickname(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflatePhone(int inflateLevel) {
-        final DataKind kind = super.inflatePhone(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflatePhone(Context context, int inflateLevel) {
+        final DataKind kind = super.inflatePhone(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
@@ -104,8 +104,8 @@ public class GoogleSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateEmail(int inflateLevel) {
-        final DataKind kind = super.inflateEmail(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateEmail(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateEmail(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Email.TYPE;
@@ -124,33 +124,33 @@ public class GoogleSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateStructuredPostal(int inflateLevel) {
-        return super.inflateStructuredPostal(inflateLevel);
+    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
+        return super.inflateStructuredPostal(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflateIm(int inflateLevel) {
-        return super.inflateIm(inflateLevel);
+    protected DataKind inflateIm(Context context, int inflateLevel) {
+        return super.inflateIm(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflateOrganization(int inflateLevel) {
-        return super.inflateOrganization(inflateLevel);
+    protected DataKind inflateOrganization(Context context, int inflateLevel) {
+        return super.inflateOrganization(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflatePhoto(int inflateLevel) {
-        return super.inflatePhoto(inflateLevel);
+    protected DataKind inflatePhoto(Context context, int inflateLevel) {
+        return super.inflatePhoto(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflateNote(int inflateLevel) {
-        return super.inflateNote(inflateLevel);
+    protected DataKind inflateNote(Context context, int inflateLevel) {
+        return super.inflateNote(context, inflateLevel);
     }
 
     @Override
-    protected DataKind inflateWebsite(int inflateLevel) {
-        return super.inflateWebsite(inflateLevel);
+    protected DataKind inflateWebsite(Context context, int inflateLevel) {
+        return super.inflateWebsite(context, inflateLevel);
     }
 
     // TODO: this should come from resource in the future

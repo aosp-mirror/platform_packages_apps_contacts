@@ -105,8 +105,8 @@ public class ExternalSource extends FallbackSource {
         }
 
         // Bring in name and photo from fallback source, which are non-optional
-        inflateStructuredName(inflateLevel);
-        inflatePhoto(inflateLevel);
+        inflateStructuredName(context, inflateLevel);
+        inflatePhoto(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
     }

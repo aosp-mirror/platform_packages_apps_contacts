@@ -47,23 +47,23 @@ public class ExchangeSource extends FallbackSource {
     @Override
     protected void inflate(Context context, int inflateLevel) {
 
-        inflateStructuredName(inflateLevel);
-        inflateNickname(inflateLevel);
-        inflatePhone(inflateLevel);
-        inflateEmail(inflateLevel);
-        inflateStructuredPostal(inflateLevel);
-        inflateIm(inflateLevel);
-        inflateOrganization(inflateLevel);
-        inflatePhoto(inflateLevel);
-        inflateNote(inflateLevel);
-        inflateWebsite(inflateLevel);
+        inflateStructuredName(context, inflateLevel);
+        inflateNickname(context, inflateLevel);
+        inflatePhone(context, inflateLevel);
+        inflateEmail(context, inflateLevel);
+        inflateStructuredPostal(context, inflateLevel);
+        inflateIm(context, inflateLevel);
+        inflateOrganization(context, inflateLevel);
+        inflatePhoto(context, inflateLevel);
+        inflateNote(context, inflateLevel);
+        inflateWebsite(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
     }
 
     @Override
-    protected DataKind inflateStructuredName(int inflateLevel) {
-        final DataKind kind = super.inflateStructuredName(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateStructuredName(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             final boolean useJapaneseOrder =
@@ -106,8 +106,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateNickname(int inflateLevel) {
-        final DataKind kind = super.inflateNickname(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateNickname(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateNickname(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.isList = false;
@@ -121,8 +121,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflatePhone(int inflateLevel) {
-        final DataKind kind = super.inflatePhone(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflatePhone(Context context, int inflateLevel) {
+        final DataKind kind = super.inflatePhone(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
@@ -153,8 +153,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateEmail(int inflateLevel) {
-        final DataKind kind = super.inflateEmail(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateEmail(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateEmail(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 3;
@@ -167,8 +167,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateStructuredPostal(int inflateLevel) {
-        final DataKind kind = super.inflateStructuredPostal(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateStructuredPostal(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             final boolean useJapaneseOrder =
@@ -209,8 +209,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateIm(int inflateLevel) {
-        final DataKind kind = super.inflateIm(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateIm(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateIm(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 3;
@@ -242,8 +242,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateOrganization(int inflateLevel) {
-        final DataKind kind = super.inflateOrganization(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateOrganization(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateOrganization(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.isList = false;
@@ -265,8 +265,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflatePhoto(int inflateLevel) {
-        final DataKind kind = super.inflatePhoto(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflatePhoto(Context context, int inflateLevel) {
+        final DataKind kind = super.inflatePhoto(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 1;
@@ -279,8 +279,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateNote(int inflateLevel) {
-        final DataKind kind = super.inflateNote(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateNote(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateNote(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
@@ -291,8 +291,8 @@ public class ExchangeSource extends FallbackSource {
     }
 
     @Override
-    protected DataKind inflateWebsite(int inflateLevel) {
-        final DataKind kind = super.inflateWebsite(ContactsSource.LEVEL_MIMETYPES);
+    protected DataKind inflateWebsite(Context context, int inflateLevel) {
+        final DataKind kind = super.inflateWebsite(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
             kind.isList = false;

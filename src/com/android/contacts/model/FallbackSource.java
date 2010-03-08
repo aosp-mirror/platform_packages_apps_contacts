@@ -66,17 +66,17 @@ public class FallbackSource extends ContactsSource {
     @Override
     protected void inflate(Context context, int inflateLevel) {
 
-        inflateStructuredName(inflateLevel);
-        inflateNickname(inflateLevel);
-        inflatePhone(inflateLevel);
-        inflateEmail(inflateLevel);
-        inflateStructuredPostal(inflateLevel);
-        inflateIm(inflateLevel);
-        inflateOrganization(inflateLevel);
-        inflatePhoto(inflateLevel);
-        inflateNote(inflateLevel);
-        inflateWebsite(inflateLevel);
-        inflateEvent(inflateLevel);
+        inflateStructuredName(context, inflateLevel);
+        inflateNickname(context, inflateLevel);
+        inflatePhone(context, inflateLevel);
+        inflateEmail(context, inflateLevel);
+        inflateStructuredPostal(context, inflateLevel);
+        inflateIm(context, inflateLevel);
+        inflateOrganization(context, inflateLevel);
+        inflatePhoto(context, inflateLevel);
+        inflateNote(context, inflateLevel);
+        inflateWebsite(context, inflateLevel);
+        inflateEvent(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
 
@@ -102,7 +102,7 @@ public class FallbackSource extends ContactsSource {
         return new EditType(type, Organization.getTypeLabelResource(type));
     }
 
-    protected DataKind inflateStructuredName(int inflateLevel) {
+    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
@@ -151,7 +151,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateNickname(int inflateLevel) {
+    protected DataKind inflateNickname(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Nickname.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
@@ -174,7 +174,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflatePhone(int inflateLevel) {
+    protected DataKind inflatePhone(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
@@ -219,7 +219,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateEmail(int inflateLevel) {
+    protected DataKind inflateEmail(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Email.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE,
@@ -245,7 +245,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateStructuredPostal(int inflateLevel) {
+    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
@@ -303,7 +303,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateIm(int inflateLevel) {
+    protected DataKind inflateIm(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Im.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
@@ -340,7 +340,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateOrganization(int inflateLevel) {
+    protected DataKind inflateOrganization(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
@@ -367,7 +367,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflatePhoto(int inflateLevel) {
+    protected DataKind inflatePhoto(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true));
@@ -381,7 +381,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateNote(int inflateLevel) {
+    protected DataKind inflateNote(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Note.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
@@ -400,7 +400,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateWebsite(int inflateLevel) {
+    protected DataKind inflateWebsite(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Website.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
@@ -421,7 +421,7 @@ public class FallbackSource extends ContactsSource {
         return kind;
     }
 
-    protected DataKind inflateEvent(int inflateLevel) {
+    protected DataKind inflateEvent(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
