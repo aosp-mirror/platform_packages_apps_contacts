@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -57,6 +58,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -188,11 +190,16 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        Resources r = getResources();
+        // Do not show title in the case the device is in carmode.
+        if ((r.getConfiguration().uiMode & Configuration.UI_MODE_TYPE_MASK) ==
+                Configuration.UI_MODE_TYPE_CAR) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+        }
         // Set the content view
         setContentView(getContentViewResource());
 
         // Load up the resources for the text field.
-        Resources r = getResources();
         mDigitsBackground = r.getDrawable(R.drawable.btn_dial_textfield_active);
         mDigitsEmptyBackground = r.getDrawable(R.drawable.btn_dial_textfield);
 
