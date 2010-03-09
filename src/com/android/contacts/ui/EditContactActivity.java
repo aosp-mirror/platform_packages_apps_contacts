@@ -55,6 +55,7 @@ import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -84,9 +85,11 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Activity for editing or inserting a contact.
@@ -125,7 +128,10 @@ public final class EditContactActivity extends Activity
 
     private static final int ICON_SIZE = 96;
 
-    private static final String TEMP_FILENAME = "com.android.contacts.icon-temp.jpg";
+    private static final File PHOTO_DIR = new File(Environment.getExternalStorageDirectory(),
+            "com.android.contacts.icon");
+
+    private File mCurrentPhotoFile;
 
     String mQuerySelection;
 
@@ -552,7 +558,7 @@ public final class EditContactActivity extends Activity
             }
 
             case CAMERA_WITH_DATA: {
-                doCropPhoto();
+                doCropPhoto(mCurrentPhotoFile);
                 break;
             }
 
@@ -1017,12 +1023,23 @@ public final class EditContactActivity extends Activity
     }
 
     /**
-     * Launches Camera to take a picture and store it in a temporary file.
+     * Create a file name for the icon photo using current time.
+     */
+    private String getPhotoFileName() {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("'IMG'_yyyyMMdd_HHmmss");
+        return dateFormat.format(date) + ".jpg";
+    }
+
+    /**
+     * Launches Camera to take a picture and store it in a file.
      */
     protected void doTakePhoto() {
         try {
             // Launch camera to take photo for selected contact
-            final Intent intent = getTakePickIntent();
+            PHOTO_DIR.mkdirs();
+            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
+            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
             startActivityForResult(intent, CAMERA_WITH_DATA);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -1032,9 +1049,8 @@ public final class EditContactActivity extends Activity
     /**
      * Constructs an intent for capturing a photo and storing it in a temporary file.
      */
-    public static Intent getTakePickIntent() {
+    public static Intent getTakePickIntent(File f) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
-        final File f = new File(Environment.getExternalStorageDirectory(), TEMP_FILENAME);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
         return intent;
     }
@@ -1042,19 +1058,18 @@ public final class EditContactActivity extends Activity
     /**
      * Sends a newly acquired photo to Gallery for cropping
      */
-    protected void doCropPhoto() {
+    protected void doCropPhoto(File f) {
         try {
 
             // Add the image to the media store
-            final File f = new File(Environment.getExternalStorageDirectory(), TEMP_FILENAME);
-            final String photoUri = MediaStore.Images.Media.insertImage(getContentResolver(),
-                    f.getAbsolutePath(), null, null);
-
-            // Delete the temporary file
-            f.delete();
+            MediaScannerConnection.scanFile(
+                    this,
+                    new String[] { f.getAbsolutePath() },
+                    new String[] { null },
+                    null);
 
             // Launch gallery to crop the photo
-            final Intent intent = getCropImageIntent(Uri.parse(photoUri));
+            final Intent intent = getCropImageIntent(Uri.fromFile(f));
             startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
