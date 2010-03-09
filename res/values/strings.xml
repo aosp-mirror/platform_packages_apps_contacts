@@ -1111,4 +1111,7 @@
 
     <!-- An option in the 'change photo' or 'pick photo' dialog -->
     <string name="pick_photo">Select photo from Gallery</string>
+
+    <!-- Text shown in the contacts app while the background process updates contacts after a locale change -->
+    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait...</string>
 </resources>

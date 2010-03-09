@@ -43,6 +43,7 @@ import android.content.UriMatcher;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
@@ -57,6 +58,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -70,6 +72,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Presence;
+import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -539,6 +542,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        registerProviderStatusObserver();
+
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         mContactsPrefs = new ContactsPreferences(this);
         mPhotoLoader = new ContactPhotoLoader(this, R.drawable.ic_contact_list_picture);
@@ -824,6 +829,21 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 //        }
     }
 
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void registerProviderStatusObserver() {
+        getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
+                false, new ContentObserver(new Handler()){
+
+            @Override
+            public void onChange(boolean selfChange) {
+                checkProviderState(true);
+            }
+        });
+    }
+
     private void setupListView() {
         final ListView list = getListView();
         final LayoutInflater inflater = getLayoutInflater();
@@ -913,11 +933,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     private void setEmptyText() {
-        if (mMode == MODE_JOIN_CONTACT || mSearchMode) {
+        TextView empty = (TextView) findViewById(R.id.emptyText);
+        if (mMode == MODE_JOIN_CONTACT || mSearchMode || mAdapter.getCursor() == null) {
+            empty.setText(null);
             return;
         }
 
-        TextView empty = (TextView) findViewById(R.id.emptyText);
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
         } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
@@ -970,6 +991,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     @Override
     protected void onResume() {
         super.onResume();
+
         mPhotoLoader.resume();
 
         Activity parent = getParent();
@@ -987,12 +1009,53 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mSearchEditText.requestFocus();
         }
 
+        if (!checkProviderState(mJustCreated)) {
+            return;
+        }
+
         if (mJustCreated) {
             // We need to start a query here the first time the activity is launched, as long
             // as we aren't doing a filter.
             startQuery();
         }
         mJustCreated = false;
+    }
+
+    /**
+     * Obtains the contacts provider status and configures the UI accordingly.
+     *
+     * @param loadData true if the method needs to start a query when the
+     *            provider is in the normal state
+     * @return true if the provider status is normal
+     */
+    private boolean checkProviderState(boolean loadData) {
+        // This query can be performed on the UI thread because
+        // the API explicitly allows such use.
+        Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI, new String[] {
+                ProviderStatus.STATUS, ProviderStatus.DATA1
+        }, null, null, null);
+        try {
+            if (cursor.moveToFirst()) {
+                int status = cursor.getInt(0);
+                switch (status) {
+                    case ProviderStatus.STATUS_NORMAL:
+                        if (loadData) {
+                            startQuery();
+                        }
+                        return true;
+
+                    case ProviderStatus.STATUS_CHANGING_LOCALE:
+                        TextView empty = (TextView) findViewById(R.id.emptyText);
+                        empty.setText(R.string.locale_change_in_progress);
+                        mAdapter.changeCursor(null);
+                        return false;
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return true;
     }
 
     private String getTextFilter() {
@@ -1006,6 +1069,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onRestart() {
         super.onRestart();
 
+        if (!checkProviderState(false)) {
+            return;
+        }
+
         // The cursor was killed off in onStop(), so we need to get a new one here
         // We do not perform the query if a filter is set on the list because the
         // filter will cause the query to happen anyway
@@ -1013,7 +1080,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             startQuery();
         } else {
             // Run the filtered query on the adapter
-            ((ContactItemListAdapter) getListAdapter()).onContentChanged();
+            mAdapter.onContentChanged();
         }
     }
 
@@ -2658,6 +2725,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public boolean isEmpty() {
+            if (!mDataValid) {
+                return true;
+            }
+
             if (mSearchMode) {
                 return TextUtils.isEmpty(getTextFilter());
             } else if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW) {
