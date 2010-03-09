@@ -51,6 +51,7 @@ import java.util.Locale;
 public class Sources extends BroadcastReceiver implements OnAccountsUpdateListener {
     private static final String TAG = "Sources";
 
+    private Context mContext;
     private Context mApplicationContext;
     private AccountManager mAccountManager;
 
@@ -79,6 +80,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
      * Internal constructor that only performs initial parsing.
      */
     private Sources(Context context) {
+        mContext = context;
         mApplicationContext = context.getApplicationContext();
         mAccountManager = AccountManager.get(mApplicationContext);
 
@@ -288,7 +290,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
             return source;
         } else {
             // Not inflated, but requested that we force-inflate
-            source.ensureInflated(mApplicationContext, inflateLevel);
+            source.ensureInflated(mContext, inflateLevel);
             return source;
         }
     }
