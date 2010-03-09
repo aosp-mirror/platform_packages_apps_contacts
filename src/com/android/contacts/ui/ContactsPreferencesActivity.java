@@ -987,7 +987,9 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
         mContactsPrefs.setSortOrder(mSortOrder);
         mContactsPrefs.setDisplayOrder(mDisplayOrder);
 
-        if (mAdapter == null) return;
+        if (mAdapter == null || mAdapter.mAccounts == null) {
+            return;
+        }
         setDisplayOnlyPhones(mDisplayPhones.isChecked());
         new UpdateTask(this).execute(mAdapter.mAccounts);
     }
