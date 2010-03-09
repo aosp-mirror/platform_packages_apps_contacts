@@ -1227,6 +1227,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.confirm_share_visible_contacts_title)
                         .setMessage(getString(R.string.confirm_share_visible_contacts_message))
+                        .setNegativeButton(android.R.string.cancel, null)
                         .setPositiveButton(android.R.string.ok,
                                 new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
