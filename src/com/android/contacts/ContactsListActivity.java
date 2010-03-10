@@ -440,6 +440,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
+    private boolean mProviderStatusNormal;
+
     private boolean mSearchMode;
     private boolean mShowNumberOfContacts;
 
@@ -934,7 +936,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private void setEmptyText() {
         TextView empty = (TextView) findViewById(R.id.emptyText);
-        if (mMode == MODE_JOIN_CONTACT || mSearchMode || mAdapter.getCursor() == null) {
+        if (mMode == MODE_JOIN_CONTACT || mSearchMode) {
             empty.setText(null);
             return;
         }
@@ -1039,12 +1041,14 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 int status = cursor.getInt(0);
                 switch (status) {
                     case ProviderStatus.STATUS_NORMAL:
+                        mProviderStatusNormal = true;
                         if (loadData) {
                             startQuery();
                         }
                         return true;
 
                     case ProviderStatus.STATUS_CHANGING_LOCALE:
+                        mProviderStatusNormal = false;
                         TextView empty = (TextView) findViewById(R.id.emptyText);
                         empty.setText(R.string.locale_change_in_progress);
                         mAdapter.changeCursor(null);
@@ -2725,7 +2729,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public boolean isEmpty() {
-            if (!mDataValid) {
+            if (!mProviderStatusNormal) {
                 return true;
             }
 
