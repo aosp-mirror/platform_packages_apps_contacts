@@ -95,6 +95,10 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
         mApplicationContext.registerReceiver(this, filter);
+        IntentFilter sdFilter = new IntentFilter();
+        sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
+        sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
+        mApplicationContext.registerReceiver(this, sdFilter);
 
         // Request updates when locale is changed so that the order of each field will
         // be able to be changed on the locale change.
@@ -123,15 +127,29 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
 
         if (Intent.ACTION_PACKAGE_REMOVED.equals(action)
                 || Intent.ACTION_PACKAGE_ADDED.equals(action)
-                || Intent.ACTION_PACKAGE_CHANGED.equals(action)) {
-            final String packageName = intent.getData().getSchemeSpecificPart();
-            final boolean knownPackage = mKnownPackages.contains(packageName);
-            if (knownPackage) {
-                // Invalidate cache of existing source
-                invalidateCache(packageName);
+                || Intent.ACTION_PACKAGE_CHANGED.equals(action) ||
+                Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action) ||
+                Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)) {
+            String[] pkgList = null;
+            // Handle applications on sdcard.
+            if (Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action) ||
+                    Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)) {
+                pkgList = intent.getStringArrayExtra(Intent.EXTRA_CHANGED_PACKAGE_LIST);
             } else {
-                // Unknown source, so reload from scratch
-                queryAccounts();
+                final String packageName = intent.getData().getSchemeSpecificPart();
+                pkgList = new String[] { packageName };
+            }
+            if (pkgList != null) {
+                for (String packageName : pkgList) {
+                    final boolean knownPackage = mKnownPackages.contains(packageName);
+                    if (knownPackage) {
+                        // Invalidate cache of existing source
+                        invalidateCache(packageName);
+                    } else {
+                        // Unknown source, so reload from scratch
+                        queryAccounts();
+                    }
+                }
             }
         } else if (Intent.ACTION_LOCALE_CHANGED.equals(action)) {
             invalidateAllCache();
