@@ -440,7 +440,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    private boolean mProviderStatusNormal;
+    private boolean mProviderStatusNormal = true;
 
     private boolean mSearchMode;
     private boolean mShowNumberOfContacts;
@@ -935,12 +935,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     private void setEmptyText() {
-        TextView empty = (TextView) findViewById(R.id.emptyText);
         if (mMode == MODE_JOIN_CONTACT || mSearchMode) {
-            empty.setText(null);
             return;
         }
 
+        TextView empty = (TextView) findViewById(R.id.emptyText);
         if (mDisplayOnlyPhones) {
             empty.setText(getText(R.string.noContactsWithPhoneNumbers));
         } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
