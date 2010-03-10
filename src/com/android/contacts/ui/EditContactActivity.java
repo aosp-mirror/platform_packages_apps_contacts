@@ -181,6 +181,7 @@ public final class EditContactActivity extends Activity
 
     private static class QueryEntitiesTask extends
             WeakAsyncTask<Intent, Void, Void, EditContactActivity> {
+
         public QueryEntitiesTask(EditContactActivity target) {
             super(target);
         }
@@ -1153,246 +1154,144 @@ public final class EditContactActivity extends Activity
         return doSaveAction(SAVE_MODE_JOIN);
     }
 
-
-
-
-
-
-
-
     /**
      * Build dialog that handles adding a new {@link RawContacts} after the user
      * picks a specific {@link ContactsSource}.
      */
     private static class AddContactTask extends
-            WeakAsyncTask<Void, Void, AlertDialog.Builder, EditContactActivity> {
+            WeakAsyncTask<Void, Void, ArrayList<Account>, EditContactActivity> {
+
         public AddContactTask(EditContactActivity target) {
             super(target);
         }
 
         @Override
-        protected AlertDialog.Builder doInBackground(final EditContactActivity target,
+        protected ArrayList<Account> doInBackground(final EditContactActivity target,
                 Void... params) {
-            final Sources sources = Sources.getInstance(target);
-
-            // Wrap our context to inflate list items using correct theme
-            final Context dialogContext = new ContextThemeWrapper(target, android.R.style.Theme_Light);
-            final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            final ArrayList<Account> writable = sources.getAccounts(true);
-
-            // No Accounts available.  Create a phone-local contact.
-            if (writable.isEmpty()) {
-                selectAccount(null);
-                return null;  // Don't show a dialog.
-            }
-
-            // In the common case of a single account being writable, auto-select
-            // it without showing a dialog.
-            if (writable.size() == 1) {
-                selectAccount(writable.get(0));
-                return null;  // Don't show a dialog.
-            }
-
-            final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(target,
-                    android.R.layout.simple_list_item_2, writable) {
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
-                                parent, false);
-                    }
-
-                    // TODO: show icon along with title
-                    final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
-                    final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
-
-                    final Account account = this.getItem(position);
-                    final ContactsSource source = sources.getInflatedSource(account.type,
-                            ContactsSource.LEVEL_SUMMARY);
-
-                    text1.setText(account.name);
-                    text2.setText(source.getDisplayLabel(target));
-
-                    return convertView;
-                }
-            };
-
-            final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-
-                    // Create new contact based on selected source
-                    final Account account = accountAdapter.getItem(which);
-                    selectAccount(account);
-
-                    // Update the UI.
-                    EditContactActivity target = mTarget.get();
-                    if (target != null) {
-                        target.bindEditors();
-                    }
-                }
-            };
-
-            final DialogInterface.OnCancelListener cancelListener = new DialogInterface.OnCancelListener() {
-                public void onCancel(DialogInterface dialog) {
-                    // If nothing remains, close activity
-                    if (!target.hasValidState()) {
-                        target.finish();
-                    }
-                }
-            };
-
-            // TODO: when canceled and was single add, finish()
-            final AlertDialog.Builder builder = new AlertDialog.Builder(target);
-            builder.setTitle(R.string.dialog_new_contact_account);
-            builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
-            builder.setOnCancelListener(cancelListener);
-            return builder;
-        }
-
-        /**
-         * Sets up EditContactActivity's mState for the account selected.
-         * Runs from a background thread.
-         *
-         * @param account may be null to signal a device-local contact should
-         *     be created.
-         */
-        private void selectAccount(Account account) {
-            EditContactActivity target = mTarget.get();
-            if (target == null) {
-                return;
-            }
-            final Sources sources = Sources.getInstance(target);
-            final ContentValues values = new ContentValues();
-            if (account != null) {
-                values.put(RawContacts.ACCOUNT_NAME, account.name);
-                values.put(RawContacts.ACCOUNT_TYPE, account.type);
-            } else {
-                values.putNull(RawContacts.ACCOUNT_NAME);
-                values.putNull(RawContacts.ACCOUNT_TYPE);
-            }
-
-            // Parse any values from incoming intent
-            final EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-            final ContactsSource source = sources.getInflatedSource(
-                account != null ? account.type : null,
-                ContactsSource.LEVEL_CONSTRAINTS);
-            final Bundle extras = target.getIntent().getExtras();
-            EntityModifier.parseExtras(target, source, insert, extras);
-
-            // Ensure we have some default fields
-            EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
-            EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
-
-            // Create "My Contacts" membership for Google contacts
-            // TODO: move this off into "templates" for each given source
-            if (GoogleSource.ACCOUNT_TYPE.equals(source.accountType)) {
-                GoogleSource.attemptMyContactsMembership(insert, target);
-            }
-
-	    // TODO: no synchronization here on target.mState.  This
-	    // runs in the background thread, but it's accessed from
-	    // multiple thread, including the UI thread.
-            if (target.mState == null) {
-                // Create state if none exists yet
-                target.mState = EntitySet.fromSingle(insert);
-            } else {
-                // Add contact onto end of existing state
-                target.mState.add(insert);
-            }
+            return Sources.getInstance(target).getAccounts(true);
         }
 
         @Override
-        protected void onPostExecute(EditContactActivity target, AlertDialog.Builder result) {
-            if (result != null) {
-                // Note: null is returned when no dialog is to be
-                // shown (no multiple accounts to select between)
-                target.showAndManageDialog(result.create());
-            } else {
-                // Account was auto-selected on the background thread,
-                // but we need to update the UI still in the
-                // now-current UI thread.
-                target.bindEditors();
-            }
+        protected void onPostExecute(final EditContactActivity target, ArrayList<Account> accounts) {
+            target.selectAccountAndCreateContact(accounts);
         }
     }
 
+    public void selectAccountAndCreateContact(ArrayList<Account> accounts) {
+        // No Accounts available.  Create a phone-local contact.
+        if (accounts.isEmpty()) {
+            createContact(null);
+            return;  // Don't show a dialog.
+        }
 
-
-    private Dialog createDeleteDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.deleteConfirmation_title);
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setMessage(R.string.deleteConfirmation);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Mark all raw contacts for deletion
-                for (EntityDelta delta : mState) {
-                    delta.markDeleted();
-                }
-
-                // Save the deletes
-                doSaveAction(SAVE_MODE_DEFAULT);
-                finish();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, null);
-        builder.setCancelable(false);
-        return builder.create();
-    }
-
-    /**
-     * Create dialog for selecting primary display name.
-     */
-    private Dialog createNameDialog() {
-        // Build set of all available display names
-        final ArrayList<ValuesDelta> allNames = Lists.newArrayList();
-        for (EntityDelta entity : mState) {
-            final ArrayList<ValuesDelta> displayNames = entity
-                    .getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
-            allNames.addAll(displayNames);
+        // In the common case of a single account being writable, auto-select
+        // it without showing a dialog.
+        if (accounts.size() == 1) {
+            createContact(accounts.get(0));
+            return;  // Don't show a dialog.
         }
 
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater = this.getLayoutInflater()
-                .cloneInContext(dialogContext);
+        final LayoutInflater dialogInflater =
+            (LayoutInflater)dialogContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final ListAdapter nameAdapter = new ArrayAdapter<ValuesDelta>(this,
-                android.R.layout.simple_list_item_1, allNames) {
+        final Sources sources = Sources.getInstance(this);
+
+        final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(this,
+                android.R.layout.simple_list_item_2, accounts) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_1,
+                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
                             parent, false);
                 }
 
-                final ValuesDelta structuredName = this.getItem(position);
-                final String displayName = structuredName.getAsString(StructuredName.DISPLAY_NAME);
+                // TODO: show icon along with title
+                final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
+                final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
 
-                ((TextView)convertView).setText(displayName);
+                final Account account = this.getItem(position);
+                final ContactsSource source = sources.getInflatedSource(account.type,
+                        ContactsSource.LEVEL_SUMMARY);
+
+                text1.setText(account.name);
+                text2.setText(source.getDisplayLabel(EditContactActivity.this));
 
                 return convertView;
             }
         };
 
-        final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+        final DialogInterface.OnClickListener clickListener =
+                new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                // User picked display name, so make super-primary
-                final ValuesDelta structuredName = allNames.get(which);
-                structuredName.put(Data.IS_PRIMARY, 1);
-                structuredName.put(Data.IS_SUPER_PRIMARY, 1);
+                // Create new contact based on selected source
+                final Account account = accountAdapter.getItem(which);
+                createContact(account);
+            }
+        };
+
+        final DialogInterface.OnCancelListener cancelListener =
+                new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+                // If nothing remains, close activity
+                if (!hasValidState()) {
+                    finish();
+                }
             }
         };
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_primary_name);
-        builder.setSingleChoiceItems(nameAdapter, 0, clickListener);
-        return builder.create();
+        builder.setTitle(R.string.dialog_new_contact_account);
+        builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
+        builder.setOnCancelListener(cancelListener);
+        showAndManageDialog(builder.create());
+    }
+
+    /**
+     * @param account may be null to signal a device-local contact should
+     *     be created.
+     */
+    private void createContact(Account account) {
+        final Sources sources = Sources.getInstance(this);
+        final ContentValues values = new ContentValues();
+        if (account != null) {
+            values.put(RawContacts.ACCOUNT_NAME, account.name);
+            values.put(RawContacts.ACCOUNT_TYPE, account.type);
+        } else {
+            values.putNull(RawContacts.ACCOUNT_NAME);
+            values.putNull(RawContacts.ACCOUNT_TYPE);
+        }
+
+        // Parse any values from incoming intent
+        EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
+        final ContactsSource source = sources.getInflatedSource(
+            account != null ? account.type : null,
+            ContactsSource.LEVEL_CONSTRAINTS);
+        final Bundle extras = getIntent().getExtras();
+        EntityModifier.parseExtras(this, source, insert, extras);
+
+        // Ensure we have some default fields
+        EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
+
+        // Create "My Contacts" membership for Google contacts
+        // TODO: move this off into "templates" for each given source
+        if (GoogleSource.ACCOUNT_TYPE.equals(source.accountType)) {
+            GoogleSource.attemptMyContactsMembership(insert, this);
+        }
+
+        if (mState == null) {
+            // Create state if none exists yet
+            mState = EntitySet.fromSingle(insert);
+        } else {
+            // Add contact onto end of existing state
+            mState.add(insert);
+        }
+
+        bindEditors();
     }
 
     /**
