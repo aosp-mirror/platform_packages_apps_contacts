@@ -319,9 +319,10 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
+        final ClassLoader loader = getClass().getClassLoader();
         final int size = source.readInt();
         for (int i = 0; i < size; i++) {
-            this.add(source.<EntityDelta> readParcelable(null));
+            this.add(source.<EntityDelta> readParcelable(loader));
         }
     }
 
