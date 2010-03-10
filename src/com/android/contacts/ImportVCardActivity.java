@@ -104,7 +104,7 @@ public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler();  // Run on the UI thread.
     private Account mAccount;
 
     private ProgressDialog mProgressDialogForScanVCard;
@@ -118,6 +118,7 @@ public class ImportVCardActivity extends Activity {
 
     private boolean mNeedReview = false;
 
+    // Runs on the UI thread.
     private class DialogDisplayer implements Runnable {
         private final int mResId;
         public DialogDisplayer(int resId) {
@@ -128,10 +129,7 @@ public class ImportVCardActivity extends Activity {
             mErrorMessage = errorMessage;
         }
         public void run() {
-            // Show the Dialog only when the parent Activity is still alive.
-            if (!ImportVCardActivity.this.isFinishing()) {
-                showDialog(mResId);
-            }
+            showDialog(mResId);
         }
     }
 
@@ -828,8 +826,8 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         if (mVCardReadThread != null) {
             // The Activity is no longer visible. Stop the thread.
             mVCardReadThread.cancel();
@@ -837,7 +835,7 @@ public class ImportVCardActivity extends Activity {
         }
 
         // ImportVCardActivity should not be persistent. In other words, if there's some
-        // event calling onStop(), this Activity should finish its work and give the main
+        // event calling onPause(), this Activity should finish its work and give the main
         // screen back to the caller Activity.
         if (!isFinishing()) {
             finish();
@@ -845,10 +843,27 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
+    protected void onDestroy() {
+        // The code assumes the handler runs on the UI thread. If not,
+        // clearing the message queue is not enough, one would have to
+        // make sure that the handler does not run any callback when
+        // this activity isFinishing().
+
+        // Callbacks messages have what == 0.
+        if (mHandler.hasMessages(0)) {
+            mHandler.removeMessages(0);
+        }
+
+        mHandler = null;  // Prevents memory leaks by breaking any circular dependency.
+        super.onDestroy();
+    }
+
+    @Override
     public void finalize() {
+        // TODO: This should not be needed. Throw exception instead.
         if (mVCardReadThread != null) {
             // Not sure this procedure is really needed, but just in case...
-            Log.w(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
+            Log.e(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
             mVCardReadThread.cancel();
             mVCardReadThread = null;
         }
