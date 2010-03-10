@@ -1549,8 +1549,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
 
             case MENU_ITEM_DELETE: {
-                mSelectedContactUri = getContactUri(info.position);
-                doContactDelete();
+                doContactDelete(getContactUri(info.position));
                 return true;
             }
         }
@@ -1612,10 +1611,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
 
             case KeyEvent.KEYCODE_DEL: {
-                final int position = getListView().getSelectedItemPosition();
-                if (position != ListView.INVALID_POSITION) {
-                    mSelectedContactUri = getContactUri(position);
-                    doContactDelete();
+                if (deleteSelection()) {
                     return true;
                 }
                 break;
@@ -1625,47 +1621,58 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return super.onKeyDown(keyCode, event);
     }
 
+    private boolean deleteSelection() {
+        final int position = getListView().getSelectedItemPosition();
+        if (position != ListView.INVALID_POSITION) {
+            Uri contactUri = getContactUri(position);
+            if (contactUri != null) {
+                doContactDelete(contactUri);
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Prompt the user before deleting the given {@link Contacts} entry.
      */
-    protected void doContactDelete() {
+    protected void doContactDelete(Uri contactUri) {
         mReadOnlySourcesCnt = 0;
         mWritableSourcesCnt = 0;
         mWritableRawContactIds.clear();
 
-        if (mSelectedContactUri != null) {
-            Sources sources = Sources.getInstance(ContactsListActivity.this);
-            Cursor c = getContentResolver().query(RawContacts.CONTENT_URI, RAW_CONTACTS_PROJECTION,
-                    RawContacts.CONTACT_ID + "=" + ContentUris.parseId(mSelectedContactUri), null,
-                    null);
-            if (c != null) {
-                try {
-                    while (c.moveToNext()) {
-                        final String accountType = c.getString(2);
-                        final long rawContactId = c.getLong(0);
-                        ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                                ContactsSource.LEVEL_SUMMARY);
-                        if (contactsSource != null && contactsSource.readOnly) {
-                            mReadOnlySourcesCnt += 1;
-                        } else {
-                            mWritableSourcesCnt += 1;
-                            mWritableRawContactIds.add(rawContactId);
-                        }
+        Sources sources = Sources.getInstance(ContactsListActivity.this);
+        Cursor c = getContentResolver().query(RawContacts.CONTENT_URI, RAW_CONTACTS_PROJECTION,
+                RawContacts.CONTACT_ID + "=" + ContentUris.parseId(contactUri), null,
+                null);
+        if (c != null) {
+            try {
+                while (c.moveToNext()) {
+                    final String accountType = c.getString(2);
+                    final long rawContactId = c.getLong(0);
+                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                            ContactsSource.LEVEL_SUMMARY);
+                    if (contactsSource != null && contactsSource.readOnly) {
+                        mReadOnlySourcesCnt += 1;
+                    } else {
+                        mWritableSourcesCnt += 1;
+                        mWritableRawContactIds.add(rawContactId);
                     }
-                } finally {
-                    c.close();
                 }
+            } finally {
+                c.close();
             }
+        }
 
-            if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
-                showDialog(R.id.dialog_readonly_contact_delete_confirmation);
-            } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-                showDialog(R.id.dialog_readonly_contact_hide_confirmation);
-            } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-                showDialog(R.id.dialog_multiple_contact_delete_confirmation);
-            } else {
-                showDialog(R.id.dialog_delete_contact_confirmation);
-            }
+        mSelectedContactUri = contactUri;
+        if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
+            showDialog(R.id.dialog_readonly_contact_delete_confirmation);
+        } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
+            showDialog(R.id.dialog_readonly_contact_hide_confirmation);
+        } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
+            showDialog(R.id.dialog_multiple_contact_delete_confirmation);
+        } else {
+            showDialog(R.id.dialog_delete_contact_confirmation);
         }
     }
 
@@ -2045,6 +2052,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
 
         final Cursor cursor = (Cursor)mAdapter.getItem(position);
+        if (cursor == null) {
+            return null;
+        }
+
         switch(mMode) {
             case MODE_LEGACY_PICK_PERSON:
             case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
