@@ -2482,53 +2482,75 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @return true if the call was initiated, false otherwise
      */
     boolean callOrSmsContact(Cursor cursor, boolean sendSms) {
-        if (cursor != null) {
-            boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
-            if (!hasPhone) {
-                // There is no phone number.
-                signalError();
-                return false;
-            }
+        if (cursor == null) {
+            return false;
+        }
 
-            String phone = null;
-            Cursor phonesCursor = null;
-            phonesCursor = queryPhoneNumbers(cursor.getLong(SUMMARY_ID_COLUMN_INDEX));
-            if (phonesCursor == null || phonesCursor.getCount() == 0) {
-                // No valid number
-                signalError();
-                return false;
-            } else if (phonesCursor.getCount() == 1) {
-                // only one number, call it.
-                phone = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.NUMBER));
-            } else {
-                phonesCursor.moveToPosition(-1);
-                while (phonesCursor.moveToNext()) {
-                    if (phonesCursor.getInt(phonesCursor.
-                            getColumnIndex(Phone.IS_SUPER_PRIMARY)) != 0) {
-                        // Found super primary, call it.
-                        phone = phonesCursor.
-                                getString(phonesCursor.getColumnIndex(Phone.NUMBER));
-                        break;
-                    }
-                }
-            }
-
-            if (phone == null) {
-                // Display dialog to choose a number to call.
-                PhoneDisambigDialog phoneDialog = new PhoneDisambigDialog(
-                        this, phonesCursor, sendSms);
-                phoneDialog.show();
-            } else {
+        switch (mMode) {
+            case MODE_PICK_PHONE:
+            case MODE_LEGACY_PICK_PHONE:
+            case MODE_QUERY_PICK_PHONE: {
+                String phone = cursor.getString(PHONE_NUMBER_COLUMN_INDEX);
                 if (sendSms) {
                     ContactsUtils.initiateSms(this, phone);
                 } else {
                     ContactsUtils.initiateCall(this, phone);
                 }
+                return true;
             }
-            return true;
-        }
 
-        return false;
+            case MODE_PICK_POSTAL:
+            case MODE_LEGACY_PICK_POSTAL: {
+                return false;
+            }
+
+            default: {
+
+                boolean hasPhone = cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+                if (!hasPhone) {
+                    // There is no phone number.
+                    signalError();
+                    return false;
+                }
+
+                String phone = null;
+                Cursor phonesCursor = null;
+                phonesCursor = queryPhoneNumbers(cursor.getLong(SUMMARY_ID_COLUMN_INDEX));
+                if (phonesCursor == null || phonesCursor.getCount() == 0) {
+                    // No valid number
+                    signalError();
+                    return false;
+                } else if (phonesCursor.getCount() == 1) {
+                    // only one number, call it.
+                    phone = phonesCursor.getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+                } else {
+                    phonesCursor.moveToPosition(-1);
+                    while (phonesCursor.moveToNext()) {
+                        if (phonesCursor.getInt(phonesCursor.
+                                getColumnIndex(Phone.IS_SUPER_PRIMARY)) != 0) {
+                            // Found super primary, call it.
+                            phone = phonesCursor.
+                            getString(phonesCursor.getColumnIndex(Phone.NUMBER));
+                            break;
+                        }
+                    }
+                }
+
+                if (phone == null) {
+                    // Display dialog to choose a number to call.
+                    PhoneDisambigDialog phoneDialog = new PhoneDisambigDialog(
+                            this, phonesCursor, sendSms);
+                    phoneDialog.show();
+                } else {
+                    if (sendSms) {
+                        ContactsUtils.initiateSms(this, phone);
+                    } else {
+                        ContactsUtils.initiateCall(this, phone);
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     private Cursor queryPhoneNumbers(long contactId) {
