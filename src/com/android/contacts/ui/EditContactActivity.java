@@ -136,6 +136,13 @@ public final class EditContactActivity extends Activity
     String mQuerySelection;
 
     private long mContactIdForJoin;
+
+    private static final int STATUS_LOADING = 0;
+    private static final int STATUS_EDITING = 1;
+    private static final int STATUS_SAVING = 2;
+
+    private int mStatus;
+
     EntitySet mState;
 
     /** The linear layout holding the ContactEditorViews */
@@ -165,10 +172,13 @@ public final class EditContactActivity extends Activity
 
         if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
             setTitle(R.string.editContact_title_edit);
+            mStatus = STATUS_LOADING;
+
             // Read initial state from database
             new QueryEntitiesTask(this).execute(intent);
         } else if (Intent.ACTION_INSERT.equals(action) && !hasIncomingState) {
             setTitle(R.string.editContact_title_insert);
+            mStatus = STATUS_EDITING;
             // Trigger dialog to pick account type
             doAddAction();
         }
@@ -180,49 +190,56 @@ public final class EditContactActivity extends Activity
     }
 
     private static class QueryEntitiesTask extends
-            WeakAsyncTask<Intent, Void, Void, EditContactActivity> {
+            WeakAsyncTask<Intent, Void, EntitySet, EditContactActivity> {
+
+        private String mSelection;
 
         public QueryEntitiesTask(EditContactActivity target) {
             super(target);
         }
 
         @Override
-        protected Void doInBackground(EditContactActivity target, Intent... params) {
-            // Load edit details in background
-            final Context context = target;
-            final Sources sources = Sources.getInstance(context);
+        protected EntitySet doInBackground(EditContactActivity target, Intent... params) {
             final Intent intent = params[0];
 
-            final ContentResolver resolver = context.getContentResolver();
+            final ContentResolver resolver = target.getContentResolver();
 
             // Handle both legacy and new authorities
             final Uri data = intent.getData();
             final String authority = data.getAuthority();
             final String mimeType = intent.resolveType(resolver);
 
-            String selection = "0";
+            mSelection = "0";
             if (ContactsContract.AUTHORITY.equals(authority)) {
                 if (Contacts.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     // Handle selected aggregate
                     final long contactId = ContentUris.parseId(data);
-                    selection = RawContacts.CONTACT_ID + "=" + contactId;
+                    mSelection = RawContacts.CONTACT_ID + "=" + contactId;
                 } else if (RawContacts.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     final long rawContactId = ContentUris.parseId(data);
                     final long contactId = ContactsUtils.queryForContactId(resolver, rawContactId);
-                    selection = RawContacts.CONTACT_ID + "=" + contactId;
+                    mSelection = RawContacts.CONTACT_ID + "=" + contactId;
                 }
             } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
                 final long rawContactId = ContentUris.parseId(data);
-                selection = Data.RAW_CONTACT_ID + "=" + rawContactId;
+                mSelection = Data.RAW_CONTACT_ID + "=" + rawContactId;
             }
 
-            target.mQuerySelection = selection;
-            target.mState = EntitySet.fromQuery(resolver, selection, null, null);
+            return EntitySet.fromQuery(target.getContentResolver(), mSelection, null, null);
+        }
+
+        @Override
+        protected void onPostExecute(EditContactActivity target, EntitySet entitySet) {
+            target.mQuerySelection = mSelection;
+
+            // Load edit details in background
+            final Context context = target;
+            final Sources sources = Sources.getInstance(context);
 
             // Handle any incoming values that should be inserted
-            final Bundle extras = intent.getExtras();
+            final Bundle extras = target.getIntent().getExtras();
             final boolean hasExtras = extras != null && extras.size() > 0;
-            final boolean hasState = target.mState.size() > 0;
+            final boolean hasState = entitySet.size() > 0;
             if (hasExtras && hasState) {
                 // Find source defining the first RawContact found
                 final EntityDelta state = target.mState.get(0);
@@ -232,17 +249,12 @@ public final class EditContactActivity extends Activity
                 EntityModifier.parseExtras(context, source, state, extras);
             }
 
-            return null;
-        }
+            target.mState = entitySet;
 
-        @Override
-        protected void onPostExecute(EditContactActivity target, Void result) {
             // Bind UI to new background state
             target.bindEditors();
         }
     }
-
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -278,7 +290,7 @@ public final class EditContactActivity extends Activity
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case DIALOG_CONFIRM_DELETE:
                 return new AlertDialog.Builder(this)
@@ -355,7 +367,7 @@ public final class EditContactActivity extends Activity
      * performing user actions.
      */
     protected boolean hasValidState() {
-        return mState != null && mState.size() > 0;
+        return mStatus == STATUS_EDITING && mState != null && mState.size() > 0;
     }
 
     /**
@@ -364,7 +376,9 @@ public final class EditContactActivity extends Activity
      * {@link RawContacts}.
      */
     protected void bindEditors() {
-        if (!hasValidState()) return;
+        if (mState == null) {
+            return;
+        }
 
         final LayoutInflater inflater = (LayoutInflater) getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
@@ -405,6 +419,7 @@ public final class EditContactActivity extends Activity
 
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
+        mStatus = STATUS_EDITING;
     }
 
     /**
@@ -744,8 +759,11 @@ public final class EditContactActivity extends Activity
      * finishes the activity.
      */
     boolean doSaveAction(int saveMode) {
-        if (!hasValidState()) return false;
+        if (!hasValidState()) {
+            return false;
+        }
 
+        mStatus = STATUS_SAVING;
         final PersistTask task = new PersistTask(this, saveMode);
         task.execute(mState);
 
@@ -805,6 +823,7 @@ public final class EditContactActivity extends Activity
                 break;
 
             case SAVE_MODE_JOIN:
+                mStatus = STATUS_EDITING;
                 if (success) {
                     showJoinAggregateActivity(contactLookupUri);
                 }
@@ -938,6 +957,10 @@ public final class EditContactActivity extends Activity
      * {@link EntityDelta} under the currently edited {@link Contacts}.
      */
     private boolean doAddAction() {
+        if (mStatus != STATUS_EDITING) {
+            return false;
+        }
+
         // Adding is okay when missing state
         new AddContactTask(this).execute();
         return true;
@@ -948,12 +971,13 @@ public final class EditContactActivity extends Activity
      * user confirmation before continuing.
      */
     private boolean doDeleteAction() {
-        if (!hasValidState()) return false;
+        if (!hasValidState())
+            return false;
         int readOnlySourcesCnt = 0;
-	int writableSourcesCnt = 0;
+        int writableSourcesCnt = 0;
         Sources sources = Sources.getInstance(EditContactActivity.this);
         for (EntityDelta delta : mState) {
-	    final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final ContactsSource contactsSource = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_CONSTRAINTS);
             if (contactsSource != null && contactsSource.readOnly) {
@@ -961,18 +985,18 @@ public final class EditContactActivity extends Activity
             } else {
                 writableSourcesCnt += 1;
             }
-	}
+        }
 
         if (readOnlySourcesCnt > 0 && writableSourcesCnt > 0) {
-	    showDialog(DIALOG_CONFIRM_READONLY_DELETE);
-	} else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
-	    showDialog(DIALOG_CONFIRM_READONLY_HIDE);
-	} else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
-	    showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+            showDialog(DIALOG_CONFIRM_READONLY_DELETE);
+        } else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
+            showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+        } else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
+            showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
         } else {
-	    showDialog(DIALOG_CONFIRM_DELETE);
-	}
-	return true;
+            showDialog(DIALOG_CONFIRM_DELETE);
+        }
+        return true;
     }
 
     /**
