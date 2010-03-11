@@ -41,6 +41,10 @@ import android.widget.Toast;
 /**
  * Helper class to listen for some magic character sequences
  * that are handled specially by the dialer.
+ *
+ * TODO: there's lots of duplicated code between this class and the
+ * corresponding class under apps/Phone.  Let's figure out a way to
+ * unify these two classes (in the framework? in a common shared library?)
  */
 public class SpecialCharSequenceMgr {
     private static final String TAG = "SpecialCharSequenceMgr";
