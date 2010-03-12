@@ -263,7 +263,7 @@ public class ImportVCardActivity extends Activity {
                             // Assume that VCardSourceDetector was able to detect the source.
                         }
                         String charset = detector.getEstimatedCharset();
-                        createdUri = doActuallyReadOneVCard(uri, mAccount,
+                        doActuallyReadOneVCard(uri, mAccount,
                                 charset, false, detector, mErrorFileNameList);
                         mProgressDialogForReadVCard.incrementProgressBy(1);
                     }
@@ -279,14 +279,16 @@ public class ImportVCardActivity extends Activity {
                             mNeedReview = false;
                             Log.v("importVCardActivity", "Prepare to review the imported contact");
 
-                            // get contact_id of this raw_contact
-                            final long rawContactId = ContentUris.parseId(createdUri);
-                            Uri contactUri = RawContacts.getContactLookupUri(getContentResolver(),
-                                    ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                                            rawContactId));
+                            if (createdUri != null) {
+                                // get contact_id of this raw_contact
+                                final long rawContactId = ContentUris.parseId(createdUri);
+                                Uri contactUri = RawContacts.getContactLookupUri(getContentResolver(),
+                                        ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                                                rawContactId));
 
-                            Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
-                            startActivity(viewIntent);
+                                Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
+                                startActivity(viewIntent);
+                            }
                         }
                     } else {
                         StringBuilder builder = new StringBuilder();
@@ -338,7 +340,8 @@ public class ImportVCardActivity extends Activity {
             } catch (VCardNestedException e) {
                 Log.e(LOG_TAG, "Never reach here.");
             }
-            return committer.getLastCreatedUri();
+            final ArrayList<Uri> createdUris = committer.getCreatedUris();
+            return (createdUris == null || createdUris.size() != 1) ? null : createdUris.get(0);
         }
 
         private boolean readOneVCardFile(Uri uri, String charset,
