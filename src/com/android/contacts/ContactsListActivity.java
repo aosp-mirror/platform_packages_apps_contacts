@@ -3067,9 +3067,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 int serverStatus;
                 if (!cursor.isNull(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
                     serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
-                    presenceView.setImageResource(
-                            Presence.getPresenceIconResourceId(serverStatus));
-                    presenceView.setVisibility(View.VISIBLE);
+                    Drawable icon = ContactPresenceIconUtil.getPresenceIcon(mContext, serverStatus);
+                    if (icon != null) {
+                        presenceView.setImageDrawable(icon);
+                        presenceView.setVisibility(View.VISIBLE);
+                    } else {
+                        presenceView.setVisibility(View.GONE);
+                    }
                 } else {
                     presenceView.setVisibility(View.GONE);
                 }

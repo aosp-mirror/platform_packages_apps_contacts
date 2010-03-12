@@ -17,6 +17,7 @@
 package com.android.contacts.ui;
 
 import com.android.contacts.Collapser;
+import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
@@ -617,30 +618,6 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Find the presence icon for showing in summary header.
-     */
-    private Drawable getPresenceIcon(int status) {
-        int resId = -1;
-        switch (status) {
-            case StatusUpdates.AVAILABLE:
-                resId = android.R.drawable.presence_online;
-                break;
-            case StatusUpdates.IDLE:
-            case StatusUpdates.AWAY:
-                resId = android.R.drawable.presence_away;
-                break;
-            case StatusUpdates.DO_NOT_DISTURB:
-                resId = android.R.drawable.presence_busy;
-                break;
-        }
-        if (resId != -1) {
-            return mContext.getResources().getDrawable(resId);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * Find the QuickContact-specific presence icon for showing in chiclets.
      */
     private Drawable getTrackPresenceIcon(int status) {
@@ -1215,7 +1192,7 @@ public class QuickContactWindow implements Window.Callback,
             // Read contact information from last data row
             final String name = cursor.getString(DataQuery.DISPLAY_NAME);
             final int presence = cursor.getInt(DataQuery.CONTACT_PRESENCE);
-            final Drawable statusIcon = getPresenceIcon(presence);
+            final Drawable statusIcon = ContactPresenceIconUtil.getPresenceIcon(mContext, presence);
 
             setHeaderText(R.id.name, name);
             setHeaderImage(R.id.presence, statusIcon);

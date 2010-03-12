@@ -978,7 +978,6 @@ public class ViewContactActivity extends Activity
         public int collapseCount = 0;
 
         public int presence = -1;
-        public int presenceIcon = -1;
 
         public CharSequence footerLine = null;
 
@@ -1019,9 +1018,6 @@ public class ViewContactActivity extends Activity
          */
         public ViewEntry applyStatus(DataStatus status, boolean fillData) {
             presence = status.getPresence();
-            presenceIcon = (presence == -1) ? -1 :
-                    StatusUpdates.getPresenceIconResourceId(this.presence);
-
             if (fillData && status.isValid()) {
                 this.data = status.getStatus().toString();
                 this.footerLine = status.getTimestampLabel(context);
@@ -1208,13 +1204,8 @@ public class ViewContactActivity extends Activity
             }
 
             // Set the presence icon
-            Drawable presenceIcon = null;
-            if (entry.presenceIcon != -1) {
-                presenceIcon = resources.getDrawable(entry.presenceIcon);
-            } else if (entry.presence != -1) {
-                presenceIcon = resources.getDrawable(
-                        StatusUpdates.getPresenceIconResourceId(entry.presence));
-            }
+            Drawable presenceIcon = ContactPresenceIconUtil.getPresenceIcon(
+                    mContext, entry.presence);
             ImageView presenceIconView = views.presenceIcon;
             if (presenceIcon != null) {
                 presenceIconView.setImageDrawable(presenceIcon);
