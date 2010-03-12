@@ -1397,16 +1397,21 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return;
             }
 
-            ArrayList<Uri> uriList = new ArrayList<Uri>();
+            StringBuilder uriListBuilder = new StringBuilder();
+            int index = 0;
             for (;!cursor.isAfterLast(); cursor.moveToNext()) {
-                uriList.add(Uri.withAppendedPath(
-                        Contacts.CONTENT_VCARD_URI,
-                        cursor.getString(0)));
+                if (index != 0)
+                    uriListBuilder.append(':');
+                uriListBuilder.append(Uri.encode(cursor.getString(0)));
+                index++;
             }
+            Uri uri = Uri.withAppendedPath(
+                    Contacts.CONTENT_MULTI_VCARD_URI,
+                    Uri.encode(uriListBuilder.toString()));
 
-            final Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+            final Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType(Contacts.CONTENT_VCARD_TYPE);
-            intent.putExtra(Intent.EXTRA_STREAM, uriList);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(intent);
         } finally {
             cursor.close();

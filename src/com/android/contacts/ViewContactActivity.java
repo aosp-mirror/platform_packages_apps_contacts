@@ -548,7 +548,7 @@ public class ViewContactActivity extends Activity
                 if (mAllRestricted) return false;
 
                 // TODO: Keep around actual LOOKUP_KEY, or formalize method of extracting
-                final String lookupKey = mLookupUri.getPathSegments().get(2);
+                final String lookupKey = Uri.encode(mLookupUri.getPathSegments().get(2));
                 final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
 
                 final Intent intent = new Intent(Intent.ACTION_SEND);
