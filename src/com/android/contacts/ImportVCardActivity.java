@@ -282,9 +282,9 @@ public class ImportVCardActivity extends Activity {
                             if (createdUri != null) {
                                 // get contact_id of this raw_contact
                                 final long rawContactId = ContentUris.parseId(createdUri);
-                                Uri contactUri = RawContacts.getContactLookupUri(getContentResolver(),
-                                        ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                                                rawContactId));
+                                Uri contactUri = RawContacts.getContactLookupUri(
+                                        getContentResolver(), ContentUris.withAppendedId(
+                                                RawContacts.CONTENT_URI, rawContactId));
 
                                 Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
                                 startActivity(viewIntent);
