@@ -752,12 +752,6 @@ public class RecentCallsListActivity extends ListActivity
 
         // Kill the requests thread
         mAdapter.stopRequestProcessing();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mAdapter.stopRequestProcessing();
         mAdapter.changeCursor(null);
     }
 
