@@ -100,6 +100,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
@@ -107,6 +108,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -440,7 +442,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    private boolean mProviderStatusNormal = true;
+    private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
     private boolean mSearchMode;
     private boolean mShowNumberOfContacts;
@@ -1012,7 +1014,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mSearchEditText.requestFocus();
         }
 
-        if (!checkProviderState(mJustCreated)) {
+        if (!mSearchMode && !checkProviderState(mJustCreated)) {
             return;
         }
 
@@ -1032,6 +1034,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @return true if the provider status is normal
      */
     private boolean checkProviderState(boolean loadData) {
+        View importFailureView = findViewById(R.id.import_failure);
+        if (importFailureView == null) {
+            return true;
+        }
+
+        TextView messageView = (TextView) findViewById(R.id.emptyText);
+
         // This query can be performed on the UI thread because
         // the API explicitly allows such use.
         Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI, new String[] {
@@ -1040,27 +1049,76 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         try {
             if (cursor.moveToFirst()) {
                 int status = cursor.getInt(0);
-                switch (status) {
-                    case ProviderStatus.STATUS_NORMAL:
-                        mProviderStatusNormal = true;
-                        if (loadData) {
-                            startQuery();
-                        }
-                        return true;
+                if (status != mProviderStatus) {
+                    mProviderStatus = status;
+                    switch (status) {
+                        case ProviderStatus.STATUS_NORMAL:
+                            mAdapter.notifyDataSetInvalidated();
+                            if (loadData) {
+                                startQuery();
+                            }
+                            break;
 
-                    case ProviderStatus.STATUS_CHANGING_LOCALE:
-                        mProviderStatusNormal = false;
-                        TextView empty = (TextView) findViewById(R.id.emptyText);
-                        empty.setText(R.string.locale_change_in_progress);
-                        mAdapter.changeCursor(null);
-                        return false;
+                        case ProviderStatus.STATUS_CHANGING_LOCALE:
+                            messageView.setText(R.string.locale_change_in_progress);
+                            mAdapter.changeCursor(null);
+                            mAdapter.notifyDataSetInvalidated();
+                            break;
+
+                        case ProviderStatus.STATUS_UPGRADING:
+                            messageView.setText(R.string.upgrade_in_progress);
+                            mAdapter.changeCursor(null);
+                            mAdapter.notifyDataSetInvalidated();
+                            break;
+
+                        case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
+                            long size = cursor.getLong(1);
+                            String message = getResources().getString(
+                                    R.string.upgrade_out_of_memory, new Object[] {size});
+                            messageView.setText(message);
+                            configureImportFailureView(importFailureView);
+                            mAdapter.changeCursor(null);
+                            mAdapter.notifyDataSetInvalidated();
+                            break;
+                    }
                 }
             }
         } finally {
             cursor.close();
         }
 
-        return true;
+        importFailureView.setVisibility(
+                mProviderStatus == ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY
+                        ? View.VISIBLE
+                        : View.GONE);
+        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
+    }
+
+    private void configureImportFailureView(View importFailureView) {
+
+        OnClickListener listener = new OnClickListener(){
+
+            public void onClick(View v) {
+                switch(v.getId()) {
+                    case R.id.import_failure_uninstall_apps: {
+                        startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                        break;
+                    }
+                    case R.id.import_failure_retry_upgrade: {
+                        // Send a provider status update, which will trigger a retry
+                        ContentValues values = new ContentValues();
+                        values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
+                        getContentResolver().update(ProviderStatus.CONTENT_URI, values, null, null);
+                        break;
+                    }
+                }
+            }};
+
+        Button uninstallApps = (Button) findViewById(R.id.import_failure_uninstall_apps);
+        uninstallApps.setOnClickListener(listener);
+
+        Button retryUpgrade = (Button) findViewById(R.id.import_failure_retry_upgrade);
+        retryUpgrade.setOnClickListener(listener);
     }
 
     private String getTextFilter() {
@@ -1177,6 +1235,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
+        if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
+            return;
+        }
+
         if (globalSearch) {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         } else {
@@ -1246,7 +1308,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case R.string.import_from_sim:
             case R.string.import_from_sdcard: {
@@ -1310,7 +1372,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         }).create();
             }
         }
-        return super.onCreateDialog(id);
+        return super.onCreateDialog(id, bundle);
     }
 
     /**
@@ -1563,7 +1625,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         return super.onContextItemSelected(item);
     }
-
 
     /**
      * Event handler for the use case where the user starts typing without
@@ -2768,7 +2829,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public boolean isEmpty() {
-            if (!mProviderStatusNormal) {
+            if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
                 return true;
             }
 
@@ -3223,7 +3284,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public void changeCursor(Cursor cursor) {
-            setLoading(false);
+            if (cursor != null) {
+                setLoading(false);
+            }
 
             // Get the split between starred and frequent items, if the mode is strequent
             mFrequentSeparatorPos = ListView.INVALID_POSITION;
