@@ -411,7 +411,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private QueryHandler mQueryHandler;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
-    private Uri mSelectedContactUri;
+    Uri mSelectedContactUri;
 
 //    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
@@ -480,7 +480,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
-            getContentResolver().delete(mSelectedContactUri, null, null);
+            if (mSelectedContactUri != null) {
+                getContentResolver().delete(mSelectedContactUri, null, null);
+            }
         }
     }
 
