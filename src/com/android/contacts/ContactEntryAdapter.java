@@ -66,10 +66,11 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
          * Helper for making subclasses parcelable.
          */
         protected void readFromParcel(Parcel p) {
+            final ClassLoader loader = getClass().getClassLoader();
             type = p.readInt();
             label = p.readString();
             data = p.readString();
-            uri = p.readParcelable(null);
+            uri = p.readParcelable(loader);
             id = p.readLong();
             maxLines = p.readInt();
             mimetype = p.readString();

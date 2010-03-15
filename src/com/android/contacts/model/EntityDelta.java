@@ -448,10 +448,11 @@ public class EntityDelta implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
+        final ClassLoader loader = getClass().getClassLoader();
         final int size = source.readInt();
-        mValues = source.<ValuesDelta> readParcelable(null);
+        mValues = source.<ValuesDelta> readParcelable(loader);
         for (int i = 0; i < size; i++) {
-            final ValuesDelta child = source.<ValuesDelta> readParcelable(null);
+            final ValuesDelta child = source.<ValuesDelta> readParcelable(loader);
             this.addEntry(child);
         }
     }
@@ -810,8 +811,9 @@ public class EntityDelta implements Parcelable {
         }
 
         public void readFromParcel(Parcel source) {
-            mBefore = source.<ContentValues> readParcelable(null);
-            mAfter = source.<ContentValues> readParcelable(null);
+            final ClassLoader loader = getClass().getClassLoader();
+            mBefore = source.<ContentValues> readParcelable(loader);
+            mAfter = source.<ContentValues> readParcelable(loader);
             mIdColumn = source.readString();
         }
 
