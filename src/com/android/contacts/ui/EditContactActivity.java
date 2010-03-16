@@ -242,7 +242,7 @@ public final class EditContactActivity extends Activity
             final boolean hasState = entitySet.size() > 0;
             if (hasExtras && hasState) {
                 // Find source defining the first RawContact found
-                final EntityDelta state = target.mState.get(0);
+                final EntityDelta state = entitySet.get(0);
                 final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
                 final ContactsSource source = sources.getInflatedSource(accountType,
                         ContactsSource.LEVEL_CONSTRAINTS);
