@@ -715,16 +715,19 @@ public class ViewContactActivity extends Activity
                 int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
                     ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
-                    if (entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
+                    if (entry != null &&
+                            entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         startActivity(entry.intent);
+                        return true;
                     }
                 } else if (mPrimaryPhoneUri != null) {
                     // There isn't anything selected, call the default number
                     final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                             mPrimaryPhoneUri);
                     startActivity(intent);
+                    return true;
                 }
-                return true;
+                return false;
             }
 
             case KeyEvent.KEYCODE_DEL: {
