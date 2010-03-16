@@ -544,11 +544,17 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      */
     private int mPinnedHeaderBackgroundColor;
 
+    private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
+
+        @Override
+        public void onChange(boolean selfChange) {
+            checkProviderState(true);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
-        registerProviderStatusObserver();
 
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         mContactsPrefs = new ContactsPreferences(this);
@@ -841,13 +847,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      */
     private void registerProviderStatusObserver() {
         getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
-                false, new ContentObserver(new Handler()){
+                false, mProviderStatusObserver);
+    }
 
-            @Override
-            public void onChange(boolean selfChange) {
-                checkProviderState(true);
-            }
-        });
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void unregisterProviderStatusObserver() {
+        getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
     private void setupListView() {
@@ -994,9 +1002,16 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterProviderStatusObserver();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
+        registerProviderStatusObserver();
         mPhotoLoader.resume();
 
         Activity parent = getParent();
