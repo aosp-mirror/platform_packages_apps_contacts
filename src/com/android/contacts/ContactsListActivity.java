@@ -1705,6 +1705,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     private boolean deleteSelection() {
+        if ((mMode & MODE_MASK_PICKER) != 0) {
+            return false;
+        }
+
         final int position = getListView().getSelectedItemPosition();
         if (position != ListView.INVALID_POSITION) {
             Uri contactUri = getContactUri(position);
