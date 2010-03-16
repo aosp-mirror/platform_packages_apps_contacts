@@ -3481,7 +3481,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             } else if (isSearchAllContactsItemPosition(pos)){
                 return null;
             } else {
-                return super.getItem(getRealPosition(pos));
+                int realPosition = getRealPosition(pos);
+                if (realPosition < 0) {
+                    return null;
+                }
+                return super.getItem(realPosition);
             }
         }
 
@@ -3496,7 +3500,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             } else if (isSearchAllContactsItemPosition(pos)) {
                 return 0;
             }
-            return super.getItemId(getRealPosition(pos));
+            int realPosition = getRealPosition(pos);
+            if (realPosition < 0) {
+                return 0;
+            }
+            return super.getItemId(realPosition);
         }
 
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
