@@ -39,6 +39,11 @@ public abstract class TextHighlightingAnimation implements Runnable {
 
     private final static DimmingSpan[] sEmptySpans = new DimmingSpan[0];
 
+    /**
+     * Frame rate expressed a number of millis between frames.
+     */
+    private static final long FRAME_RATE = 50;
+
     private DimmingSpan mDimmingSpan;
     private Handler mHandler;
     private boolean mAnimating;
@@ -88,6 +93,13 @@ public abstract class TextHighlightingAnimation implements Runnable {
             char[] string2 = buffer2.data;
             int count1 = buffer1.sizeCopied;
             int count2 = buffer2.sizeCopied;
+
+            // Ignore matching tails of the two buffers
+            while (count1 > 0 && count2 > 0 && string1[count1 - 1] == string2[count2 - 1]) {
+                count1--;
+                count2--;
+            }
+
             int size = count2;
             for (int i = 0; i < count1; i++) {
                 if (i + size > count1) {
@@ -284,6 +296,6 @@ public abstract class TextHighlightingAnimation implements Runnable {
         invalidate();
 
         // Repeat
-        mHandler.post(this);
+        mHandler.postDelayed(this, FRAME_RATE);
     }
 }
