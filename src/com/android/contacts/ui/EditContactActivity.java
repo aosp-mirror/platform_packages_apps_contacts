@@ -242,7 +242,7 @@ public final class EditContactActivity extends Activity
             final boolean hasState = entitySet.size() > 0;
             if (hasExtras && hasState) {
                 // Find source defining the first RawContact found
-                final EntityDelta state = entitySet.get(0);
+                final EntityDelta state = target.mState.get(0);
                 final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
                 final ContactsSource source = sources.getInflatedSource(accountType,
                         ContactsSource.LEVEL_CONSTRAINTS);
@@ -1350,7 +1350,7 @@ public final class EditContactActivity extends Activity
             return -1;
         } else if (twoIsGoogle && !oneIsGoogle) {
             return 1;
-        } else {
+        } else if (oneIsGoogle && twoIsGoogle){
             skipAccountTypeCheck = true;
         }
 
@@ -1375,8 +1375,14 @@ public final class EditContactActivity extends Activity
         }
 
         // Both are in the same account, fall back to contact ID
-        long oneId = oneValues.getAsLong(RawContacts._ID);
-        long twoId = twoValues.getAsLong(RawContacts._ID);
+        Long oneId = oneValues.getAsLong(RawContacts._ID);
+        Long twoId = twoValues.getAsLong(RawContacts._ID);
+        if (oneId == null) {
+            return -1;
+        } else if (twoId == null) {
+            return 1;
+        }
+
         return (int)(oneId - twoId);
     }
 
