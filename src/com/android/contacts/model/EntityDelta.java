@@ -379,6 +379,13 @@ public class EntityDelta implements Parcelable {
 
         Builder builder;
 
+        if (isContactInsert) {
+            // TODO: for now simply disabling aggregation when a new contact is
+            // created on the phone.  In the future, will show aggregation suggestions
+            // after saving the contact.
+            mValues.put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_SUSPENDED);
+        }
+
         // Build possible operation at Contact level
         builder = mValues.buildDiff(RawContacts.CONTENT_URI);
         possibleAdd(buildInto, builder);
@@ -412,9 +419,15 @@ public class EntityDelta implements Parcelable {
             builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_SUSPENDED);
             buildInto.add(firstIndex, builder.build());
 
-            // Restore aggregation as last operation
+            // Restore aggregation mode as last operation
             builder = buildSetAggregationMode(beforeId, RawContacts.AGGREGATION_MODE_DEFAULT);
             buildInto.add(builder.build());
+        } else if (isContactInsert) {
+            // Restore aggregation mode as last operation
+            builder = ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI);
+            builder.withValue(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DEFAULT);
+            builder.withSelection(RawContacts._ID + "=?", new String[1]);
+            builder.withSelectionBackReference(0, firstIndex);
         }
     }
 
