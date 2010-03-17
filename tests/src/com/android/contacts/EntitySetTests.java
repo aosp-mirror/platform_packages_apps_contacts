@@ -480,6 +480,7 @@ public class EntitySetTests extends AndroidTestCase {
         final ContentValues joePhoneInsert = buildPhone(PHONE_BLUE);
         final EntityDelta joeContact = buildAfterEntity(joePhoneInsert);
         final ContentValues joeContactInsert = joeContact.getValues().getCompleteValues();
+        joeContactInsert.put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_SUSPENDED);
         first.add(joeContact);
         assertDiffPattern(first,
                 buildAssertVersion(VER_FIRST),
@@ -536,6 +537,7 @@ public class EntitySetTests extends AndroidTestCase {
         final ContentValues phoneInsert = phone.getCompleteValues();
         final ContentValues contactInsert = first.getByRawContactId(CONTACT_MARY).getValues()
                 .getCompleteValues();
+        contactInsert.put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_SUSPENDED);
 
         // Merge and verify that update turned into insert
         final EntitySet merged = EntitySet.mergeAfter(second, first);
