@@ -128,8 +128,8 @@ public final class EditContactActivity extends Activity
 
     private static final int ICON_SIZE = 96;
 
-    private static final File PHOTO_DIR = new File(Environment.getExternalStorageDirectory(),
-            "com.android.contacts.icon");
+    private static final File PHOTO_DIR = new File(
+            Environment.getExternalStorageDirectory() + "/DCIM/Camera");
 
     private File mCurrentPhotoFile;
 
