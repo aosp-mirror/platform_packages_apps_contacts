@@ -505,9 +505,15 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
      */
     private static Comparator<GroupDelta> sIdComparator = new Comparator<GroupDelta>() {
         public int compare(GroupDelta object1, GroupDelta object2) {
-            final long id1 = object1.getId();
-            final long id2 = object2.getId();
-            if (id1 < id2) {
+            final Long id1 = object1.getId();
+            final Long id2 = object2.getId();
+            if (id1 == null && id2 == null) {
+                return 0;
+            } else if (id1 == null) {
+                return -1;
+            } else if (id2 == null) {
+                return 1;
+            } else if (id1 < id2) {
                 return -1;
             } else if (id1 > id2) {
                 return 1;
