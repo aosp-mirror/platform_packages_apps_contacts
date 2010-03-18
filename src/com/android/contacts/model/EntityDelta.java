@@ -428,6 +428,7 @@ public class EntityDelta implements Parcelable {
             builder.withValue(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DEFAULT);
             builder.withSelection(RawContacts._ID + "=?", new String[1]);
             builder.withSelectionBackReference(0, firstIndex);
+            buildInto.add(builder.build());
         }
     }
 
