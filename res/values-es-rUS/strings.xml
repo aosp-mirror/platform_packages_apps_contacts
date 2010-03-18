@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!--  Copyright (C) 2006 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,7 +12,8 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
--->
+ -->
+
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
@@ -143,6 +144,8 @@
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Eliminar del registro de llamadas"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Borrar registro de llamadas"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"El registro de llamadas está vacío."</string>
+    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Borrar registro de llamadas"</string>
+    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"¿Estás seguro de que deseas borrar el registro de llamadas?"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Correo de voz"</string>
@@ -174,7 +177,7 @@
     <string name="callAgain" msgid="3197312117049874778">"Llamar nuevamente"</string>
     <string name="returnCall" msgid="8171961914203617813">"Regresar llamada"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> mins <xliff:g id="SECONDS">%s</xliff:g> s"</string>
-    <string name="favoritesFrquentSeparator" msgid="5007070838253932139">"Llamado con frecuencia"</string>
+    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contactado con frecuencia"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Agregar contacto"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"¿Deseas agregar \"<xliff:g id="EMAIL">%s</xliff:g>\" a los contactos?"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"Todos"</string>
@@ -284,15 +287,13 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Llamar al fax del trabajo"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Llamar al fax personal"</string>
     <string name="call_pager" msgid="9003902812293983281">"Llamar a localizador"</string>
-    <!-- no translation found for call_other (8563753966926932052) -->
-    <skip />
+    <string name="call_other" msgid="8563753966926932052">"Llamar"</string>
     <string name="call_callback" msgid="1910165691349426858">"Llamar a devolución de llamada"</string>
     <string name="call_car" msgid="3280537320306436445">"Llamar al auto"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Llamar empresa principal"</string>
     <string name="call_isdn" msgid="1541590690193403411">"Llamar a ISDN"</string>
     <string name="call_main" msgid="6082900571803441339">"Llamada principal"</string>
-    <!-- no translation found for call_other_fax (5745314124619636674) -->
-    <skip />
+    <string name="call_other_fax" msgid="5745314124619636674">"Llamar a fax"</string>
     <string name="call_radio" msgid="8296755876398357063">"Llamar a la radio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Llamar a télex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Llamar a TTY/TDD"</string>
@@ -307,15 +308,13 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"Enviar texto a fax laboral"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Enviar texto a fax personal"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Enviar texto a localizador"</string>
-    <!-- no translation found for sms_other (806127844607642331) -->
-    <skip />
+    <string name="sms_other" msgid="806127844607642331">"Enviar texto"</string>
     <string name="sms_callback" msgid="5004824430094288752">"Enviar texto a devolución de llamada"</string>
     <string name="sms_car" msgid="7444227058437359641">"Enviar texto a auto"</string>
     <string name="sms_company_main" msgid="118970873419678087">"Enviar texto a empresa principal"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"ISDN de texto"</string>
     <string name="sms_main" msgid="8621625784504541679">"Texto principal"</string>
-    <!-- no translation found for sms_other_fax (3888842199855843152) -->
-    <skip />
+    <string name="sms_other_fax" msgid="3888842199855843152">"Enviar fax"</string>
     <string name="sms_radio" msgid="3329166673433967820">"Enviar texto a radio"</string>
     <string name="sms_telex" msgid="9034802430065267848">"Enviar texto a télex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar texto a TTY/TDD"</string>
@@ -326,14 +325,12 @@
     <string name="email_home" msgid="8573740658148184279">"Correo electrónico personal"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Correo electrónico celular"</string>
     <string name="email_work" msgid="2807430017302722689">"Correo electrónico laboral"</string>
-    <!-- no translation found for email_other (3454004077967657109) -->
-    <skip />
+    <string name="email_other" msgid="3454004077967657109">"Correo electrónico"</string>
     <string name="email_custom" msgid="7548003991586214105">"Correo electrónico <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Correo electrónico"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección principal"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver dirección laboral"</string>
-    <!-- no translation found for map_other (3817820803587012641) -->
-    <skip />
+    <string name="map_other" msgid="3817820803587012641">"Ver dirección"</string>
     <string name="map_custom" msgid="6184363799976265281">"Ver <xliff:g id="CUSTOM">%s</xliff:g> dirección"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Chat mediante AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Chat mediante Windows Live"</string>
@@ -371,6 +368,16 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nombre de pila en primer lugar"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Nombre familiar en primer lugar"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Buscar contactos"</string>
-    <!-- no translation found for search_for_all_contacts (6644963335787294131) -->
+    <string name="search_for_all_contacts" msgid="6644963335787294131">"Buscar todos los contactos"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Tomar foto"</string>
+    <string name="pick_photo" msgid="448886509158039462">"Seleccionar foto de la galería"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"La lista de contactos se está actualizando para reflejar el cambio de idioma."\n\n" Espera."</string>
+    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
     <skip />
 </resources>
