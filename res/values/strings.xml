@@ -747,12 +747,6 @@
     <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_message">Are you sure you want to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
 
-    <!-- Dialog title shown when a user confirms whether he/she does bulk sharing (visible contacts) -->
-    <string name="confirm_share_visible_contacts_title">Confirm bulk sharing</string>
-
-    <!-- Dialog message shown when a user confirms whether he/she really wants to do bulk sharing (via Bluetooth, etc.) (visible contacts) -->
-    <string name="confirm_share_visible_contacts_message">Are you sure you want to share all visible contacts?</string>
-
     <!-- Dialog title shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_title">Failed to export contact data</string>
 

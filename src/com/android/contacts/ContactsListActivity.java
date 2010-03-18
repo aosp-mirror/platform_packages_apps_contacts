@@ -71,7 +71,6 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
@@ -1372,20 +1371,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         .setPositiveButton(android.R.string.ok,
                                 new DeleteClickListener()).create();
             }
-            case R.id.dialog_share_confirmation: {
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.confirm_share_visible_contacts_title)
-                        .setMessage(getString(R.string.confirm_share_visible_contacts_message))
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (which == DialogInterface.BUTTON_POSITIVE) {
-                                    doShareVisibleContacts();
-                                }
-                            }
-                        }).create();
-            }
         }
         return super.onCreateDialog(id, bundle);
     }
@@ -1449,7 +1434,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         break;
                     }
                     case R.string.share_visible_contacts: {
-                        showDialog(R.id.dialog_share_confirmation);
+                        doShareVisibleContacts();
                         break;
                     }
                     default: {
