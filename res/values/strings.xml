@@ -414,6 +414,12 @@
     <!-- Dialog title displayed when loading a phone number from the SIM card for speed dial -->
     <string name="simContacts_title">SIM card contacts</string>
 
+    <!-- Displayed full screen when the user want to create a shortcut, but there is no contacts, and contact syncing is enabled -->
+    <string name="noContactsHelpTextWithSyncForCreateShortcut">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)"</string>
+
+    <!-- Displayed full screen when the user want to create a shortcut, but there is no contacts -->
+    <string name="noContactsHelpTextForCreateShortcut">"You don't have any contacts to display."</string>
+
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
     <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
