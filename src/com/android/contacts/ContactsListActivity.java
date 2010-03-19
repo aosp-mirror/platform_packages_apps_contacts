@@ -26,6 +26,7 @@ import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
 
 import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -37,6 +38,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.IContentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.UriMatcher;
@@ -60,6 +62,7 @@ import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
@@ -821,23 +824,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mJustCreated = true;
 
         mSyncEnabled = true;
-//        // Check to see if sync is enabled
-//        final ContentResolver resolver = getContentResolver();
-//        IContentProvider provider = resolver.acquireProvider(Contacts.CONTENT_URI);
-//        if (provider == null) {
-//            // No contacts provider, bail.
-//            finish();
-//            return;
-//        }
-//
-//        try {
-//            ISyncAdapter sa = provider.getSyncAdapter();
-//            mSyncEnabled = sa != null;
-//        } catch (RemoteException e) {
-//            mSyncEnabled = false;
-//        } finally {
-//            resolver.releaseProvider(provider);
-//        }
     }
 
     /**
@@ -963,7 +949,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
                     .hasIccCard();
             boolean createShortcut = Intent.ACTION_CREATE_SHORTCUT.equals(getIntent().getAction());
-            if (mSyncEnabled) {
+            if (isSyncActive()) {
                 if (createShortcut) {
                     // Help text is the same no matter whether there is SIM or not.
                     empty.setText(getText(R.string.noContactsHelpTextWithSyncForCreateShortcut));
@@ -983,6 +969,23 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 }
             }
         }
+    }
+
+    private boolean isSyncActive() {
+        Account[] accounts = AccountManager.get(this).getAccounts();
+        if (accounts != null && accounts.length > 0) {
+            IContentService contentService = ContentResolver.getContentService();
+            for (Account account : accounts) {
+                try {
+                    if (contentService.isSyncActive(account, ContactsContract.AUTHORITY)) {
+                        return true;
+                    }
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Could not get the sync status");
+                }
+            }
+        }
+        return false;
     }
 
     private void buildUserGroupUri(String group) {
