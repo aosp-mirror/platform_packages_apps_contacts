@@ -1472,7 +1472,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             for (;!cursor.isAfterLast(); cursor.moveToNext()) {
                 if (index != 0)
                     uriListBuilder.append(':');
-                uriListBuilder.append(Uri.encode(cursor.getString(0)));
+                uriListBuilder.append(cursor.getString(0));
                 index++;
             }
             Uri uri = Uri.withAppendedPath(
