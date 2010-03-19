@@ -208,7 +208,8 @@ public class CallDetailActivity extends ListActivity implements
                                     Contacts.CONTENT_URI, personId);
                             callText = getString(R.string.recentCalls_callNumber,
                                     phonesCursor.getString(COLUMN_INDEX_NAME));
-                            mNumber = phonesCursor.getString(COLUMN_INDEX_NUMBER);
+                            mNumber = PhoneNumberUtils.formatNumber(
+                                    phonesCursor.getString(COLUMN_INDEX_NUMBER));
                             callLabel = Phone.getDisplayLabel(this,
                                     phonesCursor.getInt(COLUMN_INDEX_TYPE),
                                     phonesCursor.getString(COLUMN_INDEX_LABEL)).toString();
