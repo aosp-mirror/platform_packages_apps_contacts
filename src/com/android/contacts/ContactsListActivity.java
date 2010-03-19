@@ -962,16 +962,22 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         } else {
             boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
                     .hasIccCard();
-
-            if (hasSim) {
-                if (mSyncEnabled) {
+            boolean createShortcut = Intent.ACTION_CREATE_SHORTCUT.equals(getIntent().getAction());
+            if (mSyncEnabled) {
+                if (createShortcut) {
+                    // Help text is the same no matter whether there is SIM or not.
+                    empty.setText(getText(R.string.noContactsHelpTextWithSyncForCreateShortcut));
+                } else if (hasSim) {
                     empty.setText(getText(R.string.noContactsHelpTextWithSync));
                 } else {
-                    empty.setText(getText(R.string.noContactsHelpText));
+                    empty.setText(getText(R.string.noContactsNoSimHelpTextWithSync));
                 }
             } else {
-                if (mSyncEnabled) {
-                    empty.setText(getText(R.string.noContactsNoSimHelpTextWithSync));
+                if (createShortcut) {
+                    // Help text is the same no matter whether there is SIM or not.
+                    empty.setText(getText(R.string.noContactsHelpTextForCreateShortcut));
+                } else if (hasSim) {
+                    empty.setText(getText(R.string.noContactsHelpText));
                 } else {
                     empty.setText(getText(R.string.noContactsNoSimHelpText));
                 }
