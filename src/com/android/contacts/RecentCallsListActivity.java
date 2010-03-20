@@ -730,8 +730,10 @@ public class RecentCallsListActivity extends ListActivity
         sFormattingType = FORMATTING_TYPE_INVALID;
     }
 
+
     @Override
-    protected void onResume() {
+    protected void onStart() {
+        super.onStart();
         // The adapter caches looked up numbers, clear it so they will get
         // looked up again.
         if (mAdapter != null) {
@@ -739,19 +741,25 @@ public class RecentCallsListActivity extends ListActivity
         }
 
         startQuery();
+    }
+
+    @Override
+    protected void onResume() {
         resetNewCallsFlag();
-
         super.onResume();
-
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         // Kill the requests thread
         mAdapter.stopRequestProcessing();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         mAdapter.changeCursor(null);
     }
 
