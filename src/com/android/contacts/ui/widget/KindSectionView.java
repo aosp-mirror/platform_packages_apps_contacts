@@ -114,6 +114,26 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         this.updateEditorsVisible();
     }
 
+    public boolean isAnyEditorFilledOut() {
+        if (mState == null) {
+            return false;
+        }
+
+        if (!mState.hasMimeEntries(mKind.mimeType)) {
+            return false;
+        }
+
+        int editorCount = mEditors.getChildCount();
+        for (int i = 0; i < editorCount; i++) {
+            GenericEditorView editorView = (GenericEditorView) mEditors.getChildAt(i);
+            if (editorView.isAnyFieldFilledOut()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Build editors for all current {@link #mState} rows.
      */

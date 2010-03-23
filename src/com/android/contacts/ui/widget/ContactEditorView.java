@@ -215,6 +215,7 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
             mReadOnlyName.setVisibility(View.GONE);
         }
 
+        boolean anySecondaryFieldFilled = false;
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
             // Skip kind of not editable
@@ -246,11 +247,14 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, parent, false);
                 section.setState(kind, state, mIsSourceReadOnly, vig);
+                if (kind.secondary && section.isAnyEditorFilledOut()) {
+                    anySecondaryFieldFilled = true;
+                }
                 parent.addView(section);
             }
         }
 
-        setSecondaryVisible(mSecondaryVisible);
+        setSecondaryVisible(anySecondaryFieldFilled);
     }
 
     /**

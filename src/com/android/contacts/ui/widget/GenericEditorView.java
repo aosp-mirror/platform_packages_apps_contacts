@@ -37,6 +37,7 @@ import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
@@ -167,6 +168,17 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
         }
+    }
+
+    public boolean isAnyFieldFilledOut() {
+        int childCount = mFields.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            EditText editorView = (EditText) mFields.getChildAt(i);
+            if (!TextUtils.isEmpty(editorView.getText())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void rebuildValues() {
