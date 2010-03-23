@@ -88,6 +88,7 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -447,6 +448,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
     private boolean mSearchMode;
+    private boolean mSearchResultsMode;
     private boolean mShowNumberOfContacts;
 
     private boolean mShowSearchSnippets;
@@ -713,6 +715,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 mShowSearchSnippets = true;
                 mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
             }
+            mSearchResultsMode = true;
         } else if (ACTION_SEARCH_INTERNAL.equals(action)) {
             String originalAction = null;
             Bundle extras = intent.getExtras();
@@ -735,6 +738,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 mShowSearchSnippets = true;
                 mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
             }
+            mSearchResultsMode = true;
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
         // so we need to re-dispatch from here to the intended target.
@@ -797,7 +801,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mMode = MODE_DEFAULT;
         }
 
-        if ((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 || mSearchMode) {
+        if (((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 || mSearchMode)
+                && !mSearchResultsMode) {
             mShowNumberOfContacts = true;
         }
 
@@ -811,6 +816,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mJoinModeShowAllContacts = true;
         } else if (mSearchMode) {
             setContentView(R.layout.contacts_search_content);
+        } else if (mSearchResultsMode) {
+            setContentView(R.layout.contacts_list_search_results);
+            TextView titleText = (TextView)findViewById(R.id.search_results_for);
+            titleText.setText(Html.fromHtml(getString(R.string.search_results_for,
+                    "<b>" + mInitialFilter + "</b>")));
         } else {
             setContentView(R.layout.contacts_list_content);
         }
@@ -1297,7 +1307,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return;
         }
 
-        Intent intent = new Intent(this, ContactsListActivity.class);
+        Intent intent = new Intent(this, SearchResultsActivity.class);
         Intent originalIntent = getIntent();
         Bundle originalExtras = originalIntent.getExtras();
         if (originalExtras != null) {
@@ -2349,6 +2359,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // Set the proper empty string
         setEmptyText();
 
+        if (mSearchResultsMode) {
+            TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
+            foundContactsText.setText(R.string.search_results_searching);
+        }
+
         mAdapter.setLoading(true);
 
         // Cancel any pending queries
@@ -2646,6 +2661,16 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return c;
         }
         return null;
+    }
+
+    // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
+    protected String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
+        if (count == 0) {
+            return getString(zeroResourceId);
+        } else {
+            String format = getResources().getQuantityText(pluralResourceId, count).toString();
+            return String.format(format, count);
+        }
     }
 
     /**
@@ -2956,11 +2981,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             String text;
             int count = getRealCount();
 
-            if (mMode == MODE_QUERY || mMode == MODE_QUERY_PICK || mMode == MODE_QUERY_PICK_PHONE
-                    || mMode == MODE_QUERY_PICK_TO_EDIT) {
-                text = getQuantityText(count, R.string.listFoundAllContactsZero,
-                        R.plurals.listFoundAllContacts);
-            } else if (mSearchMode && !TextUtils.isEmpty(getTextFilter())) {
+            if (mSearchMode && !TextUtils.isEmpty(getTextFilter())) {
                 text = getQuantityText(count, R.string.listFoundAllContactsZero,
                         R.plurals.searchFoundContacts);
             } else {
@@ -2974,16 +2995,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
             totalContacts.setText(text);
             return view;
-        }
-
-        // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
-        private String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
-            if (count == 0) {
-                return getString(zeroResourceId);
-            } else {
-                String format = getResources().getQuantityText(pluralResourceId, count).toString();
-                return String.format(format, count);
-            }
         }
 
         private boolean isShowAllContactsItemPosition(int position) {
@@ -3317,6 +3328,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         break;
                     }
                 }
+            }
+
+            if (cursor != null && mSearchResultsMode) {
+                TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
+                String text = getQuantityText(cursor.getCount(), R.string.listFoundAllContactsZero,
+                        R.plurals.listFoundAllContacts);
+                foundContactsText.setText(text);
             }
 
             super.changeCursor(cursor);
