@@ -17,11 +17,13 @@
 package com.android.contacts.ui;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.QuickContact;
+import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
 /**
@@ -61,7 +63,13 @@ public final class QuickContactActivity extends Activity implements
         }
 
         // Use our local window token for now
-        final Uri lookupUri = intent.getData();
+        Uri lookupUri = intent.getData();
+        // Check to see whether it comes from the old version.
+        if (android.provider.Contacts.AUTHORITY.equals(lookupUri.getAuthority())) {
+            final long rawContactId = ContentUris.parseId(lookupUri);
+            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
+        }
         final Bundle extras = intent.getExtras();
 
         // Read requested parameters for displaying
