@@ -939,10 +939,16 @@ public class ViewContactActivity extends Activity
                         final boolean duplicatesTitle =
                             isNameRawContact
                             && mDisplayNameSource == DisplayNameSources.ORGANIZATION
-                            && !hasData;
+                            && (!hasData || TextUtils.isEmpty(entry.label));
 
                         if (!duplicatesTitle) {
                             entry.uri = null;
+
+                            if (TextUtils.isEmpty(entry.label)) {
+                                entry.label = entry.data;
+                                entry.data = "";
+                            }
+
                             mOrganizationEntries.add(entry);
                         }
                     } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
