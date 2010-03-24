@@ -133,7 +133,7 @@ public class QuickContactWindow implements Window.Callback,
         @Override
         public boolean dispatchKeyEventPreIme(KeyEvent event) {
             if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                mQuickContactWindow.dismiss();
+                mQuickContactWindow.onBackPressed();
                 return true;
             } else {
                 return super.dispatchKeyEventPreIme(event);
@@ -176,7 +176,6 @@ public class QuickContactWindow implements Window.Callback,
 
     private int mMode;
     private RootLayout mRootView;
-    private View mHeaderView;
     private View mHeader;
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
@@ -271,10 +270,9 @@ public class QuickContactWindow implements Window.Callback,
 
         mRootView = (RootLayout)mWindow.findViewById(R.id.root);
         mRootView.mQuickContactWindow = this;
-
-        mHeaderView = mWindow.findViewById(R.id.header);
-        mHeaderView.setFocusable(true);
-        mHeaderView.setFocusableInTouchMode(true);
+        mRootView.setFocusable(true);
+        mRootView.setFocusableInTouchMode(true);
+        mRootView.setDescendantFocusability(RootLayout.FOCUS_AFTER_DESCENDANTS);
 
         mArrowUp = (ImageView)mWindow.findViewById(R.id.arrow_up);
         mArrowDown = (ImageView)mWindow.findViewById(R.id.arrow_down);
@@ -391,8 +389,8 @@ public class QuickContactWindow implements Window.Callback,
         resetTrack();
 
         // We need to have a focused view inside the QuickContact window so
-        // that the BACK key event can be delivered to the RootLayout
-        mHeaderView.requestFocus();
+        // that the BACK key event can be intercepted
+        mRootView.requestFocus();
 
         mHasValidSocial = false;
         mDismissed = false;
