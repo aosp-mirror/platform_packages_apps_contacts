@@ -201,8 +201,8 @@
     <!-- Hint text for the organization name when editing -->
     <string name="ghostData_company">Company</string>
 
-    <!-- Hint text for the organization position when editing -->
-    <string name="ghostData_title">Position</string>
+    <!-- Hint text for the organization title when editing -->
+    <string name="ghostData_title">Title</string>
 
     <!-- Message displayed in a toast when you try to view the details of a contact that
          for some reason doesn't exist anymore. -->
