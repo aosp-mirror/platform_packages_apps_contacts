@@ -320,9 +320,15 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        // We also have to iterate over the Cursor in the background,
-        // as iterating over the Cursor can ANR on large result sets,
-        // especially as our ContentProvider is cross-process.
+        // One would think we could just iterate over the Cursor
+        // directly here, as the result set should be small, and we've
+        // already run the query in an AsyncTask, but a lot of ANRs
+        // were being reported in this code nonetheless.  See bug
+        // 2539603 for details.  The real bug which makes this result
+        // set huge and CPU-heavy may be elsewhere.
+        // TODO: if we keep this async, perhaps the entity iteration
+        // should also be original AsyncTask, rather than ping-ponging
+        // between threads like this.
         final ArrayList<Entity> oldEntities = mEntities;
         (new AsyncTask<Void, Void, ArrayList<Entity>>() {
             @Override
