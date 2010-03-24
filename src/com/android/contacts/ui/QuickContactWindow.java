@@ -34,7 +34,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
@@ -59,6 +58,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -85,6 +85,7 @@ import android.widget.CompoundButton;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -112,6 +113,32 @@ public class QuickContactWindow implements Window.Callback,
      */
     public interface OnDismissListener {
         public void onDismiss(QuickContactWindow dialog);
+    }
+
+    /**
+     * Custom layout the sole purpose of which is to intercept the BACK key and
+     * close QC even when the soft keyboard is open.
+     */
+    public static class RootLayout extends RelativeLayout {
+
+        QuickContactWindow mQuickContactWindow;
+
+        public RootLayout(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        /**
+         * Intercepts the BACK key event and dismisses QuickContact window.
+         */
+        @Override
+        public boolean dispatchKeyEventPreIme(KeyEvent event) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                mQuickContactWindow.dismiss();
+                return true;
+            } else {
+                return super.dispatchKeyEventPreIme(event);
+            }
+        }
     }
 
     private final Context mContext;
@@ -148,6 +175,8 @@ public class QuickContactWindow implements Window.Callback,
     private ImageView mArrowDown;
 
     private int mMode;
+    private RootLayout mRootView;
+    private View mHeaderView;
     private View mHeader;
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
@@ -236,8 +265,16 @@ public class QuickContactWindow implements Window.Callback,
         mWindow = PolicyManager.makeNewWindow(mContext);
         mWindow.setCallback(this);
         mWindow.setWindowManager(mWindowManager, null, null);
+        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED);
 
         mWindow.setContentView(R.layout.quickcontact);
+
+        mRootView = (RootLayout)mWindow.findViewById(R.id.root);
+        mRootView.mQuickContactWindow = this;
+
+        mHeaderView = mWindow.findViewById(R.id.header);
+        mHeaderView.setFocusable(true);
+        mHeaderView.setFocusableInTouchMode(true);
 
         mArrowUp = (ImageView)mWindow.findViewById(R.id.arrow_up);
         mArrowDown = (ImageView)mWindow.findViewById(R.id.arrow_down);
@@ -352,6 +389,10 @@ public class QuickContactWindow implements Window.Callback,
         setHeaderImage(R.id.presence, null);
 
         resetTrack();
+
+        // We need to have a focused view inside the QuickContact window so
+        // that the BACK key event can be delivered to the RootLayout
+        mHeaderView.requestFocus();
 
         mHasValidSocial = false;
         mDismissed = false;

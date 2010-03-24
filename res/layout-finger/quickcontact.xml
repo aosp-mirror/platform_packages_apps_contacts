@@ -14,8 +14,10 @@
      limitations under the License.
 -->
 
-<RelativeLayout
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.ui.QuickContactWindow$RootLayout"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/quickcontact_shadow_horiz"
@@ -145,4 +147,4 @@
         android:visibility="invisible"
         android:src="@drawable/quickcontact_arrow_down" />
 
-</RelativeLayout>
+</view>
