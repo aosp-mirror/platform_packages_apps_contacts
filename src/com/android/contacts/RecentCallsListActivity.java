@@ -334,16 +334,13 @@ public class RecentCallsListActivity extends ListActivity
             }
         }
 
-        private void queryContactInfo(CallerInfoQuery ciq) {
+        private boolean queryContactInfo(CallerInfoQuery ciq) {
             // First check if there was a prior request for the same number
             // that was already satisfied
             ContactInfo info = mContactInfo.get(ciq.number);
+            boolean needNotify = false;
             if (info != null && info != ContactInfo.EMPTY) {
-                synchronized (mRequests) {
-                    if (mRequests.isEmpty()) {
-                        mHandler.sendEmptyMessage(REDRAW);
-                    }
-                }
+                return true;
             } else {
                 Cursor phonesCursor =
                     RecentCallsListActivity.this.getContentResolver().query(
@@ -365,11 +362,7 @@ public class RecentCallsListActivity extends ListActivity
 
                         mContactInfo.put(ciq.number, info);
                         // Inform list to update this item, if in view
-                        synchronized (mRequests) {
-                            if (mRequests.isEmpty()) {
-                                mHandler.sendEmptyMessage(REDRAW);
-                            }
-                        }
+                        needNotify = true;
                     }
                     phonesCursor.close();
                 }
@@ -377,6 +370,7 @@ public class RecentCallsListActivity extends ListActivity
             if (info != null) {
                 updateCallLog(ciq, info);
             }
+            return needNotify;
         }
 
         /*
@@ -384,12 +378,17 @@ public class RecentCallsListActivity extends ListActivity
          * @see java.lang.Runnable#run()
          */
         public void run() {
+            boolean needNotify = false;
             while (!mDone) {
                 CallerInfoQuery ciq = null;
                 synchronized (mRequests) {
                     if (!mRequests.isEmpty()) {
                         ciq = mRequests.removeFirst();
                     } else {
+                        if (needNotify) {
+                            needNotify = false;
+                            mHandler.sendEmptyMessage(REDRAW);
+                        }
                         try {
                             mRequests.wait(1000);
                         } catch (InterruptedException ie) {
@@ -397,8 +396,8 @@ public class RecentCallsListActivity extends ListActivity
                         }
                     }
                 }
-                if (ciq != null) {
-                    queryContactInfo(ciq);
+                if (ciq != null && queryContactInfo(ciq)) {
+                    needNotify = true;
                 }
             }
         }
@@ -730,10 +729,8 @@ public class RecentCallsListActivity extends ListActivity
         sFormattingType = FORMATTING_TYPE_INVALID;
     }
 
-
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
         // The adapter caches looked up numbers, clear it so they will get
         // looked up again.
         if (mAdapter != null) {
@@ -741,18 +738,17 @@ public class RecentCallsListActivity extends ListActivity
         }
 
         startQuery();
-    }
-
-    @Override
-    protected void onResume() {
         resetNewCallsFlag();
+
         super.onResume();
+
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+
         // Kill the requests thread
         mAdapter.stopRequestProcessing();
     }
@@ -760,6 +756,7 @@ public class RecentCallsListActivity extends ListActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mAdapter.stopRequestProcessing();
         mAdapter.changeCursor(null);
     }
 
