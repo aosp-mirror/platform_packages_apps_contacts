@@ -58,6 +58,7 @@ import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.provider.ContactsContract.StatusUpdates;
@@ -83,10 +84,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -154,6 +153,9 @@ public class ViewContactActivity extends Activity
 
     private boolean mHasEntities = false;
     private boolean mHasStatuses = false;
+
+    private long mNameRawContactId = -1;
+    private int mDisplayNameSource = DisplayNameSources.UNDEFINED;
 
     private ArrayList<Entity> mEntities = Lists.newArrayList();
     private HashMap<Long, DataStatus> mStatuses = Maps.newHashMap();
@@ -389,11 +391,24 @@ public class ViewContactActivity extends Activity
 
         final Uri dataUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
 
-        // Keep stub cursor open on side to watch for change events
+        // This cursor has two purposes:
+        // - Fetch NAME_RAW_CONTACT_ID and DISPLAY_NAME_SOURCE
+        // - Watcher for change events
         mCursor = mResolver.query(dataUri,
-                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
-        mCursor.registerContentObserver(mObserver);
+                new String[] { Contacts.NAME_RAW_CONTACT_ID, Contacts.DISPLAY_NAME_SOURCE },
+                null, null, null);
 
+        if (mCursor.moveToFirst()) {
+            mNameRawContactId =
+                mCursor.getLong(mCursor.getColumnIndex(Contacts.NAME_RAW_CONTACT_ID));
+            mDisplayNameSource =
+                mCursor.getInt(mCursor.getColumnIndex(Contacts.DISPLAY_NAME_SOURCE));
+        } else {
+            mNameRawContactId = -1;
+            mDisplayNameSource = DisplayNameSources.UNDEFINED;
+        }
+
+        mCursor.registerContentObserver(mObserver);
         final long contactId = ContentUris.parseId(uri);
 
         // Clear flags and start queries to data and status
@@ -635,15 +650,6 @@ public class ViewContactActivity extends Activity
                 }
             }
         }
-    }
-
-    private void splitContact(long rawContactId) {
-        setAggregationException(rawContactId, AggregationExceptions.TYPE_KEEP_SEPARATE);
-
-        // The split operation may have removed the original aggregate contact, so we need
-        // to requery everything
-        Toast.makeText(this, R.string.contactsSplitMessage, Toast.LENGTH_LONG).show();
-        startEntityQuery();
     }
 
     private void joinAggregate(final long contactId) {
@@ -902,12 +908,29 @@ public class ViewContactActivity extends Activity
                     } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType) &&
                             (hasData || !TextUtils.isEmpty(entry.label))) {
                         // Build organization entries
-                        entry.uri = null;
-                        mOrganizationEntries.add(entry);
+                        final boolean isNameRawContact = (mNameRawContactId == rawContactId);
+
+                        final boolean duplicatesTitle =
+                            isNameRawContact
+                            && mDisplayNameSource == DisplayNameSources.ORGANIZATION
+                            && !hasData;
+
+                        if (!duplicatesTitle) {
+                            entry.uri = null;
+                            mOrganizationEntries.add(entry);
+                        }
                     } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build nickname entries
-                        entry.uri = null;
-                        mNicknameEntries.add(entry);
+                        final boolean isNameRawContact = (mNameRawContactId == rawContactId);
+
+                        final boolean duplicatesTitle =
+                            isNameRawContact
+                            && mDisplayNameSource == DisplayNameSources.NICKNAME;
+
+                        if (!duplicatesTitle) {
+                            entry.uri = null;
+                            mNicknameEntries.add(entry);
+                        }
                     } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                         // Build note entries
                         entry.uri = null;
