@@ -286,7 +286,9 @@
             android:theme="@style/FullyTranslucent.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
-            android:taskAffinity="android.task.quickcontact">
+            android:taskAffinity="android.task.quickcontact"
+            android:windowSoftInputMode="stateUnchanged"
+            >
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.QUICK_CONTACT" />
