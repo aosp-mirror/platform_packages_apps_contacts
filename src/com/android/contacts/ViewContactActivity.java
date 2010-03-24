@@ -49,6 +49,7 @@ import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.net.Uri;
 import android.net.WebAddress;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -305,7 +306,7 @@ public class ViewContactActivity extends Activity
     }
 
     /** {@inheritDoc} */
-    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+    public void onQueryComplete(int token, Object cookie, final Cursor cursor) {
         if (token == TOKEN_STATUSES) {
             try {
                 // Read available social rows and consider binding
@@ -315,16 +316,51 @@ public class ViewContactActivity extends Activity
                     cursor.close();
                 }
             }
-        } else {
-            EntityIterator iterator = RawContacts.newEntityIterator(cursor);
-            try {
-                // Read incoming entities and consider binding
-                readEntities(iterator);
-            } finally {
-                iterator.close();
-            }
+            considerBindData();
+            return;
         }
-        considerBindData();
+
+        // We also have to iterate over the Cursor in the background,
+        // as iterating over the Cursor can ANR on large result sets,
+        // especially as our ContentProvider is cross-process.
+        final ArrayList<Entity> oldEntities = mEntities;
+        (new AsyncTask<Void, Void, ArrayList<Entity>>() {
+            @Override
+            protected ArrayList<Entity> doInBackground(Void... params) {
+                ArrayList<Entity> newEntities = Lists.newArrayList();
+                EntityIterator iterator = RawContacts.newEntityIterator(cursor);
+                try {
+                    while (iterator.hasNext()) {
+                        Entity entity = iterator.next();
+                        newEntities.add(entity);
+                    }
+                } catch (RemoteException e) {
+                    Log.w(TAG, "Problem reading contact data: " + e.toString());
+                    return null;
+                } finally {
+                    iterator.close();
+                }
+                return newEntities;
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Entity> newEntities) {
+                if (newEntities == null) {
+                    // There was an error loading.
+                    return;
+                }
+                synchronized (ViewContactActivity.this) {
+                    if (mEntities != oldEntities) {
+                        // Multiple async tasks were in flight and we
+                        // lost the race.
+                        return;
+                    }
+                    mEntities = newEntities;
+                    mHasEntities = true;
+                }
+                considerBindData();
+            }
+        }).execute();
     }
 
     private long getRefreshedContactId() {
@@ -333,22 +369,6 @@ public class ViewContactActivity extends Activity
             return ContentUris.parseId(freshContactUri);
         }
         return -1;
-    }
-
-    /**
-     * Read from the given {@link EntityIterator} to build internal set of
-     * {@link #mEntities} for data display.
-     */
-    private synchronized void readEntities(EntityIterator iterator) {
-        mEntities.clear();
-        try {
-            while (iterator.hasNext()) {
-                mEntities.add(iterator.next());
-            }
-            mHasEntities = true;
-        } catch (RemoteException e) {
-            Log.w(TAG, "Problem reading contact data: " + e.toString());
-        }
     }
 
     /**
