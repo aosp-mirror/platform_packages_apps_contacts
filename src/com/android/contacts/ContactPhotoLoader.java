@@ -201,6 +201,11 @@ public class ContactPhotoLoader implements Callback {
         mBitmapCache.clear();
     }
 
+    public void clear() {
+        mPendingRequests.clear();
+        mBitmapCache.clear();
+    }
+
     /**
      * Temporarily stops loading photos from the database.
      */

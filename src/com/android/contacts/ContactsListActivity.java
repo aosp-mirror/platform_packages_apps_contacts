@@ -3337,6 +3337,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 foundContactsText.setText(text);
             }
 
+            mPhotoLoader.clear();
+
             super.changeCursor(cursor);
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
