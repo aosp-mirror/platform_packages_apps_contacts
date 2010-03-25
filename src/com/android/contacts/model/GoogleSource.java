@@ -154,9 +154,9 @@ public class GoogleSource extends FallbackSource {
     }
 
     // TODO: this should come from resource in the future
-    // Note that frameworks/base/core/java/android/pim/vcard/ContactStruct.java also wants
+    // Note that frameworks/base/core/java/android/pim/vcard/VCardEntry.java also wants
     // this String.
-    private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
+    private static final String GOOGLE_MY_CONTACTS_GROUP = "My Contacts";
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
         final ValuesDelta stateValues = state.getValues();
