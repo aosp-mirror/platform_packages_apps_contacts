@@ -912,7 +912,7 @@ public class QuickContactWindow implements Window.Callback,
             if (!ContactsUtils.areObjectsEqual(mKind, other.mKind)) {
                 return false;
             }
-            if (!ContactsUtils.areDataEqual(mContext, mMimeType, mBody, other.mMimeType,
+            if (!ContactsUtils.shouldCollapse(mContext, mMimeType, mBody, other.mMimeType,
                     other.mBody)) {
                 return false;
             }

@@ -109,40 +109,75 @@ public class ContactsUtilsTests extends AndroidTestCase {
         assertFalse("1:2", ContactsUtils.areObjectsEqual(1, 2));
     }
 
-    public void testAreDataEqual() throws Exception {
-        checkAreDataEqual("1", true, null, null, null, null);
-        checkAreDataEqual("2", true, "a", "b", "a", "b");
+    public void testShouldCollapse() throws Exception {
+        checkShouldCollapse("1", true, null, null, null, null);
+        checkShouldCollapse("2", true, "a", "b", "a", "b");
 
-        checkAreDataEqual("11", false, "a", null, null, null);
-        checkAreDataEqual("12", false, null, "a", null, null);
-        checkAreDataEqual("13", false, null, null, "a", null);
-        checkAreDataEqual("14", false, null, null, null, "a");
+        checkShouldCollapse("11", false, "a", null, null, null);
+        checkShouldCollapse("12", false, null, "a", null, null);
+        checkShouldCollapse("13", false, null, null, "a", null);
+        checkShouldCollapse("14", false, null, null, null, "a");
 
-        checkAreDataEqual("21", false, "a", "b", null, null);
-        checkAreDataEqual("22", false, "a", "b", "a", null);
-        checkAreDataEqual("23", false, "a", "b", null, "b");
-        checkAreDataEqual("24", false, "a", "b", "a", "x");
-        checkAreDataEqual("25", false, "a", "b", "x", "b");
+        checkShouldCollapse("21", false, "a", "b", null, null);
+        checkShouldCollapse("22", false, "a", "b", "a", null);
+        checkShouldCollapse("23", false, "a", "b", null, "b");
+        checkShouldCollapse("24", false, "a", "b", "a", "x");
+        checkShouldCollapse("25", false, "a", "b", "x", "b");
 
-        checkAreDataEqual("31", false, null, null, "a", "b");
-        checkAreDataEqual("32", false, "a", null, "a", "b");
-        checkAreDataEqual("33", false, null, "b", "a", "b");
-        checkAreDataEqual("34", false, "a", "x", "a", "b");
-        checkAreDataEqual("35", false, "x", "b", "a", "b");
+        checkShouldCollapse("31", false, null, null, "a", "b");
+        checkShouldCollapse("32", false, "a", null, "a", "b");
+        checkShouldCollapse("33", false, null, "b", "a", "b");
+        checkShouldCollapse("34", false, "a", "x", "a", "b");
+        checkShouldCollapse("35", false, "x", "b", "a", "b");
 
-        checkAreDataEqual("41", true, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
+        checkShouldCollapse("41", true, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
                 null);
-        checkAreDataEqual("42", true, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "1");
+        checkShouldCollapse("42", true, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "1");
 
-        checkAreDataEqual("51", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "2");
-        checkAreDataEqual("52", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, null);
-        checkAreDataEqual("53", false, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE, "2");
+        checkShouldCollapse("51", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
+                "2");
+        checkShouldCollapse("52", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
+                null);
+        checkShouldCollapse("53", false, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
+                "2");
+
+        // Test phone numbers
+        checkShouldCollapse("60", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567",
+                Phone.CONTENT_ITEM_TYPE, "1234567");
+        checkShouldCollapse("61", false,
+                Phone.CONTENT_ITEM_TYPE, "1234567",
+                Phone.CONTENT_ITEM_TYPE, "1234568");
+        checkShouldCollapse("62", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567;0",
+                Phone.CONTENT_ITEM_TYPE, "1234567;0");
+        checkShouldCollapse("63", false,
+                Phone.CONTENT_ITEM_TYPE, "1234567;89321",
+                Phone.CONTENT_ITEM_TYPE, "1234567;321");
+        checkShouldCollapse("64", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567;89321",
+                Phone.CONTENT_ITEM_TYPE, "1234567;89321");
+        checkShouldCollapse("65", false,
+                Phone.CONTENT_ITEM_TYPE, "1234567;0111111111",
+                Phone.CONTENT_ITEM_TYPE, "1234567;");
+        checkShouldCollapse("66", false,
+                Phone.CONTENT_ITEM_TYPE, "12345675426;91970xxxxx",
+                Phone.CONTENT_ITEM_TYPE, "12345675426");
+        checkShouldCollapse("67", false,
+                Phone.CONTENT_ITEM_TYPE, "12345675426;23456xxxxx",
+                Phone.CONTENT_ITEM_TYPE, "12345675426;234567xxxx");
+        checkShouldCollapse("68", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567",
+                Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567");
+        checkShouldCollapse("69", false,
+                Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567",
+                Phone.CONTENT_ITEM_TYPE, "1234567;1234567");
     }
 
-    private void checkAreDataEqual(String message, boolean expected, CharSequence mimetype1,
+    private void checkShouldCollapse(String message, boolean expected, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
         assertEquals(message, expected,
-                ContactsUtils.areDataEqual(mContext, mimetype1, data1, mimetype2, data2));
+                ContactsUtils.shouldCollapse(mContext, mimetype1, data1, mimetype2, data2));
     }
 
     public void testAreIntentActionEqual() throws Exception {

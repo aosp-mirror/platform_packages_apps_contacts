@@ -1123,7 +1123,8 @@ public class ViewContactActivity extends Activity
                 return false;
             }
 
-            if (!ContactsUtils.areDataEqual(context, mimetype, data, entry.mimetype, entry.data)) {
+            if (!ContactsUtils.shouldCollapse(context, mimetype, data, entry.mimetype,
+                    entry.data)) {
                 return false;
             }
 

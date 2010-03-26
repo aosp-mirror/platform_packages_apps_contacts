@@ -51,6 +51,7 @@ import java.util.ArrayList;
 
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
+    private static final String WAIT_SYMBOL_AS_STRING = String.valueOf(PhoneNumberUtils.WAIT);
     /**
      * Build the display title for the {@link Data#CONTENT_URI} entry in the
      * provided cursor, assuming the given mimeType.
@@ -439,9 +440,10 @@ public class ContactsUtils {
 
     /**
      * Returns true if two data with mimetypes which represent values in contact entries are
-     * considered equal.
+     * considered equal for collapsing in the GUI. For caller-id, use
+     * {@link PhoneNumberUtils#compare(Context, String, String)} instead
      */
-    public static final boolean areDataEqual(Context context, CharSequence mimetype1,
+    public static final boolean shouldCollapse(Context context, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
         if (TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype1)
                 && TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype2)) {
@@ -451,7 +453,23 @@ public class ContactsUtils {
             if (data1 == null || data2 == null) {
                 return false;
             }
-            return PhoneNumberUtils.compare(context, data1.toString(), data2.toString());
+
+            // If the number contains semicolons, PhoneNumberUtils.compare
+            // only checks the substring before that (which is fine for caller-id usually)
+            // but not for collapsing numbers. so we check each segment indidually to be more strict
+            // TODO: This should be replaced once we have a more robust phonenumber-library
+            String[] dataParts1 = data1.toString().split(WAIT_SYMBOL_AS_STRING);
+            String[] dataParts2 = data2.toString().split(WAIT_SYMBOL_AS_STRING);
+            if (dataParts1.length != dataParts2.length) {
+                return false;
+            }
+            for (int i = 0; i < dataParts1.length; i++) {
+                if (!PhoneNumberUtils.compare(context, dataParts1[i], dataParts2[i])) {
+                    return false;
+                }
+            }
+
+            return true;
         } else {
             if (mimetype1 == mimetype2 && data1 == data2) {
                 return true;
