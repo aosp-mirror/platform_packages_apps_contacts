@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"이름"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"이름(소리나는 대로)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"회사"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"위치"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"연락처가 없습니다."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"새 연락처 만들기"</string>
     <string name="selectLabel" msgid="4255424123394910733">"라벨 선택"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"전화번호를 눌러 통화 추가"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"SIM 카드에서 로딩 중..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 카드 주소록"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다. "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다. "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다. "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"표시할 연락처가 없습니다"\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다. "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"파일 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개 중 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"내보내기 확인"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"\'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'(으)로 연락처 목록을 내보내시겠습니까?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"대량 공유 확인"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"표시되는 모든 연락처를 공유하시겠습니까?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"연락처 데이터를 내보내지 못했습니다."</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"연락처 데이터를 내보내지 못했습니다."\n"실패 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"내보낼 수 있는 연락처가 없습니다."</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

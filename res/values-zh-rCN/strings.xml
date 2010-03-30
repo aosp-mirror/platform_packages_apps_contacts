@@ -74,14 +74,15 @@
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"职位"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"该联系人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"选择标签"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"电话"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"电子邮件"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"即时消息"</string>
-    <string name="postalLabelsGroup" msgid="1618078212734693682">"邮政地址"</string>
+    <string name="postalLabelsGroup" msgid="1618078212734693682">"通信地址"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"组织"</item>
     <item msgid="7196592230748086755">"备注"</item>
@@ -91,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自定义标签名称"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"显示选项"</string>
     <string name="displayGroups" msgid="2278964020773993336">"显示选项"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将来电发送到语音信箱"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将来电转到语音信箱"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"默认"</string>
     <string name="changePicture" msgid="2943329047610967714">"更改图标"</string>
     <string name="removePicture" msgid="3041230993155966350">"删除图标"</string>
@@ -156,11 +157,15 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"拨号以添加通话"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"正从 SIM 卡中载入..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡联系人"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"您没有任何联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您还没有联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"-添加或配置帐户（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"-更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"MENU"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置帐号（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"您还没有联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置帐户（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"-更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您未做任何收藏。"\n\n"要收藏加联系人，请执行以下操作："\n\n<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您尚未添加任何收藏。"\n\n"要将联系人添加到收藏列表，请执行以下操作："\n\n<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"所有联系人"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"电话"</string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个文件"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"确认导出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"确定要将您的联系人列表导出到“<xliff:g id="VCARD_FILENAME">%s</xliff:g>”中吗？"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"确认批量分享"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"确定要分享所有的可见联系人吗？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"导出联系人数据失败"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"导出联系人数据失败。"\n"失败原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"没有可导出的联系人"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

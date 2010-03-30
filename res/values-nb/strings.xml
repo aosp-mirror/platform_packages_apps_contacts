@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"For- og etternavn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Firma"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Stilling"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten finnes ikke."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opprett ny kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Velg etikett"</string>
@@ -130,8 +131,8 @@
     <item quantity="one" msgid="916648718690661777">"1 kontakt"</item>
     <item quantity="other" msgid="5660384247071761844">"<xliff:g id="COUNT">%d</xliff:g> kontakter"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"Alle"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Vanlige"</string>
+    <string name="contactsIconLabel" msgid="7666609097606552806">"Kontakter"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Logg"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Alle kontakter"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring for å legge til en samtale"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Henter fra SIM-kort…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Du har ingen kontakter å vise. "\n\n"Slik legger du til en kontakt: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Du har ingen kontakter å vise. "\n\n"Slik legger du til en kontakt: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Eksportbekreftelse"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vil du eksportere kontaktlisten din til «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Bekreft massedeling"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Er du sikker på at du vil dele alle synlige kontakter?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kunne ikke eksportere kontaktlisten"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Eksport av kontaktdata mislyktes"\n"Årsak til feil: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Det finnes ingen eksporterbar kontakt."</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

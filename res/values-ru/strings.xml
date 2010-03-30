@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Имя и фамилия"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Произношение имени"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Должность"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Контакт не существует."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Выбор ярлыка"</string>
@@ -156,11 +157,15 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Наберите номер, чтобы добавить вызов"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Загрузка с SIM-карты…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Контакты на SIM-карте"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"У вас нет контактов."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"У вас нет контактов. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.)"\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", чтобы выбрать, какие контакты будут видны; "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"У вас нет контактов."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Список контактов пуст. Если вы добавили аккаунт только что, контакты будут автоматически загружены в течение нескольких минут. "\n\n"Чтобы добавить контакты, нажмите кнопку "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", если вы хотите добавить контакты и другие данные из определенных аккаунтов;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", если вы хотите выбрать определенные группы контактов для отображения в списке контактов; "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", если вы хотите создать новый контакт самостоятельно;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт, если вы хотите копировать контакты с/на SD или SIM-карту."</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Список избранных контактов пуст."\n\n"Чтобы добавить контакт в избранные: "\n\n"        "<li>"перейдите на вкладку "<b>"Контакты"</b>";"\n</li>" "\n<li>"выберите контакт;"\n</li>" "\n<li>"нажмите звездочку возле имени контакта."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Список контактов пуст. Если вы добавили аккаунт только что, контакты будут автоматически загружены в течение нескольких минут. "\n\n"Чтобы добавить контакты, нажмите кнопку "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", если вы хотите добавить контакты и другие данные из определенных аккаунтов;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", если вы хотите выбрать определенные группы контактов для отображения в списке контактов; "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", если вы хотите создать новый контакт самостоятельно;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт"</b></font>", если вы хотите копировать контакты с/на SD или SIM-карту."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Список избранных контактов пуст."\n\n"Чтобы добавить контакт в избранные: "\n\n<li>"перейдите на вкладку "<b>"Контакты"</b>";"\n</li>" "\n<li>"выберите контакт;"\n</li>" "\n<li>"нажмите звездочку возле имени контакта."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Все контакты"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Помеченные"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефоны"</string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"Файл <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Подтверждение·экспорта"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Вы действительно хотите экспортировать контакты в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Подтвердите групповую передачу"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Вы действительно хотите передать все видимые контакты?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Не удалось экспортировать данные контакта."</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Не удалось экспортировать данные контакта."\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Нет контактов, которые можно экспортировать."</string>
@@ -362,10 +365,10 @@
     <string name="contact_read_only" msgid="1203216914575723978">"Невозможно изменить контактную информацию <xliff:g id="SOURCE">%1$s</xliff:g> на этом устройстве."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Отсутствует дополнительная информация об этом контакте."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Упорядочить"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Имя"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"По имени"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Фамилия"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Показатьть контакты как"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"По имени"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Показать контакты как"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Имя"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"По фамилии"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Поиск контактов"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Поиск всех контактов"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

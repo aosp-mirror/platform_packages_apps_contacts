@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Όνομα και επίθετο"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Φωνητικό όνομα"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Εταιρεία"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Θέση"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Η επαφή δεν υπάρχει."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Δημιουργία νέας επαφής"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Επιλογή ετικέτας"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Καλέστε έναν αρ. για προσθ. μιας κλήσ."</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Φόρτωση από κάρτα SIM…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Επαφές στην κάρτα SIM"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Δεν έχετε επαφές προς προβολή."\n\n"Για προσθήκη επαφών, πατήστε "<font fgcolor="#ffffffff"><b>"Μενού"</b></font>" και αγγίξτε:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Λογαριασμοί"</b></font>" για προσθήκη ή διαμόρφωση λογαριασμού με επαφές που μπορείτε να συγχρονίσετε στο τηλέφωνο"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Νέα επαφή"</b></font>" για δημιουργία νέας επαφής από το μηδέν"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Εισαγωγή/Εξαγωγή"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Δεν έχετε επαφές προς προβολή. (Αν προσθέσατε κάποιον λογαριασμό μόλις τώρα, θα χρειαστούν λίγα λεπτά έως ότου γίνει ο συγχρονισμός.)"\n\n"Για την προσθήκη επαφών, πατήστε "<font fgcolor="#ffffffff"><b>"Μενού"</b></font>" και αγγίξτε την επιλογή:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Λογαριασμοί"</b></font>" για την προσθήκη ή διαμόρφωση λογαριασμού με επαφές τις οποίες μπορείτε να συγχρονίσετε στο τηλέφωνο"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Επιλογές προβολής"</b></font>" για να αλλάξετε τις επαφές που είναι ορατές"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Νέα επαφή"</b></font>" για δημιουργία νέας επαφής από το μηδέν"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Εισαγωγή/Εξαγωγή"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Δεν έχετε επαφές προς προβολή."\n\n"Για προσθήκη επαφών, πατήστε "<font fgcolor="#ffffffff"><b>"Μενού"</b></font>" και αγγίξτε την επιλογή:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Λογαριασμοί"</b></font>" για προσθήκη ή διαμόρφωση λογαριασμού με επαφές που μπορείτε να συγχρονίσετε στο τηλέφωνο"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Νέα επαφή"</b></font>" για δημιουργία νέας επαφής από το μηδέν"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Εισαγωγή/Εξαγωγή"</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> από <xliff:g id="TOTAL_NUMBER">%s</xliff:g> αρχεία"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση\nεξαγωγής"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Είστε σίγουροι ότι θέλετε να εξαγάγετε τη λίστα των επαφών σας στο \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\";"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Επιβεβαίωση μαζικής κοινής χρήσης"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Είστε βέβαιοι ότι θέλετε να κάνετε κοινή χρήση όλων των ορατών επαφών;"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Αποτυχία εξαγωγής δεδομένων επαφής"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Αποτυχία εξαγωγής δεδομένων επαφής."\n"Αιτία αποτυχίας: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Δεν υπάρχει επαφή με δυνατότητα εξαγωγής"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

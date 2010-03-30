@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Jméno a příjmení"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Jméno (foneticky)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Společnost"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Funkce"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt neexistuje."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Vytvořit nový kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Vyberte štítek"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Přidáváte hovor"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Načítání z karty SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty na kartě SIM"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Nemáte žádné kontakty, které by bylo možné zobrazit."\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotkněte se položky:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", pokud chcete přidat nebo nakonfigurovat účet a kontakty v něm synchronizovat s telefonem;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit úplně nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovat nebo exportovat"</b></font>"."\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Nemáte žádné kontakty, které by bylo možné zobrazit. (Pokud jste právě přidali účet, může synchronizace kontaktů trvat několik minut.)"\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotkněte se položky:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", pokud chcete přidat nebo nakonfigurovat účet a kontakty v něm synchronizovat s telefonem;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazení"</b></font>", pokud chcete změnit, které kontakty budou zobrazeny;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit úplně nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovat nebo exportovat"</b></font>"."\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Nemáte žádné kontakty, které by bylo možné zobrazit."\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotkněte se položky:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", pokud chcete přidat nebo nakonfigurovat účet a kontakty v něm synchronizovat s telefonem;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit úplně nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovat nebo exportovat"</b></font>"."\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> souborů"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdit export"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Opravdu chcete exportovat seznam kontaktů do souboru <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Potvrzení hromadného sdílení"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Opravdu chcete sdílet všechny viditelné kontakty?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Export dat kontaktů se nezdařil"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Export dat kontaktů se nezdařil."\n"Příčina chyby: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Žádný kontakt nelze exportovat"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

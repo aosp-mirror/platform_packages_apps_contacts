@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"För- och efternamn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetiskt namn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Företag"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Position"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten finns inte."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Skapa ny kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Välj etikett"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring/lägga till"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Läser in från SIM-kort…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter från SIM-kort"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekräfta export"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vill du exportera kontaktlistan till \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Bekräfta massdelning"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Vill du dela alla synliga kontakter?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Det gick inte att exportera kontaktdata"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Det gick inte att exportera kontaktdata."\n"Orsak: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Det finns ingen kontakt som kan exporteras"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

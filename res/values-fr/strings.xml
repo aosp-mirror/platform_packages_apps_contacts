@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Nom et prénom"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nom phonétique"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Société"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Poste"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Ce contact n\'existe pas."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Créer un nouveau contact"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Sélectionnez un libellé"</string>
@@ -91,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Libellé personnalisé"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Options d\'affichage"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Options d\'affichage"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Renvoyer les appels directement vers la messagerie vocale."</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Renvoyer les appels directement vers la messagerie vocale"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Par défaut"</string>
     <string name="changePicture" msgid="2943329047610967714">"Changer d\'icône"</string>
     <string name="removePicture" msgid="3041230993155966350">"Supprimer l\'icône"</string>
@@ -100,7 +101,7 @@
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Aucun contact disposant d\'un numéro téléphone."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Contacts avec un n° de tél."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Afficher uniquement les contacts avec un numéro de téléphone"</string>
-    <string name="headerContactGroups" msgid="2426134991932503843">"Choisissez les contacts à afficher."</string>
+    <string name="headerContactGroups" msgid="2426134991932503843">"Choisir les contacts à afficher"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> contacts"</item>
   </plurals>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Composer"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Chargement depuis la carte SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Vous n\'avez aucun contact à afficher."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Vous n\'avez aucun contact à afficher."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%s</xliff:g> fichiers"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmer l\'exportation"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Voulez-vous vraiment exporter la liste de contacts vers \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" ?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Confirmer le partage en masse"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Voulez-vous vraiment partager tous les contacts visibles ?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Échec lors de l\'exportation des données du contact"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Échec lors de l\'exportation des données du contact."\n"Motif : \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Aucun contact exportable"</string>
@@ -340,7 +343,7 @@
     <string name="chat_gtalk" msgid="981575737258117697">"Chatter via Google Talk"</string>
     <string name="chat_icq" msgid="8438405386153745775">"Chatter via ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatter via Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <string name="chat" msgid="9025361898797412245">"Chatter"</string>
     <string name="postal_street" msgid="8133143961580058972">"Rue"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Boîte postale"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Voisinage"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

@@ -24,7 +24,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"選擇聯絡人捷徑"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
-    <string name="starredList" msgid="4817256136413959463">"已標記星號"</string>
+    <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的最愛"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"職位"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"選取標籤"</string>
@@ -149,20 +150,24 @@
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"語音留言"</string>
-    <string name="unknown" msgid="740067747858270469">"未知的"</string>
+    <string name="unknown" msgid="740067747858270469">"不明"</string>
     <string name="private_num" msgid="6374339738119166953">"私人號碼"</string>
     <string name="payphone" msgid="4864313342828942922">"公共電話"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"使用鍵盤撥號"</string>
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"撥號即可新增通話"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"從  SIM 卡讀取中…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡聯絡人"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"您沒有任何聯絡人。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"<b></b></font>"] 並輕觸："\n" "\n<li>"["<font fgcolor="#ffffffff">"帳戶"<b></b></font>" 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您沒有任何聯絡人 (如果您剛剛才新增帳戶，系統需要幾分鐘的時間才能同步聯絡人資訊)。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"</font><b></b>"] 並輕觸："\n\n"["<li><font fgcolor="#ffffffff">"帳戶"<b></b></font>"] 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"顯示選項"<b></b></font>"] 來變更聯絡人的顯示狀態"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您沒有任何聯絡人。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"<b></b></font>"] 並輕觸："\n" "\n<li>"["<font fgcolor="#ffffffff">"帳戶"<b></b></font>" 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"您沒有任何聯絡人 (如果您剛剛才新增帳戶，系統需要幾分鐘的時間才能同步聯絡人資訊)。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"</font><b></b>"] 並輕觸："\n\n"["<li><font fgcolor="#ffffffff">"帳戶"<b></b></font>"] 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"顯示選項"<b></b></font>"] 來變更聯絡人的顯示狀態"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您沒有任何最愛。"\n\n"如要將聯絡人新增至最愛清單："\n\n"        "<li>"輕觸 [聯絡人"<b></b>"] 標籤"\n</li>" "\n<li>"輕觸要新增至最愛的聯絡人"\n</li>" "\n<li>"輕觸聯絡人名稱旁邊的星號圖示"\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您沒有任何最愛。"\n\n"如要將聯絡人新增至最愛清單："\n\n<li>"輕觸 [聯絡人"<b></b>"] 標籤"\n</li>" "\n<li>"輕觸要新增至最愛的聯絡人"\n</li>" "\n<li>"輕觸聯絡人名稱旁邊的星號圖示"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"所有聯絡人"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"星號標記"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星號"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"電話"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"使用觸控音按鍵"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"返回進行中的通話"</string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 個"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"確認匯出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"確定要將聯絡人清單匯出至「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」嗎？"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"確認大量分享"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"您確定要分享所有正常顯示的聯絡人嗎？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"無法匯出聯絡人資料"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"匯出聯絡人資料失敗。"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"沒有可匯出的聯絡人"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

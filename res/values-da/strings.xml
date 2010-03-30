@@ -63,7 +63,7 @@
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Du kan ikke slette kontakter på skrivebeskyttede konti, men du kan skjule dem i dine lister over kontakter."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Sletning af denne kontakt sletter oplysninger fra flere konti."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakt slettes"</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakt slettes."</string>
     <string name="menu_done" msgid="796017761764190697">"Udfør"</string>
     <string name="menu_doNotSave" msgid="2174577548513895144">"Annuller"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Rediger kontakt"</string>
@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Fornavn og efternavn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Virksomhed"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Stilling"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten eksisterer ikke."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Vælg etiket"</string>
@@ -143,7 +144,7 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Føj til kontakter"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Fjern fra opkaldsliste"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Ryd opkaldsliste"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"Opkaldsliste er tom."</string>
+    <string name="recentCalls_empty" msgid="247053222448663107">"Opkaldslisten er tom."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Ryd opkaldsliste"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Er du sikker på, at du vil rydde opkaldslisten?"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
@@ -156,11 +157,15 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring og tilføj et opkald"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Indlæser fra SIM-kort ..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
-    <string name="noContactsHelpText" msgid="6788487368878712350">"Du har ingen kontakter, der kan vises."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, som du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt helt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Du har ingen kontakter, der kan vises. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakter)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontaktner, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Du har ingen kontakter, der kan vises."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Du har ingen kontakter, der kan vises. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakterne)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Sådan føjer du en kontakt til din liste over favoritter:"\n\n" "<li>"Tryk på fanen "<b>"Kontakter"</b>\n</li>" "\n<li>"Tryk på den kontakt, du ønsker at føje til dine foretrukne"\n</li>" "\n<li>"Tryk på stjerne ud for kontaktens navn"\n</li></string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
+    <string name="noContactsHelpText" msgid="6788487368878712350">"Du har ingen kontakter."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, som du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt helt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Du har ingen kontakter. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakter)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontaktner, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Du har ingen kontakter."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Du har ingen kontakter. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakterne)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Sådan føjer du en kontakt til din liste over favoritter:"\n\n" "<li>"Tryk på fanen "<b>"Kontakter"</b>\n</li>" "\n<li>"k på den kontakt, du vil føje til dine favoritter"\n</li>" "\n<li>"Tryk på stjerne ud for kontaktens navn"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle kontakter"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Stjernemarkerede"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoner"</string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekræft eksport"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Er du sikker på, at du vil eksportere listen over kontakter til \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Bekræft massedeling"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Er du sikker på, at du vil dele alle synlige kontaktpersoner?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Eksport af kontaktdata mislykkedes"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Eksport af kontaktdata mislykkedes."\n"Årsag til fejl: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Der er ingen kontakter, der kan eksporteres"</string>
@@ -254,7 +257,7 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Husk dette valg"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Ukendte"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport af"</string>
+    <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importer/eksporter kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

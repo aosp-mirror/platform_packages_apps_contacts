@@ -65,7 +65,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
     <string name="menu_done" msgid="796017761764190697">"Gereed"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Terugkeren"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"Terugzetten"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Contact bewerken"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nieuw contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisch"</string>
@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Voor- en achternaam"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisch gespelde naam"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Bedrijf"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Positie"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"Het contact bestaat niet."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Nieuw contact maken"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Label selecteren"</string>
@@ -156,11 +157,15 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Oproep toevoegen"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Laden vanaf SIM-kaart..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contacten op SIM-kaart"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Account "</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"U heeft geen favorieten."\n\n"U kunt als volgt een contact toevoegen aan uw lijst met favorieten:"\n\n"        "<li>"Raak het tabblad \'"<b>"Contacten"</b>"\' aan."\n</li>" "\n<li>"Raak het contact aan dat u wilt toevoegen aan uw favorieten."\n</li>" "\n<li>"Raak de ster aan die wordt weergegeven naast de naam van het contact."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"U heeft geen favorieten."\n\n"U kunt als volgt een contact toevoegen aan uw lijst met favorieten:"\n\n<li>"Raak het tabblad \'"<b>"Contacten"</b>"\' aan."\n</li>" "\n<li>"Raak het contact aan dat u wilt toevoegen aan uw favorieten."\n</li>" "\n<li>"Raak de ster aan die wordt weergegeven naast de naam van het contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle contacten"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Met ster"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoons"</string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> bestanden"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Exporteren bevestigen"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Weet u zeker dat u uw lijst met contacten wilt exporteren naar \'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Massaal delen bevestigen"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Weet u zeker dat u alle zichtbare contacten wilt delen?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Exporteren van contactgegevens mislukt"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Exporteren van contactgegevens mislukt."\n"Reden voor de fout: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Er is geen contact dat geëxporteerd kan worden"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>

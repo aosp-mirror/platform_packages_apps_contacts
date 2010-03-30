@@ -74,7 +74,8 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Primeiro e último"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nome fonético"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
-    <string name="ghostData_title" msgid="7662602222400641187">"Cargo"</string>
+    <!-- no translation found for ghostData_title (7496735200318496110) -->
+    <skip />
     <string name="invalidContactMessage" msgid="5816991830260044593">"O contacto não existe."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Criar novo contacto"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleccionar etiqueta"</string>
@@ -156,6 +157,10 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Marcar para adicionar uma chamada"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"A carregar a partir do cartão SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contactos no cartão SIM"</string>
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
     <string name="noContactsHelpText" msgid="6788487368878712350">"Não tem contactos para apresentar."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar um novo contacto de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Não tem contactos para apresentar (se acabou de adicionar uma conta, pode demorar alguns minutos a sincronizar os contactos)."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com os contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de visualização"</b></font>" para alterar os contactos visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar uma nova conta de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Não tem contactos para apresentar."\n\n"Para adicionar contactos, prima "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contactos que pode sincronizar no telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contacto"</b></font>" para criar um novo contacto de raiz"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>\n</li></string>
@@ -228,8 +233,6 @@
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> ficheiros"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmar exportação"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Tem a certeza de que pretende exportar a lista de contactos para \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="confirm_share_visible_contacts_title" msgid="1238155347915352865">"Confirmar partilha em massa"</string>
-    <string name="confirm_share_visible_contacts_message" msgid="1747100933939001457">"Tem a certeza de que pretende partilhar todos os contactos visíveis?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Falha ao exportar dados de contacto"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Falha na exportação de dados de contacto."\n"Motivo da falha: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Não existe um contacto exportável"</string>
@@ -260,7 +263,7 @@
     <string name="share_via" msgid="563121028023030093">"Partilhar contacto através de"</string>
     <string name="share_error" msgid="4374508848981697170">"Não é possível partilhar este contacto."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nome"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alcunha"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Pseudónimo"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organização"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web site"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Evento"</string>
@@ -379,5 +382,9 @@
     <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
     <skip />
     <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
     <skip />
 </resources>
