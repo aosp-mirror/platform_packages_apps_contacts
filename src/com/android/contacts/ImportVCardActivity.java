@@ -31,6 +31,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.FileUtils;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.pim.vcard.VCardConfig;
@@ -53,9 +54,12 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -153,6 +157,7 @@ public class ImportVCardActivity extends Activity {
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
         private Uri mUri;
+        private File mTempFile;
 
         private List<VCardFile> mSelectedVCardFileList;
         private List<String> mErrorFileNameList;
@@ -190,11 +195,18 @@ public class ImportVCardActivity extends Activity {
             boolean shouldCallFinish = true;
             mWakeLock.acquire();
             Uri createdUri = null;
+            mTempFile = null;
             // Some malicious vCard data may make this thread broken
             // (e.g. OutOfMemoryError).
             // Even in such cases, some should be done.
             try {
                 if (mUri != null) {  // Read one vCard expressed by mUri
+                    final Uri uri = getReopenableUri(mUri);
+                    if (uri == null) {
+                        shouldCallFinish = false;
+                        return;
+                    }
+
                     mProgressDialogForReadVCard.setProgressNumberFormat("");
                     mProgressDialogForReadVCard.setProgress(0);
 
@@ -208,16 +220,15 @@ public class ImportVCardActivity extends Activity {
                     VCardSourceDetector detector = new VCardSourceDetector();
                     VCardInterpreterCollection builderCollection = new VCardInterpreterCollection(
                             Arrays.asList(counter, detector));
-
                     boolean result;
                     try {
-                        result = readOneVCardFile(mUri,
+                        result = readOneVCardFile(uri,
                                 VCardConfig.DEFAULT_CHARSET, builderCollection, null, true, null);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
-                            result = readOneVCardFile(mUri,
+                            result = readOneVCardFile(uri,
                                     VCardConfig.DEFAULT_CHARSET, counter, detector, false, null);
                         } catch (VCardNestedException e2) {
                             result = false;
@@ -239,7 +250,7 @@ public class ImportVCardActivity extends Activity {
                     mProgressDialogForReadVCard.setIndeterminate(false);
                     mProgressDialogForReadVCard.setMax(counter.getCount());
                     String charset = detector.getEstimatedCharset();
-                    createdUri = doActuallyReadOneVCard(mUri, null, charset, true, detector,
+                    createdUri = doActuallyReadOneVCard(uri, null, charset, true, detector,
                             mErrorFileNameList);
                 } else {  // Read multiple files.
                     mProgressDialogForReadVCard.setProgressNumberFormat(
@@ -251,7 +262,13 @@ public class ImportVCardActivity extends Activity {
                         if (mCanceled) {
                             return;
                         }
-                        final Uri uri = Uri.parse("file://" + vcardFile.getCanonicalPath());
+                        // TODO: detect scheme!
+                        final Uri uri = getReopenableUri(
+                                Uri.parse("file://" + vcardFile.getCanonicalPath()));
+                        if (uri == null) {
+                            shouldCallFinish = false;
+                            return;
+                        }
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
@@ -271,6 +288,12 @@ public class ImportVCardActivity extends Activity {
             } finally {
                 mWakeLock.release();
                 mProgressDialogForReadVCard.dismiss();
+                if (mTempFile != null) {
+                    if (!mTempFile.delete()) {
+                        Log.w(LOG_TAG, "Failed to delete a cache file.");
+                    }
+                    mTempFile = null;
+                }
                 // finish() is called via mCancelListener, which is used in DialogDisplayer.
                 if (shouldCallFinish && !isFinishing()) {
                     if (mErrorFileNameList == null || mErrorFileNameList.isEmpty()) {
@@ -307,6 +330,49 @@ public class ImportVCardActivity extends Activity {
                                         builder.toString())));
                     }
                 }
+            }
+        }
+
+        private Uri getReopenableUri(final Uri uri) {
+            if ("file".equals(uri.getScheme())) {
+                return uri;
+            } else {
+                // We may not be able to scan a given uri more than once when it does not
+                // point to a local file, while it is necessary to scan it more than once
+                // because of vCard limitation. We rely on a local temporary file instead.
+                //
+                // e.g. Email app's AttachmentProvider is able to give us a content Uri
+                // with an attachment file, but we cannot "sometimes" (not always) scan
+                // the Uri more than once because of permission revocation.
+                InputStream is = null;
+                OutputStream os = null;
+                Uri reopenableUri = null;
+                try {
+                    is = mResolver.openInputStream(uri);
+                    File dir = getDir("tmp", MODE_PRIVATE);
+                    mTempFile = dir.createTempFile("vcf", null, dir);
+                    FileUtils.copyToFile(is, mTempFile);
+                    reopenableUri = Uri.parse("file://" + mTempFile.getCanonicalPath());
+                } catch (IOException e) {
+                    mHandler.post(new DialogDisplayer(
+                            getString(R.string.fail_reason_io_error) +
+                            ": " + e.getLocalizedMessage()));
+                    return null;
+                } finally {
+                    if (is != null) {
+                        try {
+                            is.close();
+                        } catch (IOException e) {
+                        }
+                    }
+                    if (os != null) {
+                        try {
+                            os.close();
+                        } catch (IOException e) {
+                        }
+                    }
+                }
+                return reopenableUri;
             }
         }
 
