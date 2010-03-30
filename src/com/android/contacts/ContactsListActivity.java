@@ -112,11 +112,11 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
-import android.widget.ResourceCursorAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -511,10 +511,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         protected void invalidate() {
             int childCount = mListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View listItem = mListView.getChildAt(i);
-                Object tag = listItem.getTag();
-                if (tag instanceof ContactListItemCache) {
-                    ((ContactListItemCache)tag).nameView.invalidate();
+                View itemView = mListView.getChildAt(i);
+                if (itemView instanceof ContactListItemView) {
+                    final ContactListItemView view = (ContactListItemView)itemView;
+                    view.getNameTextView().invalidate();
                 }
             }
         }
@@ -929,7 +929,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.call_button: {
+            // TODO a better way of identifying the button
+            case android.R.id.button1: {
                 final int position = (Integer)v.getTag();
                 Cursor c = mAdapter.getCursor();
                 if (c != null) {
@@ -2748,20 +2749,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     final static class ContactListItemCache {
-        public View header;
-        public TextView headerText;
-        public View divider;
-        public TextView nameView;
-        public View callView;
-        public ImageView callButton;
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
-        public TextView labelView;
-        public TextView dataView;
-        public TextView snippetView;
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
-        public ImageView presenceView;
-        public QuickContactBadge photoView;
-        public ImageView nonQuickContactPhotoView;
         public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
         public TextWithHighlighting textWithHighlighting;
         public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
@@ -2773,7 +2762,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public Drawable background;
     }
 
-    private final class ContactItemListAdapter extends ResourceCursorAdapter
+    private final class ContactItemListAdapter extends CursorAdapter
             implements SectionIndexer, OnScrollListener, PinnedHeaderListView.PinnedHeaderAdapter {
         private SectionIndexer mIndexer;
         private boolean mLoading = true;
@@ -2787,7 +2776,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         private int mSuggestionsCursorCount;
 
         public ContactItemListAdapter(Context context) {
-            super(context, R.layout.contacts_list_item, null, false);
+            super(context, null, false);
 
             mUnknownNameText = context.getText(android.R.string.unknownName);
             switch (mMode) {
@@ -2823,11 +2812,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
                 mDisplayPhotos = true;
-                if (mShowSearchSnippets) {
-                    setViewResource(R.layout.contacts_list_item_photo_and_snippet);
-                } else {
-                    setViewResource(R.layout.contacts_list_item_photo);
-                }
             }
         }
 
@@ -2960,17 +2944,19 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 throw new IllegalStateException("couldn't move cursor to position " + position);
             }
 
+            boolean newView;
             View v;
             if (convertView == null || convertView.getTag() == null) {
+                newView = true;
                 v = newView(mContext, cursor, parent);
             } else {
+                newView = false;
                 v = convertView;
             }
             bindView(v, mContext, cursor);
             bindSectionHeader(v, realPosition, mDisplaySectionHeaders && !showingSuggestion);
             return v;
         }
-
 
         private View getTotalContactCountView(ViewGroup parent) {
             final LayoutInflater inflater = getLayoutInflater();
@@ -3023,39 +3009,17 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            final View view = super.newView(context, cursor, parent);
-
-            final ContactListItemCache cache = new ContactListItemCache();
-            cache.header = view.findViewById(R.id.header);
-            cache.headerText = (TextView)view.findViewById(R.id.header_text);
-            cache.divider = view.findViewById(R.id.list_divider);
-            cache.nameView = (TextView) view.findViewById(R.id.name);
-            cache.callView = view.findViewById(R.id.call_view);
-            cache.callButton = (ImageView) view.findViewById(R.id.call_button);
-            if (cache.callButton != null) {
-                cache.callButton.setOnClickListener(ContactsListActivity.this);
-            }
-            cache.labelView = (TextView) view.findViewById(R.id.label);
-            cache.dataView = (TextView) view.findViewById(R.id.data);
-            cache.presenceView = (ImageView) view.findViewById(R.id.presence);
-            cache.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
-            if (cache.photoView != null) {
-                cache.photoView.setExcludeMimes(new String[] {Contacts.CONTENT_ITEM_TYPE});
-            }
-            cache.nonQuickContactPhotoView = (ImageView) view.findViewById(R.id.noQuickContactPhoto);
-            cache.textWithHighlighting = mHighlightingAnimation.createTextWithHighlighting();
-            cache.snippetView = (TextView)view.findViewById(R.id.snippet);
-
-            view.setTag(cache);
+            final ContactListItemView view = new ContactListItemView(context, null);
+            view.setOnCallButtonClickListener(ContactsListActivity.this);
+            view.setTag(new ContactListItemCache());
             return view;
         }
 
         @Override
-        public void bindView(View view, Context context, Cursor cursor) {
+        public void bindView(View itemView, Context context, Cursor cursor) {
+            final ContactListItemView view = (ContactListItemView)itemView;
             final ContactListItemCache cache = (ContactListItemCache) view.getTag();
 
-            TextView dataView = cache.dataView;
-            TextView labelView = cache.labelView;
             int typeColumnIndex;
             int dataColumnIndex;
             int labelColumnIndex;
@@ -3100,16 +3064,21 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             // Set the name
             cursor.copyStringToBuffer(nameColumnIndex, cache.nameBuffer);
+            TextView nameView = view.getNameTextView();
             int size = cache.nameBuffer.sizeCopied;
             if (size != 0) {
                 if (highlightingEnabled) {
-                    buildDisplayNameWithHighlighting(cache.nameView, cursor, cache.nameBuffer,
+                    if (cache.textWithHighlighting == null) {
+                        cache.textWithHighlighting =
+                                mHighlightingAnimation.createTextWithHighlighting();
+                    }
+                    buildDisplayNameWithHighlighting(nameView, cursor, cache.nameBuffer,
                             cache.highlightedTextBuffer, cache.textWithHighlighting);
                 } else {
-                    cache.nameView.setText(cache.nameBuffer.data, 0, size);
+                    nameView.setText(cache.nameBuffer.data, 0, size);
                 }
             } else {
-                cache.nameView.setText(mUnknownNameText);
+                nameView.setText(mUnknownNameText);
             }
 
             boolean hasPhone = cursor.getColumnCount() >= SUMMARY_HAS_PHONE_COLUMN_INDEX
@@ -3118,10 +3087,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             // Make the call button visible if requested.
             if (mDisplayCallButton && hasPhone) {
                 int pos = cursor.getPosition();
-                cache.callView.setVisibility(View.VISIBLE);
-                cache.callButton.setTag(pos);
+                view.showCallButton(android.R.id.button1, pos);
             } else {
-                cache.callView.setVisibility(View.GONE);
+                view.hideCallButton();
             }
 
             // Set the photo, if requested
@@ -3135,25 +3103,20 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
                 ImageView viewToUse;
                 if (useQuickContact) {
-                    viewToUse = cache.photoView;
                     // Build soft lookup reference
                     final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
                     final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
-                    cache.photoView.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
-                    cache.photoView.setVisibility(View.VISIBLE);
-                    cache.nonQuickContactPhotoView.setVisibility(View.INVISIBLE);
+                    QuickContactBadge quickContact = view.getQuickContact();
+                    quickContact.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
+                    viewToUse = quickContact;
                 } else {
-                    viewToUse = cache.nonQuickContactPhotoView;
-                    cache.photoView.setVisibility(View.INVISIBLE);
-                    cache.nonQuickContactPhotoView.setVisibility(View.VISIBLE);
+                    viewToUse = view.getPhotoView();
                 }
-
 
                 final int position = cursor.getPosition();
                 mPhotoLoader.loadPhoto(viewToUse, photoId);
             }
 
-            ImageView presenceView = cache.presenceView;
             if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
                 // Set the proper icon (star or presence or nothing)
                 int serverStatus;
@@ -3161,27 +3124,24 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
                     Drawable icon = ContactPresenceIconUtil.getPresenceIcon(mContext, serverStatus);
                     if (icon != null) {
-                        presenceView.setImageDrawable(icon);
-                        presenceView.setVisibility(View.VISIBLE);
+                        view.setPresence(icon);
                     } else {
-                        presenceView.setVisibility(View.GONE);
+                        view.setPresence(null);
                     }
                 } else {
-                    presenceView.setVisibility(View.GONE);
+                    view.setPresence(null);
                 }
             } else {
-                presenceView.setVisibility(View.GONE);
+                view.setPresence(null);
             }
 
-            // TODO: make sure that when mShowSearchSnippets is true, the
-            // snippet views are available
-            if (mShowSearchSnippets && cache.snippetView != null) {
+            if (mShowSearchSnippets) {
                 boolean showSnippet = false;
                 String snippetMimeType = cursor.getString(SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX);
                 if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
                     String email = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
                     if (!TextUtils.isEmpty(email)) {
-                        cache.snippetView.setText(email);
+                        view.setSnippet(email);
                         showSnippet = true;
                     }
                 } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
@@ -3189,42 +3149,41 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     String title = cursor.getString(SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
                     if (!TextUtils.isEmpty(company)) {
                         if (!TextUtils.isEmpty(title)) {
-                            cache.snippetView.setText(company + " / " + title);
+                            view.setSnippet(company + " / " + title);
                         } else {
-                            cache.snippetView.setText(company);
+                            view.setSnippet(company);
                         }
                         showSnippet = true;
                     } else if (!TextUtils.isEmpty(title)) {
-                        cache.snippetView.setText(title);
+                        view.setSnippet(title);
                         showSnippet = true;
                     }
                 } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
                     String nickname = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
                     if (!TextUtils.isEmpty(nickname)) {
-                        cache.snippetView.setText(nickname);
+                        view.setSnippet(nickname);
                         showSnippet = true;
                     }
                 }
 
-                cache.snippetView.setVisibility(showSnippet ? View.VISIBLE : View.GONE);
+                if (!showSnippet) {
+                    view.setSnippet(null);
+                }
             }
 
             if (!displayAdditionalData) {
-                cache.dataView.setVisibility(View.GONE);
-
                 if (phoneticNameColumnIndex != -1) {
 
                     // Set the name
                     cursor.copyStringToBuffer(phoneticNameColumnIndex, cache.phoneticNameBuffer);
                     int phoneticNameSize = cache.phoneticNameBuffer.sizeCopied;
                     if (phoneticNameSize != 0) {
-                        cache.labelView.setText(cache.phoneticNameBuffer.data, 0, phoneticNameSize);
-                        cache.labelView.setVisibility(View.VISIBLE);
+                        view.setLabel(cache.phoneticNameBuffer.data, phoneticNameSize);
                     } else {
-                        cache.labelView.setVisibility(View.GONE);
+                        view.setLabel(null);
                     }
                 } else {
-                    cache.labelView.setVisibility(View.GONE);
+                    view.setLabel(null);
                 }
                 return;
             }
@@ -3233,29 +3192,23 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             cursor.copyStringToBuffer(dataColumnIndex, cache.dataBuffer);
 
             size = cache.dataBuffer.sizeCopied;
-            if (size != 0) {
-                dataView.setText(cache.dataBuffer.data, 0, size);
-                dataView.setVisibility(View.VISIBLE);
-            } else {
-                dataView.setVisibility(View.GONE);
-            }
+            view.setData(cache.dataBuffer.data, size);
 
             // Set the label.
             if (!cursor.isNull(typeColumnIndex)) {
-                labelView.setVisibility(View.VISIBLE);
-
                 final int type = cursor.getInt(typeColumnIndex);
                 final String label = cursor.getString(labelColumnIndex);
 
                 if (mMode == MODE_LEGACY_PICK_POSTAL || mMode == MODE_PICK_POSTAL) {
-                    labelView.setText(StructuredPostal.getTypeLabel(context.getResources(), type,
+                    // TODO cache
+                    view.setLabel(StructuredPostal.getTypeLabel(context.getResources(), type,
                             label));
                 } else {
-                    labelView.setText(Phone.getTypeLabel(context.getResources(), type, label));
+                    // TODO cache
+                    view.setLabel(Phone.getTypeLabel(context.getResources(), type, label));
                 }
             } else {
-                // There is no label, hide the the view
-                labelView.setVisibility(View.GONE);
+                view.setLabel(null);
             }
         }
 
@@ -3278,30 +3231,27 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             textView.setText(textWithHighlighting);
         }
 
-        private void bindSectionHeader(View view, int position, boolean displaySectionHeaders) {
+        private void bindSectionHeader(View itemView, int position, boolean displaySectionHeaders) {
+            final ContactListItemView view = (ContactListItemView)itemView;
             final ContactListItemCache cache = (ContactListItemCache) view.getTag();
             if (!displaySectionHeaders) {
-                cache.header.setVisibility(View.GONE);
-                cache.divider.setVisibility(View.VISIBLE);
+                view.setSectionHeader(null);
+                view.setDividerVisible(true);
             } else {
                 final int section = getSectionForPosition(position);
                 if (getPositionForSection(section) == position) {
                     String title = (String)mIndexer.getSections()[section];
-                    if (!TextUtils.isEmpty(title)) {
-                        cache.headerText.setText(title);
-                        cache.header.setVisibility(View.VISIBLE);
-                    } else {
-                        cache.header.setVisibility(View.GONE);
-                    }
+                    view.setSectionHeader(title);
                 } else {
-                    cache.header.setVisibility(View.GONE);
+                    view.setDividerVisible(false);
+                    view.setSectionHeader(null);
                 }
 
                 // move the divider for the last item in a section
                 if (getPositionForSection(section + 1) - 1 == position) {
-                    cache.divider.setVisibility(View.GONE);
+                    view.setDividerVisible(false);
                 } else {
-                    cache.divider.setVisibility(View.VISIBLE);
+                    view.setDividerVisible(true);
                 }
             }
         }
