@@ -23,7 +23,6 @@ import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.RemoteException;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
@@ -76,8 +75,6 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
                 state.add(entity);
             }
             return state;
-        } catch (RemoteException e) {
-            throw new IllegalStateException("Problem querying contact details", e);
         } finally {
             iterator.close();
         }

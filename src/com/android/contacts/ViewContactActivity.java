@@ -340,9 +340,6 @@ public class ViewContactActivity extends Activity
                         Entity entity = iterator.next();
                         newEntities.add(entity);
                     }
-                } catch (RemoteException e) {
-                    Log.w(TAG, "Problem reading contact data: " + e.toString());
-                    return null;
                 } finally {
                     iterator.close();
                 }

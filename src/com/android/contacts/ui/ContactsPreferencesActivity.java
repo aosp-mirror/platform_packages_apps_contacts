@@ -574,8 +574,6 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
                 // Create single entry handling ungrouped status
                 mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType, hasGroups);
                 addGroup(mUngrouped);
-            } catch (RemoteException e) {
-                Log.w(TAG, "Problem reading groups: " + e.toString());
             } finally {
                 iterator.close();
             }
