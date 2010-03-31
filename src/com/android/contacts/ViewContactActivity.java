@@ -402,7 +402,7 @@ public class ViewContactActivity extends Activity
 
         // Contains an Id.
         final long uriContactId = Long.parseLong(segments.get(3));
-        final String uriLookupKey = segments.get(2);
+        final String uriLookupKey = Uri.encode(segments.get(2));
         final Uri dataUri = Uri.withAppendedPath(
                 ContentUris.withAppendedId(Contacts.CONTENT_URI, uriContactId),
                 Contacts.Data.CONTENT_DIRECTORY);
