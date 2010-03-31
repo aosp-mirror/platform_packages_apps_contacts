@@ -486,6 +486,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildAssertVersion(VER_FIRST),
                 buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, joeContactInsert),
                 buildOper(Data.CONTENT_URI, TYPE_INSERT, joePhoneInsert),
+                buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_DEFAULT),
                 buildUpdateAggregationKeepTogether(CONTACT_BOB));
 
         // Merge in the second version, verify that our insert remains
@@ -495,6 +496,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildAssertVersion(VER_SECOND),
                 buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, joeContactInsert),
                 buildOper(Data.CONTENT_URI, TYPE_INSERT, joePhoneInsert),
+                buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_DEFAULT),
                 buildUpdateAggregationKeepTogether(CONTACT_BOB));
     }
 
@@ -545,6 +547,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildAssertVersion(VER_SECOND),
                 buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, contactInsert),
                 buildOper(Data.CONTENT_URI, TYPE_INSERT, phoneInsert),
+                buildAggregationModeUpdate(RawContacts.AGGREGATION_MODE_DEFAULT),
                 buildUpdateAggregationKeepTogether(CONTACT_BOB));
     }
 
