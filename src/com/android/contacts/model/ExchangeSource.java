@@ -66,14 +66,14 @@ public class ExchangeSource extends FallbackSource {
         final DataKind kind = super.inflateStructuredName(context, ContactsSource.LEVEL_MIMETYPES);
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            final boolean useJapaneseOrder =
-                Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
+            boolean displayOrderPrimary =
+                    context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
             kind.typeOverallMax = 1;
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
                     FLAGS_PERSON_NAME).setOptional(true));
-            if (useJapaneseOrder) {
+            if (!displayOrderPrimary) {
                 kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
                         R.string.name_family, FLAGS_PERSON_NAME));
                 kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
