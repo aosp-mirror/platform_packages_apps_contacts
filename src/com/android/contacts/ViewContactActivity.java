@@ -15,7 +15,6 @@
  */
 
 package com.android.contacts;
-
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -92,6 +91,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Displays the details of a specific contact.
@@ -333,7 +333,7 @@ public class ViewContactActivity extends Activity
         (new AsyncTask<Void, Void, ArrayList<Entity>>() {
             @Override
             protected ArrayList<Entity> doInBackground(Void... params) {
-                ArrayList<Entity> newEntities = Lists.newArrayList();
+                ArrayList<Entity> newEntities = new ArrayList<Entity>(cursor.getCount());
                 EntityIterator iterator = RawContacts.newEntityIterator(cursor);
                 try {
                     while (iterator.hasNext()) {
@@ -394,19 +394,65 @@ public class ViewContactActivity extends Activity
         mHasStatuses = true;
     }
 
+    private static Cursor setupContactCursor(ContentResolver resolver, Uri lookupUri) {
+        if (lookupUri == null) {
+            return null;
+        }
+        final List<String> segments = lookupUri.getPathSegments();
+        if (segments.size() != 4) {
+            return null;
+        }
+
+        // Contains an Id.
+        final long uriContactId = Long.parseLong(segments.get(3));
+        final String uriLookupKey = segments.get(2);
+        final Uri dataUri = Uri.withAppendedPath(
+                ContentUris.withAppendedId(Contacts.CONTENT_URI, uriContactId),
+                Contacts.Data.CONTENT_DIRECTORY);
+
+        // This cursor has several purposes:
+        // - Fetch NAME_RAW_CONTACT_ID and DISPLAY_NAME_SOURCE
+        // - Fetch the lookup-key to ensure we are looking at the right record
+        // - Watcher for change events
+        Cursor cursor = resolver.query(dataUri,
+                new String[] {
+                    Contacts.NAME_RAW_CONTACT_ID,
+                    Contacts.DISPLAY_NAME_SOURCE,
+                    Contacts.LOOKUP_KEY
+                }, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            String lookupKey =
+                    cursor.getString(cursor.getColumnIndex(Contacts.LOOKUP_KEY));
+            if (!lookupKey.equals(uriLookupKey)) {
+                // ID and lookup key do not match
+                cursor.close();
+                return null;
+            }
+            return cursor;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
     private synchronized void startEntityQuery() {
         closeCursor();
 
-        Uri uri = null;
-        if (mLookupUri != null) {
+        // Interprete mLookupUri
+        mCursor = setupContactCursor(mResolver, mLookupUri);
+
+        // If mCursor is null now we did not succeed in using the Uri's Id (or it didn't contain
+        // a Uri). Instead we now have to use the lookup key to find the record
+        if (mCursor == null) {
             mLookupUri = Contacts.getLookupUri(getContentResolver(), mLookupUri);
-            if (mLookupUri != null) {
-                uri = Contacts.lookupContact(getContentResolver(), mLookupUri);
-            }
+            mCursor = setupContactCursor(mResolver, mLookupUri);
         }
 
-        if (uri == null) {
-
+        // If mCursor is still null, we were unsuccessful in finding the record
+        if (mCursor == null) {
+            mNameRawContactId = -1;
+            mDisplayNameSource = DisplayNameSources.UNDEFINED;
             // TODO either figure out a way to prevent a flash of black background or
             // use some other UI than a toast
             Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_SHORT).show();
@@ -415,34 +461,26 @@ public class ViewContactActivity extends Activity
             return;
         }
 
-        final Uri dataUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
+        final long contactId = ContentUris.parseId(mLookupUri);
 
-        // This cursor has two purposes:
-        // - Fetch NAME_RAW_CONTACT_ID and DISPLAY_NAME_SOURCE
-        // - Watcher for change events
-        mCursor = mResolver.query(dataUri,
-                new String[] { Contacts.NAME_RAW_CONTACT_ID, Contacts.DISPLAY_NAME_SOURCE },
-                null, null, null);
-
-        if (mCursor.moveToFirst()) {
-            mNameRawContactId =
+        mNameRawContactId =
                 mCursor.getLong(mCursor.getColumnIndex(Contacts.NAME_RAW_CONTACT_ID));
-            mDisplayNameSource =
+        mDisplayNameSource =
                 mCursor.getInt(mCursor.getColumnIndex(Contacts.DISPLAY_NAME_SOURCE));
-        } else {
-            mNameRawContactId = -1;
-            mDisplayNameSource = DisplayNameSources.UNDEFINED;
-        }
 
         mCursor.registerContentObserver(mObserver);
-        final long contactId = ContentUris.parseId(uri);
 
         // Clear flags and start queries to data and status
         mHasEntities = false;
         mHasStatuses = false;
 
         mHandler.startQuery(TOKEN_ENTITIES, null, RawContactsEntity.CONTENT_URI, null,
-                RawContacts.CONTACT_ID + "=" + contactId, null, null);
+                RawContacts.CONTACT_ID + "=?", new String[] {
+                    String.valueOf(contactId)
+                }, null);
+        final Uri dataUri = Uri.withAppendedPath(
+                ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
+                Contacts.Data.CONTENT_DIRECTORY);
         mHandler.startQuery(TOKEN_STATUSES, null, dataUri, StatusQuery.PROJECTION,
                         StatusUpdates.PRESENCE + " IS NOT NULL OR " + StatusUpdates.STATUS
                                 + " IS NOT NULL", null, null);
