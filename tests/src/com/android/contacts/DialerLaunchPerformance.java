@@ -19,20 +19,20 @@ package com.android.contacts;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.test.LaunchPerformanceBase;
 import android.os.Bundle;
+import android.test.LaunchPerformanceBase;
 
 /**
  * Instrumentation class for Address Book launch performance testing.
  */
-public class ContactsLaunchPerformance extends LaunchPerformanceBase {
+public class DialerLaunchPerformance extends LaunchPerformanceBase {
 
     @Override
     public void onCreate(Bundle arguments) {
         mIntent.setAction(Intent.ACTION_MAIN);
         mIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         mIntent.setComponent(new ComponentName("com.android.contacts",
-                "com.android.contacts.DialtactsContactsEntryActivity"));
+                "com.android.contacts.DialtactsActivity"));
 
         start();
     }
