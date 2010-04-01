@@ -367,7 +367,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
         source.buildAssert(diff);
         source.buildDiff(diff);
-        assertEquals("Unexpected operations", 1, diff.size());
+        assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
             assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
@@ -395,7 +395,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
         source.buildAssert(diff);
         source.buildDiff(diff);
-        assertEquals("Unexpected operations", 2, diff.size());
+        assertEquals("Unexpected operations", 3, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
             assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
