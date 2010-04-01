@@ -67,7 +67,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -111,6 +110,9 @@ public final class EditContactActivity extends Activity
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
+    private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
+    private static final String KEY_QUERY_SELECTION = "queryselection";
+    private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
     /** The result code when view activity should close after edit returns */
     public static final int RESULT_CLOSE_VIEW_ACTIVITY = 777;
@@ -265,6 +267,11 @@ public final class EditContactActivity extends Activity
 
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
+        if (mCurrentPhotoFile != null) {
+            outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
+        }
+        outState.putString(KEY_QUERY_SELECTION, mQuerySelection);
+        outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         super.onSaveInstanceState(outState);
     }
 
@@ -275,6 +282,13 @@ public final class EditContactActivity extends Activity
         mRawContactIdRequestingPhoto = savedInstanceState.getLong(
                 KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
         mViewIdGenerator = savedInstanceState.getParcelable(KEY_VIEW_ID_GENERATOR);
+        String fileName = savedInstanceState.getString(KEY_CURRENT_PHOTO_FILE);
+        if (fileName != null) {
+            mCurrentPhotoFile = new File(fileName);
+        }
+        mQuerySelection = savedInstanceState.getString(KEY_QUERY_SELECTION);
+        mContactIdForJoin = savedInstanceState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+
         bindEditors();
 
         super.onRestoreInstanceState(savedInstanceState);
