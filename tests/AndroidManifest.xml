@@ -31,6 +31,11 @@
         android:targetPackage="com.android.contacts"
         android:label="Contacts launch performance">
     </instrumentation>
-    
+
+
+    <instrumentation android:name="com.android.contacts.DialerLaunchPerformance"
+        android:targetPackage="com.android.contacts"
+        android:label="Dialer launch performance">
+    </instrumentation>
 
 </manifest> 
