@@ -448,18 +448,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".VCardActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
-             <intent-filter>
+        <activity android:name=".ImportVCardActivity"
+            android:theme="@style/BackgroundOnly">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <data android:mimeType="text/directory" />
                 <data android:mimeType="text/x-vcard" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ImportVCardActivity"
-            android:theme="@style/BackgroundOnly" />
 
         <activity android:name=".ExportVCardActivity"
             android:theme="@style/BackgroundOnly" />

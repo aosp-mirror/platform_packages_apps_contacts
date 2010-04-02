@@ -31,7 +31,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.pim.vcard.VCardConfig;
@@ -54,12 +53,12 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
-import java.io.BufferedOutputStream;
+import com.android.contacts.model.Sources;
+import com.android.contacts.util.AccountSelectionUtil;
+
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,6 +108,8 @@ public class ImportVCardActivity extends Activity {
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
     private Handler mHandler = new Handler();  // Run on the UI thread.
+
+    private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
     private Account mAccount;
 
     private ProgressDialog mProgressDialogForScanVCard;
@@ -201,12 +202,7 @@ public class ImportVCardActivity extends Activity {
             // Even in such cases, some should be done.
             try {
                 if (mUri != null) {  // Read one vCard expressed by mUri
-                    final Uri uri = getReopenableUri(mUri);
-                    if (uri == null) {
-                        shouldCallFinish = false;
-                        return;
-                    }
-
+                    final Uri targetUri = mUri;
                     mProgressDialogForReadVCard.setProgressNumberFormat("");
                     mProgressDialogForReadVCard.setProgress(0);
 
@@ -222,13 +218,13 @@ public class ImportVCardActivity extends Activity {
                             Arrays.asList(counter, detector));
                     boolean result;
                     try {
-                        result = readOneVCardFile(uri,
+                        result = readOneVCardFile(targetUri,
                                 VCardConfig.DEFAULT_CHARSET, builderCollection, null, true, null);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
-                            result = readOneVCardFile(uri,
+                            result = readOneVCardFile(targetUri,
                                     VCardConfig.DEFAULT_CHARSET, counter, detector, false, null);
                         } catch (VCardNestedException e2) {
                             result = false;
@@ -250,7 +246,7 @@ public class ImportVCardActivity extends Activity {
                     mProgressDialogForReadVCard.setIndeterminate(false);
                     mProgressDialogForReadVCard.setMax(counter.getCount());
                     String charset = detector.getEstimatedCharset();
-                    createdUri = doActuallyReadOneVCard(uri, null, charset, true, detector,
+                    createdUri = doActuallyReadOneVCard(targetUri, null, charset, true, detector,
                             mErrorFileNameList);
                 } else {  // Read multiple files.
                     mProgressDialogForReadVCard.setProgressNumberFormat(
@@ -263,16 +259,12 @@ public class ImportVCardActivity extends Activity {
                             return;
                         }
                         // TODO: detect scheme!
-                        final Uri uri = getReopenableUri(
-                                Uri.parse("file://" + vcardFile.getCanonicalPath()));
-                        if (uri == null) {
-                            shouldCallFinish = false;
-                            return;
-                        }
+                        final Uri targetUri =
+                            Uri.parse("file://" + vcardFile.getCanonicalPath());
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
-                            if (!readOneVCardFile(uri, VCardConfig.DEFAULT_CHARSET,
+                            if (!readOneVCardFile(targetUri, VCardConfig.DEFAULT_CHARSET,
                                     detector, null, true, mErrorFileNameList)) {
                                 continue;
                             }
@@ -280,7 +272,7 @@ public class ImportVCardActivity extends Activity {
                             // Assume that VCardSourceDetector was able to detect the source.
                         }
                         String charset = detector.getEstimatedCharset();
-                        doActuallyReadOneVCard(uri, mAccount,
+                        doActuallyReadOneVCard(targetUri, mAccount,
                                 charset, false, detector, mErrorFileNameList);
                         mProgressDialogForReadVCard.incrementProgressBy(1);
                     }
@@ -330,49 +322,6 @@ public class ImportVCardActivity extends Activity {
                                         builder.toString())));
                     }
                 }
-            }
-        }
-
-        private Uri getReopenableUri(final Uri uri) {
-            if ("file".equals(uri.getScheme())) {
-                return uri;
-            } else {
-                // We may not be able to scan a given uri more than once when it does not
-                // point to a local file, while it is necessary to scan it more than once
-                // because of vCard limitation. We rely on a local temporary file instead.
-                //
-                // e.g. Email app's AttachmentProvider is able to give us a content Uri
-                // with an attachment file, but we cannot "sometimes" (not always) scan
-                // the Uri more than once because of permission revocation.
-                InputStream is = null;
-                OutputStream os = null;
-                Uri reopenableUri = null;
-                try {
-                    is = mResolver.openInputStream(uri);
-                    File dir = getDir("tmp", MODE_PRIVATE);
-                    mTempFile = dir.createTempFile("vcf", null, dir);
-                    FileUtils.copyToFile(is, mTempFile);
-                    reopenableUri = Uri.parse("file://" + mTempFile.getCanonicalPath());
-                } catch (IOException e) {
-                    mHandler.post(new DialogDisplayer(
-                            getString(R.string.fail_reason_io_error) +
-                            ": " + e.getLocalizedMessage()));
-                    return null;
-                } finally {
-                    if (is != null) {
-                        try {
-                            is.close();
-                        } catch (IOException e) {
-                        }
-                    }
-                    if (os != null) {
-                        try {
-                            os.close();
-                        } catch (IOException e) {
-                        }
-                    }
-                }
-                return reopenableUri;
             }
         }
 
@@ -783,7 +732,7 @@ public class ImportVCardActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         if (intent != null) {
             final String accountName = intent.getStringExtra("account_name");
             final String accountType = intent.getStringExtra("account_type");
@@ -794,6 +743,41 @@ public class ImportVCardActivity extends Activity {
             Log.e(LOG_TAG, "intent does not exist");
         }
 
+        // The caller often does not know account information at all, so we show the UI instead.
+        if (mAccount == null) {
+            // There's three possibilities:
+            // - more than one accounts -> ask the user
+            // - just one account -> use the account without asking the user
+            // - no account -> use phone-local storage without asking the user
+            final Sources sources = Sources.getInstance(this);
+            final List<Account> accountList = sources.getAccounts(true);
+            final int size = accountList.size();
+            if (size > 1) {
+                final int resId = R.string.import_from_sdcard;
+                mAccountSelectionListener =
+                    new AccountSelectionUtil.AccountSelectedListener(
+                            this, accountList, resId) {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        mAccount = mAccountList.get(which);
+                        // Instead of using Intent mechanism, call the relevant private method,
+                        // to avoid throwing an Intent to itself again.
+                        startImport();
+                    }
+                };
+                showDialog(resId);
+                return;
+            } else {
+                mAccount = size > 0 ? accountList.get(0) : null;
+            }
+        }
+
+        startImport();
+    }
+
+    private void startImport() {
+        Intent intent = getIntent();
         final String action = intent.getAction();
         final Uri uri = intent.getData();
         Log.v(LOG_TAG, "action = " + action + " ; path = " + uri);
@@ -805,13 +789,21 @@ public class ImportVCardActivity extends Activity {
         if (uri != null) {
             importOneVCardFromSDCard(uri);
         } else {
-            startImportVCardFromSdCard();
+            doScanExternalStorageAndImportVCard();
         }
     }
 
     @Override
     protected Dialog onCreateDialog(int resId) {
         switch (resId) {
+            case R.string.import_from_sdcard: {
+                if (mAccountSelectionListener == null) {
+                    throw new NullPointerException(
+                            "mAccountSelectionListener must not be null.");
+                }
+                return AccountSelectionUtil.getSelectAccountDialog(this, resId,
+                        mAccountSelectionListener);
+            }
             case R.id.dialog_searching_vcard: {
                 if (mProgressDialogForScanVCard == null) {
                     String title = getString(R.string.searching_vcard_title);
@@ -938,15 +930,12 @@ public class ImportVCardActivity extends Activity {
         }
     }
 
-    /* public methods */
-
     /**
-     * Tries to start importing VCard. If there's no SDCard available,
-     * an error dialog is shown. If there is, start scanning using another thread
-     * and shows a progress dialog. Several interactions will occur.
-     * This method should be called from a thread with a looper (like Activity).
+     * Scans vCard in external storage (typically SDCard) and tries to import it.
+     * - When there's no SDCard available, an error dialog is shown.
+     * - When multiple vCard files are available, asks a user to select one.
      */
-    public void startImportVCardFromSdCard() {
+    private void doScanExternalStorageAndImportVCard() {
         // TODO: should use getExternalStorageState().
         final File file = Environment.getExternalStorageDirectory();
         if (!file.exists() || !file.isDirectory() || !file.canRead()) {
