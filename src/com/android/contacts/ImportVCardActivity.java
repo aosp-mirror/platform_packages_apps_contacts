@@ -910,6 +910,29 @@ public class ImportVCardActivity extends Activity {
         // make sure that the handler does not run any callback when
         // this activity isFinishing().
 
+        // Need to make sure any worker thread is done before we flush and
+        // nullify the message handler.
+        if (mVCardReadThread != null) {
+            Log.w(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
+            mVCardReadThread.cancel();
+            int attempts = 0;
+            while (mVCardReadThread.isAlive() && attempts < 10) {
+                try {
+                    Thread.currentThread().sleep(20);
+                } catch (InterruptedException ie) {
+                    // Keep on going until max attempts is reached.
+                }
+                attempts++;
+            }
+            if (mVCardReadThread.isAlive()) {
+                // Find out why the thread did not exit in a timely
+                // fashion. Last resort: increase the sleep duration
+                // and/or the number of attempts.
+                Log.e(LOG_TAG, "VCardReadThread is still alive after max attempts.");
+            }
+            mVCardReadThread = null;
+        }
+
         // Callbacks messages have what == 0.
         if (mHandler.hasMessages(0)) {
             mHandler.removeMessages(0);
@@ -919,16 +942,6 @@ public class ImportVCardActivity extends Activity {
         super.onDestroy();
     }
 
-    @Override
-    public void finalize() {
-        // TODO: This should not be needed. Throw exception instead.
-        if (mVCardReadThread != null) {
-            // Not sure this procedure is really needed, but just in case...
-            Log.e(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
-            mVCardReadThread.cancel();
-            mVCardReadThread = null;
-        }
-    }
 
     /**
      * Scans vCard in external storage (typically SDCard) and tries to import it.
