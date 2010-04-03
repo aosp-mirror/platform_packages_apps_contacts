@@ -50,12 +50,13 @@ public class AccountSelectionUtil {
 
     public static Uri mPath;
 
-    private static class AccountSelectedListener
-            implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
+    public static class AccountSelectedListener
+            implements DialogInterface.OnClickListener {
 
         final private Context mContext;
-        final private List<Account> mAccountList;
         final private int mResId;
+
+        final protected List<Account> mAccountList;
 
         public AccountSelectedListener(Context context, List<Account> accountList, int resId) {
             if (accountList == null || accountList.size() == 0) {
@@ -70,17 +71,19 @@ public class AccountSelectionUtil {
             dialog.dismiss();
             doImport(mContext, mResId, mAccountList.get(which));
         }
-
-        public void onCancel(DialogInterface dialog) {
-            dialog.dismiss();
-        }
     }
 
     public static Dialog getSelectAccountDialog(Context context, int resId) {
-        return getSelectAccountDialog(context, resId, null);
+        return getSelectAccountDialog(context, resId, null, null);
     }
 
     public static Dialog getSelectAccountDialog(Context context, int resId,
+            DialogInterface.OnClickListener onClickListener) {
+        return getSelectAccountDialog(context, resId, onClickListener, null);
+    }
+
+    public static Dialog getSelectAccountDialog(Context context, int resId,
+            DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
         final Sources sources = Sources.getInstance(context);
         final List<Account> writableAccountList = sources.getAccounts(true);
@@ -123,12 +126,22 @@ public class AccountSelectionUtil {
             }
         };
 
-        AccountSelectedListener accountSelectedListener =
-            new AccountSelectedListener(context, writableAccountList, resId);
+        if (onClickListener == null) {
+            AccountSelectedListener accountSelectedListener =
+                new AccountSelectedListener(context, writableAccountList, resId);
+            onClickListener = accountSelectedListener;
+        }
+        if (onCancelListener == null) {
+            onCancelListener = new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface dialog) {
+                    dialog.dismiss();
+                }
+            };
+        }
         return new AlertDialog.Builder(context)
             .setTitle(R.string.dialog_new_contact_account)
-            .setSingleChoiceItems(accountAdapter, 0, accountSelectedListener)
-            .setOnCancelListener(accountSelectedListener)
+            .setSingleChoiceItems(accountAdapter, 0, onClickListener)
+            .setOnCancelListener(onCancelListener)
             .create();
     }
 
