@@ -325,7 +325,7 @@ public class ContactPhotoLoader implements Callback {
         while (iterator.hasNext()) {
             Long id = iterator.next();
             BitmapHolder holder = mBitmapCache.get(id);
-            if (holder.state == BitmapHolder.NEEDED) {
+            if (holder != null && holder.state == BitmapHolder.NEEDED) {
                 // Assuming atomic behavior
                 holder.state = BitmapHolder.LOADING;
                 photoIds.add(id);

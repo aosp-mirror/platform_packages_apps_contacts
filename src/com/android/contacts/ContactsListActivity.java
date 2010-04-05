@@ -452,6 +452,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private boolean mShowNumberOfContacts;
 
     private boolean mShowSearchSnippets;
+    private boolean mSearchInitiated;
 
     private String mInitialFilter;
 
@@ -1058,6 +1059,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             startQuery();
         }
         mJustCreated = false;
+        mSearchInitiated = false;
     }
 
     /**
@@ -1651,9 +1653,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * bringing up the search UI first.
      */
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (!mSearchMode && (mMode & MODE_MASK_NO_FILTER) == 0) {
+        if (!mSearchMode && (mMode & MODE_MASK_NO_FILTER) == 0 && !mSearchInitiated) {
             int unicodeChar = event.getUnicodeChar();
             if (unicodeChar != 0) {
+                mSearchInitiated = true;
                 startSearch(new String(new int[]{unicodeChar}, 0, 1), false, null, false);
                 return true;
             }
@@ -3286,8 +3289,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         R.plurals.listFoundAllContacts);
                 foundContactsText.setText(text);
             }
-
-            mPhotoLoader.clear();
 
             super.changeCursor(cursor);
             // Update the indexer for the fast scroll widget

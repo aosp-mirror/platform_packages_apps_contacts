@@ -42,6 +42,10 @@ import java.util.ArrayList;
 
 public class GoogleSource extends FallbackSource {
     public static final String ACCOUNT_TYPE = "com.google";
+
+    private static final String SELECTION_GROUPS_BY_TITLE_AND_ACCOUNT =
+            Groups.TITLE + "=? AND " + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?";
+
     public GoogleSource(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
@@ -156,7 +160,7 @@ public class GoogleSource extends FallbackSource {
     // TODO: this should come from resource in the future
     // Note that frameworks/base/core/java/android/pim/vcard/VCardEntry.java also wants
     // this String.
-    private static final String GOOGLE_MY_CONTACTS_GROUP = "My Contacts";
+    private static final String GOOGLE_MY_CONTACTS_GROUP = "System Group: My Contacts";
 
     public static final void attemptMyContactsMembership(EntityDelta state, Context context) {
         final ValuesDelta stateValues = state.getValues();
@@ -223,11 +227,10 @@ public class GoogleSource extends FallbackSource {
 
                 operations.add(ContentProviderOperation
                         .newAssertQuery(Groups.CONTENT_URI)
-                        .withSelection(Groups.TITLE + "=?",
-                                new String[] { GOOGLE_MY_CONTACTS_GROUP })
+                        .withSelection(SELECTION_GROUPS_BY_TITLE_AND_ACCOUNT,
+                                new String[] {GOOGLE_MY_CONTACTS_GROUP, accountName, accountType})
                         .withExpectedCount(0).build());
                 operations.add(ContentProviderOperation
-
                         .newInsert(Groups.CONTENT_URI)
                         .withValues(newGroup)
                         .build());
