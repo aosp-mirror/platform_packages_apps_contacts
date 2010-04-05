@@ -107,7 +107,8 @@ public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
     private static final boolean DO_PERFORMANCE_PROFILE = false;
 
-    private Handler mHandler = new Handler();  // Run on the UI thread.
+    // Run on the UI thread. Must not be null except after onDestroy().
+    private Handler mHandler = new Handler();
 
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
     private Account mAccount;
@@ -317,7 +318,7 @@ public class ImportVCardActivity extends Activity {
                             builder.append(fileName);
                         }
 
-                        mHandler.post(new DialogDisplayer(
+                        runOnUIThread(new DialogDisplayer(
                                 getString(R.string.fail_reason_failed_to_read_files,
                                         builder.toString())));
                     }
@@ -403,7 +404,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(uri.toString());
                 } else {
-                    mHandler.post(new DialogDisplayer(
+                    runOnUIThread(new DialogDisplayer(
                             getString(R.string.fail_reason_io_error) +
                                     ": " + e.getLocalizedMessage()));
                 }
@@ -415,7 +416,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(uri.toString());
                 } else {
-                    mHandler.post(new DialogDisplayer(
+                    runOnUIThread(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_not_supported_error) +
                             " (" + e.getMessage() + ")"));
                 }
@@ -424,7 +425,7 @@ public class ImportVCardActivity extends Activity {
                 if (errorFileNameList != null) {
                     errorFileNameList.add(uri.toString());
                 } else {
-                    mHandler.post(new DialogDisplayer(
+                    runOnUIThread(new DialogDisplayer(
                             getString(R.string.fail_reason_vcard_parse_error) +
                             " (" + e.getMessage() + ")"));
                 }
@@ -579,14 +580,14 @@ public class ImportVCardActivity extends Activity {
             mProgressDialogForScanVCard = null;
 
             if (mGotIOException) {
-                mHandler.post(new DialogDisplayer(R.id.dialog_io_exception));
+                runOnUIThread(new DialogDisplayer(R.id.dialog_io_exception));
             } else if (mCanceled) {
                 finish();
             } else {
                 int size = mAllVCardFileList.size();
                 final Context context = ImportVCardActivity.this;
                 if (size == 0) {
-                    mHandler.post(new DialogDisplayer(R.id.dialog_vcard_not_found));
+                    runOnUIThread(new DialogDisplayer(R.id.dialog_vcard_not_found));
                 } else {
                     startVCardSelectAndImport();
                 }
@@ -648,14 +649,14 @@ public class ImportVCardActivity extends Activity {
             Uri uri = Uri.parse("file://" + canonicalPath);
             importOneVCardFromSDCard(uri);
         } else if (getResources().getBoolean(R.bool.config_allow_users_select_all_vcard_import)) {
-            mHandler.post(new DialogDisplayer(R.id.dialog_select_import_type));
+            runOnUIThread(new DialogDisplayer(R.id.dialog_select_import_type));
         } else {
-            mHandler.post(new DialogDisplayer(R.id.dialog_select_one_vcard));
+            runOnUIThread(new DialogDisplayer(R.id.dialog_select_one_vcard));
         }
     }
 
     private void importMultipleVCardFromSDCard(final List<VCardFile> selectedVCardFileList) {
-        mHandler.post(new Runnable() {
+        runOnUIThread(new Runnable() {
             public void run() {
                 mVCardReadThread = new VCardReadThread(selectedVCardFileList);
                 showDialog(R.id.dialog_reading_vcard);
@@ -664,7 +665,7 @@ public class ImportVCardActivity extends Activity {
     }
 
     private void importOneVCardFromSDCard(final Uri uri) {
-        mHandler.post(new Runnable() {
+        runOnUIThread(new Runnable() {
             public void run() {
                 mVCardReadThread = new VCardReadThread(uri);
                 showDialog(R.id.dialog_reading_vcard);
@@ -942,6 +943,27 @@ public class ImportVCardActivity extends Activity {
         super.onDestroy();
     }
 
+    /**
+     * Tries to run a given Runnable object when the UI thread can. Ignore it otherwise
+     */
+    private void runOnUIThread(Runnable runnable) {
+        if (mHandler == null) {
+            Log.w(LOG_TAG, "Handler object is null. No dialog is shown.");
+        } else {
+            mHandler.post(runnable);
+        }
+    }
+
+    @Override
+    public void finalize() {
+        // TODO: This should not be needed. Throw exception instead.
+        if (mVCardReadThread != null) {
+            // Not sure this procedure is really needed, but just in case...
+            Log.e(LOG_TAG, "VCardReadThread exists while this Activity is now being killed!");
+            mVCardReadThread.cancel();
+            mVCardReadThread = null;
+        }
+    }
 
     /**
      * Scans vCard in external storage (typically SDCard) and tries to import it.
