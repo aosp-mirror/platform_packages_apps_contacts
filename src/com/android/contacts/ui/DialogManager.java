@@ -98,7 +98,8 @@ public class DialogManager {
      * Interface to implemented by Views that show Dialogs
      */
     public interface DialogShowingView {
-        /** Callback function to create a Dialog. Notice that the DialogManager overwrites the
+        /**
+         * Callback function to create a Dialog. Notice that the DialogManager overwrites the
          * OnDismissListener on the returned Dialog, so the View should not use this Listener itself
          */
         Dialog createDialog(Bundle bundle);
