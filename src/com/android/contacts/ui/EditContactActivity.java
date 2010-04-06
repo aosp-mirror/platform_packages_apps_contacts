@@ -34,7 +34,6 @@ import com.android.contacts.ui.widget.BaseContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -53,6 +52,7 @@ import android.content.Entity;
 import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
+import android.content.DialogInterface.OnDismissListener;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
@@ -94,7 +94,8 @@ import java.util.Date;
  * Activity for editing or inserting a contact.
  */
 public final class EditContactActivity extends Activity
-        implements View.OnClickListener, Comparator<EntityDelta> {
+        implements View.OnClickListener, Comparator<EntityDelta>,
+        DialogManager.DialogShowingViewActivity {
 
     private static final String TAG = "EditContactActivity";
 
@@ -127,6 +128,13 @@ public final class EditContactActivity extends Activity
     private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
     private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
     private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
+    private static final int DIALOG_PICK_PHOTO = 5;
+    private static final int DIALOG_SPLIT = 6;
+    private static final int DIALOG_SELECT_ACCOUNT = 7;
+    private static final int DIALOG_VIEW_DIALOGS_ID1 = 8;
+    private static final int DIALOG_VIEW_DIALOGS_ID2 = 9;
+
+    private static final String BUNDLE_SELECT_ACCOUNT_LIST = "account_list";
 
     private static final int ICON_SIZE = 96;
 
@@ -144,13 +152,12 @@ public final class EditContactActivity extends Activity
     private static final int STATUS_SAVING = 2;
 
     private int mStatus;
+    private DialogManager mDialogManager;
 
     EntitySet mState;
 
     /** The linear layout holding the ContactEditorViews */
     LinearLayout mContent;
-
-    private ArrayList<Dialog> mManagedDialogs = Lists.newArrayList();
 
     private ViewIdGenerator mViewIdGenerator;
 
@@ -162,6 +169,8 @@ public final class EditContactActivity extends Activity
         final String action = intent.getAction();
 
         setContentView(R.layout.act_edit);
+
+        mDialogManager = new DialogManager(this, DIALOG_VIEW_DIALOGS_ID1, DIALOG_VIEW_DIALOGS_ID2);
 
         // Build editor and listen for photo requests
         mContent = (LinearLayout) findViewById(R.id.editors);
@@ -295,15 +304,6 @@ public final class EditContactActivity extends Activity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        for (Dialog dialog : mManagedDialogs) {
-            dismissDialog(dialog);
-        }
-    }
-
-    @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case DIALOG_CONFIRM_DELETE:
@@ -341,25 +341,15 @@ public final class EditContactActivity extends Activity
                         .setPositiveButton(android.R.string.ok, new DeleteClickListener())
                         .setCancelable(false)
                         .create();
+            case DIALOG_PICK_PHOTO:
+                return createPickPhotoDialog();
+            case DIALOG_SPLIT:
+                return createSplitDialog();
+            case DIALOG_SELECT_ACCOUNT:
+                return createSelectAccountDialog(bundle);
+            default:
+                return mDialogManager.onCreateDialog(id, bundle);
         }
-        return null;
-    }
-
-    /**
-     * Start managing this {@link Dialog} along with the {@link Activity}.
-     */
-    private void startManagingDialog(Dialog dialog) {
-        synchronized (mManagedDialogs) {
-            mManagedDialogs.add(dialog);
-        }
-    }
-
-    /**
-     * Show this {@link Dialog} and manage with the {@link Activity}.
-     */
-    void showAndManageDialog(Dialog dialog) {
-        startManagingDialog(dialog);
-        dialog.show();
     }
 
     /**
@@ -1021,7 +1011,7 @@ public final class EditContactActivity extends Activity
 
         mRawContactIdRequestingPhoto = rawContactId;
 
-        showAndManageDialog(createPickPhotoDialog());
+        showDialog(DIALOG_PICK_PHOTO);
 
         return true;
     }
@@ -1036,8 +1026,7 @@ public final class EditContactActivity extends Activity
         final Context dialogContext = new ContextThemeWrapper(context,
                 android.R.style.Theme_Light);
 
-        String[] choices;
-        choices = new String[2];
+        String[] choices = new String[2];
         choices[0] = getString(R.string.take_photo);
         choices[1] = getString(R.string.pick_photo);
         final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
@@ -1167,7 +1156,7 @@ public final class EditContactActivity extends Activity
     private boolean doSplitContactAction() {
         if (!hasValidState()) return false;
 
-        showAndManageDialog(createSplitDialog());
+        showDialog(DIALOG_SPLIT);
         return true;
     }
 
@@ -1229,6 +1218,14 @@ public final class EditContactActivity extends Activity
             return;  // Don't show a dialog.
         }
 
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(BUNDLE_SELECT_ACCOUNT_LIST, accounts);
+        showDialog(DIALOG_SELECT_ACCOUNT, bundle);
+    }
+
+    private Dialog createSelectAccountDialog(Bundle bundle) {
+        final ArrayList<Account> accounts = bundle.getParcelableArrayList(
+                BUNDLE_SELECT_ACCOUNT_LIST);
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
         final LayoutInflater dialogInflater =
@@ -1285,7 +1282,13 @@ public final class EditContactActivity extends Activity
         builder.setTitle(R.string.dialog_new_contact_account);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
         builder.setOnCancelListener(cancelListener);
-        showAndManageDialog(builder.create());
+        final Dialog result = builder.create();
+        result.setOnDismissListener(new OnDismissListener() {
+            public void onDismiss(DialogInterface dialog) {
+                removeDialog(DIALOG_SELECT_ACCOUNT);
+            }
+        });
+        return result;
     }
 
     /**
@@ -1408,5 +1411,9 @@ public final class EditContactActivity extends Activity
         } else {
             ContactsSearchManager.startSearch(this, initialQuery);
         }
+    }
+
+    public DialogManager getDialogManager() {
+        return mDialogManager;
     }
 }

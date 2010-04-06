@@ -25,13 +25,16 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ui.DialogManager;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.ui.DialogManager.DialogShowingView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -58,9 +61,14 @@ import java.util.List;
  * the entry. Uses {@link ValuesDelta} to read any existing
  * {@link Entity} values, and to correctly write any changes values.
  */
-public class GenericEditorView extends RelativeLayout implements Editor, View.OnClickListener {
+public class GenericEditorView extends RelativeLayout implements Editor, View.OnClickListener,
+        DialogShowingView {
     protected static final int RES_FIELD = R.layout.item_editor_field;
     protected static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
+
+    private static final String DIALOG_ID_KEY = "dialog_id";
+    private static final int DIALOG_ID_LABEL = 1;
+    private static final int DIALOG_ID_CUSTOM = 2;
 
     protected LayoutInflater mInflater;
 
@@ -85,6 +93,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     private EditType mPendingType;
 
     private ViewIdGenerator mViewIdGenerator;
+    private DialogManager mDialogManager = null;
 
     public GenericEditorView(Context context) {
         super(context);
@@ -354,7 +363,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                     // Only when the custum value input in the next step is correct one.
                     // this method also set the type value to what the user requested here.
                     mPendingType = selected;
-                    createCustomDialog().show();
+                    showDialog(DIALOG_ID_CUSTOM);
                 } else {
                     // User picked type, and we're sure it's ok to actually write the entry.
                     mType = selected;
@@ -376,7 +385,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.edit_label: {
-                createLabelDialog().show();
+                showDialog(DIALOG_ID_LABEL);
                 break;
             }
             case R.id.edit_delete: {
@@ -400,6 +409,26 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 break;
             }
         }
+    }
+
+    /* package */
+    void showDialog(int bundleDialogId) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
+        getDialogManager().showDialogInView(this, bundle);
+    }
+
+    private DialogManager getDialogManager() {
+        if (mDialogManager == null) {
+            Context context = getContext();
+            if (!(context instanceof DialogManager.DialogShowingViewActivity)) {
+                throw new IllegalStateException(
+                        "View must be hosted in an Activity that implements " +
+                        "DialogManager.DialogShowingViewActivity");
+            }
+            mDialogManager = ((DialogManager.DialogShowingViewActivity)context).getDialogManager();
+        }
+        return mDialogManager;
     }
 
     private static class SavedState extends BaseSavedState {
@@ -467,6 +496,19 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         int numChildren = Math.min(mFields.getChildCount(), ss.mVisibilities.length);
         for (int i = 0; i < numChildren; i++) {
             mFields.getChildAt(i).setVisibility(ss.mVisibilities[i]);
+        }
+    }
+
+    public Dialog createDialog(Bundle bundle) {
+        if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
+        int dialogId = bundle.getInt(DIALOG_ID_KEY);
+        switch (dialogId) {
+            case DIALOG_ID_CUSTOM:
+                return createCustomDialog();
+            case DIALOG_ID_LABEL:
+                return createLabelDialog();
+            default:
+                throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
         }
     }
 }
