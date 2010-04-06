@@ -220,13 +220,15 @@ public class ImportVCardActivity extends Activity {
                     boolean result;
                     try {
                         result = readOneVCardFile(targetUri,
-                                VCardConfig.DEFAULT_CHARSET, builderCollection, null, true, null);
+                                VCardConfig.DEFAULT_IMPORT_CHARSET,
+                                builderCollection, null, true, null);
                     } catch (VCardNestedException e) {
                         try {
                             // Assume that VCardSourceDetector was able to detect the source.
                             // Try again with the detector.
                             result = readOneVCardFile(targetUri,
-                                    VCardConfig.DEFAULT_CHARSET, counter, detector, false, null);
+                                    VCardConfig.DEFAULT_IMPORT_CHARSET,
+                                    counter, detector, false, null);
                         } catch (VCardNestedException e2) {
                             result = false;
                             Log.e(LOG_TAG, "Must not reach here. " + e2);
@@ -265,7 +267,8 @@ public class ImportVCardActivity extends Activity {
 
                         VCardSourceDetector detector = new VCardSourceDetector();
                         try {
-                            if (!readOneVCardFile(targetUri, VCardConfig.DEFAULT_CHARSET,
+                            if (!readOneVCardFile(targetUri,
+                                    VCardConfig.DEFAULT_IMPORT_CHARSET,
                                     detector, null, true, mErrorFileNameList)) {
                                 continue;
                             }
@@ -337,7 +340,7 @@ public class ImportVCardActivity extends Activity {
             if (charset != null) {
                 builder = new VCardEntryConstructor(charset, charset, false, vcardType, mAccount);
             } else {
-                charset = VCardConfig.DEFAULT_CHARSET;
+                charset = VCardConfig.DEFAULT_IMPORT_CHARSET;
                 builder = new VCardEntryConstructor(null, null, false, vcardType, mAccount);
             }
             VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
