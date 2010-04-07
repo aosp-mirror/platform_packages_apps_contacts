@@ -478,7 +478,9 @@ public class ContactListItemView extends ViewGroup {
                 mLabelView.setVisibility(View.GONE);
             }
         } else {
-            getLabelView().setText(text);
+            getLabelView();
+            mLabelView.setText(text);
+            mLabelView.setVisibility(VISIBLE);
         }
     }
 
@@ -491,7 +493,9 @@ public class ContactListItemView extends ViewGroup {
                 mLabelView.setVisibility(View.GONE);
             }
         } else {
-            getLabelView().setText(text, 0, size);
+            getLabelView();
+            mLabelView.setText(text, 0, size);
+            mLabelView.setVisibility(VISIBLE);
         }
     }
 
@@ -520,7 +524,9 @@ public class ContactListItemView extends ViewGroup {
             }
             return;
         } else {
-            getDataView().setText(text, 0, size);
+            getDataView();
+            mDataView.setText(text, 0, size);
+            mDataView.setVisibility(VISIBLE);
         }
     }
 
@@ -547,7 +553,9 @@ public class ContactListItemView extends ViewGroup {
                 mSnippetView.setVisibility(View.GONE);
             }
         } else {
-            getSnippetView().setText(text);
+            getSnippetView();
+            mSnippetView.setText(text);
+            mSnippetView.setVisibility(VISIBLE);
         }
     }
 
