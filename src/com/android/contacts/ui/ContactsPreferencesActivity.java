@@ -1050,7 +1050,13 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
             final Context context = target;
 
             final ProgressDialog dialog = mProgress.get();
-            if (dialog != null) dialog.dismiss();
+            if (dialog != null) {
+                try {
+                    dialog.dismiss();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error dismissing progress dialog", e);
+                }
+            }
 
             target.finish();
 
