@@ -156,11 +156,15 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
             // ContactSource associated with that phone number
             TextView typeView = (TextView)view.findViewById(android.R.id.text1);
             DataKind kind = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-            ContentValues values = new ContentValues();
-            values.put(Phone.TYPE, item.type);
-            values.put(Phone.LABEL, item.label);
-            StringInflater header = sendSms ? kind.actionAltHeader : kind.actionHeader;
-            typeView.setText(header.inflateUsing(getContext(), values));
+            if (kind != null) {
+                ContentValues values = new ContentValues();
+                values.put(Phone.TYPE, item.type);
+                values.put(Phone.LABEL, item.label);
+                StringInflater header = sendSms ? kind.actionAltHeader : kind.actionHeader;
+                typeView.setText(header.inflateUsing(getContext(), values));
+            } else {
+                typeView.setText(R.string.call_other);
+            }
             return view;
         }
     }
