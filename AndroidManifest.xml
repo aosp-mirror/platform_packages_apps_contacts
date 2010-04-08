@@ -352,7 +352,7 @@
         </activity>
 
         <!-- Views the details of a single contact -->
-        <activity android:name="ViewContactActivity"
+        <activity android:name=".activities.ContactDetailActivity"
             android:label="@string/viewContactTitle"
             android:theme="@style/TallTitleBarTheme">
 

@@ -77,7 +77,8 @@ public abstract class ContactEntryAdapter<E extends ContactEntryAdapter.Entry>
         }
     }
 
-    ContactEntryAdapter(Context context, ArrayList<ArrayList<E>> sections, boolean separators) {
+    protected ContactEntryAdapter(Context context, ArrayList<ArrayList<E>> sections,
+            boolean separators) {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mSections = sections;
