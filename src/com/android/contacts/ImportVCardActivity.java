@@ -39,6 +39,7 @@ import android.pim.vcard.VCardEntryConstructor;
 import android.pim.vcard.VCardEntryCounter;
 import android.pim.vcard.VCardInterpreter;
 import android.pim.vcard.VCardInterpreterCollection;
+import android.pim.vcard.VCardParser;
 import android.pim.vcard.VCardParser_V21;
 import android.pim.vcard.VCardParser_V30;
 import android.pim.vcard.VCardSourceDetector;
@@ -155,7 +156,7 @@ public class ImportVCardActivity extends Activity {
     private class VCardReadThread extends Thread
             implements DialogInterface.OnCancelListener {
         private ContentResolver mResolver;
-        private VCardParser_V21 mVCardParser;
+        private VCardParser mVCardParser;
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
         private Uri mUri;
