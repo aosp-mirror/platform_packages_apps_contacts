@@ -1134,4 +1134,34 @@
 
     <!-- Title shown in the search result activity of contacts app while searching -->
     <string name="search_results_searching">Searching...</string>
+
+    <!-- Message of progress dialog for multiple picker -->
+    <string name="adding_recipients">"Loading \u2026"</string>
+
+    <!-- Label to display only selection in multiple picker -->
+    <string name="menu_display_selected">"Show selected"</string>
+
+    <!-- Label to display all recipients in multiple picker -->
+    <string name="menu_display_all">"Show all"</string>
+
+    <!-- Label to select all contacts in multiple picker -->
+    <string name="menu_select_all">"Select all"</string>
+
+    <!-- Label to clear all selection in multiple picker -->
+    <string name="menu_select_none">"Unselect all"</string>
+
+    <!-- Label to display how many selected in multiple picker -->
+    <plurals name="multiple_picker_title">
+        <!-- number of selected recipients is one -->
+        <item quantity="one">"1 recipient selected"</item>
+        <!-- number of selected recipients is not equal to one -->
+        <item quantity="other"><xliff:g id="count">%d</xliff:g>" recipients selected"</item>
+    </plurals>
+
+    <!-- Separator label to display unknown recipients in multiple picker -->
+    <string name="unknown_contacts_separator">"Unknown contacts"</string>
+
+    <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
+    <string name="no_contacts_selected">"No contacts selected."</string>
+
 </resources>

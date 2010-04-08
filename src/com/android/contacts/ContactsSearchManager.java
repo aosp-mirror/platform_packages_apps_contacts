@@ -40,18 +40,26 @@ public class ContactsSearchManager {
     public static final String ORIGINAL_COMPONENT_EXTRA_KEY = "originalComponent";
 
     /**
+     * An extra that provides context for search UI and defines the scope for
+     * the search queries.
+     */
+    public static final String ORIGINAL_TYPE_EXTRA_KEY = "originalType";
+
+    /**
      * Starts the contact list activity in the search mode.
      */
     public static void startSearch(Activity context, String initialQuery) {
-        context.startActivity(buildIntent(context, initialQuery));
+        context.startActivity(buildIntent(context, initialQuery, null));
     }
 
     public static void startSearchForResult(Activity context, String initialQuery,
-            int requestCode) {
-        context.startActivityForResult(buildIntent(context, initialQuery), requestCode);
+            int requestCode, Bundle includedExtras) {
+        context.startActivityForResult(
+                buildIntent(context, initialQuery, includedExtras), requestCode);
     }
 
-    private static Intent buildIntent(Activity context, String initialQuery) {
+    private static Intent buildIntent(
+            Activity context, String initialQuery, Bundle includedExtras) {
         Intent intent = new Intent();
         intent.setData(ContactsContract.Contacts.CONTENT_URI);
         intent.setAction(UI.FILTER_CONTACTS_ACTION);
@@ -64,6 +72,10 @@ public class ContactsSearchManager {
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, initialQuery);
         intent.putExtra(ORIGINAL_ACTION_EXTRA_KEY, originalIntent.getAction());
         intent.putExtra(ORIGINAL_COMPONENT_EXTRA_KEY, originalIntent.getComponent().getClassName());
+        intent.putExtra(ORIGINAL_TYPE_EXTRA_KEY, originalIntent.getType());
+        if (includedExtras != null) {
+            intent.putExtras(includedExtras);
+        }
         return intent;
     }
 }

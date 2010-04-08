@@ -31,6 +31,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -79,14 +80,22 @@ public class ContactListItemView extends ViewGroup {
     private TextView mDataView;
     private TextView mSnippetView;
     private ImageView mPresenceIcon;
+    // Used to indicate the sequence of phones belong to the same contact in multi-picker
+    private View mChipView;
+    // Used to select the phone in multi-picker
+    private CheckBox mCheckBox;
 
     private int mPhotoViewWidth;
     private int mPhotoViewHeight;
     private int mLine1Height;
     private int mLine2Height;
     private int mLine3Height;
+    private int mChipWidth;
+    private int mChipRightMargin;
+    private int mCheckBoxMargin;
 
     private OnClickListener mCallButtonClickListener;
+    private OnClickListener mCheckBoxClickListener;
 
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -119,6 +128,12 @@ public class ContactListItemView extends ViewGroup {
                 resources.getDimensionPixelOffset(R.dimen.list_item_presence_icon_margin);
         mHeaderTextWidth =
                 resources.getDimensionPixelOffset(R.dimen.list_item_header_text_width);
+        mChipWidth =
+                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_width);
+        mChipRightMargin =
+                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_right_margin);
+        mCheckBoxMargin =
+                resources.getDimensionPixelOffset(R.dimen.list_item_header_checkbox_margin);
     }
 
     /**
@@ -128,6 +143,9 @@ public class ContactListItemView extends ViewGroup {
         mCallButtonClickListener = callButtonClickListener;
     }
 
+    public void setOnCheckBoxClickListener(OnClickListener checkBoxClickListener) {
+        mCheckBoxClickListener = checkBoxClickListener;
+    }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // We will match parent's width and wrap content vertically, but make sure
@@ -166,6 +184,14 @@ public class ContactListItemView extends ViewGroup {
         }
         if (isVisible(mPresenceIcon)) {
             mPresenceIcon.measure(0, 0);
+        }
+
+        if (isVisible(mChipView)) {
+            mChipView.measure(0, 0);
+        }
+
+        if (isVisible(mCheckBox)) {
+            mCheckBox.measure(0, 0);
         }
 
         ensurePhotoViewSize();
@@ -209,6 +235,10 @@ public class ContactListItemView extends ViewGroup {
 
         // Left side
         int leftBound = mPaddingLeft;
+        if (mChipView != null) {
+            mChipView.layout(leftBound, topBound, leftBound + mChipWidth, height);
+            leftBound += mChipWidth + mChipRightMargin;
+        }
         View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
         if (photoView != null) {
             // Center the photo vertically
@@ -252,7 +282,17 @@ public class ContactListItemView extends ViewGroup {
                     rightBound + iconWidth,
                     height);
         }
-
+        if (isVisible(mCheckBox)) {
+            int checkBoxWidth = mCheckBox.getMeasuredWidth();
+            int checkBoxHight = mCheckBox.getMeasuredHeight();
+            rightBound -= mCheckBoxMargin + checkBoxWidth;
+            int checkBoxTop = topBound + (height - topBound - checkBoxHight) / 2;
+            mCheckBox.layout(
+                    rightBound,
+                    checkBoxTop,
+                    rightBound + checkBoxWidth,
+                    checkBoxTop + checkBoxHight);
+        }
         if (mHorizontalDividerVisible) {
             ensureHorizontalDivider();
             mHorizontalDividerDrawable.setBounds(
@@ -572,6 +612,29 @@ public class ContactListItemView extends ViewGroup {
             addView(mSnippetView);
         }
         return mSnippetView;
+    }
+
+    /**
+     * Returns the chip view for the multipicker, creating it if necessary.
+     */
+    public View getChipView() {
+        if (mChipView == null) {
+            mChipView = new View(mContext);
+            addView(mChipView);
+        }
+        return mChipView;
+    }
+
+    /**
+     * Returns the CheckBox view for the multipicker, creating it if necessary.
+     */
+    public CheckBox getCheckBoxView() {
+        if (mCheckBox == null) {
+            mCheckBox = new CheckBox(mContext);
+            mCheckBox.setOnClickListener(mCheckBoxClickListener);
+            addView(mCheckBox);
+        }
+        return mCheckBox;
     }
 
     /**

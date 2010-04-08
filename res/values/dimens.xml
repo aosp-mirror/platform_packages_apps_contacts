@@ -39,4 +39,8 @@
     <dimen name="list_item_vertical_divider_margin">5dip</dimen>    
     <dimen name="list_item_presence_icon_margin">5dip</dimen>    
     <dimen name="list_item_header_text_width">56dip</dimen>    
+    <dimen name="list_item_header_chip_width">4dip</dimen>
+    <dimen name="list_item_header_chip_right_margin">4dip</dimen>
+    <dimen name="list_item_header_checkbox_margin">5dip</dimen>
+
 </resources>

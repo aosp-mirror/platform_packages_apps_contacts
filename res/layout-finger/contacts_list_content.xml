@@ -26,10 +26,16 @@
         class="com.android.contacts.PinnedHeaderListView" 
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dip"
         android:fastScrollEnabled="true"
+        android:layout_weight="1"
     />
 
     <include layout="@layout/contacts_list_empty"/>
 
+    <ViewStub android:id="@+id/footer_stub"
+        android:layout="@layout/footer_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
 </LinearLayout>

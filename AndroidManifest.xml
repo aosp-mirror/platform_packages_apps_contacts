@@ -224,6 +224,11 @@
                 <data android:mimeType="vnd.android.cursor.item/postal-address" android:host="contacts" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="com.android.contacts.action.GET_MULTIPLE_PHONES" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
+            </intent-filter>
         </activity>
 
         <!-- An activity for joining contacts -->
