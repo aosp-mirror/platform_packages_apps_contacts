@@ -16,9 +16,9 @@
 
 package com.android.contacts.ui;
 
-import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
@@ -846,8 +846,8 @@ public final class EditContactActivity extends Activity
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
-        Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
-        intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, mContactIdForJoin);
+        Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
+        intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_JOIN_CONTACT);
     }
 

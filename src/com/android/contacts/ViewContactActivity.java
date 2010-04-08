@@ -685,11 +685,8 @@ public class ViewContactActivity extends Activity
             if (mCursor.moveToFirst()) {
                 displayName = mCursor.getString(0);
             }
-            Intent intent = new Intent(ContactsListActivity.JOIN_AGGREGATE);
-            intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_ID, freshId);
-            if (displayName != null) {
-                intent.putExtra(ContactsListActivity.EXTRA_AGGREGATE_NAME, displayName);
-            }
+            Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
+            intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, freshId);
             startActivityForResult(intent, REQUEST_JOIN_CONTACT);
         }
     }

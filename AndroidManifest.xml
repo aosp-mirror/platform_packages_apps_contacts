@@ -227,12 +227,12 @@
         </activity>
 
         <!-- An activity for joining contacts -->
-        <activity android:name="ContactsListActivity$JoinContactActivity"
+        <activity android:name="JoinContactActivity"
             android:theme="@style/TallTitleBarTheme"
             android:clearTaskOnLaunch="true"
         >
             <intent-filter>
-                <action android:name="com.android.contacts.action.JOIN_AGGREGATE" />
+                <action android:name="com.android.contacts.action.JOIN_CONTACT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

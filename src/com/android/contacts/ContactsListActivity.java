@@ -58,7 +58,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -83,7 +82,6 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.Contacts.AggregationSuggestions;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
@@ -135,10 +133,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
         OnFocusChangeListener, OnTouchListener {
 
-    public static class JoinContactActivity extends ContactsListActivity {
-
-    }
-
     public static class ContactsSearchActivity extends ContactsListActivity {
 
     }
@@ -166,33 +160,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int SUBACTIVITY_FILTER = 5;
 
     private static final int TEXT_HIGHLIGHTING_ANIMATION_DURATION = 350;
-
-    /**
-     * The action for the join contact activity.
-     * <p>
-     * Input: extra field {@link #EXTRA_AGGREGATE_ID} is the aggregate ID.
-     *
-     * TODO: move to {@link ContactsContract}.
-     */
-    public static final String JOIN_AGGREGATE =
-            "com.android.contacts.action.JOIN_AGGREGATE";
-
-    /**
-     * Used with {@link #JOIN_AGGREGATE} to give it the target for aggregation.
-     * <p>
-     * Type: LONG
-     */
-    public static final String EXTRA_AGGREGATE_ID =
-            "com.android.contacts.action.AGGREGATE_ID";
-
-    /**
-     * Used with {@link #JOIN_AGGREGATE} to give it the name of the aggregation target.
-     * <p>
-     * Type: STRING
-     */
-    @Deprecated
-    public static final String EXTRA_AGGREGATE_NAME =
-            "com.android.contacts.action.AGGREGATE_NAME";
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -264,10 +231,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_PICKER
             | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
 
-    /** Show join suggestions followed by an A-Z list */
-    static final int MODE_JOIN_CONTACT = 70 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE
-            | MODE_MASK_NO_DATA | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
-
     /** Run a search query in a PICK mode */
     static final int MODE_QUERY_PICK = 75 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_NO_FILTER
             | MODE_MASK_PICKER | MODE_MASK_DISABLE_QUIKCCONTACT | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
@@ -284,10 +247,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * An action used to do perform search while in a contact picker.  It is initiated
      * by the ContactListActivity itself.
      */
-    private static final String ACTION_SEARCH_INTERNAL = "com.android.contacts.INTERNAL_SEARCH";
-
-    /** Maximum number of suggestions shown for joining aggregates */
-    static final int MAX_SUGGESTIONS = 4;
+    protected static final String ACTION_SEARCH_INTERNAL = "com.android.contacts.INTERNAL_SEARCH";
 
     static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
         Contacts._ID,                       // 0
@@ -423,8 +383,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private Uri mGroupUri;
 
-    private long mQueryAggregateId;
-
     private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int  mWritableSourcesCnt;
     private int  mReadOnlySourcesCnt;
@@ -459,16 +417,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
-    /**
-     * In the {@link #MODE_JOIN_CONTACT} determines whether we display a list item with the label
-     * "Show all contacts" or actually show all contacts
-     */
-    private boolean mJoinModeShowAllContacts;
-
-    /**
-     * The ID of the special item described above.
-     */
-    private static final long JOIN_MODE_SHOW_ALL_CONTACTS_ID = -2;
 
     // Uri matcher for contact id
     private static final int CONTACTS_ID = 1001;
@@ -565,9 +513,18 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mContactsPrefs = new ContactsPreferences(this);
         mPhotoLoader = new ContactPhotoLoader(this, R.drawable.ic_contact_list_picture);
 
+        mQueryHandler = new QueryHandler(this);
+        mJustCreated = true;
+        mSyncEnabled = true;
+
         // Resolve the intent
         final Intent intent = getIntent();
 
+        resolveIntent(intent);
+        initContentView();
+    }
+
+    protected void resolveIntent(final Intent intent) {
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
         if (title != null) {
@@ -781,21 +738,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             startActivity(newIntent);
             finish();
             return;
-        }
-
-        if (JOIN_AGGREGATE.equals(action)) {
-            if (mSearchMode) {
-                mMode = MODE_PICK_CONTACT;
-            } else {
-                mMode = MODE_JOIN_CONTACT;
-                mQueryAggregateId = intent.getLongExtra(EXTRA_AGGREGATE_ID, -1);
-                if (mQueryAggregateId == -1) {
-                    Log.e(TAG, "Intent " + action + " is missing required extra: "
-                            + EXTRA_AGGREGATE_ID);
-                    setResult(RESULT_CANCELED);
-                    finish();
-                }
-            }
+        } else if (JoinContactActivity.JOIN_CONTACT.equals(action)) {
+            mMode = MODE_PICK_CONTACT;
         }
 
         if (mMode == MODE_UNKNOWN) {
@@ -806,16 +750,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 && !mSearchResultsMode) {
             mShowNumberOfContacts = true;
         }
+    }
 
-        if (mMode == MODE_JOIN_CONTACT) {
-            setContentView(R.layout.contacts_list_content_join);
-            TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
-
-            String blurb = getString(R.string.blurbJoinContactDataWith,
-                    getContactDisplayName(mQueryAggregateId));
-            blurbView.setText(blurb);
-            mJoinModeShowAllContacts = true;
-        } else if (mSearchMode) {
+    public void initContentView() {
+        if (mSearchMode) {
             setContentView(R.layout.contacts_search_content);
         } else if (mSearchResultsMode) {
             setContentView(R.layout.contacts_list_search_results);
@@ -826,15 +764,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             setContentView(R.layout.contacts_list_content);
         }
 
-        setupListView();
+        setupListView(new ContactItemListAdapter(this));
         if (mSearchMode) {
             setupSearchView();
         }
-
-        mQueryHandler = new QueryHandler(this);
-        mJustCreated = true;
-
-        mSyncEnabled = true;
     }
 
     /**
@@ -854,7 +787,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
-    private void setupListView() {
+    protected void setupListView(ContactItemListAdapter adapter) {
         final ListView list = getListView();
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -866,7 +799,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         list.setDividerHeight(0);
         list.setOnCreateContextMenuListener(this);
 
-        mAdapter = new ContactItemListAdapter(this);
+        mAdapter = adapter;
         setListAdapter(mAdapter);
 
         if (list instanceof PinnedHeaderListView && mAdapter.getDisplaySectionHeadersEnabled()) {
@@ -895,29 +828,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mSearchEditText.setOnEditorActionListener(this);
         mSearchEditText.setText(mInitialFilter);
     }
-
-    private String getContactDisplayName(long contactId) {
-        String contactName = null;
-        Cursor c = getContentResolver().query(
-                ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
-                new String[] {Contacts.DISPLAY_NAME}, null, null, null);
-        try {
-            if (c != null && c.moveToFirst()) {
-                contactName = c.getString(0);
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-        }
-
-        if (contactName == null) {
-            contactName = "";
-        }
-
-        return contactName;
-    }
-
     private int getSummaryDisplayNameColumnIndex() {
         if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
             return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
@@ -943,8 +853,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     }
 
-    private void setEmptyText() {
-        if (mMode == MODE_JOIN_CONTACT || mSearchMode) {
+    protected void setEmptyText() {
+        if (mSearchMode) {
             return;
         }
 
@@ -1157,7 +1067,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         retryUpgrade.setOnClickListener(listener);
     }
 
-    private String getTextFilter() {
+    protected String getTextFilter() {
         if (mSearchEditText != null) {
             return mSearchEditText.getText().toString();
         }
@@ -1203,7 +1113,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onStop() {
         super.onStop();
 
-        mAdapter.setSuggestionsCursor(null);
         mAdapter.changeCursor(null);
 
         if (mMode == MODE_QUERY) {
@@ -1304,7 +1213,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     /**
      * Starts a new activity that will run a search query and display search results.
      */
-    private void doSearch() {
+    protected void doSearch() {
         String query = getTextFilter();
         if (TextUtils.isEmpty(query)) {
             return;
@@ -1806,6 +1715,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onListItemClick(ListView l, View v, int position, long id) {
         hideSoftKeyboard();
 
+        onListItemClick(position, id);
+    }
+
+    protected void onListItemClick(int position, long id) {
         if (mSearchMode && mAdapter.isSearchAllContactsItemPosition(position)) {
             doSearch();
         } else if (mMode == MODE_INSERT_OR_EDIT_CONTACT || mMode == MODE_QUERY_PICK_TO_EDIT) {
@@ -1828,16 +1741,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 && position == 0) {
             Intent newContact = new Intent(Intents.Insert.ACTION, Contacts.CONTENT_URI);
             startActivityForResult(newContact, SUBACTIVITY_NEW_CONTACT);
-        } else if (mMode == MODE_JOIN_CONTACT && id == JOIN_MODE_SHOW_ALL_CONTACTS_ID) {
-            mJoinModeShowAllContacts = false;
-            startQuery();
         } else if (id > 0) {
             final Uri uri = getSelectedUri(position);
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
-            } else if (mMode == MODE_JOIN_CONTACT) {
-                returnPickerResult(null, null, uri);
             } else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -1870,7 +1778,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @param selectedUri In most cases, this should be a lookup {@link Uri}, possibly
      *            generated through {@link Contacts#getLookupUri(long, String)}.
      */
-    private void returnPickerResult(Cursor c, String name, Uri selectedUri) {
+    protected void returnPickerResult(Cursor c, String name, Uri selectedUri) {
         final Intent intent = new Intent();
 
         if (mShortcutAction != null) {
@@ -2076,10 +1984,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     }
 
-    private Uri getUriToQuery() {
+    protected Uri getUriToQuery() {
         switch(mMode) {
-            case MODE_JOIN_CONTACT:
-                return getJoinSuggestionsUri(null);
             case MODE_FREQUENT:
             case MODE_STARRED:
                 return Contacts.CONTENT_URI;
@@ -2171,7 +2077,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Build the {@link Uri} for the given {@link ListView} position, which can
      * be used as result when in {@link #MODE_MASK_PICKER} mode.
      */
-    private Uri getSelectedUri(int position) {
+    protected Uri getSelectedUri(int position) {
         if (position == ListView.INVALID_POSITION) {
             throw new IllegalArgumentException("Position not in list bounds");
         }
@@ -2203,7 +2109,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     String[] getProjectionForQuery() {
         switch(mMode) {
-            case MODE_JOIN_CONTACT:
             case MODE_STREQUENT:
             case MODE_FREQUENT:
             case MODE_STARRED:
@@ -2312,7 +2217,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     }
 
-    private Uri getContactFilterUri(String filter) {
+    protected Uri getContactFilterUri(String filter) {
         Uri baseUri;
         if (!TextUtils.isEmpty(filter)) {
             baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter));
@@ -2340,18 +2245,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
-    private Uri getJoinSuggestionsUri(String filter) {
-        Builder builder = Contacts.CONTENT_URI.buildUpon();
-        builder.appendEncodedPath(String.valueOf(mQueryAggregateId));
-        builder.appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY);
-        if (!TextUtils.isEmpty(filter)) {
-            builder.appendEncodedPath(Uri.encode(filter));
-        }
-        builder.appendQueryParameter("limit", String.valueOf(MAX_SUGGESTIONS));
-        return builder.build();
-    }
 
-    private String getSortOrder(String[] projectionType) {
+    protected String getSortOrder(String[] projectionType) {
         if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             return Contacts.SORT_KEY_PRIMARY;
         } else {
@@ -2372,7 +2267,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
-        mQueryHandler.setLoadingJoinSuggestions(false);
 
         mSortOrder = mContactsPrefs.getSortOrder();
         mDisplayOrder = mContactsPrefs.getDisplayOrder();
@@ -2403,6 +2297,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     .build();
         }
 
+        startQuery(uri, projection);
+    }
+
+    protected void startQuery(Uri uri, String[] projection) {
         // Kick off the new query
         switch (mMode) {
             case MODE_GROUP:
@@ -2457,13 +2355,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         ContactMethods.KIND + "=" + android.provider.Contacts.KIND_POSTAL, null,
                         getSortOrder(projection));
                 break;
-
-            case MODE_JOIN_CONTACT:
-                mQueryHandler.setLoadingJoinSuggestions(true);
-                mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection,
-                        null, null, null);
-                break;
         }
+    }
+
+    protected void startQuery(Uri uri, String[] projection, String selection,
+            String[] selectionArgs, String sortOrder) {
+        mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, selection, selectionArgs,
+                sortOrder);
     }
 
     /**
@@ -2531,30 +2429,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 //TODO: Support filtering here (bug 2092503)
                 break;
             }
-
-            case MODE_JOIN_CONTACT: {
-
-                // We are on a background thread. Run queries one after the other synchronously
-                Cursor cursor = resolver.query(getJoinSuggestionsUri(filter), projection, null,
-                        null, null);
-                mAdapter.setSuggestionsCursor(cursor);
-                mJoinModeShowAllContacts = false;
-                return resolver.query(getContactFilterUri(filter), projection,
-                        Contacts._ID + " != " + mQueryAggregateId + " AND " + CLAUSE_ONLY_VISIBLE,
-                        null, getSortOrder(projection));
-            }
         }
         throw new UnsupportedOperationException("filtering not allowed in mode " + mMode);
     }
 
-    private Cursor getShowAllContactsLabelCursor(String[] projection) {
-        MatrixCursor matrixCursor = new MatrixCursor(projection);
-        Object[] row = new Object[projection.length];
-        // The only columns we care about is the id
-        row[SUMMARY_ID_COLUMN_INDEX] = JOIN_MODE_SHOW_ALL_CONTACTS_ID;
-        matrixCursor.addRow(row);
-        return matrixCursor;
-    }
 
     /**
      * Calls the currently selected list item.
@@ -2695,59 +2573,32 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private static class QueryHandler extends AsyncQueryHandler {
         protected final WeakReference<ContactsListActivity> mActivity;
-        protected boolean mLoadingJoinSuggestions = false;
 
         public QueryHandler(Context context) {
             super(context.getContentResolver());
             mActivity = new WeakReference<ContactsListActivity>((ContactsListActivity) context);
         }
 
-        public void setLoadingJoinSuggestions(boolean flag) {
-            mLoadingJoinSuggestions = flag;
-        }
-
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
             final ContactsListActivity activity = mActivity.get();
             if (activity != null && !activity.isFinishing()) {
-
-                // Whenever we get a suggestions cursor, we need to immediately kick off
-                // another query for the complete list of contacts
-                if (cursor != null && mLoadingJoinSuggestions) {
-                    mLoadingJoinSuggestions = false;
-                    if (cursor.getCount() > 0) {
-                        activity.mAdapter.setSuggestionsCursor(cursor);
-                    } else {
-                        cursor.close();
-                        activity.mAdapter.setSuggestionsCursor(null);
-                    }
-
-                    if (activity.mAdapter.mSuggestionsCursorCount == 0
-                            || !activity.mJoinModeShowAllContacts) {
-                        startQuery(QUERY_TOKEN, null, activity.getContactFilterUri(
-                                        activity.getTextFilter()),
-                                CONTACTS_SUMMARY_PROJECTION,
-                                Contacts._ID + " != " + activity.mQueryAggregateId
-                                        + " AND " + CLAUSE_ONLY_VISIBLE, null,
-                                activity.getSortOrder(CONTACTS_SUMMARY_PROJECTION));
-                        return;
-                    }
-
-                    cursor = activity.getShowAllContactsLabelCursor(CONTACTS_SUMMARY_PROJECTION);
-                }
-
-                activity.mAdapter.changeCursor(cursor);
-
-                // Now that the cursor is populated again, it's possible to restore the list state
-                if (activity.mListState != null) {
-                    activity.mList.onRestoreInstanceState(activity.mListState);
-                    activity.mListState = null;
-                }
+                activity.onQueryComplete(cursor);
             } else {
                 if (cursor != null) {
                     cursor.close();
                 }
             }
+        }
+    }
+
+    protected void onQueryComplete(Cursor cursor) {
+        mAdapter.changeCursor(cursor);
+
+        // Now that the cursor is populated again, it's possible to restore the list state
+        if (mListState != null) {
+            mList.onRestoreInstanceState(mListState);
+            mListState = null;
         }
     }
 
@@ -2765,7 +2616,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public Drawable background;
     }
 
-    private final class ContactItemListAdapter extends CursorAdapter
+    protected class ContactItemListAdapter extends CursorAdapter
             implements SectionIndexer, OnScrollListener, PinnedHeaderListView.PinnedHeaderAdapter {
         private SectionIndexer mIndexer;
         private boolean mLoading = true;
@@ -2775,8 +2626,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         private boolean mDisplayAdditionalData = true;
         private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
         private boolean mDisplaySectionHeaders = true;
-        private Cursor mSuggestionsCursor;
-        private int mSuggestionsCursorCount;
 
         public ContactItemListAdapter(Context context) {
             super(context, null, false);
@@ -2820,14 +2669,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         public boolean getDisplaySectionHeadersEnabled() {
             return mDisplaySectionHeaders;
-        }
-
-        public void setSuggestionsCursor(Cursor cursor) {
-            if (mSuggestionsCursor != null) {
-                mSuggestionsCursor.close();
-            }
-            mSuggestionsCursor = cursor;
-            mSuggestionsCursorCount = cursor == null ? 0 : cursor.getCount();
         }
 
         /**
@@ -2880,10 +2721,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return IGNORE_ITEM_VIEW_TYPE;
             }
 
-            if (isShowAllContactsItemPosition(position)) {
-                return IGNORE_ITEM_VIEW_TYPE;
-            }
-
             if (isSearchAllContactsItemPosition(position)) {
                 return IGNORE_ITEM_VIEW_TYPE;
             }
@@ -2913,11 +2750,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return getLayoutInflater().inflate(R.layout.create_new_contact, parent, false);
             }
 
-            if (isShowAllContactsItemPosition(position)) {
-                return getLayoutInflater().
-                        inflate(R.layout.contacts_list_show_all_item, parent, false);
-            }
-
             if (isSearchAllContactsItemPosition(position)) {
                 return getLayoutInflater().
                         inflate(R.layout.contacts_list_search_all_item, parent, false);
@@ -2932,18 +2764,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return view;
             }
 
-            boolean showingSuggestion;
-            Cursor cursor;
-            if (mSuggestionsCursorCount != 0 && position < mSuggestionsCursorCount + 2) {
-                showingSuggestion = true;
-                cursor = mSuggestionsCursor;
-            } else {
-                showingSuggestion = false;
-                cursor = mCursor;
-            }
-
             int realPosition = getRealPosition(position);
-            if (!cursor.moveToPosition(realPosition)) {
+            if (!mCursor.moveToPosition(realPosition)) {
                 throw new IllegalStateException("couldn't move cursor to position " + position);
             }
 
@@ -2951,13 +2773,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             View v;
             if (convertView == null || convertView.getTag() == null) {
                 newView = true;
-                v = newView(mContext, cursor, parent);
+                v = newView(mContext, mCursor, parent);
             } else {
                 newView = false;
                 v = convertView;
             }
-            bindView(v, mContext, cursor);
-            bindSectionHeader(v, realPosition, mDisplaySectionHeaders && !showingSuggestion);
+            bindView(v, mContext, mCursor);
+            bindSectionHeader(v, realPosition, mDisplaySectionHeaders);
             return v;
         }
 
@@ -2986,11 +2808,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return view;
         }
 
-        private boolean isShowAllContactsItemPosition(int position) {
-            return mMode == MODE_JOIN_CONTACT && mJoinModeShowAllContacts
-                    && mSuggestionsCursorCount != 0 && position == mSuggestionsCursorCount + 2;
-        }
-
         private boolean isSearchAllContactsItemPosition(int position) {
             return mSearchMode && position == getCount() - 1;
         }
@@ -2999,13 +2816,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             int separatorId = 0;
             if (position == mFrequentSeparatorPos) {
                 separatorId = R.string.favoritesFrquentSeparator;
-            }
-            if (mSuggestionsCursorCount != 0) {
-                if (position == 0) {
-                    separatorId = R.string.separatorJoinAggregateSuggestions;
-                } else if (position == mSuggestionsCursorCount + 1) {
-                    separatorId = R.string.separatorJoinAggregateAll;
-                }
             }
             return separatorId;
         }
@@ -3234,7 +3044,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             textView.setText(textWithHighlighting);
         }
 
-        private void bindSectionHeader(View itemView, int position, boolean displaySectionHeaders) {
+        protected void bindSectionHeader(View itemView, int position, boolean displaySectionHeaders) {
             final ContactListItemView view = (ContactListItemView)itemView;
             final ContactListItemCache cache = (ContactListItemCache) view.getTag();
             if (!displaySectionHeaders) {
@@ -3348,8 +3158,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         @Override
         public boolean areAllItemsEnabled() {
             return mMode != MODE_STARRED
-                && !mShowNumberOfContacts
-                && mSuggestionsCursorCount == 0;
+                && !mShowNumberOfContacts;
         }
 
         @Override
@@ -3359,10 +3168,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     return false;
                 }
                 position--;
-            }
-
-            if (mSuggestionsCursorCount > 0) {
-                return position != 0 && position != mSuggestionsCursorCount + 1;
             }
             return position != mFrequentSeparatorPos;
         }
@@ -3391,12 +3196,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 superCount++;
             }
 
-            if (mSuggestionsCursorCount != 0) {
-                // When showing suggestions, we have 2 additional list items: the "Suggestions"
-                // and "All contacts" headers.
-                return mSuggestionsCursorCount + superCount + 2;
-            }
-            else if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
+            if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
                 // When showing strequent list, we have an additional list item - the separator.
                 return superCount + 1;
             } else {
@@ -3418,18 +3218,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
             if ((mMode & MODE_MASK_CREATE_NEW) != 0 && !mSearchMode) {
                 return pos - 1;
-            } else if (mSuggestionsCursorCount != 0) {
-                // When showing suggestions, we have 2 additional list items: the "Suggestions"
-                // and "All contacts" separators.
-                if (pos < mSuggestionsCursorCount + 2) {
-                    // We are in the upper partition (Suggestions). Adjusting for the "Suggestions"
-                    // separator.
-                    return pos - 1;
-                } else {
-                    // We are in the lower partition (All contacts). Adjusting for the size
-                    // of the upper partition plus the two separators.
-                    return pos - mSuggestionsCursorCount - 2;
-                }
             } else if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
                 // No separator, identity map
                 return pos;
@@ -3444,10 +3232,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public Object getItem(int pos) {
-            if (mSuggestionsCursorCount != 0 && pos <= mSuggestionsCursorCount) {
-                mSuggestionsCursor.moveToPosition(getRealPosition(pos));
-                return mSuggestionsCursor;
-            } else if (isSearchAllContactsItemPosition(pos)){
+            if (isSearchAllContactsItemPosition(pos)){
                 return null;
             } else {
                 int realPosition = getRealPosition(pos);
@@ -3460,13 +3245,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         @Override
         public long getItemId(int pos) {
-            if (mSuggestionsCursorCount != 0 && pos < mSuggestionsCursorCount + 2) {
-                if (mSuggestionsCursor.moveToPosition(pos - 1)) {
-                    return mSuggestionsCursor.getLong(mRowIDColumn);
-                } else {
-                    return 0;
-                }
-            } else if (isSearchAllContactsItemPosition(pos)) {
+            if (isSearchAllContactsItemPosition(pos)) {
                 return 0;
             }
             int realPosition = getRealPosition(pos);
