@@ -200,11 +200,6 @@ public class JoinContactActivity extends ContactsListActivity {
         super.onQueryComplete(cursor);
     }
 
-    @Override
-    protected void setEmptyText() {
-        return;
-    }
-
     private class JoinContactListAdapter extends ContactItemListAdapter {
         Cursor mSuggestionsCursor;
         int mSuggestionsCursorCount;

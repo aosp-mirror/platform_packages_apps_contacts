@@ -13,8 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<ScrollView 
+<view 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.ContactListEmptyView"
     android:id="@android:id/empty"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,6 +36,7 @@
           android:paddingRight="10dip"
           android:paddingTop="10dip"
           android:lineSpacingMultiplier="0.92"
+          android:visibility="gone"
       />
       
       <LinearLayout android:id="@+id/import_failure"
@@ -61,4 +63,4 @@
             android:text="@string/upgrade_out_of_memory_retry"/>
       </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</view>

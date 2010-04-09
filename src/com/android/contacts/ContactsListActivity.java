@@ -26,7 +26,6 @@ import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -39,7 +38,6 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.IContentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.UriMatcher;
@@ -62,7 +60,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
@@ -94,7 +91,6 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -108,8 +104,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.inputmethod.EditorInfo;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -129,7 +125,6 @@ import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -394,6 +389,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final String CONTENT_SCHEME = "content";
 
     private ContactItemListAdapter mAdapter;
+    private ContactListEmptyView mEmptyView;
 
     int mMode = MODE_DEFAULT;
 
@@ -877,6 +873,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         if (mSearchMode) {
             setupSearchView();
         }
+
         if (mMode == MODE_PICK_MULTIPLE_PHONES) {
             ViewStub stub = (ViewStub)findViewById(R.id.footer_stub);
             if (stub != null) {
@@ -888,6 +885,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 Button revertButton = (Button) stubView.findViewById(R.id.revert);
                 revertButton.setOnClickListener(this);
             }
+        }
+
+        View emptyView = mList.getEmptyView();
+        if (emptyView instanceof ContactListEmptyView) {
+            mEmptyView = (ContactListEmptyView)emptyView;
         }
     }
 
@@ -979,73 +981,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 finish();
                 break;
         }
-    }
-
-    protected void setEmptyText() {
-        if (mSearchMode) {
-            return;
-        }
-
-        TextView empty = (TextView) findViewById(R.id.emptyText);
-        int gravity = Gravity.NO_GRAVITY;
-
-        if (mDisplayOnlyPhones) {
-            empty.setText(getText(R.string.noContactsWithPhoneNumbers));
-        } else if (mMode == MODE_STREQUENT || mMode == MODE_STARRED) {
-            empty.setText(getText(R.string.noFavoritesHelpText));
-        } else if (mMode == MODE_QUERY || mMode == MODE_QUERY_PICK
-                || mMode == MODE_QUERY_PICK_PHONE || mMode == MODE_QUERY_PICK_TO_VIEW
-                || mMode == MODE_QUERY_PICK_TO_EDIT) {
-            empty.setText(getText(R.string.noMatchingContacts));
-        } else if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            if (mShowSelectedOnly) {
-                empty.setText(getText(R.string.no_contacts_selected));
-            } else {
-                empty.setText(getText(R.string.noContactsWithPhoneNumbers));
-            }
-            gravity = Gravity.CENTER;
-        } else {
-            boolean hasSim = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE))
-                    .hasIccCard();
-            boolean createShortcut = Intent.ACTION_CREATE_SHORTCUT.equals(getIntent().getAction());
-            if (isSyncActive()) {
-                if (createShortcut) {
-                    // Help text is the same no matter whether there is SIM or not.
-                    empty.setText(getText(R.string.noContactsHelpTextWithSyncForCreateShortcut));
-                } else if (hasSim) {
-                    empty.setText(getText(R.string.noContactsHelpTextWithSync));
-                } else {
-                    empty.setText(getText(R.string.noContactsNoSimHelpTextWithSync));
-                }
-            } else {
-                if (createShortcut) {
-                    // Help text is the same no matter whether there is SIM or not.
-                    empty.setText(getText(R.string.noContactsHelpTextForCreateShortcut));
-                } else if (hasSim) {
-                    empty.setText(getText(R.string.noContactsHelpText));
-                } else {
-                    empty.setText(getText(R.string.noContactsNoSimHelpText));
-                }
-            }
-        }
-        empty.setGravity(gravity);
-    }
-
-    private boolean isSyncActive() {
-        Account[] accounts = AccountManager.get(this).getAccounts();
-        if (accounts != null && accounts.length > 0) {
-            IContentService contentService = ContentResolver.getContentService();
-            for (Account account : accounts) {
-                try {
-                    if (contentService.isSyncActive(account, ContactsContract.AUTHORITY)) {
-                        return true;
-                    }
-                } catch (RemoteException e) {
-                    Log.e(TAG, "Could not get the sync status");
-                }
-            }
-        }
-        return false;
     }
 
     private void buildUserGroupUri(String group) {
@@ -1357,13 +1292,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
             case R.id.menu_display_selected: {
                 mShowSelectedOnly = true;
-                setEmptyText();
                 startQuery();
                 return true;
             }
             case R.id.menu_display_all: {
                 mShowSelectedOnly = false;
-                setEmptyText();
                 startQuery();
                 return true;
             }
@@ -1405,9 +1338,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * search text edit.
      */
     protected void onSearchTextChanged() {
-        // Set the proper empty string
-        setEmptyText();
-
         Filter filter = mAdapter.getFilter();
         filter.filter(getTextFilter());
     }
@@ -2482,12 +2412,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     void startQuery() {
-        // Set the proper empty string
-        setEmptyText();
-
         if (mSearchResultsMode) {
             TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
             foundContactsText.setText(R.string.search_results_searching);
+        }
+
+        if (mEmptyView != null) {
+            mEmptyView.hide();
         }
 
         mAdapter.setLoading(true);
@@ -3512,7 +3443,19 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 foundContactsText.setText(text);
             }
 
+            if (mEmptyView != null && (cursor == null || cursor.getCount() == 0)) {
+                mEmptyView.show(mSearchMode, mDisplayOnlyPhones,
+                        mMode == MODE_STREQUENT || mMode == MODE_STARRED,
+                        mMode == MODE_QUERY || mMode == MODE_QUERY_PICK
+                        || mMode == MODE_QUERY_PICK_PHONE || mMode == MODE_QUERY_PICK_TO_VIEW
+                        || mMode == MODE_QUERY_PICK_TO_EDIT,
+                        mShortcutAction != null,
+                        mMode == MODE_PICK_MULTIPLE_PHONES,
+                        mShowSelectedOnly);
+            }
+
             super.changeCursor(cursor);
+
             // Update the indexer for the fast scroll widget
             updateIndexer(cursor);
 
@@ -3871,6 +3814,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return null;
         }
 
+        @Override
         public int getItemViewType(int position) {
             return position == mStartPos ? IGNORE_ITEM_VIEW_TYPE : super.getItemViewType(position);
         }
@@ -3947,7 +3891,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     selectedPhoneIds[index++] = phoneId.longValue();
                 }
                 icicle.putLongArray(SELECTED_PHONE_IDS_KEY, selectedPhoneIds);
-                
+
             }
         }
 
