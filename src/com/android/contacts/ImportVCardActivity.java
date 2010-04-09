@@ -807,7 +807,8 @@ public class ImportVCardActivity extends Activity {
                             "mAccountSelectionListener must not be null.");
                 }
                 return AccountSelectionUtil.getSelectAccountDialog(this, resId,
-                        mAccountSelectionListener);
+                        mAccountSelectionListener,
+                        new CancelListener());
             }
             case R.id.dialog_searching_vcard: {
                 if (mProgressDialogForScanVCard == null) {
