@@ -27,6 +27,7 @@ import android.content.EntityIterator;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
@@ -137,15 +138,25 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         final int _ID = 0;
     }
 
-    final class LoadContactTask extends AsyncTask<Void, Void, Result> {
+    public final class LoadContactTask extends AsyncTask<Void, Void, Result> {
+
+        /**
+         * Used for synchronuous calls in unit test
+         * @hide
+         */
+        public Result testExecute() {
+            return doInBackground();
+        }
+
         @Override
         protected Result doInBackground(Void... args) {
             final ContentResolver resolver = getContext().getContentResolver();
-            Result result = loadContactHeaderData(resolver, mLookupUri);
+            Uri uriCurrentFormat = convertLegacyIfNecessary(mLookupUri);
+            Result result = loadContactHeaderData(resolver, uriCurrentFormat);
             if (result == Result.NOT_FOUND) {
                 // No record found. Try to lookup up a new record with the same lookupKey.
                 // We might have went through a sync where Ids changed
-                final Uri freshLookupUri = Contacts.getLookupUri(resolver, mLookupUri);
+                final Uri freshLookupUri = Contacts.getLookupUri(resolver, uriCurrentFormat);
                 result = loadContactHeaderData(resolver, freshLookupUri);
                 if (result == Result.NOT_FOUND) {
                     // Still not found. We now believe this contact really does not exist
@@ -160,6 +171,32 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             loadRawContacts(resolver, result);
 
             return result;
+        }
+
+        /**
+         * Transforms the given Uri and returns a Lookup-Uri that represents the contact.
+         * For legacy contacts, a raw-contact lookup is performed.
+         */
+        private Uri convertLegacyIfNecessary(Uri uri) {
+            if (uri == null) throw new IllegalArgumentException("uri must not be null");
+
+            final String authority = uri.getAuthority();
+
+            // Current Style Uri? Just return it
+            if (ContactsContract.AUTHORITY.equals(authority)) {
+                return uri;
+            }
+
+            // Legacy Style? Convert to RawContact
+            final String OBSOLETE_AUTHORITY = "contacts";
+            if (OBSOLETE_AUTHORITY.equals(authority)) {
+                // Legacy Format. Convert to RawContact-Uri and then lookup the contact
+                final long rawContactId = ContentUris.parseId(uri);
+                return RawContacts.getContactLookupUri(getContext().getContentResolver(),
+                        ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
+            }
+
+            throw new IllegalArgumentException("uri format is unknown");
         }
 
         /**
@@ -178,7 +215,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             if (segments.size() != 4) {
                 // Does not contain an Id. Return to caller so that a lookup is performed
                 Log.w(TAG, "Uri does not contain an Id, so we return to the caller who should " +
-                		"perform a lookup to get a proper uri. Value: " + lookupUri);
+                        "perform a lookup to get a proper uri. Value: " + lookupUri);
                 return Result.NOT_FOUND;
             }
 
@@ -200,7 +237,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             try {
                 if (!cursor.moveToFirst()) {
                     Log.w(TAG, "Cursor returned by trySetupContactHeader/query is empty. " +
-                    		"ContactId must have changed or item has been removed");
+                            "ContactId must have changed or item has been removed");
                     return Result.NOT_FOUND;
                 }
                 String lookupKey =
@@ -300,7 +337,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         @Override
         protected void onPostExecute(Result result) {
-            // The creator isn't interested in any furether updates
+            // The creator isn't interested in any further updates
             if (mDestroyed) {
                 return;
             }
@@ -319,7 +356,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
-        super(context);
+            super(context);
         mLookupUri = lookupUri;
     }
 
