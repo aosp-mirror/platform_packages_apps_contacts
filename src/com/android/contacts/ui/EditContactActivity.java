@@ -1319,12 +1319,6 @@ public final class EditContactActivity extends Activity
         EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
 
-        // Create "My Contacts" membership for Google contacts
-        // TODO: move this off into "templates" for each given source
-        if (GoogleSource.ACCOUNT_TYPE.equals(source.accountType)) {
-            GoogleSource.attemptMyContactsMembership(insert, this);
-        }
-
         if (mState == null) {
             // Create state if none exists yet
             mState = EntitySet.fromSingle(insert);

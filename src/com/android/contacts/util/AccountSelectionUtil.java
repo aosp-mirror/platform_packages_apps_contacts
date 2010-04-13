@@ -163,10 +163,6 @@ public class AccountSelectionUtil {
     }
 
     public static void doImportFromSim(Context context, Account account) {
-        if (account != null) {
-            GoogleSource.createMyContactsIfNotExist(account, context);
-        }
-
         Intent importIntent = new Intent(Intent.ACTION_VIEW);
         importIntent.setType("vnd.android.cursor.item/sim-contact");
         if (account != null) {
@@ -178,10 +174,6 @@ public class AccountSelectionUtil {
     }
 
     public static void doImportFromSdCard(Context context, Account account) {
-        if (account != null) {
-            GoogleSource.createMyContactsIfNotExist(account, context);
-        }
-
         Intent importIntent = new Intent(context, ImportVCardActivity.class);
         if (account != null) {
             importIntent.putExtra("account_name", account.name);
