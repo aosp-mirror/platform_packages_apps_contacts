@@ -658,7 +658,7 @@
     <!-- Dialog message shown when SDcard does not exist -->
     <string name="no_sdcard_message">No SD card detected</string>
 
-    <!-- Dialog title shown when searching VCard data from SD Card -->
+    <!-- Dialog title shown when searching vCard data from SD Card -->
     <string name="searching_vcard_title">Searching for vCard</string>
 
     <!-- Action string for selecting SIM for importing contacts -->
@@ -688,13 +688,13 @@
          than one vCard files available in the system. -->
     <string name="import_all_vcard_string">Import all vCard files</string>
 
-    <!-- Dialog message shown when searching VCard data from SD Card -->
+    <!-- Dialog message shown when searching vCard data from SD Card -->
     <string name="searching_vcard_message">Searching for vCard data on SD card</string>
 
-    <!-- Dialog title shown when scanning VCard data failed. -->
+    <!-- Dialog title shown when scanning vCard data failed. -->
     <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
 
-    <!-- Dialog message shown when searching VCard data failed.
+    <!-- Dialog message shown when searching vCard data failed.
          An exact reason for the failure should -->
     <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
@@ -724,28 +724,35 @@
     <!-- The failed reason which should not be shown but it may in some buggy condition. -->
     <string name="fail_reason_unknown">Unknown error</string>
 
-    <!-- Dialog title shown when a user is asked to select VCard file -->
+    <!-- Dialog title shown when a user is asked to select vCard file -->
     <string name="select_vcard_title">Select vCard file</string>
 
-    <!-- The message shown while reading a vCard file/entry. The first argument is like
-    "Reading VCard" or "Reading VCard files" and the second is the display name of the current
-    data being parsed -->
-    <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
+    <!-- The message shown while reading vCard(s).
+         First argument is current index of contacts to be imported.
+         Second argument is the total number of contacts.
+         Third argument is the Uri which is being read. -->
+    <string name="progress_notifier_message"><xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
 
-    <!-- Dialog title shown when reading VCard data -->
-    <string name="reading_vcard_title">Reading vCard</string>
+    <!-- Dialog title shown when reading vCard data -->
+    <string name="reading_vcard_title">Reading vCard(s)</string>
 
-    <!-- Dialog message shown when reading a VCard file -->
-    <string name="reading_vcard_message">Reading vCard file(s)</string>
+    <!-- Dialog title shown when reading vCard data failed -->
+    <string name="reading_vcard_failed_title">Failed to Read vCard data</string>
 
-    <!-- Dialog title shown when reading VCard data failed -->
-    <string name="reading_vcard_failed_title">Reading of vCard data has failed</string>
+    <!-- The title shown when reading vCard is canceled (probably by a user) -->
+    <string name="reading_vcard_canceled_title">Reading vCard data was canceled</string>
 
-    <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+    <!-- The title shown when reading vCard is canceled (probably by a user) -->
+    <string name="reading_vcard_finished_title">Finished Reading vCard data</string>
 
-    <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
+    <!-- The message shown when vCard importer started running. -->
+    <string name="vcard_importer_start_message">vCard importer started.</string>
+
+    <!-- The message shown when additional vCard to be imported is given during the import for others -->
+    <string name="vcard_importer_will_start_message">vCard importer will import the vCard after a while.</string>
+
+    <!-- The percentage, used for expressing the progress of vCard import. -->
+    <string name="percentage">%s%%</string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_title">Confirm export</string>

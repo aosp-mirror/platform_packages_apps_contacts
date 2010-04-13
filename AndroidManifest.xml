@@ -463,6 +463,10 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".ImportVCardService"
+            android:exported="false" />
+
         <activity android:name=".ExportVCardActivity"
             android:theme="@style/BackgroundOnly" />
     </application>
