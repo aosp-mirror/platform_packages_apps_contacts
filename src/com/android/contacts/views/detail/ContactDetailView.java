@@ -613,33 +613,33 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewEntry entry = getEntry(mSections, position, false);
             final View v;
-            final ViewCache views;
+            final ViewCache viewCache;
 
             // Check to see if we can reuse convertView
             if (convertView != null) {
                 v = convertView;
-                views = (ViewCache) v.getTag();
+                viewCache = (ViewCache) v.getTag();
             } else {
                 // Create a new view if needed
                 v = mInflater.inflate(R.layout.list_item_text_icons, parent, false);
 
                 // Cache the children
-                views = new ViewCache();
-                views.label = (TextView) v.findViewById(android.R.id.text1);
-                views.data = (TextView) v.findViewById(android.R.id.text2);
-                views.footer = (TextView) v.findViewById(R.id.footer);
-                views.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
-                views.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
-                views.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
-                views.secondaryActionButton = (ImageView) v.findViewById(
+                viewCache = new ViewCache();
+                viewCache.label = (TextView) v.findViewById(android.R.id.text1);
+                viewCache.data = (TextView) v.findViewById(android.R.id.text2);
+                viewCache.footer = (TextView) v.findViewById(R.id.footer);
+                viewCache.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
+                viewCache.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
+                viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
+                viewCache.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
-                views.secondaryActionButton.setOnClickListener(this);
-                views.secondaryActionDivider = v.findViewById(R.id.divider);
-                v.setTag(views);
+                viewCache.secondaryActionButton.setOnClickListener(this);
+                viewCache.secondaryActionDivider = v.findViewById(R.id.divider);
+                v.setTag(viewCache);
             }
 
             // Update the entry in the view cache
-            views.entry = entry;
+            viewCache.entry = entry;
 
             // Bind the data to the view
             bindView(v, entry);
@@ -722,7 +722,7 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
             }
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
                 secondaryActionView.setImageDrawable(secondaryActionIcon);
-                secondaryActionView.setTag(entry.secondaryIntent);
+                secondaryActionView.setTag(entry);
                 secondaryActionView.setVisibility(View.VISIBLE);
                 views.secondaryActionDivider.setVisibility(View.VISIBLE);
             } else {
@@ -743,8 +743,11 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
         }
 
         public void onClick(View v) {
-            Intent intent = (Intent) v.getTag();
-            mContext.startActivity(intent);
+            if (mCallbacks == null) return;
+            if (v == null) return;
+            final ViewEntry entry = (ViewEntry) v.getTag();
+            if (entry == null) return;
+            mCallbacks.onSecondaryClick(entry);
         }
     }
 
@@ -859,29 +862,10 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
-        if (entry == null) {
-            signalError();
-            return;
-        }
-        Intent intent = entry.intent;
-        if (intent == null) {
-            signalError();
-            return;
-        }
-        try {
-            mContext.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            Log.e(TAG, "No activity found for intent: " + intent);
-            signalError();
-        }
-    }
-
-    /**
-     * Signal an error to the user via a beep, or some other method.
-     */
-    private void signalError() {
-        Log.w(TAG, "Should warn the user but we can't because we do not have sonification APIs");
+        if (mCallbacks == null) return;
+        final ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
+        if (entry == null) return;
+        mCallbacks.onPrimaryClick(entry);
     }
 
     private final DialogInterface.OnClickListener mDeleteListener =

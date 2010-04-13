@@ -24,7 +24,6 @@ import com.android.contacts.views.detail.ContactDetailView;
 import com.android.contacts.views.detail.ContactLoader;
 
 import android.app.Dialog;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
