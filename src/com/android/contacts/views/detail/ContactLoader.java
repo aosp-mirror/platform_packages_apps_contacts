@@ -42,8 +42,7 @@ import java.util.List;
 /**
  * Loads a single Contact and all it constituent RawContacts.
  */
-public class ContactLoader extends Loader<ContactLoader.Callbacks> {
-    private Context mContext;
+public class ContactLoader extends Loader<ContactLoader.Result> {
     private Uri mLookupUri;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
@@ -141,7 +140,7 @@ public class ContactLoader extends Loader<ContactLoader.Callbacks> {
     final class LoadContactTask extends AsyncTask<Void, Void, Result> {
         @Override
         protected Result doInBackground(Void... args) {
-            final ContentResolver resolver = mContext.getContentResolver();
+            final ContentResolver resolver = getContext().getContentResolver();
             Result result = loadContactHeaderData(resolver, mLookupUri);
             if (result == Result.NOT_FOUND) {
                 // No record found. Try to lookup up a new record with the same lookupKey.
@@ -312,21 +311,22 @@ public class ContactLoader extends Loader<ContactLoader.Callbacks> {
                     mObserver = new ForceLoadContentObserver();
                 }
                 Log.i(TAG, "Registering content observer for " + mLookupUri);
-                mContext.getContentResolver().registerContentObserver(mLookupUri, true, mObserver);
-                mCallbacks.onContactLoaded(result);
+                getContext().getContentResolver().registerContentObserver(
+                        mLookupUri, true, mObserver);
+                deliverResult(result);
             }
         }
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
-        mContext = context.getApplicationContext();
+        super(context);
         mLookupUri = lookupUri;
     }
 
     @Override
     public void startLoading() {
         if (mContact != null) {
-            mCallbacks.onContactLoaded(mContact);
+            deliverResult(mContact);
         } else {
             forceLoad();
         }
@@ -341,7 +341,7 @@ public class ContactLoader extends Loader<ContactLoader.Callbacks> {
     public void stopLoading() {
         mContact = null;
         if (mObserver != null) {
-            mContext.getContentResolver().unregisterContentObserver(mObserver);
+            getContext().getContentResolver().unregisterContentObserver(mObserver);
         }
     }
 

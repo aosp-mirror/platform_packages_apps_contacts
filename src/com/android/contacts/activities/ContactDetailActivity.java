@@ -19,11 +19,10 @@ package com.android.contacts.activities;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.mvcframework.DialogManager;
+import com.android.contacts.mvcframework.LoaderActivity;
 import com.android.contacts.views.detail.ContactDetailView;
 import com.android.contacts.views.detail.ContactLoader;
-import com.android.contacts.views.detail.ContactLoader.Result;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,11 +31,10 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ContactDetailActivity extends Activity implements ContactLoader.Callbacks,
+public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> implements
         DialogManager.DialogShowingViewActivity {
+    private static final int LOADER_DETAILS = 1;
     private ContactDetailView mDetails;
-    private ContactLoader mLoader;
-    private Uri mUri;
     private DialogManager mDialogManager;
 
     private static final String TAG = "ContactDetailActivity";
@@ -54,64 +52,37 @@ public class ContactDetailActivity extends Activity implements ContactLoader.Cal
 
         mDetails = (ContactDetailView) findViewById(R.id.contact_details);
         mDetails.setCallbacks(new ContactDetailView.DefaultCallbacks(this));
-
-        mUri = getIntent().getData();
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onInitializeLoaders() {
+        startLoading(LOADER_DETAILS, null);
+    }
 
-        if (mLoader == null) {
-            // Look for a passed along loader and create a new one if it's not there
-            mLoader = (ContactLoader) getLastNonConfigurationInstance();
-            if (mLoader == null) {
-                mLoader = new ContactLoader(this, mUri);
+    @Override
+    protected ContactLoader onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case LOADER_DETAILS: {
+                return new ContactLoader(this, getIntent().getData());
             }
         }
-        mLoader.registerCallbacks(this);
-        mLoader.startLoading();
+        return null;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // Let the loader know we're done with it
-        mLoader.unregisterCallbacks(this);
-
-        // The loader isn't getting passed along to the next instance so ask it to stop loading
-        // TODO: Readd this once we have framework support
-        /*if (!isChangingConfigurations()) {
-            mLoader.stopLoading();
-        }*/
-    }
 
     @Override
-    public Object onRetainNonConfigurationInstance() {
-        // Pass the loader along to the next guy
-        Object result = mLoader;
-        mLoader = null;
-        return result;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        if (mLoader != null) {
-            mLoader.destroy();
+    public void onLoadComplete(int id, ContactLoader.Result data) {
+        switch (id) {
+            case LOADER_DETAILS:
+                if (data == ContactLoader.Result.NOT_FOUND) {
+                    // Item has been deleted
+                    Log.i(TAG, "No contact found. Closing activity");
+                    finish();
+                    return;
+                }
+                mDetails.setData(data);
+                break;
         }
-    }
-
-    public void onContactLoaded(Result contact) {
-        if (contact == ContactLoader.Result.NOT_FOUND) {
-            // Item has been deleted
-            Log.i(TAG, "No contact found. Closing activity");
-            finish();
-            return;
-        }
-        mDetails.setData(contact);
     }
 
     @Override

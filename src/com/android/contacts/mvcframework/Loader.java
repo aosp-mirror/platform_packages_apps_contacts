@@ -16,11 +16,14 @@
 
 package com.android.contacts.mvcframework;
 
+import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 
-public abstract class Loader<E> {
-    protected E mCallbacks;
+public abstract class Loader<D> {
+    private int mId;
+    private OnLoadCompleteListener<D> mListener;
+    private Context mContext;
 
     protected final class ForceLoadContentObserver extends ContentObserver {
         public ForceLoadContentObserver() {
@@ -38,30 +41,53 @@ public abstract class Loader<E> {
         }
     }
 
+    public interface OnLoadCompleteListener<D> {
+        public void onLoadComplete(int id, D data);
+    }
+
+    protected void deliverResult(D data) {
+        if (mListener != null) {
+            mListener.onLoadComplete(mId, data);
+
+        }
+    }
+
+    public Loader(Context context) {
+        mContext = context.getApplicationContext();
+    }
+
+    /**
+     * @return an application context
+     */
+    public Context getContext() {
+        return mContext;
+    }
+
     /**
      * Registers a class that will receive callbacks when a load is complete. The callbacks will
      * be called on the UI thread so it's safe to pass the results to widgets.
      *
      * Must be called from the UI thread
      */
-    public void registerCallbacks(E callbacks) {
-        if (mCallbacks != null) {
-            throw new IllegalStateException("There are already callbacks registered");
-        }
-        mCallbacks = callbacks;
+    public void registerListener(int id, OnLoadCompleteListener<D> listener) {
+//        if (mListener != null) {
+ //           throw new IllegalStateException("There is already a listener registered");
+  //      }
+        mListener = listener;
+        mId = id;
     }
 
     /**
      * Must be called from the UI thread
      */
-    public void unregisterCallbacks(E callbacks) {
-        if (mCallbacks == null) {
-            throw new IllegalStateException("No callbacks register");
+    public void unregisterListener(OnLoadCompleteListener<D> listener) {
+        if (mListener == null) {
+            throw new IllegalStateException("No listener register");
         }
-        if (mCallbacks != callbacks) {
-            throw new IllegalArgumentException("Attempting to unregister the wrong callbacks");
+        if (mListener != listener) {
+            throw new IllegalArgumentException("Attempting to unregister the wrong listener");
         }
-        mCallbacks = null;
+        mListener = null;
     }
 
     /**

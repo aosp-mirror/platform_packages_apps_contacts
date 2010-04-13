@@ -20,19 +20,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 
-public abstract class CursorLoader extends Loader<CursorLoader.Callbacks> {
-    private Context mContext;
-    private Cursor mCursor;
-    private ForceLoadContentObserver mObserver;
-    private boolean mClosed;
-
-    public interface Callbacks {
-        public void onCursorLoaded(Cursor cursor);
-    }
-
-    protected Context getContext() {
-        return mContext;
-    }
+public abstract class CursorLoader extends Loader<Cursor> {
+    Cursor mCursor;
+    ForceLoadContentObserver mObserver;
+    boolean mClosed;
 
     final class LoadListTask extends AsyncTask<Void, Void, Cursor> {
         /* Runs on a worker thread */
@@ -56,15 +47,12 @@ public abstract class CursorLoader extends Loader<CursorLoader.Callbacks> {
                 return;
             }
             mCursor = cursor;
-            if (mCallbacks != null) {
-                // A listener is register, notify them of the result
-                mCallbacks.onCursorLoaded(cursor);
-            }
+            deliverResult(cursor);
         }
     }
 
     public CursorLoader(Context context) {
-        mContext = context.getApplicationContext();
+        super(context);
         mObserver = new ForceLoadContentObserver();
     }
 
@@ -78,7 +66,7 @@ public abstract class CursorLoader extends Loader<CursorLoader.Callbacks> {
     @Override
     public void startLoading() {
         if (mCursor != null) {
-            mCallbacks.onCursorLoaded(mCursor);
+            deliverResult(mCursor);
         } else {
             forceLoad();
         }
