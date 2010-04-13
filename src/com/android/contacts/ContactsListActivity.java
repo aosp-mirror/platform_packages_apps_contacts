@@ -696,10 +696,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             if (component.equals("alias.DialShortcut")) {
                 mMode = MODE_PICK_PHONE;
                 mShortcutAction = Intent.ACTION_CALL;
+                mShowSearchSnippets = false;
                 setTitle(R.string.callShortcutActivityTitle);
             } else if (component.equals("alias.MessageShortcut")) {
                 mMode = MODE_PICK_PHONE;
                 mShortcutAction = Intent.ACTION_SENDTO;
+                mShowSearchSnippets = false;
                 setTitle(R.string.messageShortcutActivityTitle);
             } else if (mSearchMode) {
                 mMode = MODE_PICK_CONTACT;
