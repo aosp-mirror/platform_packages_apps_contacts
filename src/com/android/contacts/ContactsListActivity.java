@@ -393,6 +393,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     int mMode = MODE_DEFAULT;
 
+    private boolean mRunQueriesSynchronously;
     private QueryHandler mQueryHandler;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
@@ -588,6 +589,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             updateWidgets(true);
         }
     };
+
+    /**
+     * Visible for testing: makes queries run on the UI thread.
+     */
+    /* package */ void runQueriesSynchronously() {
+        mRunQueriesSynchronously = true;
+    }
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -1064,48 +1072,49 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         // This query can be performed on the UI thread because
         // the API explicitly allows such use.
-        Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI, new String[] {
-                ProviderStatus.STATUS, ProviderStatus.DATA1
-        }, null, null, null);
-        try {
-            if (cursor.moveToFirst()) {
-                int status = cursor.getInt(0);
-                if (status != mProviderStatus) {
-                    mProviderStatus = status;
-                    switch (status) {
-                        case ProviderStatus.STATUS_NORMAL:
-                            mAdapter.notifyDataSetInvalidated();
-                            if (loadData) {
-                                startQuery();
-                            }
-                            break;
+        Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI,
+                new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    int status = cursor.getInt(0);
+                    if (status != mProviderStatus) {
+                        mProviderStatus = status;
+                        switch (status) {
+                            case ProviderStatus.STATUS_NORMAL:
+                                mAdapter.notifyDataSetInvalidated();
+                                if (loadData) {
+                                    startQuery();
+                                }
+                                break;
 
-                        case ProviderStatus.STATUS_CHANGING_LOCALE:
-                            messageView.setText(R.string.locale_change_in_progress);
-                            mAdapter.changeCursor(null);
-                            mAdapter.notifyDataSetInvalidated();
-                            break;
+                            case ProviderStatus.STATUS_CHANGING_LOCALE:
+                                messageView.setText(R.string.locale_change_in_progress);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
 
-                        case ProviderStatus.STATUS_UPGRADING:
-                            messageView.setText(R.string.upgrade_in_progress);
-                            mAdapter.changeCursor(null);
-                            mAdapter.notifyDataSetInvalidated();
-                            break;
+                            case ProviderStatus.STATUS_UPGRADING:
+                                messageView.setText(R.string.upgrade_in_progress);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
 
-                        case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
-                            long size = cursor.getLong(1);
-                            String message = getResources().getString(
-                                    R.string.upgrade_out_of_memory, new Object[] {size});
-                            messageView.setText(message);
-                            configureImportFailureView(importFailureView);
-                            mAdapter.changeCursor(null);
-                            mAdapter.notifyDataSetInvalidated();
-                            break;
+                            case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
+                                long size = cursor.getLong(1);
+                                String message = getResources().getString(
+                                        R.string.upgrade_out_of_memory, new Object[] {size});
+                                messageView.setText(message);
+                                configureImportFailureView(importFailureView);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
+                        }
                     }
                 }
+            } finally {
+                cursor.close();
             }
-        } finally {
-            cursor.close();
         }
 
         importFailureView.setVisibility(
@@ -2901,6 +2910,19 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public QueryHandler(Context context) {
             super(context.getContentResolver());
             mActivity = new WeakReference<ContactsListActivity>((ContactsListActivity) context);
+        }
+
+        @Override
+        public void startQuery(int token, Object cookie, Uri uri, String[] projection,
+                String selection, String[] selectionArgs, String orderBy) {
+            final ContactsListActivity activity = mActivity.get();
+            if (activity != null && activity.mRunQueriesSynchronously) {
+                Cursor cursor = getContentResolver().query(uri, projection, selection,
+                        selectionArgs, orderBy);
+                onQueryComplete(token, cookie, cursor);
+            } else {
+                super.startQuery(token, cookie, uri, projection, selection, selectionArgs, orderBy);
+            }
         }
 
         @Override
