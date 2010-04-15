@@ -193,7 +193,7 @@ public class MockContentProvider extends ContentProvider {
         }
         if (selection != null) {
             sb.append(" selection: '").append(selection).append("'");
-            if (projection != null) {
+            if (selectionArgs != null) {
                 sb.append(Arrays.toString(selectionArgs));
             } else {
                 sb.append("[]");
@@ -203,5 +203,10 @@ public class MockContentProvider extends ContentProvider {
             sb.append(" sort: '").append(sortOrder).append("'");
         }
         return sb.toString();
+    }
+
+    public void verify() {
+        Assert.assertTrue("Not all expected queries have been called: " +
+                mExpectedQueries, mExpectedQueries.isEmpty());
     }
 }

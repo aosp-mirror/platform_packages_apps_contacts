@@ -44,6 +44,7 @@ import java.util.List;
  * Loads a single Contact and all it constituent RawContacts.
  */
 public class ContactLoader extends Loader<ContactLoader.Result> {
+    private static boolean sIsSynchronous;
     private Uri mLookupUri;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
@@ -203,8 +204,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * Tries to lookup a contact using both Id and lookup key of the given Uri. Returns a
          * valid Result instance if successful or {@link Result#NOT_FOUND} if empty
          */
-        private Result loadContactHeaderData(final ContentResolver resolver,
-                final Uri lookupUri) {
+        private Result loadContactHeaderData(final ContentResolver resolver, final Uri lookupUri) {
             if (resolver == null) throw new IllegalArgumentException("resolver must not be null");
             if (lookupUri == null) {
                 // This can happen if the row was removed
@@ -222,9 +222,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final long uriContactId = Long.parseLong(segments.get(3));
             final String uriLookupKey = Uri.encode(segments.get(2));
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, uriContactId);
-            final Uri dataUri = Uri.withAppendedPath(contactUri, Contacts.Data.CONTENT_DIRECTORY);
 
-            final Cursor cursor = resolver.query(dataUri,
+            final Cursor cursor = resolver.query(contactUri,
                     new String[] {
                         Contacts.NAME_RAW_CONTACT_ID,
                         Contacts.DISPLAY_NAME_SOURCE,
@@ -356,7 +355,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
-            super(context);
+        super(context);
         mLookupUri = lookupUri;
     }
 
@@ -371,7 +370,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
     @Override
     public void forceLoad() {
-        new LoadContactTask().execute((Void[])null);
+        LoadContactTask task = new LoadContactTask();
+        if (sIsSynchronous) {
+            task.onPostExecute(task.doInBackground((Void[])null));
+            return;
+        }
+        task.execute((Void[])null);
     }
 
     @Override
@@ -386,5 +390,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     public void destroy() {
         mContact = null;
         mDestroyed = true;
+    }
+
+
+    public static void setSynchronous(boolean value) {
+        sIsSynchronous = value;
     }
 }
