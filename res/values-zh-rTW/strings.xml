@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"標題"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"選取標籤"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"撥號即可新增通話"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"從  SIM 卡讀取中…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡聯絡人"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"您沒有任何聯絡人可供顯示 (如果您剛剛才新增帳戶，系統需要幾分鐘的時間才能同步聯絡人資訊)。"</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"您沒有任何聯絡人可供顯示。"</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"您沒有任何聯絡人。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"<b></b></font>"] 並輕觸："\n" "\n<li>"["<font fgcolor="#ffffffff">"帳戶"<b></b></font>" 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您沒有任何聯絡人 (如果您剛剛才新增帳戶，系統需要幾分鐘的時間才能同步聯絡人資訊)。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"</font><b></b>"] 並輕觸："\n\n"["<li><font fgcolor="#ffffffff">"帳戶"<b></b></font>"] 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"顯示選項"<b></b></font>"] 來變更聯絡人的顯示狀態"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您沒有任何聯絡人。"\n\n"如要新增聯絡人，請按下 ["<font fgcolor="#ffffffff">"選單"<b></b></font>"] 並輕觸："\n" "\n<li>"["<font fgcolor="#ffffffff">"帳戶"<b></b></font>" 來新增或設定您可以同步處理手機資料的聯絡人帳戶"\n</li>" "\n<li>"["<font fgcolor="#ffffffff">"新增聯絡人"<b></b></font>"] 從頭開始建立聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"匯入/匯出"</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
     <string name="pick_photo" msgid="448886509158039462">"從圖片庫選取相片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新聯絡人清單以反映語言變更。"\n\n"請稍候..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"正在更新聯絡人清單。"\n\n"請稍候..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"正在進行聯絡人升級。"\n\n"升級程序需要大約 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB 的手機內部儲存空間。"\n\n"請選擇下列其中一個選項："</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"解除安裝一些應用程式"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重試升級"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"此項目之搜尋結果：<xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"搜尋中..."</string>
 </resources>
