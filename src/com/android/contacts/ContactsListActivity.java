@@ -2087,6 +2087,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return Contacts.CONTENT_URI;
 
             case MODE_DEFAULT:
+            case MODE_CUSTOM:
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT:{
@@ -2210,6 +2211,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             case MODE_FREQUENT:
             case MODE_STARRED:
             case MODE_DEFAULT:
+            case MODE_CUSTOM:
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_GROUP:
             case MODE_PICK_CONTACT:
@@ -2409,6 +2411,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         switch (mMode) {
             case MODE_GROUP:
             case MODE_DEFAULT:
+            case MODE_CUSTOM:
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT:
@@ -2417,7 +2420,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 break;
 
             case MODE_LEGACY_PICK_PERSON:
-            case MODE_LEGACY_PICK_OR_CREATE_PERSON:
+            case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, null, null,
+                        People.DISPLAY_NAME);
+                break;
+            }
             case MODE_PICK_POSTAL:
             case MODE_QUERY:
             case MODE_QUERY_PICK:
@@ -2448,16 +2455,20 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 break;
 
             case MODE_PICK_PHONE:
-            case MODE_LEGACY_PICK_PHONE:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection, CLAUSE_ONLY_VISIBLE, null, getSortOrder(projection));
+                break;
+
+            case MODE_LEGACY_PICK_PHONE:
+                mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
+                        projection, null, null, Phones.DISPLAY_NAME);
                 break;
 
             case MODE_LEGACY_PICK_POSTAL:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection,
                         ContactMethods.KIND + "=" + android.provider.Contacts.KIND_POSTAL, null,
-                        getSortOrder(projection));
+                        ContactMethods.DISPLAY_NAME);
                 break;
 
             case MODE_JOIN_CONTACT:
@@ -2483,6 +2494,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         final ContentResolver resolver = getContentResolver();
         switch (mMode) {
             case MODE_DEFAULT:
+            case MODE_CUSTOM:
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT:
             case MODE_INSERT_OR_EDIT_CONTACT: {
@@ -2493,7 +2505,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             case MODE_LEGACY_PICK_PERSON:
             case MODE_LEGACY_PICK_OR_CREATE_PERSON: {
                 return resolver.query(getPeopleFilterUri(filter), projection, null, null,
-                        getSortOrder(projection));
+                        People.DISPLAY_NAME);
             }
 
             case MODE_STARRED: {
@@ -3057,7 +3069,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 }
                 default: {
                     nameColumnIndex = getSummaryDisplayNameColumnIndex();
-                    phoneticNameColumnIndex = SUMMARY_PHONETIC_NAME_COLUMN_INDEX;
+                    if (mMode == MODE_LEGACY_PICK_PERSON
+                            || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
+                        phoneticNameColumnIndex = -1;
+                    } else {
+                        phoneticNameColumnIndex = SUMMARY_PHONETIC_NAME_COLUMN_INDEX;
+                    }
                     dataColumnIndex = -1;
                     typeColumnIndex = -1;
                     labelColumnIndex = -1;
