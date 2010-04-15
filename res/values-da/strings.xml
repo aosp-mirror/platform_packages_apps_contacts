@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Fornavn og efternavn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Virksomhed"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten eksisterer ikke."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontakt"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Vælg etiket"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Ring og tilføj et opkald"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Indlæser fra SIM-kort ..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontaktpersoner. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontaktpersoner)."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontaktpersoner."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"Du har ingen kontakter."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, som du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt helt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Du har ingen kontakter. (Hvis du lige har tilføjet en konto, kan det tage et par minutter at synkronisere kontakter)."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontaktner, du kan synkronisere til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Indstillinger for visning"</b></font>" for at ændre, hvilke kontakter der er synlige"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Du har ingen kontakter."\n\n"Hvis du vil tilføje kontakter, skal du trykke på "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" og på"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konti"</b></font>" for at tilføje eller konfigurere en konto med kontakter, du kan synkronisere med telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for at oprette en ny kontakt fra bunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"Tag billede"</string>
     <string name="pick_photo" msgid="448886509158039462">"Vælg foto fra Galleri"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlisten opdateres for at afspejle ændringen af sprog."\n\n"Vent et øjeblik..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"Listen over kontaktpersoner opdateres."\n\n"Vent et øjeblik ..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"Kontaktpersonerne er ved at blive opgraderet. "\n\n"Opgraderingen kræver ca. <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB intern lagerplads på telefonen."\n\n"Vælg et af følgende:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Afinstaller nogle programmer"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv at opgradere igen"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"Søgeresultater for: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Søger ..."</string>
 </resources>

@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"职位"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"该联系人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"选择标签"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"拨号以添加通话"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"正从 SIM 卡中载入..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡联系人"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"没有任何联系人可供显示。（如果您刚刚添加了一个帐户，则系统需要几分钟的时间同步联系人。）"</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"没有任何联系人可供显示。"</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"您没有任何联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您还没有联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"-添加或配置帐户（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"-更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"MENU"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置帐号（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
     <string name="pick_photo" msgid="448886509158039462">"从图库中选择照片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新联系人列表，以反映语言的变更。"\n\n"请稍候..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"正在更新联系人列表。"\n\n"请稍候..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"正在升级联系人。"\n\n"升级过程需要约 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> Mb 的手机内存。"\n\n"请选择以下选项之一："</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"卸载一些应用程序"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重新尝试升级"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"“<xliff:g id="QUERY">%s</xliff:g>”的搜索结果"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"正在搜索..."</string>
 </resources>

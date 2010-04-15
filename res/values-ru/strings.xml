@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Имя и фамилия"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Произношение имени"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Название"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Контакт не существует."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Выбор ярлыка"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Наберите номер, чтобы добавить вызов"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Загрузка с SIM-карты…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Контакты на SIM-карте"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Отсутствуют контакты для отображения. (Если аккаунт был только что добавлен, потребуется несколько минут для синхронизации контактов.)"</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Отсутствуют контакты для отображения."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"У вас нет контактов."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"У вас нет контактов. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.)"\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", чтобы выбрать, какие контакты будут видны; "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"У вас нет контактов."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать контакт \"с нуля\";"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/Экспорт."</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"Сфотографировать"</string>
     <string name="pick_photo" msgid="448886509158039462">"Выбрать фото из фотоальбома"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Выполняется обновление списка контактов, чтобы изменение языка вступило в силу."\n\n"Подождите..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"Обновляется список контактов."\n\n"Подождите..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"Контакты обновляются. "\n\n" Для обновления требуется около <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> МБ внутренней памяти телефона."\n\n"Выберите один из следующих вариантов:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Удалить некоторые приложения"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повторить попытку обновления"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"Результаты поиска для: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Поиск..."</string>
 </resources>
