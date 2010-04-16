@@ -122,7 +122,6 @@ public class ImportVCardService extends Service {
     private class VCardReadThread extends Thread {
         private final Context mContext;
         private final ContentResolver mResolver;
-        private final int mPreferedVCardType;
         private VCardParser mVCardParser;
         private boolean mCanceled;
         private final List<Uri> mErrorUris;
@@ -131,8 +130,6 @@ public class ImportVCardService extends Service {
         public VCardReadThread() {
             mContext = ImportVCardService.this;
             mResolver = mContext.getContentResolver();
-            mPreferedVCardType = VCardConfig.getVCardTypeFromString(
-                    mContext.getString(R.string.config_import_vcard_type));
             mErrorUris = new ArrayList<Uri>();
             mCreatedUris = new ArrayList<Uri>();
         }
@@ -140,6 +137,9 @@ public class ImportVCardService extends Service {
         @Override
         public void run() {
             while (!mCanceled) {
+                mErrorUris.clear();
+                mCreatedUris.clear();
+
                 final Account account;
                 final Uri[] uris;
                 final int id;
@@ -157,8 +157,6 @@ public class ImportVCardService extends Service {
                 }
                 runInternal(account, uris, id);
                 doFinishNotification(id, uris);
-                mErrorUris.clear();
-                mCreatedUris.clear();
             }
             Log.i(LOG_TAG, "Successfully imported. Total: " + mTotalCount);
             stopSelf();
@@ -168,7 +166,6 @@ public class ImportVCardService extends Service {
             int totalCount = 0;
             final ArrayList<VCardSourceDetector> detectorList =
                 new ArrayList<VCardSourceDetector>();
-            final String defaultCharset = VCardConfig.DEFAULT_IMPORT_CHARSET;
             // First scan all Uris with a default charset and try to understand an exact
             // charset to be used to each Uri. Note that detector would return null when
             // it does not know an appropriate charset, so stick to use the default
@@ -182,13 +179,9 @@ public class ImportVCardService extends Service {
                 final VCardSourceDetector detector = new VCardSourceDetector();
                 final VCardInterpreterCollection interpreterCollection =
                         new VCardInterpreterCollection(Arrays.asList(counter, detector));
-                try {
-                    if (!readOneVCard(uri, defaultCharset,
-                            interpreterCollection, null, true)) {
-                        mErrorUris.add(uri);
-                    }
-                } catch (VCardNestedException e) {
-                    // Assume that VCardSourceDetector was able to detect the source.
+                if (!readOneVCard(uri, VCardConfig.VCARD_TYPE_UNKNOWN, null,
+                        interpreterCollection)) {
+                    mErrorUris.add(uri);
                 }
 
                 totalCount += counter.getCount();
@@ -227,28 +220,20 @@ public class ImportVCardService extends Service {
                     return;
                 }
                 final Uri uri = uris[i];
+
                 final VCardSourceDetector detector = detectorList.get(i);
-                final int vcardType = mPreferedVCardType;
-                String charset = detector.getEstimatedCharset();
-                if (charset == null) {
-                    charset = defaultCharset;
-                }
+                final int vcardType =  detector.getEstimatedType();  
+                final String charset = detector.getEstimatedCharset();
+
                 final VCardEntryConstructor constructor =
                         new VCardEntryConstructor(charset, charset, false, vcardType, account);
                 final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
-                final ProgressNotifier notifier = new ProgressNotifier(id);
                 constructor.addEntryHandler(committer);
-                constructor.addEntryHandler(notifier);
+                constructor.addEntryHandler(new ProgressNotifier(id));
 
-                try {
-                    if (!readOneVCard(uri, charset, constructor, detector, false)) {
+                if (!readOneVCard(uri, vcardType, charset, constructor)) {
                         Log.e(LOG_TAG, "Failed to read \"" + uri.toString() + "\" " +
                                 "while first scan was successful.");
-                    }
-                } catch (VCardNestedException e) {
-                    // We should already know the number of nests in the first scan and
-                    // treat them at this time.
-                    Log.e(LOG_TAG, "Must not reach here.");
                 }
                 final List<Uri> createdUris = committer.getCreatedUris();
                 if (createdUris != null && createdUris.size() > 0) {
@@ -259,18 +244,18 @@ public class ImportVCardService extends Service {
             }
         }
 
-        private boolean readOneVCard(Uri uri, String charset, VCardInterpreter interpreter,
-                VCardSourceDetector detector, boolean throwNestedException)
-                throws VCardNestedException {
+        private boolean readOneVCard(Uri uri, int vcardType, String charset,
+                VCardInterpreter interpreter) {
             InputStream is;
             try {
+                // TODO: use vcardType given from detector and stop trying to read the file twice.
                 is = mResolver.openInputStream(uri);
 
                 // We need synchronized since we need to handle mCanceled and mVCardParser
                 // at once. In the worst case, a user may call cancel() just before recreating
                 // mVCardParser.
                 synchronized (this) {
-                    mVCardParser = new VCardParser_V21(detector);
+                    mVCardParser = new VCardParser_V21(vcardType);
                     if (mCanceled) {
                         mVCardParser.cancel();
                     }
@@ -312,10 +297,19 @@ public class ImportVCardService extends Service {
             } catch (IOException e) {
                 Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
                 return false;
+            } catch (VCardNestedException e) {
+                // In the first scan, we may (correctly) encounter this exception.
+                // We assume that we were able to detect the type of vCard before
+                // the exception being thrown.
+                //
+                // In the second scan, we may (inappropriately) encounter it.
+                // We silently ignore it, since
+                // - It is really unusual situation.
+                // - We cannot handle it by definition.
+                // - Users cannot either.
+                // - We should not accept unnecessarily complicated vCard, possibly by wrong manner.
+                Log.w(LOG_TAG, "Nested Exception is found (it may be false-positive).");
             } catch (VCardNotSupportedException e) {
-                if ((e instanceof VCardNestedException) && throwNestedException) {
-                    throw (VCardNestedException) e;
-                }
                 return false;
             } catch (VCardException e) {
                 return false;
