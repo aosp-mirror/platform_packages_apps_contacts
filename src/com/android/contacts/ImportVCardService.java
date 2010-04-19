@@ -223,10 +223,10 @@ public class ImportVCardService extends Service {
 
                 final VCardSourceDetector detector = detectorList.get(i);
                 final int vcardType =  detector.getEstimatedType();  
-                final String charset = detector.getEstimatedCharset();
+                final String charset = detector.getEstimatedCharset();  // May be null.
 
                 final VCardEntryConstructor constructor =
-                        new VCardEntryConstructor(charset, charset, false, vcardType, account);
+                        new VCardEntryConstructor(charset, vcardType, account);
                 final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
                 constructor.addEntryHandler(committer);
                 constructor.addEntryHandler(new ProgressNotifier(id));
@@ -255,14 +255,14 @@ public class ImportVCardService extends Service {
                 // at once. In the worst case, a user may call cancel() just before recreating
                 // mVCardParser.
                 synchronized (this) {
-                    mVCardParser = new VCardParser_V21(vcardType);
+                    mVCardParser = new VCardParser_V21(vcardType, charset);
                     if (mCanceled) {
                         mVCardParser.cancel();
                     }
                 }
 
                 try {
-                    mVCardParser.parse(is, charset, interpreter);
+                    mVCardParser.parse(is, interpreter);
                 } catch (VCardVersionException e1) {
                     try {
                         is.close();
@@ -275,14 +275,14 @@ public class ImportVCardService extends Service {
                     is = mResolver.openInputStream(uri);
 
                     synchronized (this) {
-                        mVCardParser = new VCardParser_V30();
+                        mVCardParser = new VCardParser_V30(vcardType, charset);
                         if (mCanceled) {
                             mVCardParser.cancel();
                         }
                     }
 
                     try {
-                        mVCardParser.parse(is, charset, interpreter);
+                        mVCardParser.parse(is, interpreter);
                     } catch (VCardVersionException e2) {
                         throw new VCardException("vCard with unspported version.");
                     }
