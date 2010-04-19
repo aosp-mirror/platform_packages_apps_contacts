@@ -44,7 +44,7 @@ import java.util.List;
  * Loads a single Contact and all it constituent RawContacts.
  */
 public class ContactLoader extends Loader<ContactLoader.Result> {
-    private static boolean sIsSynchronous;
+    private boolean mIsSynchronous;
     private Uri mLookupUri;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
@@ -69,10 +69,19 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final String mLookupKey;
         private final Uri mUri;
         private final long mId;
-        private final ArrayList<Entity> mEntities;
-        private final HashMap<Long, DataStatus> mStatuses;
         private final long mNameRawContactId;
         private final int mDisplayNameSource;
+        private final long mPhotoId;
+        private final String mDisplayName;
+        private final String mPhoneticName;
+        private final boolean mStarred;
+        private final Integer mPresence;
+        private final ArrayList<Entity> mEntities;
+        private final HashMap<Long, DataStatus> mStatuses;
+        private final String mStatus;
+        private final Long mStatusTimestamp;
+        private final Integer mStatusLabel;
+        private final String mStatusResPackage;
 
         /**
          * Constructor for case "no contact found". This must only be used for the
@@ -87,13 +96,24 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStatuses = null;
             mNameRawContactId = -1;
             mDisplayNameSource = DisplayNameSources.UNDEFINED;
+            mPhotoId = -1;
+            mDisplayName = null;
+            mPhoneticName = null;
+            mStarred = false;
+            mPresence = null;
+            mStatus = null;
+            mStatusTimestamp = null;
+            mStatusLabel = null;
+            mStatusResPackage = null;
         }
 
         /**
          * Constructor to call when contact was found
          */
         private Result(Uri lookupUri, String lookupKey, Uri uri, long id, long nameRawContactId,
-                int displayNameSource) {
+                int displayNameSource, long photoId, String displayName, String phoneticName,
+                boolean starred, Integer presence, String status, Long statusTimestamp,
+                Integer statusLabel, String statusResPackage) {
             mLookupUri = lookupUri;
             mLookupKey = lookupKey;
             mUri = uri;
@@ -102,6 +122,15 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStatuses = new HashMap<Long, DataStatus>();
             mNameRawContactId = nameRawContactId;
             mDisplayNameSource = displayNameSource;
+            mPhotoId = photoId;
+            mDisplayName = displayName;
+            mPhoneticName = phoneticName;
+            mStarred = starred;
+            mPresence = presence;
+            mStatus = status;
+            mStatusTimestamp = statusTimestamp;
+            mStatusLabel = statusLabel;
+            mStatusResPackage = statusResPackage;
         }
 
         public Uri getLookupUri() {
@@ -116,21 +145,48 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public long getId() {
             return mId;
         }
-        public ArrayList<Entity> getEntities() {
-            return mEntities;
-        }
-        public HashMap<Long, DataStatus> getStatuses() {
-            return mStatuses;
-        }
         public long getNameRawContactId() {
             return mNameRawContactId;
         }
         public int getDisplayNameSource() {
             return mDisplayNameSource;
         }
+        public long getPhotoId() {
+            return mPhotoId;
+        }
+        public String getDisplayName() {
+            return mDisplayName;
+        }
+        public String getPhoneticName() {
+            return mPhoneticName;
+        }
+        public boolean getStarred() {
+            return mStarred;
+        }
+        public Integer getPresence() {
+            return mPresence;
+        }
+        public String getStatus() {
+            return mStatus;
+        }
+        public Long getStatusTimestamp() {
+            return mStatusTimestamp;
+        }
+        public Integer getStatusLabel() {
+            return mStatusLabel;
+        }
+        public String getStatusResPackage() {
+            return mStatusResPackage;
+        }
+        public ArrayList<Entity> getEntities() {
+            return mEntities;
+        }
+        public HashMap<Long, DataStatus> getStatuses() {
+            return mStatuses;
+        }
     }
 
-    interface StatusQuery {
+    private interface StatusQuery {
         final String[] PROJECTION = new String[] {
                 Data._ID, Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
                 Data.STATUS_LABEL, Data.STATUS_TIMESTAMP, Data.PRESENCE,
@@ -139,15 +195,38 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         final int _ID = 0;
     }
 
-    public final class LoadContactTask extends AsyncTask<Void, Void, Result> {
+    private interface ContactQuery {
+        //Projection used for the summary info in the header.
+        final static String[] COLUMNS = new String[] {
+                Contacts.NAME_RAW_CONTACT_ID,
+                Contacts.DISPLAY_NAME_SOURCE,
+                Contacts.LOOKUP_KEY,
+                Contacts.DISPLAY_NAME,
+                Contacts.PHONETIC_NAME,
+                Contacts.PHOTO_ID,
+                Contacts.STARRED,
+                Contacts.CONTACT_PRESENCE,
+                Contacts.CONTACT_STATUS,
+                Contacts.CONTACT_STATUS_TIMESTAMP,
+                Contacts.CONTACT_STATUS_RES_PACKAGE,
+                Contacts.CONTACT_STATUS_LABEL,
+        };
+        final static int NAME_RAW_CONTACT_ID = 0;
+        final static int DISPLAY_NAME_SOURCE = 1;
+        final static int LOOKUP_KEY = 2;
+        final static int DISPLAY_NAME = 3;
+        final static int PHONETIC_NAME = 4;
+        final static int PHOTO_ID = 5;
+        final static int STARRED = 6;
+        final static int CONTACT_PRESENCE = 7;
+        final static int CONTACT_STATUS = 8;
+        final static int CONTACT_STATUS_TIMESTAMP = 9;
+        final static int CONTACT_STATUS_RES_PACKAGE = 10;
+        final static int CONTACT_STATUS_LABEL = 11;
+    }
 
-        /**
-         * Used for synchronuous calls in unit test
-         * @hide
-         */
-        public Result testExecute() {
-            return doInBackground();
-        }
+
+    public final class LoadContactTask extends AsyncTask<Void, Void, Result> {
 
         @Override
         protected Result doInBackground(Void... args) {
@@ -223,12 +302,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final String uriLookupKey = Uri.encode(segments.get(2));
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, uriContactId);
 
-            final Cursor cursor = resolver.query(contactUri,
-                    new String[] {
-                        Contacts.NAME_RAW_CONTACT_ID,
-                        Contacts.DISPLAY_NAME_SOURCE,
-                        Contacts.LOOKUP_KEY
-                    }, null, null, null);
+            final Cursor cursor = resolver.query(contactUri, ContactQuery.COLUMNS, null, null,
+                    null);
             if (cursor == null) {
                 Log.e(TAG, "No cursor returned in trySetupContactHeader/query");
                 return null;
@@ -239,8 +314,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                             "ContactId must have changed or item has been removed");
                     return Result.NOT_FOUND;
                 }
-                String lookupKey =
-                        cursor.getString(cursor.getColumnIndex(Contacts.LOOKUP_KEY));
+                final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
                 if (!lookupKey.equals(uriLookupKey)) {
                     // ID and lookup key do not match
                     Log.w(TAG, "Contact with Id=" + uriContactId + " has a wrong lookupKey ("
@@ -248,13 +322,28 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     return Result.NOT_FOUND;
                 }
 
-                long nameRawContactId = cursor.getLong(cursor.getColumnIndex(
-                        Contacts.NAME_RAW_CONTACT_ID));
-                int displayNameSource = cursor.getInt(cursor.getColumnIndex(
-                        Contacts.DISPLAY_NAME_SOURCE));
+                final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
+                final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
+                final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
+                final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
+                final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
+                final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
+                final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
+                        ? null
+                        : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
+                final String status = cursor.getString(ContactQuery.CONTACT_STATUS);
+                final Long statusTimestamp = cursor.isNull(ContactQuery.CONTACT_STATUS_TIMESTAMP)
+                        ? null
+                        : cursor.getLong(ContactQuery.CONTACT_STATUS_TIMESTAMP);
+                final Integer statusLabel = cursor.isNull(ContactQuery.CONTACT_STATUS_LABEL)
+                        ? null
+                        : cursor.getInt(ContactQuery.CONTACT_STATUS_LABEL);
+                final String statusResPackage = cursor.getString(
+                        ContactQuery.CONTACT_STATUS_RES_PACKAGE);
 
                 return new Result(lookupUri, lookupKey, contactUri, uriContactId, nameRawContactId,
-                        displayNameSource);
+                        displayNameSource, photoId, displayName, phoneticName, starred, presence,
+                        status, statusTimestamp, statusLabel, statusResPackage);
             } finally {
                 cursor.close();
             }
@@ -371,7 +460,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     @Override
     public void forceLoad() {
         LoadContactTask task = new LoadContactTask();
-        if (sIsSynchronous) {
+        if (mIsSynchronous) {
             task.onPostExecute(task.doInBackground((Void[])null));
             return;
         }
@@ -393,7 +482,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
 
-    public static void setSynchronous(boolean value) {
-        sIsSynchronous = value;
+    public void setSynchronous(boolean value) {
+        mIsSynchronous = value;
     }
 }

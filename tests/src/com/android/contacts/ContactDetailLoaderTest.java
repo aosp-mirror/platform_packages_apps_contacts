@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.mvcframework.Loader.OnLoadCompleteListener;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.views.detail.ContactLoader;
@@ -45,7 +46,6 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        ContactLoader.setSynchronous(true);
         mMockContext = new ContactsMockContext(getContext());
         mContactsProvider = mMockContext.getContactsProvider();
     }
@@ -53,7 +53,6 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
-        ContactLoader.setSynchronous(false);
     }
 
     /**
@@ -77,8 +76,16 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
 
     private ContactLoader.Result assertLoadContact(Uri uri) {
         final ContactLoader loader = new ContactLoader(mMockContext, uri);
-        final ContactLoader.LoadContactTask loadContactTask = loader.new LoadContactTask();
-        return loadContactTask.testExecute();
+        loader.setSynchronous(true);
+        // A regular variable can not be written from an anonymous class, so use a 1-array
+        final ContactLoader.Result[] result = new ContactLoader.Result[1];
+        loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
+            public void onLoadComplete(int id, ContactLoader.Result data) {
+                result[0] = data;
+            }
+        });
+        loader.startLoading();
+        return result[0];
     }
 
     public void testNullUri() {
@@ -418,11 +425,29 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
                     .withProjection(
                             Contacts.NAME_RAW_CONTACT_ID,
                             Contacts.DISPLAY_NAME_SOURCE,
-                            Contacts.LOOKUP_KEY)
+                            Contacts.LOOKUP_KEY,
+                            Contacts.DISPLAY_NAME,
+                            Contacts.PHONETIC_NAME,
+                            Contacts.PHOTO_ID,
+                            Contacts.STARRED,
+                            Contacts.CONTACT_PRESENCE,
+                            Contacts.CONTACT_STATUS,
+                            Contacts.CONTACT_STATUS_TIMESTAMP,
+                            Contacts.CONTACT_STATUS_RES_PACKAGE,
+                            Contacts.CONTACT_STATUS_LABEL)
                     .returnRow(
                             expectedRawContactId,
                             DisplayNameSources.STRUCTURED_NAME,
-                            expectedEncodedLookup);
+                            expectedEncodedLookup,
+                            "contactDisplayName",
+                            "contactPhoneticName",
+                            null,
+                            0,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null);
         }
 
         private void fetchHeaderDataNoResult(final Uri uri) {
@@ -430,7 +455,16 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
                     .withProjection(
                             Contacts.NAME_RAW_CONTACT_ID,
                             Contacts.DISPLAY_NAME_SOURCE,
-                            Contacts.LOOKUP_KEY);
+                            Contacts.LOOKUP_KEY,
+                            Contacts.DISPLAY_NAME,
+                            Contacts.PHONETIC_NAME,
+                            Contacts.PHOTO_ID,
+                            Contacts.STARRED,
+                            Contacts.CONTACT_PRESENCE,
+                            Contacts.CONTACT_STATUS,
+                            Contacts.CONTACT_STATUS_TIMESTAMP,
+                            Contacts.CONTACT_STATUS_RES_PACKAGE,
+                            Contacts.CONTACT_STATUS_LABEL);
         }
 
         private void fetchLookupAndId(final Uri sourceUri, final long expectedContactId,
