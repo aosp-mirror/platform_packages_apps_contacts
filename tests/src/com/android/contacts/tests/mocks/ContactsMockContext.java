@@ -55,4 +55,9 @@ public class ContactsMockContext extends ContextWrapper {
     public MockContentProvider getSettingsProvider() {
         return mSettingsProvider;
     }
+
+    @Override
+    public Context getApplicationContext() {
+        return this;
+    }
 }

@@ -16,33 +16,44 @@
 
 package com.android.contacts;
 
+import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.views.detail.ContactLoader;
 
 import android.content.ContentUris;
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.RawContactsEntity;
+import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.RawContacts.Data;
+import android.provider.ContactsContract.RawContacts.Entity;
 import android.test.AndroidTestCase;
 
 import junit.framework.AssertionFailedError;
 
 /**
  * Runs ContactLoader tests for the the contact-detail view.
- * TODO: Warning: This currently only works on wiped phones as this will wipe
- * your contact data
- * TODO: Test all fields returned by the Loader
- * TODO: Test social entries returned by the Loader
  */
 public class ContactDetailLoaderTest extends AndroidTestCase {
+    private ContactsMockContext mMockContext;
+    private MockContentProvider mContactsProvider;
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        //mContext.getContentResolver().delete(Data.CONTENT_URI, null, null);
-        //mContext.getContentResolver().delete(RawContacts.CONTENT_URI, null, null);
+        ContactLoader.setSynchronous(true);
+        mMockContext = new ContactsMockContext(getContext());
+        mContactsProvider = mMockContext.getContactsProvider();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+        ContactLoader.setSynchronous(false);
     }
 
     /**
@@ -65,87 +76,9 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
     }
 
     private ContactLoader.Result assertLoadContact(Uri uri) {
-        final ContactLoader loader = new ContactLoader(mContext, uri);
+        final ContactLoader loader = new ContactLoader(mMockContext, uri);
         final ContactLoader.LoadContactTask loadContactTask = loader.new LoadContactTask();
         return loadContactTask.testExecute();
-    }
-
-    protected Uri insertStructuredName(long rawContactId, String givenName, String familyName) {
-        ContentValues values = new ContentValues();
-        StringBuilder sb = new StringBuilder();
-        if (givenName != null) {
-            sb.append(givenName);
-        }
-        if (givenName != null && familyName != null) {
-            sb.append(" ");
-        }
-        if (familyName != null) {
-            sb.append(familyName);
-        }
-        values.put(StructuredName.DISPLAY_NAME, sb.toString());
-        values.put(StructuredName.GIVEN_NAME, givenName);
-        values.put(StructuredName.FAMILY_NAME, familyName);
-
-        return insertStructuredName(rawContactId, values);
-    }
-
-    protected Uri insertStructuredName(long rawContactId, ContentValues values) {
-        values.put(Data.RAW_CONTACT_ID, rawContactId);
-        values.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
-        Uri resultUri = getContext().getContentResolver().insert(Data.CONTENT_URI, values);
-        return resultUri;
-    }
-
-    protected Cursor queryRawContact(long rawContactId) {
-        return getContext().getContentResolver().query(ContentUris.withAppendedId(
-                RawContacts.CONTENT_URI, rawContactId), null, null, null, null);
-    }
-
-    protected Cursor queryContact(long contactId) {
-        return getContext().getContentResolver().query(ContentUris.withAppendedId(
-                Contacts.CONTENT_URI, contactId), null, null, null, null);
-    }
-
-    private long getContactIdByRawContactId(long rawContactId) {
-        Cursor c = queryRawContact(rawContactId);
-        assertTrue(c.moveToFirst());
-        long contactId = c.getLong(c.getColumnIndex(RawContacts.CONTACT_ID));
-        c.close();
-        return contactId;
-    }
-
-    private String getContactLookupByContactId(long contactId) {
-        Cursor c = queryContact(contactId);
-        assertTrue(c.moveToFirst());
-        String lookup = c.getString(c.getColumnIndex(Contacts.LOOKUP_KEY));
-        c.close();
-        return lookup;
-    }
-
-    public long createRawContact(String sourceId, String givenName, String familyName) {
-        ContentValues values = new ContentValues();
-
-        values.put(RawContacts.ACCOUNT_NAME, "aa");
-        values.put(RawContacts.ACCOUNT_TYPE, "mock");
-        values.put(RawContacts.SOURCE_ID, sourceId);
-        values.put(RawContacts.VERSION, 1);
-        values.put(RawContacts.DELETED, 0);
-        values.put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DEFAULT);
-        values.put(RawContacts.CUSTOM_RINGTONE, "d");
-        values.put(RawContacts.SEND_TO_VOICEMAIL, 1);
-        values.put(RawContacts.LAST_TIME_CONTACTED, 12345);
-        values.put(RawContacts.STARRED, 1);
-        values.put(RawContacts.SYNC1, "e");
-        values.put(RawContacts.SYNC2, "f");
-        values.put(RawContacts.SYNC3, "g");
-        values.put(RawContacts.SYNC4, "h");
-
-        Uri rawContactUri =
-            getContext().getContentResolver().insert(RawContacts.CONTENT_URI, values);
-
-        long rawContactId = ContentUris.parseId(rawContactUri);
-        insertStructuredName(rawContactId, givenName, familyName);
-        return rawContactId;
     }
 
     public void testNullUri() {
@@ -180,117 +113,346 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
 
     public void testLoadContactWithContactIdUri() {
         // Use content Uris that only contain the ID
-        // Use some special characters in the source id to ensure that Encode/Decode properly
-        // works in Uris
-        long rawContactId1 = createRawContact("JohnDoe:;\"'[]{}=+-_\\|/.,<>?!@#$", "John", "Doe");
-        long rawContactId2 = createRawContact("JaneDuh%12%%^&*()", "Jane", "Duh");
+        final long contactId = 1;
+        final long rawContactId = 11;
+        final long dataId = 21;
 
-        long contactId1 = getContactIdByRawContactId(rawContactId1);
-        long contactId2 = getContactIdByRawContactId(rawContactId2);
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
-        Uri contactUri1 = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId1);
-        Uri contactUri2 = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId2);
+        ContactQueries queries = new ContactQueries();
+        queries.fetchLookupAndId(baseUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact1 = assertLoadContact(contactUri1);
-        ContactLoader.Result contact2 = assertLoadContact(contactUri2);
+        ContactLoader.Result contact = assertLoadContact(baseUri);
 
-        assertEquals(contactId1, contact1.getId());
-        assertEquals(contactId2, contact2.getId());
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+        mContactsProvider.verify();
     }
 
     public void testLoadContactWithOldStyleUri() {
         // Use content Uris that only contain the ID but use the format used in Donut
-        long rawContactId1 = createRawContact("JohnDoe", "John", "Doe");
-        long rawContactId2 = createRawContact("JaneDuh", "Jane", "Duh");
+        final long contactId = 1;
+        final long rawContactId = 11;
+        final long dataId = 21;
 
-        Uri oldUri1 = ContentUris.withAppendedId(Uri.parse("content://contacts"), rawContactId1);
-        Uri oldUri2 = ContentUris.withAppendedId(Uri.parse("content://contacts"), rawContactId2);
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final Uri legacyUri = ContentUris.withAppendedId(
+                Uri.parse("content://contacts"), rawContactId);
+        final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
-        ContactLoader.Result contact1 = assertLoadContact(oldUri1);
-        ContactLoader.Result contact2 = assertLoadContact(oldUri2);
+        ContactQueries queries = new ContactQueries();
+        queries.fetchContactIdAndLookupFromRawContactUri(rawContactUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        long contactId1 = getContactIdByRawContactId(rawContactId1);
-        long contactId2 = getContactIdByRawContactId(rawContactId2);
+        ContactLoader.Result contact = assertLoadContact(legacyUri);
 
-        assertEquals(contactId1, contact1.getId());
-        assertEquals(contactId2, contact2.getId());
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+        mContactsProvider.verify();
     }
 
     public void testLoadContactWithContactLookupUri() {
         // Use lookup-style Uris that do not contain the Contact-ID
-        long rawContactId1 = createRawContact("JohnDoe", "John", "Doe");
-        long rawContactId2 = createRawContact("JaneDuh", "Jane", "Duh");
 
-        assertTrue(rawContactId1 != rawContactId2);
+        final long contactId = 1;
+        final long rawContactId = 11;
+        final long dataId = 21;
 
-        long contactId1 = getContactIdByRawContactId(rawContactId1);
-        long contactId2 = getContactIdByRawContactId(rawContactId2);
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri lookupNoIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup);
+        final Uri lookupUri = ContentUris.withAppendedId(lookupNoIdUri, contactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
-        assertTrue(contactId1 != contactId2);
+        ContactQueries queries = new ContactQueries();
+        queries.fetchLookupAndId(lookupNoIdUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        String lookupKey1 = getContactLookupByContactId(contactId1);
-        String lookupKey2 = getContactLookupByContactId(contactId2);
-        assertFalse(lookupKey1.equals(lookupKey2));
+        ContactLoader.Result contact = assertLoadContact(lookupNoIdUri);
 
-        Uri contactLookupUri1 = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey1);
-        Uri contactLookupUri2 = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey2);
-
-        ContactLoader.Result contact1 = assertLoadContact(contactLookupUri1);
-        ContactLoader.Result contact2 = assertLoadContact(contactLookupUri2);
-
-        assertEquals(contactId1, contact1.getId());
-        assertEquals(contactId2, contact2.getId());
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+        mContactsProvider.verify();
     }
 
     public void testLoadContactWithContactLookupAndIdUri() {
         // Use lookup-style Uris that also contain the Contact-ID
-        long rawContactId1 = createRawContact("JohnDoe", "John", "Doe");
-        long rawContactId2 = createRawContact("JaneDuh", "Jane", "Duh");
+        final long contactId = 1;
+        final long rawContactId = 11;
+        final long dataId = 21;
 
-        long contactId1 = getContactIdByRawContactId(rawContactId1);
-        long contactId2 = getContactIdByRawContactId(rawContactId2);
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
-        String lookupKey1 = getContactLookupByContactId(contactId1);
-        String lookupKey2 = getContactLookupByContactId(contactId2);
+        ContactQueries queries = new ContactQueries();
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        Uri contactLookupUri1 = ContentUris.withAppendedId(
-                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey1), contactId1);
-        Uri contactLookupUri2 = ContentUris.withAppendedId(
-                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey2), contactId2);
+        ContactLoader.Result contact = assertLoadContact(lookupUri);
 
-        ContactLoader.Result contact1 = assertLoadContact(contactLookupUri1);
-        ContactLoader.Result contact2 = assertLoadContact(contactLookupUri2);
-
-        assertEquals(contactId1, contact1.getId());
-        assertEquals(contactId2, contact2.getId());
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+        mContactsProvider.verify();
     }
 
     public void testLoadContactWithContactLookupWithIncorrectIdUri() {
         // Use lookup-style Uris that contain incorrect Contact-ID
         // (we want to ensure that still the correct contact is chosen)
+        // In this test, the incorrect Id references another Contact
 
-        long rawContactId1 = createRawContact("JohnDoe", "John", "Doe");
-        long rawContactId2 = createRawContact("JaneDuh", "Jane", "Duh");
+        final long contactId = 1;
+        final long wrongContactId = 2;
+        final long rawContactId = 11;
+        final long wrongRawContactId = 12;
+        final long dataId = 21;
 
-        long contactId1 = getContactIdByRawContactId(rawContactId1);
-        long contactId2 = getContactIdByRawContactId(rawContactId2);
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final String wrongEncodedLookup = Uri.encode("ab%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri wrongBaseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, wrongContactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri lookupWithWrongIdUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                wrongContactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
-        String lookupKey1 = getContactLookupByContactId(contactId1);
-        String lookupKey2 = getContactLookupByContactId(contactId2);
+        ContactQueries queries = new ContactQueries();
+        queries.fetchHeaderData(wrongBaseUri, wrongRawContactId, wrongEncodedLookup);
+        queries.fetchLookupAndId(lookupWithWrongIdUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        long[] fakeIds = new long[] { 0, rawContactId1, rawContactId2, contactId1, contactId2 };
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
-        for (long fakeContactId : fakeIds) {
-            Uri contactLookupUri1 = ContentUris.withAppendedId(
-                    Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey1), fakeContactId);
-            Uri contactLookupUri2 = ContentUris.withAppendedId(
-                    Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey2), fakeContactId);
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
 
-            ContactLoader.Result contact1 = assertLoadContact(contactLookupUri1);
-            ContactLoader.Result contact2 = assertLoadContact(contactLookupUri2);
+        mContactsProvider.verify();
+    }
 
-            assertEquals(contactId1, contact1.getId());
-            assertEquals(contactId2, contact2.getId());
+    public void testLoadContactWithContactLookupWithIncorrectIdUri2() {
+        // Use lookup-style Uris that contain incorrect Contact-ID
+        // (we want to ensure that still the correct contact is chosen)
+        // In this test, the incorrect Id references no contact
+
+        final long contactId = 1;
+        final long wrongContactId = 2;
+        final long rawContactId = 11;
+        final long wrongRawContactId = 12;
+        final long dataId = 21;
+
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final String wrongEncodedLookup = Uri.encode("ab%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri wrongBaseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, wrongContactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri lookupWithWrongIdUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                wrongContactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
+
+        ContactQueries queries = new ContactQueries();
+        queries.fetchHeaderDataNoResult(wrongBaseUri);
+        queries.fetchLookupAndId(lookupWithWrongIdUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
+
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+
+        mContactsProvider.verify();
+    }
+
+    public void testLoadContactWithContactLookupWithIncorrectIdUri3() {
+        // Use lookup-style Uris that contain incorrect Contact-ID
+        // (we want to ensure that still the correct contact is chosen)
+        // In this test, the incorrect Id references no contact and the lookup
+        // key can also not be resolved
+
+        final long contactId = 1;
+        final long wrongContactId = 2;
+        final long rawContactId = 11;
+        final long wrongRawContactId = 12;
+        final long dataId = 21;
+
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final String wrongEncodedLookup = Uri.encode("ab%12%@!");
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri wrongBaseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, wrongContactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri lookupWithWrongIdUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                wrongContactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
+
+        ContactQueries queries = new ContactQueries();
+        queries.fetchHeaderDataNoResult(wrongBaseUri);
+        queries.fetchLookupAndIdNoResult(lookupWithWrongIdUri);
+
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+
+        assertEquals(ContactLoader.Result.NOT_FOUND, contact);
+
+        mContactsProvider.verify();
+    }
+
+    private class ContactQueries {
+        private void fetchRawContacts(final long contactId, final long dataId,
+                final long rawContactId) {
+            mContactsProvider.expectQuery(RawContactsEntity.CONTENT_URI)
+                .withDefaultProjection(new String[] {
+                        RawContacts._ID, RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE,
+                        RawContacts.DIRTY, RawContacts.VERSION, RawContacts.SOURCE_ID,
+                        RawContacts.SYNC1, RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
+                        RawContacts.DELETED, RawContacts.CONTACT_ID, RawContacts.STARRED,
+                        RawContacts.IS_RESTRICTED, RawContacts.NAME_VERIFIED,
+
+                        Entity.DATA_ID, Data.RES_PACKAGE, Data.MIMETYPE, Data.IS_PRIMARY,
+                        Data.IS_SUPER_PRIMARY, Data.DATA_VERSION,
+                        CommonDataKinds.GroupMembership.GROUP_SOURCE_ID,
+                        Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
+                        Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10,
+                        Data.DATA11, Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
+                        Data.SYNC1, Data.SYNC2, Data.SYNC3, Data.SYNC4
+                })
+                .withSelection(
+                        RawContacts.CONTACT_ID + "=?",
+                        new String[] { String.valueOf(contactId) } )
+                .returnRow(
+                        rawContactId, "mockAccountName", "mockAccountType",
+                        0, 1, "aa%12%@!",
+                        "", "", "", "",
+                        0, contactId, 0,
+                        0, 1,
+
+                        dataId, "", StructuredName.CONTENT_ITEM_TYPE, 1,
+                        1, 1,
+                        "mockGroupId",
+                        "dat1", "dat2", "dat3", "dat4", "dat5",
+                        "dat6", "dat7", "dat8", "dat9", "dat10",
+                        "dat11", "dat12", "dat13", "dat14", null,
+                        "syn1", "syn2", "syn3", "syn4");
+        }
+
+        private void fetchSocial(final Uri dataUri, final long expectedContactId) {
+            mContactsProvider.expectQuery(dataUri)
+                    .withProjection(
+                            Contacts._ID, StatusUpdates.STATUS, StatusUpdates.STATUS_RES_PACKAGE,
+                            StatusUpdates.STATUS_ICON, StatusUpdates.STATUS_LABEL,
+                            StatusUpdates.STATUS_TIMESTAMP, StatusUpdates.PRESENCE)
+                    .withSelection(
+                            StatusUpdates.PRESENCE +" IS NOT NULL OR " +
+                            StatusUpdates.STATUS + " IS NOT NULL",
+                            (String[]) null)
+                    .returnRow(
+                            expectedContactId, "This is a mock Status update", 0,
+                            1, 2,
+                            0, StatusUpdates.AVAILABLE);
+        }
+
+        private void fetchHeaderData(final Uri uri, final long expectedRawContactId,
+                final String expectedEncodedLookup) {
+            mContactsProvider.expectQuery(uri)
+                    .withProjection(
+                            Contacts.NAME_RAW_CONTACT_ID,
+                            Contacts.DISPLAY_NAME_SOURCE,
+                            Contacts.LOOKUP_KEY)
+                    .returnRow(
+                            expectedRawContactId,
+                            DisplayNameSources.STRUCTURED_NAME,
+                            expectedEncodedLookup);
+        }
+
+        private void fetchHeaderDataNoResult(final Uri uri) {
+            mContactsProvider.expectQuery(uri)
+                    .withProjection(
+                            Contacts.NAME_RAW_CONTACT_ID,
+                            Contacts.DISPLAY_NAME_SOURCE,
+                            Contacts.LOOKUP_KEY);
+        }
+
+        private void fetchLookupAndId(final Uri sourceUri, final long expectedContactId,
+                final String expectedEncodedLookup) {
+            mContactsProvider.expectQuery(sourceUri)
+                    .withProjection(Contacts.LOOKUP_KEY, Contacts._ID)
+                    .returnRow(expectedEncodedLookup, expectedContactId);
+        }
+
+        private void fetchLookupAndIdNoResult(final Uri sourceUri) {
+            mContactsProvider.expectQuery(sourceUri)
+                    .withProjection(Contacts.LOOKUP_KEY, Contacts._ID);
+        }
+
+        private void fetchContactIdAndLookupFromRawContactUri(final Uri rawContactUri,
+                final long expectedContactId, final String expectedEncodedLookup) {
+            // TODO: use a lighter query by joining rawcontacts with contacts in provider
+            // (See ContactContracts.java)
+            final Uri dataUri = Uri.withAppendedPath(rawContactUri, Data.CONTENT_DIRECTORY);
+            mContactsProvider.expectQuery(dataUri)
+                    .withProjection(RawContacts.CONTACT_ID, Contacts.LOOKUP_KEY)
+                    .returnRow(expectedContactId, expectedEncodedLookup);
         }
     }
 }
