@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Nome e cognome"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nome fonetico"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Società"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Titolo"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Il contatto non esiste."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea nuovo contatto"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleziona etichetta"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Componi per aggiungere chiamata"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Caricamento da SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contatti SIM"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Non ci sono contatti da visualizzare (se hai appena aggiunto un account, la sincronizzazione dei contatti potrebbe richiedere alcuni minuti)."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Non ci sono contatti da visualizzare."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"Non sono presenti contatti da visualizzare."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e tocca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Account"</b></font>" per aggiungere o configurare un account con contatti sincronizzabili con il telefono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare da zero un nuovo contatto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/esporta"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Non sono presenti contatti da visualizzare (se hai appena aggiunto un account, la sincronizzazione dei contatti potrebbe richiedere alcuni minuti)."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e tocca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Account"</b></font>" per aggiungere o configurare un account con contatti sincronizzabili con il telefono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opzioni di visualizzazione"</b></font>" per modificare i contatti visibili"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare da zero un nuovo contatto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/esporta"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Non sono presenti contatti da visualizzare."\n\n"Per aggiungere contatti, premi "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e tocca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Account"</b></font>" per aggiungere o configurare un account con contatti sincronizzabili con il telefono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuovo contatto"</b></font>" per creare da zero un nuovo contatto"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/esporta"</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"Scatta foto"</string>
     <string name="pick_photo" msgid="448886509158039462">"Seleziona foto da galleria"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"L\'elenco contatti verrà aggiornato per rispecchiare il cambio di lingua."\n\n"Attendi..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"Elenco contatti in fase di aggiornamento."\n\n"Attendi..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"Contatti in fase di aggiornamento. "\n\n"Il processo di aggiornamento richiede circa <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB di memoria interna del telefono."\n\n"Scegli una delle seguenti opzioni:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Disinstalla alcune applicazioni"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Riprova l\'aggiornamento"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"Risultati di ricerca per: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Ricerca in corso..."</string>
 </resources>

@@ -74,8 +74,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"Voor- en achternaam"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisch gespelde naam"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Bedrijf"</string>
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Het contact bestaat niet."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Nieuw contact maken"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Label selecteren"</string>
@@ -157,10 +156,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Oproep toevoegen"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Laden vanaf SIM-kaart..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contacten op SIM-kaart"</string>
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"U heeft geen contacten om weer te geven. Als u zojuist een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"U heeft geen contacten om weer te geven."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Account "</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
@@ -375,16 +372,10 @@
     <string name="take_photo" msgid="7496128293167402354">"Foto maken"</string>
     <string name="pick_photo" msgid="448886509158039462">"Foto selecteren in Galerij"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Lijst met contacten wordt bijgewerkt om de gewijzigde taal te weerspiegelen."\n\n"Een ogenblik geduld..."</string>
-    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (492151063059824962) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_for (8705490885073188513) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"Lijst met contacten wordt bijgewerkt."\n\n"Een ogenblik geduld..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"Contacten worden bijgewerkt. "\n\n"Voor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB interne telefoonopslag vereist."\n\n"Kies een van de volgende opties:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele toepassingen"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade opnieuw proberen"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"Zoekresultaten voor: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Zoeken..."</string>
 </resources>
