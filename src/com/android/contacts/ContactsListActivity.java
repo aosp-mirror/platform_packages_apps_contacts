@@ -721,23 +721,21 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 setTitle(R.string.shortcutActivityTitle);
             }
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
-            // TODO : Does it work in mSearchMode?
-            final String resolvedType = intent.resolveType(this);
-            if (Contacts.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
                 if (mSearchMode) {
                     mMode = MODE_PICK_CONTACT;
                 } else {
                     mMode = MODE_PICK_OR_CREATE_CONTACT;
                 }
-            } else if (Phone.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_PHONE;
-            } else if (Phones.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            } else if (Phones.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_PHONE;
-            } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(type)) {
                 mMode = MODE_PICK_POSTAL;
-            } else if (ContactMethods.CONTENT_POSTAL_ITEM_TYPE.equals(resolvedType)) {
+            } else if (ContactMethods.CONTENT_POSTAL_ITEM_TYPE.equals(type)) {
                 mMode = MODE_LEGACY_PICK_POSTAL;
-            }  else if (People.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            }  else if (People.CONTENT_ITEM_TYPE.equals(type)) {
                 if (mSearchMode) {
                     mMode = MODE_LEGACY_PICK_PERSON;
                 } else {

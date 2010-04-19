@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="contactsIntents">Contacts Intents</string>
+    <string name="result">Result returned by activity</string>
+
+    <string-array name="allIntents">
+        <item>LIST_DEFAULT</item>
+        <item>LIST_ALL_CONTACTS_ACTION</item>
+        <item>LIST_CONTACTS_WITH_PHONES_ACTION</item>
+        <item>LIST_STARRED_ACTION</item>
+        <item>LIST_STARRED_ACTION (filter)</item>
+        <item>LIST_FREQUENT_ACTION</item>
+        <item>LIST_FREQUENT_ACTION (filter)</item>
+        <item>LIST_STREQUENT_ACTION</item>
+        <item>LIST_STREQUENT_ACTION (filter)</item>
+        <item>ACTION_PICK: contact</item>
+        <item>ACTION_PICK: contact (legacy)</item>
+        <item>ACTION_PICK: phone</item>
+        <item>ACTION_PICK: phone (legacy)</item>
+        <item>ACTION_PICK: postal</item>
+        <item>ACTION_PICK: postal (legacy)</item>
+        <item>ACTION_CREATE_SHORTCUT: contact</item>
+        <item>ACTION_CREATE_SHORTCUT: contact (filter)</item>
+        <item>ACTION_CREATE_SHORTCUT: dial</item>
+        <item>ACTION_CREATE_SHORTCUT: dial (filter)</item>
+        <item>ACTION_CREATE_SHORTCUT: message</item>
+        <item>ACTION_CREATE_SHORTCUT: message (filter)</item>
+        <item>ACTION_GET_CONTENT: contact</item>
+        <item>ACTION_GET_CONTENT: contact (filter)</item>
+        <item>ACTION_GET_CONTENT: contact (legacy)</item>
+        <item>ACTION_GET_CONTENT: contact (filter, legacy)</item>
+        <item>ACTION_GET_CONTENT: phone</item>
+        <item>ACTION_GET_CONTENT: phone (filter)</item>
+        <item>ACTION_GET_CONTENT: phone (legacy)</item>
+        <item>ACTION_GET_CONTENT: postal</item>
+        <item>ACTION_GET_CONTENT: postal (filter)</item>
+        <item>ACTION_GET_CONTENT: postal (legacy)</item>
+        <item>ACTION_INSERT_OR_EDIT</item>
+        <item>ACTION_SEARCH (call button)</item>
+        <item>ACTION_SEARCH: contact</item>
+        <item>ACTION_SEARCH: email</item>
+        <item>ACTION_SEARCH: phone</item>
+        <item>SEARCH_SUGGESTION_CLICKED (call button)</item>
+        <item>SEARCH_SUGGESTION_CLICKED: contact</item>
+        <item>SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED</item>
+        <item>SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED</item>
+        <item>TODO: JOIN_CONTACT</item>
+        <item>ACTION_GET_MULTIPLE_PHONES</item>
+    </string-array>
+</resources>

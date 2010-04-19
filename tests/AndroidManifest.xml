@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,16 +17,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.contacts.tests">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application>
         <uses-library android:name="android.test.runner" />
         <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
+        <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+        <activity android:name=".allintents.AllIntentsActivity"
+            android:label="@string/contactsIntents"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".allintents.ResultActivity"
+            android:label="@string/result"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.android.contacts"
         android:label="Contacts app tests">
     </instrumentation>
-    
+
     <instrumentation android:name="com.android.contacts.ContactsLaunchPerformance"
         android:targetPackage="com.android.contacts"
         android:label="Contacts launch performance">
@@ -38,4 +62,4 @@
         android:label="Dialer launch performance">
     </instrumentation>
 
-</manifest> 
+</manifest>
