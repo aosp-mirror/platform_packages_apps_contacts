@@ -104,7 +104,7 @@ public class MockContentProvider extends ContentProvider {
             return true;
         }
 
-        private boolean equals(String[] array1, String[] array2) {
+        private static boolean equals(String[] array1, String[] array2) {
             boolean empty1 = array1 == null || array1.length == 0;
             boolean empty2 = array2 == null || array2.length == 0;
             if (empty1 && empty2) {
@@ -113,6 +113,8 @@ public class MockContentProvider extends ContentProvider {
             if (empty1) {
                 return false;
             }
+
+            if (array1.length != array2.length) return false;
 
             for (int i = 0; i < array1.length; i++) {
                 if (!array1[i].equals(array2[i])) {

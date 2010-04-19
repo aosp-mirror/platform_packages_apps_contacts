@@ -21,7 +21,6 @@ public class ContactDetailTest extends ActivityUnitTestCase<ContactDetailActivit
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        ContactLoader.setSynchronous(true);
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         mContactsProvider = mContext.getContactsProvider();
         setActivityContext(mContext);
@@ -30,7 +29,6 @@ public class ContactDetailTest extends ActivityUnitTestCase<ContactDetailActivit
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
-        ContactLoader.setSynchronous(false);
     }
 
 //    public void testFoo() {

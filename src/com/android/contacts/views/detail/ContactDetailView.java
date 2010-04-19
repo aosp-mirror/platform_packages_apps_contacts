@@ -152,11 +152,20 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
     public void setData(Result data) {
         mContactData = data;
 
-        mContactHeaderWidget.bindFromContactLookupUri(data.getUri());
         bindData();
     }
 
     private void bindData() {
+        // Set the header
+        mContactHeaderWidget.setContactUri(mContactData.getLookupUri());
+        mContactHeaderWidget.setDisplayName(mContactData.getDisplayName(),
+                mContactData.getPhoneticName());
+        mContactHeaderWidget.setPhotoId(mContactData.getPhotoId(), mContactData.getLookupUri());
+        mContactHeaderWidget.setStared(mContactData.getStarred());
+        mContactHeaderWidget.setPresence(mContactData.getPresence());
+        mContactHeaderWidget.setStatus(
+                mContactData.getStatus(), mContactData.getStatusTimestamp(),
+                mContactData.getStatusLabel(), mContactData.getStatusResPackage());
 
         // Build up the contact entries
         buildEntries();
