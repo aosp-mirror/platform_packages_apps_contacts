@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
+import com.android.contacts.list.config.ContactListConfiguration;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -392,7 +393,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private ContactListEmptyView mEmptyView;
 
     int mMode = MODE_DEFAULT;
-
     private boolean mRunQueriesSynchronously;
     private QueryHandler mQueryHandler;
     private boolean mJustCreated;
@@ -402,7 +402,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 //    private boolean mDisplayAll;
     private boolean mDisplayOnlyPhones;
 
-    private Uri mGroupUri;
+    private String mGroupName;
 
     private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int  mWritableSourcesCnt;
@@ -488,7 +488,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * A colored chip in MODE_PICK_MULTIPLE_PHONES mode is used to indicate the number of phone
      * numbers belong to one contact
      */
-    SparseIntArray mContactColor;
+    SparseIntArray mContactColor = new SparseIntArray();
 
     /**
      * UI control of action panel in MODE_PICK_MULTIPLE_PHONES mode.
@@ -590,6 +590,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     };
 
+    private ContactListConfiguration mConfig;
+
+    public ContactsListActivity() {
+        mConfig = new ContactListConfiguration(this);
+    }
+
     /**
      * Visible for testing: makes queries run on the UI thread.
      */
@@ -614,255 +620,42 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         resolveIntent(intent);
         initContentView();
+        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
+            initMultiPicker(intent);
+        }
     }
 
     protected void resolveIntent(final Intent intent) {
-        // Allow the title to be set to a custom String using an extra on the intent
-        String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
-        if (title != null) {
-            setTitle(title);
-        }
+        mConfig.setIntent(intent);
 
-        String action = intent.getAction();
-        String component = intent.getComponent().getClassName();
-        String type = intent.getType();
-
-        // When we get a FILTER_CONTACTS_ACTION, it represents search in the context
-        // of some other action. Let's retrieve the original action to provide proper
-        // context for the search queries.
-        if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
-            mSearchMode = true;
-            mShowSearchSnippets = true;
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                mInitialFilter = extras.getString(UI.FILTER_TEXT_EXTRA_KEY);
-                String originalAction =
-                        extras.getString(ContactsSearchManager.ORIGINAL_ACTION_EXTRA_KEY);
-                if (originalAction != null) {
-                    action = originalAction;
-                }
-                String originalComponent =
-                        extras.getString(ContactsSearchManager.ORIGINAL_COMPONENT_EXTRA_KEY);
-                if (originalComponent != null) {
-                    component = originalComponent;
-                }
-                String originalType =
-                    extras.getString(ContactsSearchManager.ORIGINAL_TYPE_EXTRA_KEY);
-                if (originalType != null) {
-                    type = originalType;
-                }
-            } else {
-                mInitialFilter = null;
-            }
-        }
-
-        Log.i(TAG, "Called with action: " + action);
-        mMode = MODE_UNKNOWN;
-        if (UI.LIST_DEFAULT.equals(action) || UI.FILTER_CONTACTS_ACTION.equals(action)) {
-            mMode = MODE_DEFAULT;
-            // When mDefaultMode is true the mode is set in onResume(), since the preferneces
-            // activity may change it whenever this activity isn't running
-        } else if (UI.LIST_GROUP_ACTION.equals(action)) {
-            mMode = MODE_GROUP;
-            String groupName = intent.getStringExtra(UI.GROUP_NAME_EXTRA_KEY);
-            if (TextUtils.isEmpty(groupName)) {
-                finish();
-                return;
-            }
-            buildUserGroupUri(groupName);
-        } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
-            mMode = MODE_CUSTOM;
-            mDisplayOnlyPhones = false;
-        } else if (UI.LIST_STARRED_ACTION.equals(action)) {
-            mMode = mSearchMode ? MODE_DEFAULT : MODE_STARRED;
-        } else if (UI.LIST_FREQUENT_ACTION.equals(action)) {
-            mMode = mSearchMode ? MODE_DEFAULT : MODE_FREQUENT;
-        } else if (UI.LIST_STREQUENT_ACTION.equals(action)) {
-            mMode = mSearchMode ? MODE_DEFAULT : MODE_STREQUENT;
-        } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
-            mMode = MODE_CUSTOM;
-            mDisplayOnlyPhones = true;
-        } else if (Intent.ACTION_PICK.equals(action)) {
-            // XXX These should be showing the data from the URI given in
-            // the Intent.
-           // TODO : Does it work in mSearchMode?
-            final String resolvedType = intent.resolveType(this);
-            if (Contacts.CONTENT_TYPE.equals(resolvedType)) {
-                mMode = MODE_PICK_CONTACT;
-            } else if (People.CONTENT_TYPE.equals(resolvedType)) {
-                mMode = MODE_LEGACY_PICK_PERSON;
-            } else if (Phone.CONTENT_TYPE.equals(resolvedType)) {
-                mMode = MODE_PICK_PHONE;
-            } else if (Phones.CONTENT_TYPE.equals(resolvedType)) {
-                mMode = MODE_LEGACY_PICK_PHONE;
-            } else if (StructuredPostal.CONTENT_TYPE.equals(resolvedType)) {
-                mMode = MODE_PICK_POSTAL;
-            } else if (ContactMethods.CONTENT_POSTAL_TYPE.equals(resolvedType)) {
-                mMode = MODE_LEGACY_PICK_POSTAL;
-            }
-        } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
-            if (component.equals("alias.DialShortcut")) {
-                mMode = MODE_PICK_PHONE;
-                mShortcutAction = Intent.ACTION_CALL;
-                mShowSearchSnippets = false;
-                setTitle(R.string.callShortcutActivityTitle);
-            } else if (component.equals("alias.MessageShortcut")) {
-                mMode = MODE_PICK_PHONE;
-                mShortcutAction = Intent.ACTION_SENDTO;
-                mShowSearchSnippets = false;
-                setTitle(R.string.messageShortcutActivityTitle);
-            } else if (mSearchMode) {
-                mMode = MODE_PICK_CONTACT;
-                mShortcutAction = Intent.ACTION_VIEW;
-                setTitle(R.string.shortcutActivityTitle);
-            } else {
-                mMode = MODE_PICK_OR_CREATE_CONTACT;
-                mShortcutAction = Intent.ACTION_VIEW;
-                setTitle(R.string.shortcutActivityTitle);
-            }
-        } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
-            if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
-                if (mSearchMode) {
-                    mMode = MODE_PICK_CONTACT;
-                } else {
-                    mMode = MODE_PICK_OR_CREATE_CONTACT;
-                }
-            } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
-                mMode = MODE_PICK_PHONE;
-            } else if (Phones.CONTENT_ITEM_TYPE.equals(type)) {
-                mMode = MODE_LEGACY_PICK_PHONE;
-            } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(type)) {
-                mMode = MODE_PICK_POSTAL;
-            } else if (ContactMethods.CONTENT_POSTAL_ITEM_TYPE.equals(type)) {
-                mMode = MODE_LEGACY_PICK_POSTAL;
-            }  else if (People.CONTENT_ITEM_TYPE.equals(type)) {
-                if (mSearchMode) {
-                    mMode = MODE_LEGACY_PICK_PERSON;
-                } else {
-                    mMode = MODE_LEGACY_PICK_OR_CREATE_PERSON;
-                }
-            }
-
-        } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
-            mMode = MODE_INSERT_OR_EDIT_CONTACT;
-        } else if (Intent.ACTION_SEARCH.equals(action)) {
-            // See if the suggestion was clicked with a search action key (call button)
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                String query = intent.getStringExtra(SearchManager.QUERY);
-                if (!TextUtils.isEmpty(query)) {
-                    Intent newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts("tel", query, null));
-                    startActivity(newIntent);
-                }
-                finish();
-                return;
-            }
-
-            // See if search request has extras to specify query
-            if (intent.hasExtra(Insert.EMAIL)) {
-                mMode = MODE_QUERY_PICK_TO_VIEW;
-                mQueryMode = QUERY_MODE_MAILTO;
-                mInitialFilter = intent.getStringExtra(Insert.EMAIL);
-            } else if (intent.hasExtra(Insert.PHONE)) {
-                mMode = MODE_QUERY_PICK_TO_VIEW;
-                mQueryMode = QUERY_MODE_TEL;
-                mInitialFilter = intent.getStringExtra(Insert.PHONE);
-            } else {
-                // Otherwise handle the more normal search case
-                mMode = MODE_QUERY;
-                mShowSearchSnippets = true;
-                mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
-            }
-            mSearchResultsMode = true;
-        } else if (ACTION_SEARCH_INTERNAL.equals(action)) {
-            String originalAction = null;
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                originalAction = extras.getString(ContactsSearchManager.ORIGINAL_ACTION_EXTRA_KEY);
-            }
-            mShortcutAction = intent.getStringExtra(SHORTCUT_ACTION_KEY);
-
-            if (Intent.ACTION_INSERT_OR_EDIT.equals(originalAction)) {
-                mMode = MODE_QUERY_PICK_TO_EDIT;
-                mShowSearchSnippets = true;
-                mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
-            } else if (mShortcutAction != null && intent.hasExtra(Insert.PHONE)) {
-                mMode = MODE_QUERY_PICK_PHONE;
-                mQueryMode = QUERY_MODE_TEL;
-                mInitialFilter = intent.getStringExtra(Insert.PHONE);
-            } else {
-                mMode = MODE_QUERY_PICK;
-                mQueryMode = QUERY_MODE_NONE;
-                mShowSearchSnippets = true;
-                mInitialFilter = getIntent().getStringExtra(SearchManager.QUERY);
-            }
-            mSearchResultsMode = true;
-        // Since this is the filter activity it receives all intents
-        // dispatched from the SearchManager for security reasons
-        // so we need to re-dispatch from here to the intended target.
-        } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
-            Uri data = intent.getData();
-            Uri telUri = null;
-            if (sContactsIdMatcher.match(data) == CONTACTS_ID) {
-                long contactId = Long.valueOf(data.getLastPathSegment());
-                final Cursor cursor = queryPhoneNumbers(contactId);
-                if (cursor != null) {
-                    if (cursor.getCount() == 1 && cursor.moveToFirst()) {
-                        int phoneNumberIndex = cursor.getColumnIndex(Phone.NUMBER);
-                        String phoneNumber = cursor.getString(phoneNumberIndex);
-                        telUri = Uri.parse("tel:" + phoneNumber);
-                    }
-                    cursor.close();
-                }
-            }
-            // See if the suggestion was clicked with a search action key (call button)
-            Intent newIntent;
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG)) && telUri != null) {
-                newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, telUri);
-            } else {
-                newIntent = new Intent(Intent.ACTION_VIEW, data);
-            }
-            startActivity(newIntent);
+        if (!mConfig.isValid()) {           // Invalid intent
+            setResult(RESULT_CANCELED);
             finish();
             return;
-        } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
-            Intent newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData());
-            startActivity(newIntent);
-            finish();
-            return;
-        } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
-            // TODO actually support this in EditContactActivity.
-            String number = intent.getData().getSchemeSpecificPart();
-            Intent newIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            newIntent.putExtra(Intents.Insert.PHONE, number);
-            startActivity(newIntent);
-            finish();
-            return;
-        } else if (JoinContactActivity.JOIN_CONTACT.equals(action)) {
-            mMode = MODE_PICK_CONTACT;
-        } else if (Intents.ACTION_GET_MULTIPLE_PHONES.equals(action)) {
-            if (mSearchMode) {
-                mShowSearchSnippets = false;
-            }
-            if (Phone.CONTENT_TYPE.equals(type)) {
-                mMode = MODE_PICK_MULTIPLE_PHONES;
-                mContactColor = new SparseIntArray();
-                initMultiPicker(intent);
-            } else {
-                // TODO support other content types
-                Log.e(TAG, "Intent " + action + " is not supported for type " + type);
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        }
-        if (mMode == MODE_UNKNOWN) {
-            mMode = MODE_DEFAULT;
         }
 
-        if (((mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 || mSearchMode)
-                && !mSearchResultsMode) {
-            mShowNumberOfContacts = true;
+        Intent redirect = mConfig.getRedirectIntent();
+        if (redirect != null) {             // Need to start a different activity
+            startActivity(redirect);
+            finish();
+            return;
         }
+
+        setTitle(mConfig.getActivityTitle());
+
+        // This is strictly temporary. Its purpose is to allow us to refactor this class in
+        // small increments.  We should expect all of these modes to go away.
+        mMode = mConfig.mMode;
+        mGroupName = mConfig.mGroupName;
+        mQueryMode = mConfig.mQueryMode;
+        mSearchMode = mConfig.mSearchMode;
+        mShowSearchSnippets = mConfig.mShowSearchSnippets;
+        mInitialFilter = mConfig.mInitialFilter;
+        mDisplayOnlyPhones = mConfig.mDisplayOnlyPhones;
+        mShortcutAction = mConfig.mShortcutAction;
+        mSearchResultsMode = mConfig.mSearchResultsMode;
+        mShowNumberOfContacts = mConfig.mShowNumberOfContacts;
+        mGroupName = mConfig.mGroupName;
     }
 
     public void initContentView() {
@@ -989,10 +782,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 finish();
                 break;
         }
-    }
-
-    private void buildUserGroupUri(String group) {
-        mGroupUri = Uri.withAppendedPath(Contacts.CONTENT_GROUP_URI, group);
     }
 
     /**
@@ -2190,7 +1979,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                         Uri.encode(mInitialFilter));
             }
             case MODE_GROUP: {
-                return mGroupUri;
+                return Uri.withAppendedPath(Contacts.CONTENT_GROUP_URI, mGroupName);
             }
             default: {
                 throw new IllegalStateException("Can't generate URI: Unsupported Mode.");
@@ -2733,6 +2522,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return true;
     }
 
+    // TODO: eliminate
+    @Deprecated
     private Cursor queryPhoneNumbers(long contactId) {
         Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
         Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
