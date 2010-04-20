@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.ContactItemListAdapter;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -152,6 +154,7 @@ public class JoinContactActivity extends ContactsListActivity {
     }
 
     @Override
+    public
     Cursor doFilter(String filter) {
         throw new UnsupportedOperationException();
     }
@@ -204,7 +207,7 @@ public class JoinContactActivity extends ContactsListActivity {
         Cursor mSuggestionsCursor;
         int mSuggestionsCursorCount;
 
-        public JoinContactListAdapter(Context context) {
+        public JoinContactListAdapter(ContactsListActivity context) {
             super(context);
         }
 

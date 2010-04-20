@@ -21,7 +21,6 @@ import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.IContentService;
-import android.content.Intent;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
@@ -46,7 +45,7 @@ public class ContactListEmptyView extends ScrollView {
         empty.setVisibility(GONE);
     }
 
-    protected void show(boolean searchMode, boolean displayOnlyPhones,
+    public void show(boolean searchMode, boolean displayOnlyPhones,
             boolean isFavoritesMode, boolean isQueryMode, boolean isShortcutAction,
             boolean isMultipleSelectionEnabled, boolean showSelectedOnly) {
         if (searchMode) {

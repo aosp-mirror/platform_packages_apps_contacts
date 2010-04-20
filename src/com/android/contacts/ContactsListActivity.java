@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
+import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.config.ContactListConfiguration;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -51,7 +52,6 @@ import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -76,13 +76,10 @@ import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
-import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract.Intents.UI;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Html;
@@ -108,21 +105,15 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CursorAdapter;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
-import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -173,87 +164,87 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             buildSectionIndexerUri(Contacts.CONTENT_URI);
 
     /** Mask for picker mode */
-    static final int MODE_MASK_PICKER = 0x80000000;
+    public static final int MODE_MASK_PICKER = 0x80000000;
     /** Mask for no presence mode */
-    static final int MODE_MASK_NO_PRESENCE = 0x40000000;
+    public static final int MODE_MASK_NO_PRESENCE = 0x40000000;
     /** Mask for enabling list filtering */
-    static final int MODE_MASK_NO_FILTER = 0x20000000;
+    public static final int MODE_MASK_NO_FILTER = 0x20000000;
     /** Mask for having a "create new contact" header in the list */
-    static final int MODE_MASK_CREATE_NEW = 0x10000000;
+    public static final int MODE_MASK_CREATE_NEW = 0x10000000;
     /** Mask for showing photos in the list */
-    static final int MODE_MASK_SHOW_PHOTOS = 0x08000000;
+    public static final int MODE_MASK_SHOW_PHOTOS = 0x08000000;
     /** Mask for hiding additional information e.g. primary phone number in the list */
-    static final int MODE_MASK_NO_DATA = 0x04000000;
+    public static final int MODE_MASK_NO_DATA = 0x04000000;
     /** Mask for showing a call button in the list */
-    static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
+    public static final int MODE_MASK_SHOW_CALL_BUTTON = 0x02000000;
     /** Mask to disable quickcontact (images will show as normal images) */
-    static final int MODE_MASK_DISABLE_QUIKCCONTACT = 0x01000000;
+    public static final int MODE_MASK_DISABLE_QUIKCCONTACT = 0x01000000;
     /** Mask to show the total number of contacts at the top */
-    static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
+    public static final int MODE_MASK_SHOW_NUMBER_OF_CONTACTS = 0x00800000;
 
     /** Unknown mode */
-    static final int MODE_UNKNOWN = 0;
+    public static final int MODE_UNKNOWN = 0;
     /** Default mode */
-    static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
+    public static final int MODE_DEFAULT = 4 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
     /** Custom mode */
-    static final int MODE_CUSTOM = 8;
+    public static final int MODE_CUSTOM = 8;
     /** Show all starred contacts */
-    static final int MODE_STARRED = 20 | MODE_MASK_SHOW_PHOTOS;
+    public static final int MODE_STARRED = 20 | MODE_MASK_SHOW_PHOTOS;
     /** Show frequently contacted contacts */
-    static final int MODE_FREQUENT = 30 | MODE_MASK_SHOW_PHOTOS;
+    public static final int MODE_FREQUENT = 30 | MODE_MASK_SHOW_PHOTOS;
     /** Show starred and the frequent */
-    static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
+    public static final int MODE_STREQUENT = 35 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_SHOW_CALL_BUTTON;
     /** Show all contacts and pick them when clicking */
-    static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
+    public static final int MODE_PICK_CONTACT = 40 | MODE_MASK_PICKER | MODE_MASK_SHOW_PHOTOS
             | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts as well as the option to create a new one */
-    static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
+    public static final int MODE_PICK_OR_CREATE_CONTACT = 42 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
             | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider and pick them when clicking */
-    static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER
+    public static final int MODE_LEGACY_PICK_PERSON = 43 | MODE_MASK_PICKER
             | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all people through the legacy provider as well as the option to create a new one */
-    static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER
+    public static final int MODE_LEGACY_PICK_OR_CREATE_PERSON = 44 | MODE_MASK_PICKER
             | MODE_MASK_CREATE_NEW | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all contacts and pick them when clicking, and allow creating a new contact */
-    static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
+    public static final int MODE_INSERT_OR_EDIT_CONTACT = 45 | MODE_MASK_PICKER | MODE_MASK_CREATE_NEW
             | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
     /** Show all phone numbers and pick them when clicking */
-    static final int MODE_PICK_PHONE = 50 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE;
+    public static final int MODE_PICK_PHONE = 50 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE;
     /** Show all phone numbers through the legacy provider and pick them when clicking */
-    static final int MODE_LEGACY_PICK_PHONE =
+    public static final int MODE_LEGACY_PICK_PHONE =
             51 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     /** Show all postal addresses and pick them when clicking */
-    static final int MODE_PICK_POSTAL =
+    public static final int MODE_PICK_POSTAL =
             55 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
     /** Show all postal addresses and pick them when clicking */
-    static final int MODE_LEGACY_PICK_POSTAL =
+    public static final int MODE_LEGACY_PICK_POSTAL =
             56 | MODE_MASK_PICKER | MODE_MASK_NO_PRESENCE | MODE_MASK_NO_FILTER;
-    static final int MODE_GROUP = 57 | MODE_MASK_SHOW_PHOTOS;
+    public static final int MODE_GROUP = 57 | MODE_MASK_SHOW_PHOTOS;
     /** Run a search query */
-    static final int MODE_QUERY = 60 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_NO_FILTER
+    public static final int MODE_QUERY = 60 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_NO_FILTER
             | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
     /** Run a search query in PICK mode, but that still launches to VIEW */
-    static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_PICKER
+    public static final int MODE_QUERY_PICK_TO_VIEW = 65 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_PICKER
             | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
 
     /** Run a search query in a PICK mode */
-    static final int MODE_QUERY_PICK = 75 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_NO_FILTER
+    public static final int MODE_QUERY_PICK = 75 | MODE_MASK_SHOW_PHOTOS | MODE_MASK_NO_FILTER
             | MODE_MASK_PICKER | MODE_MASK_DISABLE_QUIKCCONTACT | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
 
     /** Run a search query in a PICK_PHONE mode */
-    static final int MODE_QUERY_PICK_PHONE = 80 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER
+    public static final int MODE_QUERY_PICK_PHONE = 80 | MODE_MASK_NO_FILTER | MODE_MASK_PICKER
             | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
 
     /** Run a search query in PICK mode, but that still launches to EDIT */
-    static final int MODE_QUERY_PICK_TO_EDIT = 85 | MODE_MASK_NO_FILTER | MODE_MASK_SHOW_PHOTOS
+    public static final int MODE_QUERY_PICK_TO_EDIT = 85 | MODE_MASK_NO_FILTER | MODE_MASK_SHOW_PHOTOS
             | MODE_MASK_PICKER | MODE_MASK_SHOW_NUMBER_OF_CONTACTS;
 
     /**
      * Show all phone numbers and do multiple pick when clicking. This mode has phone filtering
      * feature, but doesn't support 'search for all contacts'.
      */
-    static final int MODE_PICK_MULTIPLE_PHONES = 80 | MODE_MASK_PICKER
+    public static final int MODE_PICK_MULTIPLE_PHONES = 80 | MODE_MASK_PICKER
             | MODE_MASK_NO_PRESENCE | MODE_MASK_SHOW_PHOTOS | MODE_MASK_DISABLE_QUIKCCONTACT;
 
     /**
@@ -315,20 +306,20 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         PeopleColumns.TIMES_CONTACTED,      // 5
         People.PRESENCE_STATUS,             // 6
     };
-    static final int SUMMARY_ID_COLUMN_INDEX = 0;
-    static final int SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
-    static final int SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
+    public static final int SUMMARY_ID_COLUMN_INDEX = 0;
+    public static final int SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
+    public static final int SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
     static final int SUMMARY_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
-    static final int SUMMARY_STARRED_COLUMN_INDEX = 4;
+    public static final int SUMMARY_STARRED_COLUMN_INDEX = 4;
     static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 5;
-    static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
-    static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
-    static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
-    static final int SUMMARY_PHONETIC_NAME_COLUMN_INDEX = 9;
-    static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 10;
-    static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 11;
-    static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 12;
-    static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 13;
+    public static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
+    public static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
+    public static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
+    public static final int SUMMARY_PHONETIC_NAME_COLUMN_INDEX = 9;
+    public static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 10;
+    public static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 11;
+    public static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 12;
+    public static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 13;
 
     static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID, //0
@@ -347,14 +338,14 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         Phones.NUMBER, //3
         People.DISPLAY_NAME, // 4
     };
-    static final int PHONE_ID_COLUMN_INDEX = 0;
-    static final int PHONE_TYPE_COLUMN_INDEX = 1;
-    static final int PHONE_LABEL_COLUMN_INDEX = 2;
-    static final int PHONE_NUMBER_COLUMN_INDEX = 3;
-    static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 4;
-    static final int PHONE_CONTACT_ID_COLUMN_INDEX = 5;
+    public static final int PHONE_ID_COLUMN_INDEX = 0;
+    public static final int PHONE_TYPE_COLUMN_INDEX = 1;
+    public static final int PHONE_LABEL_COLUMN_INDEX = 2;
+    public static final int PHONE_NUMBER_COLUMN_INDEX = 3;
+    public static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 4;
+    public static final int PHONE_CONTACT_ID_COLUMN_INDEX = 5;
     static final int PHONE_SORT_KEY_PRIMARY_COLUMN_INDEX = 6;
-    static final int PHONE_PHOTO_ID_COLUMN_INDEX = 7;
+    public static final int PHONE_PHOTO_ID_COLUMN_INDEX = 7;
 
     static final String[] POSTALS_PROJECTION = new String[] {
         StructuredPostal._ID, //0
@@ -377,10 +368,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     };
 
     static final int POSTAL_ID_COLUMN_INDEX = 0;
-    static final int POSTAL_TYPE_COLUMN_INDEX = 1;
-    static final int POSTAL_LABEL_COLUMN_INDEX = 2;
-    static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
-    static final int POSTAL_DISPLAY_NAME_COLUMN_INDEX = 4;
+    public static final int POSTAL_TYPE_COLUMN_INDEX = 1;
+    public static final int POSTAL_LABEL_COLUMN_INDEX = 2;
+    public static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
+    public static final int POSTAL_DISPLAY_NAME_COLUMN_INDEX = 4;
 
     private static final int QUERY_TOKEN = 42;
 
@@ -390,9 +381,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final String CONTENT_SCHEME = "content";
 
     private ContactItemListAdapter mAdapter;
-    private ContactListEmptyView mEmptyView;
+    public ContactListEmptyView mEmptyView;
 
-    int mMode = MODE_DEFAULT;
+    public int mMode = MODE_DEFAULT;
     private boolean mRunQueriesSynchronously;
     private QueryHandler mQueryHandler;
     private boolean mJustCreated;
@@ -400,7 +391,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     Uri mSelectedContactUri;
 
 //    private boolean mDisplayAll;
-    private boolean mDisplayOnlyPhones;
+    public boolean mDisplayOnlyPhones;
 
     private String mGroupName;
 
@@ -413,24 +404,24 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      */
     private Parcelable mListState = null;
 
-    private String mShortcutAction;
+    public String mShortcutAction;
 
     /**
      * Internal query type when in mode {@link #MODE_QUERY_PICK_TO_VIEW}.
      */
-    private int mQueryMode = QUERY_MODE_NONE;
+    public int mQueryMode = QUERY_MODE_NONE;
 
-    private static final int QUERY_MODE_NONE = -1;
+    public static final int QUERY_MODE_NONE = -1;
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
+    public int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
-    private boolean mSearchMode;
-    private boolean mSearchResultsMode;
-    private boolean mShowNumberOfContacts;
+    public boolean mSearchMode;
+    public boolean mSearchResultsMode;
+    public boolean mShowNumberOfContacts;
 
-    private boolean mShowSearchSnippets;
+    public boolean mShowSearchSnippets;
     private boolean mSearchInitiated;
 
     private String mInitialFilter;
@@ -443,7 +434,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int CONTACTS_ID = 1001;
     private static final UriMatcher sContactsIdMatcher;
 
-    private ContactPhotoLoader mPhotoLoader;
+    public ContactPhotoLoader mPhotoLoader;
 
     final String[] sLookupProjection = new String[] {
             Contacts.LOOKUP_KEY
@@ -452,12 +443,12 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     /**
      * User selected phone number and id in MODE_PICK_MULTIPLE_PHONES mode.
      */
-    private UserSelection mUserSelection = new UserSelection(null, null);
+    public UserSelection mUserSelection = new UserSelection(null, null);
 
     /**
      * The adapter for the phone numbers, used in MODE_PICK_MULTIPLE_PHONES mode.
      */
-    private PhoneNumberAdapter mPhoneNumberAdapter = new PhoneNumberAdapter(this, null);
+    public PhoneNumberAdapter mPhoneNumberAdapter = new PhoneNumberAdapter(this, null);
 
     private static int[] CHIP_COLOR_ARRAY = {
         R.drawable.appointment_indicator_leftside_1,
@@ -498,7 +489,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     /**
      * Display only selected recipients or not in MODE_PICK_MULTIPLE_PHONES mode
      */
-    private boolean mShowSelectedOnly = false;
+    public boolean mShowSelectedOnly = false;
 
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -554,10 +545,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     // The size of a home screen shortcut icon.
     private int mIconSize;
     private ContactsPreferences mContactsPrefs;
-    private int mDisplayOrder;
+    public int mDisplayOrder;
     private int mSortOrder;
-    private boolean mHighlightWhenScrolling;
-    private TextHighlightingAnimation mHighlightingAnimation;
+    public boolean mHighlightWhenScrolling;
+    public TextHighlightingAnimation mHighlightingAnimation;
     private SearchEditText mSearchEditText;
 
     /**
@@ -567,7 +558,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * normally used for the background, we will use a solid color, which will
      * provide better performance and reduced complexity.
      */
-    private int mPinnedHeaderBackgroundColor;
+    public int mPinnedHeaderBackgroundColor;
 
     private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
 
@@ -577,7 +568,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     };
 
-    private OnClickListener mCheckBoxClickerListener = new OnClickListener () {
+    public OnClickListener mCheckBoxClickerListener = new OnClickListener () {
         public void onClick(View v) {
             final ContactListItemCache cache = (ContactListItemCache) v.getTag();
             if (cache.phoneId != PhoneNumberAdapter.INVALID_PHONE_ID) {
@@ -752,7 +743,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mSearchEditText.setOnEditorActionListener(this);
         mSearchEditText.setText(mInitialFilter);
     }
-    private int getSummaryDisplayNameColumnIndex() {
+    public int getSummaryDisplayNameColumnIndex() {
         if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
             return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
         } else {
@@ -938,7 +929,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         retryUpgrade.setOnClickListener(listener);
     }
 
-    protected String getTextFilter() {
+    public String getTextFilter() {
         if (mSearchEditText != null) {
             return mSearchEditText.getText().toString();
         }
@@ -2211,7 +2202,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return sortKey;
     }
 
-    void startQuery() {
+    public void startQuery() {
         if (mSearchResultsMode) {
             TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
             foundContactsText.setText(R.string.search_results_searching);
@@ -2356,7 +2347,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @param filter the text that was entered to filter on
      * @return a cursor with the results of the filter
      */
-    Cursor doFilter(String filter) {
+    public Cursor doFilter(String filter) {
         String[] projection = getProjectionForQuery();
         if (mSearchMode && TextUtils.isEmpty(getTextFilter())) {
             return new MatrixCursor(projection);
@@ -2539,7 +2530,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
-    protected String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
+    public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
         if (count == 0) {
             return getString(zeroResourceId);
         } else {
@@ -2646,7 +2637,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * numbers.
      * Assume the cursor is sorted by CONTACT_ID.
      */
-    private void updateChipColor(Cursor cursor) {
+    public void updateChipColor(Cursor cursor) {
         if (cursor == null || cursor.getCount() == 0) {
             return;
         }
@@ -2675,7 +2666,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Get assigned chip color resource id for a given contact, 0 is returned if there is no mapped
      * resource.
      */
-    private int getChipColor(long contactId) {
+    public int getChipColor(long contactId) {
         return mContactColor.get(Long.valueOf(contactId).hashCode());
     }
 
@@ -2749,7 +2740,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     }
 
-    final static class ContactListItemCache {
+    public final static class ContactListItemCache {
         public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
         public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
         public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
@@ -2760,786 +2751,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public String phoneNumber;
     }
 
-    final static class PinnedHeaderCache {
+    public final static class PinnedHeaderCache {
         public TextView titleView;
         public ColorStateList textColor;
         public Drawable background;
-    }
-
-    protected class ContactItemListAdapter extends CursorAdapter
-            implements SectionIndexer, OnScrollListener, PinnedHeaderListView.PinnedHeaderAdapter {
-        private SectionIndexer mIndexer;
-        private boolean mLoading = true;
-        private CharSequence mUnknownNameText;
-        private boolean mDisplayPhotos = false;
-        private boolean mDisplayCallButton = false;
-        private boolean mDisplayAdditionalData = true;
-        private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
-        private boolean mDisplaySectionHeaders = true;
-
-        public ContactItemListAdapter(Context context) {
-            super(context, null, false);
-
-            mUnknownNameText = context.getText(android.R.string.unknownName);
-            switch (mMode) {
-                case MODE_LEGACY_PICK_POSTAL:
-                case MODE_PICK_POSTAL:
-                case MODE_LEGACY_PICK_PHONE:
-                case MODE_PICK_PHONE:
-                case MODE_STREQUENT:
-                case MODE_FREQUENT:
-                    mDisplaySectionHeaders = false;
-                    break;
-            }
-
-            if (mSearchMode) {
-                mDisplaySectionHeaders = false;
-            }
-
-            // Do not display the second line of text if in a specific SEARCH query mode, usually for
-            // matching a specific E-mail or phone number. Any contact details
-            // shown would be identical, and columns might not even be present
-            // in the returned cursor.
-            if (mMode != MODE_QUERY_PICK_PHONE && mQueryMode != QUERY_MODE_NONE) {
-                mDisplayAdditionalData = false;
-            }
-
-            if ((mMode & MODE_MASK_NO_DATA) == MODE_MASK_NO_DATA) {
-                mDisplayAdditionalData = false;
-            }
-
-            if ((mMode & MODE_MASK_SHOW_CALL_BUTTON) == MODE_MASK_SHOW_CALL_BUTTON) {
-                mDisplayCallButton = true;
-            }
-
-            if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
-                mDisplayPhotos = true;
-            }
-        }
-
-        public boolean getDisplaySectionHeadersEnabled() {
-            return mDisplaySectionHeaders;
-        }
-
-        /**
-         * Callback on the UI thread when the content observer on the backing cursor fires.
-         * Instead of calling requery we need to do an async query so that the requery doesn't
-         * block the UI thread for a long time.
-         */
-        @Override
-        protected void onContentChanged() {
-            CharSequence constraint = getTextFilter();
-            if (!TextUtils.isEmpty(constraint)) {
-                // Reset the filter state then start an async filter operation
-                Filter filter = getFilter();
-                filter.filter(constraint);
-            } else {
-                // Start an async query
-                startQuery();
-            }
-        }
-
-        public void setLoading(boolean loading) {
-            mLoading = loading;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
-                return true;
-            }
-
-            if (mSearchMode) {
-                return TextUtils.isEmpty(getTextFilter());
-            } else if ((mMode & MODE_MASK_CREATE_NEW) == MODE_MASK_CREATE_NEW) {
-                // This mode mask adds a header and we always want it to show up, even
-                // if the list is empty, so always claim the list is not empty.
-                return false;
-            } else {
-                if (mCursor == null || mLoading) {
-                    // We don't want the empty state to show when loading.
-                    return false;
-                } else {
-                    return super.isEmpty();
-                }
-            }
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            if (position == 0 && (mShowNumberOfContacts || (mMode & MODE_MASK_CREATE_NEW) != 0)) {
-                return IGNORE_ITEM_VIEW_TYPE;
-            }
-
-            if (isSearchAllContactsItemPosition(position)) {
-                return IGNORE_ITEM_VIEW_TYPE;
-            }
-
-            if (getSeparatorId(position) != 0) {
-                // We don't want the separator view to be recycled.
-                return IGNORE_ITEM_VIEW_TYPE;
-            }
-            if (mMode == MODE_PICK_MULTIPLE_PHONES && position < mPhoneNumberAdapter.getCount()) {
-                return mPhoneNumberAdapter.getItemViewType(position);
-            }
-            return super.getItemViewType(position);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (!mDataValid) {
-                throw new IllegalStateException(
-                        "this should only be called when the cursor is valid");
-            }
-
-            // handle the total contacts item
-            if (position == 0 && mShowNumberOfContacts) {
-                return getTotalContactCountView(parent);
-            }
-
-            if (position == 0 && (mMode & MODE_MASK_CREATE_NEW) != 0) {
-                // Add the header for creating a new contact
-                return getLayoutInflater().inflate(R.layout.create_new_contact, parent, false);
-            }
-
-            if (isSearchAllContactsItemPosition(position)) {
-                return getLayoutInflater().
-                        inflate(R.layout.contacts_list_search_all_item, parent, false);
-            }
-
-            // Handle the separator specially
-            int separatorId = getSeparatorId(position);
-            if (separatorId != 0) {
-                TextView view = (TextView) getLayoutInflater().
-                        inflate(R.layout.list_separator, parent, false);
-                view.setText(separatorId);
-                return view;
-            }
-
-            // Check whether this view should be retrieved from mPhoneNumberAdapter
-            if (mMode == MODE_PICK_MULTIPLE_PHONES && position < mPhoneNumberAdapter.getCount()) {
-                return mPhoneNumberAdapter.getView(position, convertView, parent);
-            }
-
-            int realPosition = getRealPosition(position);
-            if (!mCursor.moveToPosition(realPosition)) {
-                throw new IllegalStateException("couldn't move cursor to position " + position);
-            }
-
-            boolean newView;
-            View v;
-            if (convertView == null || convertView.getTag() == null) {
-                newView = true;
-                v = newView(mContext, mCursor, parent);
-            } else {
-                newView = false;
-                v = convertView;
-            }
-            bindView(v, mContext, mCursor);
-            bindSectionHeader(v, realPosition, mDisplaySectionHeaders);
-            return v;
-        }
-
-        private View getTotalContactCountView(ViewGroup parent) {
-            final LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.total_contacts, parent, false);
-
-            TextView totalContacts = (TextView) view.findViewById(R.id.totalContactsText);
-
-            String text;
-            int count = getRealCount();
-
-            if (mSearchMode && !TextUtils.isEmpty(getTextFilter())) {
-                text = getQuantityText(count, R.string.listFoundAllContactsZero,
-                        R.plurals.searchFoundContacts);
-            } else {
-                if (mDisplayOnlyPhones) {
-                    text = getQuantityText(count, R.string.listTotalPhoneContactsZero,
-                            R.plurals.listTotalPhoneContacts);
-                } else {
-                    text = getQuantityText(count, R.string.listTotalAllContactsZero,
-                            R.plurals.listTotalAllContacts);
-                }
-            }
-            totalContacts.setText(text);
-            return view;
-        }
-
-        private boolean isSearchAllContactsItemPosition(int position) {
-            return mSearchMode && mMode != MODE_PICK_MULTIPLE_PHONES && position == getCount() - 1;
-        }
-
-        private int getSeparatorId(int position) {
-            int separatorId = 0;
-            if (position == mFrequentSeparatorPos) {
-                separatorId = R.string.favoritesFrquentSeparator;
-            }
-            return separatorId;
-        }
-
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            final ContactListItemView view = new ContactListItemView(context, null);
-            view.setOnCallButtonClickListener(ContactsListActivity.this);
-            view.setOnCheckBoxClickListener(mCheckBoxClickerListener);
-            view.setTag(new ContactListItemCache());
-            return view;
-        }
-
-        @Override
-        public void bindView(View itemView, Context context, Cursor cursor) {
-            final ContactListItemView view = (ContactListItemView)itemView;
-            final ContactListItemCache cache = (ContactListItemCache) view.getTag();
-
-            int typeColumnIndex;
-            int dataColumnIndex;
-            int labelColumnIndex;
-            int defaultType;
-            int nameColumnIndex;
-            int phoneticNameColumnIndex;
-            int photoColumnIndex = SUMMARY_PHOTO_ID_COLUMN_INDEX;
-            boolean displayAdditionalData = mDisplayAdditionalData;
-            boolean highlightingEnabled = false;
-            switch(mMode) {
-                case MODE_PICK_MULTIPLE_PHONES:
-                case MODE_PICK_PHONE:
-                case MODE_LEGACY_PICK_PHONE:
-                case MODE_QUERY_PICK_PHONE: {
-                    nameColumnIndex = PHONE_DISPLAY_NAME_COLUMN_INDEX;
-                    phoneticNameColumnIndex = -1;
-                    dataColumnIndex = PHONE_NUMBER_COLUMN_INDEX;
-                    typeColumnIndex = PHONE_TYPE_COLUMN_INDEX;
-                    labelColumnIndex = PHONE_LABEL_COLUMN_INDEX;
-                    defaultType = Phone.TYPE_HOME;
-                    photoColumnIndex = PHONE_PHOTO_ID_COLUMN_INDEX;
-                    break;
-                }
-                case MODE_PICK_POSTAL:
-                case MODE_LEGACY_PICK_POSTAL: {
-                    nameColumnIndex = POSTAL_DISPLAY_NAME_COLUMN_INDEX;
-                    phoneticNameColumnIndex = -1;
-                    dataColumnIndex = POSTAL_ADDRESS_COLUMN_INDEX;
-                    typeColumnIndex = POSTAL_TYPE_COLUMN_INDEX;
-                    labelColumnIndex = POSTAL_LABEL_COLUMN_INDEX;
-                    defaultType = StructuredPostal.TYPE_HOME;
-                    break;
-                }
-                default: {
-                    nameColumnIndex = getSummaryDisplayNameColumnIndex();
-                    if (mMode == MODE_LEGACY_PICK_PERSON
-                            || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
-                        phoneticNameColumnIndex = -1;
-                    } else {
-                        phoneticNameColumnIndex = SUMMARY_PHONETIC_NAME_COLUMN_INDEX;
-                    }
-                    dataColumnIndex = -1;
-                    typeColumnIndex = -1;
-                    labelColumnIndex = -1;
-                    defaultType = Phone.TYPE_HOME;
-                    displayAdditionalData = false;
-                    highlightingEnabled = mHighlightWhenScrolling && mMode != MODE_STREQUENT;
-                }
-            }
-
-            if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-                cache.phoneId = Long.valueOf(cursor.getLong(PHONE_ID_COLUMN_INDEX));
-                CheckBox checkBox = view.getCheckBoxView();
-                checkBox.setChecked(mUserSelection.isSelected(cache.phoneId));
-                checkBox.setTag(cache);
-                int color = getChipColor(cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX));
-                view.getChipView().setBackgroundResource(color);
-            }
-
-            // Set the name
-            cursor.copyStringToBuffer(nameColumnIndex, cache.nameBuffer);
-            TextView nameView = view.getNameTextView();
-            int size = cache.nameBuffer.sizeCopied;
-            if (size != 0) {
-                if (highlightingEnabled) {
-                    if (cache.textWithHighlighting == null) {
-                        cache.textWithHighlighting =
-                                mHighlightingAnimation.createTextWithHighlighting();
-                    }
-                    buildDisplayNameWithHighlighting(nameView, cursor, cache.nameBuffer,
-                            cache.highlightedTextBuffer, cache.textWithHighlighting);
-                } else {
-                    nameView.setText(cache.nameBuffer.data, 0, size);
-                }
-            } else {
-                nameView.setText(mUnknownNameText);
-            }
-
-            // Make the call button visible if requested.
-            if (mDisplayCallButton && cursor.getColumnCount() > SUMMARY_HAS_PHONE_COLUMN_INDEX
-                    && cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0) {
-                int pos = cursor.getPosition();
-                view.showCallButton(android.R.id.button1, pos);
-            } else {
-                view.hideCallButton();
-            }
-
-            // Set the photo, if requested
-            if (mDisplayPhotos) {
-                boolean useQuickContact = (mMode & MODE_MASK_DISABLE_QUIKCCONTACT) == 0;
-
-                long photoId = 0;
-                if (!cursor.isNull(photoColumnIndex)) {
-                    photoId = cursor.getLong(photoColumnIndex);
-                }
-
-                ImageView viewToUse;
-                if (useQuickContact) {
-                    // Build soft lookup reference
-                    final long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-                    final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
-                    QuickContactBadge quickContact = view.getQuickContact();
-                    quickContact.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
-                    viewToUse = quickContact;
-                } else {
-                    viewToUse = view.getPhotoView();
-                }
-
-                final int position = cursor.getPosition();
-                mPhotoLoader.loadPhoto(viewToUse, photoId);
-            }
-
-            if ((mMode & MODE_MASK_NO_PRESENCE) == 0) {
-                // Set the proper icon (star or presence or nothing)
-                int serverStatus;
-                if (!cursor.isNull(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
-                    serverStatus = cursor.getInt(SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
-                    Drawable icon = ContactPresenceIconUtil.getPresenceIcon(mContext, serverStatus);
-                    if (icon != null) {
-                        view.setPresence(icon);
-                    } else {
-                        view.setPresence(null);
-                    }
-                } else {
-                    view.setPresence(null);
-                }
-            } else {
-                view.setPresence(null);
-            }
-
-            if (mShowSearchSnippets) {
-                boolean showSnippet = false;
-                String snippetMimeType = cursor.getString(SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX);
-                if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                    String email = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
-                    if (!TextUtils.isEmpty(email)) {
-                        view.setSnippet(email);
-                        showSnippet = true;
-                    }
-                } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                    String company = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
-                    String title = cursor.getString(SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
-                    if (!TextUtils.isEmpty(company)) {
-                        if (!TextUtils.isEmpty(title)) {
-                            view.setSnippet(company + " / " + title);
-                        } else {
-                            view.setSnippet(company);
-                        }
-                        showSnippet = true;
-                    } else if (!TextUtils.isEmpty(title)) {
-                        view.setSnippet(title);
-                        showSnippet = true;
-                    }
-                } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-                    String nickname = cursor.getString(SUMMARY_SNIPPET_DATA1_COLUMN_INDEX);
-                    if (!TextUtils.isEmpty(nickname)) {
-                        view.setSnippet(nickname);
-                        showSnippet = true;
-                    }
-                }
-
-                if (!showSnippet) {
-                    view.setSnippet(null);
-                }
-            }
-
-            if (!displayAdditionalData) {
-                if (phoneticNameColumnIndex != -1) {
-
-                    // Set the name
-                    cursor.copyStringToBuffer(phoneticNameColumnIndex, cache.phoneticNameBuffer);
-                    int phoneticNameSize = cache.phoneticNameBuffer.sizeCopied;
-                    if (phoneticNameSize != 0) {
-                        view.setLabel(cache.phoneticNameBuffer.data, phoneticNameSize);
-                    } else {
-                        view.setLabel(null);
-                    }
-                } else {
-                    view.setLabel(null);
-                }
-                return;
-            }
-
-            // Set the data.
-            cursor.copyStringToBuffer(dataColumnIndex, cache.dataBuffer);
-
-            size = cache.dataBuffer.sizeCopied;
-            view.setData(cache.dataBuffer.data, size);
-
-            // Set the label.
-            if (!cursor.isNull(typeColumnIndex)) {
-                final int type = cursor.getInt(typeColumnIndex);
-                final String label = cursor.getString(labelColumnIndex);
-
-                if (mMode == MODE_LEGACY_PICK_POSTAL || mMode == MODE_PICK_POSTAL) {
-                    // TODO cache
-                    view.setLabel(StructuredPostal.getTypeLabel(context.getResources(), type,
-                            label));
-                } else {
-                    // TODO cache
-                    view.setLabel(Phone.getTypeLabel(context.getResources(), type, label));
-                }
-            } else {
-                view.setLabel(null);
-            }
-        }
-
-        /**
-         * Computes the span of the display name that has highlighted parts and configures
-         * the display name text view accordingly.
-         */
-        private void buildDisplayNameWithHighlighting(TextView textView, Cursor cursor,
-                CharArrayBuffer buffer1, CharArrayBuffer buffer2,
-                TextWithHighlighting textWithHighlighting) {
-            int oppositeDisplayOrderColumnIndex;
-            if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-                oppositeDisplayOrderColumnIndex = SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
-            } else {
-                oppositeDisplayOrderColumnIndex = SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
-            }
-            cursor.copyStringToBuffer(oppositeDisplayOrderColumnIndex, buffer2);
-
-            textWithHighlighting.setText(buffer1, buffer2);
-            textView.setText(textWithHighlighting);
-        }
-
-        protected void bindSectionHeader(View itemView, int position, boolean displaySectionHeaders) {
-            final ContactListItemView view = (ContactListItemView)itemView;
-            final ContactListItemCache cache = (ContactListItemCache) view.getTag();
-            if (!displaySectionHeaders) {
-                view.setSectionHeader(null);
-                view.setDividerVisible(true);
-            } else {
-                final int section = getSectionForPosition(position);
-                if (getPositionForSection(section) == position) {
-                    String title = (String)mIndexer.getSections()[section];
-                    view.setSectionHeader(title);
-                } else {
-                    view.setDividerVisible(false);
-                    view.setSectionHeader(null);
-                }
-
-                // move the divider for the last item in a section
-                if (getPositionForSection(section + 1) - 1 == position) {
-                    view.setDividerVisible(false);
-                } else {
-                    view.setDividerVisible(true);
-                }
-            }
-        }
-
-        @Override
-        public void changeCursor(Cursor cursor) {
-            if (cursor != null) {
-                setLoading(false);
-            }
-
-            // Get the split between starred and frequent items, if the mode is strequent
-            mFrequentSeparatorPos = ListView.INVALID_POSITION;
-            int cursorCount = 0;
-            if (cursor != null && (cursorCount = cursor.getCount()) > 0
-                    && mMode == MODE_STREQUENT) {
-                cursor.move(-1);
-                for (int i = 0; cursor.moveToNext(); i++) {
-                    int starred = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
-                    if (starred == 0) {
-                        if (i > 0) {
-                            // Only add the separator when there are starred items present
-                            mFrequentSeparatorPos = i;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            if (cursor != null && mSearchResultsMode) {
-                TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
-                String text = getQuantityText(cursor.getCount(), R.string.listFoundAllContactsZero,
-                        R.plurals.listFoundAllContacts);
-                foundContactsText.setText(text);
-            }
-
-            if (mEmptyView != null && (cursor == null || cursor.getCount() == 0)) {
-                mEmptyView.show(mSearchMode, mDisplayOnlyPhones,
-                        mMode == MODE_STREQUENT || mMode == MODE_STARRED,
-                        mMode == MODE_QUERY || mMode == MODE_QUERY_PICK
-                        || mMode == MODE_QUERY_PICK_PHONE || mMode == MODE_QUERY_PICK_TO_VIEW
-                        || mMode == MODE_QUERY_PICK_TO_EDIT,
-                        mShortcutAction != null,
-                        mMode == MODE_PICK_MULTIPLE_PHONES,
-                        mShowSelectedOnly);
-            }
-
-            super.changeCursor(cursor);
-
-            // Update the indexer for the fast scroll widget
-            updateIndexer(cursor);
-
-            if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-                updateChipColor(cursor);
-            }
-        }
-
-        private void updateIndexer(Cursor cursor) {
-            if (cursor == null) {
-                mIndexer = null;
-                return;
-            }
-
-            Bundle bundle = cursor.getExtras();
-            if (bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES)) {
-                String sections[] =
-                    bundle.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
-                int counts[] = bundle.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
-                mIndexer = new ContactsSectionIndexer(sections, counts);
-            } else {
-                mIndexer = null;
-            }
-        }
-
-        /**
-         * Run the query on a helper thread. Beware that this code does not run
-         * on the main UI thread!
-         */
-        @Override
-        public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return doFilter(constraint.toString());
-        }
-
-        public Object [] getSections() {
-            if (mIndexer == null) {
-                return new String[] { " " };
-            } else {
-                return mIndexer.getSections();
-            }
-        }
-
-        public int getPositionForSection(int sectionIndex) {
-            if (mIndexer == null) {
-                return -1;
-            }
-
-            return mIndexer.getPositionForSection(sectionIndex);
-        }
-
-        public int getSectionForPosition(int position) {
-            if (mIndexer == null) {
-                return -1;
-            }
-
-            return mIndexer.getSectionForPosition(position);
-        }
-
-        @Override
-        public boolean areAllItemsEnabled() {
-            return mMode != MODE_STARRED
-                && !mShowNumberOfContacts;
-        }
-
-        @Override
-        public boolean isEnabled(int position) {
-            if (mShowNumberOfContacts) {
-                if (position == 0) {
-                    return false;
-                }
-                position--;
-            }
-            return position != mFrequentSeparatorPos;
-        }
-
-        @Override
-        public int getCount() {
-            if (!mDataValid) {
-                return 0;
-            }
-            int superCount = super.getCount();
-
-            if (mShowNumberOfContacts && (mSearchMode || superCount > 0)) {
-                // We don't want to count this header if it's the only thing visible, so that
-                // the empty text will display.
-                superCount++;
-            }
-
-            if (mSearchMode && mMode != MODE_PICK_MULTIPLE_PHONES) {
-                // Last element in the list is the "Find
-                superCount++;
-            }
-
-            // We do not show the "Create New" button in Search mode
-            if ((mMode & MODE_MASK_CREATE_NEW) != 0 && !mSearchMode) {
-                // Count the "Create new contact" line
-                superCount++;
-            }
-
-            if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-                superCount += mPhoneNumberAdapter.getCount();
-            }
-
-            if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
-                // When showing strequent list, we have an additional list item - the separator.
-                return superCount + 1;
-            } else {
-                return superCount;
-            }
-        }
-
-        /**
-         * Gets the actual count of contacts and excludes all the headers.
-         */
-        public int getRealCount() {
-            return super.getCount();
-        }
-
-        private int getRealPosition(int pos) {
-            if (mShowNumberOfContacts) {
-                pos--;
-            }
-
-            if ((mMode & MODE_MASK_CREATE_NEW) != 0 && !mSearchMode) {
-                return pos - 1;
-            }
-
-            if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-                pos -= mPhoneNumberAdapter.getCount();
-            }
-
-            if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
-                // No separator, identity map
-                return pos;
-            } else if (pos <= mFrequentSeparatorPos) {
-                // Before or at the separator, identity map
-                return pos;
-            } else {
-                // After the separator, remove 1 from the pos to get the real underlying pos
-                return pos - 1;
-            }
-        }
-
-        @Override
-        public Object getItem(int pos) {
-            if (isSearchAllContactsItemPosition(pos)){
-                return null;
-            } else {
-                int realPosition = getRealPosition(pos);
-                if (realPosition < 0) {
-                    return null;
-                }
-                return super.getItem(realPosition);
-            }
-        }
-
-        @Override
-        public long getItemId(int pos) {
-            if (isSearchAllContactsItemPosition(pos)) {
-                return 0;
-            }
-            int realPosition = getRealPosition(pos);
-            if (realPosition < 0) {
-                return 0;
-            }
-            return super.getItemId(realPosition);
-        }
-
-        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-                int totalItemCount) {
-            if (view instanceof PinnedHeaderListView) {
-                ((PinnedHeaderListView)view).configureHeaderView(firstVisibleItem);
-            }
-        }
-
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
-            if (mHighlightWhenScrolling) {
-                if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
-                    mHighlightingAnimation.startHighlighting();
-                } else {
-                    mHighlightingAnimation.stopHighlighting();
-                }
-            }
-
-            if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
-                mPhotoLoader.pause();
-            } else if (mDisplayPhotos) {
-                mPhotoLoader.resume();
-            }
-        }
-
-        /**
-         * Computes the state of the pinned header.  It can be invisible, fully
-         * visible or partially pushed up out of the view.
-         */
-        public int getPinnedHeaderState(int position) {
-            if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
-                return PINNED_HEADER_GONE;
-            }
-
-            int realPosition = getRealPosition(position);
-            if (realPosition < 0) {
-                return PINNED_HEADER_GONE;
-            }
-
-            // The header should get pushed up if the top item shown
-            // is the last item in a section for a particular letter.
-            int section = getSectionForPosition(realPosition);
-            int nextSectionPosition = getPositionForSection(section + 1);
-            if (nextSectionPosition != -1 && realPosition == nextSectionPosition - 1) {
-                return PINNED_HEADER_PUSHED_UP;
-            }
-
-            return PINNED_HEADER_VISIBLE;
-        }
-
-        /**
-         * Configures the pinned header by setting the appropriate text label
-         * and also adjusting color if necessary.  The color needs to be
-         * adjusted when the pinned header is being pushed up from the view.
-         */
-        public void configurePinnedHeader(View header, int position, int alpha) {
-            PinnedHeaderCache cache = (PinnedHeaderCache)header.getTag();
-            if (cache == null) {
-                cache = new PinnedHeaderCache();
-                cache.titleView = (TextView)header.findViewById(R.id.header_text);
-                cache.textColor = cache.titleView.getTextColors();
-                cache.background = header.getBackground();
-                header.setTag(cache);
-            }
-
-            int realPosition = getRealPosition(position);
-            int section = getSectionForPosition(realPosition);
-
-            String title = (String)mIndexer.getSections()[section];
-            cache.titleView.setText(title);
-
-            if (alpha == 255) {
-                // Opaque: use the default background, and the original text color
-                header.setBackgroundDrawable(cache.background);
-                cache.titleView.setTextColor(cache.textColor);
-            } else {
-                // Faded: use a solid color approximation of the background, and
-                // a translucent text color
-                header.setBackgroundColor(Color.rgb(
-                        Color.red(mPinnedHeaderBackgroundColor) * alpha / 255,
-                        Color.green(mPinnedHeaderBackgroundColor) * alpha / 255,
-                        Color.blue(mPinnedHeaderBackgroundColor) * alpha / 255));
-
-                int textColor = cache.textColor.getDefaultColor();
-                cache.titleView.setTextColor(Color.argb(alpha,
-                        Color.red(textColor), Color.green(textColor), Color.blue(textColor)));
-            }
-        }
     }
 
     /**
@@ -3547,7 +2762,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * called in ContactItemListAdapter in MODE_PICK_MULTIPLE_PHONES mode and shouldn't be a adapter
      * for any View due to the missing implementation of getItem and getItemId.
      */
-    private class PhoneNumberAdapter extends BaseAdapter {
+    public class PhoneNumberAdapter extends BaseAdapter {
         public static final long INVALID_PHONE_ID = -1;
 
         /** The initial phone numbers */
@@ -3679,7 +2894,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     /**
      * This class is used to keep the user's selection in MODE_PICK_MULTIPLE_PHONES mode.
      */
-    private class UserSelection {
+    public class UserSelection {
         public static final String EXTRA_SELECTION =
             "com.android.contacts.ContactsListActivity.UserSelection.extra.SELECTION";
         private static final String SELECTED_UNKNOWN_PHONES_KEY = "selected_unknown_phones";
