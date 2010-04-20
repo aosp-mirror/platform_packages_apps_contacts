@@ -16,9 +16,9 @@
 
 package com.android.contacts.views.detail;
 
-import com.android.contacts.mvcframework.Loader;
 import com.android.contacts.util.DataStatus;
 
+import android.app.patterns.Loader;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;

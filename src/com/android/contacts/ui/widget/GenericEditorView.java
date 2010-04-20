@@ -25,9 +25,9 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.mvcframework.DialogManager;
-import com.android.contacts.mvcframework.DialogManager.DialogShowingView;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.DialogManager.DialogShowingView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.mvcframework;
+package com.android.contacts.util;
 
 import android.app.Activity;
 import android.app.Dialog;

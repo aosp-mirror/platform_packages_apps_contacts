@@ -27,7 +27,7 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.mvcframework.DialogManager;
+import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.views.detail.ContactLoader.Result;
@@ -68,7 +68,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -79,10 +78,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,7 +89,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class ContactDetailView extends LinearLayout implements OnCreateContextMenuListener,
+public class ContactPresenter implements OnCreateContextMenuListener,
         OnItemClickListener, DialogManager.DialogShowingView {
     private static final String TAG = "ContactDetailsView";
     private static final boolean SHOW_SEPARATORS = false;
@@ -103,8 +102,11 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
 
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
 
+    private final Context mContext;
+    private final View mView;
+
     private Result mContactData;
-    private Callbacks mCallbacks;
+    private Controller mCallbacks;
     private LayoutInflater mInflater;
     private ContactHeaderWidget mContactHeaderWidget;
     private ListView mListView;
@@ -141,12 +143,38 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
-    public ContactDetailView(Context context) {
-        super(context);
-    }
+    public ContactPresenter(Context context, View view) {
+        mContext = context;
+        mView = view;
 
-    public ContactDetailView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
+        mContactHeaderWidget.showStar(true);
+        mContactHeaderWidget.setExcludeMimes(new String[] {
+            Contacts.CONTENT_ITEM_TYPE
+        });
+
+        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView.setOnCreateContextMenuListener(this);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        mListView.setOnItemClickListener(this);
+        // Don't set it to mListView yet.  We do so later when we bind the adapter.
+        mEmptyView = view.findViewById(android.R.id.empty);
+
+        // Build the list of sections. The order they're added to mSections dictates the
+        // order they are displayed in the list.
+        mSections.add(mPhoneEntries);
+        mSections.add(mSmsEntries);
+        mSections.add(mEmailEntries);
+        mSections.add(mImEntries);
+        mSections.add(mPostalEntries);
+        mSections.add(mNicknameEntries);
+        mSections.add(mOrganizationEntries);
+        mSections.add(mGroupEntries);
+        mSections.add(mOtherEntries);
+
+        //TODO Read this value from a preference
+        mShowSmsLinksForAllPhones = true;
     }
 
     public void setData(Result data) {
@@ -384,15 +412,15 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
         }
     }
 
-    public interface Callbacks {
+    public interface Controller {
         public void onPrimaryClick(ViewEntry entry);
         public void onSecondaryClick(ViewEntry entry);
     }
 
-    public static final class DefaultCallbacks implements Callbacks {
+    public static final class DefaultController implements Controller {
         private Context mContext;
 
-        public DefaultCallbacks(Context context) {
+        public DefaultController(Context context) {
             mContext = context;
         }
 
@@ -419,42 +447,8 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
         }
     }
 
-    public void setCallbacks(Callbacks callbacks) {
+    public void setController(Controller callbacks) {
         mCallbacks = callbacks;
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        Context context = getContext();
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mContactHeaderWidget = (ContactHeaderWidget) findViewById(R.id.contact_header_widget);
-        mContactHeaderWidget.showStar(true);
-        mContactHeaderWidget.setExcludeMimes(new String[] {
-            Contacts.CONTENT_ITEM_TYPE
-        });
-
-        mListView = (ListView) findViewById(android.R.id.list);
-        mListView.setOnCreateContextMenuListener(this);
-        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        mListView.setOnItemClickListener(this);
-        // Don't set it to mListView yet.  We do so later when we bind the adapter.
-        mEmptyView = findViewById(android.R.id.empty);
-
-        // Build the list of sections. The order they're added to mSections dictates the
-        // order they are displayed in the list.
-        mSections.add(mPhoneEntries);
-        mSections.add(mSmsEntries);
-        mSections.add(mEmailEntries);
-        mSections.add(mImEntries);
-        mSections.add(mPostalEntries);
-        mSections.add(mNicknameEntries);
-        mSections.add(mOrganizationEntries);
-        mSections.add(mGroupEntries);
-        mSections.add(mOtherEntries);
-
-        //TODO Read this value from a preference
-        mShowSmsLinksForAllPhones = true;
     }
 
     /* package */ static String buildActionString(DataKind kind, ContentValues values,
@@ -931,18 +925,17 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
     /* package */ void showDialog(int bundleDialogId) {
         Bundle bundle = new Bundle();
         bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
-        getDialogManager().showDialogInView(this, bundle);
+        getDialogManager().showDialogInView(mView, bundle);
     }
 
     private DialogManager getDialogManager() {
         if (mDialogManager == null) {
-            Context context = getContext();
-            if (!(context instanceof DialogManager.DialogShowingViewActivity)) {
+            if (!(mContext instanceof DialogManager.DialogShowingViewActivity)) {
                 throw new IllegalStateException(
                         "View must be hosted in an Activity that implements " +
                         "DialogManager.DialogShowingViewActivity");
             }
-            mDialogManager = ((DialogManager.DialogShowingViewActivity)context).getDialogManager();
+            mDialogManager = ((DialogManager.DialogShowingViewActivity)mContext).getDialogManager();
         }
         return mDialogManager;
     }
@@ -987,7 +980,6 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
         return ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
     }
 
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
@@ -1026,6 +1018,6 @@ public class ContactDetailView extends LinearLayout implements OnCreateContextMe
             }
         }
 
-        return super.onKeyDown(keyCode, event);
+        return false;
     }
 }

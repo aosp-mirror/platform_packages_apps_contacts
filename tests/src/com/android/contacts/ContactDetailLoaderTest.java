@@ -16,11 +16,12 @@
 
 package com.android.contacts;
 
-import com.android.contacts.mvcframework.Loader.OnLoadCompleteListener;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.views.detail.ContactLoader;
 
+import android.app.patterns.Loader;
+import android.app.patterns.Loader.OnLoadCompleteListener;
 import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds;
@@ -80,7 +81,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         // A regular variable can not be written from an anonymous class, so use a 1-array
         final ContactLoader.Result[] result = new ContactLoader.Result[1];
         loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
-            public void onLoadComplete(int id, ContactLoader.Result data) {
+            public void onLoadComplete(Loader loader, ContactLoader.Result data) {
                 result[0] = data;
             }
         });
