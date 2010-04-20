@@ -130,10 +130,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
         OnFocusChangeListener, OnTouchListener {
 
-    public static class ContactsSearchActivity extends ContactsListActivity {
-
-    }
-
     private static final String TAG = "ContactsListActivity";
 
     private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
