@@ -32,7 +32,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
@@ -86,7 +85,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.SparseIntArray;
 import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -97,19 +95,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -117,8 +111,6 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -150,7 +142,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
-    private static final int SUBACTIVITY_FILTER = 5;
+    protected static final int SUBACTIVITY_FILTER = 5;
 
     private static final int TEXT_HIGHLIGHTING_ANIMATION_DURATION = 350;
 
@@ -369,19 +361,16 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     public static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
     public static final int POSTAL_DISPLAY_NAME_COLUMN_INDEX = 4;
 
-    private static final int QUERY_TOKEN = 42;
+    protected static final int QUERY_TOKEN = 42;
 
     static final String KEY_PICKER_MODE = "picker_mode";
 
-    private static final String TEL_SCHEME = "tel";
-    private static final String CONTENT_SCHEME = "content";
-
-    private ContactItemListAdapter mAdapter;
+    public ContactItemListAdapter mAdapter;
     public ContactListEmptyView mEmptyView;
 
     public int mMode = MODE_DEFAULT;
     private boolean mRunQueriesSynchronously;
-    private QueryHandler mQueryHandler;
+    protected QueryHandler mQueryHandler;
     private boolean mJustCreated;
     private boolean mSyncEnabled;
     Uri mSelectedContactUri;
@@ -422,7 +411,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     private String mInitialFilter;
 
-    private static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
+    protected static final String CLAUSE_ONLY_VISIBLE = Contacts.IN_VISIBLE_GROUP + "=1";
     private static final String CLAUSE_ONLY_PHONES = Contacts.HAS_PHONE_NUMBER + "=1";
 
 
@@ -435,57 +424,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     final String[] sLookupProjection = new String[] {
             Contacts.LOOKUP_KEY
     };
-
-    /**
-     * User selected phone number and id in MODE_PICK_MULTIPLE_PHONES mode.
-     */
-    public UserSelection mUserSelection = new UserSelection(null, null);
-
-    /**
-     * The adapter for the phone numbers, used in MODE_PICK_MULTIPLE_PHONES mode.
-     */
-    public PhoneNumberAdapter mPhoneNumberAdapter = new PhoneNumberAdapter(this, null);
-
-    private static int[] CHIP_COLOR_ARRAY = {
-        R.drawable.appointment_indicator_leftside_1,
-        R.drawable.appointment_indicator_leftside_2,
-        R.drawable.appointment_indicator_leftside_3,
-        R.drawable.appointment_indicator_leftside_4,
-        R.drawable.appointment_indicator_leftside_5,
-        R.drawable.appointment_indicator_leftside_6,
-        R.drawable.appointment_indicator_leftside_7,
-        R.drawable.appointment_indicator_leftside_8,
-        R.drawable.appointment_indicator_leftside_9,
-        R.drawable.appointment_indicator_leftside_10,
-        R.drawable.appointment_indicator_leftside_11,
-        R.drawable.appointment_indicator_leftside_12,
-        R.drawable.appointment_indicator_leftside_13,
-        R.drawable.appointment_indicator_leftside_14,
-        R.drawable.appointment_indicator_leftside_15,
-        R.drawable.appointment_indicator_leftside_16,
-        R.drawable.appointment_indicator_leftside_17,
-        R.drawable.appointment_indicator_leftside_18,
-        R.drawable.appointment_indicator_leftside_19,
-        R.drawable.appointment_indicator_leftside_20,
-        R.drawable.appointment_indicator_leftside_21,
-    };
-
-    /**
-     * This is the map from contact to color index.
-     * A colored chip in MODE_PICK_MULTIPLE_PHONES mode is used to indicate the number of phone
-     * numbers belong to one contact
-     */
-    SparseIntArray mContactColor = new SparseIntArray();
-
-    /**
-     * UI control of action panel in MODE_PICK_MULTIPLE_PHONES mode.
-     */
-    private View mFooterView;
-
-    /**
-     * Display only selected recipients or not in MODE_PICK_MULTIPLE_PHONES mode
-     */
-    public boolean mShowSelectedOnly = false;
 
     static {
         sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -564,19 +502,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     };
 
-    public OnClickListener mCheckBoxClickerListener = new OnClickListener () {
-        public void onClick(View v) {
-            final ContactListItemCache cache = (ContactListItemCache) v.getTag();
-            if (cache.phoneId != PhoneNumberAdapter.INVALID_PHONE_ID) {
-                mUserSelection.setPhoneSelected(cache.phoneId, ((CheckBox) v).isChecked());
-            } else {
-                mUserSelection.setPhoneSelected(cache.phoneNumber,
-                        ((CheckBox) v).isChecked());
-            }
-            updateWidgets(true);
-        }
-    };
-
     private ContactListConfiguration mConfig;
 
     public ContactsListActivity() {
@@ -607,9 +532,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         resolveIntent(intent);
         initContentView();
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            initMultiPicker(intent);
-        }
     }
 
     protected void resolveIntent(final Intent intent) {
@@ -657,28 +579,19 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             setContentView(R.layout.contacts_list_content);
         }
 
-        setupListView(new ContactItemListAdapter(this));
+        setupListView(createListAdapter());
         if (mSearchMode) {
             setupSearchView();
-        }
-
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            ViewStub stub = (ViewStub)findViewById(R.id.footer_stub);
-            if (stub != null) {
-                View stubView = stub.inflate();
-                mFooterView = stubView.findViewById(R.id.footer);
-                mFooterView.setVisibility(View.GONE);
-                Button doneButton = (Button) stubView.findViewById(R.id.done);
-                doneButton.setOnClickListener(this);
-                Button revertButton = (Button) stubView.findViewById(R.id.revert);
-                revertButton.setOnClickListener(this);
-            }
         }
 
         View emptyView = mList.getEmptyView();
         if (emptyView instanceof ContactListEmptyView) {
             mEmptyView = (ContactListEmptyView)emptyView;
         }
+    }
+
+    protected ContactItemListAdapter createListAdapter() {
+        return new ContactItemListAdapter(this);
     }
 
     /**
@@ -761,13 +674,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 }
                 break;
             }
-            case R.id.done:
-                setMultiPickerResult();
-                finish();
-                break;
-            case R.id.revert:
-                finish();
-                break;
         }
     }
 
@@ -957,9 +863,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // Save list state in the bundle so we can restore it after the QueryHandler has run
         if (mList != null) {
             icicle.putParcelable(LIST_STATE_KEY, mList.onSaveInstanceState());
-            if (mMode == MODE_PICK_MULTIPLE_PHONES && mUserSelection != null) {
-                mUserSelection.saveInstanceState(icicle);
-            }
         }
     }
 
@@ -968,9 +871,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         super.onRestoreInstanceState(icicle);
         // Retrieve list state. This will be applied after the QueryHandler has run
         mListState = icicle.getParcelable(LIST_STATE_KEY);
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            mUserSelection = new UserSelection(icicle);
-        }
     }
 
     @Override
@@ -990,12 +890,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            final MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.pick, menu);
-            return true;
-        }
-
         // If Contacts was invoked by another Activity simply as a way of
         // picking a contact, don't show the options menu
         if ((mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER) {
@@ -1009,26 +903,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            if (mShowSelectedOnly) {
-                menu.findItem(R.id.menu_display_selected).setVisible(false);
-                menu.findItem(R.id.menu_display_all).setVisible(true);
-                menu.findItem(R.id.menu_select_all).setVisible(false);
-                menu.findItem(R.id.menu_select_none).setVisible(false);
-                return true;
-            }
-            menu.findItem(R.id.menu_display_all).setVisible(false);
-            menu.findItem(R.id.menu_display_selected).setVisible(true);
-            if (mUserSelection.isAllSelected()) {
-                menu.findItem(R.id.menu_select_all).setVisible(false);
-                menu.findItem(R.id.menu_select_none).setVisible(true);
-            } else {
-                menu.findItem(R.id.menu_select_all).setVisible(true);
-                menu.findItem(R.id.menu_select_none).setVisible(false);
-            }
-            return true;
-        }
-
         final boolean defaultMode = (mMode == MODE_DEFAULT);
         menu.findItem(R.id.menu_display_groups).setVisible(defaultMode);
         return true;
@@ -1063,28 +937,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 startActivity(intent);
                 return true;
             }
-            case R.id.menu_select_all: {
-                mUserSelection.setAllPhonesSelected(true);
-                checkAll(true);
-                updateWidgets(true);
-                return true;
-            }
-            case R.id.menu_select_none: {
-                mUserSelection.setAllPhonesSelected(false);
-                checkAll(false);
-                updateWidgets(true);
-                return true;
-            }
-            case R.id.menu_display_selected: {
-                mShowSelectedOnly = true;
-                startQuery();
-                return true;
-            }
-            case R.id.menu_display_all: {
-                mShowSelectedOnly = false;
-                startQuery();
-                return true;
-            }
         }
         return false;
     }
@@ -1101,16 +953,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         } else {
             if (!mSearchMode && (mMode & MODE_MASK_NO_FILTER) == 0) {
                 if ((mMode & MODE_MASK_PICKER) != 0) {
-                    Bundle extras = null;
-                    if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-                        extras = getIntent().getExtras();
-                        if (extras == null) {
-                            extras = new Bundle();
-                        }
-                        mUserSelection.fillSelectionForSearchMode(extras);
-                    }
                     ContactsSearchManager.startSearchForResult(this, initialQuery,
-                            SUBACTIVITY_FILTER, extras);
+                            SUBACTIVITY_FILTER, null);
                 } else {
                     ContactsSearchManager.startSearch(this, initialQuery);
                 }
@@ -1556,14 +1400,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
         }
         return false;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mMode == MODE_PICK_MULTIPLE_PHONES) {
-            setMultiPickerResult();
-        }
-        super.onBackPressed();
     }
 
     /**
@@ -2293,25 +2129,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, null, null, null);
                 break;
 
-            case MODE_PICK_MULTIPLE_PHONES:
-                // Filter unknown phone numbers first.
-                mPhoneNumberAdapter.doFilter(null, mShowSelectedOnly);
-                if (mShowSelectedOnly) {
-                    StringBuilder idSetBuilder = new StringBuilder();
-                    Iterator<Long> itr = mUserSelection.getSelectedPhonIds();
-                    if (itr.hasNext()) {
-                        idSetBuilder.append(Long.toString(itr.next()));
-                    }
-                    while (itr.hasNext()) {
-                        idSetBuilder.append(',');
-                        idSetBuilder.append(Long.toString(itr.next()));
-                    }
-                    String whereClause = Phone._ID + " IN (" + idSetBuilder.toString() + ")";
-                    mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
-                            projection, whereClause, null, getSortOrder(projection));
-                    break;
-                }
-                // Fall through For other cases
             case MODE_PICK_PHONE:
                 mQueryHandler.startQuery(QUERY_TOKEN, null, uri,
                         projection, CLAUSE_ONLY_VISIBLE, null, getSortOrder(projection));
@@ -2390,10 +2207,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 return resolver.query(uri, projection, null, null, null);
             }
 
-            case MODE_PICK_MULTIPLE_PHONES:
-                // Filter phone numbers as well.
-                mPhoneNumberAdapter.doFilter(filter, mShowSelectedOnly);
-                // Fall through
             case MODE_PICK_PHONE: {
                 Uri uri = getUriToQuery();
                 if (!TextUtils.isEmpty(filter)) {
@@ -2551,148 +2364,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return (Cursor) listView.getAdapter().getItem(index);
     }
 
-    private void initMultiPicker(final Intent intent) {
-        final Handler handler = new Handler();
-        // TODO : Shall we still show the progressDialog in search mode.
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getText(R.string.adding_recipients));
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-
-        final Runnable showProgress = new Runnable() {
-            public void run() {
-                progressDialog.show();
-            }
-        };
-        handler.postDelayed(showProgress, 1);
-
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    loadSelectionFromIntent(intent);
-                } finally {
-                    handler.removeCallbacks(showProgress);
-                    progressDialog.dismiss();
-                }
-                final Runnable populateWorker = new Runnable() {
-                    public void run() {
-                        if (mAdapter != null) {
-                            mAdapter.notifyDataSetChanged();
-                        }
-                        updateWidgets(false);
-                    }
-                };
-                handler.post(populateWorker);
-            }
-        }).start();
-    }
-
-    private void getPhoneNumbersOrIdsFromURIs(final Parcelable[] uris,
-            final List<String> phoneNumbers, final List<Long> phoneIds) {
-        if (uris != null) {
-            for (Parcelable paracelable : uris) {
-                Uri uri = (Uri) paracelable;
-                if (uri == null) continue;
-                String scheme = uri.getScheme();
-                if (phoneNumbers != null && TEL_SCHEME.equals(scheme)) {
-                    phoneNumbers.add(uri.getSchemeSpecificPart());
-                } else if (phoneIds != null && CONTENT_SCHEME.equals(scheme)) {
-                    phoneIds.add(ContentUris.parseId(uri));
-                }
-            }
-        }
-    }
-
-    private void loadSelectionFromIntent(Intent intent) {
-        Parcelable[] uris = intent.getParcelableArrayExtra(Intents.EXTRA_PHONE_URIS);
-        ArrayList<String> phoneNumbers = new ArrayList<String>();
-        ArrayList<Long> phoneIds = new ArrayList<Long>();
-        ArrayList<String> selectedPhoneNumbers = null;
-        if (mSearchMode) {
-            // All selection will be read from EXTRA_SELECTION
-            getPhoneNumbersOrIdsFromURIs(uris, phoneNumbers, null);
-            uris = intent.getParcelableArrayExtra(UserSelection.EXTRA_SELECTION);
-            if (uris != null) {
-                selectedPhoneNumbers = new ArrayList<String>();
-                getPhoneNumbersOrIdsFromURIs(uris, selectedPhoneNumbers, phoneIds);
-            }
-        } else {
-            getPhoneNumbersOrIdsFromURIs(uris, phoneNumbers, phoneIds);
-            selectedPhoneNumbers = phoneNumbers;
-        }
-        mPhoneNumberAdapter = new PhoneNumberAdapter(this, phoneNumbers);
-        mUserSelection = new UserSelection(selectedPhoneNumbers, phoneIds);
-    }
-
-    private void setMultiPickerResult() {
-        setResult(RESULT_OK, mUserSelection.createSelectionIntent());
-    }
-
-    /**
-     * Go through the cursor and assign the chip color to contact who has more than one phone
-     * numbers.
-     * Assume the cursor is sorted by CONTACT_ID.
-     */
-    public void updateChipColor(Cursor cursor) {
-        if (cursor == null || cursor.getCount() == 0) {
-            return;
-        }
-        mContactColor.clear();
-        int backupPos = cursor.getPosition();
-        cursor.moveToFirst();
-        int color = 0;
-        long prevContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
-        while (cursor.moveToNext()) {
-            long contactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
-            if (prevContactId == contactId) {
-                if (mContactColor.indexOfKey(Long.valueOf(contactId).hashCode()) < 0) {
-                    mContactColor.put(Long.valueOf(contactId).hashCode(), CHIP_COLOR_ARRAY[color]);
-                    color++;
-                    if (color >= CHIP_COLOR_ARRAY.length) {
-                        color = 0;
-                    }
-                }
-            }
-            prevContactId = contactId;
-        }
-        cursor.moveToPosition(backupPos);
-    }
-
-    /**
-     * Get assigned chip color resource id for a given contact, 0 is returned if there is no mapped
-     * resource.
-     */
-    public int getChipColor(long contactId) {
-        return mContactColor.get(Long.valueOf(contactId).hashCode());
-    }
-
-    private void updateWidgets(boolean changed) {
-        int selected = mUserSelection.selectedCount();
-
-        if (selected >= 1) {
-            final String format =
-                getResources().getQuantityString(R.plurals.multiple_picker_title, selected);
-            setTitle(String.format(format, selected));
-        } else {
-            setTitle(getString(R.string.contactsList));
-        }
-
-        if (changed && mFooterView.getVisibility() == View.GONE) {
-            mFooterView.setVisibility(View.VISIBLE);
-            mFooterView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.footer_appear));
-        }
-    }
-
-    private void checkAll(boolean checked) {
-        final ListView listView = getListView();
-        int childCount = listView.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final ContactListItemView child = (ContactListItemView)listView.getChildAt(i);
-            child.getCheckBoxView().setChecked(checked);
-        }
-    }
-
-    private class QueryHandler extends AsyncQueryHandler {
+    protected class QueryHandler extends AsyncQueryHandler {
         protected final WeakReference<ContactsListActivity> mActivity;
 
         public QueryHandler(Context context) {
@@ -2751,333 +2423,5 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public TextView titleView;
         public ColorStateList textColor;
         public Drawable background;
-    }
-
-    /**
-     * This class is the adapter for the phone numbers which may not be found in the contacts. It is
-     * called in ContactItemListAdapter in MODE_PICK_MULTIPLE_PHONES mode and shouldn't be a adapter
-     * for any View due to the missing implementation of getItem and getItemId.
-     */
-    public class PhoneNumberAdapter extends BaseAdapter {
-        public static final long INVALID_PHONE_ID = -1;
-
-        /** The initial phone numbers */
-        private List<String> mPhoneNumbers;
-
-        /** The phone numbers after the filtering */
-        private ArrayList<String> mFilteredPhoneNumbers = new ArrayList<String>();
-
-        private Context mContext;
-
-        /** The position where this Adapter Phone numbers start*/
-        private int mStartPos;
-
-        public PhoneNumberAdapter(Context context, final List<String> phoneNumbers) {
-            init(context, phoneNumbers);
-        }
-
-        private void init(Context context, final List<String> phoneNumbers) {
-            mStartPos = (mMode & MODE_MASK_SHOW_NUMBER_OF_CONTACTS) != 0 ? 1 : 0;
-            mContext = context;
-            if (phoneNumbers != null) {
-                mFilteredPhoneNumbers.addAll(phoneNumbers);
-                mPhoneNumbers = phoneNumbers;
-            } else {
-                mPhoneNumbers = new ArrayList<String>();
-            }
-        }
-
-        public int getCount() {
-            int filteredCount = mFilteredPhoneNumbers.size();
-            if (filteredCount == 0) {
-                return 0;
-            }
-            // Count on the separator
-            return 1 + filteredCount;
-        }
-
-        public Object getItem(int position) {
-            // This method is not used currently.
-            throw new RuntimeException("This method is not implemented");
-        }
-
-        public long getItemId(int position) {
-            // This method is not used currently.
-            throw new RuntimeException("This method is not implemented");
-        }
-
-        /**
-         * @return the initial phone numbers, the zero length array is returned when there is no
-         * initial numbers.
-         */
-        public final List<String> getPhoneNumbers() {
-            return mPhoneNumbers;
-        }
-
-        /**
-         * @return the filtered phone numbers, the zero size ArrayList is returned when there is no
-         * initial numbers.
-         */
-        public ArrayList<String> getFilteredPhoneNumbers() {
-            return mFilteredPhoneNumbers;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            int viewCount = getCount();
-            if (viewCount == 0) {
-                return null;
-            }
-            // Separator
-            if (position == mStartPos) {
-                TextView view;
-                if (convertView != null && convertView instanceof TextView) {
-                    view = (TextView) convertView;
-                } else {
-                    LayoutInflater inflater =
-                        (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    view = (TextView) inflater.inflate(R.layout.list_separator, parent, false);
-                }
-                view.setText(R.string.unknown_contacts_separator);
-                return view;
-            }
-            // PhoneNumbers start from position of startPos + 1
-            if (position >= mStartPos + 1 && position < mStartPos + viewCount) {
-                View view;
-                if (convertView != null && convertView.getTag() != null &&
-                        convertView.getTag() instanceof ContactListItemCache) {
-                    view = convertView;
-                } else {
-                    view = mAdapter.newView(mContext, null, parent);
-                }
-                bindView(view, mFilteredPhoneNumbers.get(position - 1 - mStartPos));
-                return view;
-            }
-            return null;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return position == mStartPos ? IGNORE_ITEM_VIEW_TYPE : super.getItemViewType(position);
-        }
-
-        private void bindView(View view, final String label) {
-            ContactListItemView itemView = (ContactListItemView) view;
-            final ContactListItemCache cache = (ContactListItemCache) view.getTag();
-            itemView.getNameTextView().setText(label);
-            CheckBox checkBox = itemView.getCheckBoxView();
-            checkBox.setChecked(mUserSelection.isSelected(label));
-            itemView.getChipView().setBackgroundResource(0);
-            cache.phoneId = INVALID_PHONE_ID;
-            cache.phoneNumber = label;
-            checkBox.setTag(cache);
-        }
-
-        public void doFilter(final String constraint, boolean selectedOnly) {
-            if (mPhoneNumbers == null) {
-                return;
-            }
-            mFilteredPhoneNumbers.clear();
-            for (String number : mPhoneNumbers) {
-                if (selectedOnly && !mUserSelection.isSelected(number) ||
-                        !TextUtils.isEmpty(constraint) && !number.startsWith(constraint)) {
-                    continue;
-                }
-                mFilteredPhoneNumbers.add(number);
-            }
-        }
-    }
-
-    /**
-     * This class is used to keep the user's selection in MODE_PICK_MULTIPLE_PHONES mode.
-     */
-    public class UserSelection {
-        public static final String EXTRA_SELECTION =
-            "com.android.contacts.ContactsListActivity.UserSelection.extra.SELECTION";
-        private static final String SELECTED_UNKNOWN_PHONES_KEY = "selected_unknown_phones";
-        private static final String SELECTED_PHONE_IDS_KEY = "selected_phone_id";
-
-        /** The PHONE_ID of selected number in user contacts*/
-        private HashSet<Long> mSelectedPhoneIds = new HashSet<Long>();
-
-        /** The selected phone numbers in the PhoneNumberAdapter */
-        private HashSet<String> mSelectedPhoneNumbers = new HashSet<String>();
-
-        /**
-         * @param phoneNumbers the phone numbers are selected.
-         */
-        public UserSelection(final List<String> phoneNumbers, final List<Long> phoneIds) {
-            init(phoneNumbers, phoneIds);
-        }
-
-        /**
-         * Creates from a instance state.
-         */
-        public UserSelection (Bundle icicle) {
-            init(icicle.getStringArray(SELECTED_UNKNOWN_PHONES_KEY),
-                    icicle.getLongArray(SELECTED_PHONE_IDS_KEY));
-        }
-
-        public void saveInstanceState(Bundle icicle) {
-            int selectedUnknownsCount = mSelectedPhoneNumbers.size();
-            if (selectedUnknownsCount > 0) {
-                String[] selectedUnknows = new String[selectedUnknownsCount];
-                icicle.putStringArray(SELECTED_UNKNOWN_PHONES_KEY,
-                        mSelectedPhoneNumbers.toArray(selectedUnknows));
-            }
-            int selectedKnownsCount = mSelectedPhoneIds.size();
-            if (selectedKnownsCount > 0) {
-                long[] selectedPhoneIds = new long [selectedKnownsCount];
-                int index = 0;
-                for (Long phoneId : mSelectedPhoneIds) {
-                    selectedPhoneIds[index++] = phoneId.longValue();
-                }
-                icicle.putLongArray(SELECTED_PHONE_IDS_KEY, selectedPhoneIds);
-
-            }
-        }
-
-        private void init(final String[] selecedUnknownNumbers, final long[] selectedPhoneIds) {
-            if (selecedUnknownNumbers != null) {
-                for (String number : selecedUnknownNumbers) {
-                    setPhoneSelected(number, true);
-                }
-            }
-            if (selectedPhoneIds != null) {
-                for (long id : selectedPhoneIds) {
-                    setPhoneSelected(id, true);
-                }
-            }
-        }
-
-        private void init(final List<String> selecedUnknownNumbers,
-                final List<Long> selectedPhoneIds) {
-            if (selecedUnknownNumbers != null) {
-                setPhoneNumbersSelected(selecedUnknownNumbers, true);
-            }
-            if (selectedPhoneIds != null) {
-                setPhoneIdsSelected(selectedPhoneIds, true);
-            }
-        }
-
-        private void setPhoneNumbersSelected(final List<String> phoneNumbers, boolean selected) {
-            if (selected) {
-                mSelectedPhoneNumbers.addAll(phoneNumbers);
-            } else {
-                mSelectedPhoneNumbers.removeAll(phoneNumbers);
-            }
-        }
-
-        private void setPhoneIdsSelected(final List<Long> phoneIds, boolean selected) {
-            if (selected) {
-                mSelectedPhoneIds.addAll(phoneIds);
-            } else {
-                mSelectedPhoneIds.removeAll(phoneIds);
-            }
-        }
-
-        public void setPhoneSelected(final String phoneNumber, boolean selected) {
-            if (!TextUtils.isEmpty(phoneNumber)) {
-                if (selected) {
-                    mSelectedPhoneNumbers.add(phoneNumber);
-                } else {
-                    mSelectedPhoneNumbers.remove(phoneNumber);
-                }
-            }
-        }
-
-        public void setPhoneSelected(long phoneId, boolean selected) {
-            if (selected) {
-                mSelectedPhoneIds.add(phoneId);
-            } else {
-                mSelectedPhoneIds.remove(phoneId);
-            }
-        }
-
-        public boolean isSelected(long phoneId) {
-            return mSelectedPhoneIds.contains(phoneId);
-        }
-
-        public boolean isSelected(final String phoneNumber) {
-            return mSelectedPhoneNumbers.contains(phoneNumber);
-        }
-
-        public void setAllPhonesSelected(boolean selected) {
-            if (selected) {
-                Cursor cursor = mAdapter.getCursor();
-                if (cursor != null) {
-                    int backupPos = cursor.getPosition();
-                    cursor.moveToPosition(-1);
-                    while (cursor.moveToNext()) {
-                        setPhoneSelected(cursor.getLong(PHONE_ID_COLUMN_INDEX), true);
-                    }
-                    cursor.moveToPosition(backupPos);
-                }
-                for (String number : mPhoneNumberAdapter.getFilteredPhoneNumbers()) {
-                    setPhoneSelected(number, true);
-                }
-            } else {
-                mSelectedPhoneIds.clear();
-                mSelectedPhoneNumbers.clear();
-            }
-        }
-
-        public boolean isAllSelected() {
-            return selectedCount() == mPhoneNumberAdapter.getFilteredPhoneNumbers().size()
-                    + mAdapter.getCount();
-        }
-
-        public int selectedCount() {
-            return mSelectedPhoneNumbers.size() + mSelectedPhoneIds.size();
-        }
-
-        public Iterator<Long> getSelectedPhonIds() {
-            return mSelectedPhoneIds.iterator();
-        }
-
-        private int fillSelectedNumbers(Uri[] uris, int from) {
-            int count = mSelectedPhoneNumbers.size();
-            if (count == 0)
-                return from;
-            // Below loop keeps phone numbers by initial order.
-            List<String> phoneNumbers = mPhoneNumberAdapter.getPhoneNumbers();
-            for (String phoneNumber : phoneNumbers) {
-                if (isSelected(phoneNumber)) {
-                    Uri.Builder ub = new Uri.Builder();
-                    ub.scheme(TEL_SCHEME);
-                    ub.encodedOpaquePart(phoneNumber);
-                    uris[from++] = ub.build();
-                }
-            }
-            return from;
-        }
-
-        private int fillSelectedPhoneIds(Uri[] uris, int from) {
-            int count = mSelectedPhoneIds.size();
-            if (count == 0)
-                return from;
-            Iterator<Long> it = mSelectedPhoneIds.iterator();
-            while (it.hasNext()) {
-                uris[from++] = ContentUris.withAppendedId(Phone.CONTENT_URI, it.next());
-            }
-            return from;
-        }
-
-        private Uri[] getSelected() {
-            Uri[] uris = new Uri[mSelectedPhoneNumbers.size() + mSelectedPhoneIds.size()];
-            int from  = fillSelectedNumbers(uris, 0);
-            fillSelectedPhoneIds(uris, from);
-            return uris;
-        }
-
-        public Intent createSelectionIntent() {
-            Intent intent = new Intent();
-            intent.putExtra(Intents.EXTRA_PHONE_URIS, getSelected());
-
-            return intent;
-        }
-
-        public void fillSelectionForSearchMode(Bundle bundle) {
-            bundle.putParcelableArray(EXTRA_SELECTION, getSelected());
-        }
     }
 }

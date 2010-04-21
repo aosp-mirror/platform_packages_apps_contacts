@@ -53,6 +53,8 @@ public class AllIntentsActivity extends ListActivity {
             "com.android.contacts.ContactsListActivity";
     private static final String SEARCH_RESULTS_ACTIVITY_CLASS_NAME =
             "com.android.contacts.SearchResultsActivity";
+    private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
+        "com.android.contacts.MultiplePhonePickerActivity";
 
     private static final int LIST_DEFAULT = 0;
     private static final int LIST_ALL_CONTACTS_ACTION = 1;
@@ -356,7 +358,10 @@ public class AllIntentsActivity extends ListActivity {
             case ACTION_GET_MULTIPLE_PHONES: {
                 Intent intent = new Intent(Intents.ACTION_GET_MULTIPLE_PHONES);
                 intent.setType(Phone.CONTENT_TYPE);
-                startContactsListActivityForResult(intent);
+                intent.putExtra(Intents.EXTRA_PHONE_URIS, new Uri[] {
+                        Uri.parse("tel:555-1212"), Uri.parse("tel:555-2121")
+                });
+                startMultiplePhoneSelectionActivityForResult(intent);
                 break;
             }
         }
@@ -393,6 +398,13 @@ public class AllIntentsActivity extends ListActivity {
                 new ComponentName(ANDROID_CONTACTS_PACKAGE, SEARCH_RESULTS_ACTIVITY_CLASS_NAME));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private void startMultiplePhoneSelectionActivityForResult(Intent intent) {
+        intent.setComponent(
+                new ComponentName(ANDROID_CONTACTS_PACKAGE,
+                        MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME));
+        startActivityForResult(intent, 13);
     }
 
     @Override

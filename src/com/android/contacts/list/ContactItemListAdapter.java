@@ -32,7 +32,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
@@ -48,10 +47,10 @@ public class ContactItemListAdapter extends CursorAdapter
     private final ContactsListActivity contactsListActivity;
     private SectionIndexer mIndexer;
     private boolean mLoading = true;
-    private CharSequence mUnknownNameText;
-    private boolean mDisplayPhotos = false;
+    protected CharSequence mUnknownNameText;
+    protected boolean mDisplayPhotos = false;
     private boolean mDisplayCallButton = false;
-    private boolean mDisplayAdditionalData = true;
+    protected boolean mDisplayAdditionalData = true;
     private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
     private boolean mDisplaySectionHeaders = true;
 
@@ -164,10 +163,6 @@ public class ContactItemListAdapter extends CursorAdapter
             // We don't want the separator view to be recycled.
             return IGNORE_ITEM_VIEW_TYPE;
         }
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES
-                && position < contactsListActivity.mPhoneNumberAdapter.getCount()) {
-            return contactsListActivity.mPhoneNumberAdapter.getItemViewType(position);
-        }
         return super.getItemViewType(position);
     }
 
@@ -202,12 +197,6 @@ public class ContactItemListAdapter extends CursorAdapter
                     inflate(R.layout.list_separator, parent, false);
             view.setText(separatorId);
             return view;
-        }
-
-        // Check whether this view should be retrieved from mPhoneNumberAdapter
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES
-                && position < contactsListActivity.mPhoneNumberAdapter.getCount()) {
-            return contactsListActivity.mPhoneNumberAdapter.getView(position, convertView, parent);
         }
 
         int realPosition = getRealPosition(position);
@@ -271,7 +260,6 @@ public class ContactItemListAdapter extends CursorAdapter
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setOnCallButtonClickListener(contactsListActivity);
-        view.setOnCheckBoxClickListener(contactsListActivity.mCheckBoxClickerListener);
         view.setTag(new ContactsListActivity.ContactListItemCache());
         return view;
     }
@@ -332,17 +320,6 @@ public class ContactItemListAdapter extends CursorAdapter
                 highlightingEnabled = contactsListActivity.mHighlightWhenScrolling
                         && contactsListActivity.mMode != ContactsListActivity.MODE_STREQUENT;
             }
-        }
-
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES) {
-            cache.phoneId =
-                Long.valueOf(cursor.getLong(ContactsListActivity.PHONE_ID_COLUMN_INDEX));
-            CheckBox checkBox = view.getCheckBoxView();
-            checkBox.setChecked(contactsListActivity.mUserSelection.isSelected(cache.phoneId));
-            checkBox.setTag(cache);
-            int color = contactsListActivity.getChipColor(cursor
-                    .getLong(ContactsListActivity.PHONE_CONTACT_ID_COLUMN_INDEX));
-            view.getChipView().setBackgroundResource(color);
         }
 
         // Set the name
@@ -508,7 +485,7 @@ public class ContactItemListAdapter extends CursorAdapter
      * Computes the span of the display name that has highlighted parts and configures
      * the display name text view accordingly.
      */
-    private void buildDisplayNameWithHighlighting(TextView textView, Cursor cursor,
+    protected void buildDisplayNameWithHighlighting(TextView textView, Cursor cursor,
             CharArrayBuffer buffer1, CharArrayBuffer buffer2,
             TextWithHighlighting textWithHighlighting) {
         int oppositeDisplayOrderColumnIndex;
@@ -584,28 +561,28 @@ public class ContactItemListAdapter extends CursorAdapter
         }
 
         if (contactsListActivity.mEmptyView != null && (cursor == null || cursor.getCount() == 0)) {
-            contactsListActivity.mEmptyView.show(contactsListActivity.mSearchMode,
-                    contactsListActivity.mDisplayOnlyPhones,
-                    contactsListActivity.mMode == ContactsListActivity.MODE_STREQUENT
-                    || contactsListActivity.mMode == ContactsListActivity.MODE_STARRED,
-                    contactsListActivity.mMode == ContactsListActivity.MODE_QUERY
-                    || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK
-                    || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_PHONE
-                    || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_TO_VIEW
-                    || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_TO_EDIT,
-                    contactsListActivity.mShortcutAction != null,
-                    contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES,
-                    contactsListActivity.mShowSelectedOnly);
+            prepareEmptyView();
         }
 
         super.changeCursor(cursor);
 
         // Update the indexer for the fast scroll widget
         updateIndexer(cursor);
+    }
 
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES) {
-            contactsListActivity.updateChipColor(cursor);
-        }
+    protected void prepareEmptyView() {
+        contactsListActivity.mEmptyView.show(contactsListActivity.mSearchMode,
+                contactsListActivity.mDisplayOnlyPhones,
+                contactsListActivity.mMode == ContactsListActivity.MODE_STREQUENT
+                || contactsListActivity.mMode == ContactsListActivity.MODE_STARRED,
+                contactsListActivity.mMode == ContactsListActivity.MODE_QUERY
+                || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK
+                || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_PHONE
+                || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_TO_VIEW
+                || contactsListActivity.mMode == ContactsListActivity.MODE_QUERY_PICK_TO_EDIT,
+                contactsListActivity.mShortcutAction != null,
+                false,
+                false);
     }
 
     private void updateIndexer(Cursor cursor) {
@@ -702,10 +679,6 @@ public class ContactItemListAdapter extends CursorAdapter
             superCount++;
         }
 
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES) {
-            superCount += contactsListActivity.mPhoneNumberAdapter.getCount();
-        }
-
         if (mFrequentSeparatorPos != ListView.INVALID_POSITION) {
             // When showing strequent list, we have an additional list item - the separator.
             return superCount + 1;
@@ -721,7 +694,7 @@ public class ContactItemListAdapter extends CursorAdapter
         return super.getCount();
     }
 
-    private int getRealPosition(int pos) {
+    protected int getRealPosition(int pos) {
         if (contactsListActivity.mShowNumberOfContacts) {
             pos--;
         }
@@ -729,10 +702,6 @@ public class ContactItemListAdapter extends CursorAdapter
         if ((contactsListActivity.mMode & ContactsListActivity.MODE_MASK_CREATE_NEW) != 0
                 && !contactsListActivity.mSearchMode) {
             return pos - 1;
-        }
-
-        if (contactsListActivity.mMode == ContactsListActivity.MODE_PICK_MULTIPLE_PHONES) {
-            pos -= contactsListActivity.mPhoneNumberAdapter.getCount();
         }
 
         if (mFrequentSeparatorPos == ListView.INVALID_POSITION) {
