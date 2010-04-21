@@ -333,7 +333,8 @@ public class JoinContactActivity extends ContactsListActivity {
             return superCount;
         }
 
-        private int getRealPosition(int pos) {
+        @Override
+        protected int getRealPosition(int pos) {
             if (mSuggestionsCursorCount != 0) {
                 // When showing suggestions, we have 2 additional list items: the "Suggestions"
                 // and "All contacts" separators.

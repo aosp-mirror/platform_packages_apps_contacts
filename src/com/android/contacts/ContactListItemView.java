@@ -146,6 +146,7 @@ public class ContactListItemView extends ViewGroup {
     public void setOnCheckBoxClickListener(OnClickListener checkBoxClickListener) {
         mCheckBoxClickListener = checkBoxClickListener;
     }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // We will match parent's width and wrap content vertically, but make sure
@@ -467,6 +468,24 @@ public class ContactListItemView extends ViewGroup {
             addView(mPhotoView);
         }
         return mPhotoView;
+    }
+
+    /**
+     * Removes the photo view.  Should not be needed once we start handling different
+     * types of views as different types of views from the List's perspective.
+     *
+     * @deprecated
+     */
+    @Deprecated
+    public void removePhotoView() {
+        if (mPhotoView != null) {
+            removeView(mPhotoView);
+            mPhotoView = null;
+        }
+        if (mQuickContact != null) {
+            removeView(mQuickContact);
+            mQuickContact = null;
+        }
     }
 
     /**
