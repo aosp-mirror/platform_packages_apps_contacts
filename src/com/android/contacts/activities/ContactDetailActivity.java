@@ -18,12 +18,14 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.mvcframework.DialogManager;
-import com.android.contacts.mvcframework.LoaderActivity;
-import com.android.contacts.views.detail.ContactDetailView;
+import com.android.contacts.util.DialogManager;
+import com.android.contacts.views.detail.ContactPresenter;
 import com.android.contacts.views.detail.ContactLoader;
 
 import android.app.Dialog;
+import android.app.patterns.Loader;
+import android.app.patterns.LoaderActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,7 +35,7 @@ import android.view.MenuItem;
 public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> implements
         DialogManager.DialogShowingViewActivity {
     private static final int LOADER_DETAILS = 1;
-    private ContactDetailView mDetails;
+    private ContactPresenter mCoupler;
     private DialogManager mDialogManager;
 
     private static final String TAG = "ContactDetailActivity";
@@ -49,8 +51,8 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
 
         mDialogManager = new DialogManager(this, DIALOG_VIEW_DIALOGS_ID1, DIALOG_VIEW_DIALOGS_ID2);
 
-        mDetails = (ContactDetailView) findViewById(R.id.contact_details);
-        mDetails.setCallbacks(new ContactDetailView.DefaultCallbacks(this));
+        mCoupler = new ContactPresenter(this, findViewById(R.id.contact_details));
+        mCoupler.setController(new ContactPresenter.DefaultController(this));
     }
 
     @Override
@@ -64,13 +66,16 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
             case LOADER_DETAILS: {
                 return new ContactLoader(this, getIntent().getData());
             }
+            default: {
+                Log.wtf(TAG, "Unknown ID in onCreateLoader: " + id);
+            }
         }
         return null;
     }
 
-
     @Override
-    public void onLoadComplete(int id, ContactLoader.Result data) {
+    public void onLoadFinished(Loader loader, ContactLoader.Result data) {
+        final int id = loader.getId();
         switch (id) {
             case LOADER_DETAILS:
                 if (data == ContactLoader.Result.NOT_FOUND) {
@@ -79,15 +84,18 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
                     finish();
                     return;
                 }
-                mDetails.setData(data);
+                mCoupler.setData(data);
                 break;
+            default: {
+                Log.wtf(TAG, "Unknown ID in onLoadFinished: " + id);
+            }
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO: This is too hardwired.
-        if (mDetails.onCreateOptionsMenu(menu, getMenuInflater())) return true;
+        if (mCoupler.onCreateOptionsMenu(menu, getMenuInflater())) return true;
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -95,7 +103,7 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // TODO: This is too hardwired.
-        if (mDetails.onPrepareOptionsMenu(menu)) return true;
+        if (mCoupler.onPrepareOptionsMenu(menu)) return true;
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -103,7 +111,7 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO: This is too hardwired.
-        if (mDetails.onOptionsItemSelected(item)) return true;
+        if (mCoupler.onOptionsItemSelected(item)) return true;
 
         return super.onOptionsItemSelected(item);
     }
@@ -120,7 +128,7 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         // TODO: This is too hardwired.
-        if (mDetails.onContextItemSelected(item)) return true;
+        if (mCoupler.onContextItemSelected(item)) return true;
 
         return super.onContextItemSelected(item);
     }
@@ -138,7 +146,7 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO: This is too hardwired.
-        if (mDetails.onKeyDown(keyCode, event)) return true;
+        if (mCoupler.onKeyDown(keyCode, event)) return true;
 
         return super.onKeyDown(keyCode, event);
     }

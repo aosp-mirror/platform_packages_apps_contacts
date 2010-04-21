@@ -30,9 +30,9 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.mvcframework.DialogManager;
 import com.android.contacts.ui.widget.BaseContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
+import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 

@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.mvcframework;
+package android.app.patterns;
 
 
 import android.app.Activity;
@@ -28,40 +28,61 @@ import java.util.HashMap;
  */
 public abstract class LoaderActivity<D> extends Activity implements
         Loader.OnLoadCompleteListener<D> {
+    private boolean mStarted = false;
+
     static final class LoaderInfo {
         public Bundle args;
         public Loader loader;
     }
     private HashMap<Integer, LoaderInfo> mLoaders;
+    private HashMap<Integer, LoaderInfo> mInactiveLoaders;
 
     /**
      * Registers a loader with this activity, registers the callbacks on it, and starts it loading.
+     * If a loader with the same id has previously been started it will automatically be destroyed
+     * when the new loader completes it's work. The callback will be delivered before the old loader
+     * is destroyed.
      */
     protected void startLoading(int id, Bundle args) {
         LoaderInfo info = mLoaders.get(id);
-        Loader loader;
         if (info != null) {
-            loader = info.loader;
-            if (loader != null) {
-                loader.unregisterListener(this);
-                loader.destroy();
-                info.loader = null;
-            }
-        } else {
-            info = new LoaderInfo();
-            info.args = args;
+            // Keep track of the previous instance of this loader so we can destroy
+            // it when the new one completes.
+            mInactiveLoaders.put(id, info);
         }
+        info = new LoaderInfo();
+        info.args = args;
         mLoaders.put(id, info);
-        loader = onCreateLoader(id, args);
-        loader.registerListener(id, this);
-        loader.startLoading();
+        Loader loader = onCreateLoader(id, args);
         info.loader = loader;
+        if (mStarted) {
+            // The activity will start all existing loaders in it's onStart(), so only start them
+            // here if we're past that point of the activitiy's life cycle
+            loader.registerListener(id, this);
+            loader.startLoading();
+        }
     }
 
     protected abstract Loader onCreateLoader(int id, Bundle args);
     protected abstract void onInitializeLoaders();
+    protected abstract void onLoadFinished(Loader loader, D data);
 
-    public abstract void onLoadComplete(int id, D data);
+    public final void onLoadComplete(Loader loader, D data) {
+        // Notify of the new data so the app can switch out the old data before
+        // we try to destroy it.
+        onLoadFinished(loader, data);
+
+        // Look for an inactive loader and destroy it if found
+        int id = loader.getId();
+        LoaderInfo info = mInactiveLoaders.get(id);
+        if (info != null) {
+            Loader oldLoader = info.loader;
+            if (oldLoader != null) {
+                oldLoader.destroy();
+            }
+            mInactiveLoaders.remove(id);
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -74,6 +95,9 @@ public abstract class LoaderActivity<D> extends Activity implements
                 mLoaders = new HashMap<Integer, LoaderInfo>();
                 onInitializeLoaders();
             }
+        }
+        if (mInactiveLoaders == null) {
+            mInactiveLoaders = new HashMap<Integer, LoaderInfo>();
         }
     }
 
@@ -90,11 +114,12 @@ public abstract class LoaderActivity<D> extends Activity implements
             if (loader == null) {
                loader = onCreateLoader(id, info.args);
                info.loader = loader;
-            } else {
-                loader.registerListener(id, this);
             }
+            loader.registerListener(id, this);
             loader.startLoading();
         }
+
+        mStarted = true;
     }
 
     @Override
@@ -116,6 +141,8 @@ public abstract class LoaderActivity<D> extends Activity implements
 //                loader.stopLoading();
 //            }
         }
+
+        mStarted = false;
     }
 
     @Override
