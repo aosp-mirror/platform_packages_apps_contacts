@@ -21,19 +21,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.PowerManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -55,33 +51,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-class VCardFile {
-    private String mName;
-    private String mCanonicalPath;
-    private long mLastModified;
 
-    public VCardFile(String name, String canonicalPath, long lastModified) {
-        mName = name;
-        mCanonicalPath = canonicalPath;
-        mLastModified = lastModified;
-    }
-
-    public String getName() {
-        return mName;
-    }
-
-    public String getCanonicalPath() {
-        return mCanonicalPath;
-    }
-
-    public long getLastModified() {
-        return mLastModified;
-    }
-}
 
 /**
- * Class for importing vCard. Several user interaction will be required while reading
- * (selecting a file, waiting a moment, etc.)
+ * The class letting users to import vCard. This includes the UI part for letting them select
+ * an Account and posssibly a file if there's no Uri is given from its caller Activity.
  *
  * Note that this Activity assumes that the instance is a "one-shot Activity", which will be
  * finished (with the method {@link Activity#finish()}) after the import and never reuse
@@ -90,6 +64,8 @@ class VCardFile {
  */
 public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "ImportVCardActivity";
+
+    private static final int SELECT_ACCOUNT = 0;
 
     /* package */ static final String VCARD_URI_ARRAY = "vcard_uri_array";
 
@@ -100,12 +76,39 @@ public class ImportVCardActivity extends Activity {
     private String mAccountName;
     private String mAccountType;
 
+    private String mAction;
+    private Uri mUri;
+
     private ProgressDialog mProgressDialogForScanVCard;
 
     private List<VCardFile> mAllVCardFileList;
     private VCardScanThread mVCardScanThread;
 
     private String mErrorMessage;
+
+    private static class VCardFile {
+        private final String mName;
+        private final String mCanonicalPath;
+        private final long mLastModified;
+
+        public VCardFile(String name, String canonicalPath, long lastModified) {
+            mName = name;
+            mCanonicalPath = canonicalPath;
+            mLastModified = lastModified;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public String getCanonicalPath() {
+            return mCanonicalPath;
+        }
+
+        public long getLastModified() {
+            return mLastModified;
+        }
+    }
 
     // Runs on the UI thread.
     private class DialogDisplayer implements Runnable {
@@ -365,8 +368,8 @@ public class ImportVCardActivity extends Activity {
     private void importVCard(final String[] uriStrings) {
         final Intent intent = new Intent(this, ImportVCardService.class);
         intent.putExtra(VCARD_URI_ARRAY, uriStrings);
-        intent.putExtra("account_name", mAccountName);
-        intent.putExtra("account_type", mAccountType);
+        intent.putExtra(SelectAccountActivity.ACCOUNT_NAME, mAccountName);
+        intent.putExtra(SelectAccountActivity.ACCOUNT_TYPE, mAccountType);
 
         // TODO: permission is not migrated to ImportVCardService, so some exception is
         // thrown when reading some Uri, permission of which is temporarily guaranteed
@@ -436,56 +439,52 @@ public class ImportVCardActivity extends Activity {
 
         final Intent intent = getIntent();
         if (intent != null) {
-            mAccountName = intent.getStringExtra("account_name");
-            mAccountType = intent.getStringExtra("account_type");
+            mAccountName = intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME);
+            mAccountType = intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE);
+            mAction = intent.getAction();
+            mUri = intent.getData();
         } else {
             Log.e(LOG_TAG, "intent does not exist");
         }
 
-        // The caller often does not know account information at all, so we show the UI instead.
+        // The caller may not know account information at all, so we show the UI instead.
         if (TextUtils.isEmpty(mAccountName) || TextUtils.isEmpty(mAccountType)) {
-            // There's three possibilities:
-            // - more than one accounts -> ask the user
-            // - just one account -> use the account without asking the user
-            // - no account -> use phone-local storage without asking the user
             final Sources sources = Sources.getInstance(this);
             final List<Account> accountList = sources.getAccounts(true);
-            final int size = accountList.size();
-            if (size > 1) {
-                final int resId = R.string.import_from_sdcard;
-                mAccountSelectionListener =
-                    new AccountSelectionUtil.AccountSelectedListener(
-                            this, accountList, resId) {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        final Account account = mAccountList.get(which);
-                        mAccountName = account.name;
-                        mAccountType = account.type;
-                        // Instead of using Intent mechanism, call the relevant private method,
-                        // to avoid throwing an Intent to itself again.
-                        startImport();
-                    }
-                };
-                showDialog(resId);
-                return;
+            if (accountList.size() == 0) {
+                mAccountName = null;
+                mAccountType = null;
+            } else if (accountList.size() == 1) {
+                final Account account = accountList.get(0);
+                mAccountName = account.name;
+                mAccountType = account.type;
             } else {
-                final Account account = ((size > 0) ? accountList.get(0) : null);
-                if (account != null) {
-                    mAccountName = account.name;
-                    mAccountType = account.type;
-                }
+                startActivityForResult(new Intent(this, SelectAccountActivity.class),
+                        SELECT_ACCOUNT);
+                return;
             }
         }
-
-        startImport();
+        startImport(mAction, mUri);
     }
 
-    private void startImport() {
-        Intent intent = getIntent();
-        final String action = intent.getAction();
-        final Uri uri = intent.getData();
-        Log.v(LOG_TAG, "action = " + action + " ; path = " + uri);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == SELECT_ACCOUNT) {
+            if (resultCode == RESULT_OK) {
+                mAccountName = intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME);
+                mAccountType = intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE);
+                startImport(mAction, mUri);
+            } else {
+                if (resultCode != RESULT_CANCELED) {
+                    Log.w(LOG_TAG, "Result code was not OK nor CANCELED: " + resultCode);
+                }
+                finish();
+            }
+        }
+    }
+
+    private void startImport(String action, Uri uri) {
+        Log.d(LOG_TAG, "action = " + action + " ; path = " + uri);
 
         if (uri != null) {
             importVCard(uri.toString());
@@ -495,7 +494,7 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int resId) {
+    protected Dialog onCreateDialog(int resId, Bundle bundle) {
         switch (resId) {
             case R.string.import_from_sdcard: {
                 if (mAccountSelectionListener == null) {
@@ -503,8 +502,7 @@ public class ImportVCardActivity extends Activity {
                             "mAccountSelectionListener must not be null.");
                 }
                 return AccountSelectionUtil.getSelectAccountDialog(this, resId,
-                        mAccountSelectionListener,
-                        new CancelListener());
+                        mAccountSelectionListener, mCancelListener);
             }
             case R.id.dialog_searching_vcard: {
                 if (mProgressDialogForScanVCard == null) {
@@ -572,7 +570,7 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
-        return super.onCreateDialog(resId);
+        return super.onCreateDialog(resId, bundle);
     }
 
     @Override
