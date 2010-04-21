@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.android.contacts;
 
 import android.accounts.Account;
@@ -226,7 +225,7 @@ public class ImportVCardService extends Service {
                 final String charset = detector.getEstimatedCharset();  // May be null.
 
                 final VCardEntryConstructor constructor =
-                        new VCardEntryConstructor(charset, vcardType, account);
+                        new VCardEntryConstructor(vcardType, account, charset);
                 final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
                 constructor.addEntryHandler(committer);
                 constructor.addEntryHandler(new ProgressNotifier(id));
