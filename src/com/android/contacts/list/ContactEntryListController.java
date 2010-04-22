@@ -16,11 +16,67 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsApplicationController;
+
+import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 /**
- * Common base class for various contact-related lists, e.g. contact list, phone number list
- * etc.
+ * Common base class for various contact-related list controllers.
  */
-public abstract class ContactEntryListController {
+public abstract class ContactEntryListController implements AdapterView.OnItemClickListener {
 
+    private final Context mContext;
+    private final ContactsApplicationController mAppController;
+    private ListAdapter mAdapter;
+    private ListView mListView;
+
+    public ContactEntryListController(Context context,
+            ContactsApplicationController appController) {
+        this.mContext = context;
+        this.mAppController = appController;
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
+
+    public ContactsApplicationController getContactsApplicationController() {
+        return mAppController;
+    }
+
+    public void setAdapter(ListAdapter adapter) {
+        mAdapter = adapter;
+    }
+
+    public ListAdapter getAdapter() {
+        return mAdapter;
+    }
+
+    public void setListView(ListView listView) {
+        mListView = listView;
+    }
+
+    public ListView getListView() {
+        return mListView;
+    }
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        hideSoftKeyboard();
+
+        onItemClick(position, id);
+    }
+
+    protected abstract void onItemClick(int position, long id);
+
+    private void hideSoftKeyboard() {
+        // Hide soft keyboard, if visible
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
+    }
 }

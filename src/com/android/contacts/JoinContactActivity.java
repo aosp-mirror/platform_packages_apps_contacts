@@ -16,10 +16,12 @@
 
 package com.android.contacts;
 
-import com.android.contacts.list.ContactItemListAdapter;
+
+import com.android.contacts.list.ContactEntryListConfiguration;
+import com.android.contacts.list.JoinContactListAdapter;
+import com.android.contacts.list.JoinContactListConfiguration;
 
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -30,8 +32,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.AggregationSuggestions;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
@@ -62,12 +62,6 @@ public class JoinContactActivity extends ContactsListActivity {
     private long mTargetContactId;
 
     /**
-     * Determines whether we display a list item with the label
-     * "Show all contacts" or actually show all contacts
-     */
-    private boolean mJoinModeShowAllContacts;
-
-    /**
      * The ID of the special item described above.
      */
     private static final long JOIN_MODE_SHOW_ALL_CONTACTS_ID = -2;
@@ -77,7 +71,7 @@ public class JoinContactActivity extends ContactsListActivity {
     private JoinContactListAdapter mAdapter;
 
     @Override
-    protected void resolveIntent(Intent intent) {
+    protected ContactEntryListConfiguration resolveIntent(Intent intent) {
         mMode = MODE_PICK_CONTACT;
         mTargetContactId = intent.getLongExtra(EXTRA_TARGET_CONTACT_ID, -1);
         if (mTargetContactId == -1) {
@@ -85,7 +79,9 @@ public class JoinContactActivity extends ContactsListActivity {
                     + EXTRA_TARGET_CONTACT_ID);
             setResult(RESULT_CANCELED);
             finish();
+            return null;
         }
+        return new JoinContactListConfiguration(this, this);
     }
 
     @Override
@@ -96,15 +92,16 @@ public class JoinContactActivity extends ContactsListActivity {
         String blurb = getString(R.string.blurbJoinContactDataWith,
                 getContactDisplayName(mTargetContactId));
         blurbView.setText(blurb);
-        mJoinModeShowAllContacts = true;
-        mAdapter = new JoinContactListAdapter(this);
-        setupListView(mAdapter);
+        mConfig.configureListView(getListView());
+
+        mAdapter = (JoinContactListAdapter)getListView().getAdapter();
+        mAdapter.setJoinModeShowAllContacts(true);
     }
 
     @Override
-    protected void onListItemClick(int position, long id) {
+    public void onListItemClick(int position, long id) {
         if (id == JOIN_MODE_SHOW_ALL_CONTACTS_ID) {
-            mJoinModeShowAllContacts = false;
+            mAdapter.setJoinModeShowAllContacts(false);
             startQuery();
         } else {
             final Uri uri = getSelectedUri(position);
@@ -187,8 +184,8 @@ public class JoinContactActivity extends ContactsListActivity {
                 mAdapter.setSuggestionsCursor(null);
             }
 
-            if (mAdapter.mSuggestionsCursorCount == 0
-                    || !mJoinModeShowAllContacts) {
+            if (mAdapter.getSuggestionsCursorCount() == 0
+                    || !mAdapter.isJoinModeShowAllContacts()) {
                 startQuery(getContactFilterUri(getTextFilter()),
                         CONTACTS_SUMMARY_PROJECTION,
                         Contacts._ID + " != " + mTargetContactId
@@ -201,186 +198,5 @@ public class JoinContactActivity extends ContactsListActivity {
         }
 
         super.onQueryComplete(cursor);
-    }
-
-    private class JoinContactListAdapter extends ContactItemListAdapter {
-        Cursor mSuggestionsCursor;
-        int mSuggestionsCursorCount;
-
-        public JoinContactListAdapter(ContactsListActivity context) {
-            super(context);
-        }
-
-        public void setSuggestionsCursor(Cursor cursor) {
-            if (mSuggestionsCursor != null) {
-                mSuggestionsCursor.close();
-            }
-            mSuggestionsCursor = cursor;
-            mSuggestionsCursorCount = cursor == null ? 0 : cursor.getCount();
-        }
-
-        private boolean isShowAllContactsItemPosition(int position) {
-            return mJoinModeShowAllContacts
-                    && mSuggestionsCursorCount != 0 && position == mSuggestionsCursorCount + 2;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (!mDataValid) {
-                throw new IllegalStateException(
-                        "this should only be called when the cursor is valid");
-            }
-
-            if (isShowAllContactsItemPosition(position)) {
-                return getLayoutInflater().
-                        inflate(R.layout.contacts_list_show_all_item, parent, false);
-            }
-
-            // Handle the separator specially
-            int separatorId = getSeparatorId(position);
-            if (separatorId != 0) {
-                TextView view = (TextView) getLayoutInflater().
-                        inflate(R.layout.list_separator, parent, false);
-                view.setText(separatorId);
-                return view;
-            }
-
-            boolean showingSuggestion;
-            Cursor cursor;
-            if (mSuggestionsCursorCount != 0 && position < mSuggestionsCursorCount + 2) {
-                showingSuggestion = true;
-                cursor = mSuggestionsCursor;
-            } else {
-                showingSuggestion = false;
-                cursor = mCursor;
-            }
-
-            int realPosition = getRealPosition(position);
-            if (!cursor.moveToPosition(realPosition)) {
-                throw new IllegalStateException("couldn't move cursor to position " + position);
-            }
-
-            boolean newView;
-            View v;
-            if (convertView == null || convertView.getTag() == null) {
-                newView = true;
-                v = newView(mContext, cursor, parent);
-            } else {
-                newView = false;
-                v = convertView;
-            }
-            bindView(v, mContext, cursor);
-            bindSectionHeader(v, realPosition, !showingSuggestion);
-            return v;
-        }
-
-        @Override
-        public void changeCursor(Cursor cursor) {
-            if (cursor == null) {
-                mAdapter.setSuggestionsCursor(null);
-            }
-
-            super.changeCursor(cursor);
-        }
-        @Override
-        public int getItemViewType(int position) {
-            if (isShowAllContactsItemPosition(position)) {
-                return IGNORE_ITEM_VIEW_TYPE;
-            }
-
-            return super.getItemViewType(position);
-        }
-
-        private int getSeparatorId(int position) {
-            if (mSuggestionsCursorCount != 0) {
-                if (position == 0) {
-                    return R.string.separatorJoinAggregateSuggestions;
-                } else if (position == mSuggestionsCursorCount + 1) {
-                    return R.string.separatorJoinAggregateAll;
-                }
-            }
-            return 0;
-        }
-
-        @Override
-        public boolean areAllItemsEnabled() {
-            return super.areAllItemsEnabled() && mSuggestionsCursorCount == 0;
-        }
-
-        @Override
-        public boolean isEnabled(int position) {
-            if (position == 0) {
-                return false;
-            }
-
-            if (mSuggestionsCursorCount > 0) {
-                return position != 0 && position != mSuggestionsCursorCount + 1;
-            }
-            return true;
-        }
-
-        @Override
-        public int getCount() {
-            if (!mDataValid) {
-                return 0;
-            }
-            int superCount = super.getCount();
-            if (mSuggestionsCursorCount != 0) {
-                // When showing suggestions, we have 2 additional list items: the "Suggestions"
-                // and "All contacts" headers.
-                return mSuggestionsCursorCount + superCount + 2;
-            }
-            return superCount;
-        }
-
-        @Override
-        protected int getRealPosition(int pos) {
-            if (mSuggestionsCursorCount != 0) {
-                // When showing suggestions, we have 2 additional list items: the "Suggestions"
-                // and "All contacts" separators.
-                if (pos < mSuggestionsCursorCount + 2) {
-                    // We are in the upper partition (Suggestions). Adjusting for the "Suggestions"
-                    // separator.
-                    return pos - 1;
-                } else {
-                    // We are in the lower partition (All contacts). Adjusting for the size
-                    // of the upper partition plus the two separators.
-                    return pos - mSuggestionsCursorCount - 2;
-                }
-            } else {
-                // No separator, identity map
-                return pos;
-            }
-        }
-
-        @Override
-        public Object getItem(int pos) {
-            if (mSuggestionsCursorCount != 0 && pos <= mSuggestionsCursorCount) {
-                mSuggestionsCursor.moveToPosition(getRealPosition(pos));
-                return mSuggestionsCursor;
-            } else {
-                int realPosition = getRealPosition(pos);
-                if (realPosition < 0) {
-                    return null;
-                }
-                return super.getItem(realPosition);
-            }
-        }
-
-        @Override
-        public long getItemId(int pos) {
-            if (mSuggestionsCursorCount != 0 && pos < mSuggestionsCursorCount + 2) {
-                if (mSuggestionsCursor.moveToPosition(pos - 1)) {
-                    return mSuggestionsCursor.getLong(mRowIDColumn);
-                } else {
-                    return 0;
-                }
-            }
-            int realPosition = getRealPosition(pos);
-            if (realPosition < 0) {
-                return 0;
-            }
-            return super.getItemId(realPosition);
-        }
     }
 }

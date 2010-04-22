@@ -108,6 +108,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -124,7 +125,7 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends ListActivity implements View.OnCreateContextMenuListener,
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
-        OnFocusChangeListener, OnTouchListener, OnScrollListener {
+        OnFocusChangeListener, OnTouchListener, OnScrollListener, ContactsApplicationController {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -507,10 +508,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     };
 
     private ContactsIntentResolver mIntentResolver;
-    private ContactEntryListConfiguration mConfig;
+    protected ContactEntryListConfiguration mConfig;
 
     public ContactsListActivity() {
-        mIntentResolver = new ContactsIntentResolver(this);
+        mIntentResolver = new ContactsIntentResolver(this, this);
     }
 
     /**
@@ -535,29 +536,28 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // Resolve the intent
         final Intent intent = getIntent();
 
-        resolveIntent(intent);
+        mConfig = resolveIntent(intent);
         initContentView();
     }
 
-    protected void resolveIntent(final Intent intent) {
+    protected ContactEntryListConfiguration resolveIntent(final Intent intent) {
         mIntentResolver.setIntent(intent);
 
         if (!mIntentResolver.isValid()) {           // Invalid intent
             setResult(RESULT_CANCELED);
             finish();
-            return;
+            return null;
         }
 
         Intent redirect = mIntentResolver.getRedirectIntent();
         if (redirect != null) {             // Need to start a different activity
             startActivity(redirect);
             finish();
-            return;
+            return null;
         }
 
         setTitle(mIntentResolver.getActivityTitle());
 
-        mConfig = mIntentResolver.getConfiguration();
 
         // This is strictly temporary. Its purpose is to allow us to refactor this class in
         // small increments.  We should expect all of these modes to go away.
@@ -572,6 +572,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mSearchResultsMode = mIntentResolver.mSearchResultsMode;
         mShowNumberOfContacts = mIntentResolver.mShowNumberOfContacts;
         mGroupName = mIntentResolver.mGroupName;
+
+        return mIntentResolver.getConfiguration();
     }
 
     public void initContentView() {
@@ -586,7 +588,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             setContentView(R.layout.contacts_list_content);
         }
 
-        setupListView(createListAdapter());
+        mConfig.configureListView(getListView());
+
         if (mSearchMode) {
             setupSearchView();
         }
@@ -597,29 +600,9 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     }
 
-    protected ContactItemListAdapter createListAdapter() {
-        // TODO there should be no need to cast
-        return (ContactItemListAdapter)mConfig.createListAdapter();
-    }
-
-    /**
-     * Register an observer for provider status changes - we will need to
-     * reflect them in the UI.
-     */
-    private void registerProviderStatusObserver() {
-        getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
-                false, mProviderStatusObserver);
-    }
-
-    /**
-     * Register an observer for provider status changes - we will need to
-     * reflect them in the UI.
-     */
-    private void unregisterProviderStatusObserver() {
-        getContentResolver().unregisterContentObserver(mProviderStatusObserver);
-    }
-
-    protected void setupListView(ContactItemListAdapter adapter) {
+    // TODO move this to the configuration object(s)
+    @Deprecated
+    public void setupListView(ListAdapter adapter) {
         final ListView list = getListView();
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -631,7 +614,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         list.setDividerHeight(0);
         list.setOnCreateContextMenuListener(this);
 
-        mAdapter = adapter;
+        mAdapter = (ContactEntryListAdapter)adapter;
         setListAdapter(mAdapter);
 
         if (list instanceof PinnedHeaderListView && mConfig.isSectionHeaderDisplayEnabled()) {
@@ -649,6 +632,23 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
+    }
+
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void registerProviderStatusObserver() {
+        getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
+                false, mProviderStatusObserver);
+    }
+
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void unregisterProviderStatusObserver() {
+        getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -1508,14 +1508,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         return false;
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        hideSoftKeyboard();
-
-        onListItemClick(position, id);
-    }
-
-    protected void onListItemClick(int position, long id) {
+    public void onListItemClick(int position, long id) {
         if (mSearchMode &&
                 ((ContactItemListAdapter)(mAdapter)).isSearchAllContactsItemPosition(position)) {
             doSearch();

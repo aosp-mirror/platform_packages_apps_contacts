@@ -34,13 +34,15 @@ import android.widget.TextView;
 public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
 
     private final MultiplePhonePickerActivity mMultiplePhonePickerActivity;
-    private final MultiplePhoneExtraAdapter mExtraAdapter;
+    private MultiplePhoneExtraAdapter mExtraAdapter;
 
-    public MultiplePhonePickerAdapter(MultiplePhonePickerActivity multiplePhonePickerActivity,
-            MultiplePhoneExtraAdapter extraAdapter) {
+    public MultiplePhonePickerAdapter(MultiplePhonePickerActivity multiplePhonePickerActivity) {
         super(multiplePhonePickerActivity);
         this.mMultiplePhonePickerActivity = multiplePhonePickerActivity;
-        this.mExtraAdapter = extraAdapter;
+    }
+
+    public void setExtraAdapter(MultiplePhoneExtraAdapter extraAdapter) {
+        mExtraAdapter = extraAdapter;
     }
 
     @Override

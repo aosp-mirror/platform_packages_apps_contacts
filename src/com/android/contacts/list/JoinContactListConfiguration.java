@@ -16,7 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
-import com.android.contacts.ContactsListActivity;
+import com.android.contacts.JoinContactActivity;
 
 import android.content.Context;
 import android.widget.ListAdapter;
@@ -24,24 +24,26 @@ import android.widget.ListAdapter;
 /**
  * Configuration for the default contact list.
  */
-public class DefaultContactListConfiguration extends ContactEntryListConfiguration {
+public class JoinContactListConfiguration extends ContactEntryListConfiguration {
 
-    public DefaultContactListConfiguration(Context context,
+    public JoinContactListConfiguration(Context context,
             ContactsApplicationController applicationController) {
         super(context, applicationController);
     }
 
     @Override
     public ListAdapter createListAdapter() {
-        ContactItemListAdapter adapter =
-                new ContactItemListAdapter((ContactsListActivity)getContext());
-        adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+        JoinContactListAdapter adapter =
+                new JoinContactListAdapter((JoinContactActivity)getContext());
+        adapter.setSectionHeaderDisplayEnabled(true);
+        adapter.setDisplayPhotos(true);
         return adapter;
     }
 
     @Override
     public ContactEntryListController createController() {
+
+        // TODO needs a separate controller
         return new DefaultContactListController(getContext(), getApplicationController());
     }
 }

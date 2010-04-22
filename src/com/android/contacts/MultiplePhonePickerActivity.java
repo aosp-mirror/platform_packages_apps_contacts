@@ -16,9 +16,9 @@
 
 package com.android.contacts;
 
-import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.MultiplePhoneExtraAdapter;
 import com.android.contacts.list.MultiplePhonePickerAdapter;
+import com.android.contacts.list.MultiplePhonePickerConfiguration;
 import com.android.contacts.list.MultiplePhoneSelection;
 
 import android.app.ProgressDialog;
@@ -126,13 +126,10 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
     }
 
     @Override
-    protected ContactItemListAdapter createListAdapter() {
-        return new MultiplePhonePickerAdapter(this, mPhoneNumberAdapter);
-    }
-
-    @Override
     public void initContentView() {
         super.initContentView();
+        ((MultiplePhonePickerAdapter)getListView().getAdapter())
+                .setExtraAdapter(mPhoneNumberAdapter);
         ViewStub stub = (ViewStub)findViewById(R.id.footer_stub);
         if (stub != null) {
             View stubView = stub.inflate();

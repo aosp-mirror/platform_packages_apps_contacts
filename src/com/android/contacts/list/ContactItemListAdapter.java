@@ -207,12 +207,12 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
         View v;
         if (convertView == null || convertView.getTag() == null) {
             newView = true;
-            v = newView(mContext, mCursor, parent);
+            v = newView(getContext(), mCursor, parent);
         } else {
             newView = false;
             v = convertView;
         }
-        bindView(v, mContext, mCursor);
+        bindView(v, getContext(), mCursor);
         bindSectionHeader(v, realPosition, mSectionHeaderDisplayEnabled);
         return v;
     }
@@ -384,7 +384,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
             if (!cursor.isNull(ContactsListActivity.SUMMARY_PRESENCE_STATUS_COLUMN_INDEX)) {
                 serverStatus =
                         cursor.getInt(ContactsListActivity.SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
-                Drawable icon = ContactPresenceIconUtil.getPresenceIcon(mContext, serverStatus);
+                Drawable icon = ContactPresenceIconUtil.getPresenceIcon(getContext(), serverStatus);
                 if (icon != null) {
                     view.setPresence(icon);
                 } else {

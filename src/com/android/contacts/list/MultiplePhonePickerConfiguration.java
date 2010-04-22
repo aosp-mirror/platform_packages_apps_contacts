@@ -16,32 +16,34 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
-import com.android.contacts.ContactsListActivity;
+import com.android.contacts.MultiplePhonePickerActivity;
 
 import android.content.Context;
 import android.widget.ListAdapter;
 
 /**
- * Configuration for the default contact list.
+ * Configuration for the multiple phone picker.
  */
-public class DefaultContactListConfiguration extends ContactEntryListConfiguration {
+public class MultiplePhonePickerConfiguration extends ContactEntryListConfiguration {
 
-    public DefaultContactListConfiguration(Context context,
+    public MultiplePhonePickerConfiguration(Context context,
             ContactsApplicationController applicationController) {
         super(context, applicationController);
     }
 
     @Override
     public ListAdapter createListAdapter() {
-        ContactItemListAdapter adapter =
-                new ContactItemListAdapter((ContactsListActivity)getContext());
-        adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+        MultiplePhonePickerAdapter adapter =
+                new MultiplePhonePickerAdapter((MultiplePhonePickerActivity)getContext());
+        adapter.setSectionHeaderDisplayEnabled(true);
+        adapter.setDisplayPhotos(true);
         return adapter;
     }
 
     @Override
     public ContactEntryListController createController() {
+
+        // TODO this needs a separate controller
         return new DefaultContactListController(getContext(), getApplicationController());
     }
 }

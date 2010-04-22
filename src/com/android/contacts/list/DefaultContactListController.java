@@ -13,34 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsApplicationController;
+
 import android.content.Context;
-import android.widget.CursorAdapter;
 
 /**
- * Common base class for various contact-related lists, e.g. contact list, phone number list
- * etc.
+ * Controller for the default contact list.
  */
-public abstract class ContactEntryListAdapter extends CursorAdapter {
+public class DefaultContactListController extends ContactEntryListController {
 
-    private final Context mContext;
-
-    public ContactEntryListAdapter(Context context) {
-        super(context, null, false);
-        this.mContext = context;
+    public DefaultContactListController(Context context,
+            ContactsApplicationController appController) {
+        super(context, appController);
     }
 
-    public Context getContext() {
-        return mContext;
-    }
-
-    /*
-     * TODO change this method when loaders are introduced.
-     */
     @Override
-    @Deprecated
-    public void onContentChanged() {
-        super.onContentChanged();
+    protected void onItemClick(int position, long id) {
+        // TODO instead of delegating the entire procedure to the ContactsListActivity,
+        // figure out what the specific action is and delegate the specific action.
+        getContactsApplicationController().onListItemClick(position, id);
     }
 }

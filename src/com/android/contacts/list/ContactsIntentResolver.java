@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
@@ -199,8 +200,11 @@ public class ContactsIntentResolver {
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    public ContactsIntentResolver(Activity context) {
+    private final ContactsApplicationController mAppController;
+
+    public ContactsIntentResolver(Activity context, ContactsApplicationController appController) {
         this.mContext = context;
+        this.mAppController = appController;
     }
 
     public void setIntent(Intent intent) {
@@ -480,11 +484,15 @@ public class ContactsIntentResolver {
             case MODE_PICK_PHONE:
             case MODE_STREQUENT:
             case MODE_FREQUENT: {
-                config = new DefaultContactListConfiguration(mContext);
+                config = new DefaultContactListConfiguration(mContext, mAppController);
+                break;
+            }
+            case MODE_PICK_MULTIPLE_PHONES: {
+                config = new MultiplePhonePickerConfiguration(mContext, mAppController);
                 break;
             }
             default: {
-                config = new DefaultContactListConfiguration(mContext);
+                config = new DefaultContactListConfiguration(mContext, mAppController);
                 if (!mSearchMode) {
                     config.setSectionHeaderDisplayEnabled(true);
                 }
