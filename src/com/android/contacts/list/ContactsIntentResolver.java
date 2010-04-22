@@ -471,5 +471,30 @@ public class ContactsIntentResolver {
         return null;
     }
 
+    public ContactEntryListConfiguration getConfiguration() {
+        ContactEntryListConfiguration config;
+        switch (mMode) {
+            case MODE_LEGACY_PICK_POSTAL:
+            case MODE_PICK_POSTAL:
+            case MODE_LEGACY_PICK_PHONE:
+            case MODE_PICK_PHONE:
+            case MODE_STREQUENT:
+            case MODE_FREQUENT: {
+                config = new DefaultContactListConfiguration(mContext);
+                break;
+            }
+            default: {
+                config = new DefaultContactListConfiguration(mContext);
+                if (!mSearchMode) {
+                    config.setSectionHeaderDisplayEnabled(true);
+                }
+            }
+        }
 
+        if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
+            config.setPhotoLoaderEnabled(true);
+        }
+
+        return config;
+    }
 }

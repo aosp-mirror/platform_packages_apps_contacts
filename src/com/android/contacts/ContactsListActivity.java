@@ -17,6 +17,8 @@
 package com.android.contacts;
 
 import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
+import com.android.contacts.list.ContactEntryListAdapter;
+import com.android.contacts.list.ContactEntryListConfiguration;
 import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.model.ContactsSource;
@@ -101,6 +103,7 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -108,6 +111,7 @@ import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -120,7 +124,7 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends ListActivity implements View.OnCreateContextMenuListener,
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
-        OnFocusChangeListener, OnTouchListener {
+        OnFocusChangeListener, OnTouchListener, OnScrollListener {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -365,7 +369,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     static final String KEY_PICKER_MODE = "picker_mode";
 
-    public ContactItemListAdapter mAdapter;
+    public ContactEntryListAdapter mAdapter;
     public ContactListEmptyView mEmptyView;
 
     public int mMode = MODE_DEFAULT;
@@ -502,10 +506,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     };
 
-    private ContactsIntentResolver mConfig;
+    private ContactsIntentResolver mIntentResolver;
+    private ContactEntryListConfiguration mConfig;
 
     public ContactsListActivity() {
-        mConfig = new ContactsIntentResolver(this);
+        mIntentResolver = new ContactsIntentResolver(this);
     }
 
     /**
@@ -535,36 +540,38 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     protected void resolveIntent(final Intent intent) {
-        mConfig.setIntent(intent);
+        mIntentResolver.setIntent(intent);
 
-        if (!mConfig.isValid()) {           // Invalid intent
+        if (!mIntentResolver.isValid()) {           // Invalid intent
             setResult(RESULT_CANCELED);
             finish();
             return;
         }
 
-        Intent redirect = mConfig.getRedirectIntent();
+        Intent redirect = mIntentResolver.getRedirectIntent();
         if (redirect != null) {             // Need to start a different activity
             startActivity(redirect);
             finish();
             return;
         }
 
-        setTitle(mConfig.getActivityTitle());
+        setTitle(mIntentResolver.getActivityTitle());
+
+        mConfig = mIntentResolver.getConfiguration();
 
         // This is strictly temporary. Its purpose is to allow us to refactor this class in
         // small increments.  We should expect all of these modes to go away.
-        mMode = mConfig.mMode;
-        mGroupName = mConfig.mGroupName;
-        mQueryMode = mConfig.mQueryMode;
-        mSearchMode = mConfig.mSearchMode;
-        mShowSearchSnippets = mConfig.mShowSearchSnippets;
-        mInitialFilter = mConfig.mInitialFilter;
-        mDisplayOnlyPhones = mConfig.mDisplayOnlyPhones;
-        mShortcutAction = mConfig.mShortcutAction;
-        mSearchResultsMode = mConfig.mSearchResultsMode;
-        mShowNumberOfContacts = mConfig.mShowNumberOfContacts;
-        mGroupName = mConfig.mGroupName;
+        mMode = mIntentResolver.mMode;
+        mGroupName = mIntentResolver.mGroupName;
+        mQueryMode = mIntentResolver.mQueryMode;
+        mSearchMode = mIntentResolver.mSearchMode;
+        mShowSearchSnippets = mIntentResolver.mShowSearchSnippets;
+        mInitialFilter = mIntentResolver.mInitialFilter;
+        mDisplayOnlyPhones = mIntentResolver.mDisplayOnlyPhones;
+        mShortcutAction = mIntentResolver.mShortcutAction;
+        mSearchResultsMode = mIntentResolver.mSearchResultsMode;
+        mShowNumberOfContacts = mIntentResolver.mShowNumberOfContacts;
+        mGroupName = mIntentResolver.mGroupName;
     }
 
     public void initContentView() {
@@ -591,7 +598,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     protected ContactItemListAdapter createListAdapter() {
-        return new ContactItemListAdapter(this);
+        // TODO there should be no need to cast
+        return (ContactItemListAdapter)mConfig.createListAdapter();
     }
 
     /**
@@ -626,7 +634,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mAdapter = adapter;
         setListAdapter(mAdapter);
 
-        if (list instanceof PinnedHeaderListView && mAdapter.getDisplaySectionHeadersEnabled()) {
+        if (list instanceof PinnedHeaderListView && mConfig.isSectionHeaderDisplayEnabled()) {
             mPinnedHeaderBackgroundColor =
                     getResources().getColor(R.color.pinned_header_background);
             PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)list;
@@ -634,7 +642,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             pinnedHeaderList.setPinnedHeaderView(pinnedHeader);
         }
 
-        list.setOnScrollListener(mAdapter);
+        list.setOnScrollListener(this);
         list.setOnKeyListener(this);
         list.setOnFocusChangeListener(this);
         list.setOnTouchListener(this);
@@ -642,6 +650,30 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
     }
+
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+            int totalItemCount) {
+        if (view instanceof PinnedHeaderListView) {
+            ((PinnedHeaderListView)view).configureHeaderView(firstVisibleItem);
+        }
+    }
+
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (mHighlightWhenScrolling) {
+            if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
+                mHighlightingAnimation.startHighlighting();
+            } else {
+                mHighlightingAnimation.stopHighlighting();
+            }
+        }
+
+        if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
+            mPhotoLoader.pause();
+        } else if (mConfig.isPhotoLoaderEnabled()) {
+            mPhotoLoader.resume();
+        }
+    }
+
 
     /**
      * Configures search UI.
@@ -1484,7 +1516,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     protected void onListItemClick(int position, long id) {
-        if (mSearchMode && mAdapter.isSearchAllContactsItemPosition(position)) {
+        if (mSearchMode &&
+                ((ContactItemListAdapter)(mAdapter)).isSearchAllContactsItemPosition(position)) {
             doSearch();
         } else if (mMode == MODE_INSERT_OR_EDIT_CONTACT || mMode == MODE_QUERY_PICK_TO_EDIT) {
             Intent intent;
@@ -1994,7 +2027,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             baseUri = Contacts.CONTENT_URI;
         }
 
-        if (mAdapter.getDisplaySectionHeadersEnabled()) {
+        if (mConfig.isSectionHeaderDisplayEnabled()) {
             return buildSectionIndexerUri(baseUri);
         } else {
             return baseUri;
@@ -2044,7 +2077,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mEmptyView.hide();
         }
 
-        mAdapter.setLoading(true);
+        // TODO reintroduce the loading state handling
+//        mAdapter.setLoading(true);
 
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
