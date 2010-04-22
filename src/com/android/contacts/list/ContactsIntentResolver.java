@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.list.config;
+package com.android.contacts.list;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.JoinContactActivity;
@@ -48,7 +48,7 @@ import android.util.Log;
  * deals with intents, saved instance configuration etc.
  */
 @SuppressWarnings("deprecation")
-public class ContactListConfiguration {
+public class ContactsIntentResolver {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -199,7 +199,7 @@ public class ContactListConfiguration {
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    public ContactListConfiguration(Activity context) {
+    public ContactsIntentResolver(Activity context) {
         this.mContext = context;
     }
 
@@ -470,4 +470,6 @@ public class ContactListConfiguration {
         }
         return null;
     }
+
+
 }

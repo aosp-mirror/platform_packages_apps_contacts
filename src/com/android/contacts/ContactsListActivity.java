@@ -18,7 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
 import com.android.contacts.list.ContactItemListAdapter;
-import com.android.contacts.list.config.ContactListConfiguration;
+import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -502,10 +502,10 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         }
     };
 
-    private ContactListConfiguration mConfig;
+    private ContactsIntentResolver mConfig;
 
     public ContactsListActivity() {
-        mConfig = new ContactListConfiguration(this);
+        mConfig = new ContactsIntentResolver(this);
     }
 
     /**
