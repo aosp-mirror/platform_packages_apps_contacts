@@ -44,6 +44,10 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private static final String FAVORITES_ENTRY_COMPONENT =
             "com.android.contacts.DialtactsFavoritesEntryActivity";
 
+    /** Opens the Contacts app in the state the user has last set it to */
+    private static final String CONTACTS_LAUNCH_ACTIVITY =
+            "com.android.contacts.ContactsLaunchActivity";
+
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
     private static final int TAB_INDEX_CONTACTS = 2;
@@ -57,9 +61,19 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     static final String PREF_FAVORITES_AS_CONTACTS = "favorites_as_contacts";
     static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
 
+    /** Last manually selected tab index */
+    private static final String PREF_LAST_MANUALLY_SELECTED_TAB = "last_manually_selected_tab";
+    private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
+
     private TabHost mTabHost;
     private String mFilterText;
     private Uri mDialUri;
+
+    /**
+     * The index of the tab that has last been manually selected (the user clicked on a tab).
+     * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
+     */
+    private int mLastManuallySelectedTab;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -80,6 +94,11 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         setupContactsTab();
         setupFavoritesTab();
 
+        // Load the last manually loaded tab
+        final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
+        mLastManuallySelectedTab = prefs.getInt(PREF_LAST_MANUALLY_SELECTED_TAB,
+                PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT);
+
         setCurrentTab(intent);
 
         if (intent.getAction().equals(UI.FILTER_CONTACTS_ACTION)
@@ -92,13 +111,15 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     protected void onPause() {
         super.onPause();
 
-        int currentTabIndex = mTabHost.getCurrentTab();
+        final int currentTabIndex = mTabHost.getCurrentTab();
+        final SharedPreferences.Editor editor =
+                getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
         if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
-            SharedPreferences.Editor editor = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE)
-                    .edit();
             editor.putBoolean(PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
-            editor.commit();
         }
+        editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedTab);
+
+        editor.commit();
     }
 
     private void fixIntent(Intent intent) {
@@ -181,7 +202,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     /**
      * Sets the current tab based on the intent's request type
      *
-     * @param recentCallsRequest true is the recent calls tab is desired, false otherwise
+     * @param intent Intent that contains information about which tab should be selected
      */
     private void setCurrentTab(Intent intent) {
         // If we got here by hitting send and we're in call forward along to the in-call activity
@@ -202,6 +223,10 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         // state and instead reload their state from the parent's intent
         intent.putExtra(EXTRA_IGNORE_STATE, true);
 
+        // Remember the old manually selected tab index so that it can be restored if it is
+        // overwritten by one of the programmatic tab selections
+        final int savedTabIndex = mLastManuallySelectedTab;
+
         // Choose the tab based on the inbound intent
         String componentName = intent.getComponent().getClassName();
         if (getClass().getName().equals(componentName)) {
@@ -212,6 +237,8 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             }
         } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
             mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
+        } else if (CONTACTS_LAUNCH_ACTIVITY.equals(componentName)) {
+            mTabHost.setCurrentTab(mLastManuallySelectedTab);
         } else {
             SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
             boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
@@ -222,6 +249,9 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
                 mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
             }
         }
+
+        // Restore to the previous manual selection
+        mLastManuallySelectedTab = savedTabIndex;
 
         // Tell the children activities that they should honor their saved states
         // instead of the state from the parent's intent
@@ -337,5 +367,9 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         if (activity != null) {
             activity.onWindowFocusChanged(true);
         }
+
+        // Remember this tab index. This function is also called, if the tab is set automatically
+        // in which case the setter (setCurrentTab) has to set this to its old value afterwards
+        mLastManuallySelectedTab = mTabHost.getCurrentTab();
     }
 }
