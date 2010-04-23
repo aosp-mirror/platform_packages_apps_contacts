@@ -19,16 +19,13 @@ import com.android.contacts.ContactListItemView;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsSectionIndexer;
-import com.android.contacts.PinnedHeaderListView;
 import com.android.contacts.R;
 import com.android.contacts.ContactsListActivity.ContactListItemCache;
-import com.android.contacts.ContactsListActivity.PinnedHeaderCache;
 import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
 
 import android.content.Context;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -48,14 +45,11 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
-import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-public class ContactItemListAdapter extends ContactEntryListAdapter
-        implements SectionIndexer, PinnedHeaderListView.PinnedHeaderAdapter {
+public class ContactItemListAdapter extends ContactEntryListAdapter {
 
     private final ContactsListActivity contactsListActivity;
-    private SectionIndexer mIndexer;
     private boolean mLoading = true;
     protected CharSequence mUnknownNameText;
     protected boolean mDisplayPhotos = false;
@@ -511,7 +505,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
         } else {
             final int section = getSectionForPosition(position);
             if (getPositionForSection(section) == position) {
-                String title = (String)mIndexer.getSections()[section];
+                String title = (String)getSections()[section];
                 view.setSectionHeader(title);
             } else {
                 view.setDividerVisible(false);
@@ -586,7 +580,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
 
     private void updateIndexer(Cursor cursor) {
         if (cursor == null) {
-            mIndexer = null;
+            setIndexer(null);
             return;
         }
 
@@ -595,9 +589,9 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
             String sections[] =
                 bundle.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
             int counts[] = bundle.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
-            mIndexer = new ContactsSectionIndexer(sections, counts);
+            setIndexer(new ContactsSectionIndexer(sections, counts));
         } else {
-            mIndexer = null;
+            setIndexer(null);
         }
     }
 
@@ -608,30 +602,6 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
     @Override
     public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
         return contactsListActivity.doFilter(constraint.toString());
-    }
-
-    public Object [] getSections() {
-        if (mIndexer == null) {
-            return new String[] { " " };
-        } else {
-            return mIndexer.getSections();
-        }
-    }
-
-    public int getPositionForSection(int sectionIndex) {
-        if (mIndexer == null) {
-            return -1;
-        }
-
-        return mIndexer.getPositionForSection(sectionIndex);
-    }
-
-    public int getSectionForPosition(int position) {
-        if (mIndexer == null) {
-            return -1;
-        }
-
-        return mIndexer.getSectionForPosition(position);
     }
 
     @Override
@@ -693,6 +663,11 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
         return super.getCount();
     }
 
+    @Override
+    protected int getCursorPosition(int position) {
+        return getRealPosition(position);
+    }
+
     protected int getRealPosition(int pos) {
         if (contactsListActivity.mShowNumberOfContacts) {
             pos--;
@@ -738,69 +713,5 @@ public class ContactItemListAdapter extends ContactEntryListAdapter
             return 0;
         }
         return super.getItemId(realPosition);
-    }
-
-    /**
-     * Computes the state of the pinned header.  It can be invisible, fully
-     * visible or partially pushed up out of the view.
-     */
-    public int getPinnedHeaderState(int position) {
-        if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
-            return PINNED_HEADER_GONE;
-        }
-
-        int realPosition = getRealPosition(position);
-        if (realPosition < 0) {
-            return PINNED_HEADER_GONE;
-        }
-
-        // The header should get pushed up if the top item shown
-        // is the last item in a section for a particular letter.
-        int section = getSectionForPosition(realPosition);
-        int nextSectionPosition = getPositionForSection(section + 1);
-        if (nextSectionPosition != -1 && realPosition == nextSectionPosition - 1) {
-            return PINNED_HEADER_PUSHED_UP;
-        }
-
-        return PINNED_HEADER_VISIBLE;
-    }
-
-    /**
-     * Configures the pinned header by setting the appropriate text label
-     * and also adjusting color if necessary.  The color needs to be
-     * adjusted when the pinned header is being pushed up from the view.
-     */
-    public void configurePinnedHeader(View header, int position, int alpha) {
-        PinnedHeaderCache cache = (PinnedHeaderCache)header.getTag();
-        if (cache == null) {
-            cache = new ContactsListActivity.PinnedHeaderCache();
-            cache.titleView = (TextView)header.findViewById(R.id.header_text);
-            cache.textColor = cache.titleView.getTextColors();
-            cache.background = header.getBackground();
-            header.setTag(cache);
-        }
-
-        int realPosition = getRealPosition(position);
-        int section = getSectionForPosition(realPosition);
-
-        String title = (String)mIndexer.getSections()[section];
-        cache.titleView.setText(title);
-
-        if (alpha == 255) {
-            // Opaque: use the default background, and the original text color
-            header.setBackgroundDrawable(cache.background);
-            cache.titleView.setTextColor(cache.textColor);
-        } else {
-            // Faded: use a solid color approximation of the background, and
-            // a translucent text color
-            header.setBackgroundColor(Color.rgb(
-                    Color.red(contactsListActivity.mPinnedHeaderBackgroundColor) * alpha / 255,
-                    Color.green(contactsListActivity.mPinnedHeaderBackgroundColor) * alpha / 255,
-                    Color.blue(contactsListActivity.mPinnedHeaderBackgroundColor) * alpha / 255));
-
-            int textColor = cache.textColor.getDefaultColor();
-            cache.titleView.setTextColor(Color.argb(alpha,
-                    Color.red(textColor), Color.green(textColor), Color.blue(textColor)));
-        }
     }
 }

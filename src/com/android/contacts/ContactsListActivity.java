@@ -490,15 +490,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     public TextHighlightingAnimation mHighlightingAnimation;
     private SearchEditText mSearchEditText;
 
-    /**
-     * An approximation of the background color of the pinned header. This color
-     * is used when the pinned header is being pushed up.  At that point the header
-     * "fades away".  Rather than computing a faded bitmap based on the 9-patch
-     * normally used for the background, we will use a solid color, which will
-     * provide better performance and reduced complexity.
-     */
-    public int mPinnedHeaderBackgroundColor;
-
     private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
 
         @Override
@@ -617,14 +608,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         mAdapter = (ContactEntryListAdapter)adapter;
         setListAdapter(mAdapter);
 
-        if (list instanceof PinnedHeaderListView && mConfig.isSectionHeaderDisplayEnabled()) {
-            mPinnedHeaderBackgroundColor =
-                    getResources().getColor(R.color.pinned_header_background);
-            PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)list;
-            View pinnedHeader = inflater.inflate(R.layout.list_section, list, false);
-            pinnedHeaderList.setPinnedHeaderView(pinnedHeader);
-        }
-
         list.setOnScrollListener(this);
         list.setOnKeyListener(this);
         list.setOnFocusChangeListener(this);
@@ -653,9 +636,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
-        if (view instanceof PinnedHeaderListView) {
-            ((PinnedHeaderListView)view).configureHeaderView(firstVisibleItem);
-        }
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -673,7 +653,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             mPhotoLoader.resume();
         }
     }
-
 
     /**
      * Configures search UI.
@@ -2446,9 +2425,4 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         public String phoneNumber;
     }
 
-    public final static class PinnedHeaderCache {
-        public TextView titleView;
-        public ColorStateList textColor;
-        public Drawable background;
-    }
 }

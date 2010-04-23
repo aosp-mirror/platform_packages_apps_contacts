@@ -478,6 +478,13 @@ public class ContactsIntentResolver {
     public ContactEntryListConfiguration getConfiguration() {
         ContactEntryListConfiguration config;
         switch (mMode) {
+            case MODE_DEFAULT: {
+                config = new MainContactListConfiguration(mContext, mAppController);
+                if (!mSearchMode) {
+                    config.setSectionHeaderDisplayEnabled(true);
+                }
+                break;
+            }
             case MODE_LEGACY_PICK_POSTAL:
             case MODE_PICK_POSTAL:
             case MODE_LEGACY_PICK_PHONE:

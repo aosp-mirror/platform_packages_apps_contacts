@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.AbsListView.OnScrollListener;
 
 /**
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
  */
-public class PinnedHeaderListView extends ListView {
+public class PinnedHeaderListView extends ListView implements OnScrollListener {
 
     /**
      * Adapter interface.  The list adapter must implement this interface.
@@ -78,6 +80,8 @@ public class PinnedHeaderListView extends ListView {
 
     private int mHeaderViewHeight;
 
+    private OnScrollListener mOnScrollListener;
+
     public PinnedHeaderListView(Context context) {
         super(context);
     }
@@ -88,6 +92,7 @@ public class PinnedHeaderListView extends ListView {
 
     public PinnedHeaderListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        super.setOnScrollListener(this);
     }
 
     public void setPinnedHeaderView(View view) {
@@ -109,6 +114,12 @@ public class PinnedHeaderListView extends ListView {
     }
 
     @Override
+    public void setOnScrollListener(OnScrollListener onScrollListener) {
+        mOnScrollListener = onScrollListener;
+        super.setOnScrollListener(this);
+    }
+
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mHeaderView != null) {
@@ -124,6 +135,20 @@ public class PinnedHeaderListView extends ListView {
         if (mHeaderView != null) {
             mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
             configureHeaderView(getFirstVisiblePosition());
+        }
+    }
+
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+            int totalItemCount) {
+        configureHeaderView(firstVisibleItem);
+        if (mOnScrollListener != null) {
+            mOnScrollListener.onScroll(this, firstVisibleItem, visibleItemCount, totalItemCount);
+        }
+    }
+
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (mOnScrollListener != null) {
+            mOnScrollListener.onScrollStateChanged(this, scrollState);
         }
     }
 

@@ -18,8 +18,10 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
+import com.android.contacts.widget.PinnedHeaderListView;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -60,6 +62,22 @@ public abstract class ContactEntryListConfiguration {
         controller.setListView(listView);
 
         ((ContactsListActivity)mContext).setupListView(adapter);
+
+        configurePinnedHeader(listView, adapter);
+    }
+
+    private void configurePinnedHeader(ListView listView, ListAdapter adapter) {
+        if (!mSectionHeaderDisplayEnabled) {
+            return;
+        }
+
+        if (listView instanceof PinnedHeaderListView
+                && adapter instanceof PinnedHeaderListAdapter) {
+            PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)listView;
+            PinnedHeaderListAdapter pinnedHeaderListAdapter = (PinnedHeaderListAdapter)adapter;
+            View headerView = pinnedHeaderListAdapter.createPinnedHeaderView(pinnedHeaderList);
+            pinnedHeaderList.setPinnedHeaderView(headerView);
+        }
     }
 
     public void setSectionHeaderDisplayEnabled(boolean flag) {
