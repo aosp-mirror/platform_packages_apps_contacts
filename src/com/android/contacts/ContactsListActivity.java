@@ -123,7 +123,7 @@ import java.util.Random;
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
 @SuppressWarnings("deprecation")
-public class ContactsListActivity extends ListActivity implements View.OnCreateContextMenuListener,
+public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
         OnFocusChangeListener, OnTouchListener, OnScrollListener, ContactsApplicationController {
 
@@ -501,6 +501,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListConfiguration mConfig;
 
+    private ListView mListView;
+
     public ContactsListActivity() {
         mIntentResolver = new ContactsIntentResolver(this, this);
     }
@@ -568,24 +570,15 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     public void initContentView() {
-        if (mSearchMode) {
-            setContentView(R.layout.contacts_search_content);
-        } else if (mSearchResultsMode) {
-            setContentView(R.layout.contacts_list_search_results);
-            TextView titleText = (TextView)findViewById(R.id.search_results_for);
-            titleText.setText(Html.fromHtml(getString(R.string.search_results_for,
-                    "<b>" + mInitialFilter + "</b>")));
-        } else {
-            setContentView(R.layout.contacts_list_content);
-        }
+        setContentView(mConfig.createView());
 
-        mConfig.configureListView(getListView());
+        mListView = (ListView) findViewById(android.R.id.list);
 
         if (mSearchMode) {
             setupSearchView();
         }
 
-        View emptyView = mList.getEmptyView();
+        View emptyView = mListView.getEmptyView();
         if (emptyView instanceof ContactListEmptyView) {
             mEmptyView = (ContactListEmptyView)emptyView;
         }
@@ -593,9 +586,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
     // TODO move this to the configuration object(s)
     @Deprecated
-    public void setupListView(ListAdapter adapter) {
-        final ListView list = getListView();
-        final LayoutInflater inflater = getLayoutInflater();
+    public void setupListView(ListAdapter adapter, ListView list) {
 
         mHighlightingAnimation =
                 new NameHighlightingAnimation(list, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
@@ -606,7 +597,6 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         list.setOnCreateContextMenuListener(this);
 
         mAdapter = (ContactEntryListAdapter)adapter;
-        setListAdapter(mAdapter);
 
         list.setOnScrollListener(this);
         list.setOnKeyListener(this);
@@ -872,8 +862,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onSaveInstanceState(Bundle icicle) {
         super.onSaveInstanceState(icicle);
         // Save list state in the bundle so we can restore it after the QueryHandler has run
-        if (mList != null) {
-            icicle.putParcelable(LIST_STATE_KEY, mList.onSaveInstanceState());
+        if (mListView != null) {
+            icicle.putParcelable(LIST_STATE_KEY, mListView.onSaveInstanceState());
         }
     }
 
@@ -1253,7 +1243,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return;
         }
 
-        Cursor cursor = (Cursor) getListAdapter().getItem(info.position);
+        Cursor cursor = (Cursor) mAdapter.getItem(info.position);
         if (cursor == null) {
             // For some reason the requested item isn't available, do nothing
             return;
@@ -1302,7 +1292,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return false;
         }
 
-        Cursor cursor = (Cursor) getListAdapter().getItem(info.position);
+        Cursor cursor = (Cursor) mAdapter.getItem(info.position);
 
         switch (item.getItemId()) {
             case MENU_ITEM_TOGGLE_STAR: {
@@ -1402,7 +1392,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             return false;
         }
 
-        final int position = getListView().getSelectedItemPosition();
+        final int position = mListView.getSelectedItemPosition();
         if (position != ListView.INVALID_POSITION) {
             Uri contactUri = getContactUri(position);
             if (contactUri != null) {
@@ -1460,7 +1450,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Dismisses the soft keyboard when the list takes focus.
      */
     public void onFocusChange(View view, boolean hasFocus) {
-        if (view == getListView() && hasFocus) {
+        if (view == mListView && hasFocus) {
             hideSoftKeyboard();
         }
     }
@@ -1469,7 +1459,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * Dismisses the soft keyboard when the list takes focus.
      */
     public boolean onTouch(View view, MotionEvent event) {
-        if (view == getListView()) {
+        if (view == mListView) {
             hideSoftKeyboard();
         }
         return false;
@@ -1541,7 +1531,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         // Hide soft keyboard, if visible
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(mList.getWindowToken(), 0);
+        inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
     }
 
     /**
@@ -2236,7 +2226,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @return true if the call was initiated, false otherwise
      */
     boolean callSelection() {
-        ListView list = getListView();
+        ListView list = mListView;
         if (list.hasFocus()) {
             Cursor cursor = (Cursor) list.getSelectedItem();
             return callContact(cursor);
@@ -2362,12 +2352,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     Cursor getItemForView(View view) {
-        ListView listView = getListView();
-        int index = listView.getPositionForView(view);
+        int index = mListView.getPositionForView(view);
         if (index < 0) {
             return null;
         }
-        return (Cursor) listView.getAdapter().getItem(index);
+        return (Cursor) mListView.getAdapter().getItem(index);
     }
 
     protected class QueryHandler extends AsyncQueryHandler {
@@ -2409,7 +2398,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
 
         // Now that the cursor is populated again, it's possible to restore the list state
         if (mListState != null) {
-            mList.onRestoreInstanceState(mListState);
+            mListView.onRestoreInstanceState(mListState);
             mListState = null;
         }
     }

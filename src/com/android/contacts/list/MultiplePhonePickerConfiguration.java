@@ -17,8 +17,11 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.MultiplePhonePickerActivity;
+import com.android.contacts.R;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListAdapter;
 
 /**
@@ -45,5 +48,12 @@ public class MultiplePhonePickerConfiguration extends ContactEntryListConfigurat
 
         // TODO this needs a separate controller
         return new DefaultContactListController(getContext(), getApplicationController());
+    }
+
+    @Override
+    protected View inflateView() {
+        // TODO implement a proper search mode for MultiPicker
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        return inflater.inflate(R.layout.contacts_list_content, null);
     }
 }

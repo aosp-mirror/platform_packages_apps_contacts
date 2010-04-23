@@ -32,6 +32,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.AggregationSuggestions;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -86,15 +87,16 @@ public class JoinContactActivity extends ContactsListActivity {
 
     @Override
     public void initContentView() {
-        setContentView(R.layout.contacts_list_content_join);
+        setContentView(mConfig.createView());
+
         TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
 
         String blurb = getString(R.string.blurbJoinContactDataWith,
                 getContactDisplayName(mTargetContactId));
         blurbView.setText(blurb);
-        mConfig.configureListView(getListView());
 
-        mAdapter = (JoinContactListAdapter)getListView().getAdapter();
+        ListView listView = (ListView)findViewById(android.R.id.list);
+        mAdapter = (JoinContactListAdapter)listView.getAdapter();
         mAdapter.setJoinModeShowAllContacts(true);
     }
 

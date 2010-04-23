@@ -27,6 +27,8 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.StatusUpdates;
 import android.test.ActivityUnitTestCase;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 /**
  * Tests for the contact list activity modes.
@@ -102,6 +104,8 @@ public class ContactListModeTest
         activity.runQueriesSynchronously();
         activity.onResume();        // Trigger the queries
 
-        assertEquals(3, activity.getListAdapter().getCount());
+        ListView listView = (ListView)activity.findViewById(android.R.id.list);
+        ListAdapter adapter = listView.getAdapter();
+        assertEquals(3, adapter.getCount());
     }
 }
