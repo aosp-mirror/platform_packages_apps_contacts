@@ -45,6 +45,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -128,8 +129,8 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
     @Override
     public void initContentView() {
         super.initContentView();
-        ((MultiplePhonePickerAdapter)getListView().getAdapter())
-                .setExtraAdapter(mPhoneNumberAdapter);
+        ListView listView = (ListView)findViewById(android.R.id.list);
+        ((MultiplePhonePickerAdapter)listView.getAdapter()).setExtraAdapter(mPhoneNumberAdapter);
         ViewStub stub = (ViewStub)findViewById(R.id.footer_stub);
         if (stub != null) {
             View stubView = stub.inflate();
@@ -160,7 +161,8 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
     @Override
     protected void onSaveInstanceState(Bundle icicle) {
         super.onSaveInstanceState(icicle);
-        if (mList != null) {
+        ListView listView = (ListView)findViewById(android.R.id.list);
+        if (listView != null) {
             if (mUserSelection != null) {
                 mUserSelection.saveInstanceState(icicle);
             }

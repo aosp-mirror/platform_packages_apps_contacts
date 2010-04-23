@@ -17,8 +17,11 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
+import com.android.contacts.R;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListAdapter;
 
 /**
@@ -43,5 +46,17 @@ public class DefaultContactListConfiguration extends ContactEntryListConfigurati
     @Override
     public ContactEntryListController createController() {
         return new DefaultContactListController(getContext(), getApplicationController());
+    }
+
+    @Override
+    protected View inflateView() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        if (isSearchMode()) {
+            return inflater.inflate(R.layout.contacts_search_content, null);
+        } else if (isSearchResultsMode()) {
+            return inflater.inflate(R.layout.contacts_list_search_results, null);
+        } else {
+            return inflater.inflate(R.layout.contacts_list_content, null);
+        }
     }
 }

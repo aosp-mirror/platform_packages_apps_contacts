@@ -17,8 +17,11 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.JoinContactActivity;
+import com.android.contacts.R;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListAdapter;
 
 /**
@@ -45,5 +48,11 @@ public class JoinContactListConfiguration extends ContactEntryListConfiguration 
 
         // TODO needs a separate controller
         return new DefaultContactListController(getContext(), getApplicationController());
+    }
+
+    @Override
+    protected View inflateView() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        return inflater.inflate(R.layout.contacts_list_content_join, null);
     }
 }

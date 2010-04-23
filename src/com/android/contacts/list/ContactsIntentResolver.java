@@ -479,7 +479,7 @@ public class ContactsIntentResolver {
         ContactEntryListConfiguration config;
         switch (mMode) {
             case MODE_DEFAULT: {
-                config = new MainContactListConfiguration(mContext, mAppController);
+                config = new DefaultContactListConfiguration(mContext, mAppController);
                 if (!mSearchMode) {
                     config.setSectionHeaderDisplayEnabled(true);
                 }
@@ -505,6 +505,10 @@ public class ContactsIntentResolver {
                 }
             }
         }
+
+        config.setSearchMode(mSearchMode);
+        config.setSearchResultsMode(mSearchResultsMode);
+        config.setQueryString(mInitialFilter);
 
         if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
             config.setPhotoLoaderEnabled(true);

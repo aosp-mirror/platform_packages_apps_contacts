@@ -18,12 +18,15 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
+import com.android.contacts.R;
 import com.android.contacts.widget.PinnedHeaderListView;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Common base class for configurations of various contact-related lists, e.g.
@@ -35,6 +38,9 @@ public abstract class ContactEntryListConfiguration {
     private final ContactsApplicationController mApplicationController;
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
+    private boolean mSearchMode;
+    private boolean mSearchResultsMode;
+    private String mQueryString;
 
     public ContactEntryListConfiguration(Context context,
             ContactsApplicationController applicationController) {
@@ -50,20 +56,48 @@ public abstract class ContactEntryListConfiguration {
         return mApplicationController;
     }
 
-    public abstract ListAdapter createListAdapter();
-    public abstract ContactEntryListController createController();
+    protected abstract View inflateView();
+    protected abstract ListAdapter createListAdapter();
+    protected abstract ContactEntryListController createController();
 
-    public void configureListView(ListView listView) {
+    public View createView() {
+        View view = inflateView();
         ListAdapter adapter = createListAdapter();
         ContactEntryListController controller = createController();
+        configureView(view, adapter, controller);
+        return view;
+    }
+
+    protected void configureView(View view, ListAdapter adapter,
+            ContactEntryListController controller) {
+        ListView listView = (ListView)view.findViewById(android.R.id.list);
+        if (listView == null) {
+            throw new RuntimeException(
+                    "Your content must have a ListView whose id attribute is " +
+                    "'android.R.id.list'");
+        }
+
+        View emptyView = view.findViewById(com.android.internal.R.id.empty);
+        if (emptyView != null) {
+            listView.setEmptyView(emptyView);
+        }
+
         controller.setAdapter(adapter);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(controller);
         controller.setListView(listView);
 
-        ((ContactsListActivity)mContext).setupListView(adapter);
+        ((ContactsListActivity)mContext).setupListView(adapter, listView);
 
         configurePinnedHeader(listView, adapter);
+
+        if (isSearchResultsMode()) {
+            TextView titleText = (TextView)view.findViewById(R.id.search_results_for);
+            if (titleText != null) {
+                titleText.setText(Html.fromHtml(getContext().getString(R.string.search_results_for,
+                        "<b>" + getQueryString() + "</b>")));
+            }
+        }
     }
 
     private void configurePinnedHeader(ListView listView, ListAdapter adapter) {
@@ -94,5 +128,29 @@ public abstract class ContactEntryListConfiguration {
 
     public boolean isPhotoLoaderEnabled() {
         return mPhotoLoaderEnabled;
+    }
+
+    public void setSearchMode(boolean flag) {
+        mSearchMode = flag;
+    }
+
+    public boolean isSearchMode() {
+        return mSearchMode;
+    }
+
+    public void setSearchResultsMode(boolean flag) {
+        mSearchResultsMode = flag;
+    }
+
+    public boolean isSearchResultsMode() {
+        return mSearchResultsMode;
+    }
+
+    public String getQueryString() {
+        return mQueryString;
+    }
+
+    public void setQueryString(String queryString) {
+        mQueryString = queryString;
     }
 }
