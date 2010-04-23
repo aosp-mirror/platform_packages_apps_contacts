@@ -424,7 +424,7 @@
     <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
@@ -432,14 +432,14 @@
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
     <string name="noContactsNoSimHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
@@ -447,7 +447,7 @@
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font>\n</li>"
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab -->
