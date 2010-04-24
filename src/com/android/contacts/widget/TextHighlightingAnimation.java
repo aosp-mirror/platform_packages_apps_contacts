@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.widget;
 
 import com.android.internal.R;
 
@@ -29,7 +29,7 @@ import android.view.animation.DecelerateInterpolator;
 /**
  * An animation that alternately dims and brightens the non-highlighted portion of text.
  */
-public abstract class TextHighlightingAnimation implements Runnable {
+public abstract class TextHighlightingAnimation implements Runnable, TextWithHighlightingFactory {
 
     private static final int MAX_ALPHA = 255;
     private static final int MIN_ALPHA = 50;
@@ -54,7 +54,7 @@ public abstract class TextHighlightingAnimation implements Runnable {
     /**
      * A Spanned that highlights a part of text by dimming another part of that text.
      */
-    public class TextWithHighlighting implements Spanned {
+    public class TextWithHighlightingImpl implements TextWithHighlighting {
 
         private final DimmingSpan[] mSpans;
         private boolean mDimmingEnabled;
@@ -63,7 +63,7 @@ public abstract class TextHighlightingAnimation implements Runnable {
         private int mDimmingSpanEnd;
         private String mString;
 
-        public TextWithHighlighting() {
+        public TextWithHighlightingImpl() {
             mSpans = new DimmingSpan[] { mDimmingSpan };
         }
 
@@ -216,12 +216,12 @@ public abstract class TextHighlightingAnimation implements Runnable {
     /**
      * Returns a Spanned that can be used by a text view to show text with highlighting.
      */
-    public TextWithHighlighting createTextWithHighlighting() {
-        return new TextWithHighlighting();
+    public TextWithHighlightingImpl createTextWithHighlighting() {
+        return new TextWithHighlightingImpl();
     }
 
     /**
-     * Override and invalidate (redraw) TextViews showing {@link TextWithHighlighting}.
+     * Override and invalidate (redraw) TextViews showing {@link TextWithHighlightingImpl}.
      */
     protected abstract void invalidate();
 

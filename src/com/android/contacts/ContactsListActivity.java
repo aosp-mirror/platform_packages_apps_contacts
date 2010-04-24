@@ -16,7 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
 import com.android.contacts.list.ContactEntryListAdapter;
 import com.android.contacts.list.ContactEntryListConfiguration;
 import com.android.contacts.list.ContactItemListAdapter;
@@ -28,12 +27,12 @@ import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
+import com.android.contacts.widget.TextWithHighlighting;
 
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
@@ -44,7 +43,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.UriMatcher;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
@@ -83,7 +81,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -148,8 +145,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
     protected static final int SUBACTIVITY_FILTER = 5;
-
-    private static final int TEXT_HIGHLIGHTING_ANIMATION_DURATION = 350;
 
     public static final String AUTHORITIES_FILTER_KEY = "authorities";
 
@@ -443,51 +438,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
     }
 
-    /**
-     * A {@link TextHighlightingAnimation} that redraws just the contact display name in a
-     * list item.
-     */
-    private static class NameHighlightingAnimation extends TextHighlightingAnimation {
-        private final ListView mListView;
-
-        private NameHighlightingAnimation(ListView listView, int duration) {
-            super(duration);
-            this.mListView = listView;
-        }
-
-        /**
-         * Redraws all visible items of the list corresponding to contacts
-         */
-        @Override
-        protected void invalidate() {
-            int childCount = mListView.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View itemView = mListView.getChildAt(i);
-                if (itemView instanceof ContactListItemView) {
-                    final ContactListItemView view = (ContactListItemView)itemView;
-                    view.getNameTextView().invalidate();
-                }
-            }
-        }
-
-        @Override
-        protected void onAnimationStarted() {
-            mListView.setScrollingCacheEnabled(false);
-        }
-
-        @Override
-        protected void onAnimationEnded() {
-            mListView.setScrollingCacheEnabled(true);
-        }
-    }
-
     // The size of a home screen shortcut icon.
     private int mIconSize;
     private ContactsPreferences mContactsPrefs;
     public int mDisplayOrder;
     private int mSortOrder;
-    public boolean mHighlightWhenScrolling;
-    public TextHighlightingAnimation mHighlightingAnimation;
     private SearchEditText mSearchEditText;
 
     private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
@@ -588,9 +543,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Deprecated
     public void setupListView(ListAdapter adapter, ListView list) {
 
-        mHighlightingAnimation =
-                new NameHighlightingAnimation(list, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
-
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
         list.setDividerHeight(0);
@@ -629,14 +581,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (mHighlightWhenScrolling) {
-            if (scrollState != OnScrollListener.SCROLL_STATE_IDLE) {
-                mHighlightingAnimation.startHighlighting();
-            } else {
-                mHighlightingAnimation.stopHighlighting();
-            }
-        }
-
         if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
             mPhotoLoader.pause();
         } else if (mConfig.isPhotoLoaderEnabled()) {
@@ -2048,15 +1992,23 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mSortOrder = mContactsPrefs.getSortOrder();
         mDisplayOrder = mContactsPrefs.getDisplayOrder();
 
-        // When sort order and display order contradict each other, we want to
-        // highlight the part of the name used for sorting.
-        mHighlightWhenScrolling = false;
-        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
-                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
-            mHighlightWhenScrolling = true;
-        } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
-                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mHighlightWhenScrolling = true;
+        if (mListView instanceof ContactEntryListView) {
+            ContactEntryListView listView = (ContactEntryListView)mListView;
+
+            // When sort order and display order contradict each other, we want to
+            // highlight the part of the name used for sorting.
+            if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
+                    mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
+                listView.setHighlightNamesWhenScrolling(true);
+                mAdapter.setNameHighlightingEnabled(true);
+            } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
+                    mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                listView.setHighlightNamesWhenScrolling(true);
+                mAdapter.setNameHighlightingEnabled(true);
+            } else {
+                listView.setHighlightNamesWhenScrolling(false);
+                mAdapter.setNameHighlightingEnabled(false);
+            }
         }
 
         String[] projection = getProjectionForQuery();

@@ -88,6 +88,7 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
 
     public PinnedHeaderListView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        super.setOnScrollListener(this);
     }
 
     public PinnedHeaderListView(Context context, AttributeSet attrs, int defStyle) {

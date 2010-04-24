@@ -15,6 +15,9 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.widget.TextWithHighlighting;
+import com.android.contacts.widget.TextWithHighlightingFactory;
+
 import android.content.Context;
 
 /**
@@ -23,12 +26,35 @@ import android.content.Context;
  */
 public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
+    /**
+     * The animation is used here to allocate animated name text views.
+     */
+    private TextWithHighlightingFactory mTextWithHighlightingFactory;
+
+    private boolean mNameHighlightingEnabled;
+
     public ContactEntryListAdapter(Context context) {
         super(context);
     }
 
     public Context getContext() {
         return mContext;
+    }
+
+    public void setNameHighlightingEnabled(boolean flag) {
+        mNameHighlightingEnabled = flag;
+    }
+
+    public boolean isNameHighlightingEnabled() {
+        return mNameHighlightingEnabled;
+    }
+
+    public void setTextWithHighlightingFactory(TextWithHighlightingFactory factory) {
+        mTextWithHighlightingFactory = factory;
+    }
+
+    protected TextWithHighlighting createTextWithHighlighting() {
+        return mTextWithHighlightingFactory.createTextWithHighlighting();
     }
 
     /*

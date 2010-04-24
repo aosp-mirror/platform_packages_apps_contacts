@@ -93,7 +93,6 @@ public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
         int phoneticNameColumnIndex;
         int photoColumnIndex = ContactsListActivity.SUMMARY_PHOTO_ID_COLUMN_INDEX;
         boolean displayAdditionalData = mDisplayAdditionalData;
-        boolean highlightingEnabled = false;
         nameColumnIndex = ContactsListActivity.PHONE_DISPLAY_NAME_COLUMN_INDEX;
         phoneticNameColumnIndex = -1;
         dataColumnIndex = ContactsListActivity.PHONE_NUMBER_COLUMN_INDEX;
@@ -116,17 +115,7 @@ public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
         TextView nameView = view.getNameTextView();
         int size = cache.nameBuffer.sizeCopied;
         if (size != 0) {
-            if (highlightingEnabled) {
-                if (cache.textWithHighlighting == null) {
-                    cache.textWithHighlighting =
-                            mMultiplePhonePickerActivity.mHighlightingAnimation
-                                    .createTextWithHighlighting();
-                }
-                buildDisplayNameWithHighlighting(nameView, cursor, cache.nameBuffer,
-                        cache.highlightedTextBuffer, cache.textWithHighlighting);
-            } else {
-                nameView.setText(cache.nameBuffer.data, 0, size);
-            }
+            nameView.setText(cache.nameBuffer.data, 0, size);
         } else {
             nameView.setText(mUnknownNameText);
         }

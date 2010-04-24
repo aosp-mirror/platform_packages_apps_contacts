@@ -21,7 +21,7 @@ import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
 import com.android.contacts.ContactsListActivity.ContactListItemCache;
-import com.android.contacts.TextHighlightingAnimation.TextWithHighlighting;
+import com.android.contacts.widget.TextWithHighlighting;
 
 import android.content.Context;
 import android.database.CharArrayBuffer;
@@ -310,7 +310,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
                 labelColumnIndex = -1;
                 defaultType = Phone.TYPE_HOME;
                 displayAdditionalData = false;
-                highlightingEnabled = contactsListActivity.mHighlightWhenScrolling
+                highlightingEnabled = isNameHighlightingEnabled()
                         && contactsListActivity.mMode != ContactsListActivity.MODE_STREQUENT;
             }
         }
@@ -322,8 +322,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         if (size != 0) {
             if (highlightingEnabled) {
                 if (cache.textWithHighlighting == null) {
-                    cache.textWithHighlighting =
-                            contactsListActivity.mHighlightingAnimation.createTextWithHighlighting();
+                    cache.textWithHighlighting = createTextWithHighlighting();
                 }
                 buildDisplayNameWithHighlighting(nameView, cursor, cache.nameBuffer,
                         cache.highlightedTextBuffer, cache.textWithHighlighting);
