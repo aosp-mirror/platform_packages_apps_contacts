@@ -15,10 +15,8 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactListItemView;
 import com.android.contacts.MultiplePhonePickerActivity;
 import com.android.contacts.R;
-import com.android.contacts.ContactsListActivity.ContactListItemCache;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -129,8 +127,7 @@ public class MultiplePhoneExtraAdapter extends BaseAdapter {
         // PhoneNumbers start from position of startPos + 1
         if (position >= startPos + 1 && position < startPos + viewCount) {
             View view;
-            if (convertView != null && convertView.getTag() != null &&
-                    convertView.getTag() instanceof ContactListItemCache) {
+            if (convertView != null) {
                 view = convertView;
             } else {
                 view = this.mMultiplePhonePickerActivity.mAdapter.newView(mContext, null, parent);
@@ -150,21 +147,19 @@ public class MultiplePhoneExtraAdapter extends BaseAdapter {
     }
 
     private void bindView(View view, final String label) {
-        ContactListItemView itemView = (ContactListItemView) view;
+        MultiplePhonePickerItemView itemView = (MultiplePhonePickerItemView) view;
         itemView.setDividerVisible(true);
         itemView.setSectionHeader(null);
         itemView.setLabel(null);
         itemView.setData(null, 0);
         itemView.removePhotoView();
 
-        final ContactListItemCache cache = (ContactListItemCache) view.getTag();
         itemView.getNameTextView().setText(label);
         CheckBox checkBox = itemView.getCheckBoxView();
         checkBox.setChecked(mSelection.isSelected(label));
         itemView.getChipView().setBackgroundResource(0);
-        cache.phoneId = INVALID_PHONE_ID;
-        cache.phoneNumber = label;
-        checkBox.setTag(cache);
+        itemView.phoneId = INVALID_PHONE_ID;
+        itemView.phoneNumber = label;
     }
 
     public void doFilter(final String constraint, boolean selectedOnly) {

@@ -15,6 +15,7 @@
  */
 package com.android.contacts;
 
+import com.android.contacts.list.ContactListItemView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
 import android.view.View;

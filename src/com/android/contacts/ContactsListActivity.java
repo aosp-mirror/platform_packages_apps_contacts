@@ -2354,16 +2354,4 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             mListState = null;
         }
     }
-
-    public final static class ContactListItemCache {
-        public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
-        public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
-        public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
-        public TextWithHighlighting textWithHighlighting;
-        public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
-        public long phoneId;
-        // phoneNumber only validates when phoneId = INVALID_PHONE_ID
-        public String phoneNumber;
-    }
-
 }

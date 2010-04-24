@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.list;
 
-import com.android.contacts.ui.widget.DontPressWithParentImageView;
+import com.android.contacts.R;
+import com.android.contacts.widget.TextWithHighlighting;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.CharArrayBuffer;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -45,7 +47,7 @@ public class ContactListItemView extends ViewGroup {
     private static final int QUICK_CONTACT_BADGE_STYLE =
             com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
 
-    private final Context mContext;
+    protected final Context mContext;
 
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
@@ -80,22 +82,41 @@ public class ContactListItemView extends ViewGroup {
     private TextView mDataView;
     private TextView mSnippetView;
     private ImageView mPresenceIcon;
-    // Used to indicate the sequence of phones belong to the same contact in multi-picker
-    private View mChipView;
-    // Used to select the phone in multi-picker
-    private CheckBox mCheckBox;
 
     private int mPhotoViewWidth;
     private int mPhotoViewHeight;
     private int mLine1Height;
     private int mLine2Height;
     private int mLine3Height;
-    private int mChipWidth;
-    private int mChipRightMargin;
-    private int mCheckBoxMargin;
 
     private OnClickListener mCallButtonClickListener;
-    private OnClickListener mCheckBoxClickListener;
+
+    public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
+    public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
+    public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
+    public TextWithHighlighting textWithHighlighting;
+    public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
+
+    /**
+     * Special class to allow the parent to be pressed without being pressed itself.
+     * This way the line of a tab can be pressed, but the image itself is not.
+     */
+    // TODO: understand this
+    private static class DontPressWithParentImageView extends ImageView {
+
+        public DontPressWithParentImageView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        @Override
+        public void setPressed(boolean pressed) {
+            // If the parent is pressed, do not set to pressed.
+            if (pressed && ((View) getParent()).isPressed()) {
+                return;
+            }
+            super.setPressed(pressed);
+        }
+    }
 
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -128,12 +149,6 @@ public class ContactListItemView extends ViewGroup {
                 resources.getDimensionPixelOffset(R.dimen.list_item_presence_icon_margin);
         mHeaderTextWidth =
                 resources.getDimensionPixelOffset(R.dimen.list_item_header_text_width);
-        mChipWidth =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_width);
-        mChipRightMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_right_margin);
-        mCheckBoxMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_checkbox_margin);
     }
 
     /**
@@ -141,10 +156,6 @@ public class ContactListItemView extends ViewGroup {
      */
     public void setOnCallButtonClickListener(OnClickListener callButtonClickListener) {
         mCallButtonClickListener = callButtonClickListener;
-    }
-
-    public void setOnCheckBoxClickListener(OnClickListener checkBoxClickListener) {
-        mCheckBoxClickListener = checkBoxClickListener;
     }
 
     @Override
@@ -187,14 +198,6 @@ public class ContactListItemView extends ViewGroup {
             mPresenceIcon.measure(0, 0);
         }
 
-        if (isVisible(mChipView)) {
-            mChipView.measure(0, 0);
-        }
-
-        if (isVisible(mCheckBox)) {
-            mCheckBox.measure(0, 0);
-        }
-
         ensurePhotoViewSize();
 
         height = Math.max(height, mPhotoViewHeight);
@@ -234,66 +237,9 @@ public class ContactListItemView extends ViewGroup {
         // by laying out the left and right sides. Then we will allocate the remainder
         // to the text fields in the middle.
 
-        // Left side
-        int leftBound = mPaddingLeft;
-        if (mChipView != null) {
-            mChipView.layout(leftBound, topBound, leftBound + mChipWidth, height);
-            leftBound += mChipWidth + mChipRightMargin;
-        }
-        View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
-        if (photoView != null) {
-            // Center the photo vertically
-            int photoTop = topBound + (height - topBound - mPhotoViewHeight) / 2;
-            photoView.layout(
-                    leftBound,
-                    photoTop,
-                    leftBound + mPhotoViewWidth,
-                    photoTop + mPhotoViewHeight);
-            leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
-        }
+        int leftBound = layoutLeftSide(height, topBound, mPaddingLeft);
+        int rightBound = layoutRightSide(height, topBound, right);
 
-        // Right side
-        int rightBound = right;
-        if (isVisible(mCallButton)) {
-            int buttonWidth = mCallButton.getMeasuredWidth();
-            rightBound -= buttonWidth;
-            mCallButton.layout(
-                    rightBound,
-                    topBound,
-                    rightBound + buttonWidth,
-                    height);
-            mVerticalDividerVisible = true;
-            ensureVerticalDivider();
-            rightBound -= mVerticalDividerWidth;
-            mVerticalDividerDrawable.setBounds(
-                    rightBound,
-                    topBound + mVerticalDividerMargin,
-                    rightBound + mVerticalDividerWidth,
-                    height - mVerticalDividerMargin);
-        } else {
-            mVerticalDividerVisible = false;
-        }
-
-        if (isVisible(mPresenceIcon)) {
-            int iconWidth = mPresenceIcon.getMeasuredWidth();
-            rightBound -= mPresenceIconMargin + iconWidth;
-            mPresenceIcon.layout(
-                    rightBound,
-                    topBound,
-                    rightBound + iconWidth,
-                    height);
-        }
-        if (isVisible(mCheckBox)) {
-            int checkBoxWidth = mCheckBox.getMeasuredWidth();
-            int checkBoxHight = mCheckBox.getMeasuredHeight();
-            rightBound -= mCheckBoxMargin + checkBoxWidth;
-            int checkBoxTop = topBound + (height - topBound - checkBoxHight) / 2;
-            mCheckBox.layout(
-                    rightBound,
-                    checkBoxTop,
-                    rightBound + checkBoxWidth,
-                    checkBoxTop + checkBoxHight);
-        }
         if (mHorizontalDividerVisible) {
             ensureHorizontalDivider();
             mHorizontalDividerDrawable.setBounds(
@@ -343,7 +289,65 @@ public class ContactListItemView extends ViewGroup {
         }
     }
 
-    private boolean isVisible(View view) {
+    /**
+     * Performs layout of the left side of the view
+     *
+     * @return new left boundary
+     */
+    protected int layoutLeftSide(int height, int topBound, int leftBound) {
+        View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
+        if (photoView != null) {
+            // Center the photo vertically
+            int photoTop = topBound + (height - topBound - mPhotoViewHeight) / 2;
+            photoView.layout(
+                    leftBound,
+                    photoTop,
+                    leftBound + mPhotoViewWidth,
+                    photoTop + mPhotoViewHeight);
+            leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
+        }
+        return leftBound;
+    }
+
+    /**
+     * Performs layout of the right side of the view
+     *
+     * @return new right boundary
+     */
+    protected int layoutRightSide(int height, int topBound, int rightBound) {
+        if (isVisible(mCallButton)) {
+            int buttonWidth = mCallButton.getMeasuredWidth();
+            rightBound -= buttonWidth;
+            mCallButton.layout(
+                    rightBound,
+                    topBound,
+                    rightBound + buttonWidth,
+                    height);
+            mVerticalDividerVisible = true;
+            ensureVerticalDivider();
+            rightBound -= mVerticalDividerWidth;
+            mVerticalDividerDrawable.setBounds(
+                    rightBound,
+                    topBound + mVerticalDividerMargin,
+                    rightBound + mVerticalDividerWidth,
+                    height - mVerticalDividerMargin);
+        } else {
+            mVerticalDividerVisible = false;
+        }
+
+        if (isVisible(mPresenceIcon)) {
+            int iconWidth = mPresenceIcon.getMeasuredWidth();
+            rightBound -= mPresenceIconMargin + iconWidth;
+            mPresenceIcon.layout(
+                    rightBound,
+                    topBound,
+                    rightBound + iconWidth,
+                    height);
+        }
+        return rightBound;
+    }
+
+    protected boolean isVisible(View view) {
         return view != null && view.getVisibility() == View.VISIBLE;
     }
 
@@ -631,29 +635,6 @@ public class ContactListItemView extends ViewGroup {
             addView(mSnippetView);
         }
         return mSnippetView;
-    }
-
-    /**
-     * Returns the chip view for the multipicker, creating it if necessary.
-     */
-    public View getChipView() {
-        if (mChipView == null) {
-            mChipView = new View(mContext);
-            addView(mChipView);
-        }
-        return mChipView;
-    }
-
-    /**
-     * Returns the CheckBox view for the multipicker, creating it if necessary.
-     */
-    public CheckBox getCheckBoxView() {
-        if (mCheckBox == null) {
-            mCheckBox = new CheckBox(mContext);
-            mCheckBox.setOnClickListener(mCheckBoxClickListener);
-            addView(mCheckBox);
-        }
-        return mCheckBox;
     }
 
     /**

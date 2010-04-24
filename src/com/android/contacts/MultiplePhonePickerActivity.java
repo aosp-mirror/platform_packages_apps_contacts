@@ -19,6 +19,7 @@ package com.android.contacts;
 import com.android.contacts.list.MultiplePhoneExtraAdapter;
 import com.android.contacts.list.MultiplePhonePickerAdapter;
 import com.android.contacts.list.MultiplePhonePickerConfiguration;
+import com.android.contacts.list.MultiplePhonePickerItemView;
 import com.android.contacts.list.MultiplePhoneSelection;
 
 import android.app.ProgressDialog;
@@ -109,11 +110,12 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
 
     public OnClickListener mCheckBoxClickerListener = new OnClickListener () {
         public void onClick(View v) {
-            final ContactListItemCache cache = (ContactListItemCache) v.getTag();
-            if (cache.phoneId != MultiplePhoneExtraAdapter.INVALID_PHONE_ID) {
-                mUserSelection.setPhoneSelected(cache.phoneId, ((CheckBox) v).isChecked());
+            final MultiplePhonePickerItemView itemView =
+                    (MultiplePhonePickerItemView) v.getParent();
+            if (itemView.phoneId != MultiplePhoneExtraAdapter.INVALID_PHONE_ID) {
+                mUserSelection.setPhoneSelected(itemView.phoneId, ((CheckBox) v).isChecked());
             } else {
-                mUserSelection.setPhoneSelected(cache.phoneNumber,
+                mUserSelection.setPhoneSelected(itemView.phoneNumber,
                         ((CheckBox) v).isChecked());
             }
             updateWidgets(true);

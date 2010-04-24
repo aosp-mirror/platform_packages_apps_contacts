@@ -15,12 +15,10 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactListItemView;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
-import com.android.contacts.ContactsListActivity.ContactListItemCache;
 import com.android.contacts.widget.TextWithHighlighting;
 
 import android.content.Context;
@@ -253,14 +251,12 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setOnCallButtonClickListener(contactsListActivity);
-        view.setTag(new ContactsListActivity.ContactListItemCache());
         return view;
     }
 
     @Override
     public void bindView(View itemView, Context context, Cursor cursor) {
         final ContactListItemView view = (ContactListItemView)itemView;
-        final ContactListItemCache cache = (ContactListItemCache) view.getTag();
 
         int typeColumnIndex;
         int dataColumnIndex;
@@ -316,18 +312,18 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
 
         // Set the name
-        cursor.copyStringToBuffer(nameColumnIndex, cache.nameBuffer);
+        cursor.copyStringToBuffer(nameColumnIndex, view.nameBuffer);
         TextView nameView = view.getNameTextView();
-        int size = cache.nameBuffer.sizeCopied;
+        int size = view.nameBuffer.sizeCopied;
         if (size != 0) {
             if (highlightingEnabled) {
-                if (cache.textWithHighlighting == null) {
-                    cache.textWithHighlighting = createTextWithHighlighting();
+                if (view.textWithHighlighting == null) {
+                    view.textWithHighlighting = createTextWithHighlighting();
                 }
-                buildDisplayNameWithHighlighting(nameView, cursor, cache.nameBuffer,
-                        cache.highlightedTextBuffer, cache.textWithHighlighting);
+                buildDisplayNameWithHighlighting(nameView, cursor, view.nameBuffer,
+                        view.highlightedTextBuffer, view.textWithHighlighting);
             } else {
-                nameView.setText(cache.nameBuffer.data, 0, size);
+                nameView.setText(view.nameBuffer.data, 0, size);
             }
         } else {
             nameView.setText(mUnknownNameText);
@@ -435,10 +431,10 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
             if (phoneticNameColumnIndex != -1) {
 
                 // Set the name
-                cursor.copyStringToBuffer(phoneticNameColumnIndex, cache.phoneticNameBuffer);
-                int phoneticNameSize = cache.phoneticNameBuffer.sizeCopied;
+                cursor.copyStringToBuffer(phoneticNameColumnIndex, view.phoneticNameBuffer);
+                int phoneticNameSize = view.phoneticNameBuffer.sizeCopied;
                 if (phoneticNameSize != 0) {
-                    view.setLabel(cache.phoneticNameBuffer.data, phoneticNameSize);
+                    view.setLabel(view.phoneticNameBuffer.data, phoneticNameSize);
                 } else {
                     view.setLabel(null);
                 }
@@ -449,10 +445,10 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
 
         // Set the data.
-        cursor.copyStringToBuffer(dataColumnIndex, cache.dataBuffer);
+        cursor.copyStringToBuffer(dataColumnIndex, view.dataBuffer);
 
-        size = cache.dataBuffer.sizeCopied;
-        view.setData(cache.dataBuffer.data, size);
+        size = view.dataBuffer.sizeCopied;
+        view.setData(view.dataBuffer.data, size);
 
         // Set the label.
         if (!cursor.isNull(typeColumnIndex)) {
@@ -497,7 +493,6 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
 
     protected void bindSectionHeader(View itemView, int position, boolean displaySectionHeaders) {
         final ContactListItemView view = (ContactListItemView)itemView;
-        final ContactListItemCache cache = (ContactListItemCache) view.getTag();
         if (!displaySectionHeaders) {
             view.setSectionHeader(null);
             view.setDividerVisible(true);
