@@ -557,18 +557,25 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     }
 
                     public void onViewContactAction(Uri contactLookupUri) {
-                        final Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
-                        startActivityAndForwardResult(intent);
+                        startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
                     }
 
                     public void onCreateNewContactAction() {
                         Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                        startActivityAndForwardResult(intent);
+                        Bundle extras = getIntent().getExtras();
+                        if (extras != null) {
+                            intent.putExtras(extras);
+                        }
+                        startActivity(intent);
                     }
 
                     public void onEditContactAction(Uri contactLookupUri) {
                         Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-                        startActivityAndForwardResult(intent);
+                        Bundle extras = getIntent().getExtras();
+                        if (extras != null) {
+                            intent.putExtras(extras);
+                        }
+                        startActivity(intent);
                     }
 
                     public void onAddToFavoritesAction(Uri contactUri) {
