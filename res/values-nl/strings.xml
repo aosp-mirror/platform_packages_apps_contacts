@@ -98,7 +98,7 @@
     <string name="noContacts" msgid="8579310973261953559">"Geen contacten."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Kan geen overeenkomende contacten vinden."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Geen contacten met telefoonnummers."</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Alleen contacten met telefoonnummers"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Alleen contacten met tel.nr."</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Alleen contacten weergeven met telefoonnummers"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Contacten voor weergave kiezen"</string>
   <plurals name="groupDescrip">
@@ -146,7 +146,7 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"Gesprekken is leeg"</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Oproeplogboek wissen"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Weet u zeker dat u het oproeplogboek wilt wissen?"</string>
-    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
+    <string name="imei" msgid="3045126336951684285">"IMEI-nummer"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>
     <string name="unknown" msgid="740067747858270469">"Onbekend"</string>
@@ -162,7 +162,7 @@
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Account "</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of een account te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"U heeft geen favorieten."\n\n"U kunt als volgt een contact toevoegen aan uw lijst met favorieten:"\n\n<li>"Raak het tabblad \'"<b>"Contacten"</b>"\' aan."\n</li>" "\n<li>"Raak het contact aan dat u wilt toevoegen aan uw favorieten."\n</li>" "\n<li>"Raak de ster aan die wordt weergegeven naast de naam van het contact."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"U heeft geen favorieten."\n\n"U kunt als volgt een contact toevoegen aan uw lijst met favorieten:"\n\n"        "<li>"Raak het tabblad \'"<b>"Contacten"</b>"\' aan."\n</li>" "\n<li>"Raak het contact aan dat u wilt toevoegen aan uw favorieten."\n</li>" "\n<li>"Raak de ster aan die wordt weergegeven naast de naam van het contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle contacten"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Met ster"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoons"</string>
@@ -181,7 +181,7 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sec."</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Regelmatig contact"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Contact toevoegen"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" toevoegen aan contacten?"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voeg \"<xliff:g id="EMAIL">%s</xliff:g>\" toe aan contactpersonen?"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"Alles"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"één"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"twee"</string>

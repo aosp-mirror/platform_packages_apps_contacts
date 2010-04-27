@@ -181,7 +181,7 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> λεπτά <xliff:g id="SECONDS">%s</xliff:g> δευτερόλεπτα"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Επαφές με τις οποίες έχετε συχνή επικοινωνία"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Προσθήκη επαφής"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Προσθήκη του \"<xliff:g id="EMAIL">%s</xliff:g>\" στις επαφές;"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Προσθήκη του \"<xliff:g id="EMAIL">%s</xliff:g>\" στις επαφές?"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"Όλα"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"ένα"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"δύο"</string>
