@@ -15,44 +15,36 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 /**
- * Configuration for the default contact list.
+ * Fragment for the Join Contact list.
  */
-public class JoinContactListConfiguration extends ContactEntryListConfiguration {
-
-    public JoinContactListConfiguration(Context context,
-            ContactsApplicationController applicationController) {
-        super(context, applicationController);
-    }
+public class JoinContactListFragment extends ContactEntryListFragment {
 
     @Override
     public ListAdapter createListAdapter() {
         JoinContactListAdapter adapter =
-                new JoinContactListAdapter((JoinContactActivity)getContext());
+                new JoinContactListAdapter((JoinContactActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;
     }
 
     @Override
-    public ContactEntryListController createController() {
-
-        // TODO needs a separate controller
-        return new DefaultContactListController(getContext(), getApplicationController());
+    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.contacts_list_content_join, null);
     }
 
     @Override
-    protected View inflateView() {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        return inflater.inflate(R.layout.contacts_list_content_join, null);
+    protected void onItemClick(int position, long id) {
+        // TODO
+        throw new UnsupportedOperationException();
     }
 }

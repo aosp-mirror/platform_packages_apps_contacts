@@ -17,8 +17,10 @@ package com.android.contacts;
 
 /**
  * An interface that captures various top-level actions that can be performed in
- * the Contacts app.
+ * the Contacts app.  This is a temporary class to be replaced by individual
+ * listeners for various actions.
  */
+@Deprecated
 public interface ContactsApplicationController {
 
     /**

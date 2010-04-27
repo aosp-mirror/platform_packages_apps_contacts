@@ -15,45 +15,36 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.MultiplePhonePickerActivity;
 import com.android.contacts.R;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 /**
- * Configuration for the multiple phone picker.
+ * Fragment for the multiple phone picker.
  */
-public class MultiplePhonePickerConfiguration extends ContactEntryListConfiguration {
-
-    public MultiplePhonePickerConfiguration(Context context,
-            ContactsApplicationController applicationController) {
-        super(context, applicationController);
-    }
+public class MultiplePhonePickerFragment extends ContactEntryListFragment {
 
     @Override
     public ListAdapter createListAdapter() {
         MultiplePhonePickerAdapter adapter =
-                new MultiplePhonePickerAdapter((MultiplePhonePickerActivity)getContext());
+                new MultiplePhonePickerAdapter((MultiplePhonePickerActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;
     }
 
     @Override
-    public ContactEntryListController createController() {
-
-        // TODO this needs a separate controller
-        return new DefaultContactListController(getContext(), getApplicationController());
+    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
     @Override
-    protected View inflateView() {
-        // TODO implement a proper search mode for MultiPicker
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        return inflater.inflate(R.layout.contacts_list_content, null);
+    protected void onItemClick(int position, long id) {
+        // TODO
+        throw new UnsupportedOperationException();
     }
 }

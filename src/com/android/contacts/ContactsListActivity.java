@@ -17,9 +17,11 @@
 package com.android.contacts;
 
 import com.android.contacts.list.ContactEntryListAdapter;
-import com.android.contacts.list.ContactEntryListConfiguration;
+import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactsIntentResolver;
+import com.android.contacts.list.DefaultContactListFragment;
+import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -33,6 +35,7 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
@@ -454,7 +457,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     };
 
     private ContactsIntentResolver mIntentResolver;
-    protected ContactEntryListConfiguration mConfig;
+    protected ContactEntryListFragment mListFragment;
 
     private ListView mListView;
 
@@ -484,24 +487,29 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         // Resolve the intent
         final Intent intent = getIntent();
 
-        mConfig = resolveIntent(intent);
-        initContentView();
+        if (!resolveIntent(intent)) {
+            return;
+        }
+
+        FragmentTransaction transaction = openFragmentTransaction();
+        transaction.add(mListFragment, android.R.id.content);
+        transaction.commit();
     }
 
-    protected ContactEntryListConfiguration resolveIntent(final Intent intent) {
+    protected boolean resolveIntent(final Intent intent) {
         mIntentResolver.setIntent(intent);
 
         if (!mIntentResolver.isValid()) {           // Invalid intent
             setResult(RESULT_CANCELED);
             finish();
-            return null;
+            return false;
         }
 
         Intent redirect = mIntentResolver.getRedirectIntent();
         if (redirect != null) {             // Need to start a different activity
             startActivity(redirect);
             finish();
-            return null;
+            return false;
         }
 
         setTitle(mIntentResolver.getActivityTitle());
@@ -521,22 +529,46 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mShowNumberOfContacts = mIntentResolver.mShowNumberOfContacts;
         mGroupName = mIntentResolver.mGroupName;
 
-        return mIntentResolver.getConfiguration();
-    }
-
-    public void initContentView() {
-        setContentView(mConfig.createView());
-
-        mListView = (ListView) findViewById(android.R.id.list);
-
-        if (mSearchMode) {
-            setupSearchView();
+        switch (mMode) {
+            case MODE_DEFAULT: {
+                mListFragment = new DefaultContactListFragment();
+                if (!mSearchMode) {
+                    mListFragment.setSectionHeaderDisplayEnabled(true);
+                }
+                break;
+            }
+            case MODE_LEGACY_PICK_POSTAL:
+            case MODE_PICK_POSTAL:
+            case MODE_LEGACY_PICK_PHONE:
+            case MODE_PICK_PHONE:
+            case MODE_STREQUENT:
+            case MODE_FREQUENT: {
+                mListFragment = new DefaultContactListFragment();
+                break;
+            }
+            case MODE_PICK_MULTIPLE_PHONES: {
+                mListFragment = new MultiplePhonePickerFragment();
+                break;
+            }
+            default: {
+                mListFragment = new DefaultContactListFragment();
+                if (!mSearchMode) {
+                    mListFragment.setSectionHeaderDisplayEnabled(true);
+                }
+            }
         }
 
-        View emptyView = mListView.getEmptyView();
-        if (emptyView instanceof ContactListEmptyView) {
-            mEmptyView = (ContactListEmptyView)emptyView;
+        mListFragment.setSearchMode(mSearchMode);
+        mListFragment.setSearchResultsMode(mSearchResultsMode);
+        mListFragment.setQueryString(mInitialFilter);
+
+        if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
+            mListFragment.setPhotoLoaderEnabled(true);
         }
+
+        mListFragment.setContactsApplicationController(this);
+
+        return true;
     }
 
     // TODO move this to the configuration object(s)
@@ -583,7 +615,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
             mPhotoLoader.pause();
-        } else if (mConfig.isPhotoLoaderEnabled()) {
+        } else if (mListFragment.isPhotoLoaderEnabled()) {
             mPhotoLoader.resume();
         }
     }
@@ -648,6 +680,18 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Override
     protected void onResume() {
         super.onResume();
+
+        // TODO move this to onAttach of the corresponding fragment
+        mListView = (ListView) findViewById(android.R.id.list);
+
+        if (mSearchMode) {
+            setupSearchView();
+        }
+
+        View emptyView = mListView.getEmptyView();
+        if (emptyView instanceof ContactListEmptyView) {
+            mEmptyView = (ContactListEmptyView)emptyView;
+        }
 
         registerProviderStatusObserver();
         mPhotoLoader.resume();
@@ -1933,7 +1977,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             baseUri = Contacts.CONTENT_URI;
         }
 
-        if (mConfig.isSectionHeaderDisplayEnabled()) {
+        if (mListFragment.isSectionHeaderDisplayEnabled()) {
             return buildSectionIndexerUri(baseUri);
         } else {
             return baseUri;

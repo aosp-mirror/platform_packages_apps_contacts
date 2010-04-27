@@ -17,9 +17,8 @@
 package com.android.contacts;
 
 
-import com.android.contacts.list.ContactEntryListConfiguration;
 import com.android.contacts.list.JoinContactListAdapter;
-import com.android.contacts.list.JoinContactListConfiguration;
+import com.android.contacts.list.JoinContactListFragment;
 
 import android.content.ContentUris;
 import android.content.Intent;
@@ -72,7 +71,7 @@ public class JoinContactActivity extends ContactsListActivity {
     private JoinContactListAdapter mAdapter;
 
     @Override
-    protected ContactEntryListConfiguration resolveIntent(Intent intent) {
+    protected boolean resolveIntent(Intent intent) {
         mMode = MODE_PICK_CONTACT;
         mTargetContactId = intent.getLongExtra(EXTRA_TARGET_CONTACT_ID, -1);
         if (mTargetContactId == -1) {
@@ -80,15 +79,19 @@ public class JoinContactActivity extends ContactsListActivity {
                     + EXTRA_TARGET_CONTACT_ID);
             setResult(RESULT_CANCELED);
             finish();
-            return null;
+            return false;
         }
-        return new JoinContactListConfiguration(this, this);
+
+        mListFragment = new JoinContactListFragment();
+
+        return true;
     }
 
     @Override
-    public void initContentView() {
-        setContentView(mConfig.createView());
+    protected void onResume() {
+        super.onResume();
 
+        // TODO move this to onAttach of the corresponding fragment
         TextView blurbView = (TextView)findViewById(R.id.join_contact_blurb);
 
         String blurb = getString(R.string.blurbJoinContactDataWith,

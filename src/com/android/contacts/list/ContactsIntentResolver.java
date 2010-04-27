@@ -474,46 +474,4 @@ public class ContactsIntentResolver {
         }
         return null;
     }
-
-    public ContactEntryListConfiguration getConfiguration() {
-        ContactEntryListConfiguration config;
-        switch (mMode) {
-            case MODE_DEFAULT: {
-                config = new DefaultContactListConfiguration(mContext, mAppController);
-                if (!mSearchMode) {
-                    config.setSectionHeaderDisplayEnabled(true);
-                }
-                break;
-            }
-            case MODE_LEGACY_PICK_POSTAL:
-            case MODE_PICK_POSTAL:
-            case MODE_LEGACY_PICK_PHONE:
-            case MODE_PICK_PHONE:
-            case MODE_STREQUENT:
-            case MODE_FREQUENT: {
-                config = new DefaultContactListConfiguration(mContext, mAppController);
-                break;
-            }
-            case MODE_PICK_MULTIPLE_PHONES: {
-                config = new MultiplePhonePickerConfiguration(mContext, mAppController);
-                break;
-            }
-            default: {
-                config = new DefaultContactListConfiguration(mContext, mAppController);
-                if (!mSearchMode) {
-                    config.setSectionHeaderDisplayEnabled(true);
-                }
-            }
-        }
-
-        config.setSearchMode(mSearchMode);
-        config.setSearchResultsMode(mSearchResultsMode);
-        config.setQueryString(mInitialFilter);
-
-        if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
-            config.setPhotoLoaderEnabled(true);
-        }
-
-        return config;
-    }
 }

@@ -13,44 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 /**
- * Configuration for the default contact list.
+ * Fragment for the default contact list.
  */
-public class DefaultContactListConfiguration extends ContactEntryListConfiguration {
+public class DefaultContactListFragment extends ContactEntryListFragment {
 
-    public DefaultContactListConfiguration(Context context,
-            ContactsApplicationController applicationController) {
-        super(context, applicationController);
+    @Override
+    protected void onItemClick(int position, long id) {
+        // TODO instead of delegating the entire procedure to the ContactsListActivity,
+        // figure out what the specific action is and delegate the specific action.
+        getContactsApplicationController().onListItemClick(position, id);
     }
 
     @Override
-    public ListAdapter createListAdapter() {
+    protected ListAdapter createListAdapter() {
         ContactItemListAdapter adapter =
-                new ContactItemListAdapter((ContactsListActivity)getContext());
+                new ContactItemListAdapter((ContactsListActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(isPhotoLoaderEnabled());
         return adapter;
     }
 
     @Override
-    public ContactEntryListController createController() {
-        return new DefaultContactListController(getContext(), getApplicationController());
-    }
-
-    @Override
-    protected View inflateView() {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
+    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         if (isSearchMode()) {
             return inflater.inflate(R.layout.contacts_search_content, null);
         } else if (isSearchResultsMode()) {
