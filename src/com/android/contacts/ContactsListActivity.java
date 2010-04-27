@@ -21,7 +21,9 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.DefaultContactListFragment;
+import com.android.contacts.list.LightContactBrowser;
 import com.android.contacts.list.MultiplePhonePickerFragment;
+import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -530,11 +532,44 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mGroupName = mIntentResolver.mGroupName;
 
         switch (mMode) {
-            case MODE_DEFAULT: {
-                mListFragment = new DefaultContactListFragment();
+            case MODE_DEFAULT:
+            case MODE_INSERT_OR_EDIT_CONTACT:
+            case MODE_QUERY_PICK_TO_EDIT: {
+                LightContactBrowser fragment = new LightContactBrowser();
                 if (!mSearchMode) {
-                    mListFragment.setSectionHeaderDisplayEnabled(true);
+                    fragment.setSectionHeaderDisplayEnabled(true);
                 }
+
+                if (mMode == MODE_INSERT_OR_EDIT_CONTACT ||
+                        mMode == MODE_QUERY_PICK_TO_EDIT) {
+                    fragment.setEditMode(true);
+                }
+
+                if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
+                    fragment.setCreateContactEnabled(true);
+                }
+
+                fragment.setOnContactBrowserActionListener(new OnContactBrowserActionListener() {
+                    public void onSearchAllContactsAction(String string) {
+                        doSearch();
+                    }
+
+                    public void onViewContactAction(Uri contactLookupUri) {
+                        final Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
+                        startActivityAndForwardResult(intent);
+                    }
+
+                    public void onCreateNewContactAction() {
+                        Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                        startActivityAndForwardResult(intent);
+                    }
+
+                    public void onEditContactAction(Uri contactLookupUri) {
+                        Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+                        startActivityAndForwardResult(intent);
+                    }
+                });
+                mListFragment = fragment;
                 break;
             }
             case MODE_LEGACY_PICK_POSTAL:
@@ -569,6 +604,18 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mListFragment.setContactsApplicationController(this);
 
         return true;
+    }
+
+    public void startActivityAndForwardResult(final Intent intent) {
+        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+
+        // Forward extras to the new activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            intent.putExtras(extras);
+        }
+        startActivity(intent);
+        finish();
     }
 
     // TODO move this to the configuration object(s)

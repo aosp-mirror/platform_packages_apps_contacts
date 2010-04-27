@@ -49,9 +49,15 @@ public abstract class ContactEntryListFragment extends Fragment
     private ListAdapter mAdapter;
     private ListView mListView;
 
+    private boolean mLegacyCompatibility;
+
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract ListAdapter createListAdapter();
     protected abstract void onItemClick(int position, long id);
+
+    public ListAdapter getAdapter() {
+        return mAdapter;
+    }
 
     public void setSectionHeaderDisplayEnabled(boolean flag) {
         mSectionHeaderDisplayEnabled = flag;
@@ -91,6 +97,14 @@ public abstract class ContactEntryListFragment extends Fragment
 
     public void setQueryString(String queryString) {
         mQueryString = queryString;
+    }
+
+    public boolean isLegacyCompatibility() {
+        return mLegacyCompatibility;
+    }
+
+    public void setLegacyCompatibility(boolean flag) {
+        mLegacyCompatibility = flag;
     }
 
     @Deprecated
