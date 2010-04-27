@@ -21,6 +21,7 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.DefaultContactListFragment;
+import com.android.contacts.list.LightContactBrowserContextMenuAdapter;
 import com.android.contacts.list.LightContactBrowser;
 import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
@@ -31,7 +32,7 @@ import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.Constants;
-import com.android.contacts.widget.TextWithHighlighting;
+import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -49,7 +50,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.UriMatcher;
 import android.content.res.Resources;
-import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -371,7 +371,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     static final String KEY_PICKER_MODE = "picker_mode";
 
     public ContactEntryListAdapter mAdapter;
+    private ContextMenuAdapter mContextMenuAdapter;
     public ContactListEmptyView mEmptyView;
+
 
     public int mMode = MODE_DEFAULT;
     private boolean mRunQueriesSynchronously;
@@ -568,7 +570,32 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                         Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
                         startActivityAndForwardResult(intent);
                     }
+
+                    public void onAddToFavoritesAction(Uri contactUri) {
+                        ContentValues values = new ContentValues(1);
+                        values.put(Contacts.STARRED, 1);
+                        getContentResolver().update(contactUri, values, null, null);
+                    }
+
+                    public void onRemoveFromFavoritesAction(Uri contactUri) {
+                        ContentValues values = new ContentValues(1);
+                        values.put(Contacts.STARRED, 0);
+                        getContentResolver().update(contactUri, values, null, null);
+                    }
+
+                    public void onCallContactAction(Uri contactUri) {
+                        // TODO
+                    }
+
+                    public void onSmsContactAction(Uri contactUri) {
+                        // TODO
+                    }
+
+                    public void onDeleteContactAction(Uri contactUri) {
+                        doContactDelete(contactUri);
+                    }
                 });
+                mContextMenuAdapter = new LightContactBrowserContextMenuAdapter(fragment);
                 mListFragment = fragment;
                 break;
             }
@@ -1264,6 +1291,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+        if (mContextMenuAdapter != null) {
+            mContextMenuAdapter.onCreateContextMenu(menu, view, menuInfo);
+            return;
+        }
+
         // If Contacts was invoked by another Activity simply as a way of
         // picking a contact, don't show the context menu
         if ((mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER) {
@@ -1319,6 +1351,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        if (mContextMenuAdapter != null) {
+            return mContextMenuAdapter.onContextItemSelected(item);
+        }
+
         AdapterView.AdapterContextMenuInfo info;
         try {
              info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -2082,6 +2118,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         mSortOrder = mContactsPrefs.getSortOrder();
         mDisplayOrder = mContactsPrefs.getDisplayOrder();
+
+        if (mListFragment != null) {
+            mListFragment.setContactNameDisplayOrder(mDisplayOrder);
+        }
 
         if (mListView instanceof ContactEntryListView) {
             ContactEntryListView listView = (ContactEntryListView)mListView;

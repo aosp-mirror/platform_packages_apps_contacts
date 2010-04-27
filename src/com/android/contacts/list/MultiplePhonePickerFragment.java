@@ -21,7 +21,6 @@ import com.android.contacts.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
 /**
  * Fragment for the multiple phone picker.
@@ -29,7 +28,7 @@ import android.widget.ListAdapter;
 public class MultiplePhonePickerFragment extends ContactEntryListFragment {
 
     @Override
-    public ListAdapter createListAdapter() {
+    public ContactEntryListAdapter createListAdapter() {
         MultiplePhonePickerAdapter adapter =
                 new MultiplePhonePickerAdapter((MultiplePhonePickerActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(true);

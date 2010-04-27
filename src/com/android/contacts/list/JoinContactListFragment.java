@@ -21,7 +21,6 @@ import com.android.contacts.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
 /**
  * Fragment for the Join Contact list.
@@ -29,7 +28,7 @@ import android.widget.ListAdapter;
 public class JoinContactListFragment extends ContactEntryListFragment {
 
     @Override
-    public ListAdapter createListAdapter() {
+    public ContactEntryListAdapter createListAdapter() {
         JoinContactListAdapter adapter =
                 new JoinContactListAdapter((JoinContactActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(true);

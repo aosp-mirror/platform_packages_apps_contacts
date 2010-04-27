@@ -23,22 +23,48 @@ import android.net.Uri;
 public interface OnContactBrowserActionListener  {
 
     /**
-     * Search all contacts for the specified string an show results for browsing.
+     * Searches all contacts for the specified string an show results for browsing.
      */
     void onSearchAllContactsAction(String string);
 
     /**
-     * Open the specified contact for viewing.
+     * Opens the specified contact for viewing.
      */
     void onViewContactAction(Uri contactLookupUri);
 
     /**
-     * Create a new contact.
+     * Creates a new contact.
      */
     void onCreateNewContactAction();
 
     /**
-     * Edit the specified contact.
+     * Opens the specified contact for editing.
      */
     void onEditContactAction(Uri contactLookupUri);
+
+    /**
+     * Initiates the contact deletion process.
+     */
+    void onDeleteContactAction(Uri contactUri);
+
+    /**
+     * Adds the specified contact to favorites
+     */
+    void onAddToFavoritesAction(Uri contactUri);
+
+    /**
+     * Removes the specified contact from favorites.
+     */
+    void onRemoveFromFavoritesAction(Uri contactUri);
+
+    /**
+     * Places a call to the specified contact.
+     */
+    void onCallContactAction(Uri contactUri);
+
+    /**
+     * Initiates a text message to the specified contact.
+     */
+    void onSmsContactAction(Uri contactUri);
+
 }

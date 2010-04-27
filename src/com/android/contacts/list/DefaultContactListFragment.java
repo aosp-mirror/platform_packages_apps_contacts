@@ -22,7 +22,6 @@ import com.android.contacts.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
 /**
  * Fragment for the default contact list.
@@ -37,7 +36,7 @@ public class DefaultContactListFragment extends ContactEntryListFragment {
     }
 
     @Override
-    protected ListAdapter createListAdapter() {
+    protected ContactEntryListAdapter createListAdapter() {
         ContactItemListAdapter adapter =
                 new ContactItemListAdapter((ContactsListActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
