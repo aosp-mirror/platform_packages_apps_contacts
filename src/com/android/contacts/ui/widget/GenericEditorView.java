@@ -26,6 +26,7 @@ import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.util.ViewGroupAnimator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
 
@@ -50,6 +51,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -78,8 +80,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     protected TextView mLabel;
     protected ViewGroup mFields;
     protected View mDelete;
-    protected View mMore;
-    protected View mLess;
+    protected ImageButton mMoreOrLess;
 
     protected DataKind mKind;
     protected ValuesDelta mEntry;
@@ -117,11 +118,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         mDelete = findViewById(R.id.edit_delete);
         mDelete.setOnClickListener(this);
 
-        mMore = findViewById(R.id.edit_more);
-        mMore.setOnClickListener(this);
-
-        mLess = findViewById(R.id.edit_less);
-        mLess.setOnClickListener(this);
+        mMoreOrLess = (ImageButton) findViewById(R.id.edit_more_or_less);
+        mMoreOrLess.setOnClickListener(this);
     }
 
     protected EditorListener mListener;
@@ -142,8 +140,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             final View v = mFields.getChildAt(pos);
             v.setEnabled(enabled);
         }
-        mMore.setEnabled(enabled);
-        mLess.setEnabled(enabled);
+        mMoreOrLess.setEnabled(enabled);
     }
 
     /**
@@ -275,14 +272,13 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         // When hiding fields, place expandable
         if (hidePossible) {
-            mMore.setVisibility(mHideOptional ? View.VISIBLE : View.GONE);
-            mLess.setVisibility(mHideOptional ? View.GONE : View.VISIBLE);
+            mMoreOrLess.setVisibility(View.VISIBLE);
+            mMoreOrLess.setImageResource(
+                    mHideOptional ? R.drawable.ic_btn_round_more : R.drawable.ic_btn_round_less);
         } else {
-            mMore.setVisibility(View.GONE);
-            mLess.setVisibility(View.GONE);
+            mMoreOrLess.setVisibility(View.GONE);
         }
-        mMore.setEnabled(enabled);
-        mLess.setEnabled(enabled);
+        mMoreOrLess.setEnabled(enabled);
     }
 
     /**
@@ -392,20 +388,42 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 // Keep around in model, but mark as deleted
                 mEntry.markDeleted();
 
-                // Remove editor from parent view
-                final ViewGroup parent = (ViewGroup)getParent();
-                parent.removeView(this);
+                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+
+                animator.removeView(this);
 
                 if (mListener != null) {
                     // Notify listener when present
                     mListener.onDeleted(this);
                 }
+
+                animator.animate();
                 break;
             }
-            case R.id.edit_more:
-            case R.id.edit_less: {
+            case R.id.edit_more_or_less: {
+                // Save focus
+                final View focusedChild = mFields.getFocusedChild();
+                final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
+
+                // Snapshot for animation
+                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+
+                // Reconfigure GUI
                 mHideOptional = !mHideOptional;
                 rebuildValues();
+
+                // Restore focus
+                View newFocusView = mFields.findViewById(focusedViewId);
+                if (newFocusView == null || newFocusView.getVisibility() == GONE) {
+                    // find first visible child
+                    newFocusView = this;
+                }
+                if (newFocusView != null) {
+                    newFocusView.requestFocus();
+                }
+
+                // Animate
+                animator.animate();
                 break;
             }
         }

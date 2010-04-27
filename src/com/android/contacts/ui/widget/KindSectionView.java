@@ -24,6 +24,7 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.util.ViewGroupAnimator;
 
 import android.content.Context;
 import android.provider.ContactsContract.Data;
@@ -201,6 +202,8 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         if (!mKind.isList)
             return;
 
+        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+
         // Insert a new child and rebuild
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
         this.rebuildFromState();
@@ -213,5 +216,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         if (newField != null) {
             newField.requestFocus();
         }
+
+        animator.animate();
     }
 }

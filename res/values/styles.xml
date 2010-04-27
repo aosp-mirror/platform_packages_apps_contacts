@@ -24,6 +24,10 @@
         <item name="android:windowAnimationStyle">@style/ContactsSearchAnimation</item>
     </style>
 
+    <style name="EmptyButton">
+        <item name="android:background">@drawable/btn_circle</item>
+    </style>
+
     <style name="MinusButton">
         <item name="android:background">@drawable/btn_circle</item>
         <item name="android:src">@drawable/ic_btn_round_minus</item>
