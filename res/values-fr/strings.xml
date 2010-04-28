@@ -69,7 +69,7 @@
     <string name="editContact_title_edit" msgid="7678695190666836093">"Modifier le contact"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nouveau contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Prononciation phonétique"</string>
-    <string name="label_notes" msgid="8337354953278341042">"Notes"</string>
+    <string name="label_notes" msgid="8337354953278341042">"Remarques"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Sonnerie"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Nom et prénom"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nom phonétique"</string>
@@ -162,7 +162,7 @@
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Vous n\'avez aucun contact à afficher."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte comportant des contacts que vous pourrez synchroniser sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer une entrée ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter."</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Aucun favori."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n" "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tous les contacts"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Suivis"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Téléphones"</string>
@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
     <string name="callAgain" msgid="3197312117049874778">"Renouveler l\'appel"</string>
     <string name="returnCall" msgid="8171961914203617813">"Rappeler"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> mn <xliff:g id="SECONDS">%s</xliff:g> s"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> mn <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contactés fréquemment"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Ajouter un contact"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Ajouter \"<xliff:g id="EMAIL">%s</xliff:g>\" aux contacts ?"</string>
@@ -326,7 +326,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"Envoyer un e-mail sur le mobile"</string>
     <string name="email_work" msgid="2807430017302722689">"Env. e-mail bureau"</string>
     <string name="email_other" msgid="3454004077967657109">"Envoyer un e-mail"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Env. e-mail à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Envoyer un e-mail à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Envoyer un e-mail"</string>
     <string name="map_home" msgid="1243547733423343982">"Afficher adresse perso"</string>
     <string name="map_work" msgid="1360474076921878088">"Afficher adresse prof."</string>

@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
+    <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"拨号"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打"</string>
@@ -24,7 +24,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"选择联系人快捷方式"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"选择一个可直接拨号的号码"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"选择一个可直接向其发送短信的号码"</string>
-    <string name="starredList" msgid="4817256136413959463">"已加星标"</string>
+    <string name="starredList" msgid="4817256136413959463">"已加星标的内容"</string>
     <string name="frequentList" msgid="7154768136473953056">"经常联系"</string>
     <string name="strequentList" msgid="5640192862059373511">"收藏"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"联系人详情"</string>
@@ -79,7 +79,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"选择标签"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"电话"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"电子邮件"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"发送电子邮件"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"即时消息"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"通信地址"</string>
   <string-array name="otherLabels">
@@ -92,7 +92,7 @@
     <string name="menu_displayGroup" msgid="5655505437727616553">"显示选项"</string>
     <string name="displayGroups" msgid="2278964020773993336">"显示选项"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将来电转到语音信箱"</string>
-    <string name="default_ringtone" msgid="9099988849649827972">"默认"</string>
+    <string name="default_ringtone" msgid="9099988849649827972">"默认日历"</string>
     <string name="changePicture" msgid="2943329047610967714">"更改图标"</string>
     <string name="removePicture" msgid="3041230993155966350">"删除图标"</string>
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
@@ -130,7 +130,7 @@
     <item quantity="one" msgid="916648718690661777">"1 位联系人"</item>
     <item quantity="other" msgid="5660384247071761844">"<xliff:g id="COUNT">%d</xliff:g> 位联系人"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"联系人"</string>
+    <string name="contactsIconLabel" msgid="7666609097606552806">"通讯录"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通话记录"</string>
@@ -158,13 +158,13 @@
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡联系人"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"没有任何联系人可供显示。（如果您刚刚添加了一个帐户，则系统需要几分钟的时间同步联系人。）"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"没有任何联系人可供显示。"</string>
-    <string name="noContactsHelpText" msgid="6788487368878712350">"您没有任何联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您还没有联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"-添加或配置帐户（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"-更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您还没有联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"MENU"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置帐号（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"您还没有联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"Menu"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"帐户"</b></font>"-添加或配置帐户（您可将其联系人同步到手机）"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"-更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"-从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您尚未添加任何收藏。"\n\n"要将联系人添加到收藏列表，请执行以下操作："\n\n<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
+    <string name="noContactsHelpText" msgid="6788487368878712350">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您未收藏任何联系人。"\n\n"要向您的收藏列表添加联系人，请执行以下操作："\n\n"        "<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"所有联系人"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标的内容"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"电话"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"使用按键式键盘"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"返回正在进行的通话"</string>
@@ -178,10 +178,10 @@
     <string name="callBack" msgid="5498224409038809224">"回电"</string>
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
     <string name="returnCall" msgid="8171961914203617813">"回拨"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分钟 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"常用联系人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"添加联系人"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将 <xliff:g id="EMAIL">%s</xliff:g> 添加为联系人？"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
     <string name="all_tab_label" msgid="4003124364397916826">"全部"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"一"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"二"</string>
@@ -226,7 +226,7 @@
     <string name="reading_vcard_title" msgid="4723433501579653199">"正在读取 vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"正在读取 vCard 文件"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"读取 vCard 数据失败"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个联系人"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个）"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个文件"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"确认导出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"确定要将您的联系人列表导出到“<xliff:g id="VCARD_FILENAME">%s</xliff:g>”中吗？"</string>
@@ -301,7 +301,7 @@
     <string name="call_work_pager" msgid="3419348514157949008">"呼叫单位寻呼机"</string>
     <string name="call_assistant" msgid="2141641383068514308">"呼叫<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"呼叫彩信号码"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"向<xliff:g id="CUSTOM">%s</xliff:g>发送短信"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"向<xliff:g id="CUSTOM">%s</xliff:g>发送文本消息"</string>
     <string name="sms_home" msgid="7524332261493162995">"向住宅电话发送短信"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"向手机发送短信"</string>
     <string name="sms_work" msgid="2269624156655267740">"向单位电话发送短信"</string>
