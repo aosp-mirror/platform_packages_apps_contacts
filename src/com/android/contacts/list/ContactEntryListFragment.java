@@ -33,8 +33,11 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnFocusChangeListener;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -42,15 +45,16 @@ import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Common base class for various contact-related list fragments.
  */
-public abstract class ContactEntryListFragment extends Fragment implements
-        OnItemClickListener, OnScrollListener, TextWatcher,
-        TextView.OnEditorActionListener, OnCloseListener {
+public abstract class ContactEntryListFragment extends Fragment implements OnItemClickListener,
+        OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
+        OnFocusChangeListener, OnTouchListener {
 
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
@@ -181,6 +185,9 @@ public abstract class ContactEntryListFragment extends Fragment implements
 
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
+        mListView.setOnFocusChangeListener(this);
+        mListView.setOnTouchListener(this);
+
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.
         mListView.setDividerHeight(0);
@@ -301,6 +308,25 @@ public abstract class ContactEntryListFragment extends Fragment implements
                 finish();
             }
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Dismisses the soft keyboard when the list takes focus.
+     */
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (view == mListView && hasFocus) {
+            hideSoftKeyboard();
+        }
+    }
+
+    /**
+     * Dismisses the soft keyboard when the list is touched.
+     */
+    public boolean onTouch(View view, MotionEvent event) {
+        if (view == mListView) {
+            hideSoftKeyboard();
         }
         return false;
     }

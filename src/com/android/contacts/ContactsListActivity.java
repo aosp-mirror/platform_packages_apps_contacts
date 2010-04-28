@@ -124,7 +124,7 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
         View.OnClickListener,
-        OnFocusChangeListener, OnTouchListener, ContactsApplicationController {
+        ContactsApplicationController {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -684,9 +684,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Deprecated
     public void setupListView(ListAdapter adapter, ListView list) {
         mAdapter = (ContactEntryListAdapter)adapter;
-
-        list.setOnFocusChangeListener(this);
-        list.setOnTouchListener(this);
 
         // We manually save/restore the listview state
         list.setSaveEnabled(false);
@@ -1376,25 +1373,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         } else {
             showDialog(R.id.dialog_delete_contact_confirmation);
         }
-    }
-
-    /**
-     * Dismisses the soft keyboard when the list takes focus.
-     */
-    public void onFocusChange(View view, boolean hasFocus) {
-        if (view == mListView && hasFocus) {
-            hideSoftKeyboard();
-        }
-    }
-
-    /**
-     * Dismisses the soft keyboard when the list takes focus.
-     */
-    public boolean onTouch(View view, MotionEvent event) {
-        if (view == mListView) {
-            hideSoftKeyboard();
-        }
-        return false;
     }
 
     public void onListItemClick(int position, long id) {
