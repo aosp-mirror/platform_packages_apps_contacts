@@ -36,7 +36,7 @@
     <string name="menu_newContact" msgid="1209922412763274638">"Nový kontakt"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Zobrazit kontakt"</string>
     <string name="menu_callNumber" msgid="5142851348489387516">"Volat kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Přidat do oblíbených"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Přidat k oblíbeným položkám"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odebrat z oblíbených položek"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Upravit kontakt"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Smazat kontakt"</string>
@@ -88,11 +88,11 @@
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"V telefonu nejsou žádné fotografie."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Ikona kontaktu"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Název vlastního štítku"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Vlastní název štítku"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Možnosti zobrazení"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Možnosti zobrazení"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Přesměrovat hovory přímo do hlasové schránky"</string>
-    <string name="default_ringtone" msgid="9099988849649827972">"Výchozí"</string>
+    <string name="default_ringtone" msgid="9099988849649827972">"Výchozí nastavení"</string>
     <string name="changePicture" msgid="2943329047610967714">"Změnit ikonu"</string>
     <string name="removePicture" msgid="3041230993155966350">"Odstranit ikonu"</string>
     <string name="noContacts" msgid="8579310973261953559">"Žádné kontakty."</string>
@@ -136,7 +136,7 @@
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Hovory"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Všechny kontakty"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Kontakty označené hvězdičkou"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakty s telefonními čísly"</string>
+    <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakty s telefonním číslem"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Odeslat textovou zprávu"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Volat kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Před voláním upravit číslo"</string>
@@ -149,10 +149,10 @@
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Hlasová schránka"</string>
-    <string name="unknown" msgid="740067747858270469">"Neznámé číslo"</string>
+    <string name="unknown" msgid="740067747858270469">"Neznámé"</string>
     <string name="private_num" msgid="6374339738119166953">"Soukromé číslo"</string>
     <string name="payphone" msgid="4864313342828942922">"Veřejný telefon"</string>
-    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Číslo vytočíte pomocí klávesnice"</string>
+    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Číslo vytočíte pomocí klávesnice."</string>
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Přidáváte hovor"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Načítání z karty SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty na kartě SIM"</string>
@@ -164,16 +164,16 @@
     <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Nemáte žádné kontakty, které by bylo možné zobrazit. (Pokud jste právě přidali účet, může synchronizace kontaktů trvat několik minut.)"\n\n"Chcete-li přidat kontakty, stiskněte tlačítko "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotkněte se položky:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", pokud chcete přidat nebo nakonfigurovat účet a kontakty v něm synchronizovat s telefonem;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazení"</b></font>", pokud chcete změnit, které kontakty budou zobrazeny;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", pokud chcete vytvořit úplně nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovat nebo exportovat"</b></font>"."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nemáte žádné oblíbené kontakty."\n\n"Přidání kontaktu do seznamu oblíbených:"\n\n"        "<li>"Dotkněte se karty "<b>"Kontakty"</b>"."\n</li>" "\n<li>"Dotkněte se kontaktu, který chcete přidat mezi oblíbené."\n</li>" "\n<li>"Dotkněte se hvězdičky vedle jména kontaktu."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Všechny kontakty"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"S hvězdičkou"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Označené hvězdičkou"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefony"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Použít dotykovou tónovou klávesnici"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Návrat k probíhajícímu hovoru"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Přidat hovor"</string>
-    <string name="callDetailTitle" msgid="5340227785196217938">"Detaily hovoru"</string>
+    <string name="callDetailTitle" msgid="5340227785196217938">"Podrobnosti hovoru"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Detaily požadovaného hovoru nelze načíst."</string>
-    <string name="type_incoming" msgid="6502076603836088532">"Příchozí volání"</string>
+    <string name="type_incoming" msgid="6502076603836088532">"Příchozí hovor"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Odchozí volání"</string>
-    <string name="type_missed" msgid="2720502601640509542">"Zmeškané volání"</string>
+    <string name="type_missed" msgid="2720502601640509542">"Zmeškaný hovor"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Příchozí volání"</string>
     <string name="callBack" msgid="5498224409038809224">"Zavolat zpět"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zavolat znovu"</string>

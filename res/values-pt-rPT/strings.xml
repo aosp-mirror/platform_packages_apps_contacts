@@ -35,7 +35,7 @@
     <string name="menu_search" msgid="9147752853603483719">"Pesquisar"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Novo contacto"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Visualizar contacto"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"Telefonar a <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_callNumber" msgid="5142851348489387516">"Ligar a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Adicionar aos favoritos"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Remover dos favoritos"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Editar contacto"</string>
@@ -138,7 +138,7 @@
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactos marcados com estrela"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Contactos com números de telefone"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Enviar mensagem de texto"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Telefonar a <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Ligar a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Editar número antes de efectuar a chamada"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Adicionar aos contactos"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Remover do registo de chamadas"</string>

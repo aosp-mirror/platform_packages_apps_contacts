@@ -19,8 +19,8 @@
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"Telefonowanie bezpośrednie"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Wiadomość bezpośrednia"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"SMS do osoby"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Wybierz skrót kontaktu"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Wybierz numer, aby nawiązać połączenie"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Wybierz numer, aby wysłać wiadomość"</string>
@@ -257,7 +257,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importuj/eksportuj"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importuj/eksportuj kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Udostępnij"</string>
-    <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt za pośrednictwem"</string>
+    <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt przez"</string>
     <string name="share_error" msgid="4374508848981697170">"Tego kontaktu nie można udostępniać."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nazwa"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Pseudonim"</string>
