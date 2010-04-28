@@ -27,6 +27,8 @@ import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -56,6 +58,8 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
         OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
         OnFocusChangeListener, OnTouchListener {
 
+    private static final String LIST_STATE_KEY = "liststate";
+
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mSearchMode;
@@ -65,6 +69,11 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
     private ContactsApplicationController mAppController;
     private ContactEntryListAdapter mAdapter;
     private ListView mListView;
+
+    /**
+     * Used for keeping track of the scroll state of the list.
+     */
+    private Parcelable mListState;
 
     private boolean mLegacyCompatibility;
     private int mDisplayOrder;
@@ -192,13 +201,14 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
         // them when an A-Z headers is visible.
         mListView.setDividerHeight(0);
 
+        // We manually save/restore the listview state
+        mListView.setSaveEnabled(false);
+
         if (mContextMenuAdapter != null) {
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
-
-        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
 
         configurePinnedHeader();
 
@@ -225,6 +235,8 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
                         "<b>" + getQueryString() + "</b>")));
             }
         }
+
+        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
     }
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -337,5 +349,31 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
     public void onClose() {
         hideSoftKeyboard();
         finish();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        // Save list state in the bundle so we can restore it after the QueryHandler has run
+        if (mListView != null) {
+            icicle.putParcelable(LIST_STATE_KEY, mListView.onSaveInstanceState());
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle icicle) {
+        super.onRestoreInstanceState(icicle);
+        // Retrieve list state. This will be applied after the QueryHandler has run
+        mListState = icicle.getParcelable(LIST_STATE_KEY);
+    }
+
+    /**
+     * Restore the list state after the adapter is populated.
+     */
+    public void completeRestoreInstanceState() {
+        if (mListState != null) {
+            mListView.onRestoreInstanceState(mListState);
+            mListState = null;
+        }
     }
 }

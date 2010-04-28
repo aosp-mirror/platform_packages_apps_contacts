@@ -130,7 +130,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
 
-    private static final String LIST_STATE_KEY = "liststate";
     private static final String SHORTCUT_ACTION_KEY = "shortcutAction";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
@@ -377,11 +376,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int  mWritableSourcesCnt;
     private int  mReadOnlySourcesCnt;
-
-    /**
-     * Used to keep track of the scroll state of the list.
-     */
-    private Parcelable mListState = null;
 
     public String mShortcutAction;
 
@@ -680,13 +674,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         finish();
     }
 
-    // TODO move this to the configuration object(s)
     @Deprecated
     public void setupListView(ListAdapter adapter, ListView list) {
         mAdapter = (ContactEntryListAdapter)adapter;
-
-        // We manually save/restore the listview state
-        list.setSaveEnabled(false);
     }
 
     /**
@@ -899,22 +889,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             // Run the filtered query on the adapter
             mAdapter.onContentChanged();
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle icicle) {
-        super.onSaveInstanceState(icicle);
-        // Save list state in the bundle so we can restore it after the QueryHandler has run
-        if (mListView != null) {
-            icicle.putParcelable(LIST_STATE_KEY, mListView.onSaveInstanceState());
-        }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle icicle) {
-        super.onRestoreInstanceState(icicle);
-        // Retrieve list state. This will be applied after the QueryHandler has run
-        mListState = icicle.getParcelable(LIST_STATE_KEY);
     }
 
     @Override
@@ -2306,10 +2280,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     protected void onQueryComplete(Cursor cursor) {
         mAdapter.changeCursor(cursor);
 
-        // Now that the cursor is populated again, it's possible to restore the list state
-        if (mListState != null) {
-            mListView.onRestoreInstanceState(mListState);
-            mListState = null;
-        }
+        // TODO make this triggered by the Loader
+        mListFragment.completeRestoreInstanceState();
     }
 }
