@@ -105,7 +105,6 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filter;
@@ -113,7 +112,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AbsListView.OnScrollListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -126,7 +124,7 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
         View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
-        OnFocusChangeListener, OnTouchListener, OnScrollListener, ContactsApplicationController {
+        OnFocusChangeListener, OnTouchListener, ContactsApplicationController {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -415,8 +413,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private static final int CONTACTS_ID = 1001;
     private static final UriMatcher sContactsIdMatcher;
 
-    public ContactPhotoLoader mPhotoLoader;
-
     final String[] sLookupProjection = new String[] {
             Contacts.LOOKUP_KEY
     };
@@ -471,7 +467,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         mContactsPrefs = new ContactsPreferences(this);
-        mPhotoLoader = new ContactPhotoLoader(this, R.drawable.ic_contact_list_picture);
 
         mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
@@ -685,7 +680,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public void setupListView(ListAdapter adapter, ListView list) {
         mAdapter = (ContactEntryListAdapter)adapter;
 
-        list.setOnScrollListener(this);
         list.setOnKeyListener(this);
         list.setOnFocusChangeListener(this);
         list.setOnTouchListener(this);
@@ -711,17 +705,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-            int totalItemCount) {
-    }
-
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
-            mPhotoLoader.pause();
-        } else if (mListFragment.isPhotoLoaderEnabled()) {
-            mPhotoLoader.resume();
-        }
-    }
 
     /**
      * Configures search UI.
@@ -768,11 +751,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPhotoLoader.stop();
-    }
 
     @Override
     protected void onPause() {
@@ -797,7 +775,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
 
         registerProviderStatusObserver();
-        mPhotoLoader.resume();
 
         Activity parent = getParent();
 

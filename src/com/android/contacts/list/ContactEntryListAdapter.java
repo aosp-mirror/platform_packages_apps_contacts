@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.widget.TextWithHighlighting;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
@@ -47,6 +48,7 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
     private int mDisplayOrder;
     private boolean mNameHighlightingEnabled;
+    private ContactPhotoLoader mPhotoLoader;
 
     public ContactEntryListAdapter(Context context) {
         super(context);
@@ -78,6 +80,14 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
     protected TextWithHighlighting createTextWithHighlighting() {
         return mTextWithHighlightingFactory.createTextWithHighlighting();
+    }
+
+    public void setPhotoLoader(ContactPhotoLoader photoLoader) {
+        mPhotoLoader = photoLoader;
+    }
+
+    protected ContactPhotoLoader getPhotoLoader() {
+        return mPhotoLoader;
     }
 
     /*

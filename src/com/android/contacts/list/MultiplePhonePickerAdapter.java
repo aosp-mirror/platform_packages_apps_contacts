@@ -137,7 +137,7 @@ public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
             }
 
             final int position = cursor.getPosition();
-            mMultiplePhonePickerActivity.mPhotoLoader.loadPhoto(viewToUse, photoId);
+            getPhotoLoader().loadPhoto(viewToUse, photoId);
         }
 
         if (!displayAdditionalData) {

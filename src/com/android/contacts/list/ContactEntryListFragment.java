@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
@@ -29,15 +30,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AbsListView.OnScrollListener;
 
 /**
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment extends Fragment
-        implements AdapterView.OnItemClickListener {
+        implements AdapterView.OnItemClickListener, OnScrollListener {
 
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
@@ -52,6 +55,7 @@ public abstract class ContactEntryListFragment extends Fragment
     private boolean mLegacyCompatibility;
     private int mDisplayOrder;
     private ContextMenuAdapter mContextMenuAdapter;
+    private ContactPhotoLoader mPhotoLoader;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract ContactEntryListAdapter createListAdapter();
@@ -182,6 +186,39 @@ public abstract class ContactEntryListFragment extends Fragment
                         "<b>" + getQueryString() + "</b>")));
             }
         }
+
+        if (isPhotoLoaderEnabled()) {
+            mPhotoLoader =
+                    new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
+            mAdapter.setPhotoLoader(mPhotoLoader);
+            mListView.setOnScrollListener(this);
+        }
+    }
+
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+            int totalItemCount) {
+    }
+
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
+            mPhotoLoader.pause();
+        } else if (isPhotoLoaderEnabled()) {
+            mPhotoLoader.resume();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isPhotoLoaderEnabled()) {
+            mPhotoLoader.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        mPhotoLoader.stop();
+        super.onDestroy();
     }
 
     private void configurePinnedHeader() {

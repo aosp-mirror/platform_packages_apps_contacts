@@ -363,8 +363,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
                 viewToUse = view.getPhotoView();
             }
 
-            final int position = cursor.getPosition();
-            contactsListActivity.mPhotoLoader.loadPhoto(viewToUse, photoId);
+            getPhotoLoader().loadPhoto(viewToUse, photoId);
         }
 
         if ((contactsListActivity.mMode & ContactsListActivity.MODE_MASK_NO_PRESENCE) == 0) {
