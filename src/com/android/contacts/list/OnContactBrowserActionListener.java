@@ -18,7 +18,7 @@ package com.android.contacts.list;
 import android.net.Uri;
 
 /**
- * Action callbacks that can be sent by a contact browser.
+ * Action callbacks that can be sent by a contact list.
  */
 public interface OnContactBrowserActionListener  {
 

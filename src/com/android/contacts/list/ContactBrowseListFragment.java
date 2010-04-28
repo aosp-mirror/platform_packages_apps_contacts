@@ -25,15 +25,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Fragment for the light-weight contact list.
+ * Fragment containing a contact list used for browsing (as compared to
+ * picking a contact with one of the PICK intents).
  */
-public class LightContactBrowser extends ContactEntryListFragment {
+public class ContactBrowseListFragment extends ContactEntryListFragment {
 
     private OnContactBrowserActionListener mListener;
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
 
-    public void setOnContactBrowserActionListener(OnContactBrowserActionListener listener) {
+    public void setOnContactListActionListener(OnContactBrowserActionListener listener) {
         mListener = listener;
     }
 
@@ -46,7 +47,6 @@ public class LightContactBrowser extends ContactEntryListFragment {
         if (isSearchAllContactsItemPosition(position)) {
             mListener.onSearchAllContactsAction((String)null);
         } else if (isEditMode()) {
-            Intent intent;
             if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
                 mListener.onCreateNewContactAction();
             } else {

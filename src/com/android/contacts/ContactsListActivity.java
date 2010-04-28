@@ -16,15 +16,17 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
+import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactItemListAdapter;
+import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.DefaultContactListFragment;
-import com.android.contacts.list.LightContactBrowserContextMenuAdapter;
-import com.android.contacts.list.LightContactBrowser;
 import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -536,8 +538,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         switch (mMode) {
             case MODE_DEFAULT:
             case MODE_INSERT_OR_EDIT_CONTACT:
-            case MODE_QUERY_PICK_TO_EDIT: {
-                LightContactBrowser fragment = new LightContactBrowser();
+            case MODE_QUERY_PICK_TO_EDIT:
+            case MODE_STREQUENT:
+            case MODE_FREQUENT: {
+                ContactBrowseListFragment fragment = new ContactBrowseListFragment();
                 if (!mSearchMode) {
                     fragment.setSectionHeaderDisplayEnabled(true);
                 }
@@ -551,7 +555,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setCreateContactEnabled(true);
                 }
 
-                fragment.setOnContactBrowserActionListener(new OnContactBrowserActionListener() {
+                fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {
                     public void onSearchAllContactsAction(String string) {
                         doSearch();
                     }
@@ -602,17 +606,54 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                         doContactDelete(contactUri);
                     }
                 });
-                mContextMenuAdapter = new LightContactBrowserContextMenuAdapter(fragment);
+                mContextMenuAdapter = new ContactBrowseListContextMenuAdapter(fragment);
                 mListFragment = fragment;
                 break;
             }
-            case MODE_LEGACY_PICK_POSTAL:
-            case MODE_PICK_POSTAL:
+            case MODE_PICK_CONTACT:
+            case MODE_PICK_OR_CREATE_CONTACT: {
+                ContactPickerFragment fragment = new ContactPickerFragment();
+                if (!mSearchMode) {
+                    fragment.setSectionHeaderDisplayEnabled(true);
+                }
+
+                if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
+                    fragment.setCreateContactEnabled(true);
+                }
+
+                fragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
+                    public void onSearchAllContactsAction(String string) {
+                        doSearch();
+                    }
+
+                    public void onCreateNewContactAction() {
+                        Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                        startActivityAndForwardResult(intent);
+                    }
+
+                    public void onPickContactAction(Uri contactUri) {
+                        setResult(RESULT_OK, intent.setData(contactUri));
+                        finish();
+                    }
+                });
+
+                mListFragment = fragment;
+                break;
+            }
             case MODE_LEGACY_PICK_PHONE:
-            case MODE_PICK_PHONE:
-            case MODE_STREQUENT:
-            case MODE_FREQUENT: {
+            case MODE_PICK_PHONE: {
                 mListFragment = new DefaultContactListFragment();
+                if (mMode == MODE_LEGACY_PICK_PHONE) {
+                    mListFragment.setLegacyCompatibility(true);
+                }
+                break;
+            }
+            case MODE_LEGACY_PICK_POSTAL:
+            case MODE_PICK_POSTAL: {
+                mListFragment = new DefaultContactListFragment();
+                if (mMode == MODE_LEGACY_PICK_POSTAL) {
+                    mListFragment.setLegacyCompatibility(true);
+                }
                 break;
             }
             case MODE_PICK_MULTIPLE_PHONES: {

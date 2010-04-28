@@ -27,9 +27,9 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 
 /**
- * A contextual menu adapter for the light version of the contact browser.
+ * A contextual menu adapter for the basic contact list.
  */
-public class LightContactBrowserContextMenuAdapter implements ContextMenuAdapter {
+public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
 
     private static final int MENU_ITEM_VIEW_CONTACT = 1;
     private static final int MENU_ITEM_CALL = 2;
@@ -40,10 +40,10 @@ public class LightContactBrowserContextMenuAdapter implements ContextMenuAdapter
 
     private static final String TAG = "LightContactBrowserContextMenuAdapter";
 
-    private final LightContactBrowser mBrowser;
+    private final ContactBrowseListFragment mContactListFragment;
 
-    public LightContactBrowserContextMenuAdapter(LightContactBrowser browser) {
-        this.mBrowser = browser;
+    public ContactBrowseListContextMenuAdapter(ContactBrowseListFragment fragment) {
+        this.mContactListFragment = fragment;
     }
 
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
@@ -55,7 +55,7 @@ public class LightContactBrowserContextMenuAdapter implements ContextMenuAdapter
             return;
         }
 
-        ContactEntryListAdapter adapter = mBrowser.getAdapter();
+        ContactEntryListAdapter adapter = mContactListFragment.getAdapter();
         adapter.moveToPosition(info.position);
 
         // Setup the menu header
@@ -92,42 +92,42 @@ public class LightContactBrowserContextMenuAdapter implements ContextMenuAdapter
             return false;
         }
 
-        ContactEntryListAdapter adapter = mBrowser.getAdapter();
+        ContactEntryListAdapter adapter = mContactListFragment.getAdapter();
         adapter.moveToPosition(info.position);
         final Uri contactUri = adapter.getContactUri();
 
         switch (item.getItemId()) {
             case MENU_ITEM_VIEW_CONTACT: {
-                mBrowser.viewContact(contactUri);
+                mContactListFragment.viewContact(contactUri);
                 return true;
             }
 
             case MENU_ITEM_TOGGLE_STAR: {
                 if (adapter.isContactStarred()) {
-                    mBrowser.removeFromFavorites(contactUri);
+                    mContactListFragment.removeFromFavorites(contactUri);
                 } else {
-                    mBrowser.addToFavorites(contactUri);
+                    mContactListFragment.addToFavorites(contactUri);
                 }
                 return true;
             }
 
             case MENU_ITEM_CALL: {
-                mBrowser.callContact(contactUri);
+                mContactListFragment.callContact(contactUri);
                 return true;
             }
 
             case MENU_ITEM_SEND_SMS: {
-                mBrowser.smsContact(contactUri);
+                mContactListFragment.smsContact(contactUri);
                 return true;
             }
 
             case MENU_ITEM_EDIT: {
-                mBrowser.editContact(contactUri);
+                mContactListFragment.editContact(contactUri);
                 return true;
             }
 
             case MENU_ITEM_DELETE: {
-                mBrowser.deleteContact(contactUri);
+                mContactListFragment.deleteContact(contactUri);
                 return true;
             }
         }
