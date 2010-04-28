@@ -123,7 +123,7 @@ import java.util.Random;
  */
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
-        View.OnClickListener, View.OnKeyListener,
+        View.OnClickListener,
         OnFocusChangeListener, OnTouchListener, ContactsApplicationController {
 
     private static final String TAG = "ContactsListActivity";
@@ -685,7 +685,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public void setupListView(ListAdapter adapter, ListView list) {
         mAdapter = (ContactEntryListAdapter)adapter;
 
-        list.setOnKeyListener(this);
         list.setOnFocusChangeListener(this);
         list.setOnTouchListener(this);
 
@@ -1286,7 +1285,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
      * Event handler for the use case where the user starts typing without
      * bringing up the search UI first.
      */
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
         if (!mSearchMode && (mMode & MODE_MASK_NO_FILTER) == 0 && !mSearchInitiated) {
             int unicodeChar = event.getUnicodeChar();
             if (unicodeChar != 0) {
@@ -1295,7 +1295,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 return true;
             }
         }
-        return false;
+        return super.dispatchKeyEvent(event);
     }
 
     @Override
