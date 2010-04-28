@@ -191,7 +191,7 @@ public class JoinContactActivity extends ContactsListActivity {
 
             if (mAdapter.getSuggestionsCursorCount() == 0
                     || !mAdapter.isJoinModeShowAllContacts()) {
-                startQuery(getContactFilterUri(getTextFilter()),
+                startQuery(getContactFilterUri(mListFragment.getQueryString()),
                         CONTACTS_SUMMARY_PROJECTION,
                         Contacts._ID + " != " + mTargetContactId
                                 + " AND " + ContactsContract.Contacts.IN_VISIBLE_GROUP + "=1", null,

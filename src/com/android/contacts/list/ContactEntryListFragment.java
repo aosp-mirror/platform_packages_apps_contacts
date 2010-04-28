@@ -22,25 +22,35 @@ import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.PinnedHeaderListView;
+import com.android.contacts.widget.SearchEditText;
+import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Common base class for various contact-related list fragments.
  */
-public abstract class ContactEntryListFragment extends Fragment
-        implements AdapterView.OnItemClickListener, OnScrollListener {
+public abstract class ContactEntryListFragment extends Fragment implements
+        OnItemClickListener, OnScrollListener, TextWatcher,
+        TextView.OnEditorActionListener, OnCloseListener {
 
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
@@ -56,6 +66,7 @@ public abstract class ContactEntryListFragment extends Fragment
     private int mDisplayOrder;
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
+    private SearchEditText mSearchEditText;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract ContactEntryListAdapter createListAdapter();
@@ -63,6 +74,12 @@ public abstract class ContactEntryListFragment extends Fragment
 
     public ContactEntryListAdapter getAdapter() {
         return mAdapter;
+    }
+
+    /**
+     * Override to provide logic that dismisses this fragment.
+     */
+    protected void finish() {
     }
 
     public void setSectionHeaderDisplayEnabled(boolean flag) {
@@ -119,7 +136,6 @@ public abstract class ContactEntryListFragment extends Fragment
             mAdapter.setContactNameDisplayOrder(displayOrder);
         }
     }
-
 
     @Deprecated
     public void setContactsApplicationController(ContactsApplicationController controller) {
@@ -179,19 +195,28 @@ public abstract class ContactEntryListFragment extends Fragment
 
         configurePinnedHeader();
 
+        if (isPhotoLoaderEnabled()) {
+            mPhotoLoader =
+                new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
+            mAdapter.setPhotoLoader(mPhotoLoader);
+            mListView.setOnScrollListener(this);
+        }
+
+        if (isSearchMode()) {
+            mSearchEditText = (SearchEditText)view.findViewById(R.id.search_src_text);
+            mSearchEditText.setText(getQueryString());
+            mSearchEditText.addTextChangedListener(this);
+            mSearchEditText.setOnEditorActionListener(this);
+            mSearchEditText.setOnCloseListener(this);
+            mAdapter.setQueryString(getQueryString());
+        }
+
         if (isSearchResultsMode()) {
             TextView titleText = (TextView)view.findViewById(R.id.search_results_for);
             if (titleText != null) {
                 titleText.setText(Html.fromHtml(getActivity().getString(R.string.search_results_for,
                         "<b>" + getQueryString() + "</b>")));
             }
-        }
-
-        if (isPhotoLoaderEnabled()) {
-            mPhotoLoader =
-                    new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
-            mAdapter.setPhotoLoader(mPhotoLoader);
-            mListView.setOnScrollListener(this);
         }
     }
 
@@ -212,6 +237,9 @@ public abstract class ContactEntryListFragment extends Fragment
         super.onResume();
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader.resume();
+        }
+        if (isSearchMode()) {
+            mSearchEditText.requestFocus();
         }
     }
 
@@ -239,11 +267,49 @@ public abstract class ContactEntryListFragment extends Fragment
         onItemClick(position, id);
     }
 
-
     private void hideSoftKeyboard() {
         // Hide soft keyboard, if visible
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
+    }
+
+    /**
+     * Event handler for search UI.
+     */
+    public void afterTextChanged(Editable s) {
+        String query = s.toString().trim();
+        setQueryString(query);
+        mAdapter.setQueryString(query);
+        Filter filter = mAdapter.getFilter();
+        filter.filter(query);
+    }
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
+
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    }
+
+    /**
+     * Event handler for search UI.
+     */
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            hideSoftKeyboard();
+            if (TextUtils.isEmpty(getQueryString())) {
+                finish();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Dismisses the search UI along with the keyboard if the filter text is empty.
+     */
+    public void onClose() {
+        hideSoftKeyboard();
+        finish();
     }
 }

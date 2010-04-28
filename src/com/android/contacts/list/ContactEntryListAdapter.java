@@ -50,8 +50,15 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     private boolean mNameHighlightingEnabled;
     private ContactPhotoLoader mPhotoLoader;
 
+    // TODO move to Loader
+    protected String mQueryString;
+
     public ContactEntryListAdapter(Context context) {
         super(context);
+    }
+
+    public void setQueryString(String queryString) {
+        mQueryString = queryString;
     }
 
     public Context getContext() {

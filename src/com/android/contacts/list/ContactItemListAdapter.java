@@ -101,7 +101,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
      */
     @Override
     public void onContentChanged() {
-        CharSequence constraint = contactsListActivity.getTextFilter();
+        CharSequence constraint = mQueryString;
         if (!TextUtils.isEmpty(constraint)) {
             // Reset the filter state then start an async filter operation
             Filter filter = getFilter();
@@ -123,7 +123,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
 
         if (contactsListActivity.mSearchMode) {
-            return TextUtils.isEmpty(contactsListActivity.getTextFilter());
+            return TextUtils.isEmpty(mQueryString);
         } else if ((contactsListActivity.mMode & ContactsListActivity.MODE_MASK_CREATE_NEW) ==
                 ContactsListActivity.MODE_MASK_CREATE_NEW) {
             // This mode mask adds a header and we always want it to show up, even
@@ -219,7 +219,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         int count = getRealCount();
 
         if (contactsListActivity.mSearchMode
-                && !TextUtils.isEmpty(contactsListActivity.getTextFilter())) {
+                && !TextUtils.isEmpty(mQueryString)) {
             text = contactsListActivity.getQuantityText(count, R.string.listFoundAllContactsZero,
                     R.plurals.searchFoundContacts);
         } else {

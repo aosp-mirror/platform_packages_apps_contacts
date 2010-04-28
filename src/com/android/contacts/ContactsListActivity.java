@@ -123,7 +123,7 @@ import java.util.Random;
  */
 @SuppressWarnings("deprecation")
 public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
-        View.OnClickListener, View.OnKeyListener, TextWatcher, TextView.OnEditorActionListener,
+        View.OnClickListener, View.OnKeyListener,
         OnFocusChangeListener, OnTouchListener, ContactsApplicationController {
 
     private static final String TAG = "ContactsListActivity";
@@ -435,7 +435,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private ContactsPreferences mContactsPrefs;
     public int mDisplayOrder;
     private int mSortOrder;
-    private SearchEditText mSearchEditText;
 
     private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
 
@@ -587,6 +586,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     public void onDeleteContactAction(Uri contactUri) {
                         doContactDelete(contactUri);
                     }
+
+                    public void onFinishAction() {
+                        onBackPressed();
+                    }
                 });
                 fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 mListFragment = fragment;
@@ -617,6 +620,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                         setResult(RESULT_OK, intent.setData(contactUri));
                         finish();
                     }
+
+                    // TODO: finish action to support search in the picker
                 });
 
                 mListFragment = fragment;
@@ -705,16 +710,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
-
-    /**
-     * Configures search UI.
-     */
-    private void setupSearchView() {
-        mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
-        mSearchEditText.addTextChangedListener(this);
-        mSearchEditText.setOnEditorActionListener(this);
-        mSearchEditText.setText(mInitialFilter);
-    }
     public int getSummaryDisplayNameColumnIndex() {
         if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
             return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
@@ -765,10 +760,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         // TODO move this to onAttach of the corresponding fragment
         mListView = (ListView) findViewById(android.R.id.list);
 
-        if (mSearchMode) {
-            setupSearchView();
-        }
-
         View emptyView = mListView.getEmptyView();
         if (emptyView instanceof ContactListEmptyView) {
             mEmptyView = (ContactListEmptyView)emptyView;
@@ -784,11 +775,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             // If we're in default mode we need to possibly reset the mode due to a change
             // in the preferences activity while we weren't running
             setDefaultMode();
-        }
-
-        // See if we were invoked with a filter
-        if (mSearchMode) {
-            mSearchEditText.requestFocus();
         }
 
         if (!mSearchMode && !checkProviderState(mJustCreated)) {
@@ -900,13 +886,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         retryUpgrade.setOnClickListener(listener);
     }
 
-    public String getTextFilter() {
-        if (mSearchEditText != null) {
-            return mSearchEditText.getText().toString();
-        }
-        return null;
-    }
-
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -918,7 +897,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         // The cursor was killed off in onStop(), so we need to get a new one here
         // We do not perform the query if a filter is set on the list because the
         // filter will cause the query to happen anyway
-        if (TextUtils.isEmpty(getTextFilter())) {
+        if (TextUtils.isEmpty(mListFragment.getQueryString())) {
             startQuery();
         } else {
             // Run the filtered query on the adapter
@@ -1036,15 +1015,13 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
      * search text edit.
      */
     protected void onSearchTextChanged() {
-        Filter filter = mAdapter.getFilter();
-        filter.filter(getTextFilter());
     }
 
     /**
      * Starts a new activity that will run a search query and display search results.
      */
     protected void doSearch() {
-        String query = getTextFilter();
+        String query = mListFragment.getQueryString();
         if (TextUtils.isEmpty(query)) {
             return;
         }
@@ -1321,33 +1298,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         return false;
     }
 
-    /**
-     * Event handler for search UI.
-     */
-    public void afterTextChanged(Editable s) {
-        onSearchTextChanged();
-    }
-
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
-
-    /**
-     * Event handler for search UI.
-     */
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-            hideSoftKeyboard();
-            if (TextUtils.isEmpty(getTextFilter())) {
-                finish();
-            }
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -1443,18 +1393,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public boolean onTouch(View view, MotionEvent event) {
         if (view == mListView) {
             hideSoftKeyboard();
-        }
-        return false;
-    }
-
-    /**
-     * Dismisses the search UI along with the keyboard if the filter text is empty.
-     */
-    public boolean onKeyPreIme(int keyCode, KeyEvent event) {
-        if (mSearchMode && keyCode == KeyEvent.KEYCODE_BACK && TextUtils.isEmpty(getTextFilter())) {
-            hideSoftKeyboard();
-            onBackPressed();
-            return true;
         }
         return false;
     }
@@ -2054,7 +1992,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
 
         String[] projection = getProjectionForQuery();
-        if (mSearchMode && TextUtils.isEmpty(getTextFilter())) {
+        if (mSearchMode && TextUtils.isEmpty(mListFragment.getQueryString())) {
             mAdapter.changeCursor(new MatrixCursor(projection));
             return;
         }
@@ -2152,7 +2090,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
      */
     public Cursor doFilter(String filter) {
         String[] projection = getProjectionForQuery();
-        if (mSearchMode && TextUtils.isEmpty(getTextFilter())) {
+        if (mSearchMode && TextUtils.isEmpty(mListFragment.getQueryString())) {
             return new MatrixCursor(projection);
         }
 

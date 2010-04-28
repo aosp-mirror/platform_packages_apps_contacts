@@ -123,4 +123,10 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
     public void smsContact(Uri contactUri) {
         mListener.onSmsContactAction(contactUri);
     }
+
+    @Override
+    protected void finish() {
+        super.finish();
+        mListener.onFinishAction();
+    }
 }

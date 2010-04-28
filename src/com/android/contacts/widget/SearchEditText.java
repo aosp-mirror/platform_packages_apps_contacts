@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -31,10 +31,19 @@ public class SearchEditText extends EditText {
 
     private boolean mMagnifyingGlassShown = true;
     private Drawable mMagnifyingGlass;
+    private OnCloseListener mListener;
+
+    public interface OnCloseListener {
+        void onClose();
+    }
 
     public SearchEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         mMagnifyingGlass = getCompoundDrawables()[2];
+    }
+
+    public void setOnCloseListener(OnCloseListener listener) {
+        this.mListener = listener;
     }
 
     /**
@@ -57,13 +66,14 @@ public class SearchEditText extends EditText {
     }
 
     /**
-     * Forwards the onKeyPreIme call to the view's activity.
+     * Dismisses the search UI along with the keyboard if the filter text is empty.
      */
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
-        if (((ContactsListActivity)getContext()).onKeyPreIme(keyCode, event)) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && TextUtils.isEmpty(getText()) && mListener != null) {
+            mListener.onClose();
             return true;
         }
-        return super.onKeyPreIme(keyCode, event);
+        return false;
     }
 }

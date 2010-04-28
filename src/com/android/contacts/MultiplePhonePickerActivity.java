@@ -296,7 +296,7 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
     @Override
     public Cursor doFilter(String filter) {
         String[] projection = getProjectionForQuery();
-        if (mSearchMode && TextUtils.isEmpty(getTextFilter())) {
+        if (mSearchMode && TextUtils.isEmpty(mListFragment.getQueryString())) {
             return new MatrixCursor(projection);
         }
 

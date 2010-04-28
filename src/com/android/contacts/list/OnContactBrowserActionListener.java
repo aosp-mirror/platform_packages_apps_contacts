@@ -67,4 +67,8 @@ public interface OnContactBrowserActionListener  {
      */
     void onSmsContactAction(Uri contactUri);
 
+    /**
+     * Closes the contact browser.
+     */
+    void onFinishAction();
 }

@@ -52,7 +52,7 @@
                 android:scaleType="centerInside" />
               
             <view
-                class="com.android.contacts.SearchEditText"
+                class="com.android.contacts.widget.SearchEditText"
                 android:id="@+id/search_src_text"
                 android:layout_height="wrap_content"
                 android:layout_width="0dip"
