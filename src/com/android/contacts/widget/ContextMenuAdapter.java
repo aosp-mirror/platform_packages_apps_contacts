@@ -15,20 +15,13 @@
  */
 package com.android.contacts.widget;
 
-import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 
 /**
  * An adapter for the contextual menu.
  */
-public interface ContextMenuAdapter {
-
-    /**
-     * See {@link android.app.Activity#onCreateContextMenu}.
-     */
-    void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo);
+public interface ContextMenuAdapter extends View.OnCreateContextMenuListener {
 
     /**
      * See {@link android.app.Activity#onContextItemSelected}.

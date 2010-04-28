@@ -91,7 +91,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -101,14 +100,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filter;
@@ -137,15 +134,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private static final String LIST_STATE_KEY = "liststate";
     private static final String SHORTCUT_ACTION_KEY = "shortcutAction";
-
-    static final int MENU_ITEM_VIEW_CONTACT = 1;
-    static final int MENU_ITEM_CALL = 2;
-    static final int MENU_ITEM_EDIT_BEFORE_CALL = 3;
-    static final int MENU_ITEM_SEND_SMS = 4;
-    static final int MENU_ITEM_SEND_IM = 5;
-    static final int MENU_ITEM_EDIT = 6;
-    static final int MENU_ITEM_DELETE = 7;
-    static final int MENU_ITEM_TOGGLE_STAR = 8;
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
@@ -373,7 +361,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     static final String KEY_PICKER_MODE = "picker_mode";
 
     public ContactEntryListAdapter mAdapter;
-    private ContextMenuAdapter mContextMenuAdapter;
     public ContactListEmptyView mEmptyView;
 
 
@@ -606,7 +593,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                         doContactDelete(contactUri);
                     }
                 });
-                mContextMenuAdapter = new ContactBrowseListContextMenuAdapter(fragment);
+                fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 mListFragment = fragment;
                 break;
             }
@@ -696,12 +683,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     // TODO move this to the configuration object(s)
     @Deprecated
     public void setupListView(ListAdapter adapter, ListView list) {
-
-        // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
-        // them when an A-Z headers is visible.
-        list.setDividerHeight(0);
-        list.setOnCreateContextMenuListener(this);
-
         mAdapter = (ContactEntryListAdapter)adapter;
 
         list.setOnScrollListener(this);
@@ -1338,105 +1319,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        if (mContextMenuAdapter != null) {
-            mContextMenuAdapter.onCreateContextMenu(menu, view, menuInfo);
-            return;
-        }
-
-        // If Contacts was invoked by another Activity simply as a way of
-        // picking a contact, don't show the context menu
-        if ((mMode & MODE_MASK_PICKER) == MODE_MASK_PICKER) {
-            return;
-        }
-
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return;
-        }
-
-        Cursor cursor = (Cursor) mAdapter.getItem(info.position);
-        if (cursor == null) {
-            // For some reason the requested item isn't available, do nothing
-            return;
-        }
-        long id = info.id;
-        Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, id);
-        long rawContactId = ContactsUtils.queryForRawContactId(getContentResolver(), id);
-        Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
-
-        // Setup the menu header
-        menu.setHeaderTitle(cursor.getString(getSummaryDisplayNameColumnIndex()));
-
-        // View contact details
-        menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
-                .setIntent(new Intent(Intent.ACTION_VIEW, contactUri));
-
-        if (cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0) {
-            // Calling contact
-            menu.add(0, MENU_ITEM_CALL, 0,
-                    getString(R.string.menu_call));
-            // Send SMS item
-            menu.add(0, MENU_ITEM_SEND_SMS, 0, getString(R.string.menu_sendSMS));
-        }
-
-        // Star toggling
-        int starState = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
-        if (starState == 0) {
-            menu.add(0, MENU_ITEM_TOGGLE_STAR, 0, R.string.menu_addStar);
-        } else {
-            menu.add(0, MENU_ITEM_TOGGLE_STAR, 0, R.string.menu_removeStar);
-        }
-
-        // Contact editing
-        menu.add(0, MENU_ITEM_EDIT, 0, R.string.menu_editContact)
-                .setIntent(new Intent(Intent.ACTION_EDIT, rawContactUri));
-        menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact);
-    }
-
-    @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if (mContextMenuAdapter != null) {
-            return mContextMenuAdapter.onContextItemSelected(item);
-        }
-
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return false;
-        }
-
-        Cursor cursor = (Cursor) mAdapter.getItem(info.position);
-
-        switch (item.getItemId()) {
-            case MENU_ITEM_TOGGLE_STAR: {
-                // Toggle the star
-                ContentValues values = new ContentValues(1);
-                values.put(Contacts.STARRED, cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX) == 0 ? 1 : 0);
-                final Uri selectedUri = this.getContactUri(info.position);
-                getContentResolver().update(selectedUri, values, null, null);
-                return true;
-            }
-
-            case MENU_ITEM_CALL: {
-                callContact(cursor);
-                return true;
-            }
-
-            case MENU_ITEM_SEND_SMS: {
-                smsContact(cursor);
-                return true;
-            }
-
-            case MENU_ITEM_DELETE: {
-                doContactDelete(getContactUri(info.position));
-                return true;
-            }
+        ContextMenuAdapter menuAdapter = mListFragment.getContextMenuAdapter();
+        if (menuAdapter != null) {
+            return menuAdapter.onContextItemSelected(item);
         }
 
         return super.onContextItemSelected(item);

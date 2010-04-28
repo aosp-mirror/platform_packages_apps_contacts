@@ -19,6 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
+import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.PinnedHeaderListView;
 
 import android.app.Fragment;
@@ -50,6 +51,7 @@ public abstract class ContactEntryListFragment extends Fragment
 
     private boolean mLegacyCompatibility;
     private int mDisplayOrder;
+    private ContextMenuAdapter mContextMenuAdapter;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract ContactEntryListAdapter createListAdapter();
@@ -125,6 +127,17 @@ public abstract class ContactEntryListFragment extends Fragment
         return mAppController;
     }
 
+    public void setContextMenuAdapter(ContextMenuAdapter adapter) {
+        mContextMenuAdapter = adapter;
+        if (mListView != null) {
+            mListView.setOnCreateContextMenuListener(adapter);
+        }
+    }
+
+    public ContextMenuAdapter getContextMenuAdapter() {
+        return mContextMenuAdapter;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
         View view = inflateView(inflater, container);
@@ -148,6 +161,13 @@ public abstract class ContactEntryListFragment extends Fragment
 
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
+        // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
+        // them when an A-Z headers is visible.
+        mListView.setDividerHeight(0);
+
+        if (mContextMenuAdapter != null) {
+            mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
+        }
 
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
 
