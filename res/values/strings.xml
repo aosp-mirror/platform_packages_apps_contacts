@@ -512,7 +512,7 @@
     <string name="returnCall">Return call</string>
 
     <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
-    <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
+    <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%1$s</xliff:g> mins <xliff:g id="seconds" example="28">%2$s</xliff:g> secs</string>
 
     <!-- A list separator for the Favorites tab indicating that items below it are frequently contacted contacts rather than starred contacts -->
     <string name="favoritesFrquentSeparator">Frequently contacted</string>
@@ -730,7 +730,7 @@
     <!-- The message shown while reading a vCard file/entry. The first argument is like
     "Reading VCard" or "Reading VCard files" and the second is the display name of the current
     data being parsed -->
-    <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
+    <string name="progress_shower_message"><xliff:g id="action" example="Reading VCard">%1$s</xliff:g>\n<xliff:g id="filename" example="foo.vcf">%2$s</xliff:g></string>
 
     <!-- Dialog title shown when reading VCard data -->
     <string name="reading_vcard_title">Reading vCard</string>
@@ -742,10 +742,10 @@
     <string name="reading_vcard_failed_title">Reading of vCard data has failed</string>
 
     <!-- Message while reading one vCard file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="reading_vcard_contacts"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+    <string name="reading_vcard_contacts"><xliff:g id="current_number">%1$s</xliff:g> of <xliff:g id="total_number">%2$s</xliff:g> contacts</string>
 
     <!-- Message while reading multiple vCard files "(current number) of (total number) files" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="reading_vcard_files"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> files</string>
+    <string name="reading_vcard_files"><xliff:g id="current_number">%1$s</xliff:g> of <xliff:g id="total_number">%2$s</xliff:g> files</string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_title">Confirm export</string>
@@ -803,10 +803,10 @@
 
     <!-- The failed reason shown when vCard importer/exporter could not open the file
          specified by a user. The file name should be in the message. -->
-    <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g></string>
+    <string name="fail_reason_could_not_open_file">Could not open \"<xliff:g id="file_name">%1$s</xliff:g>\": <xliff:g id="exact_reason">%2$s</xliff:g></string>
 
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+    <string name="exporting_contact_list_progress"><xliff:g id="current_number">%1$s</xliff:g> of <xliff:g id="total_number">%2$s</xliff:g> contacts</string>
 
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
