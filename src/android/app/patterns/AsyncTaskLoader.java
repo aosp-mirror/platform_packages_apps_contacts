@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 
 /**
  * Abstract Loader that provides an {@link AsyncTask} to do the work.
- * 
+ *
  * @param <D> the data type to be loaded.
  */
 public abstract class AsyncTaskLoader<D> extends Loader<D> {
@@ -35,12 +35,45 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         /* Runs on the UI thread */
         @Override
         protected void onPostExecute(D data) {
-            AsyncTaskLoader.this.onLoadComplete(data);
+            AsyncTaskLoader.this.dispatchOnLoadComplete(data);
         }
     }
 
+    private LoadListTask mTask;
+
     public AsyncTaskLoader(Context context) {
         super(context);
+    }
+
+    /**
+     * Force an asynchronous load. Unlike {@link #startLoading()} this will ignore a previously
+     * loaded data set and load a new one.
+     */
+    @Override
+    public void forceLoad() {
+        mTask = new LoadListTask();
+        mTask.execute((Void[]) null);
+    }
+
+    /**
+     * Attempt to cancel the current load task. See {@link AsyncTask#cancel(boolean)}
+     * for more info.
+     *
+     * @return <tt>false</tt> if the task could not be cancelled,
+     *         typically because it has already completed normally, or
+     *         because {@link startLoading()} hasn't been called, and
+     *         <tt>true</tt> otherwise
+     */
+    public boolean cancelLoad() {
+        if (mTask != null) {
+            return mTask.cancel(false);
+        }
+        return false;
+    }
+
+    private void dispatchOnLoadComplete(D data) {
+        mTask = null;
+        onLoadComplete(data);
     }
 
     /**

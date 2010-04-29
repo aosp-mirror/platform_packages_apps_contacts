@@ -48,7 +48,7 @@ public abstract class Loader<D> {
          * @param loader the loader that completed the load
          * @param data the result of the load
          */
-        public void onLoadComplete(Loader loader, D data);
+        public void onLoadComplete(Loader<D> loader, D data);
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class Loader<D> {
     /**
      * Registers a class that will receive callbacks when a load is complete. The callbacks will
      * be called on the UI thread so it's safe to pass the results to widgets.
-     * 
+     *
      * Must be called from the UI thread
      */
     public void registerListener(int id, OnLoadCompleteListener<D> listener) {
@@ -118,7 +118,7 @@ public abstract class Loader<D> {
      * will be called on the UI thread. If a previous load has been completed and is still valid
      * the result may be passed to the callbacks immediately. The loader will monitor the source of
      * the data set and may deliver future callbacks if the source changes. Calling
-     * {@link #stopLoading} will stop the delivery of callbacks. 
+     * {@link #stopLoading} will stop the delivery of callbacks.
      *
      * Must be called from the UI thread
      */

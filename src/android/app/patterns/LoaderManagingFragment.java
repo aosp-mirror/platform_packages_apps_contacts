@@ -16,18 +16,13 @@
 
 package android.app.patterns;
 
-
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 
 import java.util.HashMap;
 
-/**
- * The idea here was to abstract the generic life cycle junk needed to properly keep loaders going.
- * It didn't work out as-is because registering the callbacks post config change didn't work.
- */
-public abstract class LoaderActivity<D> extends Activity implements
-        Loader.OnLoadCompleteListener<D> {
+public abstract class LoaderManagingFragment<D> extends Fragment
+        implements Loader.OnLoadCompleteListener<D> {
     private boolean mStarted = false;
 
     static final class LoaderInfo<D> {
@@ -90,7 +85,8 @@ public abstract class LoaderActivity<D> extends Activity implements
 
         if (mLoaders == null) {
             // Look for a passed along loader and create a new one if it's not there
-            mLoaders = (HashMap<Integer, LoaderInfo<D>>) getLastNonConfigurationInstance();
+// TODO: uncomment once getLastNonConfigurationInstance method is available
+//            mLoaders = (HashMap<Integer, LoaderInfo>) getLastNonConfigurationInstance();
             if (mLoaders == null) {
                 mLoaders = new HashMap<Integer, LoaderInfo<D>>();
                 onInitializeLoaders();
@@ -137,7 +133,8 @@ public abstract class LoaderActivity<D> extends Activity implements
             loader.unregisterListener(this);
 
             // The loader isn't getting passed along to the next instance so ask it to stop loading
-//            if (!isChangingConfigurations()) {
+// TODO: uncomment once isChangingConfig method is available
+//            if (!getActivity().isChangingConfigurations()) {
 //                loader.stopLoading();
 //            }
         }
