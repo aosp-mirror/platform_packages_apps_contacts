@@ -23,6 +23,7 @@ import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.util.EmptyService;
+import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
 
@@ -441,8 +442,17 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
             put(mUngrouped ? Settings.UNGROUPED_VISIBLE : Groups.GROUP_VISIBLE, visible ? 1 : 0);
         }
 
+        private String getAccountType() {
+            return (mBefore == null ? mAfter : mBefore).getAsString(Settings.ACCOUNT_TYPE);
+        }
+
         public CharSequence getTitle(Context context) {
             if (mUngrouped) {
+                final String customAllContactsName =
+                        LocalizedNameResolver.getAllContactsName(context, getAccountType());
+                if (customAllContactsName != null) {
+                    return customAllContactsName;
+                }
                 if (mAccountHasGroups) {
                     return context.getText(R.string.display_ungrouped);
                 } else {
