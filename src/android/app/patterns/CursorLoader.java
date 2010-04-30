@@ -138,4 +138,12 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
     public void setSelectionArgs(String[] selectionArgs) {
         mSelectionArgs = selectionArgs;
     }
+
+    public String getSortOrder() {
+        return mSortOrder;
+    }
+
+    public void setSortOrder(String sortOrder) {
+        mSortOrder = sortOrder;
+    }
 }

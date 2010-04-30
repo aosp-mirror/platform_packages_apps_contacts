@@ -515,7 +515,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_QUERY_PICK_TO_EDIT:
             case MODE_STREQUENT:
-            case MODE_FREQUENT: {
+            case MODE_FREQUENT:
+            case MODE_QUERY: {
                 ContactBrowseListFragment fragment = new ContactBrowseListFragment();
                 if (!mSearchMode) {
                     fragment.setSectionHeaderDisplayEnabled(true);
@@ -528,6 +529,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
                 if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
                     fragment.setCreateContactEnabled(true);
+                }
+
+                if (mMode == MODE_QUERY) {
+                    fragment.setSearchResultsMode(true);
                 }
 
                 fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {
@@ -652,6 +657,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mListFragment.setSearchMode(mSearchMode);
         mListFragment.setSearchResultsMode(mSearchResultsMode);
         mListFragment.setQueryString(mInitialFilter);
+        mListFragment.setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
+        mListFragment.setSortOrder(mContactsPrefs.getSortOrder());
 
         if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
             mListFragment.setPhotoLoaderEnabled(true);
@@ -742,6 +749,12 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Move to the fragment
+        if (mListFragment != null) {
+            mListFragment.setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
+            mListFragment.setSortOrder(mContactsPrefs.getSortOrder());
+        }
 
         // TODO move this to onAttach of the corresponding fragment
         mListView = (ListView) findViewById(android.R.id.list);
@@ -1922,6 +1935,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         if (mListFragment != null) {
             mListFragment.setContactNameDisplayOrder(mDisplayOrder);
+            mListFragment.setSortOrder(mSortOrder);
         }
 
         if (mListView instanceof ContactEntryListView) {

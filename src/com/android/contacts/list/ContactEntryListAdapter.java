@@ -19,12 +19,16 @@ import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.widget.TextWithHighlighting;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
+import android.app.patterns.CursorLoader;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.SearchSnippetColumns;
+import android.text.TextUtils;
 import android.widget.ListView;
 
 /**
@@ -32,6 +36,39 @@ import android.widget.ListView;
  * etc.
  */
 public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
+
+    // TODO move to type-specific adapter
+    static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
+        Contacts._ID,                       // 0
+        Contacts.DISPLAY_NAME_PRIMARY,      // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
+        Contacts.SORT_KEY_PRIMARY,          // 3
+        Contacts.STARRED,                   // 4
+        Contacts.TIMES_CONTACTED,           // 5
+        Contacts.CONTACT_PRESENCE,          // 6
+        Contacts.PHOTO_ID,                  // 7
+        Contacts.LOOKUP_KEY,                // 8
+        Contacts.PHONETIC_NAME,             // 9
+        Contacts.HAS_PHONE_NUMBER,          // 10
+    };
+
+    // TODO move to type-specific adapter
+    static final String[] CONTACTS_SUMMARY_FILTER_PROJECTION = new String[] {
+        Contacts._ID,                       // 0
+        Contacts.DISPLAY_NAME_PRIMARY,      // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
+        Contacts.SORT_KEY_PRIMARY,          // 3
+        Contacts.STARRED,                   // 4
+        Contacts.TIMES_CONTACTED,           // 5
+        Contacts.CONTACT_PRESENCE,          // 6
+        Contacts.PHOTO_ID,                  // 7
+        Contacts.LOOKUP_KEY,                // 8
+        Contacts.PHONETIC_NAME,             // 9
+        Contacts.HAS_PHONE_NUMBER,          // 10
+        SearchSnippetColumns.SNIPPET_MIMETYPE, // 11
+        SearchSnippetColumns.SNIPPET_DATA1,     // 12
+        SearchSnippetColumns.SNIPPET_DATA4,     // 13
+    };
 
     // TODO move to a type-specific adapter
     public static final int SUMMARY_ID_COLUMN_INDEX = 0;
@@ -47,14 +84,37 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     private TextWithHighlightingFactory mTextWithHighlightingFactory;
 
     private int mDisplayOrder;
+    private int mSortOrder;
     private boolean mNameHighlightingEnabled;
     private ContactPhotoLoader mPhotoLoader;
+    private boolean mSectionHeaderDisplayEnabled;
 
-    // TODO move to Loader
-    protected String mQueryString;
+    private String mQueryString;
+    private boolean mSearchMode;
+    private boolean mSearchResultsMode;
 
     public ContactEntryListAdapter(Context context) {
         super(context);
+    }
+
+    public boolean isSearchMode() {
+        return mSearchMode;
+    }
+
+    public void setSearchMode(boolean flag) {
+        mSearchMode = flag;
+    }
+
+    public boolean isSearchResultsMode() {
+        return mSearchResultsMode;
+    }
+
+    public void setSearchResultsMode(boolean searchResultsMode) {
+        mSearchResultsMode = searchResultsMode;
+    }
+
+    public String getQueryString() {
+        return mQueryString;
     }
 
     public void setQueryString(String queryString) {
@@ -65,12 +125,28 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
         return mContext;
     }
 
-    public void setContactNameDisplayOrder(int displayOrder) {
-        mDisplayOrder = displayOrder;
+    public boolean isSectionHeaderDisplayEnabled() {
+        return mSectionHeaderDisplayEnabled;
+    }
+
+    public void setSectionHeaderDisplayEnabled(boolean flag) {
+        mSectionHeaderDisplayEnabled = flag;
     }
 
     public int getContactNameDisplayOrder() {
         return mDisplayOrder;
+    }
+
+    public void setContactNameDisplayOrder(int displayOrder) {
+        mDisplayOrder = displayOrder;
+    }
+
+    public int getSortOrder() {
+        return mSortOrder;
+    }
+
+    public void setSortOrder(int sortOrder) {
+        mSortOrder = sortOrder;
     }
 
     public void setNameHighlightingEnabled(boolean flag) {
@@ -97,6 +173,39 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
         return mPhotoLoader;
     }
 
+    public void configureLoader(CursorLoader loader) {
+        Uri uri;
+        if (isSearchMode() || isSearchResultsMode()) {
+            String query = getQueryString();
+            uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
+                    TextUtils.isEmpty(query) ? "" : Uri.encode(query));
+            loader.setProjection(CONTACTS_SUMMARY_FILTER_PROJECTION);
+            if (!isSearchResultsMode()) {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+            }
+        } else {
+            uri = Contacts.CONTENT_URI;
+            loader.setProjection(CONTACTS_SUMMARY_PROJECTION);
+            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+        }
+
+        if (isSectionHeaderDisplayEnabled()) {
+            uri = buildSectionIndexerUri(uri);
+        }
+
+        loader.setUri(uri);
+        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+            loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
+        } else {
+            loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
+        }
+    }
+
+    private static Uri buildSectionIndexerUri(Uri uri) {
+        return uri.buildUpon()
+                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
+    }
+
     /*
      * TODO change this method when loaders are introduced.
      */
@@ -109,7 +218,6 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     public void moveToPosition(int position) {
         // For side-effect
         getItem(position);
-        DatabaseUtils.dumpCurrentRow(getCursor());
     }
 
     public boolean getHasPhoneNumber() {

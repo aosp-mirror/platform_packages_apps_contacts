@@ -25,8 +25,10 @@ import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
-import android.app.Fragment;
+import android.app.patterns.Loader;
+import android.app.patterns.LoaderManagingFragment;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Editable;
@@ -47,14 +49,15 @@ import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView.OnEditorActionListener;
 
 /**
  * Common base class for various contact-related list fragments.
  */
-public abstract class ContactEntryListFragment extends Fragment implements OnItemClickListener,
+public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cursor>
+        implements OnItemClickListener,
         OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
         OnFocusChangeListener, OnTouchListener {
 
@@ -77,9 +80,12 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
 
     private boolean mLegacyCompatibility;
     private int mDisplayOrder;
+    private int mSortOrder;
+
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
     private SearchEditText mSearchEditText;
+
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract ContactEntryListAdapter createListAdapter();
@@ -87,6 +93,26 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
 
     public ContactEntryListAdapter getAdapter() {
         return mAdapter;
+    }
+
+    // TODO make abstract
+    @Override
+    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        throw new UnsupportedOperationException();
+    }
+
+    // TODO make abstract
+    @Override
+    protected void onInitializeLoaders() {
+    }
+
+    // TODO make abstract
+    @Override
+    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        throw new UnsupportedOperationException();
+    }
+
+    protected void reloadData() {
     }
 
     /**
@@ -133,6 +159,9 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
 
     public void setQueryString(String queryString) {
         mQueryString = queryString;
+        if (mAdapter != null) {
+            mAdapter.setQueryString(queryString);
+        }
     }
 
     public boolean isLegacyCompatibility() {
@@ -143,10 +172,25 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
         mLegacyCompatibility = flag;
     }
 
+    public int getContactNameDisplayOrder() {
+        return mDisplayOrder;
+    }
+
     public void setContactNameDisplayOrder(int displayOrder) {
         mDisplayOrder = displayOrder;
         if (mAdapter != null) {
             mAdapter.setContactNameDisplayOrder(displayOrder);
+        }
+    }
+
+    public int getSortOrder() {
+        return mSortOrder;
+    }
+
+    public void setSortOrder(int sortOrder) {
+        mSortOrder = sortOrder;
+        if (mAdapter != null) {
+            mAdapter.setSortOrder(sortOrder);
         }
     }
 
@@ -208,8 +252,6 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
-        mAdapter.setContactNameDisplayOrder(mDisplayOrder);
-
         configurePinnedHeader();
 
         if (isPhotoLoaderEnabled()) {
@@ -225,7 +267,6 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
             mSearchEditText.addTextChangedListener(this);
             mSearchEditText.setOnEditorActionListener(this);
             mSearchEditText.setOnCloseListener(this);
-            mAdapter.setQueryString(getQueryString());
         }
 
         if (isSearchResultsMode()) {
@@ -299,9 +340,7 @@ public abstract class ContactEntryListFragment extends Fragment implements OnIte
     public void afterTextChanged(Editable s) {
         String query = s.toString().trim();
         setQueryString(query);
-        mAdapter.setQueryString(query);
-        Filter filter = mAdapter.getFilter();
-        filter.filter(query);
+        reloadData();
     }
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

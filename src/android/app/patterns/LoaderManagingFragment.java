@@ -135,7 +135,7 @@ public abstract class LoaderManagingFragment<D> extends Fragment
             // The loader isn't getting passed along to the next instance so ask it to stop loading
 // TODO: uncomment once isChangingConfig method is available
 //            if (!getActivity().isChangingConfigurations()) {
-//                loader.stopLoading();
+                loader.stopLoading();
 //            }
         }
 

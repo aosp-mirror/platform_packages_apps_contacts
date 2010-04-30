@@ -54,7 +54,6 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
     private boolean mDisplayCallButton = false;
     protected boolean mDisplayAdditionalData = true;
     private int mFrequentSeparatorPos = ListView.INVALID_POSITION;
-    private boolean mSectionHeaderDisplayEnabled;
 
     public ContactItemListAdapter(ContactsListActivity contactsListActivity) {
         super(contactsListActivity);
@@ -82,14 +81,6 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    public void setSectionHeaderDisplayEnabled(boolean flag) {
-        mSectionHeaderDisplayEnabled = flag;
-    }
-
-    public boolean isSectionHeaderDisplayEnabled() {
-        return mSectionHeaderDisplayEnabled;
-    }
-
     public void setDisplayPhotos(boolean flag) {
         mDisplayPhotos = flag;
     }
@@ -101,7 +92,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
      */
     @Override
     public void onContentChanged() {
-        CharSequence constraint = mQueryString;
+        CharSequence constraint = getQueryString();
         if (!TextUtils.isEmpty(constraint)) {
             // Reset the filter state then start an async filter operation
             Filter filter = getFilter();
@@ -123,7 +114,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
 
         if (contactsListActivity.mSearchMode) {
-            return TextUtils.isEmpty(mQueryString);
+            return TextUtils.isEmpty(getQueryString());
         } else if ((contactsListActivity.mMode & ContactsListActivity.MODE_MASK_CREATE_NEW) ==
                 ContactsListActivity.MODE_MASK_CREATE_NEW) {
             // This mode mask adds a header and we always want it to show up, even
@@ -205,7 +196,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
             v = convertView;
         }
         bindView(v, getContext(), mCursor);
-        bindSectionHeader(v, realPosition, mSectionHeaderDisplayEnabled);
+        bindSectionHeader(v, realPosition, isSectionHeaderDisplayEnabled());
         return v;
     }
 
@@ -219,7 +210,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         int count = getRealCount();
 
         if (contactsListActivity.mSearchMode
-                && !TextUtils.isEmpty(mQueryString)) {
+                && !TextUtils.isEmpty(getQueryString())) {
             text = contactsListActivity.getQuantityText(count, R.string.listFoundAllContactsZero,
                     R.plurals.searchFoundContacts);
         } else {

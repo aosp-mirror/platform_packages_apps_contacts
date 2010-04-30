@@ -18,7 +18,11 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 
+import android.app.patterns.CursorLoader;
+import android.app.patterns.Loader;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +37,36 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
 
+    private CursorLoader mLoader;
+
+    @Override
+    protected CursorLoader onCreateLoader(int id, Bundle args) {
+        mLoader = new CursorLoader(getActivity(), null, null, null, null, null);
+        return mLoader;
+    }
+
+    @Override
+    protected void reloadData() {
+        getAdapter().configureLoader(mLoader);
+        mLoader.forceLoad();
+    }
+
     public void setOnContactListActionListener(OnContactBrowserActionListener listener) {
         mListener = listener;
     }
 
     public boolean isSearchAllContactsItemPosition(int position) {
         return isSearchMode() && position == getAdapter().getCount() - 1;
+    }
+
+    @Override
+    protected void onInitializeLoaders() {
+        startLoading(0, null);
+    }
+
+    @Override
+    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        getAdapter().changeCursor(data);
     }
 
     @Override
@@ -66,6 +94,13 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
                 new ContactItemListAdapter((ContactsListActivity)getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+        adapter.setSearchMode(isSearchMode());
+        adapter.setSearchResultsMode(isSearchResultsMode());
+        adapter.setQueryString(getQueryString());
+        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
+        adapter.setSortOrder(getSortOrder());
+
+        adapter.configureLoader(mLoader);
         return adapter;
     }
 
@@ -129,4 +164,5 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
         super.finish();
         mListener.onFinishAction();
     }
+
 }
