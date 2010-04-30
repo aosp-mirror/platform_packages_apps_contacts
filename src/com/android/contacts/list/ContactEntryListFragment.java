@@ -46,7 +46,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
@@ -56,7 +55,8 @@ import android.widget.TextView.OnEditorActionListener;
 /**
  * Common base class for various contact-related list fragments.
  */
-public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cursor>
+public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
+        extends LoaderManagingFragment<Cursor>
         implements OnItemClickListener,
         OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
         OnFocusChangeListener, OnTouchListener {
@@ -70,7 +70,8 @@ public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cu
     private String mQueryString;
 
     private ContactsApplicationController mAppController;
-    private ContactEntryListAdapter mAdapter;
+    private T mAdapter;
+    private View mView;
     private ListView mListView;
 
     /**
@@ -88,10 +89,10 @@ public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cu
 
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
-    protected abstract ContactEntryListAdapter createListAdapter();
+    protected abstract T createListAdapter();
     protected abstract void onItemClick(int position, long id);
 
-    public ContactEntryListAdapter getAdapter() {
+    public T getAdapter() {
         return mAdapter;
     }
 
@@ -106,10 +107,14 @@ public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cu
     protected void onInitializeLoaders() {
     }
 
-    // TODO make abstract
     @Override
     protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        throw new UnsupportedOperationException();
+        if (data != null && isSearchResultsMode()) {
+            TextView foundContactsText = (TextView)mView.findViewById(R.id.search_results_found);
+            String text = getQuantityText(data.getCount(),
+                    R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
+            foundContactsText.setText(text);
+        }
     }
 
     protected void reloadData() {
@@ -217,10 +222,10 @@ public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cu
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
-        View view = inflateView(inflater, container);
+        mView = inflateView(inflater, container);
         mAdapter = createListAdapter();
-        configureView(view);
-        return view;
+        configureView(mView);
+        return mView;
     }
 
     protected void configureView(View view) {
@@ -413,6 +418,17 @@ public abstract class ContactEntryListFragment extends LoaderManagingFragment<Cu
         if (mListState != null) {
             mListView.onRestoreInstanceState(mListState);
             mListState = null;
+        }
+    }
+
+    // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
+    public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
+        if (count == 0) {
+            return getActivity().getString(zeroResourceId);
+        } else {
+            String format = getActivity().getResources()
+                    .getQuantityText(pluralResourceId, count).toString();
+            return String.format(format, count);
         }
     }
 }

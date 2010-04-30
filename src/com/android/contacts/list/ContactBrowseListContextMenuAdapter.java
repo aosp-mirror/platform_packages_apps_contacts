@@ -55,7 +55,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
             return;
         }
 
-        ContactEntryListAdapter adapter = mContactListFragment.getAdapter();
+        ContactListAdapter adapter = mContactListFragment.getAdapter();
         adapter.moveToPosition(info.position);
 
         // Setup the menu header
@@ -92,10 +92,10 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
             return false;
         }
 
-        ContactEntryListAdapter adapter = mContactListFragment.getAdapter();
+        ContactListAdapter adapter = mContactListFragment.getAdapter();
         adapter.moveToPosition(info.position);
-        final Uri contactUri = adapter.getContactUri();
 
+        final Uri contactUri = adapter.getContactUri();
         switch (item.getItemId()) {
             case MENU_ITEM_VIEW_CONTACT: {
                 mContactListFragment.viewContact(contactUri);

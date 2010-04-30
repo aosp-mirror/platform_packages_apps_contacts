@@ -21,6 +21,7 @@ import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
 import com.android.contacts.widget.TextWithHighlighting;
 
+import android.app.patterns.CursorLoader;
 import android.content.Context;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -45,6 +46,7 @@ import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
+@Deprecated
 public class ContactItemListAdapter extends ContactEntryListAdapter {
 
     private final ContactsListActivity contactsListActivity;
@@ -81,6 +83,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         }
     }
 
+    @Override
     public void setDisplayPhotos(boolean flag) {
         mDisplayPhotos = flag;
     }
@@ -226,6 +229,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         return view;
     }
 
+    @Override
     public boolean isSearchAllContactsItemPosition(int position) {
         return contactsListActivity.mSearchMode && contactsListActivity.mMode != ContactsListActivity.MODE_PICK_MULTIPLE_PHONES && position == getCount() - 1;
     }
@@ -309,7 +313,8 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         if (size != 0) {
             if (highlightingEnabled) {
                 if (view.textWithHighlighting == null) {
-                    view.textWithHighlighting = createTextWithHighlighting();
+                    view.textWithHighlighting =
+                            getTextWithHighlightingFactory().createTextWithHighlighting();
                 }
                 buildDisplayNameWithHighlighting(nameView, cursor, view.nameBuffer,
                         view.highlightedTextBuffer, view.textWithHighlighting);
@@ -697,5 +702,18 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
             return 0;
         }
         return super.getItemId(realPosition);
+    }
+
+    @Override
+    public void configureLoader(CursorLoader loader) {
+    }
+
+    @Override
+    public String getContactDisplayName() {
+        return "TODO";
+    }
+
+    public boolean isContactStarred() {
+        return false;
     }
 }

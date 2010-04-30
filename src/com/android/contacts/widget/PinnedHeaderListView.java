@@ -124,6 +124,7 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mHeaderView != null) {
+            configureHeaderView(getFirstVisiblePosition());
             measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
             mHeaderViewWidth = mHeaderView.getMeasuredWidth();
             mHeaderViewHeight = mHeaderView.getMeasuredHeight();
@@ -135,7 +136,6 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
         super.onLayout(changed, left, top, right, bottom);
         if (mHeaderView != null) {
             mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
-            configureHeaderView(getFirstVisiblePosition());
         }
     }
 

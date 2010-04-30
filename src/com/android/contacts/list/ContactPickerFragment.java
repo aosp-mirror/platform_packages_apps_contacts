@@ -15,11 +15,9 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,7 @@ import android.view.ViewGroup;
  * Fragment for the contact list used for browsing contacts (as compared to
  * picking a contact with one of the PICK or SHORTCUT intents).
  */
-public class ContactPickerFragment extends ContactEntryListFragment {
+public class ContactPickerFragment extends ContactEntryListFragment<ContactListAdapter> {
 
     private OnContactPickerActionListener mListener;
     private boolean mCreateContactEnabled;
@@ -50,7 +48,7 @@ public class ContactPickerFragment extends ContactEntryListFragment {
             if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
                 mListener.onCreateNewContactAction();
             } else {
-                ContactEntryListAdapter adapter = getAdapter();
+                ContactListAdapter adapter = getAdapter();
                 adapter.moveToPosition(position);
                 mListener.onPickContactAction(adapter.getContactUri());
             }
@@ -58,11 +56,13 @@ public class ContactPickerFragment extends ContactEntryListFragment {
     }
 
     @Override
-    protected ContactEntryListAdapter createListAdapter() {
-        ContactItemListAdapter adapter =
-                new ContactItemListAdapter((ContactsListActivity)getActivity());
+    protected ContactListAdapter createListAdapter() {
+        ContactListAdapter adapter = new ContactListAdapter(getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+
+        // TODO more settings
+
         return adapter;
     }
 

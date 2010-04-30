@@ -16,24 +16,29 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.R;
 import com.android.contacts.widget.TextWithHighlighting;
+import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
+import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -61,7 +66,7 @@ public class ContactListItemView extends ViewGroup {
     private final int mPresenceIconMargin;
     private final int mHeaderTextWidth;
 
-    private boolean mHorizontalDividerVisible;
+    private boolean mHorizontalDividerVisible = true;
     private Drawable mHorizontalDividerDrawable;
     private int mHorizontalDividerHeight;
 
@@ -90,12 +95,14 @@ public class ContactListItemView extends ViewGroup {
     private int mLine3Height;
 
     private OnClickListener mCallButtonClickListener;
-
+    private TextWithHighlightingFactory mTextWithHighlightingFactory;
     public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
     public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
     public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
     public TextWithHighlighting textWithHighlighting;
     public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
+
+    private CharSequence mUnknownNameText;
 
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
@@ -156,6 +163,14 @@ public class ContactListItemView extends ViewGroup {
      */
     public void setOnCallButtonClickListener(OnClickListener callButtonClickListener) {
         mCallButtonClickListener = callButtonClickListener;
+    }
+
+    public void setTextWithHighlightingFactory(TextWithHighlightingFactory factory) {
+        mTextWithHighlightingFactory = factory;
+    }
+
+    public void setUnknownNameText(CharSequence unknownNameText) {
+        mUnknownNameText = unknownNameText;
     }
 
     @Override
@@ -654,5 +669,91 @@ public class ContactListItemView extends ViewGroup {
                 mPresenceIcon.setVisibility(View.GONE);
             }
         }
+    }
+
+    public void showDisplayName(Cursor cursor, int nameColumnIndex, boolean highlightingEnabled,
+            int alternativeNameColumnIndex) {
+        cursor.copyStringToBuffer(nameColumnIndex, nameBuffer);
+        TextView nameView = getNameTextView();
+        int size = nameBuffer.sizeCopied;
+        if (size != 0) {
+            if (highlightingEnabled) {
+                if (textWithHighlighting == null) {
+                    textWithHighlighting =
+                            mTextWithHighlightingFactory.createTextWithHighlighting();
+                }
+                cursor.copyStringToBuffer(alternativeNameColumnIndex, highlightedTextBuffer);
+                textWithHighlighting.setText(nameBuffer, highlightedTextBuffer);
+                nameView.setText(textWithHighlighting);
+            } else {
+                nameView.setText(nameBuffer.data, 0, size);
+            }
+        } else {
+            nameView.setText(mUnknownNameText);
+        }
+    }
+
+    public void showPhoneticName(Cursor cursor, int phoneticNameColumnIndex) {
+        cursor.copyStringToBuffer(phoneticNameColumnIndex, phoneticNameBuffer);
+        int phoneticNameSize = phoneticNameBuffer.sizeCopied;
+        if (phoneticNameSize != 0) {
+            setLabel(phoneticNameBuffer.data, phoneticNameSize);
+        } else {
+            setLabel(null);
+        }
+    }
+
+    /**
+     * Sets the proper icon (star or presence or nothing)
+     */
+    public void showPresence(Cursor cursor, int presenceColumnIndex) {
+        int serverStatus;
+        if (!cursor.isNull(presenceColumnIndex)) {
+            serverStatus = cursor.getInt(presenceColumnIndex);
+
+            // TODO consider caching these drawables
+            Drawable icon = ContactPresenceIconUtil.getPresenceIcon(getContext(), serverStatus);
+            if (icon != null) {
+                setPresence(icon);
+            } else {
+                setPresence(null);
+            }
+        } else {
+            setPresence(null);
+        }
+    }
+
+    /**
+     * Shows search snippet.
+     */
+    public void showSnippet(Cursor cursor, int summarySnippetMimetypeColumnIndex,
+            int summarySnippetData1ColumnIndex, int summarySnippetData4ColumnIndex) {
+        String snippet = null;
+        String snippetMimeType = cursor.getString(summarySnippetMimetypeColumnIndex);
+        if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+            String email = cursor.getString(summarySnippetData1ColumnIndex);
+            if (!TextUtils.isEmpty(email)) {
+                snippet = email;
+            }
+        } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+            String company = cursor.getString(summarySnippetData1ColumnIndex);
+            String title = cursor.getString(summarySnippetData4ColumnIndex);
+            if (!TextUtils.isEmpty(company)) {
+                if (!TextUtils.isEmpty(title)) {
+                    snippet = company + " / " + title;
+                } else {
+                    snippet = company;
+                }
+            } else if (!TextUtils.isEmpty(title)) {
+                snippet = title;
+            }
+        } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+            String nickname = cursor.getString(summarySnippetData1ColumnIndex);
+            if (!TextUtils.isEmpty(nickname)) {
+                snippet = nickname;
+            }
+        }
+
+        setSnippet(snippet);
     }
 }

@@ -15,7 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 
 import android.app.patterns.CursorLoader;
@@ -31,7 +30,7 @@ import android.view.ViewGroup;
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
  */
-public class ContactBrowseListFragment extends ContactEntryListFragment {
+public class ContactBrowseListFragment extends ContactEntryListFragment<ContactListAdapter> {
 
     private OnContactBrowserActionListener mListener;
     private boolean mEditMode;
@@ -55,10 +54,6 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
         mListener = listener;
     }
 
-    public boolean isSearchAllContactsItemPosition(int position) {
-        return isSearchMode() && position == getAdapter().getCount() - 1;
-    }
-
     @Override
     protected void onInitializeLoaders() {
         startLoading(0, null);
@@ -66,39 +61,42 @@ public class ContactBrowseListFragment extends ContactEntryListFragment {
 
     @Override
     protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        super.onLoadFinished(loader, data);
         getAdapter().changeCursor(data);
     }
 
     @Override
     protected void onItemClick(int position, long id) {
-        if (isSearchAllContactsItemPosition(position)) {
+        ContactListAdapter adapter = getAdapter();
+        if (adapter.isSearchAllContactsItemPosition(position)) {
             mListener.onSearchAllContactsAction((String)null);
         } else if (isEditMode()) {
             if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
                 mListener.onCreateNewContactAction();
             } else {
-                ContactEntryListAdapter adapter = getAdapter();
                 adapter.moveToPosition(position);
                 mListener.onEditContactAction(adapter.getContactUri());
             }
         } else {
-            ContactEntryListAdapter adapter = getAdapter();
             adapter.moveToPosition(position);
             mListener.onViewContactAction(adapter.getContactUri());
         }
     }
 
     @Override
-    protected ContactEntryListAdapter createListAdapter() {
-        ContactItemListAdapter adapter =
-                new ContactItemListAdapter((ContactsListActivity)getActivity());
+    protected ContactListAdapter createListAdapter() {
+        ContactListAdapter adapter = new ContactListAdapter(getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+
         adapter.setSearchMode(isSearchMode());
         adapter.setSearchResultsMode(isSearchResultsMode());
         adapter.setQueryString(getQueryString());
+
         adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
         adapter.setSortOrder(getSortOrder());
+
+        adapter.setDisplayPhotos(true);
+        adapter.setQuickContactEnabled(true);
 
         adapter.configureLoader(mLoader);
         return adapter;
