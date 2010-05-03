@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,7 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
      * visible or partially pushed up out of the view.
      */
     public int getPinnedHeaderState(int position) {
-        if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
+        if (mIndexer == null || position < 0 || mCursor == null || mCursor.getCount() == 0) {
             return PINNED_HEADER_GONE;
         }
 

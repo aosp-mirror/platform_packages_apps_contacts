@@ -22,9 +22,12 @@ import android.app.patterns.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -111,6 +114,13 @@ public class ContactBrowseListFragment extends ContactEntryListFragment<ContactL
         } else {
             return inflater.inflate(R.layout.contacts_list_content, null);
         }
+    }
+
+    @Override
+    protected View createView(LayoutInflater inflater, ViewGroup container) {
+        View view = super.createView(inflater, container);
+        getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
+        return view;
     }
 
     public void setEditMode(boolean flag) {

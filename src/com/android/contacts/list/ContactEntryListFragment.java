@@ -96,6 +96,19 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mAdapter;
     }
 
+    public void setListAdapter(T adapter) {
+        mAdapter = adapter;
+        mListView.setAdapter(mAdapter);
+        if (isPhotoLoaderEnabled()) {
+            mAdapter.setPhotoLoader(mPhotoLoader);
+        }
+        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
+    }
+
+    public ListView getListView() {
+        return mListView;
+    }
+
     // TODO make abstract
     @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -114,6 +127,26 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             String text = getQuantityText(data.getCount(),
                     R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
             foundContactsText.setText(text);
+
+            TextView totalContacts = (TextView) mView.findViewById(R.id.totalContactsText);
+
+            int count = data.getCount();
+
+            if (isSearchMode()
+                    && !TextUtils.isEmpty(getQueryString())) {
+                text = getQuantityText(count, R.string.listFoundAllContactsZero,
+                        R.plurals.searchFoundContacts);
+            } else {
+                // TODO
+//            if (contactsListActivity.mDisplayOnlyPhones) {
+//                text = contactsListActivity.getQuantityText(count,
+//                        R.string.listTotalPhoneContactsZero, R.plurals.listTotalPhoneContacts);
+//            } else {
+                text = getQuantityText(count,
+                        R.string.listTotalAllContactsZero, R.plurals.listTotalAllContacts);
+//            }
+            }
+            totalContacts.setText(text);
         }
     }
 
@@ -222,26 +255,27 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
-        mView = inflateView(inflater, container);
+        mView = createView(inflater, container);
         mAdapter = createListAdapter();
-        configureView(mView);
+        setListAdapter(mAdapter);
         return mView;
     }
 
-    protected void configureView(View view) {
-        mListView = (ListView)view.findViewById(android.R.id.list);
+    protected View createView(LayoutInflater inflater, ViewGroup container) {
+        mView = inflateView(inflater, container);
+
+        mListView = (ListView)mView.findViewById(android.R.id.list);
         if (mListView == null) {
             throw new RuntimeException(
                     "Your content must have a ListView whose id attribute is " +
                     "'android.R.id.list'");
         }
 
-        View emptyView = view.findViewById(com.android.internal.R.id.empty);
+        View emptyView = mView.findViewById(com.android.internal.R.id.empty);
         if (emptyView != null) {
             mListView.setEmptyView(emptyView);
         }
 
-        mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
@@ -257,17 +291,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
-        configurePinnedHeader();
-
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader =
                 new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
-            mAdapter.setPhotoLoader(mPhotoLoader);
             mListView.setOnScrollListener(this);
         }
 
         if (isSearchMode()) {
-            mSearchEditText = (SearchEditText)view.findViewById(R.id.search_src_text);
+            mSearchEditText = (SearchEditText)mView.findViewById(R.id.search_src_text);
             mSearchEditText.setText(getQueryString());
             mSearchEditText.addTextChangedListener(this);
             mSearchEditText.setOnEditorActionListener(this);
@@ -275,14 +306,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         if (isSearchResultsMode()) {
-            TextView titleText = (TextView)view.findViewById(R.id.search_results_for);
+            TextView titleText = (TextView)mView.findViewById(R.id.search_results_for);
             if (titleText != null) {
                 titleText.setText(Html.fromHtml(getActivity().getString(R.string.search_results_for,
                         "<b>" + getQueryString() + "</b>")));
             }
         }
-
-        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
+        return mView;
     }
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -314,17 +344,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         super.onDestroy();
     }
 
-    private void configurePinnedHeader() {
-        if (!mSectionHeaderDisplayEnabled) {
-            return;
-        }
-
-        if (mListView instanceof PinnedHeaderListView) {
-            PinnedHeaderListView pinnedHeaderList = (PinnedHeaderListView)mListView;
-            View headerView = mAdapter.createPinnedHeaderView(pinnedHeaderList);
-            pinnedHeaderList.setPinnedHeaderView(headerView);
-        }
-    }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         hideSoftKeyboard();
