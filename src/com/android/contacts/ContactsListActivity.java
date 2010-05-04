@@ -17,16 +17,17 @@
 package com.android.contacts;
 
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
-import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
+import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DefaultContactListFragment;
 import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
+import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferences;
@@ -66,7 +67,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
@@ -87,9 +87,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
 import android.telephony.TelephonyManager;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -97,17 +95,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.view.View.OnTouchListener;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Filter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -514,10 +507,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case MODE_DEFAULT:
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_QUERY_PICK_TO_EDIT:
-            case MODE_STREQUENT:
             case MODE_FREQUENT:
             case MODE_QUERY: {
-                ContactBrowseListFragment fragment = new ContactBrowseListFragment();
+                DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
                 if (!mSearchMode) {
                     fragment.setSectionHeaderDisplayEnabled(true);
                 }
@@ -535,6 +527,68 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setSearchResultsMode(true);
                 }
 
+                fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {
+                    public void onSearchAllContactsAction(String string) {
+                        doSearch();
+                    }
+
+                    public void onViewContactAction(Uri contactLookupUri) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
+                    }
+
+                    public void onCreateNewContactAction() {
+                        Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                        Bundle extras = getIntent().getExtras();
+                        if (extras != null) {
+                            intent.putExtras(extras);
+                        }
+                        startActivity(intent);
+                    }
+
+                    public void onEditContactAction(Uri contactLookupUri) {
+                        Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+                        Bundle extras = getIntent().getExtras();
+                        if (extras != null) {
+                            intent.putExtras(extras);
+                        }
+                        startActivity(intent);
+                    }
+
+                    public void onAddToFavoritesAction(Uri contactUri) {
+                        ContentValues values = new ContentValues(1);
+                        values.put(Contacts.STARRED, 1);
+                        getContentResolver().update(contactUri, values, null, null);
+                    }
+
+                    public void onRemoveFromFavoritesAction(Uri contactUri) {
+                        ContentValues values = new ContentValues(1);
+                        values.put(Contacts.STARRED, 0);
+                        getContentResolver().update(contactUri, values, null, null);
+                    }
+
+                    public void onCallContactAction(Uri contactUri) {
+                        // TODO
+                    }
+
+                    public void onSmsContactAction(Uri contactUri) {
+                        // TODO
+                    }
+
+                    public void onDeleteContactAction(Uri contactUri) {
+                        doContactDelete(contactUri);
+                    }
+
+                    public void onFinishAction() {
+                        onBackPressed();
+                    }
+                });
+                fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
+                mListFragment = fragment;
+                break;
+            }
+            case MODE_STREQUENT: {
+                StrequentContactListFragment fragment = new StrequentContactListFragment();
+                fragment.setSectionHeaderDisplayEnabled(false);
                 fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {
                     public void onSearchAllContactsAction(String string) {
                         doSearch();

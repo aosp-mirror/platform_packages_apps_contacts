@@ -57,7 +57,8 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
 
     @Override
     protected ContactListAdapter createListAdapter() {
-        ContactListAdapter adapter = new ContactListAdapter(getActivity());
+        // TODO different adapter
+        ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(isPhotoLoaderEnabled());
 
