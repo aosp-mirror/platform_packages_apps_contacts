@@ -87,6 +87,8 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
 
     private OnScrollListener mOnScrollListener;
 
+    private boolean mHeaderViewConfigured;
+
     public PinnedHeaderListView(Context context) {
         super(context);
     }
@@ -110,6 +112,7 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
         if (mHeaderView != null) {
             setFadingEdgeLength(0);
         }
+        mHeaderViewConfigured = false;
         requestLayout();
     }
 
@@ -131,6 +134,9 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mHeaderView != null) {
+            if (!mHeaderViewConfigured) {
+                configureHeaderView(getFirstVisiblePosition() - getHeaderViewsCount());
+            }
             measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
             mHeaderViewWidth = mHeaderView.getMeasuredWidth();
             mHeaderViewHeight = mHeaderView.getMeasuredHeight();
@@ -141,7 +147,9 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         if (mHeaderView != null) {
-            configureHeaderView(getFirstVisiblePosition() - getHeaderViewsCount());
+            if (!mHeaderViewConfigured) {
+                configureHeaderView(getFirstVisiblePosition() - getHeaderViewsCount());
+            }
             mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
         }
     }
@@ -198,6 +206,7 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
                 break;
             }
         }
+        mHeaderViewConfigured = true;
     }
 
     @Override

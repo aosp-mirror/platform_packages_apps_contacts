@@ -22,11 +22,9 @@ import android.app.patterns.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -119,8 +117,40 @@ public class ContactBrowseListFragment extends ContactEntryListFragment<ContactL
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container) {
         View view = super.createView(inflater, container);
-        getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
+        if (!isSearchResultsMode()) {
+            // In the search-results mode the count is shown in the fat header above the list
+            getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
+        }
         return view;
+    }
+
+    @Override
+    protected void showCount(Cursor data) {
+        int count = data.getCount();
+        if (isSearchMode()) {
+            TextView textView = (TextView) getView().findViewById(R.id.totalContactsText);
+            // TODO
+            // if (TextUtils.isEmpty(getQueryString())) {
+            String text = getQuantityText(count, R.string.listFoundAllContactsZero,
+                    R.plurals.searchFoundContacts);
+            textView.setText(text);
+        }
+        else if (isSearchResultsMode()) {
+            TextView countText = (TextView)getView().findViewById(R.id.search_results_found);
+            String text = getQuantityText(data.getCount(),
+                    R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
+            countText.setText(text);
+        } else {
+            // TODO
+            // if (contactsListActivity.mDisplayOnlyPhones) {
+            // text = contactsListActivity.getQuantityText(count,
+            // R.string.listTotalPhoneContactsZero,
+            // R.plurals.listTotalPhoneContacts);
+            TextView textView = (TextView)getView().findViewById(R.id.totalContactsText);
+            String text = getQuantityText(count, R.string.listTotalAllContactsZero,
+                    R.plurals.listTotalAllContacts);
+            textView.setText(text);
+        }
     }
 
     public void setEditMode(boolean flag) {

@@ -90,6 +90,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
+
+    /**
+     * @param position Please note that the position is already adjusted for
+     *            header views, so "0" means the first list item below header
+     *            views.
+     */
     protected abstract void onItemClick(int position, long id);
 
     public T getAdapter() {
@@ -103,6 +109,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mAdapter.setPhotoLoader(mPhotoLoader);
         }
         ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
+    }
+
+    public View getView() {
+        return mView;
     }
 
     public ListView getListView() {
@@ -122,32 +132,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && isSearchResultsMode()) {
-            TextView foundContactsText = (TextView)mView.findViewById(R.id.search_results_found);
-            String text = getQuantityText(data.getCount(),
-                    R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
-            foundContactsText.setText(text);
-
-            TextView totalContacts = (TextView) mView.findViewById(R.id.totalContactsText);
-
-            int count = data.getCount();
-
-            if (isSearchMode()
-                    && !TextUtils.isEmpty(getQueryString())) {
-                text = getQuantityText(count, R.string.listFoundAllContactsZero,
-                        R.plurals.searchFoundContacts);
-            } else {
-                // TODO
-//            if (contactsListActivity.mDisplayOnlyPhones) {
-//                text = contactsListActivity.getQuantityText(count,
-//                        R.string.listTotalPhoneContactsZero, R.plurals.listTotalPhoneContacts);
-//            } else {
-                text = getQuantityText(count,
-                        R.string.listTotalAllContactsZero, R.plurals.listTotalAllContacts);
-//            }
-            }
-            totalContacts.setText(text);
+        if (data == null) {
+            return;
         }
+
+        showCount(data);
+    }
+
+    /**
+     * Shows the count of entries included in the list.
+     */
+    protected void showCount(Cursor data) {
     }
 
     protected void reloadData() {
@@ -348,7 +343,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         hideSoftKeyboard();
 
-        onItemClick(position, id);
+        int adjPosition = position - mListView.getHeaderViewsCount();
+        if (adjPosition >= 0) {
+            onItemClick(adjPosition, id);
+        }
     }
 
     private void hideSoftKeyboard() {
