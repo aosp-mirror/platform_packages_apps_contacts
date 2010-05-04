@@ -27,11 +27,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
@@ -39,6 +41,7 @@ import android.provider.ContactsContract.Intents.UI;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * An activity that provides access to various modes of the contacts application.
@@ -98,6 +101,15 @@ public class AllIntentsActivity extends ListActivity {
     private static final int SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED = 39;
     private static final int JOIN_CONTACT = 40;
     private static final int ACTION_GET_MULTIPLE_PHONES = 41;
+
+    private static final int EDIT_CONTACT = 42;
+    private static final int EDIT_CONTACT_LOOKUP = 43;
+    private static final int EDIT_CONTACT_LOOKUP_ID = 44;
+    private static final int EDIT_RAW_CONTACT = 45;
+    private static final int EDIT_LEGACY = 46;
+    private static final int EDIT_NEW_CONTACT = 47;
+    private static final int EDIT_NEW_RAW_CONTACT = 48;
+    private static final int EDIT_NEW_LEGACY = 49;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -364,6 +376,65 @@ public class AllIntentsActivity extends ListActivity {
                 startMultiplePhoneSelectionActivityForResult(intent);
                 break;
             }
+            case EDIT_CONTACT: {
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_CONTACT_LOOKUP: {
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                final String lookupKey = lookupUri.getPathSegments().get(2);
+                final Uri lookupWithoutIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI,
+                        lookupKey);
+                final Intent intent = new Intent(Intent.ACTION_EDIT, lookupWithoutIdUri);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_CONTACT_LOOKUP_ID: {
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                final Intent intent = new Intent(Intent.ACTION_EDIT, lookupUri);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_RAW_CONTACT: {
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
+                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_LEGACY: {
+                final Uri legacyContentUri = Uri.parse("content://contacts/people");
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
+                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_NEW_CONTACT: {
+                startActivity(new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+                break;
+            }
+            case EDIT_NEW_RAW_CONTACT: {
+                startActivity(new Intent(Intent.ACTION_INSERT, RawContacts.CONTENT_URI));
+                break;
+            }
+            case EDIT_NEW_LEGACY: {
+                final Uri legacyContentUri = Uri.parse("content://contacts/people");
+                startActivity(new Intent(Intent.ACTION_INSERT, legacyContentUri));
+                break;
+            }
+            default: {
+                Toast.makeText(this, "Sorry, we forgot to write this...", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -416,9 +487,26 @@ public class AllIntentsActivity extends ListActivity {
     }
 
     private long findArbitraryContactWithPhoneNumber() {
-        Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
-                new String[]{Contacts._ID},
+        final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
+                new String[] { Contacts._ID },
                 Contacts.HAS_PHONE_NUMBER + "!=0", null, Contacts._ID + " LIMIT 1");
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getLong(0);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return -1;
+    }
+
+    private long findArbitraryRawContactOfContact(long contactId) {
+        final Cursor cursor = getContentResolver().query(RawContacts.CONTENT_URI,
+                new String[] { RawContacts._ID },
+                RawContacts.CONTACT_ID + "=?",
+                new String[] { String.valueOf(contactId) },
+                RawContacts._ID + " LIMIT 1");
         try {
             if (cursor.moveToFirst()) {
                 return cursor.getLong(0);

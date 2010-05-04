@@ -19,6 +19,7 @@
     <string name="result">Result returned by activity</string>
 
     <string-array name="allIntents">
+        <!-- List modes -->
         <item>LIST_DEFAULT</item>
         <item>LIST_ALL_CONTACTS_ACTION</item>
         <item>LIST_CONTACTS_WITH_PHONES_ACTION</item>
@@ -61,5 +62,15 @@
         <item>SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED</item>
         <item>TODO: JOIN_CONTACT</item>
         <item>ACTION_GET_MULTIPLE_PHONES</item>
+
+        <!-- Edit Contact -->
+        <item>EDIT (content uri with only id)</item>
+        <item>EDIT (lookup uri without id)</item>
+        <item>EDIT (lookup uri)</item>
+        <item>EDIT (called for raw contact)</item>
+        <item>EDIT (legacy style uri)</item>
+        <item>EDIT (create new contact)</item>
+        <item>EDIT (create new raw contact)</item>
+        <item>EDIT (create new legacy)</item>
     </string-array>
 </resources>
