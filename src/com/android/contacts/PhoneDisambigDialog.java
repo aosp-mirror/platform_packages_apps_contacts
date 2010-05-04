@@ -49,13 +49,12 @@ import java.util.List;
  * one will be chosen to make a call or initiate an sms message.
  */
 public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
-        DialogInterface.OnDismissListener, CompoundButton.OnCheckedChangeListener{
+        CompoundButton.OnCheckedChangeListener{
 
     private boolean mMakePrimary = false;
     private Context mContext;
     private AlertDialog mDialog;
     private boolean mSendSms;
-    private Cursor mPhonesCursor;
     private ListAdapter mPhonesAdapter;
     private ArrayList<PhoneItem> mPhoneItemList;
 
@@ -66,9 +65,9 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
     public PhoneDisambigDialog(Context context, Cursor phonesCursor, boolean sendSms) {
         mContext = context;
         mSendSms = sendSms;
-        mPhonesCursor = phonesCursor;
-
         mPhoneItemList = makePhoneItemsList(phonesCursor);
+        phonesCursor.close();
+
         Collapser.collapseList(mPhoneItemList);
 
         mPhonesAdapter = new PhonesAdapter(mContext, mPhoneItemList, mSendSms);
@@ -127,10 +126,6 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
 
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mMakePrimary = isChecked;
-    }
-
-    public void onDismiss(DialogInterface dialog) {
-        mPhonesCursor.close();
     }
 
     private static class PhonesAdapter extends ArrayAdapter<PhoneItem> {

@@ -69,13 +69,20 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(getUnknownNameText());
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
-        // TODO
-//        view.setOnCallButtonClickListener(contactsListActivity);
         return view;
     }
 
     @Override
     public void bindView(View itemView, Context context, Cursor cursor) {
-        super.bindView(itemView, context, cursor);
+        final ContactListItemView view = (ContactListItemView)itemView;
+
+        bindSectionHeaderAndDivider(view, cursor);
+        bindQuickContact(view, cursor);
+        bindName(view, cursor);
+        bindPresence(view, cursor);
+
+        if (isSearchMode() || isSearchResultsMode()) {
+            bindSearchSnippet(view, cursor);
+        }
     }
 }

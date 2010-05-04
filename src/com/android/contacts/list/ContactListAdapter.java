@@ -24,7 +24,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 
@@ -144,71 +143,61 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
-        // TODO
-//        view.setOnCallButtonClickListener(contactsListActivity);
         return view;
     }
 
-    @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
-        final ContactListItemView view = (ContactListItemView)itemView;
-
-        if (isSectionHeaderDisplayEnabled()) {
-            final int position = cursor.getPosition();
-            final int section = getSectionForPosition(position);
-            if (getPositionForSection(section) == position) {
-                String title = (String)getSections()[section];
-                view.setSectionHeader(title);
-            } else {
-                view.setDividerVisible(false);
-                view.setSectionHeader(null);
-            }
-
-            // move the divider for the last item in a section
-            if (getPositionForSection(section + 1) - 1 == position) {
-                view.setDividerVisible(false);
-            } else {
-                view.setDividerVisible(true);
-            }
+    protected void bindSectionHeaderAndDivider(final ContactListItemView view, Cursor cursor) {
+        final int position = cursor.getPosition();
+        final int section = getSectionForPosition(position);
+        if (getPositionForSection(section) == position) {
+            String title = (String)getSections()[section];
+            view.setSectionHeader(title);
+        } else {
+            view.setDividerVisible(false);
+            view.setSectionHeader(null);
         }
 
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, isNameHighlightingEnabled(),
-                mAlternativeDisplayNameColumnIndex);
-//
-//        // Make the call button visible if requested.
-//        if (mDisplayCallButton
-//                && cursor.getColumnCount() > ContactsListActivity.SUMMARY_HAS_PHONE_COLUMN_INDEX
-//                && cursor.getInt(ContactsListActivity.SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0) {
-//            int pos = cursor.getPosition();
-//            view.showCallButton(android.R.id.button1, pos);
-//        } else {
-//            view.hideCallButton();
-//        }
-//
+        // move the divider for the last item in a section
+        if (getPositionForSection(section + 1) - 1 == position) {
+            view.setDividerVisible(false);
+        } else {
+            view.setDividerVisible(true);
+        }
+    }
 
+    protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         // Set the photo, if available
         long photoId = 0;
         if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
             photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
         }
 
-        ImageView viewToUse;
-        if (mQuickContactEnabled) {
-            QuickContactBadge quickContact = view.getQuickContact();
-            quickContact.assignContactUri(getContactUri());
-            viewToUse = quickContact;
-        } else {
-            viewToUse = view.getPhotoView();
+        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+    }
+
+    protected void bindQuickContact(final ContactListItemView view, Cursor cursor) {
+        long photoId = 0;
+        if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
+            photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
         }
 
-        getPhotoLoader().loadPhoto(viewToUse, photoId);
+        QuickContactBadge quickContact = view.getQuickContact();
+        quickContact.assignContactUri(getContactUri());
+        getPhotoLoader().loadPhoto(quickContact, photoId);
+    }
 
-        view.showPresence(cursor, SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
+    protected void bindName(final ContactListItemView view, Cursor cursor) {
+        view.showDisplayName(cursor, mDisplayNameColumnIndex, isNameHighlightingEnabled(),
+                mAlternativeDisplayNameColumnIndex);
         view.showPhoneticName(cursor, SUMMARY_PHONETIC_NAME_COLUMN_INDEX);
+    }
 
-        if (isSearchMode() || isSearchResultsMode()) {
-            view.showSnippet(cursor, SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX,
-                    SUMMARY_SNIPPET_DATA1_COLUMN_INDEX, SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
-        }
+    protected void bindPresence(final ContactListItemView view, Cursor cursor) {
+        view.showPresence(cursor, SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
+    }
+
+    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
+        view.showSnippet(cursor, SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX,
+                SUMMARY_SNIPPET_DATA1_COLUMN_INDEX, SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
     }
 }

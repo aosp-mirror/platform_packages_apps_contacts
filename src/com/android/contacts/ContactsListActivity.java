@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.CallOrSmsInitiator;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactEntryListAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
@@ -436,6 +437,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private ListView mListView;
 
+    protected CallOrSmsInitiator mCallOrSmsInitiator;
+
     public ContactsListActivity() {
         mIntentResolver = new ContactsIntentResolver(this, this);
     }
@@ -567,11 +570,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     }
 
                     public void onCallContactAction(Uri contactUri) {
-                        // TODO
+                        getCallOrSmsInitiator().initiateCall(contactUri);
                     }
 
                     public void onSmsContactAction(Uri contactUri) {
-                        // TODO
+                        getCallOrSmsInitiator().initiateSms(contactUri);
                     }
 
                     public void onDeleteContactAction(Uri contactUri) {
@@ -629,11 +632,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     }
 
                     public void onCallContactAction(Uri contactUri) {
-                        // TODO
+                        getCallOrSmsInitiator().initiateCall(contactUri);
                     }
 
                     public void onSmsContactAction(Uri contactUri) {
-                        // TODO
+                        getCallOrSmsInitiator().initiateSms(contactUri);
                     }
 
                     public void onDeleteContactAction(Uri contactUri) {
@@ -2350,5 +2353,12 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         // TODO make this triggered by the Loader
         mListFragment.completeRestoreInstanceState();
+    }
+
+    private CallOrSmsInitiator getCallOrSmsInitiator() {
+        if (mCallOrSmsInitiator == null) {
+            mCallOrSmsInitiator = new CallOrSmsInitiator(this);
+        }
+        return mCallOrSmsInitiator;
     }
 }

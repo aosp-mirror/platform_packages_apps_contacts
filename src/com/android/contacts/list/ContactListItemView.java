@@ -223,7 +223,12 @@ public class ContactListItemView extends ViewGroup {
             mHeaderTextView.measure(
                     MeasureSpec.makeMeasureSpec(mHeaderTextWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
-            height += mHeaderBackgroundDrawable.getIntrinsicHeight();
+            height += mHeaderBackgroundHeight;
+        }
+
+        if (mHorizontalDividerVisible) {
+            ensureHorizontalDivider();
+            height += mHorizontalDividerHeight;
         }
 
         setMeasuredDimension(width, height);
@@ -337,7 +342,7 @@ public class ContactListItemView extends ViewGroup {
                     rightBound,
                     topBound,
                     rightBound + buttonWidth,
-                    height);
+                    height - mHorizontalDividerHeight);
             mVerticalDividerVisible = true;
             ensureVerticalDivider();
             rightBound -= mVerticalDividerWidth;

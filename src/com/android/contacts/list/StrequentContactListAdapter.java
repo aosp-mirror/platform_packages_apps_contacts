@@ -25,6 +25,7 @@ import android.provider.ContactsContract.Contacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,9 +37,16 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     private int mFrequentSeparatorPos;
     private TextView mSeparatorView;
+    private OnClickListener mCallButtonListener;
+    private int mCallButtonId;
 
-    public StrequentContactListAdapter(Context context) {
+    public StrequentContactListAdapter(Context context, int callButtonId) {
         super(context);
+        mCallButtonId = callButtonId;
+    }
+
+    public void setCallButtonListener(OnClickListener callButtonListener) {
+        mCallButtonListener = callButtonListener;
     }
 
     @Override
@@ -142,13 +150,25 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(getUnknownNameText());
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
-        // TODO
-//        view.setOnCallButtonClickListener(contactsListActivity);
+        view.setOnCallButtonClickListener(mCallButtonListener);
         return view;
     }
 
     @Override
     public void bindView(View itemView, Context context, Cursor cursor) {
-        super.bindView(itemView, context, cursor);
+        final ContactListItemView view = (ContactListItemView)itemView;
+
+        bindName(view, cursor);
+        bindQuickContact(view, cursor);
+        bindPresence(view, cursor);
+
+        // Make the call button visible if requested.
+        if (getHasPhoneNumber()) {
+            int position = cursor.getPosition();
+            view.showCallButton(mCallButtonId, position);
+        } else {
+            view.hideCallButton();
+        }
+
     }
 }

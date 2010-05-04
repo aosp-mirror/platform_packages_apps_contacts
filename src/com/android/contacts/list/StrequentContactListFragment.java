@@ -20,11 +20,15 @@ import com.android.contacts.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
  */
-public class StrequentContactListFragment extends ContactBrowseListFragment {
+public class StrequentContactListFragment extends ContactBrowseListFragment
+        implements OnClickListener {
+
+    private static final int CALL_BUTTON_ID = android.R.id.button1;
 
     @Override
     protected void onItemClick(int position, long id) {
@@ -35,7 +39,8 @@ public class StrequentContactListFragment extends ContactBrowseListFragment {
 
     @Override
     protected ContactListAdapter createListAdapter() {
-        StrequentContactListAdapter adapter = new StrequentContactListAdapter(getActivity());
+        StrequentContactListAdapter adapter =
+                new StrequentContactListAdapter(getActivity(), CALL_BUTTON_ID);
         adapter.setSectionHeaderDisplayEnabled(false);
 
         adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
@@ -44,6 +49,7 @@ public class StrequentContactListFragment extends ContactBrowseListFragment {
         adapter.setDisplayPhotos(true);
         adapter.setQuickContactEnabled(true);
 
+        adapter.setCallButtonListener(this);
         adapter.configureLoader(getLoader());
         return adapter;
     }
@@ -51,5 +57,18 @@ public class StrequentContactListFragment extends ContactBrowseListFragment {
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.contacts_list_content, null);
+    }
+
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case CALL_BUTTON_ID: {
+                final int position = (Integer)v.getTag();
+                ContactListAdapter adapter = getAdapter();
+                adapter.moveToPosition(position);
+                callContact(adapter.getContactUri());
+                break;
+            }
+        }
     }
 }
