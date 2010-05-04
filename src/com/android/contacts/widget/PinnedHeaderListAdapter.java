@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts.list;
-
-import com.android.contacts.R;
-import com.android.contacts.widget.PinnedHeaderListView;
+package com.android.contacts.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,22 +32,32 @@ import android.widget.TextView;
 public abstract class PinnedHeaderListAdapter extends CursorAdapter
         implements SectionIndexer, PinnedHeaderListView.PinnedHeaderAdapter {
 
-    /**
-     * An approximation of the background color of the pinned header. This color
-     * is used when the pinned header is being pushed up.  At that point the header
-     * "fades away".  Rather than computing a faded bitmap based on the 9-patch
-     * normally used for the background, we will use a solid color, which will
-     * provide better performance and reduced complexity.
-     */
-    private int mPinnedHeaderBackgroundColor;
+    private final int mPinnedHeaderBackgroundColor;
+    private final int mSectionHeaderTextViewId;
+    private final int mSectionHeaderLayoutResId;
 
     private SectionIndexer mIndexer;
 
-    public PinnedHeaderListAdapter(Context context) {
+    /**
+     * Constructor.
+     *
+     * @param context
+     * @param sectionHeaderLayoutResourceId section header layout resource ID
+     * @param sectionHeaderTextViewId section header text view ID
+     * @param backgroundColor An approximation of the background color of the
+     *            pinned header. This color is used when the pinned header is
+     *            being pushed up. At that point the header "fades away". Rather
+     *            than computing a faded bitmap based on the 9-patch normally
+     *            used for the background, we will use a solid color, which will
+     *            provide better performance and reduced complexity.
+     */
+    public PinnedHeaderListAdapter(Context context, int sectionHeaderLayoutResourceId,
+            int sectionHeaderTextViewId, int backgroundColor) {
         super(context, null, false);
         this.mContext = context;
-        mPinnedHeaderBackgroundColor =
-                context.getResources().getColor(R.color.pinned_header_background);
+        mPinnedHeaderBackgroundColor = backgroundColor;
+        mSectionHeaderLayoutResId = sectionHeaderLayoutResourceId;
+        mSectionHeaderTextViewId = sectionHeaderTextViewId;
     }
 
     public void setIndexer(SectionIndexer indexer) {
@@ -97,7 +103,7 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
      * visible or partially pushed up out of the view.
      */
     public int getPinnedHeaderState(int position) {
-        if (mIndexer == null || position < 0 || mCursor == null || mCursor.getCount() == 0) {
+        if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
             return PINNED_HEADER_GONE;
         }
 
@@ -132,7 +138,7 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
         PinnedHeaderCache cache = (PinnedHeaderCache)header.getTag();
         if (cache == null) {
             cache = new PinnedHeaderCache();
-            cache.titleView = (TextView)header.findViewById(R.id.header_text);
+            cache.titleView = (TextView)header.findViewById(mSectionHeaderTextViewId);
             cache.textColor = cache.titleView.getTextColors();
             cache.background = header.getBackground();
             header.setTag(cache);
@@ -163,6 +169,6 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
     }
 
     public View createPinnedHeaderView(ViewGroup parent) {
-        return LayoutInflater.from(mContext).inflate(R.layout.list_section, parent, false);
+        return LayoutInflater.from(mContext).inflate(mSectionHeaderLayoutResId, parent, false);
     }
 }

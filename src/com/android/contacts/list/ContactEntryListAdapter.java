@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
+import com.android.contacts.widget.PinnedHeaderListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.app.patterns.CursorLoader;
@@ -53,7 +54,8 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     private boolean mSearchResultsMode;
 
     public ContactEntryListAdapter(Context context) {
-        super(context);
+        super(context, R.layout.list_section, R.id.header_text,
+                context.getResources().getColor(R.color.pinned_header_background));
     }
 
     public Context getContext() {
