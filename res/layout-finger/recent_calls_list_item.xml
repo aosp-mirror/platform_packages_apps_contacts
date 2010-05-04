@@ -20,7 +20,7 @@
     android:paddingLeft="7dip"
 >
 
-    <com.android.contacts.ui.widget.DontPressWithParentImageView android:id="@+id/call_icon"
+    <ImageView android:id="@+id/call_icon"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="14dip"
