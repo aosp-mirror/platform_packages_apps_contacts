@@ -28,6 +28,8 @@ import com.android.contacts.list.DefaultContactListFragment;
 import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
+import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -686,9 +688,25 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case MODE_LEGACY_PICK_PHONE:
             case MODE_PICK_PHONE: {
                 mListFragment = new DefaultContactListFragment();
+                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
                 if (mMode == MODE_LEGACY_PICK_PHONE) {
-                    mListFragment.setLegacyCompatibility(true);
+                    fragment.setLegacyCompatibility(true);
                 }
+                fragment.setSectionHeaderDisplayEnabled(false);
+                fragment.setOnPhoneNumberPickerActionListener(
+                        new OnPhoneNumberPickerActionListener() {
+
+                    public void onPickPhoneNumberAction(Uri dataUri) {
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent.setData(dataUri));
+                        finish();
+                    }
+
+                    public void onSearchAllContactsAction(String string) {
+                        doSearch();
+                    }
+                });
+                mListFragment = fragment;
                 break;
             }
             case MODE_LEGACY_PICK_POSTAL:

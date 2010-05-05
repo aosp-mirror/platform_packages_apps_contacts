@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactEntryListView;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
@@ -31,6 +32,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -112,6 +114,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (isPhotoLoaderEnabled()) {
             mAdapter.setPhotoLoader(mPhotoLoader);
         }
+        if (isNameHighlighingEnabled()) {
+            mAdapter.setNameHighlightingEnabled(true);
+        }
+
         ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
     }
 
@@ -295,6 +301,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
+        ContactEntryListView listView = (ContactEntryListView)mListView;
+        listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
+
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader =
                 new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
@@ -317,6 +326,20 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
         }
         return mView;
+    }
+
+    private boolean isNameHighlighingEnabled() {
+        // When sort order and display order contradict each other, we want to
+        // highlight the part of the name used for sorting.
+        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
+                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
+            return true;
+        } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
+                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,

@@ -67,7 +67,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         adapter.setDisplayPhotos(true);
         adapter.setQuickContactEnabled(true);
 
-        adapter.configureLoader(getLoader());
         return adapter;
     }
 
