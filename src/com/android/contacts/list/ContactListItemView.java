@@ -82,6 +82,7 @@ public class ContactListItemView extends ViewGroup {
     private QuickContactBadge mQuickContact;
     private ImageView mPhotoView;
     private TextView mNameTextView;
+    private TextView mPhoneticNameTextView;
     private DontPressWithParentImageView mCallButton;
     private TextView mLabelView;
     private TextView mDataView;
@@ -93,6 +94,7 @@ public class ContactListItemView extends ViewGroup {
     private int mLine1Height;
     private int mLine2Height;
     private int mLine3Height;
+    private int mLine4Height;
 
     private OnClickListener mCallButtonClickListener;
     private TextWithHighlightingFactory mTextWithHighlightingFactory;
@@ -183,28 +185,35 @@ public class ContactListItemView extends ViewGroup {
         mLine1Height = 0;
         mLine2Height = 0;
         mLine3Height = 0;
+        mLine4Height = 0;
 
         // Obtain the natural dimensions of the name text (we only care about height)
         mNameTextView.measure(0, 0);
 
         mLine1Height = mNameTextView.getMeasuredHeight();
 
+        if (isVisible(mPhoneticNameTextView)) {
+            mPhoneticNameTextView.measure(0, 0);
+            mLine2Height = mPhoneticNameTextView.getMeasuredHeight();
+        }
+
         if (isVisible(mLabelView)) {
             mLabelView.measure(0, 0);
-            mLine2Height = mLabelView.getMeasuredHeight();
+            mLine3Height = mLabelView.getMeasuredHeight();
         }
 
         if (isVisible(mDataView)) {
             mDataView.measure(0, 0);
-            mLine2Height = Math.max(mLine2Height, mDataView.getMeasuredHeight());
+            mLine3Height = Math.max(mLine3Height, mDataView.getMeasuredHeight());
         }
 
         if (isVisible(mSnippetView)) {
             mSnippetView.measure(0, 0);
-            mLine3Height = mSnippetView.getMeasuredHeight();
+            mLine4Height = mSnippetView.getMeasuredHeight();
         }
 
-        height += mLine1Height + mLine2Height + mLine3Height;
+        height += mLine1Height + mLine2Height + mLine3Height + mLine4Height
+                + mPaddingTop + mPaddingBottom;
 
         if (isVisible(mCallButton)) {
             mCallButton.measure(0, 0);
@@ -276,7 +285,7 @@ public class ContactListItemView extends ViewGroup {
         rightBound -= mPaddingRight;
 
         // Center text vertically
-        int totalTextHeight = mLine1Height + mLine2Height + mLine3Height;
+        int totalTextHeight = mLine1Height + mLine2Height + mLine3Height + mLine4Height;
         int textTopBound = (bottomBound + topBound - totalTextHeight) / 2;
 
         mNameTextView.layout(leftBound,
@@ -285,27 +294,34 @@ public class ContactListItemView extends ViewGroup {
                 textTopBound + mLine1Height);
 
         int dataLeftBound = leftBound;
+        if (isVisible(mPhoneticNameTextView)) {
+            mPhoneticNameTextView.layout(leftBound,
+                    textTopBound + mLine1Height,
+                    rightBound,
+                    textTopBound + mLine1Height + mLine2Height);
+        }
+
         if (isVisible(mLabelView)) {
             dataLeftBound = leftBound + mLabelView.getMeasuredWidth();
             mLabelView.layout(leftBound,
-                    textTopBound + mLine1Height,
+                    textTopBound + mLine1Height + mLine2Height,
                     dataLeftBound,
-                    textTopBound + mLine1Height + mLine2Height);
+                    textTopBound + mLine1Height + mLine2Height + mLine3Height);
             dataLeftBound += mGapBetweenLabelAndData;
         }
 
         if (isVisible(mDataView)) {
             mDataView.layout(dataLeftBound,
-                    textTopBound + mLine1Height,
+                    textTopBound + mLine1Height + mLine2Height,
                     rightBound,
-                    textTopBound + mLine1Height + mLine2Height);
+                    textTopBound + mLine1Height + mLine2Height + mLine3Height);
         }
 
         if (isVisible(mSnippetView)) {
             mSnippetView.layout(leftBound,
-                    textTopBound + mLine1Height + mLine2Height,
+                    textTopBound + mLine1Height + mLine2Height + mLine3Height,
                     rightBound,
-                    textTopBound + mLine1Height + mLine2Height + mLine3Height);
+                    textTopBound + mLine1Height + mLine2Height + mLine3Height + mLine4Height);
         }
     }
 
@@ -553,6 +569,36 @@ public class ContactListItemView extends ViewGroup {
     }
 
     /**
+     * Adds or updates a text view for the phonetic name.
+     */
+    public void setPhoneticName(char[] text, int size) {
+        if (text == null || size == 0) {
+            if (mPhoneticNameTextView != null) {
+                mPhoneticNameTextView.setVisibility(View.GONE);
+            }
+        } else {
+            getPhoneticNameTextView();
+            mPhoneticNameTextView.setText(text, 0, size);
+            mPhoneticNameTextView.setVisibility(VISIBLE);
+        }
+    }
+
+    /**
+     * Returns the text view for the phonetic name, creating it if necessary.
+     */
+    public TextView getPhoneticNameTextView() {
+        if (mPhoneticNameTextView == null) {
+            mPhoneticNameTextView = new TextView(mContext);
+            mPhoneticNameTextView.setSingleLine(true);
+            mPhoneticNameTextView.setEllipsize(TruncateAt.MARQUEE);
+            mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
+            addView(mPhoneticNameTextView);
+        }
+        return mPhoneticNameTextView;
+    }
+
+    /**
      * Adds or updates a text view for the data label.
      */
     public void setLabel(CharSequence text) {
@@ -702,9 +748,9 @@ public class ContactListItemView extends ViewGroup {
         cursor.copyStringToBuffer(phoneticNameColumnIndex, phoneticNameBuffer);
         int phoneticNameSize = phoneticNameBuffer.sizeCopied;
         if (phoneticNameSize != 0) {
-            setLabel(phoneticNameBuffer.data, phoneticNameSize);
+            setPhoneticName(phoneticNameBuffer.data, phoneticNameSize);
         } else {
-            setLabel(null);
+            setPhoneticName(null, 0);
         }
     }
 
@@ -760,5 +806,13 @@ public class ContactListItemView extends ViewGroup {
         }
 
         setSnippet(snippet);
+    }
+
+    /**
+     * Shows data element (e.g. phone number).
+     */
+    public void showData(Cursor cursor, int dataColumnIndex) {
+        cursor.copyStringToBuffer(dataColumnIndex, dataBuffer);
+        setData(dataBuffer.data, dataBuffer.sizeCopied);
     }
 }
