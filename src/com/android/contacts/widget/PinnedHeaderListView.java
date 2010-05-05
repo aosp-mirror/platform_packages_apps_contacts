@@ -188,17 +188,16 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
             }
 
             case PinnedHeaderAdapter.PINNED_HEADER_PUSHED_UP: {
-                View firstView = getChildAt(0);
-                int bottom = firstView.getBottom();
-                int headerHeight = mHeaderViewHeight;
-                int alpha;
-                int y;
-                if (bottom < headerHeight) {
-                    y = (bottom - headerHeight);
-                    alpha = MAX_ALPHA * (headerHeight + y) / headerHeight;
-                } else {
-                    y = 0;
-                    alpha = MAX_ALPHA;
+                int y = 0;
+                int alpha = MAX_ALPHA;
+                if (getChildCount() != 0) {
+                    View firstView = getChildAt(0);
+                    int bottom = firstView.getBottom();
+                    int headerHeight = mHeaderViewHeight;
+                    if (bottom < headerHeight) {
+                        y = (bottom - headerHeight);
+                        alpha = MAX_ALPHA * (headerHeight + y) / headerHeight;
+                    }
                 }
                 mAdapter.configurePinnedHeader(mHeaderView, position, alpha);
                 mHeaderOffset = y;
