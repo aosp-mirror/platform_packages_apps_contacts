@@ -77,7 +77,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = (ContactListItemView)itemView;
 
         bindSectionHeaderAndDivider(view, cursor);
-        bindQuickContact(view, cursor);
+
+        if (isQuickContactEnabled()) {
+            bindQuickContact(view, cursor);
+        } else {
+            bindPhoto(view, cursor);
+        }
+
         bindName(view, cursor);
         bindPresence(view, cursor);
 

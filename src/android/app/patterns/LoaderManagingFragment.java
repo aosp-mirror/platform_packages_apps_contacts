@@ -38,7 +38,7 @@ public abstract class LoaderManagingFragment<D> extends Fragment
      * when the new loader completes it's work. The callback will be delivered before the old loader
      * is destroyed.
      */
-    protected void startLoading(int id, Bundle args) {
+    protected Loader<D> startLoading(int id, Bundle args) {
         LoaderInfo<D> info = mLoaders.get(id);
         if (info != null) {
             // Keep track of the previous instance of this loader so we can destroy
@@ -56,6 +56,7 @@ public abstract class LoaderManagingFragment<D> extends Fragment
             loader.registerListener(id, this);
             loader.startLoading();
         }
+        return loader;
     }
 
     protected abstract Loader<D> onCreateLoader(int id, Bundle args);

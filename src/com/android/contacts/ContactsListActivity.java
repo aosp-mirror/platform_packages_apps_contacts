@@ -658,7 +658,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setSectionHeaderDisplayEnabled(true);
                 }
 
-                if (mMode == MODE_INSERT_OR_EDIT_CONTACT) {
+                if (mMode == MODE_PICK_OR_CREATE_CONTACT) {
                     fragment.setCreateContactEnabled(true);
                 }
 
@@ -1972,6 +1972,12 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     public void startQuery() {
+
+        // Disabled
+        if (true) {
+            return;
+        }
+
         if (mSearchResultsMode) {
             TextView foundContactsText = (TextView)findViewById(R.id.search_results_found);
             foundContactsText.setText(R.string.search_results_searching);

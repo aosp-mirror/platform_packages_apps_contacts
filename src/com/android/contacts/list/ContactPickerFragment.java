@@ -17,10 +17,10 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 /**
  * Fragment for the contact list used for browsing contacts (as compared to
@@ -35,8 +35,34 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         mListener = listener;
     }
 
+    public void setCreateContactEnabled(boolean flag) {
+        this.mCreateContactEnabled = flag;
+    }
+
+    public boolean isCreateContactEnabled() {
+        return mCreateContactEnabled;
+    }
+
+    @Override
+    protected View createView(LayoutInflater inflater, ViewGroup container) {
+        View view = super.createView(inflater, container);
+        if (mCreateContactEnabled) {
+            getListView().addHeaderView(inflater.inflate(R.layout.create_new_contact, null, false));
+        }
+        return view;
+    }
+
     public boolean isSearchAllContactsItemPosition(int position) {
         return isSearchMode() && position == getAdapter().getCount() - 1;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position == 0 && !isSearchMode() && mCreateContactEnabled) {
+            mListener.onCreateNewContactAction();
+        } else {
+            super.onItemClick(parent, view, position, id);
+        }
     }
 
     @Override
@@ -44,14 +70,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         if (isSearchAllContactsItemPosition(position)) {
             mListener.onSearchAllContactsAction((String)null);
         } else {
-            Intent intent;
-            if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
-                mListener.onCreateNewContactAction();
-            } else {
-                ContactListAdapter adapter = getAdapter();
-                adapter.moveToPosition(position);
-                mListener.onPickContactAction(adapter.getContactUri());
-            }
+            ContactListAdapter adapter = getAdapter();
+            adapter.moveToPosition(position);
+            mListener.onPickContactAction(adapter.getContactUri());
         }
     }
 
@@ -59,8 +80,17 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
     protected ContactListAdapter createListAdapter() {
         // TODO different adapter
         ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
-        adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(isPhotoLoaderEnabled());
+        adapter.setSectionHeaderDisplayEnabled(true);
+
+        adapter.setDisplayPhotos(true);
+        adapter.setQuickContactEnabled(false);
+
+        adapter.setSearchMode(isSearchMode());
+        adapter.setSearchResultsMode(isSearchResultsMode());
+        adapter.setQueryString(getQueryString());
+
+        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
+        adapter.setSortOrder(getSortOrder());
 
         // TODO more settings
 
@@ -76,13 +106,5 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         } else {
             return inflater.inflate(R.layout.contacts_list_content, null);
         }
-    }
-
-    public void setCreateContactEnabled(boolean flag) {
-        this.mCreateContactEnabled = flag;
-    }
-
-    public boolean isCreateContactEnabled() {
-        return mCreateContactEnabled;
     }
 }

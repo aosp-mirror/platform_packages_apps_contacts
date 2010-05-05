@@ -111,6 +111,10 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return getCursor().getString(mDisplayNameColumnIndex);
     }
 
+    public boolean isQuickContactEnabled() {
+        return mQuickContactEnabled;
+    }
+
     public void setQuickContactEnabled(boolean quickContactEnabled) {
         mQuickContactEnabled = quickContactEnabled;
     }

@@ -15,11 +15,7 @@
  */
 package com.android.contacts.list;
 
-import android.app.patterns.CursorLoader;
-import android.app.patterns.Loader;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -30,37 +26,8 @@ public abstract class ContactBrowseListFragment extends
 
     private OnContactBrowserActionListener mListener;
 
-    private CursorLoader mLoader;
-
-    @Override
-    protected CursorLoader onCreateLoader(int id, Bundle args) {
-        mLoader = new CursorLoader(getActivity(), null, null, null, null, null);
-        return mLoader;
-    }
-
-    public CursorLoader getLoader() {
-        return mLoader;
-    }
-
-    @Override
-    protected void reloadData() {
-        getAdapter().configureLoader(mLoader);
-        mLoader.forceLoad();
-    }
-
     public void setOnContactListActionListener(OnContactBrowserActionListener listener) {
         mListener = listener;
-    }
-
-    @Override
-    protected void onInitializeLoaders() {
-        startLoading(0, null);
-    }
-
-    @Override
-    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        super.onLoadFinished(loader, data);
-        getAdapter().changeCursor(data);
     }
 
     public void createNewContact() {

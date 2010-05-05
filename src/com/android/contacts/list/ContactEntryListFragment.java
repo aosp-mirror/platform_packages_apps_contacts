@@ -21,10 +21,10 @@ import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
+import android.app.patterns.CursorLoader;
 import android.app.patterns.Loader;
 import android.app.patterns.LoaderManagingFragment;
 import android.content.Context;
@@ -70,6 +70,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private String mQueryString;
 
     private ContactsApplicationController mAppController;
+    private CursorLoader mLoader;
     private T mAdapter;
     private View mView;
     private ListView mListView;
@@ -87,7 +88,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContactPhotoLoader mPhotoLoader;
     private SearchEditText mSearchEditText;
 
-
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
 
@@ -97,6 +97,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      *            views.
      */
     protected abstract void onItemClick(int position, long id);
+
+    public CursorLoader getLoader() {
+        return mLoader;
+    }
 
     public T getAdapter() {
         return mAdapter;
@@ -119,15 +123,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mListView;
     }
 
-    // TODO make abstract
     @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        throw new UnsupportedOperationException();
+        return new CursorLoader(getActivity(), null, null, null, null, null);
     }
 
-    // TODO make abstract
     @Override
     protected void onInitializeLoaders() {
+        mLoader = (CursorLoader)startLoading(0, null);
     }
 
     @Override
@@ -136,20 +139,25 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return;
         }
 
+        mAdapter.changeCursor(data);
         showCount(data);
     }
 
+    protected void reloadData() {
+        mAdapter.configureLoader(mLoader);
+        mLoader.forceLoad();
+    }
+
     /**
-     * Shows the count of entries included in the list.
+     * Shows the count of entries included in the list. The default
+     * implementation does nothing.
      */
     protected void showCount(Cursor data) {
     }
 
-    protected void reloadData() {
-    }
-
     /**
-     * Override to provide logic that dismisses this fragment.
+     * Provides logic that dismisses this fragment. The default implementation
+     * does nothing.
      */
     protected void finish() {
     }
@@ -252,6 +260,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
         mView = createView(inflater, container);
         mAdapter = createListAdapter();
+        mAdapter.configureLoader(mLoader);
         setListAdapter(mAdapter);
         return mView;
     }
