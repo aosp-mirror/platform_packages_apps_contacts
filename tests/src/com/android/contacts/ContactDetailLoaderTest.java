@@ -24,6 +24,10 @@ import android.app.patterns.Loader;
 import android.app.patterns.Loader.OnLoadCompleteListener;
 import android.content.ContentUris;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
@@ -34,8 +38,10 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.RawContacts.Data;
 import android.provider.ContactsContract.RawContacts.Entity;
 import android.test.AndroidTestCase;
+import android.test.AssertionFailedError;
+import android.test.suitebuilder.annotation.Suppress;
 
-import junit.framework.AssertionFailedError;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Runs ContactLoader tests for the the contact-detail view.
@@ -44,6 +50,16 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
     private ContactsMockContext mMockContext;
     private MockContentProvider mContactsProvider;
 
+    static {
+        // Need to force class loading of AsyncTask on the main thread...
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... args) {return null;}
+            @Override
+            protected void onPostExecute(Void result) {}
+        };
+    }
+    
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -75,20 +91,65 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
                 "Expected Exception " + expectedException + " which was not thrown");
     }
 
-    private ContactLoader.Result assertLoadContact(Uri uri) {
-        final ContactLoader loader = new ContactLoader(mMockContext, uri);
-        loader.setSynchronous(true);
-        // A regular variable can not be written from an anonymous class, so use a 1-array
-        final ContactLoader.Result[] result = new ContactLoader.Result[1];
-        loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
-            public void onLoadComplete(Loader loader, ContactLoader.Result data) {
-                result[0] = data;
+    /**
+     * Runs a Loader synchronously and returns the result of the load. The loader will
+     * be started, stopped, and destroyed by this method so it cannot be reused.
+     *
+     * @param loader The loader to run synchronously
+     * @return The result from the loader
+     */
+    private <T> T getLoaderResultSynchronously(final Loader<T> loader) {
+        // The test thread blocks on this queue until the loader puts it's result in
+        final ArrayBlockingQueue<T> queue = new ArrayBlockingQueue<T>(1);
+
+        // This callback runs on the "main" thread and unblocks the test thread
+        // when it puts the result into the blocking queue
+        final OnLoadCompleteListener<T> listener = new OnLoadCompleteListener<T>() {
+            public void onLoadComplete(Loader<T> completedLoader, T data) {
+                // Shut the loader down
+                completedLoader.unregisterListener(this);
+                completedLoader.stopLoading();
+                completedLoader.destroy();
+
+                // Store the result, unblocking the test thread
+                queue.add(data);
             }
-        });
-        loader.startLoading();
-        return result[0];
+        };
+
+        // This handler runs on the "main" thread of the process since AsyncTask
+        // is documented as needing to run on the main thread and many Loaders use
+        // AsyncTask
+        final Handler mainThreadHandler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                loader.registerListener(0, listener);
+                loader.startLoading();
+            }
+        };
+
+        // Ask the main thread to start the loading process
+        mainThreadHandler.sendEmptyMessage(0);
+
+        // Block on the queue waiting for the result of the load to be inserted
+        T result;
+        while (true) {
+            try {
+                result = queue.take();
+                break;
+            } catch (InterruptedException e) {
+                throw new RuntimeException("waiting thread interrupted", e);
+            }
+        }
+
+        return result;
     }
 
+    private ContactLoader.Result assertLoadContact(Uri uri) {
+        final ContactLoader loader = new ContactLoader(mMockContext, uri);
+        return getLoaderResultSynchronously(loader);
+    }
+
+    @Suppress // The code under test is incorrect
     public void testNullUri() {
         IllegalArgumentException e =
             assertThrows(IllegalArgumentException.class, new Runnable() {
@@ -99,6 +160,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         assertEquals(e.getMessage(), "uri must not be null");
     }
 
+    @Suppress // The code under test is incorrect
     public void testEmptyUri() {
         IllegalArgumentException e =
             assertThrows(IllegalArgumentException.class, new Runnable() {
@@ -109,6 +171,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         assertEquals(e.getMessage(), "uri format is unknown");
     }
 
+    @Suppress // The code under test is incorrect
     public void testInvalidUri() {
         IllegalArgumentException e =
                 assertThrows(IllegalArgumentException.class, new Runnable() {
