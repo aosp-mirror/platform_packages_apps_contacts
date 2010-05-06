@@ -16,7 +16,9 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +28,10 @@ import android.view.ViewGroup;
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
  */
-public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNumberListAdapter> {
+public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNumberListAdapter>
+        implements OnShortcutIntentCreatedListener {
     private OnPhoneNumberPickerActionListener mListener;
+    private String mShortcutAction;
 
     public PhoneNumberPickerFragment() {
         setPhotoLoaderEnabled(true);
@@ -36,6 +40,14 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNum
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {
         this.mListener = listener;
+    }
+
+    /**
+     * @param shortcutAction either {@link Intent#ACTION_CALL} or
+     *            {@link Intent#ACTION_SENDTO} or null.
+     */
+    public void setShortcutAction(String shortcutAction) {
+        this.mShortcutAction = shortcutAction;
     }
 
     @Override
@@ -78,6 +90,15 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNum
     }
 
     public void pickPhoneNumber(Uri uri) {
-        mListener.onPickPhoneNumberAction(uri);
+        if (mShortcutAction == null) {
+            mListener.onPickPhoneNumberAction(uri);
+        } else {
+            ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
+            builder.createPhoneNumberShortcutIntent(getAdapter().getDataUri(), mShortcutAction);
+        }
+    }
+
+    public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
+        mListener.onShortcutIntentCreated(shortcutIntent);
     }
 }

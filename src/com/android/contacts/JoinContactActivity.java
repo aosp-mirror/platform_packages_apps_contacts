@@ -19,6 +19,7 @@ package com.android.contacts;
 
 import com.android.contacts.list.JoinContactListAdapter;
 import com.android.contacts.list.JoinContactListFragment;
+import com.android.internal.telephony.gsm.stk.ResultCode;
 
 import android.content.ContentUris;
 import android.content.Intent;
@@ -110,7 +111,8 @@ public class JoinContactActivity extends ContactsListActivity {
             startQuery();
         } else {
             final Uri uri = getSelectedUri(position);
-            returnPickerResult(null, null, uri);
+            setResult(RESULT_OK, new Intent(null, uri));
+            finish();
         }
     }
 

@@ -19,11 +19,6 @@ package com.android.contacts.util;
 import android.app.Service;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
-/**
- * Background {@link Service} that is used to keep our process alive long enough
- * for background threads to finish. Started and stopped directly by specific
- * background tasks when needed.
- */
 public class Constants {
     /**
      * Specific MIME-type for {@link Phone#CONTENT_ITEM_TYPE} entries that

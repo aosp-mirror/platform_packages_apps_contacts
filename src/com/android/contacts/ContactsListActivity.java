@@ -37,7 +37,6 @@ import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.util.Constants;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
@@ -59,14 +58,6 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -86,7 +77,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.Insert;
 import android.telephony.TelephonyManager;
@@ -101,7 +91,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -112,7 +101,6 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -701,6 +689,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setLegacyCompatibility(true);
                 }
                 fragment.setSectionHeaderDisplayEnabled(false);
+                fragment.setShortcutAction(mShortcutAction);
                 fragment.setOnPhoneNumberPickerActionListener(
                         new OnPhoneNumberPickerActionListener() {
 
@@ -712,6 +701,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
                     public void onSearchAllContactsAction(String string) {
                         doSearch();
+                    }
+
+                    public void onShortcutIntentCreated(Intent intent) {
+                        setResult(RESULT_OK, intent);
+                        finish();
                     }
                 });
                 mListFragment = fragment;
@@ -1495,221 +1489,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
     }
 
-    private void hideSoftKeyboard() {
-        // Hide soft keyboard, if visible
-        InputMethodManager inputMethodManager = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
-    }
-
-    /**
-     * @param selectedUri In most cases, this should be a lookup {@link Uri}, possibly
-     *            generated through {@link Contacts#getLookupUri(long, String)}.
-     */
-    protected void returnPickerResult(Cursor c, String name, Uri selectedUri) {
-        final Intent intent = new Intent();
-
-        if (mShortcutAction != null) {
-            Intent shortcutIntent;
-            if (Intent.ACTION_VIEW.equals(mShortcutAction)) {
-                // This is a simple shortcut to view a contact.
-                shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
-                shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-                shortcutIntent.setData(selectedUri);
-                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
-                        ContactsContract.QuickContact.MODE_LARGE);
-                shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
-                        (String[]) null);
-
-                final Bitmap icon = framePhoto(loadContactPhoto(selectedUri, null));
-                if (icon != null) {
-                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, scaleToAppIconSize(icon));
-                } else {
-                    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                            Intent.ShortcutIconResource.fromContext(this,
-                                    R.drawable.ic_launcher_shortcut_contact));
-                }
-            } else {
-                // This is a direct dial or sms shortcut.
-                String number = c.getString(PHONE_NUMBER_COLUMN_INDEX);
-                int type = c.getInt(PHONE_TYPE_COLUMN_INDEX);
-                String scheme;
-                int resid;
-                if (Intent.ACTION_CALL.equals(mShortcutAction)) {
-                    scheme = Constants.SCHEME_TEL;
-                    resid = R.drawable.badge_action_call;
-                } else {
-                    scheme = Constants.SCHEME_SMSTO;
-                    resid = R.drawable.badge_action_sms;
-                }
-
-                // Make the URI a direct tel: URI so that it will always continue to work
-                Uri phoneUri = Uri.fromParts(scheme, number, null);
-                shortcutIntent = new Intent(mShortcutAction, phoneUri);
-
-                intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
-                        generatePhoneNumberIcon(selectedUri, type, resid));
-            }
-            shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-            setResult(RESULT_OK, intent);
-        } else {
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-            setResult(RESULT_OK, intent.setData(selectedUri));
-        }
-        finish();
-    }
-
-    private Bitmap framePhoto(Bitmap photo) {
-        final Resources r = getResources();
-        final Drawable frame = r.getDrawable(com.android.internal.R.drawable.quickcontact_badge);
-
-        final int width = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_width);
-        final int height = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_height);
-
-        frame.setBounds(0, 0, width, height);
-
-        final Rect padding = new Rect();
-        frame.getPadding(padding);
-
-        final Rect source = new Rect(0, 0, photo.getWidth(), photo.getHeight());
-        final Rect destination = new Rect(padding.left, padding.top,
-                width - padding.right, height - padding.bottom);
-
-        final int d = Math.max(width, height);
-        final Bitmap b = Bitmap.createBitmap(d, d, Bitmap.Config.ARGB_8888);
-        final Canvas c = new Canvas(b);
-
-        c.translate((d - width) / 2.0f, (d - height) / 2.0f);
-        frame.draw(c);
-        c.drawBitmap(photo, source, destination, new Paint(Paint.FILTER_BITMAP_FLAG));
-
-        return b;
-    }
-
-    /**
-     * Generates a phone number shortcut icon. Adds an overlay describing the type of the phone
-     * number, and if there is a photo also adds the call action icon.
-     *
-     * @param lookupUri The person the phone number belongs to
-     * @param type The type of the phone number
-     * @param actionResId The ID for the action resource
-     * @return The bitmap for the icon
-     */
-    private Bitmap generatePhoneNumberIcon(Uri lookupUri, int type, int actionResId) {
-        final Resources r = getResources();
-        boolean drawPhoneOverlay = true;
-        final float scaleDensity = getResources().getDisplayMetrics().scaledDensity;
-
-        Bitmap photo = loadContactPhoto(lookupUri, null);
-        if (photo == null) {
-            // If there isn't a photo use the generic phone action icon instead
-            Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
-            if (phoneIcon != null) {
-                photo = phoneIcon;
-                drawPhoneOverlay = false;
-            } else {
-                return null;
-            }
-        }
-
-        // Setup the drawing classes
-        Bitmap icon = createShortcutBitmap();
-        Canvas canvas = new Canvas(icon);
-
-        // Copy in the photo
-        Paint photoPaint = new Paint();
-        photoPaint.setDither(true);
-        photoPaint.setFilterBitmap(true);
-        Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
-        Rect dst = new Rect(0,0, mIconSize, mIconSize);
-        canvas.drawBitmap(photo, src, dst, photoPaint);
-
-        // Create an overlay for the phone number type
-        String overlay = null;
-        switch (type) {
-            case Phone.TYPE_HOME:
-                overlay = getString(R.string.type_short_home);
-                break;
-
-            case Phone.TYPE_MOBILE:
-                overlay = getString(R.string.type_short_mobile);
-                break;
-
-            case Phone.TYPE_WORK:
-                overlay = getString(R.string.type_short_work);
-                break;
-
-            case Phone.TYPE_PAGER:
-                overlay = getString(R.string.type_short_pager);
-                break;
-
-            case Phone.TYPE_OTHER:
-                overlay = getString(R.string.type_short_other);
-                break;
-        }
-        if (overlay != null) {
-            Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
-            textPaint.setTextSize(20.0f * scaleDensity);
-            textPaint.setTypeface(Typeface.DEFAULT_BOLD);
-            textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
-            textPaint.setShadowLayer(3f, 1, 1, r.getColor(R.color.textColorIconOverlayShadow));
-            canvas.drawText(overlay, 2 * scaleDensity, 16 * scaleDensity, textPaint);
-        }
-
-        // Draw the phone action icon as an overlay
-        if (ENABLE_ACTION_ICON_OVERLAYS && drawPhoneOverlay) {
-            Bitmap phoneIcon = getPhoneActionIcon(r, actionResId);
-            if (phoneIcon != null) {
-                src.set(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
-                int iconWidth = icon.getWidth();
-                dst.set(iconWidth - ((int) (20 * scaleDensity)), -1,
-                        iconWidth, ((int) (19 * scaleDensity)));
-                canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
-            }
-        }
-
-        return icon;
-    }
-
-    private Bitmap scaleToAppIconSize(Bitmap photo) {
-        // Setup the drawing classes
-        Bitmap icon = createShortcutBitmap();
-        Canvas canvas = new Canvas(icon);
-
-        // Copy in the photo
-        Paint photoPaint = new Paint();
-        photoPaint.setDither(true);
-        photoPaint.setFilterBitmap(true);
-        Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
-        Rect dst = new Rect(0,0, mIconSize, mIconSize);
-        canvas.drawBitmap(photo, src, dst, photoPaint);
-
-        return icon;
-    }
-
-    private Bitmap createShortcutBitmap() {
-        return Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
-    }
-
-    /**
-     * Returns the icon for the phone call action.
-     *
-     * @param r The resources to load the icon from
-     * @param resId The resource ID to load
-     * @return the icon for the phone call action
-     */
-    private Bitmap getPhoneActionIcon(Resources r, int resId) {
-        Drawable phoneIcon = r.getDrawable(resId);
-        if (phoneIcon instanceof BitmapDrawable) {
-            BitmapDrawable bd = (BitmapDrawable) phoneIcon;
-            return bd.getBitmap();
-        } else {
-            return null;
-        }
+    @Deprecated
+    private void returnPickerResult(Cursor c, String string, Uri uri) {
     }
 
     protected Uri getUriToQuery() {
@@ -1887,54 +1668,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         // Default to normal aggregate projection
         return CONTACTS_SUMMARY_PROJECTION;
-    }
-
-    private Bitmap loadContactPhoto(Uri selectedUri, BitmapFactory.Options options) {
-        Uri contactUri = null;
-        if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(selectedUri))) {
-            // TODO we should have a "photo" directory under the lookup URI itself
-            contactUri = Contacts.lookupContact(getContentResolver(), selectedUri);
-        } else {
-
-            Cursor cursor = getContentResolver().query(selectedUri,
-                    new String[] { Data.CONTACT_ID }, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    final long contactId = cursor.getLong(0);
-                    contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                }
-            } finally {
-                if (cursor != null) cursor.close();
-            }
-        }
-
-        Cursor cursor = null;
-        Bitmap bm = null;
-
-        try {
-            Uri photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY);
-            cursor = getContentResolver().query(photoUri, new String[] {Photo.PHOTO},
-                    null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                bm = ContactsUtils.loadContactPhoto(cursor, 0, options);
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        if (bm == null) {
-            final int[] fallbacks = {
-                R.drawable.ic_contact_picture,
-                R.drawable.ic_contact_picture_2,
-                R.drawable.ic_contact_picture_3
-            };
-            bm = BitmapFactory.decodeResource(getResources(),
-                    fallbacks[new Random().nextInt(fallbacks.length)]);
-        }
-
-        return bm;
     }
 
     /**
