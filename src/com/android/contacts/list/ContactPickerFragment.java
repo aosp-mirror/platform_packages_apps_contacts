@@ -16,7 +16,10 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,21 +29,31 @@ import android.widget.AdapterView;
  * Fragment for the contact list used for browsing contacts (as compared to
  * picking a contact with one of the PICK or SHORTCUT intents).
  */
-public class ContactPickerFragment extends ContactEntryListFragment<ContactListAdapter> {
+public class ContactPickerFragment extends ContactEntryListFragment<ContactListAdapter>
+        implements OnShortcutIntentCreatedListener {
 
     private OnContactPickerActionListener mListener;
     private boolean mCreateContactEnabled;
+    private boolean mShortcutRequested;
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
         mListener = listener;
+    }
+
+    public boolean isCreateContactEnabled() {
+        return mCreateContactEnabled;
     }
 
     public void setCreateContactEnabled(boolean flag) {
         this.mCreateContactEnabled = flag;
     }
 
-    public boolean isCreateContactEnabled() {
-        return mCreateContactEnabled;
+    public boolean isShortcutRequested() {
+        return mShortcutRequested;
+    }
+
+    public void setShortcutRequested(boolean flag) {
+        mShortcutRequested = flag;
     }
 
     @Override
@@ -72,13 +85,17 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         } else {
             ContactListAdapter adapter = getAdapter();
             adapter.moveToPosition(position);
-            mListener.onPickContactAction(adapter.getContactUri());
+            if (mShortcutRequested) {
+                ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
+                builder.createContactShortcutIntent(adapter.getContactUri());
+            } else {
+                mListener.onPickContactAction(adapter.getContactUri());
+            }
         }
     }
 
     @Override
     protected ContactListAdapter createListAdapter() {
-        // TODO different adapter
         ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
         adapter.setSectionHeaderDisplayEnabled(true);
 
@@ -92,8 +109,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
         adapter.setSortOrder(getSortOrder());
 
-        // TODO more settings
-
         return adapter;
     }
 
@@ -106,5 +121,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         } else {
             return inflater.inflate(R.layout.contacts_list_content, null);
         }
+    }
+
+    public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
+        mListener.onShortcutIntentCreated(shortcutIntent);
     }
 }

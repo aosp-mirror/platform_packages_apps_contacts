@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import android.content.Intent;
 import android.net.Uri;
 
 /**
@@ -36,4 +37,9 @@ public interface OnContactPickerActionListener  {
      * Returns the selected contact to the requester.
      */
     void onPickContactAction(Uri contactUri);
+
+    /**
+     * Returns the selected contact as a shortcut intent.
+     */
+    void onShortcutIntentCreated(Intent intent);
 }

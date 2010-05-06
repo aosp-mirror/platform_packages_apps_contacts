@@ -664,6 +664,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setCreateContactEnabled(true);
                 }
 
+                fragment.setShortcutRequested(mShortcutAction != null);
+
                 fragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
                     public void onSearchAllContactsAction(String string) {
                         doSearch();
@@ -675,7 +677,13 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     }
 
                     public void onPickContactAction(Uri contactUri) {
+                        Intent intent = new Intent();
                         setResult(RESULT_OK, intent.setData(contactUri));
+                        finish();
+                    }
+
+                    public void onShortcutIntentCreated(Intent intent) {
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
 
