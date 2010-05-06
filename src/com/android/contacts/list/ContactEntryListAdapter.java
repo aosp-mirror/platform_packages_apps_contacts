@@ -26,6 +26,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,9 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     private String mQueryString;
     private boolean mSearchMode;
     private boolean mSearchResultsMode;
+
+    private boolean mLoading = true;
+    private boolean mEmptyListEnabled = true;
 
     public ContactEntryListAdapter(Context context) {
         super(context, R.layout.list_section, R.id.header_text,
@@ -146,6 +150,14 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
         mDisplayPhotos = displayPhotos;
     }
 
+    public boolean isEmptyListEnabled() {
+        return mEmptyListEnabled;
+    }
+
+    public void setEmptyListEnabled(boolean flag) {
+        mEmptyListEnabled = flag;
+    }
+
     /*
      * TODO change this method when loaders are introduced.
      */
@@ -157,6 +169,7 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
     @Override
     public void changeCursor(Cursor cursor) {
+        mLoading = false;
         super.changeCursor(cursor);
 
         if (isSectionHeaderDisplayEnabled()) {
@@ -181,6 +194,25 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
             setIndexer(new ContactsSectionIndexer(sections, counts));
         } else {
             setIndexer(null);
+        }
+    }
+
+    @Override
+    public boolean isEmpty() {
+        // TODO
+//        if (contactsListActivity.mProviderStatus != ProviderStatus.STATUS_NORMAL) {
+//            return true;
+//        }
+
+        if (!mEmptyListEnabled) {
+            return false;
+        } else if (isSearchMode()) {
+            return TextUtils.isEmpty(getQueryString());
+        } else if (mCursor == null || mLoading) {
+            // We don't want the empty state to show when loading.
+            return false;
+        } else {
+            return super.isEmpty();
         }
     }
 

@@ -17,6 +17,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactEntryListView;
+import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
@@ -25,18 +26,25 @@ import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.patterns.CursorLoader;
 import android.app.patterns.Loader;
 import android.app.patterns.LoaderManagingFragment;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.IContentService;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -62,6 +70,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         implements OnItemClickListener,
         OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
         OnFocusChangeListener, OnTouchListener {
+
+    private static final String TAG = "ContactEntryListFragment";
 
     private static final String LIST_STATE_KEY = "liststate";
 
@@ -89,6 +99,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
     private SearchEditText mSearchEditText;
+    private ContactListEmptyView mEmptyView;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -129,6 +140,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mListView;
     }
 
+    public ContactListEmptyView getEmptyView() {
+        return mEmptyView;
+    }
+
     @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(), null, null, null, null, null);
@@ -145,6 +160,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return;
         }
 
+        if (mEmptyView != null && (data == null || data.getCount() == 0)) {
+            prepareEmptyView();
+        }
+
         mAdapter.changeCursor(data);
         showCount(data);
     }
@@ -152,6 +171,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void reloadData() {
         mAdapter.configureLoader(mLoader);
         mLoader.forceLoad();
+    }
+
+    /**
+     * Configures the empty view. It is called when we are about to populate
+     * the list with an empty cursor.
+     */
+    protected void prepareEmptyView() {
     }
 
     /**
@@ -284,6 +310,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         View emptyView = mView.findViewById(com.android.internal.R.id.empty);
         if (emptyView != null) {
             mListView.setEmptyView(emptyView);
+            if (emptyView instanceof ContactListEmptyView) {
+                mEmptyView = (ContactListEmptyView)emptyView;
+            }
         }
 
         mListView.setOnItemClickListener(this);
@@ -479,5 +508,35 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     .getQuantityText(pluralResourceId, count).toString();
             return String.format(format, count);
         }
+    }
+
+    protected void setEmptyText(int resourceId) {
+        TextView empty = (TextView) getEmptyView().findViewById(R.id.emptyText);
+        empty.setText(getActivity().getText(resourceId));
+        empty.setVisibility(View.VISIBLE);
+    }
+
+    // TODO redesign into an async task or loader
+    protected boolean isSyncActive() {
+        Account[] accounts = AccountManager.get(getActivity()).getAccounts();
+        if (accounts != null && accounts.length > 0) {
+            IContentService contentService = ContentResolver.getContentService();
+            for (Account account : accounts) {
+                try {
+                    if (contentService.isSyncActive(account, ContactsContract.AUTHORITY)) {
+                        return true;
+                    }
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Could not get the sync status");
+                }
+            }
+        }
+        return false;
+    }
+
+    protected boolean hasIccCard() {
+        TelephonyManager telephonyManager =
+                (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.hasIccCard();
     }
 }

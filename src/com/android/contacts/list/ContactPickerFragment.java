@@ -109,6 +109,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
         adapter.setSortOrder(getSortOrder());
 
+        // If "Create new contact" is shown, don't display the empty list UI
+        adapter.setEmptyListEnabled(!isCreateContactEnabled());
+
         return adapter;
     }
 
@@ -120,6 +123,33 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
             return inflater.inflate(R.layout.contacts_list_search_results, null);
         } else {
             return inflater.inflate(R.layout.contacts_list_content, null);
+        }
+    }
+
+    @Override
+    protected void prepareEmptyView() {
+        if (isSearchMode()) {
+            return;
+        } else if (isSearchResultsMode()) {
+            setEmptyText(R.string.noMatchingContacts);
+        } else if (isSyncActive()) {
+            if (mShortcutRequested) {
+                // Help text is the same no matter whether there is SIM or not.
+                setEmptyText(R.string.noContactsHelpTextWithSyncForCreateShortcut);
+            } else if (hasIccCard()) {
+                setEmptyText(R.string.noContactsHelpTextWithSync);
+            } else {
+                setEmptyText(R.string.noContactsNoSimHelpTextWithSync);
+            }
+        } else {
+            if (mShortcutRequested) {
+                // Help text is the same no matter whether there is SIM or not.
+                setEmptyText(R.string.noContactsHelpTextWithSyncForCreateShortcut);
+            } else if (hasIccCard()) {
+                setEmptyText(R.string.noContactsHelpText);
+            } else {
+                setEmptyText(R.string.noContactsNoSimHelpText);
+            }
         }
     }
 

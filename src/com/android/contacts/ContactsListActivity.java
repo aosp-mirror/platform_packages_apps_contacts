@@ -411,7 +411,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     // The size of a home screen shortcut icon.
-    private int mIconSize;
     private ContactsPreferences mContactsPrefs;
     public int mDisplayOrder;
     private int mSortOrder;
@@ -446,7 +445,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mIconSize = getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         mContactsPrefs = new ContactsPreferences(this);
 
         mQueryHandler = new QueryHandler(this);

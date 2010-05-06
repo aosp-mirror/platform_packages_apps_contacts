@@ -59,6 +59,11 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
         return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
+    @Override
+    protected void prepareEmptyView() {
+        setEmptyText(R.string.noFavoritesHelpText);
+    }
+
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
