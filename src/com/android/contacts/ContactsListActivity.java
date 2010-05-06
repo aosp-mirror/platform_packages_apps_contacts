@@ -29,7 +29,9 @@ import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -713,10 +715,25 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             }
             case MODE_LEGACY_PICK_POSTAL:
             case MODE_PICK_POSTAL: {
-                mListFragment = new DefaultContactListFragment();
-                if (mMode == MODE_LEGACY_PICK_POSTAL) {
-                    mListFragment.setLegacyCompatibility(true);
+                PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
+                if (mMode == MODE_LEGACY_PICK_PHONE) {
+                    fragment.setLegacyCompatibility(true);
                 }
+                fragment.setSectionHeaderDisplayEnabled(false);
+                fragment.setOnPostalAddressPickerActionListener(
+                        new OnPostalAddressPickerActionListener() {
+
+                    public void onPickPostalAddressAction(Uri dataUri) {
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent.setData(dataUri));
+                        finish();
+                    }
+
+                    public void onSearchAllContactsAction(String string) {
+                        doSearch();
+                    }
+                });
+                mListFragment = fragment;
                 break;
             }
             case MODE_PICK_MULTIPLE_PHONES: {
