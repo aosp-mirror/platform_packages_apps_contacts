@@ -32,7 +32,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
@@ -54,7 +53,7 @@ import java.util.List;
 /**
  * Displays of phone numbers and allows selection of multiple numbers.
  */
-public class MultiplePhonePickerActivity extends ContactsListActivity {
+public class MultiplePhonePickerActivity extends ContactsListActivity implements OnClickListener {
     /**
      * User selected phone number and id in MODE_PICK_MULTIPLE_PHONES mode.
      */
@@ -146,8 +145,6 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {

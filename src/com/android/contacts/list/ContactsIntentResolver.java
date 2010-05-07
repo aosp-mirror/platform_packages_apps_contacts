@@ -16,7 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
@@ -200,11 +199,8 @@ public class ContactsIntentResolver {
     private static final int QUERY_MODE_MAILTO = 1;
     private static final int QUERY_MODE_TEL = 2;
 
-    private final ContactsApplicationController mAppController;
-
-    public ContactsIntentResolver(Activity context, ContactsApplicationController appController) {
+    public ContactsIntentResolver(Activity context) {
         this.mContext = context;
-        this.mAppController = appController;
     }
 
     public void setIntent(Intent intent) {

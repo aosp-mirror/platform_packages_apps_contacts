@@ -24,7 +24,6 @@ import com.android.contacts.list.ContactItemListAdapter;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
-import com.android.contacts.list.DefaultContactListFragment;
 import com.android.contacts.list.MultiplePhonePickerFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
@@ -35,9 +34,7 @@ import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
-import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.ui.ContactsPreferencesActivity;
-import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.widget.ContextMenuAdapter;
 
@@ -54,16 +51,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.UriMatcher;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Contacts.ContactMethods;
@@ -74,7 +67,6 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -92,9 +84,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -108,9 +98,7 @@ import java.util.List;
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
 @SuppressWarnings("deprecation")
-public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener,
-        View.OnClickListener,
-        ContactsApplicationController {
+public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -350,11 +338,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public int mMode = MODE_DEFAULT;
     private boolean mRunQueriesSynchronously;
     protected QueryHandler mQueryHandler;
-    private boolean mJustCreated;
-    private boolean mSyncEnabled;
     Uri mSelectedContactUri;
 
-//    private boolean mDisplayAll;
     public boolean mDisplayOnlyPhones;
 
     private String mGroupName;
@@ -420,7 +405,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     protected CallOrSmsInitiator mCallOrSmsInitiator;
 
     public ContactsListActivity() {
-        mIntentResolver = new ContactsIntentResolver(this, this);
+        mIntentResolver = new ContactsIntentResolver(this);
     }
 
     /**
@@ -434,13 +419,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mQueryHandler = new QueryHandler(this);
-        mJustCreated = true;
-        mSyncEnabled = true;
-
         // Resolve the intent
         final Intent intent = getIntent();
-
         if (!resolveIntent(intent)) {
             return;
         }
@@ -477,7 +457,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mSearchMode = mIntentResolver.mSearchMode;
         mShowSearchSnippets = mIntentResolver.mShowSearchSnippets;
         mInitialFilter = mIntentResolver.mInitialFilter;
-        mDisplayOnlyPhones = mIntentResolver.mDisplayOnlyPhones;
         mShortcutAction = mIntentResolver.mShortcutAction;
         mSearchResultsMode = mIntentResolver.mSearchResultsMode;
         mShowNumberOfContacts = mIntentResolver.mShowNumberOfContacts;
@@ -725,10 +704,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 break;
             }
             default: {
-                mListFragment = new DefaultContactListFragment();
-                if (!mSearchMode) {
-                    mListFragment.setSectionHeaderDisplayEnabled(true);
-                }
+                throw new UnsupportedOperationException();
             }
         }
 
@@ -739,8 +715,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
             mListFragment.setPhotoLoaderEnabled(true);
         }
-
-        mListFragment.setContactsApplicationController(this);
 
         return true;
     }
@@ -757,11 +731,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         finish();
     }
 
-    @Deprecated
-    public void setupListView(ListAdapter adapter, ListView list) {
-        mAdapter = (ContactEntryListAdapter)adapter;
-    }
-
     public int getSummaryDisplayNameColumnIndex() {
         if (mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
             return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
@@ -770,28 +739,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
     }
 
-    /** {@inheritDoc} */
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            // TODO a better way of identifying the button
-            case android.R.id.button1: {
-                final int position = (Integer)v.getTag();
-                Cursor c = mAdapter.getCursor();
-                if (c != null) {
-                    c.moveToPosition(position);
-                    callContact(c);
-                }
-                break;
-            }
-        }
-    }
-
     @Override
     protected void onStop() {
         super.onStop();
-
-        mAdapter.changeCursor(null);
 
         if (mMode == MODE_QUERY) {
             // Make sure the search box is closed
@@ -1121,7 +1071,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
             case SUBACTIVITY_DISPLAY_GROUP:
                 // Mark as just created so we re-run the view query
-                mJustCreated = true;
+//                mJustCreated = true;
                 break;
 
             case SUBACTIVITY_FILTER:
@@ -1482,11 +1432,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
      * {@link #mDisplayOnlyPhones} flag.
      */
     private String getContactSelection() {
-        if (mDisplayOnlyPhones) {
-            return CLAUSE_ONLY_VISIBLE + " AND " + CLAUSE_ONLY_PHONES;
-        } else {
+//        if (mDisplayOnlyPhones) {
+//            return CLAUSE_ONLY_VISIBLE + " AND " + CLAUSE_ONLY_PHONES;
+//        } else {
             return CLAUSE_ONLY_VISIBLE;
-        }
+//        }
     }
 
     protected Uri getContactFilterUri(String filter) {

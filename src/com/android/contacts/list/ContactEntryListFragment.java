@@ -19,8 +19,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactEntryListView;
 import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoLoader;
-import com.android.contacts.ContactsApplicationController;
-import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -92,7 +90,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mSearchResultsMode;
     private String mQueryString;
 
-    private ContactsApplicationController mAppController;
     private CursorLoader mLoader;
     private T mAdapter;
     private View mView;
@@ -280,16 +277,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    @Deprecated
-    public void setContactsApplicationController(ContactsApplicationController controller) {
-        mAppController = controller;
-    }
-
-    @Deprecated
-    public ContactsApplicationController getContactsApplicationController() {
-        return mAppController;
-    }
-
     public void setContextMenuAdapter(ContextMenuAdapter adapter) {
         mContextMenuAdapter = adapter;
         if (mListView != null) {
@@ -336,7 +323,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mAdapter.setPhotoLoader(mPhotoLoader);
         }
 
-        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
         return mView;
     }
 
@@ -402,6 +388,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);
         mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.changeCursor(null);
     }
 
     private boolean isNameHighlighingEnabled() {

@@ -245,7 +245,7 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
-        view.setOnCallButtonClickListener(contactsListActivity);
+//        view.setOnCallButtonClickListener(contactsListActivity);
         return view;
     }
 
