@@ -27,7 +27,7 @@ import android.view.ViewGroup;
 /**
  * Fragment containing a phone number list for picking.
  */
-public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNumberListAdapter>
+public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
         implements OnShortcutIntentCreatedListener {
     private OnPhoneNumberPickerActionListener mListener;
     private String mShortcutAction;
@@ -51,21 +51,34 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNum
 
     @Override
     protected void onItemClick(int position, long id) {
-        PhoneNumberListAdapter adapter = getAdapter();
-//        if (adapter.isSearchAllContactsItemPosition(position)) {
-//            searchAllContacts();
-//        } else {
-        adapter.moveToPosition(position);
-        pickPhoneNumber(adapter.getDataUri());
-//        }
+        if (!isLegacyCompatibility()) {
+            PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
+//          if (adapter.isSearchAllContactsItemPosition(position)) {
+//              searchAllContacts();
+//          } else {
+            adapter.moveToPosition(position);
+            pickPhoneNumber(adapter.getDataUri());
+//          }
+        } else {
+            LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter)getAdapter();
+            adapter.moveToPosition(position);
+            pickPhoneNumber(adapter.getPhoneUri());
+        }
     }
 
     @Override
-    protected PhoneNumberListAdapter createListAdapter() {
-        PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
-        adapter.setSectionHeaderDisplayEnabled(true);
-        adapter.setDisplayPhotos(true);
-        return adapter;
+    protected ContactEntryListAdapter createListAdapter() {
+        if (!isLegacyCompatibility()) {
+            PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(true);
+            adapter.setDisplayPhotos(true);
+            return adapter;
+        } else {
+            LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(true);
+            adapter.setDisplayPhotos(true);
+            return adapter;
+        }
     }
 
     @Override
@@ -83,8 +96,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNum
         if (mShortcutAction == null) {
             mListener.onPickPhoneNumberAction(uri);
         } else {
+            if (isLegacyCompatibility()) {
+                throw new UnsupportedOperationException();
+            }
             ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
-            builder.createPhoneNumberShortcutIntent(getAdapter().getDataUri(), mShortcutAction);
+            builder.createPhoneNumberShortcutIntent(uri, mShortcutAction);
         }
     }
 

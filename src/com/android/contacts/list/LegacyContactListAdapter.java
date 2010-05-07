@@ -69,10 +69,6 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
         return getCursor().getString(PERSON_DISPLAY_NAME_COLUMN_INDEX);
     }
 
-    /**
-     * Builds the {@link Contacts#CONTENT_LOOKUP_URI} for the given
-     * {@link ListView} position.
-     */
     public Uri getPersonUri() {
         Cursor cursor = getCursor();
         long personId = cursor.getLong(PERSON_ID_COLUMN_INDEX);
