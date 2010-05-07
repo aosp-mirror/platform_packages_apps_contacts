@@ -63,17 +63,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<PhoneNum
     @Override
     protected PhoneNumberListAdapter createListAdapter() {
         PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
-
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
-
-        adapter.setSearchMode(isSearchMode());
-        adapter.setSearchResultsMode(isSearchResultsMode());
-        adapter.setQueryString(getQueryString());
-
-        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
-        adapter.setSortOrder(getSortOrder());
-
         return adapter;
     }
 

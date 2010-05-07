@@ -102,7 +102,6 @@ public class ContactListModeTest
         startActivity(intent, null, null);
         ContactsListActivity activity = getActivity();
         activity.runQueriesSynchronously();
-        activity.onResume();        // Trigger the queries
 
         ListView listView = (ListView)activity.findViewById(android.R.id.list);
         ListAdapter adapter = listView.getAdapter();

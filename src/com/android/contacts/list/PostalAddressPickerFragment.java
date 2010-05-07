@@ -57,13 +57,6 @@ public class PostalAddressPickerFragment
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
 
-        adapter.setSearchMode(isSearchMode());
-        adapter.setSearchResultsMode(isSearchResultsMode());
-        adapter.setQueryString(getQueryString());
-
-        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
-        adapter.setSortOrder(getSortOrder());
-
         return adapter;
     }
 

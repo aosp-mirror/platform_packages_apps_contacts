@@ -28,17 +28,12 @@ public abstract class ContactBrowseListFragment extends
 
     private OnContactBrowserActionListener mListener;
 
-    // TODO
-    private boolean mContactsWithPhoneNumbersOnly;
-
     @Override
     protected void prepareEmptyView() {
         if (isSearchMode()) {
             return;
         } else if (isSearchResultsMode()) {
             setEmptyText(R.string.noMatchingContacts);
-        } else if (mContactsWithPhoneNumbersOnly) {
-            setEmptyText(R.string.noContactsWithPhoneNumbers);
         } else if (isSyncActive()) {
             if (hasIccCard()) {
                 setEmptyText(R.string.noContactsHelpTextWithSync);

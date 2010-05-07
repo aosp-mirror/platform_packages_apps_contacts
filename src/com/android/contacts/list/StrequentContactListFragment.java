@@ -43,12 +43,7 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
                 new StrequentContactListAdapter(getActivity(), CALL_BUTTON_ID);
         adapter.setSectionHeaderDisplayEnabled(false);
         adapter.setDisplayPhotos(true);
-
-        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
-        adapter.setSortOrder(getSortOrder());
-
         adapter.setQuickContactEnabled(true);
-
         adapter.setCallButtonListener(this);
 
         return adapter;

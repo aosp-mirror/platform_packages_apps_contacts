@@ -409,7 +409,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     // The size of a home screen shortcut icon.
-    private ContactsPreferences mContactsPrefs;
     public int mDisplayOrder;
     private int mSortOrder;
 
@@ -434,8 +433,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
-        mContactsPrefs = new ContactsPreferences(this);
 
         mQueryHandler = new QueryHandler(this);
         mJustCreated = true;
@@ -673,7 +670,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             }
             case MODE_LEGACY_PICK_PHONE:
             case MODE_PICK_PHONE: {
-                mListFragment = new DefaultContactListFragment();
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
                 if (mMode == MODE_LEGACY_PICK_PHONE) {
                     fragment.setLegacyCompatibility(true);
@@ -739,8 +735,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         mListFragment.setSearchMode(mSearchMode);
         mListFragment.setSearchResultsMode(mSearchResultsMode);
         mListFragment.setQueryString(mInitialFilter);
-        mListFragment.setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
-        mListFragment.setSortOrder(mContactsPrefs.getSortOrder());
 
         if ((mMode & MODE_MASK_SHOW_PHOTOS) == MODE_MASK_SHOW_PHOTOS) {
             mListFragment.setPhotoLoaderEnabled(true);
@@ -792,29 +786,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             }
         }
     }
-
-    /**
-     * Sets the mode when the request is for "default"
-     */
-    private void setDefaultMode() {
-        // Load the preferences
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        mDisplayOnlyPhones = prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
-                Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Move to the fragment
-        if (mListFragment != null) {
-            mListFragment.setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
-            mListFragment.setSortOrder(mContactsPrefs.getSortOrder());
-        }
-    }
-
 
     @Override
     protected void onStop() {
@@ -1587,33 +1558,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
-
-        mSortOrder = mContactsPrefs.getSortOrder();
-        mDisplayOrder = mContactsPrefs.getDisplayOrder();
-
-        if (mListFragment != null) {
-            mListFragment.setContactNameDisplayOrder(mDisplayOrder);
-            mListFragment.setSortOrder(mSortOrder);
-        }
-
-        if (mListView instanceof ContactEntryListView) {
-            ContactEntryListView listView = (ContactEntryListView)mListView;
-
-            // When sort order and display order contradict each other, we want to
-            // highlight the part of the name used for sorting.
-            if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
-                    mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
-                listView.setHighlightNamesWhenScrolling(true);
-                mAdapter.setNameHighlightingEnabled(true);
-            } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
-                    mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-                listView.setHighlightNamesWhenScrolling(true);
-                mAdapter.setNameHighlightingEnabled(true);
-            } else {
-                listView.setHighlightNamesWhenScrolling(false);
-                mAdapter.setNameHighlightingEnabled(false);
-            }
-        }
 
         String[] projection = getProjectionForQuery();
         if (mSearchMode && TextUtils.isEmpty(mListFragment.getQueryString())) {

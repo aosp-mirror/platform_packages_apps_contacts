@@ -30,8 +30,14 @@ import android.view.ViewGroup;
  */
 public class DefaultContactListAdapter extends ContactListAdapter {
 
+    private boolean mContactsWithPhoneNumbersOnly;
+
     public DefaultContactListAdapter(Context context) {
         super(context);
+    }
+
+    public void setContactsWithPhoneNumbersOnly(boolean flag) {
+        mContactsWithPhoneNumbersOnly = flag;
     }
 
     @Override
@@ -43,12 +49,22 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     TextUtils.isEmpty(query) ? "" : Uri.encode(query));
             loader.setProjection(CONTACTS_SUMMARY_FILTER_PROJECTION);
             if (!isSearchResultsMode()) {
-                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+                if (mContactsWithPhoneNumbersOnly) {
+                    loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND "
+                            + Contacts.HAS_PHONE_NUMBER + "=1");
+                } else {
+                    loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+                }
             }
         } else {
             uri = Contacts.CONTENT_URI;
             loader.setProjection(CONTACTS_SUMMARY_PROJECTION);
-            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+            if (mContactsWithPhoneNumbersOnly) {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND "
+                        + Contacts.HAS_PHONE_NUMBER + "=1");
+            } else {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+            }
         }
 
         if (isSectionHeaderDisplayEnabled()) {

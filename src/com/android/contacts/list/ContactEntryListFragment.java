@@ -22,6 +22,7 @@ import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsApplicationController;
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
+import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnCloseListener;
@@ -36,12 +37,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.IContentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.ContactsContract.ProviderStatus;
@@ -109,6 +112,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private SearchEditText mSearchEditText;
     private ContactListEmptyView mEmptyView;
     private ProviderStatusLoader mProviderStatusLoader;
+    private SharedPreferences mSharedPrefs;
+    private ContactsPreferences mContactsPrefs;
 
     private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
@@ -128,19 +133,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public T getAdapter() {
         return mAdapter;
-    }
-
-    public void setListAdapter(T adapter) {
-        mAdapter = adapter;
-        mListView.setAdapter(mAdapter);
-        if (isPhotoLoaderEnabled()) {
-            mAdapter.setPhotoLoader(mPhotoLoader);
-        }
-        if (isNameHighlighingEnabled()) {
-            mAdapter.setNameHighlightingEnabled(true);
-        }
-
-        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
     }
 
     public View getView() {
@@ -189,6 +181,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void reloadData() {
+        configureAdapter();
         mAdapter.configureLoader(mLoader);
         mLoader.forceLoad();
     }
@@ -309,11 +302,41 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     @Override
+    public void onStart() {
+        if (mSharedPrefs == null) {
+            Context activity = getActivity();
+            mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+            mContactsPrefs = new ContactsPreferences(activity);
+        }
+
+        loadPreferences(mSharedPrefs, mContactsPrefs);
+        configureAdapter();
+        mAdapter.configureLoader(mLoader);
+
+        ContactEntryListView listView = (ContactEntryListView)mListView;
+        listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
+
+        super.onStart();
+    }
+
+    protected void loadPreferences(SharedPreferences prefs, ContactsPreferences contactsPrefs) {
+        setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
+        setSortOrder(contactsPrefs.getSortOrder());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
         mView = createView(inflater, container);
         mAdapter = createListAdapter();
-        mAdapter.configureLoader(mLoader);
-        setListAdapter(mAdapter);
+        mAdapter.setSearchMode(isSearchMode());
+        mAdapter.setSearchResultsMode(isSearchResultsMode());
+
+        mListView.setAdapter(mAdapter);
+        if (isPhotoLoaderEnabled()) {
+            mAdapter.setPhotoLoader(mPhotoLoader);
+        }
+
+        ((ContactsListActivity)getActivity()).setupListView(mAdapter, mListView);
         return mView;
     }
 
@@ -350,9 +373,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
-        ContactEntryListView listView = (ContactEntryListView)mListView;
-        listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
-
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader =
                 new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
@@ -375,6 +395,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
         }
         return mView;
+    }
+
+    protected void configureAdapter() {
+        mAdapter.setQueryString(mQueryString);
+        mAdapter.setContactNameDisplayOrder(mDisplayOrder);
+        mAdapter.setSortOrder(mSortOrder);
+        mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
     }
 
     private boolean isNameHighlighingEnabled() {
@@ -422,7 +449,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mPhotoLoader.stop();
         super.onDestroy();
     }
-
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         hideSoftKeyboard();

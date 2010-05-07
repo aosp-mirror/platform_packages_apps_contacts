@@ -16,7 +16,10 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.ui.ContactsPreferences;
+import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,32 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
+    private boolean mContactsWithPhoneNumbersOnly;
+
+    @Override
+    protected void prepareEmptyView() {
+        if (mContactsWithPhoneNumbersOnly) {
+            setEmptyText(R.string.noContactsWithPhoneNumbers);
+        } else {
+            super.prepareEmptyView();
+        }
+    }
+
+    @Override
+    protected void loadPreferences(SharedPreferences prefs, ContactsPreferences contactsPrefs) {
+        super.loadPreferences(prefs, contactsPrefs);
+
+        setContactsWithPhoneNumbersOnly(prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
+                Prefs.DISPLAY_ONLY_PHONES_DEFAULT));
+    }
+
+    public void setContactsWithPhoneNumbersOnly(boolean flag) {
+        mContactsWithPhoneNumbersOnly = flag;
+        ContactListAdapter adapter = getAdapter();
+        if (adapter != null) {
+            ((DefaultContactListAdapter)adapter).setContactsWithPhoneNumbersOnly(flag);
+        }
+    }
 
     @Override
     protected void onItemClick(int position, long id) {
@@ -56,18 +85,18 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected ContactListAdapter createListAdapter() {
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-
-        adapter.setSearchMode(isSearchMode());
-        adapter.setSearchResultsMode(isSearchResultsMode());
-        adapter.setQueryString(getQueryString());
-
-        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
-        adapter.setSortOrder(getSortOrder());
-
         adapter.setDisplayPhotos(true);
         adapter.setQuickContactEnabled(true);
 
         return adapter;
+    }
+
+    @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+
+        DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
+        adapter.setContactsWithPhoneNumbersOnly(mContactsWithPhoneNumbersOnly);
     }
 
     @Override

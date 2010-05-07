@@ -104,10 +104,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
 
         adapter.setSearchMode(isSearchMode());
         adapter.setSearchResultsMode(isSearchResultsMode());
-        adapter.setQueryString(getQueryString());
-
-        adapter.setContactNameDisplayOrder(getContactNameDisplayOrder());
-        adapter.setSortOrder(getSortOrder());
 
         // If "Create new contact" is shown, don't display the empty list UI
         adapter.setEmptyListEnabled(!isCreateContactEnabled());
