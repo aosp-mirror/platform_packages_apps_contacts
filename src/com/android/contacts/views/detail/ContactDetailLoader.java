@@ -43,14 +43,13 @@ import java.util.List;
 /**
  * Loads a single Contact and all it constituent RawContacts.
  */
-public class ContactLoader extends Loader<ContactLoader.Result> {
-    private boolean mIsSynchronous;
+public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
+    private static final String TAG = "ContactLoader";
+
     private Uri mLookupUri;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
-
-    private static final String TAG = "ContactLoader";
 
     public interface Callbacks {
         public void onContactLoaded(Result contact);
@@ -64,6 +63,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * Singleton instance that represents "No Contact Found"
          */
         public static final Result NOT_FOUND = new Result();
+
+        /**
+         * Singleton instance that represents an error, e.g. because of an invalid Uri
+         * TODO: We should come up with something nicer here. Maybe use an Either type so
+         * that we can capture the Exception?
+         */
+        public static final Result ERROR = new Result();
 
         private final Uri mLookupUri;
         private final String mLookupKey;
@@ -225,32 +231,35 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         final static int CONTACT_STATUS_LABEL = 11;
     }
 
-
-    public final class LoadContactTask extends AsyncTask<Void, Void, Result> {
+    private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
 
         @Override
         protected Result doInBackground(Void... args) {
-            final ContentResolver resolver = getContext().getContentResolver();
-            Uri uriCurrentFormat = convertLegacyIfNecessary(mLookupUri);
-            Result result = loadContactHeaderData(resolver, uriCurrentFormat);
-            if (result == Result.NOT_FOUND) {
-                // No record found. Try to lookup up a new record with the same lookupKey.
-                // We might have went through a sync where Ids changed
-                final Uri freshLookupUri = Contacts.getLookupUri(resolver, uriCurrentFormat);
-                result = loadContactHeaderData(resolver, freshLookupUri);
+            try {
+                final ContentResolver resolver = getContext().getContentResolver();
+                final Uri uriCurrentFormat = convertLegacyIfNecessary(mLookupUri);
+                Result result = loadContactHeaderData(resolver, uriCurrentFormat);
                 if (result == Result.NOT_FOUND) {
-                    // Still not found. We now believe this contact really does not exist
-                    Log.e(TAG, "invalid contact uri: " + mLookupUri);
-                    return Result.NOT_FOUND;
+                    // No record found. Try to lookup up a new record with the same lookupKey.
+                    // We might have went through a sync where Ids changed
+                    final Uri freshLookupUri = Contacts.getLookupUri(resolver, uriCurrentFormat);
+                    result = loadContactHeaderData(resolver, freshLookupUri);
+                    if (result == Result.NOT_FOUND) {
+                        // Still not found. We now believe this contact really does not exist
+                        Log.e(TAG, "invalid contact uri: " + mLookupUri);
+                        return Result.NOT_FOUND;
+                    }
                 }
+
+                // These queries could be run in parallel (we did this until froyo). But unless
+                // we actually have two database connections there is no performance gain
+                loadSocial(resolver, result);
+                loadRawContacts(resolver, result);
+
+                return result;
+            } catch (Exception e) {
+                return Result.ERROR;
             }
-
-            // These queries could be run in parallel (we did this until froyo). But unless
-            // we actually have two database connections there is no performance gain
-            loadSocial(resolver, result);
-            loadRawContacts(resolver, result);
-
-            return result;
         }
 
         /**
@@ -436,14 +445,17 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     mObserver = new ForceLoadContentObserver();
                 }
                 Log.i(TAG, "Registering content observer for " + mLookupUri);
-                getContext().getContentResolver().registerContentObserver(
-                        mLookupUri, true, mObserver);
+
+                if (result != Result.ERROR && result != Result.NOT_FOUND) {
+                    getContext().getContentResolver().registerContentObserver(mLookupUri, true,
+                            mObserver);
+                }
                 deliverResult(result);
             }
         }
     }
 
-    public ContactLoader(Context context, Uri lookupUri) {
+    public ContactDetailLoader(Context context, Uri lookupUri) {
         super(context);
         mLookupUri = lookupUri;
     }
@@ -459,11 +471,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
     @Override
     public void forceLoad() {
-        LoadContactTask task = new LoadContactTask();
-        if (mIsSynchronous) {
-            task.onPostExecute(task.doInBackground((Void[])null));
-            return;
-        }
+        final LoadContactTask task = new LoadContactTask();
         task.execute((Void[])null);
     }
 
@@ -479,10 +487,5 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     public void destroy() {
         mContact = null;
         mDestroyed = true;
-    }
-
-
-    public void setSynchronous(boolean value) {
-        mIsSynchronous = value;
     }
 }

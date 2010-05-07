@@ -18,13 +18,11 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.util.DialogManager;
-import com.android.contacts.views.detail.ContactPresenter;
-import com.android.contacts.views.detail.ContactLoader;
+import com.android.contacts.views.detail.ContactDetailFragment;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.app.patterns.Loader;
-import android.app.patterns.LoaderActivity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,16 +30,12 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> implements
-        DialogManager.DialogShowingViewActivity {
-    private static final int LOADER_DETAILS = 1;
-    private ContactPresenter mCoupler;
-    private DialogManager mDialogManager;
+public class ContactDetailActivity extends Activity {
+    private ContactDetailFragment mFragment;
 
     private static final String TAG = "ContactDetailActivity";
 
-    private static final int DIALOG_VIEW_DIALOGS_ID1 = 1;
-    private static final int DIALOG_VIEW_DIALOGS_ID2 = 2;
+    private final FragmentCallbackHandler mCallbackHandler = new FragmentCallbackHandler();
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -49,53 +43,18 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
 
         setContentView(R.layout.contact_detail);
 
-        mDialogManager = new DialogManager(this, DIALOG_VIEW_DIALOGS_ID1, DIALOG_VIEW_DIALOGS_ID2);
+        mFragment = new ContactDetailFragment(this, findViewById(R.id.contact_detail),
+                mCallbackHandler, getIntent().getData());
 
-        mCoupler = new ContactPresenter(this, findViewById(R.id.contact_details));
-        mCoupler.setController(new ContactPresenter.DefaultController(this));
-    }
-
-    @Override
-    public void onInitializeLoaders() {
-        startLoading(LOADER_DETAILS, null);
-    }
-
-    @Override
-    protected ContactLoader onCreateLoader(int id, Bundle args) {
-        switch (id) {
-            case LOADER_DETAILS: {
-                return new ContactLoader(this, getIntent().getData());
-            }
-            default: {
-                Log.wtf(TAG, "Unknown ID in onCreateLoader: " + id);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(Loader loader, ContactLoader.Result data) {
-        final int id = loader.getId();
-        switch (id) {
-            case LOADER_DETAILS:
-                if (data == ContactLoader.Result.NOT_FOUND) {
-                    // Item has been deleted
-                    Log.i(TAG, "No contact found. Closing activity");
-                    finish();
-                    return;
-                }
-                mCoupler.setData(data);
-                break;
-            default: {
-                Log.wtf(TAG, "Unknown ID in onLoadFinished: " + id);
-            }
-        }
+        openFragmentTransaction()
+            .add(mFragment, R.id.contact_detail)
+            .commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO: This is too hardwired.
-        if (mCoupler.onCreateOptionsMenu(menu, getMenuInflater())) return true;
+        if (mFragment.onCreateOptionsMenu(menu, getMenuInflater())) return true;
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -103,7 +62,7 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // TODO: This is too hardwired.
-        if (mCoupler.onPrepareOptionsMenu(menu)) return true;
+        if (mFragment.onPrepareOptionsMenu(menu)) return true;
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -111,24 +70,26 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO: This is too hardwired.
-        if (mCoupler.onOptionsItemSelected(item)) return true;
+        if (mFragment.onOptionsItemSelected(item)) return true;
 
         return super.onOptionsItemSelected(item);
     }
 
-    public DialogManager getDialogManager() {
-        return mDialogManager;
-    }
-
     @Override
     protected Dialog onCreateDialog(int id, Bundle args) {
-        return mDialogManager.onCreateDialog(id, args);
+        // ask the Fragment whether it knows about the dialog
+        final Dialog fragmentResult = mFragment.onCreateDialog(id, args);
+        if (fragmentResult != null) return fragmentResult;
+
+        // Nobody knows about the Dialog
+        Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
+        return null;
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         // TODO: This is too hardwired.
-        if (mCoupler.onContextItemSelected(item)) return true;
+        if (mFragment.onContextItemSelected(item)) return true;
 
         return super.onContextItemSelected(item);
     }
@@ -146,8 +107,22 @@ public class ContactDetailActivity extends LoaderActivity<ContactLoader.Result> 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO: This is too hardwired.
-        if (mCoupler.onKeyDown(keyCode, event)) return true;
+        if (mFragment.onKeyDown(keyCode, event)) return true;
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    private class FragmentCallbackHandler implements ContactDetailFragment.Callbacks {
+        public void closeBecauseContactNotFound() {
+            finish();
+        }
+
+        public void editContact(Uri rawContactUri) {
+            startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
+        }
+
+        public void itemClicked(Intent intent) {
+            startActivity(intent);
+        }
     }
 }

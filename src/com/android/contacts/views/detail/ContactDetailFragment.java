@@ -27,15 +27,15 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
-import com.android.contacts.views.detail.ContactLoader.Result;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.ContactHeaderWidget;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.patterns.Loader;
+import android.app.patterns.LoaderManagingFragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -89,36 +89,32 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class ContactPresenter implements OnCreateContextMenuListener,
-        OnItemClickListener, DialogManager.DialogShowingView {
+public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailLoader.Result>
+        implements OnCreateContextMenuListener, OnItemClickListener {
     private static final String TAG = "ContactDetailsView";
     private static final boolean SHOW_SEPARATORS = false;
 
-    private static final String DIALOG_ID_KEY = "dialog_id";
-    private static final int DIALOG_CONFIRM_DELETE = 1;
-    private static final int DIALOG_CONFIRM_READONLY_DELETE = 2;
-    private static final int DIALOG_CONFIRM_MULTIPLE_DELETE = 3;
-    private static final int DIALOG_CONFIRM_READONLY_HIDE = 4;
-
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
+
+    private static final int LOADER_DETAILS = 1;
 
     private final Context mContext;
     private final View mView;
+    private final LayoutInflater mInflater;
+    private final Uri mLookupUri;
+    private Callbacks mCallbacks;
 
-    private Result mContactData;
-    private Controller mCallbacks;
-    private LayoutInflater mInflater;
+    private ContactDetailLoader.Result mContactData;
     private ContactHeaderWidget mContactHeaderWidget;
     private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
-    private DialogManager mDialogManager = null;
 
     private int mReadOnlySourcesCnt;
     private int mWritableSourcesCnt;
     private boolean mAllRestricted;
-    private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
+    private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
 
     /**
@@ -143,9 +139,12 @@ public class ContactPresenter implements OnCreateContextMenuListener,
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
-    public ContactPresenter(Context context, View view) {
+    public ContactDetailFragment(Context context, View view, Callbacks callbacks, Uri lookupUri) {
+        super();
+        if (callbacks == null) throw new IllegalArgumentException("callbacks must be provided");
         mContext = context;
         mView = view;
+        mCallbacks = callbacks;
 
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
@@ -175,12 +174,47 @@ public class ContactPresenter implements OnCreateContextMenuListener,
 
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
+
+        mLookupUri = lookupUri;
     }
 
-    public void setData(Result data) {
-        mContactData = data;
+    @Override
+    protected void onInitializeLoaders() {
+        startLoading(LOADER_DETAILS, null);
+    }
 
-        bindData();
+    @Override
+    protected Loader<ContactDetailLoader.Result> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case LOADER_DETAILS: {
+                return new ContactDetailLoader(mContext, mLookupUri);
+            }
+            default: {
+                Log.wtf(TAG, "Unknown ID in onCreateLoader: " + id);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void onLoadFinished(Loader<ContactDetailLoader.Result> loader,
+            ContactDetailLoader.Result data) {
+        final int id = loader.getId();
+        switch (id) {
+            case LOADER_DETAILS:
+                if (data == ContactDetailLoader.Result.NOT_FOUND) {
+                    // Item has been deleted
+                    Log.i(TAG, "No contact found. Closing activity");
+                    mCallbacks.closeBecauseContactNotFound();
+                    return;
+                }
+                mContactData = data;
+                bindData();
+                break;
+            default: {
+                Log.wtf(TAG, "Unknown ID in onLoadFinished: " + id);
+            }
+        }
     }
 
     private void bindData() {
@@ -412,45 +446,6 @@ public class ContactPresenter implements OnCreateContextMenuListener,
         }
     }
 
-    public interface Controller {
-        public void onPrimaryClick(ViewEntry entry);
-        public void onSecondaryClick(ViewEntry entry);
-    }
-
-    public static final class DefaultController implements Controller {
-        private Context mContext;
-
-        public DefaultController(Context context) {
-            mContext = context;
-        }
-
-        public void onPrimaryClick(ViewEntry entry) {
-            Intent intent = entry.intent;
-            if (intent != null) {
-                try {
-                    mContext.startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Log.e(TAG, "No activity found for intent: " + intent);
-                }
-            }
-        }
-
-        public void onSecondaryClick(ViewEntry entry) {
-            Intent intent = entry.secondaryIntent;
-            if (intent != null) {
-                try {
-                    mContext.startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Log.e(TAG, "No activity found for intent: " + intent);
-                }
-            }
-        }
-    }
-
-    public void setController(Controller callbacks) {
-        mCallbacks = callbacks;
-    }
-
     /* package */ static String buildActionString(DataKind kind, ContentValues values,
             boolean lowerCase, Context context) {
         if (kind.actionHeader == null) {
@@ -607,7 +602,6 @@ public class ContactPresenter implements OnCreateContextMenuListener,
     }
 
     final class ViewAdapter extends ContactEntryAdapter<ViewEntry> implements OnClickListener {
-
         ViewAdapter(Context context, ArrayList<ArrayList<ViewEntry>> sections) {
             super(context, sections, SHOW_SEPARATORS);
         }
@@ -750,7 +744,9 @@ public class ContactPresenter implements OnCreateContextMenuListener,
             if (v == null) return;
             final ViewEntry entry = (ViewEntry) v.getTag();
             if (entry == null) return;
-            mCallbacks.onSecondaryClick(entry);
+            final Intent intent = entry.secondaryIntent;
+            if (intent == null) return;
+            mCallbacks.itemClicked(intent);
         }
     }
 
@@ -774,10 +770,11 @@ public class ContactPresenter implements OnCreateContextMenuListener,
         switch (item.getItemId()) {
             case R.id.menu_edit: {
                 if (mRawContactIds.size() > 0) {
-                    long rawContactIdToEdit = mRawContactIds.get(0);
-                    Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                    final long rawContactIdToEdit = mRawContactIds.get(0);
+                    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                             rawContactIdToEdit);
-                    mContext.startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
+                    mCallbacks.editContact(rawContactUri);
+                    //mContext.startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
                     return true;
                 } else {
                     // There is no rawContact to edit.
@@ -821,13 +818,13 @@ public class ContactPresenter implements OnCreateContextMenuListener,
 
     private void showDeleteConfirmationDialog() {
         if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
-            showDialog(DIALOG_CONFIRM_READONLY_DELETE);
+            getActivity().showDialog(R.id.detail_dialog_confirm_readonly_delete);
         } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-            showDialog(DIALOG_CONFIRM_READONLY_HIDE);
+            getActivity().showDialog(R.id.detail_dialog_confirm_readonly_hide);
         } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-            showDialog(DIALOG_CONFIRM_MULTIPLE_DELETE);
+            getActivity().showDialog(R.id.detail_dialog_confirm_multiple_delete);
         } else {
-            showDialog(DIALOG_CONFIRM_DELETE);
+            getActivity().showDialog(R.id.detail_dialog_confirm_delete);
         }
     }
 
@@ -868,7 +865,9 @@ public class ContactPresenter implements OnCreateContextMenuListener,
         if (mCallbacks == null) return;
         final ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
         if (entry == null) return;
-        mCallbacks.onPrimaryClick(entry);
+        final Intent intent = entry.intent;
+        if (intent == null) return;
+        mCallbacks.itemClicked(intent);
     }
 
     private final DialogInterface.OnClickListener mDeleteListener =
@@ -878,11 +877,9 @@ public class ContactPresenter implements OnCreateContextMenuListener,
         }
     };
 
-    public Dialog createDialog(Bundle bundle) {
-        if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
-        int dialogId = bundle.getInt(DIALOG_ID_KEY);
-        switch (dialogId) {
-            case DIALOG_CONFIRM_DELETE:
+    public Dialog onCreateDialog(int id, Bundle bundle) {
+        switch (id) {
+            case R.id.detail_dialog_confirm_delete:
                 return new AlertDialog.Builder(mContext)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -891,7 +888,7 @@ public class ContactPresenter implements OnCreateContextMenuListener,
                         .setPositiveButton(android.R.string.ok, mDeleteListener)
                         .setCancelable(false)
                         .create();
-            case DIALOG_CONFIRM_READONLY_DELETE:
+            case R.id.detail_dialog_confirm_readonly_delete:
                 return new AlertDialog.Builder(mContext)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -900,7 +897,7 @@ public class ContactPresenter implements OnCreateContextMenuListener,
                         .setPositiveButton(android.R.string.ok, mDeleteListener)
                         .setCancelable(false)
                         .create();
-            case DIALOG_CONFIRM_MULTIPLE_DELETE:
+            case R.id.detail_dialog_confirm_multiple_delete:
                 return new AlertDialog.Builder(mContext)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -909,7 +906,7 @@ public class ContactPresenter implements OnCreateContextMenuListener,
                         .setPositiveButton(android.R.string.ok, mDeleteListener)
                         .setCancelable(false)
                         .create();
-            case DIALOG_CONFIRM_READONLY_HIDE: {
+            case R.id.detail_dialog_confirm_readonly_hide: {
                 return new AlertDialog.Builder(mContext)
                         .setTitle(R.string.deleteConfirmation_title)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -918,26 +915,8 @@ public class ContactPresenter implements OnCreateContextMenuListener,
                         .create();
             }
             default:
-                throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
+                return null;
         }
-    }
-
-    /* package */ void showDialog(int bundleDialogId) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
-        getDialogManager().showDialogInView(mView, bundle);
-    }
-
-    private DialogManager getDialogManager() {
-        if (mDialogManager == null) {
-            if (!(mContext instanceof DialogManager.DialogShowingViewActivity)) {
-                throw new IllegalStateException(
-                        "View must be hosted in an Activity that implements " +
-                        "DialogManager.DialogShowingViewActivity");
-            }
-            mDialogManager = ((DialogManager.DialogShowingViewActivity)mContext).getDialogManager();
-        }
-        return mDialogManager;
     }
 
     public boolean onContextItemSelected(MenuItem item) {
@@ -1019,5 +998,22 @@ public class ContactPresenter implements OnCreateContextMenuListener,
         }
 
         return false;
+    }
+
+    public static interface Callbacks {
+        /**
+         * Contact was not found, so somehow close this fragment.
+         */
+        public void closeBecauseContactNotFound();
+
+        /**
+         * User decided to go to Edit-Mode
+         */
+        public void editContact(Uri rawContactUri);
+
+        /**
+         * User clicked a single item (e.g. mail)
+         */
+        public void itemClicked(Intent intent);
     }
 }

@@ -386,7 +386,7 @@
 
         <!-- Edit or insert details for a contact -->
         <activity
-            android:name=".ui.EditContactActivity"
+            android:name=".activities.ContactEditActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">

@@ -14,11 +14,28 @@
      limitations under the License.
 -->
 <resources>
-    <!-- The EditText for entries in the EditContactActivity -->
+    <!-- Dialogs in ContactDetailFragment -->
+    <item type="id" name="detail_dialog_confirm_delete" />
+    <item type="id" name="detail_dialog_confirm_readonly_delete" />
+    <item type="id" name="detail_dialog_confirm_multiple_delete" />
+    <item type="id" name="detail_dialog_confirm_readonly_hide" />
+
+    <!-- The EditText for entries in the ContactEditFragment -->
     <item type="id" name="data"/>
     <item type="id" name="header_phones"/>
     <item type="id" name="dialog_sync_add"/>
     <item type="id" name="dialog_import_export"/>
+
+    <!-- Dialogs in ContactEditFragment -->
+    <item type="id" name="edit_dialog_confirm_delete"/>
+    <item type="id" name="edit_dialog_confirm_readonly_delete"/>
+    <item type="id" name="edit_dialog_confirm_multiple_delete"/>
+    <item type="id" name="edit_dialog_confirm_readonly_hide"/>
+    <item type="id" name="edit_dialog_pick_photo"/>
+    <item type="id" name="edit_dialog_split"/>
+    <item type="id" name="edit_dialog_select_account"/>
+    <item type="id" name="edit_dialog_view_dialogs_id1"/>
+    <item type="id" name="edit_dialog_view_dialogs_id2"/>
 
     <!-- For ImportVCardActivity -->
     <item type="id" name="dialog_searching_vcard"/>

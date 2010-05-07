@@ -18,7 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
-import com.android.contacts.views.detail.ContactLoader;
+import com.android.contacts.views.detail.ContactDetailLoader;
 
 import android.app.patterns.Loader;
 import android.app.patterns.Loader.OnLoadCompleteListener;
@@ -59,7 +59,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
             protected void onPostExecute(Void result) {}
         };
     }
-    
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -144,42 +144,24 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         return result;
     }
 
-    private ContactLoader.Result assertLoadContact(Uri uri) {
-        final ContactLoader loader = new ContactLoader(mMockContext, uri);
+    private ContactDetailLoader.Result assertLoadContact(Uri uri) {
+        final ContactDetailLoader loader = new ContactDetailLoader(mMockContext, uri);
         return getLoaderResultSynchronously(loader);
     }
 
-    @Suppress // The code under test is incorrect
     public void testNullUri() {
-        IllegalArgumentException e =
-            assertThrows(IllegalArgumentException.class, new Runnable() {
-                public void run() {
-                    assertLoadContact(null);
-                }
-            });
-        assertEquals(e.getMessage(), "uri must not be null");
+        ContactDetailLoader.Result result = assertLoadContact(null);
+        assertEquals(ContactDetailLoader.Result.ERROR, result);
     }
 
-    @Suppress // The code under test is incorrect
     public void testEmptyUri() {
-        IllegalArgumentException e =
-            assertThrows(IllegalArgumentException.class, new Runnable() {
-                public void run() {
-                    assertLoadContact(Uri.EMPTY);
-                }
-            });
-        assertEquals(e.getMessage(), "uri format is unknown");
+        ContactDetailLoader.Result result = assertLoadContact(Uri.EMPTY);
+        assertEquals(ContactDetailLoader.Result.ERROR, result);
     }
 
-    @Suppress // The code under test is incorrect
     public void testInvalidUri() {
-        IllegalArgumentException e =
-                assertThrows(IllegalArgumentException.class, new Runnable() {
-                    public void run() {
-                        assertLoadContact(Uri.parse("content://wtf"));
-                    }
-                });
-        assertEquals(e.getMessage(), "uri format is unknown");
+        ContactDetailLoader.Result result = assertLoadContact(Uri.parse("content://wtf"));
+        assertEquals(ContactDetailLoader.Result.ERROR, result);
     }
 
     public void testLoadContactWithContactIdUri() {
@@ -201,7 +183,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(baseUri);
+        ContactDetailLoader.Result contact = assertLoadContact(baseUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -235,7 +217,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(legacyUri);
+        ContactDetailLoader.Result contact = assertLoadContact(legacyUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -266,7 +248,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(lookupNoIdUri);
+        ContactDetailLoader.Result contact = assertLoadContact(lookupNoIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -296,7 +278,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(lookupUri);
+        ContactDetailLoader.Result contact = assertLoadContact(lookupUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -338,7 +320,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -381,7 +363,7 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -422,9 +404,9 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchHeaderDataNoResult(wrongBaseUri);
         queries.fetchLookupAndIdNoResult(lookupWithWrongIdUri);
 
-        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
-        assertEquals(ContactLoader.Result.NOT_FOUND, contact);
+        assertEquals(ContactDetailLoader.Result.NOT_FOUND, contact);
 
         mContactsProvider.verify();
     }
