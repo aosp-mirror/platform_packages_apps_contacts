@@ -184,6 +184,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         mAdapter.changeCursor(data);
         showCount(data);
+
+        completeRestoreInstanceState();
     }
 
     protected void reloadData() {
@@ -503,23 +505,23 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onSaveInstanceState(Bundle icicle) {
         super.onSaveInstanceState(icicle);
-        // Save list state in the bundle so we can restore it after the QueryHandler has run
         if (mListView != null) {
-            icicle.putParcelable(LIST_STATE_KEY, mListView.onSaveInstanceState());
+            mListState = mListView.onSaveInstanceState();
+            icicle.putParcelable(LIST_STATE_KEY, mListState);
         }
     }
 
     @Override
     public void onRestoreInstanceState(Bundle icicle) {
         super.onRestoreInstanceState(icicle);
-        // Retrieve list state. This will be applied after the QueryHandler has run
+        // Retrieve list state. This will be applied in onLoadFinished
         mListState = icicle.getParcelable(LIST_STATE_KEY);
     }
 
     /**
      * Restore the list state after the adapter is populated.
      */
-    public void completeRestoreInstanceState() {
+    private void completeRestoreInstanceState() {
         if (mListState != null) {
             mListView.onRestoreInstanceState(mListState);
             mListState = null;

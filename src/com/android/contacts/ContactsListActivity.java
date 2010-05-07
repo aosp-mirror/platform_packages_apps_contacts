@@ -1951,9 +1951,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     protected void onQueryComplete(Cursor cursor) {
         mAdapter.changeCursor(cursor);
-
-        // TODO make this triggered by the Loader
-        mListFragment.completeRestoreInstanceState();
     }
 
     private CallOrSmsInitiator getCallOrSmsInitiator() {
@@ -1961,5 +1958,17 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             mCallOrSmsInitiator = new CallOrSmsInitiator(this);
         }
         return mCallOrSmsInitiator;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mListFragment.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mListFragment.onRestoreInstanceState(savedInstanceState);
     }
 }
