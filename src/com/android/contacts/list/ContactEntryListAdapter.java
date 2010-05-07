@@ -208,7 +208,7 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
             return false;
         } else if (isSearchMode()) {
             return TextUtils.isEmpty(getQueryString());
-        } else if (mCursor == null || mLoading) {
+        } else if (mLoading) {
             // We don't want the empty state to show when loading.
             return false;
         } else {

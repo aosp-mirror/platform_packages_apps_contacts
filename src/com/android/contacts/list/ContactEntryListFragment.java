@@ -32,13 +32,19 @@ import android.app.patterns.CursorLoader;
 import android.app.patterns.Loader;
 import android.app.patterns.LoaderManagingFragment;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.IContentService;
+import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.Settings;
+import android.provider.ContactsContract.ProviderStatus;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Html;
@@ -50,12 +56,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
@@ -100,6 +108,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContactPhotoLoader mPhotoLoader;
     private SearchEditText mSearchEditText;
     private ContactListEmptyView mEmptyView;
+    private ProviderStatusLoader mProviderStatusLoader;
+
+    private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -152,10 +163,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     protected void onInitializeLoaders() {
         mLoader = (CursorLoader)startLoading(0, null);
+        if (mProviderStatusLoader == null) {
+            mProviderStatusLoader = new ProviderStatusLoader(mLoader);
+        }
     }
 
     @Override
     protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (!checkProviderStatus(false)) {
+            return;
+        }
+
         if (data == null) {
             return;
         }
@@ -386,6 +404,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onResume() {
         super.onResume();
+
+        registerProviderStatusObserver();
+
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader.resume();
         }
@@ -465,6 +486,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return false;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterProviderStatusObserver();
+    }
+
     /**
      * Dismisses the search UI along with the keyboard if the filter text is empty.
      */
@@ -497,6 +524,133 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.onRestoreInstanceState(mListState);
             mListState = null;
         }
+    }
+
+    private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange) {
+            checkProviderStatus(true);
+        }
+    };
+
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void registerProviderStatusObserver() {
+        getActivity().getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
+                false, mProviderStatusObserver);
+    }
+
+    /**
+     * Register an observer for provider status changes - we will need to
+     * reflect them in the UI.
+     */
+    private void unregisterProviderStatusObserver() {
+        getActivity().getContentResolver().unregisterContentObserver(mProviderStatusObserver);
+    }
+
+    /**
+     * Obtains the contacts provider status and configures the UI accordingly.
+     *
+     * @param loadData true if the method needs to start a query when the
+     *            provider is in the normal state
+     * @return true if the provider status is normal
+     */
+    private boolean checkProviderStatus(boolean loadData) {
+        View importFailureView = findViewById(R.id.import_failure);
+        if (importFailureView == null) {
+            return true;
+        }
+
+        // This query can be performed on the UI thread because
+        // the API explicitly allows such use.
+        Cursor cursor = getActivity().getContentResolver().query(ProviderStatus.CONTENT_URI,
+                new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    int status = cursor.getInt(0);
+                    if (status != mProviderStatus) {
+                        mProviderStatus = status;
+                        switch (status) {
+                            case ProviderStatus.STATUS_NORMAL:
+                                mAdapter.notifyDataSetInvalidated();
+                                if (loadData) {
+                                    mLoader.forceLoad();
+                                }
+                                break;
+
+                            case ProviderStatus.STATUS_CHANGING_LOCALE:
+                                setEmptyText(R.string.locale_change_in_progress);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
+
+                            case ProviderStatus.STATUS_UPGRADING:
+                                setEmptyText(R.string.upgrade_in_progress);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
+
+                            case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
+                                long size = cursor.getLong(1);
+                                String message = getActivity().getResources().getString(
+                                        R.string.upgrade_out_of_memory, new Object[] {size});
+                                TextView messageView = (TextView) findViewById(R.id.emptyText);
+                                messageView.setText(message);
+                                messageView.setVisibility(View.VISIBLE);
+                                configureImportFailureView(importFailureView);
+                                mAdapter.changeCursor(null);
+                                mAdapter.notifyDataSetInvalidated();
+                                break;
+                        }
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        importFailureView.setVisibility(
+                mProviderStatus == ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY
+                        ? View.VISIBLE
+                        : View.GONE);
+        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
+    }
+
+    private void configureImportFailureView(View importFailureView) {
+
+        OnClickListener listener = new OnClickListener(){
+
+            public void onClick(View v) {
+                switch(v.getId()) {
+                    case R.id.import_failure_uninstall_apps: {
+                        // TODO break into a separate method
+                        getActivity().startActivity(
+                                new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                        break;
+                    }
+                    case R.id.import_failure_retry_upgrade: {
+                        // Send a provider status update, which will trigger a retry
+                        ContentValues values = new ContentValues();
+                        values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
+                        getActivity().getContentResolver().update(ProviderStatus.CONTENT_URI,
+                                values, null, null);
+                        break;
+                    }
+                }
+            }};
+
+        Button uninstallApps = (Button) findViewById(R.id.import_failure_uninstall_apps);
+        uninstallApps.setOnClickListener(listener);
+
+        Button retryUpgrade = (Button) findViewById(R.id.import_failure_retry_upgrade);
+        retryUpgrade.setOnClickListener(listener);
+    }
+
+    private View findViewById(int id) {
+        return mView.findViewById(id);
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly

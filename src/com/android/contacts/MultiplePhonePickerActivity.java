@@ -241,9 +241,10 @@ public class MultiplePhonePickerActivity extends ContactsListActivity {
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
-        if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
-            return;
-        }
+        // TODO
+//        if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
+//            return;
+//        }
 
         if (globalSearch) {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
