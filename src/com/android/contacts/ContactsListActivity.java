@@ -687,7 +687,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case MODE_LEGACY_PICK_POSTAL:
             case MODE_PICK_POSTAL: {
                 PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
-                if (mMode == MODE_LEGACY_PICK_PHONE) {
+                if (mMode == MODE_LEGACY_PICK_POSTAL) {
                     fragment.setLegacyCompatibility(true);
                 }
                 fragment.setSectionHeaderDisplayEnabled(false);

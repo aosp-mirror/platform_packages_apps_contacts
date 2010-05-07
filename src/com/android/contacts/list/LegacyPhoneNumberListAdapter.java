@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,7 @@ import android.view.ViewGroup;
 @SuppressWarnings("deprecation")
 public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
 
-    protected static final String[] PHONES_PROJECTION = new String[] {
+    private static final String[] PHONES_PROJECTION = new String[] {
         Phones._ID,             // 0
         Phones.TYPE,            // 1
         Phones.LABEL,           // 2
@@ -42,12 +41,12 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
         People.PHONETIC_NAME,   // 5
     };
 
-    public static final int PHONE_ID_COLUMN_INDEX = 0;
-    public static final int PHONE_TYPE_COLUMN_INDEX = 1;
-    public static final int PHONE_LABEL_COLUMN_INDEX = 2;
-    public static final int PHONE_NUMBER_COLUMN_INDEX = 3;
-    public static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 4;
-    public static final int PHONE_PHONETIC_NAME_COLUMN_INDEX = 5;
+    private static final int PHONE_ID_COLUMN_INDEX = 0;
+    private static final int PHONE_TYPE_COLUMN_INDEX = 1;
+    private static final int PHONE_LABEL_COLUMN_INDEX = 2;
+    private static final int PHONE_NUMBER_COLUMN_INDEX = 3;
+    private static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 4;
+    private static final int PHONE_PHONETIC_NAME_COLUMN_INDEX = 5;
 
     private CharSequence mUnknownNameText;
 

@@ -26,7 +26,7 @@ import android.view.ViewGroup;
  * Fragment containing a postal address list for picking.
  */
 public class PostalAddressPickerFragment
-        extends ContactEntryListFragment<PostalAddressListAdapter> {
+        extends ContactEntryListFragment<ContactEntryListAdapter> {
     private OnPostalAddressPickerActionListener mListener;
 
     public PostalAddressPickerFragment() {
@@ -41,23 +41,35 @@ public class PostalAddressPickerFragment
 
     @Override
     protected void onItemClick(int position, long id) {
-        PostalAddressListAdapter adapter = getAdapter();
-//        if (adapter.isSearchAllContactsItemPosition(position)) {
-//            searchAllContacts();
-//        } else {
-        adapter.moveToPosition(position);
-        pickPostalAddress(adapter.getDataUri());
-//        }
+        if (!isLegacyCompatibility()) {
+            PostalAddressListAdapter adapter = (PostalAddressListAdapter)getAdapter();
+//          if (adapter.isSearchAllContactsItemPosition(position)) {
+//              searchAllContacts();
+//          } else {
+            adapter.moveToPosition(position);
+            pickPostalAddress(adapter.getDataUri());
+//          }
+        } else {
+            LegacyPostalAddressListAdapter adapter = (LegacyPostalAddressListAdapter)getAdapter();
+            adapter.moveToPosition(position);
+            pickPostalAddress(adapter.getContactMethodUri());
+        }
     }
 
     @Override
-    protected PostalAddressListAdapter createListAdapter() {
-        PostalAddressListAdapter adapter = new PostalAddressListAdapter(getActivity());
-
-        adapter.setSectionHeaderDisplayEnabled(true);
-        adapter.setDisplayPhotos(true);
-
-        return adapter;
+    protected ContactEntryListAdapter createListAdapter() {
+        if (!isLegacyCompatibility()) {
+            PostalAddressListAdapter adapter = new PostalAddressListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(true);
+            adapter.setDisplayPhotos(true);
+            return adapter;
+        } else {
+            LegacyPostalAddressListAdapter adapter =
+                    new LegacyPostalAddressListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(false);
+            adapter.setDisplayPhotos(false);
+            return adapter;
+        }
     }
 
     @Override
