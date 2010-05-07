@@ -32,51 +32,48 @@ import android.widget.QuickContactBadge;
  */
 public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
-    protected static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] {
-        Contacts._ID,                       // 0
-        Contacts.DISPLAY_NAME_PRIMARY,      // 1
-        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
-        Contacts.SORT_KEY_PRIMARY,          // 3
-        Contacts.STARRED,                   // 4
-        Contacts.TIMES_CONTACTED,           // 5
-        Contacts.CONTACT_PRESENCE,          // 6
-        Contacts.PHOTO_ID,                  // 7
-        Contacts.LOOKUP_KEY,                // 8
-        Contacts.PHONETIC_NAME,             // 9
-        Contacts.HAS_PHONE_NUMBER,          // 10
+    protected static final String[] PROJECTION = new String[] {
+        Contacts._ID,                           // 0
+        Contacts.DISPLAY_NAME_PRIMARY,          // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
+        Contacts.SORT_KEY_PRIMARY,              // 3
+        Contacts.STARRED,                       // 4
+        Contacts.CONTACT_PRESENCE,              // 5
+        Contacts.PHOTO_ID,                      // 6
+        Contacts.LOOKUP_KEY,                    // 7
+        Contacts.PHONETIC_NAME,                 // 8
+        Contacts.HAS_PHONE_NUMBER,              // 9
     };
 
-    protected static final String[] CONTACTS_SUMMARY_FILTER_PROJECTION = new String[] {
-        Contacts._ID,                       // 0
-        Contacts.DISPLAY_NAME_PRIMARY,      // 1
-        Contacts.DISPLAY_NAME_ALTERNATIVE,  // 2
-        Contacts.SORT_KEY_PRIMARY,          // 3
-        Contacts.STARRED,                   // 4
-        Contacts.TIMES_CONTACTED,           // 5
-        Contacts.CONTACT_PRESENCE,          // 6
-        Contacts.PHOTO_ID,                  // 7
-        Contacts.LOOKUP_KEY,                // 8
-        Contacts.PHONETIC_NAME,             // 9
-        Contacts.HAS_PHONE_NUMBER,          // 10
-        SearchSnippetColumns.SNIPPET_MIMETYPE, // 11
-        SearchSnippetColumns.SNIPPET_DATA1,     // 12
-        SearchSnippetColumns.SNIPPET_DATA4,     // 13
+    protected static final String[] FILTER_PROJECTION = new String[] {
+        Contacts._ID,                           // 0
+        Contacts.DISPLAY_NAME_PRIMARY,          // 1
+        Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
+        Contacts.SORT_KEY_PRIMARY,              // 3
+        Contacts.STARRED,                       // 4
+        Contacts.CONTACT_PRESENCE,              // 5
+        Contacts.PHOTO_ID,                      // 6
+        Contacts.LOOKUP_KEY,                    // 7
+        Contacts.PHONETIC_NAME,                 // 8
+        Contacts.HAS_PHONE_NUMBER,              // 9
+        SearchSnippetColumns.SNIPPET_MIMETYPE,  // 10
+        SearchSnippetColumns.SNIPPET_DATA1,     // 11
+        SearchSnippetColumns.SNIPPET_DATA4,     // 12
     };
 
-    protected static final int SUMMARY_ID_COLUMN_INDEX = 0;
-    protected static final int SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
-    protected static final int SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
-    protected static final int SUMMARY_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
-    protected static final int SUMMARY_STARRED_COLUMN_INDEX = 4;
-    protected static final int SUMMARY_TIMES_CONTACTED_COLUMN_INDEX = 5;
-    protected static final int SUMMARY_PRESENCE_STATUS_COLUMN_INDEX = 6;
-    protected static final int SUMMARY_PHOTO_ID_COLUMN_INDEX = 7;
-    protected static final int SUMMARY_LOOKUP_KEY_COLUMN_INDEX = 8;
-    protected static final int SUMMARY_PHONETIC_NAME_COLUMN_INDEX = 9;
-    protected static final int SUMMARY_HAS_PHONE_COLUMN_INDEX = 10;
-    protected static final int SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX = 11;
-    protected static final int SUMMARY_SNIPPET_DATA1_COLUMN_INDEX = 12;
-    protected static final int SUMMARY_SNIPPET_DATA4_COLUMN_INDEX = 13;
+    protected static final int CONTACT_ID_COLUMN_INDEX = 0;
+    protected static final int CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
+    protected static final int CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
+    protected static final int CONTACT_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
+    protected static final int CONTACT_STARRED_COLUMN_INDEX = 4;
+    protected static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 5;
+    protected static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 6;
+    protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 7;
+    protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 8;
+    protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 9;
+    protected static final int CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX = 10;
+    protected static final int CONTACT_SNIPPET_DATA1_COLUMN_INDEX = 11;
+    protected static final int CONTACT_SNIPPET_DATA4_COLUMN_INDEX = 12;
 
     private boolean mQuickContactEnabled;
     private CharSequence mUnknownNameText;
@@ -99,11 +96,11 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     public boolean getHasPhoneNumber() {
-        return getCursor().getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
+        return getCursor().getInt(CONTACT_HAS_PHONE_COLUMN_INDEX) != 0;
     }
 
     public boolean isContactStarred() {
-        return getCursor().getInt(SUMMARY_STARRED_COLUMN_INDEX) != 0;
+        return getCursor().getInt(CONTACT_STARRED_COLUMN_INDEX) != 0;
     }
 
     @Override
@@ -123,11 +120,11 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     public void setContactNameDisplayOrder(int displayOrder) {
         super.setContactNameDisplayOrder(displayOrder);
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
+            mDisplayNameColumnIndex = CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
+            mAlternativeDisplayNameColumnIndex = CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
         } else {
-            mDisplayNameColumnIndex = SUMMARY_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
+            mDisplayNameColumnIndex = CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX;
+            mAlternativeDisplayNameColumnIndex = CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
         }
     }
 
@@ -137,8 +134,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
      */
     public Uri getContactUri() {
         Cursor cursor = getCursor();
-        long contactId = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
-        String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
+        long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
+        String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         return Contacts.getLookupUri(contactId, lookupKey);
     }
 
@@ -172,8 +169,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         // Set the photo, if available
         long photoId = 0;
-        if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(CONTACT_PHOTO_ID_COLUMN_INDEX)) {
+            photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
@@ -181,8 +178,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected void bindQuickContact(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
-        if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(CONTACT_PHOTO_ID_COLUMN_INDEX)) {
+            photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
         }
 
         QuickContactBadge quickContact = view.getQuickContact();
@@ -193,15 +190,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, isNameHighlightingEnabled(),
                 mAlternativeDisplayNameColumnIndex);
-        view.showPhoneticName(cursor, SUMMARY_PHONETIC_NAME_COLUMN_INDEX);
+        view.showPhoneticName(cursor, CONTACT_PHONETIC_NAME_COLUMN_INDEX);
     }
 
     protected void bindPresence(final ContactListItemView view, Cursor cursor) {
-        view.showPresence(cursor, SUMMARY_PRESENCE_STATUS_COLUMN_INDEX);
+        view.showPresence(cursor, CONTACT_PRESENCE_STATUS_COLUMN_INDEX);
     }
 
     protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
-        view.showSnippet(cursor, SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX,
-                SUMMARY_SNIPPET_DATA1_COLUMN_INDEX, SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
+        view.showSnippet(cursor, CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX,
+                CONTACT_SNIPPET_DATA1_COLUMN_INDEX, CONTACT_SNIPPET_DATA4_COLUMN_INDEX);
     }
 }

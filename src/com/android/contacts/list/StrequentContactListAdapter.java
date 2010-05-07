@@ -52,7 +52,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     @Override
     public void configureLoader(CursorLoader loader) {
         loader.setUri(Contacts.CONTENT_STREQUENT_URI);
-        loader.setProjection(CONTACTS_SUMMARY_PROJECTION);
+        loader.setProjection(PROJECTION);
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
         } else {
@@ -70,7 +70,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         if (cursor != null && (count = cursor.getCount()) > 0) {
             cursor.moveToPosition(-1);
             for (int i = 0; cursor.moveToNext(); i++) {
-                int starred = cursor.getInt(SUMMARY_STARRED_COLUMN_INDEX);
+                int starred = cursor.getInt(CONTACT_STARRED_COLUMN_INDEX);
                 if (starred == 0) {
                     if (i > 0) {
                         // Only add the separator when there are starred items present
@@ -169,6 +169,5 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         } else {
             view.hideCallButton();
         }
-
     }
 }

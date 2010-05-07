@@ -607,6 +607,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 mListFragment = fragment;
                 break;
             }
+            case MODE_LEGACY_PICK_PERSON:
+            case MODE_LEGACY_PICK_OR_CREATE_PERSON:
             case MODE_PICK_CONTACT:
             case MODE_PICK_OR_CREATE_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
@@ -614,8 +616,14 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                     fragment.setSectionHeaderDisplayEnabled(true);
                 }
 
-                if (mMode == MODE_PICK_OR_CREATE_CONTACT) {
+                if (mMode == MODE_PICK_OR_CREATE_CONTACT
+                        || mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
                     fragment.setCreateContactEnabled(true);
+                }
+
+                if (mMode == MODE_LEGACY_PICK_PERSON ||
+                        mMode == MODE_LEGACY_PICK_OR_CREATE_PERSON) {
+                    fragment.setLegacyCompatibility(true);
                 }
 
                 fragment.setShortcutRequested(mShortcutAction != null);

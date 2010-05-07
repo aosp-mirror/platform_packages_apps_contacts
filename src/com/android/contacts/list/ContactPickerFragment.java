@@ -29,7 +29,7 @@ import android.widget.AdapterView;
  * Fragment for the contact list used for browsing contacts (as compared to
  * picking a contact with one of the PICK or SHORTCUT intents).
  */
-public class ContactPickerFragment extends ContactEntryListFragment<ContactListAdapter>
+public class ContactPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
         implements OnShortcutIntentCreatedListener {
 
     private OnContactPickerActionListener mListener;
@@ -83,32 +83,46 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactListA
         if (isSearchAllContactsItemPosition(position)) {
             mListener.onSearchAllContactsAction((String)null);
         } else {
-            ContactListAdapter adapter = getAdapter();
+            Uri uri;
+            ContactEntryListAdapter adapter = getAdapter();
             adapter.moveToPosition(position);
+            if (isLegacyCompatibility()) {
+                uri = ((LegacyContactListAdapter)adapter).getPersonUri();
+            } else {
+                uri = ((ContactListAdapter)adapter).getContactUri();
+            }
             if (mShortcutRequested) {
                 ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
-                builder.createContactShortcutIntent(adapter.getContactUri());
+                builder.createContactShortcutIntent(uri);
             } else {
-                mListener.onPickContactAction(adapter.getContactUri());
+                mListener.onPickContactAction(uri);
             }
         }
     }
 
     @Override
-    protected ContactListAdapter createListAdapter() {
-        ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
-        adapter.setSectionHeaderDisplayEnabled(true);
+    protected ContactEntryListAdapter createListAdapter() {
+        if (!isLegacyCompatibility()) {
+            ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(true);
+            adapter.setDisplayPhotos(true);
+            adapter.setQuickContactEnabled(false);
+            return adapter;
+        } else {
+            LegacyContactListAdapter adapter = new LegacyContactListAdapter(getActivity());
+            adapter.setSectionHeaderDisplayEnabled(false);
+            adapter.setDisplayPhotos(false);
+            return adapter;
+        }
+    }
 
-        adapter.setDisplayPhotos(true);
-        adapter.setQuickContactEnabled(false);
-
-        adapter.setSearchMode(isSearchMode());
-        adapter.setSearchResultsMode(isSearchResultsMode());
+    @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+        ContactEntryListAdapter adapter = getAdapter();
 
         // If "Create new contact" is shown, don't display the empty list UI
         adapter.setEmptyListEnabled(!isCreateContactEnabled());
-
-        return adapter;
     }
 
     @Override

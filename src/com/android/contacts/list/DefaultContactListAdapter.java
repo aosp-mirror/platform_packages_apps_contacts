@@ -47,7 +47,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             String query = getQueryString();
             uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
                     TextUtils.isEmpty(query) ? "" : Uri.encode(query));
-            loader.setProjection(CONTACTS_SUMMARY_FILTER_PROJECTION);
+            loader.setProjection(FILTER_PROJECTION);
             if (!isSearchResultsMode()) {
                 if (mContactsWithPhoneNumbersOnly) {
                     loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND "
@@ -58,7 +58,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             }
         } else {
             uri = Contacts.CONTENT_URI;
-            loader.setProjection(CONTACTS_SUMMARY_PROJECTION);
+            loader.setProjection(PROJECTION);
             if (mContactsWithPhoneNumbersOnly) {
                 loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND "
                         + Contacts.HAS_PHONE_NUMBER + "=1");
