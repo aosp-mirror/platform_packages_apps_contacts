@@ -27,6 +27,7 @@ import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.patterns.CursorLoader;
 import android.app.patterns.Loader;
 import android.app.patterns.LoaderManagingFragment;
@@ -214,6 +215,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setPhotoLoaderEnabled(boolean flag) {
         mPhotoLoaderEnabled = flag;
+        configurePhotoLoader();
     }
 
     public boolean isPhotoLoaderEnabled() {
@@ -222,6 +224,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
+        configureSearchEditText();
     }
 
     public boolean isSearchMode() {
@@ -230,6 +233,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchResultsMode(boolean flag) {
         mSearchResultsMode = flag;
+        configureSearchEditText();
     }
 
     public boolean isSearchResultsMode() {
@@ -306,6 +310,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         super.onStart();
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        configurePhotoLoader();
+    }
+
     protected void loadPreferences(SharedPreferences prefs, ContactsPreferences contactsPrefs) {
         setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
         setSortOrder(contactsPrefs.getSortOrder());
@@ -317,11 +327,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter = createListAdapter();
         mAdapter.setSearchMode(isSearchMode());
         mAdapter.setSearchResultsMode(isSearchResultsMode());
-
+        mAdapter.setPhotoLoader(mPhotoLoader);
         mListView.setAdapter(mAdapter);
-        if (isPhotoLoaderEnabled()) {
-            mAdapter.setPhotoLoader(mPhotoLoader);
-        }
 
         return mView;
     }
@@ -359,28 +366,44 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
-        if (isPhotoLoaderEnabled()) {
-            mPhotoLoader =
-                new ContactPhotoLoader(getActivity(), R.drawable.ic_contact_list_picture);
-            mListView.setOnScrollListener(this);
-        }
+        configurePhotoLoader();
+        configureSearchEditText();
+        configureSearchResultText();
+        return mView;
+    }
 
-        if (isSearchMode()) {
-            mSearchEditText = (SearchEditText)mView.findViewById(R.id.search_src_text);
-            mSearchEditText.setText(getQueryString());
-            mSearchEditText.addTextChangedListener(this);
-            mSearchEditText.setOnEditorActionListener(this);
-            mSearchEditText.setOnCloseListener(this);
+    protected void configurePhotoLoader() {
+        Activity activity = getActivity();
+        if (isPhotoLoaderEnabled() && activity != null) {
+            if (mPhotoLoader == null) {
+                mPhotoLoader = new ContactPhotoLoader(activity, R.drawable.ic_contact_list_picture);
+            }
+            if (mListView != null) {
+                mListView.setOnScrollListener(this);
+            }
+            if (mAdapter != null) {
+                mAdapter.setPhotoLoader(mPhotoLoader);
+            }
         }
+    }
 
-        if (isSearchResultsMode()) {
+    protected void configureSearchResultText() {
+        if (isSearchResultsMode() && mView != null) {
             TextView titleText = (TextView)mView.findViewById(R.id.search_results_for);
             if (titleText != null) {
                 titleText.setText(Html.fromHtml(getActivity().getString(R.string.search_results_for,
                         "<b>" + getQueryString() + "</b>")));
             }
         }
-        return mView;
+    }
+    protected void configureSearchEditText() {
+        if (isSearchMode() && mView != null) {
+            mSearchEditText = (SearchEditText)mView.findViewById(R.id.search_src_text);
+            mSearchEditText.setText(getQueryString());
+            mSearchEditText.addTextChangedListener(this);
+            mSearchEditText.setOnEditorActionListener(this);
+            mSearchEditText.setOnCloseListener(this);
+        }
     }
 
     protected void configureAdapter() {

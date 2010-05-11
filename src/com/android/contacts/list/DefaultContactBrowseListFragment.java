@@ -36,6 +36,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mCreateContactEnabled;
     private boolean mContactsWithPhoneNumbersOnly;
 
+    public DefaultContactBrowseListFragment() {
+        setPhotoLoaderEnabled(true);
+    }
+
     @Override
     protected void prepareEmptyView() {
         if (mContactsWithPhoneNumbersOnly) {
