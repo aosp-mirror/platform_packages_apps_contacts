@@ -147,9 +147,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        final ContactListItemView view = new ContactListItemView(context, null);
-        view.setUnknownNameText(getUnknownNameText());
-        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
+        ContactListItemView view = (ContactListItemView)super.newView(context, cursor, parent);
         view.setOnCallButtonClickListener(mCallButtonListener);
         return view;
     }

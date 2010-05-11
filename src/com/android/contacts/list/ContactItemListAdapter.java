@@ -652,11 +652,6 @@ public class ContactItemListAdapter extends ContactEntryListAdapter {
         return super.getCount();
     }
 
-    @Override
-    protected int getCursorPosition(int position) {
-        return getRealPosition(position);
-    }
-
     protected int getRealPosition(int pos) {
         if (contactsListActivity.mShowNumberOfContacts) {
             pos--;

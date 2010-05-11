@@ -64,16 +64,6 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
         mIndexer = indexer;
     }
 
-    /**
-     * Maps an adapter position to the corresponding cursor position.  Should not
-     * be needed once we have switched to using header views and composite
-     * list adapters.
-     */
-    @Deprecated
-    protected int getCursorPosition(int position) {
-        return position;
-    }
-
     public Object [] getSections() {
         if (mIndexer == null) {
             return new String[] { " " };
@@ -107,16 +97,15 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
             return PINNED_HEADER_GONE;
         }
 
-        int realPosition = getCursorPosition(position);
-        if (realPosition < 0) {
+        // The header should get pushed up if the top item shown
+        // is the last item in a section for a particular letter.
+        int section = getSectionForPosition(position);
+        if (section == -1) {
             return PINNED_HEADER_GONE;
         }
 
-        // The header should get pushed up if the top item shown
-        // is the last item in a section for a particular letter.
-        int section = getSectionForPosition(realPosition);
         int nextSectionPosition = getPositionForSection(section + 1);
-        if (nextSectionPosition != -1 && realPosition == nextSectionPosition - 1) {
+        if (nextSectionPosition != -1 && position == nextSectionPosition - 1) {
             return PINNED_HEADER_PUSHED_UP;
         }
 
@@ -144,8 +133,7 @@ public abstract class PinnedHeaderListAdapter extends CursorAdapter
             header.setTag(cache);
         }
 
-        int realPosition = getCursorPosition(position);
-        int section = getSectionForPosition(realPosition);
+        int section = getSectionForPosition(position);
 
         String title = (String)mIndexer.getSections()[section];
         cache.titleView.setText(title);

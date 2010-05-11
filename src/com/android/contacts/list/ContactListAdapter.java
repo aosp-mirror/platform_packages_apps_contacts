@@ -147,10 +147,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return view;
     }
 
-    protected void bindSectionHeaderAndDivider(final ContactListItemView view, Cursor cursor) {
-        final int position = cursor.getPosition();
+    protected void bindSectionHeaderAndDivider(ContactListItemView view, Cursor cursor) {
+        bindSectionHeaderAndDivider(view, cursor.getPosition());
+    }
+
+    protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
         final int section = getSectionForPosition(position);
-        if (getPositionForSection(section) == position) {
+        if (section != -1 && getPositionForSection(section) == position) {
             String title = (String)getSections()[section];
             view.setSectionHeader(title);
         } else {

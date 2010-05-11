@@ -15,25 +15,99 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
 
+import android.app.Activity;
+import android.app.patterns.CursorLoader;
+import android.app.patterns.Loader;
+import android.content.ContentUris;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Fragment for the Join Contact list.
  */
-public class JoinContactListFragment extends ContactEntryListFragment {
+public class JoinContactListFragment extends ContactEntryListFragment<JoinContactListAdapter> {
+
+    private static final int DISPLAY_NAME_LOADER = 1;
+
+    private OnContactPickerActionListener mListener;
+    private long mTargetContactId;
+    private boolean mAllContactsListShown = false;
+
+    public JoinContactListFragment() {
+        setPhotoLoaderEnabled(true);
+        setSectionHeaderDisplayEnabled(true);
+    }
+
+    public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
+        mListener = listener;
+    }
 
     @Override
-    public ContactEntryListAdapter createListAdapter() {
-        JoinContactListAdapter adapter =
-                new JoinContactListAdapter((JoinContactActivity)getActivity());
-        adapter.setSectionHeaderDisplayEnabled(true);
-        adapter.setDisplayPhotos(true);
-        return adapter;
+    protected void onInitializeLoaders() {
+        super.onInitializeLoaders();
+        startLoading(DISPLAY_NAME_LOADER, null);
+    }
+
+    @Override
+    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (id == DISPLAY_NAME_LOADER) {
+            // Loader for the display name of the target contact
+            return new CursorLoader(getActivity(),
+                    ContentUris.withAppendedId(Contacts.CONTENT_URI, mTargetContactId),
+                    new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        } else {
+            return new JoinContactLoader(getActivity());
+        }
+    }
+
+    @Override
+    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (loader.getId() == DISPLAY_NAME_LOADER) {
+            if (data != null && data.moveToFirst()) {
+                showTargetContactName(data.getString(0));
+            }
+        } else {
+            JoinContactListAdapter adapter = getAdapter();
+            if (adapter.isAllContactsListShown()) {
+                Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
+                adapter.setSuggestionsCursor(suggestionsCursor);
+                super.onLoadFinished(loader, data);
+            } else {
+                adapter.setSuggestionsCursor(data);
+                super.onLoadFinished(loader, adapter.getShowAllContactsLabelCursor());
+            }
+        }
+    }
+
+     private void showTargetContactName(String displayName) {
+        Activity activity = getActivity();
+        TextView blurbView = (TextView)activity.findViewById(R.id.join_contact_blurb);
+        String blurb = activity.getString(R.string.blurbJoinContactDataWith, displayName);
+        blurbView.setText(blurb);
+    }
+
+    public void setTargetContactId(long targetContactId) {
+        mTargetContactId = targetContactId;
+    }
+
+    @Override
+    public JoinContactListAdapter createListAdapter() {
+        return new JoinContactListAdapter(getActivity());
+    }
+
+    @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+        JoinContactListAdapter adapter = getAdapter();
+        adapter.setAllContactsListShown(mAllContactsListShown);
+        adapter.setTargetContactId(mTargetContactId);
     }
 
     @Override
@@ -43,7 +117,12 @@ public class JoinContactListFragment extends ContactEntryListFragment {
 
     @Override
     protected void onItemClick(int position, long id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        JoinContactListAdapter adapter = getAdapter();
+        if (adapter.isShowAllContactsItemPosition(position)) {
+            mAllContactsListShown = true;
+            reloadData();
+        } else {
+            mListener.onPickContactAction(adapter.getContactUri(position));
+        }
     }
 }

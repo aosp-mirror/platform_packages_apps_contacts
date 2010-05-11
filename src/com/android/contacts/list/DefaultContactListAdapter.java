@@ -81,14 +81,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        final ContactListItemView view = new ContactListItemView(context, null);
-        view.setUnknownNameText(getUnknownNameText());
-        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
-        return view;
-    }
-
-    @Override
     public void bindView(View itemView, Context context, Cursor cursor) {
         final ContactListItemView view = (ContactListItemView)itemView;
 

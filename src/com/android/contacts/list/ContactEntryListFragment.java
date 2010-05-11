@@ -164,18 +164,16 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return;
         }
 
-        if (data == null) {
-            return;
-        }
-
         if (mEmptyView != null && (data == null || data.getCount() == 0)) {
             prepareEmptyView();
         }
 
         mAdapter.changeCursor(data);
-        showCount(data);
 
-        completeRestoreInstanceState();
+        if (data != null) {
+            showCount(data);
+            completeRestoreInstanceState();
+        }
     }
 
     protected void reloadData() {
@@ -461,7 +459,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onDestroy() {
-        mPhotoLoader.stop();
+        if (isPhotoLoaderEnabled()) {
+            mPhotoLoader.stop();
+        }
         super.onDestroy();
     }
 
