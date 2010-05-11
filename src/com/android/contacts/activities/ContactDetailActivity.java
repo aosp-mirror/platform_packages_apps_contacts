@@ -29,11 +29,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class ContactDetailActivity extends Activity {
-    private ContactDetailFragment mFragment;
-
     private static final String TAG = "ContactDetailActivity";
+
+    private ContactDetailFragment mFragment;
 
     private final FragmentCallbackHandler mCallbackHandler = new FragmentCallbackHandler();
 
@@ -41,14 +42,15 @@ public class ContactDetailActivity extends Activity {
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        setContentView(R.layout.contact_detail);
+        setContentView(R.layout.contact_detail_activity);
 
-        mFragment = new ContactDetailFragment(this, findViewById(R.id.contact_detail),
-                mCallbackHandler, getIntent().getData());
+        Log.i(TAG, getIntent().getData().toString());
 
-        openFragmentTransaction()
-            .add(mFragment, R.id.contact_detail)
-            .commit();
+        final View view = findViewById(R.id.contact_detail_fragment);
+//        mFragment = (ContactDetailFragment) findFragmentById(R.id.contact_detail_fragment);
+        mFragment = ContactDetailFragment.sLastInstance;
+        mFragment.setCallbacks(mCallbackHandler);
+        mFragment.loadUri(getIntent().getData());
     }
 
     @Override

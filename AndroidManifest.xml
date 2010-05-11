@@ -384,6 +384,19 @@
             </intent-filter>
         </activity>
 
+        <!-- Shows the List and Details in two panes. This is probably temporary -->
+        <activity android:name=".activities.TwoPaneActivity"
+            android:label="Contacts Goop"
+            android:theme="@style/TallTitleBarTheme">
+
+            <intent-filter android:label="Contacts Goop">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
         <!-- Edit or insert details for a contact -->
         <activity
             android:name=".ui.EditContactActivity"

@@ -32,6 +32,7 @@ import com.android.contacts.util.DataStatus;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.ContactHeaderWidget;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.patterns.Loader;
@@ -98,10 +99,11 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
     private static final int LOADER_DETAILS = 1;
 
-    private final Context mContext;
-    private final View mView;
-    private final LayoutInflater mInflater;
-    private final Uri mLookupUri;
+    // TODO: Remove this horrible hack once findFragmentById works
+    public static ContactDetailFragment sLastInstance = null;
+
+    private Context mContext;
+    private Uri mLookupUri;
     private Callbacks mCallbacks;
 
     private ContactDetailLoader.Result mContactData;
@@ -139,26 +141,8 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
 
-    public ContactDetailFragment(Context context, View view, Callbacks callbacks, Uri lookupUri) {
-        super();
-        if (callbacks == null) throw new IllegalArgumentException("callbacks must be provided");
-        mContext = context;
-        mView = view;
-        mCallbacks = callbacks;
-
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
-        mContactHeaderWidget.showStar(true);
-        mContactHeaderWidget.setExcludeMimes(new String[] {
-            Contacts.CONTENT_ITEM_TYPE
-        });
-
-        mListView = (ListView) view.findViewById(android.R.id.list);
-        mListView.setOnCreateContextMenuListener(this);
-        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        mListView.setOnItemClickListener(this);
-        // Don't set it to mListView yet.  We do so later when we bind the adapter.
-        mEmptyView = view.findViewById(android.R.id.empty);
+    public ContactDetailFragment() {
+        // Explicit constructor for inflation
 
         // Build the list of sections. The order they're added to mSections dictates the
         // order they are displayed in the list.
@@ -172,15 +156,50 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
 
+        sLastInstance = this;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mContext = activity;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+        final View view = inflater.inflate(R.layout.contact_detail, container, false);
+
+        mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
+        mContactHeaderWidget.showStar(true);
+        mContactHeaderWidget.setExcludeMimes(new String[] {
+            Contacts.CONTENT_ITEM_TYPE
+        });
+
+        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView.setOnCreateContextMenuListener(this);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        mListView.setOnItemClickListener(this);
+        // Don't set it to mListView yet.  We do so later when we bind the adapter.
+        mEmptyView = view.findViewById(android.R.id.empty);
+
         //TODO Read this value from a preference
         mShowSmsLinksForAllPhones = true;
 
+        return view;
+    }
+
+    public void setCallbacks(Callbacks value) {
+        mCallbacks = value;
+    }
+
+    public void loadUri(Uri lookupUri) {
         mLookupUri = lookupUri;
+        super.startLoading(LOADER_DETAILS, null);
     }
 
     @Override
     protected void onInitializeLoaders() {
-        startLoading(LOADER_DETAILS, null);
+//        startLoading(LOADER_DETAILS, null);
     }
 
     @Override

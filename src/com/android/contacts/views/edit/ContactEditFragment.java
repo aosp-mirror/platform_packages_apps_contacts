@@ -122,15 +122,13 @@ public class ContactEditFragment
     private static final File PHOTO_DIR = new File(
             Environment.getExternalStorageDirectory() + "/DCIM/Camera");
 
-    private final Context mContext;
-    private final View mView;
-    private final LayoutInflater mInflater;
+    private Context mContext;
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
-    private final String mAction;
-    private final Uri mUri;
-    private final String mMimeType;
-    private final Bundle mIntentExtras;
-    private final Callbacks mCallbacks;
+    private String mAction;
+    private Uri mUri;
+    private String mMimeType;
+    private Bundle mIntentExtras;
+    private Callbacks mCallbacks;
 
     private File mCurrentPhotoFile;
 
@@ -144,23 +142,23 @@ public class ContactEditFragment
 
     private ViewIdGenerator mViewIdGenerator;
 
-    // TODO: We might not need to pass Context and View manually here as the framework should
-    // take care of this...?
-    public ContactEditFragment(Context context, View view, String action, Uri uri,
-            String mimeType, Bundle intentExtras, Callbacks callbacks) {
-        super();
+    // TODO: Remove this temp instance once findFragmentById works
+    public static ContactEditFragment sLastInstance = null;
 
-        if (callbacks == null) throw new IllegalArgumentException("callbacks must be given");
+    public ContactEditFragment() {
+        sLastInstance = this;
+    }
 
-        mContext = context;
-        mView = view;
-        mAction = action;
-        mUri = uri;
-        mMimeType = mimeType;
-        mIntentExtras = intentExtras;
-        mCallbacks = callbacks;
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        // Build editor and listen for photo requests
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mContext = activity;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+        final View view = inflater.inflate(R.layout.contact_edit, container, false);
+
         mContent = (LinearLayout) view.findViewById(R.id.editors);
 
         view.findViewById(R.id.btn_done).setOnClickListener(new OnClickListener() {
@@ -170,9 +168,45 @@ public class ContactEditFragment
         });
         view.findViewById(R.id.btn_discard).setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                mCallbacks.closeAfterRevert();
+                if (mCallbacks != null) mCallbacks.closeAfterRevert();
             }
         });
+
+        return view;
+    }
+
+    public void load(String action, Uri uri, String mimeType, Bundle intentExtras) {
+        mAction = action;
+        mUri = uri;
+        mMimeType = mimeType;
+        mIntentExtras = intentExtras;
+
+        if (Intent.ACTION_EDIT.equals(mAction)) {
+            // Read initial state from database
+            if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_edit);
+            startLoading(LOADER_DATA, null);
+        } else if (Intent.ACTION_INSERT.equals(mAction)) {
+            if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_insert);
+
+            // Load Accounts async so that we can present them
+            AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
+                    new AsyncTask<Void, Void, ArrayList<Account>>() {
+                        @Override
+                        protected ArrayList<Account> doInBackground(Void... params) {
+                            return Sources.getInstance(mContext).getAccounts(true);
+                        }
+                        @Override
+                        protected void onPostExecute(ArrayList<Account> result) {
+                            selectAccountAndCreateContact(result, true);
+                        }
+            };
+            loadAccountsTask.execute();
+        } else throw new IllegalArgumentException("Unknown Action String " + mAction +
+                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+    }
+
+    public void setCallbacks(Callbacks callbacks) {
+        mCallbacks = callbacks;
     }
 
     @Override
@@ -185,28 +219,28 @@ public class ContactEditFragment
                 savedState != null && savedState.containsKey(KEY_EDIT_STATE);
 
         if (!hasIncomingState) {
-            if (Intent.ACTION_EDIT.equals(mAction)) {
-                // Read initial state from database
-                mCallbacks.setTitleTo(R.string.editContact_title_edit);
-                startLoading(LOADER_DATA, null);
-            } else if (Intent.ACTION_INSERT.equals(mAction)) {
-                mCallbacks.setTitleTo(R.string.editContact_title_insert);
-
-                // Load Accounts async so that we can present them
-                AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
-                        new AsyncTask<Void, Void, ArrayList<Account>>() {
-                            @Override
-                            protected ArrayList<Account> doInBackground(Void... params) {
-                                return Sources.getInstance(mContext).getAccounts(true);
-                            }
-                            @Override
-                            protected void onPostExecute(ArrayList<Account> result) {
-                                selectAccountAndCreateContact(result, true);
-                            }
-                };
-                loadAccountsTask.execute();
-            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+//            if (Intent.ACTION_EDIT.equals(mAction)) {
+//                // Read initial state from database
+//                if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_edit);
+//                startLoading(LOADER_DATA, null);
+//            } else if (Intent.ACTION_INSERT.equals(mAction)) {
+//                if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_insert);
+//
+//                // Load Accounts async so that we can present them
+//                AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
+//                        new AsyncTask<Void, Void, ArrayList<Account>>() {
+//                            @Override
+//                            protected ArrayList<Account> doInBackground(Void... params) {
+//                                return Sources.getInstance(mContext).getAccounts(true);
+//                            }
+//                            @Override
+//                            protected void onPostExecute(ArrayList<Account> result) {
+//                                selectAccountAndCreateContact(result, true);
+//                            }
+//                };
+//                loadAccountsTask.execute();
+//            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
+//                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
 
         if (savedState == null) {
@@ -230,7 +264,7 @@ public class ContactEditFragment
         if (data == ContactEditLoader.Result.NOT_FOUND) {
             // Item has been deleted
             Log.i(TAG, "No contact found. Closing fragment");
-            mCallbacks.closeBecauseContactNotFound();
+            if (mCallbacks != null) mCallbacks.closeBecauseContactNotFound();
             return;
         }
         setData(data);
@@ -643,7 +677,7 @@ public class ContactEditFragment
                     resultCode = Activity.RESULT_CANCELED;
                     resultIntent = null;
                 }
-                mCallbacks.closeAfterSaving(resultCode, resultIntent);
+                if (mCallbacks != null) mCallbacks.closeAfterSaving(resultCode, resultIntent);
                 break;
 // TODO: Other save modes
 

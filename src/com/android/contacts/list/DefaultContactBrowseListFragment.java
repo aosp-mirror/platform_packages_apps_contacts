@@ -36,8 +36,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mCreateContactEnabled;
     private boolean mContactsWithPhoneNumbersOnly;
 
+    // TODO: Remove this horrible hack once the framework can lookup fragments via findFragmentById
+    public static DefaultContactBrowseListFragment sLastFragment = null;
+
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
+
+        sLastFragment = this;
     }
 
     @Override

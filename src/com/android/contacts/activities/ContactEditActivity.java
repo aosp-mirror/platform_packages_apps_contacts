@@ -44,7 +44,7 @@ public class ContactEditActivity extends Activity implements
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        setContentView(R.layout.contact_edit);
+        setContentView(R.layout.contact_edit_activity);
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
@@ -52,14 +52,9 @@ public class ContactEditActivity extends Activity implements
         final String mimeType = intent.resolveType(getContentResolver());
         final Bundle intentExtras = intent.getExtras();
 
-        mFragment = new ContactEditFragment(
-                this, findViewById(R.id.contact_edit),
-                action, uri, mimeType, intentExtras,
-                mCallbackHandler);
-
-        openFragmentTransaction()
-            .add(mFragment, R.id.contact_edit)
-            .commit();
+        mFragment = ContactEditFragment.sLastInstance;
+        mFragment.setCallbacks(mCallbackHandler);
+        mFragment.load(action, uri, mimeType, intentExtras);
     }
 
     private class FragmentCallbackHandler implements ContactEditFragment.Callbacks {
