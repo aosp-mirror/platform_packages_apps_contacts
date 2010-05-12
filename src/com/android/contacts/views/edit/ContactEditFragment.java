@@ -14,6 +14,15 @@
  * limitations under the License
  */
 
+
+// Here are the open TODOs for the Fragment transition
+// TODO How to save data? Service?
+// TODO Do account-list lookup always in a thread
+// TODO Remove the temporary instance once findFragmentById works
+// TODO Cleanup state handling (orientation changes etc).
+// TODO Cleanup the load function. It can currenlty also do insert, which is awkward
+// TODO Watch for background changes...How?
+
 package com.android.contacts.views.edit;
 
 import com.android.contacts.JoinContactActivity;
@@ -1020,8 +1029,7 @@ public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoade
         }
 
         public void onRequest(int request) {
-            // TODO: Still needed?
-//            if (!hasValidState()) return;
+            if (!hasValidState()) return;
 
             if (request == EditorListener.REQUEST_PICK_PHOTO) {
                 if (mEditor.hasSetPhoto()) {
