@@ -64,6 +64,10 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         mUnknownNameText = context.getText(android.R.string.unknownName);
     }
 
+    protected CharSequence getUnknownNameText() {
+        return mUnknownNameText;
+    }
+
     @Override
     public void configureLoader(CursorLoader loader) {
         loader.setUri(buildSectionIndexerUri(Phone.CONTENT_URI));
