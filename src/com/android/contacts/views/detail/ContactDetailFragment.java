@@ -793,7 +793,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
                     final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                             rawContactIdToEdit);
                     mCallbacks.editContact(rawContactUri);
-                    //mContext.startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
                     return true;
                 } else {
                     // There is no rawContact to edit.

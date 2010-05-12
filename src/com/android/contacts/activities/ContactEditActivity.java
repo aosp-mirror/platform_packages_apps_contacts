@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.edit.ContactEditFragment;
@@ -26,6 +27,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class ContactEditActivity extends Activity implements
         DialogManager.DialogShowingViewActivity {
@@ -62,7 +65,19 @@ public class ContactEditActivity extends Activity implements
             finish();
         }
 
+        public void closeAfterDelete() {
+            finish();
+        }
+
         public void closeBecauseContactNotFound() {
+            finish();
+        }
+
+        public void closeAfterSplit() {
+            finish();
+        }
+
+        public void closeBecauseAccountSelectorAborted() {
             finish();
         }
 
@@ -96,5 +111,45 @@ public class ContactEditActivity extends Activity implements
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO: This is too hardwired.
+        mFragment.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // TODO: This is too hardwired.
+        if (mFragment.onCreateOptionsMenu(menu, getMenuInflater())) return true;
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // TODO: This is too hardwired.
+        if (mFragment.onPrepareOptionsMenu(menu)) return true;
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO: This is too hardwired.
+        if (mFragment.onOptionsItemSelected(item)) return true;
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            ContactsSearchManager.startSearch(this, initialQuery);
+        }
     }
 }
