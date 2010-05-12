@@ -470,4 +470,12 @@ public class ContactsIntentResolver {
         }
         return null;
     }
+
+    public boolean isVisibleContactsRestrictionEnabled() {
+        return mMode != MODE_CUSTOM && !mSearchResultsMode;
+    }
+
+    public boolean isContactsWithPhonesOnlyRestrictionEnabled() {
+        return mMode != MODE_CUSTOM;
+    }
 }

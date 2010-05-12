@@ -464,6 +464,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         switch (mMode) {
             case MODE_DEFAULT:
+            case MODE_CUSTOM:
             case MODE_INSERT_OR_EDIT_CONTACT:
             case MODE_QUERY_PICK_TO_EDIT:
             case MODE_FREQUENT:
@@ -485,6 +486,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 if (mMode == MODE_QUERY) {
                     fragment.setSearchResultsMode(true);
                 }
+
+                fragment.setContactsWithPhonesOnlyRestrictionEnabled(
+                        mIntentResolver.isContactsWithPhonesOnlyRestrictionEnabled());
+                fragment.setVisibleContactsRestrictionEnabled(
+                        mIntentResolver.isVisibleContactsRestrictionEnabled());
 
                 fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {
                     public void onSearchAllContactsAction(String string) {

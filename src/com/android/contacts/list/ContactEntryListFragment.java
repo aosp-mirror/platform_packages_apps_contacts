@@ -405,10 +405,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void configureAdapter() {
-        mAdapter.setQueryString(mQueryString);
-        mAdapter.setContactNameDisplayOrder(mDisplayOrder);
-        mAdapter.setSortOrder(mSortOrder);
-        mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+        if (mAdapter != null) {
+            mAdapter.setQueryString(mQueryString);
+            mAdapter.setContactNameDisplayOrder(mDisplayOrder);
+            mAdapter.setSortOrder(mSortOrder);
+            mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+        }
     }
 
     @Override

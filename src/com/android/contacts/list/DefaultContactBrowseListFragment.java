@@ -35,9 +35,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
     private boolean mContactsWithPhoneNumbersOnly;
+    private boolean mContactsWithPhonesOnlyRestrictionEnabled = true;
+    private boolean mVisibleContactsRestrictionEnabled = true;
 
     // TODO: Remove this horrible hack once the framework can lookup fragments via findFragmentById
     public static DefaultContactBrowseListFragment sLastFragment = null;
+
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -64,10 +67,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     public void setContactsWithPhoneNumbersOnly(boolean flag) {
         mContactsWithPhoneNumbersOnly = flag;
-        ContactListAdapter adapter = getAdapter();
-        if (adapter != null) {
-            ((DefaultContactListAdapter)adapter).setContactsWithPhoneNumbersOnly(flag);
-        }
+        configureAdapter();
+    }
+
+    public void setContactsWithPhonesOnlyRestrictionEnabled(boolean flag) {
+        this.mContactsWithPhonesOnlyRestrictionEnabled = flag;
+        configureAdapter();
+    }
+
+    public void setVisibleContactsRestrictionEnabled(boolean flag) {
+        this.mVisibleContactsRestrictionEnabled = flag;
+        configureAdapter();
     }
 
     @Override
@@ -96,7 +106,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(true);
         adapter.setQuickContactEnabled(true);
-
         return adapter;
     }
 
@@ -105,7 +114,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         super.configureAdapter();
 
         DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
-        adapter.setContactsWithPhoneNumbersOnly(mContactsWithPhoneNumbersOnly);
+        if (adapter != null) {
+            adapter.setContactsWithPhoneNumbersOnly(mContactsWithPhoneNumbersOnly
+                    && mContactsWithPhonesOnlyRestrictionEnabled);
+            adapter.setVisibleContactsOnly(!isSearchResultsMode()
+                    && mVisibleContactsRestrictionEnabled);
+        }
     }
 
     @Override
