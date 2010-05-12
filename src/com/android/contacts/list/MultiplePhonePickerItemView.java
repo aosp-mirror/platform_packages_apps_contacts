@@ -38,8 +38,6 @@ public class MultiplePhonePickerItemView extends ContactListItemView {
     private int mChipRightMargin;
     private int mCheckBoxMargin;
 
-    private OnClickListener mCheckBoxClickListener;
-
     public long phoneId;
     // phoneNumber only validates when phoneId = INVALID_PHONE_ID
     public String phoneNumber;
@@ -53,10 +51,6 @@ public class MultiplePhonePickerItemView extends ContactListItemView {
                 resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_right_margin);
         mCheckBoxMargin =
                 resources.getDimensionPixelOffset(R.dimen.list_item_header_checkbox_margin);
-    }
-
-    public void setOnCheckBoxClickListener(OnClickListener checkBoxClickListener) {
-        mCheckBoxClickListener = checkBoxClickListener;
     }
 
     @Override
@@ -118,7 +112,8 @@ public class MultiplePhonePickerItemView extends ContactListItemView {
     public CheckBox getCheckBoxView() {
         if (mCheckBox == null) {
             mCheckBox = new CheckBox(mContext);
-            mCheckBox.setOnClickListener(mCheckBoxClickListener);
+            mCheckBox.setClickable(false);
+            mCheckBox.setFocusable(false);
             addView(mCheckBox);
         }
         return mCheckBox;

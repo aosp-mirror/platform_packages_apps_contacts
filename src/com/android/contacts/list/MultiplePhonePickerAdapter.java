@@ -15,175 +15,309 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsListActivity;
-import com.android.contacts.MultiplePhonePickerActivity;
+import com.android.contacts.R;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract.Contacts;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.QuickContactBadge;
-import android.widget.TextView;
 
-public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
-    private final MultiplePhonePickerActivity mMultiplePhonePickerActivity;
-    private MultiplePhoneExtraAdapter mExtraAdapter;
+/**
+ * List adapter for the multiple phone picker.
+ */
+public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
 
-    public MultiplePhonePickerAdapter(MultiplePhonePickerActivity multiplePhonePickerActivity) {
-        super(multiplePhonePickerActivity);
-        this.mMultiplePhonePickerActivity = multiplePhonePickerActivity;
+    public interface OnSelectionChangeListener {
+        void onSelectionChange();
     }
 
-    public void setExtraAdapter(MultiplePhoneExtraAdapter extraAdapter) {
-        mExtraAdapter = extraAdapter;
+    private static final int[] CHIP_COLOR_ARRAY = {
+        R.drawable.appointment_indicator_leftside_1,
+        R.drawable.appointment_indicator_leftside_2,
+        R.drawable.appointment_indicator_leftside_3,
+        R.drawable.appointment_indicator_leftside_4,
+        R.drawable.appointment_indicator_leftside_5,
+        R.drawable.appointment_indicator_leftside_6,
+        R.drawable.appointment_indicator_leftside_7,
+        R.drawable.appointment_indicator_leftside_8,
+        R.drawable.appointment_indicator_leftside_9,
+        R.drawable.appointment_indicator_leftside_10,
+        R.drawable.appointment_indicator_leftside_11,
+        R.drawable.appointment_indicator_leftside_12,
+        R.drawable.appointment_indicator_leftside_13,
+        R.drawable.appointment_indicator_leftside_14,
+        R.drawable.appointment_indicator_leftside_15,
+        R.drawable.appointment_indicator_leftside_16,
+        R.drawable.appointment_indicator_leftside_17,
+        R.drawable.appointment_indicator_leftside_18,
+        R.drawable.appointment_indicator_leftside_19,
+        R.drawable.appointment_indicator_leftside_20,
+        R.drawable.appointment_indicator_leftside_21,
+    };
+
+    public static final long INVALID_PHONE_ID = -1;
+
+    /** The phone numbers */
+    private ArrayList<String> mPhoneNumbers = new ArrayList<String>();
+
+    /** The selected phone numbers in the PhoneNumberAdapter */
+    private HashSet<String> mSelectedPhoneNumbers = new HashSet<String>();
+
+    /** The phone numbers after the filtering */
+    private ArrayList<String> mFilteredPhoneNumbers = new ArrayList<String>();
+
+    /** The PHONE_ID of selected number in user contacts*/
+    private HashSet<Long> mSelectedPhoneIds = new HashSet<Long>();
+
+    private boolean mSelectionChanged;
+
+    private OnSelectionChangeListener mSelectionChangeListener;
+
+    /**
+     * This is a map from contact ID to color index. A colored chip is used to
+     * indicate the number of phone numbers belong to one contact
+     */
+    private SparseIntArray mContactColor = new SparseIntArray();
+
+    public MultiplePhonePickerAdapter(Context context) {
+        super(context);
+    }
+
+    public void setOnSelectionChangeListener(OnSelectionChangeListener listener) {
+        this.mSelectionChangeListener = listener;
+    }
+
+    public void setPhoneNumbers(ArrayList<String> phoneNumbers) {
+        mPhoneNumbers.clear();
+        mPhoneNumbers.addAll(phoneNumbers);
+    }
+
+    public int getSelectedCount() {
+        return mSelectedPhoneNumbers.size() + mSelectedPhoneIds.size();
+    }
+
+    public Uri[] getSelectedUris() {
+        Uri[] uris = new Uri[mSelectedPhoneNumbers.size() + mSelectedPhoneIds.size()];
+        int count = mPhoneNumbers.size();
+        int index = 0;
+        for (int i = 0; i < count; i++) {
+            String phoneNumber = mPhoneNumbers.get(i);
+            if (isSelected(phoneNumber)) {
+                uris[index++] = Uri.parse("tel:" + phoneNumber);
+            }
+        }
+        for (Long contactId : mSelectedPhoneIds) {
+            uris[index++] = ContentUris.withAppendedId(Phone.CONTENT_URI, contactId);
+        }
+        return uris;
+    }
+
+    public void setSelectedUris(Uri[] uris) {
+        mSelectedPhoneNumbers.clear();
+        mSelectedPhoneIds.clear();
+        if (uris != null) {
+            for (Uri uri : uris) {
+                String scheme = uri.getScheme();
+                if ("tel".equals(scheme)) {
+                    String phoneNumber = uri.getSchemeSpecificPart();
+                    if (!mPhoneNumbers.contains(phoneNumber)) {
+                        mPhoneNumbers.add(phoneNumber);
+                    }
+                    mSelectedPhoneNumbers.add(phoneNumber);
+            } else if ("content".equals(scheme)) {
+                mSelectedPhoneIds.add(ContentUris.parseId(uri));
+            }
+            }
+        }
+        mFilteredPhoneNumbers.clear();
+        mFilteredPhoneNumbers.addAll(mPhoneNumbers);
+    }
+
+    public void toggleSelection(int position) {
+        if (position < mFilteredPhoneNumbers.size()) {
+            String phoneNumber = mPhoneNumbers.get(position);
+            setPhoneSelected(phoneNumber, !isSelected(phoneNumber));
+        } else {
+            Cursor cursor = getCursor();
+            cursor.moveToPosition(position - mFilteredPhoneNumbers.size());
+            long phoneId = cursor.getLong(PHONE_ID_COLUMN_INDEX);
+            setPhoneSelected(phoneId, !isSelected(phoneId));
+        }
+        notifyDataSetChanged();
+    }
+
+    public boolean isSelectionChanged() {
+        return mSelectionChanged;
+    }
+
+    public void setSelectionChanged(boolean flag) {
+        mSelectionChanged = flag;
+        if (mSelectionChangeListener != null) {
+            mSelectionChangeListener.onSelectionChange();
+        }
+    }
+
+    public void setPhoneSelected(final String phoneNumber, boolean selected) {
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            if (selected) {
+                mSelectedPhoneNumbers.add(phoneNumber);
+            } else {
+                mSelectedPhoneNumbers.remove(phoneNumber);
+            }
+        }
+        setSelectionChanged(true);
+    }
+
+    public void setPhoneSelected(long phoneId, boolean selected) {
+        if (selected) {
+            mSelectedPhoneIds.add(phoneId);
+        } else {
+            mSelectedPhoneIds.remove(phoneId);
+        }
+        setSelectionChanged(true);
+    }
+
+    public boolean isSelected(long phoneId) {
+        return mSelectedPhoneIds.contains(phoneId);
+    }
+
+    public boolean isSelected(final String phoneNumber) {
+        return mSelectedPhoneNumbers.contains(phoneNumber);
+    }
+
+    public void setAllPhonesSelected(boolean selected) {
+//        if (selected) {
+//            Cursor cursor = this.mMultiplePhoneSelectionActivity.mAdapter.getCursor();
+//            if (cursor != null) {
+//                int backupPos = cursor.getPosition();
+//                cursor.moveToPosition(-1);
+//                while (cursor.moveToNext()) {
+//                    setPhoneSelected(cursor
+//                            .getLong(MultiplePhonePickerActivity.PHONE_ID_COLUMN_INDEX), true);
+//                }
+//                cursor.moveToPosition(backupPos);
+//            }
+//            for (String number : this.mMultiplePhoneSelectionActivity.mPhoneNumberAdapter
+//                    .getFilteredPhoneNumbers()) {
+//                setPhoneSelected(number, true);
+//            }
+//        } else {
+//            mSelectedPhoneIds.clear();
+//            mSelectedPhoneNumbers.clear();
+//        }
+    }
+
+    public boolean isAllSelected() {
+        return false;
+//        return selectedCount() == this.mMultiplePhoneSelectionActivity.mPhoneNumberAdapter
+//                .getFilteredPhoneNumbers().size()
+//                + this.mMultiplePhoneSelectionActivity.mAdapter.getCount();
+    }
+
+    public Iterator<Long> getSelectedPhoneIds() {
+        return mSelectedPhoneIds.iterator();
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 && mMultiplePhonePickerActivity.mShowNumberOfContacts) {
-            return IGNORE_ITEM_VIEW_TYPE;
-        }
-
-        if (position < mExtraAdapter.getCount()) {
-            return mExtraAdapter.getItemViewType(position);
-        }
-
-        return super.getItemViewType(position);
+        return position < mPhoneNumbers.size() ? 0 : 1;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (position == 0 && mMultiplePhonePickerActivity.mShowNumberOfContacts) {
-            return super.getView(position, convertView, parent);
+        View view;
+        if (convertView == null || convertView.getTag() == null) {
+            view = newView(getContext(), null, parent);
+        } else {
+            view = convertView;
         }
 
-        if (position < mExtraAdapter.getCount()) {
-            return mExtraAdapter.getView(position,
-                    convertView, parent);
+        boolean showingSuggestion = false;
+
+        if (position < mFilteredPhoneNumbers.size()) {
+            bindExtraPhoneView(view, position);
+        } else {
+            Cursor cursor = getCursor();
+            cursor.moveToPosition(position - mFilteredPhoneNumbers.size());
+            bindView(view, getContext(), cursor);
         }
-        return super.getView(position, convertView, parent);
+        return view;
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         final MultiplePhonePickerItemView view = new MultiplePhonePickerItemView(context, null);
-        view.setOnCallButtonClickListener(mMultiplePhonePickerActivity);
-        view.setOnCheckBoxClickListener(mMultiplePhonePickerActivity.mCheckBoxClickerListener);
+        view.setUnknownNameText(getUnknownNameText());
+        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         return view;
+    }
+
+    private void bindExtraPhoneView(View itemView, int position) {
+        final MultiplePhonePickerItemView view = (MultiplePhonePickerItemView)itemView;
+        String phoneNumber = mFilteredPhoneNumbers.get(position);
+        view.getNameTextView().setText(phoneNumber);
+        CheckBox checkBox = view.getCheckBoxView();
+        checkBox.setChecked(isSelected(phoneNumber));
+        view.phoneId = INVALID_PHONE_ID;
+        view.phoneNumber = phoneNumber;
     }
 
     @Override
     public void bindView(View itemView, Context context, Cursor cursor) {
+        super.bindView(itemView, context, cursor);
+
         final MultiplePhonePickerItemView view = (MultiplePhonePickerItemView)itemView;
-
-        int typeColumnIndex;
-        int dataColumnIndex;
-        int labelColumnIndex;
-        int defaultType;
-        int nameColumnIndex;
-        int phoneticNameColumnIndex;
-        int photoColumnIndex = ContactsListActivity.SUMMARY_PHOTO_ID_COLUMN_INDEX;
-        boolean displayAdditionalData = mDisplayAdditionalData;
-        nameColumnIndex = ContactsListActivity.PHONE_DISPLAY_NAME_COLUMN_INDEX;
-        phoneticNameColumnIndex = -1;
-        dataColumnIndex = ContactsListActivity.PHONE_NUMBER_COLUMN_INDEX;
-        typeColumnIndex = ContactsListActivity.PHONE_TYPE_COLUMN_INDEX;
-        labelColumnIndex = ContactsListActivity.PHONE_LABEL_COLUMN_INDEX;
-        defaultType = Phone.TYPE_HOME;
-        photoColumnIndex = ContactsListActivity.PHONE_PHOTO_ID_COLUMN_INDEX;
-
-        view.phoneId = Long.valueOf(cursor.getLong(ContactsListActivity.PHONE_ID_COLUMN_INDEX));
+        view.phoneId = Long.valueOf(cursor.getLong(PHONE_ID_COLUMN_INDEX));
         CheckBox checkBox = view.getCheckBoxView();
-        checkBox.setChecked(mMultiplePhonePickerActivity.mUserSelection.isSelected(view.phoneId));
-        int color = mMultiplePhonePickerActivity.getChipColor(cursor
-                .getLong(ContactsListActivity.PHONE_CONTACT_ID_COLUMN_INDEX));
-        view.getChipView().setBackgroundResource(color);
+        checkBox.setChecked(isSelected(view.phoneId));
 
-        // Set the name
-        cursor.copyStringToBuffer(nameColumnIndex, view.nameBuffer);
-        TextView nameView = view.getNameTextView();
-        int size = view.nameBuffer.sizeCopied;
-        if (size != 0) {
-            nameView.setText(view.nameBuffer.data, 0, size);
-        } else {
-            nameView.setText(mUnknownNameText);
-        }
-
-        // Set the photo, if requested
-        if (mDisplayPhotos) {
-            boolean useQuickContact = false;
-
-            long photoId = 0;
-            if (!cursor.isNull(photoColumnIndex)) {
-                photoId = cursor.getLong(photoColumnIndex);
-            }
-
-            ImageView viewToUse;
-            if (useQuickContact) {
-                // Build soft lookup reference
-                final long contactId = cursor.getLong(ContactsListActivity.SUMMARY_ID_COLUMN_INDEX);
-                final String lookupKey = cursor
-                        .getString(ContactsListActivity.SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
-                QuickContactBadge quickContact = view.getQuickContact();
-                quickContact.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
-                viewToUse = quickContact;
-            } else {
-                viewToUse = view.getPhotoView();
-            }
-
-            final int position = cursor.getPosition();
-            getPhotoLoader().loadPhoto(viewToUse, photoId);
-        }
-
-        if (!displayAdditionalData) {
-            if (phoneticNameColumnIndex != -1) {
-
-                // Set the name
-                cursor.copyStringToBuffer(phoneticNameColumnIndex, view.phoneticNameBuffer);
-                int phoneticNameSize = view.phoneticNameBuffer.sizeCopied;
-                if (phoneticNameSize != 0) {
-                    view.setLabel(view.phoneticNameBuffer.data, phoneticNameSize);
-                } else {
-                    view.setLabel(null);
-                }
-            } else {
-                view.setLabel(null);
-            }
-            return;
-        }
-
-        // Set the data.
-        cursor.copyStringToBuffer(dataColumnIndex, view.dataBuffer);
-
-        size = view.dataBuffer.sizeCopied;
-        view.setData(view.dataBuffer.data, size);
-
-        // Set the label.
-        if (!cursor.isNull(typeColumnIndex)) {
-            final int type = cursor.getInt(typeColumnIndex);
-            final String label = cursor.getString(labelColumnIndex);
-            view.setLabel(Phone.getTypeLabel(context.getResources(), type, label));
-        } else {
-            view.setLabel(null);
-        }
+        long contactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+        view.getChipView().setBackgroundResource(getChipColor(contactId));
     }
 
-    @Override
-    public void changeCursor(Cursor cursor) {
-        super.changeCursor(cursor);
-        mMultiplePhonePickerActivity.updateChipColor(cursor);
+//    @Override
+//    protected void prepareEmptyView() {
+//        mMultiplePhonePickerActivity.mEmptyView.show(mMultiplePhonePickerActivity.mSearchMode,
+//                true, false, false, false, true, mMultiplePhonePickerActivity.mShowSelectedOnly);
+//    }
+
+    /**
+     * Get assigned chip color resource id for a given contact, 0 is returned if there is no mapped
+     * resource.
+     */
+    public int getChipColor(long contactId) {
+        return mContactColor.get((int)contactId);
     }
 
-    @Override
-    protected void prepareEmptyView() {
-        mMultiplePhonePickerActivity.mEmptyView.show(mMultiplePhonePickerActivity.mSearchMode,
-                true, false, false, false, true, mMultiplePhonePickerActivity.mShowSelectedOnly);
-    }
+    // TODO filtering
+//    public void doFilter(final String constraint, boolean selectedOnly) {
+//        if (mPhoneNumbers == null) {
+//            return;
+//        }
+//        mFilteredPhoneNumbers.clear();
+//        for (String number : mPhoneNumbers) {
+//            if (selectedOnly && !mSelection.isSelected(number) ||
+//                    !TextUtils.isEmpty(constraint) && !number.startsWith(constraint)) {
+//                continue;
+//            }
+//            mFilteredPhoneNumbers.add(number);
+//        }
+//    }
 
     @Override
     public int getCount() {
@@ -191,13 +325,39 @@ public class MultiplePhonePickerAdapter extends ContactItemListAdapter {
             return 0;
         }
 
-        int count = super.getCount();
-        count += mExtraAdapter.getCount();
-        return count;
+        return super.getCount() + mFilteredPhoneNumbers.size();
     }
 
     @Override
-    protected int getRealPosition(int pos) {
-        return pos - mExtraAdapter.getCount();
+    public void changeCursor(Cursor cursor) {
+        super.changeCursor(cursor);
+        updateChipColor(cursor);
+    }
+
+    /**
+     * Go through the cursor and assign the chip color to contact who has more
+     * than one phone numbers. Assume the cursor is clustered by CONTACT_ID.
+     */
+    public void updateChipColor(Cursor cursor) {
+        if (cursor == null || cursor.getCount() == 0) {
+            return;
+        }
+        mContactColor.clear();
+        cursor.moveToFirst();
+        int colorIndex = 0;
+        long prevContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+        while (cursor.moveToNext()) {
+            long contactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+            if (prevContactId == contactId) {
+                if (mContactColor.indexOfKey((int)contactId) < 0) {
+                    mContactColor.put((int)contactId, CHIP_COLOR_ARRAY[colorIndex]);
+                    colorIndex++;
+                    if (colorIndex >= CHIP_COLOR_ARRAY.length) {
+                        colorIndex = 0;
+                    }
+                }
+            }
+            prevContactId = contactId;
+        }
     }
 }

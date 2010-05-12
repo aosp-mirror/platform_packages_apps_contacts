@@ -151,13 +151,10 @@ public class JoinContactListAdapter extends ContactListAdapter {
             cursor.moveToPosition(position);
         }
 
-        boolean newView;
         View v;
         if (convertView == null || convertView.getTag() == null) {
-            newView = true;
             v = newView(getContext(), cursor, parent);
         } else {
-            newView = false;
             v = convertView;
         }
         bindView(position, v, cursor, showingSuggestion);

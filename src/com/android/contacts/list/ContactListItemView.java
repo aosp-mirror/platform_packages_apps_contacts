@@ -188,9 +188,10 @@ public class ContactListItemView extends ViewGroup {
         mLine4Height = 0;
 
         // Obtain the natural dimensions of the name text (we only care about height)
-        mNameTextView.measure(0, 0);
-
-        mLine1Height = mNameTextView.getMeasuredHeight();
+        if (isVisible(mNameTextView)) {
+            mNameTextView.measure(0, 0);
+            mLine1Height = mNameTextView.getMeasuredHeight();
+        }
 
         if (isVisible(mPhoneticNameTextView)) {
             mPhoneticNameTextView.measure(0, 0);
@@ -288,10 +289,12 @@ public class ContactListItemView extends ViewGroup {
         int totalTextHeight = mLine1Height + mLine2Height + mLine3Height + mLine4Height;
         int textTopBound = (bottomBound + topBound - totalTextHeight) / 2;
 
-        mNameTextView.layout(leftBound,
-                textTopBound,
-                rightBound,
-                textTopBound + mLine1Height);
+        if (isVisible(mNameTextView)) {
+            mNameTextView.layout(leftBound,
+                    textTopBound,
+                    rightBound,
+                    textTopBound + mLine1Height);
+        }
 
         int dataLeftBound = leftBound;
         if (isVisible(mPhoneticNameTextView)) {
