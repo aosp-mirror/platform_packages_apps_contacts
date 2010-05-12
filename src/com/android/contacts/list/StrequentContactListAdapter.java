@@ -39,6 +39,8 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     private TextView mSeparatorView;
     private OnClickListener mCallButtonListener;
     private int mCallButtonId;
+    private boolean mStarredContactsIncluded;
+    private boolean mFrequentlyContactedContactsIncluded;
 
     public StrequentContactListAdapter(Context context, int callButtonId) {
         super(context);
@@ -49,15 +51,35 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         mCallButtonListener = callButtonListener;
     }
 
+    public void setStarredContactsIncluded(boolean flag) {
+        mStarredContactsIncluded = flag;
+    }
+
+    public void setFrequentlyContactedContactsIncluded(boolean flag) {
+        mFrequentlyContactedContactsIncluded = flag;
+    }
+
     @Override
     public void configureLoader(CursorLoader loader) {
-        loader.setUri(Contacts.CONTENT_STREQUENT_URI);
-        loader.setProjection(PROJECTION);
-        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
-            loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
+        String sortOrder = getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY
+                ? Contacts.SORT_KEY_PRIMARY
+                : Contacts.SORT_KEY_ALTERNATIVE;
+        if (mStarredContactsIncluded && mFrequentlyContactedContactsIncluded) {
+            loader.setUri(Contacts.CONTENT_STREQUENT_URI);
+        } else if (mStarredContactsIncluded) {
+            loader.setUri(Contacts.CONTENT_URI);
+            loader.setSelection(Contacts.STARRED + "!=0");
+        } else if (mFrequentlyContactedContactsIncluded) {
+            loader.setUri(Contacts.CONTENT_URI);
+            loader.setSelection(Contacts.TIMES_CONTACTED + " > 0");
+            sortOrder = Contacts.TIMES_CONTACTED + " DESC";
         } else {
-            loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
+            throw new UnsupportedOperationException("Neither StarredContactsIncluded nor "
+                    + "FrequentlyContactedContactsIncluded is set");
         }
+
+        loader.setProjection(PROJECTION);
+        loader.setSortOrder(sortOrder);
     }
 
     @Override
@@ -66,17 +88,20 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
         // Get the split between starred and frequent items, if the mode is strequent
         mFrequentSeparatorPos = ListView.INVALID_POSITION;
-        int count = 0;
-        if (cursor != null && (count = cursor.getCount()) > 0) {
-            cursor.moveToPosition(-1);
-            for (int i = 0; cursor.moveToNext(); i++) {
-                int starred = cursor.getInt(CONTACT_STARRED_COLUMN_INDEX);
-                if (starred == 0) {
-                    if (i > 0) {
-                        // Only add the separator when there are starred items present
-                        mFrequentSeparatorPos = i;
+
+        if (mStarredContactsIncluded && mFrequentlyContactedContactsIncluded) {
+            int count = 0;
+            if (cursor != null && (count = cursor.getCount()) > 0) {
+                cursor.moveToPosition(-1);
+                for (int i = 0; cursor.moveToNext(); i++) {
+                    int starred = cursor.getInt(CONTACT_STARRED_COLUMN_INDEX);
+                    if (starred == 0) {
+                        if (i > 0) {
+                            // Only add the separator when there are starred items present
+                            mFrequentSeparatorPos = i;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -104,7 +129,8 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     @Override
     public Object getItem(int position) {
-        if (position < mFrequentSeparatorPos) {
+        if (mFrequentSeparatorPos == ListView.INVALID_POSITION
+                || position < mFrequentSeparatorPos) {
             return super.getItem(position);
         } else {
             return super.getItem(position - 1);
@@ -113,7 +139,8 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     @Override
     public long getItemId(int position) {
-        if (position < mFrequentSeparatorPos) {
+        if (mFrequentSeparatorPos == ListView.INVALID_POSITION
+                || position < mFrequentSeparatorPos) {
             return super.getItemId(position);
         } else {
             return super.getItemId(position - 1);
@@ -131,7 +158,8 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (position < mFrequentSeparatorPos) {
+        if (mFrequentSeparatorPos == ListView.INVALID_POSITION
+                || position < mFrequentSeparatorPos) {
             return super.getView(position, convertView, parent);
         } else if (position == mFrequentSeparatorPos) {
             if (mSeparatorView == null) {

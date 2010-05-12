@@ -30,6 +30,24 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
 
     private static final int CALL_BUTTON_ID = android.R.id.button1;
 
+    private boolean mStarredContactsIncluded = true;
+    private boolean mFrequentlyContactedContactsIncluded = true;
+
+    public StrequentContactListFragment() {
+        setSectionHeaderDisplayEnabled(false);
+        setPhotoLoaderEnabled(true);
+    }
+
+    public void setStarredContactsIncluded(boolean flag) {
+        mStarredContactsIncluded = flag;
+        configureAdapter();
+    }
+
+    public void setFrequentlyContactedContactsIncluded(boolean flag) {
+        mFrequentlyContactedContactsIncluded = flag;
+        configureAdapter();
+    }
+
     @Override
     protected void onItemClick(int position, long id) {
         ContactListAdapter adapter = getAdapter();
@@ -47,6 +65,17 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
         adapter.setCallButtonListener(this);
 
         return adapter;
+    }
+
+    @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+
+        StrequentContactListAdapter adapter = (StrequentContactListAdapter)getAdapter();
+        if (adapter != null) {
+            adapter.setStarredContactsIncluded(mStarredContactsIncluded);
+            adapter.setFrequentlyContactedContactsIncluded(mFrequentlyContactedContactsIncluded);
+        }
     }
 
     @Override
