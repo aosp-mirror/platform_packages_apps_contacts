@@ -54,6 +54,8 @@ import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
 import android.content.DialogInterface.OnDismissListener;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -69,6 +71,9 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -86,20 +91,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
-public class ContactEditFragment
-        extends LoaderManagingFragment<ContactEditLoader.Result> {
+public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoader.Result> {
+
     private static final String TAG = "ContactEditFragment";
 
     private static final int LOADER_DATA = 1;
-
-    /** The launch code when picking a photo and the raw data is returned */
-    private static final int PHOTO_PICKED_WITH_DATA = 3021;
-
-    /** The launch code when a contact to join with is returned */
-    private static final int REQUEST_JOIN_CONTACT = 3022;
-
-    /** The launch code when taking a picture */
-    private static final int CAMERA_WITH_DATA = 3023;
 
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
@@ -109,28 +105,29 @@ public class ContactEditFragment
     private static final String KEY_QUERY_SELECTION_ARGS = "queryselectionargs";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
-    private static final String BUNDLE_SELECT_ACCOUNT_LIST = "account_list";
-
     public static final int SAVE_MODE_DEFAULT = 0;
     public static final int SAVE_MODE_SPLIT = 1;
     public static final int SAVE_MODE_JOIN = 2;
 
     private long mRawContactIdRequestingPhoto = -1;
 
+    private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
+
+    private static final String BUNDLE_SELECT_ACCOUNT_LIST = "account_list";
+
     private static final int ICON_SIZE = 96;
 
     private static final File PHOTO_DIR = new File(
             Environment.getExternalStorageDirectory() + "/DCIM/Camera");
 
+    private File mCurrentPhotoFile;
+
     private Context mContext;
-    private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
     private String mAction;
     private Uri mUri;
     private String mMimeType;
     private Bundle mIntentExtras;
     private Callbacks mCallbacks;
-
-    private File mCurrentPhotoFile;
 
     private String mQuerySelection;
     private String[] mQuerySelectionArgs;
@@ -168,13 +165,14 @@ public class ContactEditFragment
         });
         view.findViewById(R.id.btn_discard).setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                if (mCallbacks != null) mCallbacks.closeAfterRevert();
+                doRevertAction();
             }
         });
 
         return view;
     }
 
+    // TODO: Think about splitting this. Doing INSERT via load is kinda weird
     public void load(String action, Uri uri, String mimeType, Bundle intentExtras) {
         mAction = action;
         mUri = uri;
@@ -188,19 +186,7 @@ public class ContactEditFragment
         } else if (Intent.ACTION_INSERT.equals(mAction)) {
             if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_insert);
 
-            // Load Accounts async so that we can present them
-            AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
-                    new AsyncTask<Void, Void, ArrayList<Account>>() {
-                        @Override
-                        protected ArrayList<Account> doInBackground(Void... params) {
-                            return Sources.getInstance(mContext).getAccounts(true);
-                        }
-                        @Override
-                        protected void onPostExecute(ArrayList<Account> result) {
-                            selectAccountAndCreateContact(result, true);
-                        }
-            };
-            loadAccountsTask.execute();
+            doAddAction();
         } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                 ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
     }
@@ -213,35 +199,6 @@ public class ContactEditFragment
     public void onCreate(Bundle savedState) {
         // TODO: Currently savedState is always null (framework issue). Test once this is fixed
         super.onCreate(savedState);
-
-        // Handle initial actions only when existing state missing
-        final boolean hasIncomingState =
-                savedState != null && savedState.containsKey(KEY_EDIT_STATE);
-
-        if (!hasIncomingState) {
-//            if (Intent.ACTION_EDIT.equals(mAction)) {
-//                // Read initial state from database
-//                if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_edit);
-//                startLoading(LOADER_DATA, null);
-//            } else if (Intent.ACTION_INSERT.equals(mAction)) {
-//                if (mCallbacks != null) mCallbacks.setTitleTo(R.string.editContact_title_insert);
-//
-//                // Load Accounts async so that we can present them
-//                AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
-//                        new AsyncTask<Void, Void, ArrayList<Account>>() {
-//                            @Override
-//                            protected ArrayList<Account> doInBackground(Void... params) {
-//                                return Sources.getInstance(mContext).getAccounts(true);
-//                            }
-//                            @Override
-//                            protected void onPostExecute(ArrayList<Account> result) {
-//                                selectAccountAndCreateContact(result, true);
-//                            }
-//                };
-//                loadAccountsTask.execute();
-//            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-//                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
-        }
 
         if (savedState == null) {
             // If savedState is non-null, onRestoreInstanceState() will restore the generator.
@@ -375,8 +332,85 @@ public class ContactEditFragment
         mContent.setVisibility(View.VISIBLE);
     }
 
-    public void onClick(View v) {
-        // TODO forward to controller?
+    public boolean onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.edit, menu);
+
+        return true;
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_done:
+                return doSaveAction(SAVE_MODE_DEFAULT);
+            case R.id.menu_discard:
+                return doRevertAction();
+            case R.id.menu_add:
+                return doAddAction();
+            case R.id.menu_delete:
+                return doDeleteAction();
+            case R.id.menu_split:
+                return doSplitContactAction();
+            case R.id.menu_join:
+                return doJoinContactAction();
+        }
+        return false;
+    }
+
+    private boolean doAddAction() {
+        // Load Accounts async so that we can present them
+        AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
+                new AsyncTask<Void, Void, ArrayList<Account>>() {
+                    @Override
+                    protected ArrayList<Account> doInBackground(Void... params) {
+                        return Sources.getInstance(mContext).getAccounts(true);
+                    }
+                    @Override
+                    protected void onPostExecute(ArrayList<Account> result) {
+                        selectAccountAndCreateContact(result, true);
+                    }
+        };
+        loadAccountsTask.execute();
+
+        return true;
+    }
+
+    /**
+     * Delete the entire contact currently being edited, which usually asks for
+     * user confirmation before continuing.
+     */
+    private boolean doDeleteAction() {
+        if (!hasValidState())
+            return false;
+        int readOnlySourcesCnt = 0;
+        int writableSourcesCnt = 0;
+        // TODO: This shouldn't be called from the UI thread
+        final Sources sources = Sources.getInstance(mContext);
+        for (EntityDelta delta : mState) {
+            final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final ContactsSource contactsSource = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_CONSTRAINTS);
+            if (contactsSource != null && contactsSource.readOnly) {
+                readOnlySourcesCnt += 1;
+            } else {
+                writableSourcesCnt += 1;
+            }
+        }
+
+        if (readOnlySourcesCnt > 0 && writableSourcesCnt > 0) {
+            getActivity().showDialog(R.id.edit_dialog_confirm_readonly_delete);
+        } else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
+            getActivity().showDialog(R.id.edit_dialog_confirm_readonly_hide);
+        } else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
+            getActivity().showDialog(R.id.edit_dialog_confirm_multiple_delete);
+        } else {
+            getActivity().showDialog(R.id.edit_dialog_confirm_delete);
+        }
+        return true;
     }
 
     /**
@@ -489,8 +523,7 @@ public class ContactEditFragment
             public void onCancel(DialogInterface dialog) {
                 // If nothing remains, close activity
                 if (!hasValidState()) {
-                    // TODO: pass this back to Activity
-                    // finish();
+                    mCallbacks.closeBecauseAccountSelectorAborted();
                 }
             }
         };
@@ -509,6 +542,13 @@ public class ContactEditFragment
         return result;
     }
 
+    private boolean doSplitContactAction() {
+        if (!hasValidState()) return false;
+
+        getActivity().showDialog(R.id.edit_dialog_split);
+        return true;
+    }
+
     private Dialog createSplitDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.splitConfirmation_title);
@@ -524,6 +564,10 @@ public class ContactEditFragment
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setCancelable(false);
         return builder.create();
+    }
+
+    private boolean doJoinContactAction() {
+        return doSaveAction(SAVE_MODE_JOIN);
     }
 
     /**
@@ -566,8 +610,8 @@ public class ContactEditFragment
         try {
             // Launch picker to choose photo for selected contact
             final Intent intent = getPhotoPickIntent();
-            // TODO: Do this again (Controller?)
-            //startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
+            getActivity().startActivityForResult(intent,
+                    R.id.edit_request_code_photo_picked_with_data);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
@@ -615,8 +659,7 @@ public class ContactEditFragment
             mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
             final Intent intent = getTakePickIntent(mCurrentPhotoFile);
 
-            // TODO: Start camera
-            //startActivityForResult(intent, CAMERA_WITH_DATA);
+            getActivity().startActivityForResult(intent, R.id.edit_request_code_camera_with_data);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
@@ -628,6 +671,43 @@ public class ContactEditFragment
     public static Intent getTakePickIntent(File f) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        return intent;
+    }
+
+    /**
+     * Sends a newly acquired photo to Gallery for cropping
+     */
+    protected void doCropPhoto(File f) {
+        try {
+            // Add the image to the media store
+            MediaScannerConnection.scanFile(
+                    mContext,
+                    new String[] { f.getAbsolutePath() },
+                    new String[] { null },
+                    null);
+
+            // Launch gallery to crop the photo
+            final Intent intent = getCropImageIntent(Uri.fromFile(f));
+            getActivity().startActivityForResult(intent,
+                    R.id.edit_request_code_photo_picked_with_data);
+        } catch (Exception e) {
+            Log.e(TAG, "Cannot crop image", e);
+            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Constructs an intent for image cropping.
+     */
+    public static Intent getCropImageIntent(Uri photoUri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(photoUri, "image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", ICON_SIZE);
+        intent.putExtra("outputY", ICON_SIZE);
+        intent.putExtra("return-data", true);
         return intent;
     }
 
@@ -644,6 +724,12 @@ public class ContactEditFragment
         //mStatus = STATUS_SAVING;
         final PersistTask task = new PersistTask(this, saveMode);
         task.execute(mState);
+
+        return true;
+    }
+
+    private boolean doRevertAction() {
+        if (mCallbacks != null) mCallbacks.closeAfterRevert();
 
         return true;
     }
@@ -679,23 +765,16 @@ public class ContactEditFragment
                 }
                 if (mCallbacks != null) mCallbacks.closeAfterSaving(resultCode, resultIntent);
                 break;
-// TODO: Other save modes
+            case SAVE_MODE_SPLIT:
+                if (mCallbacks != null) mCallbacks.closeAfterSplit();
+                break;
 
-//            case SAVE_MODE_SPLIT:
-//                if (success) {
-//                    Intent intent = new Intent();
-//                    intent.setData(contactLookupUri);
-//                    setResult(RESULT_CLOSE_VIEW_ACTIVITY, intent);
-//                }
-//                finish();
-//                break;
-//
-//            case SAVE_MODE_JOIN:
-//                mStatus = STATUS_EDITING;
-//                if (success) {
-//                    showJoinAggregateActivity(contactLookupUri);
-//                }
-//                break;
+            case SAVE_MODE_JOIN:
+                //mStatus = STATUS_EDITING;
+                if (success) {
+                    showJoinAggregateActivity(contactLookupUri);
+                }
+                break;
         }
     }
 
@@ -704,15 +783,15 @@ public class ContactEditFragment
      *
      * @param contactLookupUri the fresh URI for the currently edited contact (after saving it)
      */
-    public void showJoinAggregateActivity(Uri contactLookupUri) {
+    private void showJoinAggregateActivity(Uri contactLookupUri) {
         if (contactLookupUri == null) {
             return;
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
-        Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
+        final Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
         intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, mContactIdForJoin);
-        getActivity().startActivityForResult(intent, REQUEST_JOIN_CONTACT);
+        getActivity().startActivityForResult(intent, R.id.edit_request_code_join);
     }
 
     private interface JoinContactQuery {
@@ -820,9 +899,24 @@ public class ContactEditFragment
         void closeBecauseContactNotFound();
 
         /**
+         * Contact was split, so we can close now
+         */
+        void closeAfterSplit();
+
+        /**
+         * User was presented with an account selection and couldn't decide.
+         */
+        void closeBecauseAccountSelectorAborted();
+
+        /**
          * User has tapped Revert, close the fragment now.
          */
         void closeAfterRevert();
+
+        /**
+         * User has removed the contact, close the fragment now.
+         */
+        void closeAfterDelete();
 
         /**
          * Set the Title (e.g. of the Activity)
@@ -1010,15 +1104,15 @@ public class ContactEditFragment
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
-            // TODO: Delete
-//            Sources sources = Sources.getInstance(mContext);
-//            // Mark all raw contacts for deletion
-//            for (EntityDelta delta : mState) {
-//                delta.markDeleted();
-//            }
-//            // Save the deletes
-//            doSaveAction(SAVE_MODE_DEFAULT);
-//            finish();
+            // TODO: Don't do this from the UI thread
+            final Sources sources = Sources.getInstance(mContext);
+            // Mark all raw contacts for deletion
+            for (EntityDelta delta : mState) {
+                delta.markDeleted();
+            }
+            // Save the deletes
+            doSaveAction(SAVE_MODE_DEFAULT);
+            mCallbacks.closeAfterDelete();
         }
     }
 
@@ -1144,8 +1238,7 @@ public class ContactEditFragment
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            // TODO: How do we get rid of the dialog
-//            dismissDialog(progress);
+            if (progress != null) progress.dismiss();
 
             // Stop the service that was protecting us
             mContext.stopService(new Intent(mContext, EmptyService.class));
@@ -1190,5 +1283,47 @@ public class ContactEditFragment
         bindEditors();
 
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Ignore failed requests
+        if (resultCode != Activity.RESULT_OK) return;
+        switch (requestCode) {
+            case R.id.edit_request_code_photo_picked_with_data: {
+                BaseContactEditorView requestingEditor = null;
+                for (int i = 0; i < mContent.getChildCount(); i++) {
+                    View childView = mContent.getChildAt(i);
+                    if (childView instanceof BaseContactEditorView) {
+                        BaseContactEditorView editor = (BaseContactEditorView) childView;
+                        if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
+                            requestingEditor = editor;
+                            break;
+                        }
+                    }
+                }
+
+                if (requestingEditor != null) {
+                    final Bitmap photo = data.getParcelableExtra("data");
+                    requestingEditor.setPhotoBitmap(photo);
+                    mRawContactIdRequestingPhoto = -1;
+                } else {
+                    // The contact that requested the photo is no longer present.
+                    // TODO: Show error message
+                }
+
+                break;
+            }
+
+            case R.id.edit_request_code_camera_with_data: {
+                doCropPhoto(mCurrentPhotoFile);
+                break;
+            }
+            case R.id.edit_request_code_join: {
+                if (data != null) {
+                    final long contactId = ContentUris.parseId(data.getData());
+                    joinAggregate(contactId);
+                }
+            }
+        }
     }
 }

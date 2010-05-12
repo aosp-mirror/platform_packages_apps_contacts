@@ -34,8 +34,11 @@
     <item type="id" name="edit_dialog_pick_photo"/>
     <item type="id" name="edit_dialog_split"/>
     <item type="id" name="edit_dialog_select_account"/>
-    <item type="id" name="edit_dialog_view_dialogs_id1"/>
-    <item type="id" name="edit_dialog_view_dialogs_id2"/>
+
+    <!-- Request Codes (startActivityForResult) -->
+    <item type="id" name="edit_request_code_join"/>
+    <item type="id" name="edit_request_code_camera_with_data"/>
+    <item type="id" name="edit_request_code_photo_picked_with_data"/>
 
     <!-- For ImportVCardActivity -->
     <item type="id" name="dialog_searching_vcard"/>
