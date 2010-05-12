@@ -489,7 +489,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
                 fragment.setContactsWithPhonesOnlyRestrictionEnabled(
                         mIntentResolver.isContactsWithPhonesOnlyRestrictionEnabled());
-                fragment.setVisibleContactsRestrictionEnabled(
+                fragment.setVisibleContactsRestrictionEnabled(!mSearchResultsMode &&
                         mIntentResolver.isVisibleContactsRestrictionEnabled());
 
                 fragment.setOnContactListActionListener(new OnContactBrowserActionListener() {

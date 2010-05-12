@@ -110,7 +110,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private SearchEditText mSearchEditText;
     private ContactListEmptyView mEmptyView;
     private ProviderStatusLoader mProviderStatusLoader;
-    private SharedPreferences mSharedPrefs;
     private ContactsPreferences mContactsPrefs;
 
     private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
@@ -292,13 +291,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onStart() {
-        if (mSharedPrefs == null) {
-            Context activity = getActivity();
-            mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
-            mContactsPrefs = new ContactsPreferences(activity);
+        if (mContactsPrefs == null) {
+            mContactsPrefs = new ContactsPreferences(getActivity());
         }
 
-        loadPreferences(mSharedPrefs, mContactsPrefs);
+        loadPreferences(mContactsPrefs);
         configureAdapter();
         mAdapter.configureLoader(mLoader);
 
@@ -314,7 +311,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         configurePhotoLoader();
     }
 
-    protected void loadPreferences(SharedPreferences prefs, ContactsPreferences contactsPrefs) {
+    protected void loadPreferences(ContactsPreferences contactsPrefs) {
         setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
         setSortOrder(contactsPrefs.getSortOrder());
     }

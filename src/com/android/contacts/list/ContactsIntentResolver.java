@@ -19,15 +19,19 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
+import com.android.contacts.ui.ContactsPreferences;
+import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
@@ -476,6 +480,15 @@ public class ContactsIntentResolver {
     }
 
     public boolean isContactsWithPhonesOnlyRestrictionEnabled() {
-        return mMode != MODE_CUSTOM;
+        if (mMode == MODE_CUSTOM) {
+            return mDisplayOnlyPhones;
+        }
+
+        if (mMode == MODE_DEFAULT) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+            return prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES, Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
+        }
+
+        return false;
     }
 }
