@@ -1878,16 +1878,4 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
         return mCallOrSmsInitiator;
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mListFragment.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mListFragment.onRestoreInstanceState(savedInstanceState);
-    }
 }

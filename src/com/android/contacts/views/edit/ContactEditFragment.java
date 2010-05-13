@@ -162,7 +162,7 @@ public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoade
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         final View view = inflater.inflate(R.layout.contact_edit, container, false);
 
         mContent = (LinearLayout) view.findViewById(R.id.editors);
@@ -212,6 +212,19 @@ public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoade
         if (savedState == null) {
             // If savedState is non-null, onRestoreInstanceState() will restore the generator.
             mViewIdGenerator = new ViewIdGenerator();
+        } else {
+            // Read modifications from instance
+            mState = savedState.<EntitySet> getParcelable(KEY_EDIT_STATE);
+            mRawContactIdRequestingPhoto = savedState.getLong(
+                    KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
+            mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
+            String fileName = savedState.getString(KEY_CURRENT_PHOTO_FILE);
+            if (fileName != null) {
+                mCurrentPhotoFile = new File(fileName);
+            }
+            mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
+            mQuerySelectionArgs = savedState.getStringArray(KEY_QUERY_SELECTION_ARGS);
+            mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
         }
     }
 
@@ -1271,26 +1284,6 @@ public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoade
         outState.putStringArray(KEY_QUERY_SELECTION_ARGS, mQuerySelectionArgs);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        // Read modifications from instance
-        mState = savedInstanceState.<EntitySet> getParcelable(KEY_EDIT_STATE);
-        mRawContactIdRequestingPhoto = savedInstanceState.getLong(
-                KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
-        mViewIdGenerator = savedInstanceState.getParcelable(KEY_VIEW_ID_GENERATOR);
-        String fileName = savedInstanceState.getString(KEY_CURRENT_PHOTO_FILE);
-        if (fileName != null) {
-            mCurrentPhotoFile = new File(fileName);
-        }
-        mQuerySelection = savedInstanceState.getString(KEY_QUERY_SELECTION);
-        mQuerySelectionArgs = savedInstanceState.getStringArray(KEY_QUERY_SELECTION_ARGS);
-        mContactIdForJoin = savedInstanceState.getLong(KEY_CONTACT_ID_FOR_JOIN);
-
-        bindEditors();
-
-        super.onRestoreInstanceState(savedInstanceState);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

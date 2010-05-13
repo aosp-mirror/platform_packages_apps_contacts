@@ -317,7 +317,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        // Retrieve list state. This will be applied in onLoadFinished
+        if (savedState != null) {
+            mListState = savedState.getParcelable(LIST_STATE_KEY);
+        }
+    }
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         mView = createView(inflater, container);
         mAdapter = createListAdapter();
         mAdapter.setSearchMode(isSearchMode());
@@ -549,13 +559,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListState = mListView.onSaveInstanceState();
             icicle.putParcelable(LIST_STATE_KEY, mListState);
         }
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle icicle) {
-        super.onRestoreInstanceState(icicle);
-        // Retrieve list state. This will be applied in onLoadFinished
-        mListState = icicle.getParcelable(LIST_STATE_KEY);
     }
 
     /**
