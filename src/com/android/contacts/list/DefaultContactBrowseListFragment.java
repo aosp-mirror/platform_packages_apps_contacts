@@ -16,8 +16,11 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +34,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
-    private boolean mContactsWithPhonesOnlyRestrictionEnabled;
+    private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
     private boolean mVisibleContactsRestrictionEnabled = true;
 
     // TODO: Remove this horrible hack once the framework can lookup fragments via findFragmentById
@@ -40,21 +43,37 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
+        setSectionHeaderDisplayEnabled(true);
 
         sLastFragment = this;
     }
 
     @Override
     protected void prepareEmptyView() {
-        if (mContactsWithPhonesOnlyRestrictionEnabled) {
+        if (isShowingContactsWithPhonesOnly()) {
             setEmptyText(R.string.noContactsWithPhoneNumbers);
         } else {
             super.prepareEmptyView();
         }
     }
 
-    public void setContactsWithPhonesOnlyRestrictionEnabled(boolean flag) {
-        mContactsWithPhonesOnlyRestrictionEnabled = flag;
+    private boolean isShowingContactsWithPhonesOnly() {
+        switch (mDisplayWithPhonesOnlyOption) {
+            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED:
+                return false;
+            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_ENABLED:
+                return true;
+            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_PREFERENCE:
+                SharedPreferences prefs = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                return prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
+                        Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
+        }
+        return false;
+    }
+
+    public void setDisplayWithPhonesOnlyOption(int displayWithPhonesOnly) {
+        mDisplayWithPhonesOnlyOption = displayWithPhonesOnly;
         configureAdapter();
     }
 
@@ -98,7 +117,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
         if (adapter != null) {
-            adapter.setContactsWithPhoneNumbersOnly(mContactsWithPhonesOnlyRestrictionEnabled);
+            adapter.setContactsWithPhoneNumbersOnly(isShowingContactsWithPhonesOnly());
             adapter.setVisibleContactsOnly(mVisibleContactsRestrictionEnabled);
         }
     }

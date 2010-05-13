@@ -207,7 +207,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public boolean isSectionHeaderDisplayEnabled() {
-        return mSectionHeaderDisplayEnabled;
+        return mSectionHeaderDisplayEnabled && !mSearchMode;
     }
 
     public void setPhotoLoaderEnabled(boolean flag) {
@@ -248,11 +248,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    public boolean isLegacyCompatibility() {
+    public boolean isLegacyCompatibilityMode() {
         return mLegacyCompatibility;
     }
 
-    public void setLegacyCompatibility(boolean flag) {
+    public void setLegacyCompatibilityMode(boolean flag) {
         mLegacyCompatibility = flag;
     }
 
@@ -738,4 +738,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.hasIccCard();
     }
+
+    // TODO integrate into picker fragments
+//    protected Uri buildCallingPackageUri(Uri uri) {
+//        String callingPackage = getContext().getCallingPackage();
+//        if (!TextUtils.isEmpty(callingPackage)) {
+//            uri = uri.buildUpon().appendQueryParameter(
+//                    ContactsContract.REQUESTING_PACKAGE_PARAM_KEY, callingPackage).build();
+//        }
+//    }
 }

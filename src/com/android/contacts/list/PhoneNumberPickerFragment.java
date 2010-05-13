@@ -51,7 +51,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected void onItemClick(int position, long id) {
-        if (!isLegacyCompatibility()) {
+        if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
 //          if (adapter.isSearchAllContactsItemPosition(position)) {
 //              searchAllContacts();
@@ -68,7 +68,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected ContactEntryListAdapter createListAdapter() {
-        if (!isLegacyCompatibility()) {
+        if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
             adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);
@@ -96,7 +96,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (mShortcutAction == null) {
             mListener.onPickPhoneNumberAction(uri);
         } else {
-            if (isLegacyCompatibility()) {
+            if (isLegacyCompatibilityMode()) {
                 throw new UnsupportedOperationException();
             }
             ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);

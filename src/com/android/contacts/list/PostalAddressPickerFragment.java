@@ -41,7 +41,7 @@ public class PostalAddressPickerFragment
 
     @Override
     protected void onItemClick(int position, long id) {
-        if (!isLegacyCompatibility()) {
+        if (!isLegacyCompatibilityMode()) {
             PostalAddressListAdapter adapter = (PostalAddressListAdapter)getAdapter();
 //          if (adapter.isSearchAllContactsItemPosition(position)) {
 //              searchAllContacts();
@@ -58,7 +58,7 @@ public class PostalAddressPickerFragment
 
     @Override
     protected ContactEntryListAdapter createListAdapter() {
-        if (!isLegacyCompatibility()) {
+        if (!isLegacyCompatibilityMode()) {
             PostalAddressListAdapter adapter = new PostalAddressListAdapter(getActivity());
             adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);

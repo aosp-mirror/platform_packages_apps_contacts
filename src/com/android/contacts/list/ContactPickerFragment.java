@@ -86,7 +86,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
             Uri uri;
             ContactEntryListAdapter adapter = getAdapter();
             adapter.moveToPosition(position);
-            if (isLegacyCompatibility()) {
+            if (isLegacyCompatibilityMode()) {
                 uri = ((LegacyContactListAdapter)adapter).getPersonUri();
             } else {
                 uri = ((ContactListAdapter)adapter).getContactUri();
@@ -102,7 +102,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     protected ContactEntryListAdapter createListAdapter() {
-        if (!isLegacyCompatibility()) {
+        if (!isLegacyCompatibilityMode()) {
             ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
             adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);

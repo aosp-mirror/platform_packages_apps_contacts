@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.ContactsRequest;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +48,14 @@ public class ContactsSearchManager {
     public static final String ORIGINAL_TYPE_EXTRA_KEY = "originalType";
 
     /**
+     * An extra that provides context for search UI and defines the scope for
+     * the search queries.
+     */
+    public static final String ORIGINAL_ACTION_CODE_EXTRA_KEY = "originalActionCode";
+
+    public static final String ORIGINAL_REQUEST_KEY = "originalRequest";
+
+    /**
      * Starts the contact list activity in the search mode.
      */
     public static void startSearch(Activity context, String initialQuery) {
@@ -53,13 +63,18 @@ public class ContactsSearchManager {
     }
 
     public static void startSearchForResult(Activity context, String initialQuery,
-            int requestCode, Bundle includedExtras) {
+            int requestCode, ContactsRequest originalRequest) {
         context.startActivityForResult(
-                buildIntent(context, initialQuery, includedExtras), requestCode);
+                buildIntent(context, initialQuery, originalRequest), requestCode);
+    }
+
+    public static void startSearch(Activity context, String initialQuery,
+            ContactsRequest originalRequest) {
+        context.startActivity(buildIntent(context, initialQuery, originalRequest));
     }
 
     private static Intent buildIntent(
-            Activity context, String initialQuery, Bundle includedExtras) {
+            Activity context, String initialQuery, ContactsRequest originalRequest) {
         Intent intent = new Intent();
         intent.setData(ContactsContract.Contacts.CONTENT_URI);
         intent.setAction(UI.FILTER_CONTACTS_ACTION);
@@ -70,11 +85,8 @@ public class ContactsSearchManager {
             intent.putExtras(originalExtras);
         }
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, initialQuery);
-        intent.putExtra(ORIGINAL_ACTION_EXTRA_KEY, originalIntent.getAction());
-        intent.putExtra(ORIGINAL_COMPONENT_EXTRA_KEY, originalIntent.getComponent().getClassName());
-        intent.putExtra(ORIGINAL_TYPE_EXTRA_KEY, originalIntent.getType());
-        if (includedExtras != null) {
-            intent.putExtras(includedExtras);
+        if (originalRequest != null) {
+            intent.putExtra(ORIGINAL_REQUEST_KEY, originalRequest);
         }
         return intent;
     }
