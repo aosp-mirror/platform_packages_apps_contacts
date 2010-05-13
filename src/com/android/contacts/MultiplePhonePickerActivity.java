@@ -78,12 +78,6 @@ public class MultiplePhonePickerActivity extends Activity {
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle icicle) {
-        super.onRestoreInstanceState(icicle);
-        mListFragment.onRestoreInstanceState(icicle);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 

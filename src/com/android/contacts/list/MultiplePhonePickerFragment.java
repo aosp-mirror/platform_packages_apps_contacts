@@ -130,6 +130,18 @@ public class MultiplePhonePickerFragment
     }
 
     @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        if (savedState != null) {
+            setSelectedUris(savedState.getParcelableArray(SELECTION_EXTRA_KEY));
+            mSelectionChanged = savedState.getBoolean(SELECTION_CHANGED_EXTRA_KEY, false);
+            if (getAdapter() != null) {
+                getAdapter().setSelectionChanged(mSelectionChanged);
+            }
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         updateWidgets();
@@ -165,15 +177,5 @@ public class MultiplePhonePickerFragment
         super.onSaveInstanceState(icicle);
         icicle.putParcelableArray(SELECTION_EXTRA_KEY, getAdapter().getSelectedUris());
         icicle.putBoolean(SELECTION_CHANGED_EXTRA_KEY, getAdapter().isSelectionChanged());
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle icicle) {
-        super.onRestoreInstanceState(icicle);
-        setSelectedUris(icicle.getParcelableArray(SELECTION_EXTRA_KEY));
-        mSelectionChanged = icicle.getBoolean(SELECTION_CHANGED_EXTRA_KEY, false);
-        if (getAdapter() != null) {
-            getAdapter().setSelectionChanged(mSelectionChanged);
-        }
     }
 }

@@ -166,7 +166,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         final View view = inflater.inflate(R.layout.contact_detail, container, false);
 
         mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
