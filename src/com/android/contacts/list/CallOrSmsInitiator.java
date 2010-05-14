@@ -17,9 +17,12 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.PhoneDisambigDialog;
+import com.android.internal.widget.RotarySelector.OnDialTriggerListener;
 
 import android.content.AsyncQueryHandler;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
@@ -48,6 +51,7 @@ public class CallOrSmsInitiator {
 
     private static final String PHONE_NUMBER_SELECTION = Data.MIMETYPE + "='"
             + Phone.CONTENT_ITEM_TYPE + "' AND " + Phone.NUMBER + " NOT NULL";
+    private OnDismissListener mDismissListener;
 
     public CallOrSmsInitiator(Context context) {
         this.mContext = context;
@@ -57,6 +61,10 @@ public class CallOrSmsInitiator {
                 onPhoneNumberQueryComplete(token, cookie, cursor);
             }
         };
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener dismissListener) {
+        this.mDismissListener = dismissListener;
     }
 
     protected void onPhoneNumberQueryComplete(int token, Object cookie, Cursor cursor) {
@@ -89,12 +97,18 @@ public class CallOrSmsInitiator {
         if (phone == null) {
             // Display dialog to choose a number to call.
             PhoneDisambigDialog phoneDialog = new PhoneDisambigDialog(mContext, cursor, mSendSms);
+            if (mDismissListener != null) {
+                phoneDialog.setOnDismissListener(mDismissListener);
+            }
             phoneDialog.show();
         } else {
             if (mSendSms) {
                 ContactsUtils.initiateSms(mContext, phone);
             } else {
                 ContactsUtils.initiateCall(mContext, phone);
+            }
+            if (mDismissListener != null) {
+                mDismissListener.onDismiss(null);
             }
         }
     }

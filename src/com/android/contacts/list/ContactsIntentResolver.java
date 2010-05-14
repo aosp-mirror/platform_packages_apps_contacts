@@ -16,25 +16,20 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.CallContactActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 
 import android.app.Activity;
 import android.app.SearchManager;
-import android.content.ContentUris;
 import android.content.Intent;
-import android.content.UriMatcher;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Intents.UI;
@@ -50,14 +45,6 @@ public class ContactsIntentResolver {
 
     private static final String TAG = "ContactsListActivity";
 
-    // Uri matcher for contact id
-    private static final int CONTACTS_ID = 1001;
-    private static final UriMatcher sContactsIdMatcher;
-    static {
-        sContactsIdMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        sContactsIdMatcher.addURI(ContactsContract.AUTHORITY, "contacts/#", CONTACTS_ID);
-    }
-
     private final Activity mContext;
 
     public ContactsIntentResolver(Activity context) {
@@ -69,8 +56,6 @@ public class ContactsIntentResolver {
         request.setDisplayOnlyVisible(true);
 
         String action = intent.getAction();
-        String component = intent.getComponent().getClassName();
-        String type = intent.getType();
 
         Log.i(TAG, "Called with action: " + action);
 
@@ -96,11 +81,11 @@ public class ContactsIntentResolver {
         } else if (UI.LIST_GROUP_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_GROUP);
             String groupName = intent.getStringExtra(UI.GROUP_NAME_EXTRA_KEY);
-            if (TextUtils.isEmpty(groupName)) {
+            if (!TextUtils.isEmpty(groupName)) {
+                request.setGroupName(groupName);
+            } else {
                 Log.e(TAG, "Intent missing a required extra: " + UI.GROUP_NAME_EXTRA_KEY);
                 request.setValid(false);
-            } else {
-                request.setGroupName(groupName);
             }
         } else if (Intent.ACTION_PICK.equals(action)) {
             final String resolvedType = intent.resolveType(mContext);
@@ -121,6 +106,7 @@ public class ContactsIntentResolver {
                 request.setLegacyCompatibilityMode(true);
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
+            String component = intent.getComponent().getClassName();
             if (component.equals("alias.DialShortcut")) {
                 request.setActionCode(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL);
                 request.setActivityTitle(mContext.getString(R.string.callShortcutActivityTitle));
@@ -132,6 +118,7 @@ public class ContactsIntentResolver {
                 request.setActivityTitle(mContext.getString(R.string.shortcutActivityTitle));
             }
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
+            String type = intent.getType();
             if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT);
             } else if (Phone.CONTENT_ITEM_TYPE.equals(type)) {
@@ -211,40 +198,25 @@ public class ContactsIntentResolver {
         // dispatched from the SearchManager for security reasons
         // so we need to re-dispatch from here to the intended target.
         } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
-            // TODO show the disambig dialog instead of guessing the number
             Uri data = intent.getData();
-            Uri telUri = null;
-            if (sContactsIdMatcher.match(data) == CONTACTS_ID) {
-                long contactId = Long.valueOf(data.getLastPathSegment());
-                final Cursor cursor = queryPhoneNumbers(contactId);
-                if (cursor != null) {
-                    if (cursor.getCount() == 1 && cursor.moveToFirst()) {
-                        int phoneNumberIndex = cursor.getColumnIndex(Phone.NUMBER);
-                        String phoneNumber = cursor.getString(phoneNumberIndex);
-                        telUri = Uri.parse("tel:" + phoneNumber);
-                    }
-                    cursor.close();
-                }
-            }
             // See if the suggestion was clicked with a search action key (call button)
-            Intent newIntent;
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG)) && telUri != null) {
-                newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, telUri);
+            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
+                Intent newIntent = new Intent(mContext, CallContactActivity.class);
+                newIntent.setData(data);
+                request.setRedirectIntent(newIntent);
             } else {
-                newIntent = new Intent(Intent.ACTION_VIEW, data);
+                request.setRedirectIntent(new Intent(Intent.ACTION_VIEW, data));
             }
-            request.setRedirectIntent(newIntent);
         } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
-            Intent newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData());
-            request.setRedirectIntent(newIntent);
+            request.setRedirectIntent(new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData()));
         } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
             // TODO actually support this in EditContactActivity.
             String number = intent.getData().getSchemeSpecificPart();
             Intent newIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             newIntent.putExtra(Intents.Insert.PHONE, number);
             request.setRedirectIntent(newIntent);
-        }
 
+        }
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
         if (title != null) {
@@ -252,21 +224,5 @@ public class ContactsIntentResolver {
         }
 
         return request;
-    }
-
-    // TODO replace with a disabmig dialog
-    @Deprecated
-    private Cursor queryPhoneNumbers(long contactId) {
-        Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-        Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
-
-        Cursor c = mContext.getContentResolver().query(dataUri,
-                new String[] {Phone._ID, Phone.NUMBER, Phone.IS_SUPER_PRIMARY,
-                RawContacts.ACCOUNT_TYPE, Phone.TYPE, Phone.LABEL},
-                Data.MIMETYPE + "=?", new String[] {Phone.CONTENT_ITEM_TYPE}, null);
-        if (c != null && c.moveToFirst()) {
-            return c;
-        }
-        return null;
     }
 }

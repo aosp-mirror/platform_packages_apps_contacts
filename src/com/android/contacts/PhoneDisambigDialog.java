@@ -89,6 +89,10 @@ public class PhoneDisambigDialog implements DialogInterface.OnClickListener,
         mDialog = dialogBuilder.create();
     }
 
+    public void setOnDismissListener(DialogInterface.OnDismissListener dismissListener) {
+        mDialog.setOnDismissListener(dismissListener);
+    }
+
     /**
      * Show the dialog.
      */

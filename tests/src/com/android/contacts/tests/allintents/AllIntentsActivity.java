@@ -489,7 +489,8 @@ public class AllIntentsActivity extends ListActivity {
     private long findArbitraryContactWithPhoneNumber() {
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
                 new String[] { Contacts._ID },
-                Contacts.HAS_PHONE_NUMBER + "!=0", null, Contacts._ID + " LIMIT 1");
+                Contacts.HAS_PHONE_NUMBER + "!=0 AND " + Contacts.STARRED + "!=0" ,
+                null, "RANDOM() LIMIT 1");
         try {
             if (cursor.moveToFirst()) {
                 return cursor.getLong(0);
