@@ -14,21 +14,13 @@
      limitations under the License.
 -->
 
-<!-- placed inside act_edit as tabcontent -->
+<!-- placed inside act_edit -->
 <com.android.contacts.ui.widget.ContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
 >
-
-    <!-- Left side color bar -->
-    <ImageView
-        android:id="@+id/color_bar"
-        android:layout_width="4dip"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-    />
 
     <!-- The content -->
     <LinearLayout
@@ -116,65 +108,28 @@
             android:layout_marginBottom="4dip"
             layout="@layout/item_generic_editor" />
 
-        <TextView android:id="@+id/read_only_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dip"
-            android:layout_marginBottom="6dip"
-            android:layout_marginLeft="10dip"
-
-            android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-
         <LinearLayout
-            android:id="@+id/sect_general"
+            android:id="@+id/sect_fields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
         />
 
-        <View android:id="@+id/head_secondary_divider"
+        <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/head_secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeight"
-            android:text="@string/edit_secondary_collapse"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/kind_title"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:clickable="true"
-            android:paddingLeft="10dip"
-            android:drawablePadding="10dip" />
-
-        <LinearLayout
-            android:id="@+id/sect_secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-        <TextView
-            android:id="@+id/edit_read_only"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
-            android:layout_marginLeft="10dip"
-
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorPrimary"
-            android:drawableLeft="@android:drawable/ic_dialog_alert"
-            android:drawablePadding="10dip"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/listDivider"
         />
 
+        <Button
+            android:id="@+id/button_add_field"
+            android:text="@string/add_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dip"
+        />
     </LinearLayout>
 
 </com.android.contacts.ui.widget.ContactEditorView>

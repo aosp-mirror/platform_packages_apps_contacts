@@ -388,16 +388,17 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 // Keep around in model, but mark as deleted
                 mEntry.markDeleted();
 
-                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+//                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
 
-                animator.removeView(this);
+//                animator.removeView(this);
+                ((ViewGroup) getParent()).removeView(this);
 
                 if (mListener != null) {
                     // Notify listener when present
                     mListener.onDeleted(this);
                 }
 
-                animator.animate();
+//                animator.animate();
                 break;
             }
             case R.id.edit_more_or_less: {
@@ -406,7 +407,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
 
                 // Snapshot for animation
-                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+//                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
 
                 // Reconfigure GUI
                 mHideOptional = !mHideOptional;
@@ -423,7 +424,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 }
 
                 // Animate
-                animator.animate();
+//                animator.animate();
                 break;
             }
         }

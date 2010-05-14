@@ -25,13 +25,15 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.DialogManager.DialogShowingView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Entity;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -39,48 +41,45 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Custom view that provides all the editor interaction for a specific
  * {@link Contacts} represented through an {@link EntityDelta}. Callers can
  * reuse this view and quickly rebuild its contents through
- * {@link #setState(EntityDelta, ContactsSource)}.
+ * {@link #setState(EntityDelta, ContactsSource, ViewIdGenerator)}.
  * <p>
  * Internal updates are performed against {@link ValuesDelta} so that the
  * source {@link Entity} can be swapped out. Any state-based changes, such as
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends BaseContactEditorView implements OnClickListener {
-    private TextView mReadOnly;
-    private TextView mReadOnlyName;
-
+public class ContactEditorView extends BaseContactEditorView implements DialogShowingView {
     private View mPhotoStub;
     private GenericEditorView mName;
 
-    private boolean mIsSourceReadOnly;
-    private ViewGroup mGeneral;
-    private ViewGroup mSecondary;
-    private boolean mSecondaryVisible;
+    private ViewGroup mFields;
 
-    private TextView mSecondaryHeader;
-
-    private Drawable mSecondaryOpen;
-    private Drawable mSecondaryClosed;
-
-    private View mHeaderColorBar;
-    private View mSideBar;
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
 
+    private Button mAddFieldButton;
+
     private long mRawContactId = -1;
+
+    private DialogManager mDialogManager = null;
+
+    private static final String DIALOG_ID_KEY = "dialog_id";
+    private static final int DIALOG_ID_FIELD_SELECTOR = 1;
 
     public ContactEditorView(Context context) {
         super(context);
@@ -95,66 +94,29 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mInflater = (LayoutInflater)getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
         mPhotoStub = findViewById(R.id.stub_photo);
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
-        mReadOnly = (TextView)findViewById(R.id.edit_read_only);
-
         mName = (GenericEditorView)findViewById(R.id.edit_name);
         mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
 
-        mReadOnlyName = (TextView) findViewById(R.id.read_only_name);
+        mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mGeneral = (ViewGroup)findViewById(R.id.sect_general);
-        mSecondary = (ViewGroup)findViewById(R.id.sect_secondary);
-
-        mHeaderColorBar = findViewById(R.id.header_color_bar);
-        mSideBar = findViewById(R.id.color_bar);
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
         mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
 
-        mSecondaryHeader = (TextView)findViewById(R.id.head_secondary);
-        mSecondaryHeader.setOnClickListener(this);
-
-        final Resources res = getResources();
-        mSecondaryOpen = res.getDrawable(com.android.internal.R.drawable.expander_ic_maximized);
-        mSecondaryClosed = res.getDrawable(com.android.internal.R.drawable.expander_ic_minimized);
-
-        this.setSecondaryVisible(false);
-    }
-
-    /** {@inheritDoc} */
-    public void onClick(View v) {
-        // Toggle visibility of secondary kinds
-        final boolean makeVisible = mSecondary.getVisibility() != View.VISIBLE;
-        this.setSecondaryVisible(makeVisible);
-    }
-
-    /**
-     * Set the visibility of secondary sections, along with header icon.
-     *
-     * <p>If the source is read-only and there's no secondary fields, the entire secondary section
-     * will be hidden.
-     */
-    private void setSecondaryVisible(boolean makeVisible) {
-        mSecondaryVisible = makeVisible;
-
-        if (!mIsSourceReadOnly && mSecondary.getChildCount() > 0) {
-            mSecondaryHeader.setVisibility(View.VISIBLE);
-            mSecondaryHeader.setCompoundDrawablesWithIntrinsicBounds(
-                    makeVisible ? mSecondaryOpen : mSecondaryClosed, null, null, null);
-            mSecondary.setVisibility(makeVisible ? View.VISIBLE : View.GONE);
-        } else {
-            mSecondaryHeader.setVisibility(View.GONE);
-            mSecondary.setVisibility(View.GONE);
-        }
+        mAddFieldButton = (Button) findViewById(R.id.button_add_field);
+        mAddFieldButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                showDialog(DIALOG_ID_FIELD_SELECTOR);
+            }
+        });
     }
 
     /**
@@ -165,15 +127,12 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
     @Override
     public void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig) {
         // Remove any existing sections
-        mGeneral.removeAllViews();
-        mSecondary.removeAllViews();
+        mFields.removeAllViews();
 
         // Bail if invalid state or source
         if (state == null || source == null) return;
 
         setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
-
-        mIsSourceReadOnly = source.readOnly;
 
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
@@ -198,24 +157,13 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
         mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
-        mPhoto.setEnabled(!mIsSourceReadOnly);
-        mName.setEnabled(!mIsSourceReadOnly);
+        mPhoto.setEnabled(true);
+        mName.setEnabled(true);
 
         // Show and hide the appropriate views
-        if (mIsSourceReadOnly) {
-            mGeneral.setVisibility(View.GONE);
-            mName.setVisibility(View.GONE);
-            mReadOnly.setVisibility(View.VISIBLE);
-            mReadOnly.setText(mContext.getString(R.string.contact_read_only, accountType));
-            mReadOnlyName.setVisibility(View.VISIBLE);
-        } else {
-            mGeneral.setVisibility(View.VISIBLE);
-            mName.setVisibility(View.VISIBLE);
-            mReadOnly.setVisibility(View.GONE);
-            mReadOnlyName.setVisibility(View.GONE);
-        }
+        mFields.setVisibility(View.VISIBLE);
+        mName.setVisibility(View.VISIBLE);
 
-        boolean anySecondaryFieldFilled = false;
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
             // Skip kind of not editable
@@ -225,36 +173,21 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                if (!mIsSourceReadOnly) {
-                    mName.setValues(kind, primary, state, mIsSourceReadOnly, vig);
-                } else {
-                    String displayName = primary.getAsString(StructuredName.DISPLAY_NAME);
-                    mReadOnlyName.setText(displayName);
-                }
+                mName.setValues(kind, primary, state, false, vig);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(kind, primary, state, mIsSourceReadOnly, vig);
-                if (mIsSourceReadOnly && !mPhoto.hasSetPhoto()) {
-                    mPhotoStub.setVisibility(View.GONE);
-                } else {
-                    mPhotoStub.setVisibility(View.VISIBLE);
-                }
-            } else if (!mIsSourceReadOnly) {
+                mPhoto.setValues(kind, primary, state, false, vig);
+                mPhotoStub.setVisibility(View.VISIBLE);
+            } else {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
-                final ViewGroup parent = kind.secondary ? mSecondary : mGeneral;
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
-                        R.layout.item_kind_section, parent, false);
-                section.setState(kind, state, mIsSourceReadOnly, vig);
-                if (kind.secondary && section.isAnyEditorFilledOut()) {
-                    anySecondaryFieldFilled = true;
-                }
-                parent.addView(section);
+                        R.layout.item_kind_section, mFields, false);
+                section.setState(kind, state, false, vig);
+                mFields.addView(section);
             }
         }
-
-        setSecondaryVisible(anySecondaryFieldFilled);
     }
 
     /**
@@ -270,56 +203,53 @@ public class ContactEditorView extends BaseContactEditorView implements OnClickL
         return mRawContactId;
     }
 
-    private static class SavedState extends BaseSavedState {
-        public boolean mSecondaryVisible;
-
-        SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        private SavedState(Parcel in) {
-            super(in);
-            mSecondaryVisible = (in.readInt() == 0 ? false : true);
-        }
-
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
-            out.writeInt(mSecondaryVisible ? 1 : 0);
-        }
-
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
+    /* package */
+    void showDialog(int bundleDialogId) {
+        final Bundle bundle = new Bundle();
+        bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
+        getDialogManager().showDialogInView(this, bundle);
     }
 
-    /**
-     * Saves the visibility of the secondary field.
-     */
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        Parcelable superState = super.onSaveInstanceState();
-        SavedState ss = new SavedState(superState);
-
-        ss.mSecondaryVisible = mSecondaryVisible;
-        return ss;
+    private DialogManager getDialogManager() {
+        if (mDialogManager == null) {
+            Context context = getContext();
+            if (!(context instanceof DialogManager.DialogShowingViewActivity)) {
+                throw new IllegalStateException(
+                        "View must be hosted in an Activity that implements " +
+                        "DialogManager.DialogShowingViewActivity");
+            }
+            mDialogManager = ((DialogManager.DialogShowingViewActivity)context).getDialogManager();
+        }
+        return mDialogManager;
     }
 
-    /**
-     * Restores the visibility of the secondary field.
-     */
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        SavedState ss = (SavedState) state;
-        super.onRestoreInstanceState(ss.getSuperState());
-
-        setSecondaryVisible(ss.mSecondaryVisible);
+    public Dialog createDialog(Bundle bundle) {
+        if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
+        int dialogId = bundle.getInt(DIALOG_ID_KEY);
+        switch (dialogId) {
+            case DIALOG_ID_FIELD_SELECTOR:
+                final ArrayList<CharSequence> items =
+                        new ArrayList<CharSequence>(mFields.getChildCount());
+                for (int i = 0; i < mFields.getChildCount(); i++) {
+                    final KindSectionView sectionView = (KindSectionView) mFields.getChildAt(i);
+                    // not a list and already exists? ignore
+                    if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
+                        continue;
+                    }
+                    items.add(sectionView.getTitle());
+                }
+                final DialogInterface.OnClickListener itemClickListener =
+                        new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        final KindSectionView view = (KindSectionView) mFields.getChildAt(which);
+                        view.addItem();
+                    }
+                };
+                return new AlertDialog.Builder(getContext())
+                        .setItems(items.toArray(new CharSequence[0]), itemClickListener)
+                        .create();
+            default:
+                throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
+        }
     }
 }
