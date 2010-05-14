@@ -22,8 +22,6 @@ import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.android.contacts.widget.SearchEditText;
-import com.android.contacts.widget.SearchEditText.OnCloseListener;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -36,14 +34,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.IContentService;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.ContactsContract.ProviderStatus;
@@ -51,7 +47,6 @@ import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -70,16 +65,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TextView.OnEditorActionListener;
 
 /**
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
         extends LoaderManagingFragment<Cursor>
-        implements OnItemClickListener,
-        OnScrollListener, TextWatcher, OnEditorActionListener, OnCloseListener,
-        OnFocusChangeListener, OnTouchListener {
+        implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener {
 
     private static final String TAG = "ContactEntryListFragment";
 
@@ -107,7 +99,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
-    private SearchEditText mSearchEditText;
     private ContactListEmptyView mEmptyView;
     private ProviderStatusLoader mProviderStatusLoader;
     private ContactsPreferences mContactsPrefs;
@@ -132,6 +123,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mAdapter;
     }
 
+    @Override
     public View getView() {
         return mView;
     }
@@ -221,7 +213,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
-        configureSearchEditText();
     }
 
     public boolean isSearchMode() {
@@ -230,7 +221,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchResultsMode(boolean flag) {
         mSearchResultsMode = flag;
-        configureSearchEditText();
     }
 
     public boolean isSearchResultsMode() {
@@ -242,9 +232,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setQueryString(String queryString) {
-        mQueryString = queryString;
-        if (mAdapter != null) {
-            mAdapter.setQueryString(queryString);
+        if (!TextUtils.equals(mQueryString, queryString)) {
+            mQueryString = queryString;
+            if (mAdapter != null) {
+                mAdapter.setQueryString(queryString);
+                reloadData();
+            }
         }
     }
 
@@ -324,7 +317,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListState = savedState.getParcelable(LIST_STATE_KEY);
         }
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -372,7 +365,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         configurePhotoLoader();
-        configureSearchEditText();
         configureSearchResultText();
         return mView;
     }
@@ -399,15 +391,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 titleText.setText(Html.fromHtml(getActivity().getString(R.string.search_results_for,
                         "<b>" + getQueryString() + "</b>")));
             }
-        }
-    }
-    protected void configureSearchEditText() {
-        if (isSearchMode() && mView != null) {
-            mSearchEditText = (SearchEditText)mView.findViewById(R.id.search_src_text);
-            mSearchEditText.setText(getQueryString());
-            mSearchEditText.addTextChangedListener(this);
-            mSearchEditText.setOnEditorActionListener(this);
-            mSearchEditText.setOnCloseListener(this);
         }
     }
 
@@ -461,9 +444,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader.resume();
         }
-        if (isSearchMode()) {
-            mSearchEditText.requestFocus();
-        }
     }
 
     @Override
@@ -488,35 +468,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         InputMethodManager inputMethodManager = (InputMethodManager)
                 getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
-    }
-
-    /**
-     * Event handler for search UI.
-     */
-    public void afterTextChanged(Editable s) {
-        String query = s.toString().trim();
-        setQueryString(query);
-        reloadData();
-    }
-
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
-
-    /**
-     * Event handler for search UI.
-     */
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-            hideSoftKeyboard();
-            if (TextUtils.isEmpty(getQueryString())) {
-                finish();
-            }
-            return true;
-        }
-        return false;
     }
 
     /**

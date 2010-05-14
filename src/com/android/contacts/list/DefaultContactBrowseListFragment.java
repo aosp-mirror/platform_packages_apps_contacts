@@ -124,9 +124,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        if (isSearchMode()) {
-            return inflater.inflate(R.layout.contacts_search_content, null);
-        } else if (isSearchResultsMode()) {
+        if (isSearchResultsMode()) {
             return inflater.inflate(R.layout.contacts_list_search_results, null);
         } else {
             return inflater.inflate(R.layout.contacts_list_content, null);

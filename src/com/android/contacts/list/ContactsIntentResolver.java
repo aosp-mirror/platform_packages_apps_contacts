@@ -37,8 +37,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * Maintains contact list configuration, which is a transient object that
- * deals with intents, saved instance configuration etc.
+ * Parses a Contacts intent, extracting all relevant parts and packaging them
+ * as a {@link ContactsRequest} object.
  */
 @SuppressWarnings("deprecation")
 public class ContactsIntentResolver {

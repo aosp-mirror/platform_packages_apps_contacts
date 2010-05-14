@@ -18,31 +18,40 @@ package com.android.contacts.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 /**
  * A custom text editor that helps automatically dismiss the activity along with the soft
  * keyboard.
  */
-public class SearchEditText extends EditText {
-
+public class SearchEditText extends EditText implements OnEditorActionListener, TextWatcher {
     private boolean mMagnifyingGlassShown = true;
-    private Drawable mMagnifyingGlass;
-    private OnCloseListener mListener;
 
-    public interface OnCloseListener {
-        void onClose();
+    private Drawable mMagnifyingGlass;
+    private OnFilterTextListener mListener;
+
+    public interface OnFilterTextListener {
+        void onFilterChange(String queryString);
+        void onCancelSearch();
     }
 
     public SearchEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        addTextChangedListener(this);
+        setOnEditorActionListener(this);
         mMagnifyingGlass = getCompoundDrawables()[2];
     }
 
-    public void setOnCloseListener(OnCloseListener listener) {
+    public void setOnFilterTextListener(OnFilterTextListener listener) {
         this.mListener = listener;
     }
 
@@ -71,9 +80,51 @@ public class SearchEditText extends EditText {
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && TextUtils.isEmpty(getText()) && mListener != null) {
-            mListener.onClose();
+            mListener.onCancelSearch();
             return true;
         }
         return false;
     }
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    }
+
+    /**
+     * Event handler for search UI.
+     */
+    public void afterTextChanged(Editable s) {
+        if (mListener != null) {
+            mListener.onFilterChange(trim(s));
+        }
+    }
+
+    private String trim(Editable s) {
+        return s.toString().trim();
+    }
+
+    /**
+     * Event handler for search UI.
+     */
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            hideSoftKeyboard();
+            if (TextUtils.isEmpty(trim(getText())) && mListener != null) {
+                mListener.onCancelSearch();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void hideSoftKeyboard() {
+        // Hide soft keyboard, if visible
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getWindowToken(), 0);
+    }
+
 }

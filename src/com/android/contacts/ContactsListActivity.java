@@ -35,6 +35,8 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.widget.ContextMenuAdapter;
+import com.android.contacts.widget.SearchEditText;
+import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -81,25 +83,17 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private static final String TAG = "ContactsListActivity";
 
-    private static final boolean ENABLE_ACTION_ICON_OVERLAYS = true;
-
-    private static final String SHORTCUT_ACTION_KEY = "shortcutAction";
-
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
     protected static final int SUBACTIVITY_FILTER = 5;
 
-    public static final String AUTHORITIES_FILTER_KEY = "authorities";
-
-    static final String[] RAW_CONTACTS_PROJECTION = new String[] {
+    private static final String[] RAW_CONTACTS_PROJECTION = new String[] {
         RawContacts._ID, //0
         RawContacts.CONTACT_ID, //1
         RawContacts.ACCOUNT_TYPE, //2
     };
-
-    static final String KEY_PICKER_MODE = "picker_mode";
 
     private Uri mSelectedContactUri;
 
@@ -107,7 +101,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private int  mWritableSourcesCnt;
     private int  mReadOnlySourcesCnt;
 
-    final String[] sLookupProjection = new String[] {
+    private final String[] sLookupProjection = new String[] {
             Contacts.LOOKUP_KEY
     };
     private class DeleteClickListener implements DialogInterface.OnClickListener {
@@ -128,6 +122,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private boolean mSearchInitiated;
 
     private ContactsRequest mRequest;
+    private SearchEditText mSearchEditText;
 
     public ContactsListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -164,9 +159,39 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
         onCreateFragment();
 
+        int listFragmentContainerId;
+        if (mRequest.isSearchMode()) {
+            setContentView(R.layout.contacts_search_content);
+            listFragmentContainerId = R.id.list_container;
+            setupSearchUI();
+        } else {
+            listFragmentContainerId = android.R.id.content;
+        }
         FragmentTransaction transaction = openFragmentTransaction();
-        transaction.add(mListFragment, android.R.id.content);
+        transaction.add(mListFragment, listFragmentContainerId);
         transaction.commit();
+    }
+
+    private void setupSearchUI() {
+        mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
+        mSearchEditText.setText(mRequest.getQueryString());
+        mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+            public void onFilterChange(String queryString) {
+                mListFragment.setQueryString(queryString);
+            }
+
+            public void onCancelSearch() {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mRequest.isSearchMode()) {
+            mSearchEditText.requestFocus();
+        }
     }
 
     /**
@@ -466,7 +491,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             }
             case R.id.menu_accounts: {
                 final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
-                intent.putExtra(AUTHORITIES_FILTER_KEY, new String[] {
+                intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
                     ContactsContract.AUTHORITY
                 });
                 startActivity(intent);

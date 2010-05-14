@@ -26,9 +26,8 @@
     <include android:id="@+id/searchView"
         layout="@layout/search_bar"/>
 
-    <view
-        class="com.android.contacts.ContactEntryListView" 
-        android:id="@android:id/list"
+    <FrameLayout
+        android:id="@+id/list_container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
