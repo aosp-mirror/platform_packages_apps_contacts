@@ -1171,4 +1171,6 @@
     <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
     <string name="no_contacts_selected">"No contacts selected."</string>
 
+    <!-- The add field button shown in the editor under each editable Raw Contact -->
+    <string name="add_field">Add information</string>
 </resources>

@@ -24,7 +24,6 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
-import com.android.contacts.util.ViewGroupAnimator;
 
 import android.content.Context;
 import android.provider.ContactsContract.Data;
@@ -32,7 +31,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +40,7 @@ import android.widget.TextView;
  * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
  * section header and a trigger for adding new {@link Data} rows.
  */
-public class KindSectionView extends LinearLayout implements OnClickListener, EditorListener {
+public class KindSectionView extends LinearLayout implements EditorListener {
     private static final String TAG = "KindSectionView";
 
     private LayoutInflater mInflater;
@@ -78,7 +76,11 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         mEditors = (ViewGroup)findViewById(R.id.kind_editors);
 
         mAdd = findViewById(R.id.kind_header);
-        mAdd.setOnClickListener(this);
+        mAdd.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                addItem();
+            }
+        });
 
         mAddPlusButton = (ImageView) findViewById(R.id.kind_plus);
 
@@ -87,8 +89,9 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
 
     /** {@inheritDoc} */
     public void onDeleted(Editor editor) {
-        this.updateAddEnabled();
-        this.updateEditorsVisible();
+        updateAddEnabled();
+        updateEditorsVisible();
+        updateVisible();
     }
 
     /** {@inheritDoc} */
@@ -110,12 +113,17 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // Only show the add button if this is a list
         mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.GONE);
 
-        this.rebuildFromState();
-        this.updateAddEnabled();
-        this.updateEditorsVisible();
+        rebuildFromState();
+        updateAddEnabled();
+        updateEditorsVisible();
+        updateVisible();
     }
 
-    public boolean isAnyEditorFilledOut() {
+    public CharSequence getTitle() {
+        return mTitle.getText();
+    }
+
+    public boolean getFieldCount() {
         if (mState == null) {
             return false;
         }
@@ -124,7 +132,7 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
             return false;
         }
 
-        int editorCount = mEditors.getChildCount();
+        int editorCount = getEditorCount();
         for (int i = 0; i < editorCount; i++) {
             GenericEditorView editorView = (GenericEditorView) mEditors.getChildAt(i);
             if (editorView.isAnyFieldFilledOut()) {
@@ -145,23 +153,6 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         // Check if we are displaying anything here
         boolean hasEntries = mState.hasMimeEntries(mKind.mimeType);
 
-        if (!mKind.isList) {
-            if (hasEntries) {
-                // we might have no visible entries. check that, too
-                for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
-                    if (!entry.isVisible()) {
-                        hasEntries = false;
-                        break;
-                    }
-                }
-            }
-
-            if (!hasEntries) {
-                EntityModifier.insertChild(mState, mKind);
-                hasEntries = true;
-            }
-        }
-
         if (hasEntries) {
             int entryIndex = 0;
             for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
@@ -171,11 +162,6 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
                 final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
                         R.layout.item_generic_editor, mEditors, false);
                 editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
-                // older versions of android had lists where we now have a single value
-                // in these cases we should show the remove button for all but the first value
-                // to ensure that nothing is removed
-                editor.mDelete.setVisibility((mKind.isList || (entryIndex != 0))
-                        ? View.VISIBLE : View.GONE);
                 editor.setEditorListener(this);
                 mEditors.addView(editor);
                 entryIndex++;
@@ -184,9 +170,14 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
     }
 
     protected void updateEditorsVisible() {
-        final boolean hasChildren = mEditors.getChildCount() > 0;
+        final boolean hasChildren = getEditorCount() > 0;
         mEditors.setVisibility(hasChildren ? View.VISIBLE : View.GONE);
     }
+
+    private void updateVisible() {
+        setVisibility(getEditorCount() != 0 ? VISIBLE : GONE);
+    }
+
 
     protected void updateAddEnabled() {
         // Set enabled state on the "add" view
@@ -195,20 +186,18 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
         mAdd.setEnabled(isEnabled);
     }
 
-    /** {@inheritDoc} */
-    public void onClick(View v) {
-        // if this is not a list the plus button is not visible but the user might have clicked
-        // the text.
-        if (!mKind.isList)
+    public void addItem() {
+        // if this is a list, we can freely add. if not, only allow adding the first
+        if (!mKind.isList && getEditorCount() == 1)
             return;
 
-        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+//        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
 
         // Insert a new child and rebuild
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
-        this.rebuildFromState();
-        this.updateAddEnabled();
-        this.updateEditorsVisible();
+        rebuildFromState();
+        updateAddEnabled();
+        updateEditorsVisible();
 
         // Find the newly added EditView and set focus.
         final int newFieldId = mViewIdGenerator.getId(mState, mKind, newValues, 0);
@@ -217,6 +206,16 @@ public class KindSectionView extends LinearLayout implements OnClickListener, Ed
             newField.requestFocus();
         }
 
-        animator.animate();
+        updateVisible();
+
+//        animator.animate();
+    }
+
+    public int getEditorCount() {
+        return mEditors.getChildCount();
+    }
+
+    public DataKind getKind() {
+        return mKind;
     }
 }
