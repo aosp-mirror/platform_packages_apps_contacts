@@ -17,8 +17,8 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
-import android.app.patterns.CursorLoader;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;

@@ -21,8 +21,8 @@ import com.android.contacts.R;
 import com.android.contacts.widget.PinnedHeaderListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
-import android.app.patterns.CursorLoader;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;

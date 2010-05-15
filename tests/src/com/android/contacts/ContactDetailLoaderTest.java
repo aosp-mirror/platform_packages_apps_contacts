@@ -20,9 +20,9 @@ import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.views.detail.ContactDetailLoader;
 
-import android.app.patterns.Loader;
-import android.app.patterns.Loader.OnLoadCompleteListener;
 import android.content.ContentUris;
+import android.content.Loader;
+import android.content.Loader.OnLoadCompleteListener;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;

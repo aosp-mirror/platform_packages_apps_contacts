@@ -7,10 +7,10 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntitySet;
 import com.android.contacts.model.Sources;
 
-import android.app.patterns.Loader;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Loader;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;

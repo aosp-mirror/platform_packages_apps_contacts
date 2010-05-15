@@ -19,11 +19,11 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.PhoneDisambigDialog;
 import com.android.contacts.R;
 
-import android.app.patterns.CursorLoader;
-import android.app.patterns.LoaderManagingFragment;
+import android.app.LoaderManagingFragment;
 import android.content.AsyncQueryHandler;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;

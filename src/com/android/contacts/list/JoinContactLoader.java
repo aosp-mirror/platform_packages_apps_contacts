@@ -15,8 +15,8 @@
  */
 package com.android.contacts.list;
 
-import android.app.patterns.CursorLoader;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -51,7 +51,7 @@ public class JoinContactLoader extends CursorLoader {
     }
 
     @Override
-    protected Cursor loadInBackground() {
+    public Cursor loadInBackground() {
         if (mLoadSuggestionsAndAllContact) {
             // First execute the suggestions query, then call super.loadInBackground
             // to load the entire list
