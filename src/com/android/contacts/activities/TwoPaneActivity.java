@@ -20,11 +20,14 @@ import com.android.contacts.R;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.views.detail.ContactDetailFragment;
+import com.android.contacts.widget.SearchEditText;
+import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 public class TwoPaneActivity extends Activity {
@@ -47,6 +50,21 @@ public class TwoPaneActivity extends Activity {
 //        mDetailFragment = (ContactDetailFragment) findFragmentById(R.id.two_pane_detail);
         mDetailFragment = ContactDetailFragment.sLastInstance;
         mDetailFragment.setCallbacks(mDetailCallbackHandler);
+
+        setupSearchUI();
+    }
+
+    private void setupSearchUI() {
+        SearchEditText searchEditText = (SearchEditText)findViewById(R.id.search_src_text);
+        searchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+            public void onFilterChange(String queryString) {
+                mListFragment.setSearchMode(!TextUtils.isEmpty(queryString));
+                mListFragment.setQueryString(queryString);
+            }
+
+            public void onCancelSearch() {
+            }
+        });
     }
 
     private class ListCallbackHandler implements OnContactBrowserActionListener {

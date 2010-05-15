@@ -213,6 +213,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
+        if (mAdapter != null) {
+            mAdapter.setSearchMode(flag);
+        }
     }
 
     public boolean isSearchMode() {
@@ -221,6 +224,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSearchResultsMode(boolean flag) {
         mSearchResultsMode = flag;
+        if (mAdapter != null) {
+            mAdapter.setSearchResultsMode(flag);
+        }
     }
 
     public boolean isSearchResultsMode() {
