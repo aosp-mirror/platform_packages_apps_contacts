@@ -43,12 +43,10 @@ public class TwoPaneActivity extends Activity {
 
         setContentView(R.layout.two_pane_activity);
 
-//        mListFragment = (DefaultContactBrowseListFragment) findFragmentById(R.id.two_pane_list);
-        mListFragment = DefaultContactBrowseListFragment.sLastFragment;
+        mListFragment = (DefaultContactBrowseListFragment) findFragmentById(R.id.two_pane_list);
         mListFragment.setOnContactListActionListener(mListCallbackHandler);
 
-//        mDetailFragment = (ContactDetailFragment) findFragmentById(R.id.two_pane_detail);
-        mDetailFragment = ContactDetailFragment.sLastInstance;
+        mDetailFragment = (ContactDetailFragment) findFragmentById(R.id.two_pane_detail);
         mDetailFragment.setCallbacks(mDetailCallbackHandler);
 
         setupSearchUI();

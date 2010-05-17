@@ -99,9 +99,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
     private static final int LOADER_DETAILS = 1;
 
-    // TODO: Remove this horrible hack once findFragmentById works
-    public static ContactDetailFragment sLastInstance = null;
-
     private Context mContext;
     private Uri mLookupUri;
     private Callbacks mCallbacks;
@@ -155,8 +152,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         mSections.add(mOrganizationEntries);
         mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
-
-        sLastInstance = this;
     }
 
     @Override

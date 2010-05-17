@@ -47,8 +47,7 @@ public class ContactDetailActivity extends Activity {
         Log.i(TAG, getIntent().getData().toString());
 
         final View view = findViewById(R.id.contact_detail_fragment);
-//        mFragment = (ContactDetailFragment) findFragmentById(R.id.contact_detail_fragment);
-        mFragment = ContactDetailFragment.sLastInstance;
+        mFragment = (ContactDetailFragment) findFragmentById(R.id.contact_detail_fragment);
         mFragment.setCallbacks(mCallbackHandler);
         mFragment.loadUri(getIntent().getData());
     }

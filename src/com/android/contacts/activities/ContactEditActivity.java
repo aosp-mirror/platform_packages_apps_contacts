@@ -55,7 +55,7 @@ public class ContactEditActivity extends Activity implements
         final String mimeType = intent.resolveType(getContentResolver());
         final Bundle intentExtras = intent.getExtras();
 
-        mFragment = ContactEditFragment.sLastInstance;
+        mFragment = (ContactEditFragment) findFragmentById(R.id.contact_edit_fragment);
         mFragment.setCallbacks(mCallbackHandler);
         mFragment.load(action, uri, mimeType, intentExtras);
     }

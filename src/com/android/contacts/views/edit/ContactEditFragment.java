@@ -148,11 +148,7 @@ public class ContactEditFragment extends LoaderManagingFragment<ContactEditLoade
 
     private ViewIdGenerator mViewIdGenerator;
 
-    // TODO: Remove this temp instance once findFragmentById works
-    public static ContactEditFragment sLastInstance = null;
-
     public ContactEditFragment() {
-        sLastInstance = this;
     }
 
     @Override

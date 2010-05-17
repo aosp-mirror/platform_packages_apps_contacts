@@ -37,15 +37,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
     private boolean mVisibleContactsRestrictionEnabled = true;
 
-    // TODO: Remove this horrible hack once the framework can lookup fragments via findFragmentById
-    public static DefaultContactBrowseListFragment sLastFragment = null;
-
-
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
-
-        sLastFragment = this;
     }
 
     @Override
