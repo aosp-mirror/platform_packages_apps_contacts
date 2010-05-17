@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Terugbellen"</string>
     <string name="callAgain" msgid="3197312117049874778">"Opnieuw bellen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Terugbellen"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sec."</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> min. <xliff:g id="SECONDS">%2$s</xliff:g> sec."</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Regelmatig contact"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Contact toevoegen"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voeg \"<xliff:g id="EMAIL">%s</xliff:g>\" toe aan contactpersonen?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Een of meer bestanden kunnen niet worden geïmporteerd (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Onbekende fout"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard-bestand selecteren"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"vCard lezen"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"vCard-bestand(en) lezen"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Lezen van vCard-gegevens is mislukt"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> bestanden"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> contacten"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> bestanden"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Exporteren bevestigen"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Weet u zeker dat u uw lijst met contacten wilt exporteren naar \'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Exporteren van contactgegevens mislukt"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Databasegegevens ophalen mislukt"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Er is geen contact dat kan worden geëxporteerd. Als er contacten op uw telefoon staan, kan het exporteren van alle contacten vanaf uw telefoon mogelijk worden geblokkeerd door een gegevensprovider."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"De vCard-editor is niet juist geïnitialiseerd"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kan \'<xliff:g id="FILE_NAME">%s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kan \'<xliff:g id="FILE_NAME">%1$s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> contacten"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Namen van uw contacten"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pauze van 2 seconden toevoegen"</string>
     <string name="add_wait" msgid="3360818652790319634">"Wachten toevoegen"</string>

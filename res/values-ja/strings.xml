@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"コールバック"</string>
     <string name="callAgain" msgid="3197312117049874778">"再発信"</string>
     <string name="returnCall" msgid="8171961914203617813">"発信"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>分<xliff:g id="SECONDS">%s</xliff:g>秒"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g>分<xliff:g id="SECONDS">%2$s</xliff:g>秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"よく使う連絡先"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"連絡先を追加"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"<xliff:g id="EMAIL">%s</xliff:g> を連絡先に追加しますか？"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"1つ以上のファイルをインポートできませんでした（%s）。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"不明なエラー"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCardファイルの選択"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"vCardを読み取り中"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"vCardファイルを読み取り中"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"vCardデータの読み取りに失敗しました"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件の連絡先"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件のファイル"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>件の連絡先"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>件のファイル"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"エクスポートの確認"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"連絡先リストを「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」にエクスポートしますか？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"連絡先データのエクスポートに失敗しました"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"データベース情報の取得に失敗しました"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"エクスポートできる連絡先がありません。携帯電話に連絡先を登録している場合、データプロバイダが外部への連絡先のエクスポートをすべて禁止している可能性があります。"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCardコンポーザーが正しく初期化されていません"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\"を開けませんでした: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件のファイル"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\"を開けませんでした: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>件のファイル"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"連絡先の名前"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2秒間の停止を追加"</string>
     <string name="add_wait" msgid="3360818652790319634">"着信を追加"</string>
