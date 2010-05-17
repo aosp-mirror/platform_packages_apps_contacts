@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Geri ara"</string>
     <string name="callAgain" msgid="3197312117049874778">"Tekrar çağrı yap"</string>
     <string name="returnCall" msgid="8171961914203617813">"Geri ara"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> dak <xliff:g id="SECONDS">%s</xliff:g> sn"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> dak <xliff:g id="SECONDS">%2$s</xliff:g> sn"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Sık iletişim kurulanlar"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Kişi ekle"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" adresi kişilere eklensin mi?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"İçe aktarılamayan bir veya birden fazla dosya (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Bilinmeyen hata"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard dosyasını seç"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"vCard okunuyor"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"vCard dosyaları okunuyor"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"vCard verileri okunamadı"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"Toplam <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%s</xliff:g> kişi"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"toplam <xliff:g id="TOTAL_NUMBER">%s</xliff:g> dosyadan <xliff:g id="CURRENT_NUMBER">%s</xliff:g>. dosya"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"Toplam <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> kişi"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"toplam <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> dosyadan <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>. dosya"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Dışa aktarımı onayla"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Kişi listenizi \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" için dışa aktarmak istediğinizden emin misiniz?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kişi verileri dışa aktarılamadı"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Veri tabanı bilgileri alınamadı"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Dışa aktarılabilir kişi yok. Telefonunuzda aslında kişi kayıtları varsa, veri sağlayıcısı tarafından tüm kişilerin telefon dışına aktarılması yasaklanmış olabilir."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard oluşturucu doğru bir şekilde başlatılmamış"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" dosyası açılamadı: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"Toplam <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%s</xliff:g> kişi"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\" dosyası açılamadı: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"Toplam <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> kişi"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kişilerinizin adları"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 saniyelik duraklama ekle"</string>
     <string name="add_wait" msgid="3360818652790319634">"Bekleme ekle"</string>

@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"回播電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回電"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> 分 <xliff:g id="SECONDS">%2$s</xliff:g> 秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"常用聯絡人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"新增聯絡人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」新增為聯絡人嗎？"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"無法匯入一或多個檔案 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知的錯誤"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"選取 VCard 檔案"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"正在讀取 VCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"正在讀取 VCard 檔案"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"無法讀取 VCard 資料"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 個"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 位"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 個檔案，共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 個"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"確認匯出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"確定要將聯絡人清單匯出至「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」嗎？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"無法匯出聯絡人資料"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"無法取得資料庫資訊"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"沒有可匯出的聯絡人。如果您的手機中確實存有聯絡人資料，這可能是因為某些資料提供者禁止您將所有聯絡人匯出手機。"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"VCard 編輯器並未正確初始化"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"無法開啟「<xliff:g id="FILE_NAME">%1$s</xliff:g>」：<xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 位"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"新增 2 秒暫停功能"</string>
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>

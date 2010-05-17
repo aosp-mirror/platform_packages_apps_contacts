@@ -78,7 +78,7 @@
     <string name="invalidContactMessage" msgid="5816991830260044593">"Контакт не существует."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Выбор ярлыка"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Кнопки"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Адрес электронной почты"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Чат"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Почтовый адрес"</string>
@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Перезвонить"</string>
     <string name="callAgain" msgid="3197312117049874778">"Позвонить снова"</string>
     <string name="returnCall" msgid="8171961914203617813">"Перезвонить"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>:<xliff:g id="SECONDS">%s</xliff:g>"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g>:<xliff:g id="SECONDS">%2$s</xliff:g>"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Часто набираемые"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Добавить контакт"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Добавить в контакты <xliff:g id="EMAIL">%s</xliff:g>?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Не удалось импортировать один или несколько файлов (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Неизвестная ошибка"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Выберите файл vCard"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"Чтение vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"Чтение файлов VCard"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Не удается считать данные vCard"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"Контакт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"Файл <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"Контакт <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"Файл <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Подтверждение·экспорта"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Вы действительно хотите экспортировать контакты в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Не удалось экспортировать данные контакта."</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Не удалось получить информацию из базы данных."</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Нет контактов для экспорта. Если в вашем телефоне имеются контакты, возможно они защищены от экспорта оператором услуг."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Редактор vCard запущен некорректно"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Не удается открыть \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"Контакт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Не удается открыть \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\": <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"Контакт <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контактов"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Добавить двухсекундную паузу"</string>
     <string name="add_wait" msgid="3360818652790319634">"Добавить паузу"</string>

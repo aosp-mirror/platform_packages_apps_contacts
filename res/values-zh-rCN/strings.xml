@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"回电"</string>
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
     <string name="returnCall" msgid="8171961914203617813">"回拨"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> 分 <xliff:g id="SECONDS">%2$s</xliff:g> 秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"常用联系人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"添加联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"一个或多个文件导入失败 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知错误"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"选择 vCard 文件"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"正在读取 vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"正在读取 vCard 文件"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"读取 vCard 数据失败"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个）"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个文件"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个）"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个文件"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"确认导出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"确定要将您的联系人列表导出到“<xliff:g id="VCARD_FILENAME">%s</xliff:g>”中吗？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"导出联系人数据失败"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"获取数据库信息失败"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"没有可导出的联系人。如果您的手机中确实有联系人，则可能是某个数据提供程序禁止您从手机中导出任何联系人。"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 制作程序未正确初始化"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"无法打开“<xliff:g id="FILE_NAME">%s</xliff:g>”：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个）"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"无法打开“<xliff:g id="FILE_NAME">%1$s</xliff:g>”：<xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个）"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"联系人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"暂停时间延长 2 秒"</string>
     <string name="add_wait" msgid="3360818652790319634">"延长等待时间"</string>
