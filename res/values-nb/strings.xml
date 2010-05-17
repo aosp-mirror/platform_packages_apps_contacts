@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Ring tilbake"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring på nytt"</string>
     <string name="returnCall" msgid="8171961914203617813">"Ring tilbake"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> min <xliff:g id="SECONDS">%2$s</xliff:g> sek"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Ofte kontaktet"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Legg til kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Legg til «<xliff:g id="EMAIL">%s</xliff:g>» som kontakt?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Importeringen av én eller flere filer mislyktes (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Ukjent feil"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Velg VCard-fil"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"Leser VCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"Leser VCard-fil(er)"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Kunne ikke lese VCard-data"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> filer"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> kontakter"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> filer"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Eksportbekreftelse"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vil du eksportere kontaktlisten din til «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kunne ikke eksportere kontaktlisten"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Klarte ikke å hente databaseinformasjon"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Det finnes ingen eksporterbare kontakter. Hvis du har kontakter på telefonen, kan disse i enkelte tilfeller ikke eksporteres. Dette skyldes i så fall at dataleverandøren ikke tillater det."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Objektet for vCard-redigering er ikke riktig initialisert"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kunne ikke åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kunne ikke åpne «<xliff:g id="FILE_NAME">%1$s</xliff:g>»: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Legg til pause på 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Legg til Vent"</string>

@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"전화 걸기"</string>
     <string name="callAgain" msgid="3197312117049874778">"다시 걸기"</string>
     <string name="returnCall" msgid="8171961914203617813">"전화 걸기"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>분 <xliff:g id="SECONDS">%s</xliff:g>초"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g>분 <xliff:g id="SECONDS">%2$s</xliff:g>초"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"자주 연락하는 사람들의 연락처"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"연락처 추가"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 주소록에 추가하겠습니까?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"알 수 없는 오류"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard 파일 선택"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"vCard 읽는 중"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"vCard 파일 읽는 중"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"vCard 데이터를 읽어오지 못했습니다."</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"파일 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개 중 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"연락처 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>개) 내보내는 중"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"파일 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>개 중 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>개"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"내보내기 확인"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"\'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'(으)로 연락처 목록을 내보내시겠습니까?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"연락처 데이터를 내보내지 못했습니다."</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"데이터베이스 정보를 가져오지 못했습니다."</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 작성기가 바르게 초기화되지 않았습니다."</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%1$s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>개) 내보내는 중"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>

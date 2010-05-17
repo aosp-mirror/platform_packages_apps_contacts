@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Chamada de retorno"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ligar novamente"</string>
     <string name="returnCall" msgid="8171961914203617813">"Devolver chamada"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> seg"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> min <xliff:g id="SECONDS">%2$s</xliff:g> seg"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contactos frequentes"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Adicionar contacto"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Adicionar \"<xliff:g id="EMAIL">%s</xliff:g>\" aos contactos?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"A importação de um ou vários ficheiros falhou (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Erro desconhecido"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleccionar ficheiro vCard"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"A ler vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"A ler ficheiro(s) vCard"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Falha na leitura de dados do vCard"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> ficheiros"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> contactos"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ficheiros"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmar exportação"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Tem a certeza de que pretende exportar a lista de contactos para \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Falha ao exportar dados de contacto"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Falha na obtenção de informações da base de dados"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Não existe nenhum contacto exportável. Se tiver realmente contactos no telefone, a sua exportação para fora do telefone por parte de alguns fornecedores de dados pode não ser autorizada."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"O compositor vCard não foi inicializado correctamente"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Não foi possível abrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Não foi possível abrir \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\": <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> contactos"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nomes dos contactos"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Adicionar pausa de 2 seg."</string>
     <string name="add_wait" msgid="3360818652790319634">"Adicionar espera"</string>

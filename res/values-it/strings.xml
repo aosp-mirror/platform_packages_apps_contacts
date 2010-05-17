@@ -40,8 +40,8 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Rimuovi dai preferiti"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Modifica contatto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Elimina contatto"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Chiama contatto"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia SMS a contatto"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Chiama"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Invia SMS"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Invia email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Indirizzo su mappa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Rendi numero predefinito"</string>
@@ -79,7 +79,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea nuovo contatto"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleziona etichetta"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Invia email"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Indirizzo postale"</string>
   <string-array name="otherLabels">
@@ -178,7 +178,7 @@
     <string name="callBack" msgid="5498224409038809224">"Richiama"</string>
     <string name="callAgain" msgid="3197312117049874778">"Richiama"</string>
     <string name="returnCall" msgid="8171961914203617813">"Chiama numero"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sec."</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> min. <xliff:g id="SECONDS">%2$s</xliff:g> sec."</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contattati spesso"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Aggiungi contatto"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Aggiungi \"<xliff:g id="EMAIL">%s</xliff:g>\" ai contatti?"</string>
@@ -222,12 +222,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Impossibile importare uno o più file (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Errore sconosciuto"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleziona file vCard"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%s</xliff:g>"\n"<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"Lettura vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"Lettura file vCard"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Lettura dati vCard non riuscita"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> file su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> file su <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Conferma esportazione"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Esportare l\'elenco di contatti in \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Esportazione dati contatti non riuscita"</string>
@@ -242,8 +242,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Recupero informazioni database non riuscito"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Nessun contatto esportabile. Se nel tuo telefono sono presenti dei contatti, qualche provider di dati potrebbe impedire l\'esportazione di tutti i contatti all\'esterno del telefono."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Il compositore di vCard non è correttamente inizializzato"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Impossibile aprire \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Impossibile aprire \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\": <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> contatti su <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"I nomi dei tuoi contatti"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Aggiungi pausa 2 sec"</string>
     <string name="add_wait" msgid="3360818652790319634">"Aggiungi attesa"</string>
@@ -362,10 +362,10 @@
     <string name="contact_read_only" msgid="1203216914575723978">"Informazioni del contatto da <xliff:g id="SOURCE">%1$s</xliff:g> non modificabili su questo dispositivo."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Nessuna informazione aggiuntiva per questo contatto"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ordina elenco per"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome di battesimo"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Cognome"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizza nomi dei contatti come"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Prima il nome di battesimo"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizz. nomi contatti"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Prima il nome"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Prima il cognome"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Cerca contatti"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Cerca tutti i contatti"</string>
