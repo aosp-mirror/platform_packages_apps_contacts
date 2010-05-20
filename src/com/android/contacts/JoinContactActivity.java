@@ -86,7 +86,7 @@ public class JoinContactActivity extends Activity {
         });
 
         FragmentTransaction transaction = openFragmentTransaction();
-        transaction.add(fragment, android.R.id.content);
+        transaction.add(android.R.id.content, fragment);
         transaction.commit();
     }
 }

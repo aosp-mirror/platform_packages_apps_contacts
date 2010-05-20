@@ -168,7 +168,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             listFragmentContainerId = android.R.id.content;
         }
         FragmentTransaction transaction = openFragmentTransaction();
-        transaction.add(mListFragment, listFragmentContainerId);
+        transaction.add(listFragmentContainerId, mListFragment);
         transaction.commit();
     }
 
