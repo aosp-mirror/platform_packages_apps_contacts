@@ -25,10 +25,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.pim.vcard.VCardComposer;
-import android.pim.vcard.VCardConfig;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.vcard.VCardComposer;
+import com.android.vcard.VCardConfig;
 
 import java.io.File;
 import java.io.FileNotFoundException;
