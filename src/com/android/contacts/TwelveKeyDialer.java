@@ -606,25 +606,6 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
-                // TODO: In dialButtonPressed we do some of these
-                // tests again. We should try to consolidate them in
-                // one place.
-                if (!phoneIsCdma() && mIsAddCallMode && isDigitsEmpty()) {
-                    // For CDMA phones, we always call
-                    // dialButtonPressed() because we may need to send
-                    // an empty flash command to the network.
-                    // Otherwise, if we are adding a call from the
-                    // InCallScreen and the phone number entered is
-                    // empty, we just close the dialer to expose the
-                    // InCallScreen under it.
-                    finish();
-                }
-
-                // If we're CDMA, regardless of where we are adding a call from (either
-                // InCallScreen or Dialtacts), the user may need to send an empty
-                // flash command to the network. So let's call dialButtonPressed() regardless
-                // and dialButtonPressed will handle this functionality for us.
-                // otherwise, we place the call.
                 dialButtonPressed();
                 return true;
             }
@@ -763,52 +744,55 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     void callVoicemail() {
-        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                Uri.fromParts("voicemail", EMPTY_NUMBER, null));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        mDigits.getText().clear();
+        startActivity(newVoicemailIntent());
+        mDigits.getText().clear(); // TODO: Fix bug 1745781
         finish();
     }
 
+    /**
+     * In most cases, when the dial button is pressed, there is a
+     * number in digits area. Pack it in the intent, start the
+     * outgoing call broadcast as a separate task and finish this
+     * activity.
+     *
+     * When there is no digit and the phone is CDMA and off hook,
+     * we're sending a blank flash for CDMA. CDMA networks use Flash
+     * messages when special processing needs to be done, mainly for
+     * 3-way or call waiting scenarios. Presumably, here we're in a
+     * special 3-way scenario where the network needs a blank flash
+     * before being able to add the new participant.  (This is not the
+     * case with all 3-way calls, just certain CDMA infrastructures.)
+     *
+     * Otherwise, there is no digit, display the last dialed
+     * number. Don't finish since the user may want to edit it. The
+     * user needs to press the dial button again, to dial it (general
+     * case described above).
+     */
     void dialButtonPressed() {
-        final String number = mDigits.getText().toString();
-        boolean sendEmptyFlash = false;
-        Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED);
-
-        if (isDigitsEmpty()) { // There is no number entered.
+        if (isDigitsEmpty()) { // No number entered.
             if (phoneIsCdma() && phoneIsOffhook()) {
-                // On CDMA phones, if we're already on a call, pressing
-                // the Dial button without entering any digits means "send
-                // an empty flash."
-                intent.setData(Uri.fromParts("tel", EMPTY_NUMBER, null));
-                intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
-                sendEmptyFlash = true;
-            } else if (!TextUtils.isEmpty(mLastNumberDialed)) {
-                // Otherwise, pressing the Dial button without entering
-                // any digits means "recall the last number dialed".
-                mDigits.setText(mLastNumberDialed);
-                return;
+                // This is really CDMA specific. On GSM is it possible
+                // to be off hook and wanted to add a 3rd party using
+                // the redial feature.
+                startActivity(newFlashIntent());
             } else {
-                // Rare case: there's no "last number dialed".  There's
-                // nothing useful for the Dial button to do in this case.
-                playTone(ToneGenerator.TONE_PROP_NACK);
-                return;
+                if (!TextUtils.isEmpty(mLastNumberDialed)) {
+                    mDigits.setText(mLastNumberDialed);
+                } else {
+                    // There's no "last number dialed" or the
+                    // background query is still running. There's
+                    // nothing useful for the Dial button to do in
+                    // this case.  Note: with a soft dial button, this
+                    // can never happens since the dial button is
+                    // disabled under these conditons.
+                    playTone(ToneGenerator.TONE_PROP_NACK);
+                }
             }
-        } else {  // There is a number.
-            intent.setData(Uri.fromParts("tel", number, null));
-        }
+        } else {
+            final String number = mDigits.getText().toString();
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        mDigits.getText().clear();
-
-        // Don't finish TwelveKeyDialer yet if we're sending a blank flash for CDMA. CDMA
-        // networks use Flash messages when special processing needs to be done, mainly for
-        // 3-way or call waiting scenarios. Presumably, here we're in a special 3-way scenario
-        // where the network needs a blank flash before being able to add the new participant.
-        // (This is not the case with all 3-way calls, just certain CDMA infrastructures.)
-        if (!sendEmptyFlash) {
+            startActivity(newDialNumberIntent(number));
+            mDigits.getText().clear();  // TODO: Fix bug 1745781
             finish();
         }
     }
@@ -1255,5 +1239,26 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         } else {
             ContactsSearchManager.startSearch(this, initialQuery);
         }
+    }
+
+    // Helpers for the call intents.
+    private Intent newVoicemailIntent() {
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                         Uri.fromParts("voicemail", EMPTY_NUMBER, null));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
+    }
+
+    private Intent newFlashIntent() {
+        final Intent intent = newDialNumberIntent(EMPTY_NUMBER);
+        intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
+        return intent;
+    }
+
+    private Intent newDialNumberIntent(String number) {
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                         Uri.fromParts("tel", number, null));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
     }
 }
