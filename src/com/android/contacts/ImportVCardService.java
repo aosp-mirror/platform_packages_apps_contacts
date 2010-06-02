@@ -338,7 +338,7 @@ public class ImportVCardService extends Service {
 
         public PendingInput(Account account,
                 Uri uri, int estimatedType, String estimatedCharset,
-                boolean useV30, int entryCount,   
+                boolean useV30, int entryCount,
                 int id) {
             this.account = account;
             this.uri = uri;
@@ -409,7 +409,7 @@ public class ImportVCardService extends Service {
             intent.getBooleanArrayExtra(ImportVCardActivity.USE_V30_ARRAY);
         final int[] entryCountArray =
             intent.getIntArrayExtra(ImportVCardActivity.ENTRY_COUNT_ARRAY);
-        
+
         final Account account = tryGetAccount(intent);
         final Uri[] uris = tryGetUris(intent);
         if (uris == null) {

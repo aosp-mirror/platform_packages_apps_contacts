@@ -288,7 +288,7 @@ public class ImportVCardActivity extends Activity {
                     ImportVCardActivity.this.getContentResolver();
             final int length = mDestUriStrings.length;
             try {
-                for (int i = 0; i < length; i++) {                     
+                for (int i = 0; i < length; i++) {
                     if (mCanceled) {
                         return false;
                     }
@@ -368,7 +368,7 @@ public class ImportVCardActivity extends Activity {
                     }
                     // XXX: better way to copy stream?
                     inputChannel = Channels.newChannel(resolver.openInputStream(mSourceUris[i]));
-                    final String filename = CACHE_FILE_PREFIX + i + ".vcf"; 
+                    final String filename = CACHE_FILE_PREFIX + i + ".vcf";
                     mDestUriStrings[i] =
                             context.getFileStreamPath(filename).toURI().toString();
                     Log.d("@@@", "temporary file: " + filename + ", dest: " + mDestUriStrings[i]);
@@ -391,7 +391,7 @@ public class ImportVCardActivity extends Activity {
                         }
                     }
 
-                    // Avoid double close() in the "finally" block bellow. 
+                    // Avoid double close() in the "finally" block bellow.
                     Channel tmp = inputChannel;
                     inputChannel = null;
                     tmp.close();
@@ -432,7 +432,7 @@ public class ImportVCardActivity extends Activity {
                 }
             }
         }
-        
+
         public void cancel() {
             mCanceled = true;
             if (mVCardParser != null) {
@@ -444,7 +444,7 @@ public class ImportVCardActivity extends Activity {
             cancel();
         }
     }
-    
+
     private class ImportTypeSelectedListener implements
             DialogInterface.OnClickListener {
         public static final int IMPORT_ONE = 0;
