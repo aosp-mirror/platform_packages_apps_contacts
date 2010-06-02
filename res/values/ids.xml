@@ -47,7 +47,7 @@
     <item type="id" name="dialog_select_import_type"/>
     <item type="id" name="dialog_select_one_vcard"/>
     <item type="id" name="dialog_select_multiple_vcard"/>
-    <item type="id" name="dialog_reading_vcard"/>
+    <item type="id" name="dialog_cache_vcard"/>
     <item type="id" name="dialog_io_exception"/>
     <item type="id" name="dialog_error_with_message"/>
 

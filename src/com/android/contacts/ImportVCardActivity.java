@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,12 +40,29 @@ import android.util.Log;
 
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.vcard.VCardEntryCounter;
+import com.android.vcard.VCardInterpreterCollection;
+import com.android.vcard.VCardParser;
+import com.android.vcard.VCardParser_V21;
+import com.android.vcard.VCardParser_V30;
+import com.android.vcard.VCardSourceDetector;
+import com.android.vcard.exception.VCardException;
+import com.android.vcard.exception.VCardNestedException;
+import com.android.vcard.exception.VCardNotSupportedException;
+import com.android.vcard.exception.VCardVersionException;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channel;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -67,7 +85,11 @@ public class ImportVCardActivity extends Activity {
 
     private static final int SELECT_ACCOUNT = 0;
 
-    /* package */ static final String VCARD_URI_ARRAY = "vcard_uri_array";
+    /* package */ static final String VCARD_URI_ARRAY = "vcard_uri";
+    /* package */ static final String ESTIMATED_VCARD_TYPE_ARRAY = "estimated_vcard_type";
+    /* package */ static final String ESTIMATED_CHARSET_ARRAY = "estimated_charset";
+    /* package */ static final String USE_V30_ARRAY = "use_v30";
+    /* package */ static final String ENTRY_COUNT_ARRAY = "entry_count";
 
     // Run on the UI thread. Must not be null except after onDestroy().
     private Handler mHandler = new Handler();
@@ -80,9 +102,12 @@ public class ImportVCardActivity extends Activity {
     private Uri mUri;
 
     private ProgressDialog mProgressDialogForScanVCard;
+    private ProgressDialog mProgressDialogForCacheVCard;
 
     private List<VCardFile> mAllVCardFileList;
     private VCardScanThread mVCardScanThread;
+
+    private VCardCacheThread mVCardCacheThread;
 
     private String mErrorMessage;
 
@@ -138,6 +163,288 @@ public class ImportVCardActivity extends Activity {
 
     private CancelListener mCancelListener = new CancelListener();
 
+    /**
+     * Caches all vCard data into local data directory so that we allow
+     * {@link ImportVCardService} to access all the contents in given Uris, some of
+     * which may not be accessible from other components due to permission problem.
+     * (Activity which gives the Uri may allow only this Activity to access that content,
+     * not the ohter components like {@link ImportVCardService}.
+     *
+     * We also allow the Service to happen to exit during the vCard import procedure.
+     */
+    private class VCardCacheThread extends Thread
+            implements DialogInterface.OnCancelListener {
+        private static final String CACHE_FILE_PREFIX = "import_tmp_";
+        private boolean mCanceled;
+        private PowerManager.WakeLock mWakeLock;
+        private VCardParser mVCardParser;
+        private final Uri[] mSourceUris;
+
+        // Not using Uri[] since we throw this object to Service via Intent.
+        private final String[] mDestUriStrings;
+
+        private final int[] mEstimatedVCardTypes;
+        private final String[] mEstimatedCharsets;
+        private final boolean[] mShouldUseV30;
+        private final int[] mEntryCounts;
+
+        public VCardCacheThread(final Uri[] sourceUris) {
+            mSourceUris = sourceUris;
+            final int length = sourceUris.length;
+
+            mDestUriStrings = new String[length];
+            mEstimatedVCardTypes = new int[length];
+            mEstimatedCharsets = new String[length];
+            mShouldUseV30 = new boolean[length];
+            mEntryCounts = new int[length];
+
+            final Context context = ImportVCardActivity.this;
+            PowerManager powerManager = (PowerManager)context.getSystemService(
+                    Context.POWER_SERVICE);
+            mWakeLock = powerManager.newWakeLock(
+                    PowerManager.SCREEN_DIM_WAKE_LOCK |
+                    PowerManager.ON_AFTER_RELEASE, LOG_TAG);
+        }
+
+        @Override
+        public void finalize() {
+            if (mWakeLock != null && mWakeLock.isHeld()) {
+                mWakeLock.release();
+            }
+        }
+
+        @Override
+        public void run() {
+            final Context context = ImportVCardActivity.this;
+            final ContentResolver resolver = context.getContentResolver();
+            String errorMessage = null;
+            mWakeLock.acquire();
+
+            try {
+                clearOldCache();
+
+                // We may be able to read content of each vCard file during copying them
+                // to local storage, but currently vCard code does not allow us to do so.
+                //
+                // Note that Uris given from caller applications may not be opened twice,
+                // so we have to use local data after this copy instead of relying on
+                // the original source Uris.
+                copyVCardToLocal();
+                if (mCanceled) {
+                    return;
+                }
+                Log.d("@@@", "Caching done. Count the number of vCard entries.");
+                if (!collectVCardMetaInfo()) {
+                    Log.e(LOG_TAG, "Failed to collect vCard meta information");
+                    runOnUIThread(new DialogDisplayer(
+                            getString(R.string.fail_reason_failed_to_collect_vcard_meta_info)));
+                    return;
+                }
+                if (mCanceled) {
+                    return;
+                }
+                for (int i = 0; i < mEntryCounts.length; i++) {
+                    Log.d("@@@", String.format("length for %s: %d",
+                            mDestUriStrings[i], mEntryCounts[i]));
+                }
+            } catch (OutOfMemoryError e) {
+                Log.e(LOG_TAG, "OutOfMemoryError");
+                // We should take care of this case since Android devices may have
+                // smaller memory than we usually expect.
+                System.gc();
+                runOnUIThread(new DialogDisplayer(
+                        getString(R.string.fail_reason_io_error) +
+                        ": " + e.getLocalizedMessage()));
+                return;
+            } catch (IOException e) {
+                Log.e(LOG_TAG, e.getMessage());
+                runOnUIThread(new DialogDisplayer(
+                        getString(R.string.fail_reason_io_error) +
+                        ": " + e.getLocalizedMessage()));
+                return;
+            } finally {
+
+                mWakeLock.release();
+                mProgressDialogForCacheVCard.dismiss();
+            }
+
+            // TODO(dmiyakawa): do we need runOnUIThread?
+            final Intent intent = new Intent(
+                    ImportVCardActivity.this, ImportVCardService.class);
+            intent.putExtra(VCARD_URI_ARRAY, mDestUriStrings);
+            intent.putExtra(SelectAccountActivity.ACCOUNT_NAME, mAccountName);
+            intent.putExtra(SelectAccountActivity.ACCOUNT_TYPE, mAccountType);
+            intent.putExtra(ESTIMATED_VCARD_TYPE_ARRAY, mEstimatedVCardTypes);
+            intent.putExtra(ESTIMATED_CHARSET_ARRAY, mEstimatedCharsets);
+            intent.putExtra(USE_V30_ARRAY, mShouldUseV30);
+            intent.putExtra(ENTRY_COUNT_ARRAY, mEntryCounts);
+            startService(intent);
+            finish();
+        }
+
+
+        private boolean collectVCardMetaInfo() {
+            final ContentResolver resolver =
+                    ImportVCardActivity.this.getContentResolver();
+            final int length = mDestUriStrings.length;
+            try {
+                for (int i = 0; i < length; i++) {                     
+                    if (mCanceled) {
+                        return false;
+                    }
+                    final Uri uri = Uri.parse(mDestUriStrings[i]);
+                    boolean shouldUseV30 = false;
+                    InputStream is;
+                    VCardEntryCounter counter;
+                    VCardSourceDetector detector;
+                    VCardInterpreterCollection interpreter;
+
+                    is = resolver.openInputStream(uri);
+                    mVCardParser = new VCardParser_V21();
+                    try {
+                        counter = new VCardEntryCounter();
+                        detector = new VCardSourceDetector();
+                        interpreter =
+                                new VCardInterpreterCollection(
+                                        Arrays.asList(counter, detector));
+                        mVCardParser.parse(is, interpreter);
+                    } catch (VCardVersionException e1) {
+                        try {
+                            is.close();
+                        } catch (IOException e) {
+                        }
+
+                        shouldUseV30 = true;
+                        is = resolver.openInputStream(uri);
+                        mVCardParser = new VCardParser_V30();
+                        try {
+                            counter = new VCardEntryCounter();
+                            detector = new VCardSourceDetector();
+                            interpreter =
+                                    new VCardInterpreterCollection(
+                                            Arrays.asList(counter, detector));
+                            mVCardParser.parse(is, interpreter);
+                        } catch (VCardVersionException e2) {
+                            throw new VCardException("vCard with unspported version.");
+                        }
+                    } finally {
+                        if (is != null) {
+                            try {
+                                is.close();
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+
+                    mEstimatedVCardTypes[i] = detector.getEstimatedType();
+                    mEstimatedCharsets[i] = detector.getEstimatedCharset();
+                    mShouldUseV30[i] = shouldUseV30;
+                    mEntryCounts[i] = counter.getCount();
+                }
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
+                return false;
+            } catch (VCardNestedException e) {
+                Log.w(LOG_TAG, "Nested Exception is found (it may be false-positive).");
+            } catch (VCardNotSupportedException e) {
+                return false;
+            } catch (VCardException e) {
+                return false;
+            }
+            return true;
+        }
+
+        private void copyVCardToLocal() throws IOException {
+            final Context context = ImportVCardActivity.this;
+            final ContentResolver resolver = context.getContentResolver();
+            ReadableByteChannel inputChannel = null;
+            WritableByteChannel outputChannel = null;
+            try {
+                int length = mSourceUris.length;
+                for (int i = 0; i < length; i++) {
+                    if (mCanceled) {
+                        Log.d(LOG_TAG, "Canceled during import");
+                        break;
+                    }
+                    // XXX: better way to copy stream?
+                    inputChannel = Channels.newChannel(resolver.openInputStream(mSourceUris[i]));
+                    final String filename = CACHE_FILE_PREFIX + i + ".vcf"; 
+                    mDestUriStrings[i] =
+                            context.getFileStreamPath(filename).toURI().toString();
+                    Log.d("@@@", "temporary file: " + filename + ", dest: " + mDestUriStrings[i]);
+                    outputChannel =
+                            context.openFileOutput(filename, Context.MODE_PRIVATE).getChannel();
+                    {
+                        final ByteBuffer buffer = ByteBuffer.allocateDirect(8192);
+                        while (inputChannel.read(buffer) != -1) {
+                            if (mCanceled) {
+                                Log.d(LOG_TAG, "Canceled during caching " + mSourceUris[i]);
+                                break;
+                            }
+                            buffer.flip();
+                            outputChannel.write(buffer);
+                            buffer.compact();
+                        }
+                        buffer.flip();
+                        while (buffer.hasRemaining()) {
+                            outputChannel.write(buffer);
+                        }
+                    }
+
+                    // Avoid double close() in the "finally" block bellow. 
+                    Channel tmp = inputChannel;
+                    inputChannel = null;
+                    tmp.close();
+                    tmp = outputChannel;
+                    outputChannel = null;
+                    tmp.close();
+                }
+            } finally {
+                if (inputChannel != null) {
+                    try {
+                        inputChannel.close();
+                    } catch (IOException e) {
+                        Log.w(LOG_TAG, "Failed to close inputChannel.");
+                    }
+                }
+                if (outputChannel != null) {
+                    try {
+                        outputChannel.close();
+                    } catch(IOException e) {
+                        Log.w(LOG_TAG, "Failed to close outputChannel");
+                    }
+                }
+            }
+        }
+
+        /**
+         * We (currently) don't have any way to clean up cache files used in the previous
+         * import process,
+         * TODO(dmiyakawa): Can we do it after Service being done?
+         */
+        private void clearOldCache() {
+            final Context context = ImportVCardActivity.this;
+            final String[] fileLists = context.fileList();
+            for (String fileName : fileLists) {
+                if (fileName.startsWith(CACHE_FILE_PREFIX)) {
+                    Log.d(LOG_TAG, "Remove temporary file: " + fileName);
+                    context.deleteFile(fileName);
+                }
+            }
+        }
+        
+        public void cancel() {
+            mCanceled = true;
+            if (mVCardParser != null) {
+                mVCardParser.cancel();
+            }
+        }
+
+        public void onCancel(DialogInterface dialog) {
+            cancel();
+        }
+    }
+    
     private class ImportTypeSelectedListener implements
             DialogInterface.OnClickListener {
         public static final int IMPORT_ONE = 0;
@@ -366,16 +673,17 @@ public class ImportVCardActivity extends Activity {
     }
 
     private void importVCard(final String[] uriStrings) {
-        final Intent intent = new Intent(this, ImportVCardService.class);
-        intent.putExtra(VCARD_URI_ARRAY, uriStrings);
-        intent.putExtra(SelectAccountActivity.ACCOUNT_NAME, mAccountName);
-        intent.putExtra(SelectAccountActivity.ACCOUNT_TYPE, mAccountType);
-
-        // TODO: permission is not migrated to ImportVCardService, so some exception is
-        // thrown when reading some Uri, permission of which is temporarily guaranteed
-        // to ImportVCardActivity, not ImportVCardService.
-        startService(intent);
-        finish();
+        final int length = uriStrings.length;
+        final Uri[] uris = new Uri[length];
+        for (int i = 0; i < length; i++) {
+            uris[i] = Uri.parse(uriStrings[i]);
+        }
+        runOnUIThread(new Runnable() {
+            public void run() {
+                mVCardCacheThread = new VCardCacheThread(uris);
+                showDialog(R.id.dialog_cache_vcard);
+            }
+        });
     }
 
     private Dialog getSelectImportTypeDialog() {
@@ -542,6 +850,19 @@ public class ImportVCardActivity extends Activity {
             }
             case R.id.dialog_select_one_vcard: {
                 return getVCardFileSelectDialog(false);
+            }
+            case R.id.dialog_cache_vcard: {
+                if (mProgressDialogForCacheVCard == null) {
+                    final String title = getString(R.string.caching_vcard_title);
+                    final String message = getString(R.string.caching_vcard_message);
+                    mProgressDialogForCacheVCard = new ProgressDialog(this);
+                    mProgressDialogForCacheVCard.setTitle(title);
+                    mProgressDialogForCacheVCard.setMessage(message);
+                    mProgressDialogForCacheVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    mProgressDialogForCacheVCard.setOnCancelListener(mVCardCacheThread);
+                    mVCardCacheThread.start();
+                }
+                return mProgressDialogForCacheVCard;
             }
             case R.id.dialog_io_exception: {
                 String message = (getString(R.string.scanning_sdcard_failed_message,

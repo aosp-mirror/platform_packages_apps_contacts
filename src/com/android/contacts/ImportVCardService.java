@@ -141,7 +141,11 @@ public class ImportVCardService extends Service {
                 mCreatedUris.clear();
 
                 final Account account;
-                final Uri[] uris;
+                final Uri uri;
+                final int estimatedType;
+                final String estimatedCharset;
+                final boolean useV30;
+                final int entryCount;
                 final int id;
                 final boolean needReview;
                 synchronized (mContext) {
@@ -151,97 +155,59 @@ public class ImportVCardService extends Service {
                     } else {
                         final PendingInput pendingInput = mPendingInputs.poll();
                         account = pendingInput.account;
-                        uris = pendingInput.uris;
+                        uri = pendingInput.uri;
+                        estimatedType = pendingInput.estimatedType;
+                        estimatedCharset = pendingInput.estimatedCharset;
+                        useV30 = pendingInput.useV30;
+                        entryCount = pendingInput.entryCount;
                         id = pendingInput.id;
                     }
                 }
-                runInternal(account, uris, id);
-                doFinishNotification(id, uris);
+                runInternal(account, uri, estimatedType, estimatedCharset,
+                        useV30, entryCount, id);
+                doFinishNotification(id, uri);
             }
             Log.i(LOG_TAG, "Successfully imported. Total: " + mTotalCount);
             stopSelf();
         }
 
-        private void runInternal(Account account, Uri[] uris, int id) {
+        private void runInternal(Account account,
+                Uri uri, int estimatedType, String estimatedCharset,
+                boolean useV30, int entryCount,
+                int id) {
             int totalCount = 0;
             final ArrayList<VCardSourceDetector> detectorList =
                 new ArrayList<VCardSourceDetector>();
-            // First scan all Uris with a default charset and try to understand an exact
-            // charset to be used to each Uri. Note that detector would return null when
-            // it does not know an appropriate charset, so stick to use the default
-            // at that time.
-            // TODO: notification for first scanning?
-            for (Uri uri : uris) {
-                if (mCanceled) {
-                    return;
-                }
-                final VCardEntryCounter counter = new VCardEntryCounter();
-                final VCardSourceDetector detector = new VCardSourceDetector();
-                final VCardInterpreterCollection interpreterCollection =
-                        new VCardInterpreterCollection(Arrays.asList(counter, detector));
-                if (!readOneVCard(uri, VCardConfig.VCARD_TYPE_UNKNOWN, null,
-                        interpreterCollection)) {
-                    mErrorUris.add(uri);
-                }
-
-                totalCount += counter.getCount();
-                detectorList.add(detector);
-            }
-
-            if (mErrorUris.size() > 0) {
-                final StringBuilder builder = new StringBuilder();
-                builder.append("Error happened on ");
-                for (Uri errorUri : mErrorUris) {
-                    builder.append("\"");
-                    builder.append(errorUri.toString());
-                    builder.append("\"");
-                }
-                Log.e(LOG_TAG, builder.toString());
-                doErrorNotification(id);
-                return;
-            }
-
-            if (uris.length != detectorList.size()) {
-                Log.e(LOG_TAG,
-                        "The number of Uris to be imported is different from that of " +
-                        "charset to be used.");
-                doErrorNotification(id);
+            if (mCanceled) {
                 return;
             }
 
             // First scanning is over. Try to import each vCard, which causes side effects.
-            mTotalCount = totalCount;
+            mTotalCount += entryCount;
             mCurrentCount = 0;
 
-            for (int i = 0; i < uris.length; i++) {
-                if (mCanceled) {
-                    Log.w(LOG_TAG, "Canceled during importing (with storing data in database)");
-                    // TODO: implement cancel correctly.
-                    return;
-                }
-                final Uri uri = uris[i];
+            if (mCanceled) {
+                Log.w(LOG_TAG, "Canceled during importing (with storing data in database)");
+                // TODO: implement cancel correctly.
+                return;
+            }
 
-                final VCardSourceDetector detector = detectorList.get(i);
-                final int vcardType =  detector.getEstimatedType();  
-                final String charset = detector.getEstimatedCharset();  // May be null.
+            final VCardEntryConstructor constructor =
+                    new VCardEntryConstructor(estimatedType, account, estimatedCharset);
+            final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
+            constructor.addEntryHandler(committer);
+            constructor.addEntryHandler(new ProgressNotifier(id));
 
-                final VCardEntryConstructor constructor =
-                        new VCardEntryConstructor(vcardType, account, charset);
-                final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
-                constructor.addEntryHandler(committer);
-                constructor.addEntryHandler(new ProgressNotifier(id));
-
-                if (!readOneVCard(uri, vcardType, charset, constructor)) {
-                        Log.e(LOG_TAG, "Failed to read \"" + uri.toString() + "\" " +
-                                "while first scan was successful.");
-                }
+            if (!readOneVCard(uri, estimatedType, estimatedCharset, constructor)) {
+                Log.e(LOG_TAG, "Failed to read \"" + uri.toString() + "\" " +
+                "while first scan was successful.");
+            }
                 final List<Uri> createdUris = committer.getCreatedUris();
                 if (createdUris != null && createdUris.size() > 0) {
                     mCreatedUris.addAll(createdUris);
                 } else {
                     Log.w(LOG_TAG, "Created Uris is null (src = " + uri.toString() + "\"");
                 }
-            }
         }
 
         private boolean readOneVCard(Uri uri, int vcardType, String charset,
@@ -330,7 +296,7 @@ public class ImportVCardService extends Service {
             mNotificationManager.notify(id, notification);
         }
 
-        private void doFinishNotification(int id, Uri[] uris) {
+        private void doFinishNotification(int id, Uri uri) {
             final Notification notification = new Notification();
             notification.icon = android.R.drawable.stat_sys_download_done;
             final String title = mContext.getString(R.string.reading_vcard_finished_title);
@@ -342,10 +308,9 @@ public class ImportVCardService extends Service {
                             RawContacts.CONTENT_URI, rawContactId));
             intent = new Intent(Intent.ACTION_VIEW, contactUri);
 
-            final String text = ((uris.length == 1) ? uris[0].getPath() : "");
             final PendingIntent pendingIntent =
                     PendingIntent.getActivity(mContext, 0, intent, 0);
-            notification.setLatestEventInfo(mContext, title, text, pendingIntent);
+            notification.setLatestEventInfo(mContext, title, "", pendingIntent);
             mNotificationManager.notify(id, notification);
         }
 
@@ -364,17 +329,29 @@ public class ImportVCardService extends Service {
 
     private static class PendingInput {
         public final Account account;
-        public final Uri[] uris;
+        public final Uri uri;
+        public final int estimatedType;
+        public final String estimatedCharset;
+        public final boolean useV30;
+        public final int entryCount;
         public final int id;
 
-        public PendingInput(Account account, Uri[] uris, int id) {
+        public PendingInput(Account account,
+                Uri uri, int estimatedType, String estimatedCharset,
+                boolean useV30, int entryCount,   
+                int id) {
             this.account = account;
-            this.uris = uris;
+            this.uri = uri;
+            this.estimatedType = estimatedType;
+            this.estimatedCharset = estimatedCharset;
+            this.useV30 = useV30;
+            this.entryCount = entryCount;
             this.id = id;
         }
     }
 
-    // The two classes bellow must be called inside the synchronized block, using this context.
+    // The two classes bellow must be called inside the synchronized block, using this
+    // Activity as a Context.
     private boolean mNowRunning;
     private final Queue<PendingInput> mPendingInputs = new LinkedList<PendingInput>();
 
@@ -423,6 +400,16 @@ public class ImportVCardService extends Service {
                     (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
+        // TODO: use this.
+        final int[] estimatedTypeArray =
+            intent.getIntArrayExtra(ImportVCardActivity.ESTIMATED_VCARD_TYPE_ARRAY);
+        final String[] estimatedCharsetArray =
+            intent.getStringArrayExtra(ImportVCardActivity.ESTIMATED_CHARSET_ARRAY);
+        final boolean[] useV30Array =
+            intent.getBooleanArrayExtra(ImportVCardActivity.USE_V30_ARRAY);
+        final int[] entryCountArray =
+            intent.getIntArrayExtra(ImportVCardActivity.ENTRY_COUNT_ARRAY);
+        
         final Account account = tryGetAccount(intent);
         final Uri[] uris = tryGetUris(intent);
         if (uris == null) {
@@ -433,8 +420,30 @@ public class ImportVCardService extends Service {
             return START_NOT_STICKY;
         }
 
+        int length = uris.length;
+        if (estimatedTypeArray.length < length) {
+            Log.w(LOG_TAG, String.format("estimatedTypeArray.length < length (%d, %d)",
+                    estimatedTypeArray.length, length));
+            length = estimatedTypeArray.length;
+        }
+        if (useV30Array.length < length) {
+            Log.w(LOG_TAG, String.format("useV30Array.length < length (%d, %d)",
+                    useV30Array.length, length));
+            length = useV30Array.length;
+        }
+        if (entryCountArray.length < length) {
+            Log.w(LOG_TAG, String.format("entryCountArray.length < length (%d, %d)",
+                    entryCountArray.length, length));
+            length = entryCountArray.length;
+        }
+
         synchronized (this) {
-            mPendingInputs.add(new PendingInput(account, uris, startId));
+            for (int i = 0; i < length; i++) {
+                mPendingInputs.add(new PendingInput(account,
+                        uris[i], estimatedTypeArray[i], estimatedCharsetArray[i],
+                        useV30Array[i], entryCountArray[i],
+                        startId));
+            }
             if (!mNowRunning) {
                 Toast.makeText(this, getString(R.string.vcard_importer_start_message),
                         Toast.LENGTH_LONG).show();
