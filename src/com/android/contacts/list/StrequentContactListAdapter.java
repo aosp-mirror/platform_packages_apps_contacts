@@ -149,11 +149,14 @@ public class StrequentContactListAdapter extends ContactListAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == mFrequentSeparatorPos) {
+        if (mFrequentSeparatorPos == ListView.INVALID_POSITION
+                || position < mFrequentSeparatorPos) {
+            return super.getItemViewType(position);
+        } else if (position == mFrequentSeparatorPos) {
             return IGNORE_ITEM_VIEW_TYPE;
+        } else {
+            return super.getItemViewType(position - 1);
         }
-
-        return super.getItemViewType(position);
     }
 
     @Override
