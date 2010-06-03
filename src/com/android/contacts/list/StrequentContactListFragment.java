@@ -51,7 +51,6 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
     @Override
     protected void onItemClick(int position, long id) {
         ContactListAdapter adapter = getAdapter();
-        adapter.moveToPosition(position);
         viewContact(adapter.getContactUri(position));
     }
 
@@ -94,7 +93,6 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
             case CALL_BUTTON_ID: {
                 final int position = (Integer)v.getTag();
                 ContactListAdapter adapter = getAdapter();
-                adapter.moveToPosition(position);
                 callContact(adapter.getContactUri(position));
                 break;
             }

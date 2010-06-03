@@ -86,11 +86,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
                     createNewContact();
                 } else {
-                    adapter.moveToPosition(position);
                     editContact(adapter.getContactUri(position));
                 }
             } else {
-                adapter.moveToPosition(position);
                 viewContact(adapter.getContactUri(position));
             }
         }

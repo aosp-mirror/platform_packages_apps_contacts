@@ -205,11 +205,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
     }
 
-    public void moveToPosition(int position) {
-        // For side-effect
-        getItem(position);
-    }
-
     @Override
     public int getCount() {
         int count = super.getCount();
@@ -236,12 +231,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
-    protected View getView(int partition, Cursor cursor, int position, View convertView,
-            ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (isSearchAllContactsItemPosition(position)) {
             return LayoutInflater.from(getContext()).inflate(
                     R.layout.contacts_list_search_all_item, parent, false);
         }
-        return super.getView(partition, cursor, position, convertView, parent);
+        return super.getView(position, convertView, parent);
     }
 }
