@@ -75,14 +75,9 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
             }
         } else {
             JoinContactListAdapter adapter = getAdapter();
-            if (adapter.isAllContactsListShown()) {
-                Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
-                adapter.setSuggestionsCursor(suggestionsCursor);
-                super.onLoadFinished(loader, data);
-            } else {
-                adapter.setSuggestionsCursor(data);
-                super.onLoadFinished(loader, adapter.getShowAllContactsLabelCursor());
-            }
+            Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
+            adapter.setSuggestionsCursor(suggestionsCursor);
+            super.onLoadFinished(loader, data);
         }
     }
 
@@ -118,7 +113,8 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     @Override
     protected void onItemClick(int position, long id) {
         JoinContactListAdapter adapter = getAdapter();
-        if (adapter.isShowAllContactsItemPosition(position)) {
+        int partition = adapter.getPartitionForPosition(position);
+        if (partition == JoinContactListAdapter.PARTITION_SHOW_ALL_CONTACTS) {
             mAllContactsListShown = true;
             reloadData();
         } else {

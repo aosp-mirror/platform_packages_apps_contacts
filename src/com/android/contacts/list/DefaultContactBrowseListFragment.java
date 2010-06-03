@@ -87,11 +87,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                     createNewContact();
                 } else {
                     adapter.moveToPosition(position);
-                    editContact(adapter.getContactUri());
+                    editContact(adapter.getContactUri(position));
                 }
             } else {
                 adapter.moveToPosition(position);
-                viewContact(adapter.getContactUri());
+                viewContact(adapter.getContactUri(position));
             }
         }
     }

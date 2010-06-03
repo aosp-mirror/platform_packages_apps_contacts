@@ -81,10 +81,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView)itemView;
 
-        bindSectionHeaderAndDivider(view, cursor);
+        bindSectionHeaderAndDivider(view, position);
 
         if (isQuickContactEnabled()) {
             bindQuickContact(view, cursor);

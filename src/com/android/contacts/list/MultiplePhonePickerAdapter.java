@@ -148,7 +148,7 @@ public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
             String phoneNumber = mPhoneNumbers.get(position);
             setPhoneSelected(phoneNumber, !isSelected(phoneNumber));
         } else {
-            Cursor cursor = getCursor();
+            Cursor cursor = ((Cursor)getItem(position));
             cursor.moveToPosition(position - mFilteredPhoneNumbers.size());
             long phoneId = cursor.getLong(PHONE_ID_COLUMN_INDEX);
             setPhoneSelected(phoneId, !isSelected(phoneId));
@@ -238,29 +238,31 @@ public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
         return position < mPhoneNumbers.size() ? 0 : 1;
     }
 
+    // TODO redo as two separate partitions
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
-        if (convertView == null || convertView.getTag() == null) {
-            view = newView(getContext(), null, parent);
-        } else {
-            view = convertView;
-        }
-
-        boolean showingSuggestion = false;
-
-        if (position < mFilteredPhoneNumbers.size()) {
-            bindExtraPhoneView(view, position);
-        } else {
-            Cursor cursor = getCursor();
-            cursor.moveToPosition(position - mFilteredPhoneNumbers.size());
-            bindView(view, getContext(), cursor);
-        }
+        View view = null;
+//        if (convertView == null || convertView.getTag() == null) {
+//            view = newView(getContext(), null, parent);
+//        } else {
+//            view = convertView;
+//        }
+//
+//        boolean showingSuggestion = false;
+//
+//        if (position < mFilteredPhoneNumbers.size()) {
+//            bindExtraPhoneView(view, position);
+//        } else {
+//            Cursor cursor = ((Cursor)getItem(position));
+//            cursor.moveToPosition(position - mFilteredPhoneNumbers.size());
+//            bindView(view, getContext(), cursor);
+//        }
         return view;
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final MultiplePhonePickerItemView view = new MultiplePhonePickerItemView(context, null);
         view.setUnknownNameText(getUnknownNameText());
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
@@ -278,8 +280,8 @@ public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
-        super.bindView(itemView, context, cursor);
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        super.bindView(itemView, partition, cursor, position);
 
         final MultiplePhonePickerItemView view = (MultiplePhonePickerItemView)itemView;
         view.phoneId = Long.valueOf(cursor.getLong(PHONE_ID_COLUMN_INDEX));
@@ -321,10 +323,6 @@ public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
 
     @Override
     public int getCount() {
-        if (!mDataValid) {
-            return 0;
-        }
-
         return super.getCount() + mFilteredPhoneNumbers.size();
     }
 

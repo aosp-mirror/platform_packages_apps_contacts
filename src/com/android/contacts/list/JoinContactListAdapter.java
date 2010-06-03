@@ -37,9 +37,13 @@ public class JoinContactListAdapter extends ContactListAdapter {
     /** Maximum number of suggestions shown for joining aggregates */
     private static final int MAX_SUGGESTIONS = 4;
 
-    private Cursor mSuggestionsCursor;
-    private int mSuggestionsCursorCount;
+    public static final int PARTITION_SUGGESTIONS = 0;
+    public static final int PARTITION_SHOW_ALL_CONTACTS = 1;
+    public static final int PARTITION_ALL_CONTACTS = 2;
+
     private long mTargetContactId;
+
+    private int mShowAllContactsViewType;
 
     /**
      * Determines whether we display a list item with the label
@@ -47,9 +51,26 @@ public class JoinContactListAdapter extends ContactListAdapter {
      */
     private boolean mAllContactsListShown;
 
+
     public JoinContactListAdapter(Context context) {
         super(context);
+        setPinnedPartitionHeadersEnabled(true);
         setSectionHeaderDisplayEnabled(true);
+        setIndexedPartition(PARTITION_ALL_CONTACTS);
+        mShowAllContactsViewType = super.getViewTypeCount();
+    }
+
+    @Override
+    protected void addPartitions() {
+
+        // Partition 0: suggestions
+        addPartition(false, true);
+
+        // Partition 1: "Show all contacts"
+        addPartition(false, false);
+
+        // Partition 2: All contacts
+        addPartition(false, true);
     }
 
     public void setTargetContactId(long targetContactId) {
@@ -76,26 +97,19 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
         // TODO simplify projection
         loader.setProjection(PROJECTION);
-
-        if (mAllContactsListShown) {
-            loader.setUri(buildSectionIndexerUri(Contacts.CONTENT_URI));
-            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND " + Contacts._ID + "!=?");
-            loader.setSelectionArgs(new String[]{String.valueOf(mTargetContactId)});
-            if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
-                loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
-            } else {
-                loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
-            }
+        loader.setUri(buildSectionIndexerUri(Contacts.CONTENT_URI));
+        loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND " + Contacts._ID + "!=?");
+        loader.setSelectionArgs(new String[]{String.valueOf(mTargetContactId)});
+        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+            loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
+        } else {
+            loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
         }
     }
 
     @Override
     public boolean isEmpty() {
         return false;
-    }
-
-    private boolean hasSuggestions() {
-        return mSuggestionsCursorCount != 0;
     }
 
     public boolean isAllContactsListShown() {
@@ -107,58 +121,62 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     public void setSuggestionsCursor(Cursor cursor) {
-        mSuggestionsCursor = cursor;
-        mSuggestionsCursorCount = cursor == null ? 0 : cursor.getCount();
-    }
-
-    public boolean isShowAllContactsItemPosition(int position) {
-        return !mAllContactsListShown
-                && hasSuggestions() && position == mSuggestionsCursorCount + 2;
+        changeCursor(PARTITION_SUGGESTIONS, cursor);
+        if (cursor != null && cursor.getCount() != 0 && !mAllContactsListShown) {
+            changeCursor(PARTITION_SHOW_ALL_CONTACTS, getShowAllContactsLabelCursor());
+        } else {
+            changeCursor(PARTITION_SHOW_ALL_CONTACTS, null);
+        }
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (!mDataValid) {
-            throw new IllegalStateException(
-                    "this should only be called when the cursor is valid");
-        }
+    public void changeCursor(Cursor cursor) {
+        changeCursor(PARTITION_ALL_CONTACTS, cursor);
+    }
 
-        Cursor cursor;
-        boolean showingSuggestion = false;
-        if (hasSuggestions()) {
-            if (position == 0) {
-                // First section: "suggestions"
-                TextView view = (TextView) inflate(R.layout.list_separator, parent);
-                view.setText(R.string.separatorJoinAggregateSuggestions);
-                return view;
-            } else if (position < mSuggestionsCursorCount + 1) {
-                showingSuggestion = true;
-                cursor = mSuggestionsCursor;
-                cursor.moveToPosition(position - 1);
-            } else if (position == mSuggestionsCursorCount + 1) {
-                // Second section: "all contacts"
-                TextView view = (TextView) inflate(R.layout.list_separator, parent);
-                view.setText(R.string.separatorJoinAggregateAll);
-                return view;
-            } else if (!mAllContactsListShown && position == mSuggestionsCursorCount + 2) {
-                return inflate(R.layout.contacts_list_show_all_item, parent);
-            } else {
-                cursor = mCursor;
-                cursor.moveToPosition(position - mSuggestionsCursorCount - 2);
+    @Override
+    public int getViewTypeCount() {
+        return super.getViewTypeCount() + 1;
+    }
+
+    @Override
+    protected int getItemViewType(int partition, int position) {
+        if (partition == PARTITION_SHOW_ALL_CONTACTS) {
+            return mShowAllContactsViewType;
+        }
+        return super.getItemViewType(partition, position);
+    }
+
+    @Override
+    protected View newHeaderView(Context context, int partition, Cursor cursor,
+            ViewGroup parent) {
+        switch (partition) {
+            case PARTITION_SUGGESTIONS: {
+              TextView view = (TextView) inflate(R.layout.list_separator, parent);
+              view.setText(R.string.separatorJoinAggregateSuggestions);
+              return view;
             }
-        } else {
-            cursor = mCursor;
-            cursor.moveToPosition(position);
+            case PARTITION_ALL_CONTACTS: {
+              TextView view = (TextView) inflate(R.layout.list_separator, parent);
+              view.setText(R.string.separatorJoinAggregateAll);
+              return view;
+            }
         }
 
-        View v;
-        if (convertView == null || convertView.getTag() == null) {
-            v = newView(getContext(), cursor, parent);
-        } else {
-            v = convertView;
+        return null;
+    }
+
+    @Override
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
+        switch (partition) {
+            case PARTITION_SUGGESTIONS:
+            case PARTITION_ALL_CONTACTS:
+                return super.newView(context, partition, cursor, position, parent);
+            case PARTITION_SHOW_ALL_CONTACTS:
+                return inflate(R.layout.contacts_list_show_all_item, parent);
         }
-        bindView(position, v, cursor, showingSuggestion);
-        return v;
+        return null;
     }
 
     private View inflate(int layoutId, ViewGroup parent) {
@@ -166,17 +184,25 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        // not used
-    }
-
-    public void bindView(int position, View itemView, Cursor cursor, boolean showingSuggestion) {
-        final ContactListItemView view = (ContactListItemView)itemView;
-        if (!showingSuggestion) {
-            bindSectionHeaderAndDivider(view, position);
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        switch (partition) {
+            case PARTITION_SUGGESTIONS: {
+                final ContactListItemView view = (ContactListItemView)itemView;
+                bindPhoto(view, cursor);
+                bindName(view, cursor);
+                break;
+            }
+            case PARTITION_SHOW_ALL_CONTACTS: {
+                break;
+            }
+            case PARTITION_ALL_CONTACTS: {
+                final ContactListItemView view = (ContactListItemView)itemView;
+                bindSectionHeaderAndDivider(view, position);
+                bindPhoto(view, cursor);
+                bindName(view, cursor);
+                break;
+            }
         }
-        bindPhoto(view, cursor);
-        bindName(view, cursor);
     }
 
     public Cursor getShowAllContactsLabelCursor() {
@@ -187,126 +213,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void changeCursor(Cursor cursor) {
-        if (cursor == null) {
-            setSuggestionsCursor(null);
-        }
-
-        super.changeCursor(cursor);
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (isShowAllContactsItemPosition(position)) {
-            return IGNORE_ITEM_VIEW_TYPE;
-        }
-
-        return super.getItemViewType(position);
-    }
-
-    @Override
-    public int getPositionForSection(int sectionIndex) {
-        if (mSuggestionsCursorCount == 0) {
-            return super.getPositionForSection(sectionIndex);
-        }
-
-        // Get section position in the full list
-        int position = super.getPositionForSection(sectionIndex);
-        return position + mSuggestionsCursorCount + 2;
-    }
-
-    @Override
-    public int getSectionForPosition(int position) {
-        if (mSuggestionsCursorCount == 0) {
-            return super.getSectionForPosition(position);
-        }
-
-        if (position < mSuggestionsCursorCount + 2) {
-            return -1;
-        }
-
-        return super.getSectionForPosition(position - mSuggestionsCursorCount - 2);
-    }
-
-    @Override
-    public boolean areAllItemsEnabled() {
-        return super.areAllItemsEnabled() && mSuggestionsCursorCount == 0;
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        if (position == 0) {
-            return false;
-        }
-
-        if (mSuggestionsCursorCount > 0) {
-            return position != 0 && position != mSuggestionsCursorCount + 1;
-        }
-        return true;
-    }
-
-    @Override
-    public int getCount() {
-        if (!mDataValid) {
-            return 0;
-        }
-        int superCount = super.getCount();
-        if (hasSuggestions()) {
-            // When showing suggestions, we have 2 additional list items: the "Suggestions"
-            // and "All contacts" headers.
-            return mSuggestionsCursorCount + superCount + 2;
-        }
-        return superCount;
-    }
-
-    public int getSuggestionsCursorCount() {
-        return mSuggestionsCursorCount;
-    }
-
-    @Override
-    public Object getItem(int pos) {
-        if (hasSuggestions()) {
-            // When showing suggestions, we have 2 additional list items: the "Suggestions"
-            // and "All contacts" separators.
-            if (pos == 0) {
-                return null;
-            }
-            else if (pos < mSuggestionsCursorCount + 1) {
-                // We are in the upper partition (Suggestions). Adjusting for the "Suggestions"
-                // separator.
-                mSuggestionsCursor.moveToPosition(pos - 1);
-                return mSuggestionsCursor;
-            } else if (pos == mSuggestionsCursorCount + 1) {
-                // This is the "All contacts" separator
-                return null;
-            } else {
-                if (!isAllContactsListShown()) {
-                    // This is the "Show all contacts" item
-                    return null;
-                } else {
-                    // We are in the lower partition (All contacts). Adjusting for the size
-                    // of the upper partition plus the two separators.
-                    mCursor.moveToPosition(pos - mSuggestionsCursorCount - 2);
-                    return mCursor;
-                }
-            }
-        } else if (mCursor != null) {
-            // No separators
-            mCursor.moveToPosition(pos);
-            return mCursor;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public long getItemId(int pos) {
-        Cursor cursor = (Cursor)getItem(pos);
-        return cursor == null ? 0 : cursor.getLong(mRowIDColumn);
-    }
-
-    public Uri getContactUri(int position) {
-        Cursor cursor = (Cursor)getItem(position);
+    public Uri getContactUri(Cursor cursor) {
         long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         return Contacts.getLookupUri(contactId, lookupKey);

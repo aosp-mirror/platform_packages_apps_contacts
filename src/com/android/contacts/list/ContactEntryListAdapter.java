@@ -18,7 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
-import com.android.contacts.widget.PinnedHeaderListAdapter;
+import com.android.contacts.widget.IndexerListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
@@ -35,17 +35,15 @@ import android.view.ViewGroup;
  * Common base class for various contact-related lists, e.g. contact list, phone number list
  * etc.
  */
-public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
+public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     /**
      * The animation is used here to allocate animated name text views.
      */
     private TextWithHighlightingFactory mTextWithHighlightingFactory;
-
     private int mDisplayOrder;
     private int mSortOrder;
     private boolean mNameHighlightingEnabled;
-    private boolean mSectionHeaderDisplayEnabled;
 
     private boolean mDisplayPhotos;
     private ContactPhotoLoader mPhotoLoader;
@@ -58,15 +56,19 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
     private boolean mEmptyListEnabled = true;
 
     public ContactEntryListAdapter(Context context) {
-        super(context, R.layout.list_section, R.id.header_text,
-                context.getResources().getColor(R.color.pinned_header_background));
+        super(context, R.layout.list_section, R.id.header_text);
+        addPartitions();
     }
 
-    public Context getContext() {
-        return mContext;
+    /**
+     * Adds all partitions this adapter will handle. The default implementation
+     * creates one partition with no header.
+     */
+    protected void addPartitions() {
+        addPartition(false, false);
     }
 
-    public abstract String getContactDisplayName();
+    public abstract String getContactDisplayName(int position);
     public abstract void configureLoader(CursorLoader loader);
 
     public boolean isSearchMode() {
@@ -91,14 +93,6 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
     public void setQueryString(String queryString) {
         mQueryString = queryString;
-    }
-
-    public boolean isSectionHeaderDisplayEnabled() {
-        return mSectionHeaderDisplayEnabled;
-    }
-
-    public void setSectionHeaderDisplayEnabled(boolean flag) {
-        mSectionHeaderDisplayEnabled = flag;
     }
 
     public int getContactNameDisplayOrder() {
@@ -158,23 +152,18 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
         mEmptyListEnabled = flag;
     }
 
-    /*
-     * TODO change this method when loaders are introduced.
-     */
     @Override
-    @Deprecated
-    public void onContentChanged() {
-        super.onContentChanged();
-    }
-
-    @Override
-    public void changeCursor(Cursor cursor) {
+    public void changeCursor(int partition, Cursor cursor) {
         mLoading = false;
-        super.changeCursor(cursor);
+        super.changeCursor(partition, cursor);
 
-        if (isSectionHeaderDisplayEnabled()) {
+        if (isSectionHeaderDisplayEnabled() && partition == getIndexedPartition()) {
             updateIndexer(cursor);
         }
+    }
+
+    public void changeCursor(Cursor cursor) {
+        changeCursor(0, cursor);
     }
 
     /**
@@ -223,10 +212,6 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
 
     @Override
     public int getCount() {
-        if (!mDataValid) {
-            return 0;
-        }
-
         int count = super.getCount();
 
         if (mSearchMode) {
@@ -247,15 +232,16 @@ public abstract class ContactEntryListAdapter extends PinnedHeaderListAdapter {
             return IGNORE_ITEM_VIEW_TYPE;
         }
 
-        return 0;
+        return super.getItemViewType(position);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    protected View getView(int partition, Cursor cursor, int position, View convertView,
+            ViewGroup parent) {
         if (isSearchAllContactsItemPosition(position)) {
             return LayoutInflater.from(getContext()).inflate(
                     R.layout.contacts_list_search_all_item, parent, false);
         }
-        return super.getView(position, convertView, parent);
+        return super.getView(partition, cursor, position, convertView, parent);
     }
 }

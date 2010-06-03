@@ -95,17 +95,17 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
-    public boolean getHasPhoneNumber() {
-        return getCursor().getInt(CONTACT_HAS_PHONE_COLUMN_INDEX) != 0;
+    public boolean getHasPhoneNumber(int position) {
+        return ((Cursor)getItem(position)).getInt(CONTACT_HAS_PHONE_COLUMN_INDEX) != 0;
     }
 
-    public boolean isContactStarred() {
-        return getCursor().getInt(CONTACT_STARRED_COLUMN_INDEX) != 0;
+    public boolean isContactStarred(int position) {
+        return ((Cursor)getItem(position)).getInt(CONTACT_STARRED_COLUMN_INDEX) != 0;
     }
 
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(mDisplayNameColumnIndex);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
     }
 
     public boolean isQuickContactEnabled() {
@@ -132,23 +132,24 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
      * Builds the {@link Contacts#CONTENT_LOOKUP_URI} for the given
      * {@link ListView} position.
      */
-    public Uri getContactUri() {
-        Cursor cursor = getCursor();
+    public Uri getContactUri(int position) {
+        Cursor item = (Cursor)getItem(position);
+        return item != null ? getContactUri(item) : null;
+    }
+
+    public Uri getContactUri(Cursor cursor) {
         long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         return Contacts.getLookupUri(contactId, lookupKey);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         return view;
-    }
-
-    protected void bindSectionHeaderAndDivider(ContactListItemView view, Cursor cursor) {
-        bindSectionHeaderAndDivider(view, cursor.getPosition());
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
@@ -186,7 +187,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
 
         QuickContactBadge quickContact = view.getQuickContact();
-        quickContact.assignContactUri(getContactUri());
+        quickContact.assignContactUri(getContactUri(cursor));
         getPhotoLoader().loadPhoto(quickContact, photoId);
     }
 

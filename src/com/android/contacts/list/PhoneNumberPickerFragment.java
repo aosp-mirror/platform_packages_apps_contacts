@@ -56,13 +56,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 //          if (adapter.isSearchAllContactsItemPosition(position)) {
 //              searchAllContacts();
 //          } else {
-            adapter.moveToPosition(position);
-            pickPhoneNumber(adapter.getDataUri());
+            pickPhoneNumber(adapter.getDataUri(position));
 //          }
         } else {
             LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter)getAdapter();
-            adapter.moveToPosition(position);
-            pickPhoneNumber(adapter.getPhoneUri());
+            pickPhoneNumber(adapter.getPhoneUri(position));
         }
     }
 

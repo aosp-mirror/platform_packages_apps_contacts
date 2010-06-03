@@ -63,25 +63,26 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(PHONE_DISPLAY_NAME_COLUMN_INDEX);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(PHONE_DISPLAY_NAME_COLUMN_INDEX);
     }
 
-    public Uri getPhoneUri() {
-        Cursor cursor = getCursor();
+    public Uri getPhoneUri(int position) {
+        Cursor cursor = ((Cursor)getItem(position));
         long id = cursor.getLong(PHONE_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(Phones.CONTENT_URI, id);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         return view;
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
         bindPhoneNumber(view, cursor);

@@ -21,10 +21,8 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.Contacts.People;
-import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 /**
  * A cursor adapter for the People.CONTENT_TYPE content type.
@@ -60,30 +58,27 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
         loader.setSortOrder(People.DISPLAY_NAME);
     }
 
-    public boolean isContactStarred() {
-        return getCursor().getInt(PERSON_STARRED_COLUMN_INDEX) != 0;
-    }
-
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(PERSON_DISPLAY_NAME_COLUMN_INDEX);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(PERSON_DISPLAY_NAME_COLUMN_INDEX);
     }
 
-    public Uri getPersonUri() {
-        Cursor cursor = getCursor();
+    public Uri getPersonUri(int position) {
+        Cursor cursor = ((Cursor)getItem(position));
         long personId = cursor.getLong(PERSON_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(People.CONTENT_URI, personId);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         return view;
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
         bindPresence(view, cursor);
