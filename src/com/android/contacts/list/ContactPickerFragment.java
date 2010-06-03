@@ -57,12 +57,11 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     }
 
     @Override
-    protected View createView(LayoutInflater inflater, ViewGroup container) {
-        View view = super.createView(inflater, container);
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
+        super.onCreateView(inflater, container);
         if (mCreateContactEnabled) {
             getListView().addHeaderView(inflater.inflate(R.layout.create_new_contact, null, false));
         }
-        return view;
     }
 
     public boolean isSearchAllContactsItemPosition(int position) {

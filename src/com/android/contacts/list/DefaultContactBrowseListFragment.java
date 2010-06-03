@@ -126,13 +126,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
-    protected View createView(LayoutInflater inflater, ViewGroup container) {
-        View view = super.createView(inflater, container);
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
+        super.onCreateView(inflater, container);
         if (!isSearchResultsMode()) {
             // In the search-results mode the count is shown in the fat header above the list
             getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
         }
-        return view;
     }
 
     @Override

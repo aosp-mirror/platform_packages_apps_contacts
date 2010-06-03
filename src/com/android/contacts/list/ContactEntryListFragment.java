@@ -327,7 +327,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        mView = createView(inflater, container);
+        onCreateView(inflater, container);
+
         mAdapter = createListAdapter();
         mAdapter.setSearchMode(isSearchMode());
         mAdapter.setSearchResultsMode(isSearchResultsMode());
@@ -337,7 +338,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mView;
     }
 
-    protected View createView(LayoutInflater inflater, ViewGroup container) {
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         mView = inflateView(inflater, container);
 
         mListView = (ListView)mView.findViewById(android.R.id.list);
@@ -372,7 +373,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         configurePhotoLoader();
         configureSearchResultText();
-        return mView;
     }
 
     protected void configurePhotoLoader() {
