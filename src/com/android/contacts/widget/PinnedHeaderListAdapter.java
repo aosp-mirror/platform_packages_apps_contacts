@@ -16,147 +16,127 @@
 package com.android.contacts.widget;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
-import android.widget.SectionIndexer;
-import android.widget.TextView;
 
 /**
- * A list adapter that supports section indexer and a pinned header.
+ * A subclass of {@link CompositeCursorAdapter} that manages pinned partition headers.
  */
-public abstract class PinnedHeaderListAdapter extends CursorAdapter
-        implements SectionIndexer, PinnedHeaderListView.PinnedHeaderAdapter {
+public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
+        implements PinnedHeaderListView.PinnedHeaderAdapter {
 
-    private final int mPinnedHeaderBackgroundColor;
-    private final int mSectionHeaderTextViewId;
-    private final int mSectionHeaderLayoutResId;
+    private boolean mPinnedPartitionHeadersEnabled;
+    private boolean mHeaderVisibility[];
 
-    private SectionIndexer mIndexer;
-
-    /**
-     * Constructor.
-     *
-     * @param context
-     * @param sectionHeaderLayoutResourceId section header layout resource ID
-     * @param sectionHeaderTextViewId section header text view ID
-     * @param backgroundColor An approximation of the background color of the
-     *            pinned header. This color is used when the pinned header is
-     *            being pushed up. At that point the header "fades away". Rather
-     *            than computing a faded bitmap based on the 9-patch normally
-     *            used for the background, we will use a solid color, which will
-     *            provide better performance and reduced complexity.
-     */
-    public PinnedHeaderListAdapter(Context context, int sectionHeaderLayoutResourceId,
-            int sectionHeaderTextViewId, int backgroundColor) {
-        super(context, null, false);
-        this.mContext = context;
-        mPinnedHeaderBackgroundColor = backgroundColor;
-        mSectionHeaderLayoutResId = sectionHeaderLayoutResourceId;
-        mSectionHeaderTextViewId = sectionHeaderTextViewId;
+    public PinnedHeaderListAdapter(Context context) {
+        super(context);
     }
 
-    public void setIndexer(SectionIndexer indexer) {
-        mIndexer = indexer;
+    public PinnedHeaderListAdapter(Context context, int initialCapacity) {
+        super(context, initialCapacity);
     }
 
-    public Object [] getSections() {
-        if (mIndexer == null) {
-            return new String[] { " " };
+    public boolean getPinnedPartitionHeadersEnabled() {
+        return mPinnedPartitionHeadersEnabled;
+    }
+
+    public void setPinnedPartitionHeadersEnabled(boolean flag) {
+        this.mPinnedPartitionHeadersEnabled = flag;
+    }
+
+    public int getPinnedHeaderCount() {
+        if (mPinnedPartitionHeadersEnabled) {
+            return getPartitionCount();
         } else {
-            return mIndexer.getSections();
+            return 0;
         }
     }
 
-    public int getPositionForSection(int sectionIndex) {
-        if (mIndexer == null) {
-            return -1;
-        }
-
-        return mIndexer.getPositionForSection(sectionIndex);
-    }
-
-    public int getSectionForPosition(int position) {
-        if (mIndexer == null) {
-            return -1;
-        }
-
-        return mIndexer.getSectionForPosition(position);
+    protected boolean isPinnedPartitionHeaderVisible(int partition) {
+        return mPinnedPartitionHeadersEnabled && hasHeader(partition)
+                && !isPartitionEmpty(partition);
     }
 
     /**
-     * Computes the state of the pinned header.  It can be invisible, fully
-     * visible or partially pushed up out of the view.
+     * The default implementation creates the same type of view as a normal
+     * partition header.
      */
-    public int getPinnedHeaderState(int position) {
-        if (mIndexer == null || mCursor == null || mCursor.getCount() == 0) {
-            return PINNED_HEADER_GONE;
-        }
-
-        // The header should get pushed up if the top item shown
-        // is the last item in a section for a particular letter.
-        int section = getSectionForPosition(position);
-        if (section == -1) {
-            return PINNED_HEADER_GONE;
-        }
-
-        int nextSectionPosition = getPositionForSection(section + 1);
-        if (nextSectionPosition != -1 && position == nextSectionPosition - 1) {
-            return PINNED_HEADER_PUSHED_UP;
-        }
-
-        return PINNED_HEADER_VISIBLE;
-    }
-
-    final static class PinnedHeaderCache {
-        public TextView titleView;
-        public ColorStateList textColor;
-        public Drawable background;
-    }
-
-    /**
-     * Configures the pinned header by setting the appropriate text label
-     * and also adjusting color if necessary.  The color needs to be
-     * adjusted when the pinned header is being pushed up from the view.
-     */
-    public void configurePinnedHeader(View header, int position, int alpha) {
-        PinnedHeaderCache cache = (PinnedHeaderCache)header.getTag();
-        if (cache == null) {
-            cache = new PinnedHeaderCache();
-            cache.titleView = (TextView)header.findViewById(mSectionHeaderTextViewId);
-            cache.textColor = cache.titleView.getTextColors();
-            cache.background = header.getBackground();
-            header.setTag(cache);
-        }
-
-        int section = getSectionForPosition(position);
-
-        String title = (String)mIndexer.getSections()[section];
-        cache.titleView.setText(title);
-
-        if (alpha == 255) {
-            // Opaque: use the default background, and the original text color
-            header.setBackgroundDrawable(cache.background);
-            cache.titleView.setTextColor(cache.textColor);
+    public View createPinnedHeaderView(int partition, ViewGroup parent) {
+        if (hasHeader(partition)) {
+            View view = newHeaderView(getContext(), partition, null, parent);
+            view.setFocusable(false);
+            view.setEnabled(false);
+            bindHeaderView(view, partition, null);
+            return view;
         } else {
-            // Faded: use a solid color approximation of the background, and
-            // a translucent text color
-            header.setBackgroundColor(Color.rgb(
-                    Color.red(mPinnedHeaderBackgroundColor) * alpha / 255,
-                    Color.green(mPinnedHeaderBackgroundColor) * alpha / 255,
-                    Color.blue(mPinnedHeaderBackgroundColor) * alpha / 255));
-
-            int textColor = cache.textColor.getDefaultColor();
-            cache.titleView.setTextColor(Color.argb(alpha,
-                    Color.red(textColor), Color.green(textColor), Color.blue(textColor)));
+            return null;
         }
     }
 
-    public View createPinnedHeaderView(ViewGroup parent) {
-        return LayoutInflater.from(mContext).inflate(mSectionHeaderLayoutResId, parent, false);
+    public void configurePinnedHeaders(PinnedHeaderListView listView) {
+        if (!mPinnedPartitionHeadersEnabled) {
+            return;
+        }
+
+        int size = getPartitionCount();
+
+        // Cache visibility bits, because we will need them several times later on
+        if (mHeaderVisibility == null || mHeaderVisibility.length != size) {
+            mHeaderVisibility = new boolean[size];
+        }
+        for (int i = 0; i < size; i++) {
+            boolean visible = isPinnedPartitionHeaderVisible(i);
+            mHeaderVisibility[i] = visible;
+            if (!visible) {
+                listView.setHeaderInvisible(i);
+            }
+        }
+
+        // Starting at the top, find and pin headers for partitions preceding the visible one(s)
+        int maxTopHeader = -1;
+        int topHeaderHeight = 0;
+        for (int i = 0; i < size; i++) {
+            if (mHeaderVisibility[i]) {
+                int position = listView.getPositionAt(topHeaderHeight);
+                int partition = getPartitionForPosition(position);
+                if (i > partition) {
+                    break;
+                }
+
+                listView.setHeaderPinnedAtTop(i, topHeaderHeight);
+                topHeaderHeight += listView.getPinnedHeaderHeight(i);
+                maxTopHeader = i;
+            }
+        }
+
+        // Starting at the bottom, find and pin headers for partitions following the visible one(s)
+        int maxBottomHeader = size;
+        int bottomHeaderHeight = 0;
+        int listHeight = listView.getHeight();
+        for (int i = size; --i > maxTopHeader;) {
+            if (mHeaderVisibility[i]) {
+                int position = listView.getPositionAt(listHeight - bottomHeaderHeight);
+                if (position < 0) {
+                    break;
+                }
+
+                int partition = getPartitionForPosition(position - 1);
+                if (partition == -1 || i <= partition) {
+                    break;
+                }
+
+                int height = listView.getPinnedHeaderHeight(i);
+                bottomHeaderHeight += height;
+                listView.setHeaderPinnedAtBottom(i, listHeight - bottomHeaderHeight);
+                maxBottomHeader = i;
+            }
+        }
+
+        // Headers in between the top-pinned and bottom-pinned should be hidden
+        for (int i = maxTopHeader + 1; i < maxBottomHeader; i++) {
+            if (mHeaderVisibility[i]) {
+                listView.setHeaderInvisible(i);
+            }
+        }
     }
 }

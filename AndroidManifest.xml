@@ -509,5 +509,13 @@
 
         <activity android:name=".ExportVCardActivity"
             android:theme="@style/BackgroundOnly" />
+
+        <!-- Pinned header list demo -->
+        <activity android:name=".widget.PinnedHeaderListDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

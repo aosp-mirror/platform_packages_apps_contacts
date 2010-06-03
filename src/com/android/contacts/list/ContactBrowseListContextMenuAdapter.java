@@ -57,15 +57,15 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
 
         ContactListAdapter adapter = mContactListFragment.getAdapter();
         int headerViewsCount = mContactListFragment.getListView().getHeaderViewsCount();
-        adapter.moveToPosition(info.position - headerViewsCount);
+        int position = info.position - headerViewsCount;
 
         // Setup the menu header
-        menu.setHeaderTitle(adapter.getContactDisplayName());
+        menu.setHeaderTitle(adapter.getContactDisplayName(position));
 
         // View contact details
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact);
 
-        if (adapter.getHasPhoneNumber()) {
+        if (adapter.getHasPhoneNumber(position)) {
             // Calling contact
             menu.add(0, MENU_ITEM_CALL, 0, R.string.menu_call);
             // Send SMS item
@@ -73,7 +73,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         }
 
         // Star toggling
-        if (!adapter.isContactStarred()) {
+        if (!adapter.isContactStarred(position)) {
             menu.add(0, MENU_ITEM_TOGGLE_STAR, 0, R.string.menu_addStar);
         } else {
             menu.add(0, MENU_ITEM_TOGGLE_STAR, 0, R.string.menu_removeStar);
@@ -95,9 +95,9 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
 
         ContactListAdapter adapter = mContactListFragment.getAdapter();
         int headerViewsCount = mContactListFragment.getListView().getHeaderViewsCount();
-        adapter.moveToPosition(info.position - headerViewsCount);
+        int position = info.position - headerViewsCount;
 
-        final Uri contactUri = adapter.getContactUri();
+        final Uri contactUri = adapter.getContactUri(position);
         switch (item.getItemId()) {
             case MENU_ITEM_VIEW_CONTACT: {
                 mContactListFragment.viewContact(contactUri);
@@ -105,7 +105,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
             }
 
             case MENU_ITEM_TOGGLE_STAR: {
-                if (adapter.isContactStarred()) {
+                if (adapter.isContactStarred(position)) {
                     mContactListFragment.removeFromFavorites(contactUri);
                 } else {
                     mContactListFragment.addToFavorites(contactUri);

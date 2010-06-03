@@ -43,6 +43,16 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".widget.PinnedHeaderUseCaseActivity"
+            android:label="@string/pinnedHeaderList"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
@@ -54,7 +64,6 @@
         android:targetPackage="com.android.contacts"
         android:label="Contacts launch performance">
     </instrumentation>
-
 
     <instrumentation android:name="com.android.contacts.DialerLaunchPerformance"
         android:targetPackage="com.android.contacts"

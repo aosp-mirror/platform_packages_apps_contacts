@@ -47,12 +47,12 @@ public class PostalAddressPickerFragment
 //              searchAllContacts();
 //          } else {
             adapter.moveToPosition(position);
-            pickPostalAddress(adapter.getDataUri());
+            pickPostalAddress(adapter.getDataUri(position));
 //          }
         } else {
             LegacyPostalAddressListAdapter adapter = (LegacyPostalAddressListAdapter)getAdapter();
             adapter.moveToPosition(position);
-            pickPostalAddress(adapter.getContactMethodUri());
+            pickPostalAddress(adapter.getContactMethodUri(position));
         }
     }
 

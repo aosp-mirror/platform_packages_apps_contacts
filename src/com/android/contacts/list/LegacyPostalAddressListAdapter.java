@@ -64,25 +64,26 @@ public class LegacyPostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(POSTAL_DISPLAY_NAME_COLUMN_INDEX);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(POSTAL_DISPLAY_NAME_COLUMN_INDEX);
     }
 
-    public Uri getContactMethodUri() {
-        Cursor cursor = getCursor();
+    public Uri getContactMethodUri(int position) {
+        Cursor cursor = ((Cursor)getItem(position));
         long id = cursor.getLong(POSTAL_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(ContactMethods.CONTENT_URI, id);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         return view;
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
         bindPostalAddress(view, cursor);

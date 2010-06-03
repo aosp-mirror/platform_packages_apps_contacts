@@ -73,4 +73,12 @@
         <item>EDIT (create new raw contact)</item>
         <item>EDIT (create new legacy)</item>
     </string-array>
+
+    <string name="pinnedHeaderList">Pinned Headers</string>
+
+    <string-array name="pinnedHeaderUseCases">
+        <item>One short section - no headers</item>
+        <item>Two short sections with headers</item>
+        <item>Five short sections with headers</item>
+    </string-array>
 </resources>

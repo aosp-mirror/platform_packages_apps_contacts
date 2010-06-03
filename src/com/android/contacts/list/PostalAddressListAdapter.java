@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +78,8 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(mDisplayNameColumnIndex);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
     }
 
     @Override
@@ -99,14 +98,14 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
      * Builds a {@link Data#CONTENT_URI} for the current cursor
      * position.
      */
-    public Uri getDataUri() {
-        Cursor cursor = getCursor();
-        long id = cursor.getLong(POSTAL_ID_COLUMN_INDEX);
+    public Uri getDataUri(int position) {
+        long id = ((Cursor)getItem(position)).getLong(POSTAL_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
@@ -114,9 +113,9 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
-        bindSectionHeaderAndDivider(view, cursor);
+        bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
         bindPostalAddress(view, cursor);
@@ -135,8 +134,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         view.showData(cursor, POSTAL_ADDRESS_COLUMN_INDEX);
     }
 
-    protected void bindSectionHeaderAndDivider(final ContactListItemView view, Cursor cursor) {
-        final int position = cursor.getPosition();
+    protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
         final int section = getSectionForPosition(position);
         if (getPositionForSection(section) == position) {
             String title = (String)getSections()[section];

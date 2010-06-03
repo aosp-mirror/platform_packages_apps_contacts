@@ -86,8 +86,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public String getContactDisplayName() {
-        return getCursor().getString(mDisplayNameColumnIndex);
+    public String getContactDisplayName(int position) {
+        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
     }
 
     @Override
@@ -103,17 +103,17 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     /**
-     * Builds a {@link Data#CONTENT_URI} for the current cursor
-     * position.
+     * Builds a {@link Data#CONTENT_URI} for the given cursor position.
      */
-    public Uri getDataUri() {
-        Cursor cursor = getCursor();
+    public Uri getDataUri(int position) {
+        Cursor cursor = ((Cursor)getItem(position));
         long id = cursor.getLong(PHONE_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    protected View newView(Context context, int partition, Cursor cursor, int position,
+            ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
@@ -121,9 +121,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void bindView(View itemView, Context context, Cursor cursor) {
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
-        bindSectionHeaderAndDivider(view, cursor);
+        bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
         bindPhoneNumber(view, cursor);
@@ -142,8 +142,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         view.showData(cursor, PHONE_NUMBER_COLUMN_INDEX);
     }
 
-    protected void bindSectionHeaderAndDivider(final ContactListItemView view, Cursor cursor) {
-        final int position = cursor.getPosition();
+    protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
         final int section = getSectionForPosition(position);
         if (getPositionForSection(section) == position) {
             String title = (String)getSections()[section];

@@ -22,7 +22,7 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 
 /**
- * A specialized loader for the Join Contacts UI.  It executes up to two queries:
+ * A specialized loader for the Join Contacts UI.  It executes two queries:
  * join suggestions and (optionally) the full contact list.
  */
 public class JoinContactLoader extends CursorLoader {
@@ -30,10 +30,14 @@ public class JoinContactLoader extends CursorLoader {
     private boolean mLoadSuggestionsAndAllContact;
     private String[] mProjection;
     private Uri mSuggestionUri;
-    private MatrixCursor mCachedCursor;
+    private MatrixCursor mSuggestionsCursor;
 
     public JoinContactLoader(Context context) {
         super(context, null, null, null, null, null);
+    }
+
+    public void setLoadSuggestionsAndAllContacts(boolean flag) {
+        mLoadSuggestionsAndAllContact = flag;
     }
 
     public void setSuggestionUri(Uri uri) {
@@ -47,25 +51,22 @@ public class JoinContactLoader extends CursorLoader {
     }
 
     public Cursor getSuggestionsCursor() {
-        return mCachedCursor;
+        return mSuggestionsCursor;
     }
 
     @Override
     public Cursor loadInBackground() {
-        if (mLoadSuggestionsAndAllContact) {
-            // First execute the suggestions query, then call super.loadInBackground
-            // to load the entire list
-            mCachedCursor = loadSuggestions();
-            return super.loadInBackground();
-        } else {
-            // Use the default behavior of the super.loadInBackground to load join
-            // suggestions only
-            setUri(mSuggestionUri);
-            setSelection(null);
+        // First execute the suggestions query, then call super.loadInBackground
+        // to load the entire list
+        mSuggestionsCursor = loadSuggestions();
+        if (!mLoadSuggestionsAndAllContact && mSuggestionsCursor.getCount() != 0) {
+            // In case we only need suggestions, send "0" as the search query, which
+            // will always return an empty cursor (but we can still register to
+            // listen for changes on it).
+            setSelection("0");
             setSelectionArgs(null);
-            setSortOrder(null);
-            return super.loadInBackground();
         }
+        return super.loadInBackground();
     }
 
     /**
@@ -87,9 +88,5 @@ public class JoinContactLoader extends CursorLoader {
         } finally {
             cursor.close();
         }
-    }
-
-    public void setLoadSuggestionsAndAllContacts(boolean flag) {
-        mLoadSuggestionsAndAllContact = flag;
     }
 }

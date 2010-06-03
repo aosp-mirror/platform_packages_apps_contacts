@@ -84,12 +84,10 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
             mListener.onSearchAllContactsAction((String)null);
         } else {
             Uri uri;
-            ContactEntryListAdapter adapter = getAdapter();
-            adapter.moveToPosition(position);
             if (isLegacyCompatibilityMode()) {
-                uri = ((LegacyContactListAdapter)adapter).getPersonUri();
+                uri = ((LegacyContactListAdapter)getAdapter()).getPersonUri(position);
             } else {
-                uri = ((ContactListAdapter)adapter).getContactUri();
+                uri = ((ContactListAdapter)getAdapter()).getContactUri(position);
             }
             if (mShortcutRequested) {
                 ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);

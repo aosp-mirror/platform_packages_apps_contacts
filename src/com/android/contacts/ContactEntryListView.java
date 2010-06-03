@@ -39,15 +39,17 @@ public class ContactEntryListView extends PinnedHeaderListView {
     private boolean mHighlightNamesWhenScrolling;
 
     public ContactEntryListView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public ContactEntryListView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, com.android.internal.R.attr.listViewStyle);
     }
 
     public ContactEntryListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setPinnedHeaderBackgroundColor(
+                context.getResources().getColor(R.color.pinned_header_background));
     }
 
     public TextHighlightingAnimation getTextHighlightingAnimation() {
