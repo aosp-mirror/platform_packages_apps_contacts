@@ -119,9 +119,11 @@ public class ImportVCardService extends Service {
     public class ImportRequestHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
+            Log.d("@@@", "handleMessange: " + msg.what);
             switch (msg.what) {
-                case IMPORT_REQUEST:
-                    RequestParameter parameter = (RequestParameter)msg.obj;
+                case IMPORT_REQUEST: {
+                    Log.d("@@@", "IMPORT_REQUEST");
+                    final RequestParameter parameter = (RequestParameter)msg.obj;
                     Toast.makeText(ImportVCardService.this,
                             getString(R.string.vcard_importer_start_message),
                             Toast.LENGTH_LONG).show();
@@ -143,6 +145,7 @@ public class ImportVCardService extends Service {
                         mThread.start();
                     }
                     break;
+                }
                 default:
                     Log.e(LOG_TAG, "Unknown request type: " + msg.what);
                     super.hasMessages(msg.what);
@@ -167,10 +170,10 @@ public class ImportVCardService extends Service {
         private ImportVCardService mService;
         private ContentResolver mResolver;
         private NotificationManager mNotificationManager;
-        private ProgressNotifier mProgressNotifier;
 
-        private final List<Uri> mFailedUris;
-        private final List<Uri> mCreatedUris;
+        private final List<Uri> mFailedUris = new ArrayList<Uri>();
+        private final List<Uri> mCreatedUris = new ArrayList<Uri>();
+        private ProgressNotifier mProgressNotifier = new ProgressNotifier();
 
         private VCardParser mVCardParser;
 
@@ -189,15 +192,6 @@ public class ImportVCardService extends Service {
         private boolean mRunning = true;
         private final Queue<RequestParameter> mPendingRequests =
                 new LinkedList<RequestParameter>();
-
-        public RequestHandler() {
-            // We cannot set Service here since Service is not fully ready at this point.
-            // TODO: refactor this class.
-
-            mFailedUris = new ArrayList<Uri>();
-            mCreatedUris = new ArrayList<Uri>();
-            mProgressNotifier = new ProgressNotifier();            
-        }
 
         public void init(ImportVCardService service) {
             // TODO: Based on fragile fact. fix this.
@@ -502,6 +496,7 @@ public class ImportVCardService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d("@@@", "onBind");
         return mMessenger.getBinder();
     }
 }

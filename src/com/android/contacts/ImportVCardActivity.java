@@ -70,11 +70,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Vector;
-
-
 
 /**
  * The class letting users to import vCard. This includes the UI part for letting them select
@@ -120,18 +120,92 @@ public class ImportVCardActivity extends Activity {
 
     private String mErrorMessage;
 
-    private Messenger mMessenger;
+    private class CustomConnection implements ServiceConnection {
+        private Messenger mMessenger;
+        /**
+         * Stores {@link RequestParameter} objects until actual connection is established.
+         */
+        private Queue<RequestParameter> mPendingRequests =
+                new LinkedList<RequestParameter>();
 
-    private final ServiceConnection mConnection = new ServiceConnection() {
+        private boolean mConnected = false;
+        private boolean mNeedFinish = false;
+
+        public void doBindService() {
+            // Log.d("@@@", "doBindService");
+            bindService(new Intent(ImportVCardActivity.this,
+                    ImportVCardService.class), this, Context.BIND_AUTO_CREATE);
+        }
+
+        public void setNeedFinish() {
+            synchronized (this) {
+                mNeedFinish = true;
+                if (mConnected) {
+                    unbindService(this);
+                    finish();
+                }
+            }
+        }
+
+        public synchronized void requestSend(final RequestParameter parameter) {
+            // Log.d("@@@", "requestSend(): " + (mMessenger != null) + ", "
+            // + mPendingRequests.size());
+            if (mMessenger != null) {
+                sendMessage(parameter);
+            } else {
+                mPendingRequests.add(parameter);
+            }
+        }
+
+        private void sendMessage(final RequestParameter parameter) {
+            // Log.d("@@@", "sendMessage()");
+            try {
+                mMessenger.send(Message.obtain(null,
+                        ImportVCardService.IMPORT_REQUEST,
+                        parameter));
+            } catch (RemoteException e) {
+                Log.e(LOG_TAG, "RemoteException is thrown when trying to import vCard");
+                runOnUIThread(new DialogDisplayer(
+                        getString(R.string.fail_reason_unknown)));
+            }
+        }
+
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mMessenger = new Messenger(service);
+            // Log.d("@@@", "onServiceConnected()");
+            synchronized (this) {
+                mMessenger = new Messenger(service);
+                // Send pending requests thrown from this Activity before an actual connection
+                // is established.
+                while (!mPendingRequests.isEmpty()) {
+                    final RequestParameter parameter = mPendingRequests.poll();
+                    if (parameter == null) {
+                        throw new NullPointerException();
+                    }
+                    sendMessage(parameter);
+                }
+                mConnected = true;
+                if (mNeedFinish) {
+                    unbindService(this);
+                    finish();
+                }
+            }
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            mMessenger = null;
-            finish();
+            // Log.d("@@@", "onServiceDisconnected()");
+            synchronized (this) {
+                if (!mPendingRequests.isEmpty()) {
+                    Log.w(LOG_TAG, "Some request(s) are dropped.");
+                }
+                // Set to null so that we can detect inappropriate re-connection toward
+                // the Service via NullPointerException;
+                mPendingRequests = null;
+                mMessenger = null;
+            }
         }
-    };
+    }
+
+    private final CustomConnection mConnection = new CustomConnection();
 
     private static class VCardFile {
         private final String mName;
@@ -206,8 +280,8 @@ public class ImportVCardActivity extends Activity {
             mSourceUris = sourceUris;
             final int length = sourceUris.length;
             final Context context = ImportVCardActivity.this;
-            PowerManager powerManager = (PowerManager)context.getSystemService(
-                    Context.POWER_SERVICE);
+            final PowerManager powerManager =
+                    (PowerManager)context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
                     PowerManager.ON_AFTER_RELEASE, LOG_TAG);
@@ -226,11 +300,10 @@ public class ImportVCardActivity extends Activity {
             final ContentResolver resolver = context.getContentResolver();
             String errorMessage = null;
             mWakeLock.acquire();
-            boolean successful = false;
+            boolean needFinish = true;
             try {
                 clearOldCache();
-                bindService(new Intent(ImportVCardActivity.this, 
-                        ImportVCardService.class), mConnection, Context.BIND_AUTO_CREATE);
+                mConnection.doBindService();
 
                 final int length = mSourceUris.length;
                 // Uris given from caller applications may not be opened twice: consider when
@@ -247,6 +320,7 @@ public class ImportVCardActivity extends Activity {
                 for (int i = 0; i < length; i++) {
                     final Uri sourceUri = mSourceUris[i];
                     final Uri localDataUri = copyToLocal(sourceUri, i);
+                    // Log.d("@@@", "source: " + sourceUri);
                     if (mCanceled) {
                         break;
                     }
@@ -258,38 +332,32 @@ public class ImportVCardActivity extends Activity {
                     if (mCanceled) {
                         return;
                     }
-                    mMessenger.send(Message.obtain(null,
-                            ImportVCardService.IMPORT_REQUEST,
-                            parameter));
-
+                    mConnection.requestSend(parameter);
                 }
-
-                successful = true;
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to import vCard");
-                runOnUIThread(new DialogDisplayer(getString(R.string.fail_reason_unknown)));
             } catch (OutOfMemoryError e) {
                 Log.e(LOG_TAG, "OutOfMemoryError");
                 // We should take care of this case since Android devices may have
                 // smaller memory than we usually expect.
                 System.gc();
+                needFinish = false;
+                unbindService(mConnection);
                 runOnUIThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error) +
                         ": " + e.getLocalizedMessage()));
             } catch (IOException e) {
                 Log.e(LOG_TAG, e.getMessage());
+                needFinish = false;
+                unbindService(mConnection);
                 runOnUIThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error) +
                         ": " + e.getLocalizedMessage()));
             } finally {
                 mWakeLock.release();
                 mProgressDialogForCacheVCard.dismiss();
-            }
-
-            if (successful) {
-                finish();
-            } else {
-                // finish() should be called via DialogDisplayer().
+                // Log.d("@@@", "before setNeedFinish: " + needFinish);
+                if (needFinish) {
+                    mConnection.setNeedFinish();                    
+                }
             }
         }
 
@@ -657,9 +725,7 @@ public class ImportVCardActivity extends Activity {
     }
     
     private void importVCardFromSDCard(final VCardFile vcardFile) {
-        String[] uriStrings = new String[1];
-        uriStrings[0] = "file://" + vcardFile.getCanonicalPath();
-        importVCard(uriStrings);
+        importVCard(new Uri[] {Uri.parse("file://" + vcardFile.getCanonicalPath())});
     }
 
     private void importVCard(final Uri uri) {
