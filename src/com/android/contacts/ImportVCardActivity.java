@@ -44,7 +44,6 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
-import com.android.contacts.ImportVCardService.RequestParameter;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
@@ -123,10 +122,10 @@ public class ImportVCardActivity extends Activity {
     private class CustomConnection implements ServiceConnection {
         private Messenger mMessenger;
         /**
-         * Stores {@link RequestParameter} objects until actual connection is established.
+         * Stores {@link ImportRequest} objects until actual connection is established.
          */
-        private Queue<RequestParameter> mPendingRequests =
-                new LinkedList<RequestParameter>();
+        private Queue<ImportRequest> mPendingRequests =
+                new LinkedList<ImportRequest>();
 
         private boolean mConnected = false;
         private boolean mNeedFinish = false;
@@ -147,7 +146,7 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
-        public synchronized void requestSend(final RequestParameter parameter) {
+        public synchronized void requestSend(final ImportRequest parameter) {
             // Log.d("@@@", "requestSend(): " + (mMessenger != null) + ", "
             // + mPendingRequests.size());
             if (mMessenger != null) {
@@ -157,11 +156,11 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
-        private void sendMessage(final RequestParameter parameter) {
+        private void sendMessage(final ImportRequest parameter) {
             // Log.d("@@@", "sendMessage()");
             try {
                 mMessenger.send(Message.obtain(null,
-                        ImportVCardService.IMPORT_REQUEST,
+                        ImportVCardService.MSG_IMPORT_REQUEST,
                         parameter));
             } catch (RemoteException e) {
                 Log.e(LOG_TAG, "RemoteException is thrown when trying to import vCard");
@@ -171,13 +170,12 @@ public class ImportVCardActivity extends Activity {
         }
 
         public void onServiceConnected(ComponentName name, IBinder service) {
-            // Log.d("@@@", "onServiceConnected()");
             synchronized (this) {
                 mMessenger = new Messenger(service);
                 // Send pending requests thrown from this Activity before an actual connection
                 // is established.
                 while (!mPendingRequests.isEmpty()) {
-                    final RequestParameter parameter = mPendingRequests.poll();
+                    final ImportRequest parameter = mPendingRequests.poll();
                     if (parameter == null) {
                         throw new NullPointerException();
                     }
@@ -328,7 +326,7 @@ public class ImportVCardActivity extends Activity {
                         Log.w(LOG_TAG, "destUri is null");
                         break;
                     }
-                    final RequestParameter parameter = constructRequestParameter(localDataUri);
+                    final ImportRequest parameter = constructRequestParameter(localDataUri);
                     if (mCanceled) {
                         return;
                     }
@@ -413,10 +411,10 @@ public class ImportVCardActivity extends Activity {
         }
 
         /**
-         * Reads the Uri once (or twice) and constructs {@link RequestParameter} from
+         * Reads the Uri once (or twice) and constructs {@link ImportRequest} from
          * its content.
          */
-        private RequestParameter constructRequestParameter(final Uri uri) {
+        private ImportRequest constructRequestParameter(final Uri uri) {
             final ContentResolver resolver =
                     ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
@@ -475,7 +473,7 @@ public class ImportVCardActivity extends Activity {
                 Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
                 return null;
             }
-            return new RequestParameter(mAccount, uri,
+            return new ImportRequest(mAccount, uri,
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
                     vcardVersion, counter.getCount());
