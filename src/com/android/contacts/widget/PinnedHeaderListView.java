@@ -21,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -61,6 +62,12 @@ public class PinnedHeaderListView extends ListView
          * needs to change its position or visibility.
          */
         void configurePinnedHeaders(PinnedHeaderListView listView);
+
+        /**
+         * Returns the list position to scroll to if the pinned header is touched.
+         * Return -1 if the list does not need to be scrolled.
+         */
+        int getScrollPositionForHeader(int viewIndex);
     }
 
     private static final int MAX_ALPHA = 255;
@@ -85,6 +92,7 @@ public class PinnedHeaderListView extends ListView
     private Paint mPaint = new Paint();
     private OnScrollListener mOnScrollListener;
     private OnItemSelectedListener mOnItemSelectedListener;
+    private int mScrollState;
 
     public PinnedHeaderListView(Context context) {
         this(context, null, com.android.internal.R.attr.listViewStyle);
@@ -167,6 +175,7 @@ public class PinnedHeaderListView extends ListView
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {
+        mScrollState = scrollState;
         if (mOnScrollListener != null) {
             mOnScrollListener.onScrollStateChanged(this, scrollState);
         }
@@ -324,6 +333,48 @@ public class PinnedHeaderListView extends ListView
             y--;
         } while (y > 0);
         return 0;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        if (mScrollState == SCROLL_STATE_IDLE) {
+            final int y = (int)ev.getY();
+            for (int i = mSize; --i >= 0;) {
+                PinnedHeader header = mHeaders[i];
+                if (header.visible && header.y <= y && header.y + header.height > y) {
+                    if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                        return smoothScrollToPartition(i);
+                    } else {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return super.onTouchEvent(ev);
+    }
+
+    private boolean smoothScrollToPartition(int partition) {
+        final int position = mAdapter.getScrollPositionForHeader(partition);
+        if (position == -1) {
+            return false;
+        }
+
+        smoothScrollToSelectionFromTop(position, getTotalTopPinnedHeaderHeight());
+        return true;
+    }
+
+    public void smoothScrollToSelectionFromTop(final int position, int y) {
+        // This method is temporary.  It will be replaced by new method on AbsListView
+        smoothScrollToPosition(position);
+
+        final int offset = y;
+        postDelayed(new Runnable() {
+
+            public void run() {
+                setSelectionFromTop(position, offset);
+            }
+        }, 500);
     }
 
     @Override

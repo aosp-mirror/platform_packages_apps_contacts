@@ -142,4 +142,8 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
             }
         }
     }
+
+    public int getScrollPositionForHeader(int viewIndex) {
+        return getPositionForPartition(viewIndex);
+    }
 }
