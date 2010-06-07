@@ -510,12 +510,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        mAdapter.changeCursor(null);
-    }
-
     private boolean isNameHighlighingEnabled() {
         // When sort order and display order contradict each other, we want to
         // highlight the part of the name used for sorting.
