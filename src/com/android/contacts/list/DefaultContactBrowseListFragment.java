@@ -79,18 +79,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     protected void onItemClick(int position, long id) {
         ContactListAdapter adapter = getAdapter();
-        if (adapter.isSearchAllContactsItemPosition(position)) {
-            searchAllContacts();
-        } else {
-            if (isEditMode()) {
-                if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
-                    createNewContact();
-                } else {
-                    editContact(adapter.getContactUri(position));
-                }
+        if (isEditMode()) {
+            if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
+                createNewContact();
             } else {
-                viewContact(adapter.getContactUri(position));
+                editContact(adapter.getContactUri(position));
             }
+        } else {
+            viewContact(adapter.getContactUri(position));
         }
     }
 
@@ -126,29 +122,21 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
-        if (!isSearchResultsMode()) {
+        if (!isSearchMode() && !isSearchResultsMode()) {
             // In the search-results mode the count is shown in the fat header above the list
             getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
         }
     }
 
     @Override
-    protected void showCount(Cursor data) {
+    protected void showCount(int partitionIndex, Cursor data) {
         int count = data.getCount();
-        if (isSearchMode()) {
-            TextView textView = (TextView) getView().findViewById(R.id.totalContactsText);
-            // TODO
-            // if (TextUtils.isEmpty(getQueryString())) {
-            String text = getQuantityText(count, R.string.listFoundAllContactsZero,
-                    R.plurals.searchFoundContacts);
-            textView.setText(text);
-        }
-        else if (isSearchResultsMode()) {
+        if (isSearchResultsMode()) {
             TextView countText = (TextView)getView().findViewById(R.id.search_results_found);
             String text = getQuantityText(data.getCount(),
                     R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
             countText.setText(text);
-        } else {
+        } else if (!isSearchMode()){
             // TODO
             // if (contactsListActivity.mDisplayOnlyPhones) {
             // text = contactsListActivity.getQuantityText(count,

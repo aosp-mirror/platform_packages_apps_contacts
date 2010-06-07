@@ -264,7 +264,7 @@
         <!-- The contacts search/filter UI -->
         <activity android:name="ContactsSearchActivity"
             android:theme="@style/ContactsSearchTheme"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustPan"
+            android:windowSoftInputMode="stateAlwaysVisible"
         >
             <intent-filter>
                 <action android:name="com.android.contacts.action.FILTER_CONTACTS" />

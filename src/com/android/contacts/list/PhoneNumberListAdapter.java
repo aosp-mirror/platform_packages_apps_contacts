@@ -69,7 +69,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(buildSectionIndexerUri(Phone.CONTENT_URI));
         loader.setProjection(PHONES_PROJECTION);
 

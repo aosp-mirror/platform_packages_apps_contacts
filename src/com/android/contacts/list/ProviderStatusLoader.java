@@ -15,44 +15,25 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.PhoneDisambigDialog;
-import com.android.contacts.R;
-
-import android.app.LoaderManagingFragment;
-import android.content.AsyncQueryHandler;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.Settings;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Contacts.Data;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Checks provider status and configures a list adapter accordingly.
  */
 public class ProviderStatusLoader {
 
-    private final CursorLoader mLoader;
+    private final Context mContext;
 
-    public ProviderStatusLoader(CursorLoader loader) {
-        this.mLoader = loader;
+    public ProviderStatusLoader(Context context) {
+        this.mContext = context;
     }
 
     public int getProviderStatus() {
         // This query can be performed on the UI thread because
         // the API explicitly allows such use.
-        Cursor cursor = mLoader.getContext().getContentResolver().query(
+        Cursor cursor = mContext.getContentResolver().query(
                 ProviderStatus.CONTENT_URI,
                 new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
         if (cursor != null) {

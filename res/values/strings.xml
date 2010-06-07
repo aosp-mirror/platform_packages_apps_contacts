@@ -331,17 +331,17 @@
 
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected -->
     <plurals name="listFoundAllContacts">
-        <item quantity="one">Found 1 contact</item>
-        <item quantity="other">Found <xliff:g id="count">%d</xliff:g> contacts</item>
+        <item quantity="one">1 found</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected -->
-    <string name="listFoundAllContactsZero">Contact not found</string>
+    <string name="listFoundAllContactsZero">Not found</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts found when typing search query -->
     <plurals name="searchFoundContacts">
-        <item quantity="one">1 contact</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+        <item quantity="one">1 found</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->

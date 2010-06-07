@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:visibility="gone"
     />
     <ViewStub android:id="@+id/footer_stub"
         android:layout="@layout/footer_panel"

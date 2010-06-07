@@ -56,7 +56,7 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(Phones.CONTENT_URI);
         loader.setProjection(PHONES_PROJECTION);
         loader.setSortOrder(Phones.DISPLAY_NAME);

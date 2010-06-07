@@ -76,6 +76,13 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
         }
         mPartitions[mSize++] = new Partition(showIfEmpty, hasHeader);
         invalidate();
+        notifyDataSetChanged();
+    }
+
+    public void resetPartitions() {
+        mSize = 0;
+        invalidate();
+        notifyDataSetChanged();
     }
 
     protected void invalidate() {
@@ -89,11 +96,6 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
     protected void ensureCacheValid() {
         if (mCacheValid) {
             return;
-        }
-
-        if (mSize == 0) {
-            throw new IllegalStateException("A CompositeCursorAdapter should have "
-                    + "at least one partition");
         }
 
         mCount = 0;
@@ -125,6 +127,13 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
     public int getCount() {
         ensureCacheValid();
         return mCount;
+    }
+
+    /**
+     * Returns the cursor for the given partition
+     */
+    public Cursor getCursor(int partition) {
+        return mPartitions[partition].cursor;
     }
 
     /**

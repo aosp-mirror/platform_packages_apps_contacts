@@ -48,9 +48,9 @@ public class PinnedHeaderListView extends ListView
         int getPinnedHeaderCount();
 
         /**
-         * Creates the pinned header view.
+         * Creates or updates the pinned header view.
          */
-        View createPinnedHeaderView(int viewIndex, ViewGroup parent);
+        View getPinnedHeaderView(int viewIndex, View convertView, ViewGroup parent);
 
         /**
          * Configures the pinned headers to match the visible list items. The
@@ -78,6 +78,7 @@ public class PinnedHeaderListView extends ListView
     }
 
     private PinnedHeaderAdapter mAdapter;
+    private int mSize;
     private PinnedHeader[] mHeaders;
     private int mPinnedHeaderBackgroundColor;
     private RectF mBounds = new RectF();
@@ -113,24 +114,8 @@ public class PinnedHeaderListView extends ListView
 
     @Override
     public void setAdapter(ListAdapter adapter) {
-        super.setAdapter(adapter);
         mAdapter = (PinnedHeaderAdapter)adapter;
-        int count = mAdapter.getPinnedHeaderCount();
-        mHeaders = new PinnedHeader[count];
-        for (int i = 0; i < count; i++) {
-            PinnedHeader header = new PinnedHeader();
-            header.view = mAdapter.createPinnedHeaderView(i, this);
-            mHeaders[i] = header;
-        }
-
-        // Disable vertical fading when the pinned header is present
-        // TODO change ListView to allow separate measures for top and bottom fading edge;
-        // in this particular case we would like to disable the top, but not the bottom edge.
-        if (count > 0) {
-            setFadingEdgeLength(0);
-        }
-
-        requestLayout();
+        super.setAdapter(adapter);
     }
 
     @Override
@@ -148,6 +133,32 @@ public class PinnedHeaderListView extends ListView
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
         if (mAdapter != null) {
+            int count = mAdapter.getPinnedHeaderCount();
+            if (count != mSize) {
+                mSize = count;
+                if (mHeaders == null) {
+                    mHeaders = new PinnedHeader[mSize];
+                } else if (mHeaders.length < mSize) {
+                    PinnedHeader[] headers = mHeaders;
+                    mHeaders = new PinnedHeader[mSize];
+                    System.arraycopy(headers, 0, mHeaders, 0, headers.length);
+                }
+            }
+
+            for (int i = 0; i < mSize; i++) {
+                if (mHeaders[i] == null) {
+                    mHeaders[i] = new PinnedHeader();
+                }
+                mHeaders[i].view = mAdapter.getPinnedHeaderView(i, mHeaders[i].view, this);
+            }
+
+            // Disable vertical fading when the pinned header is present
+            // TODO change ListView to allow separate measures for top and bottom fading edge;
+            // in this particular case we would like to disable the top, but not the bottom edge.
+            if (mSize > 0) {
+                setFadingEdgeLength(0);
+            }
+
             mAdapter.configurePinnedHeaders(this);
         }
         if (mOnScrollListener != null) {
@@ -172,7 +183,7 @@ public class PinnedHeaderListView extends ListView
         int windowBottom = height;
 
         int prevHeaderBottom = 0;
-        for (int i = 0; i < mHeaders.length; i++) {
+        for (int i = 0; i < mSize; i++) {
             PinnedHeader header = mHeaders[i];
             if (header.visible) {
                 if (header.state == TOP) {
@@ -271,8 +282,15 @@ public class PinnedHeaderListView extends ListView
     private void ensurePinnedHeaderLayout(int viewIndex) {
         View view = mHeaders[viewIndex].view;
         if (view.isLayoutRequested()) {
-            view.measure(MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY),
-                    MeasureSpec.UNSPECIFIED);
+            int widthSpec = MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY);
+            int heightSpec;
+            int lpHeight = view.getLayoutParams().height;
+            if (lpHeight > 0) {
+                heightSpec = MeasureSpec.makeMeasureSpec(lpHeight, MeasureSpec.EXACTLY);
+            } else {
+                heightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+            }
+            view.measure(widthSpec, heightSpec);
             int height = view.getMeasuredHeight();
             mHeaders[viewIndex].height = height;
             view.layout(0, 0, view.getMeasuredWidth(), height);
@@ -283,7 +301,7 @@ public class PinnedHeaderListView extends ListView
      * Returns the sum of heights of headers pinned to the top.
      */
     public int getTotalTopPinnedHeaderHeight() {
-        for (int i = mHeaders.length; --i >= 0;) {
+        for (int i = mSize; --i >= 0;) {
             PinnedHeader header = mHeaders[i];
             if (header.visible && header.state == TOP) {
                 return header.y + header.height;
@@ -311,7 +329,7 @@ public class PinnedHeaderListView extends ListView
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        for (int i = mHeaders.length; --i >= 0;) {
+        for (int i = mSize; --i >= 0;) {
             PinnedHeader header = mHeaders[i];
             if (header.visible) {
                 View view = header.view;

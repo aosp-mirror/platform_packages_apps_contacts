@@ -61,12 +61,15 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
      * The default implementation creates the same type of view as a normal
      * partition header.
      */
-    public View createPinnedHeaderView(int partition, ViewGroup parent) {
+    public View getPinnedHeaderView(int partition, View convertView, ViewGroup parent) {
         if (hasHeader(partition)) {
-            View view = newHeaderView(getContext(), partition, null, parent);
-            view.setFocusable(false);
-            view.setEnabled(false);
-            bindHeaderView(view, partition, null);
+            View view = convertView;
+            if (view == null) {
+                view = newHeaderView(getContext(), partition, null, parent);
+                view.setFocusable(false);
+                view.setEnabled(false);
+            }
+            bindHeaderView(view, partition, getCursor(partition));
             return view;
         } else {
             return null;

@@ -77,7 +77,7 @@ public class PinnedHeaderListDemoActivity extends ListActivity {
         }
 
         @Override
-        public View createPinnedHeaderView(int viewIndex, ViewGroup parent) {
+        public View getPinnedHeaderView(int viewIndex, View convertView, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view = inflater.inflate(R.layout.list_section, parent, false);
             view.setFocusable(false);

@@ -56,7 +56,7 @@ public class LegacyPostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(ContactMethods.CONTENT_URI);
         loader.setProjection(POSTALS_PROJECTION);
         loader.setSortOrder(People.DISPLAY_NAME);

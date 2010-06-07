@@ -111,13 +111,15 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
     }
 
     @Override
-    public View createPinnedHeaderView(int viewIndex, ViewGroup parent) {
+    public View getPinnedHeaderView(int viewIndex, View convertView, ViewGroup parent) {
         if (isSectionHeaderDisplayEnabled() && viewIndex == getPinnedHeaderCount() - 1) {
-            mHeader = LayoutInflater.from(mContext).
-                    inflate(mSectionHeaderLayoutResId, parent, false);
+            if (mHeader == null) {
+                mHeader = LayoutInflater.from(mContext).
+                        inflate(mSectionHeaderLayoutResId, parent, false);
+            }
             return mHeader;
         } else {
-            return super.createPinnedHeaderView(viewIndex, parent);
+            return super.getPinnedHeaderView(viewIndex, convertView, parent);
         }
     }
 

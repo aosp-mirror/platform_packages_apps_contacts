@@ -52,7 +52,7 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(People.CONTENT_URI);
         loader.setProjection(PEOPLE_PROJECTION);
         loader.setSortOrder(People.DISPLAY_NAME);

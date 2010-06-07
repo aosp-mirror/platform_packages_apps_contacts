@@ -78,7 +78,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader cursorLoader) {
+    public void configureLoader(CursorLoader cursorLoader, long directoryId) {
         JoinContactLoader loader = (JoinContactLoader)cursorLoader;
         loader.setLoadSuggestionsAndAllContacts(mAllContactsListShown);
 

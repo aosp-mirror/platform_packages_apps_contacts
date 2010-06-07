@@ -26,16 +26,22 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 /**
  * Common base class for various contact-related lists, e.g. contact list, phone number list
  * etc.
  */
 public abstract class ContactEntryListAdapter extends IndexerListAdapter {
+
+    private static final String TAG = "ContactEntryListAdapter";
 
     /**
      * The animation is used here to allocate animated name text views.
@@ -55,6 +61,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
 
+    private HashMap<Integer, DirectoryPartition> mPartitions;
+
     public ContactEntryListAdapter(Context context) {
         super(context, R.layout.list_section, R.id.header_text);
         addPartitions();
@@ -68,8 +76,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         addPartition(false, false);
     }
 
+    public void addDirectoryPartition(DirectoryPartition partition) {
+        if (mPartitions == null) {
+            mPartitions = new HashMap<Integer, DirectoryPartition>();
+        }
+        int partitionIndex = getPartitionCount();
+        mPartitions.put(partitionIndex, partition);
+        addPartition(partition.showIfEmpty, partition.directoryType != null);
+    }
+
     public abstract String getContactDisplayName(int position);
-    public abstract void configureLoader(CursorLoader loader);
+    public abstract void configureLoader(CursorLoader loader, long directoryId);
 
     public boolean isSearchMode() {
         return mSearchMode;
@@ -77,6 +94,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
+        setPinnedPartitionHeadersEnabled(flag);
     }
 
     public boolean isSearchResultsMode() {
@@ -206,36 +224,39 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
-    public int getCount() {
-        int count = super.getCount();
-
-        if (mSearchMode) {
-            // Last element in the list is "Search all contacts"
-            count++;
-        }
-
-        return count;
-    }
-
-    public boolean isSearchAllContactsItemPosition(int position) {
-        return isSearchMode() && position == getCount() - 1;
+    protected View newHeaderView(Context context, int partition, Cursor cursor,
+            ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        return inflater.inflate(R.layout.directory_header, parent, false);
     }
 
     @Override
-    public int getItemViewType(int position) {
-        if (isSearchAllContactsItemPosition(position)) {
-            return IGNORE_ITEM_VIEW_TYPE;
+    protected void bindHeaderView(View view, int partition, Cursor cursor) {
+        DirectoryPartition directoryPartition = mPartitions.get(partition);
+        TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
+        directoryTypeTextView.setText(directoryPartition.directoryType);
+        TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
+        if (!TextUtils.isEmpty(directoryPartition.displayName)) {
+            displayNameTextView.setText(directoryPartition.displayName);
+            displayNameTextView.setVisibility(View.VISIBLE);
+        } else {
+            displayNameTextView.setVisibility(View.GONE);
         }
 
-        return super.getItemViewType(position);
+        int count = cursor == null ? 0 : cursor.getCount();
+        TextView countText = (TextView)view.findViewById(R.id.count);
+        countText.setText(getQuantityText(count, R.string.listFoundAllContactsZero,
+                  R.plurals.searchFoundContacts));
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (isSearchAllContactsItemPosition(position)) {
-            return LayoutInflater.from(getContext()).inflate(
-                    R.layout.contacts_list_search_all_item, parent, false);
+    // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
+    public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
+        if (count == 0) {
+            return getContext().getString(zeroResourceId);
+        } else {
+            String format = getContext().getResources()
+                    .getQuantityText(pluralResourceId, count).toString();
+            return String.format(format, count);
         }
-        return super.getView(position, convertView, parent);
     }
 }

@@ -19,8 +19,10 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -45,39 +47,51 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         Uri uri;
 
-        if (isSearchMode() || isSearchResultsMode()) {
+        if (isSearchMode()) {
             String query = getQueryString();
-            uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
-                    TextUtils.isEmpty(query) ? "" : Uri.encode(query));
+            Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
+            if (TextUtils.isEmpty(query)) {
+                builder.appendPath("");
+            } else {
+                builder.appendPath(query);      // Builder will encode the query
+            }
+
+            builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                    String.valueOf(directoryId));
+            uri = builder.build();
             loader.setProjection(FILTER_PROJECTION);
         } else {
             uri = Contacts.CONTENT_URI;
             loader.setProjection(PROJECTION);
         }
 
-        if (mVisibleContactsOnly && mContactsWithPhoneNumbersOnly) {
-            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1"
-                    + " AND " + Contacts.HAS_PHONE_NUMBER + "=1");
-        } else if (mVisibleContactsOnly) {
-            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
-        } else if (mContactsWithPhoneNumbersOnly) {
-            loader.setSelection(Contacts.HAS_PHONE_NUMBER + "=1");
-        }
-
-        if (isSectionHeaderDisplayEnabled()) {
-            uri = buildSectionIndexerUri(uri);
+        if (directoryId == Directory.DEFAULT) {
+            if (mVisibleContactsOnly && mContactsWithPhoneNumbersOnly) {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1"
+                        + " AND " + Contacts.HAS_PHONE_NUMBER + "=1");
+            } else if (mVisibleContactsOnly) {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+            } else if (mContactsWithPhoneNumbersOnly) {
+                loader.setSelection(Contacts.HAS_PHONE_NUMBER + "=1");
+            }
+            if (isSectionHeaderDisplayEnabled()) {
+                uri = buildSectionIndexerUri(uri);
+            }
         }
 
         loader.setUri(uri);
 
+        String sortOrder;
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
-            loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
+            sortOrder = Contacts.SORT_KEY_PRIMARY;
         } else {
-            loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
+            sortOrder = Contacts.SORT_KEY_ALTERNATIVE;
         }
+
+        loader.setSortOrder(sortOrder);
     }
 
     @Override

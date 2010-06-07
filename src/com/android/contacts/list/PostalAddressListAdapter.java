@@ -61,7 +61,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(buildSectionIndexerUri(StructuredPostal.CONTENT_URI));
         loader.setProjection(POSTALS_PROJECTION);
 

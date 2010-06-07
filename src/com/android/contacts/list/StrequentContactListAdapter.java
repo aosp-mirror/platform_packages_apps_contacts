@@ -60,7 +60,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public void configureLoader(CursorLoader loader) {
+    public void configureLoader(CursorLoader loader, long directoryId) {
         String sortOrder = getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY
                 ? Contacts.SORT_KEY_PRIMARY
                 : Contacts.SORT_KEY_ALTERNATIVE;
