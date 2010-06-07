@@ -16,18 +16,13 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ImportVCardActivity;
-import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.GoogleSource;
-import com.android.contacts.model.Sources;
-
 import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -35,7 +30,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.net.Uri;
+
+import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
 
 import java.util.List;
 
@@ -174,7 +172,8 @@ public class AccountSelectionUtil {
     }
 
     public static void doImportFromSdCard(Context context, Account account) {
-        Intent importIntent = new Intent(context, ImportVCardActivity.class);
+        Intent importIntent = new Intent(context,
+                com.android.contacts.vcard.ImportVCardActivity.class);
         if (account != null) {
             importIntent.putExtra("account_name", account.name);
             importIntent.putExtra("account_type", account.type);

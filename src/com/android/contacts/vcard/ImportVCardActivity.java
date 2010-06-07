@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -44,6 +44,7 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
+import com.android.contacts.R;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
@@ -131,7 +132,6 @@ public class ImportVCardActivity extends Activity {
         private boolean mNeedFinish = false;
 
         public void doBindService() {
-            // Log.d("@@@", "doBindService");
             bindService(new Intent(ImportVCardActivity.this,
                     ImportVCardService.class), this, Context.BIND_AUTO_CREATE);
         }
@@ -147,8 +147,6 @@ public class ImportVCardActivity extends Activity {
         }
 
         public synchronized void requestSend(final ImportRequest parameter) {
-            // Log.d("@@@", "requestSend(): " + (mMessenger != null) + ", "
-            // + mPendingRequests.size());
             if (mMessenger != null) {
                 sendMessage(parameter);
             } else {
@@ -157,7 +155,6 @@ public class ImportVCardActivity extends Activity {
         }
 
         private void sendMessage(final ImportRequest parameter) {
-            // Log.d("@@@", "sendMessage()");
             try {
                 mMessenger.send(Message.obtain(null,
                         ImportVCardService.MSG_IMPORT_REQUEST,
@@ -190,7 +187,6 @@ public class ImportVCardActivity extends Activity {
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            // Log.d("@@@", "onServiceDisconnected()");
             synchronized (this) {
                 if (!mPendingRequests.isEmpty()) {
                     Log.w(LOG_TAG, "Some request(s) are dropped.");
@@ -318,7 +314,6 @@ public class ImportVCardActivity extends Activity {
                 for (int i = 0; i < length; i++) {
                     final Uri sourceUri = mSourceUris[i];
                     final Uri localDataUri = copyToLocal(sourceUri, i);
-                    // Log.d("@@@", "source: " + sourceUri);
                     if (mCanceled) {
                         break;
                     }
@@ -350,7 +345,6 @@ public class ImportVCardActivity extends Activity {
             } finally {
                 mWakeLock.release();
                 mProgressDialogForCacheVCard.dismiss();
-                // Log.d("@@@", "before setNeedFinish: " + needFinish);
                 if (needFinish) {
                     mConnection.setNeedFinish();                    
                 }

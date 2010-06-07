@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.accounts.Account;
 import android.net.Uri;

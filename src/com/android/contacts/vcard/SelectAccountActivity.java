@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.contacts.R;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.AccountSelectionUtil;
 
@@ -31,8 +32,8 @@ import java.util.List;
 public class SelectAccountActivity extends Activity {
     private static final String LOG_TAG = "SelectAccountActivity";
 
-    /* package */ static final String ACCOUNT_NAME = "account_name";
-    /* package */ static final String ACCOUNT_TYPE = "account_type";
+    public static final String ACCOUNT_NAME = "account_name";
+    public static final String ACCOUNT_TYPE = "account_type";
 
     private class CancelListener
             implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {

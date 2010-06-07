@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.accounts.Account;
 import android.app.Notification;
@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+import com.android.contacts.R;
 import com.android.vcard.VCardEntryCommitter;
 import com.android.vcard.VCardEntryConstructor;
 import com.android.vcard.VCardInterpreter;

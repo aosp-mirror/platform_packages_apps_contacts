@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -22,6 +22,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.android.contacts.ContactsListActivity;
+import com.android.contacts.R;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryHandler;
 

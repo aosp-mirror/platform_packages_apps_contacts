@@ -513,7 +513,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ImportVCardActivity"
+        <!-- vCard related -->
+        <activity android:name=".vcard.ImportVCardActivity"
             android:theme="@style/BackgroundOnly">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -523,14 +524,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SelectAccountActivity"
+        <activity android:name=".vcard.SelectAccountActivity"
             android:theme="@style/BackgroundOnly" />
 
         <service
-            android:name=".ImportVCardService"
+            android:name=".vcard.ImportVCardService"
             android:exported="false" />
 
-        <activity android:name=".ExportVCardActivity"
+        <activity android:name=".vcard.ExportVCardActivity"
             android:theme="@style/BackgroundOnly" />
 
         <!-- Pinned header list demo -->
