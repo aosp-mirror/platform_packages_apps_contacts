@@ -340,15 +340,13 @@ public class ImportVCardActivity extends Activity {
                 needFinish = false;
                 unbindService(mConnection);
                 runOnUIThread(new DialogDisplayer(
-                        getString(R.string.fail_reason_io_error) +
-                        ": " + e.getLocalizedMessage()));
+                        getString(R.string.fail_reason_low_memory_during_import)));
             } catch (IOException e) {
                 Log.e(LOG_TAG, e.getMessage());
                 needFinish = false;
                 unbindService(mConnection);
                 runOnUIThread(new DialogDisplayer(
-                        getString(R.string.fail_reason_io_error) +
-                        ": " + e.getLocalizedMessage()));
+                        getString(R.string.fail_reason_io_error)));
             } finally {
                 mWakeLock.release();
                 mProgressDialogForCacheVCard.dismiss();

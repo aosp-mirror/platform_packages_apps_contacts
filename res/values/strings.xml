@@ -708,6 +708,10 @@
          emitted some I/O error. Exact reason will be appended by the system. -->
     <string name="fail_reason_io_error">I/O Error</string>
 
+    <!-- Failure reason show when Contacts app (especially vCard importer) encountered
+         low memory problem and could not proceed its import procedure. -->
+    <string name="fail_reason_low_memory_during_import">Memory is insufficient (the file may be too large)</string>
+
     <!-- The failed reason shown when vCard parser was not able to be parsed by the current vCard
          implementation. This might happen even when the input vCard is completely valid, though
          we believe it is rather rare in the actual world. -->
