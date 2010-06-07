@@ -368,14 +368,16 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
                     offset--;
                 }
                 if (offset == -1) {
-                    return -1;
+                    return 0;
                 }
                 if (mPartitions[i].idColumnIndex == -1) {
-                    return -1;
+                    return 0;
                 }
 
                 Cursor cursor = mPartitions[i].cursor;
-                cursor.moveToPosition(offset);
+                if (cursor == null || cursor.isClosed() || !cursor.moveToPosition(offset)) {
+                    return 0;
+                }
                 return cursor.getLong(mPartitions[i].idColumnIndex);
             }
             start = end;
