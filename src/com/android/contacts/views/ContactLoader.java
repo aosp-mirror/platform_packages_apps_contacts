@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.detail;
+package com.android.contacts.views;
 
 import com.android.contacts.util.DataStatus;
 
@@ -43,7 +43,7 @@ import java.util.List;
 /**
  * Loads a single Contact and all it constituent RawContacts.
  */
-public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
+public class ContactLoader extends Loader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
     private Uri mLookupUri;
@@ -51,7 +51,7 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
 
-    public interface Callbacks {
+    public interface Listener {
         public void onContactLoaded(Result contact);
     }
 
@@ -237,7 +237,7 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
         protected Result doInBackground(Void... args) {
             try {
                 final ContentResolver resolver = getContext().getContentResolver();
-                final Uri uriCurrentFormat = convertLegacyIfNecessary(mLookupUri);
+                final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
                 Result result = loadContactHeaderData(resolver, uriCurrentFormat);
                 if (result == Result.NOT_FOUND) {
                     // No record found. Try to lookup up a new record with the same lookupKey.
@@ -258,6 +258,7 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
 
                 return result;
             } catch (Exception e) {
+                Log.w(TAG, "Error loading the contact: " + e.getMessage());
                 return Result.ERROR;
             }
         }
@@ -265,15 +266,30 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
         /**
          * Transforms the given Uri and returns a Lookup-Uri that represents the contact.
          * For legacy contacts, a raw-contact lookup is performed.
+         * @param resolver
          */
-        private Uri convertLegacyIfNecessary(Uri uri) {
+        private Uri ensureIsContactUri(final ContentResolver resolver, final Uri uri) {
             if (uri == null) throw new IllegalArgumentException("uri must not be null");
 
             final String authority = uri.getAuthority();
 
-            // Current Style Uri? Just return it
+            // Current Style Uri?
             if (ContactsContract.AUTHORITY.equals(authority)) {
-                return uri;
+                final String type = resolver.getType(uri);
+                // Contact-Uri? Good, return it
+                if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
+                    return uri;
+                }
+
+                // RawContact-Uri? Transform it to ContactUri
+                if (RawContacts.CONTENT_ITEM_TYPE.equals(type)) {
+                    final long rawContactId = ContentUris.parseId(uri);
+                    return RawContacts.getContactLookupUri(getContext().getContentResolver(),
+                            ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
+                }
+
+                // Anything else? We don't know what this is
+                throw new IllegalArgumentException("uri format is unknown");
             }
 
             // Legacy Style? Convert to RawContact
@@ -281,11 +297,11 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
             if (OBSOLETE_AUTHORITY.equals(authority)) {
                 // Legacy Format. Convert to RawContact-Uri and then lookup the contact
                 final long rawContactId = ContentUris.parseId(uri);
-                return RawContacts.getContactLookupUri(getContext().getContentResolver(),
+                return RawContacts.getContactLookupUri(resolver,
                         ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
             }
 
-            throw new IllegalArgumentException("uri format is unknown");
+            throw new IllegalArgumentException("uri authority is unknown");
         }
 
         /**
@@ -440,6 +456,7 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
             }
 
             mContact = result;
+            mLookupUri = result.getLookupUri();
             if (result != null) {
                 if (mObserver == null) {
                     mObserver = new ForceLoadContentObserver();
@@ -455,7 +472,7 @@ public class ContactDetailLoader extends Loader<ContactDetailLoader.Result> {
         }
     }
 
-    public ContactDetailLoader(Context context, Uri lookupUri) {
+    public ContactLoader(Context context, Uri lookupUri) {
         super(context);
         mLookupUri = lookupUri;
     }

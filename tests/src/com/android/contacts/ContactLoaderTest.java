@@ -18,7 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
-import com.android.contacts.views.detail.ContactDetailLoader;
+import com.android.contacts.views.ContactLoader;
 
 import android.content.ContentUris;
 import android.content.Loader;
@@ -39,14 +39,13 @@ import android.provider.ContactsContract.RawContacts.Data;
 import android.provider.ContactsContract.RawContacts.Entity;
 import android.test.AndroidTestCase;
 import android.test.AssertionFailedError;
-import android.test.suitebuilder.annotation.Suppress;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * Runs ContactLoader tests for the the contact-detail view.
+ * Runs ContactLoader tests for the the contact-detail and editor view.
  */
-public class ContactDetailLoaderTest extends AndroidTestCase {
+public class ContactLoaderTest extends AndroidTestCase {
     private ContactsMockContext mMockContext;
     private MockContentProvider mContactsProvider;
 
@@ -144,24 +143,24 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         return result;
     }
 
-    private ContactDetailLoader.Result assertLoadContact(Uri uri) {
-        final ContactDetailLoader loader = new ContactDetailLoader(mMockContext, uri);
+    private ContactLoader.Result assertLoadContact(Uri uri) {
+        final ContactLoader loader = new ContactLoader(mMockContext, uri);
         return getLoaderResultSynchronously(loader);
     }
 
     public void testNullUri() {
-        ContactDetailLoader.Result result = assertLoadContact(null);
-        assertEquals(ContactDetailLoader.Result.ERROR, result);
+        ContactLoader.Result result = assertLoadContact(null);
+        assertEquals(ContactLoader.Result.ERROR, result);
     }
 
     public void testEmptyUri() {
-        ContactDetailLoader.Result result = assertLoadContact(Uri.EMPTY);
-        assertEquals(ContactDetailLoader.Result.ERROR, result);
+        ContactLoader.Result result = assertLoadContact(Uri.EMPTY);
+        assertEquals(ContactLoader.Result.ERROR, result);
     }
 
     public void testInvalidUri() {
-        ContactDetailLoader.Result result = assertLoadContact(Uri.parse("content://wtf"));
-        assertEquals(ContactDetailLoader.Result.ERROR, result);
+        ContactLoader.Result result = assertLoadContact(Uri.parse("content://wtf"));
+        assertEquals(ContactLoader.Result.ERROR, result);
     }
 
     public void testLoadContactWithContactIdUri() {
@@ -178,12 +177,13 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(baseUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchLookupAndId(baseUri, contactId, encodedLookup);
         queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(baseUri);
+        ContactLoader.Result contact = assertLoadContact(baseUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -217,7 +217,40 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(legacyUri);
+        ContactLoader.Result contact = assertLoadContact(legacyUri);
+
+        assertEquals(contactId, contact.getId());
+        assertEquals(rawContactId, contact.getNameRawContactId());
+        assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
+        assertEquals(encodedLookup, contact.getLookupKey());
+        assertEquals(lookupUri, contact.getLookupUri());
+        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getStatuses().size());
+        mContactsProvider.verify();
+    }
+
+    public void testLoadContactWithRawContactIdUri() {
+        // Use content Uris that only contain the ID but use the format used in Donut
+        final long contactId = 1;
+        final long rawContactId = 11;
+        final long dataId = 21;
+
+        final String encodedLookup = Uri.encode("aa%12%@!");
+        final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
+        final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+        final Uri lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, encodedLookup),
+                contactId);
+        final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
+
+        ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(rawContactUri, RawContacts.CONTENT_ITEM_TYPE);
+        queries.fetchContactIdAndLookupFromRawContactUri(rawContactUri, contactId, encodedLookup);
+        queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
+        queries.fetchSocial(dataUri, contactId);
+        queries.fetchRawContacts(contactId, dataId, rawContactId);
+
+        ContactLoader.Result contact = assertLoadContact(rawContactUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -243,12 +276,13 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(lookupNoIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchLookupAndId(lookupNoIdUri, contactId, encodedLookup);
         queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(lookupNoIdUri);
+        ContactLoader.Result contact = assertLoadContact(lookupNoIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -274,11 +308,12 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(lookupUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(lookupUri);
+        ContactLoader.Result contact = assertLoadContact(lookupUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -314,13 +349,14 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(lookupWithWrongIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchHeaderData(wrongBaseUri, wrongRawContactId, wrongEncodedLookup);
         queries.fetchLookupAndId(lookupWithWrongIdUri, contactId, encodedLookup);
         queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -345,7 +381,6 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final long dataId = 21;
 
         final String encodedLookup = Uri.encode("aa%12%@!");
-        final String wrongEncodedLookup = Uri.encode("ab%12%@!");
         final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
         final Uri wrongBaseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, wrongContactId);
         final Uri lookupUri = ContentUris.withAppendedId(
@@ -357,13 +392,14 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(lookupWithWrongIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchHeaderDataNoResult(wrongBaseUri);
         queries.fetchLookupAndId(lookupWithWrongIdUri, contactId, encodedLookup);
         queries.fetchHeaderData(baseUri, rawContactId, encodedLookup);
         queries.fetchSocial(dataUri, contactId);
         queries.fetchRawContacts(contactId, dataId, rawContactId);
 
-        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
@@ -389,7 +425,6 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final long dataId = 21;
 
         final String encodedLookup = Uri.encode("aa%12%@!");
-        final String wrongEncodedLookup = Uri.encode("ab%12%@!");
         final Uri baseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
         final Uri wrongBaseUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, wrongContactId);
         final Uri lookupUri = ContentUris.withAppendedId(
@@ -401,12 +436,13 @@ public class ContactDetailLoaderTest extends AndroidTestCase {
         final Uri dataUri = Uri.withAppendedPath(baseUri, Contacts.Data.CONTENT_DIRECTORY);
 
         ContactQueries queries = new ContactQueries();
+        mContactsProvider.expectTypeQuery(lookupWithWrongIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchHeaderDataNoResult(wrongBaseUri);
         queries.fetchLookupAndIdNoResult(lookupWithWrongIdUri);
 
-        ContactDetailLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
 
-        assertEquals(ContactDetailLoader.Result.NOT_FOUND, contact);
+        assertEquals(ContactLoader.Result.NOT_FOUND, contact);
 
         mContactsProvider.verify();
     }

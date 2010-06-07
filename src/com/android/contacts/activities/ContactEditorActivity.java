@@ -18,30 +18,28 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.views.detail.ContactDetailFragment;
+import com.android.contacts.views.editor.ContactEditorFragment;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ContactDetailActivity extends Activity {
-    private static final String TAG = "ContactDetailActivity";
+public class ContactEditorActivity extends Activity {
+    private static final String TAG = "ContactEditorActivity";
 
-    private ContactDetailFragment mFragment;
+    private ContactEditorFragment mFragment;
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        setContentView(R.layout.contact_detail_activity);
+        setContentView(R.layout.contact_editor_activity);
 
-        mFragment = (ContactDetailFragment) findFragmentById(R.id.contact_detail_fragment);
+        mFragment = (ContactEditorFragment) findFragmentById(R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
         mFragment.loadUri(getIntent().getData());
 
@@ -101,22 +99,16 @@ public class ContactDetailActivity extends Activity {
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO: This is too hardwired.
-        if (mFragment.onKeyDown(keyCode, event)) return true;
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private final ContactDetailFragment.Listener mFragmentListener =
-            new ContactDetailFragment.Listener() {
+    private final ContactEditorFragment.Listener mFragmentListener =
+            new ContactEditorFragment.Listener() {
         public void onContactNotFound() {
+            // TODO: Show error
             finish();
         }
 
-        public void onEditRequested(Uri rawContactUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
+        public void onError() {
+            // TODO: Show error message
+            finish();
         }
 
         public void onItemClicked(Intent intent) {

@@ -107,6 +107,8 @@ public class FallbackSource extends ContactsSource {
         if (kind == null) {
             kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                     R.string.nameLabelsGroup, -1, -1, true));
+            kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+            kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {

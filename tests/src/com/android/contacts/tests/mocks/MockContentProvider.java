@@ -33,6 +33,7 @@ import junit.framework.Assert;
  * A programmable mock content provider.
  */
 public class MockContentProvider extends ContentProvider {
+    private static final String TAG = "MockContentProvider";
 
     public static class Query {
 
@@ -134,7 +135,35 @@ public class MockContentProvider extends ContentProvider {
         }
     }
 
+    public static class TypeQuery {
+        private final Uri mUri;
+        private final String mType;
+
+        public TypeQuery(Uri uri, String type) {
+            mUri = uri;
+            mType = type;
+        }
+
+        public Uri getUri() {
+            return mUri;
+        }
+
+        public String getType() {
+            return mType;
+        }
+
+        @Override
+        public String toString() {
+            return mUri + " --> " + mType;
+        }
+
+        public boolean equals(Uri uri) {
+            return getUri().equals(uri);
+        }
+    }
+
     private LinkedList<Query> mExpectedQueries = new LinkedList<Query>();
+    private LinkedList<TypeQuery> mExpectedTypeQueries = new LinkedList<TypeQuery>();
 
     @Override
     public boolean onCreate() {
@@ -145,6 +174,11 @@ public class MockContentProvider extends ContentProvider {
         Query query = new Query(contentUri);
         mExpectedQueries.offer(query);
         return query;
+    }
+
+    public void expectTypeQuery(Uri uri, String type) {
+        TypeQuery result = new TypeQuery(uri, type);
+        mExpectedTypeQueries.offer(result);
     }
 
     @Override
@@ -171,7 +205,16 @@ public class MockContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        throw new UnsupportedOperationException();
+        if (mExpectedTypeQueries.isEmpty()) {
+            Assert.fail("Unexpected getType query: " + uri);
+        }
+
+        TypeQuery query = mExpectedTypeQueries.remove();
+        if (!query.equals(uri)) {
+            Assert.fail("Incorrect query.\n    Expected: " + query + "\n      Actual: " + uri);
+        }
+
+        return query.getType();
     }
 
     @Override
@@ -210,5 +253,7 @@ public class MockContentProvider extends ContentProvider {
     public void verify() {
         Assert.assertTrue("Not all expected queries have been called: " +
                 mExpectedQueries, mExpectedQueries.isEmpty());
+        Assert.assertTrue("Not all expected getType-queries have been called: " +
+                mExpectedQueries, mExpectedTypeQueries.isEmpty());
     }
 }

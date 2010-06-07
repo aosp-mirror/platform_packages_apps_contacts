@@ -34,8 +34,8 @@ public class TwoPaneActivity extends Activity {
     private final static String TAG = "TwoPaneActivity";
     private DefaultContactBrowseListFragment mListFragment;
     private ContactDetailFragment mDetailFragment;
-    private DetailCallbackHandler mDetailCallbackHandler = new DetailCallbackHandler();
-    private ListCallbackHandler mListCallbackHandler = new ListCallbackHandler();
+    private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
+    private ListFragmentListener mListFragmentListener = new ListFragmentListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,10 @@ public class TwoPaneActivity extends Activity {
         setContentView(R.layout.two_pane_activity);
 
         mListFragment = (DefaultContactBrowseListFragment) findFragmentById(R.id.two_pane_list);
-        mListFragment.setOnContactListActionListener(mListCallbackHandler);
+        mListFragment.setOnContactListActionListener(mListFragmentListener);
 
         mDetailFragment = (ContactDetailFragment) findFragmentById(R.id.two_pane_detail);
-        mDetailFragment.setCallbacks(mDetailCallbackHandler);
+        mDetailFragment.setListener(mDetailFragmentListener);
 
         setupSearchUI();
     }
@@ -65,7 +65,7 @@ public class TwoPaneActivity extends Activity {
         });
     }
 
-    private class ListCallbackHandler implements OnContactBrowserActionListener {
+    private class ListFragmentListener implements OnContactBrowserActionListener {
         public void onAddToFavoritesAction(Uri contactUri) {
             Toast.makeText(TwoPaneActivity.this, "onAddToFavoritesAction",
                     Toast.LENGTH_LONG).show();
@@ -116,19 +116,24 @@ public class TwoPaneActivity extends Activity {
         }
     }
 
-    private class DetailCallbackHandler implements ContactDetailFragment.Callbacks {
-        public void closeBecauseContactNotFound() {
-            Toast.makeText(TwoPaneActivity.this, "closeBecauseContactNotFound",
-                    Toast.LENGTH_LONG).show();
+    private class DetailFragmentListener implements ContactDetailFragment.Listener {
+        public void onContactNotFound() {
+            Toast.makeText(TwoPaneActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
         }
 
-        public void editContact(Uri rawContactUri) {
-            Toast.makeText(TwoPaneActivity.this, "editContact",
-                    Toast.LENGTH_LONG).show();
+        public void onEditRequested(Uri contactLookupUri) {
+//          final ContactEditFragment fragment = new ContactEditFragment();
+//          openFragmentTransaction().replace(mDetailFragment.getView().getId(), fragment).commit();
+//          fragment.loadUri(contactLookupUri);
+            Toast.makeText(TwoPaneActivity.this, "editContact", Toast.LENGTH_LONG).show();
         }
 
-        public void itemClicked(Intent intent) {
+        public void onItemClicked(Intent intent) {
             startActivity(intent);
+        }
+
+        public void onDialogRequested(int id, Bundle bundle) {
+            showDialog(id, bundle);
         }
     }
 }

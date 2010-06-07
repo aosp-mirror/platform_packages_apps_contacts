@@ -17,7 +17,6 @@
 package com.android.contacts.views.detail;
 
 import com.android.contacts.Collapser;
-import com.android.contacts.ContactEntryAdapter;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
@@ -29,8 +28,8 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.views.ContactLoader;
 import com.android.internal.telephony.ITelephony;
-import com.android.internal.widget.ContactHeaderWidget;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -65,6 +64,7 @@ import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.telephony.PhoneNumberUtils;
@@ -82,6 +82,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -90,10 +91,9 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailLoader.Result>
+public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.Result>
         implements OnCreateContextMenuListener, OnItemClickListener {
-    private static final String TAG = "ContactDetailsView";
-    private static final boolean SHOW_SEPARATORS = false;
+    private static final String TAG = "ContactDetailFragment";
 
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
 
@@ -101,10 +101,10 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
     private Context mContext;
     private Uri mLookupUri;
-    private Callbacks mCallbacks;
+    private Listener mListener;
 
-    private ContactDetailLoader.Result mContactData;
-    private ContactHeaderWidget mContactHeaderWidget;
+    private ContactLoader.Result mContactData;
+    private ContactDetailHeaderView mHeaderView;
     private ListView mListView;
     private boolean mShowSmsLinksForAllPhones;
     private ViewAdapter mAdapter;
@@ -137,6 +137,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     private ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
+    private LayoutInflater mInflater;
 
     public ContactDetailFragment() {
         // Explicit constructor for inflation
@@ -162,13 +163,16 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        final View view = inflater.inflate(R.layout.contact_detail, container, false);
+        final View view = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
-        mContactHeaderWidget = (ContactHeaderWidget) view.findViewById(R.id.contact_header_widget);
-        mContactHeaderWidget.showStar(true);
-        mContactHeaderWidget.setExcludeMimes(new String[] {
+        mInflater = inflater;
+
+        mHeaderView = (ContactDetailHeaderView) view.findViewById(R.id.contact_header_widget);
+        mHeaderView.showStar(true);
+        mHeaderView.setExcludeMimes(new String[] {
             Contacts.CONTENT_ITEM_TYPE
         });
+        mHeaderView.setListener(mHeaderViewListener);
 
         mListView = (ListView) view.findViewById(android.R.id.list);
         mListView.setOnCreateContextMenuListener(this);
@@ -183,25 +187,24 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         return view;
     }
 
-    public void setCallbacks(Callbacks value) {
-        mCallbacks = value;
+    public void setListener(Listener value) {
+        mListener = value;
     }
 
     public void loadUri(Uri lookupUri) {
         mLookupUri = lookupUri;
-        super.startLoading(LOADER_DETAILS, null);
+        startLoading(LOADER_DETAILS, null);
     }
 
     @Override
     protected void onInitializeLoaders() {
-//        startLoading(LOADER_DETAILS, null);
     }
 
     @Override
-    protected Loader<ContactDetailLoader.Result> onCreateLoader(int id, Bundle args) {
+    protected Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case LOADER_DETAILS: {
-                return new ContactDetailLoader(mContext, mLookupUri);
+                return new ContactLoader(mContext, mLookupUri);
             }
             default: {
                 Log.wtf(TAG, "Unknown ID in onCreateLoader: " + id);
@@ -211,15 +214,15 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     }
 
     @Override
-    protected void onLoadFinished(Loader<ContactDetailLoader.Result> loader,
-            ContactDetailLoader.Result data) {
+    protected void onLoadFinished(Loader<ContactLoader.Result> loader,
+            ContactLoader.Result data) {
         final int id = loader.getId();
         switch (id) {
             case LOADER_DETAILS:
-                if (data == ContactDetailLoader.Result.NOT_FOUND) {
+                if (data == ContactLoader.Result.NOT_FOUND) {
                     // Item has been deleted
                     Log.i(TAG, "No contact found. Closing activity");
-                    mCallbacks.closeBecauseContactNotFound();
+                    mListener.onContactNotFound();
                     return;
                 }
                 mContactData = data;
@@ -233,13 +236,13 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
     private void bindData() {
         // Set the header
-        mContactHeaderWidget.setContactUri(mContactData.getLookupUri());
-        mContactHeaderWidget.setDisplayName(mContactData.getDisplayName(),
+        mHeaderView.setContactUri(mContactData.getLookupUri());
+        mHeaderView.setDisplayName(mContactData.getDisplayName(),
                 mContactData.getPhoneticName());
-        mContactHeaderWidget.setPhotoId(mContactData.getPhotoId(), mContactData.getLookupUri());
-        mContactHeaderWidget.setStared(mContactData.getStarred());
-        mContactHeaderWidget.setPresence(mContactData.getPresence());
-        mContactHeaderWidget.setStatus(
+        mHeaderView.setPhotoId(mContactData.getPhotoId(), mContactData.getLookupUri());
+        mHeaderView.setStared(mContactData.getStarred());
+        mHeaderView.setPresence(mContactData.getPresence());
+        mHeaderView.setStatus(
                 mContactData.getStatus(), mContactData.getStatusTimestamp(),
                 mContactData.getStatusLabel(), mContactData.getStatusResPackage());
 
@@ -254,10 +257,10 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         Collapser.collapseList(mImEntries);
 
         if (mAdapter == null) {
-            mAdapter = new ViewAdapter(mContext, mSections);
+            mAdapter = new ViewAdapter();
             mListView.setAdapter(mAdapter);
         } else {
-            mAdapter.setSections(mSections, SHOW_SEPARATORS);
+            mAdapter.notifyDataSetChanged();
         }
         mListView.setEmptyView(mEmptyView);
     }
@@ -282,6 +285,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
         mWritableRawContactIds.clear();
 
+        // TODO: This should be done in the background thread
         final Sources sources = Sources.getInstance(mContext);
 
         // Build up method entries
@@ -330,7 +334,9 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
                 final boolean isSuperPrimary = entryValues.getAsInteger(
                         Data.IS_SUPER_PRIMARY) != 0;
 
-                if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    // Always ignore the name. It is shown in the header if set
+                } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build phone entries
                     mNumPhoneNumbers++;
 
@@ -460,7 +466,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         }
     }
 
-    /* package */ static String buildActionString(DataKind kind, ContentValues values,
+    private static String buildActionString(DataKind kind, ContentValues values,
             boolean lowerCase, Context context) {
         if (kind.actionHeader == null) {
             return null;
@@ -472,7 +478,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
     }
 
-    /* package */ static String buildDataString(DataKind kind, ContentValues values,
+    private static String buildDataString(DataKind kind, ContentValues values,
             Context context) {
         if (kind.actionBody == null) {
             return null;
@@ -484,7 +490,16 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     /**
      * A basic structure with the data for a contact entry in the list.
      */
-    static class ViewEntry extends ContactEntryAdapter.Entry implements Collapsible<ViewEntry> {
+    private static class ViewEntry implements Collapsible<ViewEntry> {
+        // Copied from baseclass
+        public int type = -1;
+        public String label;
+        public String data;
+        public Uri uri;
+        public long id = 0;
+        public int maxLines = 1;
+        public String mimetype;
+
         public Context context = null;
         public String resPackageName = null;
         public int actionIcon = -1;
@@ -510,7 +525,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
                 long rawContactId, long dataId, ContentValues values) {
             final ViewEntry entry = new ViewEntry();
             entry.context = context;
-            entry.contactId = rawContactId;
             entry.id = dataId;
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             entry.mimetype = mimeType;
@@ -610,19 +624,11 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         public ImageView primaryIcon;
         public ImageView secondaryActionButton;
         public View secondaryActionDivider;
-
-        // Need to keep track of this too
-        public ViewEntry entry;
     }
 
-    final class ViewAdapter extends ContactEntryAdapter<ViewEntry> implements OnClickListener {
-        ViewAdapter(Context context, ArrayList<ArrayList<ViewEntry>> sections) {
-            super(context, sections, SHOW_SEPARATORS);
-        }
-
-        @Override
+    private final class ViewAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
-            final ViewEntry entry = getEntry(mSections, position, false);
+            final ViewEntry entry = getEntry(position);
             final View v;
             final ViewCache viewCache;
 
@@ -644,26 +650,16 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
                 viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
                 viewCache.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
-                viewCache.secondaryActionButton.setOnClickListener(this);
+                viewCache.secondaryActionButton.setOnClickListener(mSecondaryActionClickListener);
                 viewCache.secondaryActionDivider = v.findViewById(R.id.divider);
                 v.setTag(viewCache);
             }
-
-            // Update the entry in the view cache
-            viewCache.entry = entry;
 
             // Bind the data to the view
             bindView(v, entry);
             return v;
         }
 
-        @Override
-        protected View newView(int position, ViewGroup parent) {
-            // getView() handles this
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
         protected void bindView(View view, ViewEntry entry) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
@@ -697,7 +693,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             views.primaryIcon.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
 
             // Set the action icon
-            ImageView action = views.actionIcon;
+            final ImageView action = views.actionIcon;
             if (entry.actionIcon != -1) {
                 Drawable actionIcon;
                 if (entry.resPackageName != null) {
@@ -715,9 +711,9 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             }
 
             // Set the presence icon
-            Drawable presenceIcon = ContactPresenceIconUtil.getPresenceIcon(
+            final Drawable presenceIcon = ContactPresenceIconUtil.getPresenceIcon(
                     mContext, entry.presence);
-            ImageView presenceIconView = views.presenceIcon;
+            final ImageView presenceIconView = views.presenceIcon;
             if (presenceIcon != null) {
                 presenceIconView.setImageDrawable(presenceIcon);
                 presenceIconView.setVisibility(View.VISIBLE);
@@ -726,7 +722,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             }
 
             // Set the secondary action button
-            ImageView secondaryActionView = views.secondaryActionButton;
+            final ImageView secondaryActionView = views.secondaryActionButton;
             Drawable secondaryActionIcon = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
@@ -753,14 +749,52 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             }
         }
 
-        public void onClick(View v) {
-            if (mCallbacks == null) return;
-            if (v == null) return;
-            final ViewEntry entry = (ViewEntry) v.getTag();
-            if (entry == null) return;
-            final Intent intent = entry.secondaryIntent;
-            if (intent == null) return;
-            mCallbacks.itemClicked(intent);
+        private OnClickListener mSecondaryActionClickListener = new OnClickListener() {
+            public void onClick(View v) {
+                if (mListener == null) return;
+                if (v == null) return;
+                final ViewEntry entry = (ViewEntry) v.getTag();
+                if (entry == null) return;
+                final Intent intent = entry.secondaryIntent;
+                if (intent == null) return;
+                mListener.onItemClicked(intent);
+            }
+        };
+
+        public int getCount() {
+            int count = 0;
+            final int numSections = mSections.size();
+            for (int i = 0; i < numSections; i++) {
+                final ArrayList<ViewEntry> section = mSections.get(i);
+                count += section.size();
+            }
+            return count;
+        }
+
+        public Object getItem(int position) {
+            return getEntry(position);
+        }
+
+        public long getItemId(int position) {
+            final ViewEntry entry = getEntry(position);
+            if (entry != null) {
+                return entry.id;
+            } else {
+                return -1;
+            }
+        }
+
+        private ViewEntry getEntry(int position) {
+            final int numSections = mSections.size();
+            for (int i = 0; i < numSections; i++) {
+                final ArrayList<ViewEntry> section = mSections.get(i);
+                final int sectionSize = section.size();
+                if (position < sectionSize) {
+                    return section.get(position);
+                }
+                position -= sectionSize;
+            }
+            return null;
         }
     }
 
@@ -783,16 +817,8 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
-                if (mRawContactIds.size() > 0) {
-                    final long rawContactIdToEdit = mRawContactIds.get(0);
-                    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                            rawContactIdToEdit);
-                    mCallbacks.editContact(rawContactUri);
-                    return true;
-                } else {
-                    // There is no rawContact to edit.
-                    return false;
-                }
+                mListener.onEditRequested(mLookupUri);
+                break;
             }
             case R.id.menu_delete: {
                 showDeleteConfirmationDialog();
@@ -830,15 +856,17 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     }
 
     private void showDeleteConfirmationDialog() {
+        final int id;
         if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
-            getActivity().showDialog(R.id.detail_dialog_confirm_readonly_delete);
+            id = R.id.detail_dialog_confirm_readonly_delete;
         } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-            getActivity().showDialog(R.id.detail_dialog_confirm_readonly_hide);
+            id = R.id.detail_dialog_confirm_readonly_hide;
         } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-            getActivity().showDialog(R.id.detail_dialog_confirm_multiple_delete);
+            id = R.id.detail_dialog_confirm_multiple_delete;
         } else {
-            getActivity().showDialog(R.id.detail_dialog_confirm_delete);
+            id = R.id.detail_dialog_confirm_delete;
         }
+        if (mListener != null) mListener.onDialogRequested(id, null);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -856,7 +884,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             return;
         }
 
-        ViewEntry entry = ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        final ViewEntry entry = mAdapter.getEntry(info.position);
         menu.setHeaderTitle(R.string.contactOptionsTitle);
         if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
@@ -875,12 +903,12 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mCallbacks == null) return;
-        final ViewEntry entry = ViewAdapter.getEntry(mSections, position, SHOW_SEPARATORS);
+        if (mListener == null) return;
+        final ViewEntry entry = mAdapter.getEntry(position);
         if (entry == null) return;
         final Intent intent = entry.intent;
         if (intent == null) return;
-        mCallbacks.itemClicked(intent);
+        mListener.onItemClicked(intent);
     }
 
     private final DialogInterface.OnClickListener mDeleteListener =
@@ -969,7 +997,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
             return null;
         }
 
-        return ContactEntryAdapter.getEntry(mSections, info.position, SHOW_SEPARATORS);
+        return mAdapter.getEntry(info.position);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -988,7 +1016,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
 
                 int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
-                    final ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
+                    final ViewEntry entry = mAdapter.getEntry(index);
                     if (entry != null &&
                             entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         mContext.startActivity(entry.intent);
@@ -1013,20 +1041,39 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactDetailL
         return false;
     }
 
-    public static interface Callbacks {
+    private ContactDetailHeaderView.Listener mHeaderViewListener =
+            new ContactDetailHeaderView.Listener() {
+        public void onDisplayNameClick(View view) {
+        }
+
+        public void onEditClicked() {
+            if (mListener != null) mListener.onEditRequested(mLookupUri);
+        }
+
+        public void onPhotoClick(View view) {
+        }
+    };
+
+
+    public static interface Listener {
         /**
          * Contact was not found, so somehow close this fragment.
          */
-        public void closeBecauseContactNotFound();
+        public void onContactNotFound();
 
         /**
          * User decided to go to Edit-Mode
          */
-        public void editContact(Uri rawContactUri);
+        public void onEditRequested(Uri lookupUri);
 
         /**
          * User clicked a single item (e.g. mail)
          */
-        public void itemClicked(Intent intent);
+        public void onItemClicked(Intent intent);
+
+        /**
+         * Show a dialog using the globally unique id
+         */
+        public void onDialogRequested(int id, Bundle bundle);
     }
 }

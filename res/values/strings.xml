@@ -64,6 +64,12 @@
          editing a contact. This string represents the built in way to edit the contact. -->
     <string name="editContactDescription">Edit contact</string>
 
+    <!-- The caption in the edit-email screen -->
+    <string name="edit_email_caption">Email address:</string>
+
+    <!-- The caption of the custom type -->
+    <string name="edit_email_type_caption">Type:</string>
+
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
@@ -1091,6 +1097,9 @@
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format">from <xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
+    <!-- String describing both account type and account name -->
+    <string name="account_type_and_name"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact from <xliff:g id="source" example="user@gmail.com">%2$s</xliff:g></string>
+
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>
 
@@ -1184,4 +1193,38 @@
 
     <!-- The add field button shown in the editor under each editable Raw Contact -->
     <string name="add_field">Add information</string>
+
+    <!-- Attbution of a contact status update, when the time of update is unknown -->
+    <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
+
+    <!-- Attbution of a contact status update, when the time of update is known -->
+    <string name="contact_status_update_attribution_with_date"><xliff:g id="date" example="3 hours ago">%1$s</xliff:g> via <xliff:g id="source" example="Google Talk">%2$s</xliff:g></string>
+
+    <!-- String describing the Edit push button
+
+         Used by AccessibilityService to announce the purpose of the view.
+    -->
+    <string name="description_edit">edit</string>
+
+    <!-- String describing the Star/Favorite checkbox
+
+         Used by AccessibilityService to announce the purpose of the view.
+    -->
+    <string name="description_star">favorite</string>
+
+    <!-- The title of the Edit-Contact screen -->
+    <string name="edit_contact">Edit contact</string>
+
+    <!-- Shows how many contacts have been merged. The value 1 is not shown but should be translated
+         anyway if we change our mind later -->
+    <plurals name="merge_info">
+        <item quantity="one">not merged</item>
+        <item quantity="other">merged from <xliff:g id="count">%0$d</xliff:g> sources</item>
+    </plurals>
+
+    <!-- Command to delete a RawContact (a Fragment of a Contact) -->
+    <string name="edit_delete_rawcontact">Delete</string>
+
+    <!-- Shown in a Toast to indicate an error while trying to save the Data -->
+    <string name="edit_error_saving"></string>
 </resources>
