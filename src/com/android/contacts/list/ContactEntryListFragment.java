@@ -196,22 +196,23 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             try {
                 while (data.moveToNext()) {
                     DirectoryPartition partition = new DirectoryPartition();
-                    partition.directoryId = data.getLong(DirectoryQuery.ID);
+                    partition.setDirectoryId(data.getLong(DirectoryQuery.ID));
                     String packageName = data.getString(DirectoryQuery.PACKAGE_NAME);
                     int typeResourceId = data.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
                     if (!TextUtils.isEmpty(packageName) && typeResourceId != 0) {
                         // TODO: should this be done on a background thread?
                         try {
-                            partition.directoryType = pm.getResourcesForApplication(packageName)
-                                    .getString(typeResourceId);
+                            partition.setDirectoryType(pm.getResourcesForApplication(packageName)
+                                    .getString(typeResourceId));
                         } catch (Exception e) {
                             Log.e(TAG, "Cannot obtain directory type from package: " + packageName);
                         }
                     }
-                    partition.displayName = data.getString(DirectoryQuery.DISPLAY_NAME);
+                    partition.setDisplayName(data.getString(DirectoryQuery.DISPLAY_NAME));
 
                     // TODO obtain the "showIfEmpty" from directory meta-data
-                    partition.showIfEmpty = partition.directoryId != Directory.LOCAL_INVISIBLE;
+                    partition.setShowIfEmpty(
+                            partition.getDirectoryId() != Directory.LOCAL_INVISIBLE);
 
                     String directoryType = null;
 
@@ -225,7 +226,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             int size = mDirectoryPartitions.size();
             for (int i = 0; i < size; i++) {
                 DirectoryPartition partition = mDirectoryPartitions.get(i);
-                partition.partitionIndex = i;
+                partition.setPartitionIndex(i);
                 mAdapter.addDirectoryPartition(partition);
             }
 
@@ -248,7 +249,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     protected void loadPartitions() {
         for (DirectoryPartition partition : mDirectoryPartitions) {
-            CursorLoader loader = (CursorLoader)getLoader(partition.partitionIndex);
+            CursorLoader loader = (CursorLoader)getLoader(partition.getPartitionIndex());
             if (loader != null) {
                 loader.cancelLoad();
             }
@@ -259,8 +260,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             startLoading(DIRECTORY_LOADER_ID, null);
         } else {
             DirectoryPartition directoryPartition = new DirectoryPartition();
-            directoryPartition.directoryId = Directory.DEFAULT;
-            directoryPartition.partitionIndex = 0;
+            directoryPartition.setDirectoryId(Directory.DEFAULT);
+            directoryPartition.setPartitionIndex(0);
             mDirectoryPartitions.add(directoryPartition);
             if (mAdapter != null) {
                 mAdapter.resetPartitions();
@@ -278,13 +279,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         configureAdapter();
 
         for (DirectoryPartition partition : mDirectoryPartitions) {
-            CursorLoader loader = (CursorLoader)getLoader(partition.partitionIndex);
+            CursorLoader loader = (CursorLoader)getLoader(partition.getPartitionIndex());
             if (loader == null) {
                 Bundle args = new Bundle();
-                args.putLong(DIRECTORY_ID_ARG_KEY, partition.directoryId);
-                startLoading(partition.partitionIndex, args);
+                args.putLong(DIRECTORY_ID_ARG_KEY, partition.getDirectoryId());
+                startLoading(partition.getPartitionIndex(), args);
             } else {
-                mAdapter.configureLoader(loader, partition.directoryId);
+                mAdapter.configureLoader(loader, partition.getDirectoryId());
                 if (forceLoad) {
                     loader.forceLoad();
                 }

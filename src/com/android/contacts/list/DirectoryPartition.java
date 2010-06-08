@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import android.database.Cursor;
 import android.provider.ContactsContract.Directory;
 
 /**
@@ -25,27 +26,66 @@ public final class DirectoryPartition {
     /**
      * Directory ID, see {@link Directory}.
      */
-    long directoryId;
+    private long mDirectoryId;
 
     /**
      * Corresponding loader ID.
      */
-    int partitionIndex;
+    private int mPartitionIndex;
 
     /**
      * Directory type resolved from {@link Directory#PACKAGE_NAME} and
      * {@link Directory#TYPE_RESOURCE_ID};
      */
-    public String directoryType;
+    private String mDirectoryType;
 
     /**
      * See {@link Directory#DISPLAY_NAME}.
      */
-    public String displayName;
+    private String mDisplayName;
 
     /**
      * True if the directory should be shown even if no contacts are found.
      */
-    public boolean showIfEmpty;
+    private boolean mShowIfEmpty;
 
+    public long getDirectoryId() {
+        return mDirectoryId;
+    }
+
+    public void setDirectoryId(long directoryId) {
+        this.mDirectoryId = directoryId;
+    }
+
+    public int getPartitionIndex() {
+        return mPartitionIndex;
+    }
+
+    public void setPartitionIndex(int partitionIndex) {
+        this.mPartitionIndex = partitionIndex;
+    }
+
+    public String getDirectoryType() {
+        return mDirectoryType;
+    }
+
+    public void setDirectoryType(String directoryType) {
+        this.mDirectoryType = directoryType;
+    }
+
+    public String getDisplayName() {
+        return mDisplayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.mDisplayName = displayName;
+    }
+
+    public boolean getShowIfEmpty() {
+        return mShowIfEmpty;
+    }
+
+    public void setShowIfEmpty(boolean showIfEmpty) {
+        this.mShowIfEmpty = showIfEmpty;
+    }
 }

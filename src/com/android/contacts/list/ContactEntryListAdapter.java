@@ -81,7 +81,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
         int partitionIndex = getPartitionCount();
         mPartitions.put(partitionIndex, partition);
-        addPartition(partition.showIfEmpty, partition.directoryType != null);
+        addPartition(partition.getShowIfEmpty(), partition.getDirectoryType() != null);
     }
 
     public abstract String getContactDisplayName(int position);
@@ -239,10 +239,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         DirectoryPartition directoryPartition = mPartitions.get(partition);
 
         TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
-        directoryTypeTextView.setText(directoryPartition.directoryType);
+        directoryTypeTextView.setText(directoryPartition.getDirectoryType());
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
-        if (!TextUtils.isEmpty(directoryPartition.displayName)) {
-            displayNameTextView.setText(directoryPartition.displayName);
+        if (!TextUtils.isEmpty(directoryPartition.getDisplayName())) {
+            displayNameTextView.setText(directoryPartition.getDisplayName());
             displayNameTextView.setVisibility(View.VISIBLE);
         } else {
             displayNameTextView.setVisibility(View.GONE);
