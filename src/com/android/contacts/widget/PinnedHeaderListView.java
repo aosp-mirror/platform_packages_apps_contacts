@@ -336,7 +336,7 @@ public class PinnedHeaderListView extends ListView
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (mScrollState == SCROLL_STATE_IDLE) {
             final int y = (int)ev.getY();
             for (int i = mSize; --i >= 0;) {
@@ -351,7 +351,7 @@ public class PinnedHeaderListView extends ListView
             }
         }
 
-        return super.onTouchEvent(ev);
+        return super.onInterceptTouchEvent(ev);
     }
 
     private boolean smoothScrollToPartition(int partition) {
@@ -360,7 +360,8 @@ public class PinnedHeaderListView extends ListView
             return false;
         }
 
-        smoothScrollToSelectionFromTop(position, getTotalTopPinnedHeaderHeight());
+        smoothScrollToSelectionFromTop(position + getHeaderViewsCount(),
+                getTotalTopPinnedHeaderHeight());
         return true;
     }
 

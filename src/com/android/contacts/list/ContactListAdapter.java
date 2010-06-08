@@ -153,19 +153,24 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
-        final int section = getSectionForPosition(position);
-        if (section != -1 && getPositionForSection(section) == position) {
-            String title = (String)getSections()[section];
-            view.setSectionHeader(title);
-        } else {
-            view.setDividerVisible(false);
-            view.setSectionHeader(null);
-        }
+        if (isSectionHeaderDisplayEnabled()) {
+            final int section = getSectionForPosition(position);
+            if (section != -1 && getPositionForSection(section) == position) {
+                String title = (String)getSections()[section];
+                view.setSectionHeader(title);
+            } else {
+                view.setDividerVisible(false);
+                view.setSectionHeader(null);
+            }
 
-        // move the divider for the last item in a section
-        if (getPositionForSection(section + 1) - 1 == position) {
-            view.setDividerVisible(false);
+            // move the divider for the last item in a section
+            if (getPositionForSection(section + 1) - 1 == position) {
+                view.setDividerVisible(false);
+            } else {
+                view.setDividerVisible(true);
+            }
         } else {
+            view.setSectionHeader(null);
             view.setDividerVisible(true);
         }
     }

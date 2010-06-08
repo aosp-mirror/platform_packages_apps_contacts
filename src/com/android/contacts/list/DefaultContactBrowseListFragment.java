@@ -24,6 +24,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 /**
@@ -36,6 +38,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mCreateContactEnabled;
     private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
     private boolean mVisibleContactsRestrictionEnabled = true;
+    private View mHeaderView;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -122,21 +125,32 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
-        if (!isSearchMode() && !isSearchResultsMode()) {
-            // In the search-results mode the count is shown in the fat header above the list
-            getListView().addHeaderView(inflater.inflate(R.layout.total_contacts, null, false));
+
+        // Putting the header view inside a container will allow us to make
+        // it invisible later. See checkHeaderViewVisibility()
+        FrameLayout headerContainer = new FrameLayout(inflater.getContext());
+        mHeaderView = inflater.inflate(R.layout.total_contacts, null, false);
+        headerContainer.addView(mHeaderView);
+        getListView().addHeaderView(headerContainer);
+        checkHeaderViewVisibility();
+    }
+
+    @Override
+    public void setSearchMode(boolean flag) {
+        super.setSearchMode(flag);
+        checkHeaderViewVisibility();
+    }
+
+    private void checkHeaderViewVisibility() {
+        if (mHeaderView != null) {
+            mHeaderView.setVisibility(isSearchMode() ? View.GONE : View.VISIBLE);
         }
     }
 
     @Override
     protected void showCount(int partitionIndex, Cursor data) {
-        int count = data.getCount();
-        if (isSearchResultsMode()) {
-            TextView countText = (TextView)getView().findViewById(R.id.search_results_found);
-            String text = getQuantityText(data.getCount(),
-                    R.string.listFoundAllContactsZero, R.plurals.listFoundAllContacts);
-            countText.setText(text);
-        } else if (!isSearchMode()){
+        if (!isSearchMode()) {
+            int count = data.getCount();
             // TODO
             // if (contactsListActivity.mDisplayOnlyPhones) {
             // text = contactsListActivity.getQuantityText(count,

@@ -164,15 +164,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mProviderStatusLoader = new ProviderStatusLoader(getActivity());
         }
 
-        if (mSearchMode) {
-            startLoading(DIRECTORY_LOADER_ID, null);
-        } else {
-            DirectoryPartition directoryPartition = new DirectoryPartition();
-            directoryPartition.directoryId = Directory.DEFAULT;
-            directoryPartition.partitionIndex = 0;
-            mDirectoryPartitions.add(directoryPartition);
-            startLoading(false);
-        }
+        loadPartitions();
     }
 
     @Override
@@ -254,12 +246,37 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    protected void loadPartitions() {
+        for (DirectoryPartition partition : mDirectoryPartitions) {
+            CursorLoader loader = (CursorLoader)getLoader(partition.partitionIndex);
+            if (loader != null) {
+                loader.cancelLoad();
+            }
+        }
+
+        mDirectoryPartitions.clear();
+        if (mSearchMode) {
+            startLoading(DIRECTORY_LOADER_ID, null);
+        } else {
+            DirectoryPartition directoryPartition = new DirectoryPartition();
+            directoryPartition.directoryId = Directory.DEFAULT;
+            directoryPartition.partitionIndex = 0;
+            mDirectoryPartitions.add(directoryPartition);
+            if (mAdapter != null) {
+                mAdapter.resetPartitions();
+                mAdapter.addDirectoryPartition(directoryPartition);
+            }
+            reloadData();
+        }
+    }
+
     protected void reloadData() {
         startLoading(true);
     }
 
     protected void startLoading(boolean forceLoad) {
         configureAdapter();
+
         for (DirectoryPartition partition : mDirectoryPartitions) {
             CursorLoader loader = (CursorLoader)getLoader(partition.partitionIndex);
             if (loader == null) {
@@ -298,10 +315,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSectionHeaderDisplayEnabled(boolean flag) {
         mSectionHeaderDisplayEnabled = flag;
+        if (mAdapter != null) {
+            mAdapter.setSectionHeaderDisplayEnabled(flag);
+        }
     }
 
     public boolean isSectionHeaderDisplayEnabled() {
-        return mSectionHeaderDisplayEnabled && !mSearchMode;
+        return mSectionHeaderDisplayEnabled;
     }
 
     public void setPhotoLoaderEnabled(boolean flag) {
@@ -314,9 +334,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setSearchMode(boolean flag) {
-        mSearchMode = flag;
-        if (mAdapter != null) {
-            mAdapter.setSearchMode(flag);
+        if (mSearchMode != flag) {
+            mSearchMode = flag;
+            // TODO not always
+            setSectionHeaderDisplayEnabled(!mSearchMode);
+            if (mAdapter != null) {
+                mAdapter.setSearchMode(flag);
+                mAdapter.setPinnedPartitionHeadersEnabled(flag);
+                loadPartitions();
+            }
         }
     }
 
@@ -504,9 +530,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void configureAdapter() {
         if (mAdapter != null) {
             mAdapter.setQueryString(mQueryString);
+            mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
             mAdapter.setContactNameDisplayOrder(mDisplayOrder);
             mAdapter.setSortOrder(mSortOrder);
             mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+            mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
         }
     }
 

@@ -26,7 +26,6 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;
-import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,8 +92,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     public void setSearchMode(boolean flag) {
-        mSearchMode = flag;
-        setPinnedPartitionHeadersEnabled(flag);
+        if (mSearchMode != flag) {
+            mSearchMode = flag;
+
+            // Search mode change may mean a new data type in the list.
+            // Let's drop current data to avoid confusion
+            resetPartitions();
+        }
     }
 
     public boolean isSearchResultsMode() {
@@ -233,6 +237,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     @Override
     protected void bindHeaderView(View view, int partition, Cursor cursor) {
         DirectoryPartition directoryPartition = mPartitions.get(partition);
+
         TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
         directoryTypeTextView.setText(directoryPartition.directoryType);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
