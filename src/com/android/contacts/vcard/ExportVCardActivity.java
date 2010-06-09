@@ -19,12 +19,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -37,6 +46,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -74,6 +85,67 @@ public class ExportVCardActivity extends Activity {
 
     private ActualExportThread mActualExportThread;
 
+    private class CustomConnection implements ServiceConnection {
+        private Messenger mMessenger;
+        private Queue<ExportRequest> mPendingRequests = new LinkedList<ExportRequest>();
+
+        public void doBindService() {
+            bindService(new Intent(ExportVCardActivity.this,
+                    VCardService.class), this, Context.BIND_AUTO_CREATE);
+        }
+
+        public synchronized void requestSend(final ExportRequest parameter) {
+            if (mMessenger != null) {
+                sendMessage(parameter);
+            } else {
+                mPendingRequests.add(parameter);
+            }
+        }
+
+        private void sendMessage(final ExportRequest request) {
+            try {
+                mMessenger.send(Message.obtain(null,
+                        VCardService.MSG_EXPORT_REQUEST,
+                        request));
+            } catch (RemoteException e) {
+                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
+                runOnUiThread(new ErrorReasonDisplayer(
+                        getString(R.string.fail_reason_unknown)));
+            }
+        }
+
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            synchronized (this) {
+                mMessenger = new Messenger(service);
+                // Send pending requests thrown from this Activity before an actual connection
+                // is established.
+                while (!mPendingRequests.isEmpty()) {
+                    final ExportRequest parameter = mPendingRequests.poll();
+                    if (parameter == null) {
+                        throw new NullPointerException();
+                    }
+                    sendMessage(parameter);
+                }
+                unbindService(this);
+            }
+        }
+
+        public void onServiceDisconnected(ComponentName name) {
+            synchronized (this) {
+                if (!mPendingRequests.isEmpty()) {
+                    Log.w(LOG_TAG, "Some request(s) are dropped.");
+                }
+                // Set to null so that we can detect inappropriate re-connection toward
+                // the Service via NullPointerException;
+                mPendingRequests = null;
+                mMessenger = null;
+                finish();
+            }
+        }
+    }
+
+    private final CustomConnection mConnection = new CustomConnection();
+
     private class CancelListener
             implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
         public void onClick(DialogInterface dialog, int which) {
@@ -104,16 +176,24 @@ public class ExportVCardActivity extends Activity {
     }
 
     private class ExportConfirmationListener implements DialogInterface.OnClickListener {
-        private final String mFileName;
+        private final Uri mDestUri;
 
         public ExportConfirmationListener(String fileName) {
-            mFileName = fileName;
+            this(Uri.parse("file://" + fileName));
+        }
+
+        public ExportConfirmationListener(Uri uri) {
+            mDestUri = uri;
         }
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                mActualExportThread = new ActualExportThread(mFileName);
-                showDialog(R.id.dialog_exporting_vcard);
+                mConnection.doBindService();
+
+                final ExportRequest request = new ExportRequest(mDestUri);
+
+                // The connection object will call finish().
+                mConnection.requestSend(request);
             }
         }
     }
@@ -151,9 +231,11 @@ public class ExportVCardActivity extends Activity {
 
                 final int vcardType = VCardConfig.getVCardTypeFromString(mVCardTypeStr);
                 composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
-                /*int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
-                        VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
-                composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);*/
+
+                // for testing
+                // int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
+                // VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
+                // composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
 
                 composer.addHandler(composer.new HandlerForOutputStream(outputStream));
 
@@ -169,7 +251,7 @@ public class ExportVCardActivity extends Activity {
                     return;
                 }
 
-                int size = composer.getCount();
+                final int size = composer.getCount();
 
                 if (size == 0) {
                     mHandler.post(new ErrorReasonDisplayer(
@@ -273,7 +355,7 @@ public class ExportVCardActivity extends Activity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case R.id.dialog_export_confirmation: {
                 return getExportConfirmationDialog();
@@ -312,18 +394,18 @@ public class ExportVCardActivity extends Activity {
                 return mProgressDialog;
             }
         }
-        return super.onCreateDialog(id);
+        return super.onCreateDialog(id, bundle);
     }
 
     @Override
-    protected void onPrepareDialog(int id, Dialog dialog) {
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
         if (id == R.id.dialog_fail_to_export_with_reason) {
             ((AlertDialog)dialog).setMessage(getErrorReason());
         } else if (id == R.id.dialog_export_confirmation) {
             ((AlertDialog)dialog).setMessage(
                     getString(R.string.confirm_export_message, mTargetFileName));
         } else {
-            super.onPrepareDialog(id, dialog);
+            super.onPrepareDialog(id, dialog, args);
         }
     }
 

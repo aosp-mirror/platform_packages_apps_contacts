@@ -29,38 +29,51 @@ import com.android.contacts.R;
 /**
  * The class responsible for importing vCard from one ore multiple Uris.
  */
-public class ImportVCardService extends Service {
+public class VCardService extends Service {
     private final static String LOG_TAG = "ImportVCardService";
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
+    /* package */ static final int MSG_EXPORT_REQUEST = 2;
 
-    /* package */ static final int NOTIFICATION_ID = 1000;
+    /* package */ static final int IMPORT_NOTIFICATION_ID = 1000;
+    /* package */ static final int EXPORT_NOTIFICATION_ID = 1001;
 
     /**
      * Small vCard file is imported soon, so any meassage saying "vCard import started" is
      * not needed. We show the message when the size of vCard is larger than this constant. 
      */
-    private static final int IMPORT_NOTIFICATION_THRESHOLD = 10; 
+    private static final int IMPORT_NOTIFICATION_THRESHOLD = 10;
 
     public class ImportRequestHandler extends Handler {
-        private final ImportRequestProcessor mRequestProcessor =
-                new ImportRequestProcessor(ImportVCardService.this);
+        private final ImportProcessor mImportProcessor =
+                new ImportProcessor(VCardService.this);
+        private final ExportProcessor mExportProcessor =
+                new ExportProcessor(VCardService.this);
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
                     final ImportRequest parameter = (ImportRequest)msg.obj;
+                    mImportProcessor.pushRequest(parameter);
                     if (parameter.entryCount > IMPORT_NOTIFICATION_THRESHOLD) {
-                        Toast.makeText(ImportVCardService.this,
+                        Toast.makeText(VCardService.this,
                                 getString(R.string.vcard_importer_start_message),
                                 Toast.LENGTH_LONG).show();
                     }
-                    mRequestProcessor.pushRequest(parameter);
                     break;
                 }
-                default:
+                case MSG_EXPORT_REQUEST: {
+                    final ExportRequest parameter = (ExportRequest)msg.obj;
+                    mExportProcessor.pushRequest(parameter);
+                    Toast.makeText(VCardService.this,
+                            getString(R.string.vcard_exporter_start_message),
+                            Toast.LENGTH_LONG).show();
+                    break;
+                }
+                default: {
                     Log.e(LOG_TAG, "Unknown request type: " + msg.what);
                     super.hasMessages(msg.what);
+                }
             }
         }
     }

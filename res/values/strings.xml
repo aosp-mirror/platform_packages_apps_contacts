@@ -748,7 +748,7 @@
          data storage. -->
     <string name="caching_vcard_message">Importer is caching vCard(s) to local temporary storage. Actual import will start soon.</string>
 
-    <!-- The message shown while reading vCard(s).
+    <!-- The message shown while importing vCard(s).
          First argument is current index of contacts to be imported.
          Second argument is the total number of contacts.
          Third argument is the Uri which is being read. -->
@@ -764,7 +764,7 @@
     <string name="reading_vcard_canceled_title">Reading vCard data was canceled</string>
 
     <!-- The title shown when reading vCard is canceled (probably by a user) -->
-    <string name="reading_vcard_finished_title">Finished Reading vCard data</string>
+    <string name="importing_vcard_finished_title">Finished importing vCard</string>
 
     <!-- The message shown when vCard importer started running. -->
     <string name="vcard_importer_start_message">vCard importer started.</string>
@@ -772,7 +772,7 @@
     <!-- The message shown when additional vCard to be imported is given during the import for others -->
     <string name="vcard_importer_will_start_message">vCard importer will import the vCard after a while.</string>
 
-    <!-- The percentage, used for expressing the progress of vCard import. -->
+    <!-- The percentage, used for expressing the progress of vCard import/export. -->
     <string name="percentage">%s%%</string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
@@ -800,6 +800,12 @@
          The length limit of each file is different in each Android device, so we don't need to
          mention it here. -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
+
+    <!-- The message shown when vCard importer started running. -->
+    <string name="vcard_exporter_start_message">vCard exporter started.</string>
+
+    <!-- The title shown when reading vCard is canceled (probably by a user) -->
+    <string name="exporting_vcard_finished_title">Finished exporting vCard</string>
 
     <!-- Dialog title shown when the application is exporting contact data outside -->
     <string name="exporting_contact_list_title">Exporting contact data</string>

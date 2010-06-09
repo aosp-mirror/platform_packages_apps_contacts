@@ -535,12 +535,12 @@
         <activity android:name=".vcard.SelectAccountActivity"
             android:theme="@style/BackgroundOnly" />
 
-        <service
-            android:name=".vcard.ImportVCardService"
-            android:exported="false" />
-
         <activity android:name=".vcard.ExportVCardActivity"
             android:theme="@style/BackgroundOnly" />
+
+        <service
+            android:name=".vcard.VCardService"
+            android:exported="false" />
 
         <!-- Pinned header list demo -->
         <activity android:name=".widget.PinnedHeaderListDemoActivity">

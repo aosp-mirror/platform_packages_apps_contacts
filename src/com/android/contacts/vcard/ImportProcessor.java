@@ -53,7 +53,7 @@ import java.util.Queue;
  * This class is designed so that a user ({@link Service}) does not need to (and should not)
  * recreate multiple instances, as this holds total count of vCard entries to be imported.
  */
-public class ImportRequestProcessor {
+public class ImportProcessor {
     private static final String LOG_TAG = "ImportRequestProcessor";
 
     private final Service mService;
@@ -66,19 +66,6 @@ public class ImportRequestProcessor {
     private final ImportProgressNotifier mNotifier = new ImportProgressNotifier();
 
     private VCardParser mVCardParser;
-
-    // TODO(dmiyakawa): better design for testing?
-    /* package */ interface CommitterGenerator {
-        public VCardEntryCommitter generate(ContentResolver resolver);
-    }
-
-    private static class DefaultCommitterGenerator implements CommitterGenerator {
-        public VCardEntryCommitter generate(ContentResolver resolver) {
-            return new VCardEntryCommitter(resolver);
-        }
-    }
-
-    /* package */ CommitterGenerator mCommitterGenerator = new DefaultCommitterGenerator();
 
     /**
      * Meaning a controller of this object requests the operation should be canceled
@@ -95,9 +82,7 @@ public class ImportRequestProcessor {
     private final Queue<ImportRequest> mPendingRequests =
             new LinkedList<ImportRequest>();
 
-    /* package */ interface ThreadStarter {
-        public void start();
-    }
+    // For testability.
     /* package */ ThreadStarter mThreadStarter = new ThreadStarter() {
         public void start() {
             final Thread thread = new Thread(new Runnable() {
@@ -108,9 +93,17 @@ public class ImportRequestProcessor {
             thread.start();
         }
     };
+    /* package */ interface CommitterGenerator {
+        public VCardEntryCommitter generate(ContentResolver resolver);
+    }
+    /* package */ class DefaultCommitterGenerator implements CommitterGenerator {
+        public VCardEntryCommitter generate(ContentResolver resolver) {
+            return new VCardEntryCommitter(mResolver);
+        }
+    }
+    /* package */ CommitterGenerator mCommitterGenerator = new DefaultCommitterGenerator();
 
-
-    public ImportRequestProcessor(final Service service) {
+    public ImportProcessor(final Service service) {
         mService = service;
     }
 
@@ -153,7 +146,8 @@ public class ImportRequestProcessor {
     /* package */ void process() {
         if (!mReadyForRequest) {
             throw new RuntimeException(
-                    "process() is called after this object finishing its process.");
+                    "process() is called before request being pushed "
+                    + "or after this object's finishing its processing.");
         }
         try {
             while (!mCanceled) {
@@ -211,7 +205,7 @@ public class ImportRequestProcessor {
         final String estimatedCharset = parameter.estimatedCharset;
 
         final VCardEntryConstructor constructor =
-            new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
+                new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
         final VCardEntryCommitter committer = mCommitterGenerator.generate(mResolver);
         constructor.addEntryHandler(committer);
         constructor.addEntryHandler(mNotifier);
@@ -250,7 +244,7 @@ public class ImportRequestProcessor {
     private void doFinishNotification(Uri createdUri) {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download_done;
-        final String title = mService.getString(R.string.reading_vcard_finished_title);
+        final String title = mService.getString(R.string.importing_vcard_finished_title);
 
         final Intent intent;
         if (createdUri != null) {
@@ -266,7 +260,7 @@ public class ImportRequestProcessor {
         final PendingIntent pendingIntent =
                 PendingIntent.getActivity(mService, 0, intent, 0);
         notification.setLatestEventInfo(mService, title, "", pendingIntent);
-        mNotificationManager.notify(ImportVCardService.NOTIFICATION_ID, notification);
+        mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
     private boolean readOneVCard(Uri uri, int vcardType, String charset,

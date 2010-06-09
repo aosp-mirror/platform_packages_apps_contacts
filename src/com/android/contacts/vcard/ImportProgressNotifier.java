@@ -56,7 +56,8 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         // - We cannot know name there but here.
         // - There's high probability where name comes soon after the beginning of entry, so
         //   we don't need to hurry to show something.
-        final String packageName = "com.android.contacts";
+        final String packageName = "com.android.contacts.vcard";
+        // TODO: should not create this everytime?
         final RemoteViews remoteViews = new RemoteViews(packageName,
                 R.layout.status_bar_ongoing_event_progress_bar);
         final String title = mContext.getString(R.string.reading_vcard_title);
@@ -87,7 +88,7 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         notification.contentIntent =
                 PendingIntent.getActivity(mContext, 0,
                         new Intent(mContext, ContactsListActivity.class), 0);
-        mNotificationManager.notify(ImportVCardService.NOTIFICATION_ID, notification);
+        mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
     public synchronized void addTotalCount(int additionalCount) {

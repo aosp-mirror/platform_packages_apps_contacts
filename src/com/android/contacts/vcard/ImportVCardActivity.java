@@ -32,7 +32,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -100,9 +99,6 @@ public class ImportVCardActivity extends Activity {
     /* package */ final static int VCARD_VERSION_V21 = 1;
     /* package */ final static int VCARD_VERSION_V30 = 2;
 
-    // Run on the UI thread. Must not be null except after onDestroy().
-    private Handler mHandler = new Handler();
-
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
 
     private Account mAccount;
@@ -133,7 +129,7 @@ public class ImportVCardActivity extends Activity {
 
         public void doBindService() {
             bindService(new Intent(ImportVCardActivity.this,
-                    ImportVCardService.class), this, Context.BIND_AUTO_CREATE);
+                    VCardService.class), this, Context.BIND_AUTO_CREATE);
         }
 
         public void setNeedFinish() {
@@ -154,14 +150,14 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
-        private void sendMessage(final ImportRequest parameter) {
+        private void sendMessage(final ImportRequest request) {
             try {
                 mMessenger.send(Message.obtain(null,
-                        ImportVCardService.MSG_IMPORT_REQUEST,
-                        parameter));
+                        VCardService.MSG_IMPORT_REQUEST,
+                        request));
             } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to import vCard");
-                runOnUIThread(new DialogDisplayer(
+                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
+                runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_unknown)));
             }
         }
@@ -255,10 +251,10 @@ public class ImportVCardActivity extends Activity {
 
     /**
      * Caches all vCard data into local data directory so that we allow
-     * {@link ImportVCardService} to access all the contents in given Uris, some of
+     * {@link VCardService} to access all the contents in given Uris, some of
      * which may not be accessible from other components due to permission problem.
      * (Activity which gives the Uri may allow only this Activity to access that content,
-     * not the ohter components like {@link ImportVCardService}.
+     * not the ohter components like {@link VCardService}.
      *
      * We also allow the Service to happen to exit during the vCard import procedure.
      */
@@ -333,14 +329,16 @@ public class ImportVCardActivity extends Activity {
                 // smaller memory than we usually expect.
                 System.gc();
                 needFinish = false;
+
+                // TODO: call this from connection object.
                 unbindService(mConnection);
-                runOnUIThread(new DialogDisplayer(
+                runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_low_memory_during_import)));
             } catch (IOException e) {
                 Log.e(LOG_TAG, e.getMessage());
                 needFinish = false;
                 unbindService(mConnection);
-                runOnUIThread(new DialogDisplayer(
+                runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error)));
             } finally {
                 mWakeLock.release();
@@ -631,14 +629,14 @@ public class ImportVCardActivity extends Activity {
             mProgressDialogForScanVCard = null;
 
             if (mGotIOException) {
-                runOnUIThread(new DialogDisplayer(R.id.dialog_io_exception));
+                runOnUiThread(new DialogDisplayer(R.id.dialog_io_exception));
             } else if (mCanceled) {
                 finish();
             } else {
                 int size = mAllVCardFileList.size();
                 final Context context = ImportVCardActivity.this;
                 if (size == 0) {
-                    runOnUIThread(new DialogDisplayer(R.id.dialog_vcard_not_found));
+                    runOnUiThread(new DialogDisplayer(R.id.dialog_vcard_not_found));
                 } else {
                     startVCardSelectAndImport();
                 }
@@ -697,9 +695,9 @@ public class ImportVCardActivity extends Activity {
                 size == 1) {
             importVCardFromSDCard(mAllVCardFileList);
         } else if (getResources().getBoolean(R.bool.config_allow_users_select_all_vcard_import)) {
-            runOnUIThread(new DialogDisplayer(R.id.dialog_select_import_type));
+            runOnUiThread(new DialogDisplayer(R.id.dialog_select_import_type));
         } else {
-            runOnUIThread(new DialogDisplayer(R.id.dialog_select_one_vcard));
+            runOnUiThread(new DialogDisplayer(R.id.dialog_select_one_vcard));
         }
     }
 
@@ -732,7 +730,7 @@ public class ImportVCardActivity extends Activity {
     }
 
     private void importVCard(final Uri[] uris) {
-        runOnUIThread(new Runnable() {
+        runOnUiThread(new Runnable() {
             public void run() {
                 mVCardCacheThread = new VCardCacheThread(uris);
                 showDialog(R.id.dialog_cache_vcard);
@@ -959,33 +957,6 @@ public class ImportVCardActivity extends Activity {
         // screen back to the caller Activity.
         if (!isFinishing()) {
             finish();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        // The code assumes the handler runs on the UI thread. If not,
-        // clearing the message queue is not enough, one would have to
-        // make sure that the handler does not run any callback when
-        // this activity isFinishing().
-
-        // Callbacks messages have what == 0.
-        if (mHandler.hasMessages(0)) {
-            mHandler.removeMessages(0);
-        }
-
-        mHandler = null;  // Prevents memory leaks by breaking any circular dependency.
-        super.onDestroy();
-    }
-
-    /**
-     * Tries to run a given Runnable object when the UI thread can. Ignore it otherwise
-     */
-    private void runOnUIThread(Runnable runnable) {
-        if (mHandler == null) {
-            Log.w(LOG_TAG, "Handler object is null. No dialog is shown.");
-        } else {
-            mHandler.post(runnable);
         }
     }
 

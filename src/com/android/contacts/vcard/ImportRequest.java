@@ -21,9 +21,9 @@ import android.net.Uri;
 import com.android.vcard.VCardSourceDetector;
 
 /**
- * Class representing one request for reading vCard (as a Uri representation).
+ * Class representing one request for importing vCard (given as a Uri).
  *
- * Mainly used when {@link ImportVCardActivity} requests {@link ImportVCardService}
+ * Mainly used when {@link ImportVCardActivity} requests {@link VCardService}
  * to import some specific Uri.
  *
  * Note: This object's accepting only One Uri does NOT mean that
