@@ -47,30 +47,6 @@ public class ContactEditorActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // TODO: This is too hardwired.
-        if (mFragment.onCreateOptionsMenu(menu, getMenuInflater())) return true;
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // TODO: This is too hardwired.
-        if (mFragment.onPrepareOptionsMenu(menu)) return true;
-
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO: This is too hardwired.
-        if (mFragment.onOptionsItemSelected(item)) return true;
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected Dialog onCreateDialog(int id, Bundle args) {
         // ask the Fragment whether it knows about the dialog
         final Dialog fragmentResult = mFragment.onCreateDialog(id, args);

@@ -129,6 +129,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         final View view = inflater.inflate(R.layout.contact_editor_fragment, container, false);
 
+        setHasOptionsMenu(true);
+        
         mInflater = inflater;
 
         mHeaderView =
@@ -700,14 +702,12 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.view, menu);
-        return true;
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(Menu menu) {
         // TODO: Prepare options
-        return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 
 public class ContactDetailActivity extends Activity {
@@ -46,30 +45,6 @@ public class ContactDetailActivity extends Activity {
         mFragment.loadUri(getIntent().getData());
 
         Log.i(TAG, getIntent().getData().toString());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // TODO: This is too hardwired.
-        if (mFragment.onCreateOptionsMenu(menu, getMenuInflater())) return true;
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // TODO: This is too hardwired.
-        if (mFragment.onPrepareOptionsMenu(menu)) return true;
-
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO: This is too hardwired.
-        if (mFragment.onOptionsItemSelected(item)) return true;
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -165,6 +165,8 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         final View view = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
+        setHasOptionsMenu(true);
+        
         mInflater = inflater;
 
         mHeaderView = (ContactDetailHeaderView) view.findViewById(R.id.contact_header_widget);
@@ -798,20 +800,17 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.view, menu);
-        return true;
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(Menu menu) {
         // Only allow edit when we have at least one raw_contact id
         final boolean hasRawContact = (mRawContactIds.size() > 0);
         menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
 
         // Only allow share when unrestricted contacts available
         menu.findItem(R.id.menu_share).setEnabled(!mAllRestricted);
-
-        return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
