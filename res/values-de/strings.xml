@@ -208,7 +208,7 @@
     <string name="import_from_sim" msgid="3859272228033941659">"Von SIM-Karte importieren"</string>
     <string name="import_from_sdcard" msgid="8550360976693202816">"Von SD-Karte importieren"</string>
     <string name="export_to_sdcard" msgid="2597105442616166277">"An SD-Karte exportieren"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte freigeben"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weiterleiten"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
