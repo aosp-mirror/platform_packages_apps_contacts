@@ -88,7 +88,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"В телефоне нет картинок."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Значок контакта"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Особая метка"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Название ярлыка"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Варианты отображения"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Варианты отображения"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
@@ -168,7 +168,7 @@
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефоны"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Использовать тональный набор"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Вернуться к ожидающему вызову"</string>
-    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Доб. вызов"</string>
+    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"+ вызов"</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Сведения о вызове"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Не удается получить сведения о вызове."</string>
     <string name="type_incoming" msgid="6502076603836088532">"Входящий вызов"</string>
@@ -370,7 +370,7 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Поиск контактов"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Поиск всех контактов"</string>
     <string name="take_photo" msgid="7496128293167402354">"Сфотографировать"</string>
-    <string name="pick_photo" msgid="448886509158039462">"Выбрать фото из фотоальбома"</string>
+    <string name="pick_photo" msgid="448886509158039462">"Выбрать фото из галереи"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Выполняется обновление списка контактов, чтобы изменение языка вступило в силу."\n\n"Подождите..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Обновляется список контактов."\n\n"Подождите..."</string>
     <string name="upgrade_out_of_memory" msgid="492151063059824962">"Контакты обновляются. "\n\n" Для обновления требуется около <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> МБ внутренней памяти телефона."\n\n"Выберите один из следующих вариантов:"</string>
