@@ -135,7 +135,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
 
         int index = getPinnedHeaderCount() - 1;
         if (mIndexer == null || getCount() == 0) {
-            listView.setHeaderInvisible(index);
+            listView.setHeaderInvisible(index, false);
         } else {
             int listPosition = listView.getPositionAt(listView.getTotalTopPinnedHeaderHeight());
             int position = listPosition - listView.getHeaderViewsCount();
@@ -150,7 +150,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
             }
 
             if (section == -1) {
-                listView.setHeaderInvisible(index);
+                listView.setHeaderInvisible(index, false);
             } else {
                 String title = (String)mIndexer.getSections()[section];
                 mTitleView.setText(title);

@@ -75,6 +75,8 @@ public class PinnedHeaderListView extends ListView
     private static final int BOTTOM = 1;
     private static final int FADING = 2;
 
+    private static final int DEFAULT_ANIMATION_DURATION = 100;
+
     private static final class PinnedHeader {
         View view;
         boolean visible;
@@ -82,6 +84,12 @@ public class PinnedHeaderListView extends ListView
         int height;
         int alpha;
         int state;
+
+        boolean animating;
+        boolean targetVisible;
+        int sourceY;
+        int targetY;
+        long targetTime;
     }
 
     private PinnedHeaderAdapter mAdapter;
@@ -93,6 +101,10 @@ public class PinnedHeaderListView extends ListView
     private OnScrollListener mOnScrollListener;
     private OnItemSelectedListener mOnItemSelectedListener;
     private int mScrollState;
+
+    private int mAnimationDuration = DEFAULT_ANIMATION_DURATION;
+    private boolean mAnimating;
+    private long mAnimationTargetTime;
 
     public PinnedHeaderListView(Context context) {
         this(context, null, com.android.internal.R.attr.listViewStyle);
@@ -118,6 +130,10 @@ public class PinnedHeaderListView extends ListView
     public void setPinnedHeaderBackgroundColor(int color) {
         mPinnedHeaderBackgroundColor = color;
         mPaint.setColor(mPinnedHeaderBackgroundColor);
+    }
+
+    public void setPinnedHeaderAnimationDuration(int duration) {
+        mAnimationDuration = duration;
     }
 
     @Override
@@ -167,7 +183,10 @@ public class PinnedHeaderListView extends ListView
                 setFadingEdgeLength(0);
             }
 
+            mAnimationTargetTime = System.currentTimeMillis() + mAnimationDuration;
             mAdapter.configurePinnedHeaders(this);
+            invalidateIfAnimating();
+
         }
         if (mOnScrollListener != null) {
             mOnScrollListener.onScroll(this, firstVisibleItem, visibleItemCount, totalItemCount);
@@ -232,13 +251,17 @@ public class PinnedHeaderListView extends ListView
      *
      * @param viewIndex index of the header view
      * @param y is position of the header in pixels.
+     * @param animate true if the transition to the new coordinate should be animated
      */
-    public void setHeaderPinnedAtTop(int viewIndex, int y) {
+    public void setHeaderPinnedAtTop(int viewIndex, int y, boolean animate) {
         ensurePinnedHeaderLayout(viewIndex);
         PinnedHeader header = mHeaders[viewIndex];
         header.visible = true;
         header.y = y;
         header.state = TOP;
+
+        // TODO perhaps we should animate at the top as well
+        header.animating = false;
     }
 
     /**
@@ -246,13 +269,30 @@ public class PinnedHeaderListView extends ListView
      *
      * @param viewIndex index of the header view
      * @param y is position of the header in pixels.
+     * @param animate true if the transition to the new coordinate should be animated
      */
-    public void setHeaderPinnedAtBottom(int viewIndex, int y) {
+    public void setHeaderPinnedAtBottom(int viewIndex, int y, boolean animate) {
         ensurePinnedHeaderLayout(viewIndex);
         PinnedHeader header = mHeaders[viewIndex];
-        header.visible = true;
-        header.y = y;
         header.state = BOTTOM;
+        if (header.animating) {
+            header.targetTime = mAnimationTargetTime;
+            header.targetY = y;
+        } else if (animate && (header.y != y || !header.visible)) {
+            if (header.visible) {
+                header.sourceY = y;
+            } else {
+                header.visible = true;
+                header.sourceY = y + header.height;
+            }
+            header.animating = true;
+            header.targetVisible = true;
+            header.targetTime = mAnimationTargetTime;
+            header.targetY = y;
+        } else {
+            header.visible = true;
+            header.y = y;
+        }
     }
 
     /**
@@ -270,6 +310,7 @@ public class PinnedHeaderListView extends ListView
         header.visible = true;
         header.state = FADING;
         header.alpha = MAX_ALPHA;
+        header.animating = false;
 
         int top = getTotalTopPinnedHeaderHeight();
         header.y = top;
@@ -284,8 +325,26 @@ public class PinnedHeaderListView extends ListView
         }
     }
 
-    public void setHeaderInvisible(int viewIndex) {
-        mHeaders[viewIndex].visible = false;
+    /**
+     * Makes header invisible.
+     *
+     * @param viewIndex index of the header view
+     * @param animate true if the transition to the new coordinate should be animated
+     */
+    public void setHeaderInvisible(int viewIndex, boolean animate) {
+        PinnedHeader header = mHeaders[viewIndex];
+        if (header.visible && (animate || header.animating) && header.state == BOTTOM) {
+            if (!header.animating) {
+                header.visible = true;
+                header.sourceY = header.y;
+                header.targetY = header.y + header.height;
+            }
+            header.animating = true;
+            header.targetTime = mAnimationTargetTime;
+            header.targetVisible = false;
+        } else {
+            header.visible = false;
+        }
     }
 
     private void ensurePinnedHeaderLayout(int viewIndex) {
@@ -378,27 +437,68 @@ public class PinnedHeaderListView extends ListView
         }, 500);
     }
 
+    private void invalidateIfAnimating() {
+        mAnimating = false;
+        for (int i = 0; i < mSize; i++) {
+            if (mHeaders[i].animating) {
+                mAnimating = true;
+                invalidate();
+                return;
+            }
+        }
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
+
+        long currentTime = mAnimating ? System.currentTimeMillis() : 0;
+
+        // First draw top headers, then the bottom ones to handle the Z axis correctly
         for (int i = mSize; --i >= 0;) {
             PinnedHeader header = mHeaders[i];
-            if (header.visible) {
-                View view = header.view;
-                if (header.state == FADING) {
-                    int saveCount = canvas.save();
-                    canvas.translate(0, header.y);
-                    mBounds.set(0, 0, view.getWidth(), view.getHeight());
-                    canvas.drawRect(mBounds, mPaint);
-                    canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
-                    view.draw(canvas);
-                    canvas.restoreToCount(saveCount);
-                } else {
-                    canvas.save();
-                    canvas.translate(0, header.y);
-                    view.draw(canvas);
-                    canvas.restore();
-                }
+            if (header.visible && header.state == TOP) {
+                drawHeader(canvas, header, currentTime);
+            }
+        }
+
+        for (int i = 0; i < mSize; i++) {
+            PinnedHeader header = mHeaders[i];
+            if (header.visible && header.state == BOTTOM) {
+                drawHeader(canvas, header, currentTime);
+            }
+        }
+
+        invalidateIfAnimating();
+    }
+
+    private void drawHeader(Canvas canvas, PinnedHeader header, long currentTime) {
+        if (header.animating) {
+            int timeLeft = (int)(header.targetTime - currentTime);
+            if (timeLeft <= 0) {
+                header.y = header.targetY;
+                header.visible = header.targetVisible;
+                header.animating = false;
+            } else {
+                header.y = header.targetY + (header.sourceY - header.targetY) * timeLeft
+                        / mAnimationDuration;
+            }
+        }
+        if (header.visible) {
+            View view = header.view;
+            if (header.state == FADING) {
+                int saveCount = canvas.save();
+                canvas.translate(0, header.y);
+                mBounds.set(0, 0, view.getWidth(), view.getHeight());
+                canvas.drawRect(mBounds, mPaint);
+                canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
+                view.draw(canvas);
+                canvas.restoreToCount(saveCount);
+            } else {
+                canvas.save();
+                canvas.translate(0, header.y);
+                view.draw(canvas);
+                canvas.restore();
             }
         }
     }

@@ -16,6 +16,7 @@
 package com.android.contacts.widget;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -100,7 +101,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
             boolean visible = isPinnedPartitionHeaderVisible(i);
             mHeaderVisibility[i] = visible;
             if (!visible) {
-                listView.setHeaderInvisible(i);
+                listView.setHeaderInvisible(i, true);
             }
         }
 
@@ -117,7 +118,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
                     break;
                 }
 
-                listView.setHeaderPinnedAtTop(i, topHeaderHeight);
+                listView.setHeaderPinnedAtTop(i, topHeaderHeight, false);
                 topHeaderHeight += listView.getPinnedHeaderHeight(i);
                 maxTopHeader = i;
             }
@@ -142,7 +143,11 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
 
                 int height = listView.getPinnedHeaderHeight(i);
                 bottomHeaderHeight += height;
-                listView.setHeaderPinnedAtBottom(i, listHeight - bottomHeaderHeight);
+                // Animate the header only if the partition is completely invisible below
+                // the bottom of the view
+                int firstPositionForPartition = getPositionForPartition(i);
+                boolean animate = position < firstPositionForPartition;
+                listView.setHeaderPinnedAtBottom(i, listHeight - bottomHeaderHeight, animate);
                 maxBottomHeader = i;
             }
         }
@@ -150,7 +155,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
         // Headers in between the top-pinned and bottom-pinned should be hidden
         for (int i = maxTopHeader + 1; i < maxBottomHeader; i++) {
             if (mHeaderVisibility[i]) {
-                listView.setHeaderInvisible(i);
+                listView.setHeaderInvisible(i, isPartitionEmpty(i));
             }
         }
     }
