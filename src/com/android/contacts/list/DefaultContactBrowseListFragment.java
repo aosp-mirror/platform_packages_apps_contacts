@@ -149,7 +149,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected void showCount(int partitionIndex, Cursor data) {
-        if (!isSearchMode()) {
+        if (!isSearchMode() && data != null) {
             int count = data.getCount();
             // TODO
             // if (contactsListActivity.mDisplayOnlyPhones) {
