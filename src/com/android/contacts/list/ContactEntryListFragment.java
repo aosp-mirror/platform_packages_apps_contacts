@@ -114,6 +114,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
+    /**
+     * Indicates whether we are doing the initial complete load of data or
+     * a refresh caused by a change notification.
+     */
+    private boolean mInitialLoadComplete;
+
     private static final class DirectoryQuery {
         public static final Uri URI = Directory.CONTENT_URI;
         public static final String ORDER_BY = Directory._ID;
@@ -160,11 +166,40 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     protected void onInitializeLoaders() {
+    }
+
+    @Override
+    public void onStart() {
+        if (mContactsPrefs == null) {
+            mContactsPrefs = new ContactsPreferences(getActivity());
+        }
+
         if (mProviderStatusLoader == null) {
             mProviderStatusLoader = new ProviderStatusLoader(getActivity());
         }
 
-        loadPartitions();
+        loadPreferences(mContactsPrefs);
+
+        configureAdapter();
+
+        if (isSearchMode()) {
+            if (mInitialLoadComplete) {
+                for (DirectoryPartition partition : mDirectoryPartitions) {
+                    if (partition.getPartitionIndex() != 0) {
+                        startLoading(partition, true);
+                    }
+                }
+            } else {
+                startLoading(0, null);
+            }
+        } else {
+            startLoading(0, null);
+        }
+
+        ContactEntryListView listView = (ContactEntryListView)mListView;
+        listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
+
+        super.onStart();
     }
 
     @Override
@@ -190,106 +225,134 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return;
         }
 
-        if (loader.getId() == DIRECTORY_LOADER_ID) {
-            PackageManager pm = getActivity().getPackageManager();
+        int partitionIndex = loader.getId();
+        if (!mInitialLoadComplete) {
+            onInitialLoadFinished(partitionIndex, data);
+        } else {
+            onRequeryFinished(partitionIndex, data);
+        }
+
+// TODO fix the empty view
+//            if (mEmptyView != null && (data == null || data.getCount() == 0)) {
+//                prepareEmptyView();
+//            }
+    }
+
+    private void onInitialLoadFinished(int partitionIndex, Cursor data) {
+        if (partitionIndex == 0) {
             mDirectoryPartitions.clear();
+            mAdapter.resetPartitions();
+            DirectoryPartition partition = new DirectoryPartition();
+            partition.setDirectoryId(Directory.DEFAULT);
+            partition.setShowIfEmpty(isSearchMode());
+            partition.setDirectoryType(getActivity().getString(R.string.contactsList));
+            mDirectoryPartitions.add(partition);
+            if (isSearchMode()) {
+                mAdapter.addDirectoryPartition(partition);
+            } else {
+                mAdapter.addPartition(false, false);
+            }
+            mAdapter.changeCursor(partitionIndex, data);
+            showCount(partitionIndex, data);
+            if (data != null) {
+                completeRestoreInstanceState();
+            }
+            if (isSearchMode()) {
+                startLoading(DIRECTORY_LOADER_ID, null);
+            } else {
+                mInitialLoadComplete = true;
+            }
+        } else if (partitionIndex == DIRECTORY_LOADER_ID) {
             try {
-                while (data.moveToNext()) {
-                    DirectoryPartition partition = new DirectoryPartition();
-                    partition.setDirectoryId(data.getLong(DirectoryQuery.ID));
-                    String packageName = data.getString(DirectoryQuery.PACKAGE_NAME);
-                    int typeResourceId = data.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
-                    if (!TextUtils.isEmpty(packageName) && typeResourceId != 0) {
-                        // TODO: should this be done on a background thread?
-                        try {
-                            partition.setDirectoryType(pm.getResourcesForApplication(packageName)
-                                    .getString(typeResourceId));
-                        } catch (Exception e) {
-                            Log.e(TAG, "Cannot obtain directory type from package: " + packageName);
-                        }
+                for (int index = 0; data.moveToNext(); index++) {
+                    DirectoryPartition partition = createDirectoryPartition(index, data);
+                    if (index != 0) {
+                        mDirectoryPartitions.add(partition);
+                        mAdapter.addDirectoryPartition(partition);
+                        startLoading(partition, false);
                     }
-                    partition.setDisplayName(data.getString(DirectoryQuery.DISPLAY_NAME));
-
-                    // TODO obtain the "showIfEmpty" from directory meta-data
-                    partition.setShowIfEmpty(
-                            partition.getDirectoryId() != Directory.LOCAL_INVISIBLE);
-
-                    String directoryType = null;
-
-                    mDirectoryPartitions.add(partition);
                 }
             } finally {
                 data.close();
             }
 
-            mAdapter.resetPartitions();
-            int size = mDirectoryPartitions.size();
-            for (int i = 0; i < size; i++) {
-                DirectoryPartition partition = mDirectoryPartitions.get(i);
-                partition.setPartitionIndex(i);
-                mAdapter.addDirectoryPartition(partition);
-            }
-
-            startLoading(true);
-        } else {
-            int partitionIndex = loader.getId();
-
-            if (mEmptyView != null && (data == null || data.getCount() == 0)) {
-                prepareEmptyView();
-            }
-
-            mAdapter.changeCursor(partitionIndex, data);
-
-            if (data != null) {
-                showCount(partitionIndex, data);
-                completeRestoreInstanceState();
-            }
+            mInitialLoadComplete = true;
         }
     }
 
-    protected void loadPartitions() {
-        for (DirectoryPartition partition : mDirectoryPartitions) {
-            CursorLoader loader = (CursorLoader)getLoader(partition.getPartitionIndex());
-            if (loader != null) {
-                loader.cancelLoad();
+    private void onRequeryFinished(int partitionIndex, Cursor data) {
+        if (partitionIndex == 0) {
+            mAdapter.changeCursor(partitionIndex, data);
+            showCount(partitionIndex, data);
+            int size = mDirectoryPartitions.size();
+            for (int i = 1; i < size; i++) {
+                startLoading(mDirectoryPartitions.get(i), true);
             }
-        }
-
-        mDirectoryPartitions.clear();
-        if (mSearchMode) {
-            startLoading(DIRECTORY_LOADER_ID, null);
-        } else {
-            DirectoryPartition directoryPartition = new DirectoryPartition();
-            directoryPartition.setDirectoryId(Directory.DEFAULT);
-            directoryPartition.setPartitionIndex(0);
-            mDirectoryPartitions.add(directoryPartition);
-            if (mAdapter != null) {
+        } else if (partitionIndex == DIRECTORY_LOADER_ID) {
+            // The list of available directories has changed: reload everything
+            try {
+                mDirectoryPartitions.clear();
                 mAdapter.resetPartitions();
-                mAdapter.addDirectoryPartition(directoryPartition);
+                for (int index = 0; data.moveToNext(); index++) {
+                    DirectoryPartition partition = createDirectoryPartition(index, data);
+                    mDirectoryPartitions.add(partition);
+                    mAdapter.addDirectoryPartition(partition);
+                }
+            } finally {
+                data.close();
             }
             reloadData();
+        } else {
+            mAdapter.changeCursor(partitionIndex, data);
+            showCount(partitionIndex, data);
+        }
+    }
+
+    private DirectoryPartition createDirectoryPartition(int partitionIndex, Cursor cursor) {
+        PackageManager pm = getActivity().getPackageManager();
+        DirectoryPartition partition = new DirectoryPartition();
+        partition.setPartitionIndex(partitionIndex);
+        partition.setDirectoryId(cursor.getLong(DirectoryQuery.ID));
+        String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
+        int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
+        if (!TextUtils.isEmpty(packageName) && typeResourceId != 0) {
+            // TODO: should this be done on a background thread?
+            try {
+                partition.setDirectoryType(pm.getResourcesForApplication(packageName)
+                        .getString(typeResourceId));
+            } catch (Exception e) {
+                Log.e(TAG, "Cannot obtain directory type from package: " + packageName);
+            }
+        }
+        partition.setDisplayName(cursor.getString(DirectoryQuery.DISPLAY_NAME));
+        partition.setShowIfEmpty(partition.getDirectoryId() == Directory.DEFAULT);
+        return partition;
+    }
+
+    private void startLoading(DirectoryPartition partition, boolean forceLoad) {
+        CursorLoader loader = (CursorLoader)getLoader(partition.getPartitionIndex());
+        if (loader == null) {
+            Bundle args = new Bundle();
+            args.putLong(DIRECTORY_ID_ARG_KEY, partition.getDirectoryId());
+            startLoading(partition.getPartitionIndex(), args);
+        } else {
+            mAdapter.configureLoader(loader, partition.getDirectoryId());
+            if (forceLoad) {
+                loader.forceLoad();
+            }
         }
     }
 
     protected void reloadData() {
-        startLoading(true);
+        if (mDirectoryPartitions.size() > 0) {
+            startLoading(mDirectoryPartitions.get(0), true);
+        }
     }
 
-    protected void startLoading(boolean forceLoad) {
-        configureAdapter();
-
+    private void stopLoading() {
+        stopLoading(DIRECTORY_LOADER_ID);
         for (DirectoryPartition partition : mDirectoryPartitions) {
-            CursorLoader loader = (CursorLoader)getLoader(partition.getPartitionIndex());
-            if (loader == null) {
-                Bundle args = new Bundle();
-                args.putLong(DIRECTORY_ID_ARG_KEY, partition.getDirectoryId());
-                startLoading(partition.getPartitionIndex(), args);
-            } else {
-                mAdapter.configureLoader(loader, partition.getDirectoryId());
-                if (forceLoad) {
-                    loader.forceLoad();
-                }
-            }
+            stopLoading(partition.getPartitionIndex());
         }
     }
 
@@ -340,9 +403,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             // TODO not always
             setSectionHeaderDisplayEnabled(!mSearchMode);
             if (mAdapter != null) {
+                stopLoading();
                 mAdapter.setSearchMode(flag);
                 mAdapter.setPinnedPartitionHeadersEnabled(flag);
-                loadPartitions();
+                mInitialLoadComplete = false;
             }
         }
     }
@@ -415,21 +479,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public ContextMenuAdapter getContextMenuAdapter() {
         return mContextMenuAdapter;
-    }
-
-    @Override
-    public void onStart() {
-        if (mContactsPrefs == null) {
-            mContactsPrefs = new ContactsPreferences(getActivity());
-        }
-
-        loadPreferences(mContactsPrefs);
-        startLoading(false);
-
-        ContactEntryListView listView = (ContactEntryListView)mListView;
-        listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
-
-        super.onStart();
     }
 
     @Override
