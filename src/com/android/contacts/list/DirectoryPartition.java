@@ -22,33 +22,16 @@ import android.provider.ContactsContract.Directory;
  * Model object for a {@link Directory} row.
  */
 public final class DirectoryPartition {
+    private long mDirectoryId;
+    private int mPartitionIndex;
+    private String mDirectoryType;
+    private String mDisplayName;
+    private boolean mShowIfEmpty;
+    private boolean mLoading;
 
     /**
      * Directory ID, see {@link Directory}.
      */
-    private long mDirectoryId;
-
-    /**
-     * Corresponding loader ID.
-     */
-    private int mPartitionIndex;
-
-    /**
-     * Directory type resolved from {@link Directory#PACKAGE_NAME} and
-     * {@link Directory#TYPE_RESOURCE_ID};
-     */
-    private String mDirectoryType;
-
-    /**
-     * See {@link Directory#DISPLAY_NAME}.
-     */
-    private String mDisplayName;
-
-    /**
-     * True if the directory should be shown even if no contacts are found.
-     */
-    private boolean mShowIfEmpty;
-
     public long getDirectoryId() {
         return mDirectoryId;
     }
@@ -57,6 +40,9 @@ public final class DirectoryPartition {
         this.mDirectoryId = directoryId;
     }
 
+    /**
+     * Corresponding loader ID.
+     */
     public int getPartitionIndex() {
         return mPartitionIndex;
     }
@@ -65,6 +51,10 @@ public final class DirectoryPartition {
         this.mPartitionIndex = partitionIndex;
     }
 
+    /**
+     * Directory type resolved from {@link Directory#PACKAGE_NAME} and
+     * {@link Directory#TYPE_RESOURCE_ID};
+     */
     public String getDirectoryType() {
         return mDirectoryType;
     }
@@ -73,6 +63,9 @@ public final class DirectoryPartition {
         this.mDirectoryType = directoryType;
     }
 
+    /**
+     * See {@link Directory#DISPLAY_NAME}.
+     */
     public String getDisplayName() {
         return mDisplayName;
     }
@@ -81,11 +74,22 @@ public final class DirectoryPartition {
         this.mDisplayName = displayName;
     }
 
+    /**
+     * True if the directory should be shown even if no contacts are found.
+     */
     public boolean getShowIfEmpty() {
         return mShowIfEmpty;
     }
 
     public void setShowIfEmpty(boolean showIfEmpty) {
         this.mShowIfEmpty = showIfEmpty;
+    }
+
+    public boolean isLoading() {
+        return mLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        mLoading = loading;
     }
 }

@@ -344,6 +344,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void reloadData() {
+        mAdapter.onDataReload();
         if (mDirectoryPartitions.size() > 0) {
             startLoading(mDirectoryPartitions.get(0), true);
         }
@@ -407,6 +408,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 mAdapter.setSearchMode(flag);
                 mAdapter.setPinnedPartitionHeadersEnabled(flag);
                 mInitialLoadComplete = false;
+            }
+            if (mListView != null) {
+                mListView.setFastScrollEnabled(!flag);
             }
         }
     }
@@ -536,6 +540,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mListView.setOnItemClickListener(this);
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
+        mListView.setFastScrollEnabled(!isSearchMode());
 
         // Tell list view to not show dividers. We'll do it ourself so that we can *not* show
         // them when an A-Z headers is visible.

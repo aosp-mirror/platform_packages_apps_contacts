@@ -33,6 +33,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Common base class for various contact-related lists, e.g. contact list, phone number list
@@ -86,6 +87,24 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public abstract String getContactDisplayName(int position);
     public abstract void configureLoader(CursorLoader loader, long directoryId);
+
+    /**
+     * Marks all partitions as "loading"
+     */
+    public void onDataReload() {
+        boolean notify = false;
+        if (mPartitions != null) {
+            for (DirectoryPartition partition : mPartitions.values()) {
+                if (!partition.isLoading()) {
+                    partition.setLoading(true);
+                    notify = true;
+                }
+            }
+        }
+        if (notify) {
+            notifyDataSetChanged();
+        }
+    }
 
     public boolean isSearchMode() {
         return mSearchMode;
@@ -175,11 +194,15 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
-    public void changeCursor(int partition, Cursor cursor) {
-        mLoading = false;
-        super.changeCursor(partition, cursor);
+    public void changeCursor(int partitionIndex, Cursor cursor) {
+        if (mPartitions != null) {
+            DirectoryPartition partition = mPartitions.get(partitionIndex);
+            partition.setLoading(false);
+        }
 
-        if (isSectionHeaderDisplayEnabled() && partition == getIndexedPartition()) {
+        super.changeCursor(partitionIndex, cursor);
+
+        if (isSectionHeaderDisplayEnabled() && partitionIndex == getIndexedPartition()) {
             updateIndexer(cursor);
         }
     }
@@ -235,23 +258,27 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
-    protected void bindHeaderView(View view, int partition, Cursor cursor) {
-        DirectoryPartition directoryPartition = mPartitions.get(partition);
+    protected void bindHeaderView(View view, int partitionIndex, Cursor cursor) {
+        DirectoryPartition partition = mPartitions.get(partitionIndex);
 
         TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
-        directoryTypeTextView.setText(directoryPartition.getDirectoryType());
+        directoryTypeTextView.setText(partition.getDirectoryType());
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
-        if (!TextUtils.isEmpty(directoryPartition.getDisplayName())) {
-            displayNameTextView.setText(directoryPartition.getDisplayName());
+        if (!TextUtils.isEmpty(partition.getDisplayName())) {
+            displayNameTextView.setText(partition.getDisplayName());
             displayNameTextView.setVisibility(View.VISIBLE);
         } else {
             displayNameTextView.setVisibility(View.GONE);
         }
 
-        int count = cursor == null ? 0 : cursor.getCount();
         TextView countText = (TextView)view.findViewById(R.id.count);
-        countText.setText(getQuantityText(count, R.string.listFoundAllContactsZero,
-                  R.plurals.searchFoundContacts));
+        if (partition.isLoading()) {
+            countText.setText(R.string.search_results_searching);
+        } else {
+            int count = cursor == null ? 0 : cursor.getCount();
+            countText.setText(getQuantityText(count, R.string.listFoundAllContactsZero,
+                    R.plurals.searchFoundContacts));
+        }
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
