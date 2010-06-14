@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts;
+package com.android.contacts.vcard;
 
 import android.app.Service;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.contacts.R;
 
 /**
  * The class responsible for importing vCard from one ore multiple Uris.

@@ -34,6 +34,7 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.vcard.ExportVCardActivity;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
