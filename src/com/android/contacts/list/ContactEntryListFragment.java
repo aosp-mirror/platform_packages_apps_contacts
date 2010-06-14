@@ -338,6 +338,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         } else {
             mAdapter.configureLoader(loader, partition.getDirectoryId());
             if (forceLoad) {
+                loader.cancelLoad();
                 loader.forceLoad();
             }
         }
@@ -346,6 +347,21 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void reloadData() {
         mAdapter.onDataReload();
         if (mDirectoryPartitions.size() > 0) {
+            // We need to cancel _all_ current queries and then launch
+            // a new query for the 0th partition.
+
+            CursorLoader directoryLoader = (CursorLoader)getLoader(DIRECTORY_LOADER_ID);
+            if (directoryLoader != null) {
+                directoryLoader.cancelLoad();
+            }
+            int size = mDirectoryPartitions.size();
+            for (int i = 0; i < size; i++) {
+                CursorLoader loader = (CursorLoader)getLoader(i);
+                if (loader != null) {
+                    loader.cancelLoad();
+                }
+            }
+
             startLoading(mDirectoryPartitions.get(0), true);
         }
     }
