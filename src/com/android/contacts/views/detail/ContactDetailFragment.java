@@ -166,11 +166,10 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         final View view = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
         setHasOptionsMenu(true);
-        
+
         mInflater = inflater;
 
         mHeaderView = (ContactDetailHeaderView) view.findViewById(R.id.contact_header_widget);
-        mHeaderView.showStar(true);
         mHeaderView.setExcludeMimes(new String[] {
             Contacts.CONTENT_ITEM_TYPE
         });
@@ -238,15 +237,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
 
     private void bindData() {
         // Set the header
-        mHeaderView.setContactUri(mContactData.getLookupUri());
-        mHeaderView.setDisplayName(mContactData.getDisplayName(),
-                mContactData.getPhoneticName());
-        mHeaderView.setPhotoId(mContactData.getPhotoId(), mContactData.getLookupUri());
-        mHeaderView.setStared(mContactData.getStarred());
-        mHeaderView.setPresence(mContactData.getPresence());
-        mHeaderView.setStatus(
-                mContactData.getStatus(), mContactData.getStatusTimestamp(),
-                mContactData.getStatusLabel(), mContactData.getStatusResPackage());
+        mHeaderView.loadData(mContactData);
 
         // Build up the contact entries
         buildEntries();
