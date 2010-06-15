@@ -91,11 +91,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mPhotoLoaderEnabled;
     private boolean mSearchMode;
     private boolean mSearchResultsMode;
+    private boolean mAizyEnabled;
     private String mQueryString;
 
     private T mAdapter;
     private View mView;
     private ListView mListView;
+    private ContactListAizyView mAizy;
 
     /**
      * Used for keeping track of the scroll state of the list.
@@ -306,6 +308,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mAdapter.changeCursor(partitionIndex, data);
             showCount(partitionIndex, data);
         }
+        if (partitionIndex == mAdapter.getIndexedPartition()) {
+            mAizy.setIndexer(mAdapter.getIndexer());
+        }
     }
 
     private DirectoryPartition createDirectoryPartition(int partitionIndex, Cursor cursor) {
@@ -399,10 +404,32 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (mAdapter != null) {
             mAdapter.setSectionHeaderDisplayEnabled(flag);
         }
+        configureAizy();
     }
 
     public boolean isSectionHeaderDisplayEnabled() {
         return mSectionHeaderDisplayEnabled;
+    }
+
+    public void setAizyEnabled(boolean flag) {
+        mAizyEnabled = flag;
+        configureAizy();
+    }
+
+    public boolean isAizyEnabled() {
+        return mAizyEnabled;
+    }
+
+    private void configureAizy() {
+        boolean hasAisy = isAizyEnabled() && isSectionHeaderDisplayEnabled();
+
+        if (mListView != null) {
+            mListView.setFastScrollEnabled(!hasAisy);
+            mListView.setVerticalScrollBarEnabled(!hasAisy);
+        }
+        if (mAizy != null) {
+            mAizy.setVisibility(hasAisy ? View.VISIBLE : View.GONE);
+        }
     }
 
     public void setPhotoLoaderEnabled(boolean flag) {
@@ -569,6 +596,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
+        mAizy = (ContactListAizyView) mView.findViewById(R.id.contacts_list_aizy);
+        mAizy.setListView(mListView);
+
+        configureAizy();
         configurePhotoLoader();
         configureSearchResultText();
     }
@@ -625,6 +656,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
+        if (isAizyEnabled()) {
+            mAizy.listOnScroll(firstVisibleItem);
+        }
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {

@@ -68,6 +68,10 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
         this.mIndexedPartition = partition;
     }
 
+    public SectionIndexer getIndexer() {
+        return mIndexer;
+    }
+
     public void setIndexer(SectionIndexer indexer) {
         mIndexer = indexer;
     }
