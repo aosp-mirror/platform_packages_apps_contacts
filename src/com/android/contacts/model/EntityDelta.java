@@ -59,7 +59,7 @@ public class EntityDelta implements Parcelable {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
     private static final String TAG = "EntityDelta";
-    private static final boolean LOGV = true;
+    private static final boolean LOGV = false;
 
     /**
      * Direct values from {@link Entity#getEntityValues()}.
