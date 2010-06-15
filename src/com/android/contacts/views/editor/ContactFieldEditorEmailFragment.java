@@ -19,6 +19,7 @@ package com.android.contacts.views.editor;
 import com.android.contacts.R;
 import com.android.contacts.util.ViewGroupAnimator;
 
+import android.content.ContentValues;
 import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
 import android.graphics.Color;
@@ -109,6 +110,11 @@ public class ContactFieldEditorEmailFragment extends ContactFieldEditorBaseFragm
             pushTypeButton(type, true);
         }
     };
+
+    @Override
+    protected void setupEmpty(ContentValues rawContactEntity) {
+        pushTypeButton(Email.TYPE_HOME, false);
+    }
 
     @Override
     protected void loadData(NamedContentValues contentValues) {

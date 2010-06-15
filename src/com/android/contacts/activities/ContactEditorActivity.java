@@ -87,7 +87,7 @@ public class ContactEditorActivity extends Activity {
             finish();
         }
 
-        public void onItemClicked(Intent intent) {
+        public void onEditorRequested(Intent intent) {
             startActivity(intent);
         }
 

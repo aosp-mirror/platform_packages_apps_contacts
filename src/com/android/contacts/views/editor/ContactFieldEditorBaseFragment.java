@@ -18,6 +18,8 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.ContactSaveService;
+import com.android.internal.util.ArrayUtils;
 
 import android.app.Activity;
 import android.app.LoaderManagingFragment;
@@ -27,10 +29,12 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
+import android.content.pm.PackageParser.ServiceIntentInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -48,6 +52,7 @@ public abstract class ContactFieldEditorBaseFragment
 
     private static final int LOADER_DETAILS = 1;
 
+    private String mMimeType;
     private long mRawContactId;
     private Uri mRawContactUri;
     private long mDataId;
@@ -67,14 +72,26 @@ public abstract class ContactFieldEditorBaseFragment
     }
 
     /**
-     * Sets the Uris for the Fragment. If the dataUri is null, this is interpreted as an Insert
-     * to an existing rawContact. rawContactUri must always be given
+     * Sets up the Fragment for Insert-Mode. Neither mimeType nor rawContactUri must be null
      */
-    public void setupUris(Uri rawContactUri, Uri dataUri) {
+    public void setupInsert(String mimeType, Uri rawContactUri) {
+        mMimeType = mimeType;
+        mRawContactUri = rawContactUri;
+        mRawContactId = Long.parseLong(rawContactUri.getLastPathSegment());
+        mDataUri = null;
+        mDataId = 0;
+    }
+
+    /**
+     * Sets up the Fragment for Edit-Mode. Neither rawContactUri nor dataUri must be null
+     * and dataUri must reference a data item that is associated with the given rawContactUri
+     */
+    public void setupEdit(Uri rawContactUri, Uri dataUri) {
+        mMimeType = null;
         mRawContactUri = rawContactUri;
         mRawContactId = Long.parseLong(rawContactUri.getLastPathSegment());
         mDataUri = dataUri;
-        mDataId = dataUri == null ? 0 : Long.parseLong(dataUri.getLastPathSegment());
+        mDataId = Long.parseLong(dataUri.getLastPathSegment());
     }
 
     @Override
@@ -114,28 +131,30 @@ public abstract class ContactFieldEditorBaseFragment
                 mContactData = data;
 
                 // Find the correct RawContact
-                boolean valueFound = false;
                 for (Entity entity : mContactData.getEntities()) {
-                    final ContentValues entValues = entity.getEntityValues();
-                    final long rawContactId = entValues.getAsLong(RawContacts._ID);
+                    final ContentValues rawContactEntity = entity.getEntityValues();
+                    final long rawContactId = rawContactEntity.getAsLong(RawContacts._ID);
                     if (rawContactId == mRawContactId) {
+                        if (mDataId == 0) {
+                            // Do an INSERT
+                            setupEmpty(rawContactEntity);
+                            return;
+                        }
+                        // Do an EDIT. Find the correct item
                         for (NamedContentValues subValue : entity.getSubValues()) {
                             final long dataId = subValue.values.getAsLong(Data._ID);
                             if (dataId == mDataId) {
                                 loadData(subValue);
-                                valueFound = true;
-                                break;
+                                return;
                             }
                         }
                     }
                 }
-                if (!valueFound) {
-                    // Item has been deleted
-                    Log.i(TAG, "Data item not found. Closing activity");
-                    if (mListener != null) mListener.onDataNotFound();
-                    return;
-                }
-                break;
+
+                // Item could not be found
+                Log.i(TAG, "Data item not found. Closing activity");
+                if (mListener != null) mListener.onDataNotFound();
+                return;
             default: {
                 Log.wtf(TAG, "Unknown ID in onLoadFinished: " + id);
             }
@@ -152,6 +171,7 @@ public abstract class ContactFieldEditorBaseFragment
         if (getDataUri() == null) {
             // INSERT
             builder = ContentProviderOperation.newInsert(Data.CONTENT_URI);
+            builder.withValue(Data.MIMETYPE, mMimeType);
             builder.withValue(Data.RAW_CONTACT_ID, getRawContactId());
             saveData(builder);
         } else {
@@ -161,18 +181,18 @@ public abstract class ContactFieldEditorBaseFragment
         }
         operations.add(builder.build());
 
-        // TODO: Do in Background thread/service
-        try {
-            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-        } catch (RemoteException e) {
-            Toast.makeText(getActivity(), R.string.edit_error_saving, Toast.LENGTH_LONG).show();
-        } catch (OperationApplicationException e) {
-            Toast.makeText(getActivity(), R.string.edit_error_saving, Toast.LENGTH_LONG).show();
-        }
+        // Tell the Service to save
+        final Intent serviceIntent = new Intent();
+        final ContentProviderOperation[] operationsArray =
+                operations.toArray(ArrayUtils.emptyArray(ContentProviderOperation.class));
+        serviceIntent.putExtra(ContactSaveService.EXTRA_OPERATIONS, operationsArray);
+        serviceIntent.setClass(getActivity().getApplicationContext(), ContactSaveService.class);
+
+        getActivity().startService(serviceIntent);
     }
 
     protected abstract void saveData(final Builder builder);
-
+    protected abstract void setupEmpty(ContentValues rawContactEntity);
     protected abstract void loadData(NamedContentValues contentValues);
 
     public void setListener(Listener listener) {

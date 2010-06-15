@@ -18,7 +18,6 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.R;
-import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactFieldEditorActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
@@ -83,7 +82,6 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.Result>
         implements OnCreateContextMenuListener, OnItemClickListener {
@@ -824,7 +822,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             final DataViewEntry entry = (DataViewEntry) baseEntry;
             final Intent intent = entry.intent;
             if (intent == null) return;
-            mListener.onItemClicked(intent);
+            mListener.onEditorRequested(intent);
         }
     }
 
@@ -881,22 +879,35 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                 if (rawContact == null) return null;
                 final ContactsSource source = rawContact.getSource();
 
-                final ArrayList<DataKind> sortedDataKinds = source.getSortedDataKinds();
-                final ArrayList<String> items = new ArrayList<String>(sortedDataKinds.size());
-                for (DataKind dataKind : sortedDataKinds) {
+                final ArrayList<DataKind> originalDataKinds = source.getSortedDataKinds();
+                // We should not modify the result returned from getSortedDataKinds but
+                // we have to filter some items out. Therefore we copy items into a new ArrayList
+                final ArrayList<DataKind> filteredDataKinds =
+                        new ArrayList<DataKind>(originalDataKinds.size());
+                final ArrayList<String> items = new ArrayList<String>(filteredDataKinds.size());
+                for (DataKind dataKind : originalDataKinds) {
                     // TODO: Filter out fields that do not make sense in the current Context
                     //       (Name, Photo, Notes etc)
                     if (dataKind.titleRes == -1) continue;
                     if (!dataKind.editable) continue;
                     final String title = mContext.getString(dataKind.titleRes);
                     items.add(title);
+                    filteredDataKinds.add(dataKind);
                 }
                 final DialogInterface.OnClickListener itemClickListener =
                         new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO: Launch Intent to show Dialog
-//                        final KindSectionView view = (KindSectionView) mFields.getChildAt(which);
-//                        view.addItem();
+                        // Create an Intent for the INSERT-Editor. Its data is null
+                        // and the RawContact is identified in the Extras
+                        final String rawContactUriString = ContentUris.withAppendedId(
+                                RawContacts.CONTENT_URI, rawContactId).toString();
+                        final DataKind dataKind = filteredDataKinds.get(which);
+                        final Intent intent = new Intent();
+                        intent.setType(dataKind.mimeType);
+                        intent.setAction(Intent.ACTION_INSERT);
+                        intent.putExtra(ContactFieldEditorActivity.BUNDLE_RAW_CONTACT_URI,
+                                rawContactUriString);
+                        if (mListener != null) mListener.onEditorRequested(intent);
                     }
                 };
                 return new AlertDialog.Builder(mContext)
@@ -1029,9 +1040,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         public void onError();
 
         /**
-         * User clicked a single item (e.g. mail)
+         * User clicked a single item (e.g. mail) to edit it or is adding a new field
          */
-        public void onItemClicked(Intent intent);
+        public void onEditorRequested(Intent intent);
 
         /**
          * Show a dialog using the globally unique id

@@ -397,7 +397,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Edit (or insert) details for a contact -->
+        <!-- Edit and insert details for a contact -->
         <activity
             android:name=".activities.ContactEditorActivity"
             android:theme="@style/TallTitleBarTheme">
@@ -438,6 +438,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/email_v2" android:host="com.android.contacts" />
             </intent-filter>
@@ -447,6 +448,11 @@
              background threads to finish their operations. -->
         <service
             android:name=".util.EmptyService"
+            android:exported="false" />
+
+        <!-- Service to save a contact -->
+        <service
+            android:name=".views.ContactSaveService"
             android:exported="false" />
 
         <!-- Views the details of a single contact -->

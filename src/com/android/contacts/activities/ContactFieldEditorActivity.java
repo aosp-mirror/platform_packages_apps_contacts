@@ -50,9 +50,9 @@ public class ContactFieldEditorActivity extends Activity {
         } else throw new IllegalArgumentException("Action is neither EDIT nor INSERT");
 
         if (isInsert) {
-            mFragment.setupUris(rawContactUri, null);
+            mFragment.setupInsert(intent.getType(), rawContactUri);
         } else {
-            mFragment.setupUris(rawContactUri, intent.getData());
+            mFragment.setupEdit(rawContactUri, intent.getData());
         }
     }
 
