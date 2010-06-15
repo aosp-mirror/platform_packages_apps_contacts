@@ -33,7 +33,7 @@ public final class QuickContactActivity extends Activity implements
         QuickContactWindow.OnDismissListener {
     private static final String TAG = "QuickContactActivity";
 
-    static final boolean LOGV = true;
+    static final boolean LOGV = false;
     static final boolean FORCE_CREATE = false;
 
     private QuickContactWindow mQuickContact;
