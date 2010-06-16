@@ -224,6 +224,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (!checkProviderStatus(false)) {
+            if (data != null) {
+                data.close();
+            }
             return;
         }
 
@@ -343,31 +346,34 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         } else {
             mAdapter.configureLoader(loader, partition.getDirectoryId());
             if (forceLoad) {
-                loader.cancelLoad();
                 loader.forceLoad();
             }
         }
     }
 
     protected void reloadData() {
-        mAdapter.onDataReload();
-        if (mDirectoryPartitions.size() > 0) {
-            // We need to cancel _all_ current queries and then launch
-            // a new query for the 0th partition.
+        if (mInitialLoadComplete) {
+            mAdapter.onDataReload();
+            if (mDirectoryPartitions.size() > 0) {
+                // We need to cancel _all_ current queries and then launch
+                // a new query for the 0th partition.
 
-            CursorLoader directoryLoader = (CursorLoader)getLoader(DIRECTORY_LOADER_ID);
-            if (directoryLoader != null) {
-                directoryLoader.cancelLoad();
-            }
-            int size = mDirectoryPartitions.size();
-            for (int i = 0; i < size; i++) {
-                CursorLoader loader = (CursorLoader)getLoader(i);
-                if (loader != null) {
-                    loader.cancelLoad();
+                CursorLoader directoryLoader = (CursorLoader)getLoader(DIRECTORY_LOADER_ID);
+                if (directoryLoader != null) {
+                    directoryLoader.cancelLoad();
                 }
-            }
+                int size = mDirectoryPartitions.size();
+                for (int i = 0; i < size; i++) {
+                    CursorLoader loader = (CursorLoader)getLoader(i);
+                    if (loader != null) {
+                        loader.cancelLoad();
+                    }
+                }
 
-            startLoading(mDirectoryPartitions.get(0), true);
+                startLoading(mDirectoryPartitions.get(0), true);
+            }
+        } else {
+            startLoading(0, null);
         }
     }
 
@@ -376,6 +382,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         for (DirectoryPartition partition : mDirectoryPartitions) {
             stopLoading(partition.getPartitionIndex());
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.resetPartitions();
+        mInitialLoadComplete = false;
     }
 
     /**

@@ -80,6 +80,12 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
     }
 
     public void resetPartitions() {
+        for (int i = 0; i < mSize; i++) {
+            Cursor cursor = mPartitions[i].cursor;
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
         mSize = 0;
         invalidate();
         notifyDataSetChanged();
@@ -140,12 +146,18 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
      * Changes the cursor for an individual partition.
      */
     public void changeCursor(int partition, Cursor cursor) {
-        mPartitions[partition].cursor = cursor;
-        if (cursor != null) {
-            mPartitions[partition].idColumnIndex = cursor.getColumnIndex("_id");
+        Cursor prevCursor = mPartitions[partition].cursor;
+        if (prevCursor != cursor) {
+            if (prevCursor != null && !prevCursor.isClosed()) {
+                prevCursor.close();
+            }
+            mPartitions[partition].cursor = cursor;
+            if (cursor != null) {
+                mPartitions[partition].idColumnIndex = cursor.getColumnIndex("_id");
+            }
+            invalidate();
+            notifyDataSetChanged();
         }
-        invalidate();
-        notifyDataSetChanged();
     }
 
     /**
