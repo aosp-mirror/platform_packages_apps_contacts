@@ -457,7 +457,7 @@ public class PinnedHeaderListView extends ListView
         // First draw top headers, then the bottom ones to handle the Z axis correctly
         for (int i = mSize; --i >= 0;) {
             PinnedHeader header = mHeaders[i];
-            if (header.visible && header.state == TOP) {
+            if (header.visible && (header.state == TOP || header.state == FADING)) {
                 drawHeader(canvas, header, currentTime);
             }
         }
