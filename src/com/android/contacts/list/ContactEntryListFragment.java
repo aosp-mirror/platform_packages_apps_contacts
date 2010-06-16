@@ -237,6 +237,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             onRequeryFinished(partitionIndex, data);
         }
 
+        if (partitionIndex == mAdapter.getIndexedPartition()) {
+            mAizy.setIndexer(mAdapter.getIndexer());
+        }
+
 // TODO fix the empty view
 //            if (mEmptyView != null && (data == null || data.getCount() == 0)) {
 //                prepareEmptyView();
@@ -310,9 +314,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         } else {
             mAdapter.changeCursor(partitionIndex, data);
             showCount(partitionIndex, data);
-        }
-        if (partitionIndex == mAdapter.getIndexedPartition()) {
-            mAizy.setIndexer(mAdapter.getIndexer());
         }
     }
 
