@@ -152,7 +152,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mSortOrder = sortOrder;
     }
 
-    // TODO no highlighting in STREQUENT mode
     public void setNameHighlightingEnabled(boolean flag) {
         mNameHighlightingEnabled = flag;
     }

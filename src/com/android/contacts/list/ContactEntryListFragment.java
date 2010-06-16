@@ -644,17 +644,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void configureAdapter() {
-        if (mAdapter != null) {
-            mAdapter.setQueryString(mQueryString);
-            mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
-            mAdapter.setContactNameDisplayOrder(mDisplayOrder);
-            mAdapter.setSortOrder(mSortOrder);
-            mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
-            mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
+        if (mAdapter == null) {
+            return;
         }
+        mAdapter.setQueryString(mQueryString);
+        mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
+        mAdapter.setContactNameDisplayOrder(mDisplayOrder);
+        mAdapter.setSortOrder(mSortOrder);
+        mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+        mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
     }
 
-    private boolean isNameHighlighingEnabled() {
+    protected boolean isNameHighlighingEnabled() {
         // When sort order and display order contradict each other, we want to
         // highlight the part of the name used for sorting.
         if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&

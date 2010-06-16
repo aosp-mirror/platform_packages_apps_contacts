@@ -38,6 +38,13 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
         setPhotoLoaderEnabled(true);
     }
 
+    @Override
+    protected boolean isNameHighlighingEnabled() {
+        // Since the list is not ordered alphabetically, we don't need to highlight the part
+        // that is used for sorting.
+        return false;
+    }
+
     public void setStarredContactsIncluded(boolean flag) {
         mStarredContactsIncluded = flag;
         configureAdapter();

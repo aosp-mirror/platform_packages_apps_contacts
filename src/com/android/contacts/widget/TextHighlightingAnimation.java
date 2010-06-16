@@ -20,7 +20,6 @@ import com.android.internal.R;
 import android.database.CharArrayBuffer;
 import android.graphics.Color;
 import android.os.Handler;
-import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.animation.AccelerateInterpolator;
