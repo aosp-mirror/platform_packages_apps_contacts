@@ -88,7 +88,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
-    protected static final int SUBACTIVITY_FILTER = 5;
 
     private static final String[] RAW_CONTACTS_PROJECTION = new String[] {
         RawContacts._ID, //0
@@ -260,6 +259,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
+                fragment.setSearchMode(mRequest.isSearchMode());
                 mListFragment = fragment;
                 break;
             }
@@ -267,7 +267,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setCreateContactEnabled(true);
+                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 mListFragment = fragment;
                 break;
@@ -276,8 +276,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setCreateContactEnabled(true);
+                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
+                fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setShortcutRequested(true);
                 mListFragment = fragment;
                 break;
@@ -326,6 +327,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             default:
                 throw new IllegalStateException("Invalid action code: " + mActionCode);
         }
+        mListFragment.setContactsRequest(mRequest);
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
@@ -453,19 +455,26 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        // TODO what other actions need the menu?
+        MenuInflater inflater = getMenuInflater();
         if (mActionCode == ContactsRequest.ACTION_DEFAULT ||
                 mActionCode == ContactsRequest.ACTION_STREQUENT) {
-            MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.list, menu);
+            return true;
+        } else if (!mListFragment.isSearchMode()) {
+            inflater.inflate(R.menu.search, menu);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_display_groups).setVisible(
-                mActionCode == ContactsRequest.ACTION_DEFAULT);
+        MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
+        if (displayGroups != null) {
+            displayGroups.setVisible(
+                    mActionCode == ContactsRequest.ACTION_DEFAULT);
+        }
         return true;
     }
 
@@ -513,14 +522,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         if (globalSearch) {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         } else {
-//            if (!mSearchMode && (mMode & MODE_MASK_NO_FILTER) == 0) {
-//                if ((mMode & MODE_MASK_PICKER) != 0) {
-//                    ContactsSearchManager.startSearchForResult(this, initialQuery,
-//                            SUBACTIVITY_FILTER, null);
-//                } else {
-                    ContactsSearchManager.startSearch(this, initialQuery, mRequest);
-//                }
-//            }
+            mListFragment.startSearch(initialQuery);
         }
     }
 
@@ -722,16 +724,17 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         AccountSelectionUtil.doImport(this, resId, (size == 1 ? accountList.get(0) : null));
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        switch (requestCode) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
 //            case SUBACTIVITY_NEW_CONTACT:
 //                if (resultCode == RESULT_OK) {
-////                    returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
-////                            data.getData());
+//                    returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
+//                            data.getData());
+//                    setRe
 //                }
 //                break;
-//
+
 //            case SUBACTIVITY_VIEW_CONTACT:
 //                if (resultCode == RESULT_OK) {
 //                    mAdapter.notifyDataSetChanged();
@@ -743,20 +746,23 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 ////                mJustCreated = true;
 //                break;
 //
-//            case SUBACTIVITY_FILTER:
+            case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_FILTER:
 //            case SUBACTIVITY_SEARCH:
-//                // Pass through results of filter or search UI
-//                if (resultCode == RESULT_OK) {
-//                    setResult(RESULT_OK, data);
-//                    finish();
-//                } else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
+                // Pass through results of filter or search UI
+                if (resultCode == RESULT_OK) {
+                    setResult(RESULT_OK, data);
+                    finish();
+                }
+
+// TODO fix or remove multipicker code
+//                else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
 //                    // Finish the activity if the sub activity was canceled as back key is used
 //                    // to confirm user selection in MODE_PICK_MULTIPLE_PHONES.
 //                    finish();
 //                }
 //                break;
-//        }
-//    }
+        }
+    }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
