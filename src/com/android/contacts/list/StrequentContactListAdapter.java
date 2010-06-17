@@ -83,6 +83,15 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     }
 
     @Override
+    protected void invalidate() {
+        super.invalidate();
+
+        // Sometimes the adapter is invalidated without calling changeCursor,
+        // need to reset the separator position then.
+        mFrequentSeparatorPos = ListView.INVALID_POSITION;
+    }
+
+    @Override
     public void changeCursor(int partition, Cursor cursor) {
         super.changeCursor(partition, cursor);
 
