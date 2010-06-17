@@ -26,6 +26,10 @@ import com.android.contacts.ui.EditContactActivity;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.editor.typeViews.DataView;
+import com.android.contacts.views.editor.typeViews.FooterView;
+import com.android.contacts.views.editor.typeViews.HeaderView;
+import com.android.contacts.views.editor.typeViews.PhotoView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,7 +44,6 @@ import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Entity.NamedContentValues;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -70,14 +73,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -128,7 +127,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         final View view = inflater.inflate(R.layout.contact_editor_fragment, container, false);
 
         setHasOptionsMenu(true);
-        
+
         mInflater = inflater;
 
         mHeaderView =
@@ -391,18 +390,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         @Override
         public View getView(View convertView, ViewGroup parent) {
-            final View result;
-            final HeaderItemViewCache viewCache;
-            if (convertView != null) {
-                result = convertView;
-                viewCache = (HeaderItemViewCache) result.getTag();
-            } else {
-                result = mInflater.inflate(R.layout.list_edit_item_header, parent, false);
-                viewCache = new HeaderItemViewCache();
-                result.setTag(viewCache);
-                viewCache.logo = (ImageView) result.findViewById(R.id.logo);
-                viewCache.caption = (TextView) result.findViewById(R.id.caption);
-            }
+            final HeaderView result = convertView != null
+                    ? (HeaderView) convertView
+                    : HeaderView.inflate(mInflater, parent, false);
 
             CharSequence accountType = getRawContact().getSource().getDisplayLabel(mContext);
             if (TextUtils.isEmpty(accountType)) {
@@ -419,14 +409,14 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                         accountType, accountName);
             }
 
-            viewCache.caption.setText(accountTypeDisplay);
-            viewCache.logo.setImageDrawable(getRawContact().getSource().getDisplayIcon(mContext));
+            result.setCaptionText(accountTypeDisplay);
+            result.setLogo(getRawContact().getSource().getDisplayIcon(mContext));
 
             return result;
         }
     }
 
-    private class FooterViewEntry extends BaseViewEntry {
+    public class FooterViewEntry extends BaseViewEntry {
         public FooterViewEntry(RawContact rawContact) {
             super(rawContact);
         }
@@ -438,28 +428,28 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         @Override
         public View getView(View convertView, ViewGroup parent) {
-            final View result;
-            final FooterItemViewCache viewCache;
-            if (convertView != null) {
-                result = convertView;
-                viewCache = (FooterItemViewCache) result.getTag();
-            } else {
-                result = mInflater.inflate(R.layout.list_edit_item_footer, parent, false);
-                viewCache = new FooterItemViewCache();
-                result.setTag(viewCache);
-                viewCache.addInformationButton =
-                    (Button) result.findViewById(R.id.add_information);
-                viewCache.separateButton =
-                    (Button) result.findViewById(R.id.separate);
-                viewCache.deleteButton =
-                    (Button) result.findViewById(R.id.deleteButton);
-                viewCache.addInformationButton.setOnClickListener(
-                        mAddInformationButtonClickListener);
-            }
+            final FooterView result = convertView != null
+                    ? (FooterView) convertView
+                    : FooterView.inflate(mInflater, parent, false);
 
-            viewCache.viewEntry = this;
+            result.setListener(mViewListener);
             return result;
         }
+
+        private FooterView.Listener mViewListener = new FooterView.Listener() {
+            public void onAddClicked() {
+              // Create a bundle to show the Dialog
+              final Bundle bundle = new Bundle();
+              bundle.putLong(BUNDLE_RAW_CONTACT_ID, getRawContact().getId());
+              if (mListener != null) {
+                  mListener.onDialogRequested(R.id.edit_dialog_add_information, bundle);
+              }
+            }
+            public void onSeparateClicked() {
+            }
+            public void onDeleteClicked() {
+            }
+        };
     }
 
     private class DataViewEntry extends BaseViewEntry {
@@ -498,128 +488,50 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         @Override
         public View getView(View convertView, ViewGroup parent) {
-            final View result;
+            // Special Case: Photo
             if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                final PhotoItemViewCache viewCache;
-                if (convertView != null) {
-                    result = convertView;
-                    viewCache = (PhotoItemViewCache) result.getTag();
-                } else {
-                    // Create a new view if needed
-                    result = mInflater.inflate(R.layout.list_edit_item_photo, parent, false);
+                final PhotoView result = convertView != null
+                        ? (PhotoView) convertView
+                        : PhotoView.inflate(mInflater, parent, false);
 
-                    // Cache the children
-                    viewCache = new PhotoItemViewCache();
-                    viewCache.photo = (ImageView) result.findViewById(R.id.photo);
-                    viewCache.galleryActionButton =
-                            (ImageView) result.findViewById(R.id.action_icon);
-                    viewCache.takePhotoActionButton =
-                            (ImageView) result.findViewById(R.id.secondary_action_button);
-                    result.setTag(viewCache);
-                }
                 final Bitmap bitmap = binaryData != null
                         ? BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length)
                         : null;
-                viewCache.photo.setImageBitmap(bitmap);
-            } else {
-                final DataItemViewCache viewCache;
-                if (convertView != null) {
-                    result = convertView;
-                    viewCache = (DataItemViewCache) result.getTag();
-                } else {
-                    // Create a new view if needed
-                    result = mInflater.inflate(R.layout.list_edit_item_text_icons, parent,
-                            false);
-
-                    // Cache the children
-                    viewCache = new DataItemViewCache();
-                    viewCache.label = (TextView) result.findViewById(android.R.id.text1);
-                    viewCache.data = (TextView) result.findViewById(android.R.id.text2);
-                    viewCache.actionIcon = (ImageView) result.findViewById(R.id.action_icon);
-                    viewCache.primaryIcon = (ImageView) result.findViewById(R.id.primary_icon);
-                    viewCache.secondaryActionButton = (ImageView) result.findViewById(
-                            R.id.secondary_action_button);
-                    viewCache.secondaryActionDivider = result.findViewById(R.id.divider);
-                    result.setTag(viewCache);
-                }
-                final Resources resources = mContext.getResources();
-
-                // Set the label
-                setMaxLines(viewCache.label, maxLabelLines);
-                viewCache.label.setText(label);
-
-                if (data != null) {
-                    if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
-                            || Constants.MIME_SMS_ADDRESS.equals(mimetype)) {
-                        viewCache.data.setText(PhoneNumberUtils.formatNumber(data));
-                    } else {
-                        viewCache.data.setText(data);
-                    }
-                    setMaxLines(viewCache.data, maxLines);
-                }
-
-                // Set the primary icon
-                viewCache.primaryIcon.setVisibility(isPrimary ? View.VISIBLE : View.GONE);
-
-                // Set the action icon
-                final ImageView action = viewCache.actionIcon;
-                if (intent != null) {
-                    action.setImageDrawable(resources.getDrawable(actionIcon));
-                    action.setVisibility(View.VISIBLE);
-                } else {
-                    action.setVisibility(View.INVISIBLE);
-                }
-
-                // Set the secondary action button
-                final ImageView secondaryActionView = viewCache.secondaryActionButton;
-                secondaryActionView.setVisibility(View.GONE);
-                viewCache.secondaryActionDivider.setVisibility(View.GONE);
+                result.setPhoto(bitmap);
+                return result;
             }
+
+            // All other cases
+            final DataView result = convertView != null
+                    ? (DataView) convertView
+                    : DataView.inflate(mInflater, parent, false);
+
+            // Set the label
+            result.setLabelText(label, maxLabelLines);
+
+            // Set data
+            if (data != null) {
+                if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
+                        || Constants.MIME_SMS_ADDRESS.equals(mimetype)) {
+                    result.setDataText(PhoneNumberUtils.formatNumber(data), maxLines);
+                } else {
+                    result.setDataText(data, maxLines);
+                }
+            } else {
+                result.setDataText("", maxLines);
+            }
+
+            // Set the primary icon
+            result.setPrimary(isPrimary);
+
+            // Set the action icon
+            result.setPrimaryIntent(intent, mContext.getResources(), actionIcon);
+
+            // Set the secondary action button
+            // TODO: Change this to our new form
+            result.setSecondaryIntent(null, null, 0);
             return result;
         }
-
-        private void setMaxLines(TextView textView, int maxLines) {
-            if (maxLines == 1) {
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-            } else {
-                textView.setSingleLine(false);
-                textView.setMaxLines(maxLines);
-                textView.setEllipsize(null);
-            }
-        }
-    }
-
-    /** Cache of the header of a raw contact */
-    private static class HeaderItemViewCache {
-        public ImageView logo;
-        public TextView caption;
-    }
-
-    /** Cache of the footer of a raw contact */
-    private static class FooterItemViewCache {
-        public Button addInformationButton;
-        public Button separateButton;
-        public Button deleteButton;
-
-        public FooterViewEntry viewEntry;
-    }
-
-    /** Cache of the children views of a row */
-    private static class DataItemViewCache {
-        public TextView label;
-        public TextView data;
-        public ImageView actionIcon;
-        public ImageView primaryIcon;
-        public ImageView secondaryActionButton;
-        public View secondaryActionDivider;
-    }
-
-    /** Cache of the children views of a row */
-    private static class PhotoItemViewCache {
-        public ImageView photo;
-        public ImageView takePhotoActionButton;
-        public ImageView galleryActionButton;
     }
 
     /** Possible Item Types */
@@ -966,22 +878,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         return mAdapter.getEntry(info.position);
     }
-
-    public OnClickListener mAddInformationButtonClickListener = new OnClickListener() {
-        public void onClick(View v) {
-            // The parent of the Button allows identifying the section
-            final View parentView = (View) v.getParent();
-            final FooterItemViewCache viewCache = (FooterItemViewCache) parentView.getTag();
-            final FooterViewEntry entry = viewCache.viewEntry;
-            final RawContact rawContact = entry.getRawContact();
-
-            // Create a bundle to show the Dialog
-            final Bundle bundle = new Bundle();
-            bundle.putLong(BUNDLE_RAW_CONTACT_ID, rawContact.getId());
-            if (mListener != null) mListener.onDialogRequested(R.id.edit_dialog_add_information,
-                    bundle);
-        }
-    };
 
     private class RawContact {
         private final ContactsSource mSource;
