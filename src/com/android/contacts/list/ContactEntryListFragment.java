@@ -19,6 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactEntryListView;
 import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoLoader;
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -76,6 +77,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         extends LoaderManagingFragment<Cursor>
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener {
 
+    public static final int ACTIVITY_REQUEST_CODE_FILTER = 1;
 
     private static final String TAG = "ContactEntryListFragment";
 
@@ -121,6 +123,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * a refresh caused by a change notification.
      */
     private boolean mInitialLoadComplete;
+
+    private ContactsRequest mRequest;
 
     private static final class DirectoryQuery {
         public static final Uri URI = Directory.CONTENT_URI;
@@ -168,6 +172,20 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     protected void onInitializeLoaders() {
+    }
+
+    /**
+     * Returns the parsed intent that started the activity hosting this fragment.
+     */
+    public ContactsRequest getContactsRequest() {
+        return mRequest;
+    }
+
+    /**
+     * Sets a parsed intent that started the activity hosting this fragment.
+     */
+    public void setContactsRequest(ContactsRequest request) {
+        mRequest = request;
     }
 
     @Override
@@ -937,6 +955,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         TelephonyManager telephonyManager =
                 (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.hasIccCard();
+    }
+
+    /**
+     * Processes a user request to start search. This may be triggered by the
+     * search key, a menu item or some other user action.
+     */
+    public void startSearch(String initialQuery) {
+        ContactsSearchManager.startSearch(getActivity(), initialQuery, mRequest);
     }
 
     // TODO integrate into picker fragments

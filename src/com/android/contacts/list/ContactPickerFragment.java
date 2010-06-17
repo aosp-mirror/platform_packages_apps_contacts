@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
@@ -38,6 +39,8 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     public ContactPickerFragment() {
         setPhotoLoaderEnabled(true);
+        setSectionHeaderDisplayEnabled(true);
+        setAizyEnabled(true);
     }
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
@@ -68,10 +71,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         }
     }
 
-    public boolean isSearchAllContactsItemPosition(int position) {
-        return isSearchMode() && position == getAdapter().getCount() - 1;
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0 && !isSearchMode() && mCreateContactEnabled) {
@@ -83,21 +82,17 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     protected void onItemClick(int position, long id) {
-        if (isSearchAllContactsItemPosition(position)) {
-            mListener.onSearchAllContactsAction((String)null);
+        Uri uri;
+        if (isLegacyCompatibilityMode()) {
+            uri = ((LegacyContactListAdapter)getAdapter()).getPersonUri(position);
         } else {
-            Uri uri;
-            if (isLegacyCompatibilityMode()) {
-                uri = ((LegacyContactListAdapter)getAdapter()).getPersonUri(position);
-            } else {
-                uri = ((ContactListAdapter)getAdapter()).getContactUri(position);
-            }
-            if (mShortcutRequested) {
-                ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
-                builder.createContactShortcutIntent(uri);
-            } else {
-                mListener.onPickContactAction(uri);
-            }
+            uri = ((ContactListAdapter)getAdapter()).getContactUri(position);
+        }
+        if (mShortcutRequested) {
+            ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
+            builder.createContactShortcutIntent(uri);
+        } else {
+            mListener.onPickContactAction(uri);
         }
     }
 
@@ -120,7 +115,11 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     @Override
     protected void configureAdapter() {
         super.configureAdapter();
+
         ContactEntryListAdapter adapter = getAdapter();
+        if (adapter instanceof DefaultContactListAdapter) {
+            ((DefaultContactListAdapter)adapter).setVisibleContactsOnly(true);
+        }
 
         // If "Create new contact" is shown, don't display the empty list UI
         adapter.setEmptyListEnabled(!isCreateContactEnabled());
@@ -128,13 +127,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        if (isSearchMode()) {
-            return inflater.inflate(R.layout.contacts_search_content, null);
-        } else if (isSearchResultsMode()) {
-            return inflater.inflate(R.layout.contacts_list_search_results, null);
-        } else {
-            return inflater.inflate(R.layout.contacts_list_content, null);
-        }
+        return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
     @Override
@@ -166,5 +159,11 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
         mListener.onShortcutIntentCreated(shortcutIntent);
+    }
+
+    @Override
+    public void startSearch(String initialQuery) {
+        ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
+                ACTIVITY_REQUEST_CODE_FILTER, getContactsRequest());
     }
 }
