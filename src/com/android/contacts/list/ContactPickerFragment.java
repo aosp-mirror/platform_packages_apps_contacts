@@ -36,6 +36,10 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     private boolean mCreateContactEnabled;
     private boolean mShortcutRequested;
 
+    public ContactPickerFragment() {
+        setPhotoLoaderEnabled(true);
+    }
+
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
         mListener = listener;
     }
