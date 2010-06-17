@@ -16,7 +16,6 @@
 
 package com.android.contacts.views.editor;
 
-import com.android.contacts.R;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.ContactSaveService;
 import com.android.internal.util.ArrayUtils;
@@ -31,18 +30,13 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
-import android.content.pm.PackageParser.ServiceIntentInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.RemoteException;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 

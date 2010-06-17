@@ -17,7 +17,8 @@
  */
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.contacts.views.editor.typeViews.DataView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -95,4 +96,4 @@
         android:background="@android:drawable/list_selector_background"
     />
 
-</LinearLayout>
+</com.android.contacts.views.editor.typeViews.DataView>
