@@ -20,10 +20,14 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -57,6 +61,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
+    private boolean mVisibleContactsOnly = true;
 
     public PhoneNumberListAdapter(Context context) {
         super(context);
@@ -68,11 +73,43 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         return mUnknownNameText;
     }
 
+    public void setVisibleContactsOnly(boolean flag) {
+        mVisibleContactsOnly = flag;
+    }
+
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        loader.setUri(buildSectionIndexerUri(Phone.CONTENT_URI));
-        loader.setProjection(PHONES_PROJECTION);
+        Uri uri;
 
+        if (isSearchMode()) {
+            String query = getQueryString();
+            Builder builder = Phone.CONTENT_FILTER_URI.buildUpon();
+            if (TextUtils.isEmpty(query)) {
+                builder.appendPath("");
+            } else {
+                builder.appendPath(query);      // Builder will encode the query
+            }
+
+            builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                    String.valueOf(directoryId));
+            uri = builder.build();
+            // TODO a projection that includes the search snippet
+            loader.setProjection(PHONES_PROJECTION);
+        } else {
+            uri = Phone.CONTENT_URI;
+            loader.setProjection(PHONES_PROJECTION);
+        }
+
+        if (directoryId == Directory.DEFAULT) {
+            if (mVisibleContactsOnly) {
+                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+            }
+            if (isSectionHeaderDisplayEnabled()) {
+                uri = buildSectionIndexerUri(uri);
+            }
+        }
+
+        loader.setUri(uri);
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
         } else {

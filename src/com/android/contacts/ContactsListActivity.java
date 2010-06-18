@@ -279,6 +279,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
+                fragment.setQueryString(mRequest.getQueryString());
                 fragment.setShortcutRequested(true);
                 mListFragment = fragment;
                 break;
@@ -298,8 +299,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 fragment.setOnPhoneNumberPickerActionListener(
                         new PhoneNumberPickerActionListener());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setSectionHeaderDisplayEnabled(false);
                 fragment.setShortcutAction(Intent.ACTION_CALL);
+                fragment.setSearchMode(mRequest.isSearchMode());
+
                 mListFragment = fragment;
                 break;
             }
@@ -309,8 +311,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 fragment.setOnPhoneNumberPickerActionListener(
                         new PhoneNumberPickerActionListener());
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setSectionHeaderDisplayEnabled(false);
                 fragment.setShortcutAction(Intent.ACTION_SENDTO);
+                fragment.setSearchMode(mRequest.isSearchMode());
+
                 mListFragment = fragment;
                 break;
             }

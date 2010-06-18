@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
@@ -34,7 +35,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public PhoneNumberPickerFragment() {
         setPhotoLoaderEnabled(true);
-        setSectionHeaderDisplayEnabled(true);
     }
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {
@@ -53,11 +53,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void onItemClick(int position, long id) {
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
-//          if (adapter.isSearchAllContactsItemPosition(position)) {
-//              searchAllContacts();
-//          } else {
             pickPhoneNumber(adapter.getDataUri(position));
-//          }
         } else {
             LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter)getAdapter();
             pickPhoneNumber(adapter.getPhoneUri(position));
@@ -68,26 +64,25 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected ContactEntryListAdapter createListAdapter() {
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
-            adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);
             return adapter;
         } else {
             LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
-            adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);
             return adapter;
         }
     }
 
     @Override
+    protected void configureAdapter() {
+        setSectionHeaderDisplayEnabled(!isSearchMode());
+        setAizyEnabled(!isSearchMode());
+        super.configureAdapter();
+    }
+
+    @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        if (isSearchMode()) {
-            return inflater.inflate(R.layout.contacts_search_content, null);
-        } else if (isSearchResultsMode()) {
-            return inflater.inflate(R.layout.contacts_list_search_results, null);
-        } else {
-            return inflater.inflate(R.layout.contacts_list_content, null);
-        }
+        return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
     public void pickPhoneNumber(Uri uri) {
@@ -104,5 +99,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
         mListener.onShortcutIntentCreated(shortcutIntent);
+    }
+
+    @Override
+    public void startSearch(String initialQuery) {
+        ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
+                ACTIVITY_REQUEST_CODE_FILTER, getContactsRequest());
     }
 }
