@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor.typeViews;
+package com.android.contacts.views.editor.view;
 
 import com.android.contacts.R;
 

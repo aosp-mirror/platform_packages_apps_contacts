@@ -17,7 +17,7 @@
  */
 -->
 
-<com.android.contacts.views.editor.typeViews.DataView
+<com.android.contacts.views.editor.view.DataView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -96,4 +96,4 @@
         android:background="@android:drawable/list_selector_background"
     />
 
-</com.android.contacts.views.editor.typeViews.DataView>
+</com.android.contacts.views.editor.view.DataView>

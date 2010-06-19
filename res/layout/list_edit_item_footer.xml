@@ -17,7 +17,7 @@
  */
 -->
 
-<com.android.contacts.views.editor.typeViews.FooterView
+<com.android.contacts.views.editor.view.FooterView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -46,4 +46,4 @@
         android:text="@string/edit_delete_rawcontact"
     />
 
-</com.android.contacts.views.editor.typeViews.FooterView>
+</com.android.contacts.views.editor.view.FooterView>

@@ -23,13 +23,13 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.EditContactActivity;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.editor.typeViews.DataView;
-import com.android.contacts.views.editor.typeViews.FooterView;
-import com.android.contacts.views.editor.typeViews.HeaderView;
-import com.android.contacts.views.editor.typeViews.PhotoView;
+import com.android.contacts.views.editor.viewModel.BaseViewModel;
+import com.android.contacts.views.editor.viewModel.DataViewModel;
+import com.android.contacts.views.editor.viewModel.FooterViewModel;
+import com.android.contacts.views.editor.viewModel.HeaderViewModel;
+import com.android.contacts.views.editor.viewModel.ViewModelTypes;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,8 +44,6 @@ import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Entity.NamedContentValues;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds;
@@ -62,7 +60,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -108,7 +105,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     /**
      * A list of RawContacts included in this Contact.
      */
-    private ArrayList<RawContact> mRawContacts = new ArrayList<RawContact>();
+    private ArrayList<DisplayRawContact> mRawContacts = new ArrayList<DisplayRawContact>();
 
     private LayoutInflater mInflater;
 
@@ -130,8 +127,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         mInflater = inflater;
 
-        mHeaderView =
-                (ContactEditorHeaderView) view.findViewById(R.id.contact_header_widget);
+        mHeaderView = (ContactEditorHeaderView) view.findViewById(R.id.contact_header_widget);
 
         mListView = (ListView) view.findViewById(android.R.id.list);
         mListView.setOnCreateContextMenuListener(this);
@@ -248,8 +244,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                 mReadOnlySourcesCnt += 1;
             }
 
-            final RawContact rawContact =
-                    new RawContact(contactsSource, accountName, rawContactId, writable);
+            final DisplayRawContact rawContact = new DisplayRawContact(mContext, contactsSource,
+                    accountName, rawContactId, writable, mRawContactFooterListener);
             mRawContacts.add(rawContact);
 
             for (NamedContentValues subValue : entity.getSubValues()) {
@@ -264,7 +260,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                         ContactsSource.LEVEL_MIMETYPES);
                 if (kind == null) continue;
 
-                final DataViewEntry entry = new DataViewEntry(mContext, mimeType, kind,
+                final DataViewModel entry = new DataViewModel(mContext, mimeType, kind,
                         rawContact, dataId, entryValues);
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
@@ -332,223 +328,12 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    private static String buildActionString(DataKind kind, ContentValues values,
-            boolean lowerCase, Context context) {
-        if (kind.actionHeader == null) {
-            return null;
-        }
-        CharSequence actionHeader = kind.actionHeader.inflateUsing(context, values);
-        if (actionHeader == null) {
-            return null;
-        }
-        return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
-    }
-
-    private static String buildDataString(DataKind kind, ContentValues values,
-            Context context) {
-        if (kind.actionBody == null) {
-            return null;
-        }
-        CharSequence actionBody = kind.actionBody.inflateUsing(context, values);
-        return actionBody == null ? null : actionBody.toString();
-    }
-
-    private abstract static class BaseViewEntry {
-        private final RawContact mRawContact;
-
-        public BaseViewEntry(RawContact rawContact) {
-            mRawContact = rawContact;
-        }
-
-        public RawContact getRawContact() {
-            return mRawContact;
-        }
-
-        public abstract int getEntryType();
-        public abstract View getView(View convertView, ViewGroup parent);
-    }
-
-    private class HeaderViewEntry extends BaseViewEntry {
-        private boolean mCollapsed;
-
-        public HeaderViewEntry(RawContact rawContact) {
-            super(rawContact);
-        }
-
-        public boolean isCollapsed() {
-            return mCollapsed;
-        }
-
-        public void setCollapsed(boolean collapsed) {
-            mCollapsed = collapsed;
-        }
-
-        @Override
-        public int getEntryType() {
-            return ItemTypes.RAW_CONTACT_HEADER;
-        }
-
-        @Override
-        public View getView(View convertView, ViewGroup parent) {
-            final HeaderView result = convertView != null
-                    ? (HeaderView) convertView
-                    : HeaderView.inflate(mInflater, parent, false);
-
-            CharSequence accountType = getRawContact().getSource().getDisplayLabel(mContext);
-            if (TextUtils.isEmpty(accountType)) {
-                accountType = mContext.getString(R.string.account_phone);
-            }
-            final String accountName = getRawContact().getAccountName();
-
-            final String accountTypeDisplay;
-            if (TextUtils.isEmpty(accountName)) {
-                accountTypeDisplay = mContext.getString(R.string.account_type_format,
-                        accountType);
-            } else {
-                accountTypeDisplay = mContext.getString(R.string.account_type_and_name,
-                        accountType, accountName);
-            }
-
-            result.setCaptionText(accountTypeDisplay);
-            result.setLogo(getRawContact().getSource().getDisplayIcon(mContext));
-
-            return result;
-        }
-    }
-
-    public class FooterViewEntry extends BaseViewEntry {
-        public FooterViewEntry(RawContact rawContact) {
-            super(rawContact);
-        }
-
-        @Override
-        public int getEntryType() {
-            return ItemTypes.RAW_CONTACT_FOOTER;
-        }
-
-        @Override
-        public View getView(View convertView, ViewGroup parent) {
-            final FooterView result = convertView != null
-                    ? (FooterView) convertView
-                    : FooterView.inflate(mInflater, parent, false);
-
-            result.setListener(mViewListener);
-            return result;
-        }
-
-        private FooterView.Listener mViewListener = new FooterView.Listener() {
-            public void onAddClicked() {
-              // Create a bundle to show the Dialog
-              final Bundle bundle = new Bundle();
-              bundle.putLong(BUNDLE_RAW_CONTACT_ID, getRawContact().getId());
-              if (mListener != null) {
-                  mListener.onDialogRequested(R.id.edit_dialog_add_information, bundle);
-              }
-            }
-            public void onSeparateClicked() {
-            }
-            public void onDeleteClicked() {
-            }
-        };
-    }
-
-    private class DataViewEntry extends BaseViewEntry {
-        public String label;
-        public String data;
-        public Uri uri;
-        public long id = 0;
-        public int maxLines = 1;
-        public String mimetype;
-
-        public int actionIcon = -1;
-        public boolean isPrimary = false;
-        public Intent intent;
-        public Intent secondaryIntent = null;
-        public int maxLabelLines = 1;
-        public byte[] binaryData = null;
-
-        /**
-         * Build new {@link DataViewEntry} and populate from the given values.
-         */
-        public DataViewEntry(Context context, String mimeType, DataKind kind,
-                RawContact rawContact, long dataId, ContentValues values) {
-            super(rawContact);
-            id = dataId;
-            uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-            mimetype = mimeType;
-            label = buildActionString(kind, values, false, context);
-            data = buildDataString(kind, values, context);
-            binaryData = values.getAsByteArray(Data.DATA15);
-        }
-
-        @Override
-        public int getEntryType() {
-            return Photo.CONTENT_ITEM_TYPE.equals(mimetype) ? ItemTypes.PHOTO : ItemTypes.DATA;
-        }
-
-        @Override
-        public View getView(View convertView, ViewGroup parent) {
-            // Special Case: Photo
-            if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                final PhotoView result = convertView != null
-                        ? (PhotoView) convertView
-                        : PhotoView.inflate(mInflater, parent, false);
-
-                final Bitmap bitmap = binaryData != null
-                        ? BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length)
-                        : null;
-                result.setPhoto(bitmap);
-                return result;
-            }
-
-            // All other cases
-            final DataView result = convertView != null
-                    ? (DataView) convertView
-                    : DataView.inflate(mInflater, parent, false);
-
-            // Set the label
-            result.setLabelText(label, maxLabelLines);
-
-            // Set data
-            if (data != null) {
-                if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
-                        || Constants.MIME_SMS_ADDRESS.equals(mimetype)) {
-                    result.setDataText(PhoneNumberUtils.formatNumber(data), maxLines);
-                } else {
-                    result.setDataText(data, maxLines);
-                }
-            } else {
-                result.setDataText("", maxLines);
-            }
-
-            // Set the primary icon
-            result.setPrimary(isPrimary);
-
-            // Set the action icon
-            result.setPrimaryIntent(intent, mContext.getResources(), actionIcon);
-
-            // Set the secondary action button
-            // TODO: Change this to our new form
-            result.setSecondaryIntent(null, null, 0);
-            return result;
-        }
-    }
-
-    /** Possible Item Types */
-    private interface ItemTypes {
-        public static final int DATA = 0;
-        public static final int PHOTO = 1;
-        public static final int RAW_CONTACT_HEADER = 2;
-        public static final int RAW_CONTACT_FOOTER = 3;
-        public static final int _COUNT = 4;
-    }
-
     private final class ViewAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
             final View result;
 
-            final BaseViewEntry viewEntry = getEntry(position);
-            return viewEntry.getView(convertView, parent);
+            final BaseViewModel viewEntry = getEntry(position);
+            return viewEntry.getView(mInflater, convertView, parent);
         }
 
         public Object getItem(int position) {
@@ -560,9 +345,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             return position;
         }
 
-        private BaseViewEntry getEntry(int position) {
+        private BaseViewModel getEntry(int position) {
             for (int i = 0; i < mRawContacts.size(); i++) {
-                final RawContact rawContact = mRawContacts.get(i);
+                final DisplayRawContact rawContact = mRawContacts.get(i);
                 if (position == 0) return rawContact.getHeader();
 
                 // Collapsed header? Count one item and continue
@@ -571,7 +356,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                     continue;
                 }
 
-                final ArrayList<DataViewEntry> fields = rawContact.getFields();
+                final ArrayList<DataViewModel> fields = rawContact.getFields();
                 // +1 for header, +1 for footer
                 final int fieldCount = fields.size() + 2;
                 if (position == fieldCount - 1) {
@@ -588,7 +373,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         @Override
         public int getViewTypeCount() {
-            return ItemTypes._COUNT;
+            return ViewModelTypes._COUNT;
         }
 
         @Override
@@ -599,7 +384,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         public int getCount() {
             int result = 0;
             for (int i = 0; i < mRawContacts.size(); i++) {
-                final RawContact rawContact = mRawContacts.get(i);
+                final DisplayRawContact rawContact = mRawContacts.get(i);
                 if (rawContact.getHeader().isCollapsed()) {
                     // just one header item
                     result++;
@@ -612,14 +397,17 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
+    @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.view, menu);
     }
 
+    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // TODO: Prepare options
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
@@ -627,7 +415,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                 // later
                 final Intent intent = new Intent();
                 intent.setClass(mContext, EditContactActivity.class);
-                final long rawContactId = mRawContacts.get(0).mId;
+                final long rawContactId = mRawContacts.get(0).getId();
                 final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
                         rawContactId);
                 intent.setAction(Intent.ACTION_EDIT);
@@ -684,6 +472,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         if (mListener != null) mListener.onDialogRequested(dialogId, null);
     }
 
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info;
         try {
@@ -699,9 +488,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             return;
         }
 
-        final BaseViewEntry baseEntry = mAdapter.getEntry(info.position);
-        if (baseEntry instanceof DataViewEntry) {
-            final DataViewEntry entry = (DataViewEntry) baseEntry;
+        final BaseViewModel baseEntry = mAdapter.getEntry(info.position);
+        if (baseEntry instanceof DataViewModel) {
+            final DataViewModel entry = (DataViewModel) baseEntry;
             menu.setHeaderTitle(R.string.contactOptionsTitle);
             if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
                 menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
@@ -722,16 +511,16 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return;
-        final BaseViewEntry baseEntry = mAdapter.getEntry(position);
+        final BaseViewModel baseEntry = mAdapter.getEntry(position);
         if (baseEntry == null) return;
 
-        if (baseEntry instanceof HeaderViewEntry) {
+        if (baseEntry instanceof HeaderViewModel) {
             // Toggle rawcontact visibility
-            final HeaderViewEntry entry = (HeaderViewEntry) baseEntry;
+            final HeaderViewModel entry = (HeaderViewModel) baseEntry;
             entry.setCollapsed(!entry.isCollapsed());
             mAdapter.notifyDataSetChanged();
-        } else if (baseEntry instanceof DataViewEntry) {
-            final DataViewEntry entry = (DataViewEntry) baseEntry;
+        } else if (baseEntry instanceof DataViewModel) {
+            final DataViewModel entry = (DataViewModel) baseEntry;
             final Intent intent = entry.intent;
             if (intent == null) return;
             mListener.onEditorRequested(intent);
@@ -787,7 +576,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             }
             case R.id.edit_dialog_add_information: {
                 final long rawContactId = bundle.getLong(BUNDLE_RAW_CONTACT_ID);
-                final RawContact rawContact = findRawContactById(rawContactId);
+                final DisplayRawContact rawContact = findRawContactById(rawContactId);
                 if (rawContact == null) return null;
                 final ContactsSource source = rawContact.getSource();
 
@@ -831,13 +620,14 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    private RawContact findRawContactById(long rawContactId) {
-        for (RawContact rawContact : mRawContacts) {
+    private DisplayRawContact findRawContactById(long rawContactId) {
+        for (DisplayRawContact rawContact : mRawContacts) {
             if (rawContact.getId() == rawContactId) return rawContact;
         }
         return null;
     }
 
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
@@ -852,11 +642,11 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     }
 
     private boolean makeItemDefault(MenuItem item) {
-        final BaseViewEntry baseEntry = getViewEntryForMenuItem(item);
-        if (baseEntry == null || !(baseEntry instanceof DataViewEntry)) {
+        final BaseViewModel baseEntry = getViewEntryForMenuItem(item);
+        if (baseEntry == null || !(baseEntry instanceof DataViewModel)) {
             return false;
         }
-        final DataViewEntry entry = (DataViewEntry) baseEntry;
+        final DataViewModel entry = (DataViewModel) baseEntry;
 
         // Update the primary values in the data record.
         ContentValues values = new ContentValues(1);
@@ -867,7 +657,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         return true;
     }
 
-    private BaseViewEntry getViewEntryForMenuItem(MenuItem item) {
+    private BaseViewModel getViewEntryForMenuItem(MenuItem item) {
         final AdapterView.AdapterContextMenuInfo info;
         try {
              info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -879,50 +669,21 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         return mAdapter.getEntry(info.position);
     }
 
-    private class RawContact {
-        private final ContactsSource mSource;
-        private String mAccountName;
-        private final long mId;
-        private boolean mWritable;
-        private final HeaderViewEntry mHeader = new HeaderViewEntry(this);
-        private final FooterViewEntry mFooter = new FooterViewEntry(this);
-        private final ArrayList<DataViewEntry> mFields = new ArrayList<DataViewEntry>();
-
-        public RawContact(ContactsSource source, String accountName, long id, boolean writable) {
-            mSource = source;
-            mAccountName = accountName;
-            mId = id;
-            mWritable = writable;
+    private FooterViewModel.Listener mRawContactFooterListener =
+            new FooterViewModel.Listener() {
+        public void onAddClicked(DisplayRawContact rawContact) {
+            // Create a bundle to show the Dialog
+            final Bundle bundle = new Bundle();
+            bundle.putLong(BUNDLE_RAW_CONTACT_ID, rawContact.getId());
+            if (mListener != null) {
+                mListener.onDialogRequested(R.id.edit_dialog_add_information, bundle);
+            }
         }
-
-        public ContactsSource getSource() {
-            return mSource;
+        public void onSeparateClicked(DisplayRawContact rawContact) {
         }
-
-        public String getAccountName() {
-            return mAccountName;
+        public void onDeleteClicked(DisplayRawContact rawContact) {
         }
-
-        public long getId() {
-            return mId;
-        }
-
-        public boolean isWritable() {
-            return mWritable;
-        }
-
-        public ArrayList<DataViewEntry> getFields() {
-            return mFields;
-        }
-
-        public HeaderViewEntry getHeader() {
-            return mHeader;
-        }
-
-        public FooterViewEntry getFooter() {
-            return mFooter;
-        }
-    }
+    };
 
     public static interface Listener {
         /**

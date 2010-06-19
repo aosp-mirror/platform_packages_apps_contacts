@@ -14,79 +14,79 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor.typeViews;
+package com.android.contacts.views.editor.view;
 
 import com.android.contacts.R;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class FooterView extends LinearLayout {
-    private Button mAddInformationButton;
-    private Button mSeparateButton;
-    private Button mDeleteButton;
+public class PhotoView extends LinearLayout {
+    private ImageView mPhotoImageView;
+    private ImageView mTakePhotoActionButton;
+    private ImageView mGalleryActionButton;
     private Listener mListener;
 
-    public FooterView(Context context) {
+    public PhotoView(Context context) {
         super(context);
     }
 
-    public FooterView(Context context, AttributeSet attrs) {
+    public PhotoView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FooterView(Context context, AttributeSet attrs, int defStyle) {
+    public PhotoView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public static FooterView inflate(LayoutInflater inflater, ViewGroup parent,
+    public static PhotoView inflate(LayoutInflater inflater, ViewGroup parent,
             boolean attachToRoot) {
-        return (FooterView) inflater.inflate(R.layout.list_edit_item_footer, parent, attachToRoot);
+        return (PhotoView) inflater.inflate(R.layout.list_edit_item_photo, parent, attachToRoot);
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mAddInformationButton = (Button) findViewById(R.id.add_information);
-        mAddInformationButton.setOnClickListener(mClickListener);
+        mPhotoImageView = (ImageView) findViewById(R.id.photo);
 
-        mSeparateButton = (Button) findViewById(R.id.separate);
-        mSeparateButton.setOnClickListener(mClickListener);
+        mTakePhotoActionButton = (ImageView) findViewById(R.id.action_icon);
+        mTakePhotoActionButton.setOnClickListener(mClickListener);
 
-        mDeleteButton = (Button) findViewById(R.id.delete);
-        mDeleteButton.setOnClickListener(mClickListener);
+        mGalleryActionButton = (ImageView) findViewById(R.id.secondary_action_button);
+        mGalleryActionButton.setOnClickListener(mClickListener);
     }
 
     public void setListener(Listener value) {
         mListener = value;
     }
 
+    public void setPhoto(Bitmap value) {
+        mPhotoImageView.setImageBitmap(value);
+    }
+
     private OnClickListener mClickListener = new OnClickListener() {
         public void onClick(View v) {
             if (mListener == null) return;
             switch (v.getId()) {
-                case R.id.add_information:
-                    mListener.onAddClicked();
+                case R.id.action_icon:
+                    mListener.onTakePhotoClicked();
                     break;
-                case R.id.separate:
-                    mListener.onSeparateClicked();
-                    break;
-                case R.id.delete:
-                    mListener.onDeleteClicked();
+                case R.id.secondary_action_button:
+                    mListener.onChooseFromGalleryClicked();
                     break;
             }
         }
     };
 
     public static interface Listener {
-        void onAddClicked();
-        void onSeparateClicked();
-        void onDeleteClicked();
+        void onTakePhotoClicked();
+        void onChooseFromGalleryClicked();
     }
 }
