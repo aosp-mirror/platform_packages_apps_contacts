@@ -14,13 +14,13 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor.viewModel;
+package com.android.contacts.views.editor.view;
 
-public interface ViewModelTypes {
-    /** Possible Item Types */
+public interface ViewTypes {
     public static final int DATA = 0;
-    public static final int PHOTO = 1;
-    public static final int RAW_CONTACT_HEADER = 2;
-    public static final int RAW_CONTACT_FOOTER = 3;
-    public static final int _COUNT = 4;
+    public static final int FIELD_AND_TYPE = 1;
+    public static final int PHOTO = 2;
+    public static final int RAW_CONTACT_HEADER = 3;
+    public static final int RAW_CONTACT_FOOTER = 4;
+    public static final int _COUNT = 5;
 }

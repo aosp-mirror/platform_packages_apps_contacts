@@ -458,6 +458,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mContact = result;
             mLookupUri = result.getLookupUri();
             if (result != null) {
+                unregisterObserver();
                 if (mObserver == null) {
                     mObserver = new ForceLoadContentObserver();
                 }
@@ -469,6 +470,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 }
                 deliverResult(result);
             }
+        }
+    }
+
+    private void unregisterObserver() {
+        if (mObserver != null) {
+            getContext().getContentResolver().unregisterContentObserver(mObserver);
+            mObserver = null;
         }
     }
 
@@ -495,9 +503,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     @Override
     public void stopLoading() {
         mContact = null;
-        if (mObserver != null) {
-            getContext().getContentResolver().unregisterContentObserver(mObserver);
-        }
     }
 
     @Override

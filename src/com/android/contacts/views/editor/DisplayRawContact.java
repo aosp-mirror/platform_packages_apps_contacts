@@ -17,7 +17,7 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.views.editor.viewModel.DataViewModel;
+import com.android.contacts.views.editor.viewModel.BaseViewModel;
 import com.android.contacts.views.editor.viewModel.FooterViewModel;
 import com.android.contacts.views.editor.viewModel.HeaderViewModel;
 
@@ -32,7 +32,7 @@ public class DisplayRawContact {
     private boolean mWritable;
     private final HeaderViewModel mHeader;
     private final FooterViewModel mFooter;
-    private final ArrayList<DataViewModel> mFields = new ArrayList<DataViewModel>();
+    private final ArrayList<BaseViewModel> mFields = new ArrayList<BaseViewModel>();
 
     public DisplayRawContact(Context context, ContactsSource source, String accountName, long id,
             boolean writable, FooterViewModel.Listener footerListener) {
@@ -60,7 +60,7 @@ public class DisplayRawContact {
         return mWritable;
     }
 
-    public ArrayList<DataViewModel> getFields() {
+    public ArrayList<BaseViewModel> getFields() {
         return mFields;
     }
 

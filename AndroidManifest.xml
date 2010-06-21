@@ -400,7 +400,8 @@
         <!-- Edit and insert details for a contact -->
         <activity
             android:name=".activities.ContactEditorActivity"
-            android:theme="@style/TallTitleBarTheme">
+            android:theme="@style/TallTitleBarTheme"
+            android:windowSoftInputMode="adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">
                 <action android:name="android.intent.action.EDIT" />

@@ -18,6 +18,7 @@ package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.FooterView;
+import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class FooterViewModel extends BaseViewModel {
 
     @Override
     public int getEntryType() {
-        return ViewModelTypes.RAW_CONTACT_FOOTER;
+        return ViewTypes.RAW_CONTACT_FOOTER;
     }
 
     @Override

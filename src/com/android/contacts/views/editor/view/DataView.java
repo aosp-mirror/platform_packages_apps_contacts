@@ -52,7 +52,8 @@ public class DataView extends LinearLayout {
 
     public static DataView inflate(LayoutInflater inflater, ViewGroup parent,
             boolean attachToRoot) {
-        return (DataView) inflater.inflate(R.layout.list_edit_item_text_icons, parent, attachToRoot);
+        return (DataView) inflater.inflate(R.layout.list_edit_item_text_icons, parent,
+                attachToRoot);
     }
 
     @Override

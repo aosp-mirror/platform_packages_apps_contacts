@@ -21,6 +21,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.DataView;
 import com.android.contacts.views.editor.view.PhotoView;
+import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -38,7 +39,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class DataViewModel extends BaseViewModel {
-    private Context mContext;
     public String label;
     public String data;
     public Uri uri;
@@ -59,7 +59,6 @@ public class DataViewModel extends BaseViewModel {
     public DataViewModel(Context context, String mimeType, DataKind kind,
             DisplayRawContact rawContact, long dataId, ContentValues values) {
         super(context, rawContact);
-        mContext = context;
         id = dataId;
         uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
         mimetype = mimeType;
@@ -70,7 +69,7 @@ public class DataViewModel extends BaseViewModel {
 
     @Override
     public int getEntryType() {
-        return Photo.CONTENT_ITEM_TYPE.equals(mimetype) ? ViewModelTypes.PHOTO : ViewModelTypes.DATA;
+        return Photo.CONTENT_ITEM_TYPE.equals(mimetype) ? ViewTypes.PHOTO : ViewTypes.DATA;
     }
 
     @Override
@@ -112,7 +111,7 @@ public class DataViewModel extends BaseViewModel {
         result.setPrimary(isPrimary);
 
         // Set the action icon
-        result.setPrimaryIntent(intent, mContext.getResources(), actionIcon);
+        result.setPrimaryIntent(intent, getContext().getResources(), actionIcon);
 
         // Set the secondary action button
         // TODO: Change this to our new form

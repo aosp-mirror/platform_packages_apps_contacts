@@ -1230,5 +1230,5 @@
     <string name="edit_delete_rawcontact">Delete</string>
 
     <!-- Shown in a Toast to indicate an error while trying to save the Data -->
-    <string name="edit_error_saving"></string>
+    <string name="edit_error_saving">Error saving</string>
 </resources>

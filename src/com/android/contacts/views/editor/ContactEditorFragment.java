@@ -25,11 +25,12 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.EditContactActivity;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.editor.view.ViewTypes;
 import com.android.contacts.views.editor.viewModel.BaseViewModel;
 import com.android.contacts.views.editor.viewModel.DataViewModel;
+import com.android.contacts.views.editor.viewModel.EmailViewModel;
 import com.android.contacts.views.editor.viewModel.FooterViewModel;
-import com.android.contacts.views.editor.viewModel.HeaderViewModel;
-import com.android.contacts.views.editor.viewModel.ViewModelTypes;
+import com.android.contacts.views.editor.viewModel.PhoneViewModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -75,12 +76,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
 public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.Result>
-        implements OnCreateContextMenuListener, OnItemClickListener {
+        implements OnCreateContextMenuListener {
     private static final String TAG = "ContactEditorFragment";
 
     private static final String BUNDLE_RAW_CONTACT_ID = "rawContactId";
@@ -95,7 +95,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     private ContactLoader.Result mContactData;
     private ContactEditorHeaderView mHeaderView;
-    private ListView mListView;
+    private MyListView mListView;
     private ViewAdapter mAdapter;
 
     private int mReadOnlySourcesCnt;
@@ -129,10 +129,11 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         mHeaderView = (ContactEditorHeaderView) view.findViewById(R.id.contact_header_widget);
 
-        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView = (MyListView) view.findViewById(android.R.id.list);
         mListView.setOnCreateContextMenuListener(this);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
+        mListView.setItemsCanFocus(true);
 
         return view;
     }
@@ -260,6 +261,21 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                         ContactsSource.LEVEL_MIMETYPES);
                 if (kind == null) continue;
 
+                if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final PhoneViewModel itemEditor = PhoneViewModel.createForExisting(mContext,
+                            rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
+
+                if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final EmailViewModel itemEditor = EmailViewModel.createForExisting(mContext,
+                            rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
+
+
                 final DataViewModel entry = new DataViewModel(mContext, mimeType, kind,
                         rawContact, dataId, entryValues);
 
@@ -356,7 +372,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                     continue;
                 }
 
-                final ArrayList<DataViewModel> fields = rawContact.getFields();
+                final ArrayList<BaseViewModel> fields = rawContact.getFields();
                 // +1 for header, +1 for footer
                 final int fieldCount = fields.size() + 2;
                 if (position == fieldCount - 1) {
@@ -373,7 +389,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         @Override
         public int getViewTypeCount() {
-            return ViewModelTypes._COUNT;
+            return ViewTypes._COUNT;
         }
 
         @Override
@@ -509,23 +525,19 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mListener == null) return;
-        final BaseViewModel baseEntry = mAdapter.getEntry(position);
-        if (baseEntry == null) return;
-
-        if (baseEntry instanceof HeaderViewModel) {
-            // Toggle rawcontact visibility
-            final HeaderViewModel entry = (HeaderViewModel) baseEntry;
-            entry.setCollapsed(!entry.isCollapsed());
-            mAdapter.notifyDataSetChanged();
-        } else if (baseEntry instanceof DataViewModel) {
-            final DataViewModel entry = (DataViewModel) baseEntry;
-            final Intent intent = entry.intent;
-            if (intent == null) return;
-            mListener.onEditorRequested(intent);
-        }
-    }
+    // This was the ListView based code to expand/collapse sections.
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        if (mListener == null) return;
+//        final BaseViewModel baseEntry = mAdapter.getEntry(position);
+//        if (baseEntry == null) return;
+//
+//        if (baseEntry instanceof HeaderViewModel) {
+//            // Toggle rawcontact visibility
+//            final HeaderViewModel entry = (HeaderViewModel) baseEntry;
+//            entry.setCollapsed(!entry.isCollapsed());
+//            mAdapter.notifyDataSetChanged();
+//        }
+//    }
 
     private final DialogInterface.OnClickListener mDeleteListener =
             new DialogInterface.OnClickListener() {

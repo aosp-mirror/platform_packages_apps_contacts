@@ -19,6 +19,7 @@ package com.android.contacts.views.editor.viewModel;
 import com.android.contacts.R;
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.HeaderView;
+import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -43,7 +44,7 @@ public class HeaderViewModel extends BaseViewModel {
 
     @Override
     public int getEntryType() {
-        return ViewModelTypes.RAW_CONTACT_HEADER;
+        return ViewTypes.RAW_CONTACT_HEADER;
     }
 
     @Override
