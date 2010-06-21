@@ -250,14 +250,14 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"전화 걸기:"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"다음을 사용하여 문자 보내기:"</string>
     <string name="make_primary" msgid="5829291915305113983">"이 선택사항 저장"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"이 작업을 처리하는 응용프로그램을 찾을 수 없습니다."</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"이 작업을 처리하는 애플리케이션을 찾을 수 없습니다."</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"알 수 없음"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"가져오기/내보내기"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"연락처 가져오기/내보내기"</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
-    <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 응용프로그램:"</string>
+    <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 애플리케이션:"</string>
     <string name="share_error" msgid="4374508848981697170">"연락처를 공유할 수 없습니다."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"이름"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"닉네임"</string>
@@ -374,7 +374,7 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다."\n\n"잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"연락처 목록을 업데이트하고 있습니다."\n\n"잠시 기다려 주세요..."</string>
     <string name="upgrade_out_of_memory" msgid="492151063059824962">"연락처를 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb의 휴대전화 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 응용프로그램 제거"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 애플리케이션 제거"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"업그레이드 다시 시도"</string>
     <string name="search_results_for" msgid="8705490885073188513">"<xliff:g id="QUERY">%s</xliff:g>에 대한 검색결과"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"검색 중..."</string>
