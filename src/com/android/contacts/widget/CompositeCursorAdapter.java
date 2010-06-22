@@ -29,17 +29,28 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
 
     private static final int INITIAL_CAPACITY = 2;
 
-    private static class Partition {
-        final boolean showIfEmpty;
-        final boolean hasHeader;
+    public static class Partition {
+        boolean showIfEmpty;
+        boolean hasHeader;
 
-        int count;
         Cursor cursor;
         int idColumnIndex;
+        int count;
 
         public Partition(boolean showIfEmpty, boolean hasHeader) {
             this.showIfEmpty = showIfEmpty;
             this.hasHeader = hasHeader;
+        }
+
+        /**
+         * True if the directory should be shown even if no contacts are found.
+         */
+        public boolean getShowIfEmpty() {
+            return showIfEmpty;
+        }
+
+        public boolean getHasHeader() {
+            return hasHeader;
         }
     }
 
@@ -68,27 +79,63 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
      * list.
      */
     public void addPartition(boolean showIfEmpty, boolean hasHeader) {
+        addPartition(new Partition(showIfEmpty, hasHeader));
+    }
+
+    public void addPartition(Partition partition) {
         if (mSize >= mPartitions.length) {
             int newCapacity = mSize + 2;
             Partition[] newAdapters = new Partition[newCapacity];
             System.arraycopy(mPartitions, 0, newAdapters, 0, mSize);
             mPartitions = newAdapters;
         }
-        mPartitions[mSize++] = new Partition(showIfEmpty, hasHeader);
+        mPartitions[mSize++] = partition;
         invalidate();
         notifyDataSetChanged();
     }
 
-    public void resetPartitions() {
+    public void removePartition(int partitionIndex) {
+        Cursor cursor = mPartitions[partitionIndex].cursor;
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+
+        System.arraycopy(mPartitions, partitionIndex + 1, mPartitions, partitionIndex, mSize - 1);
+        mSize--;
+        invalidate();
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Removes cursors for all partitions, closing them as necessary.
+     */
+    public void clearPartitions() {
         for (int i = 0; i < mSize; i++) {
             Cursor cursor = mPartitions[i].cursor;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
+            mPartitions[i].cursor = null;
         }
-        mSize = 0;
         invalidate();
         notifyDataSetChanged();
+    }
+
+    public void setHasHeader(int partitionIndex, boolean flag) {
+        mPartitions[partitionIndex].hasHeader = flag;
+        invalidate();
+    }
+
+    public void setShowIfEmpty(int partitionIndex, boolean flag) {
+        mPartitions[partitionIndex].showIfEmpty = flag;
+        invalidate();
+    }
+
+    public Partition getPartition(int partitionIndex) {
+        if (partitionIndex >= mSize) {
+            throw new ArrayIndexOutOfBoundsException(partitionIndex);
+        }
+        return mPartitions[partitionIndex];
     }
 
     protected void invalidate() {

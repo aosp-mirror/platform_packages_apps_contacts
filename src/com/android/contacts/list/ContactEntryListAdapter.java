@@ -23,17 +23,20 @@ import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 
 /**
  * Common base class for various contact-related lists, e.g. contact list, phone number list
@@ -42,6 +45,23 @@ import java.util.Iterator;
 public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private static final String TAG = "ContactEntryListAdapter";
+
+    private static final class DirectoryQuery {
+        public static final Uri URI = Directory.CONTENT_URI;
+        public static final String ORDER_BY = Directory._ID;
+
+        public static final String[] PROJECTION = {
+            Directory._ID,
+            Directory.PACKAGE_NAME,
+            Directory.TYPE_RESOURCE_ID,
+            Directory.DISPLAY_NAME,
+        };
+
+        public static final int ID = 0;
+        public static final int PACKAGE_NAME = 1;
+        public static final int TYPE_RESOURCE_ID = 2;
+        public static final int DISPLAY_NAME = 3;
+    }
 
     /**
      * The animation is used here to allocate animated name text views.
@@ -61,28 +81,34 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
 
-    private HashMap<Integer, DirectoryPartition> mPartitions;
-
     public ContactEntryListAdapter(Context context) {
         super(context, R.layout.list_section, R.id.header_text);
         addPartitions();
     }
 
-    /**
-     * Adds all partitions this adapter will handle. The default implementation
-     * creates one partition with no header.
-     */
     protected void addPartitions() {
-        addPartition(false, false);
+        addPartition(createDefaultDirectoryPartition());
     }
 
-    public void addDirectoryPartition(DirectoryPartition partition) {
-        if (mPartitions == null) {
-            mPartitions = new HashMap<Integer, DirectoryPartition>();
+    protected DirectoryPartition createDefaultDirectoryPartition() {
+        DirectoryPartition partition = new DirectoryPartition(true, true);
+        partition.setDirectoryId(Directory.DEFAULT);
+        partition.setDirectoryType(getContext().getString(R.string.contactsList));
+        partition.setPriorityDirectory(true);
+        return partition;
+    }
+
+    private int getPartitionByDirectoryId(long id) {
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                if (((DirectoryPartition)partition).getDirectoryId() == id) {
+                    return i;
+                }
+            }
         }
-        int partitionIndex = getPartitionCount();
-        mPartitions.put(partitionIndex, partition);
-        addPartition(partition.getShowIfEmpty(), partition.getDirectoryType() != null);
+        return -1;
     }
 
     public abstract String getContactDisplayName(int position);
@@ -93,10 +119,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      */
     public void onDataReload() {
         boolean notify = false;
-        if (mPartitions != null) {
-            for (DirectoryPartition partition : mPartitions.values()) {
-                if (!partition.isLoading()) {
-                    partition.setLoading(true);
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                DirectoryPartition directoryPartition = (DirectoryPartition)partition;
+                if (!directoryPartition.isLoading()) {
+                    directoryPartition.setLoading(true);
                     notify = true;
                 }
             }
@@ -111,12 +140,21 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     public void setSearchMode(boolean flag) {
-        if (mSearchMode != flag) {
-            mSearchMode = flag;
+        mSearchMode = flag;
 
-            // Search mode change may mean a new data type in the list.
-            // Let's drop current data to avoid confusion
-            resetPartitions();
+        int defaultPartitionIndex = -1;
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition &&
+                    ((DirectoryPartition)partition).getDirectoryId() == Directory.DEFAULT) {
+                defaultPartitionIndex = i;
+                break;
+            }
+        }
+        if (defaultPartitionIndex != -1) {
+            setShowIfEmpty(defaultPartitionIndex, flag);
+            setHasHeader(defaultPartitionIndex, flag);
         }
     }
 
@@ -192,11 +230,74 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mEmptyListEnabled = flag;
     }
 
+    public void configureDirectoryLoader(CursorLoader loader) {
+        loader.setUri(DirectoryQuery.URI);
+        loader.setProjection(DirectoryQuery.PROJECTION);
+        loader.setSortOrder(DirectoryQuery.ORDER_BY);
+    }
+
+    /**
+     * Updates partitions according to the directory meta-data contained in the supplied
+     * cursor.  Takes ownership of the cursor and will close it.
+     */
+    public void changeDirectories(Cursor cursor) {
+        HashSet<Long> directoryIds = new HashSet<Long>();
+
+        // TODO preserve the order of partition to match those of the cursor
+        // Phase I: add new directories
+        try {
+            while (cursor.moveToNext()) {
+                long id = cursor.getLong(DirectoryQuery.ID);
+                directoryIds.add(id);
+                if (getPartitionByDirectoryId(id) == -1) {
+                    DirectoryPartition partition = createDirectoryPartition(cursor);
+                    addPartition(partition);
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        // Phase II: remove deleted directories
+        int count = getPartitionCount();
+        for (int i = count; --i >= 0; ) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                long id = ((DirectoryPartition)partition).getDirectoryId();
+                if (!directoryIds.contains(id)) {
+                    removePartition(i);
+                }
+            }
+        }
+
+        invalidate();
+        notifyDataSetChanged();
+    }
+
+    private DirectoryPartition createDirectoryPartition(Cursor cursor) {
+        PackageManager pm = getContext().getPackageManager();
+        DirectoryPartition partition = new DirectoryPartition(false, true);
+        partition.setDirectoryId(cursor.getLong(DirectoryQuery.ID));
+        String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
+        int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
+        if (!TextUtils.isEmpty(packageName) && typeResourceId != 0) {
+            // TODO: should this be done on a background thread?
+            try {
+                partition.setDirectoryType(pm.getResourcesForApplication(packageName)
+                        .getString(typeResourceId));
+            } catch (Exception e) {
+                Log.e(TAG, "Cannot obtain directory type from package: " + packageName);
+            }
+        }
+        partition.setDisplayName(cursor.getString(DirectoryQuery.DISPLAY_NAME));
+        return partition;
+    }
+
     @Override
     public void changeCursor(int partitionIndex, Cursor cursor) {
-        if (mPartitions != null) {
-            DirectoryPartition partition = mPartitions.get(partitionIndex);
-            partition.setLoading(false);
+        Partition partition = getPartition(partitionIndex);
+        if (partition instanceof DirectoryPartition) {
+            ((DirectoryPartition)partition).setLoading(false);
         }
 
         super.changeCursor(partitionIndex, cursor);
@@ -258,20 +359,24 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     @Override
     protected void bindHeaderView(View view, int partitionIndex, Cursor cursor) {
-        DirectoryPartition partition = mPartitions.get(partitionIndex);
+        Partition partition = getPartition(partitionIndex);
+        if (!(partition instanceof DirectoryPartition)) {
+            return;
+        }
 
+        DirectoryPartition directoryPartition = (DirectoryPartition)partition;
         TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
-        directoryTypeTextView.setText(partition.getDirectoryType());
+        directoryTypeTextView.setText(directoryPartition.getDirectoryType());
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
-        if (!TextUtils.isEmpty(partition.getDisplayName())) {
-            displayNameTextView.setText(partition.getDisplayName());
+        if (!TextUtils.isEmpty(directoryPartition.getDisplayName())) {
+            displayNameTextView.setText(directoryPartition.getDisplayName());
             displayNameTextView.setVisibility(View.VISIBLE);
         } else {
             displayNameTextView.setVisibility(View.GONE);
         }
 
         TextView countText = (TextView)view.findViewById(R.id.count);
-        if (partition.isLoading()) {
+        if (directoryPartition.isLoading()) {
             countText.setText(R.string.search_results_searching);
         } else {
             int count = cursor == null ? 0 : cursor.getCount();
