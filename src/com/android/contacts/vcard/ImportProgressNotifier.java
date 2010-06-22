@@ -20,6 +20,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.android.contacts.ContactsListActivity;
@@ -56,9 +57,9 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         // - We cannot know name there but here.
         // - There's high probability where name comes soon after the beginning of entry, so
         //   we don't need to hurry to show something.
-        final String packageName = "com.android.contacts.vcard";
-        // TODO: should not create this everytime?
-        final RemoteViews remoteViews = new RemoteViews(packageName,
+
+        // TODO: should not create this every time?
+        final RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
         final String title = mContext.getString(R.string.reading_vcard_title);
         String totalCountString;
@@ -70,19 +71,21 @@ public class ImportProgressNotifier implements VCardEntryHandler {
                 totalCountString,
                 contactStruct.getDisplayName());
 
-        // TODO: uploading image does not work correctly. (looks like a static image).
         remoteViews.setTextViewText(R.id.description, text);
         remoteViews.setProgressBar(R.id.progress_bar, mTotalCount, mCurrentCount,
                 mTotalCount == -1);
         final String percentage =
                 mContext.getString(R.string.percentage,
                         String.valueOf(mCurrentCount * 100/mTotalCount));
+
         remoteViews.setTextViewText(R.id.progress_text, percentage);
         remoteViews.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_download);
 
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download;
+        notification.tickerText = text;
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
         notification.contentView = remoteViews;
 
         notification.contentIntent =

@@ -166,7 +166,7 @@ public class ImportProcessor {
             // Currenty we don't have an appropriate way to let users see all entries
             // imported in this procedure. Instead, we show them entries only when
             // there's just one created uri.
-            doFinishNotification(mCreatedUris.size() == 1 ? mCreatedUris.get(0) : null);
+            doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
         } finally {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
@@ -233,6 +233,7 @@ public class ImportProcessor {
     private void doErrorNotification(int id) {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download_done;
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
         final String title = mService.getString(R.string.reading_vcard_failed_title);
         final PendingIntent intent =
                 PendingIntent.getActivity(mService, 0, new Intent(), 0);
@@ -244,6 +245,8 @@ public class ImportProcessor {
     private void doFinishNotification(Uri createdUri) {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download_done;
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
         final String title = mService.getString(R.string.importing_vcard_finished_title);
 
         final Intent intent;
