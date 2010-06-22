@@ -260,9 +260,8 @@ public class ImportProcessor {
             intent = null;
         }
 
-        final PendingIntent pendingIntent =
-                PendingIntent.getActivity(mService, 0, intent, 0);
-        notification.setLatestEventInfo(mService, title, "", pendingIntent);
+        notification.setLatestEventInfo(mService, title, "",
+                PendingIntent.getActivity(mService, 0, intent, 0));
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 

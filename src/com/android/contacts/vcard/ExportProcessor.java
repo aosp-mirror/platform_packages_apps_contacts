@@ -195,6 +195,7 @@ public class ExportProcessor {
                     return;
                 }
                 doProgressNotification(uri, total, current);
+                current++;
             }
         } finally {
             if (composer != null) {
@@ -221,27 +222,24 @@ public class ExportProcessor {
         final String message =
                 mService.getString(R.string.exporting_contact_list_message, uri);
 
+        final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
+                R.layout.status_bar_ongoing_event_progress_bar);
+        remoteViews.setTextViewText(R.id.description, message);
+        remoteViews.setProgressBar(R.id.progress_bar, total, current, (total == -1));
+
+        final String percentage = mService.getString(R.string.percentage,
+                String.valueOf((current * 100)/total));
+        remoteViews.setTextViewText(R.id.progress_text, percentage);
+        remoteViews.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_upload);
+
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_upload;
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         notification.tickerText = title;
-
-        final RemoteViews remoteView = new RemoteViews(mService.getPackageName(),
-                R.layout.status_bar_ongoing_event_progress_bar);
-        remoteView.setTextViewText(R.id.description, message);
-        remoteView.setProgressBar(R.id.progress_bar, total, current, (total == -1));
-
-        final String percentage = mService.getString(R.string.percentage,
-                String.valueOf((current * 100)/total));
-        remoteView.setTextViewText(R.id.progress_text, percentage);
-        remoteView.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_download);
-        notification.contentView = remoteView;
-
-        notification.setLatestEventInfo(mService, title, message, null);
-        final Intent intent = new Intent(mService, ContactsListActivity.class);
+        notification.contentView = remoteViews;
         notification.contentIntent =
-                PendingIntent.getActivity(mService, 0, intent, 0);
-        PendingIntent.getActivity(mService, 0, intent, 0);
+                PendingIntent.getActivity(mService, 0,
+                        new Intent(mService, ContactsListActivity.class), 0);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 

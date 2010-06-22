@@ -20,7 +20,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.android.contacts.ContactsListActivity;
@@ -61,17 +60,20 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         // TODO: should not create this every time?
         final RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
+
         final String title = mContext.getString(R.string.reading_vcard_title);
+
         String totalCountString;
         synchronized (this) {
             totalCountString = String.valueOf(mTotalCount);
         }
-        final String text = mContext.getString(R.string.progress_notifier_message,
+        final String description = mContext.getString(R.string.progress_notifier_message,
                 String.valueOf(mCurrentCount),
                 totalCountString,
                 contactStruct.getDisplayName());
 
-        remoteViews.setTextViewText(R.id.description, text);
+        remoteViews.setTextViewText(R.id.title, title);
+        remoteViews.setTextViewText(R.id.description, description);
         remoteViews.setProgressBar(R.id.progress_bar, mTotalCount, mCurrentCount,
                 mTotalCount == -1);
         final String percentage =
@@ -83,11 +85,9 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download;
-        notification.tickerText = text;
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
-
+        notification.tickerText = description;
         notification.contentView = remoteViews;
-
         notification.contentIntent =
                 PendingIntent.getActivity(mContext, 0,
                         new Intent(mContext, ContactsListActivity.class), 0);

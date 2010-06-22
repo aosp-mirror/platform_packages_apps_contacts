@@ -254,7 +254,7 @@ public class ImportVCardActivity extends Activity {
      * {@link VCardService} to access all the contents in given Uris, some of
      * which may not be accessible from other components due to permission problem.
      * (Activity which gives the Uri may allow only this Activity to access that content,
-     * not the ohter components like {@link VCardService}.
+     * not the other components like {@link VCardService}.
      *
      * We also allow the Service to happen to exit during the vCard import procedure.
      */

@@ -69,21 +69,14 @@ public class ExportVCardActivity extends Activity {
     private int mFileIndexMinimum;
     private int mFileIndexMaximum;
     private String mFileNameExtension;
-    private String mVCardTypeStr;
     private Set<String> mExtensionsToConsider;
 
-    private ProgressDialog mProgressDialog;
-    private String mExportingFileName;
-
-    private Handler mHandler = new Handler();
-
-    // Used temporaly when asking users to confirm the file name
+    // Used temporarily when asking users to confirm the file name
     private String mTargetFileName;
 
-    // String for storing error reason temporaly.
+    // String for storing error reason temporarily.
     private String mErrorReason;
 
-    private ActualExportThread mActualExportThread;
 
     private class CustomConnection implements ServiceConnection {
         private Messenger mMessenger;
@@ -126,7 +119,9 @@ public class ExportVCardActivity extends Activity {
                     }
                     sendMessage(parameter);
                 }
+
                 unbindService(this);
+                finish();
             }
         }
 
@@ -139,7 +134,6 @@ public class ExportVCardActivity extends Activity {
                 // the Service via NullPointerException;
                 mPendingRequests = null;
                 mMessenger = null;
-                finish();
             }
         }
     }
@@ -198,118 +192,6 @@ public class ExportVCardActivity extends Activity {
         }
     }
 
-    private class ActualExportThread extends Thread
-            implements DialogInterface.OnCancelListener {
-        private PowerManager.WakeLock mWakeLock;
-        private boolean mCanceled = false;
-
-        public ActualExportThread(String fileName) {
-            mExportingFileName = fileName;
-            PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
-            mWakeLock = powerManager.newWakeLock(
-                    PowerManager.SCREEN_DIM_WAKE_LOCK |
-                    PowerManager.ON_AFTER_RELEASE, LOG_TAG);
-        }
-
-        @Override
-        public void run() {
-            boolean shouldCallFinish = true;
-            mWakeLock.acquire();
-            VCardComposer composer = null;
-            try {
-                OutputStream outputStream = null;
-                try {
-                    outputStream = new FileOutputStream(mExportingFileName);
-                } catch (FileNotFoundException e) {
-                    final String errorReason =
-                        getString(R.string.fail_reason_could_not_open_file,
-                                mExportingFileName, e.getMessage());
-                    shouldCallFinish = false;
-                    mHandler.post(new ErrorReasonDisplayer(errorReason));
-                    return;
-                }
-
-                final int vcardType = VCardConfig.getVCardTypeFromString(mVCardTypeStr);
-                composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
-
-                // for testing
-                // int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
-                // VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
-                // composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
-
-                composer.addHandler(composer.new HandlerForOutputStream(outputStream));
-
-                if (!composer.init()) {
-                    final String errorReason = composer.getErrorReason();
-                    Log.e(LOG_TAG, "initialization of vCard composer failed: " + errorReason);
-                    final String translatedErrorReason =
-                            translateComposerError(errorReason);
-                    mHandler.post(new ErrorReasonDisplayer(
-                            getString(R.string.fail_reason_could_not_initialize_exporter,
-                                    translatedErrorReason)));
-                    shouldCallFinish = false;
-                    return;
-                }
-
-                final int size = composer.getCount();
-
-                if (size == 0) {
-                    mHandler.post(new ErrorReasonDisplayer(
-                            getString(R.string.fail_reason_no_exportable_contact)));
-                    shouldCallFinish = false;
-                    return;
-                }
-
-                mProgressDialog.setProgressNumberFormat(
-                        getString(R.string.exporting_contact_list_progress));
-                mProgressDialog.setMax(size);
-                mProgressDialog.setProgress(0);
-
-                while (!composer.isAfterLast()) {
-                    if (mCanceled) {
-                        return;
-                    }
-                    if (!composer.createOneEntry()) {
-                        final String errorReason = composer.getErrorReason();
-                        Log.e(LOG_TAG, "Failed to read a contact: " + errorReason);
-                        final String translatedErrorReason =
-                            translateComposerError(errorReason);
-                        mHandler.post(new ErrorReasonDisplayer(
-                                getString(R.string.fail_reason_error_occurred_during_export,
-                                        translatedErrorReason)));
-                        shouldCallFinish = false;
-                        return;
-                    }
-                    mProgressDialog.incrementProgressBy(1);
-                }
-            } finally {
-                if (composer != null) {
-                    composer.terminate();
-                }
-                mWakeLock.release();
-                mProgressDialog.dismiss();
-                if (shouldCallFinish && !isFinishing()) {
-                    finish();
-                }
-            }
-        }
-
-        @Override
-        public void finalize() {
-            if (mWakeLock != null && mWakeLock.isHeld()) {
-                mWakeLock.release();
-            }
-        }
-
-        public void cancel() {
-            mCanceled = true;
-        }
-
-        public void onCancel(DialogInterface dialog) {
-            cancel();
-        }
-    }
-
     private String translateComposerError(String errorMessage) {
         Resources resources = getResources();
         if (VCardComposer.FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO.equals(errorMessage)) {
@@ -331,7 +213,6 @@ public class ExportVCardActivity extends Activity {
         mFileNamePrefix = getString(R.string.config_export_file_prefix);
         mFileNameSuffix = getString(R.string.config_export_file_suffix);
         mFileNameExtension = getString(R.string.config_export_file_extension);
-        mVCardTypeStr = getString(R.string.config_export_vcard_type);
 
         mExtensionsToConsider = new HashSet<String>();
         mExtensionsToConsider.add(mFileNameExtension);
@@ -379,20 +260,6 @@ public class ExportVCardActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, mCancelListener);
                 return builder.create();
             }
-            case R.id.dialog_exporting_vcard: {
-                if (mProgressDialog == null) {
-                    String title = getString(R.string.exporting_contact_list_title);
-                    String message = getString(R.string.exporting_contact_list_message,
-                            mExportingFileName);
-                    mProgressDialog = new ProgressDialog(ExportVCardActivity.this);
-                    mProgressDialog.setTitle(title);
-                    mProgressDialog.setMessage(message);
-                    mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                    mProgressDialog.setOnCancelListener(mActualExportThread);
-                    mActualExportThread.start();
-                }
-                return mProgressDialog;
-            }
         }
         return super.onCreateDialog(id, bundle);
     }
@@ -412,11 +279,6 @@ public class ExportVCardActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (mActualExportThread != null) {
-            // The Activity is no longer visible. Stop the thread.
-            mActualExportThread.cancel();
-            mActualExportThread = null;
-        }
 
         if (!isFinishing()) {
             finish();
@@ -529,13 +391,6 @@ public class ExportVCardActivity extends Activity {
             .setPositiveButton(android.R.string.ok, mCancelListener)
             .setOnCancelListener(mCancelListener)
             .create();
-    }
-
-    public void cancelExport() {
-        if (mActualExportThread != null) {
-            mActualExportThread.cancel();
-            mActualExportThread = null;
-        }
     }
 
     public String getErrorReason() {
