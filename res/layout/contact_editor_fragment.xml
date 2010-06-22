@@ -25,14 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
-<!-- If we need the real ListView again, this is how to do it
-    <ListView android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:background="@drawable/title_bar_shadow"
-    /> -->
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0px"

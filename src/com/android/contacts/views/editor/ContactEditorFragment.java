@@ -93,6 +93,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     private Uri mLookupUri;
     private Listener mListener;
 
+    private boolean mIsInitialized;
+
     private ContactLoader.Result mContactData;
     private ContactEditorHeaderView mHeaderView;
     private MyListView mListView;
@@ -144,11 +146,13 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     public void loadUri(Uri lookupUri) {
         mLookupUri = lookupUri;
-        startLoading(LOADER_DETAILS, null);
+        if (mIsInitialized) startLoading(LOADER_DETAILS, null);
     }
 
     @Override
     protected void onInitializeLoaders() {
+        mIsInitialized = true;
+        if (mLookupUri != null) startLoading(LOADER_DETAILS, null);
     }
 
     @Override
