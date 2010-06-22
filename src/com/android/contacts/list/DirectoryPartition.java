@@ -15,19 +15,23 @@
  */
 package com.android.contacts.list;
 
-import android.database.Cursor;
+import com.android.contacts.widget.CompositeCursorAdapter;
+
 import android.provider.ContactsContract.Directory;
 
 /**
  * Model object for a {@link Directory} row.
  */
-public final class DirectoryPartition {
+public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
     private long mDirectoryId;
-    private int mPartitionIndex;
     private String mDirectoryType;
     private String mDisplayName;
-    private boolean mShowIfEmpty;
     private boolean mLoading;
+    private boolean mPriorityDirectory;
+
+    public DirectoryPartition(boolean showIfEmpty, boolean hasHeader) {
+        super(showIfEmpty, hasHeader);
+    }
 
     /**
      * Directory ID, see {@link Directory}.
@@ -38,17 +42,6 @@ public final class DirectoryPartition {
 
     public void setDirectoryId(long directoryId) {
         this.mDirectoryId = directoryId;
-    }
-
-    /**
-     * Corresponding loader ID.
-     */
-    public int getPartitionIndex() {
-        return mPartitionIndex;
-    }
-
-    public void setPartitionIndex(int partitionIndex) {
-        this.mPartitionIndex = partitionIndex;
     }
 
     /**
@@ -74,22 +67,22 @@ public final class DirectoryPartition {
         this.mDisplayName = displayName;
     }
 
-    /**
-     * True if the directory should be shown even if no contacts are found.
-     */
-    public boolean getShowIfEmpty() {
-        return mShowIfEmpty;
-    }
-
-    public void setShowIfEmpty(boolean showIfEmpty) {
-        this.mShowIfEmpty = showIfEmpty;
-    }
-
     public boolean isLoading() {
         return mLoading;
     }
 
     public void setLoading(boolean loading) {
         mLoading = loading;
+    }
+
+    /**
+     * Returns true if this directory should be loaded before non-priority directories.
+     */
+    public boolean isPriorityDirectory() {
+        return mPriorityDirectory;
+    }
+
+    public void setPriorityDirectory(boolean priorityDirectory) {
+        mPriorityDirectory = priorityDirectory;
     }
 }
