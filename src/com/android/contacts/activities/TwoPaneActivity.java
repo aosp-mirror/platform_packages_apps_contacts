@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.views.detail.ContactDetailFragment;
+import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
@@ -28,14 +29,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 
 public class TwoPaneActivity extends Activity {
     private final static String TAG = "TwoPaneActivity";
+
     private DefaultContactBrowseListFragment mListFragment;
+    private ListFragmentListener mListFragmentListener = new ListFragmentListener();
+
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
-    private ListFragmentListener mListFragmentListener = new ListFragmentListener();
+
+    private ContactEditorFragment mEditorFragment;
+    private EditorFragmentListener mEditorFragmentListener = new EditorFragmentListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +54,49 @@ public class TwoPaneActivity extends Activity {
         mListFragment = (DefaultContactBrowseListFragment) findFragmentById(R.id.two_pane_list);
         mListFragment.setOnContactListActionListener(mListFragmentListener);
 
-        mDetailFragment = (ContactDetailFragment) findFragmentById(R.id.two_pane_detail);
-        mDetailFragment.setListener(mDetailFragmentListener);
+        setupContactDetailFragment();
 
         setupSearchUI();
+    }
+
+    private void setupContactDetailFragment() {
+        // No editor here
+        if (mEditorFragment != null) {
+            mEditorFragment.setListener(null);
+            mEditorFragment = null;
+        }
+
+        // Already showing? Nothing to do
+        if (mDetailFragment != null) return;
+
+        mDetailFragment = new ContactDetailFragment();
+        mDetailFragment.setListener(mDetailFragmentListener);
+
+        // Nothing showing yet? Create (this happens during Activity-Startup)
+        openFragmentTransaction()
+                .replace(R.id.two_pane_right_view, mDetailFragment)
+                .commit();
+
+    }
+
+    private void setupContactEditorFragment() {
+        // No detail view here
+        if (mDetailFragment != null) {
+            mDetailFragment.setListener(null);
+            mDetailFragment = null;
+        }
+
+        // Already showing? Nothing to do
+        if (mEditorFragment != null) return;
+
+        mEditorFragment = new ContactEditorFragment();
+        mEditorFragment.setListener(mEditorFragmentListener);
+
+        // Nothing showing yet? Create (this happens during Activity-Startup)
+        openFragmentTransaction()
+                .replace(R.id.two_pane_right_view, mEditorFragment)
+                .commit();
+
     }
 
     private void setupSearchUI() {
@@ -112,6 +159,7 @@ public class TwoPaneActivity extends Activity {
         }
 
         public void onViewContactAction(Uri contactLookupUri) {
+            setupContactDetailFragment();
             mDetailFragment.loadUri(contactLookupUri);
         }
     }
@@ -122,10 +170,8 @@ public class TwoPaneActivity extends Activity {
         }
 
         public void onEditRequested(Uri contactLookupUri) {
-//          final ContactEditFragment fragment = new ContactEditFragment();
-//          openFragmentTransaction().replace(mDetailFragment.getView().getId(), fragment).commit();
-//          fragment.loadUri(contactLookupUri);
-            Toast.makeText(TwoPaneActivity.this, "editContact", Toast.LENGTH_LONG).show();
+            setupContactEditorFragment();
+            mEditorFragment.loadUri(contactLookupUri);
         }
 
         public void onItemClicked(Intent intent) {
@@ -134,6 +180,24 @@ public class TwoPaneActivity extends Activity {
 
         public void onDialogRequested(int id, Bundle bundle) {
             showDialog(id, bundle);
+        }
+    }
+
+    private class EditorFragmentListener implements ContactEditorFragment.Listener {
+        public void onContactNotFound() {
+            Toast.makeText(TwoPaneActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
+        }
+
+        public void onDialogRequested(int id, Bundle bundle) {
+            Toast.makeText(TwoPaneActivity.this, "onDialogRequested", Toast.LENGTH_LONG).show();
+        }
+
+        public void onEditorRequested(Intent intent) {
+            Toast.makeText(TwoPaneActivity.this, "onEditorRequested", Toast.LENGTH_LONG).show();
+        }
+
+        public void onError() {
+            Toast.makeText(TwoPaneActivity.this, "onError", Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -24,21 +24,22 @@
         layout="@layout/search_bar"/>
 
     <LinearLayout
-        android:id="@+id/two_pane_activity"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <fragment android:name="com.android.contacts.list.DefaultContactBrowseListFragment"
                 android:id="@+id/two_pane_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-        <fragment android:name="com.android.contacts.views.detail.ContactDetailFragment"
-                android:id="@+id/two_pane_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+        <!--  Holder for detail- or editor-fragment. -->
+        <LinearLayout
+            android:id="@+id/two_pane_right_view"
+            android:orientation="horizontal"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
   </LinearLayout>
 </LinearLayout>
