@@ -69,10 +69,9 @@ public class StructuredNameViewModel extends DataViewModel {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final SimpleOrStructuredView result = convertView != null
-                ? (SimpleOrStructuredView) convertView
-                : SimpleOrStructuredView.inflate(inflater, parent, false);
+    public View getView(LayoutInflater inflater, ViewGroup parent) {
+        final SimpleOrStructuredView result =
+                SimpleOrStructuredView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         result.setLabelText(mLabelResId);

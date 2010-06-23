@@ -48,10 +48,8 @@ public class HeaderViewModel extends BaseViewModel {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final HeaderView result = convertView != null
-                ? (HeaderView) convertView
-                : HeaderView.inflate(inflater, parent, false);
+    public View getView(LayoutInflater inflater, ViewGroup parent) {
+        final HeaderView result = HeaderView.inflate(inflater, parent, false);
 
         CharSequence accountType = getRawContact().getSource().getDisplayLabel(getContext());
         if (TextUtils.isEmpty(accountType)) {

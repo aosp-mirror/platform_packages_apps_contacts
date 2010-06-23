@@ -43,5 +43,5 @@ public abstract class BaseViewModel {
     }
 
     public abstract int getEntryType();
-    public abstract View getView(LayoutInflater inflater, View convertView, ViewGroup parent);
+    public abstract View getView(LayoutInflater inflater, ViewGroup parent);
 }

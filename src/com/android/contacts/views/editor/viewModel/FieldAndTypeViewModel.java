@@ -54,10 +54,8 @@ public abstract class FieldAndTypeViewModel extends DataViewModel {
     }
 
     @Override
-    public FieldAndTypeView getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final FieldAndTypeView result = convertView != null
-                ? (FieldAndTypeView) convertView
-                : FieldAndTypeView.inflate(inflater, parent, false);
+    public FieldAndTypeView getView(LayoutInflater inflater, ViewGroup parent) {
+        final FieldAndTypeView result = FieldAndTypeView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         result.setLabelText(mLabelResId);

@@ -40,10 +40,8 @@ public class FooterViewModel extends BaseViewModel {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final FooterView result = convertView != null
-                ? (FooterView) convertView
-                : FooterView.inflate(inflater, parent, false);
+    public View getView(LayoutInflater inflater, ViewGroup parent) {
+        final FooterView result = FooterView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         return result;

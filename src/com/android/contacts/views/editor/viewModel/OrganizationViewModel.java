@@ -62,10 +62,8 @@ public class OrganizationViewModel extends DataViewModel {
     }
 
     @Override
-    public OrganizationView getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final OrganizationView result = convertView != null
-                ? (OrganizationView) convertView
-                : OrganizationView.inflate(inflater, parent, false);
+    public OrganizationView getView(LayoutInflater inflater, ViewGroup parent) {
+        final OrganizationView result = OrganizationView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         result.setLabelText(mLabelResId);

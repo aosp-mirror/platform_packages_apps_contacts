@@ -56,10 +56,8 @@ public class PhotoViewModel extends DataViewModel {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final PhotoView result = convertView != null
-                ? (PhotoView) convertView
-                : PhotoView.inflate(inflater, parent, false);
+    public View getView(LayoutInflater inflater, ViewGroup parent) {
+        final PhotoView result = PhotoView.inflate(inflater, parent, false);
 
         final byte[] binaryData = getContentValues().getAsByteArray(Photo.PHOTO);
 

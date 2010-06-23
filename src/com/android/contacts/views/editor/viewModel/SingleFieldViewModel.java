@@ -49,10 +49,8 @@ public abstract class SingleFieldViewModel extends DataViewModel {
     }
 
     @Override
-    public SingleFieldView getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final SingleFieldView result = convertView != null
-                ? (SingleFieldView) convertView
-                : SingleFieldView.inflate(inflater, parent, false);
+    public SingleFieldView getView(LayoutInflater inflater, ViewGroup parent) {
+        final SingleFieldView result = SingleFieldView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         result.setLabelText(mLabelResId);

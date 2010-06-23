@@ -78,6 +78,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -89,8 +90,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     private static final String BUNDLE_RAW_CONTACT_ID = "rawContactId";
 
-    private static final int MENU_ITEM_MAKE_DEFAULT = 3;
-
     private static final int LOADER_DETAILS = 1;
 
     private Context mContext;
@@ -101,8 +100,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     private ContactLoader.Result mContactData;
     private ContactEditorHeaderView mHeaderView;
-    private MyListView mListView;
-    private ViewAdapter mAdapter;
+    private LinearLayout mFieldContainer;
 
     private int mReadOnlySourcesCnt;
     private int mWritableSourcesCnt;
@@ -135,11 +133,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         mHeaderView = (ContactEditorHeaderView) view.findViewById(R.id.contact_header_widget);
 
-        mListView = (MyListView) view.findViewById(android.R.id.list);
-        mListView.setOnCreateContextMenuListener(this);
-        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        mListView.setOnItemClickListener(this);
-        mListView.setItemsCanFocus(true);
+        mFieldContainer = (LinearLayout) view.findViewById(R.id.field_container);
+        mFieldContainer.setOnCreateContextMenuListener(this);
+        mFieldContainer.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
 
         return view;
     }
@@ -205,12 +201,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         mHeaderView.setMergeInfo(mRawContacts.size());
 
-        if (mAdapter == null) {
-            mAdapter = new ViewAdapter();
-            mListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.notifyDataSetChanged();
-        }
+        createFieldViews();
     }
 
     /**
@@ -348,72 +339,25 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
-    private final class ViewAdapter extends BaseAdapter {
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final View result;
+    private void createFieldViews() {
+        mFieldContainer.removeAllViews();
 
-            final BaseViewModel viewEntry = getEntry(position);
-            return viewEntry.getView(mInflater, convertView, parent);
-        }
+        for (int i = 0; i < mRawContacts.size(); i++) {
+            final DisplayRawContact rawContact = mRawContacts.get(i);
+            // Header
+            mFieldContainer.addView(
+                            rawContact.getHeader().getView(mInflater, mFieldContainer));
 
-        public Object getItem(int position) {
-            return getEntry(position);
-        }
-
-        public long getItemId(int position) {
-            // TODO Get a unique Id. Use negative numbers for Headers/Footers
-            return position;
-        }
-
-        private BaseViewModel getEntry(int position) {
-            for (int i = 0; i < mRawContacts.size(); i++) {
-                final DisplayRawContact rawContact = mRawContacts.get(i);
-                if (position == 0) return rawContact.getHeader();
-
-                // Collapsed header? Count one item and continue
-                if (rawContact.getHeader().isCollapsed()) {
-                    position--;
-                    continue;
-                }
-
-                final ArrayList<BaseViewModel> fields = rawContact.getFields();
-                // +1 for header, +1 for footer
-                final int fieldCount = fields.size() + 2;
-                if (position == fieldCount - 1) {
-                    return rawContact.getFooter();
-                }
-                if (position < fieldCount) {
-                    // -1 for header
-                    return fields.get(position - 1);
-                }
-                position -= fieldCount;
+            // Data items
+            final ArrayList<BaseViewModel> fields = rawContact.getFields();
+            for (int j = 0; j < fields.size(); j++) {
+                final BaseViewModel field = fields.get(j);
+                mFieldContainer.addView(field.getView(mInflater, mFieldContainer));
             }
-            return null;
-        }
 
-        @Override
-        public int getViewTypeCount() {
-            return ViewTypes._COUNT;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return getEntry(position).getEntryType();
-        }
-
-        public int getCount() {
-            int result = 0;
-            for (int i = 0; i < mRawContacts.size(); i++) {
-                final DisplayRawContact rawContact = mRawContacts.get(i);
-                if (rawContact.getHeader().isCollapsed()) {
-                    // just one header item
-                    result++;
-                } else {
-                    // +1 for header, +1 for footer
-                    result += rawContact.getFields().size() + 2;
-                }
-            }
-            return result;
+            // Footer
+            mFieldContainer.addView(
+                    rawContact.getFooter().getView(mInflater, mFieldContainer));
         }
     }
 
