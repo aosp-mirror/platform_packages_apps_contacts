@@ -20,22 +20,17 @@ import com.android.contacts.views.editor.DisplayRawContact;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Note;
 
-public class PhoneViewModel extends FieldAndTypeViewModel {
-    private PhoneViewModel(Context context, DisplayRawContact rawContact, long dataId,
+public class NoteViewModel extends SingleFieldViewModel {
+    private NoteViewModel(Context context, DisplayRawContact rawContact, long dataId,
             ContentValues contentValues, int titleResId) {
-        super(context, rawContact, dataId, contentValues, Phone.CONTENT_ITEM_TYPE, titleResId,
-                Phone.NUMBER, Phone.TYPE, Phone.LABEL);
+        super(context, rawContact, dataId, contentValues, Note.CONTENT_ITEM_TYPE, titleResId,
+                Note.NOTE);
     }
 
-    public static PhoneViewModel createForExisting(Context context, DisplayRawContact rawContact,
+    public static NoteViewModel createForExisting(Context context, DisplayRawContact rawContact,
             long dataId, ContentValues contentValues, int titleResId) {
-        return new PhoneViewModel(context, rawContact, dataId, contentValues, titleResId);
-    }
-
-    @Override
-    protected CharSequence getTypeDisplayLabel() {
-        return Phone.getTypeLabel(getContext().getResources(), getType(), getLabel());
+        return new NoteViewModel(context, rawContact, dataId, contentValues, titleResId);
     }
 }

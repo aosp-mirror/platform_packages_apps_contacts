@@ -18,19 +18,24 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactFieldEditorActivity;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.EditContactActivity;
-import com.android.contacts.util.DataStatus;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.editor.view.ViewTypes;
 import com.android.contacts.views.editor.viewModel.BaseViewModel;
-import com.android.contacts.views.editor.viewModel.DataViewModel;
 import com.android.contacts.views.editor.viewModel.EmailViewModel;
 import com.android.contacts.views.editor.viewModel.FooterViewModel;
+import com.android.contacts.views.editor.viewModel.ImViewModel;
+import com.android.contacts.views.editor.viewModel.NicknameViewModel;
+import com.android.contacts.views.editor.viewModel.NoteViewModel;
+import com.android.contacts.views.editor.viewModel.OrganizationViewModel;
 import com.android.contacts.views.editor.viewModel.PhoneViewModel;
+import com.android.contacts.views.editor.viewModel.PhotoViewModel;
+import com.android.contacts.views.editor.viewModel.StructuredNameViewModel;
+import com.android.contacts.views.editor.viewModel.StructuredPostalViewModel;
+import com.android.contacts.views.editor.viewModel.WebsiteViewModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -61,7 +66,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -265,6 +269,24 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                         ContactsSource.LEVEL_MIMETYPES);
                 if (kind == null) continue;
 
+                // TODO: This surely can be written more nicely. Think about a factory once
+                // all editors are done
+                if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final StructuredNameViewModel itemEditor =
+                            StructuredNameViewModel.createForExisting(mContext, rawContact, dataId,
+                            entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
+
+                if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final StructuredPostalViewModel itemEditor =
+                            StructuredPostalViewModel.createForExisting(mContext, rawContact,
+                            dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
+
                 if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     final PhoneViewModel itemEditor = PhoneViewModel.createForExisting(mContext,
                             rawContact, dataId, entryValues, kind.titleRes);
@@ -279,70 +301,48 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                     continue;
                 }
 
+                if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final ImViewModel itemEditor = ImViewModel.createForExisting(mContext,
+                            rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
 
-                final DataViewModel entry = new DataViewModel(mContext, mimeType, kind,
-                        rawContact, dataId, entryValues);
+                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final NicknameViewModel itemEditor = NicknameViewModel.createForExisting(
+                            mContext, rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
 
-                final boolean hasData = !TextUtils.isEmpty(entry.data);
-                final boolean isSuperPrimary = entryValues.getAsInteger(
-                        Data.IS_SUPER_PRIMARY) != 0;
+                if (Note.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final NoteViewModel itemEditor = NoteViewModel.createForExisting(mContext,
+                            rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
 
-                final Intent itemEditIntent = new Intent(Intent.ACTION_EDIT, entry.uri);
-                itemEditIntent.putExtra(ContactFieldEditorActivity.BUNDLE_RAW_CONTACT_URI,
-                        rawContactUriString);
-                entry.intent = itemEditIntent;
-                entry.actionIcon = R.drawable.edit;
+                if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final WebsiteViewModel itemEditor = WebsiteViewModel.createForExisting(
+                            mContext, rawContact, dataId, entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
 
-                if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    rawContact.getFields().add(entry);
-                } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    rawContact.getFields().add(entry);
-                } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    // Remember super-primary phone
-                    entry.isPrimary = isSuperPrimary;
-                    rawContact.getFields().add(entry);
-                } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    // Build email entries
-                    entry.isPrimary = isSuperPrimary;
-                    rawContact.getFields().add(entry);
-                } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    // Build postal entries
-                    rawContact.getFields().add(entry);
-                } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    // Build IM entries
-                    if (TextUtils.isEmpty(entry.label)) {
-                        entry.label = mContext.getString(R.string.chat).toLowerCase();
-                    }
-                    rawContact.getFields().add(entry);
-                } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType) &&
-                        (hasData || !TextUtils.isEmpty(entry.label))) {
-                    entry.uri = null;
+                if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final OrganizationViewModel itemEditor =
+                            OrganizationViewModel.createForExisting(mContext, rawContact, dataId,
+                            entryValues, kind.titleRes);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
+                }
 
-                    if (TextUtils.isEmpty(entry.label)) {
-                        entry.label = entry.data;
-                        entry.data = "";
-                    }
-
-                    rawContact.getFields().add(entry);
-                } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    entry.uri = null;
-                    rawContact.getFields().add(entry);
-                } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    entry.uri = null;
-                    entry.maxLines = 100;
-                    rawContact.getFields().add(entry);
-                } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                    entry.uri = null;
-                    entry.maxLines = 10;
-                    rawContact.getFields().add(entry);
-                } else {
-                    // Use social summary when requested by external source
-                    final DataStatus status = mContactData.getStatuses().get(entry.id);
-                    final boolean hasSocial = kind.actionBodySocial && status != null;
-
-                    if (hasSocial || hasData) {
-                        rawContact.getFields().add(entry);
-                    }
+                if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final PhotoViewModel itemEditor =
+                            PhotoViewModel.createForExisting(mContext, rawContact, dataId,
+                            entryValues);
+                    rawContact.getFields().add(itemEditor);
+                    continue;
                 }
             }
         }
@@ -492,43 +492,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         if (mListener != null) mListener.onDialogRequested(dialogId, null);
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return;
-        }
-
-        // This can be null sometimes, don't crash...
-        if (info == null) {
-            Log.e(TAG, "bad menuInfo");
-            return;
-        }
-
-        final BaseViewModel baseEntry = mAdapter.getEntry(info.position);
-        if (baseEntry instanceof DataViewModel) {
-            final DataViewModel entry = (DataViewModel) baseEntry;
-            menu.setHeaderTitle(R.string.contactOptionsTitle);
-            if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
-                menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-                menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
-                if (!entry.isPrimary) {
-                    menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
-                }
-            } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
-                menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
-                if (!entry.isPrimary) {
-                    menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
-                }
-            } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
-                menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
-            }
-        }
-    }
-
     // This was the ListView based code to expand/collapse sections.
 //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //        if (mListener == null) return;
@@ -619,12 +582,13 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                         final String rawContactUriString = ContentUris.withAppendedId(
                                 RawContacts.CONTENT_URI, rawContactId).toString();
                         final DataKind dataKind = filteredDataKinds.get(which);
-                        final Intent intent = new Intent();
-                        intent.setType(dataKind.mimeType);
-                        intent.setAction(Intent.ACTION_INSERT);
-                        intent.putExtra(ContactFieldEditorActivity.BUNDLE_RAW_CONTACT_URI,
-                                rawContactUriString);
-                        if (mListener != null) mListener.onEditorRequested(intent);
+                        // TODO: Add new row
+//                        final Intent intent = new Intent();
+//                        intent.setType(dataKind.mimeType);
+//                        intent.setAction(Intent.ACTION_INSERT);
+//                        intent.putExtra(ContactFieldEditorActivity.BUNDLE_RAW_CONTACT_URI,
+//                                rawContactUriString);
+//                        if (mListener != null) mListener.onEditorRequested(intent);
                     }
                 };
                 return new AlertDialog.Builder(mContext)
@@ -641,48 +605,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             if (rawContact.getId() == rawContactId) return rawContact;
         }
         return null;
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_ITEM_MAKE_DEFAULT: {
-                if (makeItemDefault(item)) {
-                    return true;
-                }
-                break;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean makeItemDefault(MenuItem item) {
-        final BaseViewModel baseEntry = getViewEntryForMenuItem(item);
-        if (baseEntry == null || !(baseEntry instanceof DataViewModel)) {
-            return false;
-        }
-        final DataViewModel entry = (DataViewModel) baseEntry;
-
-        // Update the primary values in the data record.
-        ContentValues values = new ContentValues(1);
-        values.put(Data.IS_SUPER_PRIMARY, 1);
-
-        mContext.getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
-                values, null, null);
-        return true;
-    }
-
-    private BaseViewModel getViewEntryForMenuItem(MenuItem item) {
-        final AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return null;
-        }
-
-        return mAdapter.getEntry(info.position);
     }
 
     private FooterViewModel.Listener mRawContactFooterListener =

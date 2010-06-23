@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class BaseViewModel {
-    // TODO: Consider just storing the Id of the RawContact. Would prevent some cyclic references
     private final DisplayRawContact mRawContact;
     private final Context mContext;
 

@@ -16,128 +16,86 @@
 
 package com.android.contacts.views.editor.viewModel;
 
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.util.Constants;
+import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.editor.DisplayRawContact;
-import com.android.contacts.views.editor.view.DataView;
-import com.android.contacts.views.editor.view.PhotoView;
-import com.android.contacts.views.editor.view.ViewTypes;
+import com.android.internal.util.ArrayUtils;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.ContentProviderOperation.Builder;
 import android.net.Uri;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.telephony.PhoneNumberUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-public class DataViewModel extends BaseViewModel {
-    public String label;
-    public String data;
-    public Uri uri;
-    public long id = 0;
-    public int maxLines = 1;
-    public String mimetype;
+import java.util.ArrayList;
 
-    public int actionIcon = -1;
-    public boolean isPrimary = false;
-    public Intent intent;
-    public Intent secondaryIntent = null;
-    public int maxLabelLines = 1;
-    public byte[] binaryData = null;
+public abstract class DataViewModel extends BaseViewModel {
+    private final long mDataId;
+    private final ContentValues mContentValues;
+    private final String mMimeType;
+    private final Uri mDataUri;
+
+    protected DataViewModel(Context context, DisplayRawContact rawContact, long dataId,
+            ContentValues contentValues, String mimeType) {
+        super(context, rawContact);
+        mDataId = dataId;
+        mContentValues = contentValues;
+        mMimeType = mimeType;
+        mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, mDataId);
+    }
+
+    public long getDataId() {
+        return mDataId;
+    }
+
+    public Uri getDataUri() {
+        return mDataUri;
+    }
+
+    protected ContentValues getContentValues() {
+        return mContentValues;
+    }
+
+    public String getMimeType() {
+        return mMimeType;
+    }
 
     /**
-     * Build new {@link DataViewModel} and populate from the given values.
+     * Uncoditionally saves the current state to the database. No difference analysis is performed
      */
-    public DataViewModel(Context context, String mimeType, DataKind kind,
-            DisplayRawContact rawContact, long dataId, ContentValues values) {
-        super(context, rawContact);
-        id = dataId;
-        uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-        mimetype = mimeType;
-        label = buildActionString(kind, values, false, context);
-        data = buildDataString(kind, values, context);
-        binaryData = values.getAsByteArray(Data.DATA15);
-    }
+    public void saveData() {
+        final ContentResolver resolver = getContext().getContentResolver();
 
-    @Override
-    public int getEntryType() {
-        return Photo.CONTENT_ITEM_TYPE.equals(mimetype) ? ViewTypes.PHOTO : ViewTypes.DATA;
-    }
+        final ArrayList<ContentProviderOperation> operations =
+            new ArrayList<ContentProviderOperation>();
 
-    @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        // Special Case: Photo
-        if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
-            final PhotoView result = convertView != null
-                    ? (PhotoView) convertView
-                    : PhotoView.inflate(inflater, parent, false);
-
-            final Bitmap bitmap = binaryData != null
-                    ? BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length)
-                    : null;
-            result.setPhoto(bitmap);
-            return result;
-        }
-
-        // All other cases
-        final DataView result = convertView != null
-                ? (DataView) convertView
-                : DataView.inflate(inflater, parent, false);
-
-        // Set the label
-        result.setLabelText(label, maxLabelLines);
-
-        // Set data
-        if (data != null) {
-            if (Phone.CONTENT_ITEM_TYPE.equals(mimetype)
-                    || Constants.MIME_SMS_ADDRESS.equals(mimetype)) {
-                result.setDataText(PhoneNumberUtils.formatNumber(data), maxLines);
-            } else {
-                result.setDataText(data, maxLines);
-            }
+        final Builder builder;
+        if (getDataUri() == null) {
+            // INSERT
+            builder = ContentProviderOperation.newInsert(Data.CONTENT_URI);
+            builder.withValue(Data.MIMETYPE, getMimeType());
+            builder.withValue(Data.RAW_CONTACT_ID, getRawContact().getId());
+            writeToBuilder(builder, true);
         } else {
-            result.setDataText("", maxLines);
+            // UPDATE
+            builder = ContentProviderOperation.newUpdate(getDataUri());
+            writeToBuilder(builder, false);
         }
+        operations.add(builder.build());
 
-        // Set the primary icon
-        result.setPrimary(isPrimary);
+        // Tell the Service to save
+        // TODO: Handle the case where the data element has been removed in the background
+        final Intent serviceIntent = new Intent();
+        final ContentProviderOperation[] operationsArray =
+                operations.toArray(ArrayUtils.emptyArray(ContentProviderOperation.class));
+        serviceIntent.putExtra(ContactSaveService.EXTRA_OPERATIONS, operationsArray);
+        serviceIntent.setClass(getContext().getApplicationContext(), ContactSaveService.class);
 
-        // Set the action icon
-        result.setPrimaryIntent(intent, getContext().getResources(), actionIcon);
-
-        // Set the secondary action button
-        // TODO: Change this to our new form
-        result.setSecondaryIntent(null, null, 0);
-        return result;
+        getContext().startService(serviceIntent);
     }
 
-    private static String buildActionString(DataKind kind, ContentValues values,
-            boolean lowerCase, Context context) {
-        if (kind.actionHeader == null) {
-            return null;
-        }
-        CharSequence actionHeader = kind.actionHeader.inflateUsing(context, values);
-        if (actionHeader == null) {
-            return null;
-        }
-        return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
-    }
-
-    private static String buildDataString(DataKind kind, ContentValues values,
-            Context context) {
-        if (kind.actionBody == null) {
-            return null;
-        }
-        CharSequence actionBody = kind.actionBody.inflateUsing(context, values);
-        return actionBody == null ? null : actionBody.toString();
-    }
-
+    protected abstract void writeToBuilder(final Builder builder, boolean isInsert);
 }

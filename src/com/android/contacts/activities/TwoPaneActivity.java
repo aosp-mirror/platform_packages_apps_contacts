@@ -29,9 +29,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 
 public class TwoPaneActivity extends Activity {
     private final static String TAG = "TwoPaneActivity";

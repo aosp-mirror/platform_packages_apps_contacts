@@ -18,9 +18,12 @@ package com.android.contacts.views.editor.view;
 
 public interface ViewTypes {
     public static final int DATA = 0;
-    public static final int FIELD_AND_TYPE = 1;
-    public static final int PHOTO = 2;
-    public static final int RAW_CONTACT_HEADER = 3;
-    public static final int RAW_CONTACT_FOOTER = 4;
-    public static final int _COUNT = 5;
+    public static final int SINGLE_FIELD = 1;
+    public static final int FIELD_AND_TYPE = 2;
+    public static final int SIMPLE_OR_STRUCTURED = 3;
+    public static final int PHOTO = 4;
+    public static final int ORGANIZATION = 5;
+    public static final int RAW_CONTACT_HEADER = 6;
+    public static final int RAW_CONTACT_FOOTER = 7;
+    public static final int _COUNT = 8;
 }

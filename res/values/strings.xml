@@ -1237,4 +1237,7 @@
 
     <!-- Shown in a Toast to indicate an error while trying to save the Data -->
     <string name="edit_error_saving">Error saving</string>
+
+    <!-- Text in the editor to show the structured editor -->
+    <string name="edit_structured_editor_button">...</string>
 </resources>

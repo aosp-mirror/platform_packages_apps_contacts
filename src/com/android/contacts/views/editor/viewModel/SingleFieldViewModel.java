@@ -17,7 +17,7 @@
 package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
-import com.android.contacts.views.editor.view.FieldAndTypeView;
+import com.android.contacts.views.editor.view.SingleFieldView;
 import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentValues;
@@ -29,40 +29,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class FieldAndTypeViewModel extends DataViewModel {
-    private static final String TAG = "FieldAndTypeViewModel";
+public abstract class SingleFieldViewModel extends DataViewModel {
+    private static final String TAG = "SingleFieldViewModel";
 
     private final int mLabelResId;
     private final String mFieldColumn;
-    private final String mLabelColumn;
-    private final String mTypeColumn;
 
-    protected FieldAndTypeViewModel(Context context, DisplayRawContact rawContact,
+    protected SingleFieldViewModel(Context context, DisplayRawContact rawContact,
             long dataId, ContentValues contentValues, String mimeType, int labelResId,
-            String fieldColumn, String typeColumn, String labelColumn) {
+            String fieldColumn) {
         super(context, rawContact, dataId, contentValues, mimeType);
         mLabelResId = labelResId;
-
         mFieldColumn = fieldColumn;
-        mTypeColumn = typeColumn;
-        mLabelColumn = labelColumn;
     }
 
     @Override
     public int getEntryType() {
-        return ViewTypes.FIELD_AND_TYPE;
+        return ViewTypes.SINGLE_FIELD;
     }
 
     @Override
-    public FieldAndTypeView getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
-        final FieldAndTypeView result = convertView != null
-                ? (FieldAndTypeView) convertView
-                : FieldAndTypeView.inflate(inflater, parent, false);
+    public SingleFieldView getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
+        final SingleFieldView result = convertView != null
+                ? (SingleFieldView) convertView
+                : SingleFieldView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
         result.setLabelText(mLabelResId);
         result.setFieldValue(getFieldValue());
-        result.setTypeDisplayLabel(getTypeDisplayLabel());
 
         return result;
     }
@@ -70,8 +64,6 @@ public abstract class FieldAndTypeViewModel extends DataViewModel {
     @Override
     protected void writeToBuilder(Builder builder, boolean isInsert) {
         builder.withValue(mFieldColumn, getFieldValue());
-        builder.withValue(mTypeColumn, getType());
-        builder.withValue(mLabelColumn, getLabel());
     }
 
     protected String getFieldValue() {
@@ -82,26 +74,8 @@ public abstract class FieldAndTypeViewModel extends DataViewModel {
         getContentValues().put(mFieldColumn, value);
     }
 
-    protected int getType() {
-        return getContentValues().getAsInteger(mTypeColumn).intValue();
-    }
-
-    protected void putType(int value) {
-        getContentValues().put(mTypeColumn, value);
-    }
-
-    protected String getLabel() {
-        return getContentValues().getAsString(mLabelColumn);
-    }
-
-    protected void putLabel(String value) {
-        getContentValues().put(mLabelColumn, value);
-    }
-
-    protected abstract CharSequence getTypeDisplayLabel();
-
-    private FieldAndTypeView.Listener mViewListener = new FieldAndTypeView.Listener() {
-        public void onFocusLost(FieldAndTypeView view) {
+    private SingleFieldView.Listener mViewListener = new SingleFieldView.Listener() {
+        public void onFocusLost(SingleFieldView view) {
             Log.v(TAG, "Received FocusLost. Checking for changes");
             boolean hasChanged = false;
 

@@ -397,7 +397,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Edit and insert details for a contact -->
+        <!-- Edit an existing contact -->
         <activity
             android:name=".activities.ContactEditorActivity"
             android:theme="@style/TallTitleBarTheme"
@@ -412,7 +412,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Insert details for a contact (for now this is seperate) -->
+        <!-- Create contact (for now this is seperate) -->
         <activity
             android:name=".ui.EditContactActivity"
             android:theme="@style/TallTitleBarTheme">
@@ -423,25 +423,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/person" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
                 <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
-            </intent-filter>
-        </activity>
-
-        <!-- Activity to edit a single field of a contact, like an E-Mail address or phone -->
-        <activity
-            android:name=".activities.ContactFieldEditorActivity"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
-            android:theme="@android:style/Theme.Dialog">
-
-            <intent-filter>
-                <action android:name="android.intent.action.EDIT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/name" android:host="com.android.contacts" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.EDIT" />
-                <action android:name="android.intent.action.INSERT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/email_v2" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 

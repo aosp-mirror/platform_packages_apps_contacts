@@ -25,8 +25,8 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 public class EmailViewModel extends FieldAndTypeViewModel {
     private EmailViewModel(Context context, DisplayRawContact rawContact, long dataId,
             ContentValues contentValues, int titleResId) {
-        super(context, rawContact, dataId, contentValues, titleResId, Email.ADDRESS, Email.TYPE,
-                Email.LABEL);
+        super(context, rawContact, dataId, contentValues, Email.CONTENT_ITEM_TYPE, titleResId,
+                Email.ADDRESS, Email.TYPE, Email.LABEL);
     }
 
     public static EmailViewModel createForExisting(Context context, DisplayRawContact rawContact,
