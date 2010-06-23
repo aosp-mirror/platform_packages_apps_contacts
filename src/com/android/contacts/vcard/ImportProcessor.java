@@ -56,7 +56,7 @@ import java.util.Queue;
 public class ImportProcessor {
     private static final String LOG_TAG = "ImportRequestProcessor";
 
-    private final Service mService;
+    private final Context mContext;
 
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
@@ -103,25 +103,36 @@ public class ImportProcessor {
     }
     /* package */ CommitterGenerator mCommitterGenerator = new DefaultCommitterGenerator();
 
-    public ImportProcessor(final Service service) {
-        mService = service;
+    public ImportProcessor(final Context context) {
+        mContext = context;
     }
 
-    public synchronized void pushRequest(ImportRequest parameter) {
+    /**
+     * Checks this object and initialize it if not.
+     *
+     * This method is needed since {@link VCardService} is not ready when this object is
+     * created and we need to delay this initialization, while we want to initialize
+     * this object soon in tests.
+     */
+    /* package */ void ensureInit() {
         if (mResolver == null) {
             // Service object may not ready at the construction time
             // (e.g. ContentResolver may be null).
-            mResolver = mService.getContentResolver();
+            mResolver = mContext.getContentResolver();
             mNotificationManager =
-                    (NotificationManager)mService.getSystemService(Context.NOTIFICATION_SERVICE);
+                    (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         }
+    }
+
+    public synchronized void pushRequest(ImportRequest parameter) {
+        ensureInit();
 
         final boolean needThreadStart;
         if (!mReadyForRequest) {
             mFailedUris.clear();
             mCreatedUris.clear();
 
-            mNotifier.init(mService, mNotificationManager);
+            mNotifier.init(mContext, mNotificationManager);
             needThreadStart = true;
         } else {
             needThreadStart = false;
@@ -175,7 +186,7 @@ public class ImportProcessor {
     }
 
     /**
-     * Would be run inside syncronized block.
+     * Would be run inside synchronized block.
      */
     /* package */ boolean handleOneRequest(final ImportRequest parameter) {
         if (mCanceled) {
@@ -242,12 +253,12 @@ public class ImportProcessor {
     }
     */
 
-    private void doFinishNotification(Uri createdUri) {
+    private void doFinishNotification(final Uri createdUri) {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download_done;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        final String title = mService.getString(R.string.importing_vcard_finished_title);
+        final String title = mContext.getString(R.string.importing_vcard_finished_title);
 
         final Intent intent;
         if (createdUri != null) {
@@ -260,13 +271,14 @@ public class ImportProcessor {
             intent = null;
         }
 
-        notification.setLatestEventInfo(mService, title, "",
-                PendingIntent.getActivity(mService, 0, intent, 0));
+        notification.setLatestEventInfo(mContext, title, "",
+                PendingIntent.getActivity(mContext, 0, intent, 0));
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
-    private boolean readOneVCard(Uri uri, int vcardType, String charset,
-            VCardInterpreter interpreter,
+    // Make package private for testing use.
+    /* package */ boolean readOneVCard(Uri uri, int vcardType, String charset,
+            final VCardInterpreter interpreter,
             final int[] possibleVCardVersions) {
         boolean successful = false;
         final int length = possibleVCardVersions.length;
@@ -300,7 +312,7 @@ public class ImportProcessor {
             } catch (IOException e) {
                 Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
             } catch (VCardNestedException e) {
-                // This exception should not be thrown here. We should intsead handle it
+                // This exception should not be thrown here. We should instead handle it
                 // in the preprocessing session in ImportVCardActivity, as we don't try
                 // to detect the type of given vCard here.
                 //
