@@ -118,47 +118,36 @@ public class ImportProcessorTest extends AndroidTestCase {
 }
 
 /* package */ class EmptyVCardInterpreter implements VCardInterpreter {
-    @Override
     public void end() {
     }
 
-    @Override
     public void endEntry() {
     }
 
-    @Override
     public void endProperty() {
     }
 
-    @Override
     public void propertyGroup(String group) {
     }
 
-    @Override
     public void propertyName(String name) {
     }
 
-    @Override
     public void propertyParamType(String type) {
     }
 
-    @Override
     public void propertyParamValue(String value) {
     }
 
-    @Override
     public void propertyValues(List<String> values) {
     }
 
-    @Override
     public void start() {
     }
 
-    @Override
     public void startEntry() {
     }
 
-    @Override
     public void startProperty() {
     }
 }
