@@ -73,7 +73,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         extends LoaderManagingFragment<Cursor>
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener {
 
-    public static final int ACTIVITY_REQUEST_CODE_FILTER = 1;
+    public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
 
     private static final String TAG = "ContactEntryListFragment";
 
@@ -369,6 +369,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 mAdapter.clearPartitions();
                 mAdapter.setSearchMode(flag);
                 mAdapter.setPinnedPartitionHeadersEnabled(flag);
+                mAdapter.configureDefaultPartition(flag, flag);
                 reloadData();
             }
 
@@ -474,7 +475,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         onCreateView(inflater, container);
 
         mAdapter = createListAdapter();
-        mAdapter.setSearchMode(isSearchMode());
+
+        boolean searchMode = isSearchMode();
+        mAdapter.setSearchMode(searchMode);
+        mAdapter.configureDefaultPartition(searchMode, searchMode);
         mAdapter.setSearchResultsMode(isSearchResultsMode());
         mAdapter.setPhotoLoader(mPhotoLoader);
         mListView.setAdapter(mAdapter);
@@ -852,6 +856,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      */
     public void startSearch(String initialQuery) {
         ContactsSearchManager.startSearch(getActivity(), initialQuery, mRequest);
+    }
+
+    /**
+     * Processes a result returned by the contact picker.
+     */
+    public void onPickerResult(Intent data) {
+        throw new UnsupportedOperationException("Picker result handler is not implemented.");
     }
 
     // TODO integrate into picker fragments

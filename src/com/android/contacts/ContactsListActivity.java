@@ -749,12 +749,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 ////                mJustCreated = true;
 //                break;
 //
-            case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_FILTER:
-//            case SUBACTIVITY_SEARCH:
-                // Pass through results of filter or search UI
+            case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
                 if (resultCode == RESULT_OK) {
-                    setResult(RESULT_OK, data);
-                    finish();
+                    mListFragment.onPickerResult(data);
                 }
 
 // TODO fix or remove multipicker code

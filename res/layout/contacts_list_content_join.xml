@@ -61,12 +61,27 @@
         </LinearLayout>
     </LinearLayout>
 
-    <view
-        class="com.android.contacts.ContactEntryListView" 
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fastScrollEnabled="true"
-    />
+    <LinearLayout
+            android:id="@+id/pinned_header_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+        <com.android.contacts.list.ContactListAizyView
+            android:id="@+id/contacts_list_aizy"
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+        />
+
+        <view
+            class="com.android.contacts.ContactEntryListView" 
+            android:id="@android:id/list"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fastScrollEnabled="true"
+        />
+    </LinearLayout>
 </LinearLayout>
 

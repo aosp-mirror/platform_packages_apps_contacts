@@ -70,7 +70,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         addPartition(false, false);
 
         // Partition 2: All contacts
-        addPartition(false, true);
+        addPartition(createDefaultDirectoryPartition());
     }
 
     public void setTargetContactId(long targetContactId) {
@@ -135,6 +135,12 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
+    public void configureDefaultPartition(boolean showIfEmpty, boolean hasHeader) {
+         // Don't change default partition parameters from these defaults
+        super.configureDefaultPartition(false, true);
+    }
+
+    @Override
     public int getViewTypeCount() {
         return super.getViewTypeCount() + 1;
     }
@@ -164,6 +170,11 @@ public class JoinContactListAdapter extends ContactListAdapter {
         }
 
         return null;
+    }
+
+    @Override
+    protected void bindHeaderView(View view, int partitionIndex, Cursor cursor) {
+        // Header views are static - nothing needs to be bound
     }
 
     @Override

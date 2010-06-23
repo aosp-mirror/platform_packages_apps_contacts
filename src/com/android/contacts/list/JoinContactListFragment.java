@@ -15,11 +15,13 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -34,7 +36,7 @@ import android.widget.TextView;
  */
 public class JoinContactListFragment extends ContactEntryListFragment<JoinContactListAdapter> {
 
-    private static final int DISPLAY_NAME_LOADER = 1;
+    private static final int DISPLAY_NAME_LOADER = -2;
 
     private OnContactPickerActionListener mListener;
     private long mTargetContactId;
@@ -43,6 +45,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     public JoinContactListFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
+        setAizyEnabled(false);
     }
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
@@ -56,14 +59,33 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     }
 
     @Override
+    protected Loader<Cursor> startLoading(int id, Bundle args) {
+
+        // The first two partitions don't require loaders
+        if (id == JoinContactListAdapter.PARTITION_SUGGESTIONS ||
+                id == JoinContactListAdapter.PARTITION_SHOW_ALL_CONTACTS) {
+            return null;
+        }
+
+        return super.startLoading(id, args);
+    }
+
+    @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (id == DISPLAY_NAME_LOADER) {
             // Loader for the display name of the target contact
             return new CursorLoader(getActivity(),
                     ContentUris.withAppendedId(Contacts.CONTENT_URI, mTargetContactId),
                     new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+        } else if (id == JoinContactListAdapter.PARTITION_ALL_CONTACTS) {
+            JoinContactLoader loader = new JoinContactLoader(getActivity());
+            JoinContactListAdapter adapter = getAdapter();
+            if (adapter != null) {
+                adapter.configureLoader(loader, 0);
+            }
+            return loader;
         } else {
-            return new JoinContactLoader(getActivity());
+            throw new IllegalArgumentException("No loader for ID=" + id);
         }
     }
 
@@ -120,5 +142,24 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         } else {
             mListener.onPickContactAction(adapter.getContactUri(position));
         }
+    }
+
+    @Override
+    protected void reloadData() {
+        setAizyEnabled(mAllContactsListShown);
+        super.reloadData();
+    }
+
+    @Override
+    public void startSearch(String initialQuery) {
+        ContactsRequest request = new ContactsRequest();
+        request.setActionCode(ContactsRequest.ACTION_PICK_CONTACT);
+        ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
+                ACTIVITY_REQUEST_CODE_PICKER, request);
+    }
+
+    @Override
+    public void onPickerResult(Intent data) {
+        mListener.onPickContactAction(data.getData());
     }
 }

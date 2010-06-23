@@ -17,8 +17,11 @@
 package com.android.contacts;
 
 
+import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
+import com.android.contacts.ui.ContactsPreferencesActivity;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -26,7 +29,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.Settings;
+import android.provider.ContactsContract.Contacts;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.
@@ -52,6 +60,8 @@ public class JoinContactActivity extends Activity {
 
     private long mTargetContactId;
 
+    private JoinContactListFragment mListFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +76,9 @@ public class JoinContactActivity extends Activity {
             return;
         }
 
-        JoinContactListFragment fragment = new JoinContactListFragment();
-        fragment.setTargetContactId(mTargetContactId);
-        fragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
+        mListFragment = new JoinContactListFragment();
+        mListFragment.setTargetContactId(mTargetContactId);
+        mListFragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
             public void onPickContactAction(Uri contactUri) {
                 Intent intent = new Intent(null, contactUri);
                 setResult(RESULT_OK, intent);
@@ -86,7 +96,43 @@ public class JoinContactActivity extends Activity {
         });
 
         FragmentTransaction transaction = openFragmentTransaction();
-        transaction.add(android.R.id.content, fragment);
+        transaction.add(android.R.id.content, mListFragment);
         transaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_search: {
+                onSearchRequested();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        if (globalSearch) {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        } else {
+            mListFragment.startSearch(initialQuery);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER
+                && resultCode == RESULT_OK) {
+            mListFragment.onPickerResult(data);
+        }
     }
 }

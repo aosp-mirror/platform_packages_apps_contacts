@@ -141,21 +141,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
-
-        int defaultPartitionIndex = -1;
-        int count = getPartitionCount();
-        for (int i = 0; i < count; i++) {
-            Partition partition = getPartition(i);
-            if (partition instanceof DirectoryPartition &&
-                    ((DirectoryPartition)partition).getDirectoryId() == Directory.DEFAULT) {
-                defaultPartitionIndex = i;
-                break;
-            }
-        }
-        if (defaultPartitionIndex != -1) {
-            setShowIfEmpty(defaultPartitionIndex, flag);
-            setHasHeader(defaultPartitionIndex, flag);
-        }
     }
 
     public boolean isSearchResultsMode() {
@@ -347,6 +332,26 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             return false;
         } else {
             return super.isEmpty();
+        }
+    }
+
+    /**
+     * Changes visibility parameters for the default directory partition.
+     */
+    public void configureDefaultPartition(boolean showIfEmpty, boolean hasHeader) {
+        int defaultPartitionIndex = -1;
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition &&
+                    ((DirectoryPartition)partition).getDirectoryId() == Directory.DEFAULT) {
+                defaultPartitionIndex = i;
+                break;
+            }
+        }
+        if (defaultPartitionIndex != -1) {
+            setShowIfEmpty(defaultPartitionIndex, showIfEmpty);
+            setHasHeader(defaultPartitionIndex, hasHeader);
         }
     }
 
