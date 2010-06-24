@@ -23,14 +23,11 @@ import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,23 +43,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private static final String TAG = "ContactEntryListAdapter";
 
-    private static final class DirectoryQuery {
-        public static final Uri URI = Directory.CONTENT_URI;
-        public static final String ORDER_BY = Directory._ID;
-
-        public static final String[] PROJECTION = {
-            Directory._ID,
-            Directory.PACKAGE_NAME,
-            Directory.TYPE_RESOURCE_ID,
-            Directory.DISPLAY_NAME,
-        };
-
-        public static final int ID = 0;
-        public static final int PACKAGE_NAME = 1;
-        public static final int TYPE_RESOURCE_ID = 2;
-        public static final int DISPLAY_NAME = 3;
-    }
-
     /**
      * The animation is used here to allocate animated name text views.
      */
@@ -77,6 +57,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private String mQueryString;
     private boolean mSearchMode;
     private boolean mSearchResultsMode;
+    private boolean mDirectorySearchEnabled;
 
     private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
@@ -159,6 +140,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mQueryString = queryString;
     }
 
+    public boolean isDirectorySearchEnabled() {
+        return mDirectorySearchEnabled;
+    }
+
+    public void setDirectorySearchEnabled(boolean flag) {
+        mDirectorySearchEnabled = flag;
+    }
+
     public int getContactNameDisplayOrder() {
         return mDisplayOrder;
     }
@@ -215,10 +204,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mEmptyListEnabled = flag;
     }
 
-    public void configureDirectoryLoader(CursorLoader loader) {
-        loader.setUri(DirectoryQuery.URI);
-        loader.setProjection(DirectoryQuery.PROJECTION);
-        loader.setSortOrder(DirectoryQuery.ORDER_BY);
+    public void configureDirectoryLoader(DirectoryListLoader loader) {
+        loader.setDirectorySearchEnabled(mDirectorySearchEnabled);
     }
 
     /**
@@ -228,14 +215,21 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     public void changeDirectories(Cursor cursor) {
         HashSet<Long> directoryIds = new HashSet<Long>();
 
+        int idColumnIndex = cursor.getColumnIndex(Directory._ID);
+        int directoryTypeColumnIndex = cursor.getColumnIndex(DirectoryListLoader.DIRECTORY_TYPE);
+        int displayNameColumnIndex = cursor.getColumnIndex(Directory.DISPLAY_NAME);
+
         // TODO preserve the order of partition to match those of the cursor
         // Phase I: add new directories
         try {
             while (cursor.moveToNext()) {
-                long id = cursor.getLong(DirectoryQuery.ID);
+                long id = cursor.getLong(idColumnIndex);
                 directoryIds.add(id);
                 if (getPartitionByDirectoryId(id) == -1) {
-                    DirectoryPartition partition = createDirectoryPartition(cursor);
+                    DirectoryPartition partition = new DirectoryPartition(false, true);
+                    partition.setDirectoryId(id);
+                    partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
+                    partition.setDisplayName(cursor.getString(displayNameColumnIndex));
                     addPartition(partition);
                 }
             }
@@ -257,25 +251,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
         invalidate();
         notifyDataSetChanged();
-    }
-
-    private DirectoryPartition createDirectoryPartition(Cursor cursor) {
-        PackageManager pm = getContext().getPackageManager();
-        DirectoryPartition partition = new DirectoryPartition(false, true);
-        partition.setDirectoryId(cursor.getLong(DirectoryQuery.ID));
-        String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
-        int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
-        if (!TextUtils.isEmpty(packageName) && typeResourceId != 0) {
-            // TODO: should this be done on a background thread?
-            try {
-                partition.setDirectoryType(pm.getResourcesForApplication(packageName)
-                        .getString(typeResourceId));
-            } catch (Exception e) {
-                Log.e(TAG, "Cannot obtain directory type from package: " + packageName);
-            }
-        }
-        partition.setDisplayName(cursor.getString(DirectoryQuery.DISPLAY_NAME));
-        return partition;
     }
 
     @Override

@@ -154,6 +154,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     public void startSearch(String initialQuery) {
         ContactsRequest request = new ContactsRequest();
         request.setActionCode(ContactsRequest.ACTION_PICK_CONTACT);
+        request.setDirectorySearchEnabled(false);
         ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
                 ACTIVITY_REQUEST_CODE_PICKER, request);
     }

@@ -1244,4 +1244,7 @@
 
     <!-- Text in the editor to show the structured editor -->
     <string name="edit_structured_editor_button">...</string>
+
+    <!-- The name of the invisible local contact directory -->
+    <string name="local_invisible_directory">Other</string>
 </resources>

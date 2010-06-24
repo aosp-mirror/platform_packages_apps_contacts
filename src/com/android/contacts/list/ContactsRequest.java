@@ -80,6 +80,7 @@ public class ContactsRequest implements Parcelable {
     private boolean mDisplayOnlyVisible;
     private String mGroupName;
     private boolean mLegacyCompatibilityMode;
+    private boolean mDirectorySearchEnabled = true;
 
     /**
      * Copies all fields.
@@ -96,6 +97,7 @@ public class ContactsRequest implements Parcelable {
         mDisplayOnlyVisible = request.mDisplayOnlyVisible;
         mGroupName = request.mGroupName;
         mLegacyCompatibilityMode = request.mLegacyCompatibilityMode;
+        mDirectorySearchEnabled = request.mDirectorySearchEnabled;
     }
 
     public static Parcelable.Creator<ContactsRequest> CREATOR = new Creator<ContactsRequest>() {
@@ -117,6 +119,7 @@ public class ContactsRequest implements Parcelable {
             request.mDisplayOnlyVisible = source.readInt() != 0;
             request.mGroupName = source.readString();
             request.mLegacyCompatibilityMode  = source.readInt() != 0;
+            request.mDirectorySearchEnabled = source.readInt() != 0;
             return request;
         }
     };
@@ -133,6 +136,7 @@ public class ContactsRequest implements Parcelable {
         dest.writeInt(mDisplayOnlyVisible ? 1 : 0);
         dest.writeString(mGroupName);
         dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
+        dest.writeInt(mDirectorySearchEnabled ? 1 : 0);
     }
 
     public int describeContents() {
@@ -225,5 +229,17 @@ public class ContactsRequest implements Parcelable {
 
     public void setLegacyCompatibilityMode(boolean flag) {
         mLegacyCompatibilityMode = flag;
+    }
+
+    /**
+     * Determines whether this search request should include directories or
+     * is limited to local contacts only.
+     */
+    public boolean isDirectorySearchEnabled() {
+        return mDirectorySearchEnabled;
+    }
+
+    public void setDirectorySearchEnabled(boolean flag) {
+        mDirectorySearchEnabled = flag;
     }
 }

@@ -163,19 +163,19 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
-    public void setEditMode(boolean flag) {
-        mEditMode = flag;
-    }
-
     public boolean isEditMode() {
         return mEditMode;
     }
 
-    public void setCreateContactEnabled(boolean flag) {
-        this.mCreateContactEnabled = flag;
+    public void setEditMode(boolean flag) {
+        mEditMode = flag;
     }
 
     public boolean isCreateContactEnabled() {
         return mCreateContactEnabled;
+    }
+
+    public void setCreateContactEnabled(boolean flag) {
+        this.mCreateContactEnabled = flag;
     }
 }

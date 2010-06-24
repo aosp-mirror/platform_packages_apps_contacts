@@ -220,6 +220,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setSearchResultsMode(mRequest.isSearchResultsMode());
                 fragment.setQueryString(mRequest.getQueryString());
+                fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
                 mListFragment = fragment;
                 break;
             }
@@ -280,6 +281,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
+                fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
                 fragment.setShortcutRequested(true);
                 mListFragment = fragment;
                 break;

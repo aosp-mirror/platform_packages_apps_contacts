@@ -89,6 +89,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mSearchResultsMode;
     private boolean mAizyEnabled;
     private String mQueryString;
+    private boolean mDirectorySearchEnabled;
 
     private T mAdapter;
     private View mView;
@@ -210,16 +211,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        CursorLoader loader = new CursorLoader(getActivity(), null, null, null, null, null);
         if (id == DIRECTORY_LOADER_ID) {
+            DirectoryListLoader loader = new DirectoryListLoader(getActivity());
             mAdapter.configureDirectoryLoader(loader);
+            return loader;
         } else {
+            CursorLoader loader = new CursorLoader(getActivity(), null, null, null, null, null);
             long directoryId = args != null && args.containsKey(DIRECTORY_ID_ARG_KEY)
                     ? args.getLong(DIRECTORY_ID_ARG_KEY)
                     : Directory.DEFAULT;
             mAdapter.configureLoader(loader, directoryId);
+            return loader;
         }
-        return loader;
     }
 
     private void startLoadingDirectoryPartition(int partitionIndex) {
@@ -408,6 +411,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    public boolean isDirectorySearchEnabled() {
+        return mDirectorySearchEnabled;
+    }
+
+    public void setDirectorySearchEnabled(boolean flag) {
+        mDirectorySearchEnabled = flag;
+    }
+
     public boolean isLegacyCompatibilityMode() {
         return mLegacyCompatibility;
     }
@@ -559,6 +570,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mAdapter.setQueryString(mQueryString);
+        mAdapter.setDirectorySearchEnabled(mDirectorySearchEnabled);
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);
