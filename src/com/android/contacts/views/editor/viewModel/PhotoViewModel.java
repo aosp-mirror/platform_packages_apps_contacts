@@ -18,7 +18,6 @@ package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.PhotoView;
-import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -51,12 +50,7 @@ public class PhotoViewModel extends DataViewModel {
     }
 
     @Override
-    public int getEntryType() {
-        return ViewTypes.PHOTO;
-    }
-
-    @Override
-    public View getView(LayoutInflater inflater, ViewGroup parent) {
+    public View createAndAddView(LayoutInflater inflater, ViewGroup parent) {
         final PhotoView result = PhotoView.inflate(inflater, parent, false);
 
         final byte[] binaryData = getContentValues().getAsByteArray(Photo.PHOTO);
@@ -65,6 +59,7 @@ public class PhotoViewModel extends DataViewModel {
                 ? BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length)
                 : null;
         result.setPhoto(bitmap);
+        parent.addView(result);
         return result;
     }
 }
