@@ -18,7 +18,6 @@ package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.FieldAndTypeView;
-import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,7 +25,6 @@ import android.content.ContentProviderOperation.Builder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class FieldAndTypeViewModel extends DataViewModel {
@@ -49,12 +47,7 @@ public abstract class FieldAndTypeViewModel extends DataViewModel {
     }
 
     @Override
-    public int getEntryType() {
-        return ViewTypes.FIELD_AND_TYPE;
-    }
-
-    @Override
-    public FieldAndTypeView getView(LayoutInflater inflater, ViewGroup parent) {
+    public FieldAndTypeView createAndAddView(LayoutInflater inflater, ViewGroup parent) {
         final FieldAndTypeView result = FieldAndTypeView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
@@ -62,6 +55,7 @@ public abstract class FieldAndTypeViewModel extends DataViewModel {
         result.setFieldValue(getFieldValue());
         result.setTypeDisplayLabel(getTypeDisplayLabel());
 
+        parent.addView(result);
         return result;
     }
 

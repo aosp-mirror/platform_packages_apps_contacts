@@ -18,7 +18,6 @@ package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.OrganizationView;
-import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,7 +26,6 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 public class OrganizationViewModel extends DataViewModel {
@@ -57,12 +55,7 @@ public class OrganizationViewModel extends DataViewModel {
     }
 
     @Override
-    public int getEntryType() {
-        return ViewTypes.ORGANIZATION;
-    }
-
-    @Override
-    public OrganizationView getView(LayoutInflater inflater, ViewGroup parent) {
+    public OrganizationView createAndAddView(LayoutInflater inflater, ViewGroup parent) {
         final OrganizationView result = OrganizationView.inflate(inflater, parent, false);
 
         result.setListener(mViewListener);
@@ -70,6 +63,7 @@ public class OrganizationViewModel extends DataViewModel {
         result.setFieldValues(getCompanyFieldValue(), getTitleFieldValue());
         result.setTypeDisplayLabel(getTypeDisplayLabel());
 
+        parent.addView(result);
         return result;
     }
 

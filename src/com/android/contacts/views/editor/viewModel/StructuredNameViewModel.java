@@ -18,7 +18,6 @@ package com.android.contacts.views.editor.viewModel;
 
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.SimpleOrStructuredView;
-import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -64,12 +63,7 @@ public class StructuredNameViewModel extends DataViewModel {
     }
 
     @Override
-    public int getEntryType() {
-        return ViewTypes.SIMPLE_OR_STRUCTURED;
-    }
-
-    @Override
-    public View getView(LayoutInflater inflater, ViewGroup parent) {
+    public View createAndAddView(LayoutInflater inflater, ViewGroup parent) {
         final SimpleOrStructuredView result =
                 SimpleOrStructuredView.inflate(inflater, parent, false);
 
@@ -77,6 +71,7 @@ public class StructuredNameViewModel extends DataViewModel {
         result.setLabelText(mLabelResId);
         result.setDisplayName(getDisplayName());
 
+        parent.addView(result);
         return result;
     }
 

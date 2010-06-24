@@ -19,7 +19,6 @@ package com.android.contacts.views.editor.viewModel;
 import com.android.contacts.R;
 import com.android.contacts.views.editor.DisplayRawContact;
 import com.android.contacts.views.editor.view.HeaderView;
-import com.android.contacts.views.editor.view.ViewTypes;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -43,12 +42,7 @@ public class HeaderViewModel extends BaseViewModel {
     }
 
     @Override
-    public int getEntryType() {
-        return ViewTypes.RAW_CONTACT_HEADER;
-    }
-
-    @Override
-    public View getView(LayoutInflater inflater, ViewGroup parent) {
+    public View createAndAddView(LayoutInflater inflater, ViewGroup parent) {
         final HeaderView result = HeaderView.inflate(inflater, parent, false);
 
         CharSequence accountType = getRawContact().getSource().getDisplayLabel(getContext());
@@ -69,6 +63,7 @@ public class HeaderViewModel extends BaseViewModel {
         result.setCaptionText(accountTypeDisplay);
         result.setLogo(getRawContact().getSource().getDisplayIcon(getContext()));
 
+        parent.addView(result);
         return result;
     }
 }

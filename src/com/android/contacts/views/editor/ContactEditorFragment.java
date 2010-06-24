@@ -23,19 +23,15 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.ui.EditContactActivity;
 import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.editor.view.ViewTypes;
 import com.android.contacts.views.editor.viewModel.BaseViewModel;
 import com.android.contacts.views.editor.viewModel.EmailViewModel;
 import com.android.contacts.views.editor.viewModel.FooterViewModel;
+import com.android.contacts.views.editor.viewModel.GenericViewModel;
 import com.android.contacts.views.editor.viewModel.ImViewModel;
-import com.android.contacts.views.editor.viewModel.NicknameViewModel;
-import com.android.contacts.views.editor.viewModel.NoteViewModel;
 import com.android.contacts.views.editor.viewModel.OrganizationViewModel;
-import com.android.contacts.views.editor.viewModel.PhoneViewModel;
 import com.android.contacts.views.editor.viewModel.PhotoViewModel;
 import com.android.contacts.views.editor.viewModel.StructuredNameViewModel;
 import com.android.contacts.views.editor.viewModel.StructuredPostalViewModel;
-import com.android.contacts.views.editor.viewModel.WebsiteViewModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,7 +48,6 @@ import android.content.Loader;
 import android.content.Entity.NamedContentValues;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -67,17 +62,13 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnCreateContextMenuListener;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -257,11 +248,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                 if (mimeType == null) continue;
 
                 final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                        ContactsSource.LEVEL_MIMETYPES);
+                        ContactsSource.LEVEL_CONSTRAINTS);
                 if (kind == null) continue;
 
-                // TODO: This surely can be written more nicely. Think about a factory once
-                // all editors are done
                 if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     final StructuredNameViewModel itemEditor =
                             StructuredNameViewModel.createForExisting(mContext, rawContact, dataId,
@@ -274,13 +263,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                     final StructuredPostalViewModel itemEditor =
                             StructuredPostalViewModel.createForExisting(mContext, rawContact,
                             dataId, entryValues, kind.titleRes);
-                    rawContact.getFields().add(itemEditor);
-                    continue;
-                }
-
-                if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final PhoneViewModel itemEditor = PhoneViewModel.createForExisting(mContext,
-                            rawContact, dataId, entryValues, kind.titleRes);
                     rawContact.getFields().add(itemEditor);
                     continue;
                 }
@@ -299,23 +281,12 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                     continue;
                 }
 
-                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final NicknameViewModel itemEditor = NicknameViewModel.createForExisting(
-                            mContext, rawContact, dataId, entryValues, kind.titleRes);
-                    rawContact.getFields().add(itemEditor);
-                    continue;
-                }
-
-                if (Note.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final NoteViewModel itemEditor = NoteViewModel.createForExisting(mContext,
-                            rawContact, dataId, entryValues, kind.titleRes);
-                    rawContact.getFields().add(itemEditor);
-                    continue;
-                }
-
-                if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final WebsiteViewModel itemEditor = WebsiteViewModel.createForExisting(
-                            mContext, rawContact, dataId, entryValues, kind.titleRes);
+                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) ||
+                        Note.CONTENT_ITEM_TYPE.equals(mimeType) ||
+                        Website.CONTENT_ITEM_TYPE.equals(mimeType) ||
+                        Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final GenericViewModel itemEditor = GenericViewModel.fromDataKind(
+                            mContext, rawContact, dataId, entryValues, kind);
                     rawContact.getFields().add(itemEditor);
                     continue;
                 }
@@ -345,19 +316,16 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         for (int i = 0; i < mRawContacts.size(); i++) {
             final DisplayRawContact rawContact = mRawContacts.get(i);
             // Header
-            mFieldContainer.addView(
-                            rawContact.getHeader().getView(mInflater, mFieldContainer));
+            rawContact.getHeader().createAndAddView(mInflater, mFieldContainer);
 
             // Data items
             final ArrayList<BaseViewModel> fields = rawContact.getFields();
             for (int j = 0; j < fields.size(); j++) {
-                final BaseViewModel field = fields.get(j);
-                mFieldContainer.addView(field.getView(mInflater, mFieldContainer));
+                fields.get(j).createAndAddView(mInflater, mFieldContainer);
             }
 
             // Footer
-            mFieldContainer.addView(
-                    rawContact.getFooter().getView(mInflater, mFieldContainer));
+            rawContact.getFooter().createAndAddView(mInflater, mFieldContainer);
         }
     }
 
