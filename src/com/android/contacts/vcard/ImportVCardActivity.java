@@ -99,6 +99,8 @@ public class ImportVCardActivity extends Activity {
     /* package */ final static int VCARD_VERSION_V21 = 1;
     /* package */ final static int VCARD_VERSION_V30 = 2;
 
+    final static String CACHED_URIS = "cached_uris";
+
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
 
     private Account mAccount;
@@ -125,28 +127,41 @@ public class ImportVCardActivity extends Activity {
                 new LinkedList<ImportRequest>();
 
         private boolean mConnected = false;
-        private boolean mNeedFinish = false;
+        private boolean mNeedToCallFinish = false;
+        private boolean mDisconnectAndFinishDone = false;
 
         public void doBindService() {
             bindService(new Intent(ImportVCardActivity.this,
                     VCardService.class), this, Context.BIND_AUTO_CREATE);
         }
 
-        public void setNeedFinish() {
+        /**
+         * Tries to unbind this connection and call {@link ImportVCardActivity#finish()}.
+         * When timing is not appropriate, this object remembers this call and
+         * call {@link ImportVCardActivity#unbindService(ServiceConnection)} and
+         * {@link ImportVCardActivity#finish()} afterwards.
+         */
+        public void tryDisconnectAndFinish() {
             synchronized (this) {
-                mNeedFinish = true;
-                if (mConnected) {
-                    unbindService(this);
-                    finish();
+                if (!mDisconnectAndFinishDone) {
+                    mNeedToCallFinish = true;
+                    if (mConnected) {
+                        // onServiceConnected() is already finished and we need to
+                        // "manually" call unbindService() here.
+                        unbindService(this);
+                        mDisconnectAndFinishDone = true;
+                    }
                 }
             }
         }
 
-        public synchronized void requestSend(final ImportRequest parameter) {
-            if (mMessenger != null) {
-                sendMessage(parameter);
-            } else {
-                mPendingRequests.add(parameter);
+        public void requestSend(final ImportRequest parameter) {
+            synchronized (mPendingRequests) {
+                if (mMessenger != null) {
+                    sendMessage(parameter);
+                } else {
+                    mPendingRequests.add(parameter);
+                }
             }
         }
 
@@ -163,8 +178,9 @@ public class ImportVCardActivity extends Activity {
         }
 
         public void onServiceConnected(ComponentName name, IBinder service) {
-            synchronized (this) {
+            synchronized (mPendingRequests) {
                 mMessenger = new Messenger(service);
+
                 // Send pending requests thrown from this Activity before an actual connection
                 // is established.
                 while (!mPendingRequests.isEmpty()) {
@@ -174,24 +190,30 @@ public class ImportVCardActivity extends Activity {
                     }
                     sendMessage(parameter);
                 }
-                mConnected = true;
-                if (mNeedFinish) {
-                    unbindService(this);
-                    finish();
+            }
+
+            synchronized (this) {
+                if (!mDisconnectAndFinishDone) {
+                    mConnected = true;
+                    if (mNeedToCallFinish) {
+                        mDisconnectAndFinishDone = true;
+                        finish();
+                    }
                 }
             }
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            synchronized (this) {
+            synchronized (mPendingRequests) {
                 if (!mPendingRequests.isEmpty()) {
                     Log.w(LOG_TAG, "Some request(s) are dropped.");
                 }
-                // Set to null so that we can detect inappropriate re-connection toward
-                // the Service via NullPointerException;
-                mPendingRequests = null;
-                mMessenger = null;
             }
+
+            // Set to null so that we can detect inappropriate re-connection toward
+            // the Service via NullPointerException;
+            mPendingRequests = null;
+            mMessenger = null;
         }
     }
 
@@ -290,7 +312,6 @@ public class ImportVCardActivity extends Activity {
             final ContentResolver resolver = context.getContentResolver();
             String errorMessage = null;
             mWakeLock.acquire();
-            boolean needFinish = true;
             try {
                 clearOldCache();
                 mConnection.doBindService();
@@ -328,24 +349,16 @@ public class ImportVCardActivity extends Activity {
                 // We should take care of this case since Android devices may have
                 // smaller memory than we usually expect.
                 System.gc();
-                needFinish = false;
-
-                // TODO: call this from connection object.
-                unbindService(mConnection);
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_low_memory_during_import)));
             } catch (IOException e) {
                 Log.e(LOG_TAG, e.getMessage());
-                needFinish = false;
-                unbindService(mConnection);
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error)));
             } finally {
                 mWakeLock.release();
                 mProgressDialogForCacheVCard.dismiss();
-                if (needFinish) {
-                    mConnection.setNeedFinish();                    
-                }
+                mConnection.tryDisconnectAndFinish();
             }
         }
 
@@ -483,6 +496,10 @@ public class ImportVCardActivity extends Activity {
                     context.deleteFile(fileName);
                 }
             }
+        }
+
+        public Uri[] getSourceUris() {
+            return mSourceUris;
         }
 
         public void cancel() {
@@ -949,8 +966,39 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (mVCardCacheThread != null) {
+            final Uri[] uris = mVCardCacheThread.getSourceUris();
+            final int length = uris.length;
+            final String[] uriStrings = new String[length];
+            for (int i = 0; i < length; i++) {
+                    uriStrings[i] = uris[i].toString();
+            }
+            outState.putStringArray(CACHED_URIS, uriStrings);
+
+            mVCardCacheThread.cancel();
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle inState) {
+        final String[] uriStrings = inState.getStringArray(CACHED_URIS);
+        if (uriStrings != null && uriStrings.length > 0) {
+            final int length = uriStrings.length;
+            final Uri[] uris = new Uri[length];
+            for (int i = 0; i < length; i++) {
+                uris[i] = Uri.parse(uriStrings[i]);
+            }
+
+            mVCardCacheThread = new VCardCacheThread(uris);
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
+
+        mConnection.tryDisconnectAndFinish();
 
         // ImportVCardActivity should not be persistent. In other words, if there's some
         // event calling onPause(), this Activity should finish its work and give the main
