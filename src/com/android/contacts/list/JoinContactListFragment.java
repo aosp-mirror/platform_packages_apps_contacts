@@ -59,7 +59,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     }
 
     @Override
-    protected Loader<Cursor> startLoading(int id, Bundle args) {
+    public Loader<Cursor> startLoading(int id, Bundle args) {
 
         // The first two partitions don't require loaders
         if (id == JoinContactListAdapter.PARTITION_SUGGESTIONS ||
