@@ -101,7 +101,9 @@ public class ImportProcessor {
             return new VCardEntryCommitter(mResolver);
         }
     }
-    /* package */ CommitterGenerator mCommitterGenerator = new DefaultCommitterGenerator();
+
+    private CommitterGenerator mCommitterGenerator =
+        new DefaultCommitterGenerator();
 
     public ImportProcessor(final Context context) {
         mContext = context;
@@ -124,7 +126,7 @@ public class ImportProcessor {
         }
     }
 
-    public synchronized void pushRequest(ImportRequest parameter) {
+    public synchronized void pushRequest(final ImportRequest request) {
         ensureInit();
 
         final boolean needThreadStart;
@@ -137,11 +139,11 @@ public class ImportProcessor {
         } else {
             needThreadStart = false;
         }
-        final int count = parameter.entryCount;
+        final int count = request.entryCount;
         if (count > 0) {
             mNotifier.addTotalCount(count);
         }
-        mPendingRequests.add(parameter);
+        mPendingRequests.add(request);
         if (needThreadStart) {
             mThreadStarter.start();
         }
@@ -188,14 +190,14 @@ public class ImportProcessor {
     /**
      * Would be run inside synchronized block.
      */
-    /* package */ boolean handleOneRequest(final ImportRequest parameter) {
+    /* package */ boolean handleOneRequest(final ImportRequest request) {
         if (mCanceled) {
             Log.i(LOG_TAG, "Canceled before actually handling parameter ("
-                    + parameter.uri + ")");
+                    + request.uri + ")");
             return false;
         }
         final int[] possibleVCardVersions;
-        if (parameter.vcardVersion == ImportVCardActivity.VCARD_VERSION_AUTO_DETECT) {
+        if (request.vcardVersion == ImportVCardActivity.VCARD_VERSION_AUTO_DETECT) {
             /**
              * Note: this code assumes that a given Uri is able to be opened more than once,
              * which may not be true in certain conditions.
@@ -206,14 +208,14 @@ public class ImportProcessor {
             };
         } else {
             possibleVCardVersions = new int[] {
-                    parameter.vcardVersion
+                    request.vcardVersion
             };
         }
 
-        final Uri uri = parameter.uri;
-        final Account account = parameter.account;
-        final int estimatedVCardType = parameter.estimatedVCardType;
-        final String estimatedCharset = parameter.estimatedCharset;
+        final Uri uri = request.uri;
+        final Account account = request.account;
+        final int estimatedVCardType = request.estimatedVCardType;
+        final String estimatedCharset = request.estimatedCharset;
 
         final VCardEntryConstructor constructor =
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
@@ -360,11 +362,20 @@ public class ImportProcessor {
         }
     }
 
-    public List<Uri> getCreatedUris() {
+    public List<Uri> getCreatedUrisForTest() {
         return mCreatedUris;
     }
 
-    public List<Uri> getFailedUris() {
+    public List<Uri> getFailedUrisForTest() {
         return mFailedUris;
+    }
+
+    public void injectCommitterGeneratorForTest(
+            final CommitterGenerator generator) {
+        mCommitterGenerator = generator;
+    }
+
+    public void initNotifierForTest() {
+        mNotifier.init(mContext, mNotificationManager);
     }
 }

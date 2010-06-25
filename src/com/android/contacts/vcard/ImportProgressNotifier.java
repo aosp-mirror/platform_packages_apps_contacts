@@ -20,6 +20,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.android.contacts.ContactsListActivity;
@@ -40,6 +41,7 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
     public void init(Context context, NotificationManager notificationManager) {
         mContext = context;
+        Log.d("@@@", "context: " + mContext);
         mNotificationManager = notificationManager;
     }
 
@@ -58,7 +60,8 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         //   we don't need to hurry to show something.
 
         // TODO: should not create this every time?
-        final RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(),
+        final RemoteViews remoteViews =
+                new RemoteViews(mContext.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
 
         final String title = mContext.getString(R.string.reading_vcard_title);
@@ -76,9 +79,13 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         remoteViews.setTextViewText(R.id.description, description);
         remoteViews.setProgressBar(R.id.progress_bar, mTotalCount, mCurrentCount,
                 mTotalCount == -1);
-        final String percentage =
-                mContext.getString(R.string.percentage,
-                        String.valueOf(mCurrentCount * 100/mTotalCount));
+        final String percentage;
+        if (mTotalCount > 0) {
+            percentage = mContext.getString(R.string.percentage,
+                    String.valueOf(mCurrentCount * 100/mTotalCount));
+        } else {
+            percentage = "";
+        }
 
         remoteViews.setTextViewText(R.id.progress_text, percentage);
         remoteViews.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_download);
