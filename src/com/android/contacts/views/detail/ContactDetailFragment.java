@@ -195,6 +195,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     }
 
     public void loadUri(Uri lookupUri) {
+        // TODO: Ensure we are not loading twice here
         mLookupUri = lookupUri;
         if (mIsInitialized) startLoading(LOADER_DETAILS, null);
     }

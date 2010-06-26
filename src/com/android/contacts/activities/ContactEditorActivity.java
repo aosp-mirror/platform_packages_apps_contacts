@@ -25,8 +25,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ContactEditorActivity extends Activity {
     private static final String TAG = "ContactEditorActivity";
@@ -41,7 +41,8 @@ public class ContactEditorActivity extends Activity {
 
         mFragment = (ContactEditorFragment) findFragmentById(R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
-        mFragment.loadUri(getIntent().getData());
+        mFragment.load(getIntent().getAction(), getIntent().getData(),
+                getIntent().resolveType(getContentResolver()), getIntent().getExtras());
 
         Log.i(TAG, getIntent().getData().toString());
     }
@@ -77,22 +78,44 @@ public class ContactEditorActivity extends Activity {
 
     private final ContactEditorFragment.Listener mFragmentListener =
             new ContactEditorFragment.Listener() {
-        public void onContactNotFound() {
-            // TODO: Show error
-            finish();
+        @Override
+        public void closeAfterDelete() {
+            Toast.makeText(ContactEditorActivity.this, "closeAfterDelete",
+                    Toast.LENGTH_LONG).show();
         }
 
-        public void onError() {
-            // TODO: Show error message
-            finish();
+        @Override
+        public void closeAfterRevert() {
+            Toast.makeText(ContactEditorActivity.this, "closeAfterRevert",
+                    Toast.LENGTH_LONG).show();
         }
 
-        public void onEditorRequested(Intent intent) {
-            startActivity(intent);
+        @Override
+        public void closeAfterSaving(int resultCode, Intent resultIntent) {
+            Toast.makeText(ContactEditorActivity.this, "closeAfterSaving",
+                    Toast.LENGTH_LONG).show();
         }
 
-        public void onDialogRequested(int id, Bundle bundle) {
-            showDialog(id, bundle);
+        @Override
+        public void closeAfterSplit() {
+            Toast.makeText(ContactEditorActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeBecauseAccountSelectorAborted() {
+            Toast.makeText(ContactEditorActivity.this, "closeBecauseAccountSelectorAborted",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeBecauseContactNotFound() {
+            Toast.makeText(ContactEditorActivity.this, "closeBecauseContactNotFound",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void setTitleTo(int resourceId) {
+            Toast.makeText(ContactEditorActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
         }
     };
 }

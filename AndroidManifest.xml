@@ -398,7 +398,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Edit an existing contact -->
+        <!-- Create a new or edit an existing contact -->
         <activity
             android:name=".activities.ContactEditorActivity"
             android:theme="@style/TallTitleBarTheme"
@@ -411,13 +411,6 @@
                 <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
-        </activity>
-
-        <!-- Create contact (for now this is seperate) -->
-        <activity
-            android:name=".ui.EditContactActivity"
-            android:theme="@style/TallTitleBarTheme">
-
             <intent-filter android:label="@string/insertContactDescription">
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
