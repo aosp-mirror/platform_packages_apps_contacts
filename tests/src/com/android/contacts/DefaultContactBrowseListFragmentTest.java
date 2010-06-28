@@ -16,22 +16,28 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.widget.LoaderManagingFragmentTestDelegate;
 
-import android.content.Intent;
+import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.StatusUpdates;
-import android.test.ActivityUnitTestCase;
+import android.test.InstrumentationTestCase;
+import android.test.suitebuilder.annotation.Smoke;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+
 /**
- * Tests for the contact list activity modes.
+ * Tests for {@link DefaultContactBrowseListFragment}.
  *
  * Running all tests:
  *
@@ -40,16 +46,13 @@ import android.widget.ListView;
  *   adb shell am instrument \
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
-public class ContactListModeTest
-        extends ActivityUnitTestCase<ContactsListActivity> {
+@Smoke
+public class DefaultContactBrowseListFragmentTest
+        extends InstrumentationTestCase {
 
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
-
-    public ContactListModeTest() {
-        super(ContactsListActivity.class);
-    }
 
     @Override
     protected void setUp() throws Exception {
@@ -57,22 +60,19 @@ public class ContactListModeTest
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         mContactsProvider = mContext.getContactsProvider();
         mSettingsProvider = mContext.getSettingsProvider();
-        setActivityContext(mContext);
     }
 
     public void testDefaultMode() throws Exception {
-        mContactsProvider.expectQuery(ProviderStatus.CONTENT_URI)
-                .withProjection(ProviderStatus.STATUS, ProviderStatus.DATA1);
-
-        mSettingsProvider.expectQuery(Settings.System.CONTENT_URI)
-                .withProjection(Settings.System.VALUE)
-                .withSelection(Settings.System.NAME + "=?",
-                        ContactsContract.Preferences.SORT_ORDER);
 
         mSettingsProvider.expectQuery(Settings.System.CONTENT_URI)
                 .withProjection(Settings.System.VALUE)
                 .withSelection(Settings.System.NAME + "=?",
                         ContactsContract.Preferences.DISPLAY_ORDER);
+
+        mSettingsProvider.expectQuery(Settings.System.CONTENT_URI)
+                .withProjection(Settings.System.VALUE)
+                .withSelection(Settings.System.NAME + "=?",
+                        ContactsContract.Preferences.SORT_ORDER);
 
         mContactsProvider.expectQuery(
                 Contacts.CONTENT_URI.buildUpon()
@@ -84,7 +84,6 @@ public class ContactListModeTest
                         Contacts.DISPLAY_NAME_ALTERNATIVE,
                         Contacts.SORT_KEY_PRIMARY,
                         Contacts.STARRED,
-                        Contacts.TIMES_CONTACTED,
                         Contacts.CONTACT_PRESENCE,
                         Contacts.PHOTO_ID,
                         Contacts.LOOKUP_KEY,
@@ -92,19 +91,45 @@ public class ContactListModeTest
                         Contacts.HAS_PHONE_NUMBER)
                 .withSelection(Contacts.IN_VISIBLE_GROUP + "=1")
                 .withSortOrder(Contacts.SORT_KEY_PRIMARY)
-                .returnRow(1, "John", "John", "john", 1, 10,
+                .returnRow(1, "John", "John", "john", 1,
                         StatusUpdates.AVAILABLE, 23, "lk1", "john", 1)
-                .returnRow(2, "Jim", "Jim", "jim", 1, 8,
+                .returnRow(2, "Jim", "Jim", "jim", 1,
                         StatusUpdates.AWAY, 24, "lk2", "jim", 0);
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, ContactsContract.Contacts.CONTENT_URI);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent, null, null);
-        ContactsListActivity activity = getActivity();
-        activity.runQueriesSynchronously();
+        mContactsProvider.expectQuery(ProviderStatus.CONTENT_URI)
+                .withProjection(ProviderStatus.STATUS, ProviderStatus.DATA1);
 
-        ListView listView = (ListView)activity.findViewById(android.R.id.list);
+        DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
+
+        LoaderManagingFragmentTestDelegate<Cursor> delegate =
+                new LoaderManagingFragmentTestDelegate<Cursor>();
+
+        // Divert loader registration to the delegate to ensure that loading is done synchronously
+        fragment.setDelegate(delegate);
+
+        // Fragment life cycle
+        fragment.onCreate(null);
+
+        // Instead of attaching the fragment to an activity, "attach" it to the target context
+        // of the instrumentation
+        fragment.setContext(mContext);
+
+        // Fragment life cycle
+        View view = fragment.onCreateView(LayoutInflater.from(mContext), null, null);
+
+        // Fragment life cycle
+        fragment.onStart();
+
+        // All loaders have been registered. Now perform the loading synchronously.
+        delegate.executeLoaders();
+
+        // Now we can assert that the data got loaded into the list.
+        ListView listView = (ListView)view.findViewById(android.R.id.list);
         ListAdapter adapter = listView.getAdapter();
-        assertEquals(3, adapter.getCount());
+        assertEquals(3, adapter.getCount());        // It has two items + header view
+
+        // Assert that all queries have been called
+        mSettingsProvider.verify();
+        mContactsProvider.verify();
     }
 }

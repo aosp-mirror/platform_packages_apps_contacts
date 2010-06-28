@@ -62,7 +62,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 return true;
             case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_PREFERENCE:
                 SharedPreferences prefs = PreferenceManager
-                        .getDefaultSharedPreferences(getActivity());
+                        .getDefaultSharedPreferences(getContext());
                 return prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
                         Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
         }
@@ -95,7 +95,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected ContactListAdapter createListAdapter() {
-        DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
+        DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(true);
         adapter.setQuickContactEnabled(true);

@@ -23,12 +23,12 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
+import com.android.contacts.widget.InstrumentedLoaderManagingFragment;
 import com.android.contacts.widget.CompositeCursorAdapter.Partition;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.app.LoaderManagingFragment;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -70,7 +70,7 @@ import android.widget.AdapterView.OnItemClickListener;
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
-        extends LoaderManagingFragment<Cursor>
+        extends InstrumentedLoaderManagingFragment<Cursor>
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener {
 
     public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
@@ -124,6 +124,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private ContactsRequest mRequest;
 
+    private Context mContext;
+
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
 
@@ -133,6 +135,24 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      *            views.
      */
     protected abstract void onItemClick(int position, long id);
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        setContext(activity);
+    }
+
+    /**
+     * Sets a context for the fragment in the unit test environment.
+     */
+    public void setContext(Context context) {
+        mContext = context;
+        configurePhotoLoader();
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
 
     public T getAdapter() {
         return mAdapter;
@@ -172,11 +192,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onStart() {
         if (mContactsPrefs == null) {
-            mContactsPrefs = new ContactsPreferences(getActivity());
+            mContactsPrefs = new ContactsPreferences(mContext);
         }
 
         if (mProviderStatusLoader == null) {
-            mProviderStatusLoader = new ProviderStatusLoader(getActivity());
+            mProviderStatusLoader = new ProviderStatusLoader(mContext);
         }
 
         loadPreferences(mContactsPrefs);
@@ -212,11 +232,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (id == DIRECTORY_LOADER_ID) {
-            DirectoryListLoader loader = new DirectoryListLoader(getActivity());
+            DirectoryListLoader loader = new DirectoryListLoader(mContext);
             mAdapter.configureDirectoryLoader(loader);
             return loader;
         } else {
-            CursorLoader loader = new CursorLoader(getActivity(), null, null, null, null, null);
+            CursorLoader loader = new CursorLoader(mContext, null, null, null, null, null);
             long directoryId = args != null && args.containsKey(DIRECTORY_ID_ARG_KEY)
                     ? args.getLong(DIRECTORY_ID_ARG_KEY)
                     : Directory.DEFAULT;
@@ -460,12 +480,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mContextMenuAdapter;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        configurePhotoLoader();
-    }
-
     protected void loadPreferences(ContactsPreferences contactsPrefs) {
         setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
         setSortOrder(contactsPrefs.getSortOrder());
@@ -540,10 +554,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void configurePhotoLoader() {
-        Activity activity = getActivity();
-        if (isPhotoLoaderEnabled() && activity != null) {
+        if (isPhotoLoaderEnabled() && mContext != null) {
             if (mPhotoLoader == null) {
-                mPhotoLoader = new ContactPhotoLoader(activity, R.drawable.ic_contact_list_picture);
+                mPhotoLoader = new ContactPhotoLoader(mContext, R.drawable.ic_contact_list_picture);
             }
             if (mListView != null) {
                 mListView.setOnScrollListener(this);
@@ -558,7 +571,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (isSearchResultsMode() && mView != null) {
             TextView titleText = (TextView)mView.findViewById(R.id.search_results_for);
             if (titleText != null) {
-                titleText.setText(Html.fromHtml(getActivity().getString(R.string.search_results_for,
+                titleText.setText(Html.fromHtml(mContext.getString(R.string.search_results_for,
                         "<b>" + getQueryString() + "</b>")));
             }
         }
@@ -638,7 +651,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private void hideSoftKeyboard() {
         // Hide soft keyboard, if visible
         InputMethodManager inputMethodManager = (InputMethodManager)
-                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mListView.getWindowToken(), 0);
     }
 
@@ -706,7 +719,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * reflect them in the UI.
      */
     private void registerProviderStatusObserver() {
-        getActivity().getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
+        mContext.getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
                 false, mProviderStatusObserver);
     }
 
@@ -715,7 +728,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * reflect them in the UI.
      */
     private void unregisterProviderStatusObserver() {
-        getActivity().getContentResolver().unregisterContentObserver(mProviderStatusObserver);
+        mContext.getContentResolver().unregisterContentObserver(mProviderStatusObserver);
     }
 
     /**
@@ -733,7 +746,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         // This query can be performed on the UI thread because
         // the API explicitly allows such use.
-        Cursor cursor = getActivity().getContentResolver().query(ProviderStatus.CONTENT_URI,
+        Cursor cursor = mContext.getContentResolver().query(ProviderStatus.CONTENT_URI,
                 new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
         if (cursor != null) {
             try {
@@ -763,7 +776,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
                             case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
                                 long size = cursor.getLong(1);
-                                String message = getActivity().getResources().getString(
+                                String message = mContext.getResources().getString(
                                         R.string.upgrade_out_of_memory, new Object[] {size});
                                 TextView messageView = (TextView) findViewById(R.id.emptyText);
                                 messageView.setText(message);
@@ -795,15 +808,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 switch(v.getId()) {
                     case R.id.import_failure_uninstall_apps: {
                         // TODO break into a separate method
-                        getActivity().startActivity(
-                                new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                        startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
                         break;
                     }
                     case R.id.import_failure_retry_upgrade: {
                         // Send a provider status update, which will trigger a retry
                         ContentValues values = new ContentValues();
                         values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
-                        getActivity().getContentResolver().update(ProviderStatus.CONTENT_URI,
+                        mContext.getContentResolver().update(ProviderStatus.CONTENT_URI,
                                 values, null, null);
                         break;
                     }
@@ -824,9 +836,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
     public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
         if (count == 0) {
-            return getActivity().getString(zeroResourceId);
+            return mContext.getString(zeroResourceId);
         } else {
-            String format = getActivity().getResources()
+            String format = mContext.getResources()
                     .getQuantityText(pluralResourceId, count).toString();
             return String.format(format, count);
         }
@@ -834,13 +846,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     protected void setEmptyText(int resourceId) {
         TextView empty = (TextView) getEmptyView().findViewById(R.id.emptyText);
-        empty.setText(getActivity().getText(resourceId));
+        empty.setText(mContext.getText(resourceId));
         empty.setVisibility(View.VISIBLE);
     }
 
     // TODO redesign into an async task or loader
     protected boolean isSyncActive() {
-        Account[] accounts = AccountManager.get(getActivity()).getAccounts();
+        Account[] accounts = AccountManager.get(mContext).getAccounts();
         if (accounts != null && accounts.length > 0) {
             IContentService contentService = ContentResolver.getContentService();
             for (Account account : accounts) {
@@ -858,7 +870,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     protected boolean hasIccCard() {
         TelephonyManager telephonyManager =
-                (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+                (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.hasIccCard();
     }
 
