@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.activities.ContactsFrontDoor;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.Activity;
@@ -228,25 +229,24 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         final int savedTabIndex = mLastManuallySelectedTab;
 
         // Choose the tab based on the inbound intent
-        String componentName = intent.getComponent().getClassName();
-        if (getClass().getName().equals(componentName)) {
-            if (recentCallsRequest) {
-                mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
-            } else {
-                mTabHost.setCurrentTab(TAB_INDEX_DIALER);
-            }
-        } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
-            mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
-        } else if (CONTACTS_LAUNCH_ACTIVITY.equals(componentName)) {
-            mTabHost.setCurrentTab(mLastManuallySelectedTab);
+        if (intent.getBooleanExtra(ContactsFrontDoor.EXTRA_FRONT_DOOR, false)) {
+            // Launched through the contacts front door, set the proper contacts tab
+            setContactsTab();
         } else {
-            SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
-            boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
-                    PREF_FAVORITES_AS_CONTACTS_DEFAULT);
-            if (favoritesAsContacts) {
+            // Not launched through the front door, look at the component to determine the tab
+            String componentName = intent.getComponent().getClassName();
+            if (getClass().getName().equals(componentName)) {
+                if (recentCallsRequest) {
+                    mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
+                } else {
+                    mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+                }
+            } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
                 mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
+            } else if (CONTACTS_LAUNCH_ACTIVITY.equals(componentName)) {
+                mTabHost.setCurrentTab(mLastManuallySelectedTab);
             } else {
-                mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
+                setContactsTab();
             }
         }
 
@@ -256,6 +256,17 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         // Tell the children activities that they should honor their saved states
         // instead of the state from the parent's intent
         intent.putExtra(EXTRA_IGNORE_STATE, false);
+    }
+
+    private void setContactsTab() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
+        boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
+                PREF_FAVORITES_AS_CONTACTS_DEFAULT);
+        if (favoritesAsContacts) {
+            mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
+        } else {
+            mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
+        }
     }
 
     @Override

@@ -116,11 +116,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Tab container for all tabs -->
-        <activity-alias android:name="DialtactsContactsEntryActivity"
-            android:targetActivity="DialtactsActivity"
+        <!-- Front door proxy that picks the right UI based on the screen config -->
+        <activity android:name=".activities.ContactsFrontDoor"
             android:label="@string/contactsList"
             android:icon="@drawable/ic_launcher_contacts"
+            android:theme="@android:style/Theme.NoTitleBar"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -135,8 +135,7 @@
                 <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
-
-        </activity-alias>
+        </activity>
 
         <!-- Main launch Intent to open the Contacts app. This will open the app in its last manual
         state. This is the state that has been explicitly set by the user (e.g. by clicking a tab).
@@ -389,13 +388,6 @@
         <activity android:name=".activities.TwoPaneActivity"
             android:label="Contacts Goop"
             android:theme="@style/TallTitleBarTheme">
-
-            <intent-filter android:label="Contacts Goop">
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
 
         <!-- Create a new or edit an existing contact -->
