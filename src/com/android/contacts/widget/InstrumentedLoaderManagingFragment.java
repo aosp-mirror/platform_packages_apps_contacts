@@ -36,7 +36,7 @@ public abstract class InstrumentedLoaderManagingFragment<D> extends LoaderManagi
     }
 
     @Override
-    protected Loader<D> startLoading(int id, Bundle args) {
+    public Loader<D> startLoading(int id, Bundle args) {
         if (mDelegate != null) {
             Loader<D> loader = onCreateLoader(id, args);
             loader.registerListener(id, this);
