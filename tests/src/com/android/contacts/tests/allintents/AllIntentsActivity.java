@@ -17,6 +17,7 @@
 package com.android.contacts.tests.allintents;
 
 import com.android.contacts.ContactsSearchManager;
+import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.tests.R;
 
 import android.app.ListActivity;
@@ -144,8 +145,7 @@ public class AllIntentsActivity extends ListActivity {
                 break;
             }
             case LIST_STARRED_ACTION_WITH_FILTER: {
-                startContactsListActivity(
-                        buildFilterIntent(UI.LIST_STARRED_ACTION, null, null));
+                startContactsListActivity(buildFilterIntent(ContactsRequest.ACTION_STARRED, false));
                 break;
             }
             case LIST_FREQUENT_ACTION: {
@@ -155,7 +155,7 @@ public class AllIntentsActivity extends ListActivity {
             }
             case LIST_FREQUENT_ACTION_WITH_FILTER: {
                 startContactsListActivity(
-                        buildFilterIntent(UI.LIST_FREQUENT_ACTION, null, null));
+                        buildFilterIntent(ContactsRequest.ACTION_FREQUENT, false));
                 break;
             }
             case LIST_STREQUENT_ACTION: {
@@ -165,7 +165,7 @@ public class AllIntentsActivity extends ListActivity {
             }
             case LIST_STREQUENT_ACTION_WITH_FILTER: {
                 startContactsListActivity(
-                        buildFilterIntent(UI.LIST_STREQUENT_ACTION, null, null));
+                        buildFilterIntent(ContactsRequest.ACTION_STREQUENT, false));
                 break;
             }
             case ACTION_PICK_CONTACT: {
@@ -206,8 +206,8 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_CREATE_SHORTCUT_CONTACT_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_CREATE_SHORTCUT,
-                                CONTACTS_LIST_ACTIVITY_CLASS_NAME, null));
+                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT,
+                                false));
                 break;
             }
             case ACTION_CREATE_SHORTCUT_DIAL: {
@@ -219,8 +219,8 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_CREATE_SHORTCUT_DIAL_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_CREATE_SHORTCUT,
-                                "alias.DialShortcut", null));
+                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL,
+                                false));
                 break;
             }
             case ACTION_CREATE_SHORTCUT_MESSAGE: {
@@ -232,8 +232,7 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_CREATE_SHORTCUT_MESSAGE_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_CREATE_SHORTCUT,
-                                "alias.MessageShortcut", null));
+                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL, false));
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT: {
@@ -250,16 +249,13 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_GET_CONTENT_CONTACT_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_GET_CONTENT,
-                                CONTACTS_LIST_ACTIVITY_CLASS_NAME,
-                                Contacts.CONTENT_ITEM_TYPE));
+                        buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT, false));
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT_FILTER_LEGACY: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_GET_CONTENT,
-                                CONTACTS_LIST_ACTIVITY_CLASS_NAME,
-                                People.CONTENT_ITEM_TYPE));
+                        buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT,
+                                true));
                 break;
             }
             case ACTION_GET_CONTENT_PHONE: {
@@ -270,9 +266,7 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_GET_CONTENT_PHONE_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_GET_CONTENT,
-                                CONTACTS_LIST_ACTIVITY_CLASS_NAME,
-                                Phone.CONTENT_ITEM_TYPE));
+                        buildFilterIntent(ContactsRequest.ACTION_PICK_PHONE, true));
                 break;
             }
             case ACTION_GET_CONTENT_PHONE_LEGACY: {
@@ -289,9 +283,7 @@ public class AllIntentsActivity extends ListActivity {
             }
             case ACTION_GET_CONTENT_POSTAL_FILTER: {
                 startContactsListActivityForResult(
-                        buildFilterIntent(Intent.ACTION_GET_CONTENT,
-                                CONTACTS_LIST_ACTIVITY_CLASS_NAME,
-                                StructuredPostal.CONTENT_ITEM_TYPE));
+                        buildFilterIntent(ContactsRequest.ACTION_PICK_POSTAL, false));
                 break;
             }
             case ACTION_GET_CONTENT_POSTAL_LEGACY: {
@@ -438,16 +430,12 @@ public class AllIntentsActivity extends ListActivity {
         }
     }
 
-    private Intent buildFilterIntent(String action, String component, String type) {
+    private Intent buildFilterIntent(int actionCode, boolean legacy) {
         Intent intent = new Intent(UI.FILTER_CONTACTS_ACTION);
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, "A");
-        intent.putExtra(ContactsSearchManager.ORIGINAL_ACTION_EXTRA_KEY, action);
-        if (component != null) {
-            intent.putExtra(ContactsSearchManager.ORIGINAL_COMPONENT_EXTRA_KEY, component);
-        }
-        if (type != null) {
-            intent.putExtra(ContactsSearchManager.ORIGINAL_TYPE_EXTRA_KEY, type);
-        }
+        ContactsRequest request = new ContactsRequest();
+        request.setActionCode(actionCode);
+        intent.putExtra(ContactsSearchManager.ORIGINAL_REQUEST_KEY, request);
         return intent;
     }
 

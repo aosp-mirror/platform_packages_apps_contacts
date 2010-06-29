@@ -33,26 +33,6 @@ public class ContactsSearchManager {
      * An extra that provides context for search UI and defines the scope for
      * the search queries.
      */
-    public static final String ORIGINAL_ACTION_EXTRA_KEY = "originalAction";
-
-    /**
-     * An extra that provides context for search UI and defines the scope for
-     * the search queries.
-     */
-    public static final String ORIGINAL_COMPONENT_EXTRA_KEY = "originalComponent";
-
-    /**
-     * An extra that provides context for search UI and defines the scope for
-     * the search queries.
-     */
-    public static final String ORIGINAL_TYPE_EXTRA_KEY = "originalType";
-
-    /**
-     * An extra that provides context for search UI and defines the scope for
-     * the search queries.
-     */
-    public static final String ORIGINAL_ACTION_CODE_EXTRA_KEY = "originalActionCode";
-
     public static final String ORIGINAL_REQUEST_KEY = "originalRequest";
 
     /**
