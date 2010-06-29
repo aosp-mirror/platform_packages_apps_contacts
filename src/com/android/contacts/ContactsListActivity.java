@@ -212,13 +212,10 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
                 fragment.setDisplayWithPhonesOnlyOption(mRequest.getDisplayWithPhonesOnlyOption());
 
-                fragment.setVisibleContactsRestrictionEnabled(
-                        !mRequest.isSearchResultsMode()
-                        && mRequest.getDisplayOnlyVisible());
+                fragment.setVisibleContactsRestrictionEnabled(mRequest.getDisplayOnlyVisible());
 
                 fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 fragment.setSearchMode(mRequest.isSearchMode());
-                fragment.setSearchResultsMode(mRequest.isSearchResultsMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
                 mListFragment = fragment;
@@ -336,10 +333,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onSearchAllContactsAction(String queryString) {
-            searchAllContacts(queryString, false);
-        }
-
         public void onViewContactAction(Uri contactLookupUri) {
             startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
         }
@@ -392,10 +385,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     }
 
     private final class ContactPickerActionListener implements OnContactPickerActionListener {
-        public void onSearchAllContactsAction(String queryString) {
-            searchAllContacts(queryString, true);
-        }
-
         public void onCreateNewContactAction() {
             Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             startActivityAndForwardResult(intent);
@@ -415,10 +404,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private final class PhoneNumberPickerActionListener implements
             OnPhoneNumberPickerActionListener {
-        public void onSearchAllContactsAction(String queryString) {
-            searchAllContacts(queryString, true);
-        }
-
         public void onPickPhoneNumberAction(Uri dataUri) {
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(dataUri));
@@ -433,10 +418,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private final class PostalAddressPickerActionListener implements
             OnPostalAddressPickerActionListener {
-        public void onSearchAllContactsAction(String queryString) {
-            searchAllContacts(queryString, true);
-        }
-
         public void onPickPostalAddressAction(Uri dataUri) {
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(dataUri));
@@ -528,27 +509,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         } else {
             mListFragment.startSearch(initialQuery);
-        }
-    }
-
-    /**
-     * Starts a new activity that will run a search query and display search results.
-     */
-    protected void searchAllContacts(String queryString, boolean returnResult) {
-        String query = mListFragment.getQueryString();
-        if (TextUtils.isEmpty(query)) {
-            return;
-        }
-
-        Intent intent = new Intent(this, SearchResultsActivity.class);
-        intent.setAction(Intent.ACTION_SEARCH);
-        intent.putExtra(SearchManager.QUERY, query);
-        intent.putExtra(ContactsSearchManager.ORIGINAL_REQUEST_KEY, mRequest);
-
-        if (returnResult) {
-            startActivityForResult(intent, SUBACTIVITY_SEARCH);
-        } else {
-            startActivity(intent);
         }
     }
 
@@ -782,8 +742,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
      */
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (!mSearchInitiated && !mRequest.isSearchMode()
-                && !mRequest.isSearchResultsMode()) {
+        if (!mSearchInitiated && !mRequest.isSearchMode()) {
             int unicodeChar = event.getUnicodeChar();
             if (unicodeChar != 0) {
                 mSearchInitiated = true;

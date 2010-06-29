@@ -56,7 +56,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private String mQueryString;
     private boolean mSearchMode;
-    private boolean mSearchResultsMode;
     private boolean mDirectorySearchEnabled;
 
     private boolean mLoading = true;
@@ -122,14 +121,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
-    }
-
-    public boolean isSearchResultsMode() {
-        return mSearchResultsMode;
-    }
-
-    public void setSearchResultsMode(boolean searchResultsMode) {
-        mSearchResultsMode = searchResultsMode;
     }
 
     public String getQueryString() {

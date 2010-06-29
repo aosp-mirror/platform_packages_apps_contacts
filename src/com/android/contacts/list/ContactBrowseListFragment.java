@@ -32,8 +32,6 @@ public abstract class ContactBrowseListFragment extends
     protected void prepareEmptyView() {
         if (isSearchMode()) {
             return;
-        } else if (isSearchResultsMode()) {
-            setEmptyText(R.string.noMatchingContacts);
         } else if (isSyncActive()) {
             if (hasIccCard()) {
                 setEmptyText(R.string.noContactsHelpTextWithSync);
@@ -55,10 +53,6 @@ public abstract class ContactBrowseListFragment extends
 
     public void createNewContact() {
         mListener.onCreateNewContactAction();
-    }
-
-    public void searchAllContacts() {
-        mListener.onSearchAllContactsAction((String)null);
     }
 
     public void viewContact(Uri contactUri) {

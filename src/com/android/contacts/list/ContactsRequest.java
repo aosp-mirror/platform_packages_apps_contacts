@@ -69,7 +69,6 @@ public class ContactsRequest implements Parcelable {
     private Intent mRedirectIntent;
     private CharSequence mTitle;
     private boolean mSearchMode;
-    private boolean mSearchResultsMode;
     private String mQueryString;
 
     public static final int DISPLAY_ONLY_WITH_PHONES_PREFERENCE = 0;
@@ -91,7 +90,6 @@ public class ContactsRequest implements Parcelable {
         mRedirectIntent = request.mRedirectIntent;
         mTitle = request.mTitle;
         mSearchMode = request.mSearchMode;
-        mSearchResultsMode = request.mSearchResultsMode;
         mQueryString = request.mQueryString;
         mDisplayOnlyWithPhones = request.mDisplayOnlyWithPhones;
         mDisplayOnlyVisible = request.mDisplayOnlyVisible;
@@ -113,7 +111,6 @@ public class ContactsRequest implements Parcelable {
             request.mRedirectIntent = source.readParcelable(this.getClass().getClassLoader());
             request.mTitle = source.readCharSequence();
             request.mSearchMode = source.readInt() != 0;
-            request.mSearchResultsMode = source.readInt() != 0;
             request.mQueryString = source.readString();
             request.mDisplayOnlyWithPhones = source.readInt();
             request.mDisplayOnlyVisible = source.readInt() != 0;
@@ -130,7 +127,6 @@ public class ContactsRequest implements Parcelable {
         dest.writeParcelable(mRedirectIntent, 0);
         dest.writeCharSequence(mTitle);
         dest.writeInt(mSearchMode ? 1 : 0);
-        dest.writeInt(mSearchResultsMode ? 1 : 0);
         dest.writeString(mQueryString);
         dest.writeInt(mDisplayOnlyWithPhones);
         dest.writeInt(mDisplayOnlyVisible ? 1 : 0);
@@ -197,14 +193,6 @@ public class ContactsRequest implements Parcelable {
 
     public void setSearchMode(boolean flag) {
         mSearchMode = flag;
-    }
-
-    public boolean isSearchResultsMode() {
-        return mSearchResultsMode;
-    }
-
-    public void setSearchResultsMode(boolean flag) {
-        mSearchResultsMode = flag;
     }
 
     public String getQueryString() {

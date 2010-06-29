@@ -148,7 +148,7 @@ public class ContactsIntentResolver {
                 }
             } else {
                 request.setQueryString(intent.getStringExtra(SearchManager.QUERY));
-                request.setSearchResultsMode(true);
+                request.setSearchMode(true);
             }
         } else if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             // When we get a FILTER_CONTACTS_ACTION, it represents search in the context
@@ -171,29 +171,7 @@ public class ContactsIntentResolver {
             }
 
             request.setSearchMode(true);
-//        } else if (ACTION_SEARCH_INTERNAL.equals(action)) {
-//            String originalAction = null;
-//            Bundle extras = intent.getExtras();
-//            if (extras != null) {
-//                originalAction = extras.getString(ContactsSearchManager.ORIGINAL_ACTION_EXTRA_KEY);
-//            }
-//            mShortcutAction = intent.getStringExtra(SHORTCUT_ACTION_KEY);
-//
-//            if (Intent.ACTION_INSERT_OR_EDIT.equals(originalAction)) {
-//                request.setActionCode(ContactsRequest.MODE_QUERY_PICK_TO_EDIT;
-//                mShowSearchSnippets = true;
-//                mQueryString = intent.getStringExtra(SearchManager.QUERY);
-//            } else if (mShortcutAction != null && intent.hasExtra(Insert.PHONE)) {
-//                request.setActionCode(ContactsRequest.MODE_QUERY_PICK_PHONE;
-//                mQueryMode = QUERY_MODE_TEL;
-//                mQueryString = intent.getStringExtra(Insert.PHONE);
-//            } else {
-//                request.setActionCode(ContactsRequest.MODE_QUERY_PICK;
-//                mQueryMode = QUERY_MODE_NONE;
-//                mShowSearchSnippets = true;
-//                mQueryString = intent.getStringExtra(SearchManager.QUERY);
-//            }
-//            mSearchResultsMode = true;
+
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
         // so we need to re-dispatch from here to the intended target.

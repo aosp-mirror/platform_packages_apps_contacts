@@ -272,12 +272,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
+
         </activity>
 
         <!-- The contacts search/filter UI -->
-        <activity android:name="SearchResultsActivity"
-            android:theme="@style/TallTitleBarTheme"
-            android:label="@string/contactsList"
+        <activity-alias android:name="SearchResultsActivity"
+            android:targetActivity="ContactsSearchActivity"
         >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -287,7 +287,7 @@
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"
             />
-        </activity>
+        </activity-alias>
 
         <!-- Used to select display and sync groups -->
         <activity android:name=".ui.ContactsPreferencesActivity" android:label="@string/displayGroups" />

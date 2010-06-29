@@ -23,11 +23,6 @@ import android.net.Uri;
 public interface OnContactBrowserActionListener  {
 
     /**
-     * Searches all contacts for the specified string an show results for browsing.
-     */
-    void onSearchAllContactsAction(String string);
-
-    /**
      * Opens the specified contact for viewing.
      */
     void onViewContactAction(Uri contactLookupUri);

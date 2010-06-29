@@ -26,9 +26,4 @@ public interface OnPostalAddressPickerActionListener  {
      * Returns the selected phone number to the requester.
      */
     void onPickPostalAddressAction(Uri dataUri);
-
-    /**
-     * Searches all contacts for the specified string an show results for browsing.
-     */
-    void onSearchAllContactsAction(String string);
 }

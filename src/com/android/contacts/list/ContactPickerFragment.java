@@ -134,8 +134,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     protected void prepareEmptyView() {
         if (isSearchMode()) {
             return;
-        } else if (isSearchResultsMode()) {
-            setEmptyText(R.string.noMatchingContacts);
         } else if (isSyncActive()) {
             if (mShortcutRequested) {
                 // Help text is the same no matter whether there is SIM or not.

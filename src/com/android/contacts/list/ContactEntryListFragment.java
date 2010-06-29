@@ -86,7 +86,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mSearchMode;
-    private boolean mSearchResultsMode;
     private boolean mAizyEnabled;
     private String mQueryString;
     private boolean mDirectorySearchEnabled;
@@ -406,17 +405,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mSearchMode;
     }
 
-    public void setSearchResultsMode(boolean flag) {
-        mSearchResultsMode = flag;
-        if (mAdapter != null) {
-            mAdapter.setSearchResultsMode(flag);
-        }
-    }
-
-    public boolean isSearchResultsMode() {
-        return mSearchResultsMode;
-    }
-
     public String getQueryString() {
         return mQueryString;
     }
@@ -504,7 +492,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         boolean searchMode = isSearchMode();
         mAdapter.setSearchMode(searchMode);
         mAdapter.configureDefaultPartition(searchMode, searchMode);
-        mAdapter.setSearchResultsMode(isSearchResultsMode());
         mAdapter.setPhotoLoader(mPhotoLoader);
         mListView.setAdapter(mAdapter);
 
@@ -550,7 +537,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         configureAizy();
         configurePhotoLoader();
-        configureSearchResultText();
     }
 
     protected void configurePhotoLoader() {
@@ -563,16 +549,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
             if (mAdapter != null) {
                 mAdapter.setPhotoLoader(mPhotoLoader);
-            }
-        }
-    }
-
-    protected void configureSearchResultText() {
-        if (isSearchResultsMode() && mView != null) {
-            TextView titleText = (TextView)mView.findViewById(R.id.search_results_for);
-            if (titleText != null) {
-                titleText.setText(Html.fromHtml(mContext.getString(R.string.search_results_for,
-                        "<b>" + getQueryString() + "</b>")));
             }
         }
     }

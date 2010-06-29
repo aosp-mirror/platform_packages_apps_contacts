@@ -24,11 +24,6 @@ import android.net.Uri;
 public interface OnContactPickerActionListener  {
 
     /**
-     * Searches all contacts for the specified string an show results for browsing.
-     */
-    void onSearchAllContactsAction(String string);
-
-    /**
      * Creates a new contact and then returns it to the caller.
      */
     void onCreateNewContactAction();

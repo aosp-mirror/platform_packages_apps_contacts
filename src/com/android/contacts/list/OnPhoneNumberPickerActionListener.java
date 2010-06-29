@@ -32,9 +32,4 @@ public interface OnPhoneNumberPickerActionListener  {
      * Returns the selected number as a shortcut intent.
      */
     void onShortcutIntentCreated(Intent intent);
-
-    /**
-     * Searches all contacts for the specified string an show results for browsing.
-     */
-    void onSearchAllContactsAction(String string);
 }
