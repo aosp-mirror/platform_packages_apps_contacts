@@ -33,6 +33,7 @@ import com.google.android.collect.Lists;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Container for multiple {@link EntityDelta} objects, usually when editing
@@ -62,22 +63,29 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
      */
     public static EntitySet fromQuery(ContentResolver resolver, String selection,
             String[] selectionArgs, String sortOrder) {
-        EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
+        final EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
                 RawContactsEntity.CONTENT_URI, null, selection, selectionArgs,
                 sortOrder));
         try {
-            final EntitySet state = new EntitySet();
-            // Perform background query to pull contact details
-            while (iterator.hasNext()) {
-                // Read all contacts into local deltas to prepare for edits
-                final Entity before = iterator.next();
-                final EntityDelta entity = EntityDelta.fromBefore(before);
-                state.add(entity);
-            }
-            return state;
+            return fromIterator(iterator);
         } finally {
             iterator.close();
         }
+    }
+
+    /**
+     * Create an {@link EntitySet} that contains the entities of the Iterator as before values.
+     */
+    public static EntitySet fromIterator(Iterator<Entity> iterator) {
+        final EntitySet state = new EntitySet();
+        // Perform background query to pull contact details
+        while (iterator.hasNext()) {
+            // Read all contacts into local deltas to prepare for edits
+            final Entity before = iterator.next();
+            final EntityDelta entity = EntityDelta.fromBefore(before);
+            state.add(entity);
+        }
+        return state;
     }
 
     /**
