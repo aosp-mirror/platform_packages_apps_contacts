@@ -33,6 +33,7 @@ import com.android.contacts.ui.widget.BaseContactEditorView;
 import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
+import com.android.contacts.views.ContactLoader;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -98,7 +99,7 @@ import java.util.Date;
 //TODO Cleanup the load function. It can currenlty also do insert, which is awkward
 //TODO Watch for background changes...How?
 
-public class ContactEditorFragment extends LoaderManagingFragment<ContactEditorLoader.Result> {
+public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.Result> {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -244,14 +245,14 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactEditorL
     }
 
     @Override
-    protected Loader<ContactEditorLoader.Result> onCreateLoader(int id, Bundle args) {
-        return new ContactEditorLoader(mContext, mUri, mMimeType, mIntentExtras);
+    protected Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+        return new ContactLoader(mContext, mUri);
     }
 
     @Override
-    protected void onLoadFinished(Loader<ContactEditorLoader.Result> loader,
-            ContactEditorLoader.Result data) {
-        if (data == ContactEditorLoader.Result.NOT_FOUND) {
+    protected void onLoadFinished(Loader<ContactLoader.Result> loader,
+            ContactLoader.Result data) {
+        if (data == ContactLoader.Result.NOT_FOUND) {
             // Item has been deleted
             Log.i(TAG, "No contact found. Closing fragment");
             if (mListener != null) mListener.closeBecauseContactNotFound();
@@ -260,8 +261,22 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactEditorL
         setData(data);
     }
 
-    public void setData(ContactEditorLoader.Result data) {
-        mState = data.getEntitySet();
+    public void setData(ContactLoader.Result data) {
+        mState = EntitySet.fromIterator(data.getEntities().iterator());
+        // TODO: Merge in Intent parameters can only be done on the first load.
+        // The behaviour for subsequent loads is probably broken, so fix this
+        final boolean hasExtras = mIntentExtras != null && mIntentExtras.size() > 0;
+        final boolean hasState = mState.size() > 0;
+        if (hasExtras && hasState) {
+            // Find source defining the first RawContact found
+            // TODO: Test this. Can we actually always use the first RawContact. This seems wrong
+            final EntityDelta state = mState.get(0);
+            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final Sources sources = Sources.getInstance(mContext);
+            final ContactsSource source = sources.getInflatedSource(accountType,
+                    ContactsSource.LEVEL_CONSTRAINTS);
+            EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
+        }
         bindEditors();
     }
 
