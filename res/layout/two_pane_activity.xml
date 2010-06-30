@@ -35,7 +35,7 @@
                 android:layout_weight="1" />
 
         <!--  Holder for detail- or editor-fragment. -->
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/two_pane_right_view"
             android:orientation="horizontal"
             android:layout_width="0px"

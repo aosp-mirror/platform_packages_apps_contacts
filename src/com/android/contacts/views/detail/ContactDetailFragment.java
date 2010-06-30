@@ -796,10 +796,12 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
+    @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.view, menu);
     }
 
+    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // Only allow edit when we have at least one raw_contact id
         final boolean hasRawContact = (mRawContactIds.size() > 0);

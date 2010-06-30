@@ -51,7 +51,9 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -78,7 +80,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
     protected TextView mLabel;
-    protected ViewGroup mFields;
+    protected FrameLayout mFields;
     protected View mDelete;
     protected ImageButton mMoreOrLess;
 
@@ -86,6 +88,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     protected ValuesDelta mEntry;
     protected EntityDelta mState;
     protected boolean mReadOnly;
+    private EditText[] mFieldEditTexts = null;
 
     protected boolean mHideOptional = true;
 
@@ -113,7 +116,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         mLabel = (TextView)findViewById(R.id.edit_label);
         mLabel.setOnClickListener(this);
 
-        mFields = (ViewGroup)findViewById(R.id.edit_fields);
+        mFields = (FrameLayout)findViewById(R.id.edit_fields);
 
         mDelete = findViewById(R.id.edit_delete);
         mDelete.setOnClickListener(this);
@@ -135,10 +138,12 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     @Override
     public void setEnabled(boolean enabled) {
         mLabel.setEnabled(enabled);
-        final int count = mFields.getChildCount();
-        for (int pos = 0; pos < count; pos++) {
-            final View v = mFields.getChildAt(pos);
-            v.setEnabled(enabled);
+        if (mFields.getChildCount() == 0) return;
+
+        if (mFieldEditTexts != null) {
+            for (int index = 0; index < mFieldEditTexts.length; index++) {
+                mFieldEditTexts[index].setEnabled(enabled);
+            }
         }
         mMoreOrLess.setEnabled(enabled);
     }
@@ -177,11 +182,12 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
     }
 
     public boolean isAnyFieldFilledOut() {
-        int childCount = mFields.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            EditText editorView = (EditText) mFields.getChildAt(i);
-            if (!TextUtils.isEmpty(editorView.getText())) {
-                return true;
+        if (mFieldEditTexts != null) {
+            for (int index = 0; index < mFieldEditTexts.length; index++) {
+                final EditText editText = mFieldEditTexts[index];
+                if (!TextUtils.isEmpty(editText.getText())) {
+                    return true;
+                }
             }
         }
         return false;
@@ -226,11 +232,27 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         // Build out set of fields
         mFields.removeAllViews();
         boolean hidePossible = false;
-        int n = 0;
-        for (EditField field : kind.fieldList) {
+
+        // If there is one field, put it directly into the FrameLayout mFields. If there are
+        // several or 0, put them into a LinearLayout
+        final ViewGroup container;
+        if (kind.fieldList.size() == 1) {
+            container = mFields;
+        } else {
+            final LinearLayout linearLayout = new LinearLayout(mContext);
+            linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                    LayoutParams.WRAP_CONTENT));
+            mFields.addView(linearLayout);
+            container = linearLayout;
+        }
+        mFieldEditTexts = new EditText[kind.fieldList.size()];
+        for (int index = 0; index < kind.fieldList.size(); index++) {
+            final EditField field = kind.fieldList.get(index);
             // Inflate field from definition
-            EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, mFields, false);
-            fieldView.setId(vig.getId(state, kind, entry, n++));
+            EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, container, false);
+            mFieldEditTexts[index] = fieldView;
+            fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
                 fieldView.setHint(field.titleRes);
             }
@@ -267,7 +289,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             fieldView.setEnabled(enabled);
             hidePossible = hidePossible || couldHide;
 
-            mFields.addView(fieldView);
+            container.addView(fieldView);
         }
 
         // When hiding fields, place expandable

@@ -35,7 +35,7 @@
         android:layout_alignParentRight="true"
         style="@style/MinusButton" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/edit_fields"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
@@ -43,7 +43,6 @@
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/edit_label"
         android:layout_toLeftOf="@id/edit_delete"
-        android:orientation="vertical"
         android:baselineAligned="false"
         android:gravity="center_vertical" />
 

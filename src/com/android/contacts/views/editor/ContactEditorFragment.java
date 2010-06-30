@@ -77,7 +77,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -164,16 +163,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         mContent = (LinearLayout) view.findViewById(R.id.editors);
 
-        view.findViewById(R.id.btn_done).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                doSaveAction(SAVE_MODE_DEFAULT);
-            }
-        });
-        view.findViewById(R.id.btn_discard).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                doRevertAction();
-            }
-        });
+        setHasOptionsMenu(true);
 
         return view;
     }

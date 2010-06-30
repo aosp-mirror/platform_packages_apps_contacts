@@ -25,7 +25,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 public class ContactEditorActivity extends Activity {
@@ -56,14 +55,6 @@ public class ContactEditorActivity extends Activity {
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        // TODO: This is too hardwired.
-        if (mFragment.onContextItemSelected(item)) return true;
-
-        return super.onContextItemSelected(item);
     }
 
     @Override
