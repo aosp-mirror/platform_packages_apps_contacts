@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.list.CallOrSmsInitiator;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
@@ -30,7 +31,6 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
-import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -44,8 +44,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
-import android.app.SearchManager;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -55,11 +53,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -73,13 +69,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
-@SuppressWarnings("deprecation")
 public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener {
 
     private static final String TAG = "ContactsListActivity";
@@ -89,33 +83,15 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
 
-    private static final String[] RAW_CONTACTS_PROJECTION = new String[] {
-        RawContacts._ID, //0
-        RawContacts.CONTACT_ID, //1
-        RawContacts.ACCOUNT_TYPE, //2
-    };
-
-    private Uri mSelectedContactUri;
-
-    private ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
-    private int  mWritableSourcesCnt;
-    private int  mReadOnlySourcesCnt;
-
     private final String[] sLookupProjection = new String[] {
             Contacts.LOOKUP_KEY
     };
-    private class DeleteClickListener implements DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which) {
-            if (mSelectedContactUri != null) {
-                getContentResolver().delete(mSelectedContactUri, null, null);
-            }
-        }
-    }
 
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
     protected CallOrSmsInitiator mCallOrSmsInitiator;
+    private ContactDeletionInteraction mContactDeletionInteraction;
 
     private int mActionCode;
 
@@ -124,15 +100,9 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private ContactsRequest mRequest;
     private SearchEditText mSearchEditText;
 
+
     public ContactsListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
-    }
-
-    /**
-     * Visible for testing: makes queries run on the UI thread.
-     */
-    /* package */ void runQueriesSynchronously() {
-        // TODO
     }
 
     @Override
@@ -376,7 +346,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
 
         public void onDeleteContactAction(Uri contactUri) {
-            doContactDelete(contactUri);
+            getContactDeletionInteraction().deleteContact(contactUri);
         }
 
         public void onFinishAction() {
@@ -514,6 +484,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
+        Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
+        if (dialog != null) {
+            return dialog;
+        }
+
         switch (id) {
             case R.string.import_from_sim:
             case R.string.import_from_sdcard: {
@@ -521,51 +496,23 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             }
             case R.id.dialog_sdcard_not_found: {
                 return new AlertDialog.Builder(this)
-                        .setTitle(R.string.no_sdcard_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.no_sdcard_message)
-                        .setPositiveButton(android.R.string.ok, null).create();
-            }
-            case R.id.dialog_delete_contact_confirmation: {
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
-            }
-            case R.id.dialog_readonly_contact_hide_confirmation: {
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactWarning)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
-            }
-            case R.id.dialog_readonly_contact_delete_confirmation: {
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
-            }
-            case R.id.dialog_multiple_contact_delete_confirmation: {
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.multipleContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
+                .setTitle(R.string.no_sdcard_title)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setMessage(R.string.no_sdcard_message)
+                .setPositiveButton(android.R.string.ok, null).create();
             }
         }
         return super.onCreateDialog(id, bundle);
     }
 
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
+        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, bundle)) {
+            return;
+        }
+
+        super.onPrepareDialog(id, dialog, bundle);
+    }
     /**
      * Create a {@link Dialog} that allows the user to pick from a bulk import
      * or bulk export task across all contacts.
@@ -790,53 +737,18 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         return false;
     }
 
-    /**
-     * Prompt the user before deleting the given {@link Contacts} entry.
-     */
-    protected void doContactDelete(Uri contactUri) {
-        mReadOnlySourcesCnt = 0;
-        mWritableSourcesCnt = 0;
-        mWritableRawContactIds.clear();
-
-        Sources sources = Sources.getInstance(ContactsListActivity.this);
-        Cursor c = getContentResolver().query(RawContacts.CONTENT_URI, RAW_CONTACTS_PROJECTION,
-                RawContacts.CONTACT_ID + "=" + ContentUris.parseId(contactUri), null,
-                null);
-        if (c != null) {
-            try {
-                while (c.moveToNext()) {
-                    final String accountType = c.getString(2);
-                    final long rawContactId = c.getLong(0);
-                    ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                            ContactsSource.LEVEL_SUMMARY);
-                    if (contactsSource != null && contactsSource.readOnly) {
-                        mReadOnlySourcesCnt += 1;
-                    } else {
-                        mWritableSourcesCnt += 1;
-                        mWritableRawContactIds.add(rawContactId);
-                    }
-                }
-            } finally {
-                c.close();
-            }
-        }
-
-        mSelectedContactUri = contactUri;
-        if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt > 0) {
-            showDialog(R.id.dialog_readonly_contact_delete_confirmation);
-        } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-            showDialog(R.id.dialog_readonly_contact_hide_confirmation);
-        } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-            showDialog(R.id.dialog_multiple_contact_delete_confirmation);
-        } else {
-            showDialog(R.id.dialog_delete_contact_confirmation);
-        }
-    }
-
     private CallOrSmsInitiator getCallOrSmsInitiator() {
         if (mCallOrSmsInitiator == null) {
             mCallOrSmsInitiator = new CallOrSmsInitiator(this);
         }
         return mCallOrSmsInitiator;
+    }
+
+    private ContactDeletionInteraction getContactDeletionInteraction() {
+        if (mContactDeletionInteraction == null) {
+            mContactDeletionInteraction = new ContactDeletionInteraction();
+            mContactDeletionInteraction.attachToActivity(this);
+        }
+        return mContactDeletionInteraction;
     }
 }

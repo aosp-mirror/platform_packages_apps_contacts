@@ -54,9 +54,6 @@
 
     <!-- For ContactsListActivity -->
     <item type="id" name="dialog_delete_contact_confirmation"/>
-    <item type="id" name="dialog_readonly_contact_hide_confirmation"/>
-    <item type="id" name="dialog_multiple_contact_delete_confirmation"/>
-    <item type="id" name="dialog_readonly_contact_delete_confirmation"/>
 
     <!-- For ExportVCardActivity -->
     <item type="id" name="dialog_export_confirmation"/>
