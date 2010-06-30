@@ -102,7 +102,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
         setCurrentTab(intent);
 
-        if (intent.getAction().equals(UI.FILTER_CONTACTS_ACTION)
+        if (UI.FILTER_CONTACTS_ACTION.equals(intent.getAction())
                 && icicle == null) {
             setupFilterText(intent);
         }
@@ -275,7 +275,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         fixIntent(newIntent);
         setCurrentTab(newIntent);
         final String action = newIntent.getAction();
-        if (action.equals(UI.FILTER_CONTACTS_ACTION)) {
+        if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             setupFilterText(newIntent);
         } else if (isDialIntent(newIntent)) {
             setupDialUri(newIntent);
