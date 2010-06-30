@@ -1070,8 +1070,8 @@ public class RecentCallsListActivity extends ListActivity
             // most recent entry.
             position = 0;
         }
-        final Cursor cursor = mAdapter.getCursor();
-        if (cursor != null && cursor.moveToPosition(position)) {
+        final Cursor cursor = (Cursor)mAdapter.getItem(position);
+        if (cursor != null) {
             String number = cursor.getString(NUMBER_COLUMN_INDEX);
             if (TextUtils.isEmpty(number)
                     || number.equals(CallerInfo.UNKNOWN_NUMBER)
