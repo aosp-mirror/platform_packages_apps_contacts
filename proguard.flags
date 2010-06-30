@@ -12,3 +12,8 @@
 -keep class com.android.contacts.model.EntityDelta$ValuesDelta {
   public android.content.ContentValues getAfter();
 }
+
+# Any methods whose name is '*ForTest' are preserved.
+-keep class ** {
+  *** *ForTest(...);
+}
