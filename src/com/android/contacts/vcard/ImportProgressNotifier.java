@@ -41,7 +41,6 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
     public void init(Context context, NotificationManager notificationManager) {
         mContext = context;
-        Log.d("@@@", "context: " + mContext);
         mNotificationManager = notificationManager;
     }
 
