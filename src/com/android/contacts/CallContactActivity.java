@@ -16,12 +16,13 @@
 
 package com.android.contacts;
 
-import com.android.contacts.list.CallOrSmsInitiator;
+import com.android.contacts.interactions.PhoneNumberInteraction;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -32,26 +33,44 @@ import android.provider.ContactsContract.Contacts;
  */
 public class CallContactActivity extends Activity implements OnDismissListener {
 
+    private PhoneNumberInteraction mPhoneNumberInteraction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPhoneNumberInteraction = new PhoneNumberInteraction(this, false, this);
 
-        Uri data = getIntent().getData();
-        if (data == null) {
+        Uri contactUri = getIntent().getData();
+        if (contactUri == null) {
             finish();
         }
 
-        if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(data))) {
-            CallOrSmsInitiator initiator = new CallOrSmsInitiator(this);
-            initiator.setOnDismissListener(this);
-            initiator.initiateCall(data);
+        // If we are being invoked with a saved state, rely on Activity to restore it
+        if (savedInstanceState != null) {
+            return;
+        }
+
+        if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(contactUri))) {
+            mPhoneNumberInteraction.startInteraction(contactUri);
         } else {
-            startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, data));
+            startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, contactUri));
             finish();
         }
     }
 
     public void onDismiss(DialogInterface dialog) {
-        finish();
+        if (!isChangingConfigurations()) {
+            finish();
+        }
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id, Bundle args) {
+        return mPhoneNumberInteraction.onCreateDialog(id, args);
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
+        mPhoneNumberInteraction.onPrepareDialog(id, dialog, args);
     }
 }

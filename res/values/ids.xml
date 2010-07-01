@@ -60,4 +60,10 @@
     <item type="id" name="dialog_exporting_vcard"/>
     <item type="id" name="dialog_fail_to_export_with_reason"/>
 
+    <!-- For PhoneNumberCallInteraction -->
+    <item type="id" name="dialog_phone_number_call_disambiguation"/>
+
+    <!-- For PhoneNumberMessageSendInteraction -->
+    <item type="id" name="dialog_phone_number_message_disambiguation"/>
+
 </resources>
