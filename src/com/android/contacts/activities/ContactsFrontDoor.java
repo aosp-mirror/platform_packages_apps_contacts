@@ -40,7 +40,7 @@ public class ContactsFrontDoor extends Activity {
         int screenLayoutSize = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         if (screenLayoutSize == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
             // XL screen, use two pane UI
-            intent.setClass(this, TwoPaneActivity.class);
+            intent.setClass(this, ContactListActivity.class);
         } else {
             // Default to the normal dialtacts layout
             intent.setClass(this, DialtactsActivity.class);

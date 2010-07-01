@@ -34,6 +34,8 @@ import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.ui.ContactsPreferencesActivity;
+import com.android.contacts.views.detail.ContactDetailFragment;
+import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
@@ -43,19 +45,22 @@ import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 /**
- * Displays a list of contacts. Usually is embedded into the ContactsActivity.
+ * Displays a list of contacts.
  */
 public class ContactListActivity extends Activity implements View.OnCreateContextMenuListener {
 
@@ -74,6 +79,12 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     private ContactDeletionInteraction mContactDeletionInteraction;
     private ImportExportInteraction mImportExportInteraction;
 
+    private ContactDetailFragment mDetailFragment;
+    private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
+
+    private ContactEditorFragment mEditorFragment;
+    private EditorFragmentListener mEditorFragmentListener = new EditorFragmentListener();
+
     private int mActionCode;
 
     private boolean mSearchInitiated;
@@ -81,7 +92,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     private ContactsRequest mRequest;
     private SearchEditText mSearchEditText;
 
-
+    private boolean mTwoPaneLayout;
 
     public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -107,6 +118,32 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
             return;
         }
 
+        // The user launched the config based front door, pick the right activity to go to
+        Configuration config = getResources().getConfiguration();
+        int screenLayoutSize = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        mTwoPaneLayout = (screenLayoutSize == Configuration.SCREENLAYOUT_SIZE_XLARGE);
+        if (mTwoPaneLayout) {
+            configureTwoPaneLayout();
+        } else {
+            configureSinglePaneLayout();
+        }
+    }
+
+    private void configureTwoPaneLayout() {
+        setContentView(R.layout.two_pane_activity);
+
+        DefaultContactBrowseListFragment fragment =
+                (DefaultContactBrowseListFragment)findFragmentById(R.id.two_pane_list);
+        fragment.setOnContactListActionListener(new ContactBrowserActionListener());
+
+        mListFragment = fragment;
+
+        setupContactDetailFragment();
+
+        setupSearchUI();
+    }
+
+    private void configureSinglePaneLayout() {
         setTitle(mRequest.getActivityTitle());
 
         onCreateFragment();
@@ -119,6 +156,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         } else {
             listFragmentContainerId = android.R.id.content;
         }
+
         FragmentTransaction transaction = openFragmentTransaction();
         transaction.add(listFragmentContainerId, mListFragment);
         transaction.commit();
@@ -129,6 +167,9 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         mSearchEditText.setText(mRequest.getQueryString());
         mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
             public void onFilterChange(String queryString) {
+                if (mTwoPaneLayout) {
+                    mListFragment.setSearchMode(!TextUtils.isEmpty(queryString));
+                }
                 mListFragment.setQueryString(queryString);
             }
 
@@ -138,10 +179,50 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         });
     }
 
+    private void setupContactDetailFragment() {
+        // No editor here
+        if (mEditorFragment != null) {
+            mEditorFragment.setListener(null);
+            mEditorFragment = null;
+        }
+
+        // Already showing? Nothing to do
+        if (mDetailFragment != null) return;
+
+        mDetailFragment = new ContactDetailFragment();
+        mDetailFragment.setListener(mDetailFragmentListener);
+
+        // Nothing showing yet? Create (this happens during Activity-Startup)
+        openFragmentTransaction()
+                .replace(R.id.two_pane_right_view, mDetailFragment)
+                .commit();
+
+    }
+
+    private void setupContactEditorFragment() {
+        // No detail view here
+        if (mDetailFragment != null) {
+            mDetailFragment.setListener(null);
+            mDetailFragment = null;
+        }
+
+        // Already showing? Nothing to do
+        if (mEditorFragment != null) return;
+
+        mEditorFragment = new ContactEditorFragment();
+        mEditorFragment.setListener(mEditorFragmentListener);
+
+        // Nothing showing yet? Create (this happens during Activity-Startup)
+        openFragmentTransaction()
+                .replace(R.id.two_pane_right_view, mEditorFragment)
+                .commit();
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        if (mRequest.isSearchMode()) {
+        if (!mTwoPaneLayout && mRequest.isSearchMode()) {
             mSearchEditText.requestFocus();
         }
     }
@@ -286,7 +367,12 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
         public void onViewContactAction(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
+            if (mTwoPaneLayout) {
+                setupContactDetailFragment();
+                mDetailFragment.loadUri(contactLookupUri);
+            } else {
+                startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
+            }
         }
 
         public void onCreateNewContactAction() {
@@ -374,6 +460,65 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(dataUri));
             finish();
+        }
+    }
+
+    private class DetailFragmentListener implements ContactDetailFragment.Listener {
+        public void onContactNotFound() {
+            Toast.makeText(ContactListActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
+        }
+
+        public void onEditRequested(Uri contactLookupUri) {
+            setupContactEditorFragment();
+            mEditorFragment.load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_ITEM_TYPE,
+                    new Bundle());
+        }
+
+        public void onItemClicked(Intent intent) {
+            startActivity(intent);
+        }
+
+        public void onDialogRequested(int id, Bundle bundle) {
+            showDialog(id, bundle);
+        }
+    }
+
+    private class EditorFragmentListener implements ContactEditorFragment.Listener {
+        @Override
+        public void closeAfterDelete() {
+            Toast.makeText(ContactListActivity.this, "closeAfterDelete", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeAfterRevert() {
+            Toast.makeText(ContactListActivity.this, "closeAfterRevert", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeAfterSaving(int resultCode, Intent resultIntent) {
+            Toast.makeText(ContactListActivity.this, "closeAfterSaving", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeAfterSplit() {
+            Toast.makeText(ContactListActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeBecauseAccountSelectorAborted() {
+            Toast.makeText(ContactListActivity.this, "closeBecauseAccountSelectorAborted",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void closeBecauseContactNotFound() {
+            Toast.makeText(ContactListActivity.this, "closeBecauseContactNotFound",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void setTitleTo(int resourceId) {
+            Toast.makeText(ContactListActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
         }
     }
 

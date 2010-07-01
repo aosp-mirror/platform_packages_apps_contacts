@@ -167,6 +167,7 @@
         <activity android:name=".activities.ContactListActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
+            android:theme="@android:style/Theme.NoTitleBar"
         >
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
@@ -387,12 +388,6 @@
                 <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
-        </activity>
-
-        <!-- Shows the List and Details in two panes. This is probably temporary -->
-        <activity android:name=".activities.TwoPaneActivity"
-            android:label="Contacts Goop"
-            android:theme="@style/TallTitleBarTheme">
         </activity>
 
         <!-- Create a new or edit an existing contact -->
