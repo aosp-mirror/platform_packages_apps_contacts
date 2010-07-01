@@ -52,8 +52,8 @@ public class AllIntentsActivity extends ListActivity {
 
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
-    private static final String CONTACTS_LIST_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.activities.ContactsListActivity";
+    private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
+            "com.android.contacts.activities.ContactListActivity";
     private static final String SEARCH_RESULTS_ACTIVITY_CLASS_NAME =
             "com.android.contacts.SearchResultsActivity";
     private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
@@ -124,87 +124,87 @@ public class AllIntentsActivity extends ListActivity {
 
         switch (position) {
             case LIST_DEFAULT: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_ALL_CONTACTS_ACTION: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(UI.LIST_ALL_CONTACTS_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_CONTACTS_WITH_PHONES_ACTION: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(UI.LIST_CONTACTS_WITH_PHONES_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_STARRED_ACTION: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(UI.LIST_STARRED_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_STARRED_ACTION_WITH_FILTER: {
-                startContactsListActivity(buildFilterIntent(ContactsRequest.ACTION_STARRED, false));
+                startContactListActivity(buildFilterIntent(ContactsRequest.ACTION_STARRED, false));
                 break;
             }
             case LIST_FREQUENT_ACTION: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(UI.LIST_FREQUENT_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_FREQUENT_ACTION_WITH_FILTER: {
-                startContactsListActivity(
+                startContactListActivity(
                         buildFilterIntent(ContactsRequest.ACTION_FREQUENT, false));
                 break;
             }
             case LIST_STREQUENT_ACTION: {
-                startContactsListActivity(
+                startContactListActivity(
                         new Intent(UI.LIST_STREQUENT_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_STREQUENT_ACTION_WITH_FILTER: {
-                startContactsListActivity(
+                startContactListActivity(
                         buildFilterIntent(ContactsRequest.ACTION_STREQUENT, false));
                 break;
             }
             case ACTION_PICK_CONTACT: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_CONTACT_LEGACY: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, People.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_PHONE: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, Phone.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_PHONE_LEGACY: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, Phones.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_POSTAL: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, StructuredPostal.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_POSTAL_LEGACY: {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(ContactMethods.CONTENT_POSTAL_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_CREATE_SHORTCUT_CONTACT: {
                 Intent intent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_CREATE_SHORTCUT_CONTACT_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT,
                                 false));
                 break;
@@ -217,7 +217,7 @@ public class AllIntentsActivity extends ListActivity {
                 break;
             }
             case ACTION_CREATE_SHORTCUT_DIAL_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL,
                                 false));
                 break;
@@ -230,29 +230,29 @@ public class AllIntentsActivity extends ListActivity {
                 break;
             }
             case ACTION_CREATE_SHORTCUT_MESSAGE_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL, false));
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(Contacts.CONTENT_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT_LEGACY: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(People.CONTENT_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT, false));
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT_FILTER_LEGACY: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT,
                                 true));
                 break;
@@ -260,40 +260,40 @@ public class AllIntentsActivity extends ListActivity {
             case ACTION_GET_CONTENT_PHONE: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(Phone.CONTENT_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_GET_CONTENT_PHONE_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_PICK_PHONE, true));
                 break;
             }
             case ACTION_GET_CONTENT_PHONE_LEGACY: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(Phones.CONTENT_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_GET_CONTENT_POSTAL: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(StructuredPostal.CONTENT_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_GET_CONTENT_POSTAL_FILTER: {
-                startContactsListActivityForResult(
+                startContactSelectionActivityForResult(
                         buildFilterIntent(ContactsRequest.ACTION_PICK_POSTAL, false));
                 break;
             }
             case ACTION_GET_CONTENT_POSTAL_LEGACY: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(ContactMethods.CONTENT_POSTAL_ITEM_TYPE);
-                startContactsListActivityForResult(intent);
+                startContactSelectionActivityForResult(intent);
                 break;
             }
             case ACTION_INSERT_OR_EDIT: {
                 Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                startContactsListActivity(intent);
+                startContactListActivity(intent);
                 break;
             }
             case ACTION_SEARCH_CALL: {
@@ -328,7 +328,7 @@ public class AllIntentsActivity extends ListActivity {
                     Intent intent = new Intent(Intents.SEARCH_SUGGESTION_CLICKED);
                     intent.setData(contactUri);
                     intent.putExtra(SearchManager.ACTION_MSG, "call");
-                    startContactsListActivity(intent);
+                    startContactListActivity(intent);
                 }
                 break;
             }
@@ -338,20 +338,20 @@ public class AllIntentsActivity extends ListActivity {
                     Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
                     Intent intent = new Intent(Intents.SEARCH_SUGGESTION_CLICKED);
                     intent.setData(contactUri);
-                    startContactsListActivity(intent);
+                    startContactListActivity(intent);
                 }
                 break;
             }
             case SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED: {
                 Intent intent = new Intent(Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED);
                 intent.setData(Uri.parse("tel:800-4664411"));
-                startContactsListActivity(intent);
+                startContactListActivity(intent);
                 break;
             }
             case SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED: {
                 Intent intent = new Intent(Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED);
                 intent.setData(Uri.parse("tel:800-4664411"));
-                startContactsListActivity(intent);
+                startContactListActivity(intent);
                 break;
             }
             case JOIN_CONTACT: {
@@ -438,16 +438,14 @@ public class AllIntentsActivity extends ListActivity {
         return intent;
     }
 
-    private void startContactsListActivity(Intent intent) {
+    private void startContactListActivity(Intent intent) {
         intent.setComponent(
-                new ComponentName(ANDROID_CONTACTS_PACKAGE, CONTACTS_LIST_ACTIVITY_CLASS_NAME));
+                new ComponentName(ANDROID_CONTACTS_PACKAGE, CONTACT_LIST_ACTIVITY_CLASS_NAME));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void startContactsListActivityForResult(Intent intent) {
-        intent.setComponent(
-                new ComponentName(ANDROID_CONTACTS_PACKAGE, CONTACTS_LIST_ACTIVITY_CLASS_NAME));
+    private void startContactSelectionActivityForResult(Intent intent) {
         startActivityForResult(intent, 12);
     }
 

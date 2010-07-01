@@ -210,7 +210,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
-
+        </activity>
+        
+        <activity android:name=".activities.ContactSelectionActivity"
+            android:label="@string/contactsList"
+            android:clearTaskOnLaunch="true"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -329,7 +334,7 @@
         </activity>
 
         <activity-alias android:name="ContactShortcut"
-            android:targetActivity="ContactsListActivity"
+            android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutContact"
             android:icon="@drawable/ic_launcher_shortcut_contact">
 
@@ -341,7 +346,7 @@
         </activity-alias>
 
         <activity-alias android:name="alias.DialShortcut"
-            android:targetActivity="ContactsListActivity"
+            android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
             android:icon="@drawable/ic_launcher_shortcut_directdial">
 
@@ -354,7 +359,7 @@
         </activity-alias>
 
         <activity-alias android:name="alias.MessageShortcut"
-            android:targetActivity="ContactsListActivity"
+            android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
             android:icon="@drawable/ic_launcher_shortcut_directmessage">
 
@@ -450,10 +455,10 @@
             android:theme="@android:style/Theme.Translucent">
         </activity>
 
-        <!-- Makes .ContactsListActivity the search target for any activity in Contacts -->
+        <!-- Makes .ContactListActivity the search target for any activity in Contacts -->
         <meta-data
             android:name="android.app.default_searchable"
-            android:value=".ContactsListActivity" />
+            android:value=".activities.ContactListActivity" />
 
 
         <!-- LIVE FOLDERS -->

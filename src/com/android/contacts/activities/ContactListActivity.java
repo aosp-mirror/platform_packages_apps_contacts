@@ -22,16 +22,10 @@ import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
-import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
-import com.android.contacts.list.OnContactPickerActionListener;
-import com.android.contacts.list.OnPhoneNumberPickerActionListener;
-import com.android.contacts.list.OnPostalAddressPickerActionListener;
-import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.views.detail.ContactDetailFragment;
@@ -64,7 +58,7 @@ import android.widget.Toast;
  */
 public class ContactListActivity extends Activity implements View.OnCreateContextMenuListener {
 
-    private static final String TAG = "ContactsListActivity";
+    private static final String TAG = "ContactListActivity";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
@@ -233,20 +227,11 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     private void onCreateFragment() {
         mActionCode = mRequest.getActionCode();
         switch (mActionCode) {
-            case ContactsRequest.ACTION_DEFAULT:
-            case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
+            case ContactsRequest.ACTION_DEFAULT: {
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-
-                if (mActionCode == ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT) {
-                    fragment.setEditMode(true);
-                    fragment.setCreateContactEnabled(true);
-                }
-
                 fragment.setDisplayWithPhonesOnlyOption(mRequest.getDisplayWithPhonesOnlyOption());
-
                 fragment.setVisibleContactsRestrictionEnabled(mRequest.getDisplayOnlyVisible());
-
                 fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
@@ -282,79 +267,6 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(true);
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_PICK_CONTACT: {
-                ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setSearchMode(mRequest.isSearchMode());
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
-                ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
-                ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setSearchMode(mRequest.isSearchMode());
-                fragment.setQueryString(mRequest.getQueryString());
-                fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
-                fragment.setShortcutRequested(true);
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_PICK_PHONE: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setShortcutAction(Intent.ACTION_CALL);
-                fragment.setSearchMode(mRequest.isSearchMode());
-
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-                fragment.setShortcutAction(Intent.ACTION_SENDTO);
-                fragment.setSearchMode(mRequest.isSearchMode());
-
-                mListFragment = fragment;
-                break;
-            }
-
-            case ContactsRequest.ACTION_PICK_POSTAL: {
-                PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
-                fragment.setOnPostalAddressPickerActionListener(
-                        new PostalAddressPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 mListFragment = fragment;
                 break;
             }
@@ -419,47 +331,6 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
         public void onFinishAction() {
             onBackPressed();
-        }
-    }
-
-    private final class ContactPickerActionListener implements OnContactPickerActionListener {
-        public void onCreateNewContactAction() {
-            Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            startActivityAndForwardResult(intent);
-        }
-
-        public void onPickContactAction(Uri contactUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(contactUri));
-            finish();
-        }
-
-        public void onShortcutIntentCreated(Intent intent) {
-            setResult(RESULT_OK, intent);
-            finish();
-        }
-    }
-
-    private final class PhoneNumberPickerActionListener implements
-            OnPhoneNumberPickerActionListener {
-        public void onPickPhoneNumberAction(Uri dataUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(dataUri));
-            finish();
-        }
-
-        public void onShortcutIntentCreated(Intent intent) {
-            setResult(RESULT_OK, intent);
-            finish();
-        }
-    }
-
-    private final class PostalAddressPickerActionListener implements
-            OnPostalAddressPickerActionListener {
-        public void onPickPostalAddressAction(Uri dataUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(dataUri));
-            finish();
         }
     }
 

@@ -43,7 +43,7 @@ import android.util.Log;
 @SuppressWarnings("deprecation")
 public class ContactsIntentResolver {
 
-    private static final String TAG = "ContactsListActivity";
+    private static final String TAG = "ContactsIntentResolver";
 
     private final Activity mContext;
 
