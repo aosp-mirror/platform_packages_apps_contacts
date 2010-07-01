@@ -20,8 +20,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.android.contacts.ContactsListActivity;
 import com.android.contacts.R;
@@ -58,11 +56,6 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         // - There's high probability where name comes soon after the beginning of entry, so
         //   we don't need to hurry to show something.
 
-        // TODO: should not create this every time?
-        final RemoteViews remoteViews =
-                new RemoteViews(mContext.getPackageName(),
-                R.layout.status_bar_ongoing_event_progress_bar);
-
         final String title = mContext.getString(R.string.reading_vcard_title);
 
         String totalCountString;
@@ -74,29 +67,47 @@ public class ImportProgressNotifier implements VCardEntryHandler {
                 totalCountString,
                 contactStruct.getDisplayName());
 
-        remoteViews.setTextViewText(R.id.title, title);
-        remoteViews.setTextViewText(R.id.description, description);
-        remoteViews.setProgressBar(R.id.progress_bar, mTotalCount, mCurrentCount,
+        final Context context = mContext.getApplicationContext();
+
+        /* TODO: fix this.
+        final RemoteViews remoteViews =
+                new RemoteViews(context.getPackageName(),
+                R.layout.status_bar_ongoing_event_progress_bar);
+        remoteViews.setTextViewText(R.id.status_title, title);
+        remoteViews.setTextViewText(R.id.status_description, description);
+        remoteViews.setProgressBar(R.id.status_progress_bar, mTotalCount, mCurrentCount,
                 mTotalCount == -1);
         final String percentage;
         if (mTotalCount > 0) {
-            percentage = mContext.getString(R.string.percentage,
+            percentage = context.getString(R.string.percentage,
                     String.valueOf(mCurrentCount * 100/mTotalCount));
         } else {
             percentage = "";
         }
-
-        remoteViews.setTextViewText(R.id.progress_text, percentage);
-        remoteViews.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_download);
+        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
+        remoteViews.setImageViewResource(R.id.status_icon, android.R.drawable.stat_sys_download);
 
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download;
+        notification.tickerText = description;
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         notification.tickerText = description;
-        notification.contentView = remoteViews;
-        notification.contentIntent =
-                PendingIntent.getActivity(mContext, 0,
-                        new Intent(mContext, ContactsListActivity.class), 0);
+        notification.contentView = remoteViews;*/
+
+        final long when = System.currentTimeMillis();
+        final Notification notification = new Notification(
+                android.R.drawable.stat_sys_download,
+                description,
+                when);
+
+        final PendingIntent pendingIntent =
+            PendingIntent.getActivity(context, 0,
+                    new Intent(context, ContactsListActivity.class),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // notification.contentIntent = pendingIntent;
+        notification.setLatestEventInfo(context, title, description, pendingIntent);
+
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 

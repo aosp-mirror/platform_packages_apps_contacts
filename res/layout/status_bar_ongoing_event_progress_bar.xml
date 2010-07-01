@@ -31,7 +31,6 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
-        
         <LinearLayout
             android:layout_width="40dp"
             android:layout_height="match_parent"
@@ -40,14 +39,14 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
             android:focusable="true"
             android:clickable="true"
             >
-            <com.android.server.status.AnimatedImageView 
-                android:id="@+id/appIcon"
+            <com.android.contacts.vcard.AnimatedImageView
+                android:id="@+id/status_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@android:drawable/sym_def_app_icon"
                 />
-            <TextView android:id="@+id/progress_text" 
+            <TextView android:id="@+id/status_progress_text"
                 android:layout_width="wrap_content" 
                 android:layout_height="wrap_content"
                 android:textColor="#ff000000"
@@ -73,7 +72,7 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
                 android:layout_alignParentTop="true"
                 android:paddingTop="10dp"
                 >
-                <TextView android:id="@+id/title"
+                <TextView android:id="@+id/status_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -81,7 +80,7 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
                     android:textColor="#ff000000"
                     android:paddingLeft="2dp"
                     />
-                <TextView android:id="@+id/description"
+                <TextView android:id="@+id/status_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ff000000"
@@ -90,7 +89,7 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
                     android:paddingLeft="5dp"
                     />
             </LinearLayout>
-            <ProgressBar android:id="@+id/progress_bar"
+            <ProgressBar android:id="@+id/status_progress_bar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent" 
                 android:layout_height="wrap_content"
@@ -101,7 +100,7 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
         </RelativeLayout>
     </LinearLayout>
         
-    <com.android.server.status.AnimatedImageView 
+    <com.android.contacts.vcard.AnimatedImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@android:drawable/divider_horizontal_bright"

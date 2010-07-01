@@ -224,13 +224,13 @@ public class ExportProcessor {
 
         final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.description, message);
-        remoteViews.setProgressBar(R.id.progress_bar, total, current, (total == -1));
+        remoteViews.setTextViewText(R.id.status_description, message);
+        remoteViews.setProgressBar(R.id.status_progress_bar, total, current, (total == -1));
 
         final String percentage = mService.getString(R.string.percentage,
                 String.valueOf((current * 100)/total));
-        remoteViews.setTextViewText(R.id.progress_text, percentage);
-        remoteViews.setImageViewResource(R.id.appIcon, android.R.drawable.stat_sys_upload);
+        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
+        remoteViews.setImageViewResource(R.id.status_icon, android.R.drawable.stat_sys_upload);
 
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_upload;
