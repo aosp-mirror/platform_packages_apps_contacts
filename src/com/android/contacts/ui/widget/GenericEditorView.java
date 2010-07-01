@@ -26,7 +26,6 @@ import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
-import com.android.contacts.util.ViewGroupAnimator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
 
@@ -67,7 +66,6 @@ import java.util.List;
  */
 public class GenericEditorView extends RelativeLayout implements Editor, View.OnClickListener,
         DialogShowingView {
-    protected static final int RES_FIELD = R.layout.item_editor_field;
     protected static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
 
     private static final String DIALOG_ID_KEY = "dialog_id";
@@ -249,8 +247,9 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         mFieldEditTexts = new EditText[kind.fieldList.size()];
         for (int index = 0; index < kind.fieldList.size(); index++) {
             final EditField field = kind.fieldList.get(index);
-            // Inflate field from definition
-            EditText fieldView = (EditText)mInflater.inflate(RES_FIELD, container, false);
+            final EditText fieldView = new EditText(mContext);
+            fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                    LayoutParams.WRAP_CONTENT));
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
