@@ -17,7 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.list.CallOrSmsInitiator;
+import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactPickerFragment;
@@ -90,7 +90,8 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
-    protected CallOrSmsInitiator mCallOrSmsInitiator;
+    protected PhoneNumberInteraction mPhoneNumberCallInteraction;
+    protected PhoneNumberInteraction mSendTextMessageInteraction;
     private ContactDeletionInteraction mContactDeletionInteraction;
 
     private int mActionCode;
@@ -338,11 +339,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
 
         public void onCallContactAction(Uri contactUri) {
-            getCallOrSmsInitiator().initiateCall(contactUri);
+            getPhoneNumberCallInteraction().startInteraction(contactUri);
         }
 
         public void onSmsContactAction(Uri contactUri) {
-            getCallOrSmsInitiator().initiateSms(contactUri);
+            getSendTextMessageInteraction().startInteraction(contactUri);
         }
 
         public void onDeleteContactAction(Uri contactUri) {
@@ -489,6 +490,16 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             return dialog;
         }
 
+        dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
+        if (dialog != null) {
+            return dialog;
+        }
+
+        dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
+        if (dialog != null) {
+            return dialog;
+        }
+
         switch (id) {
             case R.string.import_from_sim:
             case R.string.import_from_sdcard: {
@@ -508,6 +519,14 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     @Override
     protected void onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
         if (getContactDeletionInteraction().onPrepareDialog(id, dialog, bundle)) {
+            return;
+        }
+
+        if (getPhoneNumberCallInteraction().onPrepareDialog(id, dialog, bundle)) {
+            return;
+        }
+
+        if (getSendTextMessageInteraction().onPrepareDialog(id, dialog, bundle)) {
             return;
         }
 
@@ -737,11 +756,18 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         return false;
     }
 
-    private CallOrSmsInitiator getCallOrSmsInitiator() {
-        if (mCallOrSmsInitiator == null) {
-            mCallOrSmsInitiator = new CallOrSmsInitiator(this);
+    private PhoneNumberInteraction getPhoneNumberCallInteraction() {
+        if (mPhoneNumberCallInteraction == null) {
+            mPhoneNumberCallInteraction = new PhoneNumberInteraction(this, false, null);
         }
-        return mCallOrSmsInitiator;
+        return mPhoneNumberCallInteraction;
+    }
+
+    private PhoneNumberInteraction getSendTextMessageInteraction() {
+        if (mSendTextMessageInteraction == null) {
+            mSendTextMessageInteraction = new PhoneNumberInteraction(this, true, null);
+        }
+        return mSendTextMessageInteraction;
     }
 
     private ContactDeletionInteraction getContactDeletionInteraction() {
