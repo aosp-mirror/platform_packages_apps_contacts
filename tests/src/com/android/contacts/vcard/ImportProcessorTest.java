@@ -22,6 +22,8 @@ import android.test.AndroidTestCase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.vcard.ImportProcessor.CommitterGenerator;
+import com.android.vcard.VCardEntryCommitter;
 import com.android.vcard.VCardInterpreter;
 import com.android.vcard.VCardSourceDetector;
 
@@ -100,7 +102,7 @@ public class ImportProcessorTest extends AndroidTestCase {
     }
 
     /**
-     * Confirm {@link ImportProcessor#readOneVCard(android.net.Uri, int, String,
+     * Confirms {@link ImportProcessor#readOneVCard(android.net.Uri, int, String,
      * com.android.vcard.VCardInterpreter, int[])} successfully handles correct input.
      */
     public void testProcessSimple() throws IOException {
@@ -115,39 +117,64 @@ public class ImportProcessorTest extends AndroidTestCase {
         assertTrue(mImportProcessor.readOneVCard(
                 uri, vcardType, charset, interpreter, versions));
     }
+
+    /**
+     * Confirms {@link ImportProcessor#handleOneRequest(ImportRequest)} accepts
+     * one request and import it.
+     */
+    public void testHandleOneRequestSimple() throws IOException {
+        CommitterGenerator generator = new CommitterGenerator() {
+            public VCardEntryCommitter generate(ContentResolver resolver) {
+                return new MockVCardEntryCommitter();
+            }
+        };
+        mImportProcessor.injectCommitterGeneratorForTest(generator);
+        mImportProcessor.initNotifierForTest();
+
+        final ImportRequest request = new ImportRequest(
+                null,  // account
+                copyToLocal("v30_simple.vcf"),
+                VCardSourceDetector.PARSE_TYPE_UNKNOWN,
+                null,  // estimatedCharset
+                ImportVCardActivity.VCARD_VERSION_AUTO_DETECT,
+                1);
+        assertTrue(mImportProcessor.handleOneRequest(request));
+        assertEquals(1, mImportProcessor.getCreatedUrisForTest().size());
+    }
 }
 
 /* package */ class EmptyVCardInterpreter implements VCardInterpreter {
+    @Override
     public void end() {
     }
-
+    @Override
     public void endEntry() {
     }
-
+    @Override
     public void endProperty() {
     }
-
+    @Override
     public void propertyGroup(String group) {
     }
-
+    @Override
     public void propertyName(String name) {
     }
-
+    @Override
     public void propertyParamType(String type) {
     }
-
+    @Override
     public void propertyParamValue(String value) {
     }
-
+    @Override
     public void propertyValues(List<String> values) {
     }
-
+    @Override
     public void start() {
     }
-
+    @Override
     public void startEntry() {
     }
-
+    @Override
     public void startProperty() {
     }
 }
