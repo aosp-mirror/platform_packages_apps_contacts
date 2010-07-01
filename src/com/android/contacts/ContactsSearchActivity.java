@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
-public class ContactsSearchActivity extends ContactsListActivity {
+import com.android.contacts.activities.ContactListActivity;
+
+public class ContactsSearchActivity extends ContactListActivity {
 
 }

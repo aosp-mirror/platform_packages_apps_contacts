@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.activities.ContactsFrontDoor;
+import com.android.contacts.activities.ContactListActivity;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.Activity;
@@ -157,7 +158,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     private void setupContactsTab() {
         Intent intent = new Intent(UI.LIST_DEFAULT);
-        intent.setClass(this, ContactsListActivity.class);
+        intent.setClass(this, ContactListActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("contacts")
                 .setIndicator(getText(R.string.contactsIconLabel),
@@ -167,7 +168,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     private void setupFavoritesTab() {
         Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
-        intent.setClass(this, ContactsListActivity.class);
+        intent.setClass(this, ContactListActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("favorites")
                 .setIndicator(getString(R.string.contactsFavoritesLabel),

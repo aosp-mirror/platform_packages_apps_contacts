@@ -28,17 +28,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
+import android.provider.ContactsContract.RawContacts;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -54,11 +53,11 @@ public class AllIntentsActivity extends ListActivity {
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
     private static final String CONTACTS_LIST_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.ContactsListActivity";
+            "com.android.contacts.activities.ContactsListActivity";
     private static final String SEARCH_RESULTS_ACTIVITY_CLASS_NAME =
             "com.android.contacts.SearchResultsActivity";
     private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
-        "com.android.contacts.MultiplePhonePickerActivity";
+            "com.android.contacts.MultiplePhonePickerActivity";
 
     private static final int LIST_DEFAULT = 0;
     private static final int LIST_ALL_CONTACTS_ACTION = 1;

@@ -163,8 +163,8 @@
             </intent-filter>
         </activity-alias>
 
-        <!-- The actual list of contacts, usually embedded in ContactsActivity -->
-        <activity android:name="ContactsListActivity"
+        <!-- The actual list of contacts -->
+        <activity android:name=".activities.ContactListActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
         >
@@ -240,6 +240,11 @@
                 <data android:mimeType="vnd.android.cursor.item/postal-address" android:host="contacts" />
             </intent-filter>
         </activity>
+
+        <!-- Backwards compatibility: somebody may have hard coded this activity name -->
+        <activity-alias android:name="ContactsListActivity"
+            android:targetActivity=".activities.ContactListActivity"
+        />
 
         <!-- An activity for joining contacts -->
         <activity android:name="JoinContactActivity"

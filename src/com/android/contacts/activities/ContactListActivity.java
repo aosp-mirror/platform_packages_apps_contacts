@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
+import com.android.contacts.R;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
@@ -56,7 +57,7 @@ import android.view.View;
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
  */
-public class ContactsListActivity extends Activity implements View.OnCreateContextMenuListener {
+public class ContactListActivity extends Activity implements View.OnCreateContextMenuListener {
 
     private static final String TAG = "ContactsListActivity";
 
@@ -82,7 +83,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
 
 
-    public ContactsListActivity() {
+    public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
     }
 
