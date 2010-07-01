@@ -55,6 +55,9 @@
     <!-- For ContactsListActivity -->
     <item type="id" name="dialog_delete_contact_confirmation"/>
 
+    <!-- For ImportExportInteraction -->
+    <item type="id" name="dialog_import_export_options"/>
+
     <!-- For ExportVCardActivity -->
     <item type="id" name="dialog_export_confirmation"/>
     <item type="id" name="dialog_exporting_vcard"/>

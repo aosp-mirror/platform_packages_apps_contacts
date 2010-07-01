@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactEntryListFragment;
@@ -31,45 +32,26 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
-import com.android.contacts.model.Sources;
 import com.android.contacts.ui.ContactsPreferencesActivity;
-import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.vcard.ExportVCardActivity;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
-import android.accounts.Account;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
 
 /**
  * Displays a list of contacts. Usually is embedded into the ContactsActivity.
@@ -83,16 +65,13 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
 
-    private final String[] sLookupProjection = new String[] {
-            Contacts.LOOKUP_KEY
-    };
-
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
     protected PhoneNumberInteraction mPhoneNumberCallInteraction;
     protected PhoneNumberInteraction mSendTextMessageInteraction;
     private ContactDeletionInteraction mContactDeletionInteraction;
+    private ImportExportInteraction mImportExportInteraction;
 
     private int mActionCode;
 
@@ -100,6 +79,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
 
     private ContactsRequest mRequest;
     private SearchEditText mSearchEditText;
+
 
 
     public ContactsListActivity() {
@@ -453,7 +433,7 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
                 return true;
             }
             case R.id.menu_import_export: {
-                displayImportExportDialog();
+                getImportExportInteraction().startInteraction();
                 return true;
             }
             case R.id.menu_accounts: {
@@ -500,19 +480,11 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             return dialog;
         }
 
-        switch (id) {
-            case R.string.import_from_sim:
-            case R.string.import_from_sdcard: {
-                return AccountSelectionUtil.getSelectAccountDialog(this, id);
-            }
-            case R.id.dialog_sdcard_not_found: {
-                return new AlertDialog.Builder(this)
-                .setTitle(R.string.no_sdcard_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage(R.string.no_sdcard_message)
-                .setPositiveButton(android.R.string.ok, null).create();
-            }
+        dialog = getImportExportInteraction().onCreateDialog(id, bundle);
+        if (dialog != null) {
+            return dialog;
         }
+
         return super.onCreateDialog(id, bundle);
     }
 
@@ -531,128 +503,6 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
         }
 
         super.onPrepareDialog(id, dialog, bundle);
-    }
-    /**
-     * Create a {@link Dialog} that allows the user to pick from a bulk import
-     * or bulk export task across all contacts.
-     */
-    private void displayImportExportDialog() {
-        // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(this, android.R.style.Theme_Light);
-        final Resources res = dialogContext.getResources();
-        final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        // Adapter that shows a list of string resources
-        final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
-                android.R.layout.simple_list_item_1) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_1,
-                            parent, false);
-                }
-
-                final int resId = this.getItem(position);
-                ((TextView)convertView).setText(resId);
-                return convertView;
-            }
-        };
-
-        if (TelephonyManager.getDefault().hasIccCard()) {
-            adapter.add(R.string.import_from_sim);
-        }
-        if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
-            adapter.add(R.string.import_from_sdcard);
-        }
-        if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
-            adapter.add(R.string.export_to_sdcard);
-        }
-        if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
-            adapter.add(R.string.share_visible_contacts);
-        }
-
-        final DialogInterface.OnClickListener clickListener =
-                new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-                final int resId = adapter.getItem(which);
-                switch (resId) {
-                    case R.string.import_from_sim:
-                    case R.string.import_from_sdcard: {
-                        handleImportRequest(resId);
-                        break;
-                    }
-                    case R.string.export_to_sdcard: {
-                        Context context = ContactsListActivity.this;
-                        Intent exportIntent = new Intent(context, ExportVCardActivity.class);
-                        context.startActivity(exportIntent);
-                        break;
-                    }
-                    case R.string.share_visible_contacts: {
-                        doShareVisibleContacts();
-                        break;
-                    }
-                    default: {
-                        Log.e(TAG, "Unexpected resource: " +
-                                getResources().getResourceEntryName(resId));
-                    }
-                }
-            }
-        };
-
-        new AlertDialog.Builder(this)
-            .setTitle(R.string.dialog_import_export)
-            .setNegativeButton(android.R.string.cancel, null)
-            .setSingleChoiceItems(adapter, -1, clickListener)
-            .show();
-    }
-
-    private void doShareVisibleContacts() {
-        final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
-                sLookupProjection, Contacts.IN_VISIBLE_GROUP + "!=0", null, null);
-        try {
-            if (!cursor.moveToFirst()) {
-                Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            StringBuilder uriListBuilder = new StringBuilder();
-            int index = 0;
-            for (;!cursor.isAfterLast(); cursor.moveToNext()) {
-                if (index != 0)
-                    uriListBuilder.append(':');
-                uriListBuilder.append(cursor.getString(0));
-                index++;
-            }
-            Uri uri = Uri.withAppendedPath(
-                    Contacts.CONTENT_MULTI_VCARD_URI,
-                    Uri.encode(uriListBuilder.toString()));
-
-            final Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType(Contacts.CONTENT_VCARD_TYPE);
-            intent.putExtra(Intent.EXTRA_STREAM, uri);
-            startActivity(intent);
-        } finally {
-            cursor.close();
-        }
-    }
-
-    private void handleImportRequest(int resId) {
-        // There's three possibilities:
-        // - more than one accounts -> ask the user
-        // - just one account -> use the account without asking the user
-        // - no account -> use phone-local storage without asking the user
-        final Sources sources = Sources.getInstance(this);
-        final List<Account> accountList = sources.getAccounts(true);
-        final int size = accountList.size();
-        if (size > 1) {
-            showDialog(resId);
-            return;
-        }
-
-        AccountSelectionUtil.doImport(this, resId, (size == 1 ? accountList.get(0) : null));
     }
 
     @Override
@@ -776,5 +626,12 @@ public class ContactsListActivity extends Activity implements View.OnCreateConte
             mContactDeletionInteraction.attachToActivity(this);
         }
         return mContactDeletionInteraction;
+    }
+
+    private ImportExportInteraction getImportExportInteraction() {
+        if (mImportExportInteraction == null) {
+            mImportExportInteraction = new ImportExportInteraction(this);
+        }
+        return mImportExportInteraction;
     }
 }
