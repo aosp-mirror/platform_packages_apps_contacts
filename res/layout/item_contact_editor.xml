@@ -91,14 +91,14 @@
 
     </FrameLayout>
 
-    <include
+    <com.android.contacts.ui.widget.GenericEditorView
         android:id="@+id/edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingRight="?android:attr/scrollbarSize"
         android:layout_below="@id/stub_photo"
         android:layout_marginTop="6dip"
-        android:layout_marginBottom="4dip"
-        layout="@layout/item_generic_editor" />
+        android:layout_marginBottom="4dip" />
 
     <LinearLayout
         android:id="@+id/sect_fields"

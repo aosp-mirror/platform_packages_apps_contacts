@@ -28,6 +28,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
+import com.android.contacts.util.ViewGroupAnimator;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -49,12 +50,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,38 +64,36 @@ import java.util.List;
  * the entry. Uses {@link ValuesDelta} to read any existing
  * {@link Entity} values, and to correctly write any changes values.
  */
-public class GenericEditorView extends RelativeLayout implements Editor, View.OnClickListener,
-        DialogShowingView {
-    protected static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
+public class GenericEditorView extends ViewGroup implements Editor, DialogShowingView {
+    private static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
 
     private static final String DIALOG_ID_KEY = "dialog_id";
     private static final int DIALOG_ID_LABEL = 1;
     private static final int DIALOG_ID_CUSTOM = 2;
 
-    protected LayoutInflater mInflater;
-
-    protected static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
+    private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
-    protected TextView mLabel;
-    protected FrameLayout mFields;
-    protected View mDelete;
-    protected ImageButton mMoreOrLess;
+    private Button mLabel;
+    private ImageButton mDelete;
+    private ImageButton mMoreOrLess;
 
-    protected DataKind mKind;
-    protected ValuesDelta mEntry;
-    protected EntityDelta mState;
-    protected boolean mReadOnly;
+    private DataKind mKind;
+    private ValuesDelta mEntry;
+    private EntityDelta mState;
+    private boolean mReadOnly;
     private EditText[] mFieldEditTexts = null;
 
-    protected boolean mHideOptional = true;
+    private boolean mHideOptional = true;
 
-    protected EditType mType;
+    private EditType mType;
     // Used only when a user tries to use custom label.
     private EditType mPendingType;
 
     private ViewIdGenerator mViewIdGenerator;
     private DialogManager mDialogManager = null;
+    private EditorListener mListener;
+
 
     public GenericEditorView(Context context) {
         super(context);
@@ -105,45 +103,213 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         super(context, attrs);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void onFinishInflate() {
-        mInflater = (LayoutInflater)getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-
-        mLabel = (TextView)findViewById(R.id.edit_label);
-        mLabel.setOnClickListener(this);
-
-        mFields = (FrameLayout)findViewById(R.id.edit_fields);
-
-        mDelete = findViewById(R.id.edit_delete);
-        mDelete.setOnClickListener(this);
-
-        mMoreOrLess = (ImageButton) findViewById(R.id.edit_more_or_less);
-        mMoreOrLess.setOnClickListener(this);
+    public GenericEditorView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
     }
 
-    protected EditorListener mListener;
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        // Subtract padding from the borders ==> x1 variables
+        int l1 = getPaddingLeft();
+        int t1 = getPaddingTop();
+        int r1 = getMeasuredWidth() - getPaddingRight();
+        int b1 = getMeasuredHeight() - getPaddingBottom();
+
+        // Label Button
+        final boolean hasLabel = mLabel != null;
+
+        if (hasLabel) {
+            mLabel.layout(
+                    l1, t1,
+                    l1 + mLabel.getMeasuredWidth(), t1 + mLabel.getMeasuredHeight());
+        }
+
+        // Delete Button
+        final boolean hasDelete = mDelete != null;
+        if (hasDelete) {
+            mDelete.layout(
+                    r1 - mDelete.getMeasuredWidth(), t1,
+                    r1, t1 + mDelete.getMeasuredHeight());
+        }
+
+        // MoreOrLess Button
+        final boolean hasMoreOrLess = mMoreOrLess != null;
+        if (hasMoreOrLess) {
+            mMoreOrLess.layout(
+                    r1 - mMoreOrLess.getMeasuredWidth(), b1 - mMoreOrLess.getMeasuredHeight(),
+                    r1, b1);
+        }
+
+        // Fields
+        // Subtract buttons left and right if necessary
+        final int l2 = hasLabel ? l1 + mLabel.getMeasuredWidth() : l1;
+        final int r2 = r1 - Math.max(
+                hasDelete ? mDelete.getMeasuredWidth() : 0,
+                hasMoreOrLess ? mMoreOrLess.getMeasuredWidth() : 0);
+        int y = 0;
+        if (mFieldEditTexts != null) {
+            for (EditText editText : mFieldEditTexts) {
+                if (editText.getVisibility() != View.GONE) {
+                    int height = editText.getMeasuredHeight();
+                    editText.layout(
+                            l2, t1 + y,
+                            r2, t1 + y + height);
+                    y += height;
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        // summarize the EditText heights
+        int totalHeight = 0;
+        if (mFieldEditTexts != null) {
+            for (EditText editText : mFieldEditTexts) {
+                if (editText.getVisibility() != View.GONE) {
+                    totalHeight += editText.getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+                resolveSize(totalHeight, heightMeasureSpec));
+    }
+
+    /**
+     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
+     */
+    private void setupLabelButton(boolean shouldExist) {
+        // TODO: Unhardcode the constant 100
+        if (shouldExist && mLabel == null) {
+            mLabel = new Button(mContext);
+            mLabel.setLayoutParams(new LayoutParams(100, LayoutParams.WRAP_CONTENT));
+            mLabel.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialog(DIALOG_ID_LABEL);
+                }
+            });
+            addView(mLabel);
+        } else if (!shouldExist && mLabel != null) {
+            removeView(mLabel);
+            mLabel = null;
+        }
+    }
+
+    /**
+     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
+     */
+    private void setupDeleteButton(boolean shouldExist) {
+        if (shouldExist && mDelete == null) {
+            // Unfortunately, the style passed as constructor-parameter is mostly ignored,
+            // so we have to set the Background and Image seperately. However, if it is not given
+            // the size of the control is wrong
+            mDelete = new ImageButton(mContext, null, R.style.MinusButton);
+            mDelete.setBackgroundResource(R.drawable.btn_circle);
+            mDelete.setImageResource(R.drawable.ic_btn_round_minus);
+            mDelete.setContentDescription(
+                    getResources().getText(R.string.description_minus_button));
+            mDelete.setLayoutParams(
+                    new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            mDelete.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Keep around in model, but mark as deleted
+                    mEntry.markDeleted();
+
+                    final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+
+                    animator.removeView(GenericEditorView.this);
+//                    ((ViewGroup) getParent()).removeView(GenericEditorView.this);
+
+                    if (mListener != null) {
+                        // Notify listener when present
+                        mListener.onDeleted(GenericEditorView.this);
+                    }
+
+                    animator.animate();
+                }
+            });
+            addView(mDelete);
+        } else if (!shouldExist && mDelete != null) {
+            removeView(mDelete);
+            mDelete = null;
+        }
+    }
+
+    /**
+     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
+     */
+    private void setupMoreOrLessButton(boolean shouldExist, boolean collapsed) {
+        if (shouldExist) {
+            if (mMoreOrLess == null) {
+                // Unfortunately, the style passed as constructor-parameter is mostly ignored,
+                // so we have to set the Background and Image seperately. However, if it is not
+                // given, the size of the control is wrong
+                mMoreOrLess = new ImageButton(mContext, null, R.style.EmptyButton);
+                mMoreOrLess.setLayoutParams(
+                        new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                mMoreOrLess.setBackgroundResource(R.drawable.btn_circle);
+                mMoreOrLess.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Save focus
+                        final View focusedChild = getFocusedChild();
+                        final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
+
+                        // Snapshot for animation
+                        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(
+                                getRootView());
+
+                        // Reconfigure GUI
+                        mHideOptional = !mHideOptional;
+                        rebuildValues();
+
+                        // Restore focus
+                        View newFocusView = findViewById(focusedViewId);
+                        if (newFocusView == null || newFocusView.getVisibility() == GONE) {
+                            // find first visible child
+                            newFocusView = GenericEditorView.this;
+                        }
+                        if (newFocusView != null) {
+                            newFocusView.requestFocus();
+                        }
+
+                        // Animate
+                        animator.animate();
+                    }
+                });
+                addView(mMoreOrLess);
+            }
+            mMoreOrLess.setImageResource(
+                    collapsed ? R.drawable.ic_btn_round_more : R.drawable.ic_btn_round_less);
+        } else if (mMoreOrLess != null) {
+            removeView(mMoreOrLess);
+            mMoreOrLess = null;
+        }
+    }
 
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
     }
 
     public void setDeletable(boolean deletable) {
-        mDelete.setVisibility(deletable ? View.VISIBLE : View.INVISIBLE);
+        setupDeleteButton(deletable);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
-        mLabel.setEnabled(enabled);
-        if (mFields.getChildCount() == 0) return;
+        if (mLabel != null) mLabel.setEnabled(enabled);
 
         if (mFieldEditTexts != null) {
             for (int index = 0; index < mFieldEditTexts.length; index++) {
                 mFieldEditTexts[index].setEnabled(enabled);
             }
         }
-        mMoreOrLess.setEnabled(enabled);
+        if (mDelete != null) mDelete.setEnabled(enabled);
+        if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
     }
 
     /**
@@ -151,6 +317,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
      * possible custom label string.
      */
     private void rebuildLabel() {
+        if (mLabel == null) return;
         // Handle undetected types
         if (mType == null) {
             mLabel.setText(R.string.unknown);
@@ -220,30 +387,21 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
-        mLabel.setVisibility(hasTypes ? View.VISIBLE : View.GONE);
-        mLabel.setEnabled(enabled);
+        setupLabelButton(hasTypes);
+        if (mLabel != null) mLabel.setEnabled(enabled);
         if (hasTypes) {
             mType = EntityModifier.getCurrentType(entry, kind);
             rebuildLabel();
         }
 
-        // Build out set of fields
-        mFields.removeAllViews();
+        // Remove edit texts that we currently have
+        if (mFieldEditTexts != null) {
+            for (EditText fieldEditText : mFieldEditTexts) {
+                removeView(fieldEditText);
+            }
+        }
         boolean hidePossible = false;
 
-        // If there is one field, put it directly into the FrameLayout mFields. If there are
-        // several or 0, put them into a LinearLayout
-        final ViewGroup container;
-        if (kind.fieldList.size() == 1) {
-            container = mFields;
-        } else {
-            final LinearLayout linearLayout = new LinearLayout(mContext);
-            linearLayout.setOrientation(LinearLayout.VERTICAL);
-            linearLayout.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT));
-            mFields.addView(linearLayout);
-            container = linearLayout;
-        }
         mFieldEditTexts = new EditText[kind.fieldList.size()];
         for (int index = 0; index < kind.fieldList.size(); index++) {
             final EditField field = kind.fieldList.get(index);
@@ -288,18 +446,12 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
             fieldView.setEnabled(enabled);
             hidePossible = hidePossible || couldHide;
 
-            container.addView(fieldView);
+            addView(fieldView);
         }
 
         // When hiding fields, place expandable
-        if (hidePossible) {
-            mMoreOrLess.setVisibility(View.VISIBLE);
-            mMoreOrLess.setImageResource(
-                    mHideOptional ? R.drawable.ic_btn_round_more : R.drawable.ic_btn_round_less);
-        } else {
-            mMoreOrLess.setVisibility(View.GONE);
-        }
-        mMoreOrLess.setEnabled(enabled);
+        setupMoreOrLessButton(hidePossible, mHideOptional);
+        if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
     }
 
     /**
@@ -328,8 +480,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
-                    if (!mFields.hasFocus())
-                        mFields.requestFocus();
+                    requestFocusForFirstEditField();
                 }
             }
         });
@@ -351,7 +502,8 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(mContext,
                 android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater = mInflater.cloneInContext(dialogContext);
+        final LayoutInflater dialogInflater = (LayoutInflater) dialogContext.getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
 
         final ListAdapter typeAdapter = new ArrayAdapter<EditType>(mContext, RES_LABEL_ITEM,
                 validTypes) {
@@ -386,8 +538,7 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                     mType = selected;
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     rebuildLabel();
-                    if (!mFields.hasFocus())
-                        mFields.requestFocus();
+                    requestFocusForFirstEditField();
                 }
             }
         };
@@ -396,59 +547,6 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
         builder.setTitle(R.string.selectLabel);
         builder.setSingleChoiceItems(typeAdapter, 0, clickListener);
         return builder.create();
-    }
-
-    /** {@inheritDoc} */
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.edit_label: {
-                showDialog(DIALOG_ID_LABEL);
-                break;
-            }
-            case R.id.edit_delete: {
-                // Keep around in model, but mark as deleted
-                mEntry.markDeleted();
-
-//                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
-
-//                animator.removeView(this);
-                ((ViewGroup) getParent()).removeView(this);
-
-                if (mListener != null) {
-                    // Notify listener when present
-                    mListener.onDeleted(this);
-                }
-
-//                animator.animate();
-                break;
-            }
-            case R.id.edit_more_or_less: {
-                // Save focus
-                final View focusedChild = mFields.getFocusedChild();
-                final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
-
-                // Snapshot for animation
-//                final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
-
-                // Reconfigure GUI
-                mHideOptional = !mHideOptional;
-                rebuildValues();
-
-                // Restore focus
-                View newFocusView = mFields.findViewById(focusedViewId);
-                if (newFocusView == null || newFocusView.getVisibility() == GONE) {
-                    // find first visible child
-                    newFocusView = this;
-                }
-                if (newFocusView != null) {
-                    newFocusView.requestFocus();
-                }
-
-                // Animate
-//                animator.animate();
-                break;
-            }
-        }
     }
 
     /* package */
@@ -514,10 +612,10 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         ss.mHideOptional = mHideOptional;
 
-        final int numChildren = mFields.getChildCount();
+        final int numChildren = mFieldEditTexts.length;
         ss.mVisibilities = new int[numChildren];
         for (int i = 0; i < numChildren; i++) {
-            ss.mVisibilities[i] = mFields.getChildAt(i).getVisibility();
+            ss.mVisibilities[i] = mFieldEditTexts[i].getVisibility();
         }
 
         return ss;
@@ -533,9 +631,9 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
 
         mHideOptional = ss.mHideOptional;
 
-        int numChildren = Math.min(mFields.getChildCount(), ss.mVisibilities.length);
+        int numChildren = Math.min(mFieldEditTexts.length, ss.mVisibilities.length);
         for (int i = 0; i < numChildren; i++) {
-            mFields.getChildAt(i).setVisibility(ss.mVisibilities[i]);
+            mFieldEditTexts[i].setVisibility(ss.mVisibilities[i]);
         }
     }
 
@@ -549,6 +647,19 @@ public class GenericEditorView extends RelativeLayout implements Editor, View.On
                 return createLabelDialog();
             default:
                 throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
+        }
+    }
+
+    private void requestFocusForFirstEditField() {
+        if (mFieldEditTexts != null && mFieldEditTexts.length != 0) {
+            boolean anyFieldHasFocus = false;
+            for (EditText editText : mFieldEditTexts) {
+                if (editText.hasFocus()) {
+                    anyFieldHasFocus = true;
+                }
+            }
+            if (!anyFieldHasFocus)
+                mFieldEditTexts[0].requestFocus();
         }
     }
 }

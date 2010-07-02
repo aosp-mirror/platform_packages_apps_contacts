@@ -24,13 +24,17 @@ import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
+import com.android.contacts.util.ViewGroupAnimator;
 
 import android.content.Context;
 import android.provider.ContactsContract.Data;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,8 +46,7 @@ import android.widget.TextView;
  */
 public class KindSectionView extends LinearLayout implements EditorListener {
     private static final String TAG = "KindSectionView";
-
-    private LayoutInflater mInflater;
+    private static int sCachedThemePaddingRight = -1;
 
     private ViewGroup mEditors;
     private View mAdd;
@@ -67,9 +70,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
-        mInflater = (LayoutInflater)getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
@@ -159,14 +159,33 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 // Skip entries that aren't visible
                 if (!entry.isVisible()) continue;
 
-                final GenericEditorView editor = (GenericEditorView)mInflater.inflate(
-                        R.layout.item_generic_editor, mEditors, false);
+                final GenericEditorView editor = new GenericEditorView(mContext);
+
+                editor.setPadding(0, 0, getThemeScrollbarSize(mContext), 0);
                 editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
                 editor.setEditorListener(this);
+                editor.setDeletable(true);
                 mEditors.addView(editor);
                 entryIndex++;
             }
         }
+    }
+
+    /**
+     * Reads the scrollbarSize of the current theme
+     */
+    private static int getThemeScrollbarSize(Context context) {
+        if (sCachedThemePaddingRight == -1) {
+            final TypedValue outValue = new TypedValue();
+            context.getTheme().resolveAttribute(android.R.attr.scrollbarSize, outValue, true);
+            final WindowManager windowManager =
+                    (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            final DisplayMetrics metrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            sCachedThemePaddingRight = (int) TypedValue.complexToDimension(outValue.data, metrics);
+        }
+
+        return sCachedThemePaddingRight;
     }
 
     protected void updateEditorsVisible() {
@@ -191,7 +210,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         if (!mKind.isList && getEditorCount() == 1)
             return;
 
-//        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
 
         // Insert a new child and rebuild
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
@@ -208,7 +227,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         updateVisible();
 
-//        animator.animate();
+        animator.animate();
     }
 
     public int getEditorCount() {
