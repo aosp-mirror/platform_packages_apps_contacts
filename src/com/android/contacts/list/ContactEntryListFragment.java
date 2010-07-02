@@ -369,7 +369,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setVerticalScrollBarEnabled(!hasAisy);
         }
         if (mAizy != null) {
-            mAizy.setVisibility(hasAisy ? View.VISIBLE : View.GONE);
+            if (hasAisy) {
+                mAizy.setVisibility(View.VISIBLE);
+            } else if (isAizyEnabled()) {
+                mAizy.setVisibility(View.INVISIBLE);
+            } else {
+                mAizy.setVisibility(View.GONE);
+            }
         }
     }
 

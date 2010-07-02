@@ -167,7 +167,6 @@
         <activity android:name=".activities.ContactListActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
-            android:theme="@android:style/Theme.NoTitleBar"
         >
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />

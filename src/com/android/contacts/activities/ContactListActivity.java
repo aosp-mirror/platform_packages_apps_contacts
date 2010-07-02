@@ -34,10 +34,12 @@ import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -51,6 +53,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 /**
@@ -88,6 +92,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
     private boolean mTwoPaneLayout;
 
+    private View mNavigationBar;
+
     public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
     }
@@ -124,6 +130,10 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     }
 
     private void configureTwoPaneLayout() {
+        // TODO: set the theme conditionally in AndroidManifest, once that feature is available
+        setTheme(android.R.style.Theme_WithActionBar);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
+
         setContentView(R.layout.two_pane_activity);
 
         DefaultContactBrowseListFragment fragment =
@@ -134,7 +144,41 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
         setupContactDetailFragment();
 
-        setupSearchUI();
+        mNavigationBar = getLayoutInflater().inflate(R.layout.navigation_bar, null);
+        mSearchEditText = (SearchEditText)mNavigationBar.findViewById(R.id.search_src_text);
+        mSearchEditText.setMaginfyingGlassEnabled(false);
+        mSearchEditText.setText(mRequest.getQueryString());
+        mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+            public void onFilterChange(String queryString) {
+                mListFragment.setSearchMode(!TextUtils.isEmpty(queryString));
+                mListFragment.setQueryString(queryString);
+            }
+
+            public void onCancelSearch() {
+                onToggleSearch(null);
+            }
+        });
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setCustomNavigationMode(mNavigationBar);
+    }
+
+    /**
+     * Toggles search mode.
+     */
+    public void onToggleSearch(MenuItem item) {
+        if (mSearchEditText.getVisibility() == View.VISIBLE) {
+            mSearchEditText.setVisibility(View.GONE);
+            mListFragment.setSearchMode(false);
+        } else {
+            mSearchEditText.setVisibility(View.VISIBLE);
+            mSearchEditText.requestFocus();
+            InputMethodManager inputMethodManager =
+                    (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.showSoftInput(mSearchEditText, 0);
+        }
+
+        invalidateOptionsMenu();
     }
 
     private void configureSinglePaneLayout() {
@@ -146,7 +190,17 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         if (mRequest.isSearchMode()) {
             setContentView(R.layout.contacts_search_content);
             listFragmentContainerId = R.id.list_container;
-            setupSearchUI();
+            mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
+            mSearchEditText.setText(mRequest.getQueryString());
+            mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+                public void onFilterChange(String queryString) {
+                    mListFragment.setQueryString(queryString);
+                }
+
+                public void onCancelSearch() {
+                    finish();
+                }
+            });
         } else {
             listFragmentContainerId = android.R.id.content;
         }
@@ -154,23 +208,6 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         FragmentTransaction transaction = openFragmentTransaction();
         transaction.add(listFragmentContainerId, mListFragment);
         transaction.commit();
-    }
-
-    private void setupSearchUI() {
-        mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
-        mSearchEditText.setText(mRequest.getQueryString());
-        mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
-            public void onFilterChange(String queryString) {
-                if (mTwoPaneLayout) {
-                    mListFragment.setSearchMode(!TextUtils.isEmpty(queryString));
-                }
-                mListFragment.setQueryString(queryString);
-            }
-
-            public void onCancelSearch() {
-                finish();
-            }
-        });
     }
 
     private void setupContactDetailFragment() {
@@ -410,7 +447,10 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        if (mActionCode == ContactsRequest.ACTION_DEFAULT ||
+        if (mTwoPaneLayout) {
+            inflater.inflate(R.menu.actions, menu);
+            return true;
+        } else if (mActionCode == ContactsRequest.ACTION_DEFAULT ||
                 mActionCode == ContactsRequest.ACTION_STREQUENT) {
             inflater.inflate(R.menu.list, menu);
             return true;
@@ -428,6 +468,13 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         if (displayGroups != null) {
             displayGroups.setVisible(
                     mActionCode == ContactsRequest.ACTION_DEFAULT);
+        }
+
+        MenuItem search = menu.findItem(R.id.action_search);
+        if (search != null) {
+            search.setIcon(mSearchEditText.getVisibility() == View.GONE
+                    ? android.R.drawable.ic_menu_search
+                    : android.R.drawable.ic_menu_close_clear_cancel);
         }
         return true;
     }

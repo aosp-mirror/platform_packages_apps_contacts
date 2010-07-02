@@ -16,30 +16,20 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/two_pane_activity"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <include android:id="@+id/searchView"
-        layout="@layout/search_bar"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <fragment android:name="com.android.contacts.list.DefaultContactBrowseListFragment"
-                android:id="@+id/two_pane_list"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-        <!--  Holder for detail- or editor-fragment. -->
-        <FrameLayout
-            android:id="@+id/two_pane_right_view"
-            android:orientation="horizontal"
+    <fragment android:name="com.android.contacts.list.DefaultContactBrowseListFragment"
+            android:id="@+id/two_pane_list"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-  </LinearLayout>
+
+    <!--  Holder for detail- or editor-fragment. -->
+    <FrameLayout
+        android:id="@+id/two_pane_right_view"
+        android:orientation="horizontal"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 </LinearLayout>

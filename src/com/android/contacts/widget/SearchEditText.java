@@ -34,10 +34,12 @@ import android.widget.TextView.OnEditorActionListener;
  * keyboard.
  */
 public class SearchEditText extends EditText implements OnEditorActionListener, TextWatcher {
-    private boolean mMagnifyingGlassShown = true;
 
+    private boolean mMaginfyingGlassEnabled = true;
     private Drawable mMagnifyingGlass;
     private OnFilterTextListener mListener;
+
+    private boolean mMagnifyingGlassShown;
 
     public interface OnFilterTextListener {
         void onFilterChange(String queryString);
@@ -49,6 +51,15 @@ public class SearchEditText extends EditText implements OnEditorActionListener, 
         addTextChangedListener(this);
         setOnEditorActionListener(this);
         mMagnifyingGlass = getCompoundDrawables()[2];
+        setCompoundDrawables(null, null, null, null);
+    }
+
+    public boolean isMaginfyingGlassEnabled() {
+        return mMaginfyingGlassEnabled;
+    }
+
+    public void setMaginfyingGlassEnabled(boolean flag) {
+        this.mMaginfyingGlassEnabled = flag;
     }
 
     public void setOnFilterTextListener(OnFilterTextListener listener) {
@@ -64,7 +75,7 @@ public class SearchEditText extends EditText implements OnEditorActionListener, 
         boolean emptyText = TextUtils.isEmpty(getText());
         if (mMagnifyingGlassShown != emptyText) {
             mMagnifyingGlassShown = emptyText;
-            if (mMagnifyingGlassShown) {
+            if (mMagnifyingGlassShown && mMaginfyingGlassEnabled) {
                 setCompoundDrawables(null, null, mMagnifyingGlass, null);
             } else {
                 setCompoundDrawables(null, null, null, null);
