@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 Google Inc.
+<!-- Copyright (C) 2010 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,8 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_share"
-          android:icon="@android:drawable/ic_menu_share"
-          android:showAsAction="ifRoom" />
-</menu>
+
+<!-- THIS FILE IS TEMPORARY - REMOVE WHEN FRAMEWORK RESOURCE IS AVAILABLE -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false" android:drawable="@*android:drawable/btn_toggle_off" />
+    <item android:state_checked="true" android:drawable="@*android:drawable/btn_toggle_on" />
+</selector>

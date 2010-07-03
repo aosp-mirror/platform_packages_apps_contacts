@@ -16,11 +16,49 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/search_bar"
+    android:id="@+id/navigation_bar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
+    <ToggleButton
+        android:id="@+id/nav_contacts"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:textOn="@string/contactsList"
+        android:textOff="@string/contactsList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_nav_bar"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        />
+    <ToggleButton
+        android:id="@+id/nav_favorites"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:textOn="@string/strequentList"
+        android:textOff="@string/strequentList"
+        android:layout_toRightOf="@id/nav_contacts"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_nav_bar"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        />
+    <ToggleButton
+        android:id="@+id/nav_search"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:textOff="@string/menu_search"
+        android:textOn="@string/menu_search"
+        android:layout_toRightOf="@id/nav_favorites"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_nav_bar"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        />
     <view
         class="com.android.contacts.widget.SearchEditText"
         android:id="@+id/search_src_text"
@@ -28,7 +66,7 @@
         android:layout_width="320dip"
         android:layout_marginLeft="4dip"
         android:layout_marginBottom="0dip"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/nav_favorites"
         android:singleLine="true"
         android:ellipsize="end"
         android:inputType="textNoSuggestions"
@@ -38,4 +76,13 @@
         android:freezesText="true"
         android:visibility="gone"
     />
+    <ImageView
+        android:id="@+id/nav_cancel_search"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_toRightOf="@id/search_src_text"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+    
 </RelativeLayout>

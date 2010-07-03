@@ -21,6 +21,7 @@ import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
+import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -39,7 +40,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -54,13 +54,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 /**
  * Displays a list of contacts.
  */
-public class ContactListActivity extends Activity implements View.OnCreateContextMenuListener {
+public class ContactListActivity extends Activity
+        implements View.OnCreateContextMenuListener, NavigationBar.Listener {
 
     private static final String TAG = "ContactListActivity";
 
@@ -70,10 +70,10 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     private static final int SUBACTIVITY_SEARCH = 4;
 
     private ContactsIntentResolver mIntentResolver;
-    protected ContactEntryListFragment<?> mListFragment;
+    private ContactBrowseListFragment mListFragment;
 
-    protected PhoneNumberInteraction mPhoneNumberCallInteraction;
-    protected PhoneNumberInteraction mSendTextMessageInteraction;
+    private PhoneNumberInteraction mPhoneNumberCallInteraction;
+    private PhoneNumberInteraction mSendTextMessageInteraction;
     private ContactDeletionInteraction mContactDeletionInteraction;
     private ImportExportInteraction mImportExportInteraction;
 
@@ -83,24 +83,22 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     private ContactEditorFragment mEditorFragment;
     private EditorFragmentListener mEditorFragmentListener = new EditorFragmentListener();
 
-    private int mActionCode;
-
     private boolean mSearchInitiated;
 
     private ContactsRequest mRequest;
     private SearchEditText mSearchEditText;
 
     private boolean mTwoPaneLayout;
-
-    private View mNavigationBar;
+    private NavigationBar mNavigationBar;
+    private int mMode = -1;
 
     public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
     }
 
     @Override
-    protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
 
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
@@ -123,68 +121,16 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         int screenLayoutSize = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         mTwoPaneLayout = (screenLayoutSize == Configuration.SCREENLAYOUT_SIZE_XLARGE);
         if (mTwoPaneLayout) {
-            configureTwoPaneLayout();
+            configureTwoPaneLayout(savedState);
         } else {
             configureSinglePaneLayout();
         }
     }
 
-    private void configureTwoPaneLayout() {
-        // TODO: set the theme conditionally in AndroidManifest, once that feature is available
-        setTheme(android.R.style.Theme_WithActionBar);
-        requestWindowFeature(Window.FEATURE_ACTION_BAR);
-
-        setContentView(R.layout.two_pane_activity);
-
-        DefaultContactBrowseListFragment fragment =
-                (DefaultContactBrowseListFragment)findFragmentById(R.id.two_pane_list);
-        fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-
-        mListFragment = fragment;
-
-        setupContactDetailFragment();
-
-        mNavigationBar = getLayoutInflater().inflate(R.layout.navigation_bar, null);
-        mSearchEditText = (SearchEditText)mNavigationBar.findViewById(R.id.search_src_text);
-        mSearchEditText.setMaginfyingGlassEnabled(false);
-        mSearchEditText.setText(mRequest.getQueryString());
-        mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
-            public void onFilterChange(String queryString) {
-                mListFragment.setSearchMode(!TextUtils.isEmpty(queryString));
-                mListFragment.setQueryString(queryString);
-            }
-
-            public void onCancelSearch() {
-                onToggleSearch(null);
-            }
-        });
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setCustomNavigationMode(mNavigationBar);
-    }
-
-    /**
-     * Toggles search mode.
-     */
-    public void onToggleSearch(MenuItem item) {
-        if (mSearchEditText.getVisibility() == View.VISIBLE) {
-            mSearchEditText.setVisibility(View.GONE);
-            mListFragment.setSearchMode(false);
-        } else {
-            mSearchEditText.setVisibility(View.VISIBLE);
-            mSearchEditText.requestFocus();
-            InputMethodManager inputMethodManager =
-                    (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.showSoftInput(mSearchEditText, 0);
-        }
-
-        invalidateOptionsMenu();
-    }
-
     private void configureSinglePaneLayout() {
         setTitle(mRequest.getActivityTitle());
 
-        onCreateFragment();
+        mListFragment = createListFragment(mRequest.getActionCode());
 
         int listFragmentContainerId;
         if (mRequest.isSearchMode()) {
@@ -210,6 +156,77 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         transaction.commit();
     }
 
+    private void configureTwoPaneLayout(Bundle savedState) {
+
+        // TODO: set the theme conditionally in AndroidManifest, once that feature is available
+        setTheme(android.R.style.Theme_WithActionBar);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
+
+        setContentView(R.layout.two_pane_activity);
+
+        mNavigationBar = new NavigationBar(this);
+        mNavigationBar.onCreate(savedState, mRequest);
+
+        ActionBar actionBar = getActionBar();
+        View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
+        actionBar.setCustomNavigationMode(navBarView);
+
+        configureListFragment();
+
+        setupContactDetailFragment();
+
+        mNavigationBar.setListener(this);
+    }
+
+    @Override
+    public void onNavigationBarChange() {
+        configureListFragment();
+    }
+
+    private void configureListFragment() {
+        int mode = mNavigationBar.getMode();
+        if (mode == NavigationBar.MODE_SEARCH
+                && TextUtils.isEmpty(mNavigationBar.getQueryString())) {
+            mode = mNavigationBar.getDefaultMode();
+        }
+
+        if (mode == mMode) {
+            if (mode == NavigationBar.MODE_SEARCH) {
+                mListFragment.setQueryString(mNavigationBar.getQueryString());
+            }
+            return;
+        }
+
+        if (mListFragment != null) {
+            mListFragment.setOnContactListActionListener(null);
+        }
+
+        mMode = mode;
+        switch (mMode) {
+            case NavigationBar.MODE_CONTACTS: {
+                mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
+                break;
+            }
+            case NavigationBar.MODE_FAVORITES: {
+                int favoritesAction = mRequest.getActionCode();
+                if (favoritesAction == ContactsRequest.ACTION_DEFAULT) {
+                    favoritesAction = ContactsRequest.ACTION_STREQUENT;
+                }
+                mListFragment = createListFragment(favoritesAction);
+                break;
+            }
+            case NavigationBar.MODE_SEARCH: {
+                mListFragment = createContactSearchFragment();
+                mListFragment.setQueryString(mNavigationBar.getQueryString());
+                break;
+            }
+        }
+
+        openFragmentTransaction()
+                .replace(R.id.two_pane_list, mListFragment)
+                .commit();
+    }
+
     private void setupContactDetailFragment() {
         // No editor here
         if (mEditorFragment != null) {
@@ -227,7 +244,6 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         openFragmentTransaction()
                 .replace(R.id.two_pane_right_view, mDetailFragment)
                 .commit();
-
     }
 
     private void setupContactEditorFragment() {
@@ -247,7 +263,6 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         openFragmentTransaction()
                 .replace(R.id.two_pane_right_view, mEditorFragment)
                 .commit();
-
     }
 
     @Override
@@ -259,13 +274,13 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
     }
 
     /**
-     * Creates the fragment based on the current request.
+     * Creates the list fragment for the specified mode.
      */
-    private void onCreateFragment() {
-        mActionCode = mRequest.getActionCode();
-        switch (mActionCode) {
+    private ContactBrowseListFragment createListFragment(int actionCode) {
+        switch (actionCode) {
             case ContactsRequest.ACTION_DEFAULT: {
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
+                fragment.setContactsRequest(mRequest);
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setDisplayWithPhonesOnlyOption(mRequest.getDisplayWithPhonesOnlyOption());
                 fragment.setVisibleContactsRestrictionEnabled(mRequest.getDisplayOnlyVisible());
@@ -273,8 +288,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
-                mListFragment = fragment;
-                break;
+                fragment.setAizyEnabled(!mRequest.isSearchMode());
+                return fragment;
             }
 
             case ContactsRequest.ACTION_GROUP: {
@@ -286,8 +301,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(false);
                 fragment.setStarredContactsIncluded(true);
-                mListFragment = fragment;
-                break;
+                return fragment;
             }
 
             case ContactsRequest.ACTION_FREQUENT: {
@@ -295,8 +309,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(false);
-                mListFragment = fragment;
-                break;
+                return fragment;
             }
 
             case ContactsRequest.ACTION_STREQUENT: {
@@ -304,14 +317,24 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(true);
-                mListFragment = fragment;
-                break;
+                return fragment;
             }
 
             default:
-                throw new IllegalStateException("Invalid action code: " + mActionCode);
+                throw new IllegalStateException("Invalid action code: " + actionCode);
         }
-        mListFragment.setContactsRequest(mRequest);
+    }
+
+    private ContactBrowseListFragment createContactSearchFragment() {
+        DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
+        fragment.setOnContactListActionListener(new ContactBrowserActionListener());
+        fragment.setDisplayWithPhonesOnlyOption(ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED);
+        fragment.setVisibleContactsRestrictionEnabled(true);
+        fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
+        fragment.setSearchMode(true);
+        fragment.setDirectorySearchEnabled(true);
+        fragment.setAizyEnabled(false);
+        return fragment;
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
@@ -450,8 +473,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         if (mTwoPaneLayout) {
             inflater.inflate(R.menu.actions, menu);
             return true;
-        } else if (mActionCode == ContactsRequest.ACTION_DEFAULT ||
-                mActionCode == ContactsRequest.ACTION_STREQUENT) {
+        } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
+                mRequest.getActionCode() == ContactsRequest.ACTION_STREQUENT) {
             inflater.inflate(R.menu.list, menu);
             return true;
         } else if (!mListFragment.isSearchMode()) {
@@ -467,14 +490,7 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
         if (displayGroups != null) {
             displayGroups.setVisible(
-                    mActionCode == ContactsRequest.ACTION_DEFAULT);
-        }
-
-        MenuItem search = menu.findItem(R.id.action_search);
-        if (search != null) {
-            search.setIcon(mSearchEditText.getVisibility() == View.GONE
-                    ? android.R.drawable.ic_menu_search
-                    : android.R.drawable.ic_menu_close_clear_cancel);
+                    mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT);
         }
         return true;
     }
@@ -622,12 +638,21 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
      */
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (!mSearchInitiated && !mRequest.isSearchMode()) {
-            int unicodeChar = event.getUnicodeChar();
-            if (unicodeChar != 0) {
-                mSearchInitiated = true;
-                startSearch(new String(new int[]{unicodeChar}, 0, 1), false, null, false);
-                return true;
+        int unicodeChar = event.getUnicodeChar();
+        if (unicodeChar != 0) {
+            String query = new String(new int[]{unicodeChar}, 0, 1);
+            if (mTwoPaneLayout) {
+                if (mNavigationBar.getMode() != NavigationBar.MODE_SEARCH) {
+                    mNavigationBar.setQueryString(query);
+                    mNavigationBar.setMode(NavigationBar.MODE_SEARCH);
+                    return true;
+                }
+            } else if (!mRequest.isSearchMode()) {
+                if (!mSearchInitiated) {
+                    mSearchInitiated = true;
+                    startSearch(query, false, null, false);
+                    return true;
+                }
             }
         }
         return super.dispatchKeyEvent(event);
@@ -668,6 +693,14 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 //            }
 //        }
         return false;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mNavigationBar != null) {
+            mNavigationBar.onSaveInstanceState(outState);
+        }
     }
 
     private PhoneNumberInteraction getPhoneNumberCallInteraction() {
