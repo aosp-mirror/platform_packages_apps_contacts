@@ -419,22 +419,16 @@ public class PinnedHeaderListView extends ListView
             return false;
         }
 
-        smoothScrollToSelectionFromTop(position + getHeaderViewsCount(),
-                getTotalTopPinnedHeaderHeight());
-        return true;
-    }
-
-    public void smoothScrollToSelectionFromTop(final int position, int y) {
-        // This method is temporary.  It will be replaced by new method on AbsListView
-        smoothScrollToPosition(position);
-
-        final int offset = y;
-        postDelayed(new Runnable() {
-
-            public void run() {
-                setSelectionFromTop(position, offset);
+        int offset = 0;
+        for (int i = 0; i < partition; i++) {
+            PinnedHeader header = mHeaders[i];
+            if (header.visible) {
+                offset += header.height;
             }
-        }, 500);
+        }
+
+        smoothScrollToPositionFromTop(position + getHeaderViewsCount(), offset);
+        return true;
     }
 
     private void invalidateIfAnimating() {
