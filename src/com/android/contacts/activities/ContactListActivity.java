@@ -30,6 +30,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.views.detail.ContactDetailFragment;
+import com.android.contacts.views.detail.ContactNoneFragment;
 import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.SearchEditText;
@@ -77,6 +78,8 @@ public class ContactListActivity extends Activity
     private ContactDeletionInteraction mContactDeletionInteraction;
     private ImportExportInteraction mImportExportInteraction;
 
+    private ContactNoneFragment mEmptyFragment;
+
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
 
@@ -91,6 +94,8 @@ public class ContactListActivity extends Activity
     private boolean mTwoPaneLayout;
     private NavigationBar mNavigationBar;
     private int mMode = -1;
+
+    public Uri mSelectedContactLookupUri;
 
     public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -229,29 +234,39 @@ public class ContactListActivity extends Activity
 
     private void setupContactDetailFragment() {
         // No editor here
-        if (mEditorFragment != null) {
-            mEditorFragment.setListener(null);
-            mEditorFragment = null;
+        closeEditorFragment();
+
+        if (mSelectedContactLookupUri != null) {
+            // Already showing? Nothing to do
+            if (mDetailFragment != null) {
+                mDetailFragment.loadUri(mSelectedContactLookupUri);
+                return;
+            }
+
+            closeEmptyFragment();
+
+            mDetailFragment = new ContactDetailFragment();
+            mDetailFragment.setListener(mDetailFragmentListener);
+            mDetailFragment.loadUri(mSelectedContactLookupUri);
+
+            // Nothing showing yet? Create (this happens during Activity-Startup)
+            openFragmentTransaction()
+                    .replace(R.id.two_pane_right_view, mDetailFragment)
+                    .commit();
+        } else {
+            closeDetailFragment();
+
+            mEmptyFragment = new ContactNoneFragment();
+            openFragmentTransaction()
+                    .replace(R.id.two_pane_right_view, mEmptyFragment)
+                    .commit();
         }
-
-        // Already showing? Nothing to do
-        if (mDetailFragment != null) return;
-
-        mDetailFragment = new ContactDetailFragment();
-        mDetailFragment.setListener(mDetailFragmentListener);
-
-        // Nothing showing yet? Create (this happens during Activity-Startup)
-        openFragmentTransaction()
-                .replace(R.id.two_pane_right_view, mDetailFragment)
-                .commit();
     }
 
     private void setupContactEditorFragment() {
         // No detail view here
-        if (mDetailFragment != null) {
-            mDetailFragment.setListener(null);
-            mDetailFragment = null;
-        }
+        closeDetailFragment();
+        closeEmptyFragment();
 
         // Already showing? Nothing to do
         if (mEditorFragment != null) return;
@@ -263,6 +278,24 @@ public class ContactListActivity extends Activity
         openFragmentTransaction()
                 .replace(R.id.two_pane_right_view, mEditorFragment)
                 .commit();
+    }
+
+    private void closeDetailFragment() {
+        if (mDetailFragment != null) {
+            mDetailFragment.setListener(null);
+            mDetailFragment = null;
+        }
+    }
+
+    private void closeEditorFragment() {
+        if (mEditorFragment != null) {
+            mEditorFragment.setListener(null);
+            mEditorFragment = null;
+        }
+    }
+
+    private void closeEmptyFragment() {
+        mEmptyFragment = null;
     }
 
     @Override
@@ -345,8 +378,8 @@ public class ContactListActivity extends Activity
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
         public void onViewContactAction(Uri contactLookupUri) {
             if (mTwoPaneLayout) {
+                mSelectedContactLookupUri = contactLookupUri;
                 setupContactDetailFragment();
-                mDetailFragment.loadUri(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
             }
