@@ -39,6 +39,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -47,12 +48,14 @@ import android.widget.ImageView.ScaleType;
 /**
  * A custom view for an item in the contact list.
  */
-public class ContactListItemView extends ViewGroup {
+public class ContactListItemView extends ViewGroup implements Checkable {
 
     private static final int QUICK_CONTACT_BADGE_STYLE =
             com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
 
     protected final Context mContext;
+
+    private boolean mChecked;
 
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
@@ -65,6 +68,8 @@ public class ContactListItemView extends ViewGroup {
     private final int mCallButtonPadding;
     private final int mPresenceIconMargin;
     private final int mHeaderTextWidth;
+
+    private Drawable mCheckedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
     private Drawable mHorizontalDividerDrawable;
@@ -262,6 +267,11 @@ public class ContactListItemView extends ViewGroup {
             topBound += mHeaderBackgroundHeight;
         }
 
+        if (mChecked) {
+            ensureCheckedBackgroundDivider();
+            mCheckedBackgroundDrawable.setBounds(0, topBound, width, height);
+        }
+
         // Positions of views on the left are fixed and so are those on the right side.
         // The stretchable part of the layout is in the middle.  So, we will start off
         // by laying out the left and right sides. Then we will allocate the remainder
@@ -280,6 +290,7 @@ public class ContactListItemView extends ViewGroup {
         }
 
         topBound += mPaddingTop;
+
         int bottomBound = height - mPaddingBottom;
 
         // Text lines, centered vertically
@@ -391,6 +402,17 @@ public class ContactListItemView extends ViewGroup {
     }
 
     /**
+     * Loads the drawable for the item background used when the item is checked.
+     */
+    private void ensureCheckedBackgroundDivider() {
+        if (mCheckedBackgroundDrawable == null) {
+            mCheckedBackgroundDrawable = mContext.getResources().getDrawable(
+                    R.drawable.list_item_checked_bg);
+            mCheckedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
+        }
+    }
+
+    /**
      * Loads the drawable for the vertical divider if it has not yet been loaded.
      */
     private void ensureVerticalDivider() {
@@ -443,6 +465,9 @@ public class ContactListItemView extends ViewGroup {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
+        if (mChecked) {
+            mCheckedBackgroundDrawable.draw(canvas);
+        }
         if (mHeaderVisible) {
             mHeaderBackgroundDrawable.draw(canvas);
         }
@@ -817,5 +842,23 @@ public class ContactListItemView extends ViewGroup {
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, dataBuffer);
         setData(dataBuffer.data, dataBuffer.sizeCopied);
+    }
+
+    @Override
+    public boolean isChecked() {
+        return mChecked;
+    }
+
+    @Override
+    public void setChecked(boolean checked) {
+        if (mChecked != checked) {
+            mChecked = checked;
+            requestLayout();
+        }
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(!mChecked);
     }
 }

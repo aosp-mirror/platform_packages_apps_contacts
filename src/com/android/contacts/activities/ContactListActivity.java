@@ -289,6 +289,7 @@ public class ContactListActivity extends Activity
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
+                fragment.setSelectionVisible(mTwoPaneLayout);
                 return fragment;
             }
 
@@ -301,6 +302,7 @@ public class ContactListActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(false);
                 fragment.setStarredContactsIncluded(true);
+                fragment.setSelectionVisible(mTwoPaneLayout);
                 return fragment;
             }
 
@@ -309,6 +311,7 @@ public class ContactListActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(false);
+                fragment.setSelectionVisible(mTwoPaneLayout);
                 return fragment;
             }
 
@@ -317,6 +320,7 @@ public class ContactListActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(true);
+                fragment.setSelectionVisible(mTwoPaneLayout);
                 return fragment;
             }
 
