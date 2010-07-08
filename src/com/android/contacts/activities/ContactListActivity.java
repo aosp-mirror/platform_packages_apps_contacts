@@ -338,6 +338,7 @@ public class ContactListActivity extends Activity
         fragment.setSearchMode(true);
         fragment.setDirectorySearchEnabled(true);
         fragment.setAizyEnabled(false);
+        fragment.setSelectionVisible(true);
         return fragment;
     }
 
