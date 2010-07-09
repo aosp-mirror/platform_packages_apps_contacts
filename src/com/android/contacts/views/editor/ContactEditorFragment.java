@@ -1356,4 +1356,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             }
         }
     }
+
+    public Uri getUri() {
+        return mUri;
+    }
 }

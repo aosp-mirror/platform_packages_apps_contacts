@@ -214,6 +214,10 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         mListener = value;
     }
 
+    public Uri getUri() {
+        return mLookupUri;
+    }
+
     public void loadUri(Uri lookupUri) {
         // TODO: Ensure we are not loading twice here
         mLookupUri = lookupUri;

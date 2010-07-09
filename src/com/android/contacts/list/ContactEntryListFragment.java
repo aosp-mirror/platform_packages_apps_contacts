@@ -733,7 +733,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     /**
      * Restore the list state after the adapter is populated.
      */
-    private void completeRestoreInstanceState() {
+    protected void completeRestoreInstanceState() {
         if (mListState != null) {
             mListView.onRestoreInstanceState(mListState);
             mListState = null;

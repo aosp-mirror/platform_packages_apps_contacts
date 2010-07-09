@@ -273,6 +273,18 @@ public class ContactListActivity extends Activity
     }
 
     private void setupContactDetailFragment(Uri contactLookupUri) {
+
+        // If we are already editing this URI - just continue editing
+        if (mEditorFragment != null && contactLookupUri != null
+                && contactLookupUri.equals(mEditorFragment.getUri())) {
+            return;
+        }
+
+        if (mDetailFragment != null && contactLookupUri != null
+                && contactLookupUri.equals(mDetailFragment.getUri())) {
+            return;
+        }
+
         // No editor here
         closeEditorFragment();
 

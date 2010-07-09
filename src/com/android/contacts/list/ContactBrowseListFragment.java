@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 
 import android.net.Uri;
+import android.widget.ListView;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -87,5 +88,19 @@ public abstract class ContactBrowseListFragment extends
     protected void finish() {
         super.finish();
         mListener.onFinishAction();
+    }
+
+    @Override
+    protected void completeRestoreInstanceState() {
+        super.completeRestoreInstanceState();
+        ListView listView = getListView();
+        if (listView.getChoiceMode() == ListView.CHOICE_MODE_SINGLE) {
+            Uri checkedUri = null;
+            int position = listView.getCheckedItemPosition();
+            if (position != -1) {
+                checkedUri = getAdapter().getContactUri(position - listView.getHeaderViewsCount());
+            }
+            mListener.onViewContactAction(checkedUri);
+        }
     }
 }
