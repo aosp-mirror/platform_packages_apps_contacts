@@ -104,6 +104,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     private static final int LOADER_DATA = 1;
 
+    private static final String KEY_URI = "uri";
+    private static final String KEY_ACTION = "action";
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
@@ -212,7 +214,13 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     @Override
     public void onCreate(Bundle savedState) {
-        // TODO: Currently savedState is always null (framework issue). Test once this is fixed
+        if (savedState != null) {
+            // Restore mUri before calling super.onCreate so that onInitializeLoaders
+            // would already have a uri and an action to work with
+            mUri = savedState.getParcelable(KEY_URI);
+            mAction = savedState.getString(KEY_ACTION);
+        }
+
         super.onCreate(savedState);
 
         if (savedState == null) {
@@ -1287,6 +1295,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(KEY_URI, mUri);
+        outState.putString(KEY_ACTION, mAction);
+
         if (hasValidState()) {
             // Store entities with modifications
             outState.putParcelable(KEY_EDIT_STATE, mState);
@@ -1303,6 +1314,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         super.onSaveInstanceState(outState);
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Ignore failed requests
         if (resultCode != Activity.RESULT_OK) return;

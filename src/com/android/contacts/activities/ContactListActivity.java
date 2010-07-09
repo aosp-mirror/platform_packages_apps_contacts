@@ -98,8 +98,6 @@ public class ContactListActivity extends Activity
     private NavigationBar mNavigationBar;
     private int mMode = -1;
 
-    public Uri mSelectedContactLookupUri;
-
     public ContactListActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
     }
@@ -109,6 +107,14 @@ public class ContactListActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+        } else if (fragment instanceof ContactNoneFragment) {
+            mEmptyFragment = (ContactNoneFragment)fragment;
+        } else if (fragment instanceof ContactDetailFragment) {
+            mDetailFragment = (ContactDetailFragment)fragment;
+            mDetailFragment.setListener(mDetailFragmentListener);
+        } else if (fragment instanceof ContactEditorFragment) {
+            mEditorFragment = (ContactEditorFragment)fragment;
+            mEditorFragment.setListener(mEditorFragmentListener);
         }
     }
 
@@ -186,6 +192,7 @@ public class ContactListActivity extends Activity
 
         mNavigationBar = new NavigationBar(this);
         mNavigationBar.onCreate(savedState, mRequest);
+        mNavigationBar.setListener(this);
 
         ActionBar actionBar = getActionBar();
         View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
@@ -195,9 +202,10 @@ public class ContactListActivity extends Activity
             configureListFragment();
         }
 
-        setupContactDetailFragment();
+        if (mEmptyFragment == null && mDetailFragment == null && mEditorFragment == null) {
+            setupContactDetailFragment(null);
+        }
 
-        mNavigationBar.setListener(this);
     }
 
     @Override
@@ -264,22 +272,21 @@ public class ContactListActivity extends Activity
         }
     }
 
-    private void setupContactDetailFragment() {
+    private void setupContactDetailFragment(Uri contactLookupUri) {
         // No editor here
         closeEditorFragment();
 
-        if (mSelectedContactLookupUri != null) {
+        if (contactLookupUri != null) {
             // Already showing? Nothing to do
             if (mDetailFragment != null) {
-                mDetailFragment.loadUri(mSelectedContactLookupUri);
+                mDetailFragment.loadUri(contactLookupUri);
                 return;
             }
 
             closeEmptyFragment();
 
             mDetailFragment = new ContactDetailFragment();
-            mDetailFragment.setListener(mDetailFragmentListener);
-            mDetailFragment.loadUri(mSelectedContactLookupUri);
+            mDetailFragment.loadUri(contactLookupUri);
 
             // Nothing showing yet? Create (this happens during Activity-Startup)
             openFragmentTransaction()
@@ -304,7 +311,6 @@ public class ContactListActivity extends Activity
         if (mEditorFragment != null) return;
 
         mEditorFragment = new ContactEditorFragment();
-        mEditorFragment.setListener(mEditorFragmentListener);
 
         // Nothing showing yet? Create (this happens during Activity-Startup)
         openFragmentTransaction()
@@ -410,8 +416,7 @@ public class ContactListActivity extends Activity
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
         public void onViewContactAction(Uri contactLookupUri) {
             if (mTwoPaneLayout) {
-                mSelectedContactLookupUri = contactLookupUri;
-                setupContactDetailFragment();
+                setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
             }

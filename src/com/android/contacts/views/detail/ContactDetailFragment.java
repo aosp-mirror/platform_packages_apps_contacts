@@ -95,6 +95,8 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         implements OnCreateContextMenuListener, OnItemClickListener {
     private static final String TAG = "ContactDetailFragment";
 
+    private static final String KEY_LOOKUP_URI = "lookupUri";
+
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
 
     private static final int LOADER_DETAILS = 1;
@@ -161,6 +163,24 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+    }
+
+    @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+
+        if (savedState != null) {
+            mLookupUri = savedState.getParcelable(KEY_LOOKUP_URI);
+            if (mLookupUri != null) {
+                loadUri(mLookupUri);
+            }
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_LOOKUP_URI, mLookupUri);
     }
 
     @Override
@@ -811,6 +831,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         menu.findItem(R.id.menu_share).setEnabled(!mAllRestricted);
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
@@ -866,6 +887,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         if (mListener != null) mListener.onDialogRequested(id, null);
     }
 
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info;
         try {
@@ -957,6 +979,7 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         }
     }
 
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case MENU_ITEM_MAKE_DEFAULT: {
