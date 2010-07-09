@@ -22,9 +22,9 @@ import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
+import com.android.contacts.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.widget.ContextMenuAdapter;
 import com.android.contacts.widget.InstrumentedLoaderManagingFragment;
-import com.android.contacts.widget.CompositeCursorAdapter.Partition;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -43,28 +43,27 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.ProviderStatus;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Common base class for various contact-related list fragments.
@@ -77,7 +76,16 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private static final String TAG = "ContactEntryListFragment";
 
-    private static final String LIST_STATE_KEY = "liststate";
+    private static final String KEY_LIST_STATE = "liststate";
+    private static final String KEY_SECTION_HEADER_DISPLAY_ENABLED = "sectionHeaderDisplayEnabled";
+    private static final String KEY_PHOTO_LOADER_ENABLED = "photoLoaderEnabled";
+    private static final String KEY_SEARCH_MODE = "searchMode";
+    private static final String KEY_AIZY_ENABLED = "aizyEnabled";
+    private static final String KEY_QUERY_STRING = "queryString";
+    private static final String KEY_DIRECTORY_SEARCH_ENABLED = "directorySearchEnabled";
+    private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
+    private static final String KEY_REQUEST = "request";
+    private static final String KEY_LEGACY_COMPATIBILITY = "legacyCompatibility";
 
     private static final String DIRECTORY_ID_ARG_KEY = "directoryId";
 
@@ -90,6 +98,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private String mQueryString;
     private boolean mDirectorySearchEnabled;
     private boolean mSelectionVisible;
+    private ContactsRequest mRequest;
+    private boolean mLegacyCompatibility;
 
     private T mAdapter;
     private View mView;
@@ -101,7 +111,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      */
     private Parcelable mListState;
 
-    private boolean mLegacyCompatibility;
     private int mDisplayOrder;
     private int mSortOrder;
 
@@ -121,8 +130,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * a refresh caused by a change notification.
      */
     private boolean mLoadPriorityDirectoriesOnly;
-
-    private ContactsRequest mRequest;
 
     private Context mContext;
 
@@ -173,6 +180,49 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     protected void onInitializeLoaders() {
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED, mSectionHeaderDisplayEnabled);
+        outState.putBoolean(KEY_PHOTO_LOADER_ENABLED, mPhotoLoaderEnabled);
+        outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
+        outState.putBoolean(KEY_AIZY_ENABLED, mAizyEnabled);
+        outState.putBoolean(KEY_DIRECTORY_SEARCH_ENABLED, mDirectorySearchEnabled);
+        outState.putBoolean(KEY_SELECTION_VISIBLE, mSelectionVisible);
+        outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
+        outState.putString(KEY_QUERY_STRING, mQueryString);
+        outState.putParcelable(KEY_REQUEST, mRequest);
+
+        if (mListView != null) {
+            outState.putParcelable(KEY_LIST_STATE, mListView.onSaveInstanceState());
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        restoreSavedState(savedState);
+    }
+
+    public void restoreSavedState(Bundle savedState) {
+        if (savedState == null) {
+            return;
+        }
+
+        mSectionHeaderDisplayEnabled = savedState.getBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED);
+        mPhotoLoaderEnabled = savedState.getBoolean(KEY_PHOTO_LOADER_ENABLED);
+        mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
+        mAizyEnabled = savedState.getBoolean(KEY_AIZY_ENABLED);
+        mDirectorySearchEnabled = savedState.getBoolean(KEY_DIRECTORY_SEARCH_ENABLED);
+        mSelectionVisible = savedState.getBoolean(KEY_SELECTION_VISIBLE);
+        mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
+        mQueryString = savedState.getString(KEY_QUERY_STRING);
+        mRequest = savedState.getParcelable(KEY_REQUEST);
+
+        // Retrieve list state. This will be applied in onLoadFinished
+        mListState = savedState.getParcelable(KEY_LIST_STATE);
     }
 
     /**
@@ -457,11 +507,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLegacyCompatibility = flag;
     }
 
-    public int getContactNameDisplayOrder() {
+    protected int getContactNameDisplayOrder() {
         return mDisplayOrder;
     }
 
-    public void setContactNameDisplayOrder(int displayOrder) {
+    protected void setContactNameDisplayOrder(int displayOrder) {
         mDisplayOrder = displayOrder;
         if (mAdapter != null) {
             mAdapter.setContactNameDisplayOrder(displayOrder);
@@ -493,15 +543,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void loadPreferences(ContactsPreferences contactsPrefs) {
         setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
         setSortOrder(contactsPrefs.getSortOrder());
-    }
-
-    @Override
-    public void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
-        // Retrieve list state. This will be applied in onLoadFinished
-        if (savedState != null) {
-            mListState = savedState.getParcelable(LIST_STATE_KEY);
-        }
     }
 
     @Override
@@ -687,15 +728,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void onClose() {
         hideSoftKeyboard();
         finish();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle icicle) {
-        super.onSaveInstanceState(icicle);
-        if (mListView != null) {
-            mListState = mListView.onSaveInstanceState();
-            icicle.putParcelable(LIST_STATE_KEY, mListState);
-        }
     }
 
     /**

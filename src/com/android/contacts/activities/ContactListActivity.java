@@ -39,6 +39,7 @@ import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -64,6 +65,8 @@ public class ContactListActivity extends Activity
         implements View.OnCreateContextMenuListener, NavigationBar.Listener {
 
     private static final String TAG = "ContactListActivity";
+
+    private static final String KEY_MODE = "mode";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 1;
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
@@ -102,8 +105,20 @@ public class ContactListActivity extends Activity
     }
 
     @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof ContactBrowseListFragment) {
+            mListFragment = (ContactBrowseListFragment)fragment;
+            mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        if (savedState != null) {
+            mMode = savedState.getInt(KEY_MODE);
+        }
 
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
@@ -176,7 +191,9 @@ public class ContactListActivity extends Activity
         View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
         actionBar.setCustomNavigationMode(navBarView);
 
-        configureListFragment();
+        if (mListFragment == null) {
+            configureListFragment();
+        }
 
         setupContactDetailFragment();
 
@@ -202,9 +219,7 @@ public class ContactListActivity extends Activity
             return;
         }
 
-        if (mListFragment != null) {
-            mListFragment.setOnContactListActionListener(null);
-        }
+        closeListFragment();
 
         mMode = mode;
         switch (mMode) {
@@ -227,9 +242,26 @@ public class ContactListActivity extends Activity
             }
         }
 
+        Bundle savedState = mNavigationBar.getSavedStateForMode(mMode);
+        if (savedState != null) {
+            mListFragment.restoreSavedState(savedState);
+        }
+
         openFragmentTransaction()
                 .replace(R.id.two_pane_list, mListFragment)
                 .commit();
+    }
+
+    private void closeListFragment() {
+        if (mListFragment != null) {
+            mListFragment.setOnContactListActionListener(null);
+
+            if (mNavigationBar != null) {
+                Bundle state = new Bundle();
+                mListFragment.onSaveInstanceState(state);
+                mNavigationBar.saveStateForMode(mMode, state);
+            }
+        }
     }
 
     private void setupContactDetailFragment() {
@@ -736,6 +768,7 @@ public class ContactListActivity extends Activity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt(KEY_MODE, mMode);
         if (mNavigationBar != null) {
             mNavigationBar.onSaveInstanceState(outState);
         }

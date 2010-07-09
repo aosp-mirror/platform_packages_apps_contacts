@@ -20,6 +20,7 @@ import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,11 @@ import android.widget.TextView;
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
 
+    private static final String KEY_EDIT_MODE = "editMode";
+    private static final String KEY_CREATE_CONTACT_ENABLED = "createContactEnabled";
+    private static final String KEY_DISPLAY_WITH_PHONES_ONLY = "displayWithPhonesOnly";
+    private static final String KEY_VISIBLE_CONTACTS_RESTRICTION = "visibleContactsRestriction";
+
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
     private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
@@ -43,6 +49,30 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setAizyEnabled(true);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_EDIT_MODE, mEditMode);
+        outState.putBoolean(KEY_CREATE_CONTACT_ENABLED, mCreateContactEnabled);
+        outState.putInt(KEY_DISPLAY_WITH_PHONES_ONLY, mDisplayWithPhonesOnlyOption);
+        outState.putBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION, mVisibleContactsRestrictionEnabled);
+    }
+
+    @Override
+    public void restoreSavedState(Bundle savedState) {
+        super.restoreSavedState(savedState);
+
+        if (savedState == null) {
+            return;
+        }
+
+        mEditMode = savedState.getBoolean(KEY_EDIT_MODE);
+        mCreateContactEnabled = savedState.getBoolean(KEY_CREATE_CONTACT_ENABLED);
+        mDisplayWithPhonesOnlyOption = savedState.getInt(KEY_DISPLAY_WITH_PHONES_ONLY);
+        mVisibleContactsRestrictionEnabled =
+                savedState.getBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION);
     }
 
     @Override

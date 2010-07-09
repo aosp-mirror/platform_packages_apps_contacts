@@ -30,6 +30,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
+import java.util.HashMap;
+
 /**
  * Navigation bar at the top of the Contacts activity.
  */
@@ -43,6 +45,10 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     private static final String EXTRA_KEY_MODE = "navBar.mode";
     private static final String EXTRA_KEY_QUERY = "navBar.query";
 
+    private static final String KEY_MODE_CONTACTS = "mode_contacts";
+    private static final String KEY_MODE_FAVORITES = "mode_favorites";
+    private static final String KEY_MODE_SEARCH = "mode_search";
+
     public static final int MODE_CONTACTS = 0;
     public static final int MODE_FAVORITES = 1;
     public static final int MODE_SEARCH = 2;
@@ -50,6 +56,9 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     private int mMode = MODE_CONTACTS;
     private int mDefaultMode = MODE_CONTACTS;
     private String mQueryString;
+    private HashMap<Integer, Bundle> mSavedStateByMode = new HashMap<Integer, Bundle>();
+
+
     private SearchEditText mSearchEditText;
     private View mNavigationBar;
 
@@ -74,6 +83,9 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
             mDefaultMode = savedState.getInt(EXTRA_KEY_DEFAULT_MODE, -1);
             mMode = savedState.getInt(EXTRA_KEY_MODE, -1);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
+            restoreSavedState(savedState, MODE_CONTACTS, KEY_MODE_CONTACTS);
+            restoreSavedState(savedState, MODE_FAVORITES, KEY_MODE_FAVORITES);
+            restoreSavedState(savedState, MODE_SEARCH, KEY_MODE_SEARCH);
         }
 
         int actionCode = request.getActionCode();
@@ -206,9 +218,36 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
         setMode(mDefaultMode);
     }
 
+    public void saveStateForMode(int mode, Bundle state) {
+        mSavedStateByMode.put(mode, state);
+    }
+
+    public Bundle getSavedStateForMode(int mode) {
+        return mSavedStateByMode.get(mode);
+    }
+
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(EXTRA_KEY_DEFAULT_MODE, mDefaultMode);
         outState.putInt(EXTRA_KEY_MODE, mMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
+        saveInstanceState(outState, MODE_CONTACTS, KEY_MODE_CONTACTS);
+        saveInstanceState(outState, MODE_FAVORITES, KEY_MODE_FAVORITES);
+        saveInstanceState(outState, MODE_SEARCH, KEY_MODE_SEARCH);
+    }
+
+    private void saveInstanceState(Bundle outState, int mode, String key) {
+        Bundle state = mSavedStateByMode.get(mode);
+        if (state != null) {
+            outState.putParcelable(key, state);
+        }
+    }
+
+    private void restoreSavedState(Bundle savedState, int mode, String key) {
+        Bundle bundle = savedState.getParcelable(key);
+        if (bundle == null) {
+            mSavedStateByMode.remove(mode);
+        } else {
+            mSavedStateByMode.put(mode, bundle);
+        }
     }
 }
