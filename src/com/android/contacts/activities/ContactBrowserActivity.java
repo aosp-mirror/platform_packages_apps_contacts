@@ -61,7 +61,7 @@ import android.widget.Toast;
 /**
  * Displays a list of contacts.
  */
-public class ContactListActivity extends Activity
+public class ContactBrowserActivity extends Activity
         implements View.OnCreateContextMenuListener, NavigationBar.Listener {
 
     private static final String TAG = "ContactListActivity";
@@ -98,7 +98,7 @@ public class ContactListActivity extends Activity
     private NavigationBar mNavigationBar;
     private int mMode = -1;
 
-    public ContactListActivity() {
+    public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
     }
 
@@ -489,7 +489,7 @@ public class ContactListActivity extends Activity
 
     private class DetailFragmentListener implements ContactDetailFragment.Listener {
         public void onContactNotFound() {
-            Toast.makeText(ContactListActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
         }
 
         public void onEditRequested(Uri contactLookupUri) {
@@ -510,39 +510,39 @@ public class ContactListActivity extends Activity
     private class EditorFragmentListener implements ContactEditorFragment.Listener {
         @Override
         public void closeAfterDelete() {
-            Toast.makeText(ContactListActivity.this, "closeAfterDelete", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterDelete", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeAfterRevert() {
-            Toast.makeText(ContactListActivity.this, "closeAfterRevert", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterRevert", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeAfterSaving(int resultCode, Intent resultIntent) {
-            Toast.makeText(ContactListActivity.this, "closeAfterSaving", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterSaving", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeAfterSplit() {
-            Toast.makeText(ContactListActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeBecauseAccountSelectorAborted() {
-            Toast.makeText(ContactListActivity.this, "closeBecauseAccountSelectorAborted",
+            Toast.makeText(ContactBrowserActivity.this, "closeBecauseAccountSelectorAborted",
                     Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeBecauseContactNotFound() {
-            Toast.makeText(ContactListActivity.this, "closeBecauseContactNotFound",
+            Toast.makeText(ContactBrowserActivity.this, "closeBecauseContactNotFound",
                     Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void setTitleTo(int resourceId) {
-            Toast.makeText(ContactListActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
         }
     }
 

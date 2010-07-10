@@ -18,7 +18,7 @@ package com.android.contacts.ui;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactListActivity;
+import com.android.contacts.activities.ContactBrowserActivity;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
@@ -176,7 +176,7 @@ public final class ShowOrCreateActivity extends Activity implements
         } else if (count > 1) {
             // If more than one, show pick list
             Intent listIntent = new Intent(Intent.ACTION_SEARCH);
-            listIntent.setComponent(new ComponentName(this, ContactListActivity.class));
+            listIntent.setComponent(new ComponentName(this, ContactBrowserActivity.class));
             listIntent.putExtras(mCreateExtras);
             startActivity(listIntent);
             finish();

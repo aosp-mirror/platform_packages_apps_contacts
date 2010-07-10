@@ -164,7 +164,7 @@
         </activity-alias>
 
         <!-- The actual list of contacts -->
-        <activity android:name=".activities.ContactListActivity"
+        <activity android:name=".activities.ContactBrowserActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
         >
@@ -248,7 +248,7 @@
 
         <!-- Backwards compatibility: somebody may have hard coded this activity name -->
         <activity-alias android:name="ContactsListActivity"
-            android:targetActivity=".activities.ContactListActivity"
+            android:targetActivity=".activities.ContactBrowserActivity"
         />
 
         <!-- An activity for joining contacts -->
@@ -457,7 +457,7 @@
         <!-- Makes .ContactListActivity the search target for any activity in Contacts -->
         <meta-data
             android:name="android.app.default_searchable"
-            android:value=".activities.ContactListActivity" />
+            android:value=".activities.ContactBrowserActivity" />
 
 
         <!-- LIVE FOLDERS -->

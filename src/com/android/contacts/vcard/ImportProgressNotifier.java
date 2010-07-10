@@ -22,7 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactListActivity;
+import com.android.contacts.activities.ContactBrowserActivity;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryHandler;
 
@@ -102,7 +102,7 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
         final PendingIntent pendingIntent =
             PendingIntent.getActivity(context, 0,
-                    new Intent(context, ContactListActivity.class),
+                    new Intent(context, ContactBrowserActivity.class),
                     PendingIntent.FLAG_UPDATE_CURRENT);
 
         // notification.contentIntent = pendingIntent;

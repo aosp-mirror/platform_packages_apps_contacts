@@ -29,7 +29,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactListActivity;
+import com.android.contacts.activities.ContactBrowserActivity;
 import com.android.vcard.VCardComposer;
 import com.android.vcard.VCardConfig;
 
@@ -239,7 +239,7 @@ public class ExportProcessor {
         notification.contentView = remoteViews;
         notification.contentIntent =
                 PendingIntent.getActivity(mService, 0,
-                        new Intent(mService, ContactListActivity.class), 0);
+                        new Intent(mService, ContactBrowserActivity.class), 0);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 
@@ -248,7 +248,7 @@ public class ExportProcessor {
         notification.icon = android.R.drawable.stat_sys_upload_done;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         notification.setLatestEventInfo(mService, title, message, null);
-        final Intent intent = new Intent(mService, ContactListActivity.class);
+        final Intent intent = new Intent(mService, ContactBrowserActivity.class);
         notification.contentIntent =
                 PendingIntent.getActivity(mService, 0, intent, 0);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
