@@ -448,10 +448,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setSelectionVisible(boolean flag) {
         this.mSelectionVisible = flag;
-        if (mListView != null) {
-            mListView.setChoiceMode(
-                    mSelectionVisible ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
-        }
     }
 
     public void setSearchMode(boolean flag) {
@@ -591,9 +587,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         // We manually save/restore the listview state
         mListView.setSaveEnabled(false);
 
-        mListView.setChoiceMode(
-                mSelectionVisible ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
-
         if (mContextMenuAdapter != null) {
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
@@ -631,6 +624,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setSortOrder(mSortOrder);
         mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
+        mAdapter.setSelectionVisible(mSelectionVisible);
     }
 
     protected boolean isNameHighlighingEnabled() {

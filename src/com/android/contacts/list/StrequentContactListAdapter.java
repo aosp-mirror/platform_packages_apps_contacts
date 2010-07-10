@@ -198,6 +198,10 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView)itemView;
 
+        if (isSelectionVisible()) {
+            view.setItemSelected(getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX));
+        }
+
         bindName(view, cursor);
         bindQuickContact(view, cursor);
         bindPresence(view, cursor);

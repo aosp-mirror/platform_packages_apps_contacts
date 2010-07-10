@@ -17,7 +17,12 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.widget.ListView;
 
 /**
@@ -27,7 +32,66 @@ import android.widget.ListView;
 public abstract class ContactBrowseListFragment extends
         ContactEntryListFragment<ContactListAdapter> {
 
+    private static final String KEY_SELECTED_URI = "selectedUri";
+
+    private static final int SELECTED_ID_LOADER = -3;
+
+    private Uri mSelectedContactUri;
+
     private OnContactBrowserActionListener mListener;
+
+    @Override
+    public void restoreSavedState(Bundle savedState) {
+        super.restoreSavedState(savedState);
+
+        if (savedState == null) {
+            return;
+        }
+
+        mSelectedContactUri = savedState.getParcelable(KEY_SELECTED_URI);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_SELECTED_URI, mSelectedContactUri);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mSelectedContactUri != null && isSelectionVisible()) {
+            startLoading(SELECTED_ID_LOADER, null);
+        }
+   }
+
+    @Override
+    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (id == SELECTED_ID_LOADER) {
+            return new CursorLoader(getContext(),
+                    mSelectedContactUri,
+                    new String[] { Contacts._ID },
+                    null,
+                    null,
+                    null);
+        }
+
+        return super.onCreateLoader(id, args);
+    }
+
+    @Override
+    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (loader.getId() == SELECTED_ID_LOADER) {
+            long selectedId = ListView.INVALID_ROW_ID;
+            if (data.moveToFirst()) {
+                selectedId = data.getLong(0);
+            }
+            getAdapter().setSelectedContactId(selectedId);
+            return;
+        }
+
+        super.onLoadFinished(loader, data);
+    }
 
     @Override
     protected void prepareEmptyView() {
@@ -44,6 +108,26 @@ public abstract class ContactBrowseListFragment extends
                 setEmptyText(R.string.noContactsHelpText);
             } else {
                 setEmptyText(R.string.noContactsNoSimHelpText);
+            }
+        }
+    }
+
+    public Uri getSelectedContactUri() {
+        return mSelectedContactUri;
+    }
+
+    public void setSelectedContactUri(Uri uri) {
+        if ((mSelectedContactUri == null && uri != null)
+                || (mSelectedContactUri != null && !mSelectedContactUri.equals(uri))) {
+            this.mSelectedContactUri = uri;
+            if (mSelectedContactUri != null) {
+                CursorLoader loader = (CursorLoader)getLoader(SELECTED_ID_LOADER);
+                if (loader == null) {
+                    startLoading(SELECTED_ID_LOADER, null);
+                } else {
+                    loader.setUri(mSelectedContactUri);
+                    loader.forceLoad();
+                }
             }
         }
     }
@@ -88,19 +172,5 @@ public abstract class ContactBrowseListFragment extends
     protected void finish() {
         super.finish();
         mListener.onFinishAction();
-    }
-
-    @Override
-    protected void completeRestoreInstanceState() {
-        super.completeRestoreInstanceState();
-        ListView listView = getListView();
-        if (listView.getChoiceMode() == ListView.CHOICE_MODE_SINGLE) {
-            Uri checkedUri = null;
-            int position = listView.getCheckedItemPosition();
-            if (position != -1) {
-                checkedUri = getAdapter().getContactUri(position - listView.getHeaderViewsCount());
-            }
-            mListener.onViewContactAction(checkedUri);
-        }
     }
 }

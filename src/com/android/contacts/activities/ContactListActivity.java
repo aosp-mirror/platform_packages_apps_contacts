@@ -245,7 +245,6 @@ public class ContactListActivity extends Activity
             }
             case NavigationBar.MODE_SEARCH: {
                 mListFragment = createContactSearchFragment();
-                mListFragment.setQueryString(mNavigationBar.getQueryString());
                 break;
             }
         }
@@ -254,6 +253,12 @@ public class ContactListActivity extends Activity
         if (savedState != null) {
             mListFragment.restoreSavedState(savedState);
         }
+
+        if (mode == NavigationBar.MODE_SEARCH) {
+            mListFragment.setQueryString(mNavigationBar.getQueryString());
+        }
+
+        setupContactDetailFragment(mListFragment.getSelectedContactUri());
 
         openFragmentTransaction()
                 .replace(R.id.two_pane_list, mListFragment)
@@ -428,6 +433,7 @@ public class ContactListActivity extends Activity
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
         public void onViewContactAction(Uri contactLookupUri) {
             if (mTwoPaneLayout) {
+                mListFragment.setSelectedContactUri(contactLookupUri);
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));

@@ -98,6 +98,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView)itemView;
 
+        if (isSelectionVisible()) {
+            view.setItemSelected(getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX));
+        }
+
         bindSectionHeaderAndDivider(view, position);
 
         if (isQuickContactEnabled()) {

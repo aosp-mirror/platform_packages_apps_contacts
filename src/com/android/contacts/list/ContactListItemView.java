@@ -29,33 +29,32 @@ import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Checkable;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
 
 /**
  * A custom view for an item in the contact list.
  */
-public class ContactListItemView extends ViewGroup implements Checkable {
+public class ContactListItemView extends ViewGroup {
 
     private static final int QUICK_CONTACT_BADGE_STYLE =
             com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
 
     protected final Context mContext;
 
-    private boolean mChecked;
+    private boolean mItemSelected;
 
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
@@ -69,7 +68,7 @@ public class ContactListItemView extends ViewGroup implements Checkable {
     private final int mPresenceIconMargin;
     private final int mHeaderTextWidth;
 
-    private Drawable mCheckedBackgroundDrawable;
+    private Drawable mSelectedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
     private Drawable mHorizontalDividerDrawable;
@@ -267,9 +266,9 @@ public class ContactListItemView extends ViewGroup implements Checkable {
             topBound += mHeaderBackgroundHeight;
         }
 
-        if (mChecked) {
+        if (mItemSelected) {
             ensureCheckedBackgroundDivider();
-            mCheckedBackgroundDrawable.setBounds(0, topBound, width, height);
+            mSelectedBackgroundDrawable.setBounds(0, topBound, width, height);
         }
 
         // Positions of views on the left are fixed and so are those on the right side.
@@ -405,10 +404,10 @@ public class ContactListItemView extends ViewGroup implements Checkable {
      * Loads the drawable for the item background used when the item is checked.
      */
     private void ensureCheckedBackgroundDivider() {
-        if (mCheckedBackgroundDrawable == null) {
-            mCheckedBackgroundDrawable = mContext.getResources().getDrawable(
+        if (mSelectedBackgroundDrawable == null) {
+            mSelectedBackgroundDrawable = mContext.getResources().getDrawable(
                     R.drawable.list_item_checked_bg);
-            mCheckedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
+            mSelectedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
         }
     }
 
@@ -465,8 +464,8 @@ public class ContactListItemView extends ViewGroup implements Checkable {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (mChecked) {
-            mCheckedBackgroundDrawable.draw(canvas);
+        if (mItemSelected) {
+            mSelectedBackgroundDrawable.draw(canvas);
         }
         if (mHeaderVisible) {
             mHeaderBackgroundDrawable.draw(canvas);
@@ -844,21 +843,14 @@ public class ContactListItemView extends ViewGroup implements Checkable {
         setData(dataBuffer.data, dataBuffer.sizeCopied);
     }
 
-    @Override
-    public boolean isChecked() {
-        return mChecked;
+    public boolean isItemSelected() {
+        return mItemSelected;
     }
 
-    @Override
-    public void setChecked(boolean checked) {
-        if (mChecked != checked) {
-            mChecked = checked;
+    public void setItemSelected(boolean selected) {
+        if (mItemSelected != selected) {
+            mItemSelected = selected;
             requestLayout();
         }
-    }
-
-    @Override
-    public void toggle() {
-        setChecked(!mChecked);
     }
 }

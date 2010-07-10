@@ -61,6 +61,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
 
+    private boolean mSelectionVisible;
+
     public ContactEntryListAdapter(Context context) {
         super(context, R.layout.list_section, R.id.header_text);
         addPartitions();
@@ -193,6 +195,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setEmptyListEnabled(boolean flag) {
         mEmptyListEnabled = flag;
+    }
+
+    public boolean isSelectionVisible() {
+        return mSelectionVisible;
+    }
+
+    public void setSelectionVisible(boolean flag) {
+        this.mSelectionVisible = flag;
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {

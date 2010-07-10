@@ -80,6 +80,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
 
+    private long mSelectedContactId;
+
     public ContactListAdapter(Context context) {
         super(context);
 
@@ -88,6 +90,17 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     public CharSequence getUnknownNameText() {
         return mUnknownNameText;
+    }
+
+    public long getSelectedContactId() {
+        return mSelectedContactId;
+    }
+
+    public void setSelectedContactId(long selectedId) {
+        if (mSelectedContactId != selectedId) {
+            this.mSelectedContactId = selectedId;
+            notifyDataSetChanged();
+        }
     }
 
     protected static Uri buildSectionIndexerUri(Uri uri) {
