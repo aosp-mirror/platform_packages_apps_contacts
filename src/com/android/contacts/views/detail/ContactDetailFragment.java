@@ -34,7 +34,9 @@ import com.android.internal.telephony.ITelephony;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.LoaderManagingFragment;
+import android.app.Fragment;
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -91,11 +93,9 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.Result>
+public class ContactDetailFragment extends Fragment
         implements OnCreateContextMenuListener, OnItemClickListener {
     private static final String TAG = "ContactDetailFragment";
-
-    private static final String KEY_LOOKUP_URI = "lookupUri";
 
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
 
@@ -104,8 +104,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     private Context mContext;
     private Uri mLookupUri;
     private Listener mListener;
-
-    private boolean mIsInitialized;
 
     private ContactLoader.Result mContactData;
     private ContactDetailHeaderView mHeaderView;
@@ -166,24 +164,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     }
 
     @Override
-    public void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
-
-        if (savedState != null) {
-            mLookupUri = savedState.getParcelable(KEY_LOOKUP_URI);
-            if (mLookupUri != null) {
-                loadUri(mLookupUri);
-            }
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_LOOKUP_URI, mLookupUri);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         final View view = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
@@ -218,49 +198,17 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
         return mLookupUri;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getLoaderManager().initLoader(LOADER_DETAILS, null, mDetailLoaderListener);
+    }
+
     public void loadUri(Uri lookupUri) {
-        // TODO: Ensure we are not loading twice here
         mLookupUri = lookupUri;
-        if (mIsInitialized) startLoading(LOADER_DETAILS, null);
-    }
-
-    @Override
-    protected void onInitializeLoaders() {
-        mIsInitialized = true;
-        if (mLookupUri != null) startLoading(LOADER_DETAILS, null);
-    }
-
-    @Override
-    protected Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-        switch (id) {
-            case LOADER_DETAILS: {
-                return new ContactLoader(mContext, mLookupUri);
-            }
-            default: {
-                Log.wtf(TAG, "Unknown ID in onCreateLoader: " + id);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    protected void onLoadFinished(Loader<ContactLoader.Result> loader,
-            ContactLoader.Result data) {
-        final int id = loader.getId();
-        switch (id) {
-            case LOADER_DETAILS:
-                if (data == ContactLoader.Result.NOT_FOUND) {
-                    // Item has been deleted
-                    Log.i(TAG, "No contact found. Closing activity");
-                    mListener.onContactNotFound();
-                    return;
-                }
-                mContactData = data;
-                bindData();
-                break;
-            default: {
-                Log.wtf(TAG, "Unknown ID in onLoadFinished: " + id);
-            }
+        if (getActivity() != null) {
+            getLoaderManager().restartLoader(LOADER_DETAILS, null, mDetailLoaderListener);
         }
     }
 
@@ -1054,6 +1002,29 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
 
         return false;
     }
+
+    /**
+     * The listener for the detail loader
+     */
+    private final LoaderManager.LoaderCallbacks<ContactLoader.Result> mDetailLoaderListener =
+            new LoaderCallbacks<ContactLoader.Result>() {
+        @Override
+        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+            return new ContactLoader(mContext, mLookupUri);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+            if (data == ContactLoader.Result.NOT_FOUND) {
+                // Item has been deleted
+                Log.i(TAG, "No contact found. Closing activity");
+                mListener.onContactNotFound();
+                return;
+            }
+            mContactData = data;
+            bindData();
+        }
+    };
 
     private ContactDetailHeaderView.Listener mHeaderViewListener =
             new ContactDetailHeaderView.Listener() {
