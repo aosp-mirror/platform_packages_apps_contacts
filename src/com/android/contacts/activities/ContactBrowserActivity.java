@@ -29,6 +29,7 @@ import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.ui.ContactsPreferencesActivity;
+import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.views.detail.ContactNoneFragment;
 import com.android.contacts.views.editor.ContactEditorFragment;
@@ -62,7 +63,8 @@ import android.widget.Toast;
  * Displays a list of contacts.
  */
 public class ContactBrowserActivity extends Activity
-        implements View.OnCreateContextMenuListener, NavigationBar.Listener {
+        implements View.OnCreateContextMenuListener, NavigationBar.Listener,
+        DialogManager.DialogShowingViewActivity {
 
     private static final String TAG = "ContactListActivity";
 
@@ -72,6 +74,12 @@ public class ContactBrowserActivity extends Activity
     private static final int SUBACTIVITY_VIEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
+
+    private static final int DIALOG_MANAGER_ID_1 = 1;
+    private static final int DIALOG_MANAGER_ID_2 = 2;
+
+    private DialogManager mDialogManager = new DialogManager(this, DIALOG_MANAGER_ID_1,
+            DIALOG_MANAGER_ID_2);
 
     private ContactsIntentResolver mIntentResolver;
     private ContactBrowseListFragment mListFragment;
@@ -638,6 +646,10 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
+        if (id == DIALOG_MANAGER_ID_1 || id == DIALOG_MANAGER_ID_2) {
+            return mDialogManager.onCreateDialog(id, bundle);
+        }
+
         Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
         if (dialog != null) {
             return dialog;
@@ -824,5 +836,10 @@ public class ContactBrowserActivity extends Activity
             mImportExportInteraction = new ImportExportInteraction(this);
         }
         return mImportExportInteraction;
+    }
+
+    @Override
+    public DialogManager getDialogManager() {
+        return mDialogManager;
     }
 }
