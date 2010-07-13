@@ -321,16 +321,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (loaderId == DIRECTORY_LOADER_ID) {
             mAdapter.changeDirectories(data);
         } else {
-            final int partitionIndex = loaderId;      // by convention
-            mAdapter.changeCursor(partitionIndex, data);
-            showCount(partitionIndex, data);
-            if (partitionIndex == mAdapter.getIndexedPartition()) {
-                mAizy.setIndexer(mAdapter.getIndexer());
-            }
-            completeRestoreInstanceState();
+            onPartitionLoaded(loaderId, data);
         }
 
-        if (isSearchMode()) {
+        if (isDirectorySearchEnabled()) {
             if (mLoadDirectoryList) {
                 mLoadDirectoryList = false;
                 startLoading(DIRECTORY_LOADER_ID, null);
@@ -344,6 +338,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 //            if (mEmptyView != null && (data == null || data.getCount() == 0)) {
 //                prepareEmptyView();
 //            }
+    }
+
+    protected void onPartitionLoaded(int partitionIndex, Cursor data) {
+        mAdapter.changeCursor(partitionIndex, data);
+        showCount(partitionIndex, data);
+        if (partitionIndex == mAdapter.getIndexedPartition()) {
+            mAizy.setIndexer(mAdapter.getIndexer());
+        }
+
+        // TODO should probably only restore instance state after all directories are loaded
+        completeRestoreInstanceState();
     }
 
     protected void reloadData() {

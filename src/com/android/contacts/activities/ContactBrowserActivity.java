@@ -383,7 +383,8 @@ public class ContactBrowserActivity extends Activity
                 fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
-                fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
+                fragment.setDirectorySearchEnabled(
+                        mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled());
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
                 fragment.setSelectionVisible(mTwoPaneLayout);
                 return fragment;

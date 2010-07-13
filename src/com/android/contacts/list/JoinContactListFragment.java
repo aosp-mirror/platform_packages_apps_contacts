@@ -19,6 +19,7 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 
 import android.app.Activity;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentUris;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -42,6 +43,51 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     private long mTargetContactId;
     private boolean mAllContactsListShown = false;
 
+    private LoaderCallbacks<Cursor> mLoaderCallbacks = new LoaderCallbacks<Cursor>() {
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            switch (id) {
+                case DISPLAY_NAME_LOADER: {
+                    // Loader for the display name of the target contact
+                    return new CursorLoader(getActivity(),
+                            ContentUris.withAppendedId(Contacts.CONTENT_URI, mTargetContactId),
+                            new String[] { Contacts.DISPLAY_NAME }, null, null, null);
+                }
+                case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
+                    JoinContactLoader loader = new JoinContactLoader(getActivity());
+                    JoinContactListAdapter adapter = getAdapter();
+                    if (adapter != null) {
+                        adapter.configureLoader(loader, 0);
+                    }
+                    return loader;
+                }
+            }
+            throw new IllegalArgumentException("No loader for ID=" + id);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            switch (loader.getId()) {
+                case DISPLAY_NAME_LOADER: {
+                    if (data != null && data.moveToFirst()) {
+                        showTargetContactName(data.getString(0));
+                    }
+                    break;
+                }
+                case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
+                    setAizyEnabled(mAllContactsListShown);
+
+                    JoinContactListAdapter adapter = getAdapter();
+                    Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
+                    adapter.setSuggestionsCursor(suggestionsCursor);
+                    onPartitionLoaded(JoinContactListAdapter.PARTITION_ALL_CONTACTS, data);
+                    break;
+                }
+            }
+        }
+    };
+
     public JoinContactListFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
@@ -53,57 +99,20 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     }
 
     @Override
-    protected void onInitializeLoaders() {
-        super.onInitializeLoaders();
-        startLoading(DISPLAY_NAME_LOADER, null);
+    public void onStart() {
+        super.onStart();
+        getLoaderManager().initLoader(DISPLAY_NAME_LOADER, null, mLoaderCallbacks);
+        getLoaderManager().initLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
+                null, mLoaderCallbacks);
     }
 
+    // TODO Remove this method when ContactEntryListFragment is converted to LoaderManager
     @Override
     public Loader<Cursor> startLoading(int id, Bundle args) {
-
-        // The first two partitions don't require loaders
-        if (id == JoinContactListAdapter.PARTITION_SUGGESTIONS ||
-                id == JoinContactListAdapter.PARTITION_SHOW_ALL_CONTACTS) {
-            return null;
-        }
-
-        return super.startLoading(id, args);
+        return null;
     }
 
-    @Override
-    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if (id == DISPLAY_NAME_LOADER) {
-            // Loader for the display name of the target contact
-            return new CursorLoader(getActivity(),
-                    ContentUris.withAppendedId(Contacts.CONTENT_URI, mTargetContactId),
-                    new String[] {Contacts.DISPLAY_NAME}, null, null, null);
-        } else if (id == JoinContactListAdapter.PARTITION_ALL_CONTACTS) {
-            JoinContactLoader loader = new JoinContactLoader(getActivity());
-            JoinContactListAdapter adapter = getAdapter();
-            if (adapter != null) {
-                adapter.configureLoader(loader, 0);
-            }
-            return loader;
-        } else {
-            throw new IllegalArgumentException("No loader for ID=" + id);
-        }
-    }
-
-    @Override
-    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (loader.getId() == DISPLAY_NAME_LOADER) {
-            if (data != null && data.moveToFirst()) {
-                showTargetContactName(data.getString(0));
-            }
-        } else {
-            JoinContactListAdapter adapter = getAdapter();
-            Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
-            adapter.setSuggestionsCursor(suggestionsCursor);
-            super.onLoadFinished(loader, data);
-        }
-    }
-
-     private void showTargetContactName(String displayName) {
+    private void showTargetContactName(String displayName) {
         Activity activity = getActivity();
         TextView blurbView = (TextView)activity.findViewById(R.id.join_contact_blurb);
         String blurb = activity.getString(R.string.blurbJoinContactDataWith, displayName);
@@ -138,16 +147,12 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         int partition = adapter.getPartitionForPosition(position);
         if (partition == JoinContactListAdapter.PARTITION_SHOW_ALL_CONTACTS) {
             mAllContactsListShown = true;
-            reloadData();
+            configureAdapter();
+            getLoaderManager().restartLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
+                    null, mLoaderCallbacks);
         } else {
             mListener.onPickContactAction(adapter.getContactUri(position));
         }
-    }
-
-    @Override
-    protected void reloadData() {
-        setAizyEnabled(mAllContactsListShown);
-        super.reloadData();
     }
 
     @Override
