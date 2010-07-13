@@ -101,13 +101,11 @@ public class ImportProgressNotifier implements VCardEntryHandler {
                 when);
 
         final PendingIntent pendingIntent =
-            PendingIntent.getActivity(context, 0,
-                    new Intent(context, ContactBrowserActivity.class),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.getActivity(context, 0,
+                        new Intent(context, ContactBrowserActivity.class),
+                        PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // notification.contentIntent = pendingIntent;
         notification.setLatestEventInfo(context, title, description, pendingIntent);
-
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 

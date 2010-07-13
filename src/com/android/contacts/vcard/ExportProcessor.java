@@ -18,7 +18,6 @@ package com.android.contacts.vcard;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +25,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactBrowserActivity;
@@ -41,7 +39,7 @@ import java.util.Queue;
 public class ExportProcessor {
     private static final String LOG_TAG = "ExportProcessor";
 
-    private final Service mService;
+    private final Context mContext;
 
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
@@ -52,10 +50,8 @@ public class ExportProcessor {
     private final Queue<ExportRequest> mPendingRequests =
         new LinkedList<ExportRequest>();
 
-    private RemoteViews mProgressViews;
-
-    public ExportProcessor(Service service) {
-        mService = service;
+    public ExportProcessor(Context context) {
+        mContext = context;
     }
 
     /* package */ ThreadStarter mThreadStarter = new ThreadStarter() {
@@ -73,9 +69,9 @@ public class ExportProcessor {
         if (mResolver == null) {
             // Service object may not ready at the construction time
             // (e.g. ContentResolver may be null).
-            mResolver = mService.getContentResolver();
+            mResolver = mContext.getContentResolver();
             mNotificationManager =
-                    (NotificationManager)mService.getSystemService(Context.NOTIFICATION_SERVICE);
+                    (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
         final boolean needThreadStart;
@@ -113,7 +109,7 @@ public class ExportProcessor {
                 handleOneRequest(parameter);
             }
 
-            doFinishNotification(mService.getString(R.string.exporting_vcard_finished_title),
+            doFinishNotification(mContext.getString(R.string.exporting_vcard_finished_title),
                     "");
         } finally {
             // Not thread safe. Just in case.
@@ -134,7 +130,7 @@ public class ExportProcessor {
                 // Need concise title.
 
                 final String errorReason =
-                    mService.getString(R.string.fail_reason_could_not_open_file,
+                    mContext.getString(R.string.fail_reason_could_not_open_file,
                             uri, e.getMessage());
                 shouldCallFinish = false;
                 doFinishNotification(errorReason, "");
@@ -144,12 +140,12 @@ public class ExportProcessor {
             final int vcardType;
             if (TextUtils.isEmpty(exportType)) {
                 vcardType = VCardConfig.getVCardTypeFromString(
-                        mService.getString(R.string.config_export_vcard_type));
+                        mContext.getString(R.string.config_export_vcard_type));
             } else {
                 vcardType = VCardConfig.getVCardTypeFromString(exportType);
             }
 
-            composer = new VCardComposer(mService, vcardType, true);
+            composer = new VCardComposer(mContext, vcardType, true);
 
             // for test
             // int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
@@ -164,7 +160,7 @@ public class ExportProcessor {
                 final String translatedErrorReason =
                         translateComposerError(errorReason);
                 final String title =
-                        mService.getString(R.string.fail_reason_could_not_initialize_exporter,
+                        mContext.getString(R.string.fail_reason_could_not_initialize_exporter,
                                 translatedErrorReason);
                 doFinishNotification(title, "");
                 return;
@@ -173,7 +169,7 @@ public class ExportProcessor {
             final int total = composer.getCount();
             if (total == 0) {
                 final String title =
-                        mService.getString(R.string.fail_reason_no_exportable_contact);
+                        mContext.getString(R.string.fail_reason_no_exportable_contact);
                 doFinishNotification(title, "");
                 return;
             }
@@ -189,7 +185,7 @@ public class ExportProcessor {
                     final String translatedErrorReason =
                             translateComposerError(errorReason);
                     final String title =
-                            mService.getString(R.string.fail_reason_error_occurred_during_export,
+                            mContext.getString(R.string.fail_reason_error_occurred_during_export,
                                     translatedErrorReason);
                     doFinishNotification(title, "");
                     return;
@@ -205,7 +201,7 @@ public class ExportProcessor {
     }
 
     private String translateComposerError(String errorMessage) {
-        final Resources resources = mService.getResources();
+        final Resources resources = mContext.getResources();
         if (VCardComposer.FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO.equals(errorMessage)) {
             return resources.getString(R.string.composer_failed_to_get_database_infomation);
         } else if (VCardComposer.FAILURE_REASON_NO_ENTRY.equals(errorMessage)) {
@@ -218,10 +214,11 @@ public class ExportProcessor {
     }
 
     private void doProgressNotification(Uri uri, int total, int current) {
-        final String title = mService.getString(R.string.exporting_contact_list_title);
-        final String message =
-                mService.getString(R.string.exporting_contact_list_message, uri);
+        final String title = mContext.getString(R.string.exporting_contact_list_title);
+        final String description =
+                mContext.getString(R.string.exporting_contact_list_message, uri);
 
+        /* TODO: fix this
         final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
         remoteViews.setTextViewText(R.id.status_description, message);
@@ -239,7 +236,21 @@ public class ExportProcessor {
         notification.contentView = remoteViews;
         notification.contentIntent =
                 PendingIntent.getActivity(mService, 0,
-                        new Intent(mService, ContactBrowserActivity.class), 0);
+                        new Intent(mService, ContactBrowserActivity.class), 0);*/
+
+        final long when = System.currentTimeMillis();
+        final Notification notification = new Notification(
+                android.R.drawable.stat_sys_upload,
+                description,
+                when);
+
+        final Context context = mContext.getApplicationContext();
+        final PendingIntent pendingIntent =
+                PendingIntent.getActivity(context, 0,
+                        new Intent(context, ContactBrowserActivity.class),
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notification.setLatestEventInfo(context, title, description, pendingIntent);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 
@@ -247,10 +258,10 @@ public class ExportProcessor {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_upload_done;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.setLatestEventInfo(mService, title, message, null);
-        final Intent intent = new Intent(mService, ContactBrowserActivity.class);
+        notification.setLatestEventInfo(mContext, title, message, null);
+        final Intent intent = new Intent(mContext, ContactBrowserActivity.class);
         notification.contentIntent =
-                PendingIntent.getActivity(mService, 0, intent, 0);
+                PendingIntent.getActivity(mContext, 0, intent, 0);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 }
