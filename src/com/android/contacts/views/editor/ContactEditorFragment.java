@@ -1017,6 +1017,9 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
             int value;
             if (!skipAccountTypeCheck) {
+                if (oneSource.accountType == null) {
+                    return 1;
+                }
                 value = oneSource.accountType.compareTo(twoSource.accountType);
                 if (value != 0) {
                     return value;
