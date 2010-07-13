@@ -17,6 +17,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -40,6 +41,29 @@ public abstract class ContactBrowseListFragment extends
 
     private OnContactBrowserActionListener mListener;
 
+    private LoaderCallbacks<Cursor> mIdLoaderCallbacks = new LoaderCallbacks<Cursor>() {
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            return new CursorLoader(getContext(),
+                    mSelectedContactUri,
+                    new String[] { Contacts._ID },
+                    null,
+                    null,
+                    null);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            long selectedId = ListView.INVALID_ROW_ID;
+            if (data.moveToFirst()) {
+                selectedId = data.getLong(0);
+            }
+            getAdapter().setSelectedContactId(selectedId);
+            return;
+        }
+    };
+
     @Override
     public void restoreSavedState(Bundle savedState) {
         super.restoreSavedState(savedState);
@@ -61,37 +85,9 @@ public abstract class ContactBrowseListFragment extends
     public void onStart() {
         super.onStart();
         if (mSelectedContactUri != null && isSelectionVisible()) {
-            startLoading(SELECTED_ID_LOADER, null);
+            getLoaderManager().initLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
         }
    }
-
-    @Override
-    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if (id == SELECTED_ID_LOADER) {
-            return new CursorLoader(getContext(),
-                    mSelectedContactUri,
-                    new String[] { Contacts._ID },
-                    null,
-                    null,
-                    null);
-        }
-
-        return super.onCreateLoader(id, args);
-    }
-
-    @Override
-    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (loader.getId() == SELECTED_ID_LOADER) {
-            long selectedId = ListView.INVALID_ROW_ID;
-            if (data.moveToFirst()) {
-                selectedId = data.getLong(0);
-            }
-            getAdapter().setSelectedContactId(selectedId);
-            return;
-        }
-
-        super.onLoadFinished(loader, data);
-    }
 
     @Override
     protected void prepareEmptyView() {
@@ -121,13 +117,7 @@ public abstract class ContactBrowseListFragment extends
                 || (mSelectedContactUri != null && !mSelectedContactUri.equals(uri))) {
             this.mSelectedContactUri = uri;
             if (mSelectedContactUri != null) {
-                CursorLoader loader = (CursorLoader)getLoader(SELECTED_ID_LOADER);
-                if (loader == null) {
-                    startLoading(SELECTED_ID_LOADER, null);
-                } else {
-                    loader.setUri(mSelectedContactUri);
-                    loader.forceLoad();
-                }
+                getLoaderManager().restartLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
             }
         }
     }
