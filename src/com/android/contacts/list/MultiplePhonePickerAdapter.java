@@ -229,7 +229,7 @@ public class MultiplePhonePickerAdapter extends PhoneNumberListAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
+    public int getItemViewTypeCount() {
         return 2;
     }
 

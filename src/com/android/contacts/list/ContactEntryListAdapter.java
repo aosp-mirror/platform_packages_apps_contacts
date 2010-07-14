@@ -31,6 +31,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -62,6 +63,25 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mEmptyListEnabled = true;
 
     private boolean mSelectionVisible;
+
+    /**
+     * An item view is displayed differently depending on whether it is placed
+     * at the beginning, middle or end of a section. It also needs to know the
+     * section header when it is at the beginning of a section. This object
+     * captures all this configuration.
+     */
+    public static final class Placement {
+        private int position = ListView.INVALID_POSITION;
+        public boolean firstInSection;
+        public boolean lastInSection;
+        public String sectionHeader;
+
+        public void invalidate() {
+            position = ListView.INVALID_POSITION;
+        }
+    }
+
+    private Placement mPlacementCache = new Placement();
 
     public ContactEntryListAdapter(Context context) {
         super(context, R.layout.list_section, R.id.header_text);
@@ -256,6 +276,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     @Override
     public void changeCursor(int partitionIndex, Cursor cursor) {
+        mPlacementCache.invalidate();
+
         Partition partition = getPartition(partitionIndex);
         if (partition instanceof DirectoryPartition) {
             ((DirectoryPartition)partition).setLoading(false);
@@ -289,6 +311,54 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             setIndexer(new ContactsSectionIndexer(sections, counts));
         } else {
             setIndexer(null);
+        }
+    }
+
+    /**
+     * Computes the item's placement within its section and populates the {@code placement}
+     * object accordingly.  Please note that the returned object is volatile and should be
+     * copied if the result needs to be used later.
+     */
+    public Placement getItemPlacementInSection(int position) {
+        if (mPlacementCache.position == position) {
+            return mPlacementCache;
+        }
+
+        mPlacementCache.position = position;
+        if (isSectionHeaderDisplayEnabled()) {
+            int section = getSectionForPosition(position);
+            if (section != -1 && getPositionForSection(section) == position) {
+                mPlacementCache.firstInSection = true;
+                mPlacementCache.sectionHeader = (String)getSections()[section];
+            } else {
+                mPlacementCache.firstInSection = false;
+                mPlacementCache.sectionHeader = null;
+            }
+
+            mPlacementCache.lastInSection = (getPositionForSection(section + 1) - 1 == position);
+        } else {
+            mPlacementCache.firstInSection = false;
+            mPlacementCache.lastInSection = false;
+            mPlacementCache.sectionHeader = null;
+        }
+        return mPlacementCache;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        // We need a separate view type for each item type, plus another one for
+        // each type with header, plus one for "other".
+        return super.getItemViewTypeCount() * 2 + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        int type = super.getItemViewType(position);
+        if (isSectionHeaderDisplayEnabled()) {
+            Placement placement = getItemPlacementInSection(position);
+            return placement.firstInSection ? type : getItemViewTypeCount() + type;
+        } else {
+            return type;
         }
     }
 

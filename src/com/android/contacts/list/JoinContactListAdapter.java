@@ -141,8 +141,8 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return super.getViewTypeCount() + 1;
+    public int getItemViewTypeCount() {
+        return super.getItemViewTypeCount() + 1;
     }
 
     @Override
