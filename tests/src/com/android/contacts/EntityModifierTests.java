@@ -23,7 +23,7 @@ import static android.content.ContentProviderOperation.TYPE_UPDATE;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
@@ -376,23 +376,23 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but values are spaces
-        final EntityDelta state = EntitySetTests.buildBeforeEntity(TEST_ID, VER_FIRST);
+        final EntityDelta state = EntityDeltaListTests.buildBeforeEntity(TEST_ID, VER_FIRST);
         final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
         values.put(Phone.NUMBER, "   ");
 
         // Build diff, expecting insert for data row and update enforcement
-        EntitySetTests.assertDiffPattern(state,
-                EntitySetTests.buildAssertVersion(VER_FIRST),
-                EntitySetTests.buildUpdateAggregationSuspended(),
-                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntitySetTests.buildDataInsert(values, TEST_ID)),
-                EntitySetTests.buildUpdateAggregationDefault());
+        EntityDeltaListTests.assertDiffPattern(state,
+                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
+                EntityDeltaListTests.buildUpdateAggregationSuspended(),
+                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
+                EntityDeltaListTests.buildUpdateAggregationDefault());
 
         // Trim empty rows and try again, expecting delete of overall contact
         EntityModifier.trimEmpty(state, source);
-        EntitySetTests.assertDiffPattern(state,
-                EntitySetTests.buildAssertVersion(VER_FIRST),
-                EntitySetTests.buildDelete(RawContacts.CONTENT_URI));
+        EntityDeltaListTests.assertDiffPattern(state,
+                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
+                EntityDeltaListTests.buildDelete(RawContacts.CONTENT_URI));
     }
 
     public void testTrimLeaveValid() {
@@ -401,26 +401,26 @@ public class EntityModifierTests extends AndroidTestCase {
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values with valid number
-        final EntityDelta state = EntitySetTests.buildBeforeEntity(TEST_ID, VER_FIRST);
+        final EntityDelta state = EntityDeltaListTests.buildBeforeEntity(TEST_ID, VER_FIRST);
         final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
         values.put(Phone.NUMBER, TEST_PHONE);
 
         // Build diff, expecting insert for data row and update enforcement
-        EntitySetTests.assertDiffPattern(state,
-                EntitySetTests.buildAssertVersion(VER_FIRST),
-                EntitySetTests.buildUpdateAggregationSuspended(),
-                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntitySetTests.buildDataInsert(values, TEST_ID)),
-                EntitySetTests.buildUpdateAggregationDefault());
+        EntityDeltaListTests.assertDiffPattern(state,
+                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
+                EntityDeltaListTests.buildUpdateAggregationSuspended(),
+                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
+                EntityDeltaListTests.buildUpdateAggregationDefault());
 
         // Trim empty rows and try again, expecting no differences
         EntityModifier.trimEmpty(state, source);
-        EntitySetTests.assertDiffPattern(state,
-                EntitySetTests.buildAssertVersion(VER_FIRST),
-                EntitySetTests.buildUpdateAggregationSuspended(),
-                EntitySetTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntitySetTests.buildDataInsert(values, TEST_ID)),
-                EntitySetTests.buildUpdateAggregationDefault());
+        EntityDeltaListTests.assertDiffPattern(state,
+                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
+                EntityDeltaListTests.buildUpdateAggregationSuspended(),
+                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
+                EntityDeltaListTests.buildUpdateAggregationDefault());
     }
 
     public void testTrimEmptyUntouched() {
@@ -507,7 +507,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
         // Try creating a contact without any child entries
         final EntityDelta state = getEntity(null);
-        final EntitySet set = EntitySet.fromSingle(state);
+        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
 
         // Build diff, expecting single insert
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -535,7 +535,7 @@ public class EntityModifierTests extends AndroidTestCase {
         // Try creating a contact with single empty entry
         final EntityDelta state = getEntity(null);
         final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
-        final EntitySet set = EntitySet.fromSingle(state);
+        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
 
         // Build diff, expecting two insert operations
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -579,7 +579,7 @@ public class EntityModifierTests extends AndroidTestCase {
         second.put(Phone.NUMBER, TEST_PHONE);
 
         final EntityDelta state = getEntity(TEST_ID, first, second);
-        final EntitySet set = EntitySet.fromSingle(state);
+        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -644,7 +644,7 @@ public class EntityModifierTests extends AndroidTestCase {
         first.put(Phone.NUMBER, TEST_PHONE);
 
         final EntityDelta state = getEntity(TEST_ID, first);
-        final EntitySet set = EntitySet.fromSingle(state);
+        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();

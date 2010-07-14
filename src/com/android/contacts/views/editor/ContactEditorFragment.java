@@ -22,7 +22,7 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.EditType;
@@ -40,7 +40,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.LoaderManagingFragment;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
@@ -84,19 +83,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-
-//Here are the open TODOs for the Fragment transition
-//TODO How to save data? Service?
-//TODO Do account-list lookup always in a thread
-//TODO Cleanup state handling (orientation changes etc).
-//TODO Cleanup the load function. It can currenlty also do insert, which is awkward
-//TODO Watch for background changes...How?
 
 public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.Result> {
 
@@ -144,7 +135,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     private long mContactIdForJoin;
 
     private LinearLayout mContent;
-    private EntitySet mState;
+    private EntityDeltaList mState;
 
     private ViewIdGenerator mViewIdGenerator;
 
@@ -228,7 +219,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             mViewIdGenerator = new ViewIdGenerator();
         } else {
             // Read modifications from instance
-            mState = savedState.<EntitySet> getParcelable(KEY_EDIT_STATE);
+            mState = savedState.<EntityDeltaList> getParcelable(KEY_EDIT_STATE);
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
@@ -260,7 +251,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     }
 
     public void setData(ContactLoader.Result data) {
-        mState = EntitySet.fromIterator(data.getEntities().iterator());
+        mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
         // TODO: Merge in Intent parameters can only be done on the first load.
         // The behaviour for subsequent loads is probably broken, so fix this
         final boolean hasExtras = mIntentExtras != null && mIntentExtras.size() > 0;
@@ -327,7 +318,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         if (mState == null) {
             // Create state if none exists yet
-            mState = EntitySet.fromSingle(insert);
+            mState = EntityDeltaList.fromSingle(insert);
         } else {
             // Add contact onto end of existing state
             mState.add(insert);
@@ -775,6 +766,14 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         return true;
     }
 
+    /**
+     * Asynchonously saves the changes made by the user. This can be called even if nothing
+     * has changed
+     */
+    public void save() {
+        doSaveAction(SAVE_MODE_DEFAULT);
+    }
+
     private boolean doRevertAction() {
         if (mListener != null) mListener.closeAfterRevert();
 
@@ -1173,14 +1172,13 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
      * persisting in cases where the system wants to reclaim our process.
      */
     public static class PersistTask extends
-            WeakAsyncTask<EntitySet, Void, Integer, ContactEditorFragment> {
+            WeakAsyncTask<EntityDeltaList, Void, Integer, ContactEditorFragment> {
         private static final int PERSIST_TRIES = 3;
 
         private static final int RESULT_UNCHANGED = 0;
         private static final int RESULT_SUCCESS = 1;
         private static final int RESULT_FAILURE = 2;
 
-        private WeakReference<ProgressDialog> mProgress;
         private final Context mContext;
 
         private int mSaveMode;
@@ -1195,9 +1193,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(ContactEditorFragment target) {
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(mContext, null,
-                    mContext.getText(R.string.savingContact)));
-
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
             mContext.startService(new Intent(mContext, EmptyService.class));
@@ -1205,10 +1200,10 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
         /** {@inheritDoc} */
         @Override
-        protected Integer doInBackground(ContactEditorFragment target, EntitySet... params) {
+        protected Integer doInBackground(ContactEditorFragment target, EntityDeltaList... params) {
             final ContentResolver resolver = mContext.getContentResolver();
 
-            EntitySet state = params[0];
+            EntityDeltaList state = params[0];
 
             // Trim any empty fields, and RawContacts, before persisting
             final Sources sources = Sources.getInstance(mContext);
@@ -1246,16 +1241,16 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
                 } catch (OperationApplicationException e) {
                     // Version consistency failed, re-parent change and try again
                     Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
-                    final EntitySet newState = EntitySet.fromQuery(resolver,
+                    final EntityDeltaList newState = EntityDeltaList.fromQuery(resolver,
                             target.mQuerySelection, target.mQuerySelectionArgs, null);
-                    state = EntitySet.mergeAfter(newState, state);
+                    state = EntityDeltaList.mergeAfter(newState, state);
                 }
             }
 
             return result;
         }
 
-        private long getRawContactId(EntitySet state,
+        private long getRawContactId(EntityDeltaList state,
                 final ArrayList<ContentProviderOperation> diff,
                 final ContentProviderResult[] results) {
             long rawContactId = state.findRawContactId();
@@ -1279,15 +1274,11 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         /** {@inheritDoc} */
         @Override
         protected void onPostExecute(ContactEditorFragment target, Integer result) {
-            final ProgressDialog progress = mProgress.get();
-
             if (result == RESULT_SUCCESS && mSaveMode != SAVE_MODE_JOIN) {
                 Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
             } else if (result == RESULT_FAILURE) {
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
-
-            if (progress != null) progress.dismiss();
 
             // Stop the service that was protecting us
             mContext.stopService(new Intent(mContext, EmptyService.class));

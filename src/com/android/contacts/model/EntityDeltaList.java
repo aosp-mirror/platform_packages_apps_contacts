@@ -38,30 +38,30 @@ import java.util.Iterator;
 /**
  * Container for multiple {@link EntityDelta} objects, usually when editing
  * together as an entire aggregate. Provides convenience methods for parceling
- * and applying another {@link EntitySet} over it.
+ * and applying another {@link EntityDeltaList} over it.
  */
-public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
+public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelable {
     private boolean mSplitRawContacts;
 
-    private EntitySet() {
+    private EntityDeltaList() {
     }
 
     /**
-     * Create an {@link EntitySet} that contains the given {@link EntityDelta},
+     * Create an {@link EntityDeltaList} that contains the given {@link EntityDelta},
      * usually when inserting a new {@link Contacts} entry.
      */
-    public static EntitySet fromSingle(EntityDelta delta) {
-        final EntitySet state = new EntitySet();
+    public static EntityDeltaList fromSingle(EntityDelta delta) {
+        final EntityDeltaList state = new EntityDeltaList();
         state.add(delta);
         return state;
     }
 
     /**
-     * Create an {@link EntitySet} based on {@link Contacts} specified by the
+     * Create an {@link EntityDeltaList} based on {@link Contacts} specified by the
      * given query parameters. This closes the {@link EntityIterator} when
      * finished, so it doesn't subscribe to updates.
      */
-    public static EntitySet fromQuery(ContentResolver resolver, String selection,
+    public static EntityDeltaList fromQuery(ContentResolver resolver, String selection,
             String[] selectionArgs, String sortOrder) {
         final EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
                 RawContactsEntity.CONTENT_URI, null, selection, selectionArgs,
@@ -74,10 +74,11 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
     }
 
     /**
-     * Create an {@link EntitySet} that contains the entities of the Iterator as before values.
+     * Create an {@link EntityDeltaList} that contains the entities of the Iterator as before
+     * values.
      */
-    public static EntitySet fromIterator(Iterator<Entity> iterator) {
-        final EntitySet state = new EntitySet();
+    public static EntityDeltaList fromIterator(Iterator<Entity> iterator) {
+        final EntityDeltaList state = new EntityDeltaList();
         // Perform background query to pull contact details
         while (iterator.hasNext()) {
             // Read all contacts into local deltas to prepare for edits
@@ -89,12 +90,12 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
     }
 
     /**
-     * Merge the "after" values from the given {@link EntitySet}, discarding any
+     * Merge the "after" values from the given {@link EntityDeltaList}, discarding any
      * previous "after" states. This is typically used when re-parenting user
-     * edits onto an updated {@link EntitySet}.
+     * edits onto an updated {@link EntityDeltaList}.
      */
-    public static EntitySet mergeAfter(EntitySet local, EntitySet remote) {
-        if (local == null) local = new EntitySet();
+    public static EntityDeltaList mergeAfter(EntityDeltaList local, EntityDeltaList remote) {
+        if (local == null) local = new EntityDeltaList();
 
         // For each entity in the remote set, try matching over existing
         for (EntityDelta remoteEntity : remote) {
@@ -161,7 +162,8 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
             } else {
                 // Additional insert case, so point at first insert
                 final Builder builder = beginKeepTogether();
-                builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID1, firstInsertRow);
+                builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID1,
+                        firstInsertRow);
                 builder.withValueBackReference(AggregationExceptions.RAW_CONTACT_ID2, firstBatch);
                 diff.add(builder.build());
             }
@@ -331,15 +333,16 @@ public class EntitySet extends ArrayList<EntityDelta> implements Parcelable {
         }
     }
 
-    public static final Parcelable.Creator<EntitySet> CREATOR = new Parcelable.Creator<EntitySet>() {
-        public EntitySet createFromParcel(Parcel in) {
-            final EntitySet state = new EntitySet();
+    public static final Parcelable.Creator<EntityDeltaList> CREATOR =
+            new Parcelable.Creator<EntityDeltaList>() {
+        public EntityDeltaList createFromParcel(Parcel in) {
+            final EntityDeltaList state = new EntityDeltaList();
             state.readFromParcel(in);
             return state;
         }
 
-        public EntitySet[] newArray(int size) {
-            return new EntitySet[size];
+        public EntityDeltaList[] newArray(int size) {
+            return new EntityDeltaList[size];
         }
     };
 }

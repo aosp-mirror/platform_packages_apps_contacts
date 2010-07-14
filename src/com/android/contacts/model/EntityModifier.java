@@ -348,11 +348,11 @@ public class EntityModifier {
 
     /**
      * Processing to trim any empty {@link ValuesDelta} and {@link EntityDelta}
-     * from the given {@link EntitySet}, assuming the given {@link Sources}
+     * from the given {@link EntityDeltaList}, assuming the given {@link Sources}
      * dictates the structure for various fields. This method ignores rows not
      * described by the {@link ContactsSource}.
      */
-    public static void trimEmpty(EntitySet set, Sources sources) {
+    public static void trimEmpty(EntityDeltaList set, Sources sources) {
         for (EntityDelta state : set) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final ContactsSource source = sources.getInflatedSource(accountType,

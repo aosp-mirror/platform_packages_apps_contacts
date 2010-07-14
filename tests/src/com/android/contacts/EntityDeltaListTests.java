@@ -25,7 +25,7 @@ import com.android.contacts.EntityModifierTests.MockContactsSource;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntitySet;
+import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
 
@@ -46,12 +46,12 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
- * Tests for {@link EntitySet} which focus on "diff" operations that should
+ * Tests for {@link EntityDeltaList} which focus on "diff" operations that should
  * create {@link AggregationExceptions} in certain cases.
  */
 @LargeTest
-public class EntitySetTests extends AndroidTestCase {
-    public static final String TAG = "EntitySetTests";
+public class EntityDeltaListTests extends AndroidTestCase {
+    public static final String TAG = "EntityDeltaListTests";
 
     private static final long CONTACT_FIRST = 1;
     private static final long CONTACT_SECOND = 2;
@@ -71,7 +71,7 @@ public class EntitySetTests extends AndroidTestCase {
     public static final String TEST_PHONE = "555-1212";
     public static final String TEST_ACCOUNT = "org.example.test";
 
-    public EntitySetTests() {
+    public EntityDeltaListTests() {
         super();
     }
 
@@ -112,8 +112,8 @@ public class EntitySetTests extends AndroidTestCase {
         return new EntityDelta(values);
     }
 
-    static EntitySet buildSet(EntityDelta... deltas) {
-        final EntitySet set = EntitySet.fromSingle(deltas[0]);
+    static EntityDeltaList buildSet(EntityDelta... deltas) {
+        final EntityDeltaList set = EntityDeltaList.fromSingle(deltas[0]);
         for (int i = 1; i < deltas.length; i++) {
             set.add(deltas[i]);
         }
@@ -166,12 +166,12 @@ public class EntitySetTests extends AndroidTestCase {
         return values;
     }
 
-    static void insertPhone(EntitySet set, long rawContactId, ContentValues values) {
+    static void insertPhone(EntityDeltaList set, long rawContactId, ContentValues values) {
         final EntityDelta match = set.getByRawContactId(rawContactId);
         match.addEntry(ValuesDelta.fromAfter(values));
     }
 
-    static ValuesDelta getPhone(EntitySet set, long rawContactId, long dataId) {
+    static ValuesDelta getPhone(EntityDeltaList set, long rawContactId, long dataId) {
         final EntityDelta match = set.getByRawContactId(rawContactId);
         return match.getEntry(dataId);
     }
@@ -183,7 +183,7 @@ public class EntitySetTests extends AndroidTestCase {
         assertDiffPattern(diff, pattern);
     }
 
-    static void assertDiffPattern(EntitySet set, ContentProviderOperation... pattern) {
+    static void assertDiffPattern(EntityDeltaList set, ContentProviderOperation... pattern) {
         assertDiffPattern(set.buildDiff(), pattern);
     }
 
@@ -283,7 +283,7 @@ public class EntitySetTests extends AndroidTestCase {
         return null;
     }
 
-    static Long getVersion(EntitySet set, Long rawContactId) {
+    static Long getVersion(EntityDeltaList set, Long rawContactId) {
         return set.getByRawContactId(rawContactId).getValues().getAsLong(RawContacts.VERSION);
     }
 
@@ -304,7 +304,7 @@ public class EntitySetTests extends AndroidTestCase {
 
     public void testInsert() {
         final EntityDelta insert = getInsert();
-        final EntitySet set = buildSet(insert);
+        final EntityDeltaList set = buildSet(insert);
 
         // Inserting single shouldn't create rules
         final ArrayList<ContentProviderOperation> diff = set.buildDiff();
@@ -315,7 +315,7 @@ public class EntitySetTests extends AndroidTestCase {
     public void testUpdateUpdate() {
         final EntityDelta updateFirst = getUpdate(CONTACT_FIRST);
         final EntityDelta updateSecond = getUpdate(CONTACT_SECOND);
-        final EntitySet set = buildSet(updateFirst, updateSecond);
+        final EntityDeltaList set = buildSet(updateFirst, updateSecond);
 
         // Updating two existing shouldn't create rules
         final ArrayList<ContentProviderOperation> diff = set.buildDiff();
@@ -326,7 +326,7 @@ public class EntitySetTests extends AndroidTestCase {
     public void testUpdateInsert() {
         final EntityDelta update = getUpdate(CONTACT_FIRST);
         final EntityDelta insert = getInsert();
-        final EntitySet set = buildSet(update, insert);
+        final EntityDeltaList set = buildSet(update, insert);
 
         // New insert should only create one rule
         final ArrayList<ContentProviderOperation> diff = set.buildDiff();
@@ -338,7 +338,7 @@ public class EntitySetTests extends AndroidTestCase {
         final EntityDelta insertFirst = getInsert();
         final EntityDelta update = getUpdate(CONTACT_FIRST);
         final EntityDelta insertSecond = getInsert();
-        final EntitySet set = buildSet(insertFirst, update, insertSecond);
+        final EntityDeltaList set = buildSet(insertFirst, update, insertSecond);
 
         // Two inserts should create two rules to bind against single existing
         final ArrayList<ContentProviderOperation> diff = set.buildDiff();
@@ -350,7 +350,7 @@ public class EntitySetTests extends AndroidTestCase {
         final EntityDelta insertFirst = getInsert();
         final EntityDelta insertSecond = getInsert();
         final EntityDelta insertThird = getInsert();
-        final EntitySet set = buildSet(insertFirst, insertSecond, insertThird);
+        final EntityDeltaList set = buildSet(insertFirst, insertSecond, insertThird);
 
         // Three new inserts should create only two binding rules
         final ArrayList<ContentProviderOperation> diff = set.buildDiff();
@@ -359,20 +359,20 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
         // Merge in second version, verify they match
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertEquals("Unexpected change when merging", second, merged);
     }
 
     public void testMergeDataLocalUpdateRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
         // Change the local number to trigger update
@@ -386,7 +386,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildUpdateAggregationDefault());
 
         // Merge in the second version, verify diff matches
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildUpdateAggregationSuspended(),
@@ -395,9 +395,9 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataLocalUpdateRemoteDelete() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_GREEN)));
 
         // Change the local number to trigger update
@@ -412,7 +412,7 @@ public class EntitySetTests extends AndroidTestCase {
 
         // Merge in the second version, verify that our update changed to
         // insert, since RED was deleted on remote side
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildUpdateAggregationSuspended(),
@@ -421,9 +421,9 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataLocalDeleteRemoteUpdate() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED, TEST_PHONE)));
 
         // Delete phone locally
@@ -437,7 +437,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildUpdateAggregationDefault());
 
         // Merge in the second version, verify that our delete remains
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildUpdateAggregationSuspended(),
@@ -446,9 +446,9 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeDataLocalInsertRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED), buildPhone(PHONE_GREEN)));
 
         // Insert new phone locally
@@ -461,7 +461,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildUpdateAggregationDefault());
 
         // Merge in the second version, verify that our insert remains
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildUpdateAggregationSuspended(),
@@ -470,9 +470,9 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeRawContactLocalInsertRemoteInsert() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED)), buildBeforeEntity(CONTACT_MARY, VER_SECOND,
                 buildPhone(PHONE_RED)));
 
@@ -490,7 +490,7 @@ public class EntitySetTests extends AndroidTestCase {
                 buildUpdateAggregationKeepTogether(CONTACT_BOB));
 
         // Merge in the second version, verify that our insert remains
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildAssertVersion(VER_SECOND),
@@ -501,10 +501,10 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeRawContactLocalDeleteRemoteDelete() {
-        final EntitySet first = buildSet(
+        final EntityDeltaList first = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)),
                 buildBeforeEntity(CONTACT_MARY, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(
+        final EntityDeltaList second = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)));
 
         // Remove contact locally
@@ -515,15 +515,15 @@ public class EntitySetTests extends AndroidTestCase {
                 buildDelete(RawContacts.CONTENT_URI));
 
         // Merge in the second version, verify that our delete isn't needed
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged);
     }
 
     public void testMergeRawContactLocalUpdateRemoteDelete() {
-        final EntitySet first = buildSet(
+        final EntityDeltaList first = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_FIRST, buildPhone(PHONE_RED)),
                 buildBeforeEntity(CONTACT_MARY, VER_FIRST, buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(
+        final EntityDeltaList second = buildSet(
                 buildBeforeEntity(CONTACT_BOB, VER_SECOND, buildPhone(PHONE_RED)));
 
         // Perform local update
@@ -542,7 +542,7 @@ public class EntitySetTests extends AndroidTestCase {
         contactInsert.put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_SUSPENDED);
 
         // Merge and verify that update turned into insert
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged,
                 buildAssertVersion(VER_SECOND),
                 buildOper(RawContacts.CONTENT_URI, TYPE_INSERT, contactInsert),
@@ -552,22 +552,22 @@ public class EntitySetTests extends AndroidTestCase {
     }
 
     public void testMergeUsesNewVersion() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildPhone(PHONE_RED)));
 
         assertEquals((Long)VER_FIRST, getVersion(first, CONTACT_BOB));
         assertEquals((Long)VER_SECOND, getVersion(second, CONTACT_BOB));
 
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertEquals((Long)VER_SECOND, getVersion(merged, CONTACT_BOB));
     }
 
     public void testMergeAfterEnsureAndTrim() {
-        final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
+        final EntityDeltaList first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildEmail(EMAIL_YELLOW)));
-        final EntitySet second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
+        final EntityDeltaList second = buildSet(buildBeforeEntity(CONTACT_BOB, VER_SECOND,
                 buildEmail(EMAIL_YELLOW)));
 
         // Ensure we have at least one phone
@@ -588,7 +588,7 @@ public class EntitySetTests extends AndroidTestCase {
         assertDiffPattern(first);
 
         // Now re-parent the change, which should remain no-op
-        final EntitySet merged = EntitySet.mergeAfter(second, first);
+        final EntityDeltaList merged = EntityDeltaList.mergeAfter(second, first);
         assertDiffPattern(merged);
     }
 }

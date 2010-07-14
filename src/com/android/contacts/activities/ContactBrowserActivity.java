@@ -299,7 +299,7 @@ public class ContactBrowserActivity extends Activity
         }
 
         // No editor here
-        closeEditorFragment();
+        closeEditorFragment(true);
 
         if (contactLookupUri != null) {
             // Already showing? Nothing to do
@@ -350,8 +350,14 @@ public class ContactBrowserActivity extends Activity
         }
     }
 
-    private void closeEditorFragment() {
+    /**
+     * Closes the editor, if it is currently open
+     * @param save Whether the changes should be saved. This should always be true, unless
+     * this is called from a Revert/Undo button
+     */
+    private void closeEditorFragment(boolean save) {
         if (mEditorFragment != null) {
+            if (save) mEditorFragment.save();
             mEditorFragment.setListener(null);
             mEditorFragment = null;
         }
@@ -367,6 +373,14 @@ public class ContactBrowserActivity extends Activity
         if (!mTwoPaneLayout && mRequest.isSearchMode()) {
             mSearchEditText.requestFocus();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // if anything was left unsaved, save it now
+        closeEditorFragment(true);
     }
 
     /**
@@ -519,22 +533,29 @@ public class ContactBrowserActivity extends Activity
     private class EditorFragmentListener implements ContactEditorFragment.Listener {
         @Override
         public void closeAfterDelete() {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterDelete", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterDelete",
+                    Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void closeAfterRevert() {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterRevert", Toast.LENGTH_LONG).show();
+            final Uri uri = mEditorFragment.getUri();
+            closeEditorFragment(false);
+            setupContactDetailFragment(uri);
         }
 
         @Override
         public void closeAfterSaving(int resultCode, Intent resultIntent) {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterSaving", Toast.LENGTH_LONG).show();
+            // it is already saved, so no need to save again here
+            final Uri uri = mEditorFragment.getUri();
+            closeEditorFragment(false);
+            setupContactDetailFragment(uri);
         }
 
         @Override
         public void closeAfterSplit() {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactBrowserActivity.this, "closeAfterSplit",
+                    Toast.LENGTH_LONG).show();
         }
 
         @Override
