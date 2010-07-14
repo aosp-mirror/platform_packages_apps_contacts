@@ -826,16 +826,6 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        // Only allow edit when we have at least one raw_contact id
-        final boolean hasRawContact = (mRawContactIds.size() > 0);
-        menu.findItem(R.id.menu_edit).setEnabled(hasRawContact);
-
-        // Only allow share when unrestricted contacts available
-        menu.findItem(R.id.menu_share).setEnabled(!mAllRestricted);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {

@@ -19,7 +19,8 @@
         android:id="@+id/menu_done"
         android:alphabeticShortcut="\n"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/menu_done" />
+        android:title="@string/menu_done"
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_discard"
