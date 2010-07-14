@@ -853,4 +853,12 @@ public class ContactListItemView extends ViewGroup {
             requestLayout();
         }
     }
+
+    @Override
+    public void requestLayout() {
+        // We will assume that once measured this will not need to resize
+        // itself, so there is no need to pass the layout request to the parent
+        // view (ListView).
+        forceLayout();
+    }
 }

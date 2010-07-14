@@ -264,14 +264,18 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
         return position;
     }
 
-    /**
-     * Returns the overall number of view types across all partitions. An implementation
-     * of this method needs to ensure that the returned count is consistent with the
-     * values returned by {@link #getItemViewType(int,int)}.
-     */
     @Override
     public int getViewTypeCount() {
-        return 2;
+        return getItemViewTypeCount() + 1;
+    }
+
+    /**
+     * Returns the overall number of item view types across all partitions. An
+     * implementation of this method needs to ensure that the returned count is
+     * consistent with the values returned by {@link #getItemViewType(int,int)}.
+     */
+    public int getItemViewTypeCount() {
+        return 1;
     }
 
     /**
@@ -279,7 +283,7 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
      * specified partition.
      */
     protected int getItemViewType(int partition, int position) {
-        return 0;
+        return 1;
     }
 
     @Override
