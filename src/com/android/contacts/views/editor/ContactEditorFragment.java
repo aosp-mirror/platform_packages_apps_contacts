@@ -61,6 +61,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -140,6 +141,8 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     private ViewIdGenerator mViewIdGenerator;
 
     private boolean mIsInitialized;
+
+    private long mLoaderStartTime;
 
     public ContactEditorFragment() {
     }
@@ -235,6 +238,7 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     @Override
     protected Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+        mLoaderStartTime = SystemClock.elapsedRealtime();
         return new ContactLoader(mContext, mUri);
     }
 
@@ -247,7 +251,13 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             if (mListener != null) mListener.closeBecauseContactNotFound();
             return;
         }
+        final long loaderCurrentTime = SystemClock.elapsedRealtime();
+        Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
+
+        final long setDataStartTime = SystemClock.elapsedRealtime();
         setData(data);
+        final long setDataEndTime = SystemClock.elapsedRealtime();
+        Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
     }
 
     public void setData(ContactLoader.Result data) {
