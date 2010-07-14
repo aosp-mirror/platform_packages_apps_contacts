@@ -19,6 +19,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -36,6 +37,25 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
     private boolean mSectionHeaderDisplayEnabled;
     private View mHeader;
     private TextView mTitleView;
+
+    /**
+     * An item view is displayed differently depending on whether it is placed
+     * at the beginning, middle or end of a section. It also needs to know the
+     * section header when it is at the beginning of a section. This object
+     * captures all this configuration.
+     */
+    public static final class Placement {
+        private int position = ListView.INVALID_POSITION;
+        public boolean firstInSection;
+        public boolean lastInSection;
+        public String sectionHeader;
+
+        public void invalidate() {
+            position = ListView.INVALID_POSITION;
+        }
+    }
+
+    private Placement mPlacementCache = new Placement();
 
     /**
      * Constructor.
@@ -74,6 +94,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
 
     public void setIndexer(SectionIndexer indexer) {
         mIndexer = indexer;
+        mPlacementCache.invalidate();
     }
 
     public Object[] getSections() {
@@ -171,5 +192,35 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
                 listView.setFadingHeader(index, listPosition, isLastInSection);
             }
         }
+    }
+
+    /**
+     * Computes the item's placement within its section and populates the {@code placement}
+     * object accordingly.  Please note that the returned object is volatile and should be
+     * copied if the result needs to be used later.
+     */
+    public Placement getItemPlacementInSection(int position) {
+        if (mPlacementCache.position == position) {
+            return mPlacementCache;
+        }
+
+        mPlacementCache.position = position;
+        if (isSectionHeaderDisplayEnabled()) {
+            int section = getSectionForPosition(position);
+            if (section != -1 && getPositionForSection(section) == position) {
+                mPlacementCache.firstInSection = true;
+                mPlacementCache.sectionHeader = (String)getSections()[section];
+            } else {
+                mPlacementCache.firstInSection = false;
+                mPlacementCache.sectionHeader = null;
+            }
+
+            mPlacementCache.lastInSection = (getPositionForSection(section + 1) - 1 == position);
+        } else {
+            mPlacementCache.firstInSection = false;
+            mPlacementCache.lastInSection = false;
+            mPlacementCache.sectionHeader = null;
+        }
+        return mPlacementCache;
     }
 }
