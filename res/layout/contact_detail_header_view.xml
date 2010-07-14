@@ -88,17 +88,6 @@
         android:visibility="gone"
     />
 
-    <ImageButton
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:visibility="visible"
-        android:contentDescription="@string/description_edit"
-        android:src="@drawable/edit"
-        android:paddingRight="15dip"
-        android:background="#0000" />
-
     <CheckBox
         android:id="@+id/star"
         android:layout_width="wrap_content"

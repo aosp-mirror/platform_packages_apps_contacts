@@ -1057,13 +1057,11 @@ public class ContactDetailFragment extends LoaderManagingFragment<ContactLoader.
 
     private ContactDetailHeaderView.Listener mHeaderViewListener =
             new ContactDetailHeaderView.Listener() {
+        @Override
         public void onDisplayNameClick(View view) {
         }
 
-        public void onEditClicked() {
-            if (mListener != null) mListener.onEditRequested(mLookupUri);
-        }
-
+        @Override
         public void onPhotoClick(View view) {
         }
     };

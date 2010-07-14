@@ -19,7 +19,6 @@ package com.android.contacts.views.detail;
 import com.android.contacts.R;
 import com.android.contacts.views.ContactLoader;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
@@ -65,7 +64,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private ImageView mPresenceView;
     private TextView mStatusView;
     private TextView mStatusAttributionView;
-    private ImageButton mEditButton;
 
     private Uri mContactUri;
     private Listener mListener;
@@ -76,7 +74,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     public interface Listener {
         public void onPhotoClick(View view);
         public void onDisplayNameClick(View view);
-        public void onEditClicked();
     }
 
     public ContactDetailHeaderView(Context context) {
@@ -100,9 +97,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         mStarredView = (CheckBox)findViewById(R.id.star);
         mStarredView.setOnClickListener(this);
-
-        mEditButton = (ImageButton) findViewById(R.id.edit);
-        mEditButton.setOnClickListener(this);
 
         mPhotoView = (QuickContactBadge) findViewById(R.id.photo);
 
@@ -165,12 +159,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private void performPhotoClick() {
         if (mListener != null) {
             mListener.onPhotoClick(mPhotoView);
-        }
-    }
-
-    private void performEditClick() {
-        if (mListener != null) {
-            mListener.onEditClicked();
         }
     }
 
@@ -337,10 +325,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.edit: {
-                performEditClick();
-                break;
-            }
             case R.id.star: {
                 // Toggle "starred" state
                 // Make sure there is a contact
