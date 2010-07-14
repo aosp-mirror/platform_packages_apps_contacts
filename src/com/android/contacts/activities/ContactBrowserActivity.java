@@ -60,13 +60,14 @@ import android.view.Window;
 import android.widget.Toast;
 
 /**
- * Displays a list of contacts.
+ * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
+ * the right
  */
 public class ContactBrowserActivity extends Activity
         implements View.OnCreateContextMenuListener, NavigationBar.Listener,
         DialogManager.DialogShowingViewActivity {
 
-    private static final String TAG = "ContactListActivity";
+    private static final String TAG = "ContactBrowserActivity";
 
     private static final String KEY_MODE = "mode";
 
