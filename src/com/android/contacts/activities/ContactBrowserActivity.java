@@ -574,7 +574,6 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void setTitleTo(int resourceId) {
-            Toast.makeText(ContactBrowserActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
         }
     }
 
