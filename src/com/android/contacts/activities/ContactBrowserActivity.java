@@ -51,6 +51,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -760,32 +761,6 @@ public class ContactBrowserActivity extends Activity
         return super.onContextItemSelected(item);
     }
 
-    /**
-     * Event handler for the use case where the user starts typing without
-     * bringing up the search UI first.
-     */
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int unicodeChar = event.getUnicodeChar();
-        if (unicodeChar != 0) {
-            String query = new String(new int[]{unicodeChar}, 0, 1);
-            if (mTwoPaneLayout) {
-                if (mNavigationBar.getMode() != NavigationBar.MODE_SEARCH) {
-                    mNavigationBar.setQueryString(query);
-                    mNavigationBar.setMode(NavigationBar.MODE_SEARCH);
-                    return true;
-                }
-            } else if (!mRequest.isSearchMode()) {
-                if (!mSearchInitiated) {
-                    mSearchInitiated = true;
-                    startSearch(query, false, null, false);
-                    return true;
-                }
-            }
-        }
-        return super.dispatchKeyEvent(event);
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO move to the fragment
@@ -802,6 +777,27 @@ public class ContactBrowserActivity extends Activity
                     return true;
                 }
                 break;
+            }
+            default: {
+                // Bring up the search UI if the user starts typing
+                final int unicodeChar = event.getUnicodeChar();
+
+                if (unicodeChar != 0) {
+                    String query = new String(new int[]{ unicodeChar }, 0, 1);
+                    if (mTwoPaneLayout) {
+                        if (mNavigationBar.getMode() != NavigationBar.MODE_SEARCH) {
+                            mNavigationBar.setQueryString(query);
+                            mNavigationBar.setMode(NavigationBar.MODE_SEARCH);
+                            return true;
+                        }
+                    } else if (!mRequest.isSearchMode()) {
+                        if (!mSearchInitiated) {
+                            mSearchInitiated = true;
+                            startSearch(query, false, null, false);
+                            return true;
+                        }
+                    }
+                }
             }
         }
 
