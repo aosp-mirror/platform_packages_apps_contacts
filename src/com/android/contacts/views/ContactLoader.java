@@ -502,11 +502,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
     @Override
     public void stopLoading() {
+        unregisterObserver();
         mContact = null;
     }
 
     @Override
     public void destroy() {
+        unregisterObserver();
         mContact = null;
         mDestroyed = true;
     }

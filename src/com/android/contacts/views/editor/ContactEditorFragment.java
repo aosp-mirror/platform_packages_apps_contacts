@@ -39,7 +39,9 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.LoaderManagingFragment;
+import android.app.Fragment;
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
@@ -90,7 +92,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
-public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.Result> {
+public class ContactEditorFragment extends Fragment {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -140,8 +142,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
 
     private ViewIdGenerator mViewIdGenerator;
 
-    private boolean mIsInitialized;
-
     private long mLoaderStartTime;
 
     public ContactEditorFragment() {
@@ -164,42 +164,26 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
         return view;
     }
 
-    // TODO: Think about splitting this. Doing INSERT via load is kinda weird
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (Intent.ACTION_EDIT.equals(mAction)) {
+            if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
+            getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
+        } else if (Intent.ACTION_INSERT.equals(mAction)) {
+            if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
+
+            doAddAction();
+        } else throw new IllegalArgumentException("Unknown Action String " + mAction +
+                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+    }
+
     public void load(String action, Uri uri, String mimeType, Bundle intentExtras) {
         mAction = action;
         mUri = uri;
         mMimeType = mimeType;
         mIntentExtras = intentExtras;
-
-        if (mIsInitialized) {
-            if (Intent.ACTION_EDIT.equals(mAction)) {
-                // Read initial state from database
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
-                startLoading(LOADER_DATA, null);
-            } else if (Intent.ACTION_INSERT.equals(mAction)) {
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
-
-                doAddAction();
-            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
-        }
-    }
-
-    @Override
-    protected void onInitializeLoaders() {
-        mIsInitialized = true;
-        if (mUri != null) {
-            if (Intent.ACTION_EDIT.equals(mAction)) {
-                // Read initial state from database
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
-                startLoading(LOADER_DATA, null);
-            } else if (Intent.ACTION_INSERT.equals(mAction)) {
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
-
-                doAddAction();
-            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
-        }
     }
 
     public void setListener(Listener value) {
@@ -234,30 +218,6 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
             mQuerySelectionArgs = savedState.getStringArray(KEY_QUERY_SELECTION_ARGS);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
         }
-    }
-
-    @Override
-    protected Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-        mLoaderStartTime = SystemClock.elapsedRealtime();
-        return new ContactLoader(mContext, mUri);
-    }
-
-    @Override
-    protected void onLoadFinished(Loader<ContactLoader.Result> loader,
-            ContactLoader.Result data) {
-        if (data == ContactLoader.Result.NOT_FOUND) {
-            // Item has been deleted
-            Log.i(TAG, "No contact found. Closing fragment");
-            if (mListener != null) mListener.closeBecauseContactNotFound();
-            return;
-        }
-        final long loaderCurrentTime = SystemClock.elapsedRealtime();
-        Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
-
-        final long setDataStartTime = SystemClock.elapsedRealtime();
-        setData(data);
-        final long setDataEndTime = SystemClock.elapsedRealtime();
-        Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
     }
 
     public void setData(ContactLoader.Result data) {
@@ -1364,4 +1324,33 @@ public class ContactEditorFragment extends LoaderManagingFragment<ContactLoader.
     public Uri getUri() {
         return mUri;
     }
+
+    /**
+     * The listener for the data loader
+     */
+    private final LoaderManager.LoaderCallbacks<ContactLoader.Result> mDataLoaderListener =
+            new LoaderCallbacks<ContactLoader.Result>() {
+        @Override
+        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+            mLoaderStartTime = SystemClock.elapsedRealtime();
+            return new ContactLoader(mContext, mUri);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+            final long loaderCurrentTime = SystemClock.elapsedRealtime();
+            Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
+            if (data == ContactLoader.Result.NOT_FOUND) {
+                // Item has been deleted
+                Log.i(TAG, "No contact found. Closing activity");
+                if (mListener != null) mListener.closeBecauseContactNotFound();
+                return;
+            }
+
+            final long setDataStartTime = SystemClock.elapsedRealtime();
+            setData(data);
+            final long setDataEndTime = SystemClock.elapsedRealtime();
+            Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
+        }
+    };
 }
