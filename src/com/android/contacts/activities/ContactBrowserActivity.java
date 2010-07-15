@@ -34,24 +34,19 @@ import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.views.detail.ContactNoneFragment;
 import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.android.contacts.widget.SearchEditText;
-import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -102,11 +97,12 @@ public class ContactBrowserActivity extends Activity
     private boolean mSearchInitiated;
 
     private ContactsRequest mRequest;
-    private SearchEditText mSearchEditText;
 
-    private boolean mTwoPaneLayout;
+    private boolean mContactContentDisplayed;
     private NavigationBar mNavigationBar;
     private int mMode = -1;
+
+    private boolean mHasActionBar;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -152,138 +148,101 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
-        // The user launched the config based front door, pick the right activity to go to
-        Configuration config = getResources().getConfiguration();
-        int screenLayoutSize = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-        mTwoPaneLayout = (screenLayoutSize == Configuration.SCREENLAYOUT_SIZE_XLARGE);
-        if (mTwoPaneLayout) {
-            configureTwoPaneLayout(savedState);
-        } else {
-            configureSinglePaneLayout();
-        }
-    }
-
-    private void configureSinglePaneLayout() {
         setTitle(mRequest.getActivityTitle());
+        setContentView(R.layout.contact_browser);
 
-        mListFragment = createListFragment(mRequest.getActionCode());
 
-        int listFragmentContainerId;
-        if (mRequest.isSearchMode()) {
-            setContentView(R.layout.contacts_search_content);
-            listFragmentContainerId = R.id.list_container;
-            mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
-            mSearchEditText.setText(mRequest.getQueryString());
-            mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
-                public void onFilterChange(String queryString) {
-                    mListFragment.setQueryString(queryString);
-                }
+        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
+        if (mHasActionBar) {
+            mNavigationBar = new NavigationBar(this);
+            mNavigationBar.onCreate(savedState, mRequest);
+            mNavigationBar.setListener(this);
 
-                public void onCancelSearch() {
-                    finish();
-                }
-            });
-        } else {
-            listFragmentContainerId = android.R.id.content;
+            ActionBar actionBar = getActionBar();
+            View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
+            actionBar.setCustomNavigationMode(navBarView);
         }
 
-        FragmentTransaction transaction = openFragmentTransaction();
-        transaction.add(listFragmentContainerId, mListFragment);
-        transaction.commit();
-    }
-
-    private void configureTwoPaneLayout(Bundle savedState) {
-
-        // TODO: set the theme conditionally in AndroidManifest, once that feature is available
-        setTheme(android.R.style.Theme_WithActionBar);
-        requestWindowFeature(Window.FEATURE_ACTION_BAR);
-
-        setContentView(R.layout.two_pane_activity);
-
-        mNavigationBar = new NavigationBar(this);
-        mNavigationBar.onCreate(savedState, mRequest);
-        mNavigationBar.setListener(this);
-
-        ActionBar actionBar = getActionBar();
-        View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
-        actionBar.setCustomNavigationMode(navBarView);
-
-        if (mListFragment == null) {
-            configureListFragment();
-        }
-
-        if (mEmptyFragment == null && mDetailFragment == null && mEditorFragment == null) {
-            setupContactDetailFragment(null);
-        }
-
-    }
-
-    @Override
-    public void onNavigationBarChange() {
         configureListFragment();
+
+        mContactContentDisplayed = findViewById(R.id.detail_container) != null;
+        if (mContactContentDisplayed) {
+            setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        }
     }
 
     private void configureListFragment() {
-        int mode = mNavigationBar.getMode();
-        if (mode == NavigationBar.MODE_SEARCH
-                && TextUtils.isEmpty(mNavigationBar.getQueryString())) {
-            mode = mNavigationBar.getDefaultMode();
+        int mode = -1;
+        if (mHasActionBar) {
+            mode = mNavigationBar.getMode();
+            if (mode == NavigationBar.MODE_SEARCH
+                    && TextUtils.isEmpty(mNavigationBar.getQueryString())) {
+                mode = mNavigationBar.getDefaultMode();
+            }
+        } else {
+            int actionCode = mRequest.getActionCode();
+            if (actionCode == ContactsRequest.ACTION_FREQUENT ||
+                    actionCode == ContactsRequest.ACTION_STARRED ||
+                    actionCode == ContactsRequest.ACTION_STREQUENT) {
+                mode = NavigationBar.MODE_FAVORITES;
+            } else {
+                mode = NavigationBar.MODE_CONTACTS;
+            }
         }
 
-        if (mode == mMode) {
-            if (mode == NavigationBar.MODE_SEARCH) {
-                mListFragment.setQueryString(mNavigationBar.getQueryString());
-            }
-            return;
-        }
-
-        closeListFragment();
-
-        mMode = mode;
-        switch (mMode) {
-            case NavigationBar.MODE_CONTACTS: {
-                mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
-                break;
-            }
-            case NavigationBar.MODE_FAVORITES: {
-                int favoritesAction = mRequest.getActionCode();
-                if (favoritesAction == ContactsRequest.ACTION_DEFAULT) {
-                    favoritesAction = ContactsRequest.ACTION_STREQUENT;
+        boolean replaceList = (mode != mMode);
+        if (replaceList) {
+            closeListFragment();
+            mMode = mode;
+            switch (mMode) {
+                case NavigationBar.MODE_CONTACTS: {
+                    mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
+                    break;
                 }
-                mListFragment = createListFragment(favoritesAction);
-                break;
-            }
-            case NavigationBar.MODE_SEARCH: {
-                mListFragment = createContactSearchFragment();
-                break;
+                case NavigationBar.MODE_FAVORITES: {
+                    int favoritesAction = mRequest.getActionCode();
+                    if (favoritesAction == ContactsRequest.ACTION_DEFAULT) {
+                        favoritesAction = ContactsRequest.ACTION_STREQUENT;
+                    }
+                    mListFragment = createListFragment(favoritesAction);
+                    break;
+                }
+                case NavigationBar.MODE_SEARCH: {
+                    mListFragment = createContactSearchFragment();
+                    break;
+                }
             }
         }
 
-        Bundle savedState = mNavigationBar.getSavedStateForMode(mMode);
-        if (savedState != null) {
-            mListFragment.restoreSavedState(savedState);
-        }
-
-        if (mode == NavigationBar.MODE_SEARCH) {
+        if (mMode == NavigationBar.MODE_SEARCH) {
             mListFragment.setQueryString(mNavigationBar.getQueryString());
         }
 
-        setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        if (mHasActionBar) {
+            Bundle savedStateForMode = mNavigationBar.getSavedStateForMode(mMode);
+            if (savedStateForMode != null) {
+                mListFragment.restoreSavedState(savedStateForMode);
+            }
+        }
 
-        openFragmentTransaction()
-                .replace(R.id.two_pane_list, mListFragment)
-                .commit();
+        if (replaceList) {
+            openFragmentTransaction()
+                    .replace(R.id.list_container, mListFragment)
+                    .commit();
+        }
     }
 
     private void closeListFragment() {
         if (mListFragment != null) {
             mListFragment.setOnContactListActionListener(null);
 
-            if (mNavigationBar != null) {
+            if (mHasActionBar) {
                 Bundle state = new Bundle();
                 mListFragment.onSaveInstanceState(state);
                 mNavigationBar.saveStateForMode(mMode, state);
             }
+
+            mListFragment = null;
         }
     }
 
@@ -317,14 +276,14 @@ public class ContactBrowserActivity extends Activity
 
             // Nothing showing yet? Create (this happens during Activity-Startup)
             openFragmentTransaction()
-                    .replace(R.id.two_pane_right_view, mDetailFragment)
+                    .replace(R.id.detail_container, mDetailFragment)
                     .commit();
         } else {
             closeDetailFragment();
 
             mEmptyFragment = new ContactNoneFragment();
             openFragmentTransaction()
-                    .replace(R.id.two_pane_right_view, mEmptyFragment)
+                    .replace(R.id.detail_container, mEmptyFragment)
                     .commit();
         }
     }
@@ -341,7 +300,7 @@ public class ContactBrowserActivity extends Activity
 
         // Nothing showing yet? Create (this happens during Activity-Startup)
         openFragmentTransaction()
-                .replace(R.id.two_pane_right_view, mEditorFragment)
+                .replace(R.id.detail_container, mEditorFragment)
                 .commit();
     }
 
@@ -370,11 +329,9 @@ public class ContactBrowserActivity extends Activity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (!mTwoPaneLayout && mRequest.isSearchMode()) {
-            mSearchEditText.requestFocus();
-        }
+    public void onNavigationBarChange() {
+        configureListFragment();
+        setupContactDetailFragment(mListFragment.getSelectedContactUri());
     }
 
     @Override
@@ -402,7 +359,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setDirectorySearchEnabled(
                         mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled());
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
-                fragment.setSelectionVisible(mTwoPaneLayout);
+                fragment.setSelectionVisible(mContactContentDisplayed);
                 return fragment;
             }
 
@@ -415,7 +372,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(false);
                 fragment.setStarredContactsIncluded(true);
-                fragment.setSelectionVisible(mTwoPaneLayout);
+                fragment.setSelectionVisible(mContactContentDisplayed);
                 return fragment;
             }
 
@@ -424,7 +381,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(false);
-                fragment.setSelectionVisible(mTwoPaneLayout);
+                fragment.setSelectionVisible(mContactContentDisplayed);
                 return fragment;
             }
 
@@ -433,7 +390,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(true);
-                fragment.setSelectionVisible(mTwoPaneLayout);
+                fragment.setSelectionVisible(mContactContentDisplayed);
                 return fragment;
             }
 
@@ -457,7 +414,7 @@ public class ContactBrowserActivity extends Activity
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
         public void onViewContactAction(Uri contactLookupUri) {
-            if (mTwoPaneLayout) {
+            if (mContactContentDisplayed) {
                 mListFragment.setSelectedContactUri(contactLookupUri);
                 setupContactDetailFragment(contactLookupUri);
             } else {
@@ -594,7 +551,7 @@ public class ContactBrowserActivity extends Activity
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        if (mTwoPaneLayout) {
+        if (mContactContentDisplayed) {
             inflater.inflate(R.menu.actions, menu);
             return true;
         } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
@@ -783,7 +740,7 @@ public class ContactBrowserActivity extends Activity
 
                 if (unicodeChar != 0) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
-                    if (mTwoPaneLayout) {
+                    if (mContactContentDisplayed) {
                         if (mNavigationBar.getMode() != NavigationBar.MODE_SEARCH) {
                             mNavigationBar.setQueryString(query);
                             mNavigationBar.setMode(NavigationBar.MODE_SEARCH);

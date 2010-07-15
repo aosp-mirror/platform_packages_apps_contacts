@@ -104,4 +104,11 @@
     <style name="DummyAnimation">
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
+    
+    <style name="ContactBrowserTheme" parent="@android:Theme">
+    </style>
+    
+    <style name="ContactPickerTheme" parent="@android:Theme">
+    </style>
+    
 </resources>

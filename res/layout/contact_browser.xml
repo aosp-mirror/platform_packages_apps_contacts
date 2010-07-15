@@ -14,23 +14,8 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/two_pane_activity"
-    android:orientation="horizontal"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <FrameLayout 
-        android:id="@+id/two_pane_list"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-    <!--  Holder for detail- or editor-fragment. -->
-    <FrameLayout
-        android:id="@+id/two_pane_right_view"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@drawable/view_bg"
-        android:layout_marginLeft="-4dip" />
-</LinearLayout>
+</FrameLayout>

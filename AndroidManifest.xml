@@ -167,6 +167,7 @@
         <activity android:name=".activities.ContactBrowserActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
+            android:theme="@style/ContactBrowserTheme"
         >
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
@@ -214,6 +215,7 @@
         <activity android:name=".activities.ContactSelectionActivity"
             android:label="@string/contactsList"
             android:clearTaskOnLaunch="true"
+            android:theme="@style/ContactPickerTheme"
         >
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
@@ -272,7 +274,7 @@
         </activity>
 
         <!-- The contacts search/filter UI -->
-        <activity android:name="ContactsSearchActivity"
+        <activity android:name=".activities.ContactSearchActivity"
             android:theme="@style/ContactsSearchTheme"
             android:windowSoftInputMode="stateAlwaysVisible"
         >
@@ -286,7 +288,7 @@
 
         <!-- The contacts search/filter UI -->
         <activity-alias android:name="SearchResultsActivity"
-            android:targetActivity="ContactsSearchActivity"
+            android:targetActivity=".activities.ContactSearchActivity"
         >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
