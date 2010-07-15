@@ -57,7 +57,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         setPinnedPartitionHeadersEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setIndexedPartition(PARTITION_ALL_CONTACTS);
-        mShowAllContactsViewType = super.getViewTypeCount();
+        mShowAllContactsViewType = getViewTypeCount() - 1;
     }
 
     @Override
@@ -141,12 +141,12 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public int getItemViewTypeCount() {
-        return super.getItemViewTypeCount() + 1;
+    public int getViewTypeCount() {
+        return super.getViewTypeCount() + 1;
     }
 
     @Override
-    protected int getItemViewType(int partition, int position) {
+    public int getItemViewType(int partition, int position) {
         if (partition == PARTITION_SHOW_ALL_CONTACTS) {
             return mShowAllContactsViewType;
         }
