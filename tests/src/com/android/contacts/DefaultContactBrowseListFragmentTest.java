@@ -105,7 +105,7 @@ public class DefaultContactBrowseListFragmentTest
                 new LoaderManagingFragmentTestDelegate<Cursor>();
 
         // Divert loader registration to the delegate to ensure that loading is done synchronously
-        fragment.setDelegate(delegate);
+//        fragment.setDelegate(delegate);
 
         // Fragment life cycle
         fragment.onCreate(null);

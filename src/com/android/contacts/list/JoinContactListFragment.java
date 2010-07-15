@@ -106,12 +106,6 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                 null, mLoaderCallbacks);
     }
 
-    // TODO Remove this method when ContactEntryListFragment is converted to LoaderManager
-    @Override
-    public Loader<Cursor> startLoading(int id, Bundle args) {
-        return null;
-    }
-
     private void showTargetContactName(String displayName) {
         Activity activity = getActivity();
         TextView blurbView = (TextView)activity.findViewById(R.id.join_contact_blurb);

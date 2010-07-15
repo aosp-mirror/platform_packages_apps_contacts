@@ -13,8 +13,7 @@ import junit.framework.Assert;
  * A delegate of {@link InstrumentedLoaderManagingFragment} that performs
  * synchronous loading on demand for unit testing.
  */
-public class LoaderManagingFragmentTestDelegate<D> implements
-        InstrumentedLoaderManagingFragment.Delegate<D> {
+public class LoaderManagingFragmentTestDelegate<D> {
 
     // Using a linked hash map to get all loading done in a predictable order.
     private LinkedHashMap<Integer, Loader<D>> mStartedLoaders =

@@ -83,10 +83,10 @@ public abstract class ContactBrowseListFragment extends
 
     @Override
     public void onStart() {
-        super.onStart();
         if (mSelectedContactUri != null && isSelectionVisible()) {
             getLoaderManager().initLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
         }
+        super.onStart();
    }
 
     @Override

@@ -24,11 +24,13 @@ import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
 import com.android.contacts.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.android.contacts.widget.InstrumentedLoaderManagingFragment;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -69,8 +71,9 @@ import android.widget.TextView;
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
-        extends InstrumentedLoaderManagingFragment<Cursor>
-        implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener {
+        extends Fragment
+        implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
+                LoaderCallbacks<Cursor> {
 
     public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
 
@@ -179,10 +182,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     @Override
-    protected void onInitializeLoaders() {
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED, mSectionHeaderDisplayEnabled);
@@ -274,13 +273,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     startLoadingDirectoryPartition(i);
                 }
             } else {
-                startLoading(i, null);
+                getLoaderManager().initLoader(i, null, this);
             }
         }
     }
 
     @Override
-    protected Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (id == DIRECTORY_LOADER_ID) {
             DirectoryListLoader loader = new DirectoryListLoader(mContext);
             mAdapter.configureDirectoryLoader(loader);
@@ -297,19 +296,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private void startLoadingDirectoryPartition(int partitionIndex) {
         DirectoryPartition partition = (DirectoryPartition)mAdapter.getPartition(partitionIndex);
-        CursorLoader loader = (CursorLoader)getLoader(partitionIndex);
-        if (loader == null) {
-            Bundle args = new Bundle();
-            args.putLong(DIRECTORY_ID_ARG_KEY, partition.getDirectoryId());
-            startLoading(partitionIndex, args);
-        } else if (mForceLoad) {
-            mAdapter.configureLoader(loader, partition.getDirectoryId());
-            loader.forceLoad();
+        Bundle args = new Bundle();
+        long directoryId = partition.getDirectoryId();
+        args.putLong(DIRECTORY_ID_ARG_KEY, directoryId);
+        if (mForceLoad) {
+            getLoaderManager().restartLoader(partitionIndex, args, this);
+        } else {
+            getLoaderManager().initLoader(partitionIndex, args, this);
         }
     }
 
     @Override
-    protected void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (!checkProviderStatus(false)) {
             if (data != null) {
                 data.close();
@@ -327,7 +325,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (isDirectorySearchEnabled()) {
             if (mLoadDirectoryList) {
                 mLoadDirectoryList = false;
-                startLoading(DIRECTORY_LOADER_ID, null);
+                getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
             } else if (mLoadPriorityDirectoriesOnly) {
                 mLoadPriorityDirectoriesOnly = false;
                 startLoading();
@@ -352,27 +350,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void reloadData() {
-        cancelLoading();
         mAdapter.onDataReload();
         mLoadPriorityDirectoriesOnly = true;
         mForceLoad = true;
         startLoading();
-    }
-
-    private void cancelLoading() {
-        int size = mAdapter.getPartitionCount();
-        for (int i = 0; i < size; i++) {
-            CursorLoader loader = (CursorLoader)getLoader(i);
-            if (loader != null) {
-                loader.cancelLoad();
-            }
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mAdapter.clearPartitions();
     }
 
     /**

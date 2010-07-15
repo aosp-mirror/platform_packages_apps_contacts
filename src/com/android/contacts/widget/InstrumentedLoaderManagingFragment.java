@@ -15,6 +15,7 @@
  */
 package com.android.contacts.widget;
 
+import android.app.Fragment;
 import android.app.LoaderManagingFragment;
 import android.content.Loader;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import android.os.Bundle;
  * A modification of the {@link LoaderManagingFragment} class that supports testing of
  * loader-based fragments using synchronous data loading.
  */
-public abstract class InstrumentedLoaderManagingFragment<D> extends LoaderManagingFragment<D> {
+public abstract class InstrumentedLoaderManagingFragment<D> extends Fragment {
 
     public interface Delegate<D> {
         void onStartLoading(Loader<D> loader);
@@ -35,15 +36,15 @@ public abstract class InstrumentedLoaderManagingFragment<D> extends LoaderManagi
         this.mDelegate = listener;
     }
 
-    @Override
-    public Loader<D> startLoading(int id, Bundle args) {
-        if (mDelegate != null) {
-            Loader<D> loader = onCreateLoader(id, args);
-            loader.registerListener(id, this);
-            mDelegate.onStartLoading(loader);
-            return loader;
-        } else {
-            return super.startLoading(id, args);
-        }
-    }
+//    public Loader<D> startLoading(int id, Bundle args) {
+//        getLoaderManager().initLoader(id, args, callback);
+//        if (mDelegate != null) {
+//            Loader<D> loader = onCreateLoader(id, args);
+//            loader.registerListener(id, this);
+//            mDelegate.onStartLoading(loader);
+//            return loader;
+//        } else {
+//            return super.startLoading(id, args);
+//        }
+//    }
 }
