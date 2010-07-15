@@ -219,17 +219,17 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                     // Keep around in model, but mark as deleted
                     mEntry.markDeleted();
 
-                    final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
+//                    final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
 
-                    animator.removeView(GenericEditorView.this);
-//                    ((ViewGroup) getParent()).removeView(GenericEditorView.this);
+//                    animator.removeView(GenericEditorView.this);
+                    ((ViewGroup) getParent()).removeView(GenericEditorView.this);
 
                     if (mListener != null) {
                         // Notify listener when present
                         mListener.onDeleted(GenericEditorView.this);
                     }
 
-                    animator.animate();
+//                    animator.animate();
                 }
             });
             addView(mDelete);

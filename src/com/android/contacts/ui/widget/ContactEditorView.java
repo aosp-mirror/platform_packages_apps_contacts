@@ -41,7 +41,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -225,28 +224,32 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
 
     public Dialog createDialog(Bundle bundle) {
         if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
-        int dialogId = bundle.getInt(DIALOG_ID_KEY);
+        final int dialogId = bundle.getInt(DIALOG_ID_KEY);
         switch (dialogId) {
             case DIALOG_ID_FIELD_SELECTOR:
-                final ArrayList<CharSequence> items =
+                final ArrayList<KindSectionView> usedFields =
+                    new ArrayList<KindSectionView>(mFields.getChildCount());
+                final ArrayList<CharSequence> usedFieldTitles =
                         new ArrayList<CharSequence>(mFields.getChildCount());
+
                 for (int i = 0; i < mFields.getChildCount(); i++) {
                     final KindSectionView sectionView = (KindSectionView) mFields.getChildAt(i);
                     // not a list and already exists? ignore
                     if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
                         continue;
                     }
-                    items.add(sectionView.getTitle());
+                    usedFieldTitles.add(sectionView.getTitle());
+                    usedFields.add(sectionView);
                 }
                 final DialogInterface.OnClickListener itemClickListener =
                         new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        final KindSectionView view = (KindSectionView) mFields.getChildAt(which);
+                        final KindSectionView view = usedFields.get(which);
                         view.addItem();
                     }
                 };
                 return new AlertDialog.Builder(getContext())
-                        .setItems(items.toArray(new CharSequence[0]), itemClickListener)
+                        .setItems(usedFieldTitles.toArray(new CharSequence[0]), itemClickListener)
                         .create();
             default:
                 throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
