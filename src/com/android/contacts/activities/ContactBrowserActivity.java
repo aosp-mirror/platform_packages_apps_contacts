@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2010 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ import android.widget.Toast;
  * the right
  */
 public class ContactBrowserActivity extends Activity
-        implements View.OnCreateContextMenuListener, NavigationBar.Listener,
+        implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity {
 
     private static final String TAG = "ContactBrowserActivity";
@@ -79,30 +79,32 @@ public class ContactBrowserActivity extends Activity
             DIALOG_MANAGER_ID_2);
 
     private ContactsIntentResolver mIntentResolver;
+    private ContactsRequest mRequest;
+
+    private boolean mHasActionBar;
+    private ActionBarAdapter mActionBarAdapter;
+
+    /**
+     * Contact browser mode, see {@link ContactBrowserMode}.
+     */
+    private int mMode = -1;
+
     private ContactBrowseListFragment mListFragment;
-
-    private PhoneNumberInteraction mPhoneNumberCallInteraction;
-    private PhoneNumberInteraction mSendTextMessageInteraction;
-    private ContactDeletionInteraction mContactDeletionInteraction;
-    private ImportExportInteraction mImportExportInteraction;
-
     private ContactNoneFragment mEmptyFragment;
 
+    private boolean mContactContentDisplayed;
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
 
     private ContactEditorFragment mEditorFragment;
     private EditorFragmentListener mEditorFragmentListener = new EditorFragmentListener();
 
+    private PhoneNumberInteraction mPhoneNumberCallInteraction;
+    private PhoneNumberInteraction mSendTextMessageInteraction;
+    private ContactDeletionInteraction mContactDeletionInteraction;
+    private ImportExportInteraction mImportExportInteraction;
+
     private boolean mSearchInitiated;
-
-    private ContactsRequest mRequest;
-
-    private boolean mContactContentDisplayed;
-    private NavigationBar mNavigationBar;
-    private int mMode = -1;
-
-    private boolean mHasActionBar;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -151,15 +153,14 @@ public class ContactBrowserActivity extends Activity
         setTitle(mRequest.getActivityTitle());
         setContentView(R.layout.contact_browser);
 
-
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         if (mHasActionBar) {
-            mNavigationBar = new NavigationBar(this);
-            mNavigationBar.onCreate(savedState, mRequest);
-            mNavigationBar.setListener(this);
+            mActionBarAdapter = new ActionBarAdapter(this);
+            mActionBarAdapter.onCreate(savedState, mRequest);
+            mActionBarAdapter.setListener(this);
 
             ActionBar actionBar = getActionBar();
-            View navBarView = mNavigationBar.onCreateView(getLayoutInflater());
+            View navBarView = mActionBarAdapter.onCreateView(getLayoutInflater());
             actionBar.setCustomNavigationMode(navBarView);
         }
 
@@ -174,19 +175,19 @@ public class ContactBrowserActivity extends Activity
     private void configureListFragment() {
         int mode = -1;
         if (mHasActionBar) {
-            mode = mNavigationBar.getMode();
-            if (mode == NavigationBar.MODE_SEARCH
-                    && TextUtils.isEmpty(mNavigationBar.getQueryString())) {
-                mode = mNavigationBar.getDefaultMode();
+            mode = mActionBarAdapter.getMode();
+            if (mode == ContactBrowserMode.MODE_SEARCH
+                    && TextUtils.isEmpty(mActionBarAdapter.getQueryString())) {
+                mode = mActionBarAdapter.getDefaultMode();
             }
         } else {
             int actionCode = mRequest.getActionCode();
             if (actionCode == ContactsRequest.ACTION_FREQUENT ||
                     actionCode == ContactsRequest.ACTION_STARRED ||
                     actionCode == ContactsRequest.ACTION_STREQUENT) {
-                mode = NavigationBar.MODE_FAVORITES;
+                mode = ContactBrowserMode.MODE_FAVORITES;
             } else {
-                mode = NavigationBar.MODE_CONTACTS;
+                mode = ContactBrowserMode.MODE_CONTACTS;
             }
         }
 
@@ -195,11 +196,11 @@ public class ContactBrowserActivity extends Activity
             closeListFragment();
             mMode = mode;
             switch (mMode) {
-                case NavigationBar.MODE_CONTACTS: {
+                case ContactBrowserMode.MODE_CONTACTS: {
                     mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
                     break;
                 }
-                case NavigationBar.MODE_FAVORITES: {
+                case ContactBrowserMode.MODE_FAVORITES: {
                     int favoritesAction = mRequest.getActionCode();
                     if (favoritesAction == ContactsRequest.ACTION_DEFAULT) {
                         favoritesAction = ContactsRequest.ACTION_STREQUENT;
@@ -207,19 +208,19 @@ public class ContactBrowserActivity extends Activity
                     mListFragment = createListFragment(favoritesAction);
                     break;
                 }
-                case NavigationBar.MODE_SEARCH: {
+                case ContactBrowserMode.MODE_SEARCH: {
                     mListFragment = createContactSearchFragment();
                     break;
                 }
             }
         }
 
-        if (mMode == NavigationBar.MODE_SEARCH) {
-            mListFragment.setQueryString(mNavigationBar.getQueryString());
+        if (mMode == ContactBrowserMode.MODE_SEARCH) {
+            mListFragment.setQueryString(mActionBarAdapter.getQueryString());
         }
 
         if (mHasActionBar) {
-            Bundle savedStateForMode = mNavigationBar.getSavedStateForMode(mMode);
+            Bundle savedStateForMode = mActionBarAdapter.getSavedStateForMode(mMode);
             if (savedStateForMode != null) {
                 mListFragment.restoreSavedState(savedStateForMode);
             }
@@ -239,7 +240,7 @@ public class ContactBrowserActivity extends Activity
             if (mHasActionBar) {
                 Bundle state = new Bundle();
                 mListFragment.onSaveInstanceState(state);
-                mNavigationBar.saveStateForMode(mMode, state);
+                mActionBarAdapter.saveStateForMode(mMode, state);
             }
 
             mListFragment = null;
@@ -328,8 +329,11 @@ public class ContactBrowserActivity extends Activity
         mEmptyFragment = null;
     }
 
+    /**
+     * Handler for action bar actions.
+     */
     @Override
-    public void onNavigationBarChange() {
+    public void onAction() {
         configureListFragment();
         setupContactDetailFragment(mListFragment.getSelectedContactUri());
     }
@@ -551,7 +555,7 @@ public class ContactBrowserActivity extends Activity
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        if (mContactContentDisplayed) {
+        if (mHasActionBar) {
             inflater.inflate(R.menu.actions, menu);
             return true;
         } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
@@ -740,10 +744,10 @@ public class ContactBrowserActivity extends Activity
 
                 if (unicodeChar != 0) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
-                    if (mContactContentDisplayed) {
-                        if (mNavigationBar.getMode() != NavigationBar.MODE_SEARCH) {
-                            mNavigationBar.setQueryString(query);
-                            mNavigationBar.setMode(NavigationBar.MODE_SEARCH);
+                    if (mHasActionBar) {
+                        if (mActionBarAdapter.getMode() != ContactBrowserMode.MODE_SEARCH) {
+                            mActionBarAdapter.setQueryString(query);
+                            mActionBarAdapter.setMode(ContactBrowserMode.MODE_SEARCH);
                             return true;
                         }
                     } else if (!mRequest.isSearchMode()) {
@@ -779,8 +783,8 @@ public class ContactBrowserActivity extends Activity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_MODE, mMode);
-        if (mNavigationBar != null) {
-            mNavigationBar.onSaveInstanceState(outState);
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.onSaveInstanceState(outState);
         }
     }
 

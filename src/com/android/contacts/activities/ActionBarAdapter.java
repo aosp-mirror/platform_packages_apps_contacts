@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2010 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ import android.widget.ToggleButton;
 import java.util.HashMap;
 
 /**
- * Navigation bar at the top of the Contacts activity.
+ * Adapter for the action bar at the top of the Contacts activity.
  */
-public class NavigationBar implements OnFilterTextListener, OnClickListener {
+public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
 
     public interface Listener {
-        void onNavigationBarChange();
+        void onAction();
     }
 
     private static final String EXTRA_KEY_DEFAULT_MODE = "navBar.defaultMode";
@@ -49,12 +49,8 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     private static final String KEY_MODE_FAVORITES = "mode_favorites";
     private static final String KEY_MODE_SEARCH = "mode_search";
 
-    public static final int MODE_CONTACTS = 0;
-    public static final int MODE_FAVORITES = 1;
-    public static final int MODE_SEARCH = 2;
-
-    private int mMode = MODE_CONTACTS;
-    private int mDefaultMode = MODE_CONTACTS;
+    private int mMode = ContactBrowserMode.MODE_CONTACTS;
+    private int mDefaultMode = ContactBrowserMode.MODE_CONTACTS;
     private String mQueryString;
     private HashMap<Integer, Bundle> mSavedStateByMode = new HashMap<Integer, Bundle>();
 
@@ -71,7 +67,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     private ToggleButton mSearchButton;
     private ImageView mCancelSearchButton;
 
-    public NavigationBar(Context context) {
+    public ActionBarAdapter(Context context) {
         mContext = context;
     }
 
@@ -83,19 +79,19 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
             mDefaultMode = savedState.getInt(EXTRA_KEY_DEFAULT_MODE, -1);
             mMode = savedState.getInt(EXTRA_KEY_MODE, -1);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-            restoreSavedState(savedState, MODE_CONTACTS, KEY_MODE_CONTACTS);
-            restoreSavedState(savedState, MODE_FAVORITES, KEY_MODE_FAVORITES);
-            restoreSavedState(savedState, MODE_SEARCH, KEY_MODE_SEARCH);
+            restoreSavedState(savedState, ContactBrowserMode.MODE_CONTACTS, KEY_MODE_CONTACTS);
+            restoreSavedState(savedState, ContactBrowserMode.MODE_FAVORITES, KEY_MODE_FAVORITES);
+            restoreSavedState(savedState, ContactBrowserMode.MODE_SEARCH, KEY_MODE_SEARCH);
         }
 
         int actionCode = request.getActionCode();
         if (mDefaultMode == -1) {
             mDefaultMode = actionCode == ContactsRequest.ACTION_DEFAULT
-                    ? NavigationBar.MODE_CONTACTS
-                    : NavigationBar.MODE_FAVORITES;
+                    ? ContactBrowserMode.MODE_CONTACTS
+                    : ContactBrowserMode.MODE_FAVORITES;
         }
         if (mMode == -1) {
-            mMode = request.isSearchMode() ? NavigationBar.MODE_SEARCH : mDefaultMode;
+            mMode = request.isSearchMode() ? ContactBrowserMode.MODE_SEARCH : mDefaultMode;
         }
         if (mQueryString == null) {
             mQueryString = request.getQueryString();
@@ -133,7 +129,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
         mMode = mode;
         update();
         if (mListener != null) {
-            mListener.onNavigationBarChange();
+            mListener.onAction();
         }
     }
 
@@ -156,7 +152,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
 
     public void update() {
         switch(mMode) {
-            case MODE_CONTACTS:
+            case ContactBrowserMode.MODE_CONTACTS:
                 mContactsButton.setChecked(true);
                 mFavoritesButton.setChecked(false);
                 mSearchButton.setChecked(false);
@@ -164,7 +160,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
                 mSearchEditText.setVisibility(View.GONE);
                 mCancelSearchButton.setVisibility(View.GONE);
                 break;
-            case MODE_FAVORITES:
+            case ContactBrowserMode.MODE_FAVORITES:
                 mContactsButton.setChecked(false);
                 mFavoritesButton.setChecked(true);
                 mSearchButton.setChecked(false);
@@ -172,7 +168,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
                 mSearchEditText.setVisibility(View.GONE);
                 mCancelSearchButton.setVisibility(View.GONE);
                 break;
-            case MODE_SEARCH:
+            case ContactBrowserMode.MODE_SEARCH:
                 mContactsButton.setChecked(false);
                 mFavoritesButton.setChecked(false);
                 mSearchButton.setVisibility(View.GONE);
@@ -187,19 +183,21 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     }
 
     public void toggleSearchMode() {
-        setMode(mMode == MODE_SEARCH ? mDefaultMode : MODE_SEARCH);
+        setMode(mMode == ContactBrowserMode.MODE_SEARCH
+                ? mDefaultMode
+                : ContactBrowserMode.MODE_SEARCH);
     }
 
     @Override
     public void onClick(View view) {
         if (view == mSearchButton) {
-            setMode(MODE_SEARCH);
+            setMode(ContactBrowserMode.MODE_SEARCH);
         } else if (view == mContactsButton) {
-            setMode(MODE_CONTACTS);
-            setDefaultMode(MODE_CONTACTS);
+            setMode(ContactBrowserMode.MODE_CONTACTS);
+            setDefaultMode(ContactBrowserMode.MODE_CONTACTS);
         } else if (view == mFavoritesButton) {
-            setMode(MODE_FAVORITES);
-            setDefaultMode(MODE_FAVORITES);
+            setMode(ContactBrowserMode.MODE_FAVORITES);
+            setDefaultMode(ContactBrowserMode.MODE_FAVORITES);
         } else {        // mCancelSearchButton
             setMode(mDefaultMode);
         }
@@ -209,7 +207,7 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
     public void onFilterChange(String queryString) {
         mQueryString = queryString;
         if (mListener != null) {
-            mListener.onNavigationBarChange();
+            mListener.onAction();
         }
     }
 
@@ -230,9 +228,9 @@ public class NavigationBar implements OnFilterTextListener, OnClickListener {
         outState.putInt(EXTRA_KEY_DEFAULT_MODE, mDefaultMode);
         outState.putInt(EXTRA_KEY_MODE, mMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
-        saveInstanceState(outState, MODE_CONTACTS, KEY_MODE_CONTACTS);
-        saveInstanceState(outState, MODE_FAVORITES, KEY_MODE_FAVORITES);
-        saveInstanceState(outState, MODE_SEARCH, KEY_MODE_SEARCH);
+        saveInstanceState(outState, ContactBrowserMode.MODE_CONTACTS, KEY_MODE_CONTACTS);
+        saveInstanceState(outState, ContactBrowserMode.MODE_FAVORITES, KEY_MODE_FAVORITES);
+        saveInstanceState(outState, ContactBrowserMode.MODE_SEARCH, KEY_MODE_SEARCH);
     }
 
     private void saveInstanceState(Bundle outState, int mode, String key) {
