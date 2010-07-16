@@ -111,4 +111,6 @@
     <style name="ContactPickerTheme" parent="@android:Theme">
     </style>
     
+    <style name="ContactsPreferencesTheme" parent="@android:Theme">
+    </style>
 </resources>

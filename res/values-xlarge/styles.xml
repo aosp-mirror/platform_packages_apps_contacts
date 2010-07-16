@@ -19,5 +19,7 @@
     </style>
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
     </style>
+    <style name="ContactsPreferencesTheme" parent="@android:Theme.Dialog">
+    </style>
 
 </resources>
