@@ -154,6 +154,8 @@ public class ContactBrowserActivity extends Activity
         setContentView(R.layout.contact_browser);
 
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
+        mContactContentDisplayed = findViewById(R.id.detail_container) != null;
+
         if (mHasActionBar) {
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest);
@@ -166,7 +168,6 @@ public class ContactBrowserActivity extends Activity
 
         configureListFragment();
 
-        mContactContentDisplayed = findViewById(R.id.detail_container) != null;
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
