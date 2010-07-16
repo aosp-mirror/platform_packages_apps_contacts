@@ -105,7 +105,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         bindSectionHeaderAndDivider(view, position);
 
         if (isQuickContactEnabled()) {
-            bindQuickContact(view, cursor);
+            bindQuickContact(view, partition, cursor);
         } else {
             bindPhoto(view, cursor);
         }

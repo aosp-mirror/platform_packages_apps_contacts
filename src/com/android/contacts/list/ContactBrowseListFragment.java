@@ -56,8 +56,10 @@ public abstract class ContactBrowseListFragment extends
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             long selectedId = ListView.INVALID_ROW_ID;
-            if (data.moveToFirst()) {
-                selectedId = data.getLong(0);
+            if (data != null) {
+                if (data.moveToFirst()) {
+                    selectedId = data.getLong(0);
+                }
             }
             getAdapter().setSelectedContactId(selectedId);
             return;

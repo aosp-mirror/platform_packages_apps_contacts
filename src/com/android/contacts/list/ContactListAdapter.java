@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,14 +147,20 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
      * {@link ListView} position.
      */
     public Uri getContactUri(int position) {
+        int partitionIndex = getPartitionForPosition(position);
         Cursor item = (Cursor)getItem(position);
-        return item != null ? getContactUri(item) : null;
+        return item != null ? getContactUri(partitionIndex, item) : null;
     }
 
-    public Uri getContactUri(Cursor cursor) {
+    public Uri getContactUri(int partitionIndex, Cursor cursor) {
         long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
-        return Contacts.getLookupUri(contactId, lookupKey);
+        Uri uri = Contacts.getLookupUri(contactId, lookupKey);
+        if (partitionIndex != Directory.DEFAULT && partitionIndex != Directory.LOCAL_INVISIBLE) {
+            uri = uri.buildUpon().appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(partitionIndex)).build();
+        }
+        return uri;
     }
 
     @Override
@@ -181,14 +188,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
     }
 
-    protected void bindQuickContact(final ContactListItemView view, Cursor cursor) {
+    protected void bindQuickContact(
+            final ContactListItemView view, int partitionIndex, Cursor cursor) {
         long photoId = 0;
         if (!cursor.isNull(CONTACT_PHOTO_ID_COLUMN_INDEX)) {
             photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
         }
 
         QuickContactBadge quickContact = view.getQuickContact();
-        quickContact.assignContactUri(getContactUri(cursor));
+        quickContact.assignContactUri(getContactUri(partitionIndex, cursor));
         getPhotoLoader().loadPhoto(quickContact, photoId);
     }
 

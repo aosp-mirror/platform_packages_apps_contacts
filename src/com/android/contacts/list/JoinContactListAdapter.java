@@ -224,7 +224,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    public Uri getContactUri(Cursor cursor) {
+    public Uri getContactUri(int partitionIndex, Cursor cursor) {
         long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         return Contacts.getLookupUri(contactId, lookupKey);
