@@ -136,6 +136,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private Context mContext;
 
+    private LoaderManager mLoaderManager;
+
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
 
@@ -150,6 +152,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         setContext(activity);
+        setLoaderManager(super.getLoaderManager());
     }
 
     /**
@@ -162,6 +165,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public Context getContext() {
         return mContext;
+    }
+
+    /**
+     * Overrides a loader manager for use in unit tests.
+     */
+    public void setLoaderManager(LoaderManager loaderManager) {
+        mLoaderManager = loaderManager;
+    }
+
+    @Override
+    public LoaderManager getLoaderManager() {
+        return mLoaderManager;
     }
 
     public T getAdapter() {

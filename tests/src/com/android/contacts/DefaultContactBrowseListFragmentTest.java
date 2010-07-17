@@ -19,15 +19,15 @@ package com.android.contacts;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
-import com.android.contacts.widget.LoaderManagingFragmentTestDelegate;
+import com.android.contacts.widget.TestLoaderManager;
 
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.StatusUpdates;
+import android.provider.Settings;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.Smoke;
 import android.view.LayoutInflater;
@@ -101,11 +101,11 @@ public class DefaultContactBrowseListFragmentTest
 
         DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
 
-        LoaderManagingFragmentTestDelegate<Cursor> delegate =
-                new LoaderManagingFragmentTestDelegate<Cursor>();
+        TestLoaderManager loaderManager = new TestLoaderManager();
 
-        // Divert loader registration to the delegate to ensure that loading is done synchronously
-//        fragment.setDelegate(delegate);
+        // Divert loader registration the TestLoaderManager to ensure that loading is
+        // done synchronously
+        fragment.setLoaderManager(loaderManager);
 
         // Fragment life cycle
         fragment.onCreate(null);
@@ -121,7 +121,7 @@ public class DefaultContactBrowseListFragmentTest
         fragment.onStart();
 
         // All loaders have been registered. Now perform the loading synchronously.
-        delegate.executeLoaders();
+        loaderManager.executeLoaders();
 
         // Now we can assert that the data got loaded into the list.
         ListView listView = (ListView)view.findViewById(android.R.id.list);
