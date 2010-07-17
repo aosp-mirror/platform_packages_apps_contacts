@@ -16,7 +16,6 @@
 
 package com.android.contacts.util;
 
-import android.app.Service;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
 public class Constants {

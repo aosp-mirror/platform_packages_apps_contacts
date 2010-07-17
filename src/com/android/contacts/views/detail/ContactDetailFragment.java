@@ -28,6 +28,7 @@ import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
 import com.android.internal.telephony.ITelephony;
 
@@ -108,7 +109,6 @@ public class ContactDetailFragment extends Fragment
     private ContactLoader.Result mContactData;
     private ContactDetailHeaderView mHeaderView;
     private ListView mListView;
-    private boolean mShowSmsLinksForAllPhones;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
 
@@ -117,6 +117,16 @@ public class ContactDetailFragment extends Fragment
     private boolean mAllRestricted;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
+
+    /**
+     * Device capability: Set during buildEntries and used in the long-press context menu
+     */
+    private boolean mHasPhone;
+
+    /**
+     * Device capability: Set during buildEntries and used in the long-press context menu
+     */
+    private boolean mHasSms;
 
     /**
      * The view shown if the detail list is empty.
@@ -184,9 +194,6 @@ public class ContactDetailFragment extends Fragment
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = view.findViewById(android.R.id.empty);
 
-        //TODO Read this value from a preference
-        mShowSmsLinksForAllPhones = true;
-
         return view;
     }
 
@@ -239,6 +246,9 @@ public class ContactDetailFragment extends Fragment
      * Build up the entries to display on the screen.
      */
     private final void buildEntries() {
+        mHasPhone = PhoneCapabilityTester.isPhoneCallIntentRegistered(mContext);
+        mHasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
+
         // Clear out the old entries
         final int numSections = mSections.size();
         for (int i = 0; i < numSections; i++) {
@@ -310,24 +320,32 @@ public class ContactDetailFragment extends Fragment
                     // Build phone entries
                     mNumPhoneNumbers++;
 
-                    entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts(Constants.SCHEME_TEL, entry.data, null));
-                    entry.secondaryIntent = new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null));
+                    final Intent phoneIntent = mHasPhone ? new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                            Uri.fromParts(Constants.SCHEME_TEL, entry.data, null)) : null;
+                    final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
+                            Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null)) : null;
+
+                    // Configure Icons and Intents. Notice actionIcon is already set to the phone
+                    if (mHasPhone && mHasSms) {
+                        entry.intent = phoneIntent;
+                        entry.secondaryIntent = smsIntent;
+                        entry.secondaryActionIcon = kind.iconAltRes;
+                    } else if (mHasPhone) {
+                        entry.intent = phoneIntent;
+                    } else if (mHasSms) {
+                        entry.intent = smsIntent;
+                        entry.actionIcon = kind.iconAltRes;
+                    } else {
+                        entry.intent = null;
+                        entry.actionIcon = -1;
+                    }
+
 
                     // Remember super-primary phone
                     if (isSuperPrimary) mPrimaryPhoneUri = entry.uri;
 
                     entry.isPrimary = isSuperPrimary;
                     mPhoneEntries.add(entry);
-
-                    if (entry.type == CommonDataKinds.Phone.TYPE_MOBILE
-                            || mShowSmsLinksForAllPhones) {
-                        // Add an SMS entry
-                        if (kind.iconAltRes > 0) {
-                            entry.secondaryActionIcon = kind.iconAltRes;
-                        }
-                    }
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build email entries
                     entry.intent = new Intent(Intent.ACTION_SENDTO,
@@ -774,6 +792,15 @@ public class ContactDetailFragment extends Fragment
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        // Options only shows telephony-related settings (ringtone, send to voicemail).
+        // ==> Hide if we don't have a telephone
+        final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
+        final boolean deviceHasPhone = PhoneCapabilityTester.isPhoneCallIntentRegistered(mContext);
+        optionsMenu.setVisible(deviceHasPhone);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
@@ -848,9 +875,15 @@ public class ContactDetailFragment extends Fragment
         final ViewEntry entry = mAdapter.getEntry(info.position);
         menu.setHeaderTitle(R.string.contactOptionsTitle);
         if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
-            menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-            menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(entry.secondaryIntent);
-            if (!entry.isPrimary) {
+            if (mHasPhone) {
+                menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
+            }
+            if (mHasSms) {
+                // If there is no Phone, SMS is the primary intent
+                final Intent intent = mHasPhone ? entry.secondaryIntent : entry.intent;
+                menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(intent);
+            }
+            if (!entry.isPrimary && mHasPhone) {
                 menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
             }
         } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
