@@ -112,8 +112,6 @@ public class ContactDetailFragment extends Fragment
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
 
-    private int mReadOnlySourcesCnt;
-    private int mWritableSourcesCnt;
     private boolean mAllRestricted;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
@@ -257,8 +255,6 @@ public class ContactDetailFragment extends Fragment
 
         mRawContactIds.clear();
 
-        mReadOnlySourcesCnt = 0;
-        mWritableSourcesCnt = 0;
         mAllRestricted = true;
         mPrimaryPhoneUri = null;
         mNumPhoneNumbers = 0;
@@ -287,10 +283,7 @@ public class ContactDetailFragment extends Fragment
             }
             ContactsSource contactsSource = sources.getInflatedSource(accountType,
                     ContactsSource.LEVEL_SUMMARY);
-            if (contactsSource != null && contactsSource.readOnly) {
-                mReadOnlySourcesCnt += 1;
-            } else {
-                mWritableSourcesCnt += 1;
+            if (contactsSource == null || !contactsSource.readOnly) {
                 mWritableRawContactIds.add(rawContactId);
             }
 
@@ -808,7 +801,7 @@ public class ContactDetailFragment extends Fragment
                 break;
             }
             case R.id.menu_delete: {
-                showDeleteConfirmationDialog();
+                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
                 return true;
             }
             case R.id.menu_options: {
@@ -840,20 +833,6 @@ public class ContactDetailFragment extends Fragment
             }
         }
         return false;
-    }
-
-    private void showDeleteConfirmationDialog() {
-        final int id;
-        if (mReadOnlySourcesCnt > 0 & mWritableSourcesCnt > 0) {
-            id = R.id.detail_dialog_confirm_readonly_delete;
-        } else if (mReadOnlySourcesCnt > 0 && mWritableSourcesCnt == 0) {
-            id = R.id.detail_dialog_confirm_readonly_hide;
-        } else if (mReadOnlySourcesCnt == 0 && mWritableSourcesCnt > 1) {
-            id = R.id.detail_dialog_confirm_multiple_delete;
-        } else {
-            id = R.id.detail_dialog_confirm_delete;
-        }
-        if (mListener != null) mListener.onDialogRequested(id, null);
     }
 
     @Override
@@ -1028,7 +1007,7 @@ public class ContactDetailFragment extends Fragment
             }
 
             case KeyEvent.KEYCODE_DEL: {
-                showDeleteConfirmationDialog();
+                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
                 return true;
             }
         }
@@ -1073,7 +1052,8 @@ public class ContactDetailFragment extends Fragment
 
     public static interface Listener {
         /**
-         * Contact was not found, so somehow close this fragment.
+         * Contact was not found, so somehow close this fragment. This is raised after a contact
+         * is removed via Menu/Delete
          */
         public void onContactNotFound();
 
@@ -1088,8 +1068,8 @@ public class ContactDetailFragment extends Fragment
         public void onItemClicked(Intent intent);
 
         /**
-         * Show a dialog using the globally unique id
+         * User decided to delete the contact
          */
-        public void onDialogRequested(int id, Bundle bundle);
+        public void onDeleteRequested(Uri lookupUri);
     }
 }

@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.views.detail.ContactDetailFragment;
 
 import android.app.Activity;
@@ -33,6 +34,7 @@ public class ContactDetailActivity extends Activity {
     private static final String TAG = "ContactDetailActivity";
 
     private ContactDetailFragment mFragment;
+    private ContactDeletionInteraction mContactDeletionInteraction;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -49,6 +51,9 @@ public class ContactDetailActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle args) {
+        final Dialog deletionDialog = getContactDeletionInteraction().onCreateDialog(id, args);
+        if (deletionDialog != null) return deletionDialog;
+
         // ask the Fragment whether it knows about the dialog
         final Dialog fragmentResult = mFragment.onCreateDialog(id, args);
         if (fragmentResult != null) return fragmentResult;
@@ -56,6 +61,13 @@ public class ContactDetailActivity extends Activity {
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
+        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, args)) {
+            return;
+        }
     }
 
     @Override
@@ -84,22 +96,34 @@ public class ContactDetailActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private ContactDeletionInteraction getContactDeletionInteraction() {
+        if (mContactDeletionInteraction == null) {
+            mContactDeletionInteraction = new ContactDeletionInteraction();
+            mContactDeletionInteraction.attachToActivity(this);
+        }
+        return mContactDeletionInteraction;
+    }
+
     private final ContactDetailFragment.Listener mFragmentListener =
             new ContactDetailFragment.Listener() {
+        @Override
         public void onContactNotFound() {
             finish();
         }
 
-        public void onEditRequested(Uri rawContactUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, rawContactUri));
+        @Override
+        public void onEditRequested(Uri lookupUri) {
+            startActivity(new Intent(Intent.ACTION_EDIT, lookupUri));
         }
 
+        @Override
         public void onItemClicked(Intent intent) {
             startActivity(intent);
         }
 
-        public void onDialogRequested(int id, Bundle bundle) {
-            showDialog(id, bundle);
+        @Override
+        public void onDeleteRequested(Uri lookupUri) {
+            getContactDeletionInteraction().deleteContact(lookupUri);
         }
     };
 }

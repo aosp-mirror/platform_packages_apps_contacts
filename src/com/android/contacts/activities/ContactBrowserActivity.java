@@ -475,22 +475,26 @@ public class ContactBrowserActivity extends Activity
     }
 
     private class DetailFragmentListener implements ContactDetailFragment.Listener {
+        @Override
         public void onContactNotFound() {
-            Toast.makeText(ContactBrowserActivity.this, "onContactNotFound", Toast.LENGTH_LONG).show();
+            setupContactDetailFragment(null);
         }
 
+        @Override
         public void onEditRequested(Uri contactLookupUri) {
             setupContactEditorFragment();
             mEditorFragment.load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_ITEM_TYPE,
                     new Bundle());
         }
 
+        @Override
         public void onItemClicked(Intent intent) {
             startActivity(intent);
         }
 
-        public void onDialogRequested(int id, Bundle bundle) {
-            showDialog(id, bundle);
+        @Override
+        public void onDeleteRequested(Uri contactLookupUri) {
+            getContactDeletionInteraction().deleteContact(contactLookupUri);
         }
     }
 

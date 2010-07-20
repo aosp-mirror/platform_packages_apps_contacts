@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+// TODO: This should respect the lookup element. The Id might by now refer to a different contact
 /**
  * An interaction invoked to delete a contact.
  */
