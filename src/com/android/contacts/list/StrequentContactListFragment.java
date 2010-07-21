@@ -58,7 +58,7 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
     @Override
     protected void onItemClick(int position, long id) {
         ContactListAdapter adapter = getAdapter();
-        viewContact(adapter.getContactUri(position));
+        viewContact(adapter.getContactUri(position), false);
     }
 
     @Override

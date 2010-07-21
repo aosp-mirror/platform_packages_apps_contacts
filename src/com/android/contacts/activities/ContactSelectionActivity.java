@@ -231,7 +231,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri) {
+        public void onViewContactAction(Uri contactLookupUri, boolean force) {
             throw new UnsupportedOperationException();
         }
 

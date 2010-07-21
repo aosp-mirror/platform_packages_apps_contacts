@@ -108,7 +108,7 @@ public class ContactSearchActivity extends Activity {
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri) {
+        public void onViewContactAction(Uri contactLookupUri, boolean force) {
             startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
         }
 

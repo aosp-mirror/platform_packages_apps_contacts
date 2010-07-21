@@ -290,7 +290,7 @@ public class ContactBrowserActivity extends Activity
         }
     }
 
-    private void setupContactEditorFragment() {
+    private void setupContactEditorFragment(Uri contactLookupUri) {
         // No detail view here
         closeDetailFragment();
         closeEmptyFragment();
@@ -299,6 +299,8 @@ public class ContactBrowserActivity extends Activity
         if (mEditorFragment != null) return;
 
         mEditorFragment = new ContactEditorFragment();
+        mEditorFragment.load(Intent.ACTION_EDIT, contactLookupUri,
+                Contacts.CONTENT_ITEM_TYPE, new Bundle());
 
         // Nothing showing yet? Create (this happens during Activity-Startup)
         openFragmentTransaction()
@@ -418,8 +420,9 @@ public class ContactBrowserActivity extends Activity
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri) {
+        public void onViewContactAction(Uri contactLookupUri, boolean force) {
             if (mContactContentDisplayed) {
+                if (force) closeEditorFragment(true);
                 mListFragment.setSelectedContactUri(contactLookupUri);
                 setupContactDetailFragment(contactLookupUri);
             } else {
@@ -437,12 +440,18 @@ public class ContactBrowserActivity extends Activity
         }
 
         public void onEditContactAction(Uri contactLookupUri) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
+            if (mContactContentDisplayed) {
+                closeEditorFragment(true);
+                mListFragment.setSelectedContactUri(contactLookupUri);
+                setupContactEditorFragment(contactLookupUri);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    intent.putExtras(extras);
+                }
+                startActivity(intent);
             }
-            startActivity(intent);
         }
 
         public void onAddToFavoritesAction(Uri contactUri) {
@@ -482,9 +491,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            setupContactEditorFragment();
-            mEditorFragment.load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_ITEM_TYPE,
-                    new Bundle());
+            setupContactEditorFragment(contactLookupUri);
         }
 
         @Override

@@ -100,7 +100,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         final Uri contactUri = adapter.getContactUri(position);
         switch (item.getItemId()) {
             case MENU_ITEM_VIEW_CONTACT: {
-                mContactListFragment.viewContact(contactUri);
+                mContactListFragment.viewContact(contactUri, true);
                 return true;
             }
 
