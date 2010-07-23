@@ -26,6 +26,7 @@
     <RelativeLayout android:id="@+id/header"
         android:layout_height="64dip"
         android:layout_width="match_parent"
+        android:background="@android:drawable/list_selector_background"
     >
 
         <ImageView android:id="@+id/header_color_bar"
@@ -75,52 +76,57 @@
 
             android:background="?android:attr/listDivider"
         />
-
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/stub_photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="12dip"
-        android:paddingTop="10dip">
-
-        <include
-            android:id="@+id/edit_photo"
-            layout="@layout/item_photo_editor" />
-
-    </FrameLayout>
-
-    <com.android.contacts.ui.widget.GenericEditorView
-        android:id="@+id/edit_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingRight="?android:attr/scrollbarSize"
-        android:layout_below="@id/stub_photo"
-        android:layout_marginTop="6dip"
-        android:layout_marginBottom="4dip" />
-
     <LinearLayout
-        android:id="@+id/sect_fields"
+        android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-    />
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/listDivider"
-    />
+        <FrameLayout
+            android:id="@+id/stub_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dip"
+            android:paddingTop="10dip">
 
-    <Button
-        android:id="@+id/button_add_field"
-        android:text="@string/add_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dip"
-    />
+            <include
+                android:id="@+id/edit_photo"
+                layout="@layout/item_photo_editor" />
 
+        </FrameLayout>
+
+        <com.android.contacts.ui.widget.GenericEditorView
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="?android:attr/scrollbarSize"
+            android:layout_below="@id/stub_photo"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="4dip" />
+
+        <LinearLayout
+            android:id="@+id/sect_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+        />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/listDivider"
+        />
+
+        <Button
+            android:id="@+id/button_add_field"
+            android:text="@string/add_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dip"
+        />
+    </LinearLayout>
 </com.android.contacts.ui.widget.ContactEditorView>

@@ -27,6 +27,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
+import com.android.contacts.util.ViewGroupAnimator;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -47,6 +48,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -67,11 +69,14 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
 
     private ViewGroup mFields;
 
+    private View mHeader;
+    private View mBody;
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
 
     private Button mAddFieldButton;
+    private boolean mExpanded = true;
 
     private long mRawContactId = -1;
 
@@ -106,6 +111,14 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
+        mHeader = findViewById(R.id.header);
+        mBody = findViewById(R.id.body);
+        mHeader.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setExpanded(!mExpanded, true);
+            }
+        });
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
         mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
@@ -202,8 +215,16 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
         return mRawContactId;
     }
 
-    /* package */
-    void showDialog(int bundleDialogId) {
+    /* package */ void setExpanded(boolean value, boolean animate) {
+        if (value == mExpanded) return;
+
+        ViewGroupAnimator animator = animate ? ViewGroupAnimator.captureView(getRootView()) : null;
+        mExpanded = value;
+        mBody.setVisibility(value ? View.VISIBLE : View.GONE);
+        if (animate) animator.animate();
+    }
+
+    /* package */ void showDialog(int bundleDialogId) {
         final Bundle bundle = new Bundle();
         bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
         getDialogManager().showDialogInView(this, bundle);
