@@ -16,8 +16,10 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.ContextMenuAdapter;
 
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -66,10 +68,13 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact);
 
         if (adapter.getHasPhoneNumber(position)) {
+            final Context context = mContactListFragment.getContext();
+            boolean hasPhoneApp = PhoneCapabilityTester.isPhoneCallIntentRegistered(context);
+            boolean hasSmsApp = PhoneCapabilityTester.isSmsIntentRegistered(context);
             // Calling contact
-            menu.add(0, MENU_ITEM_CALL, 0, R.string.menu_call);
+            if (hasPhoneApp) menu.add(0, MENU_ITEM_CALL, 0, R.string.menu_call);
             // Send SMS item
-            menu.add(0, MENU_ITEM_SEND_SMS, 0, R.string.menu_sendSMS);
+            if (hasSmsApp) menu.add(0, MENU_ITEM_SEND_SMS, 0, R.string.menu_sendSMS);
         }
 
         // Star toggling
