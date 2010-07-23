@@ -16,6 +16,8 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.R;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -41,23 +43,20 @@ import android.view.View;
  */
 public class DialogManager {
     private final Activity mActivity;
-    private final int mDialogId1;
-    private final int mDialogId2;
     private boolean mUseDialogId2 = false;
     public final static String VIEW_ID_KEY = "view_id";
+
+    public static final boolean isManagedId(int id) {
+        return (id == R.id.dialog_manager_id_1) || (id == R.id.dialog_manager_id_2);
+    }
 
     /**
      * Creates a new instance of this class for the given Activity.
      * @param activity The activity this object is used for
-     * @param dialogId1 The first Id that is reserved for use by child-views
-     * @param dialogId2 The second Id that is reserved for use by child-views
      */
-    public DialogManager(final Activity activity, final int dialogId1, final int dialogId2) {
+    public DialogManager(final Activity activity) {
         if (activity == null) throw new IllegalArgumentException("activity must not be null");
-        if (dialogId1 == dialogId2) throw new IllegalArgumentException("Ids must be different");
         mActivity = activity;
-        mDialogId1 = dialogId1;
-        mDialogId2 = dialogId2;
     }
 
     /**
@@ -75,7 +74,7 @@ public class DialogManager {
             throw new IllegalArgumentException("View does not have a proper ViewId");
         }
         bundle.putInt(VIEW_ID_KEY, viewId);
-        int dialogId = mUseDialogId2 ? mDialogId2 : mDialogId1;
+        int dialogId = mUseDialogId2 ? R.id.dialog_manager_id_2 : R.id.dialog_manager_id_1;
         mActivity.showDialog(dialogId, bundle);
     }
 
@@ -84,9 +83,9 @@ public class DialogManager {
      * This function returns null if the id is not one of the two reserved Ids.
      */
     public Dialog onCreateDialog(final int id, final Bundle bundle) {
-        if (id == mDialogId1) {
+        if (id == R.id.dialog_manager_id_1) {
             mUseDialogId2 = true;
-        } else if (id == mDialogId2) {
+        } else if (id == R.id.dialog_manager_id_2) {
             mUseDialogId2 = false;
         } else {
             return null;

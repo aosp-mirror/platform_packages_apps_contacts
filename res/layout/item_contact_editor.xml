@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 
-<!-- placed inside act_edit -->
 <com.android.contacts.ui.widget.ContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

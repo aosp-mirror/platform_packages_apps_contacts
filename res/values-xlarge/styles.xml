@@ -21,5 +21,7 @@
     </style>
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Dialog">
     </style>
-
+    <style name="TallTitleBarTheme" parent="@android:Theme.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>

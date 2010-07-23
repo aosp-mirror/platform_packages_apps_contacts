@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.editor.ContactEditorFragment;
 
 import android.app.Activity;
@@ -25,12 +26,20 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class ContactEditorActivity extends Activity {
+public class ContactEditorActivity extends Activity implements
+        DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
 
     private ContactEditorFragment mFragment;
+    private Button mDoneButton;
+    private Button mRevertButton;
+
+    private DialogManager mDialogManager = new DialogManager(this);
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -43,11 +52,29 @@ public class ContactEditorActivity extends Activity {
         mFragment.load(getIntent().getAction(), getIntent().getData(),
                 getIntent().resolveType(getContentResolver()), getIntent().getExtras());
 
+        // Depending on the use-case, this activity has Done and Revert buttons or not.
+        mDoneButton = (Button) findViewById(R.id.done);
+        mRevertButton = (Button) findViewById(R.id.revert);
+        if (mDoneButton != null) mDoneButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFragment.save();
+            }
+        });
+        if (mRevertButton != null) mRevertButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         Log.i(TAG, getIntent().getData().toString());
     }
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle args) {
+        if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, args);
+
         // ask the Fragment whether it knows about the dialog
         final Dialog fragmentResult = mFragment.onCreateDialog(id, args);
         if (fragmentResult != null) return fragmentResult;
@@ -77,31 +104,27 @@ public class ContactEditorActivity extends Activity {
 
         @Override
         public void closeAfterRevert() {
-            Toast.makeText(ContactEditorActivity.this, "closeAfterRevert",
-                    Toast.LENGTH_LONG).show();
+            finish();
         }
 
         @Override
         public void closeAfterSaving(int resultCode, Intent resultIntent) {
-            Toast.makeText(ContactEditorActivity.this, "closeAfterSaving",
-                    Toast.LENGTH_LONG).show();
+            finish();
         }
 
         @Override
         public void closeAfterSplit() {
-            Toast.makeText(ContactEditorActivity.this, "closeAfterSplit", Toast.LENGTH_LONG).show();
+            finish();
         }
 
         @Override
         public void closeBecauseAccountSelectorAborted() {
-            Toast.makeText(ContactEditorActivity.this, "closeBecauseAccountSelectorAborted",
-                    Toast.LENGTH_LONG).show();
+            finish();
         }
 
         @Override
         public void closeBecauseContactNotFound() {
-            Toast.makeText(ContactEditorActivity.this, "closeBecauseContactNotFound",
-                    Toast.LENGTH_LONG).show();
+            finish();
         }
 
         @Override
@@ -109,4 +132,9 @@ public class ContactEditorActivity extends Activity {
             Toast.makeText(ContactEditorActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
         }
     };
+
+    @Override
+    public DialogManager getDialogManager() {
+        return mDialogManager;
+    }
 }

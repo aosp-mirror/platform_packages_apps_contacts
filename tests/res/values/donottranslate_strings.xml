@@ -72,6 +72,13 @@
         <item>EDIT (create new contact)</item>
         <item>EDIT (create new raw contact)</item>
         <item>EDIT (create new legacy)</item>
+
+        <!-- View Contact -->
+        <item>VIEW (content uri with only id)</item>
+        <item>VIEW (lookup uri without id)</item>
+        <item>VIEW (lookup uri)</item>
+        <item>VIEW (called for raw contact)</item>
+        <item>VIEW (legacy style uri)</item>
     </string-array>
 
     <string name="pinnedHeaderList">Pinned Headers</string>

@@ -72,11 +72,7 @@ public class ContactBrowserActivity extends Activity
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
     private static final int SUBACTIVITY_SEARCH = 4;
 
-    private static final int DIALOG_MANAGER_ID_1 = 1;
-    private static final int DIALOG_MANAGER_ID_2 = 2;
-
-    private DialogManager mDialogManager = new DialogManager(this, DIALOG_MANAGER_ID_1,
-            DIALOG_MANAGER_ID_2);
+    private DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
@@ -642,9 +638,7 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
-        if (id == DIALOG_MANAGER_ID_1 || id == DIALOG_MANAGER_ID_2) {
-            return mDialogManager.onCreateDialog(id, bundle);
-        }
+        if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, bundle);
 
         Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
         if (dialog != null) {
