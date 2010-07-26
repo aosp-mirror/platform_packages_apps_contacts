@@ -21,8 +21,8 @@ import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.Sources;
 import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
@@ -46,20 +46,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.QuickContact;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.QuickContact;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -70,9 +71,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -1643,6 +1644,11 @@ public class QuickContactWindow implements Window.Callback,
     /** {@inheritDoc} */
     public void onDetachedFromWindow() {
         // No actions
+    }
+
+    /** {@inheritDoc} */
+    public ActionMode onStartActionMode(ActionMode.Callback callback) {
+        return null;
     }
 
     private interface DataQuery {
