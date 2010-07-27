@@ -21,43 +21,25 @@ import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.views.ContactLoader;
 
 import android.content.ContentUris;
-import android.content.Loader;
-import android.content.Loader.OnLoadCompleteListener;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.RawContactsEntity;
-import android.provider.ContactsContract.StatusUpdates;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.RawContacts.Data;
 import android.provider.ContactsContract.RawContacts.Entity;
-import android.test.AndroidTestCase;
+import android.provider.ContactsContract.RawContactsEntity;
+import android.provider.ContactsContract.StatusUpdates;
 import android.test.AssertionFailedError;
-
-import java.util.concurrent.ArrayBlockingQueue;
+import android.test.LoaderTestCase;
 
 /**
  * Runs ContactLoader tests for the the contact-detail and editor view.
  */
-public class ContactLoaderTest extends AndroidTestCase {
-    private ContactsMockContext mMockContext;
-    private MockContentProvider mContactsProvider;
-
-    static {
-        // Need to force class loading of AsyncTask on the main thread...
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... args) {return null;}
-            @Override
-            protected void onPostExecute(Void result) {}
-        };
-    }
+public class ContactLoaderTest extends LoaderTestCase {
+    ContactsMockContext mMockContext;
+    MockContentProvider mContactsProvider;
 
     @Override
     protected void setUp() throws Exception {
@@ -88,59 +70,6 @@ public class ContactLoaderTest extends AndroidTestCase {
         }
         throw new AssertionFailedError(
                 "Expected Exception " + expectedException + " which was not thrown");
-    }
-
-    /**
-     * Runs a Loader synchronously and returns the result of the load. The loader will
-     * be started, stopped, and destroyed by this method so it cannot be reused.
-     *
-     * @param loader The loader to run synchronously
-     * @return The result from the loader
-     */
-    private <T> T getLoaderResultSynchronously(final Loader<T> loader) {
-        // The test thread blocks on this queue until the loader puts it's result in
-        final ArrayBlockingQueue<T> queue = new ArrayBlockingQueue<T>(1);
-
-        // This callback runs on the "main" thread and unblocks the test thread
-        // when it puts the result into the blocking queue
-        final OnLoadCompleteListener<T> listener = new OnLoadCompleteListener<T>() {
-            public void onLoadComplete(Loader<T> completedLoader, T data) {
-                // Shut the loader down
-                completedLoader.unregisterListener(this);
-                completedLoader.stopLoading();
-                completedLoader.destroy();
-
-                // Store the result, unblocking the test thread
-                queue.add(data);
-            }
-        };
-
-        // This handler runs on the "main" thread of the process since AsyncTask
-        // is documented as needing to run on the main thread and many Loaders use
-        // AsyncTask
-        final Handler mainThreadHandler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                loader.registerListener(0, listener);
-                loader.startLoading();
-            }
-        };
-
-        // Ask the main thread to start the loading process
-        mainThreadHandler.sendEmptyMessage(0);
-
-        // Block on the queue waiting for the result of the load to be inserted
-        T result;
-        while (true) {
-            try {
-                result = queue.take();
-                break;
-            } catch (InterruptedException e) {
-                throw new RuntimeException("waiting thread interrupted", e);
-            }
-        }
-
-        return result;
     }
 
     private ContactLoader.Result assertLoadContact(Uri uri) {
@@ -447,8 +376,8 @@ public class ContactLoaderTest extends AndroidTestCase {
         mContactsProvider.verify();
     }
 
-    private class ContactQueries {
-        private void fetchRawContacts(final long contactId, final long dataId,
+    class ContactQueries {
+        void fetchRawContacts(final long contactId, final long dataId,
                 final long rawContactId) {
             mContactsProvider.expectQuery(RawContactsEntity.CONTENT_URI)
                 .withDefaultProjection(new String[] {
@@ -485,7 +414,7 @@ public class ContactLoaderTest extends AndroidTestCase {
                         "syn1", "syn2", "syn3", "syn4");
         }
 
-        private void fetchSocial(final Uri dataUri, final long expectedContactId) {
+        void fetchSocial(final Uri dataUri, final long expectedContactId) {
             mContactsProvider.expectQuery(dataUri)
                     .withProjection(
                             Contacts._ID, StatusUpdates.STATUS, StatusUpdates.STATUS_RES_PACKAGE,
@@ -501,7 +430,7 @@ public class ContactLoaderTest extends AndroidTestCase {
                             0, StatusUpdates.AVAILABLE);
         }
 
-        private void fetchHeaderData(final Uri uri, final long expectedRawContactId,
+        void fetchHeaderData(final Uri uri, final long expectedRawContactId,
                 final String expectedEncodedLookup) {
             mContactsProvider.expectQuery(uri)
                     .withProjection(
@@ -532,7 +461,7 @@ public class ContactLoaderTest extends AndroidTestCase {
                             null);
         }
 
-        private void fetchHeaderDataNoResult(final Uri uri) {
+        void fetchHeaderDataNoResult(final Uri uri) {
             mContactsProvider.expectQuery(uri)
                     .withProjection(
                             Contacts.NAME_RAW_CONTACT_ID,
@@ -549,19 +478,19 @@ public class ContactLoaderTest extends AndroidTestCase {
                             Contacts.CONTACT_STATUS_LABEL);
         }
 
-        private void fetchLookupAndId(final Uri sourceUri, final long expectedContactId,
+        void fetchLookupAndId(final Uri sourceUri, final long expectedContactId,
                 final String expectedEncodedLookup) {
             mContactsProvider.expectQuery(sourceUri)
                     .withProjection(Contacts.LOOKUP_KEY, Contacts._ID)
                     .returnRow(expectedEncodedLookup, expectedContactId);
         }
 
-        private void fetchLookupAndIdNoResult(final Uri sourceUri) {
+        void fetchLookupAndIdNoResult(final Uri sourceUri) {
             mContactsProvider.expectQuery(sourceUri)
                     .withProjection(Contacts.LOOKUP_KEY, Contacts._ID);
         }
 
-        private void fetchContactIdAndLookupFromRawContactUri(final Uri rawContactUri,
+        void fetchContactIdAndLookupFromRawContactUri(final Uri rawContactUri,
                 final long expectedContactId, final String expectedEncodedLookup) {
             // TODO: use a lighter query by joining rawcontacts with contacts in provider
             // (See ContactContracts.java)
