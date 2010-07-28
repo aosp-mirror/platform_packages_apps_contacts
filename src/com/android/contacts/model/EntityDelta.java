@@ -612,33 +612,45 @@ public class EntityDelta implements Parcelable {
             return (mBefore != null && mBefore.containsKey(mIdColumn));
         }
 
+        /**
+         * When "after" is present, then visible
+         */
         public boolean isVisible() {
-            // When "after" is present, then visible
             return (mAfter != null);
         }
 
+        /**
+         * When "after" is wiped, action is "delete"
+         */
         public boolean isDelete() {
-            // When "after" is wiped, action is "delete"
             return beforeExists() && (mAfter == null);
         }
 
+        /**
+         * When no "before" or "after", is transient
+         */
         public boolean isTransient() {
-            // When no "before" or "after", is transient
             return (mBefore == null) && (mAfter == null);
         }
 
+        /**
+         * When "after" has some changes, action is "update"
+         */
         public boolean isUpdate() {
-            // When "after" has some changes, action is "update"
             return beforeExists() && (mAfter != null && mAfter.size() > 0);
         }
 
+        /**
+         * When "after" has no changes, action is no-op
+         */
         public boolean isNoop() {
-            // When "after" has no changes, action is no-op
             return beforeExists() && (mAfter != null && mAfter.size() == 0);
         }
 
+        /**
+         * When no "before" id, and has "after", action is "insert"
+         */
         public boolean isInsert() {
-            // When no "before" id, and has "after", action is "insert"
             return !beforeExists() && (mAfter != null);
         }
 

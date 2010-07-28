@@ -41,7 +41,6 @@ import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
@@ -344,18 +343,6 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
         }
-    }
-
-    public boolean isAnyFieldFilledOut() {
-        if (mFieldEditTexts != null) {
-            for (int index = 0; index < mFieldEditTexts.length; index++) {
-                final EditText editText = mFieldEditTexts[index];
-                if (!TextUtils.isEmpty(editText.getText())) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     private void rebuildValues() {
