@@ -68,9 +68,7 @@ public class ContactBrowserActivity extends Activity
     private static final String KEY_MODE = "mode";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
-    private static final int SUBACTIVITY_VIEW_CONTACT = 3;
-    private static final int SUBACTIVITY_DISPLAY_GROUP = 4;
-    private static final int SUBACTIVITY_SEARCH = 5;
+    private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
 
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -686,17 +684,13 @@ public class ContactBrowserActivity extends Activity
                 break;
             }
 
-//            case SUBACTIVITY_VIEW_CONTACT:
-//                if (resultCode == RESULT_OK) {
-//                    mAdapter.notifyDataSetChanged();
-//                }
-//                break;
-//
-//            case SUBACTIVITY_DISPLAY_GROUP:
-//                // Mark as just created so we re-run the view query
-////                mJustCreated = true;
-//                break;
-//
+            case SUBACTIVITY_DISPLAY_GROUP:
+                // TODO: Force the ListFragment to reload its setting and update (don't lookup
+                // directories here)
+                break;
+
+            // TODO: Using the new startActivityWithResultFromFragment API this should not be needed
+            // anymore
             case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
                 if (resultCode == RESULT_OK) {
                     mListFragment.onPickerResult(data);

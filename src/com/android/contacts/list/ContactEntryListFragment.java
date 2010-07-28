@@ -75,6 +75,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
                 LoaderCallbacks<Cursor> {
 
+    // TODO: Make this protected. This should not be used from the ContactBrowserActivity but
+    // instead use the new startActivityWithResultFromFragment API
     public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
 
     private static final String TAG = "ContactEntryListFragment";
@@ -129,8 +131,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mLoadDirectoryList;
 
     /**
-     * Indicates whether we are doing the initial complete load of data or
-     * a refresh caused by a change notification.
+     * Indicates whether we are doing the initial complete load of data (false) or
+     * a refresh caused by a change notification (true)
      */
     private boolean mLoadPriorityDirectoriesOnly;
 
