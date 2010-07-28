@@ -42,7 +42,6 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 
 /**
  * Singleton holder for all parsed {@link ContactsSource} available on the
@@ -64,8 +63,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
 
     /**
      * Requests the singleton instance of {@link Sources} with data bound from
-     * the available authenticators. This method blocks until its interaction
-     * with {@link AccountManager} is finished, so don't call from a UI thread.
+     * the available authenticators. This method can safely be called from the UI thread.
      */
     public static synchronized Sources getInstance(Context context) {
         Sources sources = sInstance == null ? null : sInstance.get();
@@ -179,8 +177,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     }
 
     /**
-     * Blocking call to load all {@link AuthenticatorDescription} known by the
-     * {@link AccountManager} on the system.
+     * Loads all {@link AuthenticatorDescription} known by the {@link AccountManager} on the system.
      */
     protected synchronized void queryAccounts() {
         mSources.clear();

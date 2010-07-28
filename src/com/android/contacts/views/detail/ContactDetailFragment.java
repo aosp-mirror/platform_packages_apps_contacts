@@ -261,7 +261,6 @@ public class ContactDetailFragment extends Fragment
 
         mWritableRawContactIds.clear();
 
-        // TODO: This should be done in the background thread
         final Sources sources = Sources.getInstance(mContext);
 
         // Build up method entries
