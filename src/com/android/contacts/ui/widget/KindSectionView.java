@@ -27,11 +27,12 @@ import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.ViewGroupAnimator;
 
 import android.content.Context;
+import android.opengl.Texture;
 import android.provider.ContactsContract.Data;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -90,7 +91,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     /** {@inheritDoc} */
     public void onDeleted(Editor editor) {
         updateAddEnabled();
-        updateEditorsVisible();
         updateVisible();
     }
 
@@ -115,32 +115,11 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         rebuildFromState();
         updateAddEnabled();
-        updateEditorsVisible();
         updateVisible();
     }
 
     public CharSequence getTitle() {
         return mTitle.getText();
-    }
-
-    public boolean getFieldCount() {
-        if (mState == null) {
-            return false;
-        }
-
-        if (!mState.hasMimeEntries(mKind.mimeType)) {
-            return false;
-        }
-
-        int editorCount = getEditorCount();
-        for (int i = 0; i < editorCount; i++) {
-            GenericEditorView editorView = (GenericEditorView) mEditors.getChildAt(i);
-            if (editorView.isAnyFieldFilledOut()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -158,6 +137,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
                 // Skip entries that aren't visible
                 if (!entry.isVisible()) continue;
+                if (isEmptyNoop(entry)) continue;
 
                 final GenericEditorView editor = new GenericEditorView(mContext);
 
@@ -169,6 +149,20 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 entryIndex++;
             }
         }
+    }
+
+    /**
+     * Tests whether the given item has no changes (so it exists in the database) but is empty
+     */
+    private boolean isEmptyNoop(ValuesDelta item) {
+        if (!item.isNoop()) return false;
+        final int fieldCount = mKind.fieldList.size();
+        for (int i = 0; i < fieldCount; i++) {
+            final String column = mKind.fieldList.get(i).column;
+            final String value = item.getAsString(column);
+            if (!TextUtils.isEmpty(value)) return false;
+        }
+        return true;
     }
 
     /**
@@ -186,11 +180,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
 
         return sCachedThemePaddingRight;
-    }
-
-    protected void updateEditorsVisible() {
-        final boolean hasChildren = getEditorCount() > 0;
-        mEditors.setVisibility(hasChildren ? View.VISIBLE : View.GONE);
     }
 
     private void updateVisible() {
@@ -216,7 +205,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
         rebuildFromState();
         updateAddEnabled();
-        updateEditorsVisible();
 
         // Find the newly added EditView and set focus.
         final int newFieldId = mViewIdGenerator.getId(mState, mKind, newValues, 0);
