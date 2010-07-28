@@ -59,7 +59,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.RemoteException;
@@ -370,18 +369,8 @@ public class ContactEditorFragment extends Fragment {
 
     private boolean doAddAction() {
         // Load Accounts async so that we can present them
-        AsyncTask<Void, Void, ArrayList<Account>> loadAccountsTask =
-                new AsyncTask<Void, Void, ArrayList<Account>>() {
-                    @Override
-                    protected ArrayList<Account> doInBackground(Void... params) {
-                        return Sources.getInstance(mContext).getAccounts(true);
-                    }
-                    @Override
-                    protected void onPostExecute(ArrayList<Account> result) {
-                        selectAccountAndCreateContact(result, true);
-                    }
-        };
-        loadAccountsTask.execute();
+        final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
+        selectAccountAndCreateContact(accounts, true);
 
         return true;
     }
@@ -395,7 +384,6 @@ public class ContactEditorFragment extends Fragment {
             return false;
         int readOnlySourcesCnt = 0;
         int writableSourcesCnt = 0;
-        // TODO: This shouldn't be called from the UI thread
         final Sources sources = Sources.getInstance(mContext);
         for (EntityDelta delta : mState) {
             final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
@@ -1122,7 +1110,6 @@ public class ContactEditorFragment extends Fragment {
 
     private class DeleteClickListener implements DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
-            // TODO: Don't do this from the UI thread
             final Sources sources = Sources.getInstance(mContext);
             // Mark all raw contacts for deletion
             for (EntityDelta delta : mState) {
