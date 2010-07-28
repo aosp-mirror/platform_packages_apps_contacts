@@ -220,6 +220,13 @@ public class ContactEditorFragment extends Fragment {
     }
 
     public void setData(ContactLoader.Result data) {
+        // If we have already loaded data, we do not want to change it here to not confuse the user
+        if (mState != null) {
+            Log.v(TAG, "Ignoring background change. This will have to be rebased later");
+            return;
+        }
+
+
         mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
         // TODO: Merge in Intent parameters can only be done on the first load.
         // The behaviour for subsequent loads is probably broken, so fix this
