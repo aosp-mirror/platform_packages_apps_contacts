@@ -519,7 +519,7 @@ public class ContactEditorFragment extends Fragment {
             public void onCancel(DialogInterface dialog) {
                 // If nothing remains, close activity
                 if (!hasValidState()) {
-                    mListener.closeBecauseAccountSelectorAborted();
+                    mListener.onAccountSelectorAborted();
                 }
             }
         };
@@ -733,7 +733,7 @@ public class ContactEditorFragment extends Fragment {
     }
 
     private boolean doRevertAction() {
-        if (mListener != null) mListener.closeAfterRevert();
+        if (mListener != null) mListener.onReverted();
 
         return true;
     }
@@ -767,10 +767,10 @@ public class ContactEditorFragment extends Fragment {
                     resultCode = Activity.RESULT_CANCELED;
                     resultIntent = null;
                 }
-                if (mListener != null) mListener.closeAfterSaving(resultCode, resultIntent);
+                if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent);
                 break;
             case SAVE_MODE_SPLIT:
-                if (mListener != null) mListener.closeAfterSplit();
+                if (mListener != null) mListener.onSplit();
                 break;
 
             case SAVE_MODE_JOIN:
@@ -898,29 +898,25 @@ public class ContactEditorFragment extends Fragment {
 
     public static interface Listener {
         /**
-         * Contact was not found, so somehow close this fragment.
+         * Contact was not found, so somehow close this fragment. This is raised after a contact
+         * is removed via Menu/Delete (unless it was a new contact)
          */
-        void closeBecauseContactNotFound();
+        void onContactNotFound();
 
         /**
          * Contact was split, so we can close now
          */
-        void closeAfterSplit();
+        void onSplit();
 
         /**
          * User was presented with an account selection and couldn't decide.
          */
-        void closeBecauseAccountSelectorAborted();
+        void onAccountSelectorAborted();
 
         /**
          * User has tapped Revert, close the fragment now.
          */
-        void closeAfterRevert();
-
-        /**
-         * User has removed the contact, close the fragment now.
-         */
-        void closeAfterDelete();
+        void onReverted();
 
         /**
          * Set the Title (e.g. of the Activity)
@@ -928,11 +924,9 @@ public class ContactEditorFragment extends Fragment {
         void setTitleTo(int resourceId);
 
         /**
-         * Contact was
-         * @param resultCode
-         * @param resultIntent
+         * Contact was saved and the Fragment can now be closed safely.
          */
-        void closeAfterSaving(int resultCode, Intent resultIntent);
+        void onSaveFinished(int resultCode, Intent resultIntent);
     }
 
     private class EntityDeltaComparator implements Comparator<EntityDelta> {
@@ -1117,7 +1111,7 @@ public class ContactEditorFragment extends Fragment {
             }
             // Save the deletes
             doSaveAction(SAVE_MODE_DEFAULT);
-            mListener.closeAfterDelete();
+            mListener.onContactNotFound();
         }
     }
 
@@ -1330,7 +1324,7 @@ public class ContactEditorFragment extends Fragment {
             if (data == ContactLoader.Result.NOT_FOUND) {
                 // Item has been deleted
                 Log.i(TAG, "No contact found. Closing activity");
-                if (mListener != null) mListener.closeBecauseContactNotFound();
+                if (mListener != null) mListener.onContactNotFound();
                 return;
             }
 

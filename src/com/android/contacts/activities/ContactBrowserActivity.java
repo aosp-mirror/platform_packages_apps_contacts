@@ -67,10 +67,10 @@ public class ContactBrowserActivity extends Activity
 
     private static final String KEY_MODE = "mode";
 
-    private static final int SUBACTIVITY_NEW_CONTACT = 1;
-    private static final int SUBACTIVITY_VIEW_CONTACT = 2;
-    private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
-    private static final int SUBACTIVITY_SEARCH = 4;
+    private static final int SUBACTIVITY_NEW_CONTACT = 2;
+    private static final int SUBACTIVITY_VIEW_CONTACT = 3;
+    private static final int SUBACTIVITY_DISPLAY_GROUP = 4;
+    private static final int SUBACTIVITY_SEARCH = 5;
 
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -503,20 +503,14 @@ public class ContactBrowserActivity extends Activity
 
     private class EditorFragmentListener implements ContactEditorFragment.Listener {
         @Override
-        public void closeAfterDelete() {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterDelete",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void closeAfterRevert() {
+        public void onReverted() {
             final Uri uri = mEditorFragment.getUri();
             closeEditorFragment(false);
             setupContactDetailFragment(uri);
         }
 
         @Override
-        public void closeAfterSaving(int resultCode, Intent resultIntent) {
+        public void onSaveFinished(int resultCode, Intent resultIntent) {
             // it is already saved, so no need to save again here
             final Uri uri = mEditorFragment.getUri();
             closeEditorFragment(false);
@@ -524,19 +518,19 @@ public class ContactBrowserActivity extends Activity
         }
 
         @Override
-        public void closeAfterSplit() {
+        public void onSplit() {
             Toast.makeText(ContactBrowserActivity.this, "closeAfterSplit",
                     Toast.LENGTH_LONG).show();
         }
 
         @Override
-        public void closeBecauseAccountSelectorAborted() {
+        public void onAccountSelectorAborted() {
             Toast.makeText(ContactBrowserActivity.this, "closeBecauseAccountSelectorAborted",
                     Toast.LENGTH_LONG).show();
         }
 
         @Override
-        public void closeBecauseContactNotFound() {
+        public void onContactNotFound() {
             Toast.makeText(ContactBrowserActivity.this, "closeBecauseContactNotFound",
                     Toast.LENGTH_LONG).show();
         }
@@ -602,7 +596,7 @@ public class ContactBrowserActivity extends Activity
             }
             case R.id.menu_add: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                startActivity(intent);
+                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
                 return true;
             }
             case R.id.menu_import_export: {
@@ -683,13 +677,14 @@ public class ContactBrowserActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-//            case SUBACTIVITY_NEW_CONTACT:
-//                if (resultCode == RESULT_OK) {
-//                    returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
-//                            data.getData());
-//                    setRe
-//                }
-//                break;
+            case SUBACTIVITY_NEW_CONTACT: {
+                if (resultCode == RESULT_OK && mContactContentDisplayed) {
+                    final Uri newContactUri = data.getData();
+                    mListFragment.setSelectedContactUri(newContactUri);
+                    setupContactDetailFragment(newContactUri);
+                }
+                break;
+            }
 
 //            case SUBACTIVITY_VIEW_CONTACT:
 //                if (resultCode == RESULT_OK) {

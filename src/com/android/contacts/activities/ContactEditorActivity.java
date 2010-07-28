@@ -97,39 +97,35 @@ public class ContactEditorActivity extends Activity implements
     private final ContactEditorFragment.Listener mFragmentListener =
             new ContactEditorFragment.Listener() {
         @Override
-        public void closeAfterDelete() {
-            Toast.makeText(ContactEditorActivity.this, "closeAfterDelete",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void closeAfterRevert() {
+        public void onReverted() {
             finish();
         }
 
         @Override
-        public void closeAfterSaving(int resultCode, Intent resultIntent) {
+        public void onSaveFinished(int resultCode, Intent resultIntent) {
+            setResult(resultCode, resultIntent);
             finish();
         }
 
         @Override
-        public void closeAfterSplit() {
+        public void onSplit() {
             finish();
         }
 
         @Override
-        public void closeBecauseAccountSelectorAborted() {
+        public void onAccountSelectorAborted() {
             finish();
         }
 
         @Override
-        public void closeBecauseContactNotFound() {
+        public void onContactNotFound() {
+            setResult(Activity.RESULT_CANCELED, null);
             finish();
         }
 
         @Override
         public void setTitleTo(int resourceId) {
-            Toast.makeText(ContactEditorActivity.this, "setTitleTo", Toast.LENGTH_LONG).show();
+            setTitle(resourceId);
         }
     };
 
