@@ -246,7 +246,7 @@ public class ContactBrowserActivity extends Activity
 
         // If we are already editing this URI - just continue editing
         if (mEditorFragment != null && contactLookupUri != null
-                && contactLookupUri.equals(mEditorFragment.getUri())) {
+                && contactLookupUri.equals(mEditorFragment.getLookupUri())) {
             return;
         }
 
@@ -502,7 +502,7 @@ public class ContactBrowserActivity extends Activity
     private class EditorFragmentListener implements ContactEditorFragment.Listener {
         @Override
         public void onReverted() {
-            final Uri uri = mEditorFragment.getUri();
+            final Uri uri = mEditorFragment.getLookupUri();
             closeEditorFragment(false);
             setupContactDetailFragment(uri);
         }
@@ -510,7 +510,7 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onSaveFinished(int resultCode, Intent resultIntent) {
             // it is already saved, so no need to save again here
-            final Uri uri = mEditorFragment.getUri();
+            final Uri uri = mEditorFragment.getLookupUri();
             closeEditorFragment(false);
             setupContactDetailFragment(uri);
         }
@@ -529,12 +529,16 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onContactNotFound() {
-            Toast.makeText(ContactBrowserActivity.this, "closeBecauseContactNotFound",
-                    Toast.LENGTH_LONG).show();
+            setupContactDetailFragment(null);
         }
 
         @Override
         public void setTitleTo(int resourceId) {
+        }
+
+        @Override
+        public void onDeleteRequested(Uri contactLookupUri) {
+            getContactDeletionInteraction().deleteContact(contactLookupUri);
         }
     }
 
