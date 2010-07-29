@@ -403,7 +403,8 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
             if (inputType == InputType.TYPE_CLASS_PHONE) {
-                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher(
+                        ContactsUtils.getCurrentCountryIso(mContext)));
             }
             fieldView.setMinLines(field.minLines);
 

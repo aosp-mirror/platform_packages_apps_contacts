@@ -29,6 +29,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.location.Country;
+import android.location.CountryDetector;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -489,5 +491,16 @@ public class ContactsUtils {
             return false;
         }
         return TextUtils.equals(a.getAction(), b.getAction());
+    }
+
+    /**
+     * @return The ISO 3166-1 two letters country code of the country the user
+     *         is in.
+     */
+    public static final String getCurrentCountryIso(Context context) {
+        CountryDetector detector =
+                (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
+        Country country = detector.detectCountry();
+        return country.getCountryIso();
     }
 }

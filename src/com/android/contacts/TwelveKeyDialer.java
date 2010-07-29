@@ -268,7 +268,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     protected void maybeAddNumberFormatting() {
-        mDigits.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        mDigits.addTextChangedListener(
+                new PhoneNumberFormattingTextWatcher(ContactsUtils.getCurrentCountryIso(this)));
     }
 
     /**
