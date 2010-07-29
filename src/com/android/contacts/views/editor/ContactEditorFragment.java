@@ -126,7 +126,7 @@ public class ContactEditorFragment extends Fragment {
 
     private Context mContext;
     private String mAction;
-    private Uri mUri;
+    private Uri mLookupUri;
     private String mMimeType;
     private Bundle mIntentExtras;
     private Listener mListener;
@@ -178,9 +178,9 @@ public class ContactEditorFragment extends Fragment {
                 ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
     }
 
-    public void load(String action, Uri uri, String mimeType, Bundle intentExtras) {
+    public void load(String action, Uri lookupUri, String mimeType, Bundle intentExtras) {
         mAction = action;
-        mUri = uri;
+        mLookupUri = lookupUri;
         mMimeType = mimeType;
         mIntentExtras = intentExtras;
     }
@@ -194,7 +194,7 @@ public class ContactEditorFragment extends Fragment {
         if (savedState != null) {
             // Restore mUri before calling super.onCreate so that onInitializeLoaders
             // would already have a uri and an action to work with
-            mUri = savedState.getParcelable(KEY_URI);
+            mLookupUri = savedState.getParcelable(KEY_URI);
             mAction = savedState.getString(KEY_ACTION);
         }
 
@@ -225,7 +225,6 @@ public class ContactEditorFragment extends Fragment {
             Log.v(TAG, "Ignoring background change. This will have to be rebased later");
             return;
         }
-
 
         mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
         // TODO: Merge in Intent parameters can only be done on the first load.
@@ -389,28 +388,12 @@ public class ContactEditorFragment extends Fragment {
     private boolean doDeleteAction() {
         if (!hasValidState())
             return false;
-        int readOnlySourcesCnt = 0;
-        int writableSourcesCnt = 0;
-        final Sources sources = Sources.getInstance(mContext);
-        for (EntityDelta delta : mState) {
-            final String accountType = delta.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_CONSTRAINTS);
-            if (contactsSource != null && contactsSource.readOnly) {
-                readOnlySourcesCnt += 1;
-            } else {
-                writableSourcesCnt += 1;
-            }
-        }
 
-        if (readOnlySourcesCnt > 0 && writableSourcesCnt > 0) {
-            getActivity().showDialog(R.id.edit_dialog_confirm_readonly_delete);
-        } else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
-            getActivity().showDialog(R.id.edit_dialog_confirm_readonly_hide);
-        } else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
-            getActivity().showDialog(R.id.edit_dialog_confirm_multiple_delete);
+        // TODO: Make sure Insert turns into Edit if/once it is autosaved
+        if (Intent.ACTION_INSERT.equals(mAction)) {
+            if (mListener != null) mListener.onReverted();
         } else {
-            getActivity().showDialog(R.id.edit_dialog_confirm_delete);
+            if (mListener != null) mListener.onDeleteRequested(mLookupUri);
         }
         return true;
     }
@@ -751,7 +734,8 @@ public class ContactEditorFragment extends Fragment {
                 final Intent resultIntent;
                 final int resultCode;
                 if (success && contactLookupUri != null) {
-                    final String requestAuthority = mUri == null ? null : mUri.getAuthority();
+                    final String requestAuthority =
+                            mLookupUri == null ? null : mLookupUri.getAuthority();
 
                     final String legacyAuthority = "contacts";
 
@@ -934,6 +918,11 @@ public class ContactEditorFragment extends Fragment {
          * Contact was saved and the Fragment can now be closed safely.
          */
         void onSaveFinished(int resultCode, Intent resultIntent);
+
+        /**
+         * User decided to delete the contact.
+         */
+        public void onDeleteRequested(Uri lookupUri);
     }
 
     private class EntityDeltaComparator implements Comparator<EntityDelta> {
@@ -1247,7 +1236,7 @@ public class ContactEditorFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(KEY_URI, mUri);
+        outState.putParcelable(KEY_URI, mLookupUri);
         outState.putString(KEY_ACTION, mAction);
 
         if (hasValidState()) {
@@ -1309,8 +1298,8 @@ public class ContactEditorFragment extends Fragment {
         }
     }
 
-    public Uri getUri() {
-        return mUri;
+    public Uri getLookupUri() {
+        return mLookupUri;
     }
 
     /**
@@ -1321,7 +1310,7 @@ public class ContactEditorFragment extends Fragment {
         @Override
         public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
             mLoaderStartTime = SystemClock.elapsedRealtime();
-            return new ContactLoader(mContext, mUri);
+            return new ContactLoader(mContext, mLookupUri);
         }
 
         @Override

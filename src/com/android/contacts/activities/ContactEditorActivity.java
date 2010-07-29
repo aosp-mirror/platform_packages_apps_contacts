@@ -18,24 +18,26 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.editor.ContactEditorFragment;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class ContactEditorActivity extends Activity implements
         DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
 
     private ContactEditorFragment mFragment;
+    private ContactDeletionInteraction mContactDeletionInteraction;
     private Button mDoneButton;
     private Button mRevertButton;
 
@@ -94,6 +96,14 @@ public class ContactEditorActivity extends Activity implements
         }
     }
 
+    private ContactDeletionInteraction getContactDeletionInteraction() {
+        if (mContactDeletionInteraction == null) {
+            mContactDeletionInteraction = new ContactDeletionInteraction();
+            mContactDeletionInteraction.attachToActivity(this);
+        }
+        return mContactDeletionInteraction;
+    }
+
     private final ContactEditorFragment.Listener mFragmentListener =
             new ContactEditorFragment.Listener() {
         @Override
@@ -126,6 +136,11 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void setTitleTo(int resourceId) {
             setTitle(resourceId);
+        }
+
+        @Override
+        public void onDeleteRequested(Uri lookupUri) {
+            getContactDeletionInteraction().deleteContact(lookupUri);
         }
     };
 
