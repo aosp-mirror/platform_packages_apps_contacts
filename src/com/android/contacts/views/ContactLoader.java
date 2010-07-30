@@ -20,25 +20,23 @@ import com.android.contacts.util.DataStatus;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
-import android.content.EntityIterator;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.RawContactsEntity;
-import android.provider.ContactsContract.StatusUpdates;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
@@ -192,17 +190,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
     }
 
-    private interface StatusQuery {
-        final String[] PROJECTION = new String[] {
-                Data._ID, Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
-                Data.STATUS_LABEL, Data.STATUS_TIMESTAMP, Data.PRESENCE,
-        };
-
-        final int _ID = 0;
-    }
-
-    private interface ContactQuery {
-        //Projection used for the summary info in the header.
+    private static class ContactQuery {
+        // Projection used for the query that loads all data for the entire contact.
         final static String[] COLUMNS = new String[] {
                 Contacts.NAME_RAW_CONTACT_ID,
                 Contacts.DISPLAY_NAME_SOURCE,
@@ -216,19 +205,117 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Contacts.CONTACT_STATUS_TIMESTAMP,
                 Contacts.CONTACT_STATUS_RES_PACKAGE,
                 Contacts.CONTACT_STATUS_LABEL,
+                Contacts.Entity.CONTACT_ID,
+                Contacts.Entity.RAW_CONTACT_ID,
+
+                RawContacts.ACCOUNT_NAME,
+                RawContacts.ACCOUNT_TYPE,
+                RawContacts.DIRTY,
+                RawContacts.VERSION,
+                RawContacts.SOURCE_ID,
+                RawContacts.SYNC1,
+                RawContacts.SYNC2,
+                RawContacts.SYNC3,
+                RawContacts.SYNC4,
+                RawContacts.DELETED,
+                RawContacts.IS_RESTRICTED,
+                RawContacts.NAME_VERIFIED,
+
+                Contacts.Entity.DATA_ID,
+                Data.DATA1,
+                Data.DATA2,
+                Data.DATA3,
+                Data.DATA4,
+                Data.DATA5,
+                Data.DATA6,
+                Data.DATA7,
+                Data.DATA8,
+                Data.DATA9,
+                Data.DATA10,
+                Data.DATA11,
+                Data.DATA12,
+                Data.DATA13,
+                Data.DATA14,
+                Data.DATA15,
+                Data.SYNC1,
+                Data.SYNC2,
+                Data.SYNC3,
+                Data.SYNC4,
+                Data.DATA_VERSION,
+                Data.IS_PRIMARY,
+                Data.IS_SUPER_PRIMARY,
+                Data.MIMETYPE,
+                Data.RES_PACKAGE,
+
+                GroupMembership.GROUP_SOURCE_ID,
+
+                Data.PRESENCE,
+                Data.STATUS,
+                Data.STATUS_RES_PACKAGE,
+                Data.STATUS_ICON,
+                Data.STATUS_LABEL,
+                Data.STATUS_TIMESTAMP,
+
         };
-        final static int NAME_RAW_CONTACT_ID = 0;
-        final static int DISPLAY_NAME_SOURCE = 1;
-        final static int LOOKUP_KEY = 2;
-        final static int DISPLAY_NAME = 3;
-        final static int PHONETIC_NAME = 4;
-        final static int PHOTO_ID = 5;
-        final static int STARRED = 6;
-        final static int CONTACT_PRESENCE = 7;
-        final static int CONTACT_STATUS = 8;
-        final static int CONTACT_STATUS_TIMESTAMP = 9;
-        final static int CONTACT_STATUS_RES_PACKAGE = 10;
-        final static int CONTACT_STATUS_LABEL = 11;
+
+        public final static int NAME_RAW_CONTACT_ID = 0;
+        public final static int DISPLAY_NAME_SOURCE = 1;
+        public final static int LOOKUP_KEY = 2;
+        public final static int DISPLAY_NAME = 3;
+        public final static int PHONETIC_NAME = 4;
+        public final static int PHOTO_ID = 5;
+        public final static int STARRED = 6;
+        public final static int CONTACT_PRESENCE = 7;
+        public final static int CONTACT_STATUS = 8;
+        public final static int CONTACT_STATUS_TIMESTAMP = 9;
+        public final static int CONTACT_STATUS_RES_PACKAGE = 10;
+        public final static int CONTACT_STATUS_LABEL = 11;
+        public final static int CONTACT_ID = 12;
+        public final static int RAW_CONTACT_ID = 13;
+
+        public final static int ACCOUNT_NAME = 14;
+        public final static int ACCOUNT_TYPE = 15;
+        public final static int DIRTY = 16;
+        public final static int VERSION = 17;
+        public final static int SOURCE_ID = 18;
+        public final static int SYNC1 = 19;
+        public final static int SYNC2 = 20;
+        public final static int SYNC3 = 21;
+        public final static int SYNC4 = 22;
+        public final static int DELETED = 23;
+        public final static int IS_RESTRICTED = 24;
+        public final static int NAME_VERIFIED = 25;
+
+        public final static int DATA_ID = 26;
+        public final static int DATA1 = 27;
+        public final static int DATA2 = 28;
+        public final static int DATA3 = 29;
+        public final static int DATA4 = 30;
+        public final static int DATA5 = 31;
+        public final static int DATA6 = 32;
+        public final static int DATA7 = 33;
+        public final static int DATA8 = 34;
+        public final static int DATA9 = 35;
+        public final static int DATA10 = 36;
+        public final static int DATA11 = 37;
+        public final static int DATA12 = 38;
+        public final static int DATA13 = 39;
+        public final static int DATA14 = 40;
+        public final static int DATA15 = 41;
+        public final static int DATA_SYNC1 = 42;
+        public final static int DATA_SYNC2 = 43;
+        public final static int DATA_SYNC3 = 44;
+        public final static int DATA_SYNC4 = 45;
+        public final static int DATA_VERSION = 46;
+        public final static int IS_PRIMARY = 47;
+        public final static int IS_SUPERPRIMARY = 48;
+        public final static int MIMETYPE = 49;
+        public final static int RES_PACKAGE = 50;
+
+        public final static int GROUP_SOURCE_ID = 51;
+
+        public final static int PRESENCE = 52;
+        public final static int STATUS = 53;
     }
 
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
@@ -238,27 +325,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             try {
                 final ContentResolver resolver = getContext().getContentResolver();
                 final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
-                Result result = loadContactHeaderData(resolver, uriCurrentFormat);
-                if (result == Result.NOT_FOUND) {
-                    // No record found. Try to lookup up a new record with the same lookupKey.
-                    // We might have went through a sync where Ids changed
-                    final Uri freshLookupUri = Contacts.getLookupUri(resolver, uriCurrentFormat);
-                    result = loadContactHeaderData(resolver, freshLookupUri);
-                    if (result == Result.NOT_FOUND) {
-                        // Still not found. We now believe this contact really does not exist
-                        Log.e(TAG, "invalid contact uri: " + mLookupUri);
-                        return Result.NOT_FOUND;
-                    }
-                }
-
-                // These queries could be run in parallel (we did this until froyo). But unless
-                // we actually have two database connections there is no performance gain
-                loadSocial(resolver, result);
-                loadRawContacts(resolver, result);
-
-                return result;
+                return loadContactEntity(resolver, uriCurrentFormat);
             } catch (Exception e) {
-                Log.w(TAG, "Error loading the contact: " + e.getMessage());
+                Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
                 return Result.ERROR;
             }
         }
@@ -304,147 +373,164 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             throw new IllegalArgumentException("uri authority is unknown");
         }
 
-        /**
-         * Tries to lookup a contact using both Id and lookup key of the given Uri. Returns a
-         * valid Result instance if successful or {@link Result#NOT_FOUND} if empty
-         */
-        private Result loadContactHeaderData(final ContentResolver resolver, final Uri lookupUri) {
-            if (resolver == null) throw new IllegalArgumentException("resolver must not be null");
-            if (lookupUri == null) {
-                // This can happen if the row was removed
-                return Result.NOT_FOUND;
-            }
-
-            final List<String> segments = lookupUri.getPathSegments();
-            if (segments.size() != 4) {
-                // Does not contain an Id. Return to caller so that a lookup is performed
-                Log.w(TAG, "Uri does not contain an Id, so we return to the caller who should " +
-                        "perform a lookup to get a proper uri. Value: " + lookupUri);
-                return Result.NOT_FOUND;
-            }
-
-            final long uriContactId = Long.parseLong(segments.get(3));
-            final String uriLookupKey = Uri.encode(segments.get(2));
-            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, uriContactId);
-
-            final Cursor cursor = resolver.query(contactUri, ContactQuery.COLUMNS, null, null,
-                    null);
+        private Result loadContactEntity(ContentResolver resolver, Uri contactUri) {
+            Uri entityUri = Uri.withAppendedPath(contactUri, Contacts.Entity.CONTENT_DIRECTORY);
+            Cursor cursor = resolver.query(entityUri, ContactQuery.COLUMNS, null, null,
+                    Contacts.Entity.RAW_CONTACT_ID);
             if (cursor == null) {
-                Log.e(TAG, "No cursor returned in trySetupContactHeader/query");
-                return null;
+                Log.e(TAG, "No cursor returned in loadContactEntity");
+                return Result.NOT_FOUND;
             }
+
             try {
                 if (!cursor.moveToFirst()) {
-                    Log.w(TAG, "Cursor returned by trySetupContactHeader/query is empty. " +
-                            "ContactId must have changed or item has been removed");
-                    return Result.NOT_FOUND;
-                }
-                final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
-                if (!lookupKey.equals(uriLookupKey)) {
-                    // ID and lookup key do not match
-                    Log.w(TAG, "Contact with Id=" + uriContactId + " has a wrong lookupKey ("
-                            + lookupKey + " instead of the expected " + uriLookupKey + ")");
+                    cursor.close();
                     return Result.NOT_FOUND;
                 }
 
-                final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
-                final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
-                final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
-                final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
-                final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
-                final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
-                final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
-                        ? null
-                        : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
-                final String status = cursor.getString(ContactQuery.CONTACT_STATUS);
-                final Long statusTimestamp = cursor.isNull(ContactQuery.CONTACT_STATUS_TIMESTAMP)
-                        ? null
-                        : cursor.getLong(ContactQuery.CONTACT_STATUS_TIMESTAMP);
-                final Integer statusLabel = cursor.isNull(ContactQuery.CONTACT_STATUS_LABEL)
-                        ? null
-                        : cursor.getInt(ContactQuery.CONTACT_STATUS_LABEL);
-                final String statusResPackage = cursor.getString(
-                        ContactQuery.CONTACT_STATUS_RES_PACKAGE);
-
-                return new Result(lookupUri, lookupKey, contactUri, uriContactId, nameRawContactId,
-                        displayNameSource, photoId, displayName, phoneticName, starred, presence,
-                        status, statusTimestamp, statusLabel, statusResPackage);
-            } finally {
-                cursor.close();
-            }
-        }
-
-        /**
-         * Loads the social rows into the result structure. Expects the statuses in the
-         * result structure to be empty
-         */
-        private void loadSocial(final ContentResolver resolver, final Result result) {
-            if (result == null) throw new IllegalArgumentException("result must not be null");
-            if (resolver == null) throw new IllegalArgumentException("resolver must not be null");
-            if (result == Result.NOT_FOUND) {
-                throw new IllegalArgumentException("result must not be NOT_FOUND");
-            }
-
-            final Uri dataUri = Uri.withAppendedPath(result.getUri(),
-                    Contacts.Data.CONTENT_DIRECTORY);
-            final Cursor cursor = resolver.query(dataUri, StatusQuery.PROJECTION,
-                    StatusUpdates.PRESENCE + " IS NOT NULL OR " + StatusUpdates.STATUS +
-                    " IS NOT NULL", null, null);
-
-            if (cursor == null) {
-                Log.e(TAG, "Social cursor is null but it shouldn't be");
-                return;
-            }
-
-            try {
-                HashMap<Long, DataStatus> statuses = result.getStatuses();
-
-                // Walk found statuses, creating internal row for each
-                while (cursor.moveToNext()) {
-                    final DataStatus status = new DataStatus(cursor);
-                    final long dataId = cursor.getLong(StatusQuery._ID);
-                    statuses.put(dataId, status);
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-
-        /**
-         * Loads the raw row contact rows into the result structure. Expects the entities in the
-         * result structure to be empty
-         */
-        private void loadRawContacts(final ContentResolver resolver, final Result result) {
-            if (result == null) throw new IllegalArgumentException("result must not be null");
-            if (resolver == null) throw new IllegalArgumentException("resolver must not be null");
-            if (result == Result.NOT_FOUND) {
-                throw new IllegalArgumentException("result must not be NOT_FOUND");
-            }
-
-            // Read the constituent raw contacts
-            final Cursor cursor = resolver.query(RawContactsEntity.CONTENT_URI, null,
-                    RawContacts.CONTACT_ID + "=?", new String[] {
-                            String.valueOf(result.mId)
-                    }, null);
-            if (cursor == null) {
-                Log.e(TAG, "Raw contacts cursor is null but it shouldn't be");
-                return;
-            }
-
-            try {
+                long currentRawContactId = -1;
+                Entity entity = null;
+                Result result = loadContactHeaderData(cursor, contactUri);
                 ArrayList<Entity> entities = result.getEntities();
-                entities.ensureCapacity(cursor.getCount());
-                EntityIterator iterator = RawContacts.newEntityIterator(cursor);
-                try {
-                    while (iterator.hasNext()) {
-                        Entity entity = iterator.next();
+                HashMap<Long, DataStatus> statuses = result.getStatuses();
+                for (; !cursor.isAfterLast(); cursor.moveToNext()) {
+                    long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
+                    if (rawContactId != currentRawContactId) {
+                        currentRawContactId = rawContactId;
+                        entity = new android.content.Entity(loadRawContact(cursor));
                         entities.add(entity);
                     }
-                } finally {
-                    iterator.close();
+                    if (!cursor.isNull(ContactQuery.DATA_ID)) {
+                        ContentValues data = loadData(cursor);
+                        entity.addSubValue(ContactsContract.Data.CONTENT_URI, data);
+
+                        if (!cursor.isNull(ContactQuery.PRESENCE)
+                                || !cursor.isNull(ContactQuery.STATUS)) {
+                            final DataStatus status = new DataStatus(cursor);
+                            final long dataId = cursor.getLong(ContactQuery.DATA_ID);
+                            statuses.put(dataId, status);
+                        }
+                    }
                 }
+
+                return result;
             } finally {
                 cursor.close();
+            }
+        }
+
+        /**
+         * Extracts Contact level columns from the cursor.
+         */
+        private Result loadContactHeaderData(final Cursor cursor, Uri contactUri) {
+            final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
+            final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
+            final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
+            final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
+            final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
+            final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
+            final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
+            final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
+            final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
+                    ? null
+                    : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
+            final String status = cursor.getString(ContactQuery.CONTACT_STATUS);
+            final Long statusTimestamp = cursor.isNull(ContactQuery.CONTACT_STATUS_TIMESTAMP)
+                    ? null
+                    : cursor.getLong(ContactQuery.CONTACT_STATUS_TIMESTAMP);
+            final Integer statusLabel = cursor.isNull(ContactQuery.CONTACT_STATUS_LABEL)
+                    ? null
+                    : cursor.getInt(ContactQuery.CONTACT_STATUS_LABEL);
+            final String statusResPackage = cursor.getString(
+                    ContactQuery.CONTACT_STATUS_RES_PACKAGE);
+
+            Uri lookupUri = ContentUris.withAppendedId(
+                    Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
+            return new Result(lookupUri, lookupKey, contactUri, contactId, nameRawContactId,
+                    displayNameSource, photoId, displayName, phoneticName, starred, presence,
+                    status, statusTimestamp, statusLabel, statusResPackage);
+        }
+
+        /**
+         * Extracts RawContact level columns from the cursor.
+         */
+        private ContentValues loadRawContact(Cursor cursor) {
+            ContentValues cv = new ContentValues();
+
+            cv.put(RawContacts._ID, cursor.getLong(ContactQuery.RAW_CONTACT_ID));
+
+            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_NAME);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DIRTY);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.VERSION);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.SOURCE_ID);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC1);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC2);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC3);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC4);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DELETED);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.CONTACT_ID);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.STARRED);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_RESTRICTED);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.NAME_VERIFIED);
+
+            return cv;
+        }
+
+        /**
+         * Extracts Data level columns from the cursor.
+         */
+        private ContentValues loadData(Cursor cursor) {
+            ContentValues cv = new ContentValues();
+
+            cv.put(Data._ID, cursor.getLong(ContactQuery.DATA_ID));
+
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA1);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA2);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA3);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA4);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA5);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA6);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA7);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA8);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA9);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA10);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA11);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA12);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA13);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA14);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA15);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC1);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC2);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC3);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC4);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_VERSION);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_PRIMARY);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_SUPERPRIMARY);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.RES_PACKAGE);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
+
+            return cv;
+        }
+
+        private void cursorColumnToContentValues(
+                Cursor cursor, ContentValues values, int index) {
+            switch (cursor.getType(index)) {
+                case Cursor.FIELD_TYPE_NULL:
+                    // don't put anything in the content values
+                    break;
+                case Cursor.FIELD_TYPE_INTEGER:
+                    values.put(ContactQuery.COLUMNS[index], cursor.getLong(index));
+                    break;
+                case Cursor.FIELD_TYPE_STRING:
+                    values.put(ContactQuery.COLUMNS[index], cursor.getString(index));
+                    break;
+                case Cursor.FIELD_TYPE_BLOB:
+                    values.put(ContactQuery.COLUMNS[index], cursor.getBlob(index));
+                    break;
+                default:
+                    throw new IllegalStateException("Invalid or unhandled data type");
             }
         }
 

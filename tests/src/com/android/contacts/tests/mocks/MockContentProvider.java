@@ -111,7 +111,7 @@ public class MockContentProvider extends ContentProvider {
             if (empty1 && empty2) {
                 return true;
             }
-            if (empty1) {
+            if (empty1 != empty2 && (empty1 || empty2)) {
                 return false;
             }
 
