@@ -1074,7 +1074,7 @@ public class QuickContactWindow implements Window.Callback,
 
 
                 if (isPrefer) return info;
-                if (isSystem && firstSystem != null) firstSystem = info;
+                if (isSystem && firstSystem == null) firstSystem = info;
             }
 
             // Return first system found, otherwise first from list
