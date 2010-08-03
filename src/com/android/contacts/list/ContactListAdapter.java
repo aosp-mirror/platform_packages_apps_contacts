@@ -23,6 +23,7 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippetColumns;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -81,7 +82,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
 
-    private long mSelectedContactId;
+    private long mSelectedContactDirectoryId;
+    private String mSelectedContactLookupKey;
 
     public ContactListAdapter(Context context) {
         super(context);
@@ -93,13 +95,19 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return mUnknownNameText;
     }
 
-    public long getSelectedContactId() {
-        return mSelectedContactId;
+    public long getSelectedContactDirectoryId() {
+        return mSelectedContactDirectoryId;
     }
 
-    public void setSelectedContactId(long selectedId) {
-        if (mSelectedContactId != selectedId) {
-            this.mSelectedContactId = selectedId;
+    public String getSelectedContactLookupKey() {
+        return mSelectedContactLookupKey;
+    }
+
+    public void setSelectedContact(long selectedDirectoryId, String lookupKey) {
+        if (mSelectedContactDirectoryId != selectedDirectoryId ||
+                !TextUtils.equals(mSelectedContactLookupKey, lookupKey)) {
+            this.mSelectedContactDirectoryId = selectedDirectoryId;
+            this.mSelectedContactLookupKey = lookupKey;
             notifyDataSetChanged();
         }
     }
@@ -156,11 +164,25 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         Uri uri = Contacts.getLookupUri(contactId, lookupKey);
-        if (partitionIndex != Directory.DEFAULT && partitionIndex != Directory.LOCAL_INVISIBLE) {
+        long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
             uri = uri.buildUpon().appendQueryParameter(
-                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(partitionIndex)).build();
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
         return uri;
+    }
+
+    /**
+     * Returns true if the specified contact is selected in the list. For a
+     * contact to be shown as selected, we need both the directory and and the
+     * lookup key to be the same. We are paying no attention to the contactId,
+     * because it is volatile, especially in the case of directories.
+     */
+    public boolean isSelectedContact(int partitionIndex, Cursor cursor) {
+        long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        return getSelectedContactDirectoryId() == directoryId
+                && TextUtils.equals(getSelectedContactLookupKey(),
+                        cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX));
     }
 
     @Override

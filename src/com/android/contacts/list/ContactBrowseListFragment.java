@@ -23,8 +23,10 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.widget.ListView;
+import android.provider.ContactsContract.Directory;
+import android.text.TextUtils;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -38,6 +40,8 @@ public abstract class ContactBrowseListFragment extends
     private static final int SELECTED_ID_LOADER = -3;
 
     private Uri mSelectedContactUri;
+    private long mSelectedContactDirectoryId;
+    private String mSelectedContactLookupKey;
 
     private OnContactBrowserActionListener mListener;
 
@@ -47,7 +51,7 @@ public abstract class ContactBrowseListFragment extends
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
             return new CursorLoader(getContext(),
                     mSelectedContactUri,
-                    new String[] { Contacts._ID },
+                    new String[] { Contacts.LOOKUP_KEY },
                     null,
                     null,
                     null);
@@ -55,13 +59,16 @@ public abstract class ContactBrowseListFragment extends
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            long selectedId = ListView.INVALID_ROW_ID;
+            String lookupKey = null;
             if (data != null) {
                 if (data.moveToFirst()) {
-                    selectedId = data.getLong(0);
+                    lookupKey = data.getString(0);
                 }
             }
-            getAdapter().setSelectedContactId(selectedId);
+            if (!TextUtils.equals(mSelectedContactLookupKey, lookupKey)) {
+                mSelectedContactLookupKey = lookupKey;
+                configureContactSelection();
+            }
             return;
         }
     };
@@ -85,11 +92,20 @@ public abstract class ContactBrowseListFragment extends
 
     @Override
     public void onStart() {
-        if (mSelectedContactUri != null && isSelectionVisible()) {
-            getLoaderManager().initLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
-        }
+        // Refresh the currently selected lookup in case it changed while we were sleeping
+        startLoadingContactLookupKey();
         super.onStart();
    }
+
+    protected void startLoadingContactLookupKey() {
+        if (isSelectionVisible() && mSelectedContactUri != null &&
+                (mSelectedContactDirectoryId == Directory.DEFAULT ||
+                        mSelectedContactDirectoryId == Directory.LOCAL_INVISIBLE)) {
+            getLoaderManager().restartLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
+        } else {
+            getLoaderManager().stopLoader(SELECTED_ID_LOADER);
+        }
+    }
 
     @Override
     protected void prepareEmptyView() {
@@ -115,13 +131,54 @@ public abstract class ContactBrowseListFragment extends
     }
 
     public void setSelectedContactUri(Uri uri) {
-        if ((mSelectedContactUri == null && uri != null)
+        if (mSelectedContactUri == null
                 || (mSelectedContactUri != null && !mSelectedContactUri.equals(uri))) {
-            this.mSelectedContactUri = uri;
+            mSelectedContactUri = uri;
+
             if (mSelectedContactUri != null) {
-                getLoaderManager().restartLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
+                if (!mSelectedContactUri.toString()
+                        .startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
+                    throw new IllegalStateException(
+                            "Contact list contains a non-lookup URI: " + mSelectedContactUri);
+                }
+
+                String directoryParam =
+                    mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+                mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam)
+                        ? Directory.DEFAULT
+                        : Long.parseLong(directoryParam);
+                mSelectedContactLookupKey =
+                        Uri.encode(mSelectedContactUri.getPathSegments().get(2));
+            } else {
+                mSelectedContactDirectoryId = Directory.DEFAULT;
+                mSelectedContactLookupKey = null;
             }
+
+            // Configure the adapter to show the selection based on the lookup key extracted
+            // from the URI
+            configureAdapter();
+
+            // Also, launch a loader to pick up a new lookup key in case it has changed
+            startLoadingContactLookupKey();
         }
+    }
+
+    @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+        configureContactSelection();
+    }
+
+    /**
+     * Configures the adapter with the identity of the currently selected contact.
+     */
+    private void configureContactSelection() {
+        ContactListAdapter adapter = getAdapter();
+        if (adapter == null) {
+            return;
+        }
+
+        adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
     }
 
     public void setOnContactListActionListener(OnContactBrowserActionListener listener) {

@@ -274,7 +274,8 @@ public class ContactDetailFragment extends Fragment
             final long rawContactId = entValues.getAsLong(RawContacts._ID);
 
             // Mark when this contact has any unrestricted components
-            final boolean isRestricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED) != 0;
+            Integer restricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED);
+            final boolean isRestricted = restricted != null && restricted != 0;
             if (!isRestricted) mAllRestricted = false;
 
             if (!mRawContactIds.contains(rawContactId)) {
@@ -303,8 +304,8 @@ public class ContactDetailFragment extends Fragment
                         rawContactId, dataId, entryValues);
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
-                final boolean isSuperPrimary = entryValues.getAsInteger(
-                        Data.IS_SUPER_PRIMARY) != 0;
+                Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
+                final boolean isSuperPrimary = superPrimary != null && superPrimary != 0;
 
                 if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     // Always ignore the name. It is shown in the header if set
