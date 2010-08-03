@@ -57,6 +57,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         setPinnedPartitionHeadersEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setIndexedPartition(PARTITION_ALL_CONTACTS);
+        setDirectorySearchEnabled(false);
         mShowAllContactsViewType = getViewTypeCount() - 1;
     }
 
