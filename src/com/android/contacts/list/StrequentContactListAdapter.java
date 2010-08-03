@@ -199,7 +199,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = (ContactListItemView)itemView;
 
         if (isSelectionVisible()) {
-            view.setItemSelected(getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX));
+            view.setItemSelected(isSelectedContact(partition, cursor));
         }
 
         bindName(view, cursor);
