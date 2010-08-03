@@ -279,7 +279,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         super.onStart();
     }
 
-    private void startLoading() {
+    protected void startLoading() {
         configureAdapter();
         int partitionCount = mAdapter.getPartitionCount();
         for (int i = 0; i < partitionCount; i++) {
