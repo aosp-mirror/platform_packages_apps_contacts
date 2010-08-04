@@ -782,7 +782,7 @@ public class ViewContactActivity extends Activity
                 int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
                     ViewEntry entry = ViewAdapter.getEntry(mSections, index, SHOW_SEPARATORS);
-                    if (entry != null &&
+                    if (entry != null && entry.intent != null &&
                             entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         startActivity(entry.intent);
                         return true;
