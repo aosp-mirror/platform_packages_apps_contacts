@@ -16,6 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core 애플리케이션"</string>
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"휴대전화"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
@@ -46,13 +47,13 @@
     <string name="menu_viewAddress" msgid="1814744325763202024">"지도상의 주소"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"기본 번호로 설정"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"기본 이메일로 설정"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"분할"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
     <string name="contactsSplitMessage" msgid="5253490235863170269">"연락처가 분할되었습니다."</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"연락처 분할"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"연락처 하나를 여러 주소록으로 분할하시겠습니까? 가입된 연락처 정보 세트마다 하나씩 만드시겠습니까?"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"결합"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 결합"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"<xliff:g id="NAME">%s</xliff:g>와(과) 결합할 연락처를 선택하세요."</string>
+    <string name="splitConfirmation_title" msgid="6716467920283502570">"연락처 분리"</string>
+    <string name="splitConfirmation" msgid="1150797297503944823">"연락처 하나를 여러 주소록으로 분리하시겠습니까? 가입된 연락처 정보 세트마다 하나씩 만드시겠습니까?"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"통합"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 통합"</string>
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"<xliff:g id="NAME">%s</xliff:g>와(과) 통합할 연락처를 선택하세요."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
@@ -350,7 +351,7 @@
     <string name="postal_country" msgid="7638264508416368690">"국가"</string>
     <string name="name_given" msgid="1687286314106019813">"이름"</string>
     <string name="name_family" msgid="3416695586119999058">"성"</string>
-    <string name="name_prefix" msgid="59756378548779822">"이름 접두어"</string>
+    <string name="name_prefix" msgid="59756378548779822">"경칭"</string>
     <string name="name_middle" msgid="8467433655992690326">"중간 이름"</string>
     <string name="name_suffix" msgid="3855278445375651441">"이름 접미어"</string>
     <string name="name_phonetic_given" msgid="6853570431394449191">"이름(소리나는 대로)"</string>
