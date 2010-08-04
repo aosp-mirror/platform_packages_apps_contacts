@@ -77,10 +77,6 @@ public class ContactEditorActivity extends Activity implements
     protected Dialog onCreateDialog(int id, Bundle args) {
         if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, args);
 
-        // ask the Fragment whether it knows about the dialog
-        final Dialog fragmentResult = mFragment.onCreateDialog(id, args);
-        if (fragmentResult != null) return fragmentResult;
-
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
@@ -118,7 +114,7 @@ public class ContactEditorActivity extends Activity implements
         }
 
         @Override
-        public void onSplit() {
+        public void onAggregationChangeFinished(Uri newLookupUri) {
             finish();
         }
 

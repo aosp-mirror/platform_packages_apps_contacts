@@ -47,6 +47,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -315,6 +316,8 @@ public class ContactBrowserActivity extends Activity
      * this is called from a Revert/Undo button
      */
     private void closeEditorFragment(boolean save) {
+        Log.d(TAG, "closeEditorFragment(" + save + ")");
+
         if (mEditorFragment != null) {
             if (save) mEditorFragment.save();
             mEditorFragment.setListener(null);
@@ -336,11 +339,15 @@ public class ContactBrowserActivity extends Activity
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
 
         // if anything was left unsaved, save it now
-        closeEditorFragment(true);
+        if (mEditorFragment != null) {
+            closeEditorFragment(true);
+            setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        }
     }
 
     /**
@@ -509,6 +516,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onSaveFinished(int resultCode, Intent resultIntent) {
+            Log.d(TAG, "onSaveFinished(" + resultCode + "," + resultIntent + ")");
             // it is already saved, so no need to save again here
             final Uri uri = mEditorFragment.getLookupUri();
             closeEditorFragment(false);
@@ -516,9 +524,13 @@ public class ContactBrowserActivity extends Activity
         }
 
         @Override
-        public void onSplit() {
-            Toast.makeText(ContactBrowserActivity.this, "closeAfterSplit",
-                    Toast.LENGTH_LONG).show();
+        public void onAggregationChangeFinished(Uri newLookupUri) {
+            // We have already saved. Close the editor so that we can open again with the
+            // new contact
+            Log.d(TAG, "onAggregationChangeFinished(" + newLookupUri + ")");
+            closeEditorFragment(false);
+            mListFragment.setSelectedContactUri(newLookupUri);
+            setupContactDetailFragment(newLookupUri);
         }
 
         @Override
@@ -637,24 +649,16 @@ public class ContactBrowserActivity extends Activity
         if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, bundle);
 
         Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) {
-            return dialog;
-        }
+        if (dialog != null) return dialog;
 
         dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) {
-            return dialog;
-        }
+        if (dialog != null) return dialog;
 
         dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) {
-            return dialog;
-        }
+        if (dialog != null) return dialog;
 
         dialog = getImportExportInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) {
-            return dialog;
-        }
+        if (dialog != null) return dialog;
 
         return super.onCreateDialog(id, bundle);
     }

@@ -54,7 +54,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.content.ContentProviderOperation.Builder;
-import android.content.DialogInterface.OnDismissListener;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
@@ -81,7 +80,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -91,7 +89,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
-public class ContactEditorFragment extends Fragment {
+public class ContactEditorFragment extends Fragment implements
+        SplitContactConfirmationDialogFragment.Listener, PickPhotoDialogFragment.Listener,
+        SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -107,15 +107,17 @@ public class ContactEditorFragment extends Fragment {
     private static final String KEY_QUERY_SELECTION_ARGS = "queryselectionargs";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
-    public static final int SAVE_MODE_DEFAULT = 0;
-    public static final int SAVE_MODE_SPLIT = 1;
-    public static final int SAVE_MODE_JOIN = 2;
+    private static final int SAVE_MODE_DEFAULT = 0;
+    private static final int SAVE_MODE_SPLIT = 1;
+    private static final int SAVE_MODE_JOIN = 2;
+
+    private static final int REQUEST_CODE_JOIN = 0;
+    private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1;
+    private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 2;
 
     private long mRawContactIdRequestingPhoto = -1;
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
-
-    private static final String BUNDLE_SELECT_ACCOUNT_LIST = "account_list";
 
     private static final int ICON_SIZE = 96;
 
@@ -244,7 +246,8 @@ public class ContactEditorFragment extends Fragment {
         bindEditors();
     }
 
-    public void selectAccountAndCreateContact(ArrayList<Account> accounts, boolean isNewContact) {
+    public void selectAccountAndCreateContact(boolean isNewContact) {
+        final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
             createContact(null, isNewContact);
@@ -258,9 +261,8 @@ public class ContactEditorFragment extends Fragment {
             return;  // Don't show a dialog.
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(BUNDLE_SELECT_ACCOUNT_LIST, accounts);
-        getActivity().showDialog(R.id.edit_dialog_select_account, bundle);
+        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(getId());
+        dialog.show(getActivity(), SelectAccountDialogFragment.TAG);
     }
 
     /**
@@ -342,6 +344,9 @@ public class ContactEditorFragment extends Fragment {
 
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
+
+        // Refresh Action Bar as the visibility of the join command
+        getActivity().invalidateOptionsMenu();
     }
 
     @Override
@@ -375,8 +380,7 @@ public class ContactEditorFragment extends Fragment {
 
     private boolean doAddAction() {
         // Load Accounts async so that we can present them
-        final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
-        selectAccountAndCreateContact(accounts, true);
+        selectAccountAndCreateContact(true);
 
         return true;
     }
@@ -405,202 +409,23 @@ public class ContactEditorFragment extends Fragment {
         if (!hasValidState()) return false;
 
         mRawContactIdRequestingPhoto = rawContactId;
+        final PickPhotoDialogFragment dialogFragment = new PickPhotoDialogFragment(getId());
+        dialogFragment.show(getActivity(), PickPhotoDialogFragment.TAG);
 
-        getActivity().showDialog(R.id.edit_dialog_pick_photo);
-        return false;
-    }
-
-    public Dialog onCreateDialog(int id, Bundle bundle) {
-        switch (id) {
-            case R.id.edit_dialog_confirm_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
-                        .setCancelable(false)
-                        .create();
-            case R.id.edit_dialog_confirm_readonly_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
-                        .setCancelable(false)
-                        .create();
-            case R.id.edit_dialog_confirm_multiple_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.multipleContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
-                        .setCancelable(false)
-                        .create();
-            case R.id.edit_dialog_confirm_readonly_hide:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactWarning)
-                        .setPositiveButton(android.R.string.ok, new DeleteClickListener())
-                        .setCancelable(false)
-                        .create();
-            case R.id.edit_dialog_pick_photo:
-                return createPickPhotoDialog();
-            case R.id.edit_dialog_split:
-                return createSplitDialog();
-            case R.id.edit_dialog_select_account:
-                return createSelectAccountDialog(bundle);
-            default:
-                return null;
-        }
-    }
-
-    private Dialog createSelectAccountDialog(Bundle bundle) {
-        final ArrayList<Account> accounts = bundle.getParcelableArrayList(
-                BUNDLE_SELECT_ACCOUNT_LIST);
-        // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(mContext,
-                android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater =
-                (LayoutInflater)dialogContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        final Sources sources = Sources.getInstance(mContext);
-
-        final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(mContext,
-                android.R.layout.simple_list_item_2, accounts) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
-                            parent, false);
-                }
-
-                // TODO: show icon along with title
-                final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
-                final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
-
-                final Account account = this.getItem(position);
-                final ContactsSource source = sources.getInflatedSource(account.type,
-                        ContactsSource.LEVEL_SUMMARY);
-
-                text1.setText(account.name);
-                text2.setText(source.getDisplayLabel(mContext));
-
-                return convertView;
-            }
-        };
-
-        final DialogInterface.OnClickListener clickListener =
-                new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-                // Create new contact based on selected source
-                final Account account = accountAdapter.getItem(which);
-                createContact(account, false);
-            }
-        };
-
-        final DialogInterface.OnCancelListener cancelListener =
-                new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-                // If nothing remains, close activity
-                if (!hasValidState()) {
-                    mListener.onAccountSelectorAborted();
-                }
-            }
-        };
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(R.string.dialog_new_contact_account);
-        builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
-        builder.setOnCancelListener(cancelListener);
-        final Dialog result = builder.create();
-        result.setOnDismissListener(new OnDismissListener() {
-            public void onDismiss(DialogInterface dialog) {
-                // TODO: Check if we even need this...seems useless
-                //removeDialog(DIALOG_SELECT_ACCOUNT);
-            }
-        });
-        return result;
+        return true;
     }
 
     private boolean doSplitContactAction() {
         if (!hasValidState()) return false;
 
-        getActivity().showDialog(R.id.edit_dialog_split);
+        final SplitContactConfirmationDialogFragment dialog =
+                new SplitContactConfirmationDialogFragment(getId());
+        dialog.show(getActivity(), SplitContactConfirmationDialogFragment.TAG);
         return true;
-    }
-
-    private Dialog createSplitDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(R.string.splitConfirmation_title);
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setMessage(R.string.splitConfirmation);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Split the contacts
-                mState.splitRawContacts();
-                doSaveAction(SAVE_MODE_SPLIT);
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, null);
-        builder.setCancelable(false);
-        return builder.create();
     }
 
     private boolean doJoinContactAction() {
         return doSaveAction(SAVE_MODE_JOIN);
-    }
-
-    /**
-     * Creates a dialog offering two options: take a photo or pick a photo from the gallery.
-     */
-    private Dialog createPickPhotoDialog() {
-        // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(mContext,
-                android.R.style.Theme_Light);
-
-        String[] choices = new String[2];
-        choices[0] = mContext.getString(R.string.take_photo);
-        choices[1] = mContext.getString(R.string.pick_photo);
-        final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
-                android.R.layout.simple_list_item_1, choices);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
-        builder.setTitle(R.string.attachToContact);
-        builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                switch(which) {
-                    case 0:
-                        doTakePhoto();
-                        break;
-                    case 1:
-                        doPickPhotoFromGallery();
-                        break;
-                }
-            }
-        });
-        return builder.create();
-    }
-
-
-    /**
-     * Launches Gallery to pick a photo.
-     */
-    protected void doPickPhotoFromGallery() {
-        try {
-            // Launch picker to choose photo for selected contact
-            final Intent intent = getPhotoPickIntent();
-            getActivity().startActivityForResult(intent,
-                    R.id.edit_request_code_photo_picked_with_data);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
     }
 
     /**
@@ -636,22 +461,6 @@ public class ContactEditorFragment extends Fragment {
     }
 
     /**
-     * Launches Camera to take a picture and store it in a file.
-     */
-    protected void doTakePhoto() {
-        try {
-            // Launch camera to take photo for selected contact
-            PHOTO_DIR.mkdirs();
-            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
-            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
-
-            getActivity().startActivityForResult(intent, R.id.edit_request_code_camera_with_data);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
      * Constructs an intent for capturing a photo and storing it in a temporary file.
      */
     public static Intent getTakePickIntent(File f) {
@@ -674,8 +483,7 @@ public class ContactEditorFragment extends Fragment {
 
             // Launch gallery to crop the photo
             final Intent intent = getCropImageIntent(Uri.fromFile(f));
-            getActivity().startActivityForResult(intent,
-                    R.id.edit_request_code_photo_picked_with_data);
+            startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -729,6 +537,7 @@ public class ContactEditorFragment extends Fragment {
     }
 
     private void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
+        Log.d(TAG, "onSaveCompleted( " + success + ", " + saveMode + ", " + contactLookupUri);
         switch (saveMode) {
             case SAVE_MODE_DEFAULT:
                 final Intent resultIntent;
@@ -761,7 +570,11 @@ public class ContactEditorFragment extends Fragment {
                 if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent);
                 break;
             case SAVE_MODE_SPLIT:
-                if (mListener != null) mListener.onSplit();
+                if (mListener != null) {
+                    mListener.onAggregationChangeFinished(contactLookupUri);
+                } else {
+                    Log.d(TAG, "No listener registered, can not call onSplitFinished");
+                }
                 break;
 
             case SAVE_MODE_JOIN:
@@ -786,7 +599,7 @@ public class ContactEditorFragment extends Fragment {
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
         final Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
         intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, mContactIdForJoin);
-        getActivity().startActivityForResult(intent, R.id.edit_request_code_join);
+        startActivityForResult(intent, REQUEST_CODE_JOIN);
     }
 
     private interface JoinContactQuery {
@@ -855,22 +668,22 @@ public class ContactEditorFragment extends Fragment {
         // Apply all aggregation exceptions as one batch
         try {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-
-            // We can use any of the constituent raw contacts to refresh the UI - why not the first
-            final Intent intent = new Intent();
-            intent.setData(ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
-
-            // Reload the new state from database
-            // TODO: Reload necessary or do we have a listener?
-            //new QueryEntitiesTask(this).execute(intent);
-
-            Toast.makeText(mContext, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
             Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
         } catch (OperationApplicationException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
             Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+        }
+
+        Toast.makeText(mContext, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+
+        // We pass back the Uri of the previous Contact (pre-join). While this is not correct,
+        // the provider will be able to later figure out the correct new aggregate
+        if (mListener != null) {
+            mListener.onAggregationChangeFinished(mLookupUri);
+        } else {
+            Log.d(TAG, "Listener is null. Can not call onAggregationChangeFinished");
         }
     }
 
@@ -895,9 +708,11 @@ public class ContactEditorFragment extends Fragment {
         void onContactNotFound();
 
         /**
-         * Contact was split, so we can close now
+         * Contact was split or joined, so we can close now.
+         * @param newLookupUri The lookup uri of the new contact that should be shown to the user.
+         * The editor tries best to chose the most natural contact here.
          */
-        void onSplit();
+        void onAggregationChangeFinished(Uri newLookupUri);
 
         /**
          * User was presented with an account selection and couldn't decide.
@@ -922,7 +737,7 @@ public class ContactEditorFragment extends Fragment {
         /**
          * User decided to delete the contact.
          */
-        public void onDeleteRequested(Uri lookupUri);
+        void onDeleteRequested(Uri lookupUri);
     }
 
     private class EntityDeltaComparator implements Comparator<EntityDelta> {
@@ -1098,19 +913,6 @@ public class ContactEditorFragment extends Fragment {
     }
 
 
-    private class DeleteClickListener implements DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which) {
-            final Sources sources = Sources.getInstance(mContext);
-            // Mark all raw contacts for deletion
-            for (EntityDelta delta : mState) {
-                delta.markDeleted();
-            }
-            // Save the deletes
-            doSaveAction(SAVE_MODE_DEFAULT);
-            mListener.onContactNotFound();
-        }
-    }
-
     // TODO: There has to be a nicer way than this WeakAsyncTask...? Maybe call a service?
     /**
      * Background task for persisting edited contact data, using the changes
@@ -1221,6 +1023,7 @@ public class ContactEditorFragment extends Fragment {
         /** {@inheritDoc} */
         @Override
         protected void onPostExecute(ContactEditorFragment target, Integer result) {
+            Log.d(TAG, "onPostExecute(something," + result + "). mSaveMode=" + mSaveMode);
             if (result == RESULT_SUCCESS && mSaveMode != SAVE_MODE_JOIN) {
                 Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
             } else if (result == RESULT_FAILURE) {
@@ -1260,7 +1063,7 @@ public class ContactEditorFragment extends Fragment {
         // Ignore failed requests
         if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
-            case R.id.edit_request_code_photo_picked_with_data: {
+            case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
                 BaseContactEditorView requestingEditor = null;
                 for (int i = 0; i < mContent.getChildCount(); i++) {
                     View childView = mContent.getChildAt(i);
@@ -1285,11 +1088,11 @@ public class ContactEditorFragment extends Fragment {
                 break;
             }
 
-            case R.id.edit_request_code_camera_with_data: {
+            case REQUEST_CODE_CAMERA_WITH_DATA: {
                 doCropPhoto(mCurrentPhotoFile);
                 break;
             }
-            case R.id.edit_request_code_join: {
+            case REQUEST_CODE_JOIN: {
                 if (data != null) {
                     final long contactId = ContentUris.parseId(data.getData());
                     joinAggregate(contactId);
@@ -1330,4 +1133,60 @@ public class ContactEditorFragment extends Fragment {
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
         }
     };
+
+    @Override
+    public void onSplitContactConfirmed() {
+        mState.markRawContactsForSplitting();
+        doSaveAction(SAVE_MODE_SPLIT);
+    }
+
+    /**
+     * Launches Camera to take a picture and store it in a file.
+     */
+    @Override
+    public void onTakePhotoChosen() {
+        try {
+            // Launch camera to take photo for selected contact
+            PHOTO_DIR.mkdirs();
+            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
+            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
+
+            startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Launches Gallery to pick a photo.
+     */
+    @Override
+    public void onPickFromGalleryChosen() {
+        try {
+            // Launch picker to choose photo for selected contact
+            final Intent intent = getPhotoPickIntent();
+            startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Account was chosen in the selector. Create a RawContact for this account now
+     */
+    @Override
+    public void onAccountChosen(Account account) {
+        createContact(account, false);
+    }
+
+    /**
+     * The account selector has been aborted. If we are in "New" mode, we have to close now
+     */
+    @Override
+    public void onAccountSelectorCancelled() {
+        // If nothing remains, close activity
+        if (!hasValidState()) {
+            if (mListener != null) mListener.onAccountSelectorAborted();
+        }
+    }
 }

@@ -306,7 +306,10 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         return randomEntry;
     }
 
-    public void splitRawContacts() {
+    /**
+     * Sets a flag that will split ("explode") the raw_contacts into seperate contacts
+     */
+    public void markRawContactsForSplitting() {
         mSplitRawContacts = true;
     }
 

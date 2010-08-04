@@ -54,10 +54,6 @@ public class ContactDetailActivity extends Activity {
         final Dialog deletionDialog = getContactDeletionInteraction().onCreateDialog(id, args);
         if (deletionDialog != null) return deletionDialog;
 
-        // ask the Fragment whether it knows about the dialog
-        final Dialog fragmentResult = mFragment.onCreateDialog(id, args);
-        if (fragmentResult != null) return fragmentResult;
-
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;

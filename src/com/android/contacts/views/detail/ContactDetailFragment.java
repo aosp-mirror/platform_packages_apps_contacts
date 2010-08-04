@@ -33,7 +33,6 @@ import com.android.contacts.views.ContactLoader;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -890,48 +889,6 @@ public class ContactDetailFragment extends Fragment
             mContext.getContentResolver().delete(mContactData.getLookupUri(), null, null);
         }
     };
-
-    public Dialog onCreateDialog(int id, Bundle bundle) {
-        switch (id) {
-            case R.id.detail_dialog_confirm_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.deleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, mDeleteListener)
-                        .setCancelable(false)
-                        .create();
-            case R.id.detail_dialog_confirm_readonly_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, mDeleteListener)
-                        .setCancelable(false)
-                        .create();
-            case R.id.detail_dialog_confirm_multiple_delete:
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.multipleContactDeleteConfirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok, mDeleteListener)
-                        .setCancelable(false)
-                        .create();
-            case R.id.detail_dialog_confirm_readonly_hide: {
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setMessage(R.string.readOnlyContactWarning)
-                        .setPositiveButton(android.R.string.ok, mDeleteListener)
-                        .create();
-            }
-            default:
-                return null;
-        }
-    }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
