@@ -28,7 +28,6 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
-import com.android.contacts.util.ViewGroupAnimator;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -258,10 +257,6 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                         final View focusedChild = getFocusedChild();
                         final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
 
-                        // Snapshot for animation
-                        final ViewGroupAnimator animator = ViewGroupAnimator.captureView(
-                                getRootView());
-
                         // Reconfigure GUI
                         mHideOptional = !mHideOptional;
                         rebuildValues();
@@ -275,9 +270,6 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                         if (newFocusView != null) {
                             newFocusView.requestFocus();
                         }
-
-                        // Animate
-                        animator.animate();
                     }
                 });
                 addView(mMoreOrLess);

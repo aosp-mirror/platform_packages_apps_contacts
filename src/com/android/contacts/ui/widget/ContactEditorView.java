@@ -27,7 +27,6 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
-import com.android.contacts.util.ViewGroupAnimator;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -217,10 +216,8 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
     /* package */ void setExpanded(boolean value, boolean animate) {
         if (value == mExpanded) return;
 
-        ViewGroupAnimator animator = animate ? ViewGroupAnimator.captureView(getRootView()) : null;
         mExpanded = value;
         mBody.setVisibility(value ? View.VISIBLE : View.GONE);
-        if (animate) animator.animate();
     }
 
     /* package */ void showDialog(int bundleDialogId) {
