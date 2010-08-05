@@ -948,7 +948,7 @@ public class ContactDetailFragment extends Fragment
                 int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
                     final ViewEntry entry = mAdapter.getEntry(index);
-                    if (entry != null &&
+                    if (entry != null && entry.intent != null &&
                             entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         mContext.startActivity(entry.intent);
                         return true;
