@@ -23,6 +23,7 @@ import com.android.contacts.views.detail.ContactDetailFragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -114,7 +115,11 @@ public class ContactDetailActivity extends Activity {
 
         @Override
         public void onItemClicked(Intent intent) {
-            startActivity(intent);
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Log.e(TAG, "No activity found for intent: " + intent);
+            }
         }
 
         @Override
