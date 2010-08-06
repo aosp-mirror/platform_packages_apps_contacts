@@ -212,14 +212,14 @@ public class ContactBrowserActivity extends Activity
             }
         }
 
-        if (mMode == ContactBrowserMode.MODE_SEARCH) {
-            mListFragment.setQueryString(mActionBarAdapter.getQueryString());
-        }
-
         if (mHasActionBar) {
             Bundle savedStateForMode = mActionBarAdapter.getSavedStateForMode(mMode);
             if (savedStateForMode != null) {
                 mListFragment.restoreSavedState(savedStateForMode);
+                mActionBarAdapter.clearSavedState(mMode);
+            }
+            if (mMode == ContactBrowserMode.MODE_SEARCH) {
+                mListFragment.setQueryString(mActionBarAdapter.getQueryString());
             }
         }
 

@@ -224,6 +224,10 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
         return mSavedStateByMode.get(mode);
     }
 
+    public void clearSavedState(int mode) {
+        mSavedStateByMode.remove(mode);
+    }
+
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(EXTRA_KEY_DEFAULT_MODE, mDefaultMode);
         outState.putInt(EXTRA_KEY_MODE, mMode);
