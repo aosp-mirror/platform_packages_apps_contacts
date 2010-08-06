@@ -324,6 +324,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                         }
                     }
                 }
+            } else {
+                // Like ACTION_MAIN
+                // If there's already an active call, bring up an intermediate UI
+                // to make the user confirm what they really want to do.
+                needToShowDialpadChooser = phoneIsInUse();
             }
         } else if (Intent.ACTION_MAIN.equals(action)) {
             // The MAIN action means we're bringing up a blank dialer
