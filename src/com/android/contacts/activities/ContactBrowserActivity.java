@@ -39,6 +39,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -497,7 +498,11 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onItemClicked(Intent intent) {
-            startActivity(intent);
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Log.e(TAG, "No activity found for intent: " + intent);
+            }
         }
 
         @Override
