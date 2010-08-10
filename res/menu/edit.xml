@@ -29,7 +29,7 @@
         android:title="@string/menu_doNotSave" />
 
     <item
-        android:id="@+id/menu_add"
+        android:id="@+id/menu_add_raw_contact"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_newContact" />
 

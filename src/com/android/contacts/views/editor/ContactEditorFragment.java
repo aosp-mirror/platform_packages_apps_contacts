@@ -366,7 +366,7 @@ public class ContactEditorFragment extends Fragment implements
                 return doSaveAction(SAVE_MODE_DEFAULT);
             case R.id.menu_discard:
                 return doRevertAction();
-            case R.id.menu_add:
+            case R.id.menu_add_raw_contact:
                 return doAddAction();
             case R.id.menu_delete:
                 return doDeleteAction();
