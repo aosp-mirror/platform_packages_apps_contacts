@@ -224,10 +224,12 @@ public class PinnedHeaderListView extends ListView
         }
 
         View selectedView = getSelectedView();
-        if (selectedView.getTop() < windowTop) {
-            setSelectionFromTop(position, windowTop);
-        } else if (selectedView.getBottom() > windowBottom) {
-            setSelectionFromTop(position, windowBottom - selectedView.getHeight());
+        if (selectedView != null) {
+            if (selectedView.getTop() < windowTop) {
+                setSelectionFromTop(position, windowTop);
+            } else if (selectedView.getBottom() > windowBottom) {
+                setSelectionFromTop(position, windowBottom - selectedView.getHeight());
+            }
         }
 
         if (mOnItemSelectedListener != null) {
