@@ -256,6 +256,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     @Override
     public void changeCursor(int partitionIndex, Cursor cursor) {
+        if (partitionIndex >= getPartitionCount()) {
+            // There is no partition for this data - just drop it on the ground
+            if (cursor != null) {
+                cursor.close();
+            }
+            return;
+        }
+
         Partition partition = getPartition(partitionIndex);
         if (partition instanceof DirectoryPartition) {
             ((DirectoryPartition)partition).setLoading(false);
