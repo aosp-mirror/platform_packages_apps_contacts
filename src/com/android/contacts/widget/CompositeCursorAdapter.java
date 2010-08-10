@@ -100,7 +100,8 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
             cursor.close();
         }
 
-        System.arraycopy(mPartitions, partitionIndex + 1, mPartitions, partitionIndex, mSize - 1);
+        System.arraycopy(mPartitions, partitionIndex + 1, mPartitions, partitionIndex,
+                mSize - partitionIndex - 1);
         mSize--;
         invalidate();
         notifyDataSetChanged();

@@ -257,6 +257,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onStart() {
+
         if (mContactsPrefs == null) {
             mContactsPrefs = new ContactsPreferences(mContext);
         }
@@ -275,6 +276,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mForceLoad = false;
         mLoadDirectoryList = true;
         mLoadPriorityDirectoriesOnly = true;
+
         startLoading();
         super.onStart();
     }
@@ -364,6 +366,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         // TODO should probably only restore instance state after all directories are loaded
         completeRestoreInstanceState();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.clearPartitions();
     }
 
     protected void reloadData() {
