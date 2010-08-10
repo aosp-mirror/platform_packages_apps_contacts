@@ -16,6 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Android 核心应用程序"</string>
     <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"拨号"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
@@ -30,6 +31,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"联系人详情"</string>
     <string name="viewContactDesription" msgid="214186610887547860">"查看联系人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"编辑联系人"</string>
+    <string name="edit_email_caption" msgid="2401084399676154272">"电子邮件地址："</string>
+    <string name="edit_email_type_caption" msgid="66331218163770698">"类型："</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"创建联系人"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜索联系人"</string>
     <string name="menu_search" msgid="9147752853603483719">"搜索"</string>
@@ -122,13 +125,13 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"未显示任何联系人"</string>
   <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="2830107332033967280">"找到 1 位联系人"</item>
-    <item quantity="other" msgid="7752927996850263152">"找到 <xliff:g id="COUNT">%d</xliff:g> 位联系人"</item>
+    <item quantity="one" msgid="5517063038754171134">"找到 1 个联系人"</item>
+    <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
   </plurals>
-    <string name="listFoundAllContactsZero" msgid="5554368784319460828">"未找到联系人"</string>
+    <string name="listFoundAllContactsZero" msgid="777952841930508289">"找不到"</string>
   <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="916648718690661777">"1 位联系人"</item>
-    <item quantity="other" msgid="5660384247071761844">"<xliff:g id="COUNT">%d</xliff:g> 位联系人"</item>
+    <item quantity="one" msgid="4826918429708286628">"找到 1 个联系人"</item>
+    <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"通讯录"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
@@ -158,10 +161,10 @@
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡联系人"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"没有任何联系人可供显示。（如果您刚刚添加了一个帐户，则系统需要几分钟的时间同步联系人。）"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"没有任何联系人可供显示。"</string>
-    <string name="noContactsHelpText" msgid="6788487368878712350">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置可同步到手机的联系人的帐户"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>\n</li></string>
+    <string name="noContactsHelpText" msgid="7633826236417884130">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸以下按钮执行操作："\n\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到手机"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SIM 卡或 SD 卡上的联系人"\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3017521127042216243">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到手机"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SIM 卡或 SD 卡上的联系人"\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="467658807711582876">"您没有可显示的联系人。"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到手机"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SIM 卡或 SD 卡上的联系人"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="9040060730467973050">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到手机"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SD 卡上的联系人"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"您未收藏任何联系人。"\n\n"要向您的收藏列表添加联系人，请执行以下操作："\n\n"        "<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"所有联系人"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标的内容"</string>
@@ -178,7 +181,7 @@
     <string name="callBack" msgid="5498224409038809224">"回电"</string>
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
     <string name="returnCall" msgid="8171961914203617813">"回拨"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> 分 <xliff:g id="SECONDS">%2$s</xliff:g> 秒"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"常用联系人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"添加联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
@@ -216,18 +219,24 @@
     <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"扫描 SD 卡失败"</string>
     <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"扫描 SD 卡失败（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 错误"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"存储器空间不足（文件可能过大）"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"由于意外原因而无法解析 vCard"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"虽然 vCard 似乎使用了有效的格式，但系统无法对其进行解析，因为当前的实现方案不支持该格式。"</string>
     <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"未在 SD 卡上找到 vCard 文件"</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"无法收集指定的 vCard 文件的元信息。"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"一个或多个文件导入失败 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知错误"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"选择 vCard 文件"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
-    <string name="reading_vcard_title" msgid="4723433501579653199">"正在读取 vCard"</string>
-    <string name="reading_vcard_message" msgid="6381368920030748743">"正在读取 vCard 文件"</string>
-    <string name="reading_vcard_failed_title" msgid="4923008144735294994">"读取 vCard 数据失败"</string>
-    <string name="reading_vcard_contacts" msgid="3066834102042012868">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个）"</string>
-    <string name="reading_vcard_files" msgid="34180143726972661">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个，共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个文件"</string>
+    <string name="caching_vcard_title" msgid="5009556022082659780">"正在将 vCard 缓存到本地临时存储"</string>
+    <string name="caching_vcard_message" msgid="2380844718093378900">"导入程序正在将 vCard 缓存到本地临时存储。很快将会开始真正的导入。"</string>
+    <string name="progress_notifier_message" msgid="8412196553907067659">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>：<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_title" msgid="3324988724123717025">"正在读取 vCard"</string>
+    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"无法读取 vCard 数据"</string>
+    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"已取消读取 vCard 数据"</string>
+    <string name="importing_vcard_finished_title" msgid="3213257229785702182">"导入 vCard 已完成"</string>
+    <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard 导入程序已启动。"</string>
+    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"vCard 导入程序会在稍后导入该 vCard。"</string>
+    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"确认导出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"确定要将您的联系人列表导出到“<xliff:g id="VCARD_FILENAME">%s</xliff:g>”中吗？"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"导出联系人数据失败"</string>
@@ -235,6 +244,8 @@
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"没有可导出的联系人"</string>
     <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"SD 卡中的 vCard 文件太多"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"所需文件名太长（“<xliff:g id="FILENAME">%s</xliff:g>”）"</string>
+    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard 导出程序已启动。"</string>
+    <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"导出 vCard 已完成"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"正在导出联系人数据"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"正在向“<xliff:g id="FILE_NAME">%s</xliff:g>”导出联系人数据"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"无法初始化导出程序：“<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
@@ -242,8 +253,8 @@
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"获取数据库信息失败"</string>
     <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"没有可导出的联系人。如果您的手机中确实有联系人，则可能是某个数据提供程序禁止您从手机中导出任何联系人。"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 制作程序未正确初始化"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"无法打开“<xliff:g id="FILE_NAME">%1$s</xliff:g>”：<xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 个）"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"无法打开“<xliff:g id="FILE_NAME">%s</xliff:g>”：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个）"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"联系人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"暂停时间延长 2 秒"</string>
     <string name="add_wait" msgid="3360818652790319634">"延长等待时间"</string>
@@ -253,6 +264,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"未找到可处理此操作的应用程序"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"记住此选择"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"未知"</string>
+    <string name="quickcontact_no_data" msgid="2098000859125253675">"无数据"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帐户"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"导入/导出"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"导入/导出联系人"</string>
@@ -358,6 +370,7 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
     <string name="from_account_format" msgid="687567483928582084">"来自 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_and_name" msgid="2876220035411512934">"来自 <xliff:g id="SOURCE_1">%2$s</xliff:g> 的 <xliff:g id="SOURCE_0">%1$s</xliff:g> 联系人"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"使用此照片"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人信息在此设备上不可编辑。"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"无此联系人的其他信息"</string>
@@ -373,9 +386,34 @@
     <string name="pick_photo" msgid="448886509158039462">"从图库中选择照片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新联系人列表，以反映语言的变更。"\n\n"请稍候..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"正在更新联系人列表。"\n\n"请稍候..."</string>
-    <string name="upgrade_out_of_memory" msgid="492151063059824962">"正在升级联系人。"\n\n"升级过程需要约 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> Mb 的手机内存。"\n\n"请选择以下选项之一："</string>
+    <string name="upgrade_out_of_memory" msgid="6713914687111678777">"正在升级联系人。"\n\n"升级过程需要约 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB 的手机内存。"\n\n"请选择以下选项之一："</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"卸载一些应用程序"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重新尝试升级"</string>
     <string name="search_results_for" msgid="8705490885073188513">"“<xliff:g id="QUERY">%s</xliff:g>”的搜索结果"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"正在搜索..."</string>
+    <string name="adding_recipients" msgid="5123647646892106631">"正在载入..."</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"已选收件人"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"全部收件人"</string>
+    <string name="menu_select_all" msgid="621719255150713545">"全选"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"取消全选"</string>
+  <plurals name="multiple_picker_title">
+    <item quantity="one" msgid="4761009734586319101">"已选择 1 个收件人"</item>
+    <item quantity="other" msgid="4608837420986126229">"已选择 <xliff:g id="COUNT">%d</xliff:g> 个收件人"</item>
+  </plurals>
+    <string name="unknown_contacts_separator" msgid="2490675836664397214">"未知联系人"</string>
+    <string name="no_contacts_selected" msgid="5877803471037324613">"未选择联系人。"</string>
+    <string name="add_field" msgid="5257149039253569615">"添加信息"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"来源：<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"时间：<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_edit" msgid="1601490950771217014">"编辑"</string>
+    <string name="description_star" msgid="2605854427360036550">"收藏"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"编辑联系人"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"未合并"</item>
+    <item quantity="other" msgid="425683718017380845">"合并自 <xliff:g id="COUNT">%0$d</xliff:g> 个来源"</item>
+  </plurals>
+    <string name="edit_delete_rawcontact" msgid="5054644778227879148">"删除"</string>
+    <string name="edit_error_saving" msgid="2153949392245240166">"保存出错"</string>
+    <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
 </resources>
