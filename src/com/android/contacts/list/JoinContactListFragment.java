@@ -100,6 +100,8 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     @Override
     protected void startLoading() {
+        configureAdapter();
+
         getLoaderManager().initLoader(DISPLAY_NAME_LOADER, null, mLoaderCallbacks);
         getLoaderManager().initLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
                 null, mLoaderCallbacks);

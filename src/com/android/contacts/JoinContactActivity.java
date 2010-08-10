@@ -18,10 +18,8 @@ package com.android.contacts;
 
 
 import com.android.contacts.list.ContactEntryListFragment;
-import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
-import com.android.contacts.ui.ContactsPreferencesActivity;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -29,8 +27,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.Settings;
-import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
