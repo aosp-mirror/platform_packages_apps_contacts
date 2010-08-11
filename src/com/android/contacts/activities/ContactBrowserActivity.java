@@ -320,8 +320,10 @@ public class ContactBrowserActivity extends Activity
         Log.d(TAG, "closeEditorFragment(" + save + ")");
 
         if (mEditorFragment != null) {
-            if (save) mEditorFragment.save();
+            // Remove the listener before saving, because it will be used to forward the onClose
+            // after save
             mEditorFragment.setListener(null);
+            if (save) mEditorFragment.save(true);
             mEditorFragment = null;
         }
     }
@@ -344,10 +346,10 @@ public class ContactBrowserActivity extends Activity
         super.onStop();
         Log.d(TAG, "onStop");
 
-        // if anything was left unsaved, save it now
-        if (mEditorFragment != null) {
-            closeEditorFragment(true);
-            setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        // If anything was left unsaved, save it now but keep the editor open.
+        // Don't do this if we are only rotating the screen
+        if (mEditorFragment != null && !isChangingConfigurations()) {
+            mEditorFragment.save(false);
         }
     }
 

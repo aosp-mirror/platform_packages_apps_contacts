@@ -60,7 +60,7 @@ public class ContactEditorActivity extends Activity implements
         if (mDoneButton != null) mDoneButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFragment.save();
+                mFragment.save(true);
             }
         });
         if (mRevertButton != null) mRevertButton.setOnClickListener(new OnClickListener() {

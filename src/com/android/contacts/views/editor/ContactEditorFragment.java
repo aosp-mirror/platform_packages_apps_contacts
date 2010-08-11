@@ -107,9 +107,30 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_QUERY_SELECTION = "queryselection";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
-    private static final int SAVE_MODE_DEFAULT = 0;
-    private static final int SAVE_MODE_SPLIT = 1;
-    private static final int SAVE_MODE_JOIN = 2;
+    /**
+     * Modes that specify what the AsyncTask has to perform after saving
+     */
+    private interface SaveMode {
+        /**
+         * Close the editor after saving
+         */
+        public static final int CLOSE = 0;
+
+        /**
+         * Reload the data so that the user can continue editing
+         */
+        public static final int RELOAD = 1;
+
+        /**
+         * Split the contact after saving
+         */
+        public static final int SPLIT = 2;
+
+        /**
+         * Join another contact after saving
+         */
+        public static final int JOIN = 3;
+    }
 
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1;
@@ -374,7 +395,7 @@ public class ContactEditorFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_done:
-                return doSaveAction(SAVE_MODE_DEFAULT);
+                return doSaveAction(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return doRevertAction();
             case R.id.menu_add_raw_contact:
@@ -436,7 +457,7 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean doJoinContactAction() {
-        return doSaveAction(SAVE_MODE_JOIN);
+        return doSaveAction(SaveMode.JOIN);
     }
 
     /**
@@ -537,8 +558,8 @@ public class ContactEditorFragment extends Fragment implements
      * Asynchonously saves the changes made by the user. This can be called even if nothing
      * has changed
      */
-    public void save() {
-        doSaveAction(SAVE_MODE_DEFAULT);
+    public void save(boolean closeAfterSave) {
+        doSaveAction(closeAfterSave ? SaveMode.CLOSE : SaveMode.RELOAD);
     }
 
     private boolean doRevertAction() {
@@ -548,9 +569,9 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
-        Log.d(TAG, "onSaveCompleted( " + success + ", " + saveMode + ", " + contactLookupUri);
+        Log.d(TAG, "onSaveCompleted(" + success + ", " + saveMode + ", " + contactLookupUri);
         switch (saveMode) {
-            case SAVE_MODE_DEFAULT:
+            case SaveMode.CLOSE:
                 final Intent resultIntent;
                 final int resultCode;
                 if (success && contactLookupUri != null) {
@@ -580,7 +601,16 @@ public class ContactEditorFragment extends Fragment implements
                 }
                 if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent);
                 break;
-            case SAVE_MODE_SPLIT:
+            case SaveMode.RELOAD:
+                if (success && contactLookupUri != null) {
+                    // If this was in INSERT, we are changing into an EDIT now.
+                    // If it already was an EDIT, we are changing to the new Uri now
+                    mState = null;
+                    load(Intent.ACTION_EDIT, contactLookupUri, mMimeType, null);
+                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+                }
+                break;
+            case SaveMode.SPLIT:
                 if (mListener != null) {
                     mListener.onAggregationChangeFinished(contactLookupUri);
                 } else {
@@ -588,7 +618,7 @@ public class ContactEditorFragment extends Fragment implements
                 }
                 break;
 
-            case SAVE_MODE_JOIN:
+            case SaveMode.JOIN:
                 //mStatus = STATUS_EDITING;
                 if (success) {
                     showJoinAggregateActivity(contactLookupUri);
@@ -978,7 +1008,7 @@ public class ContactEditorFragment extends Fragment implements
                     final ArrayList<ContentProviderOperation> diff = state.buildDiff();
                     ContentProviderResult[] results = null;
                     if (!diff.isEmpty()) {
-                         results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                        results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
                     }
 
                     final long rawContactId = getRawContactId(state, diff, results);
@@ -989,6 +1019,10 @@ public class ContactEditorFragment extends Fragment implements
                         // convert the raw contact URI to a contact URI
                         mContactLookupUri = RawContacts.getContactLookupUri(resolver,
                                 rawContactUri);
+                        Log.d(TAG, "Looked up RawContact Uri " + rawContactUri +
+                                " into ContactLookupUri " + mContactLookupUri);
+                    } else {
+                        Log.w(TAG, "Could not determine RawContact ID after save");
                     }
                     result = (diff.size() > 0) ? RESULT_SUCCESS : RESULT_UNCHANGED;
                     break;
@@ -1018,6 +1052,7 @@ public class ContactEditorFragment extends Fragment implements
                 return rawContactId;
             }
 
+
             // we gotta do some searching for the id
             final int diffSize = diff.size();
             for (int i = 0; i < diffSize; i++) {
@@ -1035,7 +1070,7 @@ public class ContactEditorFragment extends Fragment implements
         @Override
         protected void onPostExecute(ContactEditorFragment target, Integer result) {
             Log.d(TAG, "onPostExecute(something," + result + "). mSaveMode=" + mSaveMode);
-            if (result == RESULT_SUCCESS && mSaveMode != SAVE_MODE_JOIN) {
+            if (result == RESULT_SUCCESS && mSaveMode != SaveMode.JOIN) {
                 Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
             } else if (result == RESULT_FAILURE) {
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
@@ -1147,7 +1182,7 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onSplitContactConfirmed() {
         mState.markRawContactsForSplitting();
-        doSaveAction(SAVE_MODE_SPLIT);
+        doSaveAction(SaveMode.SPLIT);
     }
 
     /**
