@@ -50,6 +50,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
@@ -104,7 +105,6 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
     private static final String KEY_QUERY_SELECTION = "queryselection";
-    private static final String KEY_QUERY_SELECTION_ARGS = "queryselectionargs";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
     private static final int SAVE_MODE_DEFAULT = 0;
@@ -134,7 +134,6 @@ public class ContactEditorFragment extends Fragment implements
     private Listener mListener;
 
     private String mQuerySelection;
-    private String[] mQuerySelectionArgs;
 
     private long mContactIdForJoin;
 
@@ -216,7 +215,6 @@ public class ContactEditorFragment extends Fragment implements
                 mCurrentPhotoFile = new File(fileName);
             }
             mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
-            mQuerySelectionArgs = savedState.getStringArray(KEY_QUERY_SELECTION_ARGS);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
         }
     }
@@ -228,7 +226,20 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
+        ArrayList<Entity> entities = data.getEntities();
+        StringBuilder sb = new StringBuilder(RawContacts._ID + " IN(");
+        int count = entities.size();
+        for (int i = 0; i < count; i++) {
+            if (i > 0) {
+                sb.append(',');
+            }
+            sb.append(entities.get(i).getEntityValues().get(RawContacts._ID));
+        }
+        sb.append(")");
+        mQuerySelection = sb.toString();
+        mState = EntityDeltaList.fromIterator(entities.iterator());
+
+
         // TODO: Merge in Intent parameters can only be done on the first load.
         // The behaviour for subsequent loads is probably broken, so fix this
         final boolean hasExtras = mIntentExtras != null && mIntentExtras.size() > 0;
@@ -991,7 +1002,7 @@ public class ContactEditorFragment extends Fragment implements
                     // Version consistency failed, re-parent change and try again
                     Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
                     final EntityDeltaList newState = EntityDeltaList.fromQuery(resolver,
-                            target.mQuerySelection, target.mQuerySelectionArgs, null);
+                            target.mQuerySelection, null, null);
                     state = EntityDeltaList.mergeAfter(newState, state);
                 }
             }
@@ -1053,7 +1064,6 @@ public class ContactEditorFragment extends Fragment implements
             outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
         }
         outState.putString(KEY_QUERY_SELECTION, mQuerySelection);
-        outState.putStringArray(KEY_QUERY_SELECTION_ARGS, mQuerySelectionArgs);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         super.onSaveInstanceState(outState);
     }
