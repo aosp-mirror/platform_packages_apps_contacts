@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.ContactsUtils.ImActions;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,24 +36,63 @@ public class ContactsUtilsTests extends AndroidTestCase {
     private static final String TEST_PROTOCOL = "prot%col";
 
     public void testImIntent() throws Exception {
-        // Normal IM is appended as path
+        // Test GTalk XMPP URI. No chat capabilities provided
         final ContentValues values = new ContentValues();
         values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
         values.put(Im.TYPE, Im.TYPE_HOME);
         values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         values.put(Im.DATA, TEST_ADDRESS);
 
-        final Intent intent = ContactsUtils.buildImIntent(values);
+        final ImActions imActions = ContactsUtils.buildImActions(values);
+        final Intent intent = imActions.getPrimaryIntent();
         assertEquals(Intent.ACTION_SENDTO, intent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", intent.getData().toString());
 
-        final Uri data = intent.getData();
-        assertEquals("imto", data.getScheme());
-        assertEquals("gtalk", data.getAuthority());
-        assertEquals(TEST_ADDRESS, data.getPathSegments().get(0));
+        assertNull(imActions.getSecondaryIntent());
+    }
+
+    public void testImIntentWithAudio() throws Exception {
+        // Test GTalk XMPP URI. Audio chat capabilities provided
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        values.put(Im.DATA, TEST_ADDRESS);
+        values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO);
+
+        final ImActions imActions = ContactsUtils.buildImActions(values);
+        final Intent primaryIntent = imActions.getPrimaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, primaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", primaryIntent.getData().toString());
+
+        final Intent secondaryIntent = imActions.getSecondaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
+    }
+
+    public void testImIntentWithVideo() throws Exception {
+        // Test GTalk XMPP URI. Video chat capabilities provided
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        values.put(Im.DATA, TEST_ADDRESS);
+        values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
+                Im.CAPABILITY_HAS_VOICE);
+
+        final ImActions imActions = ContactsUtils.buildImActions(values);
+        final Intent primaryIntent = imActions.getPrimaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, primaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", primaryIntent.getData().toString());
+
+        final Intent secondaryIntent = imActions.getSecondaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
     }
 
     public void testImIntentCustom() throws Exception {
-        // Custom IM types have encoded authority
+        // Custom IM types have encoded authority. We send the imto Intent here, because
+        // legacy third party apps might not accept xmpp yet
         final ContentValues values = new ContentValues();
         values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
         values.put(Im.TYPE, Im.TYPE_HOME);
@@ -59,29 +100,37 @@ public class ContactsUtilsTests extends AndroidTestCase {
         values.put(Im.CUSTOM_PROTOCOL, TEST_PROTOCOL);
         values.put(Im.DATA, TEST_ADDRESS);
 
-        final Intent intent = ContactsUtils.buildImIntent(values);
+        final ImActions actions = ContactsUtils.buildImActions(values);
+        final Intent intent = actions.getPrimaryIntent();
         assertEquals(Intent.ACTION_SENDTO, intent.getAction());
 
         final Uri data = intent.getData();
         assertEquals("imto", data.getScheme());
         assertEquals(TEST_PROTOCOL, data.getAuthority());
         assertEquals(TEST_ADDRESS, data.getPathSegments().get(0));
+
+        assertNull(actions.getSecondaryIntent());
     }
 
     public void testImEmailIntent() throws Exception {
         // Email addresses are treated as Google Talk entries
+        // This test only tests the VIDEO+CAMERA case. The other cases have been addressed by the
+        // Im tests
         final ContentValues values = new ContentValues();
         values.put(Email.MIMETYPE, Email.CONTENT_ITEM_TYPE);
         values.put(Email.TYPE, Email.TYPE_HOME);
         values.put(Email.DATA, TEST_ADDRESS);
+        values.put(Email.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
+                Im.CAPABILITY_HAS_VOICE);
 
-        final Intent intent = ContactsUtils.buildImIntent(values);
-        assertEquals(Intent.ACTION_SENDTO, intent.getAction());
+        final ImActions imActions = ContactsUtils.buildImActions(values);
+        final Intent primaryIntent = imActions.getPrimaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, primaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", primaryIntent.getData().toString());
 
-        final Uri data = intent.getData();
-        assertEquals("imto", data.getScheme());
-        assertEquals("gtalk", data.getAuthority());
-        assertEquals(TEST_ADDRESS, data.getPathSegments().get(0));
+        final Intent secondaryIntent = imActions.getSecondaryIntent();
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
     }
 
     public void testIsGraphicNull() throws Exception {

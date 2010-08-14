@@ -291,7 +291,7 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         GroupMembership.GROUP_SOURCE_ID,
 
-                        Data.PRESENCE,
+                        Data.PRESENCE, Data.CHAT_CAPABILITY,
                         Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
                         Data.STATUS_LABEL, Data.STATUS_TIMESTAMP,
                     })
@@ -323,7 +323,7 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         "groupId",
 
-                        StatusUpdates.INVISIBLE,
+                        StatusUpdates.INVISIBLE, null,
                         "Having dinner", "mockPkg3", 0,
                         20, 0
                     );

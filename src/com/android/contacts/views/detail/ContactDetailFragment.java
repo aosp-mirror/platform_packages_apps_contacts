@@ -20,6 +20,7 @@ import com.android.contacts.Collapser;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.Collapser.Collapsible;
@@ -33,7 +34,6 @@ import com.android.contacts.views.ContactLoader;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -41,7 +41,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
@@ -353,7 +352,13 @@ public class ContactDetailFragment extends Fragment
                                 imMime, mContext, ContactsSource.LEVEL_MIMETYPES);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, rawContactId, dataId, entryValues);
-                        imEntry.intent = ContactsUtils.buildImIntent(entryValues);
+                        final ImActions imActions = ContactsUtils.buildImActions(entryValues);
+                        if (imActions != null) {
+                            imEntry.actionIcon = imActions.getPrimaryActionIcon();
+                            imEntry.secondaryActionIcon = imActions.getSecondaryActionIcon();
+                            imEntry.intent = imActions.getPrimaryIntent();
+                            imEntry.secondaryIntent = imActions.getSecondaryIntent();
+                        }
                         imEntry.applyStatus(status, false);
                         mImEntries.add(imEntry);
                     }
@@ -364,7 +369,13 @@ public class ContactDetailFragment extends Fragment
                     mPostalEntries.add(entry);
                 } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build IM entries
-                    entry.intent = ContactsUtils.buildImIntent(entryValues);
+                    final ImActions imActions = ContactsUtils.buildImActions(entryValues);
+                    if (imActions != null) {
+                        entry.actionIcon = imActions.getPrimaryActionIcon();
+                        entry.secondaryActionIcon = imActions.getSecondaryActionIcon();
+                        entry.intent = imActions.getPrimaryIntent();
+                        entry.secondaryIntent = imActions.getSecondaryIntent();
+                    }
                     if (TextUtils.isEmpty(entry.label)) {
                         entry.label = mContext.getString(R.string.chat).toLowerCase();
                     }
@@ -882,13 +893,6 @@ public class ContactDetailFragment extends Fragment
         if (intent == null) return;
         mListener.onItemClicked(intent);
     }
-
-    private final DialogInterface.OnClickListener mDeleteListener =
-            new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-            mContext.getContentResolver().delete(mContactData.getLookupUri(), null, null);
-        }
-    };
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
