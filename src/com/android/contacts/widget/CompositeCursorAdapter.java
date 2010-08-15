@@ -108,14 +108,10 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
     }
 
     /**
-     * Removes cursors for all partitions, closing them as necessary.
+     * Removes cursors for all partitions.
      */
     public void clearPartitions() {
         for (int i = 0; i < mSize; i++) {
-            Cursor cursor = mPartitions[i].cursor;
-            if (cursor != null && !cursor.isClosed()) {
-                cursor.close();
-            }
             mPartitions[i].cursor = null;
         }
         invalidate();

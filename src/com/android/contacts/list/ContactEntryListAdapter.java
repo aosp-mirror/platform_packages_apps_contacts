@@ -222,20 +222,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
         // TODO preserve the order of partition to match those of the cursor
         // Phase I: add new directories
-        try {
-            while (cursor.moveToNext()) {
-                long id = cursor.getLong(idColumnIndex);
-                directoryIds.add(id);
-                if (getPartitionByDirectoryId(id) == -1) {
-                    DirectoryPartition partition = new DirectoryPartition(false, true);
-                    partition.setDirectoryId(id);
-                    partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
-                    partition.setDisplayName(cursor.getString(displayNameColumnIndex));
-                    addPartition(partition);
-                }
+        cursor.moveToPosition(-1);
+        while (cursor.moveToNext()) {
+            long id = cursor.getLong(idColumnIndex);
+            directoryIds.add(id);
+            if (getPartitionByDirectoryId(id) == -1) {
+                DirectoryPartition partition = new DirectoryPartition(false, true);
+                partition.setDirectoryId(id);
+                partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
+                partition.setDisplayName(cursor.getString(displayNameColumnIndex));
+                addPartition(partition);
             }
-        } finally {
-            cursor.close();
         }
 
         // Phase II: remove deleted directories
@@ -257,10 +254,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     @Override
     public void changeCursor(int partitionIndex, Cursor cursor) {
         if (partitionIndex >= getPartitionCount()) {
-            // There is no partition for this data - just drop it on the ground
-            if (cursor != null) {
-                cursor.close();
-            }
+            // There is no partition for this data
             return;
         }
 

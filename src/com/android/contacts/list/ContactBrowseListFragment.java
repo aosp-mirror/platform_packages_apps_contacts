@@ -82,6 +82,7 @@ public abstract class ContactBrowseListFragment extends
         }
 
         mSelectedContactUri = savedState.getParcelable(KEY_SELECTED_URI);
+        parseSelectedContactUri();
     }
 
     @Override
@@ -135,24 +136,7 @@ public abstract class ContactBrowseListFragment extends
                 || (mSelectedContactUri != null && !mSelectedContactUri.equals(uri))) {
             mSelectedContactUri = uri;
 
-            if (mSelectedContactUri != null) {
-                if (!mSelectedContactUri.toString()
-                        .startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
-                    throw new IllegalStateException(
-                            "Contact list contains a non-lookup URI: " + mSelectedContactUri);
-                }
-
-                String directoryParam =
-                    mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
-                mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam)
-                        ? Directory.DEFAULT
-                        : Long.parseLong(directoryParam);
-                mSelectedContactLookupKey =
-                        Uri.encode(mSelectedContactUri.getPathSegments().get(2));
-            } else {
-                mSelectedContactDirectoryId = Directory.DEFAULT;
-                mSelectedContactLookupKey = null;
-            }
+            parseSelectedContactUri();
 
             // Configure the adapter to show the selection based on the lookup key extracted
             // from the URI
@@ -160,6 +144,27 @@ public abstract class ContactBrowseListFragment extends
 
             // Also, launch a loader to pick up a new lookup key in case it has changed
             startLoadingContactLookupKey();
+        }
+    }
+
+    private void parseSelectedContactUri() {
+        if (mSelectedContactUri != null) {
+            if (!mSelectedContactUri.toString()
+                    .startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
+                throw new IllegalStateException(
+                        "Contact list contains a non-lookup URI: " + mSelectedContactUri);
+            }
+
+            String directoryParam =
+                mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+            mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam)
+                    ? Directory.DEFAULT
+                    : Long.parseLong(directoryParam);
+            mSelectedContactLookupKey =
+                    Uri.encode(mSelectedContactUri.getPathSegments().get(2));
+        } else {
+            mSelectedContactDirectoryId = Directory.DEFAULT;
+            mSelectedContactLookupKey = null;
         }
     }
 
