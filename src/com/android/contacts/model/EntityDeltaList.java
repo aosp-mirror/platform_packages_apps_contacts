@@ -34,6 +34,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Container for multiple {@link EntityDelta} objects, usually when editing
@@ -42,6 +43,7 @@ import java.util.Iterator;
  */
 public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelable {
     private boolean mSplitRawContacts;
+    private List<Long> mJoinWithRawContactIds;
 
     private EntityDeltaList() {
     }
@@ -141,6 +143,22 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
             final int firstBatch = diff.size();
             backRefs[rawContactIndex++] = firstBatch;
             delta.buildDiff(diff);
+
+            // If the user chose to join with some other existing raw contact(s) at save time,
+            // add aggregation exceptions for all those raw contacts.
+            if (mJoinWithRawContactIds != null) {
+                for (Long joinedRawContactId : mJoinWithRawContactIds) {
+                    final Builder builder = beginKeepTogether();
+                    builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, joinedRawContactId);
+                    if (rawContactId != -1) {
+                        builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId);
+                    } else {
+                        builder.withValueBackReference(
+                                AggregationExceptions.RAW_CONTACT_ID2, firstBatch);
+                    }
+                    diff.add(builder.build());
+                }
+            }
 
             // Only create rules for inserts
             if (!delta.isContactInsert()) continue;
@@ -313,6 +331,10 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         mSplitRawContacts = true;
     }
 
+    public void setJoinWithRawContacts(List<Long> rawContactIds) {
+        mJoinWithRawContactIds = rawContactIds;
+    }
+
     /** {@inheritDoc} */
     public int describeContents() {
         // Nothing special about this parcel
@@ -326,14 +348,17 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         for (EntityDelta delta : this) {
             dest.writeParcelable(delta, flags);
         }
+        dest.writeList(mJoinWithRawContactIds);
     }
 
+    @SuppressWarnings("unchecked")
     public void readFromParcel(Parcel source) {
         final ClassLoader loader = getClass().getClassLoader();
         final int size = source.readInt();
         for (int i = 0; i < size; i++) {
             this.add(source.<EntityDelta> readParcelable(loader));
         }
+        mJoinWithRawContactIds = source.readArrayList(loader);
     }
 
     public static final Parcelable.Creator<EntityDeltaList> CREATOR =

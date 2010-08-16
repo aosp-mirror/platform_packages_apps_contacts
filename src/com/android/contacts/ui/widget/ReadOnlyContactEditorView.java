@@ -191,14 +191,6 @@ class ReadOnlyContactEditorView extends BaseContactEditorView {
         }
     }
 
-    /**
-     * Sets the {@link EditorListener} on the name field
-     */
-    @Override
-    public void setNameEditorListener(EditorListener listener) {
-        // do nothing
-    }
-
     @Override
     public long getRawContactId() {
         return mRawContactId;

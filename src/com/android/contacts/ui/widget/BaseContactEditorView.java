@@ -97,9 +97,4 @@ public abstract class BaseContactEditorView extends LinearLayout {
      * apply to that state.
      */
     public abstract void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig);
-
-    /**
-     * Sets the {@link EditorListener} on the name field
-     */
-    public abstract void setNameEditorListener(EditorListener listener);
 }

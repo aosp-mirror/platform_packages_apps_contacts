@@ -105,6 +105,13 @@
             android:layout_marginTop="6dip"
             android:layout_marginBottom="4dip" />
 
+        <ViewStub android:id="@+id/aggregation_suggestion_stub"
+            android:inflatedId="@+id/aggregation_suggestion"
+            android:layout="@layout/aggregation_suggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
+
         <LinearLayout
             android:id="@+id/sect_fields"
             android:layout_width="match_parent"

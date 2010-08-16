@@ -200,12 +200,8 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
         }
     }
 
-    /**
-     * Sets the {@link EditorListener} on the name field
-     */
-    @Override
-    public void setNameEditorListener(EditorListener listener) {
-        mName.setEditorListener(listener);
+    public GenericEditorView getNameEditor() {
+        return mName;
     }
 
     @Override

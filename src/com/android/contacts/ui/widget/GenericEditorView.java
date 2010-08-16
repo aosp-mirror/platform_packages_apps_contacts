@@ -434,6 +434,10 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
     }
 
+    public ValuesDelta getValues() {
+        return mEntry;
+    }
+
     /**
      * Prepare dialog for entering a custom label. The input value is trimmed: white spaces before
      * and after the input text is removed.
