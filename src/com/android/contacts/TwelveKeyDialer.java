@@ -303,6 +303,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         if (Intent.ACTION_DIAL.equals(action) || Intent.ACTION_VIEW.equals(action)) {
             // see if we are "adding a call" from the InCallScreen; false by default.
             mIsAddCallMode = intent.getBooleanExtra(ADD_CALL_MODE_KEY, false);
+
             Uri uri = intent.getData();
             if (uri != null) {
                 if ("tel".equals(uri.getScheme())) {
@@ -326,10 +327,15 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                     }
                 }
             } else {
-                // Like ACTION_MAIN
-                // If there's already an active call, bring up an intermediate UI
-                // to make the user confirm what they really want to do.
-                needToShowDialpadChooser = phoneIsInUse();
+                // ACTION_DIAL or ACTION_VIEW with no data.
+                // This behaves basically like ACTION_MAIN: If there's
+                // already an active call, bring up an intermediate UI to
+                // make the user confirm what they really want to do.
+                // Be sure *not* to show the dialpad chooser if this is an
+                // explicit "Add call" action, though.
+                if (!mIsAddCallMode && phoneIsInUse()) {
+                    needToShowDialpadChooser = true;
+                }
             }
         } else if (Intent.ACTION_MAIN.equals(action)) {
             // The MAIN action means we're bringing up a blank dialer
