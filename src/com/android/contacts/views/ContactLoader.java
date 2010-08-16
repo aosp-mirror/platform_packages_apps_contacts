@@ -250,12 +250,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 GroupMembership.GROUP_SOURCE_ID,
 
                 Data.PRESENCE,
+                Data.CHAT_CAPABILITY,
                 Data.STATUS,
                 Data.STATUS_RES_PACKAGE,
                 Data.STATUS_ICON,
                 Data.STATUS_LABEL,
-                Data.STATUS_TIMESTAMP,
-
+                Data.STATUS_TIMESTAMP
         };
 
         public final static int NAME_RAW_CONTACT_ID = 0;
@@ -315,7 +315,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int GROUP_SOURCE_ID = 51;
 
         public final static int PRESENCE = 52;
-        public final static int STATUS = 53;
+        public final static int CHAT_CAPABILITY = 53;
+        public final static int STATUS = 54;
     }
 
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
@@ -510,6 +511,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
             cursorColumnToContentValues(cursor, cv, ContactQuery.RES_PACKAGE);
             cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
 
             return cv;
         }
