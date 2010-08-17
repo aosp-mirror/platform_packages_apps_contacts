@@ -416,4 +416,12 @@
     <string name="edit_error_saving" msgid="2153949392245240166">"Chyba při ukládání"</string>
     <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Ostatní"</string>
+    <!-- no translation found for aggregation_suggestion_title:one (7676930148670768645) -->
+    <!-- no translation found for aggregation_suggestion_title:other (3744098467672876675) -->
+    <!-- no translation found for aggregation_suggestion_joined_title (5342738708069602301) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <skip />
 </resources>
