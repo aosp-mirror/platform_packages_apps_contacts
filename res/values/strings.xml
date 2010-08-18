@@ -755,11 +755,12 @@
     <!-- The message shown while importing vCard(s).
          First argument is current index of contacts to be imported.
          Second argument is the total number of contacts.
-         Third argument is the Uri which is being read. -->
-    <string name="progress_notifier_message"><xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="filename" example="foo.vcf">%s</xliff:g></string>
+         Third argument is the name of a contact which is being read. -->
+    <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
-    <!-- Dialog title shown when reading vCard data -->
-    <string name="reading_vcard_title">Reading vCard(s)</string>
+    <!-- Description shown when importing vCard data.
+         The argument is the name of a contact which is being read. -->
+    <string name="importing_vcard_description">Importing <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
     <!-- Dialog title shown when reading vCard data failed -->
     <string name="reading_vcard_failed_title">Failed to Read vCard data</string>

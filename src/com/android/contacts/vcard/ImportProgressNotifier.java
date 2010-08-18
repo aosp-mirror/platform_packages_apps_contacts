@@ -20,6 +20,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.RemoteViews;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactBrowserActivity;
@@ -56,24 +57,25 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         // - There's high probability where name comes soon after the beginning of entry, so
         //   we don't need to hurry to show something.
 
-        final String title = mContext.getString(R.string.reading_vcard_title);
 
-        String totalCountString;
+        final String totalCountString;
         synchronized (this) {
             totalCountString = String.valueOf(mTotalCount);
         }
-        final String description = mContext.getString(R.string.progress_notifier_message,
-                String.valueOf(mCurrentCount),
-                totalCountString,
-                contactStruct.getDisplayName());
+        final String tickerText =
+                mContext.getString(R.string.progress_notifier_message,
+                        String.valueOf(mCurrentCount),
+                        totalCountString,
+                        contactStruct.getDisplayName());
+
 
         final Context context = mContext.getApplicationContext();
 
-        /* TODO: fix this.
+        final String description = mContext.getString(R.string.importing_vcard_description,
+                contactStruct.getDisplayName());
         final RemoteViews remoteViews =
                 new RemoteViews(context.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.status_title, title);
         remoteViews.setTextViewText(R.id.status_description, description);
         remoteViews.setProgressBar(R.id.status_progress_bar, mTotalCount, mCurrentCount,
                 mTotalCount == -1);
@@ -89,23 +91,17 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_download;
-        notification.tickerText = description;
+        notification.tickerText = tickerText;
+        notification.contentView = remoteViews;
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
-        notification.tickerText = description;
-        notification.contentView = remoteViews;*/
-
-        final long when = System.currentTimeMillis();
-        final Notification notification = new Notification(
-                android.R.drawable.stat_sys_download,
-                description,
-                when);
 
         final PendingIntent pendingIntent =
                 PendingIntent.getActivity(context, 0,
                         new Intent(context, ContactBrowserActivity.class),
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
-        notification.setLatestEventInfo(context, title, description, pendingIntent);
+        notification.contentIntent = pendingIntent;
+        // notification.setLatestEventInfo(context, title, description, pendingIntent);
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
