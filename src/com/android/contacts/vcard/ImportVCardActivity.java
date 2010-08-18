@@ -99,6 +99,8 @@ public class ImportVCardActivity extends Activity {
     /* package */ final static int VCARD_VERSION_V21 = 1;
     /* package */ final static int VCARD_VERSION_V30 = 2;
 
+    private static final String SECURE_DIRECTORY_NAME = ".android_secure";
+
     final static String CACHED_URIS = "cached_uris";
 
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
@@ -150,6 +152,10 @@ public class ImportVCardActivity extends Activity {
                         // "manually" call unbindService() here.
                         unbindService(this);
                         mDisconnectAndFinishDone = true;
+                        finish();
+                    } else {
+                        // If not connected, finish() must be called when connected, as
+                        // We cann not call finish() now.
                     }
                 }
             }
@@ -669,7 +675,12 @@ public class ImportVCardActivity extends Activity {
             // e.g. secured directory may return null toward listFiles().
             final File[] files = directory.listFiles();
             if (files == null) {
-                Log.w(LOG_TAG, "listFiles() returned null (directory: " + directory + ")");
+                final String currentDirectoryPath = directory.getCanonicalPath();
+                final String secureDirectoryPath =
+                        mRootDirectory.getCanonicalPath().concat(SECURE_DIRECTORY_NAME);
+                if (!TextUtils.equals(currentDirectoryPath, secureDirectoryPath)) {
+                    Log.w(LOG_TAG, "listFiles() returned null (directory: " + directory + ")");
+                }
                 return;
             }
             for (File file : directory.listFiles()) {
@@ -952,7 +963,7 @@ public class ImportVCardActivity extends Activity {
                     Log.e(LOG_TAG, "Error message is null while it must not.");
                     message = getString(R.string.fail_reason_unknown);
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.reading_vcard_failed_title))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage(message)
