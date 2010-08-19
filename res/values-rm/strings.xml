@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for sharedUserLabel (7965035505237135241) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Contacts"</string>
+    <!-- no translation found for launcherDialer (8636288196618486553) -->
+    <skip />
+    <!-- no translation found for shortcutContact (749243779392912958) -->
+    <skip />
+    <!-- no translation found for shortcutDialContact (746622101599186779) -->
+    <skip />
+    <!-- no translation found for shortcutMessageContact (2460337253595976198) -->
+    <skip />
+    <!-- no translation found for shortcutActivityTitle (6642877210643565436) -->
+    <skip />
+    <!-- no translation found for callShortcutActivityTitle (6065749861423648991) -->
+    <skip />
+    <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
+    <skip />
+    <!-- no translation found for starredList (4817256136413959463) -->
+    <skip />
+    <!-- no translation found for frequentList (7154768136473953056) -->
+    <skip />
+    <!-- no translation found for strequentList (5640192862059373511) -->
+    <skip />
+    <!-- no translation found for viewContactTitle (7989394521836644384) -->
+    <skip />
+    <!-- no translation found for viewContactDesription (214186610887547860) -->
+    <skip />
+    <!-- no translation found for editContactDescription (2947202828256214947) -->
+    <skip />
+    <!-- no translation found for edit_email_caption (2401084399676154272) -->
+    <skip />
+    <!-- no translation found for edit_email_type_caption (66331218163770698) -->
+    <skip />
+    <!-- no translation found for insertContactDescription (4709878105452681987) -->
+    <skip />
+    <!-- no translation found for searchHint (8482945356247760701) -->
+    <skip />
+    <!-- no translation found for menu_search (9147752853603483719) -->
+    <skip />
+    <!-- no translation found for menu_newContact (1209922412763274638) -->
+    <skip />
+    <!-- no translation found for menu_viewContact (2795575601596468581) -->
+    <skip />
+    <!-- no translation found for menu_callNumber (5142851348489387516) -->
+    <skip />
+    <!-- no translation found for menu_addStar (2908478235715404876) -->
+    <skip />
+    <!-- no translation found for menu_removeStar (5844227078364227030) -->
+    <skip />
+    <!-- no translation found for menu_editContact (3452858480713561396) -->
+    <skip />
+    <!-- no translation found for menu_deleteContact (1916555454274101750) -->
+    <skip />
+    <!-- no translation found for menu_call (3992595586042260618) -->
+    <skip />
+    <!-- no translation found for menu_sendSMS (5535886767547006515) -->
+    <skip />
+    <!-- no translation found for menu_sendEmail (7293508859242926187) -->
+    <skip />
+    <!-- no translation found for menu_viewAddress (1814744325763202024) -->
+    <skip />
+    <!-- no translation found for menu_makeDefaultNumber (4838759253316649534) -->
+    <skip />
+    <!-- no translation found for menu_makeDefaultEmail (2599044610375789994) -->
+    <skip />
+    <!-- no translation found for menu_splitAggregate (8368636463748691868) -->
+    <skip />
+    <!-- no translation found for contactsSplitMessage (5253490235863170269) -->
+    <skip />
+    <!-- no translation found for splitConfirmation_title (6716467920283502570) -->
+    <skip />
+    <!-- no translation found for splitConfirmation (1150797297503944823) -->
+    <skip />
+    <!-- no translation found for menu_joinAggregate (5027981918265667970) -->
+    <skip />
+    <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (995870557595050304) -->
+    <skip />
+    <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
+    <skip />
+    <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
+    <skip />
+    <!-- no translation found for separatorJoinAggregateAll (7939932265026181043) -->
+    <skip />
+    <!-- no translation found for contactsJoinedMessage (7208148163607047389) -->
+    <skip />
+    <!-- no translation found for menu_contactOptions (1957061455705020617) -->
+    <skip />
+    <!-- no translation found for contactOptionsTitle (8259347644090700915) -->
+    <skip />
+    <!-- no translation found for deleteConfirmation_title (6394309508930335204) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning (1390849295342594265) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (2137170726670196909) -->
+    <skip />
+    <!-- no translation found for multipleContactDeleteConfirmation (938900978442960800) -->
+    <skip />
+    <!-- no translation found for deleteConfirmation (811706994761610640) -->
+    <skip />
+    <!-- no translation found for menu_done (796017761764190697) -->
+    <skip />
+    <!-- no translation found for menu_doNotSave (2174577548513895144) -->
+    <skip />
+    <!-- no translation found for editContact_title_edit (7678695190666836093) -->
+    <skip />
+    <!-- no translation found for editContact_title_insert (9125600232291405757) -->
+    <skip />
+    <!-- no translation found for label_phonetic_name (2288082649573927286) -->
+    <skip />
+    <!-- no translation found for label_notes (8337354953278341042) -->
+    <skip />
+    <!-- no translation found for label_ringtone (8833166825330686244) -->
+    <skip />
+    <!-- no translation found for ghostData_name (6490954238641157585) -->
+    <skip />
+    <!-- no translation found for ghostData_phonetic_name (7852749081984070902) -->
+    <skip />
+    <!-- no translation found for ghostData_company (5414421120553765775) -->
+    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
+    <!-- no translation found for invalidContactMessage (5816991830260044593) -->
+    <skip />
+    <!-- no translation found for pickerNewContactHeader (7750705279843568147) -->
+    <skip />
+    <!-- no translation found for selectLabel (4255424123394910733) -->
+    <skip />
+    <!-- no translation found for phoneLabelsGroup (6468091477851199285) -->
+    <skip />
+    <!-- no translation found for emailLabelsGroup (8389931313045344406) -->
+    <skip />
+    <!-- no translation found for imLabelsGroup (3898238486262614027) -->
+    <skip />
+    <!-- no translation found for postalLabelsGroup (1618078212734693682) -->
+    <skip />
+    <!-- no translation found for otherLabels:0 (8287841928119937597) -->
+    <!-- no translation found for otherLabels:1 (7196592230748086755) -->
+    <!-- no translation found for photoPickerNotFoundText (431331662154342581) -->
+    <skip />
+    <!-- no translation found for attachToContact (8820530304406066714) -->
+    <skip />
+    <!-- no translation found for customLabelPickerTitle (1081475101983255212) -->
+    <skip />
+    <!-- no translation found for menu_displayGroup (5655505437727616553) -->
+    <skip />
+    <!-- no translation found for displayGroups (2278964020773993336) -->
+    <skip />
+    <!-- no translation found for send_to_voicemail_checkbox (9001686764070676353) -->
+    <skip />
+    <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
+    <!-- no translation found for changePicture (2943329047610967714) -->
+    <skip />
+    <!-- no translation found for removePicture (3041230993155966350) -->
+    <skip />
+    <!-- no translation found for noContacts (8579310973261953559) -->
+    <skip />
+    <!-- no translation found for noMatchingContacts (4266283206853990471) -->
+    <skip />
+    <!-- no translation found for noContactsWithPhoneNumbers (1605457050218824269) -->
+    <skip />
+    <!-- no translation found for showFilterPhones (4184858075465653970) -->
+    <skip />
+    <!-- no translation found for showFilterPhonesDescrip (6644443248815191067) -->
+    <skip />
+    <!-- no translation found for headerContactGroups (2426134991932503843) -->
+    <skip />
+    <!-- no translation found for groupDescrip:other (3507881585720628389) -->
+    <!-- no translation found for groupDescripPhones:other (3816047547470490208) -->
+    <!-- no translation found for savingContact (4075751076741924939) -->
+    <skip />
+    <!-- no translation found for savingDisplayGroups (2133152192716475939) -->
+    <skip />
+    <!-- no translation found for contactSavedToast (7152589189385441091) -->
+    <skip />
+    <!-- no translation found for contactSavedErrorToast (9189098776225004666) -->
+    <skip />
+    <!-- no translation found for listTotalPhoneContacts:one (8721111084815668845) -->
+    <!-- no translation found for listTotalPhoneContacts:other (6133262880804110289) -->
+    <!-- no translation found for listTotalPhoneContactsZero (2756295259674938869) -->
+    <skip />
+    <!-- no translation found for listTotalAllContacts:one (1096068709488455155) -->
+    <!-- no translation found for listTotalAllContacts:other (2865867557378939630) -->
+    <!-- no translation found for listTotalAllContactsZero (6811347506748072822) -->
+    <skip />
+    <!-- no translation found for listFoundAllContacts:one (5517063038754171134) -->
+    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
+    <!-- no translation found for listFoundAllContactsZero (777952841930508289) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (4826918429708286628) -->
+    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
+    <!-- no translation found for contactsIconLabel (7666609097606552806) -->
+    <skip />
+    <!-- no translation found for contactsFavoritesLabel (8417039765586853670) -->
+    <skip />
+    <!-- no translation found for dialerIconLabel (6500826552823403796) -->
+    <skip />
+    <!-- no translation found for recentCallsIconLabel (1419116422359067949) -->
+    <skip />
+    <!-- no translation found for liveFolderAll (4789010460767506206) -->
+    <skip />
+    <!-- no translation found for liveFolderFavorites (3100957542927222282) -->
+    <skip />
+    <!-- no translation found for liveFolderPhone (3739376066610926780) -->
+    <skip />
+    <!-- no translation found for menu_sendTextMessage (6937343460284499306) -->
+    <skip />
+    <!-- no translation found for recentCalls_callNumber (1756372533999226126) -->
+    <skip />
+    <!-- no translation found for recentCalls_editNumberBeforeCall (7756171675833267857) -->
+    <skip />
+    <!-- no translation found for recentCalls_addToContact (1429899535546487008) -->
+    <skip />
+    <!-- no translation found for recentCalls_removeFromRecentList (401662244636511330) -->
+    <skip />
+    <!-- no translation found for recentCalls_deleteAll (6352364392762163704) -->
+    <skip />
+    <!-- no translation found for recentCalls_empty (247053222448663107) -->
+    <skip />
+    <!-- no translation found for clearCallLogConfirmation_title (718072843006222703) -->
+    <skip />
+    <!-- no translation found for clearCallLogConfirmation (7625927669136267636) -->
+    <skip />
+    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
+    <!-- no translation found for meid (6210568493746275750) -->
+    <skip />
+    <!-- no translation found for voicemail (3851469869202611441) -->
+    <skip />
+    <!-- no translation found for unknown (740067747858270469) -->
+    <skip />
+    <!-- no translation found for private_num (6374339738119166953) -->
+    <skip />
+    <!-- no translation found for payphone (4864313342828942922) -->
+    <skip />
+    <!-- no translation found for dialerKeyboardHintText (5401660096579787344) -->
+    <skip />
+    <!-- no translation found for dialerDialpadHintText (5824490365898349041) -->
+    <skip />
+    <!-- no translation found for simContacts_emptyLoading (6700035985448642408) -->
+    <skip />
+    <!-- no translation found for simContacts_title (27341688347689769) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
+    <skip />
+    <!-- no translation found for noContactsHelpText (7633826236417884130) -->
+    <skip />
+    <!-- no translation found for noContactsHelpTextWithSync (3017521127042216243) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpText (467658807711582876) -->
+    <skip />
+    <!-- no translation found for noContactsNoSimHelpTextWithSync (9040060730467973050) -->
+    <skip />
+    <!-- no translation found for noFavoritesHelpText (3744655776704833277) -->
+    <skip />
+    <!-- no translation found for liveFolder_all_label (5961411940473276616) -->
+    <skip />
+    <!-- no translation found for liveFolder_favorites_label (2674341514070517105) -->
+    <skip />
+    <!-- no translation found for liveFolder_phones_label (1709786878793436245) -->
+    <skip />
+    <!-- no translation found for dialer_useDtmfDialpad (1707548397435075040) -->
+    <skip />
+    <!-- no translation found for dialer_returnToInCallScreen (3719386377550913067) -->
+    <skip />
+    <!-- no translation found for dialer_addAnotherCall (4205688819890074468) -->
+    <skip />
+    <!-- no translation found for callDetailTitle (5340227785196217938) -->
+    <skip />
+    <!-- no translation found for toast_call_detail_error (7200975244804730096) -->
+    <skip />
+    <!-- no translation found for type_incoming (6502076603836088532) -->
+    <skip />
+    <!-- no translation found for type_outgoing (343108709599392641) -->
+    <skip />
+    <!-- no translation found for type_missed (2720502601640509542) -->
+    <skip />
+    <!-- no translation found for actionIncomingCall (6028930669817038600) -->
+    <skip />
+    <!-- no translation found for callBack (5498224409038809224) -->
+    <skip />
+    <!-- no translation found for callAgain (3197312117049874778) -->
+    <skip />
+    <!-- no translation found for returnCall (8171961914203617813) -->
+    <skip />
+    <!-- no translation found for callDetailsDurationFormat (8157706382818184268) -->
+    <skip />
+    <!-- no translation found for favoritesFrquentSeparator (8107518433381283736) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_title (2896685845822146494) -->
+    <skip />
+    <!-- no translation found for add_contact_dlg_message_fmt (7986472669444326576) -->
+    <skip />
+    <!-- no translation found for all_tab_label (4003124364397916826) -->
+    <skip />
+    <string name="description_image_button_one" msgid="1740638037139856139">"in"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"dus"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"trais"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"quatter"</string>
+    <!-- no translation found for description_image_button_five (1182465427501188413) -->
+    <skip />
+    <!-- no translation found for description_image_button_six (2093656269261415475) -->
+    <skip />
+    <!-- no translation found for description_image_button_seven (2450357020447676481) -->
+    <skip />
+    <string name="description_image_button_eight" msgid="6969435115163287801">"otg"</string>
+    <!-- no translation found for description_image_button_nine (7857248695662558323) -->
+    <skip />
+    <!-- no translation found for description_image_button_star (3365919907520767866) -->
+    <skip />
+    <string name="description_image_button_zero" msgid="4133108949401820710">"nulla"</string>
+    <!-- no translation found for description_image_button_pound (3039765597595889230) -->
+    <skip />
+    <!-- no translation found for description_voicemail_button (3402506823655455591) -->
+    <skip />
+    <!-- no translation found for description_dial_button (1274091017188142646) -->
+    <skip />
+    <!-- no translation found for description_delete_button (6263102114033407382) -->
+    <skip />
+    <!-- no translation found for description_digits_edittext (8760207516497016437) -->
+    <skip />
+    <!-- no translation found for description_contact_photo (3387458082667894062) -->
+    <skip />
+    <!-- no translation found for description_minus_button (387136707700230172) -->
+    <skip />
+    <!-- no translation found for description_plus_button (515164827856229880) -->
+    <skip />
+    <!-- no translation found for no_sdcard_title (5911758680339949273) -->
+    <skip />
+    <!-- no translation found for no_sdcard_message (6019391476490445358) -->
+    <skip />
+    <!-- no translation found for searching_vcard_title (4970508055399376813) -->
+    <skip />
+    <!-- no translation found for import_from_sim (3859272228033941659) -->
+    <skip />
+    <!-- no translation found for import_from_sdcard (8550360976693202816) -->
+    <skip />
+    <!-- no translation found for export_to_sdcard (2597105442616166277) -->
+    <skip />
+    <!-- no translation found for share_visible_contacts (890150378880783797) -->
+    <skip />
+    <!-- no translation found for import_one_vcard_string (9059163467020328433) -->
+    <skip />
+    <!-- no translation found for import_multiple_vcard_string (3810226492811062392) -->
+    <skip />
+    <!-- no translation found for import_all_vcard_string (5518136113853448474) -->
+    <skip />
+    <!-- no translation found for searching_vcard_message (6917522333561434546) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_title (3506782007953167180) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (3761992500690182922) -->
+    <skip />
+    <!-- no translation found for fail_reason_io_error (5922864781066136340) -->
+    <skip />
+    <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
+    <skip />
+    <!-- no translation found for fail_reason_vcard_parse_error (1201233722762680214) -->
+    <skip />
+    <!-- no translation found for fail_reason_vcard_not_supported_error (655208100451286027) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_vcard_file (6376516175882881595) -->
+    <skip />
+    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
+    <skip />
+    <!-- no translation found for fail_reason_failed_to_read_files (3659521123567134029) -->
+    <skip />
+    <!-- no translation found for fail_reason_unknown (999034019513096768) -->
+    <skip />
+    <!-- no translation found for select_vcard_title (3968948173786172468) -->
+    <skip />
+    <!-- no translation found for caching_vcard_title (5009556022082659780) -->
+    <skip />
+    <!-- no translation found for caching_vcard_message (2380844718093378900) -->
+    <skip />
+    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
+    <skip />
+    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_title (2162610359561887043) -->
+    <skip />
+    <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
+    <skip />
+    <!-- no translation found for importing_vcard_finished_title (3213257229785702182) -->
+    <skip />
+    <!-- no translation found for vcard_importer_start_message (5520549352987753320) -->
+    <skip />
+    <!-- no translation found for vcard_importer_will_start_message (2055145402481822160) -->
+    <skip />
+    <!-- no translation found for percentage (34897865327092209) -->
+    <skip />
+    <!-- no translation found for confirm_export_title (7648747763127442983) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (3875683519257829750) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (585823094820602526) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (4151348002470298092) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_exportable_contact (4919714086648344495) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (7084146295639672658) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_long_filename (1915716071321839166) -->
+    <skip />
+    <!-- no translation found for vcard_exporter_start_message (6497218576519292369) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_finished_title (1268425436375550862) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_message (5640326540405486055) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_initialize_exporter (4943708332700987376) -->
+    <skip />
+    <!-- no translation found for fail_reason_error_occurred_during_export (2151165129433831202) -->
+    <skip />
+    <!-- no translation found for composer_failed_to_get_database_infomation (3723109558155169053) -->
+    <skip />
+    <!-- no translation found for composer_has_no_exportable_contact (754734132189369094) -->
+    <skip />
+    <!-- no translation found for composer_not_initialized (8041534450748388843) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_open_file (4013520943128739511) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_progress (560522409559101193) -->
+    <skip />
+    <!-- no translation found for search_settings_description (2675223022992445813) -->
+    <skip />
+    <!-- no translation found for add_2sec_pause (9214012315201040129) -->
+    <skip />
+    <!-- no translation found for add_wait (3360818652790319634) -->
+    <skip />
+    <!-- no translation found for call_disambig_title (1911302597959335178) -->
+    <skip />
+    <!-- no translation found for sms_disambig_title (4675399294513152364) -->
+    <skip />
+    <!-- no translation found for make_primary (5829291915305113983) -->
+    <skip />
+    <!-- no translation found for quickcontact_missing_app (4600366393134289038) -->
+    <skip />
+    <!-- no translation found for quickcontact_remember_choice (5964536411579749424) -->
+    <skip />
+    <!-- no translation found for quickcontact_missing_name (5590266114306996632) -->
+    <skip />
+    <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
+    <skip />
+    <!-- no translation found for menu_accounts (8499114602017077970) -->
+    <skip />
+    <!-- no translation found for menu_import_export (3765725645491577190) -->
+    <skip />
+    <!-- no translation found for dialog_import_export (4771877268244096596) -->
+    <skip />
+    <!-- no translation found for menu_share (943789700636542260) -->
+    <skip />
+    <!-- no translation found for share_via (563121028023030093) -->
+    <skip />
+    <!-- no translation found for share_error (4374508848981697170) -->
+    <skip />
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"Num"</string>
+    <!-- no translation found for nicknameLabelsGroup (2891682101053358010) -->
+    <skip />
+    <!-- no translation found for organizationLabelsGroup (2478611760751832035) -->
+    <skip />
+    <!-- no translation found for websiteLabelsGroup (4202998982804009261) -->
+    <skip />
+    <!-- no translation found for eventLabelsGroup (8069912895912714412) -->
+    <skip />
+    <!-- no translation found for type_short_home (7770424864090605384) -->
+    <skip />
+    <!-- no translation found for type_short_mobile (1655473281466676216) -->
+    <skip />
+    <!-- no translation found for type_short_work (4925330752504537861) -->
+    <skip />
+    <!-- no translation found for type_short_pager (2613818970827594238) -->
+    <skip />
+    <!-- no translation found for type_short_other (5669407180177236769) -->
+    <skip />
+    <!-- no translation found for edit_read_only (8158629550655830981) -->
+    <skip />
+    <!-- no translation found for edit_secondary_collapse (5371618426594477103) -->
+    <skip />
+    <!-- no translation found for dialog_primary_name (5521591005692614833) -->
+    <skip />
+    <!-- no translation found for dialog_new_contact_account (9044704073286262197) -->
+    <skip />
+    <!-- no translation found for menu_sync_remove (3266725887008450161) -->
+    <skip />
+    <!-- no translation found for dialog_sync_add (8267045393119375803) -->
+    <skip />
+    <!-- no translation found for display_more_groups (2682547080423434170) -->
+    <skip />
+    <!-- no translation found for display_ungrouped (4602580795576261158) -->
+    <skip />
+    <!-- no translation found for display_all_contacts (6846131371214707956) -->
+    <skip />
+    <!-- no translation found for display_warn_remove_ungrouped (2314043155909167610) -->
+    <skip />
+    <!-- no translation found for account_phone (4025734638492419713) -->
+    <skip />
+    <!-- no translation found for call_custom (7756571794763171802) -->
+    <skip />
+    <!-- no translation found for call_home (1990519474420545392) -->
+    <skip />
+    <!-- no translation found for call_mobile (7502236805487609178) -->
+    <skip />
+    <!-- no translation found for call_work (5328785911463744028) -->
+    <skip />
+    <!-- no translation found for call_fax_work (7467763592359059243) -->
+    <skip />
+    <!-- no translation found for call_fax_home (8342175628887571876) -->
+    <skip />
+    <!-- no translation found for call_pager (9003902812293983281) -->
+    <skip />
+    <!-- no translation found for call_other (8563753966926932052) -->
+    <skip />
+    <!-- no translation found for call_callback (1910165691349426858) -->
+    <skip />
+    <!-- no translation found for call_car (3280537320306436445) -->
+    <skip />
+    <!-- no translation found for call_company_main (6105120947138711257) -->
+    <skip />
+    <!-- no translation found for call_isdn (1541590690193403411) -->
+    <skip />
+    <!-- no translation found for call_main (6082900571803441339) -->
+    <skip />
+    <!-- no translation found for call_other_fax (5745314124619636674) -->
+    <skip />
+    <!-- no translation found for call_radio (8296755876398357063) -->
+    <skip />
+    <!-- no translation found for call_telex (2223170774548648114) -->
+    <skip />
+    <!-- no translation found for call_tty_tdd (8951266948204379604) -->
+    <skip />
+    <!-- no translation found for call_work_mobile (8707874281430105394) -->
+    <skip />
+    <!-- no translation found for call_work_pager (3419348514157949008) -->
+    <skip />
+    <!-- no translation found for call_assistant (2141641383068514308) -->
+    <skip />
+    <!-- no translation found for call_mms (6274041545876221437) -->
+    <skip />
+    <!-- no translation found for sms_custom (5932736853732191825) -->
+    <skip />
+    <!-- no translation found for sms_home (7524332261493162995) -->
+    <skip />
+    <!-- no translation found for sms_mobile (5200107250451030769) -->
+    <skip />
+    <!-- no translation found for sms_work (2269624156655267740) -->
+    <skip />
+    <!-- no translation found for sms_fax_work (8028189067816907075) -->
+    <skip />
+    <!-- no translation found for sms_fax_home (9204042076306809634) -->
+    <skip />
+    <!-- no translation found for sms_pager (7730404569637015192) -->
+    <skip />
+    <!-- no translation found for sms_other (806127844607642331) -->
+    <skip />
+    <!-- no translation found for sms_callback (5004824430094288752) -->
+    <skip />
+    <!-- no translation found for sms_car (7444227058437359641) -->
+    <skip />
+    <!-- no translation found for sms_company_main (118970873419678087) -->
+    <skip />
+    <!-- no translation found for sms_isdn (8153785037515047845) -->
+    <skip />
+    <!-- no translation found for sms_main (8621625784504541679) -->
+    <skip />
+    <!-- no translation found for sms_other_fax (3888842199855843152) -->
+    <skip />
+    <!-- no translation found for sms_radio (3329166673433967820) -->
+    <skip />
+    <!-- no translation found for sms_telex (9034802430065267848) -->
+    <skip />
+    <!-- no translation found for sms_tty_tdd (6782284969132531532) -->
+    <skip />
+    <!-- no translation found for sms_work_mobile (2459939960512702560) -->
+    <skip />
+    <!-- no translation found for sms_work_pager (5566924423316960597) -->
+    <skip />
+    <!-- no translation found for sms_assistant (2773424339923116234) -->
+    <skip />
+    <!-- no translation found for sms_mms (4069352461380762677) -->
+    <skip />
+    <!-- no translation found for email_home (8573740658148184279) -->
+    <skip />
+    <!-- no translation found for email_mobile (2042889209787989814) -->
+    <skip />
+    <!-- no translation found for email_work (2807430017302722689) -->
+    <skip />
+    <!-- no translation found for email_other (3454004077967657109) -->
+    <skip />
+    <!-- no translation found for email_custom (7548003991586214105) -->
+    <skip />
+    <!-- no translation found for email (5668400997660065897) -->
+    <skip />
+    <!-- no translation found for map_home (1243547733423343982) -->
+    <skip />
+    <!-- no translation found for map_work (1360474076921878088) -->
+    <skip />
+    <!-- no translation found for map_other (3817820803587012641) -->
+    <skip />
+    <!-- no translation found for map_custom (6184363799976265281) -->
+    <skip />
+    <!-- no translation found for chat_aim (2588492205291249142) -->
+    <skip />
+    <!-- no translation found for chat_msn (8041633440091073484) -->
+    <skip />
+    <!-- no translation found for chat_yahoo (6629211142719943666) -->
+    <skip />
+    <!-- no translation found for chat_skype (1210045020427480566) -->
+    <skip />
+    <!-- no translation found for chat_qq (4294637812847719693) -->
+    <skip />
+    <!-- no translation found for chat_gtalk (981575737258117697) -->
+    <skip />
+    <!-- no translation found for chat_icq (8438405386153745775) -->
+    <skip />
+    <!-- no translation found for chat_jabber (7561444230307829609) -->
+    <skip />
+    <!-- no translation found for chat (9025361898797412245) -->
+    <skip />
+    <!-- no translation found for postal_street (8133143961580058972) -->
+    <skip />
+    <!-- no translation found for postal_pobox (4431938829180269821) -->
+    <skip />
+    <!-- no translation found for postal_neighborhood (1450783874558956739) -->
+    <skip />
+    <string name="postal_city" msgid="6597491300084895548">"Citad"</string>
+    <!-- no translation found for postal_region (6045263193478437672) -->
+    <skip />
+    <!-- no translation found for postal_postcode (572136414136673751) -->
+    <skip />
+    <!-- no translation found for postal_country (7638264508416368690) -->
+    <skip />
+    <!-- no translation found for name_given (1687286314106019813) -->
+    <skip />
+    <!-- no translation found for name_family (3416695586119999058) -->
+    <skip />
+    <!-- no translation found for name_prefix (59756378548779822) -->
+    <skip />
+    <!-- no translation found for name_middle (8467433655992690326) -->
+    <skip />
+    <!-- no translation found for name_suffix (3855278445375651441) -->
+    <skip />
+    <!-- no translation found for name_phonetic_given (6853570431394449191) -->
+    <skip />
+    <!-- no translation found for name_phonetic_middle (8643721493320405200) -->
+    <skip />
+    <!-- no translation found for name_phonetic_family (462095502140180305) -->
+    <skip />
+    <!-- no translation found for account_type_format (718948015590343010) -->
+    <skip />
+    <!-- no translation found for from_account_format (687567483928582084) -->
+    <skip />
+    <!-- no translation found for account_type_and_name (2876220035411512934) -->
+    <skip />
+    <!-- no translation found for use_photo_as_primary (8807110122951157246) -->
+    <skip />
+    <!-- no translation found for contact_read_only (1203216914575723978) -->
+    <skip />
+    <!-- no translation found for no_contact_details (6754415338321837001) -->
+    <skip />
+    <!-- no translation found for display_options_sort_list_by (6080091755852211076) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (184916793466387067) -->
+    <skip />
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Num da famiglia"</string>
+    <!-- no translation found for display_options_view_names_as (18022868169627979) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (6968288511197363292) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (1447288164951453714) -->
+    <skip />
+    <!-- no translation found for search_bar_hint (1012756309632856553) -->
+    <skip />
+    <!-- no translation found for search_for_all_contacts (6644963335787294131) -->
+    <skip />
+    <!-- no translation found for take_photo (7496128293167402354) -->
+    <skip />
+    <!-- no translation found for pick_photo (448886509158039462) -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (1124266507671178413) -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (7530893673211750223) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6713914687111678777) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
+    <skip />
+    <!-- no translation found for search_results_for (8705490885073188513) -->
+    <skip />
+    <!-- no translation found for search_results_searching (7755623475227227314) -->
+    <skip />
+    <!-- no translation found for adding_recipients (5123647646892106631) -->
+    <skip />
+    <!-- no translation found for menu_display_selected (6470001164297969034) -->
+    <skip />
+    <!-- no translation found for menu_display_all (8887488642609786198) -->
+    <skip />
+    <!-- no translation found for menu_select_all (621719255150713545) -->
+    <skip />
+    <!-- no translation found for menu_select_none (7093222469852132345) -->
+    <skip />
+    <!-- no translation found for multiple_picker_title:one (4761009734586319101) -->
+    <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
+    <!-- no translation found for unknown_contacts_separator (2490675836664397214) -->
+    <skip />
+    <!-- no translation found for no_contacts_selected (5877803471037324613) -->
+    <skip />
+    <!-- no translation found for add_field (5257149039253569615) -->
+    <skip />
+    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
+    <skip />
+    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
+    <skip />
+    <!-- no translation found for description_edit (1601490950771217014) -->
+    <skip />
+    <!-- no translation found for description_star (2605854427360036550) -->
+    <skip />
+    <!-- no translation found for edit_contact (7529281274005689512) -->
+    <skip />
+    <!-- no translation found for merge_info:one (148365587896371969) -->
+    <!-- no translation found for merge_info:other (425683718017380845) -->
+    <!-- no translation found for edit_delete_rawcontact (5054644778227879148) -->
+    <skip />
+    <!-- no translation found for edit_error_saving (2153949392245240166) -->
+    <skip />
+    <!-- no translation found for edit_structured_editor_button (3830078388142808106) -->
+    <skip />
+    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_title:one (7676930148670768645) -->
+    <!-- no translation found for aggregation_suggestion_title:other (3744098467672876675) -->
+    <!-- no translation found for aggregation_suggestion_joined_title (5342738708069602301) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <skip />
+</resources>
