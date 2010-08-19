@@ -20,7 +20,7 @@
     <item type="id" name="dialog_sync_add"/>
     <item type="id" name="dialog_import_export"/>
 
-    <!-- For ImportVCardActivity -->
+    <!-- For vcard.ImportVCardActivity -->
     <item type="id" name="dialog_searching_vcard"/>
     <item type="id" name="dialog_sdcard_not_found"/>
     <item type="id" name="dialog_vcard_not_found"/>
@@ -30,6 +30,9 @@
     <item type="id" name="dialog_cache_vcard"/>
     <item type="id" name="dialog_io_exception"/>
     <item type="id" name="dialog_error_with_message"/>
+
+    <!-- For vcard.CancelImportActivity -->
+    <item type="id" name="dialog_cancel_import_confirmation"/>
 
     <!-- For ContactDeletionInteraction -->
     <item type="id" name="dialog_delete_contact_confirmation"/>

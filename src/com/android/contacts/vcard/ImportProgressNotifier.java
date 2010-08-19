@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactBrowserActivity;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryHandler;
 
@@ -97,7 +96,7 @@ public class ImportProgressNotifier implements VCardEntryHandler {
 
         final PendingIntent pendingIntent =
                 PendingIntent.getActivity(context, 0,
-                        new Intent(context, ContactBrowserActivity.class),
+                        new Intent(context, CancelImportActivity.class),
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
         notification.contentIntent = pendingIntent;

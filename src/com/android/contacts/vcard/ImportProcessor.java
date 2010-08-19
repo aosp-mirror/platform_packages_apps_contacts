@@ -20,11 +20,17 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.net.Uri;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
@@ -54,9 +60,38 @@ import java.util.Queue;
  * recreate multiple instances, as this holds total count of vCard entries to be imported.
  */
 public class ImportProcessor {
-    private static final String LOG_TAG = "ImportRequestProcessor";
+    private static final String LOG_TAG = ImportProcessor.class.getSimpleName();
+
+    private class CustomConnection implements ServiceConnection {
+        private Messenger mMessenger;
+        public void doBindService() {
+            mContext.bindService(new Intent(mContext, VCardService.class),
+                    this, Context.BIND_AUTO_CREATE);
+        }
+
+        public void sendFinisheNotification() {
+            try {
+                mMessenger.send(Message.obtain(null,
+                        VCardService.MSG_NOTIFY_IMPORT_FINISHED,
+                        null));
+            } catch (RemoteException e) {
+                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
+            }
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mMessenger = new Messenger(service);
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mMessenger = null;
+        }
+    }
 
     private final Context mContext;
+
+    private final CustomConnection mConnection = new CustomConnection();
 
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
@@ -107,6 +142,8 @@ public class ImportProcessor {
 
     public ImportProcessor(final Context context) {
         mContext = context;
+
+        mConnection.doBindService();
     }
 
     /**
@@ -180,6 +217,8 @@ public class ImportProcessor {
             // imported in this procedure. Instead, we show them entries only when
             // there's just one created uri.
             doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
+            mConnection.sendFinisheNotification();
+            mContext.unbindService(mConnection);
         } finally {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
@@ -257,10 +296,16 @@ public class ImportProcessor {
 
     private void doFinishNotification(final Uri createdUri) {
         final Notification notification = new Notification();
-        notification.icon = android.R.drawable.stat_sys_download_done;
+        final String title;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        final String title = mContext.getString(R.string.importing_vcard_finished_title);
+        if (isCanceled()) {
+            notification.icon = android.R.drawable.stat_notify_error;
+            title = mContext.getString(R.string.importing_vcard_canceled_title);
+        } else {
+            notification.icon = android.R.drawable.stat_sys_download_done;
+            title = mContext.getString(R.string.importing_vcard_finished_title);
+        }
 
         final Intent intent;
         if (createdUri != null) {

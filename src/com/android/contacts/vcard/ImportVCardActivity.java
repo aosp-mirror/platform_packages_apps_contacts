@@ -183,6 +183,7 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
+        @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             synchronized (mPendingRequests) {
                 mMessenger = new Messenger(service);
@@ -209,6 +210,7 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
+        @Override
         public void onServiceDisconnected(ComponentName name) {
             synchronized (mPendingRequests) {
                 if (!mPendingRequests.isEmpty()) {

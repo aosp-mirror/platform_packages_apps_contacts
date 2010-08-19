@@ -30,10 +30,12 @@ import com.android.contacts.R;
  * The class responsible for importing vCard from one ore multiple Uris.
  */
 public class VCardService extends Service {
-    private final static String LOG_TAG = "ImportVCardService";
+    private final static String LOG_TAG = VCardService.class.getSimpleName();
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
     /* package */ static final int MSG_EXPORT_REQUEST = 2;
+    /* package */ static final int MSG_CANCEL_IMPORT_REQUEST = 3;
+    /* package */ static final int MSG_NOTIFY_IMPORT_FINISHED = 5;
 
     /* package */ static final int IMPORT_NOTIFICATION_ID = 1000;
     /* package */ static final int EXPORT_NOTIFICATION_ID = 1001;
@@ -45,15 +47,26 @@ public class VCardService extends Service {
     private static final int IMPORT_NOTIFICATION_THRESHOLD = 10;
 
     public class ImportRequestHandler extends Handler {
-        private final ImportProcessor mImportProcessor =
-                new ImportProcessor(VCardService.this);
-        private final ExportProcessor mExportProcessor =
-                new ExportProcessor(VCardService.this);
+        private ImportProcessor mImportProcessor;
+        private ExportProcessor mExportProcessor = new ExportProcessor(VCardService.this);
+
+        public ImportRequestHandler() {
+            super();
+        }
+
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
                     final ImportRequest parameter = (ImportRequest)msg.obj;
+
+                    if (mImportProcessor == null) {
+                        mImportProcessor = new ImportProcessor(VCardService.this);
+                    } else if (mImportProcessor.isCanceled()) {
+                        Log.i(LOG_TAG, "Existing ImporterProcessor is canceled. create another.");
+                        mImportProcessor = new ImportProcessor(VCardService.this);
+                    }
+
                     mImportProcessor.pushRequest(parameter);
                     if (parameter.entryCount > IMPORT_NOTIFICATION_THRESHOLD) {
                         Toast.makeText(VCardService.this,
@@ -70,6 +83,14 @@ public class VCardService extends Service {
                             Toast.LENGTH_LONG).show();
                     break;
                 }
+                case MSG_CANCEL_IMPORT_REQUEST: {
+                    mImportProcessor.cancel();
+                    break;
+                }
+                case MSG_NOTIFY_IMPORT_FINISHED: {
+                    Log.d(LOG_TAG, "MSG_NOTIFY_IMPORT_FINISHED");
+                    break;
+                }
                 default: {
                     Log.e(LOG_TAG, "Unknown request type: " + msg.what);
                     super.hasMessages(msg.what);
@@ -78,7 +99,8 @@ public class VCardService extends Service {
         }
     }
 
-    private Messenger mMessenger = new Messenger(new ImportRequestHandler());
+    private ImportRequestHandler mHandler = new ImportRequestHandler();
+    private Messenger mMessenger = new Messenger(mHandler);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int id) {
