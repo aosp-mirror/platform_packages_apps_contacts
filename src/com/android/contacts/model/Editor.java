@@ -44,6 +44,10 @@ public interface Editor {
 
         public static final int REQUEST_PICK_PHOTO = 1;
         public static final int FIELD_CHANGED = 2;
+
+        // The editor has switched between different representations of the same
+        // data, e.g. from full name to structured name
+        public static final int EDITOR_FORM_CHANGED = 3;
     }
 
     /**

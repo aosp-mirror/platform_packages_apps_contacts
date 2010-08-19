@@ -73,10 +73,11 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.RawContactsEntity;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -99,7 +100,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
@@ -408,12 +408,12 @@ public class ContactEditorFragment extends Fragment implements
 
             if (editor instanceof ContactEditorView) {
                 final ContactEditorView rawContactEditor = (ContactEditorView) editor;
-                GenericEditorView nameEditor = rawContactEditor.getNameEditor();
+                final GenericEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(new EditorListener() {
 
                     @Override
                     public void onRequest(int request) {
-                        acquireAggregationSuggestions(rawContactEditor);
+                        onContactNameChange(request, rawContactEditor, nameEditor);
                     }
 
                     @Override
@@ -1020,6 +1020,106 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
         return 0;
+    }
+
+
+    private void onContactNameChange(int request, final ContactEditorView rawContactEditor,
+            GenericEditorView nameEditor) {
+
+        switch (request) {
+            case EditorListener.EDITOR_FORM_CHANGED:
+                if (nameEditor.areOptionalFieldsVisible()) {
+                    switchFromFullNameToStructuredName(nameEditor);
+                } else {
+                    switchFromStructuredNameToFullName(nameEditor);
+                }
+                break;
+
+            case EditorListener.FIELD_CHANGED:
+                if (nameEditor.areOptionalFieldsVisible()) {
+                    eraseFullName(nameEditor.getValues());
+                } else {
+                    eraseStructuredName(nameEditor.getValues());
+                }
+                acquireAggregationSuggestions(rawContactEditor);
+                break;
+        }
+    }
+
+    private void switchFromFullNameToStructuredName(GenericEditorView nameEditor) {
+        ValuesDelta values = nameEditor.getValues();
+
+        String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        if (displayName == null) {
+            displayName = "";
+        }
+
+        Uri uri = ContactsContract.AUTHORITY_URI.buildUpon().appendPath("complete_name")
+                .appendQueryParameter(StructuredName.DISPLAY_NAME, displayName).build();
+        Cursor cursor = getActivity().getContentResolver().query(uri, new String[]{
+                StructuredName.PREFIX,
+                StructuredName.GIVEN_NAME,
+                StructuredName.MIDDLE_NAME,
+                StructuredName.FAMILY_NAME,
+                StructuredName.SUFFIX,
+        }, null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                eraseFullName(values);
+                values.put(StructuredName.PREFIX, cursor.getString(0));
+                values.put(StructuredName.GIVEN_NAME, cursor.getString(1));
+                values.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
+                values.put(StructuredName.FAMILY_NAME, cursor.getString(3));
+                values.put(StructuredName.SUFFIX, cursor.getString(4));
+            }
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private void switchFromStructuredNameToFullName(GenericEditorView nameEditor) {
+        ValuesDelta values = nameEditor.getValues();
+
+        Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath(
+                "complete_name");
+        appendQueryParameter(builder, values, StructuredName.PREFIX);
+        appendQueryParameter(builder, values, StructuredName.GIVEN_NAME);
+        appendQueryParameter(builder, values, StructuredName.MIDDLE_NAME);
+        appendQueryParameter(builder, values, StructuredName.FAMILY_NAME);
+        appendQueryParameter(builder, values, StructuredName.SUFFIX);
+        Uri uri = builder.build();
+        Cursor cursor = getActivity().getContentResolver().query(uri, new String[]{
+                StructuredName.DISPLAY_NAME,
+        }, null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                eraseStructuredName(values);
+                values.put(StructuredName.DISPLAY_NAME, cursor.getString(0));
+            }
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private void eraseFullName(ValuesDelta values) {
+        values.putNull(StructuredName.DISPLAY_NAME);
+    }
+
+    private void eraseStructuredName(ValuesDelta values) {
+        values.putNull(StructuredName.PREFIX);
+        values.putNull(StructuredName.GIVEN_NAME);
+        values.putNull(StructuredName.MIDDLE_NAME);
+        values.putNull(StructuredName.FAMILY_NAME);
+        values.putNull(StructuredName.SUFFIX);
+    }
+
+    private void appendQueryParameter(Uri.Builder builder, ValuesDelta values, String field) {
+        String value = values.getAsString(field);
+        if (!TextUtils.isEmpty(value)) {
+            builder.appendQueryParameter(field, value);
+        }
     }
 
     /**

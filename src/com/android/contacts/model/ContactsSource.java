@@ -297,6 +297,8 @@ public abstract class ContactsSource {
         public int inputType;
         public int minLines;
         public boolean optional;
+        public boolean shortForm;
+        public boolean longForm;
 
         public EditField(String column, int titleRes) {
             this.column = column;
@@ -310,6 +312,16 @@ public abstract class ContactsSource {
 
         public EditField setOptional(boolean optional) {
             this.optional = optional;
+            return this;
+        }
+
+        public EditField setShortForm(boolean shortForm) {
+            this.shortForm = shortForm;
+            return this;
+        }
+
+        public EditField setLongForm(boolean longForm) {
+            this.longForm = longForm;
             return this;
         }
     }

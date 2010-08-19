@@ -1092,6 +1092,8 @@
     <!-- Field title for the country of a structured postal address of a contact -->
     <string name="postal_country">Country</string>
 
+    <!-- Field title for the full name of a contact [CHAR LIMIT=64]-->
+    <string name="full_name">Name</string>
     <!-- Field title for the given name of a contact -->
     <string name="name_given">Given name</string>
     <!-- Field title for the family name of a contact -->

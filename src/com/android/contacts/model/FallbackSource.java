@@ -112,42 +112,47 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
+                    R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
+
             boolean displayOrderPrimary =
                     context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                    FLAGS_PERSON_NAME).setOptional(true));
             if (!displayOrderPrimary) {
+                kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setOptional(true));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setOptional(true));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
             } else {
+                kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setOptional(true));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setOptional(true));
+                        FLAGS_PERSON_NAME).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
                 kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
             }
         }
 

@@ -18,13 +18,13 @@ package com.android.contacts.ui.widget;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.Editor;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.Editor;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
@@ -259,6 +259,9 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
                         // Reconfigure GUI
                         mHideOptional = !mHideOptional;
+                        if (mListener != null) {
+                            mListener.onRequest(EditorListener.EDITOR_FORM_CHANGED);
+                        }
                         rebuildValues();
 
                         // Restore focus
@@ -301,6 +304,13 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         }
         if (mDelete != null) mDelete.setEnabled(enabled);
         if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
+    }
+
+    /**
+     * Returns true if the editor is currently configured to show optional fields.
+     */
+    public boolean areOptionalFieldsVisible() {
+        return !mHideOptional;
     }
 
     /**
@@ -381,8 +391,9 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         }
         boolean hidePossible = false;
 
-        mFieldEditTexts = new EditText[kind.fieldList.size()];
-        for (int index = 0; index < kind.fieldList.size(); index++) {
+        int fieldCount = kind.fieldList.size();
+        mFieldEditTexts = new EditText[fieldCount];
+        for (int index = 0; index < fieldCount; index++) {
             final EditField field = kind.fieldList.get(index);
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
@@ -419,12 +430,21 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                 }
             });
 
-            // Hide field when empty and optional value
-            final boolean couldHide = (!ContactsUtils.isGraphic(value) && field.optional);
-            final boolean willHide = (mHideOptional && couldHide);
-            fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
             fieldView.setEnabled(enabled);
-            hidePossible = hidePossible || couldHide;
+
+            if (field.shortForm) {
+                hidePossible = true;
+                fieldView.setVisibility(mHideOptional ? View.VISIBLE : View.GONE);
+            } else if (field.longForm) {
+                hidePossible = true;
+                fieldView.setVisibility(mHideOptional ? View.GONE : View.VISIBLE);
+            } else {
+                // Hide field when empty and optional value
+                final boolean couldHide = (!ContactsUtils.isGraphic(value) && field.optional);
+                final boolean willHide = (mHideOptional && couldHide);
+                fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
+                hidePossible = hidePossible || couldHide;
+            }
 
             addView(fieldView);
         }
