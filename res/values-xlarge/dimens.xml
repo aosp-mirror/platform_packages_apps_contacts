@@ -14,20 +14,7 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/aizy_bottom"
-    >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/caption"
-        android:width="75dip"
-        android:textSize="70sp"
-        android:paddingLeft="20dip"
-        android:gravity="center" />
-
-</LinearLayout>
+<resources>
+    <!-- Size of the text in the aizy visual scroll control -->
+    <dimen name="aizy_text_size">17dip</dimen>
+</resources>

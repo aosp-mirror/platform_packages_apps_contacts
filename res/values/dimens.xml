@@ -45,4 +45,8 @@
 
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
+    <!-- Size of the text in the aizy visual scroll control -->
+    <dimen name="aizy_text_size">13dip</dimen>
+    <dimen name="aizy_preview_width">130dip</dimen>
+    <dimen name="aizy_preview_height">115dip</dimen>
 </resources>
