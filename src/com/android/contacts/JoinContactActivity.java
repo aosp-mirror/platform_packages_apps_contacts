@@ -91,7 +91,7 @@ public class JoinContactActivity extends Activity {
             }
         });
 
-        FragmentTransaction transaction = openFragmentTransaction();
+        FragmentTransaction transaction = getFragmentManager().openTransaction();
         transaction.add(android.R.id.content, mListFragment);
         transaction.commit();
     }

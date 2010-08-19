@@ -224,7 +224,7 @@ public class ContactBrowserActivity extends Activity
         }
 
         if (replaceList) {
-            openFragmentTransaction()
+            getFragmentManager().openTransaction()
                     .replace(R.id.list_container, mListFragment)
                     .commit();
         }
@@ -273,14 +273,14 @@ public class ContactBrowserActivity extends Activity
             mDetailFragment.loadUri(contactLookupUri);
 
             // Nothing showing yet? Create (this happens during Activity-Startup)
-            openFragmentTransaction()
+            getFragmentManager().openTransaction()
                     .replace(R.id.detail_container, mDetailFragment)
                     .commit();
         } else {
             closeDetailFragment();
 
             mEmptyFragment = new ContactNoneFragment();
-            openFragmentTransaction()
+            getFragmentManager().openTransaction()
                     .replace(R.id.detail_container, mEmptyFragment)
                     .commit();
         }
@@ -299,7 +299,7 @@ public class ContactBrowserActivity extends Activity
                 Contacts.CONTENT_ITEM_TYPE, new Bundle());
 
         // Nothing showing yet? Create (this happens during Activity-Startup)
-        openFragmentTransaction()
+        getFragmentManager().openTransaction()
                 .replace(R.id.detail_container, mEditorFragment)
                 .commit();
     }

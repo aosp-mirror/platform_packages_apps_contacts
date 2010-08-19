@@ -104,7 +104,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             listFragmentContainerId = android.R.id.content;
         }
 
-        FragmentTransaction transaction = openFragmentTransaction();
+        FragmentTransaction transaction = getFragmentManager().openTransaction();
         transaction.add(listFragmentContainerId, mListFragment);
         transaction.commit();
     }

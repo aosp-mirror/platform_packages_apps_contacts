@@ -49,7 +49,8 @@ public class ContactEditorActivity extends Activity implements
 
         setContentView(R.layout.contact_editor_activity);
 
-        mFragment = (ContactEditorFragment) findFragmentById(R.id.contact_editor_fragment);
+        mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
+                R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
         mFragment.load(getIntent().getAction(), getIntent().getData(),
                 getIntent().resolveType(getContentResolver()), getIntent().getExtras());

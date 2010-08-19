@@ -60,7 +60,7 @@ public class MultiplePhonePickerActivity extends Activity {
 
         Parcelable[] extras = getIntent().getParcelableArrayExtra(Intents.EXTRA_PHONE_URIS);
         mListFragment.setSelectedUris(extras);
-        FragmentTransaction transaction = openFragmentTransaction();
+        FragmentTransaction transaction = getFragmentManager().openTransaction();
         transaction.add(android.R.id.content, mListFragment);
         transaction.commit();
     }

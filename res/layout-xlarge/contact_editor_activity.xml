@@ -19,7 +19,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <fragment android:name="com.android.contacts.views.editor.ContactEditorFragment"
+    <fragment class="com.android.contacts.views.editor.ContactEditorFragment"
             android:id="@+id/contact_editor_fragment"
             android:layout_width="match_parent"
             android:layout_height="0px"
