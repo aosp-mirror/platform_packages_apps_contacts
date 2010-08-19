@@ -1268,4 +1268,13 @@
     <!-- The button next to the message about multiple contact aggregation suggestions in Contact editor. [CHAR LIMIT=12]-->
     <string name="aggregation_suggestion_view_button">View</string>
 
+    <!-- Primary alphabet of this language. Each of these characters always has its own section in
+         the visual scroll control next to the contact list. These letters must be uppercase.
+         While there is no hard limit on the number of characters, there should not be more than
+         40. If the language requires more, this string should instead be empty so that the
+         visual scroll control adapts to the contents.
+         This text must only contain letters that can appear as sections, otherwise they would
+         only be empty.
+         Translations require extensive QA! -->
+    <string name="visualScrollerAlphabet">A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z</string>
 </resources>

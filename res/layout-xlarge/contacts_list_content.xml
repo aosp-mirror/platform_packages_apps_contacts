@@ -22,6 +22,12 @@
         android:orientation="horizontal"
         >
 
+    <com.android.contacts.list.ContactListAizyView
+        android:id="@+id/contacts_list_aizy"
+        android:layout_width="40dip"
+        android:layout_height="match_parent"
+    />
+
     <LinearLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
@@ -46,9 +52,4 @@
             android:layout_height="wrap_content"
         />
     </LinearLayout>
-    <com.android.contacts.list.ContactListAizyView
-        android:id="@+id/contacts_list_aizy"
-        android:layout_width="30dip"
-        android:layout_height="match_parent"
-    />
 </LinearLayout>
