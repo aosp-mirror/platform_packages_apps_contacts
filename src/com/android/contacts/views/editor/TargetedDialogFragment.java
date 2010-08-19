@@ -52,6 +52,6 @@ public class TargetedDialogFragment extends DialogFragment {
 
     protected Object getTarget() {
         return mTargetFragmentId == -1 ? getActivity()
-                : getActivity().findFragmentById(mTargetFragmentId);
+                : getActivity().getFragmentManager().findFragmentById(mTargetFragmentId);
     }
 }

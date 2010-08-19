@@ -18,7 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment android:name="com.android.contacts.views.detail.ContactDetailFragment"
+    <fragment class="com.android.contacts.views.detail.ContactDetailFragment"
             android:id="@+id/contact_detail_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

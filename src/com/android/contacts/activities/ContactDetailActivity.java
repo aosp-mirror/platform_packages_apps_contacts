@@ -43,7 +43,8 @@ public class ContactDetailActivity extends Activity {
 
         setContentView(R.layout.contact_detail_activity);
 
-        mFragment = (ContactDetailFragment) findFragmentById(R.id.contact_detail_fragment);
+        mFragment = (ContactDetailFragment) getFragmentManager().findFragmentById(
+                R.id.contact_detail_fragment);
         mFragment.setListener(mFragmentListener);
         mFragment.loadUri(getIntent().getData());
 

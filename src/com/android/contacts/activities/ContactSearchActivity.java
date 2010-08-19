@@ -67,7 +67,7 @@ public class ContactSearchActivity extends Activity {
 
         if (mListFragment == null) {
             mListFragment = createContactSearchFragment();
-            openFragmentTransaction()
+            getFragmentManager().openTransaction()
                     .replace(R.id.list_container, mListFragment)
                     .commit();
         }
