@@ -17,7 +17,6 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
-import com.android.contacts.ui.widget.StructuredPostalEditorView;
 import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
