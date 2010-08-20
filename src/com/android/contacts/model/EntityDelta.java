@@ -578,6 +578,21 @@ public class EntityDelta implements Parcelable {
             }
         }
 
+        public boolean isChanged(String key) {
+            if (mAfter == null || !mAfter.containsKey(key)) {
+                return false;
+            }
+
+            Object newValue = mAfter.get(key);
+            Object oldValue = mBefore.get(key);
+
+            if (oldValue == null) {
+                return newValue != null;
+            }
+
+            return !oldValue.equals(newValue);
+        }
+
         public String getMimetype() {
             return getAsString(Data.MIMETYPE);
         }

@@ -58,6 +58,8 @@ public interface Editor {
     public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly,
             ViewIdGenerator vig);
 
+    public void setDeletable(boolean deletable);
+
     /**
      * Add a specific {@link EditorListener} to this {@link Editor}.
      */

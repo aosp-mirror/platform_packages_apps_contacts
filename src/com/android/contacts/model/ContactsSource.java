@@ -25,11 +25,12 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -221,10 +222,17 @@ public abstract class ContactsSource {
 
         public ContentValues defaultValues;
 
+        public Class<? extends View> editorClass;
+
         public DataKind() {
         }
 
         public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
+            this(mimeType, titleRes, iconRes, weight, editable, null);
+        }
+
+        public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
+                Class<? extends View> editorClass) {
             this.mimeType = mimeType;
             this.titleRes = titleRes;
             this.iconRes = iconRes;
@@ -232,6 +240,7 @@ public abstract class ContactsSource {
             this.editable = editable;
             this.isList = true;
             this.typeOverallMax = -1;
+            this.editorClass = editorClass;
         }
     }
 
@@ -322,6 +331,11 @@ public abstract class ContactsSource {
 
         public EditField setLongForm(boolean longForm) {
             this.longForm = longForm;
+            return this;
+        }
+
+        public EditField setMinLines(int minLines) {
+            this.minLines = minLines;
             return this;
         }
     }

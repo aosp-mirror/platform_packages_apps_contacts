@@ -17,12 +17,12 @@
 package com.android.contacts.ui.widget;
 
 import com.android.contacts.R;
-import com.android.contacts.model.Editor;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.Editor;
 import com.android.contacts.model.Editor.EditorListener;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
@@ -137,13 +137,27 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 if (!entry.isVisible()) continue;
                 if (isEmptyNoop(entry)) continue;
 
-                final GenericEditorView editor = new GenericEditorView(mContext);
+                final View view;
+                if (mKind.editorClass == null) {
+                    view = new GenericEditorView(mContext);
+                } else {
+                    try {
+                        view = mKind.editorClass.getConstructor(Context.class).newInstance(
+                                mContext);
+                    } catch (Exception e) {
+                        throw new RuntimeException(
+                                "Cannot allocate editor for " + mKind.editorClass);
+                    }
+                }
 
-                editor.setPadding(0, 0, getThemeScrollbarSize(mContext), 0);
-                editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
-                editor.setEditorListener(this);
-                editor.setDeletable(true);
-                mEditors.addView(editor);
+                view.setPadding(0, 0, getThemeScrollbarSize(mContext), 0);
+                if (view instanceof Editor) {
+                    Editor editor = (Editor) view;
+                    editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
+                    editor.setEditorListener(this);
+                    editor.setDeletable(true);
+                }
+                mEditors.addView(view);
                 entryIndex++;
             }
         }

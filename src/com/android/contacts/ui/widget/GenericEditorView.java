@@ -43,6 +43,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -164,13 +165,38 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
         // summarize the EditText heights
         int totalHeight = 0;
+        int visibleFieldCount = 0;
+        EditText firstVisibleField = null;
         if (mFieldEditTexts != null) {
             for (EditText editText : mFieldEditTexts) {
                 if (editText.getVisibility() != View.GONE) {
+                    visibleFieldCount ++;
+                    if (firstVisibleField == null) {
+                        firstVisibleField = editText;
+                    }
                     totalHeight += editText.getMeasuredHeight();
                 }
             }
         }
+
+        int padding = getPaddingTop() + getPaddingBottom();
+        int minHeight = padding;
+
+        if (mMoreOrLess != null) {
+            minHeight += mMoreOrLess.getMeasuredHeight();
+        }
+
+        if (mDelete != null) {
+            minHeight += mDelete.getMeasuredHeight();
+        }
+
+        if (minHeight > totalHeight && visibleFieldCount == 1) {
+            firstVisibleField.measure(widthMeasureSpec,
+                    MeasureSpec.makeMeasureSpec(minHeight - padding, MeasureSpec.EXACTLY));
+        }
+
+        totalHeight = Math.max(minHeight, totalHeight);
+
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
                 resolveSize(totalHeight, heightMeasureSpec));
     }
@@ -259,9 +285,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
                         // Reconfigure GUI
                         mHideOptional = !mHideOptional;
-                        if (mListener != null) {
-                            mListener.onRequest(EditorListener.EDITOR_FORM_CHANGED);
-                        }
+                        onOptionalFieldVisibilityChange();
                         rebuildValues();
 
                         // Restore focus
@@ -282,6 +306,12 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         } else if (mMoreOrLess != null) {
             removeView(mMoreOrLess);
             mMoreOrLess = null;
+        }
+    }
+
+    protected void onOptionalFieldVisibilityChange() {
+        if (mListener != null) {
+            mListener.onRequest(EditorListener.EDITOR_FORM_CHANGED);
         }
     }
 
@@ -398,6 +428,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
