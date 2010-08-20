@@ -1088,6 +1088,8 @@
     <!-- Generic action string for starting an IM chat -->
     <string name="chat">Chat</string>
 
+    <!-- Field title for the full postal address of a contact [CHAR LIMIT=64]-->
+    <string name="postal_address">Address</string>
     <!-- Field title for the street of a structured postal address of a contact -->
     <string name="postal_street">Street</string>
     <!-- Field title for the PO box of a structured postal address of a contact -->

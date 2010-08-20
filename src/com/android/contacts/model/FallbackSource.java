@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.ui.widget.StructuredPostalEditorView;
 import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
@@ -263,8 +264,6 @@ public class FallbackSource extends ContactsSource {
         }
 
         if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
-            final boolean useJapaneseOrder =
-                Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
@@ -274,38 +273,9 @@ public class FallbackSource extends ContactsSource {
                     .setCustomColumn(StructuredPostal.LABEL));
 
             kind.fieldList = Lists.newArrayList();
-
-            if (useJapaneseOrder) {
-                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
-                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
-                        R.string.postal_postcode, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.REGION,
-                        R.string.postal_region, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.CITY,
-                        R.string.postal_city, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
-                        R.string.postal_neighborhood, FLAGS_POSTAL).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredPostal.STREET,
-                        R.string.postal_street, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.POBOX,
-                        R.string.postal_pobox, FLAGS_POSTAL).setOptional(true));
-            } else {
-                kind.fieldList.add(new EditField(StructuredPostal.STREET,
-                        R.string.postal_street, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.POBOX,
-                        R.string.postal_pobox, FLAGS_POSTAL).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredPostal.NEIGHBORHOOD,
-                        R.string.postal_neighborhood, FLAGS_POSTAL).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredPostal.CITY,
-                        R.string.postal_city, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.REGION,
-                        R.string.postal_region, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
-                        R.string.postal_postcode, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
-                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
-            }
+            kind.fieldList.add(
+                    new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
+                            FLAGS_POSTAL).setMinLines(3));
         }
 
         return kind;
