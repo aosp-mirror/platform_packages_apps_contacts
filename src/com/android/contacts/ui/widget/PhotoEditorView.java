@@ -168,4 +168,9 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
     }
+
+    @Override
+    public void setDeletable(boolean deletable) {
+        // Photo is not deletable
+    }
 }
