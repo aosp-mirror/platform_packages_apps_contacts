@@ -42,6 +42,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
@@ -96,6 +97,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private static final int DIRECTORY_LOADER_ID = -1;
 
+    private static final int DIRECTORY_SEARCH_DELAY_MILLIS = 300;
+    private static final int DIRECTORY_SEARCH_MESSAGE = 1;
+
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mSearchMode;
@@ -139,6 +143,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private Context mContext;
 
     private LoaderManager mLoaderManager;
+
+    private Handler mDelayedDirectorySearchHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == DIRECTORY_SEARCH_MESSAGE) {
+                loadDirectoryPartition(msg.arg1, (DirectoryPartition) msg.obj);
+            }
+        }
+    };
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -315,14 +328,46 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private void startLoadingDirectoryPartition(int partitionIndex) {
         DirectoryPartition partition = (DirectoryPartition)mAdapter.getPartition(partitionIndex);
-        Bundle args = new Bundle();
         long directoryId = partition.getDirectoryId();
-        args.putLong(DIRECTORY_ID_ARG_KEY, directoryId);
         if (mForceLoad) {
-            getLoaderManager().restartLoader(partitionIndex, args, this);
+            if (directoryId == Directory.DEFAULT) {
+                loadDirectoryPartition(partitionIndex, partition);
+            } else {
+                loadDirectoryPartitionDelayed(partitionIndex, partition);
+            }
         } else {
+            Bundle args = new Bundle();
+            args.putLong(DIRECTORY_ID_ARG_KEY, directoryId);
             getLoaderManager().initLoader(partitionIndex, args, this);
         }
+    }
+
+    /**
+     * Queues up a delayed request to search the specified directory. Since
+     * directory search will likely introduce a lot of network traffic, we want
+     * to wait for a pause in the user's typing before sending a directory request.
+     */
+    private void loadDirectoryPartitionDelayed(int partitionIndex, DirectoryPartition partition) {
+        mDelayedDirectorySearchHandler.removeMessages(DIRECTORY_SEARCH_MESSAGE, partition);
+        Message msg = mDelayedDirectorySearchHandler.obtainMessage(
+                DIRECTORY_SEARCH_MESSAGE, partitionIndex, 0, partition);
+        mDelayedDirectorySearchHandler.sendMessageDelayed(msg, DIRECTORY_SEARCH_DELAY_MILLIS);
+    }
+
+    /**
+     * Loads the directory partition.
+     */
+    protected void loadDirectoryPartition(int partitionIndex, DirectoryPartition partition) {
+        Bundle args = new Bundle();
+        args.putLong(DIRECTORY_ID_ARG_KEY, partition.getDirectoryId());
+        getLoaderManager().restartLoader(partitionIndex, args, this);
+    }
+
+    /**
+     * Cancels all queued directory loading requests.
+     */
+    private void removePendingDirectorySearchRequests() {
+        mDelayedDirectorySearchHandler.removeMessages(DIRECTORY_SEARCH_MESSAGE);
     }
 
     @Override
@@ -336,6 +381,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         int loaderId = loader.getId();
         if (loaderId == DIRECTORY_LOADER_ID) {
+            removePendingDirectorySearchRequests();
             mAdapter.changeDirectories(data);
         } else {
             onPartitionLoaded(loaderId, data);
@@ -727,6 +773,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onPause() {
         super.onPause();
+        removePendingDirectorySearchRequests();
         unregisterProviderStatusObserver();
     }
 
