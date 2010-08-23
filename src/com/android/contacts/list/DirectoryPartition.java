@@ -15,7 +15,7 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.widget.CompositeCursorAdapter;
+import com.android.common.widget.CompositeCursorAdapter;
 
 import android.provider.ContactsContract.Directory;
 

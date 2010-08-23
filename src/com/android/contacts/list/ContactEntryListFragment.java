@@ -16,13 +16,13 @@
 
 package com.android.contacts.list;
 
+import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.ContactEntryListView;
 import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferences;
-import com.android.contacts.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;

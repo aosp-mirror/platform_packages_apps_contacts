@@ -15,6 +15,8 @@
  */
 package com.android.contacts.widget;
 
+import com.android.common.widget.CompositeCursorAdapter;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
