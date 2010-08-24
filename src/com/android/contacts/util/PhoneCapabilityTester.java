@@ -37,11 +37,17 @@ public final class PhoneCapabilityTester {
     }
 
     /**
-     * Returns true if this device has a Phone application installed.
+     * Returns true if this device can be used to make phone calls
      */
-    public static boolean isPhoneCallIntentRegistered(Context context) {
-        final Intent intent = new Intent(
-                Intent.ACTION_CALL_PRIVILEGED, Uri.fromParts(Constants.SCHEME_TEL, "", null));
+    public static boolean isPhone(Context context) {
+        // Is the device physically capabable of making phone calls?
+        if (!context.getResources().getBoolean(com.android.internal.R.bool.config_voice_capable)) {
+            return false;
+        }
+
+        // Is there an app registered that accepts the call intent?
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                Uri.fromParts(Constants.SCHEME_TEL, "", null));
         return isIntentRegistered(context, intent);
     }
 

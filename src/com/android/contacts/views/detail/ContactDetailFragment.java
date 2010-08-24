@@ -242,7 +242,7 @@ public class ContactDetailFragment extends Fragment
      * Build up the entries to display on the screen.
      */
     private final void buildEntries() {
-        mHasPhone = PhoneCapabilityTester.isPhoneCallIntentRegistered(mContext);
+        mHasPhone = PhoneCapabilityTester.isPhone(mContext);
         mHasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
 
         // Clear out the old entries
@@ -799,7 +799,7 @@ public class ContactDetailFragment extends Fragment
         // Options only shows telephony-related settings (ringtone, send to voicemail).
         // ==> Hide if we don't have a telephone
         final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
-        final boolean deviceHasPhone = PhoneCapabilityTester.isPhoneCallIntentRegistered(mContext);
+        final boolean deviceHasPhone = PhoneCapabilityTester.isPhone(mContext);
         optionsMenu.setVisible(deviceHasPhone);
     }
 

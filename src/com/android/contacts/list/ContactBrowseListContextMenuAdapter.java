@@ -69,7 +69,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
 
         if (adapter.getHasPhoneNumber(position)) {
             final Context context = mContactListFragment.getContext();
-            boolean hasPhoneApp = PhoneCapabilityTester.isPhoneCallIntentRegistered(context);
+            boolean hasPhoneApp = PhoneCapabilityTester.isPhone(context);
             boolean hasSmsApp = PhoneCapabilityTester.isSmsIntentRegistered(context);
             // Calling contact
             if (hasPhoneApp) menu.add(0, MENU_ITEM_CALL, 0, R.string.menu_call);
