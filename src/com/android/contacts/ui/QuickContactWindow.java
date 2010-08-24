@@ -55,6 +55,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
@@ -218,6 +219,7 @@ public class QuickContactWindow implements Window.Callback,
      */
     private static final String[] PRECEDING_MIMETYPES = new String[] {
             Phone.CONTENT_ITEM_TYPE,
+            SipAddress.CONTENT_ITEM_TYPE,
             Contacts.CONTENT_ITEM_TYPE,
             Constants.MIME_SMS_ADDRESS,
             Email.CONTENT_ITEM_TYPE,
@@ -772,7 +774,17 @@ public class QuickContactWindow implements Window.Callback,
                     final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
                     mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
                 }
-
+            } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
+                if (!TextUtils.isEmpty(address)) {
+                    final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
+                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+                    // TODO: This item currently appears with the same "phone"
+                    // icon as regular phone numbers, which is confusing if a
+                    // contact has both a regular number *and* a SIP address.
+                    // Need to figure out a way for this item to have a
+                    // special SIP-specific variant of that icon.
+                }
             } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {

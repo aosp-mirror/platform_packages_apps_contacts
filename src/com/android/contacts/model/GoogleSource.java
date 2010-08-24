@@ -66,21 +66,12 @@ public class GoogleSource extends FallbackSource {
         inflateNote(context, inflateLevel);
         inflateWebsite(context, inflateLevel);
         inflateEvent(context, inflateLevel);
+        inflateSipAddress(context, inflateLevel);
 
         // TODO: GOOGLE: GROUPMEMBERSHIP
 
         setInflatedLevel(inflateLevel);
 
-    }
-
-    @Override
-    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
-        return super.inflateStructuredName(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateNickname(Context context, int inflateLevel) {
-        return super.inflateNickname(context, inflateLevel);
     }
 
     @Override
@@ -125,36 +116,6 @@ public class GoogleSource extends FallbackSource {
         }
 
         return kind;
-    }
-
-    @Override
-    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
-        return super.inflateStructuredPostal(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateIm(Context context, int inflateLevel) {
-        return super.inflateIm(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateOrganization(Context context, int inflateLevel) {
-        return super.inflateOrganization(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflatePhoto(Context context, int inflateLevel) {
-        return super.inflatePhoto(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateNote(Context context, int inflateLevel) {
-        return super.inflateNote(context, inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateWebsite(Context context, int inflateLevel) {
-        return super.inflateWebsite(context, inflateLevel);
     }
 
     // TODO: this should come from resource in the future

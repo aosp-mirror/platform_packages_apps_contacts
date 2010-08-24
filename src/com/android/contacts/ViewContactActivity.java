@@ -68,6 +68,7 @@ import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.telephony.PhoneNumberUtils;
@@ -1004,7 +1005,7 @@ public class ViewContactActivity extends Activity
                         entry.maxLines = 100;
                         mOtherEntries.add(entry);
                     } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
-                        // Build note entries
+                        // Build Website entries
                         entry.uri = null;
                         entry.maxLines = 10;
                         try {
@@ -1015,6 +1016,19 @@ public class ViewContactActivity extends Activity
                             Log.e(TAG, "Couldn't parse website: " + entry.data);
                         }
                         mOtherEntries.add(entry);
+                    } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                        // Build SipAddress entries
+                        entry.uri = null;
+                        entry.maxLines = 1;
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
+                        mOtherEntries.add(entry);
+                        // TODO: Consider moving the SipAddress into its own
+                        // section (rather than lumping it in with mOtherEntries)
+                        // so that we can reposition it right under the phone number.
+                        // (Then, we'd also update FallbackSource.java to set
+                        // secondary=false for this field, and tweak the weight
+                        // of its DataKind.)
                     } else {
                         // Handle showing custom rows
                         entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
