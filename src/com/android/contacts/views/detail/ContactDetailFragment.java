@@ -807,7 +807,7 @@ public class ContactDetailFragment extends Fragment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit: {
-                mListener.onEditRequested(mLookupUri);
+                if (mListener != null) mListener.onEditRequested(mLookupUri);
                 break;
             }
             case R.id.menu_delete: {
@@ -991,7 +991,7 @@ public class ContactDetailFragment extends Fragment
             if (data == ContactLoader.Result.NOT_FOUND) {
                 // Item has been deleted
                 Log.i(TAG, "No contact found. Closing activity");
-                mListener.onContactNotFound();
+                if (mListener != null) mListener.onContactNotFound();
                 return;
             }
             mContactData = data;
