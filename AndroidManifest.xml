@@ -459,7 +459,7 @@
             android:theme="@android:style/Theme.Translucent">
         </activity>
 
-        <!-- Makes .ContactListActivity the search target for any activity in Contacts -->
+        <!-- Makes .ContactBrowserActivity the search target for any activity in Contacts -->
         <meta-data
             android:name="android.app.default_searchable"
             android:value=".activities.ContactBrowserActivity" />

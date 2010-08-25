@@ -15,7 +15,7 @@
 -->
 
 <resources>
-    <style name="ContactBrowserTheme" parent="@android:Theme.WithActionBar">
+    <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
     </style>
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
     </style>
