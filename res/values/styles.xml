@@ -50,7 +50,16 @@
         <item name="android:src">@drawable/ic_btn_round_less</item>
     </style>
 
-    <style name="TallTitleBarTheme" parent="android:Theme.NoTitleBar">
+    <style name="JoinContactActivityTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="CallDetailActivityTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="ContactDetailActivityTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="ContactEditorActivityTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>
 

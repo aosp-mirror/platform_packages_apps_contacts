@@ -21,7 +21,16 @@
     </style>
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Dialog">
     </style>
-    <style name="TallTitleBarTheme" parent="@android:Theme.Dialog">
+    <style name="JoinContactActivityTheme" parent="@android:Theme.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="ContactDetailActivityTheme" parent="@android:Theme.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="ContactEditorActivityTheme" parent="@android:Theme.Dialog">
         <item name="android:windowContentOverlay">@null</item>
     </style>
 </resources>
