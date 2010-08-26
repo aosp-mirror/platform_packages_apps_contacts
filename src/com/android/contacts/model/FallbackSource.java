@@ -32,6 +32,7 @@ import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
@@ -56,6 +57,9 @@ public class FallbackSource extends ContactsSource {
     protected static final int FLAGS_POSTAL = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_POSTAL_ADDRESS | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS
             | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
+    protected static final int FLAGS_SIP_ADDRESS = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;  // since SIP addresses have the same
+                                                             // basic format as email addresses
 
     public FallbackSource() {
         this.accountType = null;
@@ -77,6 +81,7 @@ public class FallbackSource extends ContactsSource {
         inflateNote(context, inflateLevel);
         inflateWebsite(context, inflateLevel);
         inflateEvent(context, inflateLevel);
+        inflateSipAddress(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
 
@@ -430,6 +435,27 @@ public class FallbackSource extends ContactsSource {
             kind.secondary = true;
             kind.actionHeader = new EventActionInflater();
             kind.actionBody = new SimpleInflater(Event.START_DATE);
+        }
+
+        return kind;
+    }
+
+    protected DataKind inflateSipAddress(Context context, int inflateLevel) {
+        DataKind kind = getKindForMimetype(SipAddress.CONTENT_ITEM_TYPE);
+        if (kind == null) {
+            // TODO: icon here should really be a SIP-specific variant of sym_action_call
+            kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
+                    R.string.label_sip_address, android.R.drawable.sym_action_call, 130, true));
+            kind.isList = false;
+            kind.secondary = true;
+            kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
+            kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
+        }
+
+        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
+                                             R.string.label_sip_address, FLAGS_SIP_ADDRESS));
         }
 
         return kind;
