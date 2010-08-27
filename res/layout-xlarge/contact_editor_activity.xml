@@ -15,31 +15,16 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="600dip"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="30dip"
+    android:paddingRight="30dip"
+    >
 
     <fragment class="com.android.contacts.views.editor.ContactEditorFragment"
             android:id="@+id/contact_editor_fragment"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dip"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/done"
-            android:layout_width="150dip"
-            android:layout_height="match_parent"
-            android:text="@string/menu_done" />
-        <Button
-            android:id="@+id/revert"
-            android:layout_width="150dip"
-            android:layout_height="match_parent"
-            android:text="@string/menu_doNotSave" />
-    </LinearLayout>
 </LinearLayout>

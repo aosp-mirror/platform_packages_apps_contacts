@@ -30,7 +30,7 @@
     <style name="ContactDetailActivityTheme" parent="@android:Theme.Dialog">
         <item name="android:windowContentOverlay">@null</item>
     </style>
-    <style name="ContactEditorActivityTheme" parent="@android:Theme.Dialog">
+    <style name="ContactEditorActivityTheme" parent="@android:Theme.Light.Holo">
         <item name="android:windowContentOverlay">@null</item>
     </style>
 </resources>

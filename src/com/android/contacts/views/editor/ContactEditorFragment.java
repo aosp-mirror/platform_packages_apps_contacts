@@ -47,6 +47,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
@@ -95,6 +96,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -144,6 +146,29 @@ public class ContactEditorFragment extends Fragment implements
         public static final int JOIN = 3;
     }
 
+    private interface Status {
+        /**
+         * The loader is fetching data
+         */
+        public static final int LOADING = 0;
+
+        /**
+         * Not currently busy. We are waiting for the user to enter data
+         */
+        public static final int EDITING = 1;
+
+        /**
+         * The data is currently being saved. This is used to prevent more auto-saves (they shouldn't
+         * overlap)
+         */
+        public static final int SAVING = 2;
+
+        /**
+         * Prevents any more savings (this is used if Save/Close or Revert was executed by the user)
+         */
+        public static final int CLOSING = 3;
+    }
+
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1;
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 2;
@@ -188,6 +213,8 @@ public class ContactEditorFragment extends Fragment implements
 
     private long mLoaderStartTime;
 
+    private int mStatus;
+
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
 
     public ContactEditorFragment() {
@@ -205,6 +232,10 @@ public class ContactEditorFragment extends Fragment implements
         if (mAggregationSuggestionEngine != null) {
             mAggregationSuggestionEngine.quit();
         }
+        // If anything was left unsaved, save it now but keep the editor open.
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
+            save(false);
+        }
     }
 
     @Override
@@ -215,6 +246,11 @@ public class ContactEditorFragment extends Fragment implements
 
         setHasOptionsMenu(true);
 
+        // If we are in an orientation change, we already have mState (it was loaded by onCreate)
+        if (mState != null) {
+            bindEditors();
+        }
+
         return view;
     }
 
@@ -222,15 +258,23 @@ public class ContactEditorFragment extends Fragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (Intent.ACTION_EDIT.equals(mAction)) {
-            if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
-            getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
-        } else if (Intent.ACTION_INSERT.equals(mAction)) {
-            if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
+        Log.d(TAG, "onActivityCreated(" + savedInstanceState + ")");
 
-            doAddAction();
-        } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+        // Handle initial actions only when existing state missing
+        final boolean hasIncomingState = savedInstanceState != null &&
+                savedInstanceState.containsKey(KEY_EDIT_STATE);
+
+        if (!hasIncomingState) {
+            if (Intent.ACTION_EDIT.equals(mAction)) {
+                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
+                getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
+            } else if (Intent.ACTION_INSERT.equals(mAction)) {
+                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
+
+                doAddAction();
+            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
+                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+        }
     }
 
     public void load(String action, Uri lookupUri, String mimeType, Bundle intentExtras) {
@@ -259,7 +303,7 @@ public class ContactEditorFragment extends Fragment implements
             // If savedState is non-null, onRestoreInstanceState() will restore the generator.
             mViewIdGenerator = new ViewIdGenerator();
         } else {
-            // Read modifications from instance
+            // Read state from savedState. No loading involved here
             mState = savedState.<EntityDeltaList> getParcelable(KEY_EDIT_STATE);
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
@@ -270,6 +314,7 @@ public class ContactEditorFragment extends Fragment implements
             }
             mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+            mStatus = Status.EDITING;
         }
     }
 
@@ -280,9 +325,10 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        ArrayList<Entity> entities = data.getEntities();
-        StringBuilder sb = new StringBuilder(RawContacts._ID + " IN(");
-        int count = entities.size();
+        // Build Filter mQuerySelection
+        final ArrayList<Entity> entities = data.getEntities();
+        final StringBuilder sb = new StringBuilder(RawContacts._ID + " IN(");
+        final int count = entities.size();
         for (int i = 0; i < count; i++) {
             if (i > 0) {
                 sb.append(',');
@@ -293,14 +339,11 @@ public class ContactEditorFragment extends Fragment implements
         mQuerySelection = sb.toString();
         mState = EntityDeltaList.fromIterator(entities.iterator());
 
-
-        // TODO: Merge in Intent parameters can only be done on the first load.
-        // The behaviour for subsequent loads is probably broken, so fix this
+        // Merge in Extras from Intent
         final boolean hasExtras = mIntentExtras != null && mIntentExtras.size() > 0;
         final boolean hasState = mState.size() > 0;
         if (hasExtras && hasState) {
             // Find source defining the first RawContact found
-            // TODO: Test this. Can we actually always use the first RawContact. This seems wrong
             final EntityDelta state = mState.get(0);
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final Sources sources = Sources.getInstance(mContext);
@@ -434,7 +477,9 @@ public class ContactEditorFragment extends Fragment implements
         mContent.setVisibility(View.VISIBLE);
 
         // Refresh Action Bar as the visibility of the join command
-        getActivity().invalidateOptionsMenu();
+        // Activity can be null if we have been detached from the Activity
+        final Activity activity = getActivity();
+        if (activity != null) activity.invalidateOptionsMenu();
     }
 
     @Override
@@ -602,8 +647,7 @@ public class ContactEditorFragment extends Fragment implements
             return false;
         }
 
-        // TODO: Status still needed?
-        //mStatus = STATUS_SAVING;
+        mStatus = Status.SAVING;
         final PersistTask task = new PersistTask(this, saveMode);
         task.execute(mState);
 
@@ -619,6 +663,8 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean doRevertAction() {
+        // When this Fragment is closed we don't want it to auto-save
+        mStatus = Status.CLOSING;
         if (mListener != null) mListener.onReverted();
 
         return true;
@@ -655,6 +701,8 @@ public class ContactEditorFragment extends Fragment implements
                     resultCode = Activity.RESULT_CANCELED;
                     resultIntent = null;
                 }
+                // It is already saved, so prevent that it is saved again
+                mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent);
                 break;
             case SaveMode.RELOAD:
@@ -663,6 +711,7 @@ public class ContactEditorFragment extends Fragment implements
                     // If it already was an EDIT, we are changing to the new Uri now
                     mState = null;
                     load(Intent.ACTION_EDIT, contactLookupUri, mMimeType, null);
+                    mStatus = Status.LOADING;
                     getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }
                 break;
@@ -672,13 +721,14 @@ public class ContactEditorFragment extends Fragment implements
                 } else {
                     Log.d(TAG, "No listener registered, can not call onSplitFinished");
                 }
+                mStatus = Status.EDITING;
                 break;
 
             case SaveMode.JOIN:
-                //mStatus = STATUS_EDITING;
                 if (success) {
                     showJoinAggregateActivity(contactLookupUri);
                 }
+                mStatus = Status.EDITING;
                 break;
         }
     }
@@ -1284,6 +1334,8 @@ public class ContactEditorFragment extends Fragment implements
 
         private final Context mContext;
 
+        private WeakReference<ProgressDialog> mProgress;
+
         private int mSaveMode;
         private Uri mContactLookupUri = null;
 
@@ -1296,6 +1348,9 @@ public class ContactEditorFragment extends Fragment implements
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(ContactEditorFragment target) {
+            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target.getActivity(),
+                    null, target.getActivity().getText(R.string.savingContact)));
+
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
             mContext.startService(new Intent(mContext, EmptyService.class));
@@ -1387,6 +1442,16 @@ public class ContactEditorFragment extends Fragment implements
                 Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
             } else if (result == RESULT_FAILURE) {
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            }
+
+            final ProgressDialog progress = mProgress.get();
+            if (progress != null && progress.isShowing()) {
+                try {
+                    progress.dismiss();
+                } catch (Exception e) {
+                    // this can happen if our view has already been closed. this can safely be
+                    // ignored
+                }
             }
 
             // Stop the service that was protecting us
@@ -1485,6 +1550,7 @@ public class ContactEditorFragment extends Fragment implements
                 return;
             }
 
+            mStatus = Status.EDITING;
             final long setDataStartTime = SystemClock.elapsedRealtime();
             setData(data);
             final long setDataEndTime = SystemClock.elapsedRealtime();

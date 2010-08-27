@@ -93,6 +93,11 @@ public class ContactEditorActivity extends Activity implements
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        mFragment.save(true);
+    }
+
     private ContactDeletionInteraction getContactDeletionInteraction() {
         if (mContactDeletionInteraction == null) {
             mContactDeletionInteraction = new ContactDeletionInteraction();
