@@ -341,18 +341,6 @@ public class ContactBrowserActivity extends Activity
         setupContactDetailFragment(mListFragment.getSelectedContactUri());
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-
-        // If anything was left unsaved, save it now but keep the editor open.
-        // Don't do this if we are only rotating the screen
-        if (mEditorFragment != null && !isChangingConfigurations()) {
-            mEditorFragment.save(false);
-        }
-    }
-
     /**
      * Creates the list fragment for the specified mode.
      */
@@ -495,7 +483,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            setupContactEditorFragment(contactLookupUri);
+            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
         }
 
         @Override
