@@ -229,11 +229,15 @@
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleccionar archivo de vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Almacenamiento temporal local de vCard(s) en caché"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"El importador está almacenando de forma temporal local vCard(s). La importación empezará pronto."</string>
-    <string name="progress_notifier_message" msgid="8412196553907067659">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_title" msgid="3324988724123717025">"Leyendo vCard(s)"</string>
+    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
+    <skip />
+    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
+    <skip />
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Error al leer los datos de vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lectura de vCard cancelada"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Importación de vCard terminada"</string>
+    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
+    <skip />
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"Importador de vCard iniciado"</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"El importador de vCard importará vCard transcurrido un tiempo."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
@@ -255,6 +259,10 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"El redactor de vCard no se ha inicializado correctamente."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"No se ha podido abrir el archivo \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
+    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
+    <skip />
+    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Nombres de tus contactos"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Añadir pausa de dos segundos"</string>
     <string name="add_wait" msgid="3360818652790319634">"Añadir espera"</string>
@@ -353,6 +361,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatear con ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatear con Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <!-- no translation found for postal_address (8765560217149624536) -->
+    <skip />
     <string name="postal_street" msgid="8133143961580058972">"Calle"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartado postal"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Vecindario"</string>
@@ -360,6 +370,8 @@
     <string name="postal_region" msgid="6045263193478437672">"Provincia/Estado"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Código postal"</string>
     <string name="postal_country" msgid="7638264508416368690">"País"</string>
+    <!-- no translation found for full_name (6602579550613988977) -->
+    <skip />
     <string name="name_given" msgid="1687286314106019813">"Nombre"</string>
     <string name="name_family" msgid="3416695586119999058">"Apellidos"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefijo del nombre"</string>
@@ -423,5 +435,7 @@
     <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <skip />
+    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
     <skip />
 </resources>

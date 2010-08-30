@@ -229,11 +229,15 @@
     <string name="select_vcard_title" msgid="3968948173786172468">"選取 VCard 檔案"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"正在將 vCard 資料快取至本機暫存空間"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"匯入工具正在將 vCard 的資料快取至本機暫存空間，隨即將啟動實際的匯入作業。"</string>
-    <string name="progress_notifier_message" msgid="8412196553907067659">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>：<xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_title" msgid="3324988724123717025">"正在讀取 vCard"</string>
+    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
+    <skip />
+    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
+    <skip />
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"無法讀取 vCard 資料"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"已取消讀取 vCard 資料"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"已結束 vCard 匯入作業"</string>
+    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
+    <skip />
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard 匯入工具已啟動。"</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"vCard 匯入工具將於稍後匯入該 vCard。"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
@@ -255,6 +259,10 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"VCard 編輯器並未正確初始化"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
+    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
+    <skip />
+    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"新增 2 秒暫停功能"</string>
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>
@@ -353,6 +361,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 進行即時通訊"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 進行即時通訊"</string>
     <string name="chat" msgid="9025361898797412245">"即時通訊"</string>
+    <!-- no translation found for postal_address (8765560217149624536) -->
+    <skip />
     <string name="postal_street" msgid="8133143961580058972">"街道"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"郵政信箱"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"鄰"</string>
@@ -360,6 +370,8 @@
     <string name="postal_region" msgid="6045263193478437672">"州/省"</string>
     <string name="postal_postcode" msgid="572136414136673751">"郵遞區號"</string>
     <string name="postal_country" msgid="7638264508416368690">"國家/地區"</string>
+    <!-- no translation found for full_name (6602579550613988977) -->
+    <skip />
     <string name="name_given" msgid="1687286314106019813">"名字"</string>
     <string name="name_family" msgid="3416695586119999058">"姓氏"</string>
     <string name="name_prefix" msgid="59756378548779822">"姓名前稱銜"</string>
@@ -423,5 +435,7 @@
     <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <skip />
+    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
     <skip />
 </resources>
