@@ -229,11 +229,15 @@
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard 파일 선택"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard를 로컬 임시 저장공간에 캐시하는 중"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"가져오기 도구가 vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 실제 가져오기가 시작됩니다."</string>
-    <string name="progress_notifier_message" msgid="8412196553907067659">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_title" msgid="3324988724123717025">"vCard를 읽는 중"</string>
+    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
+    <skip />
+    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
+    <skip />
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"vCard 데이터를 읽지 못했습니다."</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard 데이터 읽기가 취소되었습니다."</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"vCard 가져오기 완료됨"</string>
+    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
+    <skip />
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard 가져오기 도구가 시작되었습니다."</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"잠시 후에 vCard 가져오기 도구가 vCard를 가져옵니다."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
@@ -255,6 +259,10 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 작성기가 바르게 초기화되지 않았습니다."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
+    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
+    <skip />
+    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
@@ -353,6 +361,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"ICQ로 채팅"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber로 채팅"</string>
     <string name="chat" msgid="9025361898797412245">"채팅"</string>
+    <!-- no translation found for postal_address (8765560217149624536) -->
+    <skip />
     <string name="postal_street" msgid="8133143961580058972">"번지"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"사서함"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"인근 지역"</string>
@@ -360,6 +370,8 @@
     <string name="postal_region" msgid="6045263193478437672">"시/도"</string>
     <string name="postal_postcode" msgid="572136414136673751">"우편번호"</string>
     <string name="postal_country" msgid="7638264508416368690">"국가"</string>
+    <!-- no translation found for full_name (6602579550613988977) -->
+    <skip />
     <string name="name_given" msgid="1687286314106019813">"이름"</string>
     <string name="name_family" msgid="3416695586119999058">"성"</string>
     <string name="name_prefix" msgid="59756378548779822">"경칭"</string>
@@ -423,5 +435,7 @@
     <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <skip />
+    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
     <skip />
 </resources>
