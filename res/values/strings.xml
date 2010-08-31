@@ -199,6 +199,9 @@
     <!-- The label describing the Notes field of a contact. This field allows free form text entry about a contact -->
     <string name="label_notes">Notes</string>
 
+    <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
+    <string name="label_sip_address">SIP address</string>
+
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
 
