@@ -855,7 +855,7 @@ public final class ContactsPreferencesActivity extends ExpandableListActivity im
 
         Editor editor = mPrefs.edit();
         editor.putBoolean(Prefs.DISPLAY_ONLY_PHONES, displayOnlyPhones);
-        editor.commit();
+        editor.apply();
 
         mAdapter.setChildDescripWithPhones(displayOnlyPhones);
         mAdapter.notifyDataSetChanged();
