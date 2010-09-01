@@ -73,6 +73,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.PhoneNumberUtils;
@@ -120,6 +121,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private boolean mAllRestricted;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
+    private String mDefaultCountryIso;
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -174,6 +176,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+        mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(mContext);
     }
 
     @Override
@@ -327,7 +330,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build phone entries
                     mNumPhoneNumbers++;
-
+                    String phoneNumberE164 =
+                            entryValues.getAsString(PhoneLookup.NORMALIZED_NUMBER);
+                    entry.data = PhoneNumberUtils.formatNumber(
+                            entry.data, phoneNumberE164, mDefaultCountryIso);
                     final Intent phoneIntent = mHasPhone ? new Intent(Intent.ACTION_CALL_PRIVILEGED,
                             Uri.fromParts(Constants.SCHEME_TEL, entry.data, null)) : null;
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,

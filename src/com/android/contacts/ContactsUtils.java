@@ -28,7 +28,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.location.Country;
 import android.location.CountryDetector;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
@@ -570,7 +569,6 @@ public class ContactsUtils {
     public static final String getCurrentCountryIso(Context context) {
         CountryDetector detector =
                 (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
-        Country country = detector.detectCountry();
-        return country.getCountryIso();
+        return detector.detectCountry().getCountryIso();
     }
 }

@@ -53,7 +53,6 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -75,7 +74,6 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Locale;
 
 /**
  * Displays a list of call log entries.
@@ -93,8 +91,8 @@ public class RecentCallsListActivity extends ListActivity
             Calls.TYPE,
             Calls.CACHED_NAME,
             Calls.CACHED_NUMBER_TYPE,
-            Calls.CACHED_NUMBER_LABEL
-    };
+            Calls.CACHED_NUMBER_LABEL,
+            Calls.COUNTRY_ISO};
 
     static final int ID_COLUMN_INDEX = 0;
     static final int NUMBER_COLUMN_INDEX = 1;
@@ -104,6 +102,7 @@ public class RecentCallsListActivity extends ListActivity
     static final int CALLER_NAME_COLUMN_INDEX = 5;
     static final int CALLER_NUMBERTYPE_COLUMN_INDEX = 6;
     static final int CALLER_NUMBERLABEL_COLUMN_INDEX = 7;
+    static final int COUNTRY_ISO_COLUMN_INDEX = 8;
 
     /** The projection to use when querying the phones table */
     static final String[] PHONES_PROJECTION = new String[] {
@@ -111,14 +110,15 @@ public class RecentCallsListActivity extends ListActivity
             PhoneLookup.DISPLAY_NAME,
             PhoneLookup.TYPE,
             PhoneLookup.LABEL,
-            PhoneLookup.NUMBER
-    };
+            PhoneLookup.NUMBER,
+            PhoneLookup.NORMALIZED_NUMBER};
 
     static final int PERSON_ID_COLUMN_INDEX = 0;
     static final int NAME_COLUMN_INDEX = 1;
     static final int PHONE_TYPE_COLUMN_INDEX = 2;
     static final int LABEL_COLUMN_INDEX = 3;
     static final int MATCHED_NUMBER_COLUMN_INDEX = 4;
+    static final int NORMALIZED_NUMBER_COLUMN_INDEX = 5;
 
     private static final int MENU_ITEM_DELETE = 1;
     private static final int MENU_ITEM_DELETE_ALL = 2;
@@ -132,6 +132,7 @@ public class RecentCallsListActivity extends ListActivity
     RecentCallsAdapter mAdapter;
     private QueryHandler mQueryHandler;
     String mVoiceMailNumber;
+    private String mCurrentCountryIso;
 
     static final class ContactInfo {
         public long personId;
@@ -140,6 +141,7 @@ public class RecentCallsListActivity extends ListActivity
         public String label;
         public String number;
         public String formattedNumber;
+        public String normalizedNumber;
 
         public static ContactInfo EMPTY = new ContactInfo();
     }
@@ -162,23 +164,6 @@ public class RecentCallsListActivity extends ListActivity
         int numberType;
         String numberLabel;
     }
-
-    /**
-     * Shared builder used by {@link #formatPhoneNumber(String)} to minimize
-     * allocations when formatting phone numbers.
-     */
-    private static final SpannableStringBuilder sEditable = new SpannableStringBuilder();
-
-    /**
-     * Invalid formatting type constant for {@link #sFormattingType}.
-     */
-    private static final int FORMATTING_TYPE_INVALID = -1;
-
-    /**
-     * Cached formatting type for current {@link Locale}, as provided by
-     * {@link PhoneNumberUtils#getFormatTypeForLocale(Locale)}.
-     */
-    private static int sFormattingType = FORMATTING_TYPE_INVALID;
 
     /** Adapter class to fill in data for the Call Log */
     final class RecentCallsAdapter extends GroupingListAdapter
@@ -355,7 +340,8 @@ public class RecentCallsListActivity extends ListActivity
                         info.type = phonesCursor.getInt(PHONE_TYPE_COLUMN_INDEX);
                         info.label = phonesCursor.getString(LABEL_COLUMN_INDEX);
                         info.number = phonesCursor.getString(MATCHED_NUMBER_COLUMN_INDEX);
-
+                        info.normalizedNumber =
+                                phonesCursor.getString(NORMALIZED_NUMBER_COLUMN_INDEX);
                         // New incoming phone number invalidates our formatted
                         // cache. Any cache fills happen only on the GUI thread.
                         info.formattedNumber = null;
@@ -536,7 +522,7 @@ public class RecentCallsListActivity extends ListActivity
             String callerName = c.getString(CALLER_NAME_COLUMN_INDEX);
             int callerNumberType = c.getInt(CALLER_NUMBERTYPE_COLUMN_INDEX);
             String callerNumberLabel = c.getString(CALLER_NUMBERLABEL_COLUMN_INDEX);
-
+            String countryIso = c.getString(COUNTRY_ISO_COLUMN_INDEX);
             // Store away the number so we can call it directly if you click on the call icon
             views.callView.setTag(number);
 
@@ -563,7 +549,8 @@ public class RecentCallsListActivity extends ListActivity
 
                 // Format and cache phone number for found contact
                 if (info.formattedNumber == null) {
-                    info.formattedNumber = formatPhoneNumber(info.number);
+                    info.formattedNumber =
+                            formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
                 }
                 formattedNumber = info.formattedNumber;
             }
@@ -580,7 +567,7 @@ public class RecentCallsListActivity extends ListActivity
                 label = callerNumberLabel;
 
                 // Format the cached call_log phone number
-                formattedNumber = formatPhoneNumber(number);
+                formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
             // Set the text lines and call icon.
             // Assumes the call back feature is on most of the
@@ -614,7 +601,7 @@ public class RecentCallsListActivity extends ListActivity
                     number = getString(R.string.voicemail);
                 } else {
                     // Just a raw number, and no cache, so format it nicely
-                    number = formatPhoneNumber(number);
+                    number = formatPhoneNumber(number, null, countryIso);
                 }
 
                 views.line1View.setText(number);
@@ -726,8 +713,7 @@ public class RecentCallsListActivity extends ListActivity
                 .getVoiceMailNumber();
         mQueryHandler = new QueryHandler(this);
 
-        // Reset locale-based formatting cache
-        sFormattingType = FORMATTING_TYPE_INVALID;
+        mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(this);
     }
 
     @Override
@@ -784,31 +770,24 @@ public class RecentCallsListActivity extends ListActivity
     }
 
     /**
-     * Format the given phone number using
-     * {@link PhoneNumberUtils#formatNumber(android.text.Editable, int)}. This
-     * helper method uses {@link #sEditable} and {@link #sFormattingType} to
-     * prevent allocations between multiple calls.
-     * <p>
-     * Because of the shared {@link #sEditable} builder, <b>this method is not
-     * thread safe</b>, and should only be called from the GUI thread.
-     * <p>
-     * If the given String object is null or empty, return an empty String.
+     * Format the given phone number
+     *
+     * @param number the number to be formatted.
+     * @param normalizedNumber the normalized number of the given number.
+     * @param countryIso the ISO 3166-1 two letters country code, the country's
+     *        convention will be used to format the number if the normalized
+     *        phone is null.
+     *
+     * @return the formatted number, or the given number if it was formatted.
      */
-    private String formatPhoneNumber(String number) {
+    private String formatPhoneNumber(String number, String normalizedNumber, String countryIso) {
         if (TextUtils.isEmpty(number)) {
             return "";
         }
-
-        // Cache formatting type if not already present
-        if (sFormattingType == FORMATTING_TYPE_INVALID) {
-            sFormattingType = PhoneNumberUtils.getFormatTypeForLocale(Locale.getDefault());
+        if (TextUtils.isEmpty(countryIso)) {
+            countryIso = mCurrentCountryIso;
         }
-
-        sEditable.clear();
-        sEditable.append(number);
-
-        PhoneNumberUtils.formatNumber(sEditable, sFormattingType);
-        return sEditable.toString();
+        return PhoneNumberUtils.formatNumber(number, normalizedNumber, countryIso);
     }
 
     private void resetNewCallsFlag() {

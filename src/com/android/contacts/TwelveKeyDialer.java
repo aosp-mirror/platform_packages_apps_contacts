@@ -137,6 +137,8 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     /** Indicates if we are opening this dialer to add a call from the InCallScreen. */
     private boolean mIsAddCallMode;
 
+    private String mCurrentCountryIso;
+
     PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
             /**
              * Listen for phone state changes so that we can take down the
@@ -190,6 +192,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(this);
         Resources r = getResources();
         // Do not show title in the case the device is in carmode.
         if ((r.getConfiguration().uiMode & Configuration.UI_MODE_TYPE_MASK) ==
@@ -268,8 +271,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     protected void maybeAddNumberFormatting() {
-        mDigits.addTextChangedListener(
-                new PhoneNumberFormattingTextWatcher(ContactsUtils.getCurrentCountryIso(this)));
+        mDigits.addTextChangedListener(new PhoneNumberFormattingTextWatcher(mCurrentCountryIso));
     }
 
     /**
@@ -309,18 +311,19 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
                 if ("tel".equals(uri.getScheme())) {
                     // Put the requested number into the input area
                     String data = uri.getSchemeSpecificPart();
-                    setFormattedDigits(data);
+                    setFormattedDigits(data, null);
                 } else {
                     String type = intent.getType();
                     if (People.CONTENT_ITEM_TYPE.equals(type)
                             || Phones.CONTENT_ITEM_TYPE.equals(type)) {
                         // Query the phone number
                         Cursor c = getContentResolver().query(intent.getData(),
-                                new String[] {PhonesColumns.NUMBER}, null, null, null);
+                                new String[] {PhonesColumns.NUMBER, PhonesColumns.NUMBER_KEY},
+                                null, null, null);
                         if (c != null) {
                             if (c.moveToFirst()) {
                                 // Put the number into the input area
-                                setFormattedDigits(c.getString(0));
+                                setFormattedDigits(c.getString(0), c.getString(1));
                             }
                             c.close();
                         }
@@ -360,10 +363,11 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
         return ignoreState;
     }
 
-    protected void setFormattedDigits(String data) {
+    protected void setFormattedDigits(String data, String normalizedNumber) {
         // strip the non-dialable numbers out of the data string.
         String dialString = PhoneNumberUtils.extractNetworkPortion(data);
-        dialString = PhoneNumberUtils.formatNumber(dialString);
+        dialString =
+                PhoneNumberUtils.formatNumber(dialString, normalizedNumber, mCurrentCountryIso);
         if (!TextUtils.isEmpty(dialString)) {
             Editable digits = mDigits.getText();
             digits.replace(0, digits.length(), dialString);

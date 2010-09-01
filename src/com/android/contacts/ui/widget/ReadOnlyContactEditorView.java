@@ -16,6 +16,7 @@
 
 package com.android.contacts.ui.widget;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta;
@@ -163,7 +164,9 @@ class ReadOnlyContactEditorView extends BaseContactEditorView {
                 v = (TextView) field.findViewById(R.id.label);
                 v.setText(mContext.getText(R.string.phoneLabelsGroup));
                 v = (TextView) field.findViewById(R.id.data);
-                v.setText(PhoneNumberUtils.formatNumber(phone.getAsString(Phone.NUMBER)));
+                v.setText(PhoneNumberUtils.formatNumber(phone.getAsString(Phone.NUMBER),
+                        phone.getAsString(Phone.NORMALIZED_NUMBER),
+                        ContactsUtils.getCurrentCountryIso(getContext())));
                 mGeneral.addView(field);
             }
         }

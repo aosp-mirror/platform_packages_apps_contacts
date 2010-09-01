@@ -63,6 +63,7 @@ public class CallDetailActivity extends ListActivity implements
     private TextView mCallDuration;
 
     private String mNumber = null;
+    private String mDefaultCountryIso;
 
     /* package */ LayoutInflater mInflater;
     /* package */ Resources mResources;
@@ -72,12 +73,14 @@ public class CallDetailActivity extends ListActivity implements
         CallLog.Calls.DURATION,
         CallLog.Calls.NUMBER,
         CallLog.Calls.TYPE,
+        CallLog.Calls.COUNTRY_ISO,
     };
 
     static final int DATE_COLUMN_INDEX = 0;
     static final int DURATION_COLUMN_INDEX = 1;
     static final int NUMBER_COLUMN_INDEX = 2;
     static final int CALL_TYPE_COLUMN_INDEX = 3;
+    static final int COUNTRY_ISO_COLUMN_INDEX = 4;
 
     static final String[] PHONES_PROJECTION = new String[] {
         PhoneLookup._ID,
@@ -85,12 +88,14 @@ public class CallDetailActivity extends ListActivity implements
         PhoneLookup.TYPE,
         PhoneLookup.LABEL,
         PhoneLookup.NUMBER,
+        PhoneLookup.NORMALIZED_NUMBER,
     };
     static final int COLUMN_INDEX_ID = 0;
     static final int COLUMN_INDEX_NAME = 1;
     static final int COLUMN_INDEX_TYPE = 2;
     static final int COLUMN_INDEX_LABEL = 3;
     static final int COLUMN_INDEX_NUMBER = 4;
+    static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -105,6 +110,7 @@ public class CallDetailActivity extends ListActivity implements
         mCallTypeIcon = (ImageView) findViewById(R.id.icon);
         mCallTime = (TextView) findViewById(R.id.time);
         mCallDuration = (TextView) findViewById(R.id.duration);
+        mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
 
         getListView().setOnItemClickListener(this);
     }
@@ -149,7 +155,10 @@ public class CallDetailActivity extends ListActivity implements
                 long date = callCursor.getLong(DATE_COLUMN_INDEX);
                 long duration = callCursor.getLong(DURATION_COLUMN_INDEX);
                 int callType = callCursor.getInt(CALL_TYPE_COLUMN_INDEX);
-
+                String countryIso = callCursor.getString(COUNTRY_ISO_COLUMN_INDEX);
+                if (TextUtils.isEmpty(countryIso)) {
+                    countryIso = mDefaultCountryIso;
+                }
                 // Pull out string in format [relative], [date]
                 CharSequence dateClause = DateUtils.formatDateRange(this, date, date,
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE |
@@ -209,12 +218,14 @@ public class CallDetailActivity extends ListActivity implements
                             callText = getString(R.string.recentCalls_callNumber,
                                     phonesCursor.getString(COLUMN_INDEX_NAME));
                             mNumber = PhoneNumberUtils.formatNumber(
-                                    phonesCursor.getString(COLUMN_INDEX_NUMBER));
+                                    phonesCursor.getString(COLUMN_INDEX_NUMBER),
+                                    phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
+                                    countryIso);
                             callLabel = Phone.getDisplayLabel(this,
                                     phonesCursor.getInt(COLUMN_INDEX_TYPE),
                                     phonesCursor.getString(COLUMN_INDEX_LABEL)).toString();
                         } else {
-                            mNumber = PhoneNumberUtils.formatNumber(mNumber);
+                            mNumber = PhoneNumberUtils.formatNumber(mNumber, countryIso);
                         }
                     } finally {
                         if (phonesCursor != null) phonesCursor.close();
