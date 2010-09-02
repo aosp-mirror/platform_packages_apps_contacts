@@ -173,7 +173,9 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1;
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 2;
 
+    private Bitmap mPhoto = null;
     private long mRawContactIdRequestingPhoto = -1;
+    private long mRawContactIdRequestingPhotoAfterLoad = -1;
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
 
@@ -1488,26 +1490,14 @@ public class ContactEditorFragment extends Fragment implements
         if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
-                BaseContactEditorView requestingEditor = null;
-                for (int i = 0; i < mContent.getChildCount(); i++) {
-                    View childView = mContent.getChildAt(i);
-                    if (childView instanceof BaseContactEditorView) {
-                        BaseContactEditorView editor = (BaseContactEditorView) childView;
-                        if (editor.getRawContactId() == mRawContactIdRequestingPhoto) {
-                            requestingEditor = editor;
-                            break;
-                        }
-                    }
-                }
-
-                if (requestingEditor != null) {
-                    final Bitmap photo = data.getParcelableExtra("data");
-                    requestingEditor.setPhotoBitmap(photo);
-                    mRawContactIdRequestingPhoto = -1;
-                } else {
-                    // The contact that requested the photo is no longer present.
-                    // TODO: Show error message
-                }
+                // As we are coming back to this view, the editor will be reloaded automatically,
+                // which will cause the photo that is set here to disappear. To prevent this,
+                // we remember set a flag which is interpreted after loading.
+                // This is set here anyway to reduce flickering
+                mPhoto = data.getParcelableExtra("data");
+                setPhoto(mRawContactIdRequestingPhoto, mPhoto);
+                mRawContactIdRequestingPhotoAfterLoad = mRawContactIdRequestingPhoto;
+                mRawContactIdRequestingPhoto = -1;
 
                 break;
             }
@@ -1522,6 +1512,29 @@ public class ContactEditorFragment extends Fragment implements
                     joinAggregate(contactId);
                 }
             }
+        }
+    }
+
+    /**
+     * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
+     */
+    private void setPhoto(long rawContact, Bitmap photo) {
+        BaseContactEditorView requestingEditor = null;
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseContactEditorView) {
+                final BaseContactEditorView editor = (BaseContactEditorView) childView;
+                if (editor.getRawContactId() == rawContact) {
+                    requestingEditor = editor;
+                    break;
+                }
+            }
+        }
+
+        if (requestingEditor != null) {
+            requestingEditor.setPhotoBitmap(photo);
+        } else {
+            Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
     }
 
@@ -1555,6 +1568,13 @@ public class ContactEditorFragment extends Fragment implements
             final long setDataStartTime = SystemClock.elapsedRealtime();
             setData(data);
             final long setDataEndTime = SystemClock.elapsedRealtime();
+
+            // If we are coming back from the photo trimmer, this will be set.
+            if (mRawContactIdRequestingPhotoAfterLoad != -1) {
+                setPhoto(mRawContactIdRequestingPhotoAfterLoad, mPhoto);
+                mRawContactIdRequestingPhotoAfterLoad = -1;
+                mPhoto = null;
+            }
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
         }
     };
