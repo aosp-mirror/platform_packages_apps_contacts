@@ -271,7 +271,7 @@ public class ContactEditorFragment extends Fragment implements
             } else if (Intent.ACTION_INSERT.equals(mAction)) {
                 if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
 
-                doAddAction();
+                doAddAction(true);
             } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
@@ -354,7 +354,7 @@ public class ContactEditorFragment extends Fragment implements
         bindEditors();
     }
 
-    public void selectAccountAndCreateContact(boolean isNewContact) {
+    private void selectAccountAndCreateContact(boolean isNewContact) {
         final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
@@ -369,7 +369,8 @@ public class ContactEditorFragment extends Fragment implements
             return;  // Don't show a dialog.
         }
 
-        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(getId());
+        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(getId(),
+                isNewContact);
         dialog.show(getActivity(), SelectAccountDialogFragment.TAG);
     }
 
@@ -500,7 +501,7 @@ public class ContactEditorFragment extends Fragment implements
             case R.id.menu_discard:
                 return doRevertAction();
             case R.id.menu_add_raw_contact:
-                return doAddAction();
+                return doAddAction(false);
             case R.id.menu_delete:
                 return doDeleteAction();
             case R.id.menu_split:
@@ -511,9 +512,9 @@ public class ContactEditorFragment extends Fragment implements
         return false;
     }
 
-    private boolean doAddAction() {
+    private boolean doAddAction(boolean isNewContact) {
         // Load Accounts async so that we can present them
-        selectAccountAndCreateContact(true);
+        selectAccountAndCreateContact(isNewContact);
 
         return true;
     }
@@ -1599,8 +1600,8 @@ public class ContactEditorFragment extends Fragment implements
      * Account was chosen in the selector. Create a RawContact for this account now
      */
     @Override
-    public void onAccountChosen(Account account) {
-        createContact(account, false);
+    public void onAccountChosen(Account account, boolean isNewContact) {
+        createContact(account, isNewContact);
     }
 
     /**

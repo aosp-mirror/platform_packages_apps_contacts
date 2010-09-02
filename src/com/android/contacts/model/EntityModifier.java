@@ -443,7 +443,7 @@ public class EntityModifier {
 
             final String name = extras.getString(Insert.NAME);
             if (ContactsUtils.isGraphic(name)) {
-                child.put(StructuredName.GIVEN_NAME, name);
+                child.put(StructuredName.DISPLAY_NAME, name);
             }
 
             final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
@@ -456,7 +456,7 @@ public class EntityModifier {
             // StructuredPostal
             final DataKind kind = source.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
             parseExtras(state, kind, extras, Insert.POSTAL_TYPE, Insert.POSTAL,
-                    StructuredPostal.STREET);
+                    StructuredPostal.FORMATTED_ADDRESS);
         }
 
         {

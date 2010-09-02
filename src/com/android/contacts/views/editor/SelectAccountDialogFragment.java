@@ -44,12 +44,30 @@ import java.util.ArrayList;
  */
 public class SelectAccountDialogFragment extends TargetedDialogFragment {
     public static final String TAG = "PickPhotoDialogFragment";
+    private static final String IS_NEW_CONTACT = "IS_NEW_CONTACT";
+
+    private boolean mIsNewContact;
 
     public SelectAccountDialogFragment() {
     }
 
-    public SelectAccountDialogFragment(int targetFragmentId) {
+    public SelectAccountDialogFragment(int targetFragmentId, boolean isNewContact) {
         super(targetFragmentId);
+        mIsNewContact = isNewContact;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            mIsNewContact = savedInstanceState.getBoolean(IS_NEW_CONTACT);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(IS_NEW_CONTACT, mIsNewContact);
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -92,7 +110,7 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                targetListener.onAccountChosen(accountAdapter.getItem(which));
+                targetListener.onAccountChosen(accountAdapter.getItem(which), mIsNewContact);
             }
         };
 
@@ -111,7 +129,7 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
     }
 
     public interface Listener {
-        void onAccountChosen(Account account);
+        void onAccountChosen(Account account, boolean isNewContact);
         void onAccountSelectorCancelled();
     }
 }
