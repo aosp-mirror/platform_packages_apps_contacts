@@ -222,23 +222,23 @@
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/phone" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.dir/postal-address" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/phone_v2" />
+                <data android:mimeType="vnd.android.cursor.dir/phone" />
+                <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" />
+                <data android:mimeType="vnd.android.cursor.dir/postal-address" />
             </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.item/phone_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.item/phone" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.item/postal-address_v2" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.item/postal-address" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/phone_v2" />
+                <data android:mimeType="vnd.android.cursor.item/phone" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address_v2" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address" />
             </intent-filter>
 
         </activity>
