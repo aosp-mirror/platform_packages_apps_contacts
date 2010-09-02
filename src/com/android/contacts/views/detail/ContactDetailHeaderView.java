@@ -64,6 +64,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private ImageView mPresenceView;
     private TextView mStatusView;
     private TextView mStatusAttributionView;
+    private TextView mDirectoryNameView;
 
     private Uri mContactUri;
     private Listener mListener;
@@ -101,9 +102,10 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mPhotoView = (QuickContactBadge) findViewById(R.id.photo);
 
         mPresenceView = (ImageView) findViewById(R.id.presence);
-
         mStatusView = (TextView)findViewById(R.id.status);
         mStatusAttributionView = (TextView)findViewById(R.id.status_date);
+
+        mDirectoryNameView = (TextView) findViewById(R.id.directory_name);
     }
 
     /**
@@ -121,6 +123,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         setStatus(
                 contactData.getStatus(), contactData.getStatusTimestamp(),
                 contactData.getStatusLabel(), contactData.getStatusResPackage());
+        setDirectoryName(contactData.isDirectoryEntry(), contactData.getDirectoryDisplayName(),
+                contactData.getDirectoryType(), contactData.getDirectoryAccountName());
     }
 
     /**
@@ -321,6 +325,27 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
             attribution = null;
         }
         setStatusAttribution(attribution);
+    }
+
+    private void setDirectoryName(boolean isDirectoryEntry, String directoryDisplayName,
+            String directoryType, String directoryAccountName) {
+        if (isDirectoryEntry) {
+            String name = TextUtils.isEmpty(directoryDisplayName)
+                    ? directoryAccountName
+                    : directoryDisplayName;
+            String text;
+            if (TextUtils.isEmpty(name)) {
+                text = getContext().getString(
+                        R.string.contact_directory_description, directoryType);
+            } else {
+                text = getContext().getString(
+                        R.string.contact_directory_account_description, directoryType, name);
+            }
+            mDirectoryNameView.setText(text);
+            mDirectoryNameView.setVisibility(View.VISIBLE);
+        } else {
+            mDirectoryNameView.setVisibility(View.GONE);
+        }
     }
 
     public void onClick(View view) {

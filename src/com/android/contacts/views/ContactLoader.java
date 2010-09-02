@@ -17,6 +17,7 @@
 package com.android.contacts.views;
 
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.views.ContactLoader.Result;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -24,6 +25,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Loader;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -31,8 +36,10 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -70,8 +77,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public static final Result ERROR = new Result();
 
         private final Uri mLookupUri;
-        private final String mLookupKey;
         private final Uri mUri;
+        private final long mDirectoryId;
+        private final String mLookupKey;
         private final long mId;
         private final long mNameRawContactId;
         private final int mDisplayNameSource;
@@ -87,14 +95,20 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final Integer mStatusLabel;
         private final String mStatusResPackage;
 
+        private String mDirectoryDisplayName;
+        private String mDirectoryType;
+        private String mDirectoryAccountName;
+        private int mDirectoryExportSupport;
+
         /**
          * Constructor for case "no contact found". This must only be used for the
          * final {@link Result#NOT_FOUND} singleton
          */
         private Result() {
             mLookupUri = null;
-            mLookupKey = null;
             mUri = null;
+            mDirectoryId = -1;
+            mLookupKey = null;
             mId = -1;
             mEntities = null;
             mStatuses = null;
@@ -114,13 +128,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * Constructor to call when contact was found
          */
-        private Result(Uri lookupUri, String lookupKey, Uri uri, long id, long nameRawContactId,
-                int displayNameSource, long photoId, String displayName, String phoneticName,
-                boolean starred, Integer presence, String status, Long statusTimestamp,
-                Integer statusLabel, String statusResPackage) {
+        private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
+                long nameRawContactId, int displayNameSource, long photoId, String displayName,
+                String phoneticName, boolean starred, Integer presence, String status,
+                Long statusTimestamp, Integer statusLabel, String statusResPackage) {
             mLookupUri = lookupUri;
-            mLookupKey = lookupKey;
             mUri = uri;
+            mDirectoryId = directoryId;
+            mLookupKey = lookupKey;
             mId = id;
             mEntities = new ArrayList<Entity>();
             mStatuses = new HashMap<Long, DataStatus>();
@@ -135,6 +150,17 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStatusTimestamp = statusTimestamp;
             mStatusLabel = statusLabel;
             mStatusResPackage = statusResPackage;
+        }
+
+        /**
+         * @param exportSupport See {@link Directory#EXPORT_SUPPORT}.
+         */
+        public void setDirectoryMetaData(String displayName, String directoryType,
+                String accountName, int exportSupport) {
+            mDirectoryDisplayName = displayName;
+            mDirectoryType = directoryType;
+            mDirectoryAccountName = accountName;
+            mDirectoryExportSupport = exportSupport;
         }
 
         public Uri getLookupUri() {
@@ -188,6 +214,31 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public HashMap<Long, DataStatus> getStatuses() {
             return mStatuses;
         }
+
+        public long getDirectoryId() {
+            return mDirectoryId;
+        }
+
+        public boolean isDirectoryEntry() {
+            return mDirectoryId != Directory.DEFAULT && mDirectoryId != Directory.LOCAL_INVISIBLE;
+        }
+
+        public int getDirectoryExportSupport() {
+            return mDirectoryExportSupport;
+        }
+
+        public String getDirectoryDisplayName() {
+            return mDirectoryDisplayName;
+        }
+
+        public String getDirectoryType() {
+            return mDirectoryType;
+        }
+
+        public String getDirectoryAccountName() {
+            return mDirectoryAccountName;
+        }
+
     }
 
     private static class ContactQuery {
@@ -319,6 +370,23 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int STATUS = 54;
     }
 
+    private static class DirectoryQuery {
+        // Projection used for the query that loads all data for the entire contact.
+        final static String[] COLUMNS = new String[] {
+            Directory.DISPLAY_NAME,
+            Directory.PACKAGE_NAME,
+            Directory.TYPE_RESOURCE_ID,
+            Directory.ACCOUNT_NAME,
+            Directory.EXPORT_SUPPORT,
+        };
+
+        public final static int DISPLAY_NAME = 0;
+        public final static int PACKAGE_NAME = 1;
+        public final static int TYPE_RESOURCE_ID = 2;
+        public final static int ACCOUNT_NAME = 3;
+        public final static int EXPORT_SUPPORT = 4;
+    }
+
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
 
         @Override
@@ -326,7 +394,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             try {
                 final ContentResolver resolver = getContext().getContentResolver();
                 final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
-                return loadContactEntity(resolver, uriCurrentFormat);
+                Result result = loadContactEntity(resolver, uriCurrentFormat);
+                if (result.isDirectoryEntry()) {
+                    loadDirectoryMetaData(result);
+                }
+                return result;
             } catch (Exception e) {
                 Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
                 return Result.ERROR;
@@ -424,6 +496,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * Extracts Contact level columns from the cursor.
          */
         private Result loadContactHeaderData(final Cursor cursor, Uri contactUri) {
+            final String directoryParameter =
+                    contactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+            final long directoryId = directoryParameter == null
+                    ? Directory.DEFAULT
+                    : Long.parseLong(directoryParameter);
             final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
             final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
             final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
@@ -447,9 +524,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             Uri lookupUri = ContentUris.withAppendedId(
                     Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
-            return new Result(lookupUri, lookupKey, contactUri, contactId, nameRawContactId,
-                    displayNameSource, photoId, displayName, phoneticName, starred, presence,
-                    status, statusTimestamp, statusLabel, statusResPackage);
+            return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
+                    nameRawContactId, displayNameSource, photoId, displayName, phoneticName,
+                    starred, presence, status, statusTimestamp, statusLabel, statusResPackage);
         }
 
         /**
@@ -533,6 +610,42 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     break;
                 default:
                     throw new IllegalStateException("Invalid or unhandled data type");
+            }
+        }
+
+        private void loadDirectoryMetaData(Result result) {
+            long directoryId = result.getDirectoryId();
+
+            Cursor cursor = getContext().getContentResolver().query(
+                    ContentUris.withAppendedId(Directory.CONTENT_URI, directoryId),
+                    DirectoryQuery.COLUMNS, null, null, null);
+            if (cursor == null) {
+                return;
+            }
+            try {
+                if (cursor.moveToFirst()) {
+                    final String displayName = cursor.getString(DirectoryQuery.DISPLAY_NAME);
+                    final String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
+                    final int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
+                    final String accountName = cursor.getString(DirectoryQuery.ACCOUNT_NAME);
+                    final int exportSupport = cursor.getInt(DirectoryQuery.EXPORT_SUPPORT);
+                    String directoryType = null;
+                    if (!TextUtils.isEmpty(packageName)) {
+                        PackageManager pm = getContext().getPackageManager();
+                        try {
+                            Resources resources = pm.getResourcesForApplication(packageName);
+                            directoryType = resources.getString(typeResourceId);
+                        } catch (NameNotFoundException e) {
+                            Log.w(TAG, "Contact directory resource not found: "
+                                    + packageName + "." + typeResourceId);
+                        }
+                    }
+
+                    result.setDirectoryMetaData(
+                            displayName, directoryType, accountName, exportSupport);
+                }
+            } finally {
+                cursor.close();
             }
         }
 

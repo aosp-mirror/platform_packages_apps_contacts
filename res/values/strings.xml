@@ -1295,4 +1295,13 @@
          only be empty.
          Translations require extensive QA! -->
     <string name="visualScrollerAlphabet">A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z</string>
+
+    <!-- The menu item (or button) that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
+    <string name="menu_copyContact">Make personal copy</string>
+
+    <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
+    <string name="contact_directory_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
+
+    <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
+    <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
 </resources>

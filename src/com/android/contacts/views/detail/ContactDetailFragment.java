@@ -56,6 +56,7 @@ import android.os.ServiceManager;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
@@ -237,6 +238,8 @@ public class ContactDetailFragment extends Fragment
             mAdapter.notifyDataSetChanged();
         }
         mListView.setEmptyView(mEmptyView);
+
+        getActivity().invalidateOptionsMenu();
     }
 
     /**
@@ -810,11 +813,35 @@ public class ContactDetailFragment extends Fragment
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+        if (mContactData == null) {
+            return;
+        }
+
+        boolean isDirectoryEntry = mContactData.isDirectoryEntry();
+
         // Options only shows telephony-related settings (ringtone, send to voicemail).
         // ==> Hide if we don't have a telephone
         final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
         final boolean deviceHasPhone = PhoneCapabilityTester.isPhone(mContext);
-        optionsMenu.setVisible(deviceHasPhone);
+        optionsMenu.setVisible(!isDirectoryEntry && deviceHasPhone);
+
+        final MenuItem editMenu = menu.findItem(R.id.menu_edit);
+        editMenu.setVisible(!isDirectoryEntry);
+
+        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
+        deleteMenu.setVisible(!isDirectoryEntry);
+
+        final MenuItem shareMenu = menu.findItem(R.id.menu_share);
+        shareMenu.setVisible(!isDirectoryEntry && !mAllRestricted);
+
+        final MenuItem copyMenu = menu.findItem(R.id.menu_copy);
+        if (isDirectoryEntry) {
+            int exportSupport = mContactData.getDirectoryExportSupport();
+            copyMenu.setVisible(exportSupport == Directory.EXPORT_SUPPORT_ANY_ACCOUNT
+                    || exportSupport == Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY);
+        } else {
+            copyMenu.setVisible(false);
+        }
     }
 
     @Override
@@ -853,6 +880,10 @@ public class ContactDetailFragment extends Fragment
                 } catch (ActivityNotFoundException ex) {
                     Toast.makeText(mContext, R.string.share_error, Toast.LENGTH_SHORT).show();
                 }
+                return true;
+            }
+            case R.id.menu_copy: {
+                Toast.makeText(mContext, "Not implemented yet", Toast.LENGTH_SHORT).show();
                 return true;
             }
         }

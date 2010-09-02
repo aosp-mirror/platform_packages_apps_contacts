@@ -57,6 +57,17 @@
             android:visibility="gone"
         />
 
+        <TextView android:id="@+id/directory_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_marginTop="-2dip"
+            android:visibility="gone"
+        />
+
         <TextView android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
