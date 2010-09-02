@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.pim.vcard.VCardComposer;
+import android.pim.vcard.VCardConfig;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -146,10 +147,9 @@ public class ExportVCardActivity extends Activity {
                     return;
                 }
 
-                composer = new VCardComposer(ExportVCardActivity.this, mVCardTypeStr, true);
-                /*int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
-                        VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
-                composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);*/
+                // composer = new VCardComposer(ExportVCardActivity.this, mVCardTypeStr, true);
+                int vcardType = VCardConfig.VCARD_TYPE_V30_GENERIC;
+                composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
 
                 composer.addHandler(composer.new HandlerForOutputStream(outputStream));
 
