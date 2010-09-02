@@ -14,17 +14,23 @@
      limitations under the License.
 -->
 
-<resources>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="47dip"
+    android:paddingLeft="5dp"
+    android:paddingRight="7dp"
+    >
 
-    <color name="pinned_header_background">#ffcfd1dc</color>
+    <TextView
+        android:id="@+id/totalContactsText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="#ff666666"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical"
+    />
 
-    <!-- Color used in the Aizy visual scroll control for empty section -->
-    <color name="aizy_empty_section">#ffcccccc</color>
-
-    <!-- Color used in the Aizy visual scroll control for non-empty sections -->
-    <color name="aizy_non_empty_section">#ff666666</color>
-
-    <!-- Color used for the letter in the A-Z section header -->
-    <color name="section_header_text_color">#ff000000</color>
-
-</resources>
+</RelativeLayout>

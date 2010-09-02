@@ -32,4 +32,7 @@
 
     <!-- Color used in the Aizy visual scroll control for non-empty sections -->
     <color name="aizy_non_empty_section">#ffcccccc</color>
+
+    <!-- Color used for the letter in the A-Z section header -->
+    <color name="section_header_text_color">#ff999999</color>
 </resources>

@@ -18,7 +18,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="25dip"
+    android:layout_height="37dip"
     android:background="@drawable/section_header"
     >
     <TextView
