@@ -428,7 +428,7 @@ public class ContactListItemView extends ViewGroup {
     private void ensureHorizontalDivider() {
         if (mHorizontalDividerDrawable == null) {
             mHorizontalDividerDrawable = mContext.getResources().getDrawable(
-                    com.android.internal.R.drawable.divider_horizontal_dark_opaque);
+                    R.drawable.list_item_divider);
             mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
         }
     }
@@ -439,7 +439,7 @@ public class ContactListItemView extends ViewGroup {
     private void ensureHeaderBackground() {
         if (mHeaderBackgroundDrawable == null) {
             mHeaderBackgroundDrawable = mContext.getResources().getDrawable(
-                    android.R.drawable.dark_header);
+                    R.drawable.section_header);
             mHeaderBackgroundHeight = mHeaderBackgroundDrawable.getIntrinsicHeight();
         }
     }
@@ -496,7 +496,7 @@ public class ContactListItemView extends ViewGroup {
                 mHeaderTextView = new TextView(mContext);
                 mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
                 mHeaderTextView.setTextColor(mContext.getResources()
-                        .getColor(com.android.internal.R.color.dim_foreground_dark));
+                        .getColor(R.color.section_header_text_color));
                 mHeaderTextView.setTextSize(14);
                 mHeaderTextView.setGravity(Gravity.CENTER);
                 addView(mHeaderTextView);
