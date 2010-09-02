@@ -1528,7 +1528,8 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             case SUBACTIVITY_NEW_CONTACT:
                 if (resultCode == RESULT_OK) {
                     returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
-                            data.getData());
+                            data.getData(), (mMode & MODE_MASK_PICKER) != 0
+                            ? Intent.FLAG_GRANT_READ_URI_PERMISSION : 0);
                 }
                 break;
 
@@ -1839,7 +1840,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } else if (mMode == MODE_JOIN_CONTACT) {
-                returnPickerResult(null, null, uri);
+                returnPickerResult(null, null, uri, 0);
             } else if (mMode == MODE_QUERY_PICK_TO_VIEW) {
                 // Started with query that should launch to view contact
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -1847,14 +1848,16 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 finish();
             } else if (mMode == MODE_PICK_PHONE || mMode == MODE_QUERY_PICK_PHONE) {
                 Cursor c = (Cursor) mAdapter.getItem(position);
-                returnPickerResult(c, c.getString(PHONE_DISPLAY_NAME_COLUMN_INDEX), uri);
+                returnPickerResult(c, c.getString(PHONE_DISPLAY_NAME_COLUMN_INDEX), uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION);
             } else if ((mMode & MODE_MASK_PICKER) != 0) {
                 Cursor c = (Cursor) mAdapter.getItem(position);
-                returnPickerResult(c, c.getString(getSummaryDisplayNameColumnIndex()), uri);
+                returnPickerResult(c, c.getString(getSummaryDisplayNameColumnIndex()), uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION);
             } else if (mMode == MODE_PICK_POSTAL
                     || mMode == MODE_LEGACY_PICK_POSTAL
                     || mMode == MODE_LEGACY_PICK_PHONE) {
-                returnPickerResult(null, null, uri);
+                returnPickerResult(null, null, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
         } else {
             signalError();
@@ -1872,7 +1875,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
      * @param selectedUri In most cases, this should be a lookup {@link Uri}, possibly
      *            generated through {@link Contacts#getLookupUri(long, String)}.
      */
-    private void returnPickerResult(Cursor c, String name, Uri selectedUri) {
+    private void returnPickerResult(Cursor c, String name, Uri selectedUri, int uriPerms) {
         final Intent intent = new Intent();
 
         if (mShortcutAction != null) {
@@ -1924,6 +1927,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             setResult(RESULT_OK, intent);
         } else {
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+            intent.addFlags(uriPerms);
             setResult(RESULT_OK, intent.setData(selectedUri));
         }
         finish();
