@@ -220,7 +220,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
 
         public boolean isDirectoryEntry() {
-            return mDirectoryId != Directory.DEFAULT && mDirectoryId != Directory.LOCAL_INVISIBLE;
+            return mDirectoryId != -1 && mDirectoryId != Directory.DEFAULT
+                    && mDirectoryId != Directory.LOCAL_INVISIBLE;
         }
 
         public int getDirectoryExportSupport() {
