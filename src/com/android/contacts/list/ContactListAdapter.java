@@ -77,7 +77,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static final int CONTACT_SNIPPET_DATA1_COLUMN_INDEX = 11;
     protected static final int CONTACT_SNIPPET_DATA4_COLUMN_INDEX = 12;
 
-    private boolean mQuickContactEnabled;
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
@@ -128,14 +127,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     @Override
     public String getContactDisplayName(int position) {
         return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
-    }
-
-    public boolean isQuickContactEnabled() {
-        return mQuickContactEnabled;
-    }
-
-    public void setQuickContactEnabled(boolean quickContactEnabled) {
-        mQuickContactEnabled = quickContactEnabled;
     }
 
     @Override

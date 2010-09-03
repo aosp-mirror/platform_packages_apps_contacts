@@ -52,6 +52,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mNameHighlightingEnabled;
 
     private boolean mDisplayPhotos;
+    private boolean mQuickContactEnabled;
     private ContactPhotoLoader mPhotoLoader;
 
     private String mQueryString;
@@ -203,6 +204,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setSelectionVisible(boolean flag) {
         this.mSelectionVisible = flag;
+    }
+
+    public boolean isQuickContactEnabled() {
+        return mQuickContactEnabled;
+    }
+
+    public void setQuickContactEnabled(boolean quickContactEnabled) {
+        mQuickContactEnabled = quickContactEnabled;
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {
