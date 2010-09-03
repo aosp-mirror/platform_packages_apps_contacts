@@ -67,13 +67,13 @@ public class MultiplePhonePickerItemView extends ContactListItemView {
     }
 
     @Override
-    protected int layoutLeftSide(int height, int topBound, int leftBound) {
+    protected int layoutLeftSide(int height, int topBound, int bottomBound, int leftBound) {
         if (mChipView != null) {
             mChipView.layout(leftBound, topBound, leftBound + mChipWidth, height);
             leftBound += mChipWidth + mChipRightMargin;
         }
 
-        return super.layoutLeftSide(height, topBound, leftBound);
+        return super.layoutLeftSide(height, topBound, bottomBound, leftBound);
     }
 
     @Override

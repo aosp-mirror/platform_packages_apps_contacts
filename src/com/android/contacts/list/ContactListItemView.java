@@ -83,6 +83,7 @@ public class ContactListItemView extends ViewGroup {
     private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
 
+    private boolean mQuickContactEnabled = true;
     private QuickContactBadge mQuickContact;
     private ImageView mPhotoView;
     private TextView mNameTextView;
@@ -109,6 +110,7 @@ public class ContactListItemView extends ViewGroup {
     public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
 
     private CharSequence mUnknownNameText;
+
 
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
@@ -179,6 +181,10 @@ public class ContactListItemView extends ViewGroup {
         mUnknownNameText = unknownNameText;
     }
 
+    public void setQuickContactEnabled(boolean flag) {
+        mQuickContactEnabled = flag;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // We will match parent's width and wrap content vertically, but make sure
@@ -229,7 +235,13 @@ public class ContactListItemView extends ViewGroup {
 
         ensurePhotoViewSize();
 
-        height = Math.max(height, mPhotoViewHeight);
+        height = Math.max(height, mPhotoViewHeight + mPaddingBottom + mPaddingTop);
+
+        if (mHorizontalDividerVisible) {
+            ensureHorizontalDivider();
+            height += mHorizontalDividerHeight;
+        }
+
         height = Math.max(height, mPreferredHeight);
 
         if (mHeaderVisible) {
@@ -238,11 +250,6 @@ public class ContactListItemView extends ViewGroup {
                     MeasureSpec.makeMeasureSpec(mHeaderTextWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             height += mHeaderBackgroundHeight;
-        }
-
-        if (mHorizontalDividerVisible) {
-            ensureHorizontalDivider();
-            height += mHorizontalDividerHeight;
         }
 
         setMeasuredDimension(width, height);
@@ -255,6 +262,7 @@ public class ContactListItemView extends ViewGroup {
 
         // Determine the vertical bounds by laying out the header first.
         int topBound = 0;
+        int bottomBound = height;
 
         if (mHeaderVisible) {
             mHeaderBackgroundDrawable.setBounds(
@@ -266,19 +274,6 @@ public class ContactListItemView extends ViewGroup {
             topBound += mHeaderBackgroundHeight;
         }
 
-        if (mItemSelected) {
-            ensureCheckedBackgroundDivider();
-            mSelectedBackgroundDrawable.setBounds(0, topBound, width, height);
-        }
-
-        // Positions of views on the left are fixed and so are those on the right side.
-        // The stretchable part of the layout is in the middle.  So, we will start off
-        // by laying out the left and right sides. Then we will allocate the remainder
-        // to the text fields in the middle.
-
-        int leftBound = layoutLeftSide(height, topBound, mPaddingLeft);
-        int rightBound = layoutRightSide(height, topBound, right);
-
         if (mHorizontalDividerVisible) {
             ensureHorizontalDivider();
             mHorizontalDividerDrawable.setBounds(
@@ -286,11 +281,24 @@ public class ContactListItemView extends ViewGroup {
                     height - mHorizontalDividerHeight,
                     width,
                     height);
+            bottomBound -= mHorizontalDividerHeight;
+        }
+
+        if (mItemSelected) {
+            ensureCheckedBackgroundDivider();
+            mSelectedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
         }
 
         topBound += mPaddingTop;
+        bottomBound -= mPaddingBottom;
 
-        int bottomBound = height - mPaddingBottom;
+        // Positions of views on the left are fixed and so are those on the right side.
+        // The stretchable part of the layout is in the middle.  So, we will start off
+        // by laying out the left and right sides. Then we will allocate the remainder
+        // to the text fields in the middle.
+
+        int leftBound = layoutLeftSide(height, topBound, bottomBound, mPaddingLeft);
+        int rightBound = layoutRightSide(height, topBound, right);
 
         // Text lines, centered vertically
         rightBound -= mPaddingRight;
@@ -343,11 +351,11 @@ public class ContactListItemView extends ViewGroup {
      *
      * @return new left boundary
      */
-    protected int layoutLeftSide(int height, int topBound, int leftBound) {
+    protected int layoutLeftSide(int height, int topBound, int bottomBound, int leftBound) {
         View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
         if (photoView != null) {
             // Center the photo vertically
-            int photoTop = topBound + (height - topBound - mPhotoViewHeight) / 2;
+            int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
             photoView.layout(
                     leftBound,
                     photoTop,
@@ -449,16 +457,21 @@ public class ContactListItemView extends ViewGroup {
      */
     private void ensurePhotoViewSize() {
         if (mPhotoViewWidth == 0 && mPhotoViewHeight == 0) {
-            TypedArray a = mContext.obtainStyledAttributes(null,
-                    com.android.internal.R.styleable.ViewGroup_Layout,
-                    QUICK_CONTACT_BADGE_STYLE, 0);
-            mPhotoViewWidth = a.getLayoutDimension(
-                    android.R.styleable.ViewGroup_Layout_layout_width,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            mPhotoViewHeight = a.getLayoutDimension(
-                    android.R.styleable.ViewGroup_Layout_layout_height,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            a.recycle();
+            if (mQuickContactEnabled) {
+                TypedArray a = mContext.obtainStyledAttributes(null,
+                        com.android.internal.R.styleable.ViewGroup_Layout,
+                        QUICK_CONTACT_BADGE_STYLE, 0);
+                mPhotoViewWidth = a.getLayoutDimension(
+                        android.R.styleable.ViewGroup_Layout_layout_width,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                mPhotoViewHeight = a.getLayoutDimension(
+                        android.R.styleable.ViewGroup_Layout_layout_height,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                a.recycle();
+            } else {
+                mPhotoViewWidth = mPhotoViewHeight =
+                    mContext.getResources().getDimensionPixelSize(R.dimen.list_item_photo_size);
+            }
         }
     }
 
@@ -516,6 +529,9 @@ public class ContactListItemView extends ViewGroup {
      * Returns the quick contact badge, creating it if necessary.
      */
     public QuickContactBadge getQuickContact() {
+        if (!mQuickContactEnabled) {
+            throw new IllegalStateException("QuickContact is disabled for this view");
+        }
         if (mQuickContact == null) {
             mQuickContact = new QuickContactBadge(mContext, null, QUICK_CONTACT_BADGE_STYLE);
             mQuickContact.setExcludeMimes(new String[] { Contacts.CONTENT_ITEM_TYPE });
@@ -529,7 +545,11 @@ public class ContactListItemView extends ViewGroup {
      */
     public ImageView getPhotoView() {
         if (mPhotoView == null) {
-            mPhotoView = new ImageView(mContext, null, QUICK_CONTACT_BADGE_STYLE);
+            if (mQuickContactEnabled) {
+                mPhotoView = new ImageView(mContext, null, QUICK_CONTACT_BADGE_STYLE);
+            } else {
+                mPhotoView = new ImageView(mContext);
+            }
             // Quick contact style used above will set a background - remove it
             mPhotoView.setBackgroundDrawable(null);
             addView(mPhotoView);

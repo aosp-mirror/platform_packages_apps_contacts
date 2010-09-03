@@ -42,6 +42,7 @@
     <dimen name="list_item_header_chip_width">4dip</dimen>
     <dimen name="list_item_header_chip_right_margin">4dip</dimen>
     <dimen name="list_item_header_checkbox_margin">5dip</dimen>
+    <dimen name="list_item_photo_size">56dip</dimen>
 
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
