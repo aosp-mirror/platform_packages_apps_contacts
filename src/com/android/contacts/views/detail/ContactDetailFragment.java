@@ -17,22 +17,24 @@
 package com.android.contacts.views.detail;
 
 import com.android.contacts.Collapser;
+import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
-import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.Sources;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.editor.SelectAccountDialogFragment;
 import com.android.internal.telephony.ITelephony;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -42,9 +44,9 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
+import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.Entity.NamedContentValues;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
@@ -54,12 +56,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.ContactsContract.CommonDataKinds;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.StatusUpdates;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
@@ -70,32 +66,38 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
+import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
-public class ContactDetailFragment extends Fragment
-        implements OnCreateContextMenuListener, OnItemClickListener {
+public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
+        OnItemClickListener, SelectAccountDialogFragment.Listener {
     private static final String TAG = "ContactDetailFragment";
 
     private static final int MENU_ITEM_MAKE_DEFAULT = 3;
@@ -883,11 +885,60 @@ public class ContactDetailFragment extends Fragment
                 return true;
             }
             case R.id.menu_copy: {
-                Toast.makeText(mContext, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                makePersonalCopy();
                 return true;
             }
         }
         return false;
+    }
+
+    private void makePersonalCopy() {
+        if (mListener == null) {
+            return;
+        }
+
+        int exportSupport = mContactData.getDirectoryExportSupport();
+        switch (exportSupport) {
+            case Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY: {
+                createCopy(new Account(mContactData.getDirectoryAccountName(),
+                                mContactData.getDirectoryAccountType()));
+                break;
+            }
+            case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
+                final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
+                if (accounts.isEmpty()) {
+                    createCopy(null);
+                    return;  // Don't show a dialog.
+                }
+
+                // In the common case of a single writable account, auto-select
+                // it without showing a dialog.
+                if (accounts.size() == 1) {
+                    createCopy(accounts.get(0));
+                    return;  // Don't show a dialog.
+                }
+
+                final SelectAccountDialogFragment dialog =
+                        new SelectAccountDialogFragment(getId(), true);
+                dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onAccountSelectorCancelled() {
+    }
+
+    @Override
+    public void onAccountChosen(Account account, boolean isNewContact) {
+        createCopy(account);
+    }
+
+    private void createCopy(Account account) {
+        if (mListener != null) {
+            mListener.onCreateRawContactRequested(mContactData.getContentValues(), account);
+        }
     }
 
     @Override
@@ -1077,5 +1128,13 @@ public class ContactDetailFragment extends Fragment
          * User decided to delete the contact
          */
         public void onDeleteRequested(Uri lookupUri);
+
+        /**
+         * User requested creation of a new contact with the specified values.
+         *
+         * @param values ContentValues containing data rows for the new contact.
+         * @param account Account where the new contact should be created
+         */
+        public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account);
     }
 }

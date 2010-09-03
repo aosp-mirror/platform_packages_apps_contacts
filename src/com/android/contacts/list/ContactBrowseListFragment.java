@@ -138,12 +138,14 @@ public abstract class ContactBrowseListFragment extends
 
             parseSelectedContactUri();
 
-            // Configure the adapter to show the selection based on the lookup key extracted
-            // from the URI
-            configureAdapter();
+            if (isAdded()) {
+                // Configure the adapter to show the selection based on the lookup key extracted
+                // from the URI
+                configureAdapter();
 
-            // Also, launch a loader to pick up a new lookup key in case it has changed
-            startLoadingContactLookupKey();
+                // Also, launch a loader to pick up a new lookup key in case it has changed
+                startLoadingContactLookupKey();
+            }
         }
     }
 

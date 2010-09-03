@@ -30,11 +30,13 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.ui.ContactsPreferencesActivity;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.views.detail.ContactNoneFragment;
 import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
+import android.accounts.Account;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
@@ -56,6 +58,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
@@ -166,6 +170,26 @@ public class ContactBrowserActivity extends Activity
 
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri uri = intent.getData();
+            if (uri == null) {
+                return;
+            }
+
+            if (mHasActionBar) {
+                if (mActionBarAdapter.getMode() != ContactBrowserMode.MODE_CONTACTS) {
+                    mActionBarAdapter.clearSavedState(ContactBrowserMode.MODE_CONTACTS);
+                    mActionBarAdapter.setMode(ContactBrowserMode.MODE_CONTACTS);
+                }
+            }
+            mListFragment.setSelectedContactUri(uri);
+            setupContactDetailFragment(uri);
         }
     }
 
@@ -502,6 +526,15 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onDeleteRequested(Uri contactLookupUri) {
             getContactDeletionInteraction().deleteContact(contactLookupUri);
+        }
+
+        @Override
+        public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account) {
+            Toast.makeText(ContactBrowserActivity.this, R.string.toast_making_personal_copy,
+                    Toast.LENGTH_LONG).show();
+            Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
+                    ContactBrowserActivity.this, values, account);
+            startService(serviceIntent);
         }
     }
 
