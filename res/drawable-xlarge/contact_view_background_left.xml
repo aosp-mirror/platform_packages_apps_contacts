@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 The Android Open Source Project
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,7 +14,12 @@
      limitations under the License.
 -->
 
-<resources>
-    <!-- Size of the text in the aizy visual scroll control -->
-    <dimen name="aizy_text_size">12sp</dimen>
-</resources>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#ff6a9cff"
+        android:endColor="#c9d7e1f5"
+        android:type="linear" />
+</shape>

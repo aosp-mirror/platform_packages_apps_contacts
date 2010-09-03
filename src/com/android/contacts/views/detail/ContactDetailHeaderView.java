@@ -62,8 +62,9 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private CheckBox mStarredView;
     private QuickContactBadge mPhotoView;
     private ImageView mPresenceView;
+    private View mStatusContainerView;
     private TextView mStatusView;
-    private TextView mStatusAttributionView;
+    private TextView mStatusDateView;
     private TextView mDirectoryNameView;
 
     private Uri mContactUri;
@@ -102,8 +103,9 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mPhotoView = (QuickContactBadge) findViewById(R.id.photo);
 
         mPresenceView = (ImageView) findViewById(R.id.presence);
+        mStatusContainerView = findViewById(R.id.status_container);
         mStatusView = (TextView)findViewById(R.id.status);
-        mStatusAttributionView = (TextView)findViewById(R.id.status_date);
+        mStatusDateView = (TextView)findViewById(R.id.status_date);
 
         mDirectoryNameView = (TextView) findViewById(R.id.directory_name);
     }
@@ -216,25 +218,25 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     /**
      * Set the social snippet text to display in the header.
      */
-    private void setSocialSnippet(CharSequence snippet) {
+    private void setStatus(CharSequence snippet, CharSequence snippetDate) {
         if (snippet == null) {
+            // No status info. Hide everything
+            if (mStatusContainerView != null) mStatusContainerView.setVisibility(View.GONE);
             mStatusView.setVisibility(View.GONE);
-            mStatusAttributionView.setVisibility(View.GONE);
+            mStatusDateView.setVisibility(View.GONE);
         } else {
-            mStatusView.setText(snippet);
+            // We have status info. Show the bubble
+            if (mStatusContainerView != null) mStatusContainerView.setVisibility(View.VISIBLE);
             mStatusView.setVisibility(View.VISIBLE);
-        }
-    }
+            mStatusView.setText(snippet);
 
-    /**
-     * Set the status attribution text to display in the header.
-     */
-    private void setStatusAttribution(CharSequence attribution) {
-        if (attribution == null) {
-            mStatusAttributionView.setVisibility(View.GONE);
-        } else {
-            mStatusAttributionView.setText(attribution);
-            mStatusAttributionView.setVisibility(View.VISIBLE);
+            // Also show date info?
+            if (snippetDate == null) {
+                mStatusDateView.setVisibility(View.GONE);
+            } else {
+                mStatusDateView.setVisibility(View.VISIBLE);
+                mStatusDateView.setText(snippetDate);
+            }
         }
     }
 
@@ -262,11 +264,9 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private void setStatus(final String status, final Long statusTimestamp,
             final Integer statusLabel, final String statusResPackage) {
         if (TextUtils.isEmpty(status)) {
-            setSocialSnippet(null);
+            setStatus(null, null);
             return;
         }
-
-        setSocialSnippet(status);
 
         final CharSequence timestampDisplayValue;
 
@@ -310,21 +310,21 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
             }
         }
 
-        final CharSequence attribution;
+        final CharSequence snippetDate;
         if (timestampDisplayValue != null && labelDisplayValue != null) {
-            attribution = getContext().getString(
+            snippetDate = getContext().getString(
                     R.string.contact_status_update_attribution_with_date,
                     timestampDisplayValue, labelDisplayValue);
         } else if (timestampDisplayValue == null && labelDisplayValue != null) {
-            attribution = getContext().getString(
+            snippetDate = getContext().getString(
                     R.string.contact_status_update_attribution,
                     labelDisplayValue);
         } else if (timestampDisplayValue != null) {
-            attribution = timestampDisplayValue;
+            snippetDate = timestampDisplayValue;
         } else {
-            attribution = null;
+            snippetDate = null;
         }
-        setStatusAttribution(attribution);
+        setStatus(status, snippetDate);
     }
 
     private void setDirectoryName(boolean isDirectoryEntry, String directoryDisplayName,

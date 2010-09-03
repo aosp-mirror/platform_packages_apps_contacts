@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -196,6 +197,7 @@ public class ContactListAizyView extends View {
             mPaint.setTextSize(mResourceValues.textSize);
             mPaint.setAntiAlias(true);
             mPaint.setTextAlign(Align.CENTER);
+            mPaint.setTypeface(Typeface.DEFAULT_BOLD);
         }
         if (mFontMetrics == null) {
             mFontMetrics = mPaint.getFontMetrics();
