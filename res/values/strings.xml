@@ -1304,4 +1304,7 @@
 
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
+
+    <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
+    <string name="toast_making_personal_copy">Creating a personal copy</string>
 </resources>

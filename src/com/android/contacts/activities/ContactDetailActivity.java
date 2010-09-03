@@ -19,17 +19,23 @@ package com.android.contacts.activities;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ContactDetailActivity extends Activity {
     private static final String TAG = "ContactDetailActivity";
@@ -126,6 +132,17 @@ public class ContactDetailActivity extends Activity {
         @Override
         public void onDeleteRequested(Uri lookupUri) {
             getContactDeletionInteraction().deleteContact(lookupUri);
+        }
+
+        @Override
+        public void onCreateRawContactRequested(
+                ArrayList<ContentValues> values, Account account) {
+            Toast.makeText(ContactDetailActivity.this, R.string.toast_making_personal_copy,
+                    Toast.LENGTH_LONG).show();
+            Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
+                    ContactDetailActivity.this, values, account);
+            startService(serviceIntent);
+
         }
     };
 }

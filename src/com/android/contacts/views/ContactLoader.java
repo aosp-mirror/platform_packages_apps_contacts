@@ -24,6 +24,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
+import android.content.Entity.NamedContentValues;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -44,6 +45,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
@@ -97,6 +99,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private String mDirectoryDisplayName;
         private String mDirectoryType;
+        private String mDirectoryAccountType;
         private String mDirectoryAccountName;
         private int mDirectoryExportSupport;
 
@@ -156,9 +159,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * @param exportSupport See {@link Directory#EXPORT_SUPPORT}.
          */
         public void setDirectoryMetaData(String displayName, String directoryType,
-                String accountName, int exportSupport) {
+                String accountType, String accountName, int exportSupport) {
             mDirectoryDisplayName = displayName;
             mDirectoryType = directoryType;
+            mDirectoryAccountType = accountType;
             mDirectoryAccountName = accountName;
             mDirectoryExportSupport = exportSupport;
         }
@@ -236,10 +240,34 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mDirectoryType;
         }
 
+        public String getDirectoryAccountType() {
+            return mDirectoryAccountType;
+        }
+
         public String getDirectoryAccountName() {
             return mDirectoryAccountName;
         }
 
+        public ArrayList<ContentValues> getContentValues() {
+            if (mEntities.size() != 1) {
+                throw new IllegalStateException(
+                        "Cannot extract content values from an aggregated contact");
+            }
+
+            Entity entity = mEntities.get(0);
+            ArrayList<ContentValues> result = new ArrayList<ContentValues>();
+            ArrayList<NamedContentValues> subValues = entity.getSubValues();
+            if (subValues != null) {
+                int size = subValues.size();
+                for (int i = 0; i < size; i++) {
+                    NamedContentValues pair = subValues.get(i);
+                    if (Data.CONTENT_URI.equals(pair.uri)) {
+                        result.add(pair.values);
+                    }
+                }
+            }
+            return result;
+        }
     }
 
     private static class ContactQuery {
@@ -377,6 +405,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             Directory.DISPLAY_NAME,
             Directory.PACKAGE_NAME,
             Directory.TYPE_RESOURCE_ID,
+            Directory.ACCOUNT_TYPE,
             Directory.ACCOUNT_NAME,
             Directory.EXPORT_SUPPORT,
         };
@@ -384,8 +413,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int DISPLAY_NAME = 0;
         public final static int PACKAGE_NAME = 1;
         public final static int TYPE_RESOURCE_ID = 2;
-        public final static int ACCOUNT_NAME = 3;
-        public final static int EXPORT_SUPPORT = 4;
+        public final static int ACCOUNT_TYPE = 3;
+        public final static int ACCOUNT_NAME = 4;
+        public final static int EXPORT_SUPPORT = 5;
     }
 
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
@@ -628,6 +658,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     final String displayName = cursor.getString(DirectoryQuery.DISPLAY_NAME);
                     final String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
                     final int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
+                    final String accountType = cursor.getString(DirectoryQuery.ACCOUNT_TYPE);
                     final String accountName = cursor.getString(DirectoryQuery.ACCOUNT_NAME);
                     final int exportSupport = cursor.getInt(DirectoryQuery.EXPORT_SUPPORT);
                     String directoryType = null;
@@ -643,7 +674,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     }
 
                     result.setDirectoryMetaData(
-                            displayName, directoryType, accountName, exportSupport);
+                            displayName, directoryType, accountType, accountName, exportSupport);
                 }
             } finally {
                 cursor.close();

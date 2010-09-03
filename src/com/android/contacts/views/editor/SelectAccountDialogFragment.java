@@ -43,7 +43,7 @@ import java.util.ArrayList;
  * Does not perform any action by itself.
  */
 public class SelectAccountDialogFragment extends TargetedDialogFragment {
-    public static final String TAG = "PickPhotoDialogFragment";
+    public static final String TAG = "SelectAccountDialogFragment";
     private static final String IS_NEW_CONTACT = "IS_NEW_CONTACT";
 
     private boolean mIsNewContact;
@@ -70,6 +70,7 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
         outState.putBoolean(IS_NEW_CONTACT, mIsNewContact);
     }
 
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(getActivity(),
