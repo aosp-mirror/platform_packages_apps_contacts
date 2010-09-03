@@ -359,6 +359,7 @@ public class ContactBrowserActivity extends Activity
                         mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled());
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
                 fragment.setSelectionVisible(mContactContentDisplayed);
+                fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 return fragment;
             }
 
@@ -372,6 +373,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setFrequentlyContactedContactsIncluded(false);
                 fragment.setStarredContactsIncluded(true);
                 fragment.setSelectionVisible(mContactContentDisplayed);
+                fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 return fragment;
             }
 
@@ -381,6 +383,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(false);
                 fragment.setSelectionVisible(mContactContentDisplayed);
+                fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 return fragment;
             }
 
@@ -390,6 +393,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setFrequentlyContactedContactsIncluded(true);
                 fragment.setStarredContactsIncluded(true);
                 fragment.setSelectionVisible(mContactContentDisplayed);
+                fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 return fragment;
             }
 

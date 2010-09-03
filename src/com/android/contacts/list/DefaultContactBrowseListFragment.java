@@ -128,7 +128,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(true);
-        adapter.setQuickContactEnabled(true);
         return adapter;
     }
 

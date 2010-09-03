@@ -85,6 +85,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_LIST_STATE = "liststate";
     private static final String KEY_SECTION_HEADER_DISPLAY_ENABLED = "sectionHeaderDisplayEnabled";
     private static final String KEY_PHOTO_LOADER_ENABLED = "photoLoaderEnabled";
+    private static final String KEY_QUICK_CONTACT_ENABLED = "quickContactEnabled";
     private static final String KEY_SEARCH_MODE = "searchMode";
     private static final String KEY_AIZY_ENABLED = "aizyEnabled";
     private static final String KEY_QUERY_STRING = "queryString";
@@ -102,6 +103,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
+    private boolean mQuickContactEnabled = true;
     private boolean mSearchMode;
     private boolean mAizyEnabled;
     private String mQueryString;
@@ -216,6 +218,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED, mSectionHeaderDisplayEnabled);
         outState.putBoolean(KEY_PHOTO_LOADER_ENABLED, mPhotoLoaderEnabled);
+        outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(KEY_AIZY_ENABLED, mAizyEnabled);
         outState.putBoolean(KEY_DIRECTORY_SEARCH_ENABLED, mDirectorySearchEnabled);
@@ -242,6 +245,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         mSectionHeaderDisplayEnabled = savedState.getBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED);
         mPhotoLoaderEnabled = savedState.getBoolean(KEY_PHOTO_LOADER_ENABLED);
+        mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         mAizyEnabled = savedState.getBoolean(KEY_AIZY_ENABLED);
         mDirectorySearchEnabled = savedState.getBoolean(KEY_DIRECTORY_SEARCH_ENABLED);
@@ -507,6 +511,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         this.mSelectionVisible = flag;
     }
 
+    public void setQuickContactEnabled(boolean flag) {
+        this.mQuickContactEnabled = flag;
+    }
+
     public void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;
@@ -679,6 +687,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return;
         }
 
+        mAdapter.setQuickContactEnabled(mQuickContactEnabled);
         mAdapter.setQueryString(mQueryString);
         mAdapter.setDirectorySearchEnabled(mDirectorySearchEnabled);
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
