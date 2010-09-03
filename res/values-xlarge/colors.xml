@@ -22,7 +22,7 @@
     <color name="aizy_empty_section">#ffcccccc</color>
 
     <!-- Color used in the Aizy visual scroll control for non-empty sections -->
-    <color name="aizy_non_empty_section">#ff666666</color>
+    <color name="aizy_non_empty_section">#ff9490a0</color>
 
     <!-- Color used for the letter in the A-Z section header -->
     <color name="section_header_text_color">#ff000000</color>
