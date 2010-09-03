@@ -194,7 +194,7 @@
     <string name="label_notes">Notes</string>
 
     <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
-    <string name="label_sip_address">SIP address</string>
+    <string name="label_sip_address">Internet call</string>
 
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
