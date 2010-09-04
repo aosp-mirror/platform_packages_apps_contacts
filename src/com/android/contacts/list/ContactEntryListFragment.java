@@ -283,6 +283,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         loadPreferences();
 
+        if (mListView instanceof ContactEntryListView) {
+            ContactEntryListView listView = (ContactEntryListView)mListView;
+            listView.setSelectionVisible(isSelectionVisible());
+        }
+
         mForceLoad = false;
         mLoadDirectoryList = true;
         mLoadPriorityDirectoriesOnly = true;

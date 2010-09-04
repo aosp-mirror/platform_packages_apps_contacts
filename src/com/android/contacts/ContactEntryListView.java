@@ -21,6 +21,10 @@ import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
@@ -37,6 +41,9 @@ public class ContactEntryListView extends PinnedHeaderListView {
             new ContactNameHighlightingAnimation(this, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
 
     private boolean mHighlightNamesWhenScrolling;
+    private Drawable mDefaultSelector;
+    private boolean mSelectionVisible;
+    private ContactEntryListAdapter mAdapter;
 
     public ContactEntryListView(Context context) {
         this(context, null);
@@ -50,6 +57,7 @@ public class ContactEntryListView extends PinnedHeaderListView {
         super(context, attrs, defStyle);
         setPinnedHeaderBackgroundColor(
                 context.getResources().getColor(R.color.pinned_header_background));
+        mDefaultSelector = getSelector();
     }
 
     public TextHighlightingAnimation getTextHighlightingAnimation() {
@@ -62,6 +70,19 @@ public class ContactEntryListView extends PinnedHeaderListView {
 
     public void setHighlightNamesWhenScrolling(boolean flag) {
         mHighlightNamesWhenScrolling = flag;
+    }
+
+    public void setSelectionVisible(boolean selectionVisible) {
+        if (selectionVisible != mSelectionVisible) {
+            mSelectionVisible = selectionVisible;
+            if (selectionVisible) {
+                // When a persistent selection is handled by the adapter,
+                // we want to disable the standard selection drawing.
+                setSelector(new EmptyDrawable());
+            } else {
+                setSelector(mDefaultSelector);
+            }
+        }
     }
 
     @Override
@@ -82,6 +103,30 @@ public class ContactEntryListView extends PinnedHeaderListView {
             } else {
                 mHighlightingAnimation.stopHighlighting();
             }
+        }
+    }
+
+    /**
+     * A drawable that is ignored.  We have to use an empty drawable instead
+     * of null, because ListView does not allow selection to be null.
+     */
+    private class EmptyDrawable extends Drawable {
+
+        @Override
+        public void draw(Canvas canvas) {
+        }
+
+        @Override
+        public int getOpacity() {
+            return PixelFormat.OPAQUE;
+        }
+
+        @Override
+        public void setAlpha(int alpha) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter cf) {
         }
     }
 }

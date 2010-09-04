@@ -16,6 +16,7 @@
 
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
+        <item name="pressedBackground">@drawable/list_item_pressed_bg</item>
     </style>
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
     </style>

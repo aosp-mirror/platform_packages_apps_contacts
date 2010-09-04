@@ -68,6 +68,7 @@ public class ContactListItemView extends ViewGroup {
     private final int mPresenceIconMargin;
     private final int mHeaderTextWidth;
 
+    private Drawable mPressedBackgroundDrawable;
     private Drawable mSelectedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
@@ -141,6 +142,13 @@ public class ContactListItemView extends ViewGroup {
         TypedArray a = context.obtainStyledAttributes(null, com.android.internal.R.styleable.Theme);
         mPreferredHeight =
                 a.getDimensionPixelSize(android.R.styleable.Theme_listPreferredItemHeight, 0);
+        a.recycle();
+
+        mPressedBackgroundDrawable = getResources().getDrawable(R.drawable.list_item_pressed_bg);
+
+        a = getContext().obtainStyledAttributes(attrs,R.styleable.ContactListItemView);
+        mPressedBackgroundDrawable = a.getDrawable(
+                R.styleable.ContactListItemView_pressedBackground);
         a.recycle();
 
         Resources resources = context.getResources();
@@ -285,9 +293,11 @@ public class ContactListItemView extends ViewGroup {
         }
 
         if (mItemSelected) {
-            ensureCheckedBackgroundDivider();
+            ensureSelectedBackgroundDrawable();
             mSelectedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
         }
+
+        mPressedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
 
         topBound += mPaddingTop;
         bottomBound -= mPaddingBottom;
@@ -411,7 +421,7 @@ public class ContactListItemView extends ViewGroup {
     /**
      * Loads the drawable for the item background used when the item is checked.
      */
-    private void ensureCheckedBackgroundDivider() {
+    private void ensureSelectedBackgroundDrawable() {
         if (mSelectedBackgroundDrawable == null) {
             mSelectedBackgroundDrawable = mContext.getResources().getDrawable(
                     R.drawable.list_item_checked_bg);
@@ -476,8 +486,17 @@ public class ContactListItemView extends ViewGroup {
     }
 
     @Override
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+        mPressedBackgroundDrawable.setState(getDrawableState());
+        invalidate();
+    }
+
+    @Override
     public void dispatchDraw(Canvas canvas) {
-        if (mItemSelected) {
+        if (isPressed()) {
+            mPressedBackgroundDrawable.draw(canvas);
+        } else if (mItemSelected) {
             mSelectedBackgroundDrawable.draw(canvas);
         }
         if (mHeaderVisible) {

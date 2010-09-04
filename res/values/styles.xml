@@ -113,8 +113,14 @@
     <style name="DummyAnimation">
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
-    
+
+    <declare-styleable name="ContactListItemView">
+        <!-- An attribute that specifies a custom drawable for the pressed state in the contact list-->
+        <attr name="pressedBackground" format="reference"/>
+    </declare-styleable>
+
     <style name="ContactBrowserTheme" parent="@android:Theme">
+        <item name="pressedBackground">@*android:drawable/list_selector_background</item>
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme">
