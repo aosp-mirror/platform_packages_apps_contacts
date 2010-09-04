@@ -233,6 +233,9 @@ public class ContactListAizyView extends View {
             getLocationInWindow(mWindowOffset);
         }
 
+        // Not initialized? Ignore
+        if (mVirtualSections.size() == 0) return true;
+
         // Scroll the list itself
         final int boundedY = Math.min(Math.max(0, (int) (event.getY())), getHeight() - 1);
         final int index = boundedY * mVirtualSections.size() / getHeight();
@@ -273,7 +276,6 @@ public class ContactListAizyView extends View {
         // Perform the actual scrolling
         if (mListener != null) mListener.onScroll(virtualSection.getRealSectionPosition());
 
-        super.onTouchEvent(event);
         return true;
     }
 
