@@ -203,7 +203,11 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         }
 
         bindName(view, cursor);
-        bindQuickContact(view, partition, cursor);
+        if (isQuickContactEnabled()) {
+            bindQuickContact(view, partition, cursor);
+        } else {
+            bindPhoto(view, cursor);
+        }
         bindPresence(view, cursor);
 
         // Make the call button visible if requested.
