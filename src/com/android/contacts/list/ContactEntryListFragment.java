@@ -235,6 +235,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        mContactsPrefs = new ContactsPreferences(mContext);
         restoreSavedState(savedState);
     }
 
@@ -274,21 +275,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onStart() {
-
-        if (mContactsPrefs == null) {
-            mContactsPrefs = new ContactsPreferences(mContext);
-        }
+        mContactsPrefs.registerChangeListener(mPreferencesChangeListener);
 
         if (mProviderStatusLoader == null) {
             mProviderStatusLoader = new ProviderStatusLoader(mContext);
         }
 
-        loadPreferences(mContactsPrefs);
-
-        if (mListView instanceof ContactEntryListView) {
-            ContactEntryListView listView = (ContactEntryListView)mListView;
-            listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
-        }
+        loadPreferences();
 
         mForceLoad = false;
         mLoadDirectoryList = true;
@@ -421,6 +414,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onStop() {
         super.onStop();
+        mContactsPrefs.unregisterChangeListener();
         mAdapter.clearPartitions();
     }
 
@@ -601,9 +595,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mContextMenuAdapter;
     }
 
-    protected void loadPreferences(ContactsPreferences contactsPrefs) {
-        setContactNameDisplayOrder(contactsPrefs.getDisplayOrder());
-        setSortOrder(contactsPrefs.getSortOrder());
+    protected void loadPreferences() {
+        setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
+        setSortOrder(mContactsPrefs.getSortOrder());
+        if (mListView instanceof ContactEntryListView) {
+            ContactEntryListView listView = (ContactEntryListView)mListView;
+            listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
+        }
     }
 
     @Override
@@ -994,4 +992,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 //                    ContactsContract.REQUESTING_PACKAGE_PARAM_KEY, callingPackage).build();
 //        }
 //    }
+    private ContactsPreferences.ChangeListener mPreferencesChangeListener =
+            new ContactsPreferences.ChangeListener() {
+        @Override
+        public void onChange() {
+            loadPreferences();
+            reloadData();
+        }
+    };
 }
