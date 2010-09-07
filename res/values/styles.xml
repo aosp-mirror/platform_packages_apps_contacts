@@ -50,9 +50,6 @@
         <item name="android:src">@drawable/ic_btn_round_less</item>
     </style>
 
-    <style name="JoinContactActivityTheme" parent="android:Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
     <style name="CallDetailActivityTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -117,15 +114,64 @@
     <declare-styleable name="ContactListItemView">
         <!-- An attribute that specifies a custom drawable for the pressed state in the contact list-->
         <attr name="pressedBackground" format="reference"/>
+
+        <attr name="list_item_padding_top" format="dimension"/>
+        <attr name="list_item_padding_right" format="dimension"/>
+        <attr name="list_item_padding_bottom" format="dimension"/>
+        <attr name="list_item_padding_left" format="dimension"/>
+        <attr name="list_item_gap_between_image_and_text" format="dimension"/>
+        <attr name="list_item_gap_between_label_and_data" format="dimension"/>
+        <attr name="list_item_call_button_padding" format="dimension"/>
+        <attr name="list_item_vertical_divider_margin" format="dimension"/>
+        <attr name="list_item_presence_icon_margin" format="dimension"/>
+        <attr name="list_item_header_text_width" format="dimension"/>
+        <attr name="list_item_photo_size" format="dimension"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="MultiplePhonePickerItemView">
+        <attr name="list_item_header_chip_width" format="dimension"/>
+        <attr name="list_item_header_chip_right_margin" format="dimension"/>
+        <attr name="list_item_header_checkbox_margin" format="dimension"/>
     </declare-styleable>
 
     <style name="ContactBrowserTheme" parent="@android:Theme">
         <item name="pressedBackground">@*android:drawable/list_selector_background</item>
+        <item name="list_item_padding_top">4dip</item>
+        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_bottom">4dip</item>
+        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_call_button_padding">14dip</item>
+        <item name="list_item_vertical_divider_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_header_text_width">56dip</item>
+        <item name="list_item_photo_size">56dip</item>
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme">
+        <item name="list_item_padding_top">4dip</item>
+        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_bottom">4dip</item>
+        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_call_button_padding">14dip</item>
+        <item name="list_item_vertical_divider_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_header_text_width">56dip</item>
+        <item name="list_item_photo_size">56dip</item>
+        <item name="list_item_header_chip_width">4dip</item>
+        <item name="list_item_header_chip_right_margin">4dip</item>
+        <item name="list_item_header_checkbox_margin">5dip</item>
     </style>
 
+    <style name="JoinContactActivityTheme" parent="ContactPickerTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
     <style name="ContactsPreferencesTheme" parent="@android:Theme">
     </style>
 </resources>

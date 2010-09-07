@@ -28,22 +28,6 @@
     <dimen name="contact_shortcut_frame_width">50dip</dimen>    
     <dimen name="contact_shortcut_frame_height">56dip</dimen>    
     
-    <!-- Dimensions for a list item -->
-    <dimen name="list_item_padding_top">4dip</dimen>    
-    <dimen name="list_item_padding_right">11dip</dimen>    
-    <dimen name="list_item_padding_bottom">4dip</dimen>    
-    <dimen name="list_item_padding_left">4dip</dimen>    
-    <dimen name="list_item_gap_between_image_and_text">8dip</dimen>    
-    <dimen name="list_item_gap_between_label_and_data">5dip</dimen>    
-    <dimen name="list_item_call_button_padding">14dip</dimen>    
-    <dimen name="list_item_vertical_divider_margin">5dip</dimen>    
-    <dimen name="list_item_presence_icon_margin">5dip</dimen>    
-    <dimen name="list_item_header_text_width">56dip</dimen>    
-    <dimen name="list_item_header_chip_width">4dip</dimen>
-    <dimen name="list_item_header_chip_right_margin">4dip</dimen>
-    <dimen name="list_item_header_checkbox_margin">5dip</dimen>
-    <dimen name="list_item_photo_size">56dip</dimen>
-
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
     <!-- Size of the text in the aizy visual scroll control -->

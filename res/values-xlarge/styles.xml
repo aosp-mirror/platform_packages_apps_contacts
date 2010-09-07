@@ -17,13 +17,34 @@
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
         <item name="pressedBackground">@drawable/list_item_pressed_bg</item>
+        <item name="list_item_padding_top">0dip</item>
+        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_bottom">0dip</item>
+        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_call_button_padding">14dip</item>
+        <item name="list_item_vertical_divider_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_header_text_width">56dip</item>
+        <item name="list_item_photo_size">64dip</item>
     </style>
+
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
+        <item name="list_item_padding_top">0dip</item>
+        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_bottom">0dip</item>
+        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_call_button_padding">14dip</item>
+        <item name="list_item_vertical_divider_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_header_text_width">56dip</item>
+        <item name="list_item_photo_size">64dip</item>
     </style>
+    
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Dialog">
-    </style>
-    <style name="JoinContactActivityTheme" parent="@android:Theme.Dialog">
-        <item name="android:windowContentOverlay">@null</item>
     </style>
     <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">
         <item name="android:windowContentOverlay">@null</item>

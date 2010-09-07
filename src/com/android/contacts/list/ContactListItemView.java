@@ -22,7 +22,6 @@ import com.android.contacts.widget.TextWithHighlighting;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -95,6 +94,7 @@ public class ContactListItemView extends ViewGroup {
     private TextView mSnippetView;
     private ImageView mPresenceIcon;
 
+    private int mDefaultPhotoViewSize;
     private int mPhotoViewWidth;
     private int mPhotoViewHeight;
     private int mLine1Height;
@@ -111,7 +111,6 @@ public class ContactListItemView extends ViewGroup {
     public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
 
     private CharSequence mUnknownNameText;
-
 
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
@@ -144,34 +143,33 @@ public class ContactListItemView extends ViewGroup {
                 a.getDimensionPixelSize(android.R.styleable.Theme_listPreferredItemHeight, 0);
         a.recycle();
 
-        mPressedBackgroundDrawable = getResources().getDrawable(R.drawable.list_item_pressed_bg);
-
         a = getContext().obtainStyledAttributes(attrs,R.styleable.ContactListItemView);
         mPressedBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_pressedBackground);
-        a.recycle();
+        mVerticalDividerMargin = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_vertical_divider_margin, 0);
+        mPaddingTop = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_top, 0);
+        mPaddingBottom = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_bottom, 0);
+        mPaddingLeft = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_left, 0);
+        mPaddingRight = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_right, 0);
+        mGapBetweenImageAndText = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
+        mGapBetweenLabelAndData = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_gap_between_label_and_data, 0);
+        mCallButtonPadding = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_call_button_padding, 0);
+        mPresenceIconMargin = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_presence_icon_margin, 0);
+        mHeaderTextWidth = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_header_text_width, 0);
+        mDefaultPhotoViewSize = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_photo_size, 0);
 
-        Resources resources = context.getResources();
-        mVerticalDividerMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_vertical_divider_margin);
-        mPaddingTop =
-                resources.getDimensionPixelOffset(R.dimen.list_item_padding_top);
-        mPaddingBottom =
-                resources.getDimensionPixelOffset(R.dimen.list_item_padding_bottom);
-        mPaddingLeft =
-                resources.getDimensionPixelOffset(R.dimen.list_item_padding_left);
-        mPaddingRight =
-                resources.getDimensionPixelOffset(R.dimen.list_item_padding_right);
-        mGapBetweenImageAndText =
-                resources.getDimensionPixelOffset(R.dimen.list_item_gap_between_image_and_text);
-        mGapBetweenLabelAndData =
-                resources.getDimensionPixelOffset(R.dimen.list_item_gap_between_label_and_data);
-        mCallButtonPadding =
-                resources.getDimensionPixelOffset(R.dimen.list_item_call_button_padding);
-        mPresenceIconMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_presence_icon_margin);
-        mHeaderTextWidth =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_text_width);
+        a.recycle();
     }
 
     /**
@@ -297,7 +295,9 @@ public class ContactListItemView extends ViewGroup {
             mSelectedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
         }
 
-        mPressedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
+        if (mPressedBackgroundDrawable != null) {
+            mPressedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
+        }
 
         topBound += mPaddingTop;
         bottomBound -= mPaddingBottom;
@@ -479,8 +479,7 @@ public class ContactListItemView extends ViewGroup {
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 a.recycle();
             } else {
-                mPhotoViewWidth = mPhotoViewHeight =
-                    mContext.getResources().getDimensionPixelSize(R.dimen.list_item_photo_size);
+                mPhotoViewWidth = mPhotoViewHeight = mDefaultPhotoViewSize;
             }
         }
     }
@@ -488,13 +487,15 @@ public class ContactListItemView extends ViewGroup {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        mPressedBackgroundDrawable.setState(getDrawableState());
-        invalidate();
+        if (mPressedBackgroundDrawable != null) {
+            mPressedBackgroundDrawable.setState(getDrawableState());
+            invalidate();
+        }
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (isPressed()) {
+        if (isPressed() && mPressedBackgroundDrawable != null) {
             mPressedBackgroundDrawable.draw(canvas);
         } else if (mItemSelected) {
             mSelectedBackgroundDrawable.draw(canvas);

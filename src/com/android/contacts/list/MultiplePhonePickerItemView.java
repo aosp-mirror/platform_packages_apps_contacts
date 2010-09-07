@@ -19,7 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -44,13 +44,15 @@ public class MultiplePhonePickerItemView extends ContactListItemView {
 
     public MultiplePhonePickerItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Resources resources = context.getResources();
-        mChipWidth =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_width);
-        mChipRightMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_chip_right_margin);
-        mCheckBoxMargin =
-                resources.getDimensionPixelOffset(R.dimen.list_item_header_checkbox_margin);
+        TypedArray a = getContext().obtainStyledAttributes(
+                attrs, R.styleable.MultiplePhonePickerItemView);
+        mChipWidth = a.getDimensionPixelOffset(
+                R.styleable.MultiplePhonePickerItemView_list_item_header_chip_width, 0);
+        mChipRightMargin = a.getDimensionPixelOffset(
+                R.styleable.MultiplePhonePickerItemView_list_item_header_chip_right_margin, 0);
+        mCheckBoxMargin = a.getDimensionPixelOffset(
+                R.styleable.MultiplePhonePickerItemView_list_item_header_checkbox_margin, 0);
+        a.recycle();
     }
 
     @Override
