@@ -23,6 +23,8 @@ import com.android.contacts.model.Sources;
 import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -37,12 +39,12 @@ import java.util.ArrayList;
 
 /**
  * Shows a dialog asking the user which account to chose.
- * The result is passed back to the Fragment with the Id that is passed in the constructor
- * (or the Activity if -1 is passed).
- * The target must implement {@link SelectAccountDialogFragment.Listener}.
+ * The result is passed back to the Fragment that is configured by
+ * {@link Fragment#setTargetFragment(Fragment, int)}, which has to implement
+ * {@link SelectAccountDialogFragment.Listener}.
  * Does not perform any action by itself.
  */
-public class SelectAccountDialogFragment extends TargetedDialogFragment {
+public class SelectAccountDialogFragment extends DialogFragment {
     public static final String TAG = "SelectAccountDialogFragment";
     private static final String IS_NEW_CONTACT = "IS_NEW_CONTACT";
 
@@ -51,8 +53,7 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
     public SelectAccountDialogFragment() {
     }
 
-    public SelectAccountDialogFragment(int targetFragmentId, boolean isNewContact) {
-        super(targetFragmentId);
+    public SelectAccountDialogFragment(boolean isNewContact) {
         mIsNewContact = isNewContact;
     }
 
@@ -85,14 +86,17 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
                 android.R.layout.simple_list_item_2, accounts) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
+                final View resultView;
                 if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
+                    resultView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
                             parent, false);
+                } else {
+                    resultView = convertView;
                 }
 
                 // TODO: show icon along with title
-                final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
-                final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+                final TextView text1 = (TextView)resultView.findViewById(android.R.id.text1);
+                final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
                 final ContactsSource source = sources.getInflatedSource(account.type,
@@ -101,24 +105,27 @@ public class SelectAccountDialogFragment extends TargetedDialogFragment {
                 text1.setText(account.name);
                 text2.setText(source.getDisplayLabel(getContext()));
 
-                return convertView;
+                return resultView;
             }
         };
 
-        final Listener targetListener = (Listener) getTarget();
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                targetListener.onAccountChosen(accountAdapter.getItem(which), mIsNewContact);
+                final Listener target = (Listener) getTargetFragment();
+                target.onAccountChosen(accountAdapter.getItem(which), mIsNewContact);
             }
         };
 
         final DialogInterface.OnCancelListener cancelListener =
                 new DialogInterface.OnCancelListener() {
+            @Override
             public void onCancel(DialogInterface dialog) {
-                targetListener.onAccountSelectorCancelled();
+                final Listener target = (Listener) getTargetFragment();
+                target.onAccountSelectorCancelled();
             }
         };
 

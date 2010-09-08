@@ -20,23 +20,21 @@ import com.android.contacts.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 /**
  * Shows a dialog asking the user whether to split the contact. The result is passed back
- * to the Fragment with the Id that is passed in the constructor (or the Activity if -1 is passed).
- * The target must implement {@link SplitContactConfirmationDialogFragment.Listener}
+ * to the Fragment that is configured by {@link Fragment#setTargetFragment(Fragment, int)}, which
+ * has to implement {@link SplitContactConfirmationDialogFragment.Listener}.
  * Does not split the contact itself.
  */
-public class SplitContactConfirmationDialogFragment extends TargetedDialogFragment {
+public class SplitContactConfirmationDialogFragment extends DialogFragment {
     public static final String TAG = "SplitContactConfirmationDialog";
 
     public SplitContactConfirmationDialogFragment() {
-    }
-
-    public SplitContactConfirmationDialogFragment(int targetFragmentId) {
-        super(targetFragmentId);
     }
 
     @Override
@@ -46,8 +44,9 @@ public class SplitContactConfirmationDialogFragment extends TargetedDialogFragme
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setMessage(R.string.splitConfirmation);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
-                final Listener targetListener = (Listener) getTarget();
+                final Listener targetListener = (Listener) getTargetFragment();
                 targetListener.onSplitContactConfirmed();
             }
         });

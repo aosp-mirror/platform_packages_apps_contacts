@@ -20,6 +20,8 @@ import com.android.contacts.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -29,21 +31,18 @@ import android.widget.ListAdapter;
 
 /**
  * Shows a dialog asking the user whether to take a photo or pick a photo from the gallery.
- * The result is passed back to the Fragment with the Id that is passed in the constructor
- * (or the Activity if -1 is passed).
- * The target must implement {@link PickPhotoDialogFragment.Listener}.
+ * The result is passed back to the Fragment that is configured by
+ * {@link Fragment#setTargetFragment(Fragment, int)}, which
+ * has to implement {@link PickPhotoDialogFragment.Listener}.
  * Does not perform any action by itself.
  */
-public class PickPhotoDialogFragment extends TargetedDialogFragment {
+public class PickPhotoDialogFragment extends DialogFragment {
     public static final String TAG = "PickPhotoDialogFragment";
 
     public PickPhotoDialogFragment() {
     }
 
-    public PickPhotoDialogFragment(int targetFragmentId) {
-        super(targetFragmentId);
-    }
-
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Wrap our context to inflate list items using the light theme
         final Context dialogContext = new ContextThemeWrapper(getActivity(),
@@ -58,9 +57,10 @@ public class PickPhotoDialogFragment extends TargetedDialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
         builder.setTitle(R.string.attachToContact);
         builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                final Listener targetListener = (Listener) getTarget();
+                final Listener targetListener = (Listener) getTargetFragment();
                 switch(which) {
                     case 0:
                         targetListener.onTakePhotoChosen();
