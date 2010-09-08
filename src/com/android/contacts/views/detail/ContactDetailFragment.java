@@ -918,8 +918,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     return;  // Don't show a dialog.
                 }
 
-                final SelectAccountDialogFragment dialog =
-                        new SelectAccountDialogFragment(getId(), true);
+                final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(true);
+                dialog.setTargetFragment(this, 0);
                 dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
                 break;
             }

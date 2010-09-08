@@ -19,7 +19,6 @@ package com.android.contacts.views.editor;
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Editor;
 import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta;
@@ -42,8 +41,6 @@ import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -56,7 +53,6 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
@@ -80,7 +76,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,9 +84,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewStub;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,7 +99,8 @@ import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
         SplitContactConfirmationDialogFragment.Listener, PickPhotoDialogFragment.Listener,
-        SelectAccountDialogFragment.Listener, AggregationSuggestionEngine.Listener {
+        SelectAccountDialogFragment.Listener, ModifyPhotoDialogFragment.Listener,
+        AggregationSuggestionEngine.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -263,8 +257,7 @@ public class ContactEditorFragment extends Fragment implements
         Log.d(TAG, "onActivityCreated(" + savedInstanceState + ")");
 
         // Handle initial actions only when existing state missing
-        final boolean hasIncomingState = savedInstanceState != null &&
-                savedInstanceState.containsKey(KEY_EDIT_STATE);
+        final boolean hasIncomingState = savedInstanceState != null;
 
         if (!hasIncomingState) {
             if (Intent.ACTION_EDIT.equals(mAction)) {
@@ -371,9 +364,9 @@ public class ContactEditorFragment extends Fragment implements
             return;  // Don't show a dialog.
         }
 
-        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(getId(),
-                isNewContact);
-        dialog.show(getActivity(), SelectAccountDialogFragment.TAG);
+        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(isNewContact);
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
     }
 
     /**
@@ -446,8 +439,31 @@ public class ContactEditorFragment extends Fragment implements
                         R.layout.item_read_only_contact_editor, mContent, false);
             }
             final PhotoEditorView photoEditor = editor.getPhotoEditor();
-            photoEditor.setEditorListener(new PhotoListener(rawContactId, source.readOnly,
-                    photoEditor));
+            final boolean sourceReadOnly = source.readOnly;
+            photoEditor.setEditorListener(new EditorListener() {
+                @Override
+                public void onRequest(int request) {
+                    if (!hasValidState()) return;
+
+                    if (request == EditorListener.REQUEST_PICK_PHOTO) {
+                        if (editor.hasSetPhoto()) {
+                            // There is an existing photo, offer to remove, replace, or promote to
+                            // primary
+                            final ModifyPhotoDialogFragment fragment =
+                                    new ModifyPhotoDialogFragment(sourceReadOnly, rawContactId);
+                            fragment.setTargetFragment(ContactEditorFragment.this, 0);
+                            fragment.show(getFragmentManager(), ModifyPhotoDialogFragment.TAG);
+                        } else if (!sourceReadOnly) {
+                            // No photo set and not read-only, try to set the photo
+                            doPickPhotoAction(rawContactId);
+                        }
+                    }
+                }
+
+                @Override
+                public void onDeleted(Editor removedEditor) {
+                }
+            });
 
             mContent.addView(editor);
             editor.setState(entity, source, mViewIdGenerator);
@@ -463,7 +479,7 @@ public class ContactEditorFragment extends Fragment implements
                     }
 
                     @Override
-                    public void onDeleted(Editor editor) {
+                    public void onDeleted(Editor removedEditor) {
                     }
                 });
 
@@ -545,8 +561,9 @@ public class ContactEditorFragment extends Fragment implements
         if (!hasValidState()) return false;
 
         mRawContactIdRequestingPhoto = rawContactId;
-        final PickPhotoDialogFragment dialogFragment = new PickPhotoDialogFragment(getId());
-        dialogFragment.show(getActivity(), PickPhotoDialogFragment.TAG);
+        final PickPhotoDialogFragment dialogFragment = new PickPhotoDialogFragment();
+        dialogFragment.setTargetFragment(this, 0);
+        dialogFragment.show(getFragmentManager(), PickPhotoDialogFragment.TAG);
 
         return true;
     }
@@ -555,8 +572,9 @@ public class ContactEditorFragment extends Fragment implements
         if (!hasValidState()) return false;
 
         final SplitContactConfirmationDialogFragment dialog =
-                new SplitContactConfirmationDialogFragment(getId());
-        dialog.show(getActivity(), SplitContactConfirmationDialogFragment.TAG);
+                new SplitContactConfirmationDialogFragment();
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), SplitContactConfirmationDialogFragment.TAG);
         return true;
     }
 
@@ -894,6 +912,7 @@ public class ContactEditorFragment extends Fragment implements
         /**
          * Compare EntityDeltas for sorting the stack of editors.
          */
+        @Override
         public int compare(EntityDelta one, EntityDelta two) {
             // Check direct equality
             if (one.equals(two)) {
@@ -960,105 +979,6 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             return (int)(oneId - twoId);
-        }
-    }
-
-    /**
-     * Class that listens to requests coming from photo editors
-     */
-    private class PhotoListener implements EditorListener, DialogInterface.OnClickListener {
-        private long mRawContactId;
-        private boolean mReadOnly;
-        private PhotoEditorView mEditor;
-
-        public PhotoListener(long rawContactId, boolean readOnly, PhotoEditorView editor) {
-            mRawContactId = rawContactId;
-            mReadOnly = readOnly;
-            mEditor = editor;
-        }
-
-        public void onDeleted(Editor editor) {
-            // Do nothing
-        }
-
-        public void onRequest(int request) {
-            if (!hasValidState()) return;
-
-            if (request == EditorListener.REQUEST_PICK_PHOTO) {
-                if (mEditor.hasSetPhoto()) {
-                    // There is an existing photo, offer to remove, replace, or promoto to primary
-                    createPhotoDialog().show();
-                } else if (!mReadOnly) {
-                    // No photo set and not read-only, try to set the photo
-                    doPickPhotoAction(mRawContactId);
-                }
-            }
-        }
-
-        /**
-         * Prepare dialog for picking a new {@link EditType} or entering a
-         * custom label. This dialog is limited to the valid types as determined
-         * by {@link EntityModifier}.
-         */
-        public Dialog createPhotoDialog() {
-            // Wrap our context to inflate list items using correct theme
-            final Context dialogContext = new ContextThemeWrapper(mContext,
-                    android.R.style.Theme_Light);
-
-            String[] choices;
-            if (mReadOnly) {
-                choices = new String[1];
-                choices[0] = mContext.getString(R.string.use_photo_as_primary);
-            } else {
-                choices = new String[3];
-                choices[0] = mContext.getString(R.string.use_photo_as_primary);
-                choices[1] = mContext.getString(R.string.removePicture);
-                choices[2] = mContext.getString(R.string.changePicture);
-            }
-            final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
-                    android.R.layout.simple_list_item_1, choices);
-
-            final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
-            builder.setTitle(R.string.attachToContact);
-            builder.setSingleChoiceItems(adapter, -1, this);
-            return builder.create();
-        }
-
-        /**
-         * Called when something in the dialog is clicked
-         */
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-
-            switch (which) {
-                case 0:
-                    // Set the photo as super primary
-                    mEditor.setSuperPrimary(true);
-
-                    // And set all other photos as not super primary
-                    int count = mContent.getChildCount();
-                    for (int i = 0; i < count; i++) {
-                        View childView = mContent.getChildAt(i);
-                        if (childView instanceof BaseContactEditorView) {
-                            BaseContactEditorView editor = (BaseContactEditorView) childView;
-                            PhotoEditorView photoEditor = editor.getPhotoEditor();
-                            if (!photoEditor.equals(mEditor)) {
-                                photoEditor.setSuperPrimary(false);
-                            }
-                        }
-                    }
-                    break;
-
-                case 1:
-                    // Remove the photo
-                    mEditor.setPhotoBitmap(null);
-                    break;
-
-                case 2:
-                    // Pick a new photo for the contact
-                    doPickPhotoAction(mRawContactId);
-                    break;
-            }
         }
     }
 
@@ -1492,8 +1412,8 @@ public class ContactEditorFragment extends Fragment implements
             case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
                 // As we are coming back to this view, the editor will be reloaded automatically,
                 // which will cause the photo that is set here to disappear. To prevent this,
-                // we remember set a flag which is interpreted after loading.
-                // This is set here anyway to reduce flickering
+                // we remember to set a flag which is interpreted after loading.
+                // This photo is set here already to reduce flickering.
                 mPhoto = data.getParcelableExtra("data");
                 setPhoto(mRawContactIdRequestingPhoto, mPhoto);
                 mRawContactIdRequestingPhotoAfterLoad = mRawContactIdRequestingPhoto;
@@ -1501,7 +1421,6 @@ public class ContactEditorFragment extends Fragment implements
 
                 break;
             }
-
             case REQUEST_CODE_CAMERA_WITH_DATA: {
                 doCropPhoto(mCurrentPhotoFile);
                 break;
@@ -1511,6 +1430,7 @@ public class ContactEditorFragment extends Fragment implements
                     final long contactId = ContentUris.parseId(data.getData());
                     joinAggregate(contactId);
                 }
+                break;
             }
         }
     }
@@ -1629,9 +1549,54 @@ public class ContactEditorFragment extends Fragment implements
      */
     @Override
     public void onAccountSelectorCancelled() {
-        // If nothing remains, close activity
-        if (!hasValidState()) {
-            if (mListener != null) mListener.onAccountSelectorAborted();
+        if (!hasValidState() && mListener != null) {
+            mListener.onAccountSelectorAborted();
         }
+    }
+
+    /**
+     * User has chosen to set the selected photo as the (super) primary photo
+     */
+    @Override
+    public void onUseAsPrimaryChosen(long rawContactId) {
+        // Set the IsSuperPrimary for each editor
+        int count = mContent.getChildCount();
+        for (int i = 0; i < count; i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseContactEditorView) {
+                final BaseContactEditorView editor = (BaseContactEditorView) childView;
+                final PhotoEditorView photoEditor = editor.getPhotoEditor();
+                photoEditor.setSuperPrimary(editor.getRawContactId() == rawContactId);
+            }
+        }
+    }
+
+    /**
+     * User has chosen to remove a picture
+     */
+    @Override
+    public void onRemovePictureChose(long rawContactId) {
+        // find the correct editor and remove it's photo
+        final int editorCount = mContent.getChildCount();
+        for (int i = 0; i < editorCount; i++) {
+            final View child = mContent.getChildAt(i);
+            if (child instanceof BaseContactEditorView) {
+                final BaseContactEditorView editor =
+                    (BaseContactEditorView) child;
+                if (editor.getRawContactId() == rawContactId) {
+                    editor.setPhotoBitmap(null);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * User has chosen to change a picture
+     */
+    @Override
+    public void onChangePictureChosen(long rawContactId) {
+        // Pick a new photo for the contact
+        doPickPhotoAction(rawContactId);
     }
 }
