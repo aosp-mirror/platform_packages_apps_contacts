@@ -777,11 +777,12 @@ public class QuickContactWindow implements Window.Callback,
                 if (!TextUtils.isEmpty(address)) {
                     final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
                     mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
-                    // TODO: This item currently appears with the same "phone"
-                    // icon as regular phone numbers, which is confusing if a
-                    // contact has both a regular number *and* a SIP address.
-                    // Need to figure out a way for this item to have a
-                    // special SIP-specific variant of that icon.
+                    // Note that this item will get a SIP-specific variant
+                    // of the "call phone" icon, rather than the standard
+                    // app icon for the Phone app (which we show for
+                    // regular phone numbers.)  That's because the phone
+                    // app explicitly specifies an android:icon attribute
+                    // for the SIP-related intent-filters in its manifest.
                 }
             } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
                 final String number = getAsString(cursor, Phone.NUMBER);

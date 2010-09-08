@@ -443,9 +443,18 @@ public class FallbackSource extends ContactsSource {
     protected DataKind inflateSipAddress(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(SipAddress.CONTENT_ITEM_TYPE);
         if (kind == null) {
-            // TODO: icon here should really be a SIP-specific variant of sym_action_call
+            // The icon specified here is the one that gets displayed for
+            // "Internet call" items, in the "view contact" UI within the
+            // Contacts app.
+            //
+            // This is independent of the "SIP call" icon that gets
+            // displayed in the Quick Contacts widget, which comes from
+            // the android:icon attribute of the SIP-related
+            // intent-filters in the Phone app's manifest.
+
             kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
                     R.string.label_sip_address, android.R.drawable.sym_action_call, 130, true));
+
             kind.isList = false;
             kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
