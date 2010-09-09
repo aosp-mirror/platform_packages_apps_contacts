@@ -18,7 +18,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dip"
+    android:layout_height="56dip"
     android:background="@drawable/directory_bg"
     >
     <TextView
@@ -49,7 +49,6 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="6dip"
-        android:layout_marginBottom="-4dip"
         android:layout_above="@id/display_name"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:singleLine="true"
