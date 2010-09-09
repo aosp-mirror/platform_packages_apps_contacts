@@ -304,13 +304,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             Partition partition = mAdapter.getPartition(i);
             if (partition instanceof DirectoryPartition) {
                 DirectoryPartition directoryPartition = (DirectoryPartition)partition;
-                if (mLoadPriorityDirectoriesOnly == directoryPartition.isPriorityDirectory()) {
-                    startLoadingDirectoryPartition(i);
+                if (directoryPartition.getStatus() == DirectoryPartition.STATUS_NOT_LOADED) {
+                    if (directoryPartition.isPriorityDirectory() || !mLoadPriorityDirectoriesOnly) {
+                        startLoadingDirectoryPartition(i);
+                    }
                 }
             } else {
                 getLoaderManager().initLoader(i, null, this);
             }
         }
+
+        // Next time this method is called, we should start loading non-priority directories
+        mLoadPriorityDirectoriesOnly = false;
     }
 
     @Override
@@ -331,6 +336,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private void startLoadingDirectoryPartition(int partitionIndex) {
         DirectoryPartition partition = (DirectoryPartition)mAdapter.getPartition(partitionIndex);
+        partition.setStatus(DirectoryPartition.STATUS_LOADING);
         long directoryId = partition.getDirectoryId();
         if (mForceLoad) {
             if (directoryId == Directory.DEFAULT) {
@@ -384,20 +390,19 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         int loaderId = loader.getId();
         if (loaderId == DIRECTORY_LOADER_ID) {
-            removePendingDirectorySearchRequests();
             mAdapter.changeDirectories(data);
+            startLoading();
         } else {
             onPartitionLoaded(loaderId, data);
-        }
-
-        if (isDirectorySearchEnabled()) {
-            if (mLoadDirectoryList) {
-                mLoadDirectoryList = false;
-                getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
-            } else if (mLoadPriorityDirectoriesOnly) {
-                mLoadPriorityDirectoriesOnly = false;
-                startLoading();
+            if (isDirectorySearchEnabled()) {
+                if (mLoadDirectoryList) {
+                    mLoadDirectoryList = false;
+                    getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
+                } else {
+                    startLoading();
+                }
             }
+
         }
 
 // TODO fix the empty view
@@ -425,6 +430,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void reloadData() {
+        removePendingDirectorySearchRequests();
         mAdapter.onDataReload();
         mLoadPriorityDirectoriesOnly = true;
         mForceLoad = true;

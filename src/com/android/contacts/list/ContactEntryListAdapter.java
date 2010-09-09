@@ -108,9 +108,9 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             if (partition instanceof DirectoryPartition) {
                 DirectoryPartition directoryPartition = (DirectoryPartition)partition;
                 if (!directoryPartition.isLoading()) {
-                    directoryPartition.setLoading(true);
                     notify = true;
                 }
+                directoryPartition.setStatus(DirectoryPartition.STATUS_NOT_LOADED);
             }
         }
         if (notify) {
@@ -269,7 +269,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
         Partition partition = getPartition(partitionIndex);
         if (partition instanceof DirectoryPartition) {
-            ((DirectoryPartition)partition).setLoading(false);
+            ((DirectoryPartition)partition).setStatus(DirectoryPartition.STATUS_LOADED);
         }
 
         super.changeCursor(partitionIndex, cursor);
