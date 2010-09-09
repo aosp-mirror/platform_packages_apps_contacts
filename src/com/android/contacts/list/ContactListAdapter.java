@@ -156,7 +156,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         Uri uri = Contacts.getLookupUri(contactId, lookupKey);
         long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
-        if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
+        if (directoryId != Directory.DEFAULT) {
             uri = uri.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
