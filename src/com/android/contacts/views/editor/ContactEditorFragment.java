@@ -668,6 +668,11 @@ public class ContactEditorFragment extends Fragment implements
             return false;
         }
 
+        // If we are about to close the editor - there is no need to refresh the data
+        if (saveMode == SaveMode.CLOSE) {
+            getLoaderManager().stopLoader(LOADER_DATA);
+        }
+
         mStatus = Status.SAVING;
         final PersistTask task = new PersistTask(this, saveMode);
         task.execute(mState);

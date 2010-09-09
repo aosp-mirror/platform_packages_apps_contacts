@@ -16,6 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.widget.ListViewUtils;
 
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -27,6 +28,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
+import android.widget.ListView;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -42,6 +44,7 @@ public abstract class ContactBrowseListFragment extends
     private Uri mSelectedContactUri;
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
+    private boolean mScrollToSelectionRequested;
 
     private OnContactBrowserActionListener mListener;
 
@@ -228,5 +231,35 @@ public abstract class ContactBrowseListFragment extends
     protected void finish() {
         super.finish();
         mListener.onFinishAction();
+    }
+
+    public void scrollToSelectedContact() {
+        mScrollToSelectionRequested = true;
+        scrollToSelectedContactIfNeeded();
+    }
+
+    @Override
+    protected void completeRestoreInstanceState() {
+        super.completeRestoreInstanceState();
+        scrollToSelectedContactIfNeeded();
+    }
+
+    private void scrollToSelectedContactIfNeeded() {
+        if (!mScrollToSelectionRequested) {
+            return;
+        }
+
+        ContactListAdapter adapter = getAdapter();
+        if (adapter == null) {
+            return;
+        }
+
+        int position = adapter.getSelectedContactPosition();
+        if (position != -1) {
+            mScrollToSelectionRequested = false;
+            ListView listView = getListView();
+            ListViewUtils.smartSmoothScrollToPosition(
+                    listView, position + listView.getHeaderViewsCount());
+        }
     }
 }

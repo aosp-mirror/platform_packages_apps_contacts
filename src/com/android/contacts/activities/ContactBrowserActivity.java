@@ -75,6 +75,7 @@ public class ContactBrowserActivity extends Activity
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
+    private static final int SUBACTIVITY_EDIT_CONTACT = 4;
 
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -190,6 +191,7 @@ public class ContactBrowserActivity extends Activity
             }
             mListFragment.setSelectedContactUri(uri);
             setupContactDetailFragment(uri);
+            mListFragment.scrollToSelectedContact();
         }
     }
 
@@ -281,6 +283,10 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
+        // If we are closing the editor, it's a good idea to scroll the list
+        // to the contact we have just finished editing.
+        boolean scrollToSelection = mEditorFragment != null;
+
         // No editor here
         closeEditorFragment(true);
 
@@ -307,6 +313,9 @@ public class ContactBrowserActivity extends Activity
             getFragmentManager().openTransaction()
                     .replace(R.id.detail_container, mEmptyFragment)
                     .commit();
+        }
+        if (scrollToSelection) {
+            mListFragment.scrollToSelectedContact();
         }
     }
 
@@ -470,7 +479,7 @@ public class ContactBrowserActivity extends Activity
                 if (extras != null) {
                     intent.putExtras(extras);
                 }
-                startActivity(intent);
+                startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
             }
         }
 
@@ -511,7 +520,8 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+            startActivityForResult(
+                    new Intent(Intent.ACTION_EDIT, contactLookupUri), SUBACTIVITY_EDIT_CONTACT);
         }
 
         @Override
@@ -715,6 +725,11 @@ public class ContactBrowserActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case SUBACTIVITY_EDIT_CONTACT: {
+                mListFragment.scrollToSelectedContact();
+                break;
+            }
+
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContactContentDisplayed) {
                     final Uri newContactUri = data.getData();

@@ -228,4 +228,48 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         view.showSnippet(cursor, CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX,
                 CONTACT_SNIPPET_DATA1_COLUMN_INDEX, CONTACT_SNIPPET_DATA4_COLUMN_INDEX);
     }
+
+    public int getSelectedContactPosition() {
+        if (mSelectedContactLookupKey == null) {
+            return -1;
+        }
+
+        Cursor cursor = null;
+        int partitionIndex = -1;
+        int partitionCount = getPartitionCount();
+        for (int i = 0; i < partitionCount; i++) {
+            DirectoryPartition partition = (DirectoryPartition) getPartition(i);
+            if (partition.getDirectoryId() == mSelectedContactDirectoryId) {
+                partitionIndex = i;
+                break;
+            }
+        }
+        if (partitionIndex == -1) {
+            return -1;
+        }
+
+        cursor = getCursor(partitionIndex);
+        if (cursor == null) {
+            return -1;
+        }
+
+        cursor.moveToPosition(-1);      // Reset cursor
+        int offset = -1;
+        while (cursor.moveToNext()) {
+            String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+            if (mSelectedContactLookupKey.equals(lookupKey)) {
+                offset = cursor.getPosition();
+                break;
+            }
+        }
+        if (offset == -1) {
+            return -1;
+        }
+
+        int position = getPositionForPartition(partitionIndex) + offset;
+        if (hasHeader(partitionIndex)) {
+            position++;
+        }
+        return position;
+    }
 }

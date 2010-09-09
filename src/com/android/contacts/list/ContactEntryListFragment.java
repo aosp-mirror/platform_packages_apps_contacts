@@ -228,7 +228,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putParcelable(KEY_REQUEST, mRequest);
 
         if (mListView != null) {
-            outState.putParcelable(KEY_LIST_STATE, mListView.onSaveInstanceState());
+            mListState = mListView.onSaveInstanceState();
+            outState.putParcelable(KEY_LIST_STATE, mListState);
         }
     }
 
