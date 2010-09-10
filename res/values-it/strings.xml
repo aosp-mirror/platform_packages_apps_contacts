@@ -73,6 +73,8 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nuovo contatto"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetica"</string>
     <string name="label_notes" msgid="8337354953278341042">"Note"</string>
+    <!-- no translation found for label_sip_address (124073911714324974) -->
+    <skip />
     <string name="label_ringtone" msgid="8833166825330686244">"Suoneria"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Nome e cognome"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nome fonetico"</string>
@@ -303,8 +305,8 @@
     <string name="call_custom" msgid="7756571794763171802">"Chiama n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Chiama casa"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Chiama cellulare"</string>
-    <string name="call_work" msgid="5328785911463744028">"Chiama ufficio"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Chiama fax ufficio"</string>
+    <string name="call_work" msgid="5328785911463744028">"Chiama n. lavoro"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Chiama fax lavoro"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Chiama n. fax casa"</string>
     <string name="call_pager" msgid="9003902812293983281">"Chiama cercapersone"</string>
     <string name="call_other" msgid="8563753966926932052">"Chiama"</string>
@@ -318,14 +320,14 @@
     <string name="call_telex" msgid="2223170774548648114">"Chiama telex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Chiama n. TTY/TDD"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"Chiama cellulare lavoro"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Chiama cercapersone ufficio"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Chiama cercapersone lavoro"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Chiama <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Chiama n. MMS"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Invia SMS a n. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"Invia SMS a n. casa"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"Invia SMS a cellulare"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Invia SMS a ufficio"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Invia SMS a fax ufficio"</string>
+    <string name="sms_work" msgid="2269624156655267740">"Invia SMS a n. lavoro"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Invia SMS a fax lavoro"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Invia SMS a n. fax casa"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Invia SMS a n. cercapersone"</string>
     <string name="sms_other" msgid="806127844607642331">"Invia SMS a n."</string>
@@ -339,17 +341,17 @@
     <string name="sms_telex" msgid="9034802430065267848">"Invia SMS a n. telex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Invia SMS a n. TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"Invia SMS a cellulare lavoro"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Invia SMS a cercapersone ufficio"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"SMS a cercapersone lavoro"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Invia testo a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Invia SMS a n. MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Invia email a ind. casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Invia email a ind. cellulare"</string>
-    <string name="email_work" msgid="2807430017302722689">"Invia email a ind. ufficio"</string>
+    <string name="email_work" msgid="2807430017302722689">"Invia email a ind. lavoro"</string>
     <string name="email_other" msgid="3454004077967657109">"Invia email"</string>
     <string name="email_custom" msgid="7548003991586214105">"Invia email a ind. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Email"</string>
     <string name="map_home" msgid="1243547733423343982">"Visualizza indirizzo casa"</string>
-    <string name="map_work" msgid="1360474076921878088">"Visualizza indirizzo ufficio"</string>
+    <string name="map_work" msgid="1360474076921878088">"Visualizza indirizzo lavoro"</string>
     <string name="map_other" msgid="3817820803587012641">"Visualizza indirizzo"</string>
     <string name="map_custom" msgid="6184363799976265281">"Visualizza indirizzo <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Chatta su AIM"</string>
@@ -361,8 +363,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatta su ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatta su Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatta"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Indirizzo"</string>
     <string name="postal_street" msgid="8133143961580058972">"Indirizzo postale"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Casella postale"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Zona"</string>
@@ -370,8 +371,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Provincia"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Codice postale"</string>
     <string name="postal_country" msgid="7638264508416368690">"Paese"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Nome"</string>
     <string name="name_given" msgid="1687286314106019813">"Nome fornito"</string>
     <string name="name_family" msgid="3416695586119999058">"Cognome"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefisso nome"</string>
@@ -436,6 +436,13 @@
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
     <skip />
-    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
+    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;D;E;F;G;H;I;L;M;N;O;P;Q;R;S;T;U;V;Z"</string>
+    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <skip />
+    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <skip />
+    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <skip />
+    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
     <skip />
 </resources>
