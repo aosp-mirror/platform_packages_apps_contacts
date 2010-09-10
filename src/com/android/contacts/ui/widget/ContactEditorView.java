@@ -22,18 +22,11 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.model.Editor.EditorListener;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.ui.ViewIdGenerator;
-import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.DialogManager.DialogShowingView;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Entity;
-import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -42,10 +35,13 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,7 +57,7 @@ import java.util.ArrayList;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends BaseContactEditorView implements DialogShowingView {
+public class ContactEditorView extends BaseContactEditorView {
     private View mPhotoStub;
     private GenericEditorView mName;
 
@@ -77,11 +73,6 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
     private boolean mExpanded = true;
 
     private long mRawContactId = -1;
-
-    private DialogManager mDialogManager = null;
-
-    private static final String DIALOG_ID_KEY = "dialog_id";
-    private static final int DIALOG_ID_FIELD_SELECTOR = 1;
 
     public ContactEditorView(Context context) {
         super(context);
@@ -114,7 +105,7 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
         mHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setExpanded(!mExpanded, true);
+                setExpanded(!mExpanded);
             }
         });
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
@@ -123,8 +114,9 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
 
         mAddFieldButton = (Button) findViewById(R.id.button_add_field);
         mAddFieldButton.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                showDialog(DIALOG_ID_FIELD_SELECTOR);
+                showAddInformationPopupWindow();
             }
         });
     }
@@ -209,63 +201,37 @@ public class ContactEditorView extends BaseContactEditorView implements DialogSh
         return mRawContactId;
     }
 
-    /* package */ void setExpanded(boolean value, boolean animate) {
+    /* package */ void setExpanded(boolean value) {
         if (value == mExpanded) return;
 
         mExpanded = value;
         mBody.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 
-    /* package */ void showDialog(int bundleDialogId) {
-        final Bundle bundle = new Bundle();
-        bundle.putInt(DIALOG_ID_KEY, bundleDialogId);
-        getDialogManager().showDialogInView(this, bundle);
-    }
+    private void showAddInformationPopupWindow() {
+        final ArrayList<KindSectionView> fields =
+                new ArrayList<KindSectionView>(mFields.getChildCount());
 
-    private DialogManager getDialogManager() {
-        if (mDialogManager == null) {
-            Context context = getContext();
-            if (!(context instanceof DialogManager.DialogShowingViewActivity)) {
-                throw new IllegalStateException(
-                        "View must be hosted in an Activity that implements " +
-                        "DialogManager.DialogShowingViewActivity");
+        final PopupMenu popupMenu = new PopupMenu(getContext(), mAddFieldButton);
+        final Menu menu = popupMenu.getMenu();
+        for (int i = 0; i < mFields.getChildCount(); i++) {
+            final KindSectionView sectionView = (KindSectionView) mFields.getChildAt(i);
+            // not a list and already exists? ignore
+            if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
+                continue;
             }
-            mDialogManager = ((DialogManager.DialogShowingViewActivity)context).getDialogManager();
+            menu.add(Menu.NONE, i, Menu.NONE, sectionView.getTitle());
+            fields.add(sectionView);
         }
-        return mDialogManager;
-    }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                final KindSectionView view = fields.get(item.getOrder());
+                view.addItem();
+                return true;
+            }
+        });
 
-    public Dialog createDialog(Bundle bundle) {
-        if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
-        final int dialogId = bundle.getInt(DIALOG_ID_KEY);
-        switch (dialogId) {
-            case DIALOG_ID_FIELD_SELECTOR:
-                final ArrayList<KindSectionView> usedFields =
-                    new ArrayList<KindSectionView>(mFields.getChildCount());
-                final ArrayList<CharSequence> usedFieldTitles =
-                        new ArrayList<CharSequence>(mFields.getChildCount());
-
-                for (int i = 0; i < mFields.getChildCount(); i++) {
-                    final KindSectionView sectionView = (KindSectionView) mFields.getChildAt(i);
-                    // not a list and already exists? ignore
-                    if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
-                        continue;
-                    }
-                    usedFieldTitles.add(sectionView.getTitle());
-                    usedFields.add(sectionView);
-                }
-                final DialogInterface.OnClickListener itemClickListener =
-                        new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        final KindSectionView view = usedFields.get(which);
-                        view.addItem();
-                    }
-                };
-                return new AlertDialog.Builder(getContext())
-                        .setItems(usedFieldTitles.toArray(new CharSequence[0]), itemClickListener)
-                        .create();
-            default:
-                throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
-        }
+        popupMenu.show();
     }
 }
