@@ -121,7 +121,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         }
         editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedTab);
 
-        editor.commit();
+        editor.apply();
     }
 
     private void fixIntent(Intent intent) {
