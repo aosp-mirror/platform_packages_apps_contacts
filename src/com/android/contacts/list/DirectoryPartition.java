@@ -23,10 +23,15 @@ import android.provider.ContactsContract.Directory;
  * Model object for a {@link Directory} row.
  */
 public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
+
+    public static final int STATUS_NOT_LOADED = 0;
+    public static final int STATUS_LOADING = 1;
+    public static final int STATUS_LOADED = 2;
+
     private long mDirectoryId;
     private String mDirectoryType;
     private String mDisplayName;
-    private boolean mLoading;
+    private int mStatus;
     private boolean mPriorityDirectory;
 
     public DirectoryPartition(boolean showIfEmpty, boolean hasHeader) {
@@ -67,12 +72,16 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
         this.mDisplayName = displayName;
     }
 
-    public boolean isLoading() {
-        return mLoading;
+    public int getStatus() {
+        return mStatus;
     }
 
-    public void setLoading(boolean loading) {
-        mLoading = loading;
+    public void setStatus(int status) {
+        mStatus = status;
+    }
+
+    public boolean isLoading() {
+        return mStatus == STATUS_NOT_LOADED || mStatus == STATUS_LOADING;
     }
 
     /**
