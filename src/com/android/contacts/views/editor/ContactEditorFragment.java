@@ -1014,10 +1014,12 @@ public class ContactEditorFragment extends Fragment implements
                 break;
 
             case EditorListener.FIELD_CHANGED:
-                if (nameEditor.areOptionalFieldsVisible()) {
-                    eraseFullName(nameEditor.getValues());
-                } else {
-                    eraseStructuredName(nameEditor.getValues());
+                if (nameEditor.hasShortAndLongForms()) {
+                    if (nameEditor.areOptionalFieldsVisible()) {
+                        eraseFullName(nameEditor.getValues());
+                    } else {
+                        eraseStructuredName(nameEditor.getValues());
+                    }
                 }
                 acquireAggregationSuggestions(rawContactEditor);
                 break;

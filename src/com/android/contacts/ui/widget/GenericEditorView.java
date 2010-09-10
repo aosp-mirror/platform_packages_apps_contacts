@@ -83,6 +83,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
     private boolean mReadOnly;
     private EditText[] mFieldEditTexts = null;
 
+    private boolean mHasShortAndLongForms;
     private boolean mHideOptional = true;
 
     private EditType mType;
@@ -92,6 +93,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
     private ViewIdGenerator mViewIdGenerator;
     private DialogManager mDialogManager = null;
     private EditorListener mListener;
+
 
 
     public GenericEditorView(Context context) {
@@ -343,6 +345,10 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         return !mHideOptional;
     }
 
+    public boolean hasShortAndLongForms() {
+        return mHasShortAndLongForms;
+    }
+
     /**
      * Build the current label state based on selected {@link EditType} and
      * possible custom label string.
@@ -465,9 +471,11 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
             if (field.shortForm) {
                 hidePossible = true;
+                mHasShortAndLongForms = true;
                 fieldView.setVisibility(mHideOptional ? View.VISIBLE : View.GONE);
             } else if (field.longForm) {
                 hidePossible = true;
+                mHasShortAndLongForms = true;
                 fieldView.setVisibility(mHideOptional ? View.GONE : View.VISIBLE);
             } else {
                 // Hide field when empty and optional value
