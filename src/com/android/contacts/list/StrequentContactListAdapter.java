@@ -16,6 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.content.Context;
 import android.content.CursorLoader;
@@ -41,6 +42,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
     private int mCallButtonId;
     private boolean mStarredContactsIncluded;
     private boolean mFrequentlyContactedContactsIncluded;
+    private boolean mIsPhone;
 
     public StrequentContactListAdapter(Context context, int callButtonId) {
         super(context);
@@ -89,6 +91,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         // Sometimes the adapter is invalidated without calling changeCursor,
         // need to reset the separator position then.
         mFrequentSeparatorPos = ListView.INVALID_POSITION;
+        mIsPhone = PhoneCapabilityTester.isPhone(getContext());
     }
 
     @Override
@@ -211,7 +214,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         bindPresence(view, cursor);
 
         // Make the call button visible if requested.
-        if (getHasPhoneNumber(position)) {
+        if (mIsPhone && getHasPhoneNumber(position)) {
             view.showCallButton(mCallButtonId, position);
         } else {
             view.hideCallButton();
