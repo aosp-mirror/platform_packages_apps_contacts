@@ -100,8 +100,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         OnItemClickListener, SelectAccountDialogFragment.Listener {
     private static final String TAG = "ContactDetailFragment";
 
-    private static final int MENU_ITEM_MAKE_DEFAULT = 3;
-
     private static final int LOADER_DETAILS = 1;
 
     private Context mContext;
@@ -304,8 +302,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         ContactsSource.LEVEL_MIMETYPES);
                 if (kind == null) continue;
 
-                final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind,
-                        rawContactId, dataId, entryValues);
+                final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
+                        entryValues);
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
                 Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
@@ -357,7 +355,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         final DataKind imKind = sources.getKindOrFallback(accountType,
                                 imMime, mContext, ContactsSource.LEVEL_MIMETYPES);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
-                                imMime, imKind, rawContactId, dataId, entryValues);
+                                imMime, imKind, dataId, entryValues);
                         final ImActions imActions = ContactsUtils.buildImActions(entryValues);
                         if (imActions != null) {
                             imEntry.actionIcon = imActions.getPrimaryActionIcon();
@@ -532,7 +530,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
          * Build new {@link ViewEntry} and populate from the given values.
          */
         public static ViewEntry fromValues(Context context, String mimeType, DataKind kind,
-                long rawContactId, long dataId, ContentValues values) {
+                long dataId, ContentValues values) {
             final ViewEntry entry = new ViewEntry();
             entry.context = context;
             entry.id = dataId;
@@ -569,6 +567,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             return this;
         }
 
+        @Override
         public boolean collapseWith(ViewEntry entry) {
             // assert equal collapse keys
             if (!shouldCollapseWith(entry)) {
@@ -603,6 +602,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             return true;
         }
 
+        @Override
         public boolean shouldCollapseWith(ViewEntry entry) {
             if (entry == null) {
                 return false;
@@ -637,6 +637,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     }
 
     private final class ViewAdapter extends BaseAdapter {
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewEntry entry = getEntry(position);
             final View v;
@@ -760,6 +761,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         }
 
         private OnClickListener mSecondaryActionClickListener = new OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (mListener == null) return;
                 if (v == null) return;
@@ -771,6 +773,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             }
         };
 
+        @Override
         public int getCount() {
             int count = 0;
             final int numSections = mSections.size();
@@ -781,17 +784,18 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             return count;
         }
 
+        @Override
         public Object getItem(int position) {
             return getEntry(position);
         }
 
+        @Override
         public long getItemId(int position) {
             final ViewEntry entry = getEntry(position);
             if (entry != null) {
                 return entry.id;
-            } else {
-                return -1;
             }
+            return -1;
         }
 
         private ViewEntry getEntry(int position) {
@@ -969,18 +973,19 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(intent);
             }
             if (!entry.isPrimary && mHasPhone) {
-                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultNumber);
+                menu.add(0, R.id.menu_detail_makeDefault, 0, R.string.menu_makeDefaultNumber);
             }
         } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
             if (!entry.isPrimary) {
-                menu.add(0, MENU_ITEM_MAKE_DEFAULT, 0, R.string.menu_makeDefaultEmail);
+                menu.add(0, R.id.menu_detail_makeDefault, 0, R.string.menu_makeDefaultEmail);
             }
         } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
             menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
         }
     }
 
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return;
         final ViewEntry entry = mAdapter.getEntry(position);
@@ -993,7 +998,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_ITEM_MAKE_DEFAULT: {
+            case R.id.menu_detail_makeDefault: {
                 if (makeItemDefault(item)) {
                     return true;
                 }
@@ -1031,7 +1036,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         return mAdapter.getEntry(info.position);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean handleKeyDown(int keyCode) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
                 try {

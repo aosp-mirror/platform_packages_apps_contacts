@@ -32,7 +32,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -75,14 +74,6 @@ public class ContactDetailActivity extends Activity {
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        // TODO: This is too hardwired.
-        if (mFragment.onContextItemSelected(item)) return true;
-
-        return super.onContextItemSelected(item);
-    }
-
-    @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
         if (globalSearch) {
@@ -94,8 +85,7 @@ public class ContactDetailActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO: This is too hardwired.
-        if (mFragment.onKeyDown(keyCode, event)) return true;
+        if (mFragment.handleKeyDown(keyCode)) return true;
 
         return super.onKeyDown(keyCode, event);
     }
