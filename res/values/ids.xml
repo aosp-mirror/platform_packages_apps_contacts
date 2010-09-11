@@ -54,4 +54,7 @@
     <!-- Dialog Manager Ids -->
     <item type="id" name="dialog_manager_id_1"/>
     <item type="id" name="dialog_manager_id_2"/>
+
+    <!-- ContactDetailFragment ContextMenu Ids -->
+    <item type="id" name="menu_detail_makeDefault" />
 </resources>
