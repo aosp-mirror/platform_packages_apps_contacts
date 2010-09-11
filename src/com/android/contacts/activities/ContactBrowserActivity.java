@@ -445,6 +445,7 @@ public class ContactBrowserActivity extends Activity
         fragment.setDirectorySearchEnabled(true);
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
+        fragment.setQuickContactEnabled(!mContactContentDisplayed);
         return fragment;
     }
 
