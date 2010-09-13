@@ -25,7 +25,6 @@
         android:id="@+id/list_container"
         android:layout_width="380dip"
         android:layout_height="match_parent" 
-        android:layout_marginLeft="20dip"
         android:layout_marginRight="50dip"/>
 
     <!--  Holder for detail- or editor-fragment. -->
