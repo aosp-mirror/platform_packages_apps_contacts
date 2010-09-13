@@ -73,6 +73,8 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Ny kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisk"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notater"</string>
+    <!-- no translation found for label_sip_address (124073911714324974) -->
+    <skip />
     <string name="label_ringtone" msgid="8833166825330686244">"Ringetone"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"For- og etternavn"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
@@ -161,9 +163,9 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontakter å vise. (Hvis du nettopp har lagt til en konto, kan det ta noen minutter å synkronisere kontaktene.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontakter å vise."</string>
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:275 in java.io.StringReader@5456a499)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:275 in java.io.StringReader@4506411)  -->
     <string name="noContactsHelpTextWithSync" msgid="3017521127042216243">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:279 in java.io.StringReader@4506411)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:279 in java.io.StringReader@39d99a4d)  -->
     <string name="noContactsNoSimHelpTextWithSync" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle kontakter"</string>
@@ -361,8 +363,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Nettprat med ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Nettprat med Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Nettprat"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Adresse"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gate"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postboks"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Nabolag"</string>
@@ -370,8 +371,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Poststed"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Postnummer"</string>
     <string name="postal_country" msgid="7638264508416368690">"Land"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Navn"</string>
     <string name="name_given" msgid="1687286314106019813">"Fornavn"</string>
     <string name="name_family" msgid="3416695586119999058">"Etternavn"</string>
     <string name="name_prefix" msgid="59756378548779822">"Første del av navn"</string>
@@ -436,6 +436,13 @@
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
     <skip />
-    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
+    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z;Æ;Ø;Å"</string>
+    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <skip />
+    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <skip />
+    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <skip />
+    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
     <skip />
 </resources>

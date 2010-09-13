@@ -73,6 +73,8 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nouveau contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Prononciation phonétique"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notes"</string>
+    <!-- no translation found for label_sip_address (124073911714324974) -->
+    <skip />
     <string name="label_ringtone" msgid="8833166825330686244">"Sonnerie"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Nom et prénom"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nom phonétique"</string>
@@ -161,9 +163,9 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:549 in java.io.StringReader@5456a499)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:549 in java.io.StringReader@4506411)  -->
     <string name="noContactsHelpTextWithSync" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:553 in java.io.StringReader@4506411)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:553 in java.io.StringReader@39d99a4d)  -->
     <string name="noContactsNoSimHelpTextWithSync" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tous les contacts"</string>
@@ -361,8 +363,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatter via ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatter via Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatter"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Adresse"</string>
     <string name="postal_street" msgid="8133143961580058972">"Rue"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Boîte postale"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Voisinage"</string>
@@ -370,8 +371,7 @@
     <string name="postal_region" msgid="6045263193478437672">"État"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Code postal"</string>
     <string name="postal_country" msgid="7638264508416368690">"Pays"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Nom"</string>
     <string name="name_given" msgid="1687286314106019813">"Prénom"</string>
     <string name="name_family" msgid="3416695586119999058">"Nom de famille"</string>
     <string name="name_prefix" msgid="59756378548779822">"Préfixe du nom"</string>
@@ -436,6 +436,13 @@
     <skip />
     <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
     <skip />
-    <!-- no translation found for visualScrollerAlphabet (4697722110414354767) -->
+    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z"</string>
+    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <skip />
+    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <skip />
+    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <skip />
+    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
     <skip />
 </resources>
