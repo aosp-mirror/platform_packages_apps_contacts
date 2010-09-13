@@ -26,6 +26,7 @@ import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
@@ -299,7 +300,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 if (mimeType == null) continue;
 
                 final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                        ContactsSource.LEVEL_MIMETYPES);
+                        ContactsSource.LEVEL_CONSTRAINTS);
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
@@ -380,8 +381,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         entry.intent = imActions.getPrimaryIntent();
                         entry.secondaryIntent = imActions.getSecondaryIntent();
                     }
-                    if (TextUtils.isEmpty(entry.label)) {
-                        entry.label = mContext.getString(R.string.chat).toLowerCase();
+                    if (TextUtils.isEmpty(entry.kindAndType)) {
+                        entry.kindAndType = mContext.getString(R.string.chat).toLowerCase();
                     }
 
                     // Apply presence and status details when available
@@ -391,7 +392,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     }
                     mImEntries.add(entry);
                 } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType) &&
-                        (hasData || !TextUtils.isEmpty(entry.label))) {
+                        (hasData || !TextUtils.isEmpty(entry.typeString))) {
                     // Build organization entries
                     final boolean isNameRawContact =
                             (mContactData.getNameRawContactId() == rawContactId);
@@ -400,13 +401,14 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                             isNameRawContact
                             && mContactData.getDisplayNameSource()
                                 == DisplayNameSources.ORGANIZATION
-                            && (!hasData || TextUtils.isEmpty(entry.label));
+                            && (!hasData || TextUtils.isEmpty(entry.typeString));
 
                     if (!duplicatesTitle) {
                         entry.uri = null;
 
-                        if (TextUtils.isEmpty(entry.label)) {
-                            entry.label = entry.data;
+                        if (TextUtils.isEmpty(entry.typeString)) {
+                            entry.kindAndType = entry.data;
+                            entry.typeString = entry.data;
                             entry.data = "";
                         }
 
@@ -474,8 +476,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         }
     }
 
-    private static String buildActionString(DataKind kind, ContentValues values,
-            boolean lowerCase, Context context) {
+    private static String buildActionString(DataKind kind, ContentValues values, Context context) {
         if (kind.actionHeader == null) {
             return null;
         }
@@ -483,7 +484,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         if (actionHeader == null) {
             return null;
         }
-        return lowerCase ? actionHeader.toString().toLowerCase() : actionHeader.toString();
+        return actionHeader.toString();
     }
 
     private static String buildDataString(DataKind kind, ContentValues values,
@@ -499,9 +500,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
      * A basic structure with the data for a contact entry in the list.
      */
     private static class ViewEntry implements Collapsible<ViewEntry> {
-        // Copied from baseclass
         public int type = -1;
-        public String label;
+        public String kindAndType;
+        public String kind;
+        public String typeString;
         public String data;
         public Uri uri;
         public long id = 0;
@@ -515,7 +517,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         public int secondaryActionIcon = -1;
         public Intent intent;
         public Intent secondaryIntent = null;
-        public int maxLabelLines = 1;
         public ArrayList<Long> ids = new ArrayList<Long>();
         public int collapseCount = 0;
 
@@ -536,12 +537,31 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             entry.id = dataId;
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             entry.mimetype = mimeType;
-            entry.label = buildActionString(kind, values, false, context);
+            entry.kindAndType = buildActionString(kind, values, context);
+            entry.kind = kind.titleRes == -1 ? "" : context.getString(kind.titleRes);
             entry.data = buildDataString(kind, values, context);
 
             if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
                 entry.type = values.getAsInteger(kind.typeColumn);
+
+                // get type string
+                entry.typeString = "";
+                for (EditType type : kind.typeList) {
+                    if (type.rawValue == entry.type) {
+                        if (type.customColumn == null) {
+                            // Non-custom type. Get its description from the resource
+                            entry.typeString = context.getString(type.labelRes);
+                        } else {
+                            // Custom type. Read it from the database
+                            entry.typeString = values.getAsString(type.customColumn);
+                        }
+                        break;
+                    }
+                }
+            } else {
+                entry.typeString = "";
             }
+
             if (kind.iconRes > 0) {
                 entry.resPackageName = kind.resPackageName;
                 entry.actionIcon = kind.iconRes;
@@ -578,12 +598,13 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             if (TypePrecedence.getTypePrecedence(mimetype, type)
                     > TypePrecedence.getTypePrecedence(entry.mimetype, entry.type)) {
                 type = entry.type;
-                label = entry.label;
+                kindAndType = entry.kindAndType;
+                kind = entry.kind;
+                typeString = entry.typeString;
             }
 
             // Choose the max of the maxLines and maxLabelLines values.
             maxLines = Math.max(maxLines, entry.maxLines);
-            maxLabelLines = Math.max(maxLabelLines, entry.maxLabelLines);
 
             // Choose the presence with the highest precedence.
             if (StatusUpdates.getPresencePrecedence(presence)
@@ -626,7 +647,9 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     /** Cache of the children views of a row */
     private static class ViewCache {
-        public TextView label;
+        public TextView kindAndType;
+        public TextView kind;
+        public TextView type;
         public TextView data;
         public TextView footer;
         public ImageView actionIcon;
@@ -649,12 +672,14 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 viewCache = (ViewCache) v.getTag();
             } else {
                 // Create a new view if needed
-                v = mInflater.inflate(R.layout.list_item_text_icons, parent, false);
+                v = mInflater.inflate(R.layout.contact_detail_list_item, parent, false);
 
                 // Cache the children
                 viewCache = new ViewCache();
-                viewCache.label = (TextView) v.findViewById(android.R.id.text1);
-                viewCache.data = (TextView) v.findViewById(android.R.id.text2);
+                viewCache.kindAndType = (TextView) v.findViewById(R.id.kind_and_type);
+                viewCache.kind = (TextView) v.findViewById(R.id.kind);
+                viewCache.type = (TextView) v.findViewById(R.id.type);
+                viewCache.data = (TextView) v.findViewById(R.id.data);
                 viewCache.footer = (TextView) v.findViewById(R.id.footer);
                 viewCache.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
                 viewCache.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
@@ -666,30 +691,34 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 v.setTag(viewCache);
             }
 
+            final ViewEntry previousEntry = position == 0 ? null : getEntry(position - 1);
+            final boolean isFirstOfItsKind =
+                    previousEntry == null ? true : !previousEntry.kind.equals(entry.kind);
+
             // Bind the data to the view
-            bindView(v, entry);
+            bindView(v, entry, isFirstOfItsKind);
             return v;
         }
 
-        protected void bindView(View view, ViewEntry entry) {
+        protected void bindView(View view, ViewEntry entry, boolean isFirstOfItsKind) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
 
-            // Set the label
-            TextView label = views.label;
-            setMaxLines(label, entry.maxLabelLines);
-            label.setText(entry.label);
+            // Set the label. This is either a combination field or separate fields for kind of type
+            if (views.kindAndType != null) views.kindAndType.setText(entry.kindAndType);
+            if (views.kind != null) views.kind.setText(isFirstOfItsKind ? entry.kind : "");
+            if (views.type != null) views.type.setText(entry.typeString);
 
-            // Set the data
-            TextView data = views.data;
-            if (data != null) {
+            // Set the content
+            final TextView content = views.data;
+            if (content != null) {
                 if (entry.mimetype.equals(Phone.CONTENT_ITEM_TYPE)
                         || entry.mimetype.equals(Constants.MIME_SMS_ADDRESS)) {
-                    data.setText(PhoneNumberUtils.formatNumber(entry.data));
+                    content.setText(PhoneNumberUtils.formatNumber(entry.data));
                 } else {
-                    data.setText(entry.data);
+                    content.setText(entry.data);
                 }
-                setMaxLines(data, entry.maxLines);
+                setMaxLines(content, entry.maxLines);
             }
 
             // Set the footer
