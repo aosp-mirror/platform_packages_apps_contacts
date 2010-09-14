@@ -226,7 +226,7 @@ public class ContactEditorView extends BaseContactEditorView {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                final KindSectionView view = fields.get(item.getOrder());
+                final KindSectionView view = fields.get(item.getItemId());
                 view.addItem();
                 return true;
             }
