@@ -129,8 +129,8 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         final boolean hasDelete = mDelete != null;
         if (hasDelete) {
             mDelete.layout(
-                    r1 - mDelete.getMeasuredWidth(), t1,
-                    r1, t1 + mDelete.getMeasuredHeight());
+                    r1 - mDelete.getMeasuredWidth(), b1 - mDelete.getMeasuredHeight(),
+                    r1, b1);
         }
 
         // MoreOrLess Button
@@ -147,7 +147,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         final int r2 = r1 - Math.max(
                 hasDelete ? mDelete.getMeasuredWidth() : 0,
                 hasMoreOrLess ? mMoreOrLess.getMeasuredWidth() : 0);
-        int y = 0;
+        int y = t1;
         if (mFieldEditTexts != null) {
             for (EditText editText : mFieldEditTexts) {
                 if (editText.getVisibility() != View.GONE) {
@@ -225,7 +225,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
     }
 
     /**
-     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
+     * Creates or removes the remove button. Doesn't do anything if already correctly configured
      */
     private void setupDeleteButton(boolean shouldExist) {
         if (shouldExist && mDelete == null) {
@@ -245,17 +245,12 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                     // Keep around in model, but mark as deleted
                     mEntry.markDeleted();
 
-//                    final ViewGroupAnimator animator = ViewGroupAnimator.captureView(getRootView());
-
-//                    animator.removeView(GenericEditorView.this);
                     ((ViewGroup) getParent()).removeView(GenericEditorView.this);
 
                     if (mListener != null) {
                         // Notify listener when present
                         mListener.onDeleted(GenericEditorView.this);
                     }
-
-//                    animator.animate();
                 }
             });
             addView(mDelete);
