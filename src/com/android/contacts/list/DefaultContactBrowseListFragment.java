@@ -17,8 +17,11 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
+import com.android.contacts.widget.NotifyingSpinner;
 
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -32,8 +35,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,12 +45,16 @@ import java.util.List;
  * picking a contact with one of the PICK intents).
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
-        implements OnItemSelectedListener {
+        implements OnItemSelectedListener, NotifyingSpinner.SelectionListener {
 
     private static final String KEY_EDIT_MODE = "editMode";
     private static final String KEY_CREATE_CONTACT_ENABLED = "createContactEnabled";
     private static final String KEY_DISPLAY_WITH_PHONES_ONLY = "displayWithPhonesOnly";
     private static final String KEY_VISIBLE_CONTACTS_RESTRICTION = "visibleContactsRestriction";
+
+    private static final int GROUP_FILTER_LOADER = -4;
+
+    private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
@@ -61,7 +66,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private SparseArray<ContactListFilter> mFilters;
     private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
-    private Spinner mFilterSpinner;
+    private NotifyingSpinner mFilterSpinner;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
 
@@ -198,7 +203,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     }
 
     protected void configureFilterSpinner() {
-        mFilterSpinner = (Spinner)getView().findViewById(R.id.filter_spinner);
+        mFilterSpinner = (NotifyingSpinner)getView().findViewById(R.id.filter_spinner);
         if (mFilterSpinner == null) {
             return;
         }
@@ -208,6 +213,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             return;
         }
         mFilterSpinner.setOnItemSelectedListener(this);
+        mFilterSpinner.setSetSelectionListener(this);
     }
 
     @Override
@@ -355,6 +361,24 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
     }
 
+    @Override
+    public void onSetSelection(NotifyingSpinner spinner, int position) {
+        ContactListFilter filter = mFilters.valueAt(position);
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+            startActivityForResult(new Intent(getContext(), CustomContactListFilterActivity.class),
+                    REQUEST_CODE_CUSTOMIZE_FILTER);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_CUSTOMIZE_FILTER && resultCode == Activity.RESULT_OK) {
+            mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM);
+            updateFilterView();
+            reloadData();
+        }
+    }
+
     private ContactListFilter getDefaultFilter() {
         return mFilters.valueAt(0);
     }
@@ -398,55 +422,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
 
         public View getView(int position, View convertView, ViewGroup parent, boolean dropdown) {
-            View view = convertView != null ? convertView
-                    : mLayoutInflater.inflate(R.layout.filter_spinner_item, parent, false);
-            ImageView icon = (ImageView) view.findViewById(R.id.icon);
-            TextView label = (TextView) view.findViewById(R.id.label);
-            TextView indentedLabel = (TextView) view.findViewById(R.id.indented_label);
-            ContactListFilter filter = mFilters.valueAt(position);
-            switch (filter.filterType) {
-                case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
-                    icon.setVisibility(View.GONE);
-                    label.setText(R.string.list_filter_all_accounts);
-                    label.setVisibility(View.VISIBLE);
-                    indentedLabel.setVisibility(View.GONE);
-                    break;
-                }
-                case ContactListFilter.FILTER_TYPE_CUSTOM: {
-                    icon.setVisibility(View.GONE);
-                    label.setText(dropdown
-                            ? R.string.list_filter_customize
-                            : R.string.list_filter_custom);
-                    label.setVisibility(View.VISIBLE);
-                    indentedLabel.setVisibility(View.GONE);
-                    break;
-                }
-                case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                    icon.setVisibility(View.VISIBLE);
-                    if (filter.icon != null) {
-                        icon.setImageDrawable(filter.icon);
-                    } else {
-                        icon.setImageResource(R.drawable.unknown_source);
-                    }
-                    label.setText(filter.accountName);
-                    label.setVisibility(View.VISIBLE);
-                    indentedLabel.setVisibility(View.GONE);
-                    break;
-                }
-                case ContactListFilter.FILTER_TYPE_GROUP: {
-                    icon.setVisibility(View.GONE);
-                    if (dropdown) {
-                        label.setVisibility(View.GONE);
-                        indentedLabel.setText(filter.title);
-                        indentedLabel.setVisibility(View.VISIBLE);
-                    } else {
-                        label.setText(filter.title);
-                        label.setVisibility(View.VISIBLE);
-                        indentedLabel.setVisibility(View.GONE);
-                    }
-                    break;
-                }
+            FilterSpinnerItemView view;
+            if (dropdown && convertView != null) {
+                view = (FilterSpinnerItemView) convertView;
+            } else {
+                view = (FilterSpinnerItemView) mLayoutInflater.inflate(
+                        R.layout.filter_spinner_item, parent, false);
             }
+            view.setContactListFilter(mFilters.valueAt(position));
+            view.bindView(dropdown);
             return view;
         }
     }
