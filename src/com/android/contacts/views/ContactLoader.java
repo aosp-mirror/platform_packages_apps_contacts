@@ -17,7 +17,6 @@
 package com.android.contacts.views;
 
 import com.android.contacts.util.DataStatus;
-import com.android.contacts.views.ContactLoader.Result;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -29,7 +28,6 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -39,6 +37,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -102,6 +101,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private String mDirectoryAccountType;
         private String mDirectoryAccountName;
         private int mDirectoryExportSupport;
+
+        private ArrayList<Group> mGroups;
 
         /**
          * Constructor for case "no contact found". This must only be used for the
@@ -268,6 +269,62 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
             return result;
         }
+
+        public void addGroupMetaData(Group group) {
+            if (mGroups == null) {
+                mGroups = new ArrayList<Group>();
+            }
+            mGroups.add(group);
+        }
+
+        public List<Group> getGroupMetaData() {
+            return mGroups;
+        }
+    }
+
+    /**
+     * Meta-data for a contact group.  We load all groups associated with the contact's
+     * constituent accounts.
+     */
+    public static final class Group {
+        private String mAccountName;
+        private String mAccountType;
+        private long mGroupId;
+        private String mTitle;
+        private boolean mDefaultGroup;
+        private boolean mFavorites;
+
+        public Group(String accountName, String accountType, long groupId, String title,
+                boolean defaultGroup, boolean favorites) {
+            this.mGroupId = groupId;
+            this.mTitle = title;
+            this.mDefaultGroup = defaultGroup;
+            this.mFavorites = favorites;
+        }
+
+        public String getAccountName() {
+            return mAccountName;
+        }
+
+        public String getAccountType() {
+            return mAccountType;
+        }
+
+        public long getGroupId() {
+            return mGroupId;
+        }
+
+        public String getTitle() {
+            return mTitle;
+        }
+
+        public boolean isDefaultGroup() {
+            return mDefaultGroup;
+        }
+
+        public boolean isFavorites() {
+            return mFavorites;
+        }
     }
 
     private static class ContactQuery {
@@ -418,6 +475,24 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int EXPORT_SUPPORT = 5;
     }
 
+    private static class GroupQuery {
+        final static String[] COLUMNS = new String[] {
+            Groups.ACCOUNT_NAME,
+            Groups.ACCOUNT_TYPE,
+            Groups._ID,
+            Groups.TITLE,
+            Groups.AUTO_ADD,
+            Groups.FAVORITES,
+        };
+
+        public final static int ACCOUNT_NAME = 0;
+        public final static int ACCOUNT_TYPE = 1;
+        public final static int ID = 2;
+        public final static int TITLE = 3;
+        public final static int AUTO_ADD = 4;
+        public final static int FAVORITES = 5;
+    }
+
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
 
         @Override
@@ -428,6 +503,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Result result = loadContactEntity(resolver, uriCurrentFormat);
                 if (result.isDirectoryEntry()) {
                     loadDirectoryMetaData(result);
+                } else {
+                    loadGroupMetaData(result);
                 }
                 return result;
             } catch (Exception e) {
@@ -675,6 +752,51 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
                     result.setDirectoryMetaData(
                             displayName, directoryType, accountType, accountName, exportSupport);
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        /**
+         * Loads groups meta-data for all groups associated with all constituent raw contacts'
+         * accounts.
+         */
+        private void loadGroupMetaData(Result result) {
+            StringBuilder selection = new StringBuilder();
+            ArrayList<String> selectionArgs = new ArrayList<String>();
+            for (Entity entity : result.mEntities) {
+                ContentValues values = entity.getEntityValues();
+                String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+                String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+                if (accountName != null && accountType != null) {
+                    if (selection.length() != 0) {
+                        selection.append(" OR ");
+                    }
+                    selection.append(
+                            "(" + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?)");
+                    selectionArgs.add(accountName);
+                    selectionArgs.add(accountType);
+                }
+            }
+            Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
+                    GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
+                    null);
+            try {
+                while (cursor.moveToNext()) {
+                    final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
+                    final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
+                    final long groupId = cursor.getLong(GroupQuery.ID);
+                    final String title = cursor.getString(GroupQuery.TITLE);
+                    final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
+                            ? false
+                            : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
+                    final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
+                            ? false
+                            : cursor.getInt(GroupQuery.FAVORITES) != 0;
+
+                    result.addGroupMetaData(new Group(
+                            accountName, accountType, groupId, title, defaultGroup, favorites));
                 }
             } finally {
                 cursor.close();

@@ -32,6 +32,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.ContactLoader.Group;
 import com.android.contacts.views.editor.SelectAccountDialogFragment;
 import com.android.internal.telephony.ITelephony;
 
@@ -58,6 +59,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -96,6 +98,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
         OnItemClickListener, SelectAccountDialogFragment.Listener {
@@ -271,6 +275,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             return;
         }
 
+        ArrayList<String> groups = new ArrayList<String>();
         for (Entity entity: mContactData.getEntities()) {
             final ContentValues entValues = entity.getEntityValues();
             final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
@@ -290,7 +295,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 mWritableRawContactIds.add(rawContactId);
             }
 
-
             for (NamedContentValues subValue : entity.getSubValues()) {
                 final ContentValues entryValues = subValue.values;
                 entryValues.put(Data.RAW_CONTACT_ID, rawContactId);
@@ -298,6 +302,16 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 final long dataId = entryValues.getAsLong(Data._ID);
                 final String mimeType = entryValues.getAsString(Data.MIMETYPE);
                 if (mimeType == null) continue;
+
+                if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    Long groupId = entryValues.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    System.out.println("MEMbERSHIP: " +
+                            groupId);
+                    if (groupId != null) {
+                        handleGroupMembership(groups, mContactData.getGroupMetaData(), groupId);
+                    }
+                    continue;
+                }
 
                 final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
                         ContactsSource.LEVEL_CONSTRAINTS);
@@ -472,6 +486,46 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         mOtherEntries.add(entry);
                     }
                 }
+            }
+        }
+
+        if (!groups.isEmpty()) {
+            ViewEntry entry = new ViewEntry();
+            Collections.sort(groups);
+            StringBuilder sb = new StringBuilder();
+            int size = groups.size();
+            for (int i = 0; i < size; i++) {
+                if (i != 0) {
+                    sb.append(", ");
+                }
+                sb.append(groups.get(i));
+            }
+            entry.mimetype = GroupMembership.MIMETYPE;
+            entry.kind = mContext.getString(R.string.groupsLabel);
+            entry.data = sb.toString();
+            mGroupEntries.add(entry);
+        }
+    }
+
+    /**
+     * Maps group ID to the corresponding group name, collapses all synonymous groups.
+     * Ignores default groups (e.g. My Contacts) and favorites groups.
+     */
+    private void handleGroupMembership(
+            ArrayList<String> groups, List<Group> groupMetaData, long groupId) {
+        if (groupMetaData == null) {
+            return;
+        }
+
+        for (Group group : groupMetaData) {
+            if (group.getGroupId() == groupId) {
+                if (!group.isDefaultGroup() && !group.isFavorites()) {
+                    String title = group.getTitle();
+                    if (!groups.contains(title)) {
+                        groups.add(title);
+                    }
+                }
+                break;
             }
         }
     }

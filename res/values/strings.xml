@@ -925,6 +925,8 @@
     <string name="websiteLabelsGroup">Website</string>
     <!-- Header that expands to list all event types when editing an event of a contact -->
     <string name="eventLabelsGroup">Event</string>
+    <!-- Header for the list of all groups for a contact -->
+    <string name="groupsLabel">Groups</string>
 
     <!-- Single-character overlay for home phone numbers when creating desktop shortcuts -->
     <string name="type_short_home">H</string>
