@@ -22,7 +22,8 @@
         android:orientation="horizontal"
         >
 
-    <com.android.contacts.list.ContactListAizyView
+    <view
+        class="com.android.contacts.list.ContactListAizyView"
         android:id="@+id/contacts_list_aizy"
         android:layout_width="40dip"
         android:layout_height="match_parent"
@@ -35,7 +36,8 @@
             android:layout_weight="1"
             >
 
-        <Spinner
+        <view
+            class="com.android.contacts.widget.NotifyingSpinner"
             android:id="@+id/filter_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

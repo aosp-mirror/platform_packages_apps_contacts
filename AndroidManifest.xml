@@ -307,6 +307,12 @@
             android:label="@string/displayGroups"
             android:theme="@style/ContactsPreferencesTheme" />
 
+        <!-- Used to select display and sync groups -->
+        <activity
+            android:name=".list.CustomContactListFilterActivity"
+            android:label="@string/custom_list_filter"
+            android:theme="@style/ContactsPreferencesTheme" />
+
         <activity
             android:name=".ui.ShowOrCreateActivity"
             android:theme="@style/FullyTranslucent">
