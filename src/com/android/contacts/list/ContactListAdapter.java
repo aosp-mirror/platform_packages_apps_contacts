@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;
@@ -29,12 +30,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 
+import java.util.List;
+
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
  */
 public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
-    protected static final String[] PROJECTION = new String[] {
+    protected static final String[] PROJECTION_CONTACT = new String[] {
         Contacts._ID,                           // 0
         Contacts.DISPLAY_NAME_PRIMARY,          // 1
         Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
@@ -45,6 +48,19 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.LOOKUP_KEY,                    // 7
         Contacts.PHONETIC_NAME,                 // 8
         Contacts.HAS_PHONE_NUMBER,              // 9
+    };
+
+    protected static final String[] PROJECTION_DATA = new String[] {
+        Data.CONTACT_ID,                        // 0
+        Data.DISPLAY_NAME_PRIMARY,              // 1
+        Data.DISPLAY_NAME_ALTERNATIVE,          // 2
+        Data.SORT_KEY_PRIMARY,                  // 3
+        Data.STARRED,                           // 4
+        Data.CONTACT_PRESENCE,                  // 5
+        Data.PHOTO_ID,                          // 6
+        Data.LOOKUP_KEY,                        // 7
+        Data.PHONETIC_NAME,                     // 8
+        Data.HAS_PHONE_NUMBER,                  // 9
     };
 
     protected static final String[] FILTER_PROJECTION = new String[] {
@@ -84,6 +100,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
 
+    private ContactListFilter mFilter;
+    private List<ContactListFilter> mAllFilters;
+
     public ContactListAdapter(Context context) {
         super(context);
 
@@ -92,6 +111,25 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     public CharSequence getUnknownNameText() {
         return mUnknownNameText;
+    }
+
+    /**
+     * Returns a full set of all available list filters.
+     */
+    public List<ContactListFilter> getAllFilters() {
+        return mAllFilters;
+    }
+
+    /**
+     * Returns the currently selected filter.
+     */
+    public ContactListFilter getFilter() {
+        return mFilter;
+    }
+
+    public void setFilter(ContactListFilter filter, List<ContactListFilter> allFilters) {
+        mFilter = filter;
+        mAllFilters = allFilters;
     }
 
     public long getSelectedContactDirectoryId() {

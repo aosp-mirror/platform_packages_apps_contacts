@@ -35,6 +35,15 @@
             android:layout_weight="1"
             >
 
+        <Spinner
+            android:id="@+id/filter_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/list_filter_prompt"
+            android:spinnerMode="dropdown"
+            android:visibility="gone"
+        />
+
         <view
             class="com.android.contacts.ContactEntryListView"
             android:id="@android:id/list"

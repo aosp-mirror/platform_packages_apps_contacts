@@ -80,7 +80,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
                     + "FrequentlyContactedContactsIncluded is set");
         }
 
-        loader.setProjection(PROJECTION);
+        loader.setProjection(PROJECTION_CONTACT);
         loader.setSortOrder(sortOrder);
     }
 

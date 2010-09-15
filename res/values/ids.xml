@@ -57,4 +57,7 @@
 
     <!-- ContactDetailFragment ContextMenu Ids -->
     <item type="id" name="menu_detail_makeDefault" />
+
+    <!-- Loader ID for contact filters -->
+    <item type="id" name="contact_list_filter_loader" />
 </resources>

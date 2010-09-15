@@ -97,7 +97,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         loader.setSuggestionUri(builder.build());
 
         // TODO simplify projection
-        loader.setProjection(PROJECTION);
+        loader.setProjection(PROJECTION_CONTACT);
         loader.setUri(buildSectionIndexerUri(Contacts.CONTENT_URI));
         loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND " + Contacts._ID + "!=?");
         loader.setSelectionArgs(new String[]{String.valueOf(mTargetContactId)});
@@ -218,8 +218,8 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     public Cursor getShowAllContactsLabelCursor() {
-        MatrixCursor matrixCursor = new MatrixCursor(PROJECTION);
-        Object[] row = new Object[PROJECTION.length];
+        MatrixCursor matrixCursor = new MatrixCursor(PROJECTION_CONTACT);
+        Object[] row = new Object[PROJECTION_CONTACT.length];
         matrixCursor.addRow(row);
         return matrixCursor;
     }
