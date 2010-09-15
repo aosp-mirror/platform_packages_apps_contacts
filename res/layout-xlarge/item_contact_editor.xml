@@ -121,6 +121,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="230dip"
             android:orientation="vertical"
+            android:paddingRight="?android:attr/scrollbarSize"
         />
 
         <View

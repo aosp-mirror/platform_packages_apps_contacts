@@ -34,7 +34,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,8 +48,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private static int sCachedThemePaddingRight = -1;
 
     private ViewGroup mEditors;
-    private View mAdd;
-    private ImageView mAddPlusButton;
+    private ImageButton mAddPlusButton;
     private TextView mTitle;
 
     private DataKind mKind;
@@ -74,14 +73,12 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         mEditors = (ViewGroup)findViewById(R.id.kind_editors);
 
-        mAdd = findViewById(R.id.kind_header);
-        mAdd.setOnClickListener(new OnClickListener() {
+        mAddPlusButton = (ImageButton) findViewById(R.id.kind_plus);
+        mAddPlusButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 addItem();
             }
         });
-
-        mAddPlusButton = (ImageView) findViewById(R.id.kind_plus);
 
         mTitle = (TextView)findViewById(R.id.kind_title);
     }
@@ -109,7 +106,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         mTitle.setText(kind.titleRes);
 
         // Only show the add button if this is a list
-        mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.GONE);
+        mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.INVISIBLE);
 
         rebuildFromState();
         updateAddEnabled();
@@ -150,7 +147,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                     }
                 }
 
-                view.setPadding(0, 0, getThemeScrollbarSize(mContext), 0);
                 if (view instanceof Editor) {
                     Editor editor = (Editor) view;
                     editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
@@ -177,23 +173,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         return true;
     }
 
-    /**
-     * Reads the scrollbarSize of the current theme
-     */
-    private static int getThemeScrollbarSize(Context context) {
-        if (sCachedThemePaddingRight == -1) {
-            final TypedValue outValue = new TypedValue();
-            context.getTheme().resolveAttribute(android.R.attr.scrollbarSize, outValue, true);
-            final WindowManager windowManager =
-                    (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-            final DisplayMetrics metrics = new DisplayMetrics();
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            sCachedThemePaddingRight = (int) TypedValue.complexToDimension(outValue.data, metrics);
-        }
-
-        return sCachedThemePaddingRight;
-    }
-
     private void updateVisible() {
         setVisibility(getEditorCount() != 0 ? VISIBLE : GONE);
     }
@@ -203,7 +182,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         // Set enabled state on the "add" view
         final boolean canInsert = EntityModifier.canInsert(mState, mKind);
         final boolean isEnabled = !mReadOnly && canInsert;
-        mAdd.setEnabled(isEnabled);
+        mAddPlusButton.setEnabled(isEnabled);
     }
 
     public void addItem() {

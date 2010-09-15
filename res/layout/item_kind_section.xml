@@ -53,7 +53,7 @@
             android:ellipsize="marquee"
             android:fadingEdge="horizontal" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/kind_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
