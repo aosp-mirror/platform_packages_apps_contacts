@@ -758,23 +758,27 @@
     <!-- The message shown while importing vCard(s).
          First argument is current index of contacts to be imported.
          Second argument is the total number of contacts.
-         Third argument is the name of a contact which is being read. -->
+         Third argument is the name of a contact which is being read.
+         [CHAR LIMIT=20] -->
     <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
     <!-- Description shown when importing vCard data.
-         The argument is the name of a contact which is being read. -->
+         The argument is the name of a contact which is being read.
+         [CHAR LIMIT=20] -->
     <string name="importing_vcard_description">Importing <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
-    <!-- Dialog title shown when reading vCard data failed -->
+    <!-- Dialog title shown when reading vCard data failed [CHAR LIMIT=40] -->
     <string name="reading_vcard_failed_title">Failed to Read vCard data</string>
 
-    <!-- The title shown when reading vCard is canceled (probably by a user) -->
+    <!-- The title shown when reading vCard is canceled (probably by a user)
+         [CHAR LIMIT=40] -->
     <string name="reading_vcard_canceled_title">Reading vCard data was canceled</string>
 
     <!-- The title shown when reading vCard finished -->
     <string name="importing_vcard_finished_title">Finished importing vCard</string>
 
-    <!-- The title shown when importing vCard is canceled (probably by a user) -->
+    <!-- The title shown when importing vCard is canceled (probably by a user)
+         [CHAR LIMIT=40] -->
     <string name="importing_vcard_canceled_title">Reading vCard data was canceled</string>
 
     <!-- The message shown when vCard importer started running. -->
@@ -853,11 +857,12 @@
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
 
-    <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard import. -->
+    <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard import. [CHAR LIMIT=40] -->
     <string name="cancel_import_confirmation_title">Canceling import vCard</string>
 
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
          The argument is the Uri for the vCard import the user wants to cancel.
+         [CHAR LIMIT=70]
       -->
     <string name="cancel_import_confirmation_message">Are you sure to cancel importing vCard?</string>
 
