@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -82,6 +83,7 @@ public class FallbackSource extends ContactsSource {
         inflateWebsite(context, inflateLevel);
         inflateEvent(context, inflateLevel);
         inflateSipAddress(context, inflateLevel);
+        inflateGroupMembership(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
 
@@ -441,6 +443,23 @@ public class FallbackSource extends ContactsSource {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
                                              R.string.label_sip_address, FLAGS_SIP_ADDRESS));
+        }
+
+        return kind;
+    }
+
+    protected DataKind inflateGroupMembership(Context context, int inflateLevel) {
+        DataKind kind = getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
+        if (kind == null) {
+            kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
+                    R.string.groupsLabel, android.R.drawable.sym_contact_card, 999, true));
+
+            kind.isList = false;
+        }
+
+        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
         }
 
         return kind;

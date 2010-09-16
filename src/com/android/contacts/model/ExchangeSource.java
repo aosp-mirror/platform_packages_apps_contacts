@@ -57,6 +57,7 @@ public class ExchangeSource extends FallbackSource {
         inflatePhoto(context, inflateLevel);
         inflateNote(context, inflateLevel);
         inflateWebsite(context, inflateLevel);
+        inflateGroupMembership(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
     }

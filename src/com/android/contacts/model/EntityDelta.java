@@ -697,6 +697,11 @@ public class EntityDelta implements Parcelable {
             mAfter.put(key, value);
         }
 
+        public void put(String key, long value) {
+            ensureUpdate();
+            mAfter.put(key, value);
+        }
+
         public void putNull(String key) {
             ensureUpdate();
             mAfter.putNull(key);

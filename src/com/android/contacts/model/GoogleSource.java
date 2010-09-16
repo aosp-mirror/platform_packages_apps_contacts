@@ -51,8 +51,7 @@ public class GoogleSource extends FallbackSource {
         inflateWebsite(context, inflateLevel);
         inflateEvent(context, inflateLevel);
         inflateSipAddress(context, inflateLevel);
-
-        // TODO: GOOGLE: GROUPMEMBERSHIP
+        inflateGroupMembership(context, inflateLevel);
 
         setInflatedLevel(inflateLevel);
 

@@ -32,7 +32,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.ContactLoader.Group;
+import com.android.contacts.views.GroupMetaData;
 import com.android.contacts.views.editor.SelectAccountDialogFragment;
 import com.android.internal.telephony.ITelephony;
 
@@ -166,8 +166,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mSections.add(mPostalEntries);
         mSections.add(mNicknameEntries);
         mSections.add(mOrganizationEntries);
-        mSections.add(mGroupEntries);
         mSections.add(mOtherEntries);
+        mSections.add(mGroupEntries);
     }
 
     @Override
@@ -305,8 +305,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
                 if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     Long groupId = entryValues.getAsLong(GroupMembership.GROUP_ROW_ID);
-                    System.out.println("MEMbERSHIP: " +
-                            groupId);
                     if (groupId != null) {
                         handleGroupMembership(groups, mContactData.getGroupMetaData(), groupId);
                     }
@@ -512,12 +510,12 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
      * Ignores default groups (e.g. My Contacts) and favorites groups.
      */
     private void handleGroupMembership(
-            ArrayList<String> groups, List<Group> groupMetaData, long groupId) {
+            ArrayList<String> groups, List<GroupMetaData> groupMetaData, long groupId) {
         if (groupMetaData == null) {
             return;
         }
 
-        for (Group group : groupMetaData) {
+        for (GroupMetaData group : groupMetaData) {
             if (group.getGroupId() == groupId) {
                 if (!group.isDefaultGroup() && !group.isFavorites()) {
                     String title = group.getTitle();
@@ -1167,7 +1165,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             new LoaderCallbacks<ContactLoader.Result>() {
         @Override
         public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-            return new ContactLoader(mContext, mLookupUri);
+            return new ContactLoader(mContext, mLookupUri, true /* loadGroupMetaData */);
         }
 
         @Override

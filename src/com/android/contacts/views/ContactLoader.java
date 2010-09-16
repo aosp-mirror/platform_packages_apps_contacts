@@ -53,9 +53,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
     private Uri mLookupUri;
+    private boolean mLoadGroupMetaData;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
+
 
     public interface Listener {
         public void onContactLoaded(Result contact);
@@ -102,7 +104,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private String mDirectoryAccountName;
         private int mDirectoryExportSupport;
 
-        private ArrayList<Group> mGroups;
+        private ArrayList<GroupMetaData> mGroups;
 
         /**
          * Constructor for case "no contact found". This must only be used for the
@@ -270,60 +272,15 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return result;
         }
 
-        public void addGroupMetaData(Group group) {
+        public void addGroupMetaData(GroupMetaData group) {
             if (mGroups == null) {
-                mGroups = new ArrayList<Group>();
+                mGroups = new ArrayList<GroupMetaData>();
             }
             mGroups.add(group);
         }
 
-        public List<Group> getGroupMetaData() {
+        public List<GroupMetaData> getGroupMetaData() {
             return mGroups;
-        }
-    }
-
-    /**
-     * Meta-data for a contact group.  We load all groups associated with the contact's
-     * constituent accounts.
-     */
-    public static final class Group {
-        private String mAccountName;
-        private String mAccountType;
-        private long mGroupId;
-        private String mTitle;
-        private boolean mDefaultGroup;
-        private boolean mFavorites;
-
-        public Group(String accountName, String accountType, long groupId, String title,
-                boolean defaultGroup, boolean favorites) {
-            this.mGroupId = groupId;
-            this.mTitle = title;
-            this.mDefaultGroup = defaultGroup;
-            this.mFavorites = favorites;
-        }
-
-        public String getAccountName() {
-            return mAccountName;
-        }
-
-        public String getAccountType() {
-            return mAccountType;
-        }
-
-        public long getGroupId() {
-            return mGroupId;
-        }
-
-        public String getTitle() {
-            return mTitle;
-        }
-
-        public boolean isDefaultGroup() {
-            return mDefaultGroup;
-        }
-
-        public boolean isFavorites() {
-            return mFavorites;
         }
     }
 
@@ -503,7 +460,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Result result = loadContactEntity(resolver, uriCurrentFormat);
                 if (result.isDirectoryEntry()) {
                     loadDirectoryMetaData(result);
-                } else {
+                } else if (mLoadGroupMetaData) {
                     loadGroupMetaData(result);
                 }
                 return result;
@@ -795,7 +752,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                             ? false
                             : cursor.getInt(GroupQuery.FAVORITES) != 0;
 
-                    result.addGroupMetaData(new Group(
+                    result.addGroupMetaData(new GroupMetaData(
                             accountName, accountType, groupId, title, defaultGroup, favorites));
                 }
             } finally {
@@ -836,8 +793,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
+        this(context, lookupUri, false);
+    }
+
+    public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData) {
         super(context);
         mLookupUri = lookupUri;
+        mLoadGroupMetaData = loadGroupMetaData;
     }
 
     @Override

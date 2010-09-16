@@ -17,19 +17,19 @@
 package com.android.contacts.ui.widget;
 
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.model.Editor.EditorListener;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.content.Entity;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -57,6 +57,9 @@ public abstract class BaseContactEditorView extends LinearLayout {
 
     public BaseContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setGroupMetaData(Cursor groupMetaData) {
     }
 
     /**

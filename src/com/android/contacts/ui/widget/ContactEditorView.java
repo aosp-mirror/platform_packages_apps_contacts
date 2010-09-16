@@ -27,6 +27,8 @@ import com.android.contacts.ui.ViewIdGenerator;
 
 import android.content.Context;
 import android.content.Entity;
+import android.database.Cursor;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -60,6 +62,7 @@ import java.util.ArrayList;
 public class ContactEditorView extends BaseContactEditorView {
     private View mPhotoStub;
     private GenericEditorView mName;
+    private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
 
@@ -166,6 +169,13 @@ public class ContactEditorView extends BaseContactEditorView {
         mFields.setVisibility(View.VISIBLE);
         mName.setVisibility(View.VISIBLE);
 
+        DataKind groupMembershipKind = source.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
+        if (groupMembershipKind != null) {
+            mGroupMembershipView = (GroupMembershipView)mInflater.inflate(
+                    R.layout.item_group_membership, mFields, false);
+            mGroupMembershipView.setKind(groupMembershipKind);
+        }
+
         // Create editor sections for each possible data kind
         for (DataKind kind : source.getSortedDataKinds()) {
             // Skip kind of not editable
@@ -181,6 +191,10 @@ public class ContactEditorView extends BaseContactEditorView {
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
                 mPhoto.setValues(kind, primary, state, false, vig);
                 mPhotoStub.setVisibility(View.VISIBLE);
+            } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                if (mGroupMembershipView != null) {
+                    mGroupMembershipView.setState(state);
+                }
             } else {
                 // Otherwise use generic section-based editors
                 if (kind.fieldList == null) continue;
@@ -189,6 +203,17 @@ public class ContactEditorView extends BaseContactEditorView {
                 section.setState(kind, state, false, vig);
                 mFields.addView(section);
             }
+        }
+
+        if (mGroupMembershipView != null) {
+            mFields.addView(mGroupMembershipView);
+        }
+    }
+
+    @Override
+    public void setGroupMetaData(Cursor groupMetaData) {
+        if (mGroupMembershipView != null) {
+            mGroupMembershipView.setGroupMetaData(groupMetaData);
         }
     }
 

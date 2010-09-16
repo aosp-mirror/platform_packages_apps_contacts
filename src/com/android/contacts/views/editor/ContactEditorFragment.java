@@ -36,6 +36,7 @@ import com.android.contacts.ui.widget.PhotoEditorView;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.GroupMetaDataLoader;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
 import com.google.android.collect.Lists;
 
@@ -53,11 +54,13 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.media.MediaScannerConnection;
@@ -72,6 +75,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -105,6 +109,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String TAG = "ContactEditorFragment";
 
     private static final int LOADER_DATA = 1;
+    private static final int LOADER_GROUPS = 2;
 
     private static final String KEY_URI = "uri";
     private static final String KEY_ACTION = "action";
@@ -177,6 +182,8 @@ public class ContactEditorFragment extends Fragment implements
 
     private static final File PHOTO_DIR = new File(
             Environment.getExternalStorageDirectory() + "/DCIM/Camera");
+
+    private Cursor mGroupMetaData;
 
     /**
      * A delay in milliseconds used for bringing aggregation suggestions to
@@ -270,6 +277,12 @@ public class ContactEditorFragment extends Fragment implements
             } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
+    }
+
+    @Override
+    public void onStart() {
+        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupLoaderListener);
+        super.onStart();
     }
 
     public void load(String action, Uri lookupUri, String mimeType, Bundle intentExtras) {
@@ -492,6 +505,8 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
 
+        bindGroupMetaData();
+
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
 
@@ -499,6 +514,18 @@ public class ContactEditorFragment extends Fragment implements
         // Activity can be null if we have been detached from the Activity
         final Activity activity = getActivity();
         if (activity != null) activity.invalidateOptionsMenu();
+    }
+
+    private void bindGroupMetaData() {
+        if (mGroupMetaData == null) {
+            return;
+        }
+
+        int editorCount = mContent.getChildCount();
+        for (int i = 0; i < editorCount; i++) {
+            BaseContactEditorView editor = (BaseContactEditorView) mContent.getChildAt(i);
+            editor.setGroupMetaData(mGroupMetaData);
+        }
     }
 
     @Override
@@ -1503,6 +1530,24 @@ public class ContactEditorFragment extends Fragment implements
                 mPhoto = null;
             }
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
+        }
+    };
+
+    /**
+     * The listener for the group meta data loader
+     */
+    private final LoaderManager.LoaderCallbacks<Cursor> mGroupLoaderListener =
+            new LoaderCallbacks<Cursor>() {
+
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            return new GroupMetaDataLoader(mContext);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            mGroupMetaData = data;
+            bindGroupMetaData();
         }
     };
 
