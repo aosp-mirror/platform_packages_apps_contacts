@@ -393,6 +393,7 @@ public class ContactBrowserActivity extends Activity
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
                 fragment.setSelectionVisible(mContactContentDisplayed);
                 fragment.setQuickContactEnabled(!mContactContentDisplayed);
+                fragment.setFilterEnabled(!mRequest.isSearchMode());
                 return fragment;
             }
 

@@ -52,8 +52,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private static final String KEY_DISPLAY_WITH_PHONES_ONLY = "displayWithPhonesOnly";
     private static final String KEY_VISIBLE_CONTACTS_RESTRICTION = "visibleContactsRestriction";
 
-    private static final int GROUP_FILTER_LOADER = -4;
-
     private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
     private boolean mEditMode;
@@ -62,7 +60,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private boolean mVisibleContactsRestrictionEnabled = true;
     private View mHeaderView;
 
-    private boolean mFilterEnabled = true;
+    private boolean mFilterEnabled;
     private SparseArray<ContactListFilter> mFilters;
     private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
@@ -250,6 +248,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     public void setEditMode(boolean flag) {
         mEditMode = flag;
+    }
+
+    public boolean isFilterEnabled() {
+        return mFilterEnabled;
+    }
+
+    public void setFilterEnabled(boolean flag) {
+        this.mFilterEnabled = flag;
     }
 
     public boolean isCreateContactEnabled() {
