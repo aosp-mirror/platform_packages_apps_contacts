@@ -113,7 +113,8 @@ public class GroupMembershipView extends LinearLayout
     }
 
     private void updateView() {
-        if (mGroupMetaData == null || mAccountType == null || mAccountName == null) {
+        if (mGroupMetaData == null || mGroupMetaData.isClosed() || mAccountType == null
+                || mAccountName == null) {
             setVisibility(GONE);
             return;
         }
