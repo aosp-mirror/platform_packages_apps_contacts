@@ -16,22 +16,27 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!-- Background -->
-    <LinearLayout
-        android:orientation="horizontal"
+    <com.android.contacts.widget.InterpolatingLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <View
             android:layout_width="208dip"
             android:layout_height="match_parent"
-            android:background="@drawable/contact_view_background_left" />
+            android:background="@drawable/contact_view_background_left"
+            ex:layout_wideParentWidth="800dip"
+            ex:layout_wideWidth="210dip"
+            ex:layout_narrowParentWidth="500dip"
+            ex:layout_narrowWidth="40dip"
+        />
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#bff3f3f3" />
-    </LinearLayout>
+    </com.android.contacts.widget.InterpolatingLayout>
 
     <!-- Content -->
     <LinearLayout
@@ -40,20 +45,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.contacts.views.detail.ContactDetailHeaderView
-            android:id="@+id/contact_header_widget"
+        <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="128dip"
-        />
+            android:layout_height="wrap_content">
+            <com.android.contacts.views.detail.ContactDetailHeaderView
+                android:id="@+id/contact_header_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ex:layout_wideParentWidth="800dip"
+                ex:layout_wideLeftMargin="130dip"
+                ex:layout_narrowParentWidth="500dip"
+                ex:layout_narrowLeftMargin="15dip"
+            />
+        </com.android.contacts.widget.InterpolatingLayout>
 
-        <ListView android:id="@android:id/list"
+        <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
-            android:paddingLeft="230dip"
-            android:cacheColorHint="#00000000"
-        />
+            android:layout_weight="1">
+            <ListView android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ex:layout_wideParentWidth="800dip"
+                ex:layout_wideLeftMargin="230dip"
+                ex:layout_narrowParentWidth="500dip"
+                ex:layout_narrowLeftMargin="42dip"
+                android:cacheColorHint="#00000000"
+            />
+        </com.android.contacts.widget.InterpolatingLayout>
 
         <ScrollView android:id="@android:id/empty"
             android:layout_width="match_parent"
