@@ -1033,10 +1033,12 @@ public class ContactEditorFragment extends Fragment implements
 
         switch (request) {
             case EditorListener.EDITOR_FORM_CHANGED:
-                if (nameEditor.areOptionalFieldsVisible()) {
-                    switchFromFullNameToStructuredName(nameEditor);
-                } else {
-                    switchFromStructuredNameToFullName(nameEditor);
+                if (nameEditor.hasShortAndLongForms()) {
+                    if (nameEditor.areOptionalFieldsVisible()) {
+                        switchFromFullNameToStructuredName(nameEditor);
+                    } else {
+                        switchFromStructuredNameToFullName(nameEditor);
+                    }
                 }
                 break;
 
