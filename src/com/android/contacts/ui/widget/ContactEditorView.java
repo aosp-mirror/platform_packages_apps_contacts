@@ -240,13 +240,16 @@ public class ContactEditorView extends BaseContactEditorView {
         final PopupMenu popupMenu = new PopupMenu(getContext(), mAddFieldButton);
         final Menu menu = popupMenu.getMenu();
         for (int i = 0; i < mFields.getChildCount(); i++) {
-            final KindSectionView sectionView = (KindSectionView) mFields.getChildAt(i);
-            // not a list and already exists? ignore
-            if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
-                continue;
+            View child = mFields.getChildAt(i);
+            if (child instanceof KindSectionView) {
+                final KindSectionView sectionView = (KindSectionView) child;
+                // not a list and already exists? ignore
+                if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
+                    continue;
+                }
+                menu.add(Menu.NONE, i, Menu.NONE, sectionView.getTitle());
+                fields.add(sectionView);
             }
-            menu.add(Menu.NONE, i, Menu.NONE, sectionView.getTitle());
-            fields.add(sectionView);
         }
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
