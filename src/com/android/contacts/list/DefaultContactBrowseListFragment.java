@@ -51,6 +51,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private static final String KEY_CREATE_CONTACT_ENABLED = "createContactEnabled";
     private static final String KEY_DISPLAY_WITH_PHONES_ONLY = "displayWithPhonesOnly";
     private static final String KEY_VISIBLE_CONTACTS_RESTRICTION = "visibleContactsRestriction";
+    private static final String KEY_FILTER_ENABLED = "filterEnabled";
 
     private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
@@ -96,6 +97,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         outState.putBoolean(KEY_CREATE_CONTACT_ENABLED, mCreateContactEnabled);
         outState.putInt(KEY_DISPLAY_WITH_PHONES_ONLY, mDisplayWithPhonesOnlyOption);
         outState.putBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION, mVisibleContactsRestrictionEnabled);
+        outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
     }
 
     @Override
@@ -111,6 +113,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         mDisplayWithPhonesOnlyOption = savedState.getInt(KEY_DISPLAY_WITH_PHONES_ONLY);
         mVisibleContactsRestrictionEnabled =
                 savedState.getBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION);
+        mFilterEnabled = savedState.getBoolean(KEY_FILTER_ENABLED);
     }
 
     @Override
