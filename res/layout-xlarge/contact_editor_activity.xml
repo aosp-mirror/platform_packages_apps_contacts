@@ -14,16 +14,25 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="160dip"
-    android:paddingRight="160dip"
-    android:background="@drawable/contact_list_bg"
-    >
-
-    <fragment class="com.android.contacts.views.editor.ContactEditorFragment"
+    android:background="@drawable/contact_list_bg">
+    <com.android.contacts.widget.InterpolatingLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment class="com.android.contacts.views.editor.ContactEditorFragment"
             android:id="@+id/contact_editor_fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            ex:layout_wideParentWidth="1280dip"
+            ex:layout_wideLeftMargin="160dip"
+            ex:layout_wideRightMargin="160dip"
+            ex:layout_narrowParentWidth="800dip"
+            ex:layout_narrowLeftMargin="0dip"
+            ex:layout_narrowRightMargin="0dip"
+         />
+    </com.android.contacts.widget.InterpolatingLayout>
 </FrameLayout>
