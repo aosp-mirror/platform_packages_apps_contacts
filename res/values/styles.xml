@@ -171,7 +171,18 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-    
+
     <style name="ContactsPreferencesTheme" parent="@android:Theme">
     </style>
+
+    <declare-styleable name="InterpolatingLayout_Layout">
+        <attr name="layout_narrowParentWidth" format="dimension"/>
+        <attr name="layout_narrowWidth" format="dimension"/>
+        <attr name="layout_narrowLeftMargin" format="dimension"/>
+        <attr name="layout_narrowRightMargin" format="dimension"/>
+        <attr name="layout_wideParentWidth" format="dimension"/>
+        <attr name="layout_wideWidth" format="dimension"/>
+        <attr name="layout_wideLeftMargin" format="dimension"/>
+        <attr name="layout_wideRightMargin" format="dimension"/>
+    </declare-styleable>
 </resources>

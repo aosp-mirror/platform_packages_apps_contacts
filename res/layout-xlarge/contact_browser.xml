@@ -14,24 +14,35 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.contacts.widget.InterpolatingLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:id="@+id/two_pane_activity"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/contact_list_bg"
-    >
-    <FrameLayout 
+    android:background="@drawable/contact_list_bg">
+
+    <FrameLayout
         android:id="@+id/list_container"
-        android:layout_width="380dip"
-        android:layout_height="match_parent" 
-        android:layout_marginRight="50dip"/>
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:minWidth="100dip"
+
+        ex:layout_narrowParentWidth="800dip"
+        ex:layout_narrowWidth="290dip"
+        ex:layout_narrowLeftMargin="0dip"
+        ex:layout_narrowRightMargin="15dip"
+
+        ex:layout_wideParentWidth="1280dip"
+        ex:layout_wideWidth="385dip"
+        ex:layout_wideLeftMargin="0dip"
+        ex:layout_wideRightMargin="96dip"
+    />
 
     <!--  Holder for detail- or editor-fragment. -->
     <FrameLayout
         android:id="@+id/detail_container"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginLeft="-4dip" />
-</LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</com.android.contacts.widget.InterpolatingLayout>
