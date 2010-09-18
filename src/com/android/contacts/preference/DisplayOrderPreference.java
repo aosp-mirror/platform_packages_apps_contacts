@@ -62,7 +62,7 @@ public final class DisplayOrderPreference extends ListPreference {
 
     @Override
     public CharSequence getSummary() {
-        switch (mPreferences.getSortOrder()) {
+        switch (mPreferences.getDisplayOrder()) {
             case ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY:
                 return mContext.getString(R.string.display_options_view_given_name_first);
             case ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE:
@@ -74,7 +74,7 @@ public final class DisplayOrderPreference extends ListPreference {
     @Override
     protected boolean persistString(String value) {
         int newValue = Integer.parseInt(value);
-        if (newValue != mPreferences.getSortOrder()) {
+        if (newValue != mPreferences.getDisplayOrder()) {
             mPreferences.setDisplayOrder(newValue);
             notifyChanged();
         }

@@ -118,6 +118,12 @@ public final class ContactsPreferences extends ContentObserver {
         if (mListener != null) unregisterChangeListener();
 
         mListener = listener;
+
+        // Reset preferences to "unknown" because they may have changed while the
+        // observer was unregistered.
+        mDisplayOrder = -1;
+        mSortOrder = -1;
+
         final ContentResolver contentResolver = mContext.getContentResolver();
         contentResolver.registerContentObserver(
                 Settings.System.getUriFor(
