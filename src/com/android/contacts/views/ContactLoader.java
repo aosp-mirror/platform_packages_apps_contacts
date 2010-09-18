@@ -458,10 +458,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 final ContentResolver resolver = getContext().getContentResolver();
                 final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
                 Result result = loadContactEntity(resolver, uriCurrentFormat);
-                if (result.isDirectoryEntry()) {
-                    loadDirectoryMetaData(result);
-                } else if (mLoadGroupMetaData) {
-                    loadGroupMetaData(result);
+                if (result != Result.NOT_FOUND) {
+                    if (result.isDirectoryEntry()) {
+                        loadDirectoryMetaData(result);
+                    } else if (mLoadGroupMetaData) {
+                        loadGroupMetaData(result);
+                    }
                 }
                 return result;
             } catch (Exception e) {
