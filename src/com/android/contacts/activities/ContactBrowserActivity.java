@@ -28,7 +28,7 @@ import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
-import com.android.contacts.ui.ContactsPreferencesActivity;
+import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
@@ -74,7 +74,7 @@ public class ContactBrowserActivity extends Activity
     private static final String KEY_MODE = "mode";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
-    private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
+    private static final int SUBACTIVITY_SETTINGS = 3;
     private static final int SUBACTIVITY_EDIT_CONTACT = 4;
 
     private DialogManager mDialogManager = new DialogManager(this);
@@ -643,9 +643,9 @@ public class ContactBrowserActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_display_groups: {
-                final Intent intent = new Intent(this, ContactsPreferencesActivity.class);
-                startActivityForResult(intent, SUBACTIVITY_DISPLAY_GROUP);
+            case R.id.menu_settings: {
+                final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
+                startActivityForResult(intent, SUBACTIVITY_SETTINGS);
                 return true;
             }
             case R.id.menu_search: {
@@ -741,7 +741,7 @@ public class ContactBrowserActivity extends Activity
                 break;
             }
 
-            case SUBACTIVITY_DISPLAY_GROUP:
+            case SUBACTIVITY_SETTINGS:
                 // TODO: Force the ListFragment to reload its setting and update (don't lookup
                 // directories here)
                 break;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui;
+package com.android.contacts.preference;
 
 import com.android.contacts.R;
 
@@ -30,6 +30,10 @@ import android.provider.Settings.SettingNotFoundException;
  * Manages user preferences for contacts.
  */
 public final class ContactsPreferences extends ContentObserver {
+
+    public static final String PREF_DISPLAY_ONLY_PHONES = "only_phones";
+    public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
+
     private Context mContext;
     private int mSortOrder = -1;
     private int mDisplayOrder = -1;
@@ -46,7 +50,7 @@ public final class ContactsPreferences extends ContentObserver {
         return mContext.getResources().getBoolean(R.bool.config_sort_order_user_changeable);
     }
 
-    private int getDefaultSortOrder() {
+    public int getDefaultSortOrder() {
         if (mContext.getResources().getBoolean(R.bool.config_default_sort_order_primary)) {
             return ContactsContract.Preferences.SORT_ORDER_PRIMARY;
         } else {
@@ -80,7 +84,7 @@ public final class ContactsPreferences extends ContentObserver {
         return mContext.getResources().getBoolean(R.bool.config_display_order_user_changeable);
     }
 
-    private int getDefaultDisplayOrder() {
+    public int getDefaultDisplayOrder() {
         if (mContext.getResources().getBoolean(R.bool.config_default_display_order_primary)) {
             return ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY;
         } else {

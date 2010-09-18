@@ -44,8 +44,9 @@
         <item name="list_item_photo_size">64dip</item>
     </style>
     
-    <style name="ContactsPreferencesTheme" parent="@android:Theme.Dialog">
+    <style name="ContactsPreferencesTheme" parent="@android:Theme.Light.Holo">
     </style>
+
     <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">
         <item name="android:windowContentOverlay">@null</item>
     </style>

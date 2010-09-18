@@ -21,9 +21,9 @@
         android:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_display_groups"
-        android:icon="@*android:drawable/ic_menu_allfriends"
-        android:title="@string/menu_displayGroup" />
+        android:id="@+id/menu_settings"
+        android:icon="@*android:drawable/ic_menu_preferences"
+        android:title="@string/menu_settings" />
 
     <item
         android:id="@+id/menu_accounts"

@@ -22,7 +22,7 @@ import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoLoader;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.ui.ContactsPreferences;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;

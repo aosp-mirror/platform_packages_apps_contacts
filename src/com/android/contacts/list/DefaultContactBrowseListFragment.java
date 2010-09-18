@@ -16,7 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.ui.ContactsPreferencesActivity.Prefs;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.widget.NotifyingSpinner;
 
 import android.app.Activity;
@@ -134,8 +134,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_PREFERENCE:
                 SharedPreferences prefs = PreferenceManager
                         .getDefaultSharedPreferences(getContext());
-                return prefs.getBoolean(Prefs.DISPLAY_ONLY_PHONES,
-                        Prefs.DISPLAY_ONLY_PHONES_DEFAULT);
+                return prefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
+                        ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
         }
         return false;
     }

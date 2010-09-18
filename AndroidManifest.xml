@@ -301,10 +301,10 @@
             />
         </activity-alias>
 
-        <!-- Used to select display and sync groups -->
+        <!-- Used to set options -->
         <activity
-            android:name=".ui.ContactsPreferencesActivity"
-            android:label="@string/displayGroups"
+            android:name=".preference.ContactsPreferenceActivity"
+            android:label="@string/activity_title_settings"
             android:theme="@style/ContactsPreferencesTheme" />
 
         <!-- Used to select display and sync groups -->

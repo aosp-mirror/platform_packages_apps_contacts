@@ -260,12 +260,6 @@
          For example, this may be used to set a phone number's label to "Vaction house" -->
     <string name="customLabelPickerTitle">Custom label name</string>
 
-    <!-- The menu item to open the list of groups to display -->
-    <string name="menu_displayGroup">Display options</string>
-
-    <!-- Title of activity that lets user pick which contact groups to display -->
-    <string name="displayGroups">Display options</string>
-
     <!-- Check box label that allows calls to the contact to be sent directly to voicemail -->
     <string name="send_to_voicemail_checkbox">Send calls directly to voicemail</string>
 
@@ -1329,4 +1323,14 @@
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Custom contact list</string>
+
+    <!-- Title of the settings activity [CHAR LIMIT=64] -->
+    <string name="activity_title_settings">Settings</string>
+
+    <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
+    <string name="menu_settings">Settings</string>
+
+    <!-- The preference section title for contact display options [CHAR LIMIT=128] -->
+    <string name="preference_displayOptions">Display options</string>
+
 </resources>

@@ -22,6 +22,7 @@ import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleSource;
 import com.android.contacts.model.Sources;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
@@ -81,9 +82,6 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
     private static final String TAG = "CustomContactListFilterActivity";
 
-    public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
-    public static final String PREF_DISPLAY_ONLY_PHONES = "only_phones";
-
     private ExpandableListView mList;
     private DisplayAdapter mAdapter;
 
@@ -122,8 +120,8 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
         mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
-        mDisplayPhones.setChecked(
-                mPrefs.getBoolean(PREF_DISPLAY_ONLY_PHONES, PREF_DISPLAY_ONLY_PHONES_DEFAULT));
+        mDisplayPhones.setChecked(mPrefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
+                ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT));
         {
             final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
             final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
@@ -681,14 +679,14 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
     }
 
     /**
-     * Assign a specific value to {@link #PREF_DISPLAY_ONLY_PHONES}, refreshing
+     * Assign a specific value to {@link ContactsPreferences#PREF_DISPLAY_ONLY_PHONES}, refreshing
      * the visible list as needed.
      */
     protected void setDisplayOnlyPhones(boolean displayOnlyPhones) {
         mDisplayPhones.setChecked(displayOnlyPhones);
 
         Editor editor = mPrefs.edit();
-        editor.putBoolean(PREF_DISPLAY_ONLY_PHONES, displayOnlyPhones);
+        editor.putBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES, displayOnlyPhones);
         editor.apply();
 
         mAdapter.setChildDescripWithPhones(displayOnlyPhones);
