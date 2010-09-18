@@ -1170,7 +1170,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
-            if (data == ContactLoader.Result.NOT_FOUND) {
+            if (data == ContactLoader.Result.NOT_FOUND || data == ContactLoader.Result.ERROR) {
                 // Item has been deleted
                 Log.i(TAG, "No contact found. Closing activity");
                 if (mListener != null) mListener.onContactNotFound();
