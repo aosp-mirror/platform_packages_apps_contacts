@@ -18,24 +18,26 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.widget.SearchEditText;
-import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
-import android.widget.ToggleButton;
+import android.view.View.OnFocusChangeListener;
+import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
+import android.widget.SearchView.OnQueryChangeListener;
 
 import java.util.HashMap;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
+public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnCloseListener {
 
     public interface Listener {
         void onAction();
@@ -54,24 +56,24 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
     private String mQueryString;
     private HashMap<Integer, Bundle> mSavedStateByMode = new HashMap<Integer, Bundle>();
 
-
-    private SearchEditText mSearchEditText;
-    private View mNavigationBar;
-
     private final Context mContext;
 
     private Listener mListener;
 
-    private ToggleButton mContactsButton;
-    private ToggleButton mFavoritesButton;
-    private ToggleButton mSearchButton;
-    private ImageView mCancelSearchButton;
+    private ActionBar mActionBar;
+    private Tab mSearchTab;
+    private Tab mContactsTab;
+    private Tab mFavoritesTab;
+    private SearchView mSearchView;
+    private boolean mActive;
+    private EditText mQueryTextView;
 
     public ActionBarAdapter(Context context) {
         mContext = context;
     }
 
-    public void onCreate(Bundle savedState, ContactsRequest request) {
+    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
+        mActionBar = actionBar;
         mDefaultMode = -1;
         mMode = -1;
         mQueryString = null;
@@ -96,29 +98,48 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
         if (mQueryString == null) {
             mQueryString = request.getQueryString();
         }
+
+        mActionBar.setTabNavigationMode();
+
+        mContactsTab = mActionBar.newTab();
+        mContactsTab.setText(mContext.getString(R.string.contactsList));
+        mContactsTab.setTabListener(this);
+        mActionBar.addTab(mContactsTab);
+
+        mFavoritesTab = mActionBar.newTab();
+        mFavoritesTab.setTabListener(this);
+        mFavoritesTab.setText(mContext.getString(R.string.strequentList));
+        mActionBar.addTab(mFavoritesTab);
+
+        mSearchTab = mActionBar.newTab();
+        mSearchTab.setTabListener(this);
+
+        mSearchView = new SearchView(mContext);
+        setSearchSelectionListener(mSearchView);
+//        search.setIconifiedByDefault(false);
+
+        mSearchTab.setCustomView(mSearchView);
+        mActionBar.addTab(mSearchTab);
+        mActive = true;
+    }
+
+    private void setSearchSelectionListener(SearchView search) {
+        mQueryTextView = (EditText) search.findViewById(com.android.internal.R.id.search_src_text);
+        mQueryTextView.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    setMode(ContactBrowserMode.MODE_SEARCH);
+                } else {
+                    setMode(mDefaultMode);
+                }
+            }
+        });
     }
 
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    public View onCreateView(LayoutInflater inflater) {
-        mNavigationBar = inflater.inflate(R.layout.navigation_bar, null);
-        mSearchEditText = (SearchEditText)mNavigationBar.findViewById(R.id.search_src_text);
-        mSearchEditText.setMaginfyingGlassEnabled(false);
-        mSearchEditText.setOnFilterTextListener(this);
-        mSearchEditText.setText(mQueryString);
-        mContactsButton = (ToggleButton)mNavigationBar.findViewById(R.id.nav_contacts);
-        mContactsButton.setOnClickListener(this);
-        mFavoritesButton = (ToggleButton)mNavigationBar.findViewById(R.id.nav_favorites);
-        mFavoritesButton.setOnClickListener(this);
-        mSearchButton = (ToggleButton)mNavigationBar.findViewById(R.id.nav_search);
-        mSearchButton.setOnClickListener(this);
-        mCancelSearchButton = (ImageView)mNavigationBar.findViewById(R.id.nav_cancel_search);
-        mCancelSearchButton.setOnClickListener(this);
-        update();
-
-        return mNavigationBar;
     }
 
     public int getMode() {
@@ -126,10 +147,12 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
     }
 
     public void setMode(int mode) {
-        mMode = mode;
-        update();
-        if (mListener != null) {
-            mListener.onAction();
+        if (mMode != mode) {
+            mMode = mode;
+            update();
+            if (mListener != null) {
+                mListener.onAction();
+            }
         }
     }
 
@@ -147,55 +170,50 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
 
     public void setQueryString(String query) {
         mQueryString = query;
-        mSearchEditText.setText(query);
+        setSearchViewQuery(query);
     }
 
     public void update() {
+        if (!mActive) {
+            return;
+        }
+
         switch(mMode) {
             case ContactBrowserMode.MODE_CONTACTS:
-                mContactsButton.setChecked(true);
-                mFavoritesButton.setChecked(false);
-                mSearchButton.setChecked(false);
-                mSearchButton.setVisibility(View.VISIBLE);
-                mSearchEditText.setVisibility(View.GONE);
-                mCancelSearchButton.setVisibility(View.GONE);
+                mActionBar.selectTab(mContactsTab);
+                mSearchView.setOnCloseListener(null);
+                mSearchView.setOnQueryChangeListener(null);
+                mSearchView.setIconified(true);
                 break;
             case ContactBrowserMode.MODE_FAVORITES:
-                mContactsButton.setChecked(false);
-                mFavoritesButton.setChecked(true);
-                mSearchButton.setChecked(false);
-                mSearchButton.setVisibility(View.VISIBLE);
-                mSearchEditText.setVisibility(View.GONE);
-                mCancelSearchButton.setVisibility(View.GONE);
+                mActionBar.selectTab(mFavoritesTab);
+                mSearchView.setOnCloseListener(null);
+                mSearchView.setOnQueryChangeListener(null);
+                mSearchView.setIconified(true);
                 break;
             case ContactBrowserMode.MODE_SEARCH:
-                mContactsButton.setChecked(false);
-                mFavoritesButton.setChecked(false);
-                mSearchButton.setVisibility(View.GONE);
-                mSearchEditText.setVisibility(View.VISIBLE);
-                mSearchEditText.requestFocus();
-                InputMethodManager inputMethodManager =
-                    (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.showSoftInput(mSearchEditText, 0);
-                mCancelSearchButton.setVisibility(View.VISIBLE);
+                setSearchViewQuery(mQueryString);
+                mSearchView.setOnCloseListener(this);
+                mSearchView.setOnQueryChangeListener(this);
+                mActionBar.selectTab(mSearchTab);
                 break;
         }
     }
 
-    public void toggleSearchMode() {
-        setMode(mMode == ContactBrowserMode.MODE_SEARCH
-                ? mDefaultMode
-                : ContactBrowserMode.MODE_SEARCH);
+    private void setSearchViewQuery(String query) {
+        mSearchView.setQuery(query, false);
+        // TODO Expose API on SearchView to do this
+        mQueryTextView.selectAll();
     }
 
     @Override
-    public void onClick(View view) {
-        if (view == mSearchButton) {
+    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+        if (tab == mSearchTab) {
             setMode(ContactBrowserMode.MODE_SEARCH);
-        } else if (view == mContactsButton) {
+        } else if (tab == mContactsTab) {
             setMode(ContactBrowserMode.MODE_CONTACTS);
             setDefaultMode(ContactBrowserMode.MODE_CONTACTS);
-        } else if (view == mFavoritesButton) {
+        } else if (tab == mFavoritesTab) {
             setMode(ContactBrowserMode.MODE_FAVORITES);
             setDefaultMode(ContactBrowserMode.MODE_FAVORITES);
         } else {        // mCancelSearchButton
@@ -204,16 +222,31 @@ public class ActionBarAdapter implements OnFilterTextListener, OnClickListener {
     }
 
     @Override
-    public void onFilterChange(String queryString) {
+    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+        // Nothing to do
+    }
+
+    @Override
+    public boolean onQueryTextChanged(String queryString) {
         mQueryString = queryString;
         if (mListener != null) {
             mListener.onAction();
         }
+        return true;
     }
 
     @Override
-    public void onCancelSearch() {
+    public boolean onSubmitQuery(String query) {
+        // Ignore submit query request
+        return true;
+    }
+
+    @Override
+    public boolean onClose() {
+        mSearchView.setOnCloseListener(null);
+        mSearchView.setOnQueryChangeListener(null);
         setMode(mDefaultMode);
+        return false;  // OK to close
     }
 
     public void saveStateForMode(int mode, Bundle state) {
