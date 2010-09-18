@@ -279,10 +279,11 @@ public class PinnedHeaderListView extends ListView
         header.state = BOTTOM;
         if (header.animating) {
             header.targetTime = mAnimationTargetTime;
+            header.sourceY = header.y;
             header.targetY = y;
         } else if (animate && (header.y != y || !header.visible)) {
             if (header.visible) {
-                header.sourceY = y;
+                header.sourceY = header.y;
             } else {
                 header.visible = true;
                 header.sourceY = y + header.height;
@@ -336,10 +337,10 @@ public class PinnedHeaderListView extends ListView
     public void setHeaderInvisible(int viewIndex, boolean animate) {
         PinnedHeader header = mHeaders[viewIndex];
         if (header.visible && (animate || header.animating) && header.state == BOTTOM) {
+            header.sourceY = header.y;
             if (!header.animating) {
                 header.visible = true;
-                header.sourceY = header.y;
-                header.targetY = header.y + header.height;
+                header.targetY = getBottom() + header.height;
             }
             header.animating = true;
             header.targetTime = mAnimationTargetTime;
