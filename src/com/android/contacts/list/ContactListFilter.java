@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
@@ -26,8 +27,14 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
 
     public static final int FILTER_TYPE_ALL_ACCOUNTS = -1;
     public static final int FILTER_TYPE_CUSTOM = -2;
+    public static final int FILTER_TYPE_DEFAULT = -3;
     public static final int FILTER_TYPE_ACCOUNT = 0;
     public static final int FILTER_TYPE_GROUP = 1;
+
+    private static final String KEY_FILTER_TYPE = "filter.type";
+    private static final String KEY_ACCOUNT_NAME = "filter.accountName";
+    private static final String KEY_ACCOUNT_TYPE = "filter.accountType";
+    private static final String KEY_GROUP_ID = "filter.groupId";
 
     public int filterType;
     public String accountType;
@@ -119,5 +126,27 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
                 && TextUtils.equals(accountName, otherFilter.accountName)
                 && TextUtils.equals(accountType, otherFilter.accountType)
                 && groupId == otherFilter.groupId;
+    }
+
+    public static void storeToPreferences(SharedPreferences prefs, ContactListFilter filter) {
+        prefs.edit()
+            .putInt(KEY_FILTER_TYPE, filter == null ? FILTER_TYPE_DEFAULT : filter.filterType)
+            .putString(KEY_ACCOUNT_NAME, filter == null ? null : filter.accountName)
+            .putString(KEY_ACCOUNT_TYPE, filter == null ? null : filter.accountType)
+            .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
+            .apply();
+    }
+
+    public static ContactListFilter restoreFromPreferences(SharedPreferences prefs) {
+        int filterType = prefs.getInt(KEY_FILTER_TYPE, FILTER_TYPE_DEFAULT);
+        if (filterType == FILTER_TYPE_DEFAULT) {
+            return null;
+        }
+
+        ContactListFilter filter = new ContactListFilter(filterType);
+        filter.accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
+        filter.accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
+        filter.groupId = prefs.getLong(KEY_GROUP_ID, -1);
+        return filter;
     }
 }

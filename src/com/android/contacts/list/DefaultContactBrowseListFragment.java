@@ -68,6 +68,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private NotifyingSpinner mFilterSpinner;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
+    private SharedPreferences mPrefs;
 
     private LoaderCallbacks<List<ContactListFilter>> mGroupFilterLoaderCallbacks =
             new LoaderCallbacks<List<ContactListFilter>>() {
@@ -213,8 +214,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             mFilterSpinner.setVisibility(View.GONE);
             return;
         }
+
         mFilterSpinner.setOnItemSelectedListener(this);
-        mFilterSpinner.setSetSelectionListener(this);
     }
 
     @Override
@@ -279,8 +280,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     @Override
     public void onStart() {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (mFilterEnabled) {
             mFiltersLoaded = false;
+            mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
         }
         super.onStart();
     }
@@ -339,15 +342,21 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             }
         }
 
+        boolean filterChanged = false;
         mFiltersLoaded = true;
         if (mFilter == null  || !filterValid) {
+            filterChanged = mFilter != null;
             mFilter = getDefaultFilter();
         }
 
         mFilterSpinner.setAdapter(new FilterSpinnerAdapter());
         updateFilterView();
 
-        startLoading();
+        if (filterChanged) {
+            reloadData();
+        } else {
+            startLoading();
+        }
     }
 
     protected void setContactListFilter(int filterId) {
@@ -365,6 +374,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
         if (!filter.equals(mFilter)) {
             mFilter = filter;
+            ContactListFilter.storeToPreferences(mPrefs, mFilter);
             updateFilterView();
             reloadData();
         }
@@ -394,6 +404,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     protected void updateFilterView() {
         if (mFiltersLoaded) {
+            mFilterSpinner.setSetSelectionListener(null);
+            if (mFilter != null && mFilters != null) {
+                int size = mFilters.size();
+                for (int i = 0; i < size; i++) {
+                    if (mFilters.valueAt(i).equals(mFilter)) {
+                        mFilterSpinner.setSelection(i);
+                        break;
+                    }
+                }
+            }
+            mFilterSpinner.setSetSelectionListener(this);
             mFilterSpinner.setVisibility(View.VISIBLE);
         }
     }
