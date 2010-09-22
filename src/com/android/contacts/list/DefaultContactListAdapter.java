@@ -96,6 +96,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         if (directoryId == Directory.DEFAULT && isSectionHeaderDisplayEnabled()) {
             uri = buildSectionIndexerUri(uri);
         }
+
+        // The "All accounts" filter is the same as the entire contents of Directory.DEFAULT
+        if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+            uri = uri.buildUpon().appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                    .build();
+        }
         loader.setUri(uri);
     }
 
@@ -114,8 +121,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             return;
         }
 
-        if (directoryId != Directory.DEFAULT || filter == null) {
-            loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
+        if (directoryId != Directory.DEFAULT) {
             return;
         }
 
@@ -124,38 +130,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
         switch (filter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
-                List<ContactListFilter> filters = getAllFilters();
-                for (ContactListFilter aFilter : filters) {
-                    if (aFilter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
-                        if (selection.length() > 0) {
-                            selection.append(" OR ");
-                        }
-                        selection.append("(");
-                        if (aFilter.groupId != 0) {
-                            // TODO: avoid the use of private API
-                            // TODO: optimize the query
-                            selection.append(
-                                    Contacts._ID + " IN ("
-                                            + "SELECT " + RawContacts.CONTACT_ID
-                                            + " FROM view_data"
-                                            + " WHERE " + Data.MIMETYPE + "=?"
-                                            + "   AND " + GroupMembership.GROUP_ROW_ID + "=?)");
-                            selectionArgs.add(GroupMembership.CONTENT_ITEM_TYPE);
-                            selectionArgs.add(String.valueOf(aFilter.groupId));
-                        } else {
-                            // TODO: avoid the use of private API
-                            selection.append(
-                                    Contacts._ID + " IN ("
-                                            + "SELECT " + RawContacts.CONTACT_ID
-                                            + " FROM raw_contacts"
-                                            + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
-                                            + "   AND " + RawContacts.ACCOUNT_NAME + "=?)");
-                            selectionArgs.add(aFilter.accountType);
-                            selectionArgs.add(aFilter.accountName);
-                        }
-                        selection.append(")");
-                    }
-                }
+                // We have already added directory=0 to the URI, which takes care of this
+                // filter
                 break;
             }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
