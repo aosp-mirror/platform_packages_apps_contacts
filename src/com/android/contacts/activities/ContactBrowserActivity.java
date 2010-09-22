@@ -38,9 +38,12 @@ import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -57,6 +60,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -159,12 +164,8 @@ public class ContactBrowserActivity extends Activity
 
         if (mHasActionBar) {
             mActionBarAdapter = new ActionBarAdapter(this);
-            mActionBarAdapter.onCreate(savedState, mRequest);
+            mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
             mActionBarAdapter.setListener(this);
-
-            ActionBar actionBar = getActionBar();
-            View navBarView = mActionBarAdapter.onCreateView(getLayoutInflater());
-            actionBar.setCustomNavigationMode(navBarView);
         }
 
         configureListFragment();
