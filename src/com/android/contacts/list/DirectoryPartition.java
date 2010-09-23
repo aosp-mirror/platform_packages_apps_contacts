@@ -33,6 +33,7 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
     private String mDisplayName;
     private int mStatus;
     private boolean mPriorityDirectory;
+    private boolean mPhotoSupported;
 
     public DirectoryPartition(boolean showIfEmpty, boolean hasHeader) {
         super(showIfEmpty, hasHeader);
@@ -93,5 +94,16 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
 
     public void setPriorityDirectory(boolean priorityDirectory) {
         mPriorityDirectory = priorityDirectory;
+    }
+
+    /**
+     * Returns true if this directory supports photos.
+     */
+    public boolean isPhotoSupported() {
+        return mPhotoSupported;
+    }
+
+    public void setPhotoSupported(boolean flag) {
+        this.mPhotoSupported = flag;
     }
 }

@@ -183,7 +183,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         if (isQuickContactEnabled()) {
             bindQuickContact(view, partition, cursor);
         } else {
-            bindPhoto(view, cursor);
+            bindPhoto(view, partition, cursor);
         }
 
         bindName(view, cursor);

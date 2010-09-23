@@ -209,7 +209,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         if (isQuickContactEnabled()) {
             bindQuickContact(view, partition, cursor);
         } else {
-            bindPhoto(view, cursor);
+            bindPhoto(view, partition, cursor);
         }
         bindPresence(view, cursor);
 

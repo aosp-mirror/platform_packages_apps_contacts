@@ -45,12 +45,14 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
             Directory.PACKAGE_NAME,
             Directory.TYPE_RESOURCE_ID,
             Directory.DISPLAY_NAME,
+            Directory.PHOTO_SUPPORT,
         };
 
         public static final int ID = 0;
         public static final int PACKAGE_NAME = 1;
         public static final int TYPE_RESOURCE_ID = 2;
         public static final int DISPLAY_NAME = 3;
+        public static final int PHOTO_SUPPORT = 4;
     }
 
     public static final String DIRECTORY_TYPE = "directoryType";
@@ -59,6 +61,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         Directory._ID,
         DIRECTORY_TYPE,
         Directory.DISPLAY_NAME,
+        Directory.PHOTO_SUPPORT,
     };
 
     private final ContentObserver mObserver = new ContentObserver(new Handler()) {
@@ -124,7 +127,8 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
                     }
                 }
                 String displayName = cursor.getString(DirectoryQuery.DISPLAY_NAME);
-                result.addRow(new Object[]{directoryId, directoryType, displayName});
+                int photoSupport = cursor.getInt(DirectoryQuery.PHOTO_SUPPORT);
+                result.addRow(new Object[]{directoryId, directoryType, displayName, photoSupport});
             }
         } finally {
             cursor.close();

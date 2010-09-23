@@ -78,6 +78,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         partition.setDirectoryId(Directory.DEFAULT);
         partition.setDirectoryType(getContext().getString(R.string.contactsList));
         partition.setPriorityDirectory(true);
+        partition.setPhotoSupported(true);
         return partition;
     }
 
@@ -228,6 +229,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         int idColumnIndex = cursor.getColumnIndex(Directory._ID);
         int directoryTypeColumnIndex = cursor.getColumnIndex(DirectoryListLoader.DIRECTORY_TYPE);
         int displayNameColumnIndex = cursor.getColumnIndex(Directory.DISPLAY_NAME);
+        int photoSupportColumnIndex = cursor.getColumnIndex(Directory.PHOTO_SUPPORT);
 
         // TODO preserve the order of partition to match those of the cursor
         // Phase I: add new directories
@@ -240,6 +242,9 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 partition.setDirectoryId(id);
                 partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
                 partition.setDisplayName(cursor.getString(displayNameColumnIndex));
+                int photoSupport = cursor.getInt(photoSupportColumnIndex);
+                partition.setPhotoSupported(photoSupport == Directory.PHOTO_SUPPORT_THUMBNAIL_ONLY
+                        || photoSupport == Directory.PHOTO_SUPPORT_FULL);
                 addPartition(partition);
             }
         }
@@ -404,5 +409,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     .getQuantityText(pluralResourceId, count).toString();
             return String.format(format, count);
         }
+    }
+
+    public boolean isPhotoSupported(int partitionIndex) {
+        Partition partition = getPartition(partitionIndex);
+        if (partition instanceof DirectoryPartition) {
+            return ((DirectoryPartition) partition).isPhotoSupported();
+        }
+        return true;
     }
 }

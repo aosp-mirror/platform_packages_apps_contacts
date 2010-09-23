@@ -200,7 +200,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
                 final ContactListItemView view = (ContactListItemView)itemView;
-                bindPhoto(view, cursor);
+                bindPhoto(view, partition, cursor);
                 bindName(view, cursor);
                 break;
             }
@@ -210,7 +210,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
             case PARTITION_ALL_CONTACTS: {
                 final ContactListItemView view = (ContactListItemView)itemView;
                 bindSectionHeaderAndDivider(view, position);
-                bindPhoto(view, cursor);
+                bindPhoto(view, partition, cursor);
                 bindName(view, cursor);
                 break;
             }

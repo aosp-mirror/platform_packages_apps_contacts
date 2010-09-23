@@ -580,10 +580,7 @@ public class ContactListItemView extends ViewGroup {
     /**
      * Removes the photo view.  Should not be needed once we start handling different
      * types of views as different types of views from the List's perspective.
-     *
-     * @deprecated
      */
-    @Deprecated
     public void removePhotoView() {
         if (mPhotoView != null) {
             removeView(mPhotoView);

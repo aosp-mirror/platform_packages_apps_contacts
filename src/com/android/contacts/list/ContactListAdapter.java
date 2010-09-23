@@ -231,7 +231,12 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         view.setDividerVisible(!placement.lastInSection);
     }
 
-    protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
+    protected void bindPhoto(final ContactListItemView view, int partitionIndex, Cursor cursor) {
+        if (!isPhotoSupported(partitionIndex)) {
+            view.removePhotoView();
+            return;
+        }
+
         // Set the photo, if available
         long photoId = 0;
         if (!cursor.isNull(CONTACT_PHOTO_ID_COLUMN_INDEX)) {
