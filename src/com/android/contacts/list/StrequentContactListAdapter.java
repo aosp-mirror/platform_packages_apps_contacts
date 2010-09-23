@@ -202,7 +202,7 @@ public class StrequentContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = (ContactListItemView)itemView;
 
         if (isSelectionVisible()) {
-            view.setItemSelected(isSelectedContact(partition, cursor));
+            view.setActivated(isSelectedContact(partition, cursor));
         }
 
         bindName(view, cursor);

@@ -53,8 +53,6 @@ public class ContactListItemView extends ViewGroup {
 
     protected final Context mContext;
 
-    private boolean mItemSelected;
-
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
     private final int mPaddingTop;
@@ -68,7 +66,7 @@ public class ContactListItemView extends ViewGroup {
     private final int mHeaderTextWidth;
 
     private Drawable mPressedBackgroundDrawable;
-    private Drawable mSelectedBackgroundDrawable;
+    private Drawable mActivatedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
     private Drawable mHorizontalDividerDrawable;
@@ -290,9 +288,9 @@ public class ContactListItemView extends ViewGroup {
             bottomBound -= mHorizontalDividerHeight;
         }
 
-        if (mItemSelected) {
-            ensureSelectedBackgroundDrawable();
-            mSelectedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
+        if (isActivated()) {
+            ensureActivatedBackgroundDrawable();
+            mActivatedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
         }
 
         if (mPressedBackgroundDrawable != null) {
@@ -421,11 +419,11 @@ public class ContactListItemView extends ViewGroup {
     /**
      * Loads the drawable for the item background used when the item is checked.
      */
-    private void ensureSelectedBackgroundDrawable() {
-        if (mSelectedBackgroundDrawable == null) {
-            mSelectedBackgroundDrawable = mContext.getResources().getDrawable(
-                    R.drawable.list_item_checked_bg);
-            mSelectedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
+    private void ensureActivatedBackgroundDrawable() {
+        if (mActivatedBackgroundDrawable == null) {
+            mActivatedBackgroundDrawable = mContext.getResources().getDrawable(
+                    R.drawable.list_item_activated_bg);
+            mActivatedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
         }
     }
 
@@ -497,8 +495,8 @@ public class ContactListItemView extends ViewGroup {
     public void dispatchDraw(Canvas canvas) {
         if (isPressed() && mPressedBackgroundDrawable != null) {
             mPressedBackgroundDrawable.draw(canvas);
-        } else if (mItemSelected) {
-            mSelectedBackgroundDrawable.draw(canvas);
+        } else if (isActivated()) {
+            mActivatedBackgroundDrawable.draw(canvas);
         }
         if (mHeaderVisible) {
             mHeaderBackgroundDrawable.draw(canvas);
@@ -881,17 +879,6 @@ public class ContactListItemView extends ViewGroup {
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, dataBuffer);
         setData(dataBuffer.data, dataBuffer.sizeCopied);
-    }
-
-    public boolean isItemSelected() {
-        return mItemSelected;
-    }
-
-    public void setItemSelected(boolean selected) {
-        if (mItemSelected != selected) {
-            mItemSelected = selected;
-            requestLayout();
-        }
     }
 
     @Override

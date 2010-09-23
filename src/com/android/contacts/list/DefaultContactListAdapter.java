@@ -175,7 +175,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         final ContactListItemView view = (ContactListItemView)itemView;
 
         if (isSelectionVisible()) {
-            view.setItemSelected(isSelectedContact(partition, cursor));
+            view.setActivated(isSelectedContact(partition, cursor));
         }
 
         bindSectionHeaderAndDivider(view, position);
