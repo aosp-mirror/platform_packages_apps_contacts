@@ -110,6 +110,8 @@ public class ContactListItemView extends ViewGroup {
 
     private CharSequence mUnknownNameText;
 
+    private boolean mActivatedStateSupported;
+
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
      * This way the line of a tab can be pressed, but the image itself is not.
@@ -600,7 +602,7 @@ public class ContactListItemView extends ViewGroup {
         if (mNameTextView == null) {
             mNameTextView = new TextView(mContext);
             mNameTextView.setSingleLine(true);
-            mNameTextView.setEllipsize(TruncateAt.MARQUEE);
+            mNameTextView.setEllipsize(getTextEllipsis());
             mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Large);
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
             addView(mNameTextView);
@@ -655,7 +657,7 @@ public class ContactListItemView extends ViewGroup {
         if (mPhoneticNameTextView == null) {
             mPhoneticNameTextView = new TextView(mContext);
             mPhoneticNameTextView.setSingleLine(true);
-            mPhoneticNameTextView.setEllipsize(TruncateAt.MARQUEE);
+            mPhoneticNameTextView.setEllipsize(getTextEllipsis());
             mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
             addView(mPhoneticNameTextView);
@@ -700,7 +702,7 @@ public class ContactListItemView extends ViewGroup {
         if (mLabelView == null) {
             mLabelView = new TextView(mContext);
             mLabelView.setSingleLine(true);
-            mLabelView.setEllipsize(TruncateAt.MARQUEE);
+            mLabelView.setEllipsize(getTextEllipsis());
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
             addView(mLabelView);
@@ -731,7 +733,7 @@ public class ContactListItemView extends ViewGroup {
         if (mDataView == null) {
             mDataView = new TextView(mContext);
             mDataView.setSingleLine(true);
-            mDataView.setEllipsize(TruncateAt.MARQUEE);
+            mDataView.setEllipsize(getTextEllipsis());
             mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             addView(mDataView);
         }
@@ -760,7 +762,7 @@ public class ContactListItemView extends ViewGroup {
         if (mSnippetView == null) {
             mSnippetView = new TextView(mContext);
             mSnippetView.setSingleLine(true);
-            mSnippetView.setEllipsize(TruncateAt.MARQUEE);
+            mSnippetView.setEllipsize(getTextEllipsis());
             mSnippetView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mSnippetView.setTypeface(mSnippetView.getTypeface(), Typeface.BOLD);
             addView(mSnippetView);
@@ -785,6 +787,10 @@ public class ContactListItemView extends ViewGroup {
                 mPresenceIcon.setVisibility(View.GONE);
             }
         }
+    }
+
+    private TruncateAt getTextEllipsis() {
+        return mActivatedStateSupported ? TruncateAt.START : TruncateAt.MARQUEE;
     }
 
     public void showDisplayName(Cursor cursor, int nameColumnIndex, boolean highlightingEnabled,
@@ -879,6 +885,10 @@ public class ContactListItemView extends ViewGroup {
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, dataBuffer);
         setData(dataBuffer.data, dataBuffer.sizeCopied);
+    }
+
+    public void setActivatedStateSupported(boolean flag) {
+        this.mActivatedStateSupported = flag;
     }
 
     @Override

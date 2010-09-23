@@ -221,6 +221,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
+        view.setActivatedStateSupported(isSelectionVisible());
         return view;
     }
 
