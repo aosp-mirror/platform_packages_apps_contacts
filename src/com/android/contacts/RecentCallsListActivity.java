@@ -833,6 +833,7 @@ public class RecentCallsListActivity extends ListActivity
         String number = cursor.getString(NUMBER_COLUMN_INDEX);
         Uri numberUri = null;
         boolean isVoicemail = false;
+        boolean isSipNumber = false;
         if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
             number = getString(R.string.unknown);
         } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
@@ -843,6 +844,9 @@ public class RecentCallsListActivity extends ListActivity
             number = getString(R.string.voicemail);
             numberUri = Uri.parse("voicemail:x");
             isVoicemail = true;
+        } else if (PhoneNumberUtils.isUriNumber(number)) {
+            numberUri = Uri.fromParts("tel", number, null);
+            isSipNumber = true;
         } else {
             numberUri = Uri.fromParts("tel", number, null);
         }
@@ -867,7 +871,7 @@ public class RecentCallsListActivity extends ListActivity
                             ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId)));
         }
 
-        if (numberUri != null && !isVoicemail) {
+        if (numberUri != null && !isVoicemail && !isSipNumber) {
             menu.add(0, 0, 0, R.string.recentCalls_editNumberBeforeCall)
                     .setIntent(new Intent(Intent.ACTION_DIAL, numberUri));
             menu.add(0, 0, 0, R.string.menu_sendTextMessage)
