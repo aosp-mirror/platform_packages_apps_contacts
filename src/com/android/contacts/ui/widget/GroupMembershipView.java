@@ -82,6 +82,7 @@ public class GroupMembershipView extends LinearLayout
     private String mAccountType;
     private TextView mGroupList;
     private ArrayAdapter<GroupSelectionItem> mAdapter;
+    private long mDefaultGroupId;
     private long mFavoritesGroupId;
     private ListPopupWindow mPopup;
     private DataKind mKind;
@@ -107,8 +108,9 @@ public class GroupMembershipView extends LinearLayout
 
     public void setState(EntityDelta state) {
         mState = state;
-        mAccountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        mAccountName = state.getValues().getAsString(RawContacts.ACCOUNT_NAME);
+        ValuesDelta values = state.getValues();
+        mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+        mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         updateView();
     }
 
@@ -120,6 +122,9 @@ public class GroupMembershipView extends LinearLayout
         }
 
         boolean accountHasGroups = false;
+        mFavoritesGroupId = 0;
+        mDefaultGroupId = 0;
+
         StringBuilder sb = new StringBuilder();
         mGroupMetaData.moveToPosition(-1);
         while (mGroupMetaData.moveToNext()) {
@@ -130,6 +135,9 @@ public class GroupMembershipView extends LinearLayout
                 if (!mGroupMetaData.isNull(GroupMetaDataLoader.FAVORITES)
                         && mGroupMetaData.getInt(GroupMetaDataLoader.FAVORITES) != 0) {
                     mFavoritesGroupId = groupId;
+                } else if (!mGroupMetaData.isNull(GroupMetaDataLoader.AUTO_ADD)
+                            && mGroupMetaData.getInt(GroupMetaDataLoader.AUTO_ADD) != 0) {
+                    mDefaultGroupId = groupId;
                 } else {
                     accountHasGroups = true;
                 }
@@ -145,6 +153,8 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
+        // Only show the default group for existing contacts (not for inserts)
+        accountHasGroups |= (!mState.isContactInsert() && mDefaultGroupId != 0);
         if (!accountHasGroups) {
             setVisibility(GONE);
             return;
@@ -175,7 +185,15 @@ public class GroupMembershipView extends LinearLayout
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             if (accountName.equals(mAccountName) && accountType.equals(mAccountType)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
-                if (groupId != mFavoritesGroupId) {
+                boolean showGroup;
+                if (groupId == mFavoritesGroupId) {
+                    showGroup = false;
+                } else if (groupId == mDefaultGroupId) {
+                    showGroup = !mState.isContactInsert();
+                } else {
+                    showGroup = true;
+                }
+                if (showGroup) {
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
                     boolean checked = hasMembership(groupId);
                     mAdapter.add(new GroupSelectionItem(groupId, title, checked));
@@ -218,9 +236,12 @@ public class GroupMembershipView extends LinearLayout
         ArrayList<ValuesDelta> entries = mState.getMimeEntries(GroupMembership.CONTENT_ITEM_TYPE);
         if (entries != null) {
             for (ValuesDelta entry : entries) {
-                long groupId = entry.getAsLong(GroupMembership.GROUP_ROW_ID);
-                if (groupId != mFavoritesGroupId && !isGroupChecked(groupId)) {
-                    entry.markDeleted();
+                if (!entry.isDelete()) {
+                    Long groupId = entry.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    if (groupId != null && groupId != mFavoritesGroupId
+                            && !isGroupChecked(groupId)) {
+                        entry.markDeleted();
+                    }
                 }
             }
         }
@@ -250,11 +271,18 @@ public class GroupMembershipView extends LinearLayout
     }
 
     private boolean hasMembership(long groupId) {
+        if (groupId == mDefaultGroupId && mState.isContactInsert()) {
+            return true;
+        }
+
         ArrayList<ValuesDelta> entries = mState.getMimeEntries(GroupMembership.CONTENT_ITEM_TYPE);
         if (entries != null) {
             for (ValuesDelta values : entries) {
-                if (values.getAsLong(GroupMembership.GROUP_ROW_ID) == groupId) {
-                    return true;
+                if (!values.isDelete()) {
+                    Long id = values.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    if (id != null && id == groupId) {
+                        return true;
+                    }
                 }
             }
         }
