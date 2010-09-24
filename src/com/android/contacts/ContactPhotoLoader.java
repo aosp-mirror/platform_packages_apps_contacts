@@ -23,14 +23,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Handler;
+import android.os.Handler.Callback;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.os.Handler.Callback;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Contacts.Photo;
+import android.provider.ContactsContract.Data;
+import android.util.Log;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -39,11 +43,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Asynchronously loads contact photos and maintains cache of photos.  The class is
  * mostly single-threaded.  The only two methods accessed by the loader thread are
- * {@link #cacheBitmap} and {@link #obtainPhotoIdsToLoad}. Those methods access concurrent
+ * {@link #cacheBitmap} and {@link #obtainPhotoIdsAndUrisToLoad}. Those methods access concurrent
  * hash maps shared with the main thread.
  */
 public class ContactPhotoLoader implements Callback {
-
+    private static final String TAG = "ContactPhotoLoader";
     private static final String LOADER_THREAD_NAME = "ContactPhotoLoader";
 
     /**
@@ -83,15 +87,15 @@ public class ContactPhotoLoader implements Callback {
     /**
      * A soft cache for photos.
      */
-    private final ConcurrentHashMap<Long, BitmapHolder> mBitmapCache =
-            new ConcurrentHashMap<Long, BitmapHolder>();
+    private final ConcurrentHashMap<Object, BitmapHolder> mBitmapCache =
+            new ConcurrentHashMap<Object, BitmapHolder>();
 
     /**
      * A map from ImageView to the corresponding photo ID. Please note that this
      * photo ID may change before the photo loading request is started.
      */
-    private final ConcurrentHashMap<ImageView, Long> mPendingRequests =
-            new ConcurrentHashMap<ImageView, Long>();
+    private final ConcurrentHashMap<ImageView, Object> mPendingRequests =
+            new ConcurrentHashMap<ImageView, Object>();
 
     /**
      * Handler for messages sent to the UI thread.
@@ -139,15 +143,34 @@ public class ContactPhotoLoader implements Callback {
             view.setImageResource(mDefaultResourceId);
             mPendingRequests.remove(view);
         } else {
-            boolean loaded = loadCachedPhoto(view, photoId);
-            if (loaded) {
-                mPendingRequests.remove(view);
-            } else {
-                mPendingRequests.put(view, photoId);
-                if (!mPaused) {
-                    // Send a request to start loading photos
-                    requestLoading();
-                }
+            loadPhotoByIdOrUri(view, photoId);
+        }
+    }
+
+    /**
+     * Load photo into the supplied image view.  If the photo is already cached,
+     * it is displayed immediately.  Otherwise a request is sent to load the photo
+     * from the location specified by the URI.
+     */
+    public void loadPhoto(ImageView view, Uri photoUri) {
+        if (photoUri == null) {
+            // No photo is needed
+            view.setImageResource(mDefaultResourceId);
+            mPendingRequests.remove(view);
+        } else {
+            loadPhotoByIdOrUri(view, photoUri);
+        }
+    }
+
+    private void loadPhotoByIdOrUri(ImageView view, Object key) {
+        boolean loaded = loadCachedPhoto(view, key);
+        if (loaded) {
+            mPendingRequests.remove(view);
+        } else {
+            mPendingRequests.put(view, key);
+            if (!mPaused) {
+                // Send a request to start loading photos
+                requestLoading();
             }
         }
     }
@@ -157,11 +180,11 @@ public class ContactPhotoLoader implements Callback {
      * otherwise sets the state of the photo to {@link BitmapHolder#NEEDED} and
      * temporarily set the image to the default resource ID.
      */
-    private boolean loadCachedPhoto(ImageView view, long photoId) {
-        BitmapHolder holder = mBitmapCache.get(photoId);
+    private boolean loadCachedPhoto(ImageView view, Object key) {
+        BitmapHolder holder = mBitmapCache.get(key);
         if (holder == null) {
             holder = new BitmapHolder();
-            mBitmapCache.put(photoId, holder);
+            mBitmapCache.put(key, holder);
         } else if (holder.state == BitmapHolder.LOADED) {
             // Null bitmap reference means that database contains no bytes for the photo
             if (holder.bitmapRef == null) {
@@ -272,8 +295,8 @@ public class ContactPhotoLoader implements Callback {
         Iterator<ImageView> iterator = mPendingRequests.keySet().iterator();
         while (iterator.hasNext()) {
             ImageView view = iterator.next();
-            long photoId = mPendingRequests.get(view);
-            boolean loaded = loadCachedPhoto(view, photoId);
+            Object key = mPendingRequests.get(view);
+            boolean loaded = loadCachedPhoto(view, key);
             if (loaded) {
                 iterator.remove();
             }
@@ -287,7 +310,7 @@ public class ContactPhotoLoader implements Callback {
     /**
      * Stores the supplied bitmap in cache.
      */
-    private void cacheBitmap(long id, byte[] bytes) {
+    private void cacheBitmap(Object key, byte[] bytes) {
         if (mPaused) {
             return;
         }
@@ -302,14 +325,14 @@ public class ContactPhotoLoader implements Callback {
                 // Do nothing - the photo will appear to be missing
             }
         }
-        mBitmapCache.put(id, holder);
+        mBitmapCache.put(key, holder);
     }
 
     /**
      * Populates an array of photo IDs that need to be loaded.
      */
-    private void obtainPhotoIdsToLoad(ArrayList<Long> photoIds,
-            ArrayList<String> photoIdsAsStrings) {
+    private void obtainPhotoIdsAndUrisToLoad(ArrayList<Long> photoIds,
+            ArrayList<String> photoIdsAsStrings, ArrayList<Uri> uris) {
         photoIds.clear();
         photoIdsAsStrings.clear();
 
@@ -321,15 +344,19 @@ public class ContactPhotoLoader implements Callback {
          * concurrent change, we will need to check the map again once loading
          * is complete.
          */
-        Iterator<Long> iterator = mPendingRequests.values().iterator();
+        Iterator<Object> iterator = mPendingRequests.values().iterator();
         while (iterator.hasNext()) {
-            Long id = iterator.next();
-            BitmapHolder holder = mBitmapCache.get(id);
+            Object key = iterator.next();
+            BitmapHolder holder = mBitmapCache.get(key);
             if (holder != null && holder.state == BitmapHolder.NEEDED) {
                 // Assuming atomic behavior
                 holder.state = BitmapHolder.LOADING;
-                photoIds.add(id);
-                photoIdsAsStrings.add(id.toString());
+                if (key instanceof Long) {
+                    photoIds.add((Long)key);
+                    photoIdsAsStrings.add(key.toString());
+                } else {
+                    uris.add((Uri)key);
+                }
             }
         }
     }
@@ -338,11 +365,15 @@ public class ContactPhotoLoader implements Callback {
      * The thread that performs loading of photos from the database.
      */
     private class LoaderThread extends HandlerThread implements Callback {
+        private static final int BUFFER_SIZE = 1024*16;
+
         private final ContentResolver mResolver;
         private final StringBuilder mStringBuilder = new StringBuilder();
         private final ArrayList<Long> mPhotoIds = Lists.newArrayList();
         private final ArrayList<String> mPhotoIdsAsStrings = Lists.newArrayList();
+        private final ArrayList<Uri> mPhotoUris = Lists.newArrayList();
         private Handler mLoaderThreadHandler;
+        private byte mBuffer[];
 
         public LoaderThread(ContentResolver resolver) {
             super(LOADER_THREAD_NAME);
@@ -365,54 +396,79 @@ public class ContactPhotoLoader implements Callback {
          */
         public boolean handleMessage(Message msg) {
             loadPhotosFromDatabase();
-            mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
             return true;
         }
 
         private void loadPhotosFromDatabase() {
-            obtainPhotoIdsToLoad(mPhotoIds, mPhotoIdsAsStrings);
+            obtainPhotoIdsAndUrisToLoad(mPhotoIds, mPhotoIdsAsStrings, mPhotoUris);
 
             int count = mPhotoIds.size();
-            if (count == 0) {
-                return;
-            }
-
-            mStringBuilder.setLength(0);
-            mStringBuilder.append(Photo._ID + " IN(");
-            for (int i = 0; i < count; i++) {
-                if (i != 0) {
-                    mStringBuilder.append(',');
+            if (count != 0) {
+                mStringBuilder.setLength(0);
+                mStringBuilder.append(Photo._ID + " IN(");
+                for (int i = 0; i < count; i++) {
+                    if (i != 0) {
+                        mStringBuilder.append(',');
+                    }
+                    mStringBuilder.append('?');
                 }
-                mStringBuilder.append('?');
-            }
-            mStringBuilder.append(')');
+                mStringBuilder.append(')');
 
-            Cursor cursor = null;
-            try {
-                cursor = mResolver.query(Data.CONTENT_URI,
-                        COLUMNS,
-                        mStringBuilder.toString(),
-                        mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
-                        null);
+                Cursor cursor = null;
+                try {
+                    cursor = mResolver.query(Data.CONTENT_URI,
+                            COLUMNS,
+                            mStringBuilder.toString(),
+                            mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
+                            null);
 
-                if (cursor != null) {
-                    while (cursor.moveToNext()) {
-                        Long id = cursor.getLong(0);
-                        byte[] bytes = cursor.getBlob(1);
-                        cacheBitmap(id, bytes);
-                        mPhotoIds.remove(id);
+                    if (cursor != null) {
+                        while (cursor.moveToNext()) {
+                            Long id = cursor.getLong(0);
+                            byte[] bytes = cursor.getBlob(1);
+                            cacheBitmap(id, bytes);
+                            mPhotoIds.remove(id);
+                        }
+                    }
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
                     }
                 }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
+
+                // Remaining photos were not found in the database - mark the cache accordingly.
+                count = mPhotoIds.size();
+                for (int i = 0; i < count; i++) {
+                    cacheBitmap(mPhotoIds.get(i), null);
                 }
+                mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
             }
 
-            // Remaining photos were not found in the database - mark the cache accordingly.
-            count = mPhotoIds.size();
+            count = mPhotoUris.size();
             for (int i = 0; i < count; i++) {
-                cacheBitmap(mPhotoIds.get(i), null);
+                Uri uri = mPhotoUris.get(i);
+                if (mBuffer == null) {
+                    mBuffer = new byte[BUFFER_SIZE];
+                }
+                try {
+                    InputStream is = mResolver.openInputStream(uri);
+                    if (is != null) {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        try {
+                            int size;
+                            while ((size = is.read(mBuffer)) != -1) {
+                                baos.write(mBuffer, 0, size);
+                            }
+                        } finally {
+                            is.close();
+                        }
+                        cacheBitmap(uri, baos.toByteArray());
+                        mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
+                    }
+                } catch (Exception ex) {
+                    Log.v(TAG, "Cannot load photo " + uri, ex);
+                    cacheBitmap(uri, null);
+                }
             }
         }
     }
