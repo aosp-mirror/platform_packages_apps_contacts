@@ -45,9 +45,10 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.STARRED,                       // 4
         Contacts.CONTACT_PRESENCE,              // 5
         Contacts.PHOTO_ID,                      // 6
-        Contacts.LOOKUP_KEY,                    // 7
-        Contacts.PHONETIC_NAME,                 // 8
-        Contacts.HAS_PHONE_NUMBER,              // 9
+        Contacts.PHOTO_THUMBNAIL_URI,           // 7
+        Contacts.LOOKUP_KEY,                    // 8
+        Contacts.PHONETIC_NAME,                 // 9
+        Contacts.HAS_PHONE_NUMBER,              // 10
     };
 
     protected static final String[] PROJECTION_DATA = new String[] {
@@ -58,9 +59,10 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Data.STARRED,                           // 4
         Data.CONTACT_PRESENCE,                  // 5
         Data.PHOTO_ID,                          // 6
-        Data.LOOKUP_KEY,                        // 7
-        Data.PHONETIC_NAME,                     // 8
-        Data.HAS_PHONE_NUMBER,                  // 9
+        Data.PHOTO_THUMBNAIL_URI,               // 7
+        Data.LOOKUP_KEY,                        // 8
+        Data.PHONETIC_NAME,                     // 9
+        Data.HAS_PHONE_NUMBER,                  // 10
     };
 
     protected static final String[] FILTER_PROJECTION = new String[] {
@@ -71,12 +73,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.STARRED,                       // 4
         Contacts.CONTACT_PRESENCE,              // 5
         Contacts.PHOTO_ID,                      // 6
-        Contacts.LOOKUP_KEY,                    // 7
-        Contacts.PHONETIC_NAME,                 // 8
-        Contacts.HAS_PHONE_NUMBER,              // 9
-        SearchSnippetColumns.SNIPPET_MIMETYPE,  // 10
-        SearchSnippetColumns.SNIPPET_DATA1,     // 11
-        SearchSnippetColumns.SNIPPET_DATA4,     // 12
+        Contacts.PHOTO_THUMBNAIL_URI,           // 7
+        Contacts.LOOKUP_KEY,                    // 8
+        Contacts.PHONETIC_NAME,                 // 9
+        Contacts.HAS_PHONE_NUMBER,              // 10
+        SearchSnippetColumns.SNIPPET_MIMETYPE,  // 11
+        SearchSnippetColumns.SNIPPET_DATA1,     // 12
+        SearchSnippetColumns.SNIPPET_DATA4,     // 13
     };
 
     protected static final int CONTACT_ID_COLUMN_INDEX = 0;
@@ -86,12 +89,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static final int CONTACT_STARRED_COLUMN_INDEX = 4;
     protected static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 5;
     protected static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 6;
-    protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 7;
-    protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 8;
-    protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 9;
-    protected static final int CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX = 10;
-    protected static final int CONTACT_SNIPPET_DATA1_COLUMN_INDEX = 11;
-    protected static final int CONTACT_SNIPPET_DATA4_COLUMN_INDEX = 12;
+    protected static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 7;
+    protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 8;
+    protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 9;
+    protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 10;
+    protected static final int CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX = 11;
+    protected static final int CONTACT_SNIPPET_DATA1_COLUMN_INDEX = 12;
+    protected static final int CONTACT_SNIPPET_DATA4_COLUMN_INDEX = 13;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -243,7 +247,14 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+        if (photoId != 0) {
+            getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+        } else {
+            String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
+            if (photoUri != null) {
+                getPhotoLoader().loadPhoto(view.getPhotoView(), Uri.parse(photoUri));
+            }
+        }
     }
 
     protected void bindQuickContact(
