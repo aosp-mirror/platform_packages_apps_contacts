@@ -71,8 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Yeni kişi"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notlar"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"İnternet çağrısı"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Zil sesi"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Adı ve Soyadı"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetik adı"</string>
