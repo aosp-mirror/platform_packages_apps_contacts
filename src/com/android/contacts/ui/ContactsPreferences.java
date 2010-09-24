@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
@@ -28,20 +29,17 @@ import android.provider.Settings.SettingNotFoundException;
 /**
  * Manages user preferences for contacts.
  */
-public final class ContactsPreferences  {
-
+public final class ContactsPreferences extends ContentObserver {
     private Context mContext;
-    private ContentResolver mContentResolver;
     private int mSortOrder = -1;
     private int mDisplayOrder = -1;
-    private SettingsObserver mSettingsObserver;
+    private ChangeListener mListener = null;
+    private Handler mHandler;
 
     public ContactsPreferences(Context context) {
+        super(null);
         mContext = context;
-        mContentResolver = context.getContentResolver();
-
-        mSettingsObserver = new SettingsObserver();
-        mSettingsObserver.register();
+        mHandler = new Handler();
     }
 
     public boolean isSortOrderUserChangeable() {
@@ -112,27 +110,45 @@ public final class ContactsPreferences  {
                 ContactsContract.Preferences.DISPLAY_ORDER, displayOrder);
     }
 
-    private class SettingsObserver extends ContentObserver {
+    public void registerChangeListener(ChangeListener listener) {
+        if (mListener != null) unregisterChangeListener();
 
-        public SettingsObserver() {
-            super(null);
+        // We didn't watch before, so ensure that we actually forget our cache here
+        mSortOrder = -1;
+        mDisplayOrder = -1;
+
+        mListener = listener;
+        final ContentResolver contentResolver = mContext.getContentResolver();
+        contentResolver.registerContentObserver(
+                Settings.System.getUriFor(
+                        ContactsContract.Preferences.SORT_ORDER), false, this);
+        contentResolver.registerContentObserver(
+                Settings.System.getUriFor(
+                        ContactsContract.Preferences.DISPLAY_ORDER), false, this);
+    }
+
+    public void unregisterChangeListener() {
+        if (mListener != null) {
+            mContext.getContentResolver().unregisterContentObserver(this);
+            mListener = null;
         }
+    }
 
-        public void register() {
-            mContentResolver.registerContentObserver(
-                    Settings.System.getUriFor(
-                            ContactsContract.Preferences.SORT_ORDER), false, this);
-            mContentResolver.registerContentObserver(
-                    Settings.System.getUriFor(
-                            ContactsContract.Preferences.DISPLAY_ORDER), false, this);
-        }
+    @Override
+    public void onChange(boolean selfChange) {
+        // This notification is not sent on the Ui thread. Use the previously created Handler
+        // to switch to the Ui thread
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mSortOrder = -1;
+                mDisplayOrder = -1;
+                if (mListener != null) mListener.onChange();
+            }
+        });
+    }
 
-        @Override
-        public void onChange(boolean selfChange) {
-            mSortOrder = -1;
-            mDisplayOrder = -1;
-
-            // TODO send a message to parent context to notify of the change
-        }
+    public interface ChangeListener {
+        void onChange();
     }
 }
