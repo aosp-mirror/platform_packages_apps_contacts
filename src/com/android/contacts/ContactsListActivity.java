@@ -1024,6 +1024,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        mContactsPrefs.registerChangeListener(mPreferencesChangeListener);
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         unregisterProviderStatusObserver();
@@ -1205,6 +1212,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
     protected void onStop() {
         super.onStop();
 
+        mContactsPrefs.unregisterChangeListener();
         mAdapter.setSuggestionsCursor(null);
         mAdapter.changeCursor(null);
 
@@ -3586,4 +3594,14 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             }
         }
     }
+
+    private ContactsPreferences.ChangeListener mPreferencesChangeListener =
+            new ContactsPreferences.ChangeListener() {
+        @Override
+        public void onChange() {
+            // When returning from DisplayOptions, onActivityResult ensures that we reload the list,
+            // so we do not have to do anything here. However, ContactsPreferences requires a change
+            // listener, otherwise it would not reload its settings.
+        }
+    };
 }
