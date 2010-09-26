@@ -120,20 +120,17 @@ public class SelectAccountDialogFragment extends DialogFragment {
             }
         };
 
-        final DialogInterface.OnCancelListener cancelListener =
-                new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                final Listener target = (Listener) getTargetFragment();
-                target.onAccountSelectorCancelled();
-            }
-        };
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.dialog_new_contact_account);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
-        builder.setOnCancelListener(cancelListener);
         return builder.create();
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        final Listener target = (Listener) getTargetFragment();
+        target.onAccountSelectorCancelled();
     }
 
     public interface Listener {
