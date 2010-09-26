@@ -770,12 +770,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             // Set the content
             final TextView content = views.data;
             if (content != null) {
-                if (entry.mimetype.equals(Phone.CONTENT_ITEM_TYPE)
-                        || entry.mimetype.equals(Constants.MIME_SMS_ADDRESS)) {
-                    content.setText(PhoneNumberUtils.formatNumber(entry.data));
-                } else {
-                    content.setText(entry.data);
-                }
+                content.setText(entry.data);
                 setMaxLines(content, entry.maxLines);
             }
 
