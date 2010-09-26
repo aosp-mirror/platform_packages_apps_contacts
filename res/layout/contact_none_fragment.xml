@@ -19,10 +19,11 @@
     android:layout_height="match_parent"
 >
 
-  <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/contact_none"
-    android:layout_centerInParent="true"/>
+<!-- TODO: need an image -->
+<!--  <ImageView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:src="@drawable/contact_none"-->
+<!--    android:layout_centerInParent="true"/>-->
     
 </RelativeLayout>
