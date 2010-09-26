@@ -27,6 +27,7 @@ import android.widget.ListView;
  */
 public class ContactNameHighlightingAnimation extends TextHighlightingAnimation {
     private final ListView mListView;
+    private boolean mSavedScrollingCacheEnabledFlag;
 
     public ContactNameHighlightingAnimation(ListView listView, int duration) {
         super(duration);
@@ -50,11 +51,12 @@ public class ContactNameHighlightingAnimation extends TextHighlightingAnimation 
 
     @Override
     protected void onAnimationStarted() {
+        mSavedScrollingCacheEnabledFlag = mListView.isScrollingCacheEnabled();
         mListView.setScrollingCacheEnabled(false);
     }
 
     @Override
     protected void onAnimationEnded() {
-        mListView.setScrollingCacheEnabled(true);
+        mListView.setScrollingCacheEnabled(mSavedScrollingCacheEnabledFlag);
     }
 }
