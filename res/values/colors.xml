@@ -35,4 +35,8 @@
 
     <!-- Color used for the letter in the A-Z section header -->
     <color name="section_header_text_color">#ff999999</color>
+
+    <!-- Color used as a selected background for the account/group selection widget -->
+    <color name="filter_selector_selected_background">#66ffffff</color>
+
 </resources>
