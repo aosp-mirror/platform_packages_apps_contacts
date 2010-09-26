@@ -44,6 +44,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private static final String TAG = "ContactEntryListAdapter";
 
     /**
+     * Indicates whether the {@link Directory#LOCAL_INVISIBLE} directory should
+     * be included in the search.
+     */
+    private static final boolean LOCAL_INVISIBLE_DIRECTORY_ENABLED = false;
+
+    /**
      * The animation is used here to allocate animated name text views.
      */
     private TextWithHighlightingFactory mTextWithHighlightingFactory;
@@ -217,6 +223,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {
         loader.setDirectorySearchEnabled(mDirectorySearchEnabled);
+        loader.setLocalInvisibleDirectoryEnabled(LOCAL_INVISIBLE_DIRECTORY_ENABLED);
     }
 
     /**

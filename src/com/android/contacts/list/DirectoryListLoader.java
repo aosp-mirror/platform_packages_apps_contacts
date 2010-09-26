@@ -72,6 +72,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     };
 
     private boolean mDirectorySearchEnabled;
+    private boolean mLocalInvisibleDirectoryEnabled;
 
     private MatrixCursor mDefaultDirectoryList;
 
@@ -81,6 +82,14 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
 
     public void setDirectorySearchEnabled(boolean flag) {
         mDirectorySearchEnabled = flag;
+    }
+
+    /**
+     * A flag that indicates whether the {@link Directory#LOCAL_INVISIBLE} directory should
+     * be included in the results.
+     */
+    public void setLocalInvisibleDirectoryEnabled(boolean flag) {
+        this.mLocalInvisibleDirectoryEnabled = flag;
     }
 
     @Override
@@ -108,8 +117,11 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         MatrixCursor result = new MatrixCursor(RESULT_PROJECTION);
         Context context = getContext();
         PackageManager pm = context.getPackageManager();
+        String selection = mLocalInvisibleDirectoryEnabled
+                ? null
+                : Directory._ID + "!=" + Directory.LOCAL_INVISIBLE;
         Cursor cursor = context.getContentResolver().query(DirectoryQuery.URI,
-                DirectoryQuery.PROJECTION, null, null, DirectoryQuery.ORDER_BY);
+                DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
         try {
             while(cursor.moveToNext()) {
                 Object[] row = new Object[RESULT_PROJECTION.length];
