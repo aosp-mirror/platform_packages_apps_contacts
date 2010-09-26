@@ -15,53 +15,62 @@
 -->
 
 <LinearLayout 
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pinned_header_list_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pinned_header_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <view
+        class="com.android.contacts.widget.NotifyingSpinner"
+        android:id="@+id/filter_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="44dip"
+        android:prompt="@string/list_filter_prompt"
+        android:background="@drawable/filter_selector_background"
+        android:spinnerMode="dropdown"
+        android:visibility="gone"
+    />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
 
-    <view
-        class="com.android.contacts.list.ContactListAizyView"
-        android:id="@+id/contacts_list_aizy"
-        android:layout_width="40dip"
-        android:layout_height="match_parent"
-    />
+        <view
+            class="com.android.contacts.list.ContactListAizyView"
+            android:id="@+id/contacts_list_aizy"
+            android:layout_width="40dip"
+            android:layout_height="match_parent"
+        />
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
             >
 
-        <view
-            class="com.android.contacts.widget.NotifyingSpinner"
-            android:id="@+id/filter_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/list_filter_prompt"
-            android:spinnerMode="dropdown"
-            android:visibility="gone"
-        />
+            <view
+                class="com.android.contacts.ContactEntryListView"
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:fastScrollEnabled="true"
+                android:layout_weight="1"
+                android:scrollingCache="false"
+            />
 
-        <view
-            class="com.android.contacts.ContactEntryListView"
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:fastScrollEnabled="true"
-            android:layout_weight="1"
-            android:scrollingCache="false"
-        />
+            <include layout="@layout/contacts_list_empty"/>
 
-        <include layout="@layout/contacts_list_empty"/>
-
-        <ViewStub android:id="@+id/footer_stub"
-            android:layout="@layout/footer_panel"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-        />
+            <ViewStub android:id="@+id/footer_stub"
+                android:layout="@layout/footer_panel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

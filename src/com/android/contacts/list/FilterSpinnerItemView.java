@@ -63,7 +63,9 @@ public final class FilterSpinnerItemView extends LinearLayout {
                 mIcon.setVisibility(View.GONE);
                 mLabel.setText(R.string.list_filter_all_accounts);
                 mLabel.setVisibility(View.VISIBLE);
-                mIndentedLabel.setVisibility(View.GONE);
+                if (dropdown) {
+                    mIndentedLabel.setVisibility(View.GONE);
+                }
                 break;
             }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
@@ -72,7 +74,9 @@ public final class FilterSpinnerItemView extends LinearLayout {
                         ? R.string.list_filter_customize
                         : R.string.list_filter_custom);
                 mLabel.setVisibility(View.VISIBLE);
-                mIndentedLabel.setVisibility(View.GONE);
+                if (dropdown) {
+                    mIndentedLabel.setVisibility(View.GONE);
+                }
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
@@ -84,7 +88,9 @@ public final class FilterSpinnerItemView extends LinearLayout {
                 }
                 mLabel.setText(mFilter.accountName);
                 mLabel.setVisibility(View.VISIBLE);
-                mIndentedLabel.setVisibility(View.GONE);
+                if (dropdown) {
+                    mIndentedLabel.setVisibility(View.GONE);
+                }
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
@@ -96,7 +102,6 @@ public final class FilterSpinnerItemView extends LinearLayout {
                 } else {
                     mLabel.setText(mFilter.title);
                     mLabel.setVisibility(View.VISIBLE);
-                    mIndentedLabel.setVisibility(View.GONE);
                 }
                 break;
             }

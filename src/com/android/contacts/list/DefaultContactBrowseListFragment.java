@@ -453,11 +453,16 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
         public View getView(int position, View convertView, ViewGroup parent, boolean dropdown) {
             FilterSpinnerItemView view;
-            if (dropdown && convertView != null) {
-                view = (FilterSpinnerItemView) convertView;
+            if (dropdown) {
+                if (convertView != null) {
+                    view = (FilterSpinnerItemView) convertView;
+                } else {
+                    view = (FilterSpinnerItemView) mLayoutInflater.inflate(
+                            R.layout.filter_spinner_item, parent, false);
+                }
             } else {
                 view = (FilterSpinnerItemView) mLayoutInflater.inflate(
-                        R.layout.filter_spinner_item, parent, false);
+                        R.layout.filter_spinner, parent, false);
             }
             view.setContactListFilter(mFilters.valueAt(position));
             view.bindView(dropdown);
