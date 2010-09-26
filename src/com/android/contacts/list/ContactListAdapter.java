@@ -250,10 +250,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         if (photoId != 0) {
             getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
         } else {
-            String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
-            if (photoUri != null) {
-                getPhotoLoader().loadPhoto(view.getPhotoView(), Uri.parse(photoUri));
-            }
+            final String photoUriString = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
+            final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
+            getPhotoLoader().loadPhoto(view.getPhotoView(), photoUri);
         }
     }
 
