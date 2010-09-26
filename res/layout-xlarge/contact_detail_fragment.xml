@@ -18,33 +18,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!-- Background -->
-    <com.android.contacts.widget.InterpolatingLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:layout_width="208dip"
-            android:layout_height="match_parent"
-            android:background="@drawable/contact_view_background_left"
-            ex:layout_wideParentWidth="800dip"
-            ex:layout_wideWidth="210dip"
-            ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowWidth="40dip"
-        />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#bff3f3f3" />
-    </com.android.contacts.widget.InterpolatingLayout>
-
-    <!-- Content -->
+    android:layout_height="match_parent"
+    android:background="#bff3f3f3">
     <LinearLayout
         android:id="@+id/contact_detail"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Header View (including social status) -->
         <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -53,12 +35,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ex:layout_wideParentWidth="800dip"
-                ex:layout_wideLeftMargin="130dip"
+                ex:layout_wideLeftMargin="80dip"
                 ex:layout_narrowParentWidth="500dip"
                 ex:layout_narrowLeftMargin="15dip"
             />
         </com.android.contacts.widget.InterpolatingLayout>
 
+        <!-- Placeholder for empty list -->
+        <com.android.contacts.widget.InterpolatingLayout
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <TextView android:id="@+id/emptyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_contact_details"
+                android:textSize="20sp"
+                android:textColor="?android:attr/textColorSecondary"
+                ex:layout_wideParentWidth="800dip"
+                ex:layout_wideLeftMargin="144dip"
+                ex:layout_narrowParentWidth="500dip"
+                ex:layout_narrowLeftMargin="42dip"
+                android:paddingTop="10dip"
+                android:lineSpacingMultiplier="0.92"
+            />
+        </com.android.contacts.widget.InterpolatingLayout>
+
+        <!-- Real list -->
         <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
             android:layout_height="0px"
@@ -67,31 +71,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 ex:layout_wideParentWidth="800dip"
-                ex:layout_wideLeftMargin="230dip"
+                ex:layout_wideLeftMargin="144dip"
                 ex:layout_narrowParentWidth="500dip"
                 ex:layout_narrowLeftMargin="42dip"
                 android:cacheColorHint="#00000000"
             />
         </com.android.contacts.widget.InterpolatingLayout>
-
-        <ScrollView android:id="@android:id/empty"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:paddingLeft="230dip"
-            android:visibility="gone"
-        >
-            <TextView android:id="@+id/emptyText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/no_contact_details"
-                android:textSize="20sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:paddingTop="10dip"
-                android:lineSpacingMultiplier="0.92"
-            />
-        </ScrollView>
     </LinearLayout>
 </FrameLayout>

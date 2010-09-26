@@ -19,28 +19,9 @@
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#bff3f3f3"
 >
 
-    <!-- Background -->
-    <com.android.contacts.widget.InterpolatingLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:layout_width="208dip"
-            android:layout_height="match_parent"
-            android:background="@drawable/contact_view_background_left"
-            ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideWidth="210dip"
-            ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowWidth="40dip"
-        />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#bff3f3f3" />
-    </com.android.contacts.widget.InterpolatingLayout>
-
-    <!-- Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
