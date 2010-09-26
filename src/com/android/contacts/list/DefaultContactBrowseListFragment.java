@@ -26,6 +26,8 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -55,6 +57,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
+    private static final int MESSAGE_REFRESH_FILTERS = 0;
+
+    /**
+     * The delay before the contact filter list is refreshed. This is needed because
+     * during contact sync we will get lots of notifications in rapid succession. This
+     * delay will prevent the slowly changing list of filters from reloading too often.
+     */
+    private static final int FILTER_SPINNER_REFRESH_DELAY_MILLIS = 5000;
+
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
     private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
@@ -66,9 +77,19 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
     private NotifyingSpinner mFilterSpinner;
+    private FilterSpinnerAdapter mFilterSpinnerAdapter;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
     private SharedPreferences mPrefs;
+    private final Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == MESSAGE_REFRESH_FILTERS) {
+                loadFilters();
+            }
+        }
+    };
 
     private LoaderCallbacks<List<ContactListFilter>> mGroupFilterLoaderCallbacks =
             new LoaderCallbacks<List<ContactListFilter>>() {
@@ -292,11 +313,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     protected void startLoading() {
         // We need to load filters before we can load the list contents
         if (mFilterEnabled && !mFiltersLoaded) {
-            getLoaderManager().restartLoader(
-                    R.id.contact_list_filter_loader, null, mGroupFilterLoaderCallbacks);
+            loadFilters();
         } else {
             super.startLoading();
         }
+    }
+
+    private void loadFilters() {
+        getLoaderManager().restartLoader(
+                R.id.contact_list_filter_loader, null, mGroupFilterLoaderCallbacks);
     }
 
     protected void onGroupFilterLoadFinished(List<ContactListFilter> filters) {
@@ -349,19 +374,35 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
 
         boolean filterChanged = false;
-        mFiltersLoaded = true;
         if (mFilter == null  || !filterValid) {
             filterChanged = mFilter != null;
             mFilter = getDefaultFilter();
         }
 
-        mFilterSpinner.setAdapter(new FilterSpinnerAdapter());
-        updateFilterView();
+        if (mFilterSpinnerAdapter == null) {
+            mFilterSpinnerAdapter = new FilterSpinnerAdapter();
+            mFilterSpinner.setAdapter(mFilterSpinnerAdapter);
+        } else {
+            mFilterSpinnerAdapter.notifyDataSetChanged();
+        }
 
         if (filterChanged) {
+            mFiltersLoaded = true;
             reloadData();
-        } else {
+        } else if (!mFiltersLoaded) {
+            mFiltersLoaded = true;
             startLoading();
+        }
+
+        updateFilterView();
+    }
+
+    @Override
+    protected void onPartitionLoaded(int partitionIndex, Cursor data) {
+        super.onPartitionLoaded(partitionIndex, data);
+        if (!mHandler.hasMessages(MESSAGE_REFRESH_FILTERS)) {
+            mHandler.sendEmptyMessageDelayed(
+                    MESSAGE_REFRESH_FILTERS, FILTER_SPINNER_REFRESH_DELAY_MILLIS);
         }
     }
 
