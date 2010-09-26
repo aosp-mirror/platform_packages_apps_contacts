@@ -327,16 +327,22 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
         }
 
-        boolean firstAccount = true;
         for (int index = 0; index < count; index++) {
             ContactListFilter filter = filters.get(index);
+
+            boolean firstAndOnly = accountCount == 1
+                    && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT;
+
+            // If we only have one account, don't show it as "account", instead show it as "all"
+            if (firstAndOnly) {
+                filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            }
+
             mFilters.append(mNextFilterId++, filter);
             mFilterList.add(filter);
             filterValid |= filter.equals(mFilter);
 
-            if (firstAccount && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT
-                    && accountCount == 1) {
-                firstAccount = false;
+            if (firstAndOnly) {
                 mFilters.append(mNextFilterId++,
                         new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
             }
@@ -404,6 +410,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     protected void updateFilterView() {
         if (mFiltersLoaded) {
+            if (mFilters.size() == 0) {
+                mFilterSpinner.setVisibility(View.GONE);
+                return;
+            }
+
             mFilterSpinner.setSetSelectionListener(null);
             if (mFilter != null && mFilters != null) {
                 int size = mFilters.size();
