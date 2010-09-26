@@ -267,7 +267,8 @@
         </activity>
 
         <!-- An activity for selecting multiple phone numbers -->
-        <activity android:name="MultiplePhonePickerActivity">
+        <activity android:name="MultiplePhonePickerActivity"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="com.android.contacts.action.GET_MULTIPLE_PHONES" />
                 <category android:name="android.intent.category.DEFAULT" />
