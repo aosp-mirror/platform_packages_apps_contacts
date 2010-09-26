@@ -15,8 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoLoader;
-import com.android.contacts.ContactsSectionIndexer;
 import com.android.contacts.R;
 import com.android.contacts.widget.IndexerListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;

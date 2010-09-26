@@ -75,7 +75,7 @@
         />
 
         <view
-            class="com.android.contacts.ContactEntryListView" 
+            class="com.android.contacts.list.ContactEntryListView" 
             android:id="@android:id/list"
             android:layout_width="0px"
             android:layout_height="match_parent"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.list;
 
 import android.widget.SectionIndexer;
 

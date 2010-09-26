@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.list;
 
-import com.android.contacts.list.ContactEntryListAdapter;
+import com.android.contacts.R;
 import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
@@ -43,7 +43,6 @@ public class ContactEntryListView extends PinnedHeaderListView {
     private boolean mHighlightNamesWhenScrolling;
     private Drawable mDefaultSelector;
     private boolean mSelectionVisible;
-    private ContactEntryListAdapter mAdapter;
 
     public ContactEntryListView(Context context) {
         this(context, null);
