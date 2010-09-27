@@ -41,10 +41,14 @@ public abstract class ContactBrowseListFragment extends
 
     private static final int SELECTED_ID_LOADER = -3;
 
+    private static final int SELECTION_VISIBILITY_REQUEST_NONE = 0;
+    private static final int SELECTION_VISIBILITY_REQUEST_SMOOTH = 1;
+    private static final int SELECTION_VISIBILITY_REQUEST_INSTANT = 2;
+
     private Uri mSelectedContactUri;
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
-    private boolean mScrollToSelectionRequested;
+    private int mSelectionVisibilityRequest;
 
     private OnContactBrowserActionListener mListener;
 
@@ -233,19 +237,21 @@ public abstract class ContactBrowseListFragment extends
         mListener.onFinishAction();
     }
 
-    public void scrollToSelectedContact() {
-        mScrollToSelectionRequested = true;
-        scrollToSelectedContactIfNeeded();
+    public void requestSelectionOnScreen(boolean smooth) {
+        mSelectionVisibilityRequest = smooth
+                ? SELECTION_VISIBILITY_REQUEST_SMOOTH
+                : SELECTION_VISIBILITY_REQUEST_INSTANT;
+        requestSelectionOnScreenIfNeeded();
     }
 
     @Override
     protected void completeRestoreInstanceState() {
         super.completeRestoreInstanceState();
-        scrollToSelectedContactIfNeeded();
+        requestSelectionOnScreenIfNeeded();
     }
 
-    private void scrollToSelectedContactIfNeeded() {
-        if (!mScrollToSelectionRequested) {
+    private void requestSelectionOnScreenIfNeeded() {
+        if (mSelectionVisibilityRequest == SELECTION_VISIBILITY_REQUEST_NONE) {
             return;
         }
 
@@ -256,10 +262,11 @@ public abstract class ContactBrowseListFragment extends
 
         int position = adapter.getSelectedContactPosition();
         if (position != -1) {
-            mScrollToSelectionRequested = false;
+            boolean smooth = mSelectionVisibilityRequest == SELECTION_VISIBILITY_REQUEST_SMOOTH;
+            mSelectionVisibilityRequest = SELECTION_VISIBILITY_REQUEST_NONE;
             ListView listView = getListView();
-            ListViewUtils.smartSmoothScrollToPosition(
-                    listView, position + listView.getHeaderViewsCount());
+            ListViewUtils.requestPositionToScreen(
+                    listView, position + listView.getHeaderViewsCount(), smooth);
         }
     }
 }

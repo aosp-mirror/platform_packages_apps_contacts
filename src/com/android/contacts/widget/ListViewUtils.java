@@ -24,12 +24,25 @@ import android.widget.ListView;
 public final class ListViewUtils {
 
     /**
-     * Brings the specified position to view by performing a jump-scroll maneuver:
+     * Position the element at about 1/3 of the list height
+     */
+    private static final float PREFERRED_SELECTION_OFFSET_FROM_TOP = 0.33f;
+
+    /**
+     * Brings the specified position to view by optionally performing a jump-scroll maneuver:
      * first it jumps to some position near the one requested and then does a smooth
      * scroll to the requested position.  This creates an impression of full smooth
-     * scrolling without actually traversing the entire list.
+     * scrolling without actually traversing the entire list.  If smooth scrolling is
+     * not requested, instantly positions the requested item at a preferred offset.
      */
-    public static void smartSmoothScrollToPosition(final ListView listView, final int position) {
+    public static void requestPositionToScreen(
+            final ListView listView, final int position, boolean smoothScroll) {
+        if (!smoothScroll) {
+            final int offset = (int) (listView.getHeight() * PREFERRED_SELECTION_OFFSET_FROM_TOP);
+            listView.setSelectionFromTop(position, offset);
+            return;
+        }
+
         listView.post(new Runnable() {
 
             @Override
@@ -62,8 +75,7 @@ public final class ListViewUtils {
     }
 
     private static void scrollToFinalPosition(final ListView listView, final int position) {
-        // Position the element at about 1/3 of the list height
-        final int offset = (int) (listView.getHeight() * 0.33);
+        final int offset = (int) (listView.getHeight() * PREFERRED_SELECTION_OFFSET_FROM_TOP);
         listView.post(new Runnable() {
 
             @Override

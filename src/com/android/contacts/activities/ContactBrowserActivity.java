@@ -37,18 +37,17 @@ import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.Settings;
@@ -60,8 +59,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -82,10 +79,14 @@ public class ContactBrowserActivity extends Activity
     private static final int SUBACTIVITY_SETTINGS = 3;
     private static final int SUBACTIVITY_EDIT_CONTACT = 4;
 
+    private static final String KEY_DEFAULT_CONTACT_URI = "defaultSelectedContactUri";
+
     private DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
+
+    private SharedPreferences mPrefs;
 
     private boolean mHasActionBar;
     private ActionBarAdapter mActionBarAdapter;
@@ -111,6 +112,7 @@ public class ContactBrowserActivity extends Activity
     private ImportExportInteraction mImportExportInteraction;
 
     private boolean mSearchInitiated;
+
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -156,6 +158,8 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         setTitle(mRequest.getActivityTitle());
         setContentView(R.layout.contact_browser);
 
@@ -190,10 +194,27 @@ public class ContactBrowserActivity extends Activity
                     mActionBarAdapter.setMode(ContactBrowserMode.MODE_CONTACTS);
                 }
             }
-            mListFragment.setSelectedContactUri(uri);
+            setSelectedContactUri(uri);
             setupContactDetailFragment(uri);
-            mListFragment.scrollToSelectedContact();
+            mListFragment.requestSelectionOnScreen(true);
         }
+    }
+
+    public void setSelectedContactUri(Uri contactLookupUri) {
+        mListFragment.setSelectedContactUri(contactLookupUri);
+
+        Editor editor = mPrefs.edit();
+        if (contactLookupUri == null) {
+            editor.remove(KEY_DEFAULT_CONTACT_URI);
+        } else {
+            editor.putString(KEY_DEFAULT_CONTACT_URI, contactLookupUri.toString());
+        }
+        editor.apply();
+    }
+
+    public Uri getDefaultSelectedContactUri() {
+        String uriString = mPrefs.getString(KEY_DEFAULT_CONTACT_URI, null);
+        return TextUtils.isEmpty(uriString) ? null : Uri.parse(uriString);
     }
 
     private void configureListFragment() {
@@ -247,6 +268,14 @@ public class ContactBrowserActivity extends Activity
             }
             if (mMode == ContactBrowserMode.MODE_SEARCH) {
                 mListFragment.setQueryString(mActionBarAdapter.getQueryString());
+            }
+        }
+
+        if (mListFragment.getSelectedContactUri() == null) {
+            Uri defaultUri = getDefaultSelectedContactUri();
+            if (defaultUri != null) {
+                mListFragment.setSelectedContactUri(defaultUri);
+                mListFragment.requestSelectionOnScreen(false);
             }
         }
 
@@ -316,7 +345,7 @@ public class ContactBrowserActivity extends Activity
                     .commit();
         }
         if (scrollToSelection) {
-            mListFragment.scrollToSelectedContact();
+            mListFragment.requestSelectionOnScreen(true);
         }
     }
 
@@ -455,7 +484,7 @@ public class ContactBrowserActivity extends Activity
         public void onViewContactAction(Uri contactLookupUri, boolean force) {
             if (mContactContentDisplayed) {
                 if (force) closeEditorFragment(true);
-                mListFragment.setSelectedContactUri(contactLookupUri);
+                setSelectedContactUri(contactLookupUri);
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
@@ -474,7 +503,7 @@ public class ContactBrowserActivity extends Activity
         public void onEditContactAction(Uri contactLookupUri) {
             if (mContactContentDisplayed) {
                 closeEditorFragment(true);
-                mListFragment.setSelectedContactUri(contactLookupUri);
+                setSelectedContactUri(contactLookupUri);
                 setupContactEditorFragment(contactLookupUri);
             } else {
                 Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
@@ -574,7 +603,7 @@ public class ContactBrowserActivity extends Activity
             // new contact
             Log.d(TAG, "onAggregationChangeFinished(" + newLookupUri + ")");
             closeEditorFragment(false);
-            mListFragment.setSelectedContactUri(newLookupUri);
+            setSelectedContactUri(newLookupUri);
             setupContactDetailFragment(newLookupUri);
         }
 
@@ -729,14 +758,14 @@ public class ContactBrowserActivity extends Activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case SUBACTIVITY_EDIT_CONTACT: {
-                mListFragment.scrollToSelectedContact();
+                mListFragment.requestSelectionOnScreen(true);
                 break;
             }
 
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContactContentDisplayed) {
                     final Uri newContactUri = data.getData();
-                    mListFragment.setSelectedContactUri(newContactUri);
+                    setSelectedContactUri(newContactUri);
                     setupContactDetailFragment(newContactUri);
                 }
                 break;
