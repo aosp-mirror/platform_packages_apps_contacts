@@ -31,12 +31,13 @@
         android:singleLine="true"
         android:ellipsize="marquee" />
 
-    <Button
+    <TextView
         android:id="@+id/group_list"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@drawable/group_membership_edit_background"
         android:gravity="left"
         android:ellipsize="end"
     />

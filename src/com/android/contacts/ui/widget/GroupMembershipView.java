@@ -193,8 +193,7 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
-        mPopup = new ListPopupWindow(
-                getContext(), null, com.android.internal.R.attr.listPopupWindowStyle);
+        mPopup = new ListPopupWindow(getContext(), null);
         mPopup.setAnchorView(mGroupList);
         mPopup.setAdapter(mAdapter);
         mPopup.setModal(true);
