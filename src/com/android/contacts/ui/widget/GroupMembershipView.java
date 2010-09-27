@@ -143,7 +143,9 @@ public class GroupMembershipView extends LinearLayout
                 }
 
                 // Exclude favorites from the list - they are handled with special UI (star)
-                if (groupId != mFavoritesGroupId && hasMembership(groupId)) {
+                // Also exclude the default group.
+                if (groupId != mFavoritesGroupId && groupId != mDefaultGroupId
+                        && hasMembership(groupId)) {
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
                     if (sb.length() != 0) {
                         sb.append(", ");
@@ -153,8 +155,6 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
-        // Only show the default group for existing contacts (not for inserts)
-        accountHasGroups |= (!mState.isContactInsert() && mDefaultGroupId != 0);
         if (!accountHasGroups) {
             setVisibility(GONE);
             return;
@@ -185,15 +185,7 @@ public class GroupMembershipView extends LinearLayout
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             if (accountName.equals(mAccountName) && accountType.equals(mAccountType)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
-                boolean showGroup;
-                if (groupId == mFavoritesGroupId) {
-                    showGroup = false;
-                } else if (groupId == mDefaultGroupId) {
-                    showGroup = !mState.isContactInsert();
-                } else {
-                    showGroup = true;
-                }
-                if (showGroup) {
+                if (groupId != mFavoritesGroupId && groupId != mDefaultGroupId) {
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
                     boolean checked = hasMembership(groupId);
                     mAdapter.add(new GroupSelectionItem(groupId, title, checked));
@@ -201,9 +193,11 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
-        mPopup = new ListPopupWindow(getContext());
+        mPopup = new ListPopupWindow(
+                getContext(), null, com.android.internal.R.attr.listPopupWindowStyle);
         mPopup.setAnchorView(mGroupList);
         mPopup.setAdapter(mAdapter);
+        mPopup.setModal(true);
         mPopup.show();
 
         ListView listView = mPopup.getListView();
