@@ -19,7 +19,7 @@
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bff3f3f3">
+    android:background="#fff3f3f3">
     <LinearLayout
         android:id="@+id/contact_detail"
         android:orientation="vertical"
