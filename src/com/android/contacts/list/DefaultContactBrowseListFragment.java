@@ -400,7 +400,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     @Override
     protected void onPartitionLoaded(int partitionIndex, Cursor data) {
         super.onPartitionLoaded(partitionIndex, data);
-        if (!mHandler.hasMessages(MESSAGE_REFRESH_FILTERS)) {
+        if (mFilterEnabled && !mHandler.hasMessages(MESSAGE_REFRESH_FILTERS)) {
             mHandler.sendEmptyMessageDelayed(
                     MESSAGE_REFRESH_FILTERS, FILTER_SPINNER_REFRESH_DELAY_MILLIS);
         }
