@@ -230,7 +230,7 @@
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Η ανάγνωση των δεδομένων vCard απέτυχε"</string>
     <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> από <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> επαφές"</string>
     <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> από <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> αρχεία"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση\nεξαγωγής"</string>
+    <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση εξαγωγής"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Είστε σίγουροι ότι θέλετε να εξαγάγετε τη λίστα των επαφών σας στο \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\";"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Αποτυχία εξαγωγής δεδομένων επαφής"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Αποτυχία εξαγωγής δεδομένων επαφής."\n"Αιτία αποτυχίας: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -274,7 +274,7 @@
     <string name="edit_read_only" msgid="8158629550655830981">"Αυτή η επαφή είναι μόνο για ανάγνωση"</string>
     <string name="edit_secondary_collapse" msgid="5371618426594477103">"Περισσότερα"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"Κύριο όνομα"</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Δημιουργία επαφής\nστον λογαριασμό"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Δημιουργία επαφής στον λογαριασμό"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Κατάργηση ομάδας συγχρονισμού"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Προσθήκη ομάδας συγχρονισμού"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Περισσότερες ομάδες…"</string>

@@ -336,7 +336,7 @@
     <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g>-Adresse anzeigen"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Chat über AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Chat über Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Chat über Yahoo"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Chat über Yahoo!"</string>
     <string name="chat_skype" msgid="1210045020427480566">"Chat über Skype"</string>
     <string name="chat_qq" msgid="4294637812847719693">"Chat über QQ"</string>
     <string name="chat_gtalk" msgid="981575737258117697">"Chat über Google Talk"</string>
