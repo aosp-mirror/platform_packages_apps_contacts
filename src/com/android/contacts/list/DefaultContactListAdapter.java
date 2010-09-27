@@ -174,6 +174,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView)itemView;
 
+        view.setHighlightedPrefix(getUpperCaseQueryString());
+
         if (isSelectionVisible()) {
             view.setActivated(isSelectedContact(partition, cursor));
         }

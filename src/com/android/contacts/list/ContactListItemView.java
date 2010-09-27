@@ -26,14 +26,17 @@ import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Contacts;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -64,6 +67,7 @@ public class ContactListItemView extends ViewGroup {
     private final int mCallButtonPadding;
     private final int mPresenceIconMargin;
     private final int mHeaderTextWidth;
+    private final int mPrefixHightlightColor;
 
     private Drawable mPressedBackgroundDrawable;
     private Drawable mActivatedBackgroundDrawable;
@@ -92,6 +96,8 @@ public class ContactListItemView extends ViewGroup {
     private TextView mSnippetView;
     private ImageView mPresenceIcon;
 
+    private char[] mHighlightedPrefix;
+
     private int mDefaultPhotoViewSize;
     private int mPhotoViewWidth;
     private int mPhotoViewHeight;
@@ -102,15 +108,17 @@ public class ContactListItemView extends ViewGroup {
 
     private OnClickListener mCallButtonClickListener;
     private TextWithHighlightingFactory mTextWithHighlightingFactory;
-    public CharArrayBuffer nameBuffer = new CharArrayBuffer(128);
-    public CharArrayBuffer dataBuffer = new CharArrayBuffer(128);
-    public CharArrayBuffer highlightedTextBuffer = new CharArrayBuffer(128);
-    public TextWithHighlighting textWithHighlighting;
-    public CharArrayBuffer phoneticNameBuffer = new CharArrayBuffer(128);
+    private CharArrayBuffer mNameBuffer = new CharArrayBuffer(128);
+    private CharArrayBuffer mDataBuffer = new CharArrayBuffer(128);
+    private CharArrayBuffer mHighlightedTextBuffer = new CharArrayBuffer(128);
+    private TextWithHighlighting mTextWithHighlighting;
+    private CharArrayBuffer mPhoneticNameBuffer = new CharArrayBuffer(128);
 
     private CharSequence mUnknownNameText;
 
     private boolean mActivatedStateSupported;
+
+    private ForegroundColorSpan mPrefixColorSpan;
 
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
@@ -168,6 +176,8 @@ public class ContactListItemView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_header_text_width, 0);
         mDefaultPhotoViewSize = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_photo_size, 0);
+        mPrefixHightlightColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
 
         a.recycle();
     }
@@ -593,6 +603,16 @@ public class ContactListItemView extends ViewGroup {
     }
 
     /**
+     * Sets a word prefix that will be highlighted if encountered in fields like
+     * name and search snippet.
+     * <p>
+     * NOTE: must be all upper-case
+     */
+    public void setHighlightedPrefix(char[] upperCasePrefix) {
+        mHighlightedPrefix = upperCasePrefix;
+    }
+
+    /**
      * Returns the text view for the contact name, creating it if necessary.
      */
     public TextView getNameTextView() {
@@ -740,14 +760,14 @@ public class ContactListItemView extends ViewGroup {
     /**
      * Adds or updates a text view for the search snippet.
      */
-    public void setSnippet(CharSequence text) {
+    public void setSnippet(String text) {
         if (TextUtils.isEmpty(text)) {
             if (mSnippetView != null) {
                 mSnippetView.setVisibility(View.GONE);
             }
         } else {
             getSnippetView();
-            mSnippetView.setText(text);
+            setTextWithPrefixHighlighting(mSnippetView, text);
             mSnippetView.setVisibility(VISIBLE);
         }
     }
@@ -792,20 +812,22 @@ public class ContactListItemView extends ViewGroup {
 
     public void showDisplayName(Cursor cursor, int nameColumnIndex, boolean highlightingEnabled,
             int alternativeNameColumnIndex) {
-        cursor.copyStringToBuffer(nameColumnIndex, nameBuffer);
+        cursor.copyStringToBuffer(nameColumnIndex, mNameBuffer);
         TextView nameView = getNameTextView();
-        int size = nameBuffer.sizeCopied;
+        int size = mNameBuffer.sizeCopied;
         if (size != 0) {
-            if (highlightingEnabled) {
-                if (textWithHighlighting == null) {
-                    textWithHighlighting =
+            if (mHighlightedPrefix != null) {
+                setTextWithPrefixHighlighting(nameView, mNameBuffer);
+            } else if (highlightingEnabled) {
+                if (mTextWithHighlighting == null) {
+                    mTextWithHighlighting =
                             mTextWithHighlightingFactory.createTextWithHighlighting();
                 }
-                cursor.copyStringToBuffer(alternativeNameColumnIndex, highlightedTextBuffer);
-                textWithHighlighting.setText(nameBuffer, highlightedTextBuffer);
-                nameView.setText(textWithHighlighting);
+                cursor.copyStringToBuffer(alternativeNameColumnIndex, mHighlightedTextBuffer);
+                mTextWithHighlighting.setText(mNameBuffer, mHighlightedTextBuffer);
+                nameView.setText(mTextWithHighlighting);
             } else {
-                nameView.setText(nameBuffer.data, 0, size);
+                nameView.setText(mNameBuffer.data, 0, size);
             }
         } else {
             nameView.setText(mUnknownNameText);
@@ -813,10 +835,10 @@ public class ContactListItemView extends ViewGroup {
     }
 
     public void showPhoneticName(Cursor cursor, int phoneticNameColumnIndex) {
-        cursor.copyStringToBuffer(phoneticNameColumnIndex, phoneticNameBuffer);
-        int phoneticNameSize = phoneticNameBuffer.sizeCopied;
+        cursor.copyStringToBuffer(phoneticNameColumnIndex, mPhoneticNameBuffer);
+        int phoneticNameSize = mPhoneticNameBuffer.sizeCopied;
         if (phoneticNameSize != 0) {
-            setPhoneticName(phoneticNameBuffer.data, phoneticNameSize);
+            setPhoneticName(mPhoneticNameBuffer.data, phoneticNameSize);
         } else {
             setPhoneticName(null, 0);
         }
@@ -880,12 +902,85 @@ public class ContactListItemView extends ViewGroup {
      * Shows data element (e.g. phone number).
      */
     public void showData(Cursor cursor, int dataColumnIndex) {
-        cursor.copyStringToBuffer(dataColumnIndex, dataBuffer);
-        setData(dataBuffer.data, dataBuffer.sizeCopied);
+        cursor.copyStringToBuffer(dataColumnIndex, mDataBuffer);
+        setData(mDataBuffer.data, mDataBuffer.sizeCopied);
     }
 
     public void setActivatedStateSupported(boolean flag) {
         this.mActivatedStateSupported = flag;
+    }
+
+    /**
+     * Sets text on the given text view, highlighting the word that matches
+     * the given prefix (see {@link #setHighlightedPrefix}).
+     */
+    private void setTextWithPrefixHighlighting(TextView textView, String text) {
+        mHighlightedTextBuffer.sizeCopied =
+                Math.min(text.length(), mHighlightedTextBuffer.data.length);
+        text.getChars(0, mHighlightedTextBuffer.sizeCopied, mHighlightedTextBuffer.data, 0);
+        setTextWithPrefixHighlighting(textView, mHighlightedTextBuffer);
+    }
+
+    /**
+     * Sets text on the given text view, highlighting the word that matches
+     * the given prefix (see {@link #setHighlightedPrefix}).
+     */
+    private void setTextWithPrefixHighlighting(TextView textView, CharArrayBuffer text) {
+        int index = indexOfWordPrefix(text, mHighlightedPrefix);
+        if (index != -1) {
+            if (mPrefixColorSpan == null) {
+                mPrefixColorSpan = new ForegroundColorSpan(mPrefixHightlightColor);
+            }
+
+            String string = new String(text.data, 0, text.sizeCopied);
+            SpannableString name = new SpannableString(string);
+            name.setSpan(mPrefixColorSpan, index, index + mHighlightedPrefix.length, 0 /* flags */);
+            textView.setText(name);
+        } else {
+            textView.setText(text.data, 0, text.sizeCopied);
+        }
+    }
+
+    /**
+     * Finds the index of the word that starts with the given prefix.  If not found,
+     * returns -1.
+     */
+    private int indexOfWordPrefix(CharArrayBuffer buffer, char[] prefix) {
+        char[] string1 = buffer.data;
+        int count1 = buffer.sizeCopied;
+        int count2 = prefix.length;
+
+        int size = count2;
+        int i = 0;
+        while (i < count1) {
+
+            // Skip non-word characters
+            while (i < count1 && !Character.isLetterOrDigit(string1[i])) {
+                i++;
+            }
+
+            if (i + size > count1) {
+                return -1;
+            }
+
+            // Compare the prefixes
+            int j;
+            for (j = 0; j < size; j++) {
+                if (Character.toUpperCase(string1[i+j]) != prefix[j]) {
+                    break;
+                }
+            }
+            if (j == size) {
+                return i;
+            }
+
+            // Skip this word
+            while (i < count1 && Character.isLetterOrDigit(string1[i])) {
+                i++;
+            }
+        }
+
+        return -1;
     }
 
     @Override

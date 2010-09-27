@@ -60,6 +60,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private ContactPhotoLoader mPhotoLoader;
 
     private String mQueryString;
+    private char[] mUpperCaseQueryString;
     private boolean mSearchMode;
     private boolean mDirectorySearchEnabled;
 
@@ -137,6 +138,15 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setQueryString(String queryString) {
         mQueryString = queryString;
+        if (TextUtils.isEmpty(queryString)) {
+            mUpperCaseQueryString = null;
+        } else {
+            mUpperCaseQueryString = queryString.toUpperCase().toCharArray();
+        }
+    }
+
+    public char[] getUpperCaseQueryString() {
+        return mUpperCaseQueryString;
     }
 
     public boolean isDirectorySearchEnabled() {
