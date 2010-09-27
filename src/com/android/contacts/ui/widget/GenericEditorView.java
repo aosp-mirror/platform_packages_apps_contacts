@@ -34,6 +34,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -229,12 +230,15 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
      */
     private void setupDeleteButton(boolean shouldExist) {
         if (shouldExist && mDelete == null) {
-            // Unfortunately, the style passed as constructor-parameter is mostly ignored,
-            // so we have to set the Background and Image seperately. However, if it is not given
-            // the size of the control is wrong
-            mDelete = new ImageButton(mContext, null, R.style.MinusButton);
-            mDelete.setBackgroundResource(R.drawable.btn_circle);
-            mDelete.setImageResource(R.drawable.ic_btn_round_minus);
+            mDelete = new ImageButton(mContext);
+            mDelete.setBackgroundDrawable(null);
+            mDelete.setImageResource(R.drawable.btn_minus);
+            final Resources resources = mContext.getResources();
+            mDelete.setPadding(
+                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_left),
+                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_top),
+                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_right),
+                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_bottom));
             mDelete.setContentDescription(
                     getResources().getText(R.string.description_minus_button));
             mDelete.setLayoutParams(

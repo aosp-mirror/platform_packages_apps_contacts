@@ -58,7 +58,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:duplicateParentState="true"
-            style="@style/PlusButton" />
+            android:background="@drawable/btn_plus"
+            android:paddingLeft="@dimen/editor_round_button_padding_left"
+            android:paddingRight="@dimen/editor_round_button_padding_right"
+            android:paddingTop="@dimen/editor_round_button_padding_top"
+            android:paddingBottom="@dimen/editor_round_button_padding_bottom"
+            android:contentDescription="@string/description_plus_button" />
 
     </LinearLayout>
 

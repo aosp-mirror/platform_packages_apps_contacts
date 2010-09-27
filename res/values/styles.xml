@@ -24,20 +24,9 @@
         <item name="android:windowAnimationStyle">@style/ContactsSearchAnimation</item>
     </style>
 
+    <!-- TODO: Once there are assets for More/Less buttons, remove these styles -->
     <style name="EmptyButton">
         <item name="android:background">@drawable/btn_circle</item>
-    </style>
-
-    <style name="MinusButton">
-        <item name="android:background">@drawable/btn_circle</item>
-        <item name="android:src">@drawable/ic_btn_round_minus</item>
-        <item name="android:contentDescription">@string/description_minus_button</item>
-    </style>
-
-    <style name="PlusButton">
-        <item name="android:background">@drawable/btn_circle</item>
-        <item name="android:src">@drawable/ic_btn_round_plus</item>
-        <item name="android:contentDescription">@string/description_plus_button</item>
     </style>
 
     <style name="MoreButton">
