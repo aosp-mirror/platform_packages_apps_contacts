@@ -369,7 +369,7 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizar nomes de contato como"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nome primeiro"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Sobrenome primeiro"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Pesquisar contatos "</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"Pesquisar contatos"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Pesquisar em todos os contatos"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="pick_photo" msgid="448886509158039462">"Selecionar foto da Galeria"</string>
