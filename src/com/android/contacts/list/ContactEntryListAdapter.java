@@ -63,6 +63,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private char[] mUpperCaseQueryString;
     private boolean mSearchMode;
     private boolean mDirectorySearchEnabled;
+    private int mDirectoryResultLimit = Integer.MAX_VALUE;
 
     private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
@@ -155,6 +156,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setDirectorySearchEnabled(boolean flag) {
         mDirectorySearchEnabled = flag;
+    }
+
+    public int getDirectoryResultLimit() {
+        return mDirectoryResultLimit;
+    }
+
+    public void setDirectoryResultLimit(int limit) {
+        this.mDirectoryResultLimit = limit;
     }
 
     public int getContactNameDisplayOrder() {
@@ -410,8 +419,15 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             countText.setText(R.string.search_results_searching);
         } else {
             int count = cursor == null ? 0 : cursor.getCount();
-            countText.setText(getQuantityText(count, R.string.listFoundAllContactsZero,
-                    R.plurals.searchFoundContacts));
+            long directoryId = directoryPartition.getDirectoryId();
+            if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
+                    && count >= getDirectoryResultLimit()) {
+                countText.setText(mContext.getString(
+                        R.string.foundTooManyContacts, getDirectoryResultLimit()));
+            } else {
+                countText.setText(getQuantityText(
+                        count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));
+            }
         }
     }
 

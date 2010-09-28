@@ -64,9 +64,12 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             } else {
                 builder.appendPath(query);      // Builder will encode the query
             }
-
             builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                     String.valueOf(directoryId));
+            if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
+                builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                        String.valueOf(getDirectoryResultLimit()));
+            }
             loader.setUri(builder.build());
             loader.setProjection(FILTER_PROJECTION);
         } else {

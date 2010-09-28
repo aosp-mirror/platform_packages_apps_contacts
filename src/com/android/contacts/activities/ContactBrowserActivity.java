@@ -81,6 +81,8 @@ public class ContactBrowserActivity extends Activity
 
     private static final String KEY_DEFAULT_CONTACT_URI = "defaultSelectedContactUri";
 
+    private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
+
     private DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
@@ -474,6 +476,7 @@ public class ContactBrowserActivity extends Activity
         fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
         fragment.setSearchMode(true);
         fragment.setDirectorySearchEnabled(true);
+        fragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
         fragment.setQuickContactEnabled(!mContactContentDisplayed);

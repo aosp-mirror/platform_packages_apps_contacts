@@ -91,6 +91,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
     private static final String KEY_REQUEST = "request";
     private static final String KEY_LEGACY_COMPATIBILITY = "legacyCompatibility";
+    private static final String KEY_DIRECTORY_RESULT_LIMIT = "directoryResultLimit";
 
     private static final String DIRECTORY_ID_ARG_KEY = "directoryId";
 
@@ -122,6 +123,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private int mDisplayOrder;
     private int mSortOrder;
+    private int mDirectoryResultLimit;
 
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
@@ -223,6 +225,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_SELECTION_VISIBLE, mSelectionVisible);
         outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
         outState.putString(KEY_QUERY_STRING, mQueryString);
+        outState.putInt(KEY_DIRECTORY_RESULT_LIMIT, mDirectoryResultLimit);
         outState.putParcelable(KEY_REQUEST, mRequest);
 
         if (mListView != null) {
@@ -252,6 +255,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mSelectionVisible = savedState.getBoolean(KEY_SELECTION_VISIBLE);
         mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
         mQueryString = savedState.getString(KEY_QUERY_STRING);
+        mDirectoryResultLimit = savedState.getInt(KEY_DIRECTORY_RESULT_LIMIT);
         mRequest = savedState.getParcelable(KEY_REQUEST);
 
         // Retrieve list state. This will be applied in onLoadFinished
@@ -594,6 +598,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    public void setDirectoryResultLimit(int limit) {
+        mDirectoryResultLimit = limit;
+    }
+
     public void setContextMenuAdapter(ContextMenuAdapter adapter) {
         mContextMenuAdapter = adapter;
         if (mListView != null) {
@@ -706,6 +714,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
         mAdapter.setSelectionVisible(mSelectionVisible);
+        mAdapter.setDirectoryResultLimit(mDirectoryResultLimit);
     }
 
     protected boolean isNameHighlighingEnabled() {
