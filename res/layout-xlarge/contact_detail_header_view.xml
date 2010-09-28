@@ -87,9 +87,9 @@
                 android:background="@drawable/social_bubble"
                 android:layout_marginTop="30dip"
                 android:paddingLeft="64dip"
-                android:paddingTop="20dip"
-                android:paddingRight="8dip"
-                android:paddingBottom="20dip"
+                android:paddingTop="16dip"
+                android:paddingRight="16dip"
+                android:paddingBottom="16dip"
                 android:visibility="gone">
     
                 <TextView android:id="@+id/status"
