@@ -27,6 +27,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -73,22 +74,19 @@ public class SelectAccountDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(getActivity(),
-                android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater =
-                (LayoutInflater)dialogContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         final Sources sources = Sources.getInstance(getActivity());
         final ArrayList<Account> accounts = Sources.getInstance(getActivity()).getAccounts(true);
 
         final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(getActivity(),
                 android.R.layout.simple_list_item_2, accounts) {
+            private LayoutInflater mInflater;
+
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 final View resultView;
                 if (convertView == null) {
-                    resultView = dialogInflater.inflate(android.R.layout.simple_list_item_2,
+                    if (mInflater == null) mInflater = LayoutInflater.from(parent.getContext());
+                    resultView = mInflater.inflate(android.R.layout.simple_list_item_2,
                             parent, false);
                 } else {
                     resultView = convertView;
@@ -101,6 +99,10 @@ public class SelectAccountDialogFragment extends DialogFragment {
                 final Account account = this.getItem(position);
                 final ContactsSource source = sources.getInflatedSource(account.type,
                         ContactsSource.LEVEL_SUMMARY);
+
+                // TODO: Remove these hacks once the framework styles are fixed
+                text1.setTextColor(Color.YELLOW);
+                text2.setTextColor(Color.YELLOW);
 
                 text1.setText(account.name);
                 text2.setText(source.getDisplayLabel(getContext()));
@@ -123,7 +125,8 @@ public class SelectAccountDialogFragment extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.dialog_new_contact_account);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
-        return builder.create();
+        final AlertDialog result = builder.create();
+        return result;
     }
 
     @Override

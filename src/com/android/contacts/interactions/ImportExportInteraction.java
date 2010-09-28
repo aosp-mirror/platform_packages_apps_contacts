@@ -93,19 +93,17 @@ public class ImportExportInteraction {
 
     private Dialog createOptionsDialog() {
         // Wrap our context to inflate list items using the correct theme
-        final Context dialogContext =
-                new ContextThemeWrapper(mContext, android.R.style.Theme_Light);
-        final Resources res = dialogContext.getResources();
-        final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
+        final Resources res = mContext.getResources();
+        final LayoutInflater dialogInflater = (LayoutInflater)mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // Adapter that shows a list of string resources
         final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(mContext,
-                android.R.layout.simple_list_item_1) {
+                android.R.layout.select_dialog_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.simple_list_item_1,
+                    convertView = dialogInflater.inflate(android.R.layout.select_dialog_item,
                             parent, false);
                 }
 

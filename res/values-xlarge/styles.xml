@@ -63,8 +63,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- TODO: Derive from Widget.Holo.ActionBar once it exists -->
-    <style name="TransparentActionBarStyle" parent="android:Widget.ActionBar">
+    <style name="TransparentActionBarStyle" parent="android:Widget.Holo.Light.ActionBar">
         <item name="android:background">@null</item>
     </style>
 </resources>

@@ -44,17 +44,13 @@ public class PickPhotoDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Wrap our context to inflate list items using the light theme
-        final Context dialogContext = new ContextThemeWrapper(getActivity(),
-                android.R.style.Theme_Light);
-
         String[] choices = new String[2];
         choices[0] = getActivity().getString(R.string.take_photo);
         choices[1] = getActivity().getString(R.string.pick_photo);
-        final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
-                android.R.layout.simple_list_item_1, choices);
+        final ListAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.select_dialog_item, choices);
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.attachToContact);
         builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
             @Override

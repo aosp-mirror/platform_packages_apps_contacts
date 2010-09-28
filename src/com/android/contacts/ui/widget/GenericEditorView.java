@@ -65,7 +65,7 @@ import java.util.List;
  * {@link Entity} values, and to correctly write any changes values.
  */
 public class GenericEditorView extends ViewGroup implements Editor, DialogShowingView {
-    private static final int RES_LABEL_ITEM = android.R.layout.simple_list_item_1;
+    private static final int RES_LABEL_ITEM = android.R.layout.select_dialog_item;
 
     private static final String DIALOG_ID_KEY = "dialog_id";
     private static final int DIALOG_ID_LABEL = 1;
@@ -542,9 +542,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         final List<EditType> validTypes = EntityModifier.getValidTypes(mState, mKind, mType);
 
         // Wrap our context to inflate list items using correct theme
-        final Context dialogContext = new ContextThemeWrapper(mContext,
-                android.R.style.Theme_Light);
-        final LayoutInflater dialogInflater = (LayoutInflater) dialogContext.getSystemService(
+        final LayoutInflater dialogInflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
         final ListAdapter typeAdapter = new ArrayAdapter<EditType>(mContext, RES_LABEL_ITEM,

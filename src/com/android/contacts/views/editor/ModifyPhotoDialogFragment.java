@@ -73,8 +73,6 @@ public class ModifyPhotoDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Wrap our context to inflate list items using correct theme
         final Activity context = getActivity();
-        final Context dialogContext = new ContextThemeWrapper(context,
-                android.R.style.Theme_Light);
 
         final String[] choices;
         if (mIsReadOnly) {
@@ -86,8 +84,8 @@ public class ModifyPhotoDialogFragment extends DialogFragment {
             choices[1] = context.getString(R.string.removePicture);
             choices[2] = context.getString(R.string.changePicture);
         }
-        final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
-                android.R.layout.simple_list_item_1, choices);
+        final ListAdapter adapter = new ArrayAdapter<String>(context,
+                android.R.layout.select_dialog_item, choices);
 
         final DialogInterface.OnClickListener clickListener =
             new DialogInterface.OnClickListener() {
@@ -110,7 +108,7 @@ public class ModifyPhotoDialogFragment extends DialogFragment {
                 }
             };
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(dialogContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.attachToContact);
         builder.setSingleChoiceItems(adapter, -1, clickListener);
         return builder.create();
