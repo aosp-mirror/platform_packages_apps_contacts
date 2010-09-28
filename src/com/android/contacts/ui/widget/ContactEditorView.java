@@ -227,10 +227,17 @@ public class ContactEditorView extends BaseContactEditorView {
     }
 
     /* package */ void setExpanded(boolean value) {
-        if (value == mExpanded) return;
+        // only allow collapsing if we are one of several children
+        final boolean newValue;
+        if (getParent() instanceof ViewGroup && ((ViewGroup) getParent()).getChildCount() == 1) {
+            newValue = true;
+        } else {
+            newValue = value;
+        }
 
-        mExpanded = value;
-        mBody.setVisibility(value ? View.VISIBLE : View.GONE);
+        if (newValue == mExpanded) return;
+        mExpanded = newValue;
+        mBody.setVisibility(newValue ? View.VISIBLE : View.GONE);
     }
 
     private void showAddInformationPopupWindow() {
