@@ -45,7 +45,6 @@ import android.widget.TextView;
  */
 public class KindSectionView extends LinearLayout implements EditorListener {
     private static final String TAG = "KindSectionView";
-    private static int sCachedThemePaddingRight = -1;
 
     private ViewGroup mEditors;
     private ImageButton mAddPlusButton;

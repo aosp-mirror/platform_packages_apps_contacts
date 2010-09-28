@@ -43,7 +43,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -191,11 +190,6 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
         if (mDelete != null) {
             minHeight += mDelete.getMeasuredHeight();
-        }
-
-        if (minHeight > totalHeight && visibleFieldCount == 1) {
-            firstVisibleField.measure(widthMeasureSpec,
-                    MeasureSpec.makeMeasureSpec(minHeight - padding, MeasureSpec.EXACTLY));
         }
 
         totalHeight = Math.max(minHeight, totalHeight);

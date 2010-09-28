@@ -39,6 +39,6 @@
     in code) -->
     <dimen name="editor_round_button_padding_left">5dip</dimen>
     <dimen name="editor_round_button_padding_right">5dip</dimen>
-    <dimen name="editor_round_button_padding_top">5dip</dimen>
-    <dimen name="editor_round_button_padding_bottom">5dip</dimen>
+    <dimen name="editor_round_button_padding_top">10dip</dimen>
+    <dimen name="editor_round_button_padding_bottom">10dip</dimen>
 </resources>
