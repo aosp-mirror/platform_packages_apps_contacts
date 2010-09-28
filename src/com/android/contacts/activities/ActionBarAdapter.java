@@ -116,11 +116,14 @@ public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnC
 
         mSearchView = new SearchView(mContext);
         setSearchSelectionListener(mSearchView);
-//        search.setIconifiedByDefault(false);
+        mSearchView.setIconified(mMode != ContactBrowserMode.MODE_SEARCH);
 
         mSearchTab.setCustomView(mSearchView);
         mActionBar.addTab(mSearchTab);
+
         mActive = true;
+
+        update();
     }
 
     private void setSearchSelectionListener(SearchView search) {
@@ -208,6 +211,10 @@ public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnC
 
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
+        if (!mActive) {
+            return;
+        }
+
         if (tab == mSearchTab) {
             setMode(ContactBrowserMode.MODE_SEARCH);
         } else if (tab == mContactsTab) {
