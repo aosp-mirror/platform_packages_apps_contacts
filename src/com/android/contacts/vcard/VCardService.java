@@ -49,6 +49,7 @@ public class VCardService extends Service {
     public class ImportRequestHandler extends Handler {
         private ImportProcessor mImportProcessor;
         private ExportProcessor mExportProcessor = new ExportProcessor(VCardService.this);
+        private boolean mDoDelayedCancel = false;
 
         public ImportRequestHandler() {
             super();
@@ -58,20 +59,27 @@ public class VCardService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
-                    final ImportRequest parameter = (ImportRequest)msg.obj;
+                    if (mDoDelayedCancel) {
+                        Log.i(LOG_TAG, "A cancel request came before import request. " +
+                                "Refrain current import once.");
+                        mDoDelayedCancel = false;
+                    } else {
+                        final ImportRequest parameter = (ImportRequest)msg.obj;
 
-                    if (mImportProcessor == null) {
-                        mImportProcessor = new ImportProcessor(VCardService.this);
-                    } else if (mImportProcessor.isCanceled()) {
-                        Log.i(LOG_TAG, "Existing ImporterProcessor is canceled. create another.");
-                        mImportProcessor = new ImportProcessor(VCardService.this);
-                    }
+                        if (mImportProcessor == null) {
+                            mImportProcessor = new ImportProcessor(VCardService.this);
+                        } else if (mImportProcessor.isCanceled()) {
+                            Log.i(LOG_TAG,
+                                    "Existing ImporterProcessor is canceled. create another.");
+                            mImportProcessor = new ImportProcessor(VCardService.this);
+                        }
 
-                    mImportProcessor.pushRequest(parameter);
-                    if (parameter.entryCount > IMPORT_NOTIFICATION_THRESHOLD) {
-                        Toast.makeText(VCardService.this,
-                                getString(R.string.vcard_importer_start_message),
-                                Toast.LENGTH_LONG).show();
+                        mImportProcessor.pushRequest(parameter);
+                        if (parameter.entryCount > IMPORT_NOTIFICATION_THRESHOLD) {
+                            Toast.makeText(VCardService.this,
+                                    getString(R.string.vcard_importer_start_message),
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                     break;
                 }
@@ -84,7 +92,12 @@ public class VCardService extends Service {
                     break;
                 }
                 case MSG_CANCEL_IMPORT_REQUEST: {
-                    mImportProcessor.cancel();
+                    if (mImportProcessor != null) {
+                        mImportProcessor.cancel();
+                    } else {
+                        Log.w(LOG_TAG, "ImportProcessor isn't ready. Delay the cancel request.");
+                        mDoDelayedCancel = true;
+                    }
                     break;
                 }
                 case MSG_NOTIFY_IMPORT_FINISHED: {
