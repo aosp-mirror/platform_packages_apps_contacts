@@ -76,17 +76,16 @@ public class SelectAccountDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Sources sources = Sources.getInstance(getActivity());
         final ArrayList<Account> accounts = Sources.getInstance(getActivity()).getAccounts(true);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final LayoutInflater inflater = LayoutInflater.from(builder.getContext());
 
-        final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(getActivity(),
+        final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(builder.getContext(),
                 android.R.layout.simple_list_item_2, accounts) {
-            private LayoutInflater mInflater;
-
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 final View resultView;
                 if (convertView == null) {
-                    if (mInflater == null) mInflater = LayoutInflater.from(parent.getContext());
-                    resultView = mInflater.inflate(android.R.layout.simple_list_item_2,
+                    resultView = inflater.inflate(android.R.layout.simple_list_item_2,
                             parent, false);
                 } else {
                     resultView = convertView;
@@ -99,10 +98,6 @@ public class SelectAccountDialogFragment extends DialogFragment {
                 final Account account = this.getItem(position);
                 final ContactsSource source = sources.getInflatedSource(account.type,
                         ContactsSource.LEVEL_SUMMARY);
-
-                // TODO: Remove these hacks once the framework styles are fixed
-                text1.setTextColor(Color.YELLOW);
-                text2.setTextColor(Color.YELLOW);
 
                 text1.setText(account.name);
                 text2.setText(source.getDisplayLabel(getContext()));
@@ -122,7 +117,6 @@ public class SelectAccountDialogFragment extends DialogFragment {
             }
         };
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.dialog_new_contact_account);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
         final AlertDialog result = builder.create();
