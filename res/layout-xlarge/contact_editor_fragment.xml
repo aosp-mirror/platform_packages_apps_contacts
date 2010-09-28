@@ -14,25 +14,12 @@
      limitations under the License.
 -->
 
-<FrameLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    android:id="@+id/editors"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#bff3f3f3"
->
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-    >
-
-        <LinearLayout android:id="@+id/editors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-        />
-
-    </ScrollView>
-</FrameLayout>
+    android:orientation="vertical"
+/>
