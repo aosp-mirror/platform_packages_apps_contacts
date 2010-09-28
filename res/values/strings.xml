@@ -314,8 +314,8 @@
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
-        <item quantity="one">Displaying 1 contact with phone number</item>
-        <item quantity="other">Displaying <xliff:g id="count">%d</xliff:g> contacts with phone numbers</item>
+        <item quantity="one">1 contact with phone number</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts with phone numbers</item>
     </plurals>
 
     <!-- Displayed at the top of the contacts showing the zero as total number of contacts visible when "Only contacts with phones" is selected -->
@@ -323,8 +323,8 @@
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
     <plurals name="listTotalAllContacts">
-        <item quantity="one">Displaying 1 contact</item>
-        <item quantity="other">Displaying <xliff:g id="count">%d</xliff:g> contacts</item>
+        <item quantity="one">1 contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
     </plurals>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Only contacts with phones" not selected -->

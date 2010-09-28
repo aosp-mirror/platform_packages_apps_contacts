@@ -16,7 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.R;
 import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
@@ -54,8 +53,6 @@ public class ContactEntryListView extends PinnedHeaderListView {
 
     public ContactEntryListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setPinnedHeaderBackgroundColor(
-                context.getResources().getColor(R.color.pinned_header_background));
         mDefaultSelector = getSelector();
     }
 

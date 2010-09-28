@@ -19,17 +19,18 @@ package com.android.contacts.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
  * A ListView that maintains a header pinned at the top of the list. The
@@ -95,9 +96,8 @@ public class PinnedHeaderListView extends ListView
     private PinnedHeaderAdapter mAdapter;
     private int mSize;
     private PinnedHeader[] mHeaders;
-    private int mPinnedHeaderBackgroundColor;
     private RectF mBounds = new RectF();
-    private Paint mPaint = new Paint();
+    private Rect mClipRect = new Rect();
     private OnScrollListener mOnScrollListener;
     private OnItemSelectedListener mOnItemSelectedListener;
     private int mScrollState;
@@ -118,18 +118,6 @@ public class PinnedHeaderListView extends ListView
         super(context, attrs, defStyle);
         super.setOnScrollListener(this);
         super.setOnItemSelectedListener(this);
-    }
-
-    /**
-     * An approximation of the background color of the pinned header. This color
-     * is used when the pinned header is being pushed up. At that point the
-     * header "fades away". Rather than computing a faded bitmap based on the
-     * 9-patch normally used for the background, we will use a solid color,
-     * which will provide better performance and reduced complexity.
-     */
-    public void setPinnedHeaderBackgroundColor(int color) {
-        mPinnedHeaderBackgroundColor = color;
-        mPaint.setColor(mPinnedHeaderBackgroundColor);
     }
 
     public void setPinnedHeaderAnimationDuration(int duration) {
@@ -447,22 +435,50 @@ public class PinnedHeaderListView extends ListView
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-
         long currentTime = mAnimating ? System.currentTimeMillis() : 0;
 
-        // First draw top headers, then the bottom ones to handle the Z axis correctly
-        for (int i = mSize; --i >= 0;) {
+        int top = 0;
+        int bottom = getBottom();
+        boolean hasVisibleHeaders = false;
+        for (int i = 0; i < mSize; i++) {
             PinnedHeader header = mHeaders[i];
-            if (header.visible && (header.state == TOP || header.state == FADING)) {
-                drawHeader(canvas, header, currentTime);
+            if (header.visible) {
+                hasVisibleHeaders = true;
+                if (header.state == BOTTOM && header.y < bottom) {
+                    bottom = header.y;
+                } else if (header.state == TOP || header.state == FADING) {
+                    int newTop = header.y + header.height;
+                    if (newTop > top) {
+                        top = newTop;
+                    }
+                }
             }
         }
 
-        for (int i = 0; i < mSize; i++) {
-            PinnedHeader header = mHeaders[i];
-            if (header.visible && header.state == BOTTOM) {
-                drawHeader(canvas, header, currentTime);
+        if (hasVisibleHeaders) {
+            canvas.save();
+            mClipRect.set(0, top, getWidth(), bottom);
+            canvas.clipRect(mClipRect);
+        }
+
+        super.dispatchDraw(canvas);
+
+        if (hasVisibleHeaders) {
+            canvas.restore();
+
+            // First draw top headers, then the bottom ones to handle the Z axis correctly
+            for (int i = mSize; --i >= 0;) {
+                PinnedHeader header = mHeaders[i];
+                if (header.visible && (header.state == TOP || header.state == FADING)) {
+                    drawHeader(canvas, header, currentTime);
+                }
+            }
+
+            for (int i = 0; i < mSize; i++) {
+                PinnedHeader header = mHeaders[i];
+                if (header.visible && header.state == BOTTOM) {
+                    drawHeader(canvas, header, currentTime);
+                }
             }
         }
 
@@ -483,20 +499,14 @@ public class PinnedHeaderListView extends ListView
         }
         if (header.visible) {
             View view = header.view;
+            int saveCount = canvas.save();
+            canvas.translate(0, header.y);
             if (header.state == FADING) {
-                int saveCount = canvas.save();
-                canvas.translate(0, header.y);
                 mBounds.set(0, 0, view.getWidth(), view.getHeight());
-                canvas.drawRect(mBounds, mPaint);
                 canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
-                view.draw(canvas);
-                canvas.restoreToCount(saveCount);
-            } else {
-                canvas.save();
-                canvas.translate(0, header.y);
-                view.draw(canvas);
-                canvas.restore();
             }
+            view.draw(canvas);
+            canvas.restoreToCount(saveCount);
         }
     }
 }

@@ -16,8 +16,6 @@
 
 <resources>
 
-    <color name="pinned_header_background">#ffcfd1dc</color>
-
     <!-- Color used in the Aizy visual scroll control for empty section -->
     <color name="aizy_empty_section">#ffcccccc</color>
 
