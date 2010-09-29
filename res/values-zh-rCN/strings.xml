@@ -204,23 +204,31 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"联系人照片"</string>
     <string name="description_minus_button" msgid="387136707700230172">"删除"</string>
     <string name="description_plus_button" msgid="515164827856229880">"添加"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"无 SD 卡"</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"未检测到 SD 卡"</string>
+    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"无 SD 卡"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"无 SD 卡"</string>
+    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"未检测到 SD 卡"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"未检测到 SD 卡"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"正在搜索 vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"从 SIM 卡导入"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"从 SD 卡导入"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"导出到 SD 卡"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"从 SD 卡导入"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"从 SD 卡导入"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"导出到 SD 卡"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"导出到 SD 卡"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"分享可见的联系人"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"导入一个 vCard 文件"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"导入多个 vCard 文件"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"导入所有 vCard 文件"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"正在 SD 卡中搜索 vCard 数据"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"扫描 SD 卡失败"</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"扫描 SD 卡失败（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）"</string>
+    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"正在 SD 卡中搜索 vCard 数据"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"正在 SD 卡中搜索 vCard 数据"</string>
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"扫描 SD 卡失败"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"扫描 SD 卡失败"</string>
+    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"扫描 SD 卡失败（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"扫描 SD 卡失败（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 错误"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"由于意外原因而无法解析 vCard"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"虽然 vCard 似乎使用了有效的格式，但系统无法对其进行解析，因为当前的实现方案不支持该格式。"</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"未在 SD 卡上找到 vCard 文件"</string>
+    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"未在 SD 卡上找到 vCard 文件"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"未在 SD 卡上找到 vCard 文件"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"一个或多个文件导入失败 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知错误"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"选择 vCard 文件"</string>
@@ -235,7 +243,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"导出联系人数据失败"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"导出联系人数据失败。"\n"失败原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"没有可导出的联系人"</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"SD 卡中的 vCard 文件太多"</string>
+    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"SD 卡中的 vCard 文件太多"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 卡中的 vCard 文件太多"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"所需文件名太长（“<xliff:g id="FILENAME">%s</xliff:g>”）"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"正在导出联系人数据"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"正在向“<xliff:g id="FILE_NAME">%s</xliff:g>”导出联系人数据"</string>
