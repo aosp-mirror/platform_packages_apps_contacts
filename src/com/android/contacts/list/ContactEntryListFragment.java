@@ -532,7 +532,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 mAdapter.clearPartitions();
                 mAdapter.setSearchMode(flag);
                 mAdapter.setPinnedPartitionHeadersEnabled(flag);
-                mAdapter.configureDefaultPartition(flag, flag);
+                mAdapter.configureDefaultPartition(false, flag);
                 reloadData();
             }
 
@@ -631,7 +631,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         boolean searchMode = isSearchMode();
         mAdapter.setSearchMode(searchMode);
-        mAdapter.configureDefaultPartition(searchMode, searchMode);
+        mAdapter.configureDefaultPartition(false, searchMode);
         mAdapter.setPhotoLoader(mPhotoLoader);
         mListView.setAdapter(mAdapter);
 

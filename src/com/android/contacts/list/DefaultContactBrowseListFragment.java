@@ -37,6 +37,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -70,7 +71,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private boolean mCreateContactEnabled;
     private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
     private boolean mVisibleContactsRestrictionEnabled = true;
-    private View mHeaderView;
+    private View mCounterHeaderView;
+    private View mSearchHeaderView;
 
     private boolean mFilterEnabled;
     private SparseArray<ContactListFilter> mFilters;
@@ -218,8 +220,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         FrameLayout headerContainer = new FrameLayout(inflater.getContext());
-        mHeaderView = inflater.inflate(R.layout.total_contacts, null, false);
-        headerContainer.addView(mHeaderView);
+        mCounterHeaderView = inflater.inflate(R.layout.total_contacts, null, false);
+        headerContainer.addView(mCounterHeaderView);
+        mSearchHeaderView = inflater.inflate(R.layout.search_header, null, false);
+        headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer);
         checkHeaderViewVisibility();
         configureFilterSpinner();
@@ -246,8 +250,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     }
 
     private void checkHeaderViewVisibility() {
-        if (mHeaderView != null) {
-            mHeaderView.setVisibility(isSearchMode() ? View.GONE : View.VISIBLE);
+        if (mCounterHeaderView != null) {
+            mCounterHeaderView.setVisibility(isSearchMode() ? View.GONE : View.VISIBLE);
+        }
+
+        // Hide the search header by default. See showCount().
+        if (mSearchHeaderView != null) {
+            mSearchHeaderView.setVisibility(View.GONE);
         }
     }
 
@@ -260,10 +269,33 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             // text = contactsListActivity.getQuantityText(count,
             // R.string.listTotalPhoneContactsZero,
             // R.plurals.listTotalPhoneContacts);
-            TextView textView = (TextView)getView().findViewById(R.id.totalContactsText);
+            TextView textView = (TextView)mCounterHeaderView.findViewById(R.id.totalContactsText);
             String text = getQuantityText(count, R.string.listTotalAllContactsZero,
                     R.plurals.listTotalAllContacts);
             textView.setText(text);
+        } else {
+            ContactListAdapter adapter = getAdapter();
+            if (adapter == null) {
+                return;
+            }
+
+            // In search mode we only display the header if there is nothing found
+            if (!adapter.areAllPartitionsEmpty()) {
+                mSearchHeaderView.setVisibility(View.GONE);
+            } else {
+                TextView textView = (TextView) mSearchHeaderView.findViewById(
+                        R.id.totalContactsText);
+                ProgressBar progress = (ProgressBar) mSearchHeaderView.findViewById(
+                        R.id.progress);
+                if (adapter.isLoading()) {
+                    textView.setText(R.string.search_results_searching);
+                    progress.setVisibility(View.VISIBLE);
+                } else {
+                    textView.setText(R.string.listFoundAllContactsZero);
+                    progress.setVisibility(View.GONE);
+                }
+                mSearchHeaderView.setVisibility(View.VISIBLE);
+            }
         }
     }
 
