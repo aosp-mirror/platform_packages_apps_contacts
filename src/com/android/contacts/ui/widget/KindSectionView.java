@@ -127,35 +127,44 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         boolean hasEntries = mState.hasMimeEntries(mKind.mimeType);
 
         if (hasEntries) {
-            int entryIndex = 0;
             for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
                 // Skip entries that aren't visible
                 if (!entry.isVisible()) continue;
                 if (isEmptyNoop(entry)) continue;
 
-                final View view;
-                if (mKind.editorClass == null) {
-                    view = new GenericEditorView(mContext);
-                } else {
-                    try {
-                        view = mKind.editorClass.getConstructor(Context.class).newInstance(
-                                mContext);
-                    } catch (Exception e) {
-                        throw new RuntimeException(
-                                "Cannot allocate editor for " + mKind.editorClass);
-                    }
-                }
-
-                if (view instanceof Editor) {
-                    Editor editor = (Editor) view;
-                    editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
-                    editor.setEditorListener(this);
-                    editor.setDeletable(true);
-                }
-                mEditors.addView(view);
-                entryIndex++;
+                createEditorView(entry);
             }
         }
+    }
+
+
+    /**
+     * Creates an EditorView for the given entry. This function must be used while constructing
+     * the views corresponding to the the object-model. The resulting EditorView is also added
+     * to the end of mEditors
+     */
+    private View createEditorView(ValuesDelta entry) {
+        final View view;
+        if (mKind.editorClass == null) {
+            view = new GenericEditorView(mContext);
+        } else {
+            try {
+                view = mKind.editorClass.getConstructor(Context.class).newInstance(
+                        mContext);
+            } catch (Exception e) {
+                throw new RuntimeException(
+                        "Cannot allocate editor for " + mKind.editorClass);
+            }
+        }
+
+        if (view instanceof Editor) {
+            Editor editor = (Editor) view;
+            editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
+            editor.setEditorListener(this);
+            editor.setDeletable(true);
+        }
+        mEditors.addView(view);
+        return view;
     }
 
     /**
@@ -189,18 +198,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         if (!mKind.isList && getEditorCount() == 1)
             return;
 
-        // Insert a new child and rebuild
+        // Insert a new child, create its view and set its focus
         final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
-        rebuildFromState();
+        final View newField = createEditorView(newValues);
+        newField.requestFocus();
+
+        // For non-lists (e.g. Notes we can only have one field. in that case we need to disable
+        // the add button
         updateAddEnabled();
 
-        // Find the newly added EditView and set focus.
-        final int newFieldId = mViewIdGenerator.getId(mState, mKind, newValues, 0);
-        final View newField = findViewById(newFieldId);
-        if (newField != null) {
-            newField.requestFocus();
-        }
-
+        // Ensure we are visible
         updateVisible();
     }
 
