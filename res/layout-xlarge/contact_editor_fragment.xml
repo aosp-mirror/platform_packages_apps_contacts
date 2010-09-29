@@ -20,6 +20,6 @@
     android:id="@+id/editors"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bff3f3f3"
+    android:background="@drawable/panel_message"
     android:orientation="vertical"
 />

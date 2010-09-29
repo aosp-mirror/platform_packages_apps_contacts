@@ -36,6 +36,12 @@
     <FrameLayout
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="48dip"
+        ex:layout_narrowParentWidth="800dip"
+        ex:layout_narrowRightMargin="0dip"
+        ex:layout_wideParentWidth="1280dip"
+        ex:layout_wideRightMargin="48dip"
+        />
 
 </com.android.contacts.widget.InterpolatingLayout>
