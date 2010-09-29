@@ -1309,6 +1309,12 @@
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
 
+    <!-- The label in section header in the contact list for a contact directory [CHAR LIMIT=128] -->
+    <string name="directory_search_label">Directory</string>
+
+    <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
+    <string name="local_search_label">Contacts</string>
+
     <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
     <string name="toast_making_personal_copy">Creating a personal copy</string>
 

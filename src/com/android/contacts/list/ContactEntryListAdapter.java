@@ -426,14 +426,16 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
 
         DirectoryPartition directoryPartition = (DirectoryPartition)partition;
-        TextView directoryTypeTextView = (TextView)view.findViewById(R.id.directory_type);
-        directoryTypeTextView.setText(directoryPartition.getDirectoryType());
+        long directoryId = directoryPartition.getDirectoryId();
+        TextView labelTextView = (TextView)view.findViewById(R.id.label);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
-        if (!TextUtils.isEmpty(directoryPartition.getDisplayName())) {
-            displayNameTextView.setText(directoryPartition.getDisplayName());
-            displayNameTextView.setVisibility(View.VISIBLE);
+        if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
+            labelTextView.setText(R.string.local_search_label);
+            displayNameTextView.setText(null);
         } else {
-            displayNameTextView.setVisibility(View.GONE);
+            labelTextView.setText(R.string.directory_search_label);
+            displayNameTextView.setText(buildDirectoryName(directoryPartition.getDirectoryType(),
+                    directoryPartition.getDisplayName()));
         }
 
         TextView countText = (TextView)view.findViewById(R.id.count);
@@ -441,7 +443,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             countText.setText(R.string.search_results_searching);
         } else {
             int count = cursor == null ? 0 : cursor.getCount();
-            long directoryId = directoryPartition.getDirectoryId();
             if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
                     && count >= getDirectoryResultLimit()) {
                 countText.setText(mContext.getString(
@@ -451,6 +452,23 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                         count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));
             }
         }
+    }
+
+    private CharSequence buildDirectoryName(String directoryType, String directoryName) {
+        String title;
+        if (!TextUtils.isEmpty(directoryName)) {
+            title = directoryName;
+            // TODO: STOPSHIP - remove this once this is done by both directory providers
+            int atIndex = title.indexOf('@');
+            if (atIndex != -1 && atIndex < title.length() - 2) {
+                final char firstLetter = Character.toUpperCase(title.charAt(atIndex + 1));
+                title = firstLetter + title.substring(atIndex + 2);
+            }
+        } else {
+            title = directoryType;
+        }
+
+        return title;
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
