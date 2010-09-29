@@ -659,11 +659,15 @@
     -->
     <string name="description_plus_button">plus</string>
 
+    <!-- Dialog title shown when shared storage does not exist [CHAR LIMIT=25] -->
+    <string name="no_sdcard_title" product="nosdcard">Shared storage unavailable</string>
     <!-- Dialog title shown when SD Card does not exist -->
-    <string name="no_sdcard_title">No SD card</string>
+    <string name="no_sdcard_title" product="default">No SD card</string>
 
+    <!-- Dialog message shown when shared storage does not exist [CHAR LIMIT=30] -->
+    <string name="no_sdcard_message" product="nosdcard">No shared storage detected</string>
     <!-- Dialog message shown when SDcard does not exist -->
-    <string name="no_sdcard_message">No SD card detected</string>
+    <string name="no_sdcard_message" product="default">No SD card detected</string>
 
     <!-- Dialog title shown when searching VCard data from SD Card -->
     <string name="searching_vcard_title">Searching for vCard</string>
@@ -671,11 +675,15 @@
     <!-- Action string for selecting SIM for importing contacts -->
     <string name="import_from_sim">Import from SIM card</string>
 
+    <!-- Action string for selecting shared storage for importing contacts [CHAR LIMIT=25] -->
+    <string name="import_from_sdcard" product="nosdcard">Import from shared storage</string>
     <!-- Action string for selecting SD Card for importing contacts -->
-    <string name="import_from_sdcard">Import from SD card</string>
+    <string name="import_from_sdcard" product="default">Import from SD card</string>
 
+    <!-- Action that exports all contacts to shared storage [CHAR LIMIT=25] -->
+    <string name="export_to_sdcard" product="nosdcard">Export to shared storage</string>
     <!-- Action that exports all contacts to SD Card -->
-    <string name="export_to_sdcard">Export to SD card</string>
+    <string name="export_to_sdcard" product="default">Export to SD card</string>
 
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
@@ -695,15 +703,22 @@
          than one vCard files available in the system. -->
     <string name="import_all_vcard_string">Import all vCard files</string>
 
+    <!-- Dialog message shown when searching VCard data from SD Card [CHAR LIMIT=NONE] -->
+    <string name="searching_vcard_message" product="nosdcard">Searching for vCard data in shared storage</string>
     <!-- Dialog message shown when searching VCard data from SD Card -->
-    <string name="searching_vcard_message">Searching for vCard data on SD card</string>
+    <string name="searching_vcard_message" product="default">Searching for vCard data on SD card</string>
 
+    <!-- Dialog title shown when scanning VCard data failed. [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_title" product="nosdcard">Scanning shared storage failed</string>
     <!-- Dialog title shown when scanning VCard data failed. -->
-    <string name="scanning_sdcard_failed_title">Scanning SD card failed</string>
+    <string name="scanning_sdcard_failed_title" product="default">Scanning SD card failed</string>
 
     <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_message" product="nosdcard">Scanning shared storage failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <!-- Dialog message shown when searching VCard data failed.
          An exact reason for the failure should -->
-    <string name="scanning_sdcard_failed_message">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <string name="scanning_sdcard_failed_message" product="default">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
          emitted some I/O error. Exact reason will be appended by the system. -->
@@ -721,8 +736,11 @@
     <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
     <!-- The failed reason shown when the system could not find any vCard file
+         (with extension ".vcf" in SDCard.) [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_no_vcard_file" product="nosdcard">No vCard file found in the shared storage</string>
+    <!-- The failed reason shown when the system could not find any vCard file
          (with extension ".vcf" in SDCard.) -->
-    <string name="fail_reason_no_vcard_file">No vCard file found on the SD card</string>
+    <string name="fail_reason_no_vcard_file" product="default">No vCard file found on the SD card</string>
 
     <!-- The failed reason shown when the import of some of vCard files failed during multiple vCard
          files import. It includes the case where all files were failed to be imported. -->
@@ -772,8 +790,11 @@
     <string name="fail_reason_no_exportable_contact">There is no exportable contact</string>
 
     <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_too_many_vcard" product="nosdcard">Too many vCard files on the shared storage</string>
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
          there are too many files relevant to vCard. -->
-    <string name="fail_reason_too_many_vcard">Too many vCard files on the SD card</string>
+    <string name="fail_reason_too_many_vcard" product="default">Too many vCard files on the SD card</string>
 
     <!-- The failed reason shown when the given file name is too long for the system.
          The length limit of each file is different in each Android device, so we don't need to
