@@ -369,6 +369,28 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
     }
 
+    public boolean isLoading() {
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition
+                    && ((DirectoryPartition) partition).isLoading()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean areAllPartitionsEmpty() {
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            if (!isPartitionEmpty(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Changes visibility parameters for the default directory partition.
      */
