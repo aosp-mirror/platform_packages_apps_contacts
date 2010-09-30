@@ -204,23 +204,31 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto de contacto"</string>
     <string name="description_minus_button" msgid="387136707700230172">"menos"</string>
     <string name="description_plus_button" msgid="515164827856229880">"más"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"Falta la tarjeta SD."</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"No se ha detectado ninguna tarjeta SD."</string>
+    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"Falta la tarjeta SD."</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Falta la tarjeta SD."</string>
+    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"No se ha detectado ninguna tarjeta SD."</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"No se ha detectado ninguna tarjeta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Buscando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar contactos desde la tarjeta SIM"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"Importar contactos desde la tarjeta SD"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"Exportar contactos a la tarjeta SD"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"Importar contactos desde la tarjeta SD"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar contactos desde la tarjeta SD"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"Exportar contactos a la tarjeta SD"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar contactos a la tarjeta SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Compartir contactos visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar un archivo de vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar varios archivos de vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos los archivos de vCard"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"Buscando datos de vCard en la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"Error al buscar en la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"Error al buscar en la tarjeta SD (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"Buscando datos de vCard en la tarjeta SD"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Buscando datos de vCard en la tarjeta SD"</string>
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"Error al buscar en la tarjeta SD"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Error al buscar en la tarjeta SD"</string>
+    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"Error al buscar en la tarjeta SD (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Error al buscar en la tarjeta SD (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error de E/S"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No se ha podido analizar el archivo de vCard debido a un error inesperado."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"No se ha podido analizar el archivo de vCard (a pesar de que su formato parece ser válido) porque no es compatible con la implementación actual."</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
+    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No ha sido posible importar uno o varios archivos (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Error desconocido"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleccionar archivo de vCard"</string>
@@ -235,7 +243,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Error al exportar los datos del contacto"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Se ha producido un error al exportar los datos del contacto."\n"Motivo del error: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"No hay contactos que exportar."</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"Hay demasiados archivos de vCard en la tarjeta SD."</string>
+    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"Hay demasiados archivos de vCard en la tarjeta SD."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Hay demasiados archivos de vCard en la tarjeta SD."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"El nombre de archivo necesario es demasiado largo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exportando datos de contacto"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exportando datos de contacto a \"<xliff:g id="FILE_NAME">%s</xliff:g>\"..."</string>
