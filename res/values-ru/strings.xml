@@ -204,23 +204,31 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"фотография контакта"</string>
     <string name="description_minus_button" msgid="387136707700230172">"минус"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"Нет SD-карты"</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"SD-карта не обнаружена"</string>
+    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"Нет SD-карты"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Нет SD-карты"</string>
+    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"SD-карта не обнаружена"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD-карта не обнаружена"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Поиск vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Импортировать с SIM-карты"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"Импортировать с SD-карты"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"Экспортировать на SD-карту"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"Импортировать с SD-карты"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Импортировать с SD-карты"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"Экспортировать на SD-карту"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Экспортировать на SD-карту"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Передать видимые контакты"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Импорт одного файла VCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Импорт нескольких файлов vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Импорт всех файлов VCard"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"Поиск данных vCard на SD-карте"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"Не удалось сканировать SD-карту."</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"Не удалось просканировать SD-карту (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"Поиск данных vCard на SD-карте"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Поиск данных vCard на SD-карте"</string>
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"Не удалось сканировать SD-карту."</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Не удалось сканировать SD-карту."</string>
+    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"Не удалось просканировать SD-карту (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Не удалось просканировать SD-карту (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Ошибка ввода-вывода"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Не удалось обработать vCard по неизвестной причине."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Не удалось обработать vCard. Файл правильного формата, но не поддерживается в текущей реализации."</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"На SD-карте не найдены файлы VCard"</string>
+    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"На SD-карте не найдены файлы VCard"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"На SD-карте не найдены файлы VCard"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Не удалось импортировать один или несколько файлов (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Неизвестная ошибка"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Выберите файл vCard"</string>
@@ -235,7 +243,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Не удалось экспортировать данные контакта."</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Не удалось экспортировать данные контакта."\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Нет контактов, которые можно экспортировать."</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"Слишком много файлов VCard на SD-карте."</string>
+    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"Слишком много файлов VCard на SD-карте."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Слишком много файлов VCard на SD-карте."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Название файла слишком длинное (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Экспорт данных контакта"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Экспорт данных контакта в \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
