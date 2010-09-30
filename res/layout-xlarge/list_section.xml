@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="37dip"
-    android:background="@drawable/section_header"
+    android:background="@drawable/section_header_holo"
     >
     <TextView
         android:id="@+id/header_text"

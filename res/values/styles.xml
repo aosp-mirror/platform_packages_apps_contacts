@@ -103,7 +103,8 @@
     <declare-styleable name="ContactListItemView">
         <!-- An attribute that specifies a custom drawable for the pressed state in the contact list-->
         <attr name="pressedBackground" format="reference"/>
-
+        <attr name="section_header_background" format="reference"/>
+        <attr name="list_item_divider" format="reference"/>
         <attr name="list_item_padding_top" format="dimension"/>
         <attr name="list_item_padding_right" format="dimension"/>
         <attr name="list_item_padding_bottom" format="dimension"/>
@@ -127,6 +128,8 @@
 
     <style name="ContactBrowserTheme" parent="@android:Theme">
         <item name="pressedBackground">@*android:drawable/list_selector_background</item>
+        <item name="section_header_background">@drawable/section_header</item>
+        <item name="list_item_divider">@drawable/list_item_divider</item>
         <item name="list_item_padding_top">4dip</item>
         <item name="list_item_padding_right">11dip</item>
         <item name="list_item_padding_bottom">4dip</item>
@@ -142,6 +145,8 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme">
+        <item name="section_header_background">@drawable/section_header</item>
+        <item name="list_item_divider">@drawable/list_item_divider</item>
         <item name="list_item_padding_top">4dip</item>
         <item name="list_item_padding_right">11dip</item>
         <item name="list_item_padding_bottom">4dip</item>
@@ -177,4 +182,8 @@
         <attr name="layout_wideLeftMargin" format="dimension"/>
         <attr name="layout_wideRightMargin" format="dimension"/>
     </declare-styleable>
+    
+    <style name="DirectoryHeader" parent="ContactBrowserTheme">
+        <item name="android:background">@drawable/directory_bg</item>
+    </style>
 </resources>

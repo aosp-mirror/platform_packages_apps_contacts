@@ -20,6 +20,8 @@
         <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
+        <item name="section_header_background">@drawable/section_header_holo</item>
+        <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
         <item name="list_item_padding_right">11dip</item>
         <item name="list_item_padding_bottom">0dip</item>
@@ -35,6 +37,8 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
+        <item name="section_header_background">@drawable/section_header_holo</item>
+        <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
         <item name="list_item_padding_right">11dip</item>
         <item name="list_item_padding_bottom">0dip</item>
@@ -65,5 +69,9 @@
 
     <style name="TransparentActionBarStyle" parent="android:Widget.Holo.Light.ActionBar">
         <item name="android:background">@null</item>
+    </style>
+
+    <style name="DirectoryHeader" parent="ContactBrowserTheme">
+        <item name="android:background">@drawable/directory_bg_holo</item>
     </style>
 </resources>

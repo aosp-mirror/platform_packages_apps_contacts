@@ -154,6 +154,10 @@ public class ContactListItemView extends ViewGroup {
         a = getContext().obtainStyledAttributes(attrs,R.styleable.ContactListItemView);
         mPressedBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_pressedBackground);
+        mHeaderBackgroundDrawable = a.getDrawable(
+                R.styleable.ContactListItemView_section_header_background);
+        mHorizontalDividerDrawable = a.getDrawable(
+                R.styleable.ContactListItemView_list_item_divider);
         mVerticalDividerMargin = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_vertical_divider_margin, 0);
         mPaddingTop = a.getDimensionPixelOffset(
@@ -180,6 +184,9 @@ public class ContactListItemView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
 
         a.recycle();
+
+        mHeaderBackgroundHeight = mHeaderBackgroundDrawable.getIntrinsicHeight();
+        mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
     }
 
     /**
@@ -254,14 +261,12 @@ public class ContactListItemView extends ViewGroup {
         height = Math.max(height, mPhotoViewHeight + mPaddingBottom + mPaddingTop);
 
         if (mHorizontalDividerVisible) {
-            ensureHorizontalDivider();
             height += mHorizontalDividerHeight;
         }
 
         height = Math.max(height, mPreferredHeight);
 
         if (mHeaderVisible) {
-            ensureHeaderBackground();
             mHeaderTextView.measure(
                     MeasureSpec.makeMeasureSpec(mHeaderTextWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
@@ -291,7 +296,6 @@ public class ContactListItemView extends ViewGroup {
         }
 
         if (mHorizontalDividerVisible) {
-            ensureHorizontalDivider();
             mHorizontalDividerDrawable.setBounds(
                     0,
                     height - mHorizontalDividerHeight,
@@ -447,28 +451,6 @@ public class ContactListItemView extends ViewGroup {
             mVerticalDividerDrawable = mContext.getResources().getDrawable(
                     R.drawable.divider_vertical_dark);
             mVerticalDividerWidth = mVerticalDividerDrawable.getIntrinsicWidth();
-        }
-    }
-
-    /**
-     * Loads the drawable for the horizontal divider if it has not yet been loaded.
-     */
-    private void ensureHorizontalDivider() {
-        if (mHorizontalDividerDrawable == null) {
-            mHorizontalDividerDrawable = mContext.getResources().getDrawable(
-                    R.drawable.list_item_divider);
-            mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
-        }
-    }
-
-    /**
-     * Loads the drawable for the header background if it has not yet been loaded.
-     */
-    private void ensureHeaderBackground() {
-        if (mHeaderBackgroundDrawable == null) {
-            mHeaderBackgroundDrawable = mContext.getResources().getDrawable(
-                    R.drawable.section_header);
-            mHeaderBackgroundHeight = mHeaderBackgroundDrawable.getIntrinsicHeight();
         }
     }
 
