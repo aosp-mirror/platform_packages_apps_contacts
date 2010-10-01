@@ -14,68 +14,76 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    android:id="@+id/contact_detail"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/panel_message">
-    <LinearLayout
-        android:id="@+id/contact_detail"
-        android:orientation="vertical"
+
+    <!-- Header View (including social status) -->
+    <com.android.contacts.widget.InterpolatingLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Header View (including social status) -->
-        <com.android.contacts.widget.InterpolatingLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.android.contacts.views.detail.ContactDetailHeaderView
-                android:id="@+id/contact_header_widget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ex:layout_wideParentWidth="800dip"
-                ex:layout_wideLeftMargin="80dip"
-                ex:layout_narrowParentWidth="500dip"
-                ex:layout_narrowLeftMargin="15dip"
-            />
-        </com.android.contacts.widget.InterpolatingLayout>
-
-        <!-- Placeholder for empty list -->
-        <com.android.contacts.widget.InterpolatingLayout
-            android:id="@android:id/empty"
+        android:layout_height="wrap_content">
+        <com.android.contacts.views.detail.ContactDetailHeaderView
+            android:id="@+id/contact_header_widget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
-            <TextView android:id="@+id/emptyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_contact_details"
-                android:textSize="20sp"
-                android:textColor="?android:attr/textColorSecondary"
-                ex:layout_wideParentWidth="800dip"
-                ex:layout_wideLeftMargin="144dip"
-                ex:layout_narrowParentWidth="500dip"
-                ex:layout_narrowLeftMargin="42dip"
-                android:paddingTop="10dip"
-                android:lineSpacingMultiplier="0.92"
-            />
-        </com.android.contacts.widget.InterpolatingLayout>
+            ex:layout_wideParentWidth="800dip"
+            ex:layout_wideLeftMargin="80dip"
+            ex:layout_narrowParentWidth="500dip"
+            ex:layout_narrowLeftMargin="15dip"
+        />
+    </com.android.contacts.widget.InterpolatingLayout>
 
-        <!-- Real list -->
-        <com.android.contacts.widget.InterpolatingLayout
+    <!-- Placeholder for empty list -->
+    <com.android.contacts.widget.InterpolatingLayout
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <TextView android:id="@+id/emptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_contact_details"
+            android:textSize="20sp"
+            android:textColor="?android:attr/textColorSecondary"
+            ex:layout_wideParentWidth="800dip"
+            ex:layout_wideLeftMargin="144dip"
+            ex:layout_narrowParentWidth="500dip"
+            ex:layout_narrowLeftMargin="42dip"
+            android:paddingTop="10dip"
+            android:lineSpacingMultiplier="0.92"
+        />
+    </com.android.contacts.widget.InterpolatingLayout>
+
+    <!-- Real list -->
+    <com.android.contacts.widget.InterpolatingLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+        <ListView android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1">
-            <ListView android:id="@android:id/list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                ex:layout_wideParentWidth="800dip"
-                ex:layout_wideLeftMargin="144dip"
-                ex:layout_narrowParentWidth="500dip"
-                ex:layout_narrowLeftMargin="42dip"
-                android:cacheColorHint="#00000000"
-            />
-        </com.android.contacts.widget.InterpolatingLayout>
-    </LinearLayout>
-</FrameLayout>
+            android:layout_height="match_parent"
+            ex:layout_wideParentWidth="800dip"
+            ex:layout_wideLeftMargin="144dip"
+            ex:layout_narrowParentWidth="500dip"
+            ex:layout_narrowLeftMargin="42dip"
+            android:cacheColorHint="#00000000"
+        />
+    </com.android.contacts.widget.InterpolatingLayout>
+    
+    <!-- "Copy to my contacts"- button -->
+    <Button
+        android:id="@+id/copyLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_copyContact"
+        android:visibility="gone"
+        android:layout_gravity="right"
+        android:layout_marginRight="40dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip" />
+</LinearLayout>

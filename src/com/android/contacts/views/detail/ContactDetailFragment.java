@@ -93,6 +93,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -118,6 +119,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
 
+    private Button mCopyGalToLocalButton;
     private boolean mAllRestricted;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
@@ -200,6 +202,14 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = view.findViewById(android.R.id.empty);
 
+        mCopyGalToLocalButton = (Button) view.findViewById(R.id.copyLocal);
+        mCopyGalToLocalButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePersonalCopy();
+            }
+        });
+
         return view;
     }
 
@@ -246,6 +256,19 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             mAdapter.notifyDataSetChanged();
         }
         mListView.setEmptyView(mEmptyView);
+
+        // Configure copy gal button
+        if (mContactData.isDirectoryEntry()) {
+            final int exportSupport = mContactData.getDirectoryExportSupport();
+            if (exportSupport == Directory.EXPORT_SUPPORT_ANY_ACCOUNT
+                    || exportSupport == Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
+                mCopyGalToLocalButton.setVisibility(View.VISIBLE);
+            } else {
+                mCopyGalToLocalButton.setVisibility(View.GONE);
+            }
+        } else {
+            mCopyGalToLocalButton.setVisibility(View.GONE);
+        }
 
         getActivity().invalidateOptionsMenu();
     }
@@ -921,15 +944,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
         final MenuItem shareMenu = menu.findItem(R.id.menu_share);
         shareMenu.setVisible(!isDirectoryEntry && !mAllRestricted);
-
-        final MenuItem copyMenu = menu.findItem(R.id.menu_copy);
-        if (isDirectoryEntry) {
-            int exportSupport = mContactData.getDirectoryExportSupport();
-            copyMenu.setVisible(exportSupport == Directory.EXPORT_SUPPORT_ANY_ACCOUNT
-                    || exportSupport == Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY);
-        } else {
-            copyMenu.setVisible(false);
-        }
     }
 
     @Override
@@ -968,10 +982,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 } catch (ActivityNotFoundException ex) {
                     Toast.makeText(mContext, R.string.share_error, Toast.LENGTH_SHORT).show();
                 }
-                return true;
-            }
-            case R.id.menu_copy: {
-                makePersonalCopy();
                 return true;
             }
         }

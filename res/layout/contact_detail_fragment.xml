@@ -50,5 +50,17 @@
             android:lineSpacingMultiplier="0.92"
         />
     </ScrollView>
+
+    <!-- "Copy to my contacts"- button -->
+    <Button
+        android:id="@+id/copyLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_copyContact"
+        android:visibility="gone"
+        android:layout_gravity="right"
+        android:layout_marginRight="40dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip" />
 </LinearLayout>
 

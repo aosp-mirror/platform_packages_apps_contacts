@@ -37,9 +37,4 @@
         android:id="@+id/menu_delete"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/menu_deleteContact" />
-
-    <item
-        android:id="@+id/menu_copy"
-        android:icon="@drawable/ic_menu_copy_contact"
-        android:title="@string/menu_copyContact" />
 </menu>
