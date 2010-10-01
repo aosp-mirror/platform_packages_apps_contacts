@@ -17,9 +17,9 @@
 <!-- Layout used for list section separators. -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="DirectoryHeader"
     android:layout_width="match_parent"
     android:layout_height="56dip"
-    android:background="@drawable/directory_bg"
     >
     <TextView
         android:id="@+id/count"
