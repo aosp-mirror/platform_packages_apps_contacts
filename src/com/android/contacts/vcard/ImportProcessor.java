@@ -64,10 +64,6 @@ public class ImportProcessor {
 
     private class CustomConnection implements ServiceConnection {
         private Messenger mMessenger;
-        public void doBindService() {
-            mContext.bindService(new Intent(mContext, VCardService.class),
-                    this, Context.BIND_AUTO_CREATE);
-        }
 
         public void sendFinisheNotification() {
             try {
@@ -143,7 +139,10 @@ public class ImportProcessor {
     public ImportProcessor(final Context context) {
         mContext = context;
 
-        mConnection.doBindService();
+        if (!mContext.bindService(new Intent(mContext, VCardService.class),
+                mConnection, Context.BIND_AUTO_CREATE)) {
+            throw new RuntimeException("Failed to bind to VCardService.");
+        }
     }
 
     /**
@@ -193,12 +192,14 @@ public class ImportProcessor {
      * processed or some error happens, assuming this method is called from a
      * {@link Thread} object.
      */
-    /* package */ void process() {
+    private void process() {
         if (!mReadyForRequest) {
+            mContext.unbindService(mConnection);
             throw new RuntimeException(
                     "process() is called before request being pushed "
                     + "or after this object's finishing its processing.");
         }
+
         try {
             while (!mCanceled) {
                 final ImportRequest parameter;
@@ -213,16 +214,15 @@ public class ImportProcessor {
                 handleOneRequest(parameter);
             }
 
-            // Currenty we don't have an appropriate way to let users see all entries
-            // imported in this procedure. Instead, we show them entries only when
-            // there's just one created uri.
+            // Currenty we don't have an appropriate way to let users see all URIs imported.
+            // Instead, we show one only when there's just one created uri.
             doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
             mConnection.sendFinisheNotification();
-            mContext.unbindService(mConnection);
         } finally {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
             mNotifier.resetTotalCount();
+            mContext.unbindService(mConnection);
         }
     }
 
