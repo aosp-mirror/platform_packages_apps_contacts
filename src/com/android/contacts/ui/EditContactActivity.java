@@ -144,6 +144,7 @@ public final class EditContactActivity extends Activity
     private static final int STATUS_SAVING = 2;
 
     private int mStatus;
+    private boolean mActivityActive;  // true after onCreate/onResume, false at onPause
 
     EntitySet mState;
 
@@ -172,6 +173,8 @@ public final class EditContactActivity extends Activity
         // Handle initial actions only when existing state missing
         final boolean hasIncomingState = icicle != null && icicle.containsKey(KEY_EDIT_STATE);
 
+        mActivityActive = true;
+
         if (Intent.ACTION_EDIT.equals(action) && !hasIncomingState) {
             setTitle(R.string.editContact_title_edit);
             mStatus = STATUS_LOADING;
@@ -189,6 +192,18 @@ public final class EditContactActivity extends Activity
             // If icicle is non-null, onRestoreInstanceState() will restore the generator.
             mViewIdGenerator = new ViewIdGenerator();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mActivityActive = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onResume();
+        mActivityActive = false;
     }
 
     private static class QueryEntitiesTask extends
@@ -1211,6 +1226,10 @@ public final class EditContactActivity extends Activity
 
         @Override
         protected void onPostExecute(final EditContactActivity target, ArrayList<Account> accounts) {
+            if (!target.mActivityActive) {
+                // A monkey or very fast user.
+                return;
+            }
             target.selectAccountAndCreateContact(accounts);
         }
     }
