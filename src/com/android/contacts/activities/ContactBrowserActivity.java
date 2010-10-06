@@ -23,6 +23,7 @@ import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
@@ -73,8 +74,6 @@ public class ContactBrowserActivity extends Activity
 
     private static final String TAG = "ContactBrowserActivity";
 
-    private static final String KEY_MODE = "mode";
-
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_SETTINGS = 3;
     private static final int SUBACTIVITY_EDIT_CONTACT = 4;
@@ -82,6 +81,8 @@ public class ContactBrowserActivity extends Activity
     private static final String KEY_DEFAULT_CONTACT_URI = "defaultSelectedContactUri";
 
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
+
+    private static final String KEY_SEARCH_MODE = "searchMode";
 
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -93,10 +94,7 @@ public class ContactBrowserActivity extends Activity
     private boolean mHasActionBar;
     private ActionBarAdapter mActionBarAdapter;
 
-    /**
-     * Contact browser mode, see {@link ContactBrowserMode}.
-     */
-    private int mMode = -1;
+    private boolean mSearchMode;
 
     private ContactBrowseListFragment mListFragment;
     private ContactNoneFragment mEmptyFragment;
@@ -115,9 +113,11 @@ public class ContactBrowserActivity extends Activity
 
     private boolean mSearchInitiated;
 
+    private ContactListFilterController mContactListFilterController;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
+        mContactListFilterController = new ContactListFilterController(this);
     }
 
     @Override
@@ -125,6 +125,10 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+            if (mListFragment instanceof DefaultContactBrowseListFragment) {
+                ((DefaultContactBrowseListFragment) mListFragment).setContactListFilterController(
+                        mContactListFilterController);
+            }
         } else if (fragment instanceof ContactNoneFragment) {
             mEmptyFragment = (ContactNoneFragment)fragment;
         } else if (fragment instanceof ContactDetailFragment) {
@@ -141,7 +145,7 @@ public class ContactBrowserActivity extends Activity
         super.onCreate(savedState);
 
         if (savedState != null) {
-            mMode = savedState.getInt(KEY_MODE);
+            mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         }
 
         // Extract relevant information from the intent
@@ -172,6 +176,8 @@ public class ContactBrowserActivity extends Activity
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
             mActionBarAdapter.setListener(this);
+            mActionBarAdapter.setContactListFilterController(mContactListFilterController);
+            // TODO: request may ask for FREQUENT - set the filter accordingly
         }
 
         configureListFragment();
@@ -191,9 +197,9 @@ public class ContactBrowserActivity extends Activity
             }
 
             if (mHasActionBar) {
-                if (mActionBarAdapter.getMode() != ContactBrowserMode.MODE_CONTACTS) {
-                    mActionBarAdapter.clearSavedState(ContactBrowserMode.MODE_CONTACTS);
-                    mActionBarAdapter.setMode(ContactBrowserMode.MODE_CONTACTS);
+                if (mActionBarAdapter.isSearchMode()) {
+                    mActionBarAdapter.setSavedStateForSearchMode(null);
+                    mActionBarAdapter.setSearchMode(false);
                 }
             }
             setSelectedContactUri(uri);
@@ -220,56 +226,47 @@ public class ContactBrowserActivity extends Activity
     }
 
     private void configureListFragment() {
-        int mode = -1;
+        boolean searchMode = mSearchMode;
         if (mHasActionBar) {
-            mode = mActionBarAdapter.getMode();
-            if (mode == ContactBrowserMode.MODE_SEARCH
-                    && TextUtils.isEmpty(mActionBarAdapter.getQueryString())) {
-                mode = mActionBarAdapter.getDefaultMode();
-            }
+            searchMode = mActionBarAdapter.isSearchMode();
         } else {
-            int actionCode = mRequest.getActionCode();
-            if (actionCode == ContactsRequest.ACTION_FREQUENT ||
-                    actionCode == ContactsRequest.ACTION_STARRED ||
-                    actionCode == ContactsRequest.ACTION_STREQUENT) {
-                mode = ContactBrowserMode.MODE_FAVORITES;
-            } else {
-                mode = ContactBrowserMode.MODE_CONTACTS;
-            }
+// TODO: reenable FREQUENT, STARRED and STREQUENT
+//            int actionCode = mRequest.getActionCode();
+//            if (actionCode == ContactsRequest.ACTION_FREQUENT ||
+//                    actionCode == ContactsRequest.ACTION_STARRED ||
+//                    actionCode == ContactsRequest.ACTION_STREQUENT) {
+//                mode = ContactBrowserMode.MODE_FAVORITES;
+//            } else {
+//                mode = ContactBrowserMode.MODE_CONTACTS;
+//            }
         }
 
-        boolean replaceList = (mode != mMode);
+        boolean replaceList = mListFragment == null || (mSearchMode != searchMode);
         if (replaceList) {
             closeListFragment();
-            mMode = mode;
-            switch (mMode) {
-                case ContactBrowserMode.MODE_CONTACTS: {
-                    mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
-                    break;
-                }
-                case ContactBrowserMode.MODE_FAVORITES: {
-                    int favoritesAction = mRequest.getActionCode();
-                    if (favoritesAction == ContactsRequest.ACTION_DEFAULT) {
-                        favoritesAction = ContactsRequest.ACTION_STREQUENT;
-                    }
-                    mListFragment = createListFragment(favoritesAction);
-                    break;
-                }
-                case ContactBrowserMode.MODE_SEARCH: {
-                    mListFragment = createContactSearchFragment();
-                    break;
-                }
+            mSearchMode = searchMode;
+            if (mSearchMode) {
+                mListFragment = createContactSearchFragment();
+            } else {
+                mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
             }
         }
 
         if (mHasActionBar) {
-            Bundle savedStateForMode = mActionBarAdapter.getSavedStateForMode(mMode);
-            if (savedStateForMode != null) {
-                mListFragment.restoreSavedState(savedStateForMode);
-                mActionBarAdapter.clearSavedState(mMode);
-            }
-            if (mMode == ContactBrowserMode.MODE_SEARCH) {
+            if (mSearchMode) {
+                Bundle savedState = mActionBarAdapter.getSavedStateForSearchMode();
+                if (savedState != null) {
+                    mListFragment.restoreSavedState(savedState);
+                    mActionBarAdapter.setSavedStateForSearchMode(null);
+                }
+
                 mListFragment.setQueryString(mActionBarAdapter.getQueryString());
+            } else {
+                Bundle savedState = mActionBarAdapter.getSavedStateForDefaultMode();
+                if (savedState != null) {
+                    mListFragment.restoreSavedState(savedState);
+                    mActionBarAdapter.setSavedStateForDefaultMode(null);
+                }
             }
         }
 
@@ -295,7 +292,11 @@ public class ContactBrowserActivity extends Activity
             if (mHasActionBar) {
                 Bundle state = new Bundle();
                 mListFragment.onSaveInstanceState(state);
-                mActionBarAdapter.saveStateForMode(mMode, state);
+                if (mSearchMode) {
+                    mActionBarAdapter.setSavedStateForSearchMode(state);
+                } else {
+                    mActionBarAdapter.setSavedStateForDefaultMode(state);
+                }
             }
 
             mListFragment = null;
@@ -830,9 +831,9 @@ public class ContactBrowserActivity extends Activity
                 if (unicodeChar != 0) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
                     if (mHasActionBar) {
-                        if (mActionBarAdapter.getMode() != ContactBrowserMode.MODE_SEARCH) {
+                        if (!mActionBarAdapter.isSearchMode()) {
                             mActionBarAdapter.setQueryString(query);
-                            mActionBarAdapter.setMode(ContactBrowserMode.MODE_SEARCH);
+                            mActionBarAdapter.setSearchMode(true);
                             return true;
                         }
                     } else if (!mRequest.isSearchMode()) {
@@ -867,7 +868,7 @@ public class ContactBrowserActivity extends Activity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(KEY_MODE, mMode);
+        outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onSaveInstanceState(outState);
         }

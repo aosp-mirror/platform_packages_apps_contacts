@@ -1330,6 +1330,9 @@
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
 
+    <!-- The label displayed in the Contacts action bar when in search mode [CHAR LIMIT=64] -->
+    <string name="search_label">Searching all contact</string>
+
     <!-- The label in section header in the contact list for a contact directory [CHAR LIMIT=128] -->
     <string name="directory_search_label">Directory</string>
 
@@ -1338,9 +1341,6 @@
 
     <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
     <string name="toast_making_personal_copy">Creating a personal copy</string>
-
-    <!-- Label for the contact filter selector. [CHAR LIMIT=32] -->
-    <string name="list_filter_label">Displaying:</string>
 
     <!-- Prompt for selection of a contact list filter [CHAR LIMIT=64] -->
     <string name="list_filter_prompt">Choose contact list</string>

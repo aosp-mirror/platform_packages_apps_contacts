@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * A loader for the data needed for the group selector.
  */
-public class ContactGroupFilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
+public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
 
     private static final class GroupQuery {
         public static final String[] COLUMNS = {
@@ -56,7 +56,7 @@ public class ContactGroupFilterLoader extends AsyncTaskLoader<List<ContactListFi
                 Groups.DELETED + "=0 AND " + Groups.FAVORITES + "=0";
     }
 
-    public ContactGroupFilterLoader(Context context) {
+    public ContactListFilterLoader(Context context) {
         super(context);
     }
 

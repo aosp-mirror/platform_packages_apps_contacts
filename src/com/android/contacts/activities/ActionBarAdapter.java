@@ -17,154 +17,101 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
+import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.widget.NotifyingSpinner;
 
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryChangeListener;
-
-import java.util.HashMap;
+import android.widget.TextView;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnCloseListener {
+public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener {
 
     public interface Listener {
         void onAction();
     }
 
-    private static final String EXTRA_KEY_DEFAULT_MODE = "navBar.defaultMode";
-    private static final String EXTRA_KEY_MODE = "navBar.mode";
+    private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
     private static final String EXTRA_KEY_QUERY = "navBar.query";
 
-    private static final String KEY_MODE_CONTACTS = "mode_contacts";
-    private static final String KEY_MODE_FAVORITES = "mode_favorites";
+    private static final String KEY_MODE_DEFAULT = "mode_default";
     private static final String KEY_MODE_SEARCH = "mode_search";
 
-    private int mMode = ContactBrowserMode.MODE_CONTACTS;
-    private int mDefaultMode = ContactBrowserMode.MODE_CONTACTS;
+    private boolean mSearchMode;
     private String mQueryString;
-    private HashMap<Integer, Bundle> mSavedStateByMode = new HashMap<Integer, Bundle>();
+    private Bundle mSavedStateForSearchMode;
+    private Bundle mSavedStateForDefaultMode;
+
+    private View mNavigationBar;
+    private TextView mSearchLabel;
+    private SearchView mSearchView;
 
     private final Context mContext;
 
     private Listener mListener;
-
-    private ActionBar mActionBar;
-    private Tab mSearchTab;
-    private Tab mContactsTab;
-    private Tab mFavoritesTab;
-    private SearchView mSearchView;
-    private boolean mActive;
-    private EditText mQueryTextView;
+    private NotifyingSpinner mFilterSpinner;
 
     public ActionBarAdapter(Context context) {
         mContext = context;
     }
 
     public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
-        mActionBar = actionBar;
-        mDefaultMode = -1;
-        mMode = -1;
         mQueryString = null;
         if (savedState != null) {
-            mDefaultMode = savedState.getInt(EXTRA_KEY_DEFAULT_MODE, -1);
-            mMode = savedState.getInt(EXTRA_KEY_MODE, -1);
+            mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-            restoreSavedState(savedState, ContactBrowserMode.MODE_CONTACTS, KEY_MODE_CONTACTS);
-            restoreSavedState(savedState, ContactBrowserMode.MODE_FAVORITES, KEY_MODE_FAVORITES);
-            restoreSavedState(savedState, ContactBrowserMode.MODE_SEARCH, KEY_MODE_SEARCH);
-        }
-
-        int actionCode = request.getActionCode();
-        if (mDefaultMode == -1) {
-            mDefaultMode = actionCode == ContactsRequest.ACTION_DEFAULT
-                    ? ContactBrowserMode.MODE_CONTACTS
-                    : ContactBrowserMode.MODE_FAVORITES;
-        }
-        if (mMode == -1) {
-            mMode = request.isSearchMode() ? ContactBrowserMode.MODE_SEARCH : mDefaultMode;
-        }
-        if (mQueryString == null) {
+            mSavedStateForDefaultMode = savedState.getParcelable(KEY_MODE_DEFAULT);
+            mSavedStateForSearchMode = savedState.getParcelable(KEY_MODE_SEARCH);
+        } else {
+            mSearchMode = request.isSearchMode();
             mQueryString = request.getQueryString();
         }
 
-        mActionBar.setTabNavigationMode();
+        mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
+        actionBar.setCustomNavigationMode(mNavigationBar);
 
-        mContactsTab = mActionBar.newTab();
-        mContactsTab.setText(mContext.getString(R.string.contactsList));
-        mContactsTab.setTabListener(this);
-        mActionBar.addTab(mContactsTab);
+        mFilterSpinner = (NotifyingSpinner) mNavigationBar.findViewById(R.id.filter_spinner);
+        mSearchLabel = (TextView) mNavigationBar.findViewById(R.id.search_label);
+        mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
+        mSearchView.setIconifiedByDefault(false);
+        mSearchView.setEnabled(false);
+        mSearchView.setOnQueryChangeListener(this);
+        mSearchView.setOnCloseListener(this);
+        mSearchView.setQuery(mQueryString, false);
 
-        mFavoritesTab = mActionBar.newTab();
-        mFavoritesTab.setTabListener(this);
-        mFavoritesTab.setText(mContext.getString(R.string.strequentList));
-        mActionBar.addTab(mFavoritesTab);
-
-        mSearchTab = mActionBar.newTab();
-        mSearchTab.setTabListener(this);
-
-        mSearchView = new SearchView(mContext);
-        setSearchSelectionListener(mSearchView);
-        mSearchView.setIconified(mMode != ContactBrowserMode.MODE_SEARCH);
-
-        mSearchTab.setCustomView(mSearchView);
-        mActionBar.addTab(mSearchTab);
-
-        mActive = true;
-
-        update();
-    }
-
-    private void setSearchSelectionListener(SearchView search) {
-        mQueryTextView = (EditText) search.findViewById(com.android.internal.R.id.search_src_text);
-        mQueryTextView.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    setMode(ContactBrowserMode.MODE_SEARCH);
-                } else {
-                    setMode(mDefaultMode);
-                }
-            }
-        });
+        updateVisibility();
     }
 
     public void setListener(Listener listener) {
         mListener = listener;
     }
 
-    public int getMode() {
-        return mMode;
+    public void setContactListFilterController(ContactListFilterController controller) {
+        controller.setFilterSpinner(mFilterSpinner);
     }
 
-    public void setMode(int mode) {
-        if (mMode != mode) {
-            mMode = mode;
-            update();
+    public boolean isSearchMode() {
+        return mSearchMode;
+    }
+
+    public void setSearchMode(boolean flag) {
+        if (mSearchMode != flag) {
+            mSearchMode = flag;
+            updateVisibility();
             if (mListener != null) {
                 mListener.onAction();
             }
         }
-    }
-
-    public int getDefaultMode() {
-        return mDefaultMode;
-    }
-
-    public void setDefaultMode(int defaultMode) {
-        mDefaultMode = defaultMode;
     }
 
     public String getQueryString() {
@@ -173,69 +120,24 @@ public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnC
 
     public void setQueryString(String query) {
         mQueryString = query;
-        setSearchViewQuery(query);
-    }
-
-    public void update() {
-        if (!mActive) {
-            return;
-        }
-
-        switch(mMode) {
-            case ContactBrowserMode.MODE_CONTACTS:
-                mActionBar.selectTab(mContactsTab);
-                mSearchView.setOnCloseListener(null);
-                mSearchView.setOnQueryChangeListener(null);
-                mSearchView.setIconified(true);
-                break;
-            case ContactBrowserMode.MODE_FAVORITES:
-                mActionBar.selectTab(mFavoritesTab);
-                mSearchView.setOnCloseListener(null);
-                mSearchView.setOnQueryChangeListener(null);
-                mSearchView.setIconified(true);
-                break;
-            case ContactBrowserMode.MODE_SEARCH:
-                setSearchViewQuery(mQueryString);
-                mSearchView.setOnCloseListener(this);
-                mSearchView.setOnQueryChangeListener(this);
-                mActionBar.selectTab(mSearchTab);
-                break;
-        }
-    }
-
-    private void setSearchViewQuery(String query) {
         mSearchView.setQuery(query, false);
-        // TODO Expose API on SearchView to do this
-        mQueryTextView.selectAll();
     }
 
-    @Override
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        if (!mActive) {
-            return;
+    public void updateVisibility() {
+        if (mSearchMode) {
+            mSearchLabel.setVisibility(View.VISIBLE);
+            mFilterSpinner.setVisibility(View.GONE);
+        } else {
+            mSearchLabel.setVisibility(View.GONE);
+            mFilterSpinner.setVisibility(View.VISIBLE);
         }
-
-        if (tab == mSearchTab) {
-            setMode(ContactBrowserMode.MODE_SEARCH);
-        } else if (tab == mContactsTab) {
-            setMode(ContactBrowserMode.MODE_CONTACTS);
-            setDefaultMode(ContactBrowserMode.MODE_CONTACTS);
-        } else if (tab == mFavoritesTab) {
-            setMode(ContactBrowserMode.MODE_FAVORITES);
-            setDefaultMode(ContactBrowserMode.MODE_FAVORITES);
-        } else {        // mCancelSearchButton
-            setMode(mDefaultMode);
-        }
-    }
-
-    @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-        // Nothing to do
     }
 
     @Override
     public boolean onQueryTextChanged(String queryString) {
         mQueryString = queryString;
+        mSearchMode = !TextUtils.isEmpty(queryString);
+        updateVisibility();
         if (mListener != null) {
             mListener.onAction();
         }
@@ -244,52 +146,39 @@ public class ActionBarAdapter implements TabListener, OnQueryChangeListener, OnC
 
     @Override
     public boolean onSubmitQuery(String query) {
-        // Ignore submit query request
         return true;
     }
 
     @Override
     public boolean onClose() {
-        mSearchView.setOnCloseListener(null);
-        mSearchView.setOnQueryChangeListener(null);
-        setMode(mDefaultMode);
-        return false;  // OK to close
+        setSearchMode(false);
+        return false;
     }
 
-    public void saveStateForMode(int mode, Bundle state) {
-        mSavedStateByMode.put(mode, state);
+    public Bundle getSavedStateForSearchMode() {
+        return mSavedStateForSearchMode;
     }
 
-    public Bundle getSavedStateForMode(int mode) {
-        return mSavedStateByMode.get(mode);
+    public void setSavedStateForSearchMode(Bundle state) {
+        mSavedStateForSearchMode = state;
     }
 
-    public void clearSavedState(int mode) {
-        mSavedStateByMode.remove(mode);
+    public Bundle getSavedStateForDefaultMode() {
+        return mSavedStateForDefaultMode;
+    }
+
+    public void setSavedStateForDefaultMode(Bundle state) {
+        mSavedStateForDefaultMode = state;
     }
 
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(EXTRA_KEY_DEFAULT_MODE, mDefaultMode);
-        outState.putInt(EXTRA_KEY_MODE, mMode);
+        outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
-        saveInstanceState(outState, ContactBrowserMode.MODE_CONTACTS, KEY_MODE_CONTACTS);
-        saveInstanceState(outState, ContactBrowserMode.MODE_FAVORITES, KEY_MODE_FAVORITES);
-        saveInstanceState(outState, ContactBrowserMode.MODE_SEARCH, KEY_MODE_SEARCH);
-    }
-
-    private void saveInstanceState(Bundle outState, int mode, String key) {
-        Bundle state = mSavedStateByMode.get(mode);
-        if (state != null) {
-            outState.putParcelable(key, state);
+        if (mSavedStateForDefaultMode != null) {
+            outState.putParcelable(KEY_MODE_DEFAULT, mSavedStateForDefaultMode);
         }
-    }
-
-    private void restoreSavedState(Bundle savedState, int mode, String key) {
-        Bundle bundle = savedState.getParcelable(key);
-        if (bundle == null) {
-            mSavedStateByMode.remove(mode);
-        } else {
-            mSavedStateByMode.put(mode, bundle);
+        if (mSavedStateForSearchMode != null) {
+            outState.putParcelable(KEY_MODE_SEARCH, mSavedStateForSearchMode);
         }
     }
 }

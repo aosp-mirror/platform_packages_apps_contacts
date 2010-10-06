@@ -18,18 +18,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.FilterSpinnerItemView"
     android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:paddingTop="12dip"
-    android:paddingBottom="12dip"
+    android:layout_width="match_parent"
     android:gravity="left">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?android:attr/textColorTertiary"
-        android:gravity="center_vertical"
-        android:text="@string/list_filter_label"/>
 
     <ImageView
         android:id="@+id/icon"
