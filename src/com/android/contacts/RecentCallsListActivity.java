@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.common.widget.GroupingListAdapter;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 
