@@ -303,7 +303,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_CUSTOMIZE_FILTER && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_CUSTOMIZE_FILTER) {
             mFilterController.selectCustomFilter();
         }
     }

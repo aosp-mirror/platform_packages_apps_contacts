@@ -18,8 +18,8 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.list.ContactListFilterView;
 import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.widget.NotifyingSpinner;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -59,7 +59,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener 
     private final Context mContext;
 
     private Listener mListener;
-    private NotifyingSpinner mFilterSpinner;
+    private ContactListFilterView mFilterView;
 
     public ActionBarAdapter(Context context) {
         mContext = context;
@@ -80,7 +80,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener 
         mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
         actionBar.setCustomNavigationMode(mNavigationBar);
 
-        mFilterSpinner = (NotifyingSpinner) mNavigationBar.findViewById(R.id.filter_spinner);
+        mFilterView = (ContactListFilterView) mNavigationBar.findViewById(R.id.filter_view);
         mSearchLabel = (TextView) mNavigationBar.findViewById(R.id.search_label);
         mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
         mSearchView.setIconifiedByDefault(false);
@@ -97,7 +97,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener 
     }
 
     public void setContactListFilterController(ContactListFilterController controller) {
-        controller.setFilterSpinner(mFilterSpinner);
+        controller.setFilterSpinner(mFilterView);
     }
 
     public boolean isSearchMode() {
@@ -126,10 +126,10 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener 
     public void updateVisibility() {
         if (mSearchMode) {
             mSearchLabel.setVisibility(View.VISIBLE);
-            mFilterSpinner.setVisibility(View.GONE);
+            mFilterView.setVisibility(View.GONE);
         } else {
             mSearchLabel.setVisibility(View.GONE);
-            mFilterSpinner.setVisibility(View.VISIBLE);
+            mFilterView.setVisibility(View.VISIBLE);
         }
     }
 

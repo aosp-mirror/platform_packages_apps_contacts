@@ -16,7 +16,6 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.widget.NotifyingSpinner;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -24,6 +23,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,10 +31,13 @@ import android.preference.PreferenceManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
+import android.widget.ListPopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +46,8 @@ import java.util.List;
  * Controls a list of {@link ContactListFilter}'s.
  */
 public class ContactListFilterController
-        implements NotifyingSpinner.SelectionListener, OnItemSelectedListener,
-        LoaderCallbacks<List<ContactListFilter>>{
+        implements
+        LoaderCallbacks<List<ContactListFilter>>, OnClickListener, OnItemClickListener {
 
     public interface ContactListFilterListener {
         void onContactListFiltersLoaded();
@@ -64,12 +67,13 @@ public class ContactListFilterController
     private Context mContext;
     private LoaderManager mLoaderManager;
     private ContactListFilterListener mListener;
-
+    private ListPopupWindow mPopup;
+    private int mPopupWidth = -1;
     private SparseArray<ContactListFilter> mFilters;
     private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
-    private NotifyingSpinner mFilterSpinner;
-    private FilterSpinnerAdapter mFilterSpinnerAdapter;
+    private ContactListFilterView mFilterView;
+    private FilterListAdapter mFilterListAdapter;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
     private final Handler mHandler = new Handler() {
@@ -91,9 +95,9 @@ public class ContactListFilterController
         mListener = listener;
     }
 
-    public void setFilterSpinner(NotifyingSpinner filterSpinner) {
-        mFilterSpinner = filterSpinner;
-        mFilterSpinner.setOnItemSelectedListener(this);
+    public void setFilterSpinner(ContactListFilterView filterSpinner) {
+        mFilterView = filterSpinner;
+        mFilterView.setOnClickListener(this);
     }
 
     public ContactListFilter getFilter() {
@@ -102,14 +106,6 @@ public class ContactListFilterController
 
     public List<ContactListFilter> getFilterList() {
         return mFilterList;
-    }
-
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        setContactListFilter((int) id);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        setContactListFilter(0);
     }
 
     public boolean isLoaded() {
@@ -193,11 +189,10 @@ public class ContactListFilterController
             mFilter = getDefaultFilter();
         }
 
-        if (mFilterSpinnerAdapter == null) {
-            mFilterSpinnerAdapter = new FilterSpinnerAdapter();
-            mFilterSpinner.setAdapter(mFilterSpinnerAdapter);
+        if (mFilterListAdapter == null) {
+            mFilterListAdapter = new FilterListAdapter();
         } else {
-            mFilterSpinnerAdapter.notifyDataSetChanged();
+            mFilterListAdapter.notifyDataSetChanged();
         }
 
         if (filterChanged) {
@@ -240,10 +235,38 @@ public class ContactListFilterController
     }
 
     @Override
-    public void onSetSelection(NotifyingSpinner spinner, int position) {
-        ContactListFilter filter = mFilters.valueAt(position);
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+    public void onClick(View v) {
+        if (!mFiltersLoaded) {
+            return;
+        }
+
+        if (mPopupWidth == -1) {
+            TypedArray a = mContext.obtainStyledAttributes(null, R.styleable.ContactBrowser);
+            mPopupWidth = a.getDimensionPixelSize(
+                    R.styleable.ContactBrowser_contact_filter_popup_width, -1);
+            a.recycle();
+
+            if (mPopupWidth == -1) {
+                mPopupWidth = mFilterView.getWidth();
+            }
+        }
+
+        mPopup = new ListPopupWindow(mContext, null);
+        mPopup.setWidth(mPopupWidth);
+        mPopup.setAdapter(mFilterListAdapter);
+        mPopup.setAnchorView(mFilterView);
+        mPopup.setOnItemClickListener(this);
+        mPopup.setModal(true);
+        mPopup.show();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mPopup.dismiss();
+        if (mFilters.get((int) id).filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
             mListener.onContactListFilterCustomizationRequest();
+        } else {
+            setContactListFilter((int) id);
         }
     }
 
@@ -259,24 +282,15 @@ public class ContactListFilterController
 
     protected void updateFilterView() {
         if (mFiltersLoaded) {
-            mFilterSpinner.setSetSelectionListener(null);
-            if (mFilter != null && mFilters != null) {
-                int size = mFilters.size();
-                for (int i = 0; i < size; i++) {
-                    if (mFilters.valueAt(i).equals(mFilter)) {
-                        mFilterSpinner.setSelection(i);
-                        break;
-                    }
-                }
-            }
-            mFilterSpinner.setSetSelectionListener(this);
+            mFilterView.setContactListFilter(mFilter);
+            mFilterView.bindView(false);
         }
     }
 
-    private class FilterSpinnerAdapter extends BaseAdapter {
+    private class FilterListAdapter extends BaseAdapter {
         private LayoutInflater mLayoutInflater;
 
-        public FilterSpinnerAdapter() {
+        public FilterListAdapter() {
             mLayoutInflater = LayoutInflater.from(mContext);
         }
 
@@ -295,31 +309,16 @@ public class ContactListFilterController
             return mFilters.valueAt(position);
         }
 
-        @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            return getView(position, convertView, parent, true);
-        }
-
-        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return getView(position, convertView, parent, false);
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent, boolean dropdown) {
-            FilterSpinnerItemView view;
-            if (dropdown) {
-                if (convertView != null) {
-                    view = (FilterSpinnerItemView) convertView;
-                } else {
-                    view = (FilterSpinnerItemView) mLayoutInflater.inflate(
-                            R.layout.filter_spinner_item, parent, false);
-                }
+            ContactListFilterView view;
+            if (convertView != null) {
+                view = (ContactListFilterView) convertView;
             } else {
-                view = (FilterSpinnerItemView) mLayoutInflater.inflate(
-                        R.layout.filter_spinner, parent, false);
+                view = (ContactListFilterView) mLayoutInflater.inflate(
+                        R.layout.filter_spinner_item, parent, false);
             }
             view.setContactListFilter(mFilters.valueAt(position));
-            view.bindView(dropdown);
+            view.bindView(true);
             return view;
         }
     }

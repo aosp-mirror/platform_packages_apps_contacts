@@ -34,6 +34,7 @@
         <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
+        <item name="contact_filter_popup_width">320dip</item>
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Dialog">

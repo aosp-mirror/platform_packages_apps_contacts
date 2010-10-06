@@ -28,18 +28,18 @@ import android.widget.TextView;
 /**
  * Contact list filter parameters.
  */
-public final class FilterSpinnerItemView extends LinearLayout {
+public class ContactListFilterView extends LinearLayout {
 
     private ImageView mIcon;
     private TextView mLabel;
     private TextView mIndentedLabel;
     private ContactListFilter mFilter;
 
-    public FilterSpinnerItemView(Context context) {
+    public ContactListFilterView(Context context) {
         super(context);
     }
 
-    public FilterSpinnerItemView(Context context, AttributeSet attrs) {
+    public ContactListFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

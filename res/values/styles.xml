@@ -100,6 +100,10 @@
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
 
+    <declare-styleable name="ContactBrowser">
+        <attr name="contact_filter_popup_width" format="dimension"/>
+    </declare-styleable>
+
     <declare-styleable name="ContactListItemView">
         <!-- An attribute that specifies a custom drawable for the pressed state in the contact list-->
         <attr name="pressedBackground" format="reference"/>
@@ -117,7 +121,6 @@
         <attr name="list_item_header_text_width" format="dimension"/>
         <attr name="list_item_photo_size" format="dimension"/>
         <attr name="list_item_prefix_highlight_color" format="color"/>
-
     </declare-styleable>
 
     <declare-styleable name="MultiplePhonePickerItemView">
@@ -142,6 +145,7 @@
         <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
+        <item name="contact_filter_popup_width">320dip</item>
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme">

@@ -25,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingRight="10dip"
-        android:minWidth="240dip">
+        android:minWidth="240dip"
+        android:background="@drawable/filter_selector_background">
         <TextView
             android:id="@+id/search_label"
             android:layout_width="wrap_content"
@@ -34,12 +35,36 @@
             android:gravity="center_vertical" />
 
         <view
-            class="com.android.contacts.widget.NotifyingSpinner"
-            android:id="@+id/filter_spinner"
-            android:layout_width="wrap_content"
+            class="com.android.contacts.list.ContactListFilterView"
+            android:id="@+id/filter_view"
             android:layout_height="match_parent"
-            android:prompt="@string/list_filter_prompt"
-            android:background="@drawable/filter_selector_background" />
+            android:layout_width="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:scaleType="fitCenter"
+                android:layout_width="24dip"
+                android:layout_height="24dip"
+                android:layout_marginLeft="8dip" />
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center_vertical"
+                android:ellipsize="end" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_gravity="bottom"
+                android:src="@drawable/filter_selector_corner" />
+        </view>
+
     </FrameLayout>
 
     <view

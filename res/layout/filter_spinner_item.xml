@@ -16,7 +16,7 @@
 
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.list.FilterSpinnerItemView"
+    class="com.android.contacts.list.ContactListFilterView"
     android:layout_height="52dip"
     android:layout_width="fill_parent"
     android:paddingLeft="7dip"
