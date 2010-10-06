@@ -86,6 +86,8 @@ public class GroupMembershipView extends LinearLayout
     private long mFavoritesGroupId;
     private ListPopupWindow mPopup;
     private DataKind mKind;
+    private boolean mDefaultGroupVisibilityKnown;
+    private boolean mDefaultGroupVisible;
 
     public GroupMembershipView(Context context) {
         super(context);
@@ -111,6 +113,7 @@ public class GroupMembershipView extends LinearLayout
         ValuesDelta values = state.getValues();
         mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        mDefaultGroupVisibilityKnown = false;
         updateView();
     }
 
@@ -162,11 +165,17 @@ public class GroupMembershipView extends LinearLayout
 
         if (mGroupList == null) {
             mGroupList = (TextView) findViewById(R.id.group_list);
-            mGroupList.setOnClickListener(this);
+            setOnClickListener(this);
         }
 
         mGroupList.setText(sb);
         setVisibility(VISIBLE);
+
+        if (!mDefaultGroupVisibilityKnown) {
+            // Only show the default group (My Contacts) if the contact is NOT in it
+            mDefaultGroupVisible = mDefaultGroupId != 0 && !hasMembership(mDefaultGroupId);
+            mDefaultGroupVisibilityKnown = true;
+        }
     }
 
     @Override
@@ -185,7 +194,8 @@ public class GroupMembershipView extends LinearLayout
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             if (accountName.equals(mAccountName) && accountType.equals(mAccountType)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
-                if (groupId != mFavoritesGroupId && groupId != mDefaultGroupId) {
+                if (groupId != mFavoritesGroupId
+                        && (groupId != mDefaultGroupId || mDefaultGroupVisible)) {
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
                     boolean checked = hasMembership(groupId);
                     mAdapter.add(new GroupSelectionItem(groupId, title, checked));
