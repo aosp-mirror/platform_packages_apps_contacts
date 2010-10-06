@@ -52,7 +52,7 @@ public class ContactListFilterView extends LinearLayout {
     }
 
     public void bindView(boolean dropdown) {
-        if (mIcon == null) {
+        if (mLabel == null) {
             mIcon = (ImageView) findViewById(R.id.icon);
             mLabel = (TextView) findViewById(R.id.label);
             mIndentedLabel = (TextView) findViewById(R.id.indented_label);
@@ -60,7 +60,10 @@ public class ContactListFilterView extends LinearLayout {
 
         switch (mFilter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
-                mIcon.setVisibility(View.GONE);
+                if (mIcon != null) {
+                    mIcon.setVisibility(View.VISIBLE);
+                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_all);
+                }
                 mLabel.setText(R.string.list_filter_all_accounts);
                 mLabel.setVisibility(View.VISIBLE);
                 if (dropdown) {
@@ -68,8 +71,23 @@ public class ContactListFilterView extends LinearLayout {
                 }
                 break;
             }
+            case ContactListFilter.FILTER_TYPE_STARRED: {
+                if (mIcon != null) {
+                    mIcon.setVisibility(View.VISIBLE);
+                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_starred);
+                }
+                mLabel.setText(R.string.list_filter_all_starred);
+                mLabel.setVisibility(View.VISIBLE);
+                if (dropdown) {
+                    mIndentedLabel.setVisibility(View.GONE);
+                }
+                break;
+            }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
-                mIcon.setVisibility(View.GONE);
+                if (mIcon != null) {
+                    mIcon.setVisibility(View.VISIBLE);
+                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_custom);
+                }
                 mLabel.setText(dropdown
                         ? R.string.list_filter_customize
                         : R.string.list_filter_custom);
@@ -80,11 +98,13 @@ public class ContactListFilterView extends LinearLayout {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                mIcon.setVisibility(View.VISIBLE);
-                if (mFilter.icon != null) {
-                    mIcon.setImageDrawable(mFilter.icon);
-                } else {
-                    mIcon.setImageResource(R.drawable.unknown_source);
+                if (mIcon != null) {
+                    mIcon.setVisibility(View.VISIBLE);
+                    if (mFilter.icon != null) {
+                        mIcon.setImageDrawable(mFilter.icon);
+                    } else {
+                        mIcon.setImageResource(R.drawable.unknown_source);
+                    }
                 }
                 mLabel.setText(mFilter.accountName);
                 mLabel.setVisibility(View.VISIBLE);
@@ -94,7 +114,9 @@ public class ContactListFilterView extends LinearLayout {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
-                mIcon.setVisibility(View.GONE);
+                if (mIcon != null) {
+                    mIcon.setVisibility(View.GONE);
+                }
                 if (dropdown) {
                     mLabel.setVisibility(View.GONE);
                     mIndentedLabel.setText(mFilter.title);

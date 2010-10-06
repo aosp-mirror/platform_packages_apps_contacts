@@ -137,6 +137,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 // filter
                 break;
             }
+            case ContactListFilter.FILTER_TYPE_STARRED: {
+                selection.append(Contacts.STARRED + "!=0");
+                break;
+            }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
                 if (mVisibleContactsOnly && mContactsWithPhoneNumbersOnly) {
                     selection.append(Contacts.IN_VISIBLE_GROUP + "=1"

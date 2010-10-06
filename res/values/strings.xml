@@ -1348,8 +1348,14 @@
     <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
     <string name="list_filter_all_accounts">All contacts</string>
 
+    <!-- Contact list filter label indicating that the list is showing all starred contacts [CHAR LIMIT=64] -->
+    <string name="list_filter_all_starred">Starred</string>
+
+    <!-- Contact list filter label indicating that the list is showing starred contacts for the account [CHAR LIMIT=64] -->
+    <string name="list_filter_starred">Starred</string>
+
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
-    <string name="list_filter_custom">Custom list</string>
+    <string name="list_filter_custom">Custom</string>
 
     <!-- Contact list filter selection indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_customize">Customize...</string>

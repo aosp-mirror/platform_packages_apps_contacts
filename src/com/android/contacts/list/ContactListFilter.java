@@ -27,8 +27,10 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
 
     public static final int FILTER_TYPE_ALL_ACCOUNTS = -1;
     public static final int FILTER_TYPE_CUSTOM = -2;
-    public static final int FILTER_TYPE_DEFAULT = -3;
+    public static final int FILTER_TYPE_STARRED = -3;
+    public static final int FILTER_TYPE_DEFAULT = -4;
     public static final int FILTER_TYPE_ACCOUNT = 0;
+    public static final int FILTER_TYPE_ = 0;
     public static final int FILTER_TYPE_GROUP = 1;
 
     private static final String KEY_FILTER_TYPE = "filter.type";

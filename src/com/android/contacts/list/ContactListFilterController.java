@@ -35,7 +35,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.ListPopupWindow;
 
@@ -46,8 +45,7 @@ import java.util.List;
  * Controls a list of {@link ContactListFilter}'s.
  */
 public class ContactListFilterController
-        implements
-        LoaderCallbacks<List<ContactListFilter>>, OnClickListener, OnItemClickListener {
+        implements LoaderCallbacks<List<ContactListFilter>>, OnClickListener, OnItemClickListener {
 
     public interface ContactListFilterListener {
         void onContactListFiltersLoaded();
@@ -145,7 +143,8 @@ public class ContactListFilterController
 
         boolean filterValid = mFilter != null
                 && (mFilter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM);
+                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM
+                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_STARRED);
 
         int accountCount = 0;
         int count = filters.size();
@@ -158,6 +157,8 @@ public class ContactListFilterController
         if (accountCount > 1) {
             mFilters.append(mNextFilterId++,
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
+            mFilters.append(mNextFilterId++,
+                    new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
             mFilters.append(mNextFilterId++,
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
         }
@@ -178,6 +179,8 @@ public class ContactListFilterController
             filterValid |= filter.equals(mFilter);
 
             if (firstAndOnly) {
+                mFilters.append(mNextFilterId++,
+                        new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
                 mFilters.append(mNextFilterId++,
                         new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
             }
@@ -219,6 +222,8 @@ public class ContactListFilterController
             filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         } else if (filterId == ContactListFilter.FILTER_TYPE_CUSTOM) {
             filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM);
+        } else if (filterId == ContactListFilter.FILTER_TYPE_STARRED) {
+            filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED);
         } else {
             filter = mFilters.get(filterId);
             if (filter == null) {
