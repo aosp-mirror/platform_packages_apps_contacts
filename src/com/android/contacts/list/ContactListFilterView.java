@@ -58,6 +58,12 @@ public class ContactListFilterView extends LinearLayout {
             mIndentedLabel = (TextView) findViewById(R.id.indented_label);
         }
 
+        if (mFilter == null) {
+            mLabel.setText(R.string.contactsList);
+            mLabel.setVisibility(View.VISIBLE);
+            return;
+        }
+
         switch (mFilter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
                 if (mIcon != null) {

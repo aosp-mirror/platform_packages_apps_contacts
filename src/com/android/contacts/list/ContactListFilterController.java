@@ -282,7 +282,7 @@ public class ContactListFilterController
     }
 
     private ContactListFilter getDefaultFilter() {
-        return mFilters.valueAt(0);
+        return mFilters.size() > 0 ? mFilters.valueAt(0) : null;
     }
 
     protected void updateFilterView() {
