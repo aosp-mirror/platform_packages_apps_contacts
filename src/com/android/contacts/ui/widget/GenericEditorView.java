@@ -45,6 +45,8 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -54,6 +56,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,11 +67,8 @@ import java.util.List;
  * {@link Entity} values, and to correctly write any changes values.
  */
 public class GenericEditorView extends ViewGroup implements Editor, DialogShowingView {
-    private static final int RES_LABEL_ITEM = android.R.layout.select_dialog_item;
-
     private static final String DIALOG_ID_KEY = "dialog_id";
-    private static final int DIALOG_ID_LABEL = 1;
-    private static final int DIALOG_ID_CUSTOM = 2;
+    private static final int DIALOG_ID_CUSTOM = 1;
 
     private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
@@ -202,14 +202,16 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
     private void setupLabelButton(boolean shouldExist) {
-        // TODO: Unhardcode the constant 100
         if (shouldExist && mLabel == null) {
             mLabel = new Button(mContext);
-            mLabel.setLayoutParams(new LayoutParams(100, LayoutParams.WRAP_CONTENT));
+            mLabel.setBackgroundResource(R.drawable.temp_type_selector_background);
+            final int width =
+                    mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
+            mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
             mLabel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showDialog(DIALOG_ID_LABEL);
+                    showLabelPopupMenu();
                 }
             });
             addView(mLabel);
@@ -527,39 +529,26 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
     }
 
     /**
-     * Prepare dialog for picking a new {@link EditType} or entering a
+     * Show PopupMenu for picking a new {@link EditType} or entering a
      * custom label. This dialog is limited to the valid types as determined
      * by {@link EntityModifier}.
      */
-    public Dialog createLabelDialog() {
+    public void showLabelPopupMenu() {
         // Build list of valid types, including the current value
         final List<EditType> validTypes = EntityModifier.getValidTypes(mState, mKind, mType);
 
-        // Wrap our context to inflate list items using correct theme
-        final LayoutInflater dialogInflater = (LayoutInflater) mContext.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        final PopupMenu popupMenu = new PopupMenu(getContext(), mLabel);
+        final Menu menu = popupMenu.getMenu();
 
-        final ListAdapter typeAdapter = new ArrayAdapter<EditType>(mContext, RES_LABEL_ITEM,
-                validTypes) {
+        for (int i = 0; i < validTypes.size(); i++) {
+            final EditType type = validTypes.get(i);
+            menu.add(Menu.NONE, i, Menu.NONE, type.labelRes);
+        }
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = dialogInflater.inflate(RES_LABEL_ITEM, parent, false);
-                }
-
-                final EditType type = this.getItem(position);
-                final TextView textView = (TextView)convertView;
-                textView.setText(type.labelRes);
-                return textView;
-            }
-        };
-
-        final DialogInterface.OnClickListener clickListener =
-                new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-                final EditType selected = validTypes.get(which);
+            public boolean onMenuItemClick(MenuItem item) {
+                final EditType selected = validTypes.get(item.getItemId());
                 if (selected.customColumn != null) {
                     // Show custom label dialog if requested by type.
                     //
@@ -574,13 +563,11 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                     rebuildLabel();
                     requestFocusForFirstEditField();
                 }
+                return true;
             }
-        };
+        });
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(R.string.selectLabel);
-        builder.setSingleChoiceItems(typeAdapter, 0, clickListener);
-        return builder.create();
+        popupMenu.show();
     }
 
     /* package */
@@ -677,8 +664,6 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
         switch (dialogId) {
             case DIALOG_ID_CUSTOM:
                 return createCustomDialog();
-            case DIALOG_ID_LABEL:
-                return createLabelDialog();
             default:
                 throw new IllegalArgumentException("Invalid dialogId: " + dialogId);
         }
