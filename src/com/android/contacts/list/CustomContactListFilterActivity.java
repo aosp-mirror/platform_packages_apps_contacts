@@ -117,26 +117,22 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
     private void createWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
         // Add the "Only contacts with phones" header modifier.
-        mHeaderPhones = inflater.inflate(R.layout.display_options_phones_only, mList, false);
+        mHeaderPhones = inflater.inflate(R.layout.contact_list_filter_phones_only, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
         mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
         mDisplayPhones.setChecked(mPrefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
                 ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT));
-        {
-            final TextView text1 = (TextView)mHeaderPhones.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)mHeaderPhones.findViewById(android.R.id.text2);
-            text1.setText(R.string.showFilterPhones);
-            text2.setText(R.string.showFilterPhonesDescrip);
-        }
+        final TextView text1 = (TextView) mHeaderPhones.findViewById(android.R.id.text1);
+        text1.setText(R.string.showFilterPhones);
+        final TextView text2 = (TextView) mHeaderPhones.findViewById(android.R.id.text2);
+        text2.setText(R.string.showFilterPhonesDescrip);
     }
 
     private void createDisplayGroupHeader(LayoutInflater inflater) {
         // Add the separator before showing the detailed group list.
         mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
-        {
-            final TextView text1 = (TextView)mHeaderSeparator;
-            text1.setText(R.string.headerContactGroups);
-        }
+        final TextView text1 = (TextView) mHeaderSeparator;
+        text1.setText(R.string.headerContactGroups);
     }
 
     @Override
@@ -550,15 +546,6 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
                 final CharSequence groupTitle = child.getTitle(mContext);
                 text1.setText(groupTitle);
-
-//              final int count = cursor.getInt(GroupsQuery.SUMMARY_COUNT);
-//              final int withPhones = cursor.getInt(GroupsQuery.SUMMARY_WITH_PHONES);
-
-//              final CharSequence descrip = mContext.getResources().getQuantityString(
-//                      mChildWithPhones ? R.plurals.groupDescripPhones : R.plurals.groupDescrip,
-//                      count, count, withPhones);
-
-//              text2.setText(descrip);
                 text2.setVisibility(View.GONE);
             } else {
                 // When unknown child, this is "more" footer view
@@ -829,13 +816,23 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         doSaveAction();
     }
 
+    @SuppressWarnings("unchecked")
     private void doSaveAction() {
         if (mAdapter == null || mAdapter.mAccounts == null) {
+            finish();
             return;
         }
+
         setDisplayOnlyPhones(mDisplayPhones.isChecked());
         setResult(RESULT_OK);
-        new UpdateTask(this).execute(mAdapter.mAccounts);
+
+        final ArrayList<ContentProviderOperation> diff = mAdapter.mAccounts.buildDiff();
+        if (diff.isEmpty()) {
+            finish();
+            return;
+        }
+
+        new UpdateTask(this).execute(diff);
     }
 
     /**
@@ -843,8 +840,8 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
      * showing spinner dialog to user while updating.
      */
     public static class UpdateTask extends
-            WeakAsyncTask<AccountSet, Void, Void, Activity> {
-        private WeakReference<ProgressDialog> mProgress;
+            WeakAsyncTask<ArrayList<ContentProviderOperation>, Void, Void, Activity> {
+        private ProgressDialog mProgress;
 
         public UpdateTask(Activity target) {
             super(target);
@@ -855,8 +852,8 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         protected void onPreExecute(Activity target) {
             final Context context = target;
 
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, null,
-                    context.getText(R.string.savingDisplayGroups)));
+            mProgress = ProgressDialog.show(
+                    context, null, context.getText(R.string.savingDisplayGroups));
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -865,15 +862,14 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
         /** {@inheritDoc} */
         @Override
-        protected Void doInBackground(Activity target, AccountSet... params) {
+        protected Void doInBackground(
+                Activity target, ArrayList<ContentProviderOperation>... params) {
             final Context context = target;
             final ContentValues values = new ContentValues();
             final ContentResolver resolver = context.getContentResolver();
 
             try {
-                // Build changes and persist in transaction
-                final AccountSet set = params[0];
-                final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+                final ArrayList<ContentProviderOperation> diff = params[0];
                 resolver.applyBatch(ContactsContract.AUTHORITY, diff);
             } catch (RemoteException e) {
                 Log.e(TAG, "Problem saving display groups", e);
@@ -889,13 +885,10 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         protected void onPostExecute(Activity target, Void result) {
             final Context context = target;
 
-            final ProgressDialog dialog = mProgress.get();
-            if (dialog != null) {
-                try {
-                    dialog.dismiss();
-                } catch (Exception e) {
-                    Log.e(TAG, "Error dismissing progress dialog", e);
-                }
+            try {
+                mProgress.dismiss();
+            } catch (Exception e) {
+                Log.e(TAG, "Error dismissing progress dialog", e);
             }
 
             target.finish();
