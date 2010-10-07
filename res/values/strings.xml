@@ -1361,7 +1361,7 @@
     <string name="list_filter_customize">Customize...</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
-    <string name="custom_list_filter">Custom contact list</string>
+    <string name="custom_list_filter">Define custom view</string>
 
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>

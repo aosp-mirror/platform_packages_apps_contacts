@@ -16,8 +16,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/CustomContactListFilterView"
     android:orientation="vertical"
     android:fillViewport="true">
 
@@ -38,14 +37,14 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/menu_done" />
+            android:text="@android:string/ok" />
 
         <Button
             android:id="@+id/btn_discard"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/menu_doNotSave" />
+            android:text="@android:string/cancel" />
 
     </LinearLayout>
 

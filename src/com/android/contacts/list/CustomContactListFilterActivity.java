@@ -95,7 +95,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.contacts_preferences);
+        setContentView(R.layout.contact_list_filter_custom);
 
         mList = getExpandableListView();
         mList.setHeaderDividersEnabled(true);
