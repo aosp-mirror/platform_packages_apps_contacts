@@ -932,7 +932,7 @@
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
-    <string name="account_phone">Phone-only (unsynced)</string>
+    <string name="account_phone">Phone-only, unsynced</string>
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
