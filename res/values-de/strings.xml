@@ -141,7 +141,7 @@
     <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakte mit Telefonnummern"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Textnachricht senden"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Nummer vor Anruf bearbeiten"</string>
+    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Nr. vor Anruf bearbeiten"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Zu Kontakten hinzufügen"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Aus Anrufliste entfernen"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Anrufliste löschen"</string>
