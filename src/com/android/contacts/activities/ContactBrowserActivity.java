@@ -442,7 +442,10 @@ public class ContactBrowserActivity extends Activity
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
                 fragment.setContactsRequest(mRequest);
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
+                if (!mHasActionBar) {
+                    fragment.setContextMenuAdapter(
+                            new ContactBrowseListContextMenuAdapter(fragment));
+                }
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(
@@ -496,7 +499,9 @@ public class ContactBrowserActivity extends Activity
     private ContactBrowseListFragment createContactSearchFragment() {
         DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
         fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-        fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
+        if (!mHasActionBar) {
+            fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
+        }
         fragment.setSearchMode(true);
         fragment.setDirectorySearchEnabled(true);
         fragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
