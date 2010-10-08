@@ -47,7 +47,7 @@ public final class ListViewUtils {
 
             @Override
             public void run() {
-                int firstPosition = listView.getFirstVisiblePosition();
+                int firstPosition = listView.getFirstVisiblePosition() + 1;
                 int lastPosition = listView.getLastVisiblePosition();
                 if (position >= firstPosition && position <= lastPosition) {
                     return; // Already on screen
@@ -62,13 +62,19 @@ public final class ListViewUtils {
                     if (preliminaryPosition >= listView.getCount()) {
                         preliminaryPosition = listView.getCount() - 1;
                     }
+                    if (preliminaryPosition < firstPosition) {
+                        listView.setSelection(preliminaryPosition);
+                    }
                 } else {
                     preliminaryPosition = position - twoScreens;
                     if (preliminaryPosition < 0) {
                         preliminaryPosition = 0;
                     }
+                    if (preliminaryPosition > lastPosition) {
+                        listView.setSelection(preliminaryPosition);
+                    }
                 }
-                listView.setSelection(preliminaryPosition);
+
                 scrollToFinalPosition(listView, position);
             }
         });
