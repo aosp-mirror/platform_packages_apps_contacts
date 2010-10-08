@@ -183,7 +183,8 @@ public class ContactsIntentResolver {
                 newIntent.setData(data);
                 request.setRedirectIntent(newIntent);
             } else {
-                request.setRedirectIntent(new Intent(Intent.ACTION_VIEW, data));
+                request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+                request.setContactUri(data);
             }
         } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
             request.setRedirectIntent(new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData()));

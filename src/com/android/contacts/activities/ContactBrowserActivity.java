@@ -172,6 +172,16 @@ public class ContactBrowserActivity extends Activity
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         mContactContentDisplayed = findViewById(R.id.detail_container) != null;
 
+        Uri contactUri = null;
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
+            contactUri = mRequest.getContactUri();
+            if (!mContactContentDisplayed) {
+                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+                finish();
+                return;
+            }
+        }
+
         if (mHasActionBar) {
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
@@ -180,7 +190,10 @@ public class ContactBrowserActivity extends Activity
             // TODO: request may ask for FREQUENT - set the filter accordingly
         }
 
-        configureListFragment();
+        configureListFragment(contactUri);
+        if (contactUri != null) {
+            setSelectedContactUri(contactUri);
+        }
 
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
@@ -225,7 +238,7 @@ public class ContactBrowserActivity extends Activity
         return TextUtils.isEmpty(uriString) ? null : Uri.parse(uriString);
     }
 
-    private void configureListFragment() {
+    private void configureListFragment(Uri selectedContactUri) {
         boolean searchMode = mSearchMode;
         if (mHasActionBar) {
             searchMode = mActionBarAdapter.isSearchMode();
@@ -270,12 +283,18 @@ public class ContactBrowserActivity extends Activity
             }
         }
 
-        if (mListFragment.getSelectedContactUri() == null) {
-            Uri defaultUri = getDefaultSelectedContactUri();
-            if (defaultUri != null) {
-                mListFragment.setSelectedContactUri(defaultUri);
-                mListFragment.requestSelectionOnScreen(false);
-            }
+        Uri selectUri;
+        if (selectedContactUri != null) {
+            selectUri = selectedContactUri;
+        } else if (mListFragment.getSelectedContactUri() == null) {
+            selectUri = getDefaultSelectedContactUri();
+        } else {
+            selectUri = null;
+        }
+
+        if (selectUri != null) {
+            mListFragment.setSelectedContactUri(selectUri);
+            mListFragment.requestSelectionOnScreen(false);
         }
 
         if (replaceList) {
@@ -403,7 +422,7 @@ public class ContactBrowserActivity extends Activity
      */
     @Override
     public void onAction() {
-        configureListFragment();
+        configureListFragment(null);
         setupContactDetailFragment(mListFragment.getSelectedContactUri());
     }
 
