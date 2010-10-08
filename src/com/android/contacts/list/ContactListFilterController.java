@@ -176,7 +176,12 @@ public class ContactListFilterController
 
             mFilters.append(mNextFilterId++, filter);
             mFilterList.add(filter);
-            filterValid |= filter.equals(mFilter);
+
+            if (filter.equals(mFilter)) {
+                // Refresh the filter in case the title got changed
+                mFilter = filter;
+                filterValid = true;
+            }
 
             if (firstAndOnly) {
                 mFilters.append(mNextFilterId++,

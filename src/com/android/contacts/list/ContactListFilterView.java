@@ -66,41 +66,18 @@ public class ContactListFilterView extends LinearLayout {
 
         switch (mFilter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
-                if (mIcon != null) {
-                    mIcon.setVisibility(View.VISIBLE);
-                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_all);
-                }
-                mLabel.setText(R.string.list_filter_all_accounts);
-                mLabel.setVisibility(View.VISIBLE);
-                if (dropdown) {
-                    mIndentedLabel.setVisibility(View.GONE);
-                }
+                bindView(R.drawable.ic_contact_list_filter_all,
+                        R.string.list_filter_all_accounts);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_STARRED: {
-                if (mIcon != null) {
-                    mIcon.setVisibility(View.VISIBLE);
-                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_starred);
-                }
-                mLabel.setText(R.string.list_filter_all_starred);
-                mLabel.setVisibility(View.VISIBLE);
-                if (dropdown) {
-                    mIndentedLabel.setVisibility(View.GONE);
-                }
+                bindView(R.drawable.ic_contact_list_filter_starred,
+                        R.string.list_filter_all_starred);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
-                if (mIcon != null) {
-                    mIcon.setVisibility(View.VISIBLE);
-                    mIcon.setImageResource(R.drawable.ic_contact_list_filter_custom);
-                }
-                mLabel.setText(dropdown
-                        ? R.string.list_filter_customize
-                        : R.string.list_filter_custom);
-                mLabel.setVisibility(View.VISIBLE);
-                if (dropdown) {
-                    mIndentedLabel.setVisibility(View.GONE);
-                }
+                bindView(R.drawable.ic_contact_list_filter_custom,
+                        dropdown ? R.string.list_filter_customize : R.string.list_filter_custom);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
@@ -133,6 +110,24 @@ public class ContactListFilterView extends LinearLayout {
                 }
                 break;
             }
+        }
+    }
+
+    private void bindView(int iconResource, int textResource) {
+        if (mIcon != null) {
+            if (iconResource != 0) {
+                mIcon.setVisibility(View.VISIBLE);
+                mIcon.setImageResource(iconResource);
+            } else {
+                mIcon.setVisibility(View.GONE);
+            }
+        }
+
+        mLabel.setText(textResource);
+        mLabel.setVisibility(View.VISIBLE);
+
+        if (mIndentedLabel != null) {
+            mIndentedLabel.setVisibility(View.GONE);
         }
     }
 }
