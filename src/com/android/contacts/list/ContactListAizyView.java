@@ -17,16 +17,12 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.util.PhonebookCollatorFactory;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
-import android.graphics.Paint.FontMetrics;
-import android.graphics.Rect;
-import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,9 +31,6 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
-import java.text.Collator;
-import java.util.ArrayList;
 
 /**
  * A View that displays the sections given by an Indexer and their relative sizes. For
@@ -48,50 +41,18 @@ import java.util.ArrayList;
 public class ContactListAizyView extends View {
     private static final String TAG = "ContactListAizyView";
 
-    private static final int PREVIEW_TIME_DELAY_MS = 400;
+    private SectionIndexer mIndexer;
+    private int mItemCount;
+    private int[] mSectionPositions;
 
     private Listener mListener;
+    private float mPosition;
     private PopupWindow mPreviewPopupWindow;
     private TextView mPreviewPopupTextView;
+    private boolean mPreviewPopupVisible;
+    private final int[] mWindowOffset = new int[2];
 
     private ResourceValues mResourceValues;
-
-    /**
-     * True if the popup window is currently visible.
-     */
-    private boolean mPreviewPopupVisible;
-
-    /**
-     * Time when the user started tapping. This is used to calculate the time delay before fading
-     * in the PopupWindow
-     */
-    private long mPreviewPopupStartTime;
-
-    /**
-     * Needed only inside {@link #onTouchEvent(MotionEvent)} to get the location of touch events.
-     */
-    private int[] mWindowOffset;
-
-    /**
-     * Needed to measure text. Used inside {@link #onDraw(Canvas)}
-     */
-    private final Rect bounds = new Rect();
-
-    /**
-     * Used and cached inside {@link #onDraw(Canvas)}
-     */
-    private FontMetrics mFontMetrics;
-
-    /**
-     * Used and cached inside {@link #onDraw(Canvas)}
-     */
-    private Paint mPaint;
-
-    /**
-     * The list of displayed sections. "Virtual" sections can be empty and therefore don't show
-     * up as regular sections
-     */
-    private final ArrayList<VirtualSection> mVirtualSections = new ArrayList<VirtualSection>();
 
     public ContactListAizyView(Context context) {
         super(context);
@@ -109,78 +70,37 @@ public class ContactListAizyView extends View {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        mResourceValues = new ResourceValues(getResources());
+        mResourceValues = new ResourceValues(getContext().getResources());
 
         final LayoutInflater inflater =
                 (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mPreviewPopupWindow = new PopupWindow(
                 inflater.inflate(R.layout.aizy_popup_window, null, false),
-                (int) mResourceValues.previewWidth, (int) mResourceValues.previewHeight);
-        mPreviewPopupWindow.setAnimationStyle(android.R.style.Animation_Toast);
+                mResourceValues.getPreviewWidth(), mResourceValues.getPreviewHeight());
         mPreviewPopupTextView =
                 (TextView) mPreviewPopupWindow.getContentView().findViewById(R.id.caption);
     }
 
-    /**
-     * Sets up the Aizy based on the indexer and completely reads its contents.
-     * This function has to be called everytime the data is changed.
-     */
-    public void readFromIndexer(SectionIndexer indexer) {
-        mVirtualSections.clear();
-        final String alphabetString = getResources().getString(R.string.visualScrollerAlphabet);
-        final String[] alphabet = alphabetString.split(";");
-
-        // We expect to get 10 additional items that the base alphabet
-        mVirtualSections.ensureCapacity(alphabet.length + 10);
-
-        if (indexer != null) {
-            // Add the real sections
-            final Object[] sections = indexer.getSections();
-            for (int sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
-                final Object section = sections[sectionIndex];
-                final String caption = section == null ? "" : section.toString();
-                final int position = indexer.getPositionForSection(sectionIndex);
-                mVirtualSections.add(new VirtualSection(caption, sectionIndex, position));
-            }
+    public void setIndexer(SectionIndexer indexer, int itemCount) {
+        mIndexer = indexer;
+        mItemCount = itemCount;
+        if (mIndexer == null) {
+            mSectionPositions = null;
+            return;
         }
 
-        final Collator collator = PhonebookCollatorFactory.getCollator();
-
-        // Add the base alphabet if missing
-        for (String caption : alphabet) {
-            boolean insertAtEnd = true;
-            VirtualSection previousVirtualSection = null;
-            for (int i = 0; i < mVirtualSections.size(); i++) {
-                final VirtualSection virtualSection = mVirtualSections.get(i);
-                final String virtualSectionCaption = virtualSection.getCaption();
-                final int comparison = collator.compare(virtualSectionCaption, caption);
-                if (comparison == 0) {
-                    // element is already in the list.
-                    insertAtEnd = false;
-                    break;
-                }
-                if (comparison > 0) {
-                    // we stepped too far. the element belongs before the element at i
-                    insertAtEnd = false;
-                    final int realSectionPosition = previousVirtualSection == null ? 0
-                            : previousVirtualSection.getRealSectionPosition();
-                    mVirtualSections.add(i, new VirtualSection(caption, -1, realSectionPosition));
-                    break;
-                }
-                previousVirtualSection = virtualSection;
-            }
-            if (insertAtEnd) {
-                final int realSectionPosition = previousVirtualSection == null ? 0
-                        : previousVirtualSection.getRealSectionPosition();
-                mVirtualSections.add(new VirtualSection(caption, -1, realSectionPosition));
-            }
+        // Read the section positions
+        final Object[] sections = mIndexer.getSections();
+        final int sectionCount = sections.length;
+        if (mSectionPositions == null || mSectionPositions.length != sectionCount) {
+            mSectionPositions = new int[sectionCount];
         }
-        invalidate();
+        for (int i = 0; i < sectionCount; i++) {
+            mSectionPositions[i] = mIndexer.getPositionForSection(i);
+        }
+
     }
 
-    /**
-     * Sets the Listener that is called everytime the user taps on this control.
-     */
     public void setListener(Listener listener) {
         mListener = listener;
     }
@@ -192,75 +112,19 @@ public class ContactListAizyView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (mPaint == null) {
-            mPaint = new Paint();
-            mPaint.setTextSize(mResourceValues.textSize);
-            mPaint.setAntiAlias(true);
-            mPaint.setTextAlign(Align.CENTER);
-            mPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        }
-        if (mFontMetrics == null) {
-            mFontMetrics = mPaint.getFontMetrics();
-        }
-        final float fontHeight = mFontMetrics.descent - mFontMetrics.ascent;
-        final int halfWidth = getWidth() / 2;
-        // Draw
-        float lastVisibleY = Float.NEGATIVE_INFINITY;
-        final float sectionHeight = (float) getHeight() / mVirtualSections.size();
-        for (int i = 0; i < mVirtualSections.size(); i++) {
-            final VirtualSection virtualSection = mVirtualSections.get(i);
-            final String caption = virtualSection.getCaption();
-            if (!virtualSection.isMeasured()) {
-                mPaint.getTextBounds(caption, 0, caption.length(), bounds);
-                virtualSection.setMeasuredSize(-bounds.top);
-            }
-            final float y = i * sectionHeight;
-            if (lastVisibleY + fontHeight < y) {
-                mPaint.setColor(virtualSection.getRealSectionIndex() != -1
-                        ? mResourceValues.nonEmptySectionColor : mResourceValues.emptySectionColor);
+        if (mIndexer == null) return;
 
-                canvas.drawText(caption, halfWidth,
-                        y + sectionHeight / 2 + virtualSection.getMeasuredSize() / 2, mPaint);
-                lastVisibleY = y;
-            }
-        }
+        drawLineAndText(canvas);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mWindowOffset == null) {
-            mWindowOffset = new int[2];
-            getLocationInWindow(mWindowOffset);
-        }
+        getLocationInWindow(mWindowOffset);
 
-        // Not initialized? Ignore
-        if (mVirtualSections.size() == 0) return true;
-
-        // Scroll the list itself
-        final int boundedY = Math.min(Math.max(0, (int) (event.getY())), getHeight() - 1);
-        final int index = boundedY * mVirtualSections.size() / getHeight();
-        final VirtualSection virtualSection = mVirtualSections.get(index);
-        final int sectionY = index * getHeight() / mVirtualSections.size();
-        mPreviewPopupTextView.setText(virtualSection.getCaption());
-        mPreviewPopupTextView.setTextColor(virtualSection.getRealSectionIndex() != -1
-                ? mResourceValues.nonEmptySectionColor : mResourceValues.emptySectionColor);
-
-        // Draw popup window
         final int previewX = mWindowOffset[0] + getWidth();
-        final float sectionHeight = (float) getHeight() / mVirtualSections.size();
-        final int previewY = (int) (sectionY + mWindowOffset[1] + (sectionHeight -
-                mPreviewPopupWindow.getHeight()) / 2);
-        final int actionMasked = event.getActionMasked();
-        final boolean fingerIsDown = actionMasked == MotionEvent.ACTION_DOWN;
-        if (fingerIsDown) {
-            mPreviewPopupStartTime = System.currentTimeMillis();
-        }
-        final boolean fingerIsDownOrScrubbing =
-            actionMasked == MotionEvent.ACTION_MOVE || actionMasked == MotionEvent.ACTION_DOWN;
-
-        final boolean previewPopupVisible = fingerIsDownOrScrubbing &&
-                (System.currentTimeMillis() > mPreviewPopupStartTime + PREVIEW_TIME_DELAY_MS);
-
+        final int previewY = (int) event.getY() + mWindowOffset[1]
+                - mPreviewPopupWindow.getHeight() / 2;
+        final boolean previewPopupVisible = event.getActionMasked() == MotionEvent.ACTION_MOVE;
         if (previewPopupVisible != mPreviewPopupVisible) {
             if (previewPopupVisible) {
                 mPreviewPopupWindow.showAtLocation(this, Gravity.LEFT | Gravity.TOP,
@@ -272,66 +136,84 @@ public class ContactListAizyView extends View {
         } else {
             mPreviewPopupWindow.update(previewX, previewY, -1, -1);
         }
+        final float yFactor = (float) getHeight() / mItemCount;
+        final int position = Math.max(0, (int) (event.getY() / yFactor));
+        if (mIndexer != null) {
+            final int index = mIndexer.getSectionForPosition(position);
+            final Object[] sections = mIndexer.getSections();
+            final String caption =
+                    (index != -1 && index < sections.length) ? sections[index].toString() : "";
+            mPreviewPopupTextView.setText(caption);
+        }
 
-        // Perform the actual scrolling
-        if (mListener != null) mListener.onScroll(virtualSection.getRealSectionPosition());
+        if (mListener != null) mListener.onScroll(position);
 
+        super.onTouchEvent(event);
         return true;
     }
 
-    /**
-     * Reads an provides all values from the resource files
-     */
-    private static class ResourceValues {
-        private final int emptySectionColor;
-        private final int nonEmptySectionColor;
-        private final float textSize;
-        private final float previewWidth;
-        private final float previewHeight;
+    private void drawLineAndText(Canvas canvas) {
+        final float yFactor = (float) getHeight() / mItemCount;
 
-        private ResourceValues(Resources resources) {
-            emptySectionColor = resources.getColor(R.color.aizy_empty_section);
-            nonEmptySectionColor = resources.getColor(R.color.aizy_non_empty_section);
-            textSize = resources.getDimension(R.dimen.aizy_text_size);
-            previewWidth = resources.getDimension(R.dimen.aizy_preview_width);
-            previewHeight = resources.getDimension(R.dimen.aizy_preview_height);
+        final Paint paint = new Paint();
+
+        paint.setColor(mResourceValues.getLineColor());
+        paint.setAntiAlias(true);
+
+        // Draw sections
+        final float centerX = getWidth() * 0.5f;
+        for (int i = 1; i < mSectionPositions.length; i++) {
+            final float y1 = mSectionPositions[i - 1] * yFactor;
+            final float y2 = mSectionPositions[i] * yFactor;
+            canvas.drawLine(
+                    centerX, y1 + 1.0f,
+                    centerX, y2 - 1.0f,
+                    paint);
         }
+
+        // Draw knob
+        final Drawable knob = mResourceValues.getKnobDrawable();
+        final int w = knob.getIntrinsicWidth();
+        final int h = knob.getIntrinsicWidth();
+        final float y = mPosition * yFactor;
+        knob.setBounds(
+                (int) (centerX - w / 2.0f), (int) (y - h / 2.0f),
+                (int) (centerX + w / 2.0f), (int) (y + h / 2.0f));
+        knob.draw(canvas);
     }
 
-    private static class VirtualSection {
-        private final String mCaption;
-        private final int mRealSectionIndex;
-        private final int mRealSectionPosition;
-        private float mMeasuredSize = Float.NaN;
+    public void listOnScroll(int firstVisibleItem) {
+        mPosition = firstVisibleItem;
+        invalidate();
+    }
 
-        public String getCaption() {
-            return mCaption;
+    private static class ResourceValues {
+        private int mLineColor;
+        private Drawable mKnobDrawable;
+        private int mPreviewWidth;
+        private int mPreviewHeight;
+
+        public int getLineColor() {
+            return mLineColor;
         }
 
-        public int getRealSectionIndex() {
-            return mRealSectionIndex;
+        public Drawable getKnobDrawable() {
+            return mKnobDrawable;
         }
 
-        public int getRealSectionPosition() {
-            return mRealSectionPosition;
+        public int getPreviewWidth() {
+            return mPreviewWidth;
         }
 
-        public boolean isMeasured() {
-            return mMeasuredSize == Float.NaN;
+        public int getPreviewHeight() {
+            return mPreviewHeight;
         }
 
-        public void setMeasuredSize(float value) {
-            mMeasuredSize = value;
-        }
-
-        public float getMeasuredSize() {
-            return mMeasuredSize;
-        }
-
-        public VirtualSection(String caption, int realSectionIndex, int realSectionPosition) {
-            mCaption = caption;
-            mRealSectionIndex = realSectionIndex;
-            mRealSectionPosition = realSectionPosition;
+        public ResourceValues(Resources resources) {
+            mLineColor = resources.getColor(R.color.aizy_line_color);
+            mKnobDrawable = resources.getDrawable(R.drawable.temp_aizy_knob);
+            mPreviewWidth = resources.getDimensionPixelSize(R.dimen.aizy_preview_width);
+            mPreviewHeight = resources.getDimensionPixelSize(R.dimen.aizy_preview_height);
         }
     }
 

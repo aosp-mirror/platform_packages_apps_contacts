@@ -417,7 +417,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.changeCursor(partitionIndex, data);
         showCount(partitionIndex, data);
         if (partitionIndex == mAdapter.getIndexedPartition()) {
-            mAizy.readFromIndexer(mAdapter.getIndexer());
+            mAizy.setIndexer(mAdapter.getIndexer(), data.getCount());
         }
 
         // TODO should probably only restore instance state after all directories are loaded
@@ -676,8 +676,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAizy.setListener(new ContactListAizyView.Listener() {
             @Override
             public void onScroll(int position) {
-                mListView.smoothScrollToPositionFromTop(
-                        position + mListView.getHeaderViewsCount(),
+                mListView.smoothScrollToPositionFromTop(position + mListView.getHeaderViewsCount(),
                         0);
             }
         });
@@ -734,6 +733,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
+        if (isAizyEnabled()) {
+            mAizy.listOnScroll(firstVisibleItem);
+        }
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {

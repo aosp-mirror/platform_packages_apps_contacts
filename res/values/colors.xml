@@ -27,10 +27,7 @@
     <color name="translucent_search_background">#cc000000</color>
 
     <!-- Color used in the Aizy visual scroll control for empty section -->
-    <color name="aizy_empty_section">#ff666666</color>
-
-    <!-- Color used in the Aizy visual scroll control for non-empty sections -->
-    <color name="aizy_non_empty_section">#ffcccccc</color>
+    <color name="aizy_line_color">#ff689afe</color>
 
     <!-- Color used for the letter in the A-Z section header -->
     <color name="section_header_text_color">#ff999999</color>
