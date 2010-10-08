@@ -17,6 +17,7 @@
 package com.android.contacts.list;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -64,6 +65,9 @@ public class ContactsRequest implements Parcelable {
     /** Show all phone numbers and create an SMS shortcut for the picked number */
     public static final int ACTION_CREATE_SHORTCUT_SMS = 130;
 
+    /** Show all contacts and activate the specified one */
+    public static final int ACTION_VIEW_CONTACT = 140;
+
     private boolean mValid = true;
     private int mActionCode = ACTION_DEFAULT;
     private Intent mRedirectIntent;
@@ -80,6 +84,7 @@ public class ContactsRequest implements Parcelable {
     private String mGroupName;
     private boolean mLegacyCompatibilityMode;
     private boolean mDirectorySearchEnabled = true;
+    private Uri mContactUri;
 
     /**
      * Copies all fields.
@@ -96,6 +101,7 @@ public class ContactsRequest implements Parcelable {
         mGroupName = request.mGroupName;
         mLegacyCompatibilityMode = request.mLegacyCompatibilityMode;
         mDirectorySearchEnabled = request.mDirectorySearchEnabled;
+        mContactUri = request.mContactUri;
     }
 
     public static Parcelable.Creator<ContactsRequest> CREATOR = new Creator<ContactsRequest>() {
@@ -105,10 +111,11 @@ public class ContactsRequest implements Parcelable {
         }
 
         public ContactsRequest createFromParcel(Parcel source) {
+            ClassLoader classLoader = this.getClass().getClassLoader();
             ContactsRequest request = new ContactsRequest();
             request.mValid = source.readInt() != 0;
             request.mActionCode = source.readInt();
-            request.mRedirectIntent = source.readParcelable(this.getClass().getClassLoader());
+            request.mRedirectIntent = source.readParcelable(classLoader);
             request.mTitle = source.readCharSequence();
             request.mSearchMode = source.readInt() != 0;
             request.mQueryString = source.readString();
@@ -117,6 +124,7 @@ public class ContactsRequest implements Parcelable {
             request.mGroupName = source.readString();
             request.mLegacyCompatibilityMode  = source.readInt() != 0;
             request.mDirectorySearchEnabled = source.readInt() != 0;
+            request.mContactUri = source.readParcelable(classLoader);
             return request;
         }
     };
@@ -133,6 +141,7 @@ public class ContactsRequest implements Parcelable {
         dest.writeString(mGroupName);
         dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
         dest.writeInt(mDirectorySearchEnabled ? 1 : 0);
+        dest.writeParcelable(mContactUri, 0);
     }
 
     public int describeContents() {
@@ -229,5 +238,13 @@ public class ContactsRequest implements Parcelable {
 
     public void setDirectorySearchEnabled(boolean flag) {
         mDirectorySearchEnabled = flag;
+    }
+
+    public Uri getContactUri() {
+        return mContactUri;
+    }
+
+    public void setContactUri(Uri contactUri) {
+        this.mContactUri = contactUri;
     }
 }
