@@ -63,8 +63,7 @@ public class ContactsIntentResolver {
         } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_ALL_CONTACTS);
         } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
-            request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            request.setDisplayWithPhoneNumbersOnly(true);
+            request.setActionCode(ContactsRequest.ACTION_CONTACTS_WITH_PHONES);
         } else if (UI.LIST_STARRED_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_STARRED);
         } else if (UI.LIST_FREQUENT_ACTION.equals(action)) {

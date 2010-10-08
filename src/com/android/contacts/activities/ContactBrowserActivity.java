@@ -237,9 +237,28 @@ public class ContactBrowserActivity extends Activity
     private void configureListFragment(boolean fromRequest) {
         boolean searchMode = mSearchMode;
         if (fromRequest) {
-            if (mRequest.getDisplayWithPhoneNumbersOnly()) {
-                mContactListFilterController.setContactListFilter(new ContactListFilter(
-                        ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY), false);
+            ContactListFilter filter = null;
+            int actionCode = mRequest.getActionCode();
+            switch (actionCode) {
+                case ContactsRequest.ACTION_ALL_CONTACTS:
+                    filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                    break;
+                case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
+                    filter = new ContactListFilter(
+                            ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY);
+                    break;
+
+                // TODO: handle FREQUENT and STREQUENT according to the spec
+                case ContactsRequest.ACTION_FREQUENT:
+                case ContactsRequest.ACTION_STREQUENT:
+                    // For now they are treated the same as STARRED
+                case ContactsRequest.ACTION_STARRED:
+                    filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED);
+                    break;
+            }
+
+            if (filter != null) {
+                mContactListFilterController.setContactListFilter(filter, false);
                 searchMode = false;
             } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS) {
                 mContactListFilterController.setContactListFilter(new ContactListFilter(
@@ -248,16 +267,6 @@ public class ContactBrowserActivity extends Activity
         } else {
             if (mHasActionBar) {
                 searchMode = mActionBarAdapter.isSearchMode();
-            } else {
-// TODO: reenable FREQUENT, STARRED and STREQUENT
-//                int actionCode = mRequest.getActionCode();
-//                if (actionCode == ContactsRequest.ACTION_FREQUENT ||
-//                        actionCode == ContactsRequest.ACTION_STARRED ||
-//                        actionCode == ContactsRequest.ACTION_STREQUENT) {
-//                    mode = ContactBrowserMode.MODE_FAVORITES;
-//                } else {
-//                    mode = ContactBrowserMode.MODE_CONTACTS;
-//                }
             }
         }
 
