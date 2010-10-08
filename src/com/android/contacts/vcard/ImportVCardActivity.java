@@ -151,11 +151,12 @@ public class ImportVCardActivity extends Activity {
                         // onServiceConnected() is already finished and we need to
                         // "manually" call unbindService() here.
                         unbindService(this);
+                        mConnected = false;
                         mDisconnectAndFinishDone = true;
                         finish();
                     } else {
                         // If not connected, finish() must be called when connected, as
-                        // We cann not call finish() now.
+                        // We cannot call finish() now.
                     }
                 }
             }

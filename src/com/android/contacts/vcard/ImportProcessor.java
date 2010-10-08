@@ -62,8 +62,27 @@ import java.util.Queue;
 public class ImportProcessor {
     private static final String LOG_TAG = ImportProcessor.class.getSimpleName();
 
-    private class CustomConnection implements ServiceConnection {
+    private class ImportProcessorConnection implements ServiceConnection {
         private Messenger mMessenger;
+        private boolean mBound;
+
+        public synchronized void tryBind() {
+            if (!mContext.bindService(new Intent(mContext, VCardService.class),
+                    mConnection, Context.BIND_AUTO_CREATE)) {
+                throw new RuntimeException("Failed to bind to VCardService.");
+            }
+            mBound = true;
+        }
+
+        public synchronized void tryUnbind() {
+            if (mBound) {
+                mContext.unbindService(mConnection);
+            } else {
+                // TODO: Not graceful.
+                Log.w(LOG_TAG, "unbind() is tried while ServiceConnection is not bound yet");
+            }
+            mBound = false;
+        }
 
         public void sendFinisheNotification() {
             try {
@@ -87,7 +106,7 @@ public class ImportProcessor {
 
     private final Context mContext;
 
-    private final CustomConnection mConnection = new CustomConnection();
+    private final ImportProcessorConnection mConnection = new ImportProcessorConnection();
 
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
@@ -139,10 +158,7 @@ public class ImportProcessor {
     public ImportProcessor(final Context context) {
         mContext = context;
 
-        if (!mContext.bindService(new Intent(mContext, VCardService.class),
-                mConnection, Context.BIND_AUTO_CREATE)) {
-            throw new RuntimeException("Failed to bind to VCardService.");
-        }
+        mConnection.tryBind();
     }
 
     /**
@@ -194,7 +210,7 @@ public class ImportProcessor {
      */
     private void process() {
         if (!mReadyForRequest) {
-            mContext.unbindService(mConnection);
+            mConnection.tryUnbind();
             throw new RuntimeException(
                     "process() is called before request being pushed "
                     + "or after this object's finishing its processing.");
@@ -222,7 +238,7 @@ public class ImportProcessor {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
             mNotifier.resetTotalCount();
-            mContext.unbindService(mConnection);
+            mConnection.tryUnbind();
         }
     }
 
