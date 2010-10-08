@@ -61,17 +61,12 @@ public class ContactsIntentResolver {
 
         if (UI.LIST_DEFAULT.equals(action) ) {
             request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            request.setDisplayWithPhonesOnlyOption(
-                    ContactsRequest.DISPLAY_ONLY_WITH_PHONES_PREFERENCE);
         } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            request.setDisplayWithPhonesOnlyOption(
-                    ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED);
             request.setDisplayOnlyVisible(false);
         } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            request.setDisplayWithPhonesOnlyOption(
-                    ContactsRequest.DISPLAY_ONLY_WITH_PHONES_ENABLED);
+            request.setDisplayWithPhoneNumbersOnly(true);
         } else if (UI.LIST_STARRED_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_STARRED);
         } else if (UI.LIST_FREQUENT_ACTION.equals(action)) {

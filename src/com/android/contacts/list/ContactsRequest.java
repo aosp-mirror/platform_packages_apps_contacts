@@ -74,12 +74,7 @@ public class ContactsRequest implements Parcelable {
     private CharSequence mTitle;
     private boolean mSearchMode;
     private String mQueryString;
-
-    public static final int DISPLAY_ONLY_WITH_PHONES_PREFERENCE = 0;
-    public static final int DISPLAY_ONLY_WITH_PHONES_ENABLED = 1;
-    public static final int DISPLAY_ONLY_WITH_PHONES_DISABLED = 2;
-
-    private int mDisplayOnlyWithPhones;
+    private boolean mDisplayOnlyWithPhones;
     private boolean mDisplayOnlyVisible;
     private String mGroupName;
     private boolean mLegacyCompatibilityMode;
@@ -119,7 +114,7 @@ public class ContactsRequest implements Parcelable {
             request.mTitle = source.readCharSequence();
             request.mSearchMode = source.readInt() != 0;
             request.mQueryString = source.readString();
-            request.mDisplayOnlyWithPhones = source.readInt();
+            request.mDisplayOnlyWithPhones = source.readInt() != 0;
             request.mDisplayOnlyVisible = source.readInt() != 0;
             request.mGroupName = source.readString();
             request.mLegacyCompatibilityMode  = source.readInt() != 0;
@@ -136,7 +131,7 @@ public class ContactsRequest implements Parcelable {
         dest.writeCharSequence(mTitle);
         dest.writeInt(mSearchMode ? 1 : 0);
         dest.writeString(mQueryString);
-        dest.writeInt(mDisplayOnlyWithPhones);
+        dest.writeInt(mDisplayOnlyWithPhones ? 1 : 0);
         dest.writeInt(mDisplayOnlyVisible ? 1 : 0);
         dest.writeString(mGroupName);
         dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
@@ -188,11 +183,11 @@ public class ContactsRequest implements Parcelable {
         mDisplayOnlyVisible = flag;
     }
 
-    public int getDisplayWithPhonesOnlyOption() {
+    public boolean getDisplayWithPhoneNumbersOnly() {
         return mDisplayOnlyWithPhones;
     }
 
-    public void setDisplayWithPhonesOnlyOption(int option) {
+    public void setDisplayWithPhoneNumbersOnly(boolean option) {
         mDisplayOnlyWithPhones = option;
     }
 

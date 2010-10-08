@@ -141,10 +141,7 @@ public class ContactListFilterController
             mFilterList.clear();
         }
 
-        boolean filterValid = mFilter != null
-                && (mFilter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM
-                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_STARRED);
+        boolean filterValid = mFilter != null && !mFilter.isValidationRequired();
 
         int accountCount = 0;
         int count = filters.size();
@@ -221,7 +218,7 @@ public class ContactListFilterController
         }
     }
 
-    protected void setContactListFilter(int filterId) {
+    private void setContactListFilter(int filterId) {
         ContactListFilter filter;
         if (filterId == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
             filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
@@ -236,11 +233,17 @@ public class ContactListFilterController
             }
         }
 
+        setContactListFilter(filter, true);
+    }
+
+    public void setContactListFilter(ContactListFilter filter, boolean persistent) {
         if (!filter.equals(mFilter)) {
             mFilter = filter;
             ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
             updateFilterView();
-            mListener.onContactListFilterChanged();
+            if (mListener != null) {
+                mListener.onContactListFilterChanged();
+            }
         }
     }
 

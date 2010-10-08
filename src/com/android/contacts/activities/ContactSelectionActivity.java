@@ -142,8 +142,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setEditMode(true);
                 fragment.setCreateContactEnabled(true);
-                fragment.setDisplayWithPhonesOnlyOption(mRequest.getDisplayWithPhonesOnlyOption());
-                fragment.setVisibleContactsRestrictionEnabled(mRequest.getDisplayOnlyVisible());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(false);

@@ -16,14 +16,11 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.preference.ContactsPreferences;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,16 +37,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     private static final String KEY_EDIT_MODE = "editMode";
     private static final String KEY_CREATE_CONTACT_ENABLED = "createContactEnabled";
-    private static final String KEY_DISPLAY_WITH_PHONES_ONLY = "displayWithPhonesOnly";
-    private static final String KEY_VISIBLE_CONTACTS_RESTRICTION = "visibleContactsRestriction";
     private static final String KEY_FILTER_ENABLED = "filterEnabled";
 
     private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
     private boolean mEditMode;
     private boolean mCreateContactEnabled;
-    private int mDisplayWithPhonesOnlyOption = ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED;
-    private boolean mVisibleContactsRestrictionEnabled = true;
     private View mCounterHeaderView;
     private View mSearchHeaderView;
 
@@ -72,8 +65,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_EDIT_MODE, mEditMode);
         outState.putBoolean(KEY_CREATE_CONTACT_ENABLED, mCreateContactEnabled);
-        outState.putInt(KEY_DISPLAY_WITH_PHONES_ONLY, mDisplayWithPhonesOnlyOption);
-        outState.putBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION, mVisibleContactsRestrictionEnabled);
         outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
     }
 
@@ -87,44 +78,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
         mEditMode = savedState.getBoolean(KEY_EDIT_MODE);
         mCreateContactEnabled = savedState.getBoolean(KEY_CREATE_CONTACT_ENABLED);
-        mDisplayWithPhonesOnlyOption = savedState.getInt(KEY_DISPLAY_WITH_PHONES_ONLY);
-        mVisibleContactsRestrictionEnabled =
-                savedState.getBoolean(KEY_VISIBLE_CONTACTS_RESTRICTION);
         setFilterEnabled(savedState.getBoolean(KEY_FILTER_ENABLED));
-    }
-
-    @Override
-    protected void prepareEmptyView() {
-        if (isShowingContactsWithPhonesOnly()) {
-            setEmptyText(R.string.noContactsWithPhoneNumbers);
-        } else {
-            super.prepareEmptyView();
-        }
-    }
-
-    private boolean isShowingContactsWithPhonesOnly() {
-        switch (mDisplayWithPhonesOnlyOption) {
-            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED:
-                return false;
-            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_ENABLED:
-                return true;
-            case ContactsRequest.DISPLAY_ONLY_WITH_PHONES_PREFERENCE:
-                SharedPreferences prefs = PreferenceManager
-                        .getDefaultSharedPreferences(getContext());
-                return prefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
-                        ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
-        }
-        return false;
-    }
-
-    public void setDisplayWithPhonesOnlyOption(int displayWithPhonesOnly) {
-        mDisplayWithPhonesOnlyOption = displayWithPhonesOnly;
-        configureAdapter();
-    }
-
-    public void setVisibleContactsRestrictionEnabled(boolean flag) {
-        mVisibleContactsRestrictionEnabled = flag;
-        configureAdapter();
     }
 
     @Override
@@ -154,12 +108,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         super.configureAdapter();
 
         DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
-        if (adapter != null) {
-            adapter.setContactsWithPhoneNumbersOnly(isShowingContactsWithPhonesOnly());
-            adapter.setVisibleContactsOnly(mVisibleContactsRestrictionEnabled);
-            if (mFilterEnabled && mFilterController != null) {
-                adapter.setFilter(mFilterController.getFilter(), mFilterController.getFilterList());
-            }
+        if (adapter != null && mFilterEnabled && mFilterController != null) {
+            adapter.setFilter(mFilterController.getFilter(), mFilterController.getFilterList());
         }
     }
 

@@ -117,9 +117,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         super.configureAdapter();
 
         ContactEntryListAdapter adapter = getAdapter();
-        if (adapter instanceof DefaultContactListAdapter) {
-            ((DefaultContactListAdapter)adapter).setVisibleContactsOnly(true);
-        }
 
         // If "Create new contact" is shown, don't display the empty list UI
         adapter.setEmptyListEnabled(!isCreateContactEnabled());

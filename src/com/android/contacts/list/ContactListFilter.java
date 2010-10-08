@@ -25,12 +25,13 @@ import android.text.TextUtils;
  */
 public final class ContactListFilter implements Comparable<ContactListFilter> {
 
-    public static final int FILTER_TYPE_ALL_ACCOUNTS = -1;
-    public static final int FILTER_TYPE_CUSTOM = -2;
-    public static final int FILTER_TYPE_STARRED = -3;
-    public static final int FILTER_TYPE_DEFAULT = -4;
+    public static final int FILTER_TYPE_DEFAULT = -1;
+    public static final int FILTER_TYPE_ALL_ACCOUNTS = -2;
+    public static final int FILTER_TYPE_CUSTOM = -3;
+    public static final int FILTER_TYPE_STARRED = -4;
+    public static final int FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY = -5;
+
     public static final int FILTER_TYPE_ACCOUNT = 0;
-    public static final int FILTER_TYPE_ = 0;
     public static final int FILTER_TYPE_GROUP = 1;
 
     private static final String KEY_FILTER_TYPE = "filter.type";
@@ -65,6 +66,13 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         this.accountName = accountName;
         this.groupId = groupId;
         this.title = title;
+    }
+
+    /**
+     * Returns true if this filter is based on data and may become invalid over time.
+     */
+    public boolean isValidationRequired() {
+        return filterType == FILTER_TYPE_ACCOUNT || filterType == FILTER_TYPE_GROUP;
     }
 
     @Override

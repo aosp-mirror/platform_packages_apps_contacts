@@ -15,11 +15,15 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.preference.ContactsPreferences;
+
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
@@ -37,19 +41,8 @@ import java.util.List;
  */
 public class DefaultContactListAdapter extends ContactListAdapter {
 
-    private boolean mContactsWithPhoneNumbersOnly;
-    private boolean mVisibleContactsOnly;
-
     public DefaultContactListAdapter(Context context) {
         super(context);
-    }
-
-    public void setContactsWithPhoneNumbersOnly(boolean flag) {
-        mContactsWithPhoneNumbersOnly = flag;
-    }
-
-    public void setVisibleContactsOnly(boolean flag) {
-        mVisibleContactsOnly = flag;
     }
 
     @Override
@@ -141,14 +134,14 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 selection.append(Contacts.STARRED + "!=0");
                 break;
             }
+            case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY: {
+                selection.append(Contacts.HAS_PHONE_NUMBER + "=1");
+                break;
+            }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
-                if (mVisibleContactsOnly && mContactsWithPhoneNumbersOnly) {
-                    selection.append(Contacts.IN_VISIBLE_GROUP + "=1"
-                            + " AND " + Contacts.HAS_PHONE_NUMBER + "=1");
-                } else if (mVisibleContactsOnly) {
-                    selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
-                } else if (mContactsWithPhoneNumbersOnly) {
-                    selection.append(Contacts.HAS_PHONE_NUMBER + "=1");
+                selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
+                if (isCustomFilterForPhoneNumbersOnly()) {
+                    selection.append(" AND " + Contacts.HAS_PHONE_NUMBER + "=1");
                 }
                 break;
             }
@@ -201,5 +194,12 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         if (isSearchMode()) {
             bindSearchSnippet(view, cursor);
         }
+    }
+
+    private boolean isCustomFilterForPhoneNumbersOnly() {
+        // TODO: this flag should not be stored in shared prefs.  It needs to be in the db.
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        return prefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
+                ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
     }
 }

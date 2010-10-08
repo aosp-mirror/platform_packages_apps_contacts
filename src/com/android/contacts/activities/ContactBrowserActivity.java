@@ -23,6 +23,7 @@ import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -172,11 +173,9 @@ public class ContactBrowserActivity extends Activity
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         mContactContentDisplayed = findViewById(R.id.detail_container) != null;
 
-        Uri contactUri = null;
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
-            contactUri = mRequest.getContactUri();
             if (!mContactContentDisplayed) {
-                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+                startActivity(new Intent(Intent.ACTION_VIEW, mRequest.getContactUri()));
                 finish();
                 return;
             }
@@ -190,10 +189,7 @@ public class ContactBrowserActivity extends Activity
             // TODO: request may ask for FREQUENT - set the filter accordingly
         }
 
-        configureListFragment(contactUri);
-        if (contactUri != null) {
-            setSelectedContactUri(contactUri);
-        }
+        configureListFragment(true /* from request */);
 
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
@@ -238,20 +234,28 @@ public class ContactBrowserActivity extends Activity
         return TextUtils.isEmpty(uriString) ? null : Uri.parse(uriString);
     }
 
-    private void configureListFragment(Uri selectedContactUri) {
+    private void configureListFragment(boolean fromRequest) {
         boolean searchMode = mSearchMode;
-        if (mHasActionBar) {
-            searchMode = mActionBarAdapter.isSearchMode();
+        if (fromRequest) {
+            if (mRequest.getDisplayWithPhoneNumbersOnly()) {
+                mContactListFilterController.setContactListFilter(new ContactListFilter(
+                        ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY), false);
+                searchMode = false;
+            }
         } else {
+            if (mHasActionBar) {
+                searchMode = mActionBarAdapter.isSearchMode();
+            } else {
 // TODO: reenable FREQUENT, STARRED and STREQUENT
-//            int actionCode = mRequest.getActionCode();
-//            if (actionCode == ContactsRequest.ACTION_FREQUENT ||
-//                    actionCode == ContactsRequest.ACTION_STARRED ||
-//                    actionCode == ContactsRequest.ACTION_STREQUENT) {
-//                mode = ContactBrowserMode.MODE_FAVORITES;
-//            } else {
-//                mode = ContactBrowserMode.MODE_CONTACTS;
-//            }
+//                int actionCode = mRequest.getActionCode();
+//                if (actionCode == ContactsRequest.ACTION_FREQUENT ||
+//                        actionCode == ContactsRequest.ACTION_STARRED ||
+//                        actionCode == ContactsRequest.ACTION_STREQUENT) {
+//                    mode = ContactBrowserMode.MODE_FAVORITES;
+//                } else {
+//                    mode = ContactBrowserMode.MODE_CONTACTS;
+//                }
+            }
         }
 
         boolean replaceList = mListFragment == null || (mSearchMode != searchMode);
@@ -283,13 +287,16 @@ public class ContactBrowserActivity extends Activity
             }
         }
 
-        Uri selectUri;
-        if (selectedContactUri != null) {
-            selectUri = selectedContactUri;
-        } else if (mListFragment.getSelectedContactUri() == null) {
+        Uri selectUri = null;
+        if (fromRequest) {
+            selectUri = mRequest.getContactUri();
+            if (selectUri != null) {
+                setSelectedContactUri(selectUri);
+            }
+        }
+
+        if (selectUri == null && mListFragment.getSelectedContactUri() == null) {
             selectUri = getDefaultSelectedContactUri();
-        } else {
-            selectUri = null;
         }
 
         if (selectUri != null) {
@@ -422,7 +429,7 @@ public class ContactBrowserActivity extends Activity
      */
     @Override
     public void onAction() {
-        configureListFragment(null);
+        configureListFragment(false /* from request */);
         setupContactDetailFragment(mListFragment.getSelectedContactUri());
     }
 
@@ -435,8 +442,6 @@ public class ContactBrowserActivity extends Activity
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
                 fragment.setContactsRequest(mRequest);
                 fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                fragment.setDisplayWithPhonesOnlyOption(mRequest.getDisplayWithPhonesOnlyOption());
-                fragment.setVisibleContactsRestrictionEnabled(mRequest.getDisplayOnlyVisible());
                 fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
@@ -491,8 +496,6 @@ public class ContactBrowserActivity extends Activity
     private ContactBrowseListFragment createContactSearchFragment() {
         DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
         fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-        fragment.setDisplayWithPhonesOnlyOption(ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED);
-        fragment.setVisibleContactsRestrictionEnabled(true);
         fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
         fragment.setSearchMode(true);
         fragment.setDirectorySearchEnabled(true);

@@ -95,8 +95,6 @@ public class ContactSearchActivity extends Activity {
     private ContactBrowseListFragment createContactSearchFragment() {
         DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
         fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-        fragment.setDisplayWithPhonesOnlyOption(ContactsRequest.DISPLAY_ONLY_WITH_PHONES_DISABLED);
-        fragment.setVisibleContactsRestrictionEnabled(true);
         fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
         fragment.setSearchMode(true);
         fragment.setDirectorySearchEnabled(true);

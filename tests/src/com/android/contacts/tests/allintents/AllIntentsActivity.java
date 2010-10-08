@@ -53,7 +53,7 @@ public class AllIntentsActivity extends ListActivity {
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.activities.ContactListActivity";
+            "com.android.contacts.activities.ContactBrowserActivity";
     private static final String SEARCH_RESULTS_ACTIVITY_CLASS_NAME =
             "com.android.contacts.SearchResultsActivity";
     private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
