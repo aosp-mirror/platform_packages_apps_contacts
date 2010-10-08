@@ -53,7 +53,6 @@ public class ContactsIntentResolver {
 
     public ContactsRequest resolveIntent(Intent intent) {
         ContactsRequest request = new ContactsRequest();
-        request.setDisplayOnlyVisible(true);
 
         String action = intent.getAction();
 
@@ -62,8 +61,7 @@ public class ContactsIntentResolver {
         if (UI.LIST_DEFAULT.equals(action) ) {
             request.setActionCode(ContactsRequest.ACTION_DEFAULT);
         } else if (UI.LIST_ALL_CONTACTS_ACTION.equals(action)) {
-            request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            request.setDisplayOnlyVisible(false);
+            request.setActionCode(ContactsRequest.ACTION_ALL_CONTACTS);
         } else if (UI.LIST_CONTACTS_WITH_PHONES_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_DEFAULT);
             request.setDisplayWithPhoneNumbersOnly(true);

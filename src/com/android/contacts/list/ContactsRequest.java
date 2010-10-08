@@ -29,6 +29,9 @@ public class ContactsRequest implements Parcelable {
     /** Default mode: browse contacts */
     public static final int ACTION_DEFAULT = 10;
 
+    /** Show all contacts */
+    public static final int ACTION_ALL_CONTACTS = 15;
+
     /** Show contents of a specific group */
     public static final int ACTION_GROUP = 20;
 
@@ -75,7 +78,6 @@ public class ContactsRequest implements Parcelable {
     private boolean mSearchMode;
     private String mQueryString;
     private boolean mDisplayOnlyWithPhones;
-    private boolean mDisplayOnlyVisible;
     private String mGroupName;
     private boolean mLegacyCompatibilityMode;
     private boolean mDirectorySearchEnabled = true;
@@ -92,7 +94,6 @@ public class ContactsRequest implements Parcelable {
         mSearchMode = request.mSearchMode;
         mQueryString = request.mQueryString;
         mDisplayOnlyWithPhones = request.mDisplayOnlyWithPhones;
-        mDisplayOnlyVisible = request.mDisplayOnlyVisible;
         mGroupName = request.mGroupName;
         mLegacyCompatibilityMode = request.mLegacyCompatibilityMode;
         mDirectorySearchEnabled = request.mDirectorySearchEnabled;
@@ -115,7 +116,6 @@ public class ContactsRequest implements Parcelable {
             request.mSearchMode = source.readInt() != 0;
             request.mQueryString = source.readString();
             request.mDisplayOnlyWithPhones = source.readInt() != 0;
-            request.mDisplayOnlyVisible = source.readInt() != 0;
             request.mGroupName = source.readString();
             request.mLegacyCompatibilityMode  = source.readInt() != 0;
             request.mDirectorySearchEnabled = source.readInt() != 0;
@@ -132,7 +132,6 @@ public class ContactsRequest implements Parcelable {
         dest.writeInt(mSearchMode ? 1 : 0);
         dest.writeString(mQueryString);
         dest.writeInt(mDisplayOnlyWithPhones ? 1 : 0);
-        dest.writeInt(mDisplayOnlyVisible ? 1 : 0);
         dest.writeString(mGroupName);
         dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
         dest.writeInt(mDirectorySearchEnabled ? 1 : 0);
@@ -173,14 +172,6 @@ public class ContactsRequest implements Parcelable {
 
     public void setActionCode(int actionCode) {
         mActionCode = actionCode;
-    }
-
-    public boolean getDisplayOnlyVisible() {
-        return mDisplayOnlyVisible;
-    }
-
-    public void setDisplayOnlyVisible(boolean flag) {
-        mDisplayOnlyVisible = flag;
     }
 
     public boolean getDisplayWithPhoneNumbersOnly() {

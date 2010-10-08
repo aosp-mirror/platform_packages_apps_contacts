@@ -241,6 +241,9 @@ public class ContactBrowserActivity extends Activity
                 mContactListFilterController.setContactListFilter(new ContactListFilter(
                         ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY), false);
                 searchMode = false;
+            } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS) {
+                mContactListFilterController.setContactListFilter(new ContactListFilter(
+                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), false);
             }
         } else {
             if (mHasActionBar) {
