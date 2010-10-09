@@ -52,6 +52,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="36dip"
+        android:layout_marginRight="5dip"
         android:layout_alignBaseline="@id/date"
 
         android:singleLine="true"
@@ -63,7 +64,6 @@
     <TextView android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
         android:layout_toRightOf="@id/label"
         android:layout_toLeftOf="@id/date"
         android:layout_alignBaseline="@id/label"
