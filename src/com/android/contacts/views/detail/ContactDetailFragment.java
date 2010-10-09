@@ -190,9 +190,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mInflater = inflater;
 
         mHeaderView = (ContactDetailHeaderView) view.findViewById(R.id.contact_header_widget);
-        mHeaderView.setExcludeMimes(new String[] {
-            Contacts.CONTENT_ITEM_TYPE
-        });
         mHeaderView.setListener(mHeaderViewListener);
 
         mListView = (ListView) view.findViewById(android.R.id.list);

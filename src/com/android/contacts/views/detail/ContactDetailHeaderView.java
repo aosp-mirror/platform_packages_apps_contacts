@@ -43,7 +43,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.QuickContactBadge;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,7 +59,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private TextView mDisplayNameView;
     private TextView mPhoneticNameView;
     private CheckBox mStarredView;
-    private QuickContactBadge mPhotoView;
+    private ImageView mPhotoView;
     private ImageView mPresenceView;
     private View mStatusContainerView;
     private TextView mStatusView;
@@ -100,7 +99,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mStarredView = (CheckBox)findViewById(R.id.star);
         mStarredView.setOnClickListener(this);
 
-        mPhotoView = (QuickContactBadge) findViewById(R.id.photo);
+        mPhotoView = (ImageView) findViewById(R.id.photo);
 
         mPresenceView = (ImageView) findViewById(R.id.presence);
         mStatusContainerView = findViewById(R.id.status_container);
@@ -116,7 +115,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
      */
     public void loadData(ContactLoader.Result contactData) {
         mContactUri = contactData.getLookupUri();
-        mPhotoView.assignContactUri(contactData.getLookupUri());
 
         setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
         setPhoto(findPhoto(contactData));
@@ -238,15 +236,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 mStatusDateView.setText(snippetDate);
             }
         }
-    }
-
-    /**
-     * Set a list of specific MIME-types to exclude and not display. For
-     * example, this can be used to hide the {@link Contacts#CONTENT_ITEM_TYPE}
-     * profile icon.
-     */
-    public void setExcludeMimes(String[] excludeMimes) {
-        mPhotoView.setExcludeMimes(excludeMimes);
     }
 
     /**
