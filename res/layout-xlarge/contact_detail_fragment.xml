@@ -69,9 +69,13 @@
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="800dip"
             ex:layout_wideLeftMargin="144dip"
+            ex:layout_wideRightMargin="64dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowLeftMargin="42dip"
+            ex:layout_narrowRightMargin="0dip"
             android:cacheColorHint="#00000000"
+            android:divider="#ffe5e5e5"
+            android:dividerHeight="1px"
         />
     </com.android.contacts.widget.InterpolatingLayout>
     
