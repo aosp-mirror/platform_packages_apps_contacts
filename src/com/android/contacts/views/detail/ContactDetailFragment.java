@@ -921,11 +921,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (mContactData == null) {
-            return;
-        }
-
-        boolean isDirectoryEntry = mContactData.isDirectoryEntry();
+        boolean isDirectoryEntry = mContactData != null && mContactData.isDirectoryEntry();
 
         // Options only shows telephony-related settings (ringtone, send to voicemail).
         // ==> Hide if we don't have a telephone
@@ -955,6 +951,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 return true;
             }
             case R.id.menu_options: {
+                if (mContactData == null) return false;
                 final Intent intent = new Intent(mContext, ContactOptionsActivity.class);
                 intent.setData(mContactData.getLookupUri());
                 mContext.startActivity(intent);
@@ -962,6 +959,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             }
             case R.id.menu_share: {
                 if (mAllRestricted) return false;
+                if (mContactData == null) return false;
 
                 final String lookupKey = mContactData.getLookupKey();
                 final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
