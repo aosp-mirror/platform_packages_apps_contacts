@@ -27,6 +27,7 @@ import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Sets;
 
@@ -768,10 +769,12 @@ public class QuickContactWindow implements Window.Callback,
 
             // Handle well-known MIME-types with special care
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final String number = getAsString(cursor, Phone.NUMBER);
-                if (!TextUtils.isEmpty(number)) {
-                    final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
-                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+                if (PhoneCapabilityTester.isPhone(mContext)) {
+                    final String number = getAsString(cursor, Phone.NUMBER);
+                    if (!TextUtils.isEmpty(number)) {
+                        final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
+                        mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+                    }
                 }
             } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
@@ -786,12 +789,13 @@ public class QuickContactWindow implements Window.Callback,
                     // for the SIP-related intent-filters in its manifest.
                 }
             } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
-                final String number = getAsString(cursor, Phone.NUMBER);
-                if (!TextUtils.isEmpty(number)) {
-                    final Uri smsUri = Uri.fromParts(Constants.SCHEME_SMSTO, number, null);
-                    mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
+                if (PhoneCapabilityTester.isSmsIntentRegistered(mContext)) {
+                    final String number = getAsString(cursor, Phone.NUMBER);
+                    if (!TextUtils.isEmpty(number)) {
+                        final Uri smsUri = Uri.fromParts(Constants.SCHEME_SMSTO, number, null);
+                        mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
+                    }
                 }
-
             } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final String address = getAsString(cursor, Email.DATA);
                 if (!TextUtils.isEmpty(address)) {
