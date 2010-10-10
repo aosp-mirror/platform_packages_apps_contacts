@@ -66,7 +66,7 @@ public class VCardService extends Service {
                     } else {
                         final ImportRequest parameter = (ImportRequest)msg.obj;
 
-                        if (mImportProcessor == null) {
+                        if (mImportProcessor == null || !mImportProcessor.isReadyForRequest()) {
                             mImportProcessor = new ImportProcessor(VCardService.this);
                         } else if (mImportProcessor.isCanceled()) {
                             Log.i(LOG_TAG,

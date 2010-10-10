@@ -84,7 +84,7 @@ public class ImportProcessor {
             mBound = false;
         }
 
-        public void sendFinisheNotification() {
+        public void sendFinishNotification() {
             try {
                 mMessenger.send(Message.obtain(null,
                         VCardService.MSG_NOTIFY_IMPORT_FINISHED,
@@ -233,7 +233,7 @@ public class ImportProcessor {
             // Currenty we don't have an appropriate way to let users see all URIs imported.
             // Instead, we show one only when there's just one created uri.
             doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
-            mConnection.sendFinisheNotification();
+            mConnection.sendFinishNotification();
         } finally {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
