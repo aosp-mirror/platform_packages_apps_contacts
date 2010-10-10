@@ -358,6 +358,58 @@ public class EntitySetTests extends AndroidTestCase {
         assertEquals("Unexpected exception updates", 2, exceptionCount);
     }
 
+    public void testInsertInsertSeparate() {
+        // This assumes getInsert() will return back an "empty" raw
+        // contact meaning it will contain no actual information
+        final EntityDelta insertFirst = getInsert();
+        final EntityDelta insertSecond = getInsert();
+        final EntitySet set = buildSet(insertFirst, insertSecond);
+
+        // This would normally build a TYPE_KEEP_SEPARATE aggregation exception,
+        // but since the raw contacts won't be added because they are empty,
+        // we should get 0 exceptions back
+        set.splitRawContacts();
+
+        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final int exceptionCount = countExceptionUpdates(diff);
+        assertEquals("Unexpected exception updates", 0, exceptionCount);
+    }
+
+    public void testUpdateInsertSeparate() {
+        // This assumes getInsert() will return back an "empty" raw
+        // contact meaning it will contain no actual information
+        final EntityDelta update = getUpdate(CONTACT_FIRST);
+        final EntityDelta insert = getInsert();
+        final EntitySet set = buildSet(update, insert);
+
+        // This would normally build a KEEP_SEPARATE aggregation exception,
+        // but since the insert won't be added because it is empty,
+        // we should get 0 exceptions back
+        set.splitRawContacts();
+
+        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final int exceptionCount = countExceptionUpdates(diff);
+        assertEquals("Unexpected exception updates", 0, exceptionCount);
+    }
+
+    public void testUpdateInsertInsertSeparate() {
+        // This assumes getInsert() will return back an "empty" raw
+        // contact meaning it will contain no actual information
+        final EntityDelta update = getUpdate(CONTACT_FIRST);
+        final EntityDelta insertFirst = getInsert();
+        final EntityDelta insertSecond = getInsert();
+        final EntitySet set = buildSet(update, insertFirst, insertSecond);
+
+        // This would normally build a KEEP_SEPARATE aggregation exception,
+        // but since the inserts won't be added because they are empty,
+        // we should get 0 exceptions back
+        set.splitRawContacts();
+
+        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final int exceptionCount = countExceptionUpdates(diff);
+        assertEquals("Unexpected exception updates", 0, exceptionCount);
+    }
+
     public void testMergeDataRemoteInsert() {
         final EntitySet first = buildSet(buildBeforeEntity(CONTACT_BOB, VER_FIRST,
                 buildPhone(PHONE_RED)));
