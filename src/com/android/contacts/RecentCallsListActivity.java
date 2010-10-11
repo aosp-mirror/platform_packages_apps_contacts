@@ -398,7 +398,7 @@ public class RecentCallsListActivity extends ListActivity
                             // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
                             info.number = dataTableCursor.getString(
                                     dataTableCursor.getColumnIndex(Data.DATA1));
-                            info.normalizedNumber = info.number;
+                            info.normalizedNumber = null;  // meaningless for SIP addresses
 
                             infoUpdated = true;
                         }
