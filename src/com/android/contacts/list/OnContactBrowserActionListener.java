@@ -26,9 +26,8 @@ public interface OnContactBrowserActionListener  {
      * Opens the specified contact for viewing.
      *
      * @param contactLookupUri The lookup-uri of the Contact that should be opened
-     * @param finishEditing The user has explicitly requested to leave the edit mode
      */
-    void onViewContactAction(Uri contactLookupUri, boolean finishEditing);
+    void onViewContactAction(Uri contactLookupUri);
 
     /**
      * Creates a new contact.

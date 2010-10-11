@@ -35,7 +35,6 @@ import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.views.detail.ContactNoneFragment;
-import com.android.contacts.views.editor.ContactEditorFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
@@ -104,9 +103,6 @@ public class ContactBrowserActivity extends Activity
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
 
-    private ContactEditorFragment mEditorFragment;
-    private EditorFragmentListener mEditorFragmentListener = new EditorFragmentListener();
-
     private PhoneNumberInteraction mPhoneNumberCallInteraction;
     private PhoneNumberInteraction mSendTextMessageInteraction;
     private ContactDeletionInteraction mContactDeletionInteraction;
@@ -135,9 +131,6 @@ public class ContactBrowserActivity extends Activity
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
-        } else if (fragment instanceof ContactEditorFragment) {
-            mEditorFragment = (ContactEditorFragment)fragment;
-            mEditorFragment.setListener(mEditorFragmentListener);
         }
     }
 
@@ -342,24 +335,10 @@ public class ContactBrowserActivity extends Activity
     }
 
     private void setupContactDetailFragment(Uri contactLookupUri) {
-
-        // If we are already editing this URI - just continue editing
-        if (mEditorFragment != null && contactLookupUri != null
-                && contactLookupUri.equals(mEditorFragment.getLookupUri())) {
-            return;
-        }
-
         if (mDetailFragment != null && contactLookupUri != null
                 && contactLookupUri.equals(mDetailFragment.getUri())) {
             return;
         }
-
-        // If we are closing the editor, it's a good idea to scroll the list
-        // to the contact we have just finished editing.
-        boolean scrollToSelection = mEditorFragment != null;
-
-        // No editor here
-        closeEditorFragment(true);
 
         if (contactLookupUri != null) {
             // Already showing? Nothing to do
@@ -385,50 +364,12 @@ public class ContactBrowserActivity extends Activity
                     .replace(R.id.detail_container, mEmptyFragment)
                     .commit();
         }
-        if (scrollToSelection) {
-            mListFragment.requestSelectionOnScreen(true);
-        }
-    }
-
-    private void setupContactEditorFragment(Uri contactLookupUri) {
-        // No detail view here
-        closeDetailFragment();
-        closeEmptyFragment();
-
-        // Already showing? Nothing to do
-        if (mEditorFragment != null) return;
-
-        mEditorFragment = new ContactEditorFragment();
-        mEditorFragment.load(Intent.ACTION_EDIT, contactLookupUri,
-                Contacts.CONTENT_ITEM_TYPE, new Bundle());
-
-        // Nothing showing yet? Create (this happens during Activity-Startup)
-        getFragmentManager().openTransaction()
-                .replace(R.id.detail_container, mEditorFragment)
-                .commit();
     }
 
     private void closeDetailFragment() {
         if (mDetailFragment != null) {
             mDetailFragment.setListener(null);
             mDetailFragment = null;
-        }
-    }
-
-    /**
-     * Closes the editor, if it is currently open
-     * @param save Whether the changes should be saved. This should always be true, unless
-     * this is called from a Revert/Undo button
-     */
-    private void closeEditorFragment(boolean save) {
-        Log.d(TAG, "closeEditorFragment(" + save + ")");
-
-        if (mEditorFragment != null) {
-            // Remove the listener before saving, because it will be used to forward the onClose
-            // after save
-            mEditorFragment.setListener(null);
-            if (save) mEditorFragment.save(true);
-            mEditorFragment = null;
         }
     }
 
@@ -524,9 +465,9 @@ public class ContactBrowserActivity extends Activity
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri, boolean force) {
+        @Override
+        public void onViewContactAction(Uri contactLookupUri) {
             if (mContactContentDisplayed) {
-                if (force) closeEditorFragment(true);
                 setSelectedContactUri(contactLookupUri);
                 setupContactDetailFragment(contactLookupUri);
             } else {
@@ -534,6 +475,7 @@ public class ContactBrowserActivity extends Activity
             }
         }
 
+        @Override
         public void onCreateNewContactAction() {
             Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             Bundle extras = getIntent().getExtras();
@@ -543,45 +485,46 @@ public class ContactBrowserActivity extends Activity
             startActivity(intent);
         }
 
+        @Override
         public void onEditContactAction(Uri contactLookupUri) {
-            if (mContactContentDisplayed) {
-                closeEditorFragment(true);
-                setSelectedContactUri(contactLookupUri);
-                setupContactEditorFragment(contactLookupUri);
-            } else {
-                Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-                Bundle extras = getIntent().getExtras();
-                if (extras != null) {
-                    intent.putExtras(extras);
-                }
-                startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
+            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                intent.putExtras(extras);
             }
+            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
         }
 
+        @Override
         public void onAddToFavoritesAction(Uri contactUri) {
             ContentValues values = new ContentValues(1);
             values.put(Contacts.STARRED, 1);
             getContentResolver().update(contactUri, values, null, null);
         }
 
+        @Override
         public void onRemoveFromFavoritesAction(Uri contactUri) {
             ContentValues values = new ContentValues(1);
             values.put(Contacts.STARRED, 0);
             getContentResolver().update(contactUri, values, null, null);
         }
 
+        @Override
         public void onCallContactAction(Uri contactUri) {
             getPhoneNumberCallInteraction().startInteraction(contactUri);
         }
 
+        @Override
         public void onSmsContactAction(Uri contactUri) {
             getSendTextMessageInteraction().startInteraction(contactUri);
         }
 
+        @Override
         public void onDeleteContactAction(Uri contactUri) {
             getContactDeletionInteraction().deleteContact(contactUri);
         }
 
+        @Override
         public void onFinishAction() {
             onBackPressed();
         }
@@ -620,54 +563,6 @@ public class ContactBrowserActivity extends Activity
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
                     ContactBrowserActivity.this, values, account);
             startService(serviceIntent);
-        }
-    }
-
-    private class EditorFragmentListener implements ContactEditorFragment.Listener {
-        @Override
-        public void onReverted() {
-            final Uri uri = mEditorFragment.getLookupUri();
-            closeEditorFragment(false);
-            setupContactDetailFragment(uri);
-        }
-
-        @Override
-        public void onSaveFinished(int resultCode, Intent resultIntent) {
-            Log.d(TAG, "onSaveFinished(" + resultCode + "," + resultIntent + ")");
-            // it is already saved, so no need to save again here
-            final Uri uri = mEditorFragment.getLookupUri();
-            closeEditorFragment(false);
-            setupContactDetailFragment(uri);
-        }
-
-        @Override
-        public void onAggregationChangeFinished(Uri newLookupUri) {
-            // We have already saved. Close the editor so that we can open again with the
-            // new contact
-            Log.d(TAG, "onAggregationChangeFinished(" + newLookupUri + ")");
-            closeEditorFragment(false);
-            setSelectedContactUri(newLookupUri);
-            setupContactDetailFragment(newLookupUri);
-        }
-
-        @Override
-        public void onAccountSelectorAborted() {
-            Toast.makeText(ContactBrowserActivity.this, "closeBecauseAccountSelectorAborted",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void onContactNotFound() {
-            setupContactDetailFragment(null);
-        }
-
-        @Override
-        public void setTitleTo(int resourceId) {
-        }
-
-        @Override
-        public void onDeleteRequested(Uri contactLookupUri) {
-            getContactDeletionInteraction().deleteContact(contactLookupUri);
         }
     }
 
