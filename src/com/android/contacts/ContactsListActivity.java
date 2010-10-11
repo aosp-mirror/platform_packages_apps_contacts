@@ -2687,8 +2687,11 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 new String[] {Phone._ID, Phone.NUMBER, Phone.IS_SUPER_PRIMARY,
                         RawContacts.ACCOUNT_TYPE, Phone.TYPE, Phone.LABEL},
                 Data.MIMETYPE + "=?", new String[] {Phone.CONTENT_ITEM_TYPE}, null);
-        if (c != null && c.moveToFirst()) {
-            return c;
+        if (c != null) {
+            if (c.moveToFirst()) {
+                return c;
+            }
+            c.close();
         }
         return null;
     }
