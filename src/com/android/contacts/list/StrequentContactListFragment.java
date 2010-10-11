@@ -58,7 +58,7 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
     @Override
     protected void onItemClick(int position, long id) {
         ContactListAdapter adapter = getAdapter();
-        viewContact(adapter.getContactUri(position), false);
+        viewContact(adapter.getContactUri(position));
     }
 
     @Override
@@ -94,6 +94,7 @@ public class StrequentContactListFragment extends ContactBrowseListFragment
         setEmptyText(R.string.noFavoritesHelpText);
     }
 
+    @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {

@@ -49,13 +49,7 @@ import android.view.View;
  * purposes of selecting one.
  */
 public class ContactSelectionActivity extends Activity implements View.OnCreateContextMenuListener {
-
     private static final String TAG = "ContactSelectionActivity";
-
-    private static final int SUBACTIVITY_NEW_CONTACT = 1;
-    private static final int SUBACTIVITY_VIEW_CONTACT = 2;
-    private static final int SUBACTIVITY_DISPLAY_GROUP = 3;
-    private static final int SUBACTIVITY_SEARCH = 4;
 
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
@@ -113,10 +107,12 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
         mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
         mSearchEditText.setText(mRequest.getQueryString());
         mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+            @Override
             public void onFilterChange(String queryString) {
                 mListFragment.setQueryString(queryString);
             }
 
+            @Override
             public void onCancelSearch() {
                 finish();
             }
@@ -229,10 +225,12 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri, boolean force) {
+        @Override
+        public void onViewContactAction(Uri contactLookupUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onCreateNewContactAction() {
             Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             Bundle extras = getIntent().getExtras();
@@ -242,6 +240,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             startActivity(intent);
         }
 
+        @Override
         public void onEditContactAction(Uri contactLookupUri) {
             Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
             Bundle extras = getIntent().getExtras();
@@ -251,43 +250,52 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             startActivity(intent);
         }
 
+        @Override
         public void onAddToFavoritesAction(Uri contactUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onRemoveFromFavoritesAction(Uri contactUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onCallContactAction(Uri contactUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onSmsContactAction(Uri contactUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onDeleteContactAction(Uri contactUri) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void onFinishAction() {
             onBackPressed();
         }
     }
 
     private final class ContactPickerActionListener implements OnContactPickerActionListener {
+        @Override
         public void onCreateNewContactAction() {
             Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
             startActivityAndForwardResult(intent);
         }
 
+        @Override
         public void onPickContactAction(Uri contactUri) {
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(contactUri));
             finish();
         }
 
+        @Override
         public void onShortcutIntentCreated(Intent intent) {
             setResult(RESULT_OK, intent);
             finish();
@@ -296,12 +304,14 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
     private final class PhoneNumberPickerActionListener implements
             OnPhoneNumberPickerActionListener {
+        @Override
         public void onPickPhoneNumberAction(Uri dataUri) {
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(dataUri));
             finish();
         }
 
+        @Override
         public void onShortcutIntentCreated(Intent intent) {
             setResult(RESULT_OK, intent);
             finish();
@@ -310,6 +320,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
     private final class PostalAddressPickerActionListener implements
             OnPostalAddressPickerActionListener {
+        @Override
         public void onPickPostalAddressAction(Uri dataUri) {
             Intent intent = new Intent();
             setResult(RESULT_OK, intent.setData(dataUri));

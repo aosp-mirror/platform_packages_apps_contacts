@@ -203,8 +203,8 @@ public abstract class ContactBrowseListFragment extends
         mListener.onCreateNewContactAction();
     }
 
-    public void viewContact(Uri contactUri, boolean finishEditing) {
-        mListener.onViewContactAction(contactUri, finishEditing);
+    public void viewContact(Uri contactUri) {
+        mListener.onViewContactAction(contactUri);
     }
 
     public void editContact(Uri contactUri) {

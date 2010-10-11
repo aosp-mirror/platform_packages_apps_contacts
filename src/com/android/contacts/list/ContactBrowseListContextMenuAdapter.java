@@ -48,6 +48,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         this.mContactListFragment = fragment;
     }
 
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info;
         try {
@@ -89,6 +90,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         menu.add(0, MENU_ITEM_DELETE, 0, R.string.menu_deleteContact);
     }
 
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info;
         try {
@@ -105,7 +107,7 @@ public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
         final Uri contactUri = adapter.getContactUri(position);
         switch (item.getItemId()) {
             case MENU_ITEM_VIEW_CONTACT: {
-                mContactListFragment.viewContact(contactUri, true);
+                mContactListFragment.viewContact(contactUri);
                 return true;
             }
 

@@ -75,10 +75,12 @@ public class ContactSearchActivity extends Activity {
         mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
         mSearchEditText.setText(mRequest.getQueryString());
         mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
+            @Override
             public void onFilterChange(String queryString) {
                 mListFragment.setQueryString(queryString);
             }
 
+            @Override
             public void onCancelSearch() {
                 finish();
             }
@@ -106,13 +108,16 @@ public class ContactSearchActivity extends Activity {
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        public void onViewContactAction(Uri contactLookupUri, boolean force) {
+        @Override
+        public void onViewContactAction(Uri contactLookupUri) {
             startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
         }
 
+        @Override
         public void onCreateNewContactAction() {
         }
 
+        @Override
         public void onEditContactAction(Uri contactLookupUri) {
             Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
             Bundle extras = getIntent().getExtras();
@@ -122,30 +127,36 @@ public class ContactSearchActivity extends Activity {
             startActivity(intent);
         }
 
+        @Override
         public void onAddToFavoritesAction(Uri contactUri) {
             ContentValues values = new ContentValues(1);
             values.put(Contacts.STARRED, 1);
             getContentResolver().update(contactUri, values, null, null);
         }
 
+        @Override
         public void onRemoveFromFavoritesAction(Uri contactUri) {
             ContentValues values = new ContentValues(1);
             values.put(Contacts.STARRED, 0);
             getContentResolver().update(contactUri, values, null, null);
         }
 
+        @Override
         public void onCallContactAction(Uri contactUri) {
             getPhoneNumberCallInteraction().startInteraction(contactUri);
         }
 
+        @Override
         public void onSmsContactAction(Uri contactUri) {
             getSendTextMessageInteraction().startInteraction(contactUri);
         }
 
+        @Override
         public void onDeleteContactAction(Uri contactUri) {
             getContactDeletionInteraction().deleteContact(contactUri);
         }
 
+        @Override
         public void onFinishAction() {
             onBackPressed();
         }
