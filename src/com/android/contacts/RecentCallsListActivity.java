@@ -135,6 +135,8 @@ public class RecentCallsListActivity extends ListActivity
     private QueryHandler mQueryHandler;
     String mVoiceMailNumber;
 
+    private boolean mScrollToTop;
+
     static final class ContactInfo {
         public long personId;
         public String name;
@@ -817,6 +819,13 @@ public class RecentCallsListActivity extends ListActivity
                 final RecentCallsListActivity.RecentCallsAdapter callsAdapter = activity.mAdapter;
                 callsAdapter.setLoading(false);
                 callsAdapter.changeCursor(cursor);
+                if (activity.mScrollToTop) {
+                    if (activity.mList.getFirstVisiblePosition() > 5) {
+                        activity.mList.setSelection(5);
+                    }
+                    activity.mList.smoothScrollToPosition(0);
+                    activity.mScrollToTop = false;
+                }
             } else {
                 cursor.close();
             }
@@ -842,6 +851,12 @@ public class RecentCallsListActivity extends ListActivity
 
         // Reset locale-based formatting cache
         sFormattingType = FORMATTING_TYPE_INVALID;
+    }
+
+    @Override
+    protected void onStart() {
+        mScrollToTop = true;
+        super.onStart();
     }
 
     @Override
