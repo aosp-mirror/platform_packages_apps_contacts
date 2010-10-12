@@ -137,6 +137,8 @@ public class RecentCallsListActivity extends ListActivity
     String mVoiceMailNumber;
     private String mCurrentCountryIso;
 
+    private boolean mScrollToTop;
+
     static final class ContactInfo {
         public long personId;
         public String name;
@@ -807,6 +809,13 @@ public class RecentCallsListActivity extends ListActivity
                 final RecentCallsListActivity.RecentCallsAdapter callsAdapter = activity.mAdapter;
                 callsAdapter.setLoading(false);
                 callsAdapter.changeCursor(cursor);
+                if (activity.mScrollToTop) {
+                    if (activity.mList.getFirstVisiblePosition() > 5) {
+                        activity.mList.setSelection(5);
+                    }
+                    activity.mList.smoothScrollToPosition(0);
+                    activity.mScrollToTop = false;
+                }
             } else {
                 cursor.close();
             }
@@ -831,6 +840,12 @@ public class RecentCallsListActivity extends ListActivity
         mQueryHandler = new QueryHandler(this);
 
         mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(this);
+    }
+
+    @Override
+    protected void onStart() {
+        mScrollToTop = true;
+        super.onStart();
     }
 
     @Override
