@@ -254,7 +254,7 @@ public class ContactEditorView extends BaseContactEditorView {
                 if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
                     continue;
                 }
-                menu.add(Menu.NONE, i, Menu.NONE, sectionView.getTitle());
+                menu.add(Menu.NONE, fields.size(), Menu.NONE, sectionView.getTitle());
                 fields.add(sectionView);
             }
         }
