@@ -33,7 +33,7 @@ import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,10 +51,12 @@ import android.view.View;
 public class ContactSelectionActivity extends Activity implements View.OnCreateContextMenuListener {
     private static final String TAG = "ContactSelectionActivity";
 
+    private static final String KEY_ACTION_CODE = "actionCode";
+
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
-    private int mActionCode;
+    private int mActionCode = -1;
 
     private boolean mSearchInitiated;
 
@@ -66,8 +68,20 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
     }
 
     @Override
-    protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof ContactEntryListFragment<?>) {
+            mListFragment = (ContactEntryListFragment<?>) fragment;
+            setupActionListener();
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+
+        if (savedState != null) {
+            mActionCode = savedState.getInt(KEY_ACTION_CODE);
+        }
 
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
@@ -85,22 +99,20 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             return;
         }
 
-        setTitle(mRequest.getActivityTitle());
-
-        onCreateFragment();
-
-        int listFragmentContainerId;
+        configureActivityTitle();
         if (mRequest.isSearchMode()) {
             setContentView(R.layout.contacts_search_content);
-            listFragmentContainerId = R.id.list_container;
             setupSearchUI();
         } else {
-            listFragmentContainerId = android.R.id.content;
+            setContentView(R.layout.contact_picker);
         }
+        configureListFragment();
+    }
 
-        FragmentTransaction transaction = getFragmentManager().openTransaction();
-        transaction.add(listFragmentContainerId, mListFragment);
-        transaction.commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_ACTION_CODE, mActionCode);
     }
 
     private void setupSearchUI() {
@@ -127,15 +139,68 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
         }
     }
 
+    private void configureActivityTitle() {
+        if (mRequest.getActivityTitle() != null) {
+            setTitle(mRequest.getActivityTitle());
+            return;
+        }
+
+        int actionCode = mRequest.getActionCode();
+        switch (actionCode) {
+            case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_CONTACT: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
+                setTitle(R.string.shortcutActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_PHONE: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
+                setTitle(R.string.callShortcutActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
+                setTitle(R.string.messageShortcutActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_POSTAL: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+        }
+    }
+
     /**
      * Creates the fragment based on the current request.
      */
-    private void onCreateFragment() {
+    public void configureListFragment() {
+        if (mActionCode == mRequest.getActionCode()) {
+            return;
+        }
+
         mActionCode = mRequest.getActionCode();
         switch (mActionCode) {
             case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
-                fragment.setOnContactListActionListener(new ContactBrowserActionListener());
                 fragment.setEditMode(true);
                 fragment.setCreateContactEnabled(true);
                 fragment.setSearchMode(mRequest.isSearchMode());
@@ -147,8 +212,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 mListFragment = fragment;
                 break;
@@ -156,18 +219,14 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
             case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 mListFragment = fragment;
                 break;
             }
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setOnContactPickerActionListener(new ContactPickerActionListener());
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
@@ -178,18 +237,12 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
             case ContactsRequest.ACTION_PICK_PHONE: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 mListFragment = fragment;
                 break;
             }
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setShortcutAction(Intent.ACTION_CALL);
                 fragment.setSearchMode(mRequest.isSearchMode());
 
@@ -199,9 +252,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
-                fragment.setOnPhoneNumberPickerActionListener(
-                        new PhoneNumberPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 fragment.setShortcutAction(Intent.ACTION_SENDTO);
                 fragment.setSearchMode(mRequest.isSearchMode());
 
@@ -211,9 +261,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
             case ContactsRequest.ACTION_PICK_POSTAL: {
                 PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
-                fragment.setOnPostalAddressPickerActionListener(
-                        new PostalAddressPickerActionListener());
-                fragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
                 mListFragment = fragment;
                 break;
             }
@@ -221,7 +268,30 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             default:
                 throw new IllegalStateException("Invalid action code: " + mActionCode);
         }
+
+        mListFragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
         mListFragment.setContactsRequest(mRequest);
+        getFragmentManager().openTransaction()
+                .replace(R.id.list_container, mListFragment)
+                .commit();
+    }
+
+    public void setupActionListener() {
+        if (mListFragment instanceof DefaultContactBrowseListFragment) {
+            ((DefaultContactBrowseListFragment) mListFragment).setOnContactListActionListener(
+                    new ContactBrowserActionListener());
+        } else if (mListFragment instanceof ContactPickerFragment) {
+            ((ContactPickerFragment) mListFragment).setOnContactPickerActionListener(
+                    new ContactPickerActionListener());
+        } else if (mListFragment instanceof PhoneNumberPickerFragment) {
+            ((PhoneNumberPickerFragment) mListFragment).setOnPhoneNumberPickerActionListener(
+                    new PhoneNumberPickerActionListener());
+        } else if (mListFragment instanceof PostalAddressPickerFragment) {
+            ((PostalAddressPickerFragment) mListFragment).setOnPostalAddressPickerActionListener(
+                    new PostalAddressPickerActionListener());
+        } else {
+            throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
+        }
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {

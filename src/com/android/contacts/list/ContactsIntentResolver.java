@@ -101,13 +101,10 @@ public class ContactsIntentResolver {
             String component = intent.getComponent().getClassName();
             if (component.equals("alias.DialShortcut")) {
                 request.setActionCode(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL);
-                request.setActivityTitle(mContext.getString(R.string.callShortcutActivityTitle));
             } else if (component.equals("alias.MessageShortcut")) {
                 request.setActionCode(ContactsRequest.ACTION_CREATE_SHORTCUT_SMS);
-                request.setActivityTitle(mContext.getString(R.string.messageShortcutActivityTitle));
             } else {
                 request.setActionCode(ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT);
-                request.setActivityTitle(mContext.getString(R.string.shortcutActivityTitle));
             }
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             String type = intent.getType();

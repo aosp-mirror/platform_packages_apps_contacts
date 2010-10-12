@@ -41,6 +41,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setAizyEnabled(true);
+        setQuickContactEnabled(false);
     }
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
@@ -124,7 +125,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.contacts_list_content, null);
+        return inflater.inflate(R.layout.contact_picker_content, null);
     }
 
     @Override

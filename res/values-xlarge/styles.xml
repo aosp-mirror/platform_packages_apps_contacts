@@ -37,7 +37,7 @@
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@android:Theme.Dialog">
+    <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
         <item name="section_header_background">@drawable/section_header_holo</item>
         <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
@@ -65,6 +65,11 @@
     <style name="CustomContactListFilterView" parent="CustomContactListFilterTheme">
         <item name="android:layout_width">400dip</item>
         <item name="android:layout_height">600dip</item>
+    </style>
+
+    <style name="ContactPickerLayout" parent="ContactPickerTheme">
+        <item name="android:layout_width">480dip</item>
+        <item name="android:layout_height">650dip</item>
     </style>
 
     <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">

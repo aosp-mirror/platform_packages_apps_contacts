@@ -179,6 +179,11 @@
     <style name="CustomContactListFilterTheme" parent="@android:Theme">
     </style>
 
+    <style name="ContactPickerLayout" parent="ContactPickerTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    
     <style name="CustomContactListFilterView" parent="CustomContactListFilterTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
