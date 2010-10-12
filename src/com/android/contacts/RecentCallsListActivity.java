@@ -676,8 +676,33 @@ public class RecentCallsListActivity extends ListActivity
                 if (!TextUtils.isEmpty(numberLabel)) {
                     views.labelView.setText(numberLabel);
                     views.labelView.setVisibility(View.VISIBLE);
+
+                    // Zero out the numberView's left margin (see below)
+                    ViewGroup.MarginLayoutParams numberLP =
+                            (ViewGroup.MarginLayoutParams) views.numberView.getLayoutParams();
+                    numberLP.leftMargin = 0;
+                    views.numberView.setLayoutParams(numberLP);
                 } else {
-                    views.labelView.setVisibility(View.GONE);
+                    // There's nothing to display in views.labelView, so hide it.
+                    // We can't set it to View.GONE, since it's the anchor for
+                    // numberView in the RelativeLayout, so make it INVISIBLE.
+                    //   Also, we need to manually *subtract* some left margin from
+                    // numberView to compensate for the right margin built in to
+                    // labelView (otherwise the number will be indented by a very
+                    // slight amount).
+                    //   TODO: a cleaner fix would be to contain both the label and
+                    // number inside a LinearLayout, and then set labelView *and*
+                    // its padding to GONE when there's no label to display.
+                    views.labelView.setText(null);
+                    views.labelView.setVisibility(View.INVISIBLE);
+
+                    ViewGroup.MarginLayoutParams labelLP =
+                            (ViewGroup.MarginLayoutParams) views.labelView.getLayoutParams();
+                    ViewGroup.MarginLayoutParams numberLP =
+                            (ViewGroup.MarginLayoutParams) views.numberView.getLayoutParams();
+                    // Equivalent to setting android:layout_marginLeft in XML
+                    numberLP.leftMargin = -labelLP.rightMargin;
+                    views.numberView.setLayoutParams(numberLP);
                 }
             } else {
                 if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
