@@ -14,20 +14,12 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/temp_aizy_bottom"
-    >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/caption"
-        android:width="75dip"
-        android:textSize="70sp"
-        android:paddingLeft="20dip"
-        android:gravity="center" />
-
-</LinearLayout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/aizy_preview_width"
+    android:layout_height="@dimen/aizy_preview_height"
+    android:background="@drawable/aizy_label"
+    android:paddingTop="0dip"
+    android:id="@+id/caption"
+    android:textSize="55sp"
+    android:gravity="center"
+    android:textColor="#ffffffff" />

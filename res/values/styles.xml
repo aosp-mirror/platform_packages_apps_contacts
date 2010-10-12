@@ -96,6 +96,11 @@
         <item name="android:windowExitAnimation">@anim/search_bar_exit</item>
     </style>
 
+    <style name="AizyPreviewPopupAnimation"> 
+        <item name="android:windowEnterAnimation">@anim/aizy_preview_popup_enter</item> 
+        <item name="android:windowExitAnimation">@anim/aizy_preview_popup_exit</item> 
+    </style> 
+
     <style name="DummyAnimation">
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>

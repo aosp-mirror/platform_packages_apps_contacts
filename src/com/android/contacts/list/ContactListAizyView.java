@@ -47,6 +47,8 @@ public class ContactListAizyView extends View {
 
     private Listener mListener;
     private float mPosition;
+
+    private int mPreviewPosition;
     private PopupWindow mPreviewPopupWindow;
     private TextView mPreviewPopupTextView;
     private boolean mPreviewPopupVisible;
@@ -77,6 +79,7 @@ public class ContactListAizyView extends View {
         mPreviewPopupWindow = new PopupWindow(
                 inflater.inflate(R.layout.aizy_popup_window, null, false),
                 mResourceValues.getPreviewWidth(), mResourceValues.getPreviewHeight());
+        mPreviewPopupWindow.setAnimationStyle(R.style.AizyPreviewPopupAnimation);
         mPreviewPopupTextView =
                 (TextView) mPreviewPopupWindow.getContentView().findViewById(R.id.caption);
     }
@@ -124,7 +127,9 @@ public class ContactListAizyView extends View {
         final int previewX = mWindowOffset[0] + getWidth();
         final int previewY = (int) event.getY() + mWindowOffset[1]
                 - mPreviewPopupWindow.getHeight() / 2;
-        final boolean previewPopupVisible = event.getActionMasked() == MotionEvent.ACTION_MOVE;
+        final boolean previewPopupVisible =
+            event.getActionMasked() == MotionEvent.ACTION_MOVE ||
+            event.getActionMasked() == MotionEvent.ACTION_DOWN;
         if (previewPopupVisible != mPreviewPopupVisible) {
             if (previewPopupVisible) {
                 mPreviewPopupWindow.showAtLocation(this, Gravity.LEFT | Gravity.TOP,
@@ -147,6 +152,7 @@ public class ContactListAizyView extends View {
         }
 
         if (mListener != null) mListener.onScroll(position);
+        mPreviewPosition = position;
 
         super.onTouchEvent(event);
         return true;
@@ -175,7 +181,12 @@ public class ContactListAizyView extends View {
         final Drawable knob = mResourceValues.getKnobDrawable();
         final int w = knob.getIntrinsicWidth();
         final int h = knob.getIntrinsicWidth();
-        final float y = mPosition * yFactor;
+        final float y;
+//        if (mPreviewPopupWindow.) {
+//            y = mPreviewPosition * yFactor;
+//        } else {
+            y = mPosition * yFactor;
+//        }
         knob.setBounds(
                 (int) (centerX - w / 2.0f), (int) (y - h / 2.0f),
                 (int) (centerX + w / 2.0f), (int) (y + h / 2.0f));

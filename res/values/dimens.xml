@@ -32,8 +32,8 @@
 
     <!-- Size of the text in the aizy visual scroll control -->
     <dimen name="aizy_text_size">13dip</dimen>
-    <dimen name="aizy_preview_width">130dip</dimen>
-    <dimen name="aizy_preview_height">115dip</dimen>
+    <dimen name="aizy_preview_width">80dip</dimen>
+    <dimen name="aizy_preview_height">80dip</dimen>
     
     <!-- Padding of the rounded plus/minus buttons in the editor (the minus button is created
     in code) -->
