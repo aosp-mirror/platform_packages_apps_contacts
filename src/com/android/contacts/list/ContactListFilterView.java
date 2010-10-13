@@ -34,6 +34,7 @@ public class ContactListFilterView extends LinearLayout {
     private TextView mLabel;
     private TextView mIndentedLabel;
     private ContactListFilter mFilter;
+    private boolean mGroupsIndented;
 
     public ContactListFilterView(Context context) {
         super(context);
@@ -49,6 +50,10 @@ public class ContactListFilterView extends LinearLayout {
 
     public ContactListFilter getContactListFilter() {
         return mFilter;
+    }
+
+    public void setGroupsIndented(boolean flag) {
+        this.mGroupsIndented = flag;
     }
 
     public void bindView(boolean dropdown) {
@@ -102,15 +107,18 @@ public class ContactListFilterView extends LinearLayout {
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
                 if (mIcon != null) {
-                    mIcon.setVisibility(View.GONE);
+                    mIcon.setVisibility(View.INVISIBLE);
                 }
-                if (dropdown) {
+                if (dropdown && mGroupsIndented) {
                     mLabel.setVisibility(View.GONE);
                     mIndentedLabel.setText(mFilter.title);
                     mIndentedLabel.setVisibility(View.VISIBLE);
                 } else {
                     mLabel.setText(mFilter.title);
                     mLabel.setVisibility(View.VISIBLE);
+                    if (dropdown) {
+                        mIndentedLabel.setVisibility(View.GONE);
+                    }
                 }
                 break;
             }
@@ -123,7 +131,7 @@ public class ContactListFilterView extends LinearLayout {
                 mIcon.setVisibility(View.VISIBLE);
                 mIcon.setImageResource(iconResource);
             } else {
-                mIcon.setVisibility(View.GONE);
+                mIcon.setVisibility(View.INVISIBLE);
             }
         }
 

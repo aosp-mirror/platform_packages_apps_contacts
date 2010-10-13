@@ -84,6 +84,8 @@ public class ContactListFilterController
         }
     };
 
+    private int mAccountCount;
+
     public ContactListFilterController(Activity activity) {
         mContext = activity;
         mLoaderManager = activity.getLoaderManager();
@@ -147,15 +149,15 @@ public class ContactListFilterController
 
         boolean filterValid = mFilter != null && !mFilter.isValidationRequired();
 
-        int accountCount = 0;
+        mAccountCount = 0;
         int count = filters.size();
         for (int index = 0; index < count; index++) {
             if (filters.get(index).filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
-                accountCount++;
+                mAccountCount++;
             }
         }
 
-        if (accountCount > 1) {
+        if (mAccountCount > 1) {
             mFilters.append(mNextFilterId++,
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
             mFilters.append(mNextFilterId++,
@@ -167,7 +169,7 @@ public class ContactListFilterController
         for (int index = 0; index < count; index++) {
             ContactListFilter filter = filters.get(index);
 
-            boolean firstAndOnly = accountCount == 1
+            boolean firstAndOnly = mAccountCount == 1
                     && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT;
 
             // If we only have one account, don't show it as "account", instead show it as "all"
@@ -341,6 +343,7 @@ public class ContactListFilterController
                 view = (ContactListFilterView) mLayoutInflater.inflate(
                         R.layout.filter_spinner_item, parent, false);
             }
+            view.setGroupsIndented(mAccountCount > 1);
             view.setContactListFilter(mFilters.valueAt(position));
             view.bindView(true);
             return view;
