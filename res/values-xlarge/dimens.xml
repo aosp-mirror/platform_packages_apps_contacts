@@ -19,4 +19,6 @@
     <dimen name="aizy_text_size">12sp</dimen>
 
     <dimen name="edit_photo_size">96dip</dimen>
+
+    <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
 </resources>

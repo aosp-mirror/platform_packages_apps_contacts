@@ -138,14 +138,20 @@ public class ActionBarAdapter
             mSearchLabel.setVisibility(View.VISIBLE);
             mFilterView.setVisibility(View.GONE);
             mFilterIndicator.setVisibility(View.INVISIBLE);
+            if (mFilterController != null) {
+                mFilterController.setEnabled(false);
+            }
         } else {
             mSearchLabel.setVisibility(View.GONE);
             mFilterView.setVisibility(View.VISIBLE);
             boolean showIndicator = false;
-            if (mFilterController != null && mFilterController.isLoaded()) {
-                mFilterView.setContactListFilter(mFilterController.getFilter());
-                mFilterView.bindView(false);
-                showIndicator = mFilterController.getFilterList().size() > 1;
+            if (mFilterController != null){
+                mFilterController.setEnabled(true);
+                if (mFilterController.isLoaded()) {
+                    mFilterView.setContactListFilter(mFilterController.getFilter());
+                    mFilterView.bindView(false);
+                    showIndicator = mFilterController.getFilterList().size() > 1;
+                }
             }
             mFilterIndicator.setVisibility(showIndicator ? View.VISIBLE : View.INVISIBLE);
         }
