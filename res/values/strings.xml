@@ -238,7 +238,7 @@
     <string name="imLabelsGroup">IM</string>
 
     <!-- Header that expands to list all of the types of postal addresses when editing or creating an postal address for a contact -->
-    <string name="postalLabelsGroup">Postal address</string>
+    <string name="postalLabelsGroup">Address</string>
 
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
     <skip/>
