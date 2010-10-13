@@ -95,8 +95,8 @@
                 <TextView android:id="@+id/status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#99999999"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#66666666"
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:visibility="gone"
@@ -106,8 +106,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:textSize="14sp"
-                    android:textColor="#99999999"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#66666666"
                     android:visibility="gone"
                 />
             </LinearLayout>

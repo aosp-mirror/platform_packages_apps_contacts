@@ -28,7 +28,7 @@
     <TextView android:id="@+id/kind"
         android:layout_width="120dip"
         android:layout_height="wrap_content"
-        android:textColor="#999999"
+        android:textColor="#7F7F7F"
         android:textAppearance="?android:attr/textAppearanceSmall"
     />
 
