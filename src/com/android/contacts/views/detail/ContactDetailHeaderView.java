@@ -17,32 +17,22 @@
 package com.android.contacts.views.detail;
 
 import com.android.contacts.R;
+import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.views.ContactLoader;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.StatusUpdates;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,7 +43,6 @@ import android.widget.TextView;
  * {@link ContactDetailHeaderView#loadData(com.android.contacts.views.ContactLoader.Result)}
  */
 public class ContactDetailHeaderView extends FrameLayout implements View.OnClickListener {
-
     private static final String TAG = "ContactDetailHeaderView";
 
     private TextView mDisplayNameView;
@@ -117,40 +106,13 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mContactUri = contactData.getLookupUri();
 
         setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
-        setPhoto(findPhoto(contactData));
+        setPhoto(ContactBadgeUtil.getPhoto(contactData));
         setStared(contactData.getStarred());
         setPresence(contactData.getPresence());
-        setStatus(
-                contactData.getStatus(), contactData.getStatusTimestamp(),
-                contactData.getStatusLabel(), contactData.getStatusResPackage());
+        setSocialSnippet(contactData.getSocialSnippet());
+        setSocialDate(ContactBadgeUtil.getSocialDate(contactData, getContext()));
         setDirectoryName(contactData.isDirectoryEntry(), contactData.getDirectoryDisplayName(),
                 contactData.getDirectoryType(), contactData.getDirectoryAccountName());
-    }
-
-    /**
-     * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
-     * not found, returns null
-     */
-    private Bitmap findPhoto(ContactLoader.Result contactData) {
-        final long photoId = contactData.getPhotoId();
-
-        for (Entity entity : contactData.getEntities()) {
-            for (NamedContentValues subValue : entity.getSubValues()) {
-                final ContentValues entryValues = subValue.values;
-                final long dataId = entryValues.getAsLong(Data._ID);
-                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-
-                if (dataId == photoId) {
-                    // Correct Data Id but incorrect MimeType? Don't load
-                    if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) return null;
-                    final byte[] binaryData = entryValues.getAsByteArray(Photo.PHOTO);
-                    if (binaryData == null) return null;
-                    return BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length);
-                }
-            }
-        }
-
-        return null;
     }
 
     /**
@@ -197,7 +159,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
      * image is shown
      */
     private void setPhoto(Bitmap bitmap) {
-        mPhotoView.setImageBitmap(bitmap == null ? loadPlaceholderPhoto() : bitmap);
+        mPhotoView.setImageBitmap(
+                bitmap == null ? ContactBadgeUtil.loadPlaceholderPhoto(mContext) : bitmap);
     }
 
     /**
@@ -216,8 +179,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     /**
      * Set the social snippet text to display in the header.
      */
-    private void setStatus(CharSequence snippet, CharSequence snippetDate) {
-        if (snippet == null) {
+    private void setSocialSnippet(CharSequence snippet) {
+        if (TextUtils.isEmpty(snippet)) {
             // No status info. Hide everything
             if (mStatusContainerView != null) mStatusContainerView.setVisibility(View.GONE);
             mStatusView.setVisibility(View.GONE);
@@ -227,93 +190,20 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
             if (mStatusContainerView != null) mStatusContainerView.setVisibility(View.VISIBLE);
             mStatusView.setVisibility(View.VISIBLE);
             mStatusView.setText(snippet);
-
-            // Also show date info?
-            if (snippetDate == null) {
-                mStatusDateView.setVisibility(View.GONE);
-            } else {
-                mStatusDateView.setVisibility(View.VISIBLE);
-                mStatusDateView.setText(snippetDate);
-            }
         }
     }
 
     /**
-     * Set all the status values to display in the header.
-     * @param status             The status of the contact. If this is either null or empty,
-     *                           the status is cleared and the other parameters are ignored.
-     * @param statusTimestamp    The timestamp (retrieved via a call to
-     *                           {@link System#currentTimeMillis()}) of the last status update.
-     *                           This value can be null if it is not known.
-     * @param statusLabel        The id of a resource string that specifies the current
-     *                           status. This value can be null if no Label should be used.
-     * @param statusResPackage   The name of the resource package containing the resource string
-     *                           referenced in the parameter statusLabel.
+     * Set the status attribution text to display in the header.
      */
-    private void setStatus(final String status, final Long statusTimestamp,
-            final Integer statusLabel, final String statusResPackage) {
-        if (TextUtils.isEmpty(status)) {
-            setStatus(null, null);
-            return;
-        }
 
-        final CharSequence timestampDisplayValue;
-
-        if (statusTimestamp != null) {
-            // Set the date/time field by mixing relative and absolute
-            // times.
-            int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
-
-            timestampDisplayValue = DateUtils.getRelativeTimeSpanString(
-                    statusTimestamp.longValue(), System.currentTimeMillis(),
-                    DateUtils.MINUTE_IN_MILLIS, flags);
+    private void setSocialDate(CharSequence dateText) {
+        if (TextUtils.isEmpty(dateText)) {
+            mStatusDateView.setVisibility(View.GONE);
         } else {
-            timestampDisplayValue = null;
+            mStatusDateView.setText(dateText);
+            mStatusDateView.setVisibility(View.VISIBLE);
         }
-
-
-        String labelDisplayValue = null;
-
-        if (statusLabel != null) {
-            Resources resources;
-            if (TextUtils.isEmpty(statusResPackage)) {
-                resources = getResources();
-            } else {
-                PackageManager pm = getContext().getPackageManager();
-                try {
-                    resources = pm.getResourcesForApplication(statusResPackage);
-                } catch (NameNotFoundException e) {
-                    Log.w(TAG, "Contact status update resource package not found: "
-                            + statusResPackage);
-                    resources = null;
-                }
-            }
-
-            if (resources != null) {
-                try {
-                    labelDisplayValue = resources.getString(statusLabel.intValue());
-                } catch (NotFoundException e) {
-                    Log.w(TAG, "Contact status update resource not found: " + statusResPackage + "@"
-                            + statusLabel.intValue());
-                }
-            }
-        }
-
-        final CharSequence snippetDate;
-        if (timestampDisplayValue != null && labelDisplayValue != null) {
-            snippetDate = getContext().getString(
-                    R.string.contact_status_update_attribution_with_date,
-                    timestampDisplayValue, labelDisplayValue);
-        } else if (timestampDisplayValue == null && labelDisplayValue != null) {
-            snippetDate = getContext().getString(
-                    R.string.contact_status_update_attribution,
-                    labelDisplayValue);
-        } else if (timestampDisplayValue != null) {
-            snippetDate = timestampDisplayValue;
-        } else {
-            snippetDate = null;
-        }
-        setStatus(status, snippetDate);
     }
 
     private void setDirectoryName(boolean isDirectoryEntry, String directoryDisplayName,
@@ -337,6 +227,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         }
     }
 
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.star: {
@@ -359,24 +250,5 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 break;
             }
         }
-    }
-
-    private Bitmap loadPlaceholderPhoto() {
-        // Set the photo with a random "no contact" image
-        final long now = SystemClock.elapsedRealtime();
-        final int num = (int) now & 0xf;
-        final int resourceId;
-        if (num < 9) {
-            // Leaning in from right, common
-            resourceId = R.drawable.ic_contact_picture;
-        } else if (num < 14) {
-            // Leaning in from left uncommon
-            resourceId = R.drawable.ic_contact_picture_2;
-        } else {
-            // Coming in from the top, rare
-            resourceId = R.drawable.ic_contact_picture_3;
-        }
-
-        return BitmapFactory.decodeResource(mContext.getResources(), resourceId);
     }
 }

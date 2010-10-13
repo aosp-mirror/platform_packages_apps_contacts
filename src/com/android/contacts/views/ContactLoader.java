@@ -203,7 +203,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public Integer getPresence() {
             return mPresence;
         }
-        public String getStatus() {
+        public String getSocialSnippet() {
             return mStatus;
         }
         public Long getStatusTimestamp() {

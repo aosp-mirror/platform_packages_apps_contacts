@@ -53,6 +53,9 @@
         <item name="list_item_photo_size">64dip</item>
     </style>
     
+    <style name="ContactSocialWidgetConfigureTheme" parent="ContactPickerTheme">
+    </style>
+
     <style name="ContactsSearchTheme" parent="ContactPickerTheme">
     </style>
 

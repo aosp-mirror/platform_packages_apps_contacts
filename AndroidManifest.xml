@@ -537,5 +537,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- The widget that shows details and the social stream of a contact -->
+        <receiver android:name=".contactSocialWidget.ContactSocialWidgetProvider"
+            android:label="Contact Social Stream" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                    android:resource="@xml/contact_social_widget_info" />
+        </receiver>
+
+        <activity
+            android:name=".contactSocialWidget.ContactSocialWidgetConfigureActivity"
+            android:theme="@style/ContactSocialWidgetConfigureTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.APPWIDGET_PICK" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
