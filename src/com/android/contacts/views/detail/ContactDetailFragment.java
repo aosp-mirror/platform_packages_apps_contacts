@@ -616,7 +616,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             entry.mimetype = mimeType;
             entry.kindAndType = buildActionString(kind, values, context);
-            entry.kind = kind.titleRes == -1 ? "" : context.getString(kind.titleRes);
+            entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
+                    : context.getString(kind.titleRes);
             entry.data = buildDataString(kind, values, context);
 
             if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
