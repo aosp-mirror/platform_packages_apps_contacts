@@ -49,6 +49,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center_vertical"
         android:ellipsize="end"
-        android:paddingLeft="80dip" />
+        android:paddingLeft="40dip" />
 </view>
 
