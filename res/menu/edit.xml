@@ -18,24 +18,24 @@
     <item
         android:id="@+id/menu_done"
         android:alphabeticShortcut="\n"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_menu_done"
         android:title="@string/menu_done"
         android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_discard"
         android:alphabeticShortcut="q"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:icon="@drawable/ic_menu_cancel"
         android:title="@string/menu_doNotSave" />
 
     <item
         android:id="@+id/menu_add_raw_contact"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_add_contact"
         android:title="@string/menu_newContact" />
 
     <item
         android:id="@+id/menu_delete"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_menu_trash"
         android:title="@string/menu_deleteContact" />
 
     <item

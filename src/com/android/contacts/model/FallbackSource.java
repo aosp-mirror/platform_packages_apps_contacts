@@ -238,7 +238,7 @@ public class FallbackSource extends ContactsSource {
         DataKind kind = getKindForMimetype(Email.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE,
-                    R.string.emailLabelsGroup, android.R.drawable.sym_action_email, 15, true));
+                    R.string.emailLabelsGroup, R.drawable.sym_action_email, 15, true));
             kind.actionHeader = new EmailActionInflater();
             kind.actionBody = new SimpleInflater(Email.DATA);
         }
@@ -328,7 +328,7 @@ public class FallbackSource extends ContactsSource {
         DataKind kind = getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
-                    R.string.organizationLabelsGroup, R.drawable.sym_action_organization, 30, true));
+                    R.string.organizationLabelsGroup, -1, 30, true));
             kind.actionHeader = new SimpleInflater(Organization.COMPANY);
             kind.actionBody = new SimpleInflater(Organization.TITLE);
         }
@@ -369,7 +369,7 @@ public class FallbackSource extends ContactsSource {
         DataKind kind = getKindForMimetype(Note.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
-                    R.string.label_notes, R.drawable.sym_note, 110, true));
+                    R.string.label_notes, -1, 110, true));
             kind.isList = false;
             kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.label_notes);
