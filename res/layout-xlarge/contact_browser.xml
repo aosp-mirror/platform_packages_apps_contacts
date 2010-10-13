@@ -19,7 +19,8 @@
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:id="@+id/two_pane_activity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:splitMotionEvents="true">
 
     <FrameLayout
         android:id="@+id/list_container"
