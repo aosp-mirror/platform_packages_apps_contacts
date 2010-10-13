@@ -64,6 +64,7 @@ public class ContactListFilterController
 
     private Context mContext;
     private LoaderManager mLoaderManager;
+    private boolean mEnabled = true;
     private List<ContactListFilterListener> mListeners = new ArrayList<ContactListFilterListener>();
     private ListPopupWindow mPopup;
     private int mPopupWidth = -1;
@@ -89,6 +90,10 @@ public class ContactListFilterController
     public ContactListFilterController(Activity activity) {
         mContext = activity;
         mLoaderManager = activity.getLoaderManager();
+    }
+
+    public void setEnabled(boolean flag) {
+        mEnabled = flag;
     }
 
     public void addListener(ContactListFilterListener listener) {
@@ -252,7 +257,7 @@ public class ContactListFilterController
 
     @Override
     public void onClick(View v) {
-        if (!mFiltersLoaded) {
+        if (!mFiltersLoaded || !mEnabled) {
             return;
         }
 

@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/suggestion_bg">
+    android:background="@drawable/aggregation_suggestions_bg">
     <TextView
         android:id="@+id/aggregation_suggestion_title"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
     />
