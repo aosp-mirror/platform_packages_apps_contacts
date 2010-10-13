@@ -16,18 +16,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_add"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_add_contact"
         android:title="@string/menu_newContact"
         android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_settings"
-        android:icon="@*android:drawable/ic_menu_preferences"
+        android:icon="@drawable/ic_menu_settings"
         android:title="@string/menu_settings" />
 
     <item
         android:id="@+id/menu_accounts"
-        android:icon="@drawable/ic_menu_account_list"
+        android:icon="@drawable/ic_menu_accounts"
         android:title="@string/menu_accounts" />
 
     <item
