@@ -21,45 +21,57 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <FrameLayout
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/filter_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingRight="10dip"
-        android:minWidth="240dip"
-        android:background="@drawable/filter_selector_background">
-        <TextView
-            android:id="@+id/search_label"
+        android:orientation="horizontal"
+        android:layout_marginLeft="8dip">
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/search_label"
-            android:gravity="center_vertical" />
-
-        <view
-            class="com.android.contacts.list.ContactListFilterView"
-            android:id="@+id/filter_view"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical">
-
+            android:minWidth="220dip"
+            android:background="@drawable/filter_selector_background">
             <TextView
-                android:id="@+id/label"
+                android:id="@+id/search_label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:ellipsize="end" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/search_label" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:layout_gravity="bottom"
-                android:src="@drawable/filter_selector_corner" />
-        </view>
+            <view
+                class="com.android.contacts.list.ContactListFilterView"
+                android:id="@+id/filter_view"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content">
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:ellipsize="end" />
+            </view>
+        </FrameLayout>
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/filter_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_marginBottom="13dip"
+            android:layout_gravity="bottom"
+            android:src="@drawable/filter_selector_corner" />
+    </LinearLayout>
 
+    <View
+        android:layout_width="3dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dip"
+        android:layout_marginRight="7dip"
+        android:background="@drawable/cab_divider_holo_light" />
     <view
         class="android.widget.SearchView"
         android:id="@+id/search_view"

@@ -57,7 +57,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
     public void setContactListFilterController(ContactListFilterController filterController) {
         mFilterController = filterController;
-        mFilterController.setListener(this);
+        mFilterController.addListener(this);
+    }
+
+    @Override
+    public void onDetach() {
+        if (mFilterController != null) {
+            mFilterController.removeListener(this);
+        }
+        super.onDetach();
     }
 
     @Override

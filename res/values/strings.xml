@@ -1321,7 +1321,7 @@
     <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
 
     <!-- The label displayed in the Contacts action bar when in search mode [CHAR LIMIT=64] -->
-    <string name="search_label">Searching all contact</string>
+    <string name="search_label">Searching all contacts</string>
 
     <!-- The label in section header in the contact list for a contact directory [CHAR LIMIT=128] -->
     <string name="directory_search_label">Directory</string>

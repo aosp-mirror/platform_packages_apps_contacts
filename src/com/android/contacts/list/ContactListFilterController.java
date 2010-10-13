@@ -64,13 +64,13 @@ public class ContactListFilterController
 
     private Context mContext;
     private LoaderManager mLoaderManager;
-    private ContactListFilterListener mListener;
+    private List<ContactListFilterListener> mListeners = new ArrayList<ContactListFilterListener>();
     private ListPopupWindow mPopup;
     private int mPopupWidth = -1;
     private SparseArray<ContactListFilter> mFilters;
     private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
-    private ContactListFilterView mFilterView;
+    private View mAnchor;
     private FilterListAdapter mFilterListAdapter;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
@@ -89,13 +89,17 @@ public class ContactListFilterController
         mLoaderManager = activity.getLoaderManager();
     }
 
-    public void setListener(ContactListFilterListener listener) {
-        mListener = listener;
+    public void addListener(ContactListFilterListener listener) {
+        mListeners.add(listener);
     }
 
-    public void setFilterSpinner(ContactListFilterView filterSpinner) {
-        mFilterView = filterSpinner;
-        mFilterView.setOnClickListener(this);
+    public void removeListener(ContactListFilterListener listener) {
+        mListeners.remove(listener);
+    }
+
+    public void setAnchor(View anchor) {
+        mAnchor = anchor;
+        mAnchor.setOnClickListener(this);
     }
 
     public ContactListFilter getFilter() {
@@ -202,13 +206,11 @@ public class ContactListFilterController
 
         if (filterChanged) {
             mFiltersLoaded = true;
-            mListener.onContactListFilterChanged();
+            notifyContactListFilterChanged();
         } else if (!mFiltersLoaded) {
             mFiltersLoaded = true;
-            mListener.onContactListFiltersLoaded();
+            notifyContacListFiltersLoaded();
         }
-
-        updateFilterView();
     }
 
     public void postDelayedRefresh() {
@@ -240,9 +242,8 @@ public class ContactListFilterController
         if (!filter.equals(mFilter)) {
             mFilter = filter;
             ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
-            updateFilterView();
-            if (mListener != null) {
-                mListener.onContactListFilterChanged();
+            if (mListeners != null) {
+               notifyContactListFilterChanged();
             }
         }
     }
@@ -260,14 +261,14 @@ public class ContactListFilterController
             a.recycle();
 
             if (mPopupWidth == -1) {
-                mPopupWidth = mFilterView.getWidth();
+                mPopupWidth = mAnchor.getWidth();
             }
         }
 
         mPopup = new ListPopupWindow(mContext, null);
         mPopup.setWidth(mPopupWidth);
         mPopup.setAdapter(mFilterListAdapter);
-        mPopup.setAnchorView(mFilterView);
+        mPopup.setAnchorView(mAnchor);
         mPopup.setOnItemClickListener(this);
         mPopup.setModal(true);
         mPopup.show();
@@ -277,7 +278,7 @@ public class ContactListFilterController
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         mPopup.dismiss();
         if (mFilters.get((int) id).filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-            mListener.onContactListFilterCustomizationRequest();
+            notifyContactListFilterCustomizationRequest();
         } else {
             setContactListFilter((int) id);
         }
@@ -285,18 +286,28 @@ public class ContactListFilterController
 
     public void selectCustomFilter() {
         mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM);
-        updateFilterView();
-        mListener.onContactListFilterChanged();
+        notifyContactListFilterChanged();
     }
 
     private ContactListFilter getDefaultFilter() {
         return mFilters.size() > 0 ? mFilters.valueAt(0) : null;
     }
 
-    protected void updateFilterView() {
-        if (mFiltersLoaded) {
-            mFilterView.setContactListFilter(mFilter);
-            mFilterView.bindView(false);
+    private void notifyContacListFiltersLoaded() {
+        for (ContactListFilterListener listener : mListeners) {
+            listener.onContactListFiltersLoaded();
+        }
+    }
+
+    private void notifyContactListFilterChanged() {
+        for (ContactListFilterListener listener : mListeners) {
+            listener.onContactListFilterChanged();
+        }
+    }
+
+    private void notifyContactListFilterCustomizationRequest() {
+        for (ContactListFilterListener listener : mListeners) {
+            listener.onContactListFilterCustomizationRequest();
         }
     }
 
