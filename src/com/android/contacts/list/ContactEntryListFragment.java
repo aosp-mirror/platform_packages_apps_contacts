@@ -635,6 +635,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setPhotoLoader(mPhotoLoader);
         mListView.setAdapter(mAdapter);
 
+        if (!isSearchMode()) {
+            mListView.setFocusableInTouchMode(true);
+            mListView.requestFocus();
+        }
+
         return mView;
     }
 
