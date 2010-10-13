@@ -100,7 +100,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     @Override
     protected ContactEntryListAdapter createListAdapter() {
         if (!isLegacyCompatibilityMode()) {
-            ContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
+            DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
+            adapter.setFilter(
+                    new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), null);
             adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);
             adapter.setQuickContactEnabled(false);
