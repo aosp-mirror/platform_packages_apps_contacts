@@ -166,14 +166,24 @@ public class ContactListAizyView extends View {
         paint.setColor(mResourceValues.getLineColor());
         paint.setAntiAlias(true);
 
+        // TODO: Decide whether to use this feature and remove this flag
+        final boolean useSections = false;
+
         // Draw sections
         final float centerX = getWidth() * 0.5f;
-        for (int i = 1; i < mSectionPositions.length; i++) {
-            final float y1 = mSectionPositions[i - 1] * yFactor;
-            final float y2 = mSectionPositions[i] * yFactor;
+        if (useSections) {
+            for (int i = 1; i < mSectionPositions.length; i++) {
+                final float y1 = mSectionPositions[i - 1] * yFactor;
+                final float y2 = mSectionPositions[i] * yFactor;
+                canvas.drawLine(
+                        centerX, y1 + 1.0f,
+                        centerX, y2 - 1.0f,
+                        paint);
+            }
+        } else {
             canvas.drawLine(
-                    centerX, y1 + 1.0f,
-                    centerX, y2 - 1.0f,
+                    centerX, 0.0f,
+                    centerX, getHeight(),
                     paint);
         }
 
