@@ -204,30 +204,30 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"fotografie kontaktu"</string>
     <string name="description_minus_button" msgid="387136707700230172">"mínus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"Žádná karta SD"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"Sdíl. úložiště nedostupné"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Žádná karta SD"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"Nebyla zjištěna žádná karta SD"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"Sdílené úložiště nenalezeno"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nebyla zjištěna žádná karta SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Vyhledávání karty vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importovat z karty SIM"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"Importovat z karty SD"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"Import ze sdíl. úložiště"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importovat z karty SD"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"Exportovat na kartu SD"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"Export do sdíl. úložiště"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportovat na kartu SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Sdílet viditelné kontakty"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importovat jeden soubor vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importovat několik souborů vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importovat všechny soubory vCard"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"Vyhledávání dat karty vCard na kartě SD"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"Vyhledávání dat karty vCard ve sdíleném úložišti"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Vyhledávání dat karty vCard na kartě SD"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"Vyhledávání na kartě SD se nezdařilo"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"Vyhledávání ve sdíleném úložišti se nezdařilo"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Vyhledávání na kartě SD se nezdařilo"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"Vyhledávání na kartě SD se nezdařilo. (Důvod: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"Vyhledávání ve sdíleném úložišti se nezdařilo (Důvod: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Vyhledávání na kartě SD se nezdařilo. (Důvod: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Chyba V/V"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Analýza karty vCard se z neznámého důvodu nezdařila."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Analýza karty vCard se nezdařila. Přestože se zřejmě jedná o správný formát, aktuální implementace jej nepodporuje."</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"Na kartě SD nebyl nalezen žádný soubor vCard"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"Ve sdíleném úložišti nebyl nalezen žádný soubor vCard"</string>
     <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Na kartě SD nebyl nalezen žádný soubor vCard"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Import jednoho nebo více souborů se nezdařil (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Neznámá chyba"</string>
@@ -243,7 +243,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Export dat kontaktů se nezdařil"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Export dat kontaktů se nezdařil."\n"Příčina chyby: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Žádný kontakt nelze exportovat"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"Na kartě SD je příliš mnoho souborů vCard"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"Ve sdíleném úložišti je příliš mnoho souborů vCard"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Na kartě SD je příliš mnoho souborů vCard"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Požadovaný název souboru (<xliff:g id="FILENAME">%s</xliff:g>) je příliš dlouhý"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Export dat kontaktů"</string>
@@ -290,7 +290,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Všechny ostatní kontakty"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Všechny kontakty"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Odebráním skupiny <xliff:g id="GROUP">%s</xliff:g> ze synchronizace odeberete ze synchronizace také všechny kontakty mimo skupinu."</string>
-    <string name="account_phone" msgid="4025734638492419713">"Pouze v telefonu (nesynchronizováno)"</string>
+    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" msgid="3682950835276226870">"Pouze v telefonu (nesynchronizováno)"</string>
     <string name="call_custom" msgid="7756571794763171802">"Volat kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Volat domů"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Volat mobil"</string>

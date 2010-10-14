@@ -204,30 +204,30 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"주소록 사진"</string>
     <string name="description_minus_button" msgid="387136707700230172">"빼기"</string>
     <string name="description_plus_button" msgid="515164827856229880">"더하기"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"SD 카드 없음"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"공유 저장용량을 사용할 수 없음"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"SD 카드 없음"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"SD 카드가 발견되지 않았습니다."</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"공유 저장용량이 없습니다."</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD 카드가 발견되지 않았습니다."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard 검색"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM 카드에서 가져오기"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"SD 카드에서 가져오기"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"공유 저장용량에서 가져오기"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"SD 카드에서 가져오기"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"SD 카드로 내보내기"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"공유 저장용량으로 내보내기"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"SD 카드로 내보내기"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"표시되는 연락처 공유"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"vCard 파일 한 개 가져오기"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"vCard 파일 여러 개 가져오기"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"모든 vCard 파일 가져오기"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"SD 카드의 vCard 데이터 검색"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"공유 저장용량에서 vCard 데이터 검색"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD 카드의 vCard 데이터 검색"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"SD 카드 스캔 실패"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"공유 저장용량 스캔 실패"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD 카드 스캔 실패"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"SD 카드 스캔 실패(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"공유 저장용량 스캔 실패(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD 카드 스캔 실패(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 오류"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"올바른 형식처럼 보이지만 현재 구현 환경에서는 VCard를 지원하지 않기 때문에 VCard 구문 분석에 실패했습니다."</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"SD 카드에 VCard 파일이 없습니다."</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"vCard 파일이 공유 저장용량에 없습니다."</string>
     <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"SD 카드에 VCard 파일이 없습니다."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"알 수 없는 오류"</string>
@@ -243,7 +243,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"연락처 데이터를 내보내지 못했습니다."</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"연락처 데이터를 내보내지 못했습니다."\n"실패 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"내보낼 수 있는 연락처가 없습니다."</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"SD 카드에 vCard 파일이 너무 많습니다."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"공유 저장용량에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 카드에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"연락처 데이터 내보내기"</string>
@@ -290,7 +290,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"다른 모든 연락처"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"모든 연락처"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"\'<xliff:g id="GROUP">%s</xliff:g>\'을(를) 동기화에서 제거하면 그룹화되지 않은 연락처도 동기화에서 제거됩니다."</string>
-    <string name="account_phone" msgid="4025734638492419713">"전화기 전용(동기화되지 않음)"</string>
+    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" msgid="3682950835276226870">"전화기 전용(동기화되지 않음)"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>(으)로 전화걸기"</string>
     <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
     <string name="call_mobile" msgid="7502236805487609178">"휴대전화로 전화걸기"</string>
