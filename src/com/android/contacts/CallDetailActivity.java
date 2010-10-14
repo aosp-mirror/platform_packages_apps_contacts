@@ -126,6 +126,7 @@ public class CallDetailActivity extends ListActivity implements
                     Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                             Uri.fromParts("tel", mNumber, null));
                     startActivity(callIntent);
+                    StickyTabs.saveTab(this, getIntent());
                     return true;
                 }
             }
@@ -240,6 +241,7 @@ public class CallDetailActivity extends ListActivity implements
                     // to create new contact from this number.
                     if (personUri != null) {
                         Intent viewIntent = new Intent(Intent.ACTION_VIEW, personUri);
+                        StickyTabs.setTab(viewIntent, getIntent());
                         actions.add(new ViewEntry(R.drawable.sym_action_view_contact,
                                 getString(R.string.menu_viewContact), viewIntent));
                     } else {
@@ -362,6 +364,9 @@ public class CallDetailActivity extends ListActivity implements
         if (view.getTag() instanceof ViewEntry) {
             ViewEntry entry = (ViewEntry) view.getTag();
             if (entry.intent != null) {
+                if (Intent.ACTION_CALL_PRIVILEGED.equals(entry.intent.getAction())) {
+                    StickyTabs.saveTab(this, getIntent());
+                }
                 startActivity(entry.intent);
             }
         }

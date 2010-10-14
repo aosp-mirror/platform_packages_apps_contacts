@@ -122,9 +122,9 @@ public class RecentCallsListActivity extends ListActivity
     static final int LABEL_COLUMN_INDEX = 3;
     static final int MATCHED_NUMBER_COLUMN_INDEX = 4;
 
-    private static final int MENU_ITEM_DELETE = 1;
-    private static final int MENU_ITEM_DELETE_ALL = 2;
-    private static final int MENU_ITEM_VIEW_CONTACTS = 3;
+    private static final int MENU_ITEM_DELETE_ALL = 1;
+    private static final int CONTEXT_MENU_ITEM_DELETE = 1;
+    private static final int CONTEXT_MENU_CALL_CONTACT = 2;
 
     private static final int QUERY_TOKEN = 53;
     private static final int UPDATE_TOKEN = 54;
@@ -221,6 +221,7 @@ public class RecentCallsListActivity extends ListActivity
                 } else {
                     callUri = Uri.fromParts("tel", number, null);
                 }
+                StickyTabs.saveTab(RecentCallsListActivity.this, getIntent());
                 startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri));
             }
         }
@@ -1016,14 +1017,16 @@ public class RecentCallsListActivity extends ListActivity
 
         if (numberUri != null) {
             Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, numberUri);
-            menu.add(0, 0, 0, getResources().getString(R.string.recentCalls_callNumber, number))
+            menu.add(0, CONTEXT_MENU_CALL_CONTACT, 0,
+                    getResources().getString(R.string.recentCalls_callNumber, number))
                     .setIntent(intent);
         }
 
         if (contactInfoPresent) {
-            menu.add(0, 0, 0, R.string.menu_viewContact)
-                    .setIntent(new Intent(Intent.ACTION_VIEW,
-                            ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId)));
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId));
+            StickyTabs.setTab(intent, getIntent());
+            menu.add(0, 0, 0, R.string.menu_viewContact).setIntent(intent);
         }
 
         if (numberUri != null && !isVoicemail && !isSipNumber) {
@@ -1052,7 +1055,7 @@ public class RecentCallsListActivity extends ListActivity
             menu.add(0, 0, 0, R.string.recentCalls_addToContact)
                     .setIntent(intent);
         }
-        menu.add(0, MENU_ITEM_DELETE, 0, R.string.recentCalls_removeFromRecentList);
+        menu.add(0, CONTEXT_MENU_ITEM_DELETE, 0, R.string.recentCalls_removeFromRecentList);
     }
 
     @Override
@@ -1086,30 +1089,23 @@ public class RecentCallsListActivity extends ListActivity
                 showDialog(DIALOG_CONFIRM_DELETE_ALL);
                 return true;
             }
-
-            case MENU_ITEM_VIEW_CONTACTS: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                return true;
-            }
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        // Convert the menu info to the proper type
-        AdapterView.AdapterContextMenuInfo menuInfo;
-        try {
-             menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfoIn", e);
-            return false;
-        }
-
         switch (item.getItemId()) {
-            case MENU_ITEM_DELETE: {
+            case CONTEXT_MENU_ITEM_DELETE: {
+                // Convert the menu info to the proper type
+                AdapterView.AdapterContextMenuInfo menuInfo;
+                try {
+                     menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                } catch (ClassCastException e) {
+                    Log.e(TAG, "bad menuInfoIn", e);
+                    return false;
+                }
+
                 Cursor cursor = (Cursor)mAdapter.getItem(menuInfo.position);
                 int groupSize = 1;
                 if (mAdapter.isGroupHeader(menuInfo.position)) {
@@ -1128,9 +1124,17 @@ public class RecentCallsListActivity extends ListActivity
 
                 getContentResolver().delete(Calls.CONTENT_URI, Calls._ID + " IN (" + sb + ")",
                         null);
+                return true;
+            }
+            case CONTEXT_MENU_CALL_CONTACT: {
+                StickyTabs.saveTab(this, getIntent());
+                startActivity(item.getIntent());
+                return true;
+            }
+            default: {
+                return super.onContextItemSelected(item);
             }
         }
-        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -1249,6 +1253,7 @@ public class RecentCallsListActivity extends ListActivity
                 intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                                     Uri.fromParts("tel", number, null));
             }
+            StickyTabs.saveTab(this, getIntent());
             intent.setFlags(
                     Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             startActivity(intent);
@@ -1262,6 +1267,7 @@ public class RecentCallsListActivity extends ListActivity
         } else {
             Intent intent = new Intent(this, CallDetailActivity.class);
             intent.setData(ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI, id));
+            StickyTabs.setTab(intent, getIntent());
             startActivity(intent);
         }
     }
