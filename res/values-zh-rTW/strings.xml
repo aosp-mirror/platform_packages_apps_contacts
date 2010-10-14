@@ -204,30 +204,30 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"聯絡人相片"</string>
     <string name="description_minus_button" msgid="387136707700230172">"負號"</string>
     <string name="description_plus_button" msgid="515164827856229880">"加號"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"無 SD 卡"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"沒有可用的共用儲存裝置"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"無 SD 卡"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"未偵測到 SD 卡"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"未偵測到共用儲存裝置"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"未偵測到 SD 卡"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"正在搜尋 VCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"從 SIM 卡匯入"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"從 SD 卡匯入"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"從共用儲存裝置匯入"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"從 SD 卡匯入"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"匯出至 SD 卡"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"匯出到共用儲存裝置"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"匯出至 SD 卡"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"分享正常顯示的聯絡人"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"匯入一個 vCard 檔案"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"匯入多個 vCard 檔案"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"匯入所有 vCard 檔案"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"在 SD 卡上搜尋 VCard 資料"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"正在共用儲存裝置中搜尋 vCard 資料"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"在 SD 卡上搜尋 VCard 資料"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"無法掃描 SD 卡"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"掃描共用儲存裝置失敗"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"無法掃描 SD 卡"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"掃描共用儲存裝置失敗 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 錯誤"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"因未預期原因，無法剖析 VCard"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"VCard 格式正確，但目前的實作系統不支援此格式，因此無法剖析"</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"SD 卡上沒有 vCard 檔案"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"在共用儲存裝置中找不到 vCard 檔案"</string>
     <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"SD 卡上沒有 vCard 檔案"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"無法匯入一或多個檔案 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知的錯誤"</string>
@@ -243,7 +243,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"無法匯出聯絡人資料"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"匯出聯絡人資料失敗。"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"沒有可匯出的聯絡人"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"SD 卡中的 VCard 檔案過多"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"共用儲存裝置中的 vCard 檔案過多"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 卡中的 VCard 檔案過多"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"要求的檔案名稱過長 (「<xliff:g id="FILENAME">%s</xliff:g>」)"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"正在匯出聯絡人資料"</string>
@@ -290,7 +290,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"所有其他聯絡人"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"所有聯絡人"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"如果從同步處理群組中移除「<xliff:g id="GROUP">%s</xliff:g>」群組，系統也會從同步處理群組中移除所有未分組的聯絡人。"</string>
-    <string name="account_phone" msgid="4025734638492419713">"僅儲存於手機 (不會同步處理)"</string>
+    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" msgid="3682950835276226870">"僅儲存於手機 (不會同步處理)"</string>
     <string name="call_custom" msgid="7756571794763171802">"去電<xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"去電住家電話"</string>
     <string name="call_mobile" msgid="7502236805487609178">"去電行動裝置"</string>
