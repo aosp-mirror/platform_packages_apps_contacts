@@ -138,22 +138,6 @@
 
         </activity-alias>
 
-        <!-- Main launch Intent to open the Contacts app. This will open the app in its last manual
-        state. This is the state that has been explicitly set by the user (e.g. by clicking a tab).
-        States configured via other Intents (e.g. CallLog after Call) are not considered manual
-        state. At the moment, the Intent always goes to the DialtactsActivity, but this might later
-        be changed to also include sub-activities like Edit or View if they were left open -->
-
-        <activity-alias android:name="ContactsLaunchActivity"
-            android:targetActivity="DialtactsActivity"
-        >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity-alias>
-
         <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
         <activity-alias android:name="DialtactsFavoritesEntryActivity"
             android:targetActivity="DialtactsActivity"

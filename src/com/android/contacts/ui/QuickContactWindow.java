@@ -20,6 +20,7 @@ import com.android.contacts.Collapser;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.StickyTabs;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.Sources;
 import com.android.contacts.model.ContactsSource.DataKind;
@@ -156,6 +157,9 @@ public class QuickContactWindow implements Window.Callback,
     private NotifyingAsyncQueryHandler mHandler;
     private OnDismissListener mDismissListener;
     private ResolveCache mResolveCache;
+
+    /** Last selected tab of the Dialtacs-Activity. This is -1 if not called out of contacts app */
+    private int mLastSelectedContactsAppTab;
 
     private Uri mLookupUri;
     private Rect mAnchor;
@@ -319,6 +323,10 @@ public class QuickContactWindow implements Window.Callback,
     public QuickContactWindow(Context context, OnDismissListener dismissListener) {
         this(context);
         mDismissListener = dismissListener;
+    }
+
+    public void setLastSelectedContactsAppTab(int value) {
+        mLastSelectedContactsAppTab = value;
     }
 
     private View getHeaderView(int mode) {
@@ -1435,6 +1443,10 @@ public class QuickContactWindow implements Window.Callback,
             // Incoming tag is concrete intent, so try launching
             final Action action = (Action)tag;
             final boolean makePrimary = mMakePrimary;
+
+            if (Intent.ACTION_CALL_PRIVILEGED.equals(action.getIntent().getAction())) {
+                StickyTabs.saveTab(mContext, mLastSelectedContactsAppTab);
+            }
 
             try {
                 mContext.startActivity(action.getIntent());
