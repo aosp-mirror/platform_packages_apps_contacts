@@ -1593,13 +1593,14 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
         menu.setHeaderTitle(cursor.getString(getSummaryDisplayNameColumnIndex()));
 
         // View contact details
+        final Intent viewContactIntent = new Intent(Intent.ACTION_VIEW, contactUri);
+        StickyTabs.setTab(viewContactIntent, getIntent());
         menu.add(0, MENU_ITEM_VIEW_CONTACT, 0, R.string.menu_viewContact)
-                .setIntent(new Intent(Intent.ACTION_VIEW, contactUri));
+                .setIntent(viewContactIntent);
 
         if (cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0) {
             // Calling contact
-            menu.add(0, MENU_ITEM_CALL, 0,
-                    getString(R.string.menu_call));
+            menu.add(0, MENU_ITEM_CALL, 0, getString(R.string.menu_call));
             // Send SMS item
             menu.add(0, MENU_ITEM_SEND_SMS, 0, getString(R.string.menu_sendSMS));
         }
@@ -1846,6 +1847,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
             final Uri uri = getSelectedUri(position);
             if ((mMode & MODE_MASK_PICKER) == 0) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                StickyTabs.setTab(intent, getIntent());
                 startActivityForResult(intent, SUBACTIVITY_VIEW_CONTACT);
             } else if (mMode == MODE_JOIN_CONTACT) {
                 returnPickerResult(null, null, uri, 0);
@@ -2665,12 +2667,13 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 if (phone == null) {
                     // Display dialog to choose a number to call.
                     PhoneDisambigDialog phoneDialog = new PhoneDisambigDialog(
-                            this, phonesCursor, sendSms);
+                            this, phonesCursor, sendSms, StickyTabs.getTab(getIntent()));
                     phoneDialog.show();
                 } else {
                     if (sendSms) {
                         ContactsUtils.initiateSms(this, phone);
                     } else {
+                        StickyTabs.saveTab(this, getIntent());
                         ContactsUtils.initiateCall(this, phone);
                     }
                 }
@@ -3145,6 +3148,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                     final String lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
                     QuickContactBadge quickContact = view.getQuickContact();
                     quickContact.assignContactUri(Contacts.getLookupUri(contactId, lookupKey));
+                    quickContact.setSelectedContactsAppTabIndex(StickyTabs.getTab(getIntent()));
                     viewToUse = quickContact;
                 } else {
                     viewToUse = view.getPhotoView();

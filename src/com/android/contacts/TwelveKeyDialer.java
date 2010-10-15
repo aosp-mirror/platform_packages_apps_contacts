@@ -774,6 +774,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
     }
 
     void callVoicemail() {
+        StickyTabs.saveTab(this, getIntent());
         Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                 Uri.fromParts("voicemail", EMPTY_NUMBER, null));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -810,6 +811,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
             intent.setData(Uri.fromParts("tel", number, null));
         }
 
+        StickyTabs.saveTab(this, getIntent());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         mDigits.getText().clear();

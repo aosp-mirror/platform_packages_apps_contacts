@@ -44,10 +44,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private static final String FAVORITES_ENTRY_COMPONENT =
             "com.android.contacts.DialtactsFavoritesEntryActivity";
 
-    /** Opens the Contacts app in the state the user has last set it to */
-    private static final String CONTACTS_LAUNCH_ACTIVITY =
-            "com.android.contacts.ContactsLaunchActivity";
-
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
     private static final int TAB_INDEX_CONTACTS = 2;
@@ -55,32 +51,19 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     static final String EXTRA_IGNORE_STATE = "ignore-state";
 
-    /** Name of the dialtacts shared preferences */
-    static final String PREFS_DIALTACTS = "dialtacts";
     /** If true, when handling the contacts intent the favorites tab will be shown instead */
-    static final String PREF_FAVORITES_AS_CONTACTS = "favorites_as_contacts";
-    static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
-
-    /** Last manually selected tab index */
-    private static final String PREF_LAST_MANUALLY_SELECTED_TAB = "last_manually_selected_tab";
-    private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
+    private static final String PREF_FAVORITES_AS_CONTACTS = "favorites_as_contacts";
+    private static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
 
     private TabHost mTabHost;
     private String mFilterText;
     private Uri mDialUri;
-
-    /**
-     * The index of the tab that has last been manually selected (the user clicked on a tab).
-     * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
-     */
-    private int mLastManuallySelectedTab;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         final Intent intent = getIntent();
-        fixIntent(intent);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialer_activity);
@@ -93,11 +76,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         setupCallLogTab();
         setupContactsTab();
         setupFavoritesTab();
-
-        // Load the last manually loaded tab
-        final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
-        mLastManuallySelectedTab = prefs.getInt(PREF_LAST_MANUALLY_SELECTED_TAB,
-                PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT);
 
         setCurrentTab(intent);
 
@@ -113,30 +91,19 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
         final int currentTabIndex = mTabHost.getCurrentTab();
         final SharedPreferences.Editor editor =
-                getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
+                getSharedPreferences(StickyTabs.PREFERENCES_NAME, MODE_PRIVATE).edit();
         if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
             editor.putBoolean(PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
         }
-        editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedTab);
 
         editor.apply();
-    }
-
-    private void fixIntent(Intent intent) {
-        // This should be cleaned up: the call key used to send an Intent
-        // that just said to go to the recent calls list.  It now sends this
-        // abstract action, but this class hasn't been rewritten to deal with it.
-        if (Intent.ACTION_CALL_BUTTON.equals(intent.getAction())) {
-            intent.setDataAndType(Calls.CONTENT_URI, Calls.CONTENT_TYPE);
-            intent.putExtra("call_key", true);
-            setIntent(intent);
-        }
     }
 
     private void setupCallLogTab() {
         // Force the class since overriding tab entries doesn't work
         Intent intent = new Intent("com.android.phone.action.RECENT_CALLS");
         intent.setClass(this, RecentCallsListActivity.class);
+        StickyTabs.setTab(intent, TAB_INDEX_CALL_LOG);
 
         mTabHost.addTab(mTabHost.newTabSpec("call_log")
                 .setIndicator(getString(R.string.recentCallsIconLabel),
@@ -147,6 +114,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private void setupDialerTab() {
         Intent intent = new Intent("com.android.phone.action.TOUCH_DIALER");
         intent.setClass(this, TwelveKeyDialer.class);
+        StickyTabs.setTab(intent, TAB_INDEX_DIALER);
 
         mTabHost.addTab(mTabHost.newTabSpec("dialer")
                 .setIndicator(getString(R.string.dialerIconLabel),
@@ -157,6 +125,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private void setupContactsTab() {
         Intent intent = new Intent(UI.LIST_DEFAULT);
         intent.setClass(this, ContactsListActivity.class);
+        StickyTabs.setTab(intent, TAB_INDEX_CONTACTS);
 
         mTabHost.addTab(mTabHost.newTabSpec("contacts")
                 .setIndicator(getText(R.string.contactsIconLabel),
@@ -167,6 +136,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private void setupFavoritesTab() {
         Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
         intent.setClass(this, ContactsListActivity.class);
+        StickyTabs.setTab(intent, TAB_INDEX_FAVORITES);
 
         mTabHost.addTab(mTabHost.newTabSpec("favorites")
                 .setIndicator(getString(R.string.contactsFavoritesLabel),
@@ -175,43 +145,11 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     }
 
     /**
-     * Returns true if the intent is due to hitting the green send key while in a call.
-     *
-     * @param intent the intent that launched this activity
-     * @param recentCallsRequest true if the intent is requesting to view recent calls
-     * @return true if the intent is due to hitting the green send key while in a call
-     */
-    private boolean isSendKeyWhileInCall(final Intent intent, final boolean recentCallsRequest) {
-        // If there is a call in progress go to the call screen
-        if (recentCallsRequest) {
-            final boolean callKey = intent.getBooleanExtra("call_key", false);
-
-            try {
-                ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
-                if (callKey && phone != null && phone.showCallScreen()) {
-                    return true;
-                }
-            } catch (RemoteException e) {
-                Log.e(TAG, "Failed to handle send while in call", e);
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Sets the current tab based on the intent's request type
      *
      * @param intent Intent that contains information about which tab should be selected
      */
     private void setCurrentTab(Intent intent) {
-        // If we got here by hitting send and we're in call forward along to the in-call activity
-        final boolean recentCallsRequest = Calls.CONTENT_TYPE.equals(intent.getType());
-        if (isSendKeyWhileInCall(intent, recentCallsRequest)) {
-            finish();
-            return;
-        }
-
         // Dismiss menu provided by any children activities
         Activity activity = getLocalActivityManager().
                 getActivity(mTabHost.getCurrentTabTag());
@@ -223,25 +161,28 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         // state and instead reload their state from the parent's intent
         intent.putExtra(EXTRA_IGNORE_STATE, true);
 
-        // Remember the old manually selected tab index so that it can be restored if it is
-        // overwritten by one of the programmatic tab selections
-        final int savedTabIndex = mLastManuallySelectedTab;
-
         // Choose the tab based on the inbound intent
         String componentName = intent.getComponent().getClassName();
         if (getClass().getName().equals(componentName)) {
-            if (recentCallsRequest) {
-                mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
-            } else {
+            if (phoneIsInUse()) {
+                // If we are in a call, show the dialer tab (which allows going back to the
+                // call)
                 mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+            } else {
+                // If we are launched from history (long-press home), go back to the last
+                // tab that was used to make a call
+                if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) == 0) {
+                    mTabHost.setCurrentTab(StickyTabs.loadTab(this, TAB_INDEX_DIALER));
+                }
             }
         } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
             mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
-        } else if (CONTACTS_LAUNCH_ACTIVITY.equals(componentName)) {
-            mTabHost.setCurrentTab(mLastManuallySelectedTab);
         } else {
-            SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
-            boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
+            // Launched as "Contacts" --> Go either to favorites or contacts, whichever is more
+            // recent
+            final SharedPreferences prefs = getSharedPreferences(StickyTabs.PREFERENCES_NAME,
+                    MODE_PRIVATE);
+            final boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
                     PREF_FAVORITES_AS_CONTACTS_DEFAULT);
             if (favoritesAsContacts) {
                 mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
@@ -249,9 +190,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
                 mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
             }
         }
-
-        // Restore to the previous manual selection
-        mLastManuallySelectedTab = savedTabIndex;
 
         // Tell the children activities that they should honor their saved states
         // instead of the state from the parent's intent
@@ -261,7 +199,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     @Override
     public void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
-        fixIntent(newIntent);
         setCurrentTab(newIntent);
         final String action = newIntent.getAction();
         if (action.equals(UI.FILTER_CONTACTS_ACTION)) {
@@ -358,6 +295,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onTabChanged(String tabId) {
         // Because we're using Activities as our tab children, we trigger
         // onWindowFocusChanged() to let them know when they're active.  This may
@@ -367,9 +305,20 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         if (activity != null) {
             activity.onWindowFocusChanged(true);
         }
+    }
 
-        // Remember this tab index. This function is also called, if the tab is set automatically
-        // in which case the setter (setCurrentTab) has to set this to its old value afterwards
-        mLastManuallySelectedTab = mTabHost.getCurrentTab();
+    /**
+     * @return true if the phone is "in use", meaning that at least one line
+     *              is active (ie. off hook or ringing or dialing).
+     */
+    private boolean phoneIsInUse() {
+        boolean phoneInUse = false;
+        try {
+            ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+            if (phone != null) phoneInUse = !phone.isIdle();
+        } catch (RemoteException e) {
+            Log.w(TAG, "phone.isIdle() failed", e);
+        }
+        return phoneInUse;
     }
 }
