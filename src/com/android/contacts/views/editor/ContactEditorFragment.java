@@ -699,6 +699,16 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         mStatus = Status.SAVING;
+
+        // Trim any empty fields, and RawContacts, before persisting
+        final Sources sources = Sources.getInstance(mContext);
+        EntityModifier.trimEmpty(mState, sources);
+
+        if (mState.buildDiff().isEmpty()) {
+            onSaveCompleted(true, saveMode, mLookupUri);
+            return true;
+        }
+
         final PersistTask task = new PersistTask(this, saveMode);
         task.execute(mState);
 
@@ -1294,10 +1304,6 @@ public class ContactEditorFragment extends Fragment implements
             final ContentResolver resolver = mContext.getContentResolver();
 
             EntityDeltaList state = params[0];
-
-            // Trim any empty fields, and RawContacts, before persisting
-            final Sources sources = Sources.getInstance(mContext);
-            EntityModifier.trimEmpty(state, sources);
 
             // Attempt to persist changes
             int tries = 0;
