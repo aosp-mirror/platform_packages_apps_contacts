@@ -120,7 +120,7 @@ public class ContactEditorActivity extends Activity implements
         }
 
         @Override
-        public void onAggregationChangeFinished(Uri newLookupUri) {
+        public void onContactSplit(Uri newLookupUri) {
             finish();
         }
 

@@ -768,7 +768,7 @@ public class ContactEditorFragment extends Fragment implements
                 break;
             case SaveMode.SPLIT:
                 if (mListener != null) {
-                    mListener.onAggregationChangeFinished(contactLookupUri);
+                    mListener.onContactSplit(contactLookupUri);
                 } else {
                     Log.d(TAG, "No listener registered, can not call onSplitFinished");
                 }
@@ -863,9 +863,12 @@ public class ContactEditorFragment extends Fragment implements
         builder.withValue(RawContacts.NAME_VERIFIED, 1);
         operations.add(builder.build());
 
+        boolean success = false;
         // Apply all aggregation exceptions as one batch
         try {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            Toast.makeText(mContext, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+            success = true;
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
             Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
@@ -874,14 +877,8 @@ public class ContactEditorFragment extends Fragment implements
             Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
         }
 
-        Toast.makeText(mContext, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
-
-        // We pass back the Uri of the previous Contact (pre-join). While this is not correct,
-        // the provider will be able to later figure out the correct new aggregate
-        if (mListener != null) {
-            mListener.onAggregationChangeFinished(mLookupUri);
-        } else {
-            Log.d(TAG, "Listener is null. Can not call onAggregationChangeFinished");
+        if (success) {
+            onSaveCompleted(true, SaveMode.RELOAD, mLookupUri);
         }
     }
 
@@ -906,11 +903,11 @@ public class ContactEditorFragment extends Fragment implements
         void onContactNotFound();
 
         /**
-         * Contact was split or joined, so we can close now.
+         * Contact was split, so we can close now.
          * @param newLookupUri The lookup uri of the new contact that should be shown to the user.
          * The editor tries best to chose the most natural contact here.
          */
-        void onAggregationChangeFinished(Uri newLookupUri);
+        void onContactSplit(Uri newLookupUri);
 
         /**
          * User was presented with an account selection and couldn't decide.
