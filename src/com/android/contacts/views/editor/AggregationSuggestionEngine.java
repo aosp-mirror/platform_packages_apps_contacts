@@ -48,6 +48,7 @@ import java.util.List;
 public class AggregationSuggestionEngine extends HandlerThread {
     public static final String TAG = "AggregationSuggestionEngine";
 
+    private static final int MESSAGE_RESET = 0;
     private static final int MESSAGE_NAME_CHANGE = 1;
     private static final int MESSAGE_DATA_CURSOR = 2;
 
@@ -127,6 +128,12 @@ public class AggregationSuggestionEngine extends HandlerThread {
         return super.quit();
     }
 
+    public void reset() {
+        Handler handler = getHandler();
+        handler.removeMessages(MESSAGE_NAME_CHANGE);
+        handler.sendEmptyMessage(MESSAGE_RESET);
+    }
+
     public void onNameChange(ValuesDelta values) {
         Handler handler = getHandler();
         handler.removeMessages(MESSAGE_NAME_CHANGE);
@@ -188,7 +195,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
     }
 
     protected void handleMessage(Message msg) {
-        switch(msg.what) {
+        switch (msg.what) {
+            case MESSAGE_RESET:
+                mSuggestedContactIds = new long[0];
+                break;
             case MESSAGE_NAME_CHANGE:
                 loadAggregationSuggestions((Uri) msg.obj);
                 break;
@@ -301,7 +311,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     }
 
     public int getSuggestedContactCount() {
-        return mSuggestedContactIds.length;
+        return mDataCursor != null ? mDataCursor.getCount() : 0;
     }
 
     public List<Suggestion> getSuggestions() {

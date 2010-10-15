@@ -62,7 +62,7 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
         super(context, attrs, defStyle);
     }
 
-    public void bindSuggestion(Suggestion suggestion, boolean showJoinButton) {
+    public void bindSuggestion(Suggestion suggestion) {
         mContactId = suggestion.contactId;
         mRawContactIds = suggestion.rawContactIds;
         ImageView photo = (ImageView) findViewById(R.id.aggregation_suggestion_photo);
@@ -88,12 +88,8 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
         data.setText(dataText);
 
         Button join = (Button) findViewById(R.id.aggregation_suggestion_join_button);
-        if (showJoinButton) {
-            join.setOnClickListener(this);
-            join.setVisibility(View.VISIBLE);
-        } else {
-            join.setVisibility(View.INVISIBLE);
-        }
+        join.setOnClickListener(this);
+        join.setVisibility(View.VISIBLE);
     }
 
     public void setListener(Listener listener) {
