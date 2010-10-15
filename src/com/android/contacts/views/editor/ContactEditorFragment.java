@@ -38,7 +38,6 @@ import com.android.contacts.util.WeakAsyncTask;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.GroupMetaDataLoader;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
-import com.google.android.collect.Lists;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -60,7 +59,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.media.MediaScannerConnection;
@@ -75,7 +73,6 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -119,6 +116,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
     private static final String KEY_QUERY_SELECTION = "queryselection";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
+    private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
 
     /**
      * Modes that specify what the AsyncTask has to perform after saving
@@ -219,6 +217,8 @@ public class ContactEditorFragment extends Fragment implements
     private int mStatus;
 
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
+    private long mAggregationSuggestionsRawContactId;
+    private View mAggregationSuggestionView;
 
     public ContactEditorFragment() {
     }
@@ -322,6 +322,7 @@ public class ContactEditorFragment extends Fragment implements
             }
             mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+            mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
             mStatus = Status.EDITING;
         }
     }
@@ -496,10 +497,7 @@ public class ContactEditorFragment extends Fragment implements
                     }
                 });
 
-                // If the user has already decided to join with a specific contact,
-                // trigger a refresh of the aggregation suggestion view to redisplay
-                // the selection.
-                if (mContactIdForJoin != 0) {
+                if (rawContactId == mAggregationSuggestionsRawContactId) {
                     acquireAggregationSuggestions(rawContactEditor);
                 }
             }
@@ -1135,6 +1133,16 @@ public class ContactEditorFragment extends Fragment implements
      * Triggers an asynchronous search for aggregation suggestions.
      */
     public void acquireAggregationSuggestions(ContactEditorView rawContactEditor) {
+        long rawContactId = rawContactEditor.getRawContactId();
+        if (mAggregationSuggestionsRawContactId != rawContactId
+                && mAggregationSuggestionView != null) {
+            mAggregationSuggestionView.setVisibility(View.GONE);
+            mAggregationSuggestionView = null;
+            mAggregationSuggestionEngine.reset();
+        }
+
+        mAggregationSuggestionsRawContactId = rawContactId;
+
         if (mAggregationSuggestionEngine == null) {
             mAggregationSuggestionEngine = new AggregationSuggestionEngine(getActivity());
             mAggregationSuggestionEngine.setContactId(getContactId());
@@ -1148,68 +1156,35 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
-        // We may have chosen some contact to join with but then changed the contact name.
-        // Let's drop the obsolete decision to join.
-        setSelectedAggregationSuggestion(0, null);
-        updateAggregationSuggestionView();
-    }
-
-    protected void updateAggregationSuggestionView() {
-        ViewStub stub = (ViewStub)mContent.findViewById(R.id.aggregation_suggestion_stub);
-        if (stub != null) {
-            stub.inflate();
-            final View view = mContent.findViewById(R.id.aggregation_suggestion);
-            mContent.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    requestAggregationSuggestionOnScreen(view);
-                }
-            }, AGGREGATION_SUGGESTION_SCROLL_DELAY);
-        }
-
-        View view = mContent.findViewById(R.id.aggregation_suggestion);
-
-        List<Suggestion> suggestions = null;
-        int count = mAggregationSuggestionEngine.getSuggestedContactCount();
-        if (count > 0) {
-            suggestions = mAggregationSuggestionEngine.getSuggestions();
-
-            if (mContactIdForJoin != 0) {
-                Suggestion chosenSuggestion = null;
-                for (Suggestion suggestion : suggestions) {
-                    if (suggestion.contactId == mContactIdForJoin) {
-                        chosenSuggestion = suggestion;
-                        break;
-                    }
-                }
-
-                if (chosenSuggestion != null) {
-                    suggestions = Lists.newArrayList(chosenSuggestion);
-                } else {
-                    // If the contact we wanted to join with is no longer suggested,
-                    // forget our decision to join with it.
-                    setSelectedAggregationSuggestion(0, null);
-                }
-            }
-
-            count = suggestions.size();
-        }
-
-        if (count == 0) {
-            view.setVisibility(View.GONE);
+        View rawContactView = getContactEditorView(mAggregationSuggestionsRawContactId);
+        if (rawContactView == null) {
             return;
         }
 
-        TextView title = (TextView) view.findViewById(R.id.aggregation_suggestion_title);
-        if (mContactIdForJoin != 0) {
-            title.setText(R.string.aggregation_suggestion_joined_title);
-        } else {
-            title.setText(getActivity().getResources().getQuantityString(
-                    R.plurals.aggregation_suggestion_title, count));
+        ViewStub stub = (ViewStub)rawContactView.findViewById(R.id.aggregation_suggestion_stub);
+        if (stub != null) {
+            stub.inflate();
         }
 
-        LinearLayout itemList = (LinearLayout) view.findViewById(R.id.aggregation_suggestions);
+        // Only request the view on screen when it is first displayed
+        boolean requestOnScreen = mAggregationSuggestionView == null;
+        mAggregationSuggestionView = rawContactView.findViewById(R.id.aggregation_suggestion);
+
+        int count = mAggregationSuggestionEngine.getSuggestedContactCount();
+        if (count == 0) {
+            mAggregationSuggestionView.setVisibility(View.GONE);
+            return;
+        }
+
+        List<Suggestion> suggestions = mAggregationSuggestionEngine.getSuggestions();
+
+        TextView title = (TextView) mAggregationSuggestionView.findViewById(
+                R.id.aggregation_suggestion_title);
+        title.setText(getActivity().getResources().getQuantityString(
+                R.plurals.aggregation_suggestion_title, count));
+
+        LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
+                R.id.aggregation_suggestions);
         itemList.removeAllViews();
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -1228,18 +1203,24 @@ public class ContactEditorFragment extends Fragment implements
                     mState.setJoinWithRawContacts(rawContactIds);
                     // If we are in the edit mode (indicated by a non-zero contact ID),
                     // join the suggested contact, save all changes, and stay in the editor.
-                    if (getContactId() != 0) {
-                        doSaveAction(SaveMode.RELOAD);
-                    } else {
-                        mContactIdForJoin = contactId;
-                        updateAggregationSuggestionView();
-                    }
+                    doSaveAction(SaveMode.RELOAD);
                 }
             });
-            suggestionView.bindSuggestion(suggestion, mContactIdForJoin == 0 /* showJoinButton */);
+            suggestionView.bindSuggestion(suggestion);
             itemList.addView(suggestionView);
         }
-        view.setVisibility(View.VISIBLE);
+
+        mAggregationSuggestionView.setVisibility(View.VISIBLE);
+
+        if (requestOnScreen) {
+            mContent.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    requestAggregationSuggestionOnScreen(mAggregationSuggestionView);
+                }
+            }, AGGREGATION_SUGGESTION_SCROLL_DELAY);
+        }
     }
 
     /**
@@ -1269,11 +1250,6 @@ public class ContactEditorFragment extends Fragment implements
             parent = (View) parent.getParent();
         }
         return rect;
-    }
-
-    protected void setSelectedAggregationSuggestion(long contactId, List<Long> rawContactIds) {
-        mContactIdForJoin = contactId;
-        mState.setJoinWithRawContacts(rawContactIds);
     }
 
     // TODO: There has to be a nicer way than this WeakAsyncTask...? Maybe call a service?
@@ -1437,6 +1413,7 @@ public class ContactEditorFragment extends Fragment implements
         }
         outState.putString(KEY_QUERY_SELECTION, mQuerySelection);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
+        outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         super.onSaveInstanceState(outState);
     }
 
@@ -1475,23 +1452,28 @@ public class ContactEditorFragment extends Fragment implements
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
     private void setPhoto(long rawContact, Bitmap photo) {
-        BaseContactEditorView requestingEditor = null;
-        for (int i = 0; i < mContent.getChildCount(); i++) {
-            final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseContactEditorView) {
-                final BaseContactEditorView editor = (BaseContactEditorView) childView;
-                if (editor.getRawContactId() == rawContact) {
-                    requestingEditor = editor;
-                    break;
-                }
-            }
-        }
-
+        BaseContactEditorView requestingEditor = getContactEditorView(rawContact);
         if (requestingEditor != null) {
             requestingEditor.setPhotoBitmap(photo);
         } else {
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
+    }
+
+    /**
+     * Finds raw contact editor view for the given rawContactId.
+     */
+    public BaseContactEditorView getContactEditorView(long rawContactId) {
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseContactEditorView) {
+                final BaseContactEditorView editor = (BaseContactEditorView) childView;
+                if (editor.getRawContactId() == rawContactId) {
+                    return editor;
+                }
+            }
+        }
+        return null;
     }
 
     public Uri getLookupUri() {
