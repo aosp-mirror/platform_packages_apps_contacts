@@ -361,7 +361,8 @@
         <activity-alias android:name="alias.DialShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
-            android:icon="@drawable/ic_launcher_shortcut_directdial">
+            android:icon="@drawable/ic_launcher_shortcut_directdial"
+            android:enabled="@bool/dialerEnabled">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -374,7 +375,8 @@
         <activity-alias android:name="alias.MessageShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
-            android:icon="@drawable/ic_launcher_shortcut_directmessage">
+            android:icon="@drawable/ic_launcher_shortcut_directmessage"
+            android:enabled="@bool/dialerEnabled">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
