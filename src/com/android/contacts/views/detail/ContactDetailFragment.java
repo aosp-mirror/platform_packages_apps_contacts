@@ -30,6 +30,7 @@ import com.android.contacts.model.ContactsSource.EditType;
 import com.android.contacts.model.Sources;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.GroupMetaData;
@@ -59,6 +60,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
@@ -102,6 +104,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
         OnItemClickListener, SelectAccountDialogFragment.Listener {
@@ -495,6 +498,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     // (Then, we'd also update FallbackSource.java to set
                     // secondary=false for this field, and tweak the weight
                     // of its DataKind.)
+                } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                    entry.data = DateUtils.formatDate(mContext, entry.data);
+                    entry.uri = null;
+                    mOtherEntries.add(entry);
                 } else {
                     // Handle showing custom rows
                     entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);

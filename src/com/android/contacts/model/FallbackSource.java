@@ -39,8 +39,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.view.inputmethod.EditorInfo;
 
-import java.util.Locale;
-
 public class FallbackSource extends ContactsSource {
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     protected static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
@@ -53,6 +51,7 @@ public class FallbackSource extends ContactsSource {
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
     protected static final int FLAGS_NOTE = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
+    protected static final int FLAGS_EVENT = EditorInfo.TYPE_CLASS_TEXT;
     protected static final int FLAGS_WEBSITE = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_URI;
     protected static final int FLAGS_POSTAL = EditorInfo.TYPE_CLASS_TEXT
@@ -107,6 +106,10 @@ public class FallbackSource extends ContactsSource {
 
     protected EditType buildOrgType(int type) {
         return new EditType(type, Organization.getTypeLabelResource(type));
+    }
+
+    protected EditType buildEventType(int type) {
+        return new EditType(type, Event.getTypeResource(type));
     }
 
     protected DataKind inflateStructuredName(Context context, int inflateLevel) {
@@ -408,11 +411,26 @@ public class FallbackSource extends ContactsSource {
     protected DataKind inflateEvent(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
         if (kind == null) {
+            // TODO make the event field editable.  The difficulty is that Google Contacts
+            // drops incorrectly formatted dates.  This means that we would
+            // need to know exactly how the sync adapter wants the date formatted and
+            // then have a rigid UI and automatic formatting of the date for the sync adapter.
             kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
                     R.string.eventLabelsGroup, -1, 150, false));
             kind.secondary = true;
             kind.actionHeader = new EventActionInflater();
             kind.actionBody = new SimpleInflater(Event.START_DATE);
+
+            kind.typeColumn = Event.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY));
+            kind.typeList.add(buildEventType(Event.TYPE_ANNIVERSARY));
+            kind.typeList.add(buildEventType(Event.TYPE_OTHER));
+            kind.typeList.add(buildEventType(Event.TYPE_CUSTOM).setSecondary(true).setCustomColumn(
+                    Event.LABEL));
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
         }
 
         return kind;

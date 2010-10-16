@@ -22,13 +22,9 @@ import com.google.android.collect.Lists;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Groups;
 
 public class GoogleSource extends FallbackSource {
     public static final String ACCOUNT_TYPE = "com.google";
-
-    private static final String SELECTION_GROUPS_BY_TITLE_AND_ACCOUNT =
-            Groups.TITLE + "=? AND " + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?";
 
     public GoogleSource(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
