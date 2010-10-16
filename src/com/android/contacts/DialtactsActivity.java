@@ -165,15 +165,20 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         String componentName = intent.getComponent().getClassName();
         if (getClass().getName().equals(componentName)) {
             if (phoneIsInUse()) {
-                // If we are in a call, show the dialer tab (which allows going back to the
-                // call)
+                // We are in a call, show the dialer tab (which allows going back to the call)
                 mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+            } else if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
+                // launched from history (long-press home) --> nothing to change
+            } else if (isDialIntent(intent)) {
+                // The dialer was explicitly requested
+                mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+            } else if (Calls.CONTENT_TYPE.equals(intent.getType())) {
+                // After a call, show the call log
+                mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
             } else {
-                // If we are launched from history (long-press home), go back to the last
-                // tab that was used to make a call
-                if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) == 0) {
-                    mTabHost.setCurrentTab(StickyTabs.loadTab(this, TAB_INDEX_DIALER));
-                }
+                // Load the last tab used to make a phone call. default to the dialer in
+                // first launch
+                mTabHost.setCurrentTab(StickyTabs.loadTab(this, TAB_INDEX_DIALER));
             }
         } else if (FAVORITES_ENTRY_COMPONENT.equals(componentName)) {
             mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
