@@ -18,6 +18,6 @@
     android:minWidth="294dip"
     android:minHeight="72dip"
     android:updatePeriodMillis="3600000"
-    android:initialLayout="@layout/contact_social_widget"
-    android:configure="com.android.contacts.contactSocialWidget.ContactSocialWidgetConfigureActivity" >
+    android:initialLayout="@layout/social_widget"
+    android:configure="com.android.contacts.socialwidget.SocialWidgetConfigureActivity" >
 </appwidget-provider>
