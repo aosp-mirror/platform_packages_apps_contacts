@@ -15,7 +15,7 @@
 -->
 
 <!-- placed inside act_edit as tabcontent -->
-<com.android.contacts.ui.widget.ReadOnlyContactEditorView
+<com.android.contacts.views.editor.ReadOnlyContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -150,4 +150,4 @@
         />
     </LinearLayout>
 
-</com.android.contacts.ui.widget.ReadOnlyContactEditorView>
+</com.android.contacts.views.editor.ReadOnlyContactEditorView>

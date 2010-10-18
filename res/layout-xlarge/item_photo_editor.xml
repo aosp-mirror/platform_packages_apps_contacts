@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<com.android.contacts.ui.widget.PhotoEditorView
+<com.android.contacts.views.editor.PhotoEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/edit_photo_size"
     android:layout_height="@dimen/edit_photo_size"

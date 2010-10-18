@@ -28,16 +28,15 @@ import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.DialogInterface;
-import android.content.EntityIterator;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.util.Log;
 
 /**

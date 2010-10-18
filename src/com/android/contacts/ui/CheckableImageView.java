@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui.widget;
+package com.android.contacts.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

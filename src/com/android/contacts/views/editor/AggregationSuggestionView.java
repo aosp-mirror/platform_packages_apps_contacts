@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui.widget;
+package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;

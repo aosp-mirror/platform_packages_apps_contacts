@@ -23,7 +23,6 @@ import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.Sources;
-import com.android.contacts.ui.widget.CheckableImageView;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;

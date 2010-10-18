@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui.widget;
+package com.android.contacts.views.editor;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource.DataKind;
 import com.android.contacts.model.ContactsSource.EditField;
 import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.model.Editor;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.ui.ViewIdGenerator;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
 
