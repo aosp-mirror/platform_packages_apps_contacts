@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.contactSocialWidget;
+package com.android.contacts.socialwidget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,8 +22,8 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.util.Log;
 
-public class ContactSocialWidgetSettings {
-    private static final String TAG = "ContactSocialWidgetSettings";
+public class SocialWidgetSettings {
+    private static final String TAG = "SocialWidgetSettings";
 
     private static final String PREFS_NAME = "WidgetSettings";
     private static final String CONTACT_URI = "CONTACT_URI_%";

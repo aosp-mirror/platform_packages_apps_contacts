@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.contactSocialWidget;
+package com.android.contacts.socialwidget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -22,7 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 
-public class ContactSocialWidgetConfigureActivity extends Activity {
+public class SocialWidgetConfigureActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +45,11 @@ public class ContactSocialWidgetConfigureActivity extends Activity {
                     AppWidgetManager.INVALID_APPWIDGET_ID);
 
             // Save the setting
-            final ContactSocialWidgetConfigureActivity context =
-                    ContactSocialWidgetConfigureActivity.this;
-            ContactSocialWidgetSettings.setContactUri(context, widgetId, data.getData());
+            final SocialWidgetConfigureActivity context = SocialWidgetConfigureActivity.this;
+            SocialWidgetSettings.setContactUri(context, widgetId, data.getData());
 
             // Update the widget
-            ContactSocialWidgetProvider.startLoading(context, widgetId);
+            SocialWidgetProvider.startLoading(context, widgetId);
 
             // Return OK so that the system won't remove the widget
             final Intent resultValue = new Intent();

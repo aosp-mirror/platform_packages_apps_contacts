@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.contactSocialWidget;
+package com.android.contacts.socialwidget;
 
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
@@ -34,8 +34,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
-public class ContactSocialWidgetProvider extends AppWidgetProvider {
-    private static final String TAG = "ContactSocialWidgetProvider";
+public class SocialWidgetProvider extends AppWidgetProvider {
+    private static final String TAG = "SocialWidgetProvider";
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -48,12 +48,12 @@ public class ContactSocialWidgetProvider extends AppWidgetProvider {
         // Show that we are loading
         final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
         final RemoteViews loadingViews =
-            new RemoteViews(context.getPackageName(), R.layout.contact_social_widget);
+            new RemoteViews(context.getPackageName(), R.layout.social_widget);
         loadingViews.setTextViewText(R.id.name, "Loading...");
         widgetManager.updateAppWidget(widgetId, loadingViews);
 
         // Load
-        final Uri contactUri = ContactSocialWidgetSettings.getContactUri(context, widgetId);
+        final Uri contactUri = SocialWidgetSettings.getContactUri(context, widgetId);
         if (contactUri == null) {
             // Not yet set-up (this can happen while the Configuration activity is visible)
             return;
@@ -70,7 +70,7 @@ public class ContactSocialWidgetProvider extends AppWidgetProvider {
                         }
                         Log.d(TAG, "Loaded " + contactData.getLookupKey());
                         final RemoteViews views = new RemoteViews(context.getPackageName(),
-                                R.layout.contact_social_widget);
+                                R.layout.social_widget);
 
                         setDisplayName(views, contactData.getDisplayName(),
                                 contactData.getPhoneticName());
