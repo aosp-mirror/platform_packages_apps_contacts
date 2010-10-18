@@ -316,7 +316,7 @@
             android:theme="@style/CustomContactListFilterTheme" />
 
         <activity
-            android:name=".ui.ShowOrCreateActivity"
+            android:name=".activities.ShowOrCreateActivity"
             android:theme="@style/FullyTranslucent">
 
             <intent-filter>
@@ -330,7 +330,7 @@
         <!-- Used to show QuickContact window over a translucent activity, which is a
              temporary hack until we add better framework support. -->
         <activity
-            android:name=".ui.QuickContactActivity"
+            android:name=".quickcontact.QuickContactActivity"
             android:theme="@style/FullyTranslucent.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"

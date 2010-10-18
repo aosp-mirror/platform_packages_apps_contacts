@@ -44,17 +44,17 @@ import android.widget.LinearLayout;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public abstract class BaseContactEditorView extends LinearLayout {
+public abstract class BaseRawContactEditorView extends LinearLayout {
     protected LayoutInflater mInflater;
 
     protected PhotoEditorView mPhoto;
     protected boolean mHasPhotoEditor = false;
 
-    public BaseContactEditorView(Context context) {
+    public BaseRawContactEditorView(Context context) {
         super(context);
     }
 
-    public BaseContactEditorView(Context context, AttributeSet attrs) {
+    public BaseRawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

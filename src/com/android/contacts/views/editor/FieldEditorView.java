@@ -42,20 +42,16 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -64,7 +60,7 @@ import java.util.List;
  * the entry. Uses {@link ValuesDelta} to read any existing
  * {@link Entity} values, and to correctly write any changes values.
  */
-public class GenericEditorView extends ViewGroup implements Editor, DialogShowingView {
+public class FieldEditorView extends ViewGroup implements Editor, DialogShowingView {
     private static final String DIALOG_ID_KEY = "dialog_id";
     private static final int DIALOG_ID_CUSTOM = 1;
 
@@ -94,15 +90,15 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
 
 
 
-    public GenericEditorView(Context context) {
+    public FieldEditorView(Context context) {
         super(context);
     }
 
-    public GenericEditorView(Context context, AttributeSet attrs) {
+    public FieldEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public GenericEditorView(Context context, AttributeSet attrs, int defStyle) {
+    public FieldEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -243,11 +239,11 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                     // Keep around in model, but mark as deleted
                     mEntry.markDeleted();
 
-                    ((ViewGroup) getParent()).removeView(GenericEditorView.this);
+                    ((ViewGroup) getParent()).removeView(FieldEditorView.this);
 
                     if (mListener != null) {
                         // Notify listener when present
-                        mListener.onDeleted(GenericEditorView.this);
+                        mListener.onDeleted(FieldEditorView.this);
                     }
                 }
             });
@@ -287,7 +283,7 @@ public class GenericEditorView extends ViewGroup implements Editor, DialogShowin
                         View newFocusView = findViewById(focusedViewId);
                         if (newFocusView == null || newFocusView.getVisibility() == GONE) {
                             // find first visible child
-                            newFocusView = GenericEditorView.this;
+                            newFocusView = FieldEditorView.this;
                         }
                         if (newFocusView != null) {
                             newFocusView.requestFocus();

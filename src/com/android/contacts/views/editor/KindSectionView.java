@@ -27,11 +27,8 @@ import android.content.Context;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -144,7 +141,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private View createEditorView(ValuesDelta entry) {
         final View view;
         if (mKind.editorClass == null) {
-            view = new GenericEditorView(mContext);
+            view = new FieldEditorView(mContext);
         } else {
             try {
                 view = mKind.editorClass.getConstructor(Context.class).newInstance(

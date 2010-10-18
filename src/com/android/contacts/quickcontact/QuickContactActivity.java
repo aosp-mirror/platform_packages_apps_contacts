@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui;
+package com.android.contacts.quickcontact;
 
 import android.app.Activity;
 import android.content.ContentUris;

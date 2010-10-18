@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<com.android.contacts.ui.CheckableImageView
+<com.android.contacts.quickcontact.CheckableImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="59dip"
     android:layout_height="51dip"

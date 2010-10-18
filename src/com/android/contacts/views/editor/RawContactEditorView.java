@@ -58,9 +58,9 @@ import java.util.ArrayList;
  * adding {@link Data} rows or changing {@link EditType}, are performed through
  * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
  */
-public class ContactEditorView extends BaseContactEditorView {
+public class RawContactEditorView extends BaseRawContactEditorView {
     private View mPhotoStub;
-    private GenericEditorView mName;
+    private FieldEditorView mName;
     private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
@@ -76,11 +76,11 @@ public class ContactEditorView extends BaseContactEditorView {
 
     private long mRawContactId = -1;
 
-    public ContactEditorView(Context context) {
+    public RawContactEditorView(Context context) {
         super(context);
     }
 
-    public ContactEditorView(Context context, AttributeSet attrs) {
+    public RawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -96,7 +96,7 @@ public class ContactEditorView extends BaseContactEditorView {
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
-        mName = (GenericEditorView)findViewById(R.id.edit_name);
+        mName = (FieldEditorView)findViewById(R.id.edit_name);
         mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
 
@@ -216,7 +216,7 @@ public class ContactEditorView extends BaseContactEditorView {
         }
     }
 
-    public GenericEditorView getNameEditor() {
+    public FieldEditorView getNameEditor() {
         return mName;
     }
 

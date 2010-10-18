@@ -19,22 +19,17 @@ package com.android.contacts.views.editor;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.views.editor.Editor.EditorListener;
+import com.android.contacts.model.EntityModifier;
 
 import android.content.Context;
-import android.content.Entity;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.RawContacts;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -49,7 +44,7 @@ import java.util.ArrayList;
 /**
  * Custom view that displays read-only contacts in the edit screen.
  */
-class ReadOnlyContactEditorView extends BaseContactEditorView {
+class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
 
     private View mPhotoStub;
     private TextView mName;
@@ -64,11 +59,11 @@ class ReadOnlyContactEditorView extends BaseContactEditorView {
 
     private long mRawContactId = -1;
 
-    public ReadOnlyContactEditorView(Context context) {
+    public ReadOnlyRawContactEditorView(Context context) {
         super(context);
     }
 
-    public ReadOnlyContactEditorView(Context context, AttributeSet attrs) {
+    public ReadOnlyRawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

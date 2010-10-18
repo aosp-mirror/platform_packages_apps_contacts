@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.contacts.ui;
+package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactBrowserActivity;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 

@@ -437,12 +437,12 @@ public class ContactEditorFragment extends Fragment implements
                     ContactsSource.LEVEL_CONSTRAINTS);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
-            final BaseContactEditorView editor;
+            final BaseRawContactEditorView editor;
             if (!source.readOnly) {
-                editor = (BaseContactEditorView) inflater.inflate(R.layout.item_contact_editor,
+                editor = (BaseRawContactEditorView) inflater.inflate(R.layout.item_contact_editor,
                         mContent, false);
             } else {
-                editor = (BaseContactEditorView) inflater.inflate(
+                editor = (BaseRawContactEditorView) inflater.inflate(
                         R.layout.item_read_only_contact_editor, mContent, false);
             }
             final PhotoEditorView photoEditor = editor.getPhotoEditor();
@@ -475,9 +475,9 @@ public class ContactEditorFragment extends Fragment implements
             mContent.addView(editor);
             editor.setState(entity, source, mViewIdGenerator);
 
-            if (editor instanceof ContactEditorView) {
-                final ContactEditorView rawContactEditor = (ContactEditorView) editor;
-                final GenericEditorView nameEditor = rawContactEditor.getNameEditor();
+            if (editor instanceof RawContactEditorView) {
+                final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
+                final FieldEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(new EditorListener() {
 
                     @Override
@@ -514,7 +514,7 @@ public class ContactEditorFragment extends Fragment implements
 
         int editorCount = mContent.getChildCount();
         for (int i = 0; i < editorCount; i++) {
-            BaseContactEditorView editor = (BaseContactEditorView) mContent.getChildAt(i);
+            BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
             editor.setGroupMetaData(mGroupMetaData);
         }
     }
@@ -1026,8 +1026,8 @@ public class ContactEditorFragment extends Fragment implements
     }
 
 
-    private void onContactNameChange(int request, final ContactEditorView rawContactEditor,
-            GenericEditorView nameEditor) {
+    private void onContactNameChange(int request, final RawContactEditorView rawContactEditor,
+            FieldEditorView nameEditor) {
 
         switch (request) {
             case EditorListener.EDITOR_FORM_CHANGED:
@@ -1053,7 +1053,7 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void switchFromFullNameToStructuredName(GenericEditorView nameEditor) {
+    private void switchFromFullNameToStructuredName(FieldEditorView nameEditor) {
         ValuesDelta values = nameEditor.getValues();
 
         String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
@@ -1085,7 +1085,7 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void switchFromStructuredNameToFullName(GenericEditorView nameEditor) {
+    private void switchFromStructuredNameToFullName(FieldEditorView nameEditor) {
         ValuesDelta values = nameEditor.getValues();
 
         Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath(
@@ -1132,7 +1132,7 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Triggers an asynchronous search for aggregation suggestions.
      */
-    public void acquireAggregationSuggestions(ContactEditorView rawContactEditor) {
+    public void acquireAggregationSuggestions(RawContactEditorView rawContactEditor) {
         long rawContactId = rawContactEditor.getRawContactId();
         if (mAggregationSuggestionsRawContactId != rawContactId
                 && mAggregationSuggestionView != null) {
@@ -1150,7 +1150,7 @@ public class ContactEditorFragment extends Fragment implements
             mAggregationSuggestionEngine.start();
         }
 
-        GenericEditorView nameEditor = rawContactEditor.getNameEditor();
+        FieldEditorView nameEditor = rawContactEditor.getNameEditor();
         mAggregationSuggestionEngine.onNameChange(nameEditor.getValues());
     }
 
@@ -1448,7 +1448,7 @@ public class ContactEditorFragment extends Fragment implements
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
     private void setPhoto(long rawContact, Bitmap photo) {
-        BaseContactEditorView requestingEditor = getContactEditorView(rawContact);
+        BaseRawContactEditorView requestingEditor = getContactEditorView(rawContact);
         if (requestingEditor != null) {
             requestingEditor.setPhotoBitmap(photo);
         } else {
@@ -1459,11 +1459,11 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Finds raw contact editor view for the given rawContactId.
      */
-    public BaseContactEditorView getContactEditorView(long rawContactId) {
+    public BaseRawContactEditorView getContactEditorView(long rawContactId) {
         for (int i = 0; i < mContent.getChildCount(); i++) {
             final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseContactEditorView) {
-                final BaseContactEditorView editor = (BaseContactEditorView) childView;
+            if (childView instanceof BaseRawContactEditorView) {
+                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
                 if (editor.getRawContactId() == rawContactId) {
                     return editor;
                 }
@@ -1595,8 +1595,8 @@ public class ContactEditorFragment extends Fragment implements
         int count = mContent.getChildCount();
         for (int i = 0; i < count; i++) {
             final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseContactEditorView) {
-                final BaseContactEditorView editor = (BaseContactEditorView) childView;
+            if (childView instanceof BaseRawContactEditorView) {
+                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
                 final PhotoEditorView photoEditor = editor.getPhotoEditor();
                 photoEditor.setSuperPrimary(editor.getRawContactId() == rawContactId);
             }
@@ -1612,9 +1612,9 @@ public class ContactEditorFragment extends Fragment implements
         final int editorCount = mContent.getChildCount();
         for (int i = 0; i < editorCount; i++) {
             final View child = mContent.getChildAt(i);
-            if (child instanceof BaseContactEditorView) {
-                final BaseContactEditorView editor =
-                    (BaseContactEditorView) child;
+            if (child instanceof BaseRawContactEditorView) {
+                final BaseRawContactEditorView editor =
+                    (BaseRawContactEditorView) child;
                 if (editor.getRawContactId() == rawContactId) {
                     editor.setPhotoBitmap(null);
                     break;
