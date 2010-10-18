@@ -17,8 +17,8 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountTypes;
 
 import android.accounts.Account;
 import android.app.AlertDialog;
@@ -71,8 +71,9 @@ public class SelectAccountDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Sources sources = Sources.getInstance(getActivity());
-        final ArrayList<Account> accounts = Sources.getInstance(getActivity()).getAccounts(true);
+        final AccountTypes sources = AccountTypes.getInstance(getActivity());
+        final ArrayList<Account> accounts =
+                AccountTypes.getInstance(getActivity()).getAccounts(true);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = LayoutInflater.from(builder.getContext());
 
@@ -93,8 +94,8 @@ public class SelectAccountDialogFragment extends DialogFragment {
                 final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
-                final ContactsSource source = sources.getInflatedSource(account.type,
-                        ContactsSource.LEVEL_SUMMARY);
+                final BaseAccountType source = sources.getInflatedSource(account.type,
+                        BaseAccountType.LEVEL_SUMMARY);
 
                 text1.setText(account.name);
                 text2.setText(source.getDisplayLabel(getContext()));

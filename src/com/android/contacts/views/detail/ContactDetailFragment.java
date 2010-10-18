@@ -24,10 +24,10 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.BaseAccountType.EditType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -294,7 +294,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
         mWritableRawContactIds.clear();
 
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
 
         // Build up method entries
         if (mContactData == null) {
@@ -315,8 +315,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
             }
-            ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
+            BaseAccountType contactsSource = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_SUMMARY);
             if (contactsSource == null || !contactsSource.readOnly) {
                 mWritableRawContactIds.add(rawContactId);
             }
@@ -338,7 +338,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 }
 
                 final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                        ContactsSource.LEVEL_CONSTRAINTS);
+                        BaseAccountType.LEVEL_CONSTRAINTS);
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
@@ -395,7 +395,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = sources.getKindOrFallback(accountType,
-                                imMime, mContext, ContactsSource.LEVEL_MIMETYPES);
+                                imMime, mContext, BaseAccountType.LEVEL_MIMETYPES);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
                         final ImActions imActions = ContactsUtils.buildImActions(entryValues);
@@ -495,7 +495,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     // TODO: Consider moving the SipAddress into its own
                     // section (rather than lumping it in with mOtherEntries)
                     // so that we can reposition it right under the phone number.
-                    // (Then, we'd also update FallbackSource.java to set
+                    // (Then, we'd also update FallbackAccountType.java to set
                     // secondary=false for this field, and tweak the weight
                     // of its DataKind.)
                 } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
@@ -1004,7 +1004,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 break;
             }
             case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
-                final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
+                final ArrayList<Account> accounts = AccountTypes.getInstance(mContext).getAccounts(true);
                 if (accounts.isEmpty()) {
                     createCopy(null);
                     return;  // Don't show a dialog.

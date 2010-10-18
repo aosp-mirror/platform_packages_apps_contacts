@@ -18,8 +18,8 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.BaseAccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
@@ -91,13 +91,13 @@ class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
 
     /**
      * Set the internal state for this view, given a current
-     * {@link EntityDelta} state and the {@link ContactsSource} that
+     * {@link EntityDelta} state and the {@link BaseAccountType} that
      * apply to that state.
      *
      * TODO: make this more generic using data from the source
      */
     @Override
-    public void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, BaseAccountType source, ViewIdGenerator vig) {
         // Remove any existing sections
         mGeneral.removeAllViews();
 

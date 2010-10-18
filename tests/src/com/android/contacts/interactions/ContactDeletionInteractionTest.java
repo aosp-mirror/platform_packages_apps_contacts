@@ -17,7 +17,7 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
@@ -66,7 +66,7 @@ public class ContactDeletionInteractionTest extends InstrumentationTestCase {
         }
 
         @Override
-        Sources getSources() {
+        AccountTypes getSources() {
             return new MockSources();
         }
     }

@@ -19,10 +19,10 @@ package com.android.contacts.interactions;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.StringInflater;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.BaseAccountType.StringInflater;
+import com.android.contacts.model.AccountTypes;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -128,11 +128,11 @@ public class PhoneNumberInteraction
      * A list adapter that populates the list of contact's phone numbers.
      */
     private class PhoneItemAdapter extends ArrayAdapter<PhoneItem> {
-        private final Sources mSources;
+        private final AccountTypes mSources;
 
         public PhoneItemAdapter(Context context) {
             super(context, R.layout.phone_disambig_item, android.R.id.text2);
-            mSources = Sources.getInstance(context);
+            mSources = AccountTypes.getInstance(context);
         }
 
         @Override
@@ -140,8 +140,8 @@ public class PhoneNumberInteraction
             View view = super.getView(position, convertView, parent);
 
             PhoneItem item = getItem(position);
-            ContactsSource source = mSources.getInflatedSource(item.accountType,
-                    ContactsSource.LEVEL_SUMMARY);
+            BaseAccountType source = mSources.getInflatedSource(item.accountType,
+                    BaseAccountType.LEVEL_SUMMARY);
 
             // Obtain a string representation of the phone type specific to the
             // ContactSource associated with that phone number

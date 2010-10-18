@@ -44,7 +44,7 @@ import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
 import com.android.contacts.R;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardInterpreterCollection;
@@ -843,7 +843,7 @@ public class ImportVCardActivity extends Activity {
         if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
             mAccount = new Account(accountName, accountType);
         } else {
-            final Sources sources = Sources.getInstance(this);
+            final AccountTypes sources = AccountTypes.getInstance(this);
             final List<Account> accountList = sources.getAccounts(true);
             if (accountList.size() == 0) {
                 mAccount = null;

@@ -46,7 +46,7 @@ import java.util.List;
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
-public abstract class ContactsSource {
+public abstract class BaseAccountType {
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
@@ -91,7 +91,7 @@ public abstract class ContactsSource {
     }
 
     /**
-     * Ensure that this {@link ContactsSource} has been inflated to the
+     * Ensure that this {@link BaseAccountType} has been inflated to the
      * requested level.
      */
     public synchronized void ensureInflated(Context context, int inflateLevel) {
@@ -107,7 +107,7 @@ public abstract class ContactsSource {
     protected abstract void inflate(Context context, int inflateLevel);
 
     /**
-     * Invalidate any cache for this {@link ContactsSource}, removing all
+     * Invalidate any cache for this {@link BaseAccountType}, removing all
      * inflated data. Calling {@link #ensureInflated(Context, int)} will
      * populate again from scratch.
      */
@@ -165,7 +165,7 @@ public abstract class ContactsSource {
     /**
      * Find the {@link DataKind} for a specific MIME-type, if it's handled by
      * this data source. If you may need a fallback {@link DataKind}, use
-     * {@link Sources#getKindOrFallback(String, String, Context, int)}.
+     * {@link AccountTypes#getKindOrFallback(String, String, Context, int)}.
      */
     public DataKind getKindForMimetype(String mimeType) {
         return this.mMimeKinds.get(mimeType);

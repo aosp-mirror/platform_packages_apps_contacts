@@ -16,7 +16,7 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.ContactsSource.DataKind;
+import com.android.contacts.model.BaseAccountType.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
@@ -44,32 +44,32 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Singleton holder for all parsed {@link ContactsSource} available on the
+ * Singleton holder for all parsed {@link BaseAccountType} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class Sources extends BroadcastReceiver implements OnAccountsUpdateListener {
-    private static final String TAG = "Sources";
+public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateListener {
+    private static final String TAG = "AccountTypes";
 
     private Context mContext;
     private Context mApplicationContext;
     private AccountManager mAccountManager;
 
-    private ContactsSource mFallbackSource = null;
+    private BaseAccountType mFallbackSource = null;
 
-    private HashMap<String, ContactsSource> mSources = Maps.newHashMap();
+    private HashMap<String, BaseAccountType> mSources = Maps.newHashMap();
     private HashSet<String> mKnownPackages = Sets.newHashSet();
 
-    private static SoftReference<Sources> sInstance = null;
+    private static SoftReference<AccountTypes> sInstance = null;
 
     /**
-     * Requests the singleton instance of {@link Sources} with data bound from
+     * Requests the singleton instance of {@link AccountTypes} with data bound from
      * the available authenticators. This method can safely be called from the UI thread.
      */
-    public static synchronized Sources getInstance(Context context) {
-        Sources sources = sInstance == null ? null : sInstance.get();
+    public static synchronized AccountTypes getInstance(Context context) {
+        AccountTypes sources = sInstance == null ? null : sInstance.get();
         if (sources == null) {
-            sources = new Sources(context);
-            sInstance = new SoftReference<Sources>(sources);
+            sources = new AccountTypes(context);
+            sInstance = new SoftReference<AccountTypes>(sources);
         }
         return sources;
     }
@@ -77,13 +77,13 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     /**
      * Internal constructor that only performs initial parsing.
      */
-    private Sources(Context context) {
+    private AccountTypes(Context context) {
         mContext = context;
         mApplicationContext = context.getApplicationContext();
         mAccountManager = AccountManager.get(mApplicationContext);
 
         // Create fallback contacts source for on-phone contacts
-        mFallbackSource = new FallbackSource();
+        mFallbackSource = new FallbackAccountType();
 
         queryAccounts();
 
@@ -107,13 +107,13 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     }
 
     /** @hide exposed for unit tests */
-    public Sources(ContactsSource... sources) {
-        for (ContactsSource source : sources) {
+    public AccountTypes(BaseAccountType... sources) {
+        for (BaseAccountType source : sources) {
             addSource(source);
         }
     }
 
-    protected void addSource(ContactsSource source) {
+    protected void addSource(BaseAccountType source) {
         mSources.put(source.accountType, source);
         mKnownPackages.add(source.resPackageName);
     }
@@ -155,7 +155,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     }
 
     protected void invalidateCache(String packageName) {
-        for (ContactsSource source : mSources.values()) {
+        for (BaseAccountType source : mSources.values()) {
             if (TextUtils.equals(packageName, source.resPackageName)) {
                 // Invalidate any cache for the changed package
                 source.invalidateCache();
@@ -165,7 +165,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
 
     protected void invalidateAllCache() {
         mFallbackSource.invalidateCache();
-        for (ContactsSource source : mSources.values()) {
+        for (BaseAccountType source : mSources.values()) {
             source.invalidateCache();
         }
     }
@@ -201,16 +201,16 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
                 final String accountType = sync.accountType;
                 final AuthenticatorDescription auth = findAuthenticator(auths, accountType);
 
-                ContactsSource source;
-                if (GoogleSource.ACCOUNT_TYPE.equals(accountType)) {
-                    source = new GoogleSource(auth.packageName);
-                } else if (ExchangeSource.ACCOUNT_TYPE.equals(accountType)) {
-                    source = new ExchangeSource(auth.packageName);
+                BaseAccountType source;
+                if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)) {
+                    source = new GoogleAccountType(auth.packageName);
+                } else if (ExchangeAccountType.ACCOUNT_TYPE.equals(accountType)) {
+                    source = new ExchangeAccountType(auth.packageName);
                 } else {
                     // TODO: use syncadapter package instead, since it provides resources
                     Log.d(TAG, "Creating external source for type=" + accountType
                             + ", packageName=" + auth.packageName);
-                    source = new ExternalSource(auth.packageName);
+                    source = new ExternalAccountType(auth.packageName);
                     source.readOnly = !sync.supportsUploading();
                 }
 
@@ -240,7 +240,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     }
 
     /**
-     * Return list of all known, writable {@link ContactsSource}. Sources
+     * Return list of all known, writable {@link BaseAccountType}. AccountTypes
      * returned may require inflation before they can be used.
      */
     public ArrayList<Account> getAccounts(boolean writableOnly) {
@@ -250,10 +250,11 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
 
         for (Account account : accounts) {
             // Ensure we have details loaded for each account
-            final ContactsSource source = getInflatedSource(account.type,
-                    ContactsSource.LEVEL_SUMMARY);
-            final boolean hasContacts = source != null;
-            final boolean matchesWritable = (!writableOnly || (writableOnly && !source.readOnly));
+            final BaseAccountType accountType = getInflatedSource(account.type,
+                    BaseAccountType.LEVEL_SUMMARY);
+            final boolean hasContacts = accountType != null;
+            final boolean matchesWritable =
+                    (!writableOnly || (writableOnly && !accountType.readOnly));
             if (hasContacts && matchesWritable) {
                 matching.add(account);
             }
@@ -263,7 +264,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
 
     /**
      * Find the best {@link DataKind} matching the requested
-     * {@link ContactsSource#accountType} and {@link DataKind#mimeType}. If no
+     * {@link BaseAccountType#accountType} and {@link DataKind#mimeType}. If no
      * direct match found, we try searching {@link #mFallbackSource}.
      * When fourceRefresh is set to true, cache is refreshed and inflation of each
      * EditField will occur.
@@ -273,7 +274,7 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
         DataKind kind = null;
 
         // Try finding source and kind matching request
-        final ContactsSource source = mSources.get(accountType);
+        final BaseAccountType source = mSources.get(accountType);
         if (source != null) {
             source.ensureInflated(context, inflateLevel);
             kind = source.getKindForMimetype(mimeType);
@@ -293,11 +294,11 @@ public class Sources extends BroadcastReceiver implements OnAccountsUpdateListen
     }
 
     /**
-     * Return {@link ContactsSource} for the given account type.
+     * Return {@link BaseAccountType} for the given account type.
      */
-    public ContactsSource getInflatedSource(String accountType, int inflateLevel) {
+    public BaseAccountType getInflatedSource(String accountType, int inflateLevel) {
         // Try finding specific source, otherwise use fallback
-        ContactsSource source = mSources.get(accountType);
+        BaseAccountType source = mSources.get(accountType);
         if (source == null) source = mFallbackSource;
 
         if (source.isInflated(inflateLevel)) {

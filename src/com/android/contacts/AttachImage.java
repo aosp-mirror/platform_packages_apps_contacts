@@ -36,8 +36,8 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.widget.Toast;
 
-import com.android.contacts.model.ExchangeSource;
-import com.android.contacts.model.GoogleSource;
+import com.android.contacts.model.ExchangeAccountType;
+import com.android.contacts.model.GoogleAccountType;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -189,8 +189,8 @@ public class AttachImage extends Activity {
             operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
                     .withSelection(Photo.MIMETYPE + "=? AND "
                             + RawContacts.ACCOUNT_TYPE + " IN (?,?)",
-                            new String[] {Photo.CONTENT_ITEM_TYPE, GoogleSource.ACCOUNT_TYPE,
-                            ExchangeSource.ACCOUNT_TYPE})
+                            new String[] {Photo.CONTENT_ITEM_TYPE, GoogleAccountType.ACCOUNT_TYPE,
+                            ExchangeAccountType.ACCOUNT_TYPE})
                             .withExpectedCount(0).build());
         }
 

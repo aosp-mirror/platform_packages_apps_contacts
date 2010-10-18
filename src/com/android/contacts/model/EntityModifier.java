@@ -17,9 +17,9 @@
 package com.android.contacts.model;
 
 import com.android.contacts.ContactsUtils;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditField;
-import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.BaseAccountType.EditField;
+import com.android.contacts.model.BaseAccountType.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
 
@@ -50,7 +50,7 @@ import java.util.List;
 
 /**
  * Helper methods for modifying an {@link EntityDelta}, such as inserting
- * new rows, or enforcing {@link ContactsSource}.
+ * new rows, or enforcing {@link BaseAccountType}.
  */
 public class EntityModifier {
     private static final String TAG = "EntityModifier";
@@ -58,7 +58,7 @@ public class EntityModifier {
     /**
      * For the given {@link EntityDelta}, determine if the given
      * {@link DataKind} could be inserted under specific
-     * {@link ContactsSource}.
+     * {@link BaseAccountType}.
      */
     public static boolean canInsert(EntityDelta state, DataKind kind) {
         // Insert possible when have valid types and under overall maximum
@@ -81,7 +81,7 @@ public class EntityModifier {
      * Ensure that at least one of the given {@link DataKind} exists in the
      * given {@link EntityDelta} state, and try creating one if none exist.
      */
-    public static void ensureKindExists(EntityDelta state, ContactsSource source, String mimeType) {
+    public static void ensureKindExists(EntityDelta state, BaseAccountType source, String mimeType) {
         final DataKind kind = source.getKindForMimetype(mimeType);
         final boolean hasChild = state.getMimeEntriesCount(mimeType, true) > 0;
 
@@ -97,7 +97,7 @@ public class EntityModifier {
     /**
      * For the given {@link EntityDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
-     * {@link ContactsSource}.
+     * {@link BaseAccountType}.
      */
     public static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind) {
         return getValidTypes(state, kind, null, true, null);
@@ -106,7 +106,7 @@ public class EntityModifier {
     /**
      * For the given {@link EntityDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
-     * {@link ContactsSource}.
+     * {@link BaseAccountType}.
      *
      * @param forceInclude Always include this {@link EditType} in the returned
      *            list, even when an otherwise-invalid choice. This is useful
@@ -120,7 +120,7 @@ public class EntityModifier {
     /**
      * For the given {@link EntityDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
-     * {@link ContactsSource}.
+     * {@link BaseAccountType}.
      *
      * @param forceInclude Always include this {@link EditType} in the returned
      *            list, even when an otherwise-invalid choice. This is useful
@@ -348,26 +348,26 @@ public class EntityModifier {
 
     /**
      * Processing to trim any empty {@link ValuesDelta} and {@link EntityDelta}
-     * from the given {@link EntityDeltaList}, assuming the given {@link Sources}
+     * from the given {@link EntityDeltaList}, assuming the given {@link AccountTypes}
      * dictates the structure for various fields. This method ignores rows not
-     * described by the {@link ContactsSource}.
+     * described by the {@link BaseAccountType}.
      */
-    public static void trimEmpty(EntityDeltaList set, Sources sources) {
+    public static void trimEmpty(EntityDeltaList set, AccountTypes sources) {
         for (EntityDelta state : set) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final ContactsSource source = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_MIMETYPES);
+            final BaseAccountType source = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_MIMETYPES);
             trimEmpty(state, source);
         }
     }
 
     /**
      * Processing to trim any empty {@link ValuesDelta} rows from the given
-     * {@link EntityDelta}, assuming the given {@link ContactsSource} dictates
+     * {@link EntityDelta}, assuming the given {@link BaseAccountType} dictates
      * the structure for various fields. This method ignores rows not described
-     * by the {@link ContactsSource}.
+     * by the {@link BaseAccountType}.
      */
-    public static void trimEmpty(EntityDelta state, ContactsSource source) {
+    public static void trimEmpty(EntityDelta state, BaseAccountType source) {
         boolean hasValues = false;
 
         // Walk through entries for each well-known kind
@@ -385,7 +385,7 @@ public class EntityModifier {
                 }
 
                 // Test and remove this row if empty and it isn't a photo from google
-                final boolean isGoogleSource = TextUtils.equals(GoogleSource.ACCOUNT_TYPE,
+                final boolean isGoogleSource = TextUtils.equals(GoogleAccountType.ACCOUNT_TYPE,
                         state.getValues().getAsString(RawContacts.ACCOUNT_TYPE));
                 final boolean isPhoto = TextUtils.equals(Photo.CONTENT_ITEM_TYPE, kind.mimeType);
                 final boolean isGooglePhoto = isPhoto && isGoogleSource;
@@ -429,7 +429,7 @@ public class EntityModifier {
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(Context context, ContactsSource source, EntityDelta state,
+    public static void parseExtras(Context context, BaseAccountType source, EntityDelta state,
             Bundle extras) {
         if (extras == null || extras.size() == 0) {
             // Bail early if no useful data

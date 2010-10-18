@@ -23,10 +23,10 @@ import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
-public class GoogleSource extends FallbackSource {
+public class GoogleAccountType extends FallbackAccountType {
     public static final String ACCOUNT_TYPE = "com.google";
 
-    public GoogleSource(String resPackageName) {
+    public GoogleAccountType(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
         this.summaryResPackageName = resPackageName;
@@ -55,9 +55,9 @@ public class GoogleSource extends FallbackSource {
 
     @Override
     protected DataKind inflatePhone(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhone(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhone(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
@@ -79,9 +79,9 @@ public class GoogleSource extends FallbackSource {
 
     @Override
     protected DataKind inflateEmail(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateEmail(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateEmail(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Email.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildEmailType(Email.TYPE_HOME));

@@ -71,22 +71,22 @@ import java.util.List;
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
-public class ExternalSource extends FallbackSource {
+public class ExternalAccountType extends FallbackAccountType {
     private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
     private interface InflateTags {
-        final String CONTACTS_SOURCE = "ContactsSource";
+        final String CONTACTS_SOURCE = "BaseAccountType";
         final String CONTACTS_DATA_KIND = "ContactsDataKind";
     }
 
-    public ExternalSource(String resPackageName) {
+    public ExternalAccountType(String resPackageName) {
         this.resPackageName = resPackageName;
         this.summaryResPackageName = resPackageName;
     }
 
     /**
-     * Ensure that the constraint rules behind this {@link ContactsSource} have
+     * Ensure that the constraint rules behind this {@link BaseAccountType} have
      * been inflated. Because this may involve parsing meta-data from
      * {@link PackageManager}, it shouldn't be called from a UI thread.
      */
@@ -112,7 +112,7 @@ public class ExternalSource extends FallbackSource {
     }
 
     /**
-     * Inflate this {@link ContactsSource} from the given parser. This may only
+     * Inflate this {@link BaseAccountType} from the given parser. This may only
      * load details matching the publicly-defined schema.
      */
     protected void inflate(Context context, XmlPullParser parser) {
@@ -156,7 +156,7 @@ public class ExternalSource extends FallbackSource {
                         .getString(com.android.internal.R.styleable.ContactsDataKind_summaryColumn);
                 if (summaryColumn != null) {
                     // Inflate a specific column as summary when requested
-                    kind.actionHeader = new FallbackSource.SimpleInflater(summaryColumn);
+                    kind.actionHeader = new FallbackAccountType.SimpleInflater(summaryColumn);
                 }
 
                 final String detailColumn = a
@@ -172,7 +172,7 @@ public class ExternalSource extends FallbackSource {
 
                 if (detailColumn != null) {
                     // Inflate specific column as summary
-                    kind.actionBody = new FallbackSource.SimpleInflater(detailColumn);
+                    kind.actionBody = new FallbackAccountType.SimpleInflater(detailColumn);
                 }
 
                 addKind(kind);

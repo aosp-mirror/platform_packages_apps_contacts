@@ -15,28 +15,28 @@
  */
 package com.android.contacts.tests.mocks;
 
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.FallbackSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.FallbackAccountType;
+import com.android.contacts.model.AccountTypes;
 
 /**
- * A mock {@link Sources} class.
+ * A mock {@link AccountTypes} class.
  */
-public class MockSources extends Sources {
+public class MockSources extends AccountTypes {
 
     public static final String WRITABLE_ACCOUNT_TYPE = "writable";
     public static final String READONLY_ACCOUNT_TYPE = "readonly";
 
     @Override
-    public ContactsSource getInflatedSource(String accountType, int inflateLevel) {
+    public BaseAccountType getInflatedSource(String accountType, int inflateLevel) {
         if (accountType.equals(WRITABLE_ACCOUNT_TYPE)) {
-            ContactsSource source = new FallbackSource();
+            BaseAccountType source = new FallbackAccountType();
             source.readOnly = false;
             return source;
         }
 
         if (accountType.equals(READONLY_ACCOUNT_TYPE)) {
-            ContactsSource source = new FallbackSource();
+            BaseAccountType source = new FallbackAccountType();
             source.readOnly = true;
             return source;
         }

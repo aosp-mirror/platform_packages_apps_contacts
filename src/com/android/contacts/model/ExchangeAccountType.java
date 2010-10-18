@@ -34,11 +34,11 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 
 import java.util.Locale;
 
-public class ExchangeSource extends FallbackSource {
+public class ExchangeAccountType extends FallbackAccountType {
 
     public static final String ACCOUNT_TYPE = "com.android.exchange";
 
-    public ExchangeSource(String resPackageName) {
+    public ExchangeAccountType(String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
         this.summaryResPackageName = resPackageName;
@@ -65,9 +65,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateStructuredName(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredName(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateStructuredName(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             boolean displayOrderPrimary =
                     context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
             kind.typeOverallMax = 1;
@@ -109,9 +109,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateNickname(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNickname(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateNickname(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();
@@ -124,9 +124,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflatePhone(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhone(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhone(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPhoneType(Phone.TYPE_HOME).setSpecificMax(2));
@@ -156,9 +156,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateEmail(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateEmail(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateEmail(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 3;
 
             kind.fieldList = Lists.newArrayList();
@@ -170,9 +170,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredPostal(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateStructuredPostal(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             final boolean useJapaneseOrder =
                 Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
             kind.typeColumn = StructuredPostal.TYPE;
@@ -212,9 +212,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateIm(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateIm(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateIm(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 3;
 
             // NOTE: even though a traditional "type" exists, for editing
@@ -245,9 +245,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateOrganization(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateOrganization(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateOrganization(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
             kind.typeColumn = Organization.TYPE;
             kind.typeList = Lists.newArrayList();
@@ -268,9 +268,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflatePhoto(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhoto(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhoto(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 1;
 
             kind.fieldList = Lists.newArrayList();
@@ -282,9 +282,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateNote(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNote(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateNote(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
         }
@@ -294,9 +294,9 @@ public class ExchangeSource extends FallbackSource {
 
     @Override
     protected DataKind inflateWebsite(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateWebsite(context, ContactsSource.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateWebsite(context, BaseAccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();

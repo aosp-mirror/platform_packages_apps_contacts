@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.util.Constants;
 
 import android.content.ContentResolver;
@@ -459,10 +459,10 @@ public class ContactsUtils {
      * Utility for creating a standard tab indicator view.
      *
      * @param parent The parent ViewGroup to attach the new view to.
-     * @param source The {@link ContactsSource} to build the tab view from.
+     * @param source The {@link BaseAccountType} to build the tab view from.
      * @return The tab indicator View.
      */
-    public static View createTabIndicatorView(ViewGroup parent, ContactsSource source) {
+    public static View createTabIndicatorView(ViewGroup parent, BaseAccountType source) {
         Drawable icon = null;
         if (source != null) {
             icon = source.getDisplayIcon(parent.getContext());

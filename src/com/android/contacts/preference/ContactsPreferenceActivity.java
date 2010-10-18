@@ -18,10 +18,10 @@ package com.android.contacts.preference;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.GoogleSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
@@ -333,7 +333,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //
 //    /**
 //     * Background operation to build set of {@link AccountDisplay} for each
-//     * {@link Sources#getAccounts(boolean)} that provides groups.
+//     * {@link AccountTypes#getAccounts(boolean)} that provides groups.
 //     */
 //    private static class QueryGroupsTask extends
 //            WeakAsyncTask<Void, Void, AccountSet, ContactsPreferenceActivity> {
@@ -345,7 +345,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //        protected AccountSet doInBackground(ContactsPreferenceActivity target,
 //                Void... params) {
 //            final Context context = target;
-//            final Sources sources = Sources.getInstance(context);
+//            final AccountTypes sources = AccountTypes.getInstance(context);
 //            final ContentResolver resolver = context.getContentResolver();
 //
 //            // Inflate groups entry for each account
@@ -676,7 +676,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //    protected static class DisplayAdapter extends BaseExpandableListAdapter {
 //        private Context mContext;
 //        private LayoutInflater mInflater;
-//        private Sources mSources;
+//        private AccountTypes mSources;
 //        private AccountSet mAccounts;
 //
 //        private boolean mChildWithPhones = false;
@@ -684,7 +684,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //        public DisplayAdapter(Context context) {
 //            mContext = context;
 //            mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            mSources = Sources.getInstance(context);
+//            mSources = AccountTypes.getInstance(context);
 //        }
 //
 //        public void setAccounts(AccountSet accounts) {
@@ -753,8 +753,8 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //
 //            final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 //
-//            final ContactsSource source = mSources.getInflatedSource(account.mType,
-//                    ContactsSource.LEVEL_SUMMARY);
+//            final BaseAccountType source = mSources.getInflatedSource(account.mType,
+//                    BaseAccountType.LEVEL_SUMMARY);
 //
 //            text1.setText(account.mName);
 //            text2.setText(source.getDisplayLabel(mContext));
@@ -903,7 +903,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity
 //
 //    protected int getSyncMode(AccountDisplay account) {
 //        // TODO: read sync mode through <sync-adapter> definition
-//        if (GoogleSource.ACCOUNT_TYPE.equals(account.mType)) {
+//        if (GoogleAccountType.ACCOUNT_TYPE.equals(account.mType)) {
 //            return SYNC_MODE_EVERYTHING;
 //        } else {
 //            return SYNC_MODE_UNSUPPORTED;

@@ -17,8 +17,8 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountTypes;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -110,13 +110,13 @@ public class ContactDeletionInteraction {
         int  writableSourcesCnt = 0;
         int  readOnlySourcesCnt = 0;
 
-        Sources sources = getSources();
+        AccountTypes sources = getSources();
         try {
             while (cursor.moveToNext()) {
                 final long rawContactId = cursor.getLong(0);
                 final String accountType = cursor.getString(1);
-                ContactsSource contactsSource = sources.getInflatedSource(accountType,
-                        ContactsSource.LEVEL_SUMMARY);
+                BaseAccountType contactsSource = sources.getInflatedSource(accountType,
+                        BaseAccountType.LEVEL_SUMMARY);
                 boolean readonly = contactsSource != null && contactsSource.readOnly;
                 if (readonly) {
                     readOnlySourcesCnt ++;
@@ -190,8 +190,8 @@ public class ContactDeletionInteraction {
     }
 
     /* Visible for testing */
-    Sources getSources() {
-        return Sources.getInstance(mContext);
+    AccountTypes getSources() {
+        return AccountTypes.getInstance(mContext);
     }
 
     /* Visible for testing */

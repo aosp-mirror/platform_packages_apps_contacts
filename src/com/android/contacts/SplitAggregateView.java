@@ -16,8 +16,8 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountTypes;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -73,7 +73,7 @@ public class SplitAggregateView extends ListView {
 
     private final Uri mAggregateUri;
     private OnContactSelectedListener mListener;
-    private Sources mSources;
+    private AccountTypes mSources;
 
     /**
      * Listener interface that gets the contact ID of the user-selected contact.
@@ -90,7 +90,7 @@ public class SplitAggregateView extends ListView {
 
         mAggregateUri = aggregateUri;
 
-        mSources = Sources.getInstance(context);
+        mSources = AccountTypes.getInstance(context);
 
         final List<RawContactInfo> list = loadData();
 
@@ -247,8 +247,8 @@ public class SplitAggregateView extends ListView {
             cache.additionalData.setText(info.getAdditionalData());
 
             Drawable icon = null;
-            ContactsSource source = mSources.getInflatedSource(info.accountType,
-                    ContactsSource.LEVEL_SUMMARY);
+            BaseAccountType source = mSources.getInflatedSource(info.accountType,
+                    BaseAccountType.LEVEL_SUMMARY);
             if (source != null) {
                 icon = source.getDisplayIcon(getContext());
             }

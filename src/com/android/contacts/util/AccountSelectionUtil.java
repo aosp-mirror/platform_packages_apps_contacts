@@ -32,8 +32,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountTypes;
 
 import java.util.List;
 
@@ -87,7 +87,7 @@ public class AccountSelectionUtil {
     public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
-        final Sources sources = Sources.getInstance(context);
+        final AccountTypes sources = AccountTypes.getInstance(context);
         final List<Account> writableAccountList = sources.getAccounts(true);
 
         // Assume accountList.size() > 1
@@ -116,9 +116,9 @@ public class AccountSelectionUtil {
                         (TextView)convertView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
-                final ContactsSource source =
+                final BaseAccountType source =
                     sources.getInflatedSource(account.type,
-                            ContactsSource.LEVEL_SUMMARY);
+                            BaseAccountType.LEVEL_SUMMARY);
                 final Context context = getContext();
 
                 text1.setText(account.name);

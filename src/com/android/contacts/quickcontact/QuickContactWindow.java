@@ -20,9 +20,9 @@ import com.android.contacts.Collapser;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
@@ -1186,7 +1186,7 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         final DataStatus status = new DataStatus();
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
         Bitmap photoBitmap = null;
@@ -1212,7 +1212,7 @@ public class QuickContactWindow implements Window.Callback,
             }
 
             final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                    ContactsSource.LEVEL_MIMETYPES);
+                    BaseAccountType.LEVEL_MIMETYPES);
 
             if (kind != null) {
                 // Build an action for this data entry, find a mapping to a UI
@@ -1233,7 +1233,7 @@ public class QuickContactWindow implements Window.Callback,
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
             if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final DataKind imKind = sources.getKindOrFallback(accountType,
-                        Im.CONTENT_ITEM_TYPE, mContext, ContactsSource.LEVEL_MIMETYPES);
+                        Im.CONTENT_ITEM_TYPE, mContext, BaseAccountType.LEVEL_MIMETYPES);
                 if (imKind != null) {
                     final Action action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);

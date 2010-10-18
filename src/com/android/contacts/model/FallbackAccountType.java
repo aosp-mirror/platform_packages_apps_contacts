@@ -39,7 +39,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.view.inputmethod.EditorInfo;
 
-public class FallbackSource extends ContactsSource {
+public class FallbackAccountType extends BaseAccountType {
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     protected static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
@@ -61,7 +61,7 @@ public class FallbackSource extends ContactsSource {
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;  // since SIP addresses have the same
                                                              // basic format as email addresses
 
-    public FallbackSource() {
+    public FallbackAccountType() {
         this.accountType = null;
         this.titleRes = R.string.account_phone;
         this.iconRes = R.drawable.ic_launcher_contacts;
@@ -121,7 +121,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
                     R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
@@ -180,7 +180,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
 
@@ -203,7 +203,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
@@ -246,7 +246,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Email.DATA);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Email.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildEmailType(Email.TYPE_HOME));
@@ -272,7 +272,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
@@ -300,7 +300,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Im.DATA);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             // NOTE: even though a traditional "type" exists, for editing
             // purposes we're using the protocol to pick labels
 
@@ -336,7 +336,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Organization.TITLE);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Organization.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildOrgType(Organization.TYPE_WORK));
@@ -360,7 +360,7 @@ public class FallbackSource extends ContactsSource {
             kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true));
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
         }
@@ -379,7 +379,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Note.NOTE);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
         }
@@ -397,7 +397,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(Website.URL);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
 
@@ -457,7 +457,7 @@ public class FallbackSource extends ContactsSource {
             kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
                                              R.string.label_sip_address, FLAGS_SIP_ADDRESS));
@@ -475,7 +475,7 @@ public class FallbackSource extends ContactsSource {
             kind.isList = false;
         }
 
-        if (inflateLevel >= ContactsSource.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
         }

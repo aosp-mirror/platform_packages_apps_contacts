@@ -18,13 +18,13 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.GoogleSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.contacts.views.ContactLoader;
@@ -348,16 +348,16 @@ public class ContactEditorFragment extends Fragment implements
             // Find source defining the first RawContact found
             final EntityDelta state = mState.get(0);
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final Sources sources = Sources.getInstance(mContext);
-            final ContactsSource source = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_CONSTRAINTS);
+            final AccountTypes sources = AccountTypes.getInstance(mContext);
+            final BaseAccountType source = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_CONSTRAINTS);
             EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
         }
         bindEditors();
     }
 
     private void selectAccountAndCreateContact(boolean isNewContact) {
-        final ArrayList<Account> accounts = Sources.getInstance(mContext).getAccounts(true);
+        final ArrayList<Account> accounts = AccountTypes.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
             createContact(null, isNewContact);
@@ -382,7 +382,7 @@ public class ContactEditorFragment extends Fragment implements
      * @param prefillFromIntent If this is set, the intent extras will be used to prefill the fields
      */
     private void createContact(Account account, boolean prefillFromIntent) {
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
         final ContentValues values = new ContentValues();
         if (account != null) {
             values.put(RawContacts.ACCOUNT_NAME, account.name);
@@ -394,9 +394,9 @@ public class ContactEditorFragment extends Fragment implements
 
         // Parse any values from incoming intent
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-        final ContactsSource source = sources.getInflatedSource(
+        final BaseAccountType source = sources.getInflatedSource(
                 account != null ? account.type : null,
-                ContactsSource.LEVEL_CONSTRAINTS);
+                BaseAccountType.LEVEL_CONSTRAINTS);
         EntityModifier.parseExtras(mContext, source, insert,
                 prefillFromIntent ? mIntentExtras : null);
 
@@ -424,7 +424,7 @@ public class ContactEditorFragment extends Fragment implements
 
         final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             // TODO ensure proper ordering of entities in the list
@@ -433,8 +433,8 @@ public class ContactEditorFragment extends Fragment implements
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final ContactsSource source = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_CONSTRAINTS);
+            final BaseAccountType source = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_CONSTRAINTS);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
@@ -694,7 +694,7 @@ public class ContactEditorFragment extends Fragment implements
         mStatus = Status.SAVING;
 
         // Trim any empty fields, and RawContacts, before persisting
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
         EntityModifier.trimEmpty(mState, sources);
 
         if (mState.buildDiff().isEmpty()) {
@@ -949,13 +949,13 @@ public class ContactEditorFragment extends Fragment implements
                 return 0;
             }
 
-            final Sources sources = Sources.getInstance(mContext);
+            final AccountTypes sources = AccountTypes.getInstance(mContext);
             String accountType = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final ContactsSource oneSource = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
+            final BaseAccountType oneSource = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_SUMMARY);
             accountType = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final ContactsSource twoSource = sources.getInflatedSource(accountType,
-                    ContactsSource.LEVEL_SUMMARY);
+            final BaseAccountType twoSource = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_SUMMARY);
 
             // Check read-only
             if (oneSource.readOnly && !twoSource.readOnly) {
@@ -966,8 +966,8 @@ public class ContactEditorFragment extends Fragment implements
 
             // Check account type
             boolean skipAccountTypeCheck = false;
-            boolean oneIsGoogle = oneSource instanceof GoogleSource;
-            boolean twoIsGoogle = twoSource instanceof GoogleSource;
+            boolean oneIsGoogle = oneSource instanceof GoogleAccountType;
+            boolean twoIsGoogle = twoSource instanceof GoogleAccountType;
             if (oneIsGoogle && !twoIsGoogle) {
                 return -1;
             } else if (twoIsGoogle && !oneIsGoogle) {

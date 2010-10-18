@@ -17,11 +17,11 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.ContactsSource.DataKind;
-import com.android.contacts.model.ContactsSource.EditType;
+import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.BaseAccountType.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.content.Context;
@@ -51,12 +51,12 @@ import java.util.ArrayList;
  * Custom view that provides all the editor interaction for a specific
  * {@link Contacts} represented through an {@link EntityDelta}. Callers can
  * reuse this view and quickly rebuild its contents through
- * {@link #setState(EntityDelta, ContactsSource, ViewIdGenerator)}.
+ * {@link #setState(EntityDelta, BaseAccountType, ViewIdGenerator)}.
  * <p>
  * Internal updates are performed against {@link ValuesDelta} so that the
  * source {@link Entity} can be swapped out. Any state-based changes, such as
  * adding {@link Data} rows or changing {@link EditType}, are performed through
- * {@link EntityModifier} to ensure that {@link ContactsSource} are enforced.
+ * {@link EntityModifier} to ensure that {@link BaseAccountType} are enforced.
  */
 public class RawContactEditorView extends BaseRawContactEditorView {
     private View mPhotoStub;
@@ -125,11 +125,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     /**
      * Set the internal state for this view, given a current
-     * {@link EntityDelta} state and the {@link ContactsSource} that
+     * {@link EntityDelta} state and the {@link BaseAccountType} that
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, ContactsSource source, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, BaseAccountType source, ViewIdGenerator vig) {
         // Remove any existing sections
         mFields.removeAllViews();
 

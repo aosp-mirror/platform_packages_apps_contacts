@@ -17,7 +17,7 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.vcard.ExportVCardActivity;
 
@@ -199,7 +199,7 @@ public class ImportExportInteraction {
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
-        final Sources sources = Sources.getInstance(mContext);
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
         final List<Account> accountList = sources.getAccounts(true);
         final int size = accountList.size();
         if (size > 1) {
