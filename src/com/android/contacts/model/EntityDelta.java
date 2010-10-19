@@ -21,24 +21,23 @@ import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
 
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
 import android.content.Entity;
-import android.content.ContentProviderOperation.Builder;
 import android.content.Entity.NamedContentValues;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
-import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -239,6 +238,18 @@ public class EntityDelta implements Parcelable {
         final String mimeType = entry.getMimetype();
         getMimeEntries(mimeType, true).add(entry);
         return entry;
+    }
+
+    public ArrayList<ContentValues> getContentValues() {
+        ArrayList<ContentValues> values = Lists.newArrayList();
+        for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
+            for (ValuesDelta entry : mimeEntries) {
+                if (!entry.isDelete()) {
+                    values.add(entry.getCompleteValues());
+                }
+            }
+        }
+        return values;
     }
 
     /**

@@ -17,8 +17,8 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.ContactsSource;
-import com.android.contacts.model.Sources;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.RawContact;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
 import com.google.android.collect.Lists;
@@ -125,14 +125,14 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
             return false;
         }
 
-        Sources sources = Sources.getInstance(getContext());
+        AccountTypes sources = AccountTypes.getInstance(getContext());
         for (RawContact rawContact : mRawContacts) {
             String accountType = rawContact.accountType;
             if (accountType == null) {
                 return true;
             }
-            ContactsSource source = sources.getInflatedSource(
-                    accountType, ContactsSource.LEVEL_SUMMARY);
+            BaseAccountType source = sources.getInflatedSource(
+                    accountType, BaseAccountType.LEVEL_SUMMARY);
             if (!source.readOnly) {
                 return true;
             }

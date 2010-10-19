@@ -66,6 +66,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -1209,11 +1210,21 @@ public class ContactEditorFragment extends Fragment implements
 
                 @Override
                 public void onEditAction(Uri contactLookupUri) {
-                    // Abandon the currently inserted contact and load the suggested one
+                    // Save all the data that has been entered so far
+                    ArrayList<ContentValues> values = mState.get(0).getContentValues();
+
+                    // Abandon the currently inserted contact
                     mState = null;
+
+                    // Load the suggested one
                     load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_TYPE, null);
                     mStatus = Status.LOADING;
-                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+                    Bundle extras = null;
+                    if (values.size() != 0) {
+                        extras = new Bundle();
+//                        extras.putParcelableArrayList(Insert.DATA, values);
+                    }
+                    getLoaderManager().restartLoader(LOADER_DATA, extras, mDataLoaderListener);
                 }
             });
             suggestionView.bindSuggestion(suggestion);

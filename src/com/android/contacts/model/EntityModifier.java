@@ -515,6 +515,20 @@ public class EntityModifier {
                 child.put(Note.NOTE, notes);
             }
         }
+
+        // Arbitrary additional data
+        {
+//            ArrayList<ContentValues> values = extras.getParcelableArrayList(Insert.DATA);
+//            if (values != null) {
+//                parseValues(state, values);
+//            }
+        }
+    }
+
+    private static void parseValues(EntityDelta state, ArrayList<ContentValues> values) {
+        for (ContentValues contentValues : values) {
+            String mimeType = contentValues.getAsString(Data.MIMETYPE);
+        }
     }
 
     /**
