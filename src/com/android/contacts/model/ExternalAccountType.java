@@ -76,7 +76,8 @@ public class ExternalAccountType extends FallbackAccountType {
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
     private interface InflateTags {
-        final String CONTACTS_SOURCE = "BaseAccountType";
+        final String CONTACTS_SOURCE_LEGACY = "ContactsSource";
+        final String CONTACTS_ACCOUNT_TYPE = "ContactsAccountType";
         final String CONTACTS_DATA_KIND = "ContactsDataKind";
     }
 
@@ -129,9 +130,11 @@ public class ExternalAccountType extends FallbackAccountType {
                 throw new IllegalStateException("No start tag found");
             }
 
-            if (!InflateTags.CONTACTS_SOURCE.equals(parser.getName())) {
+            String rootTag = parser.getName();
+            if (!InflateTags.CONTACTS_ACCOUNT_TYPE.equals(rootTag) &&
+                    !InflateTags.CONTACTS_SOURCE_LEGACY.equals(rootTag)) {
                 throw new IllegalStateException("Top level element must be "
-                        + InflateTags.CONTACTS_SOURCE);
+                        + InflateTags.CONTACTS_ACCOUNT_TYPE + ", not " + rootTag);
             }
 
             // Parse all children kinds
@@ -139,7 +142,7 @@ public class ExternalAccountType extends FallbackAccountType {
             while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                     && type != XmlPullParser.END_DOCUMENT) {
                 if (type == XmlPullParser.END_TAG
-                        || !InflateTags.CONTACTS_DATA_KIND.equals(parser.getName())) {
+                        || !InflateTags.CONTACTS_DATA_KIND.equals(rootTag)) {
                     continue;
                 }
 
