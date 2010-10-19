@@ -1196,6 +1196,7 @@ public class ContactEditorFragment extends Fragment implements
             suggestionView.setLayoutParams(
                     new LinearLayout.LayoutParams(
                             LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            suggestionView.setNewContact(mState.size() == 1 && mState.get(0).isContactInsert());
             suggestionView.setListener(new AggregationSuggestionView.Listener() {
 
                 @Override
@@ -1204,6 +1205,15 @@ public class ContactEditorFragment extends Fragment implements
                     // If we are in the edit mode (indicated by a non-zero contact ID),
                     // join the suggested contact, save all changes, and stay in the editor.
                     doSaveAction(SaveMode.RELOAD);
+                }
+
+                @Override
+                public void onEditAction(Uri contactLookupUri) {
+                    // Abandon the currently inserted contact and load the suggested one
+                    mState = null;
+                    load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_TYPE, null);
+                    mStatus = Status.LOADING;
+                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }
             });
             suggestionView.bindSuggestion(suggestion);

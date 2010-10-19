@@ -1305,11 +1305,13 @@
         indicating the contact that will be joined with the current contact. [CHAR LIMIT=128]-->
     <string name="aggregation_suggestion_joined_title">Joined contact:</string>
 
-    <!-- The button next to a contact aggregation suggestion in Contact editor. [CHAR LIMIT=12]-->
+    <!-- The button next to a contact aggregation suggestion in Contact editor. Causes a logical
+      join with the suggested contact. [CHAR LIMIT=12]-->
     <string name="aggregation_suggestion_join_button">Join</string>
 
-    <!-- The button next to the message about multiple contact aggregation suggestions in Contact editor. [CHAR LIMIT=12]-->
-    <string name="aggregation_suggestion_view_button">View</string>
+    <!-- The button next to a contact aggregation suggestion in Contact editor. Causes the UI
+    to switch to the suggested contact in the editor. [CHAR LIMIT=12]-->
+    <string name="aggregation_suggestion_edit_button">Edit</string>
 
     <!-- The menu item (or button) that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
     <string name="menu_copyContact">Copy to my contacts</string>

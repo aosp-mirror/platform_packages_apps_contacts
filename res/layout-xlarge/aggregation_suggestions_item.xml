@@ -18,7 +18,7 @@
 -->
 
 <view xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.quickcontact.widget.AggregationSuggestionView"
+    class="com.android.contacts.views.editor.AggregationSuggestionView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -30,6 +30,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/aggregation_suggestion_join_button"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+    />
+
+    <Button
+        android:id="@+id/aggregation_suggestion_edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aggregation_suggestion_edit_button"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
     />

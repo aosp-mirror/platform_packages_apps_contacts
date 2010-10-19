@@ -17,10 +17,17 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.model.ContactsSource;
+import com.android.contacts.model.Sources;
+import com.android.contacts.views.editor.AggregationSuggestionEngine.RawContact;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
+import com.google.android.collect.Lists;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.ContactsContract.Contacts;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,11 +52,18 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
          * for those.
          */
         public void onJoinAction(long contactId, List<Long> rawContacIds);
+
+        /**
+         * Callback that passes the contact ID to edit instead of the current contact.
+         */
+        public void onEditAction(Uri contactLookupUri);
     }
 
     private Listener mListener;
     private long mContactId;
-    private List<Long> mRawContactIds;
+    private String mLookupKey;
+    private List<RawContact> mRawContacts = Lists.newArrayList();
+    private boolean mNewContact;
 
     public AggregationSuggestionView(Context context) {
         super(context);
@@ -62,9 +77,14 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
         super(context, attrs, defStyle);
     }
 
+    public void setNewContact(boolean flag) {
+        mNewContact = flag;
+    }
+
     public void bindSuggestion(Suggestion suggestion) {
         mContactId = suggestion.contactId;
-        mRawContactIds = suggestion.rawContactIds;
+        mLookupKey = suggestion.lookupKey;
+        mRawContacts = suggestion.rawContacts;
         ImageView photo = (ImageView) findViewById(R.id.aggregation_suggestion_photo);
         if (suggestion.photo != null) {
             photo.setImageBitmap(BitmapFactory.decodeByteArray(
@@ -87,9 +107,38 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
         }
         data.setText(dataText);
 
+        boolean canEdit = canEditSuggestedContact();
         Button join = (Button) findViewById(R.id.aggregation_suggestion_join_button);
         join.setOnClickListener(this);
-        join.setVisibility(View.VISIBLE);
+        join.setVisibility(canEdit ? View.GONE : View.VISIBLE);
+
+        Button edit = (Button) findViewById(R.id.aggregation_suggestion_edit_button);
+        edit.setOnClickListener(this);
+        edit.setVisibility(canEdit ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Returns true if the suggested contact can be edited.
+     */
+    private boolean canEditSuggestedContact() {
+        if (!mNewContact) {
+            return false;
+        }
+
+        Sources sources = Sources.getInstance(getContext());
+        for (RawContact rawContact : mRawContacts) {
+            String accountType = rawContact.accountType;
+            if (accountType == null) {
+                return true;
+            }
+            ContactsSource source = sources.getInflatedSource(
+                    accountType, ContactsSource.LEVEL_SUMMARY);
+            if (!source.readOnly) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void setListener(Listener listener) {
@@ -99,7 +148,15 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
     @Override
     public void onClick(View v) {
         if (mListener != null) {
-            mListener.onJoinAction(mContactId, mRawContactIds);
+            if (v.getId() == R.id.aggregation_suggestion_join_button) {
+                ArrayList<Long> rawContactIds = Lists.newArrayList();
+                for (RawContact rawContact : mRawContacts) {
+                    rawContactIds.add(rawContact.rawContactId);
+                }
+                mListener.onJoinAction(mContactId, rawContactIds);
+            } else {
+                mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
+            }
         }
     }
 }
