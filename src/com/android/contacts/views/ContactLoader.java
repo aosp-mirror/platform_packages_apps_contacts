@@ -161,7 +161,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * @param exportSupport See {@link Directory#EXPORT_SUPPORT}.
          */
-        public void setDirectoryMetaData(String displayName, String directoryType,
+        private void setDirectoryMetaData(String displayName, String directoryType,
                 String accountType, String accountName, int exportSupport) {
             mDirectoryDisplayName = displayName;
             mDirectoryType = directoryType;
@@ -272,7 +272,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return result;
         }
 
-        public void addGroupMetaData(GroupMetaData group) {
+        private void addGroupMetaData(GroupMetaData group) {
             if (mGroups == null) {
                 mGroups = new ArrayList<GroupMetaData>();
             }

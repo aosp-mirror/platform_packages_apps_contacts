@@ -155,7 +155,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private ArrayList<ViewEntry> mPostalEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mNicknameEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mOrganizationEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
@@ -172,7 +171,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mSections.add(mImEntries);
         mSections.add(mPostalEntries);
         mSections.add(mNicknameEntries);
-        mSections.add(mOrganizationEntries);
         mSections.add(mOtherEntries);
         mSections.add(mGroupEntries);
     }
@@ -432,29 +430,9 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         entry.applyStatus(status, false);
                     }
                     mImEntries.add(entry);
-                } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType) &&
-                        (hasData || !TextUtils.isEmpty(entry.typeString))) {
-                    // Build organization entries
-                    final boolean isNameRawContact =
-                            (mContactData.getNameRawContactId() == rawContactId);
-
-                    final boolean duplicatesTitle =
-                            isNameRawContact
-                            && mContactData.getDisplayNameSource()
-                                == DisplayNameSources.ORGANIZATION
-                            && (!hasData || TextUtils.isEmpty(entry.typeString));
-
-                    if (!duplicatesTitle) {
-                        entry.uri = null;
-
-                        if (TextUtils.isEmpty(entry.typeString)) {
-                            entry.kindAndType = entry.data;
-                            entry.typeString = entry.data;
-                            entry.data = "";
-                        }
-
-                        mOrganizationEntries.add(entry);
-                    }
+                } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    // Organizations are not shown. The first one is shown in the header
+                    // and subsequent ones are not supported anymore
                 } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build nickname entries
                     final boolean isNameRawContact =

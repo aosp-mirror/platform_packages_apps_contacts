@@ -1364,4 +1364,8 @@
 
     <!-- The preference section title for contact display options [CHAR LIMIT=128] -->
     <string name="preference_displayOptions">Display options</string>
+
+    <!-- Text used to show a organization that has both a company and title. This is used in the Detail-View
+    of a Contact. This is mostly about the formatting of the two elements, so it should be kept small [CHAR LIMIT=79] -->
+    <string name="organization_company_and_title"><xliff:g id="company" example="Technical Program Manager">%2$s</xliff:g>, <xliff:g id="company" example="Google Inc.">%1$s</xliff:g></string>
 </resources>

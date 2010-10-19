@@ -249,12 +249,6 @@ public class ExchangeAccountType extends FallbackAccountType {
 
         if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
-            kind.typeColumn = Organization.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildOrgType(Organization.TYPE_WORK).setSpecificMax(1));
-            kind.typeList.add(buildOrgType(Organization.TYPE_OTHER).setSpecificMax(1));
-            kind.typeList.add(buildOrgType(Organization.TYPE_CUSTOM).setSecondary(true)
-                    .setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,

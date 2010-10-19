@@ -19,14 +19,18 @@ package com.android.contacts.views.detail;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.ContactLoader.Result;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Entity;
+import android.content.Entity.NamedContentValues;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.SystemClock;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -47,6 +51,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
     private TextView mDisplayNameView;
     private TextView mPhoneticNameView;
+    private TextView mOrganizationTextView;
     private CheckBox mStarredView;
     private ImageView mPhotoView;
     private ImageView mPresenceView;
@@ -85,6 +90,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
 
+        mOrganizationTextView = (TextView) findViewById(R.id.organization);
+
         mStarredView = (CheckBox)findViewById(R.id.star);
         mStarredView.setOnClickListener(this);
 
@@ -106,6 +113,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mContactUri = contactData.getLookupUri();
 
         setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
+        setCompany(contactData);
         setPhoto(ContactBadgeUtil.getPhoto(contactData));
         setStared(contactData.getStarred());
         setPresence(contactData.getPresence());
@@ -174,6 +182,54 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
             mPhoneticNameView.setText(phoneticName);
             mPhoneticNameView.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * Sets the organization info. If several organizations are given, the first one is used
+     */
+    private void setCompany(Result contactData) {
+        final boolean displayNameIsOrganization =
+            contactData.getDisplayNameSource() == DisplayNameSources.ORGANIZATION;
+        for (Entity entity : contactData.getEntities()) {
+            for (NamedContentValues subValue : entity.getSubValues()) {
+                final ContentValues entryValues = subValue.values;
+                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+
+                if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final String company = entryValues.getAsString(Organization.COMPANY);
+                    final String title = entryValues.getAsString(Organization.TITLE);
+                    final String combined;
+                    // We need to show company and title in a combined string. However, if the
+                    // DisplayName is already the organization, it mirrors company or (if company
+                    // is empty title). Make sure we don't show what's already shown as DisplayName
+                    if (TextUtils.isEmpty(company)) {
+                        combined = displayNameIsOrganization ? null : title;
+                    } else {
+                        if (TextUtils.isEmpty(title)) {
+                            combined = displayNameIsOrganization ? null : company;
+                        } else {
+                            if (displayNameIsOrganization) {
+                                combined = title;
+                            } else {
+                                combined = getResources().getString(
+                                        R.string.organization_company_and_title,
+                                        company, title);
+                            }
+                        }
+                    }
+
+                    if (TextUtils.isEmpty(combined)) {
+                        mOrganizationTextView.setVisibility(GONE);
+                    } else {
+                        mOrganizationTextView.setVisibility(VISIBLE);
+                        mOrganizationTextView.setText(combined);
+                    }
+
+                    return;
+                }
+            }
+        }
+        mOrganizationTextView.setVisibility(GONE);
     }
 
     /**

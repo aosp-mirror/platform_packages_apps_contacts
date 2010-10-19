@@ -104,10 +104,6 @@ public class FallbackAccountType extends BaseAccountType {
         return new EditType(type, Im.getProtocolLabelResource(type));
     }
 
-    protected EditType buildOrgType(int type) {
-        return new EditType(type, Organization.getTypeLabelResource(type));
-    }
-
     protected EditType buildEventType(int type) {
         return new EditType(type, Event.getTypeResource(type));
     }
@@ -337,12 +333,7 @@ public class FallbackAccountType extends BaseAccountType {
         }
 
         if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
-            kind.typeColumn = Organization.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildOrgType(Organization.TYPE_WORK));
-            kind.typeList.add(buildOrgType(Organization.TYPE_OTHER));
-            kind.typeList.add(buildOrgType(Organization.TYPE_CUSTOM).setSecondary(true)
-                    .setCustomColumn(Organization.LABEL));
+            kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
