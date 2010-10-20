@@ -33,8 +33,11 @@ public class ContactListFilterView extends LinearLayout {
     private ImageView mIcon;
     private TextView mLabel;
     private TextView mIndentedLabel;
+    private View mGroupView;
     private ContactListFilter mFilter;
-    private boolean mGroupsIndented;
+    private boolean mMultipleAccounts;
+    private TextView mGroupLabel;
+    private TextView mAccountLabel;
 
     public ContactListFilterView(Context context) {
         super(context);
@@ -52,8 +55,8 @@ public class ContactListFilterView extends LinearLayout {
         return mFilter;
     }
 
-    public void setGroupsIndented(boolean flag) {
-        this.mGroupsIndented = flag;
+    public void setMultipleAccounts(boolean flag) {
+        this.mMultipleAccounts = flag;
     }
 
     public void bindView(boolean dropdown) {
@@ -61,12 +64,25 @@ public class ContactListFilterView extends LinearLayout {
             mIcon = (ImageView) findViewById(R.id.icon);
             mLabel = (TextView) findViewById(R.id.label);
             mIndentedLabel = (TextView) findViewById(R.id.indented_label);
+            mGroupView = findViewById(R.id.group);
+            mGroupLabel = (TextView) findViewById(R.id.group_label);
+            mAccountLabel = (TextView) findViewById(R.id.account_label);
         }
 
         if (mFilter == null) {
             mLabel.setText(R.string.contactsList);
             mLabel.setVisibility(View.VISIBLE);
             return;
+        }
+
+        if (!dropdown) {
+            if (mFilter.filterType == ContactListFilter.FILTER_TYPE_GROUP && mMultipleAccounts) {
+                mLabel.setVisibility(View.GONE);
+                mGroupView.setVisibility(View.VISIBLE);
+            } else {
+                mLabel.setVisibility(View.VISIBLE);
+                mGroupView.setVisibility(View.GONE);
+            }
         }
 
         switch (mFilter.filterType) {
@@ -109,15 +125,22 @@ public class ContactListFilterView extends LinearLayout {
                 if (mIcon != null) {
                     mIcon.setVisibility(View.INVISIBLE);
                 }
-                if (dropdown && mGroupsIndented) {
-                    mLabel.setVisibility(View.GONE);
-                    mIndentedLabel.setText(mFilter.title);
-                    mIndentedLabel.setVisibility(View.VISIBLE);
-                } else {
-                    mLabel.setText(mFilter.title);
-                    mLabel.setVisibility(View.VISIBLE);
-                    if (dropdown) {
+                if (dropdown) {
+                    if (mMultipleAccounts) {
+                        mLabel.setVisibility(View.GONE);
+                        mIndentedLabel.setText(mFilter.title);
+                        mIndentedLabel.setVisibility(View.VISIBLE);
+                    } else {
+                        mLabel.setText(mFilter.title);
+                        mLabel.setVisibility(View.VISIBLE);
                         mIndentedLabel.setVisibility(View.GONE);
+                    }
+                } else {
+                    if (mMultipleAccounts) {
+                        mGroupLabel.setText(mFilter.title);
+                        mAccountLabel.setText(mFilter.accountName);
+                    } else {
+                        mLabel.setText(mFilter.title);
                     }
                 }
                 break;
