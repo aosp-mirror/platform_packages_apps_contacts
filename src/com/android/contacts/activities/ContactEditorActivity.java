@@ -24,13 +24,17 @@ import com.android.contacts.views.editor.ContactEditorFragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Intents.Insert;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class ContactEditorActivity extends Activity implements
         DialogManager.DialogShowingViewActivity {
@@ -143,6 +147,22 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void onDeleteRequested(Uri lookupUri) {
             getContactDeletionInteraction().deleteContact(lookupUri);
+        }
+
+        @Override
+        public void onEditOtherContactRequested(
+                Uri contactLookupUri, ArrayList<ContentValues> values) {
+            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+            intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                    | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+
+            // Pass on all the data that has been entered so far
+            if (values != null && values.size() != 0) {
+                intent.putParcelableArrayListExtra(Insert.DATA, values);
+            }
+
+            startActivity(intent);
+            finish();
         }
     };
 

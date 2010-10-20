@@ -18,13 +18,13 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.contacts.views.ContactLoader;
@@ -66,7 +66,6 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -941,6 +940,13 @@ public class ContactEditorFragment extends Fragment implements
          * User decided to delete the contact.
          */
         void onDeleteRequested(Uri lookupUri);
+
+        /**
+         * User switched to editing a different contact (a suggestion from the
+         * aggregation engine).
+         */
+        void onEditOtherContactRequested(
+                Uri contactLookupUri, ArrayList<ContentValues> contentValues);
     }
 
     private class EntityDeltaComparator implements Comparator<EntityDelta> {
@@ -1215,21 +1221,12 @@ public class ContactEditorFragment extends Fragment implements
 
                 @Override
                 public void onEditAction(Uri contactLookupUri) {
-                    // Save all the data that has been entered so far
-                    ArrayList<ContentValues> values = mState.get(0).getContentValues();
-
-                    // Abandon the currently inserted contact
-                    mState = null;
-
-                    // Load the suggested one
-                    Bundle extras = null;
-                    if (values.size() != 0) {
-                        extras = new Bundle();
-                        extras.putParcelableArrayList(Insert.DATA, values);
+                    // Abandon the currently edited contact and switch to editing
+                    // the suggested one, transferring all the data there
+                    if (mListener != null) {
+                        mListener.onEditOtherContactRequested(
+                                contactLookupUri, mState.get(0).getContentValues());
                     }
-                    load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_TYPE, extras);
-                    mStatus = Status.LOADING;
-                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }
             });
             suggestionView.bindSuggestion(suggestion);
