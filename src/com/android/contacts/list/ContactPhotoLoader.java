@@ -335,6 +335,7 @@ public class ContactPhotoLoader implements Callback {
             ArrayList<String> photoIdsAsStrings, ArrayList<Uri> uris) {
         photoIds.clear();
         photoIdsAsStrings.clear();
+        uris.clear();
 
         /*
          * Since the call is made from the loader thread, the map could be
@@ -464,6 +465,9 @@ public class ContactPhotoLoader implements Callback {
                         }
                         cacheBitmap(uri, baos.toByteArray());
                         mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
+                    } else {
+                        Log.v(TAG, "Cannot load photo " + uri);
+                        cacheBitmap(uri, null);
                     }
                 } catch (Exception ex) {
                     Log.v(TAG, "Cannot load photo " + uri, ex);
