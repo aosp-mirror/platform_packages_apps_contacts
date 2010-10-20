@@ -306,10 +306,12 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         }
     }
 
+    @Override
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
     }
 
+    @Override
     public void setDeletable(boolean deletable) {
         setupDeleteButton(deletable);
     }
@@ -364,6 +366,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onFieldChanged(String column, String value) {
         // Field changes are saved directly
         mEntry.put(column, value);
@@ -380,6 +383,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
      * Prepare this editor using the given {@link DataKind} for defining
      * structure and {@link ValuesDelta} describing the content to edit.
      */
+    @Override
     public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         mKind = kind;
@@ -395,9 +399,8 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
             // Hide ourselves entirely if deleted
             setVisibility(View.GONE);
             return;
-        } else {
-            setVisibility(View.VISIBLE);
         }
+        setVisibility(View.VISIBLE);
 
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
@@ -444,14 +447,17 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
 
             // Prepare listener for writing changes
             fieldView.addTextChangedListener(new TextWatcher() {
+                @Override
                 public void afterTextChanged(Editable s) {
                     // Trigger event for newly changed value
                     onFieldChanged(column, s.toString());
                 }
 
+                @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 }
 
+                @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                 }
             });
@@ -503,6 +509,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         builder.setView(customType);
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
@@ -607,10 +614,12 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
 
         public static final Parcelable.Creator<SavedState> CREATOR
                 = new Parcelable.Creator<SavedState>() {
+            @Override
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
 
+            @Override
             public SavedState[] newArray(int size) {
                 return new SavedState[size];
             }
@@ -652,6 +661,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         }
     }
 
+    @Override
     public Dialog createDialog(Bundle bundle) {
         if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
         int dialogId = bundle.getInt(DIALOG_ID_KEY);
