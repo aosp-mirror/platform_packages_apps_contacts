@@ -348,7 +348,7 @@ public class ContactListFilterController
                 view = (ContactListFilterView) mLayoutInflater.inflate(
                         R.layout.filter_spinner_item, parent, false);
             }
-            view.setGroupsIndented(mAccountCount > 1);
+            view.setMultipleAccounts(mAccountCount > 1);
             view.setContactListFilter(mFilters.valueAt(position));
             view.bindView(true);
             return view;
