@@ -327,7 +327,7 @@ public class FallbackAccountType extends BaseAccountType {
         DataKind kind = getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
-                    R.string.organizationLabelsGroup, -1, 30, true));
+                    R.string.organizationLabelsGroup, -1, 5, true));
             kind.actionHeader = new SimpleInflater(Organization.COMPANY);
             kind.actionBody = new SimpleInflater(Organization.TITLE);
         }
