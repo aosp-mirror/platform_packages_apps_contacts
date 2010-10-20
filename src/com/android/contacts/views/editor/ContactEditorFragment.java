@@ -343,17 +343,21 @@ public class ContactEditorFragment extends Fragment implements
         mState = EntityDeltaList.fromIterator(entities.iterator());
 
         // Merge in Extras from Intent
-        final boolean hasExtras = mIntentExtras != null && mIntentExtras.size() > 0;
-        final boolean hasState = mState.size() > 0;
-        if (hasExtras && hasState) {
-            // Find source defining the first RawContact found
-            final EntityDelta state = mState.get(0);
-            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        if (mIntentExtras != null && mIntentExtras.size() > 0) {
             final AccountTypes sources = AccountTypes.getInstance(mContext);
-            final BaseAccountType source = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_CONSTRAINTS);
-            EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
+            for (EntityDelta state : mState) {
+                final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+                final BaseAccountType source = sources.getInflatedSource(accountType,
+                        BaseAccountType.LEVEL_CONSTRAINTS);
+                if (!source.readOnly) {
+                    // Apply extras to the first writable raw contact only
+                    EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
+                    mIntentExtras = null;
+                    break;
+                }
+            }
         }
+
         bindEditors();
     }
 
@@ -1146,10 +1150,11 @@ public class ContactEditorFragment extends Fragment implements
 
         if (mAggregationSuggestionEngine == null) {
             mAggregationSuggestionEngine = new AggregationSuggestionEngine(getActivity());
-            mAggregationSuggestionEngine.setContactId(getContactId());
             mAggregationSuggestionEngine.setListener(this);
             mAggregationSuggestionEngine.start();
         }
+
+        mAggregationSuggestionEngine.setContactId(getContactId());
 
         FieldEditorView nameEditor = rawContactEditor.getNameEditor();
         mAggregationSuggestionEngine.onNameChange(nameEditor.getValues());
@@ -1217,14 +1222,14 @@ public class ContactEditorFragment extends Fragment implements
                     mState = null;
 
                     // Load the suggested one
-                    load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_TYPE, null);
-                    mStatus = Status.LOADING;
                     Bundle extras = null;
                     if (values.size() != 0) {
                         extras = new Bundle();
-//                        extras.putParcelableArrayList(Insert.DATA, values);
+                        extras.putParcelableArrayList(Insert.DATA, values);
                     }
-                    getLoaderManager().restartLoader(LOADER_DATA, extras, mDataLoaderListener);
+                    load(Intent.ACTION_EDIT, contactLookupUri, Contacts.CONTENT_TYPE, extras);
+                    mStatus = Status.LOADING;
+                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }
             });
             suggestionView.bindSuggestion(suggestion);

@@ -27,6 +27,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
@@ -426,6 +427,24 @@ public class EntityModifier {
     }
 
     /**
+     * Compares corresponding fields in values1 and values2. Only the fields
+     * declared by the DataKind are taken into consideration.
+     */
+    protected static boolean areEqual(ValuesDelta values1, ContentValues values2, DataKind kind) {
+        if (kind.fieldList == null) return false;
+
+        for (EditField field : kind.fieldList) {
+            final String value1 = values1.getAsString(field.column);
+            final String value2 = values2.getAsString(field.column);
+            if (!TextUtils.equals(value1, value2)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
@@ -517,18 +536,185 @@ public class EntityModifier {
         }
 
         // Arbitrary additional data
-        {
-//            ArrayList<ContentValues> values = extras.getParcelableArrayList(Insert.DATA);
-//            if (values != null) {
-//                parseValues(state, values);
-//            }
+        ArrayList<ContentValues> values = extras.getParcelableArrayList(Insert.DATA);
+        if (values != null) {
+            parseValues(state, source, values);
         }
     }
 
-    private static void parseValues(EntityDelta state, ArrayList<ContentValues> values) {
-        for (ContentValues contentValues : values) {
-            String mimeType = contentValues.getAsString(Data.MIMETYPE);
+    private static void parseValues(
+            EntityDelta state, BaseAccountType source, ArrayList<ContentValues> dataValueList) {
+        for (ContentValues values : dataValueList) {
+            String mimeType = values.getAsString(Data.MIMETYPE);
+            if (TextUtils.isEmpty(mimeType)) {
+                Log.e(TAG, "Mimetype is required. Ignoring: " + values);
+                continue;
+            }
+
+            // Won't override the contact name
+            if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                continue;
+            }
+
+            DataKind kind = source.getKindForMimetype(mimeType);
+            if (kind == null) {
+                Log.e(TAG, "Mimetype not supported for account type " + source.accountType
+                        + ". Ignoring: " + values);
+                continue;
+            }
+
+            ValuesDelta entry = ValuesDelta.fromAfter(values);
+            if (isEmpty(entry, kind)) {
+                continue;
+            }
+
+            ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
+
+            if (kind.isList || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                // Check for duplicates
+                boolean addEntry = true;
+                int count = 0;
+                if (entries != null && entries.size() > 0) {
+                    for (ValuesDelta delta : entries) {
+                        if (!delta.isDelete()) {
+                            if (areEqual(delta, values, kind)) {
+                                addEntry = false;
+                                break;
+                            }
+                            count++;
+                        }
+                    }
+                }
+
+                if (kind.typeOverallMax != -1 && count >= kind.typeOverallMax) {
+                    Log.e(TAG, "Mimetype allows at most " + kind.typeOverallMax
+                            + " entries. Ignoring: " + values);
+                    addEntry = false;
+                }
+
+                if (addEntry) {
+                    addEntry = adjustType(entry, entries, kind);
+                }
+
+                if (addEntry) {
+                    state.addEntry(entry);
+                }
+            } else {
+                // Non-list entries should not be overridden
+                boolean addEntry = true;
+                if (entries != null && entries.size() > 0) {
+                    for (ValuesDelta delta : entries) {
+                        if (!delta.isDelete() && !isEmpty(delta, kind)) {
+                            addEntry = false;
+                            break;
+                        }
+                    }
+                    if (addEntry) {
+                        for (ValuesDelta delta : entries) {
+                            delta.markDeleted();
+                        }
+                    }
+                }
+
+                if (addEntry) {
+                    addEntry = adjustType(entry, entries, kind);
+                }
+
+                if (addEntry) {
+                    state.addEntry(entry);
+                } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType)){
+                    // Note is most likely to contain large amounts of text
+                    // that we don't want to drop on the ground.
+                    for (ValuesDelta delta : entries) {
+                        if (!isEmpty(delta, kind)) {
+                            delta.put(Note.NOTE, delta.getAsString(Note.NOTE) + "\n"
+                                    + values.getAsString(Note.NOTE));
+                            break;
+                        }
+                    }
+                } else {
+                    Log.e(TAG, "Will not override mimetype " + mimeType + ". Ignoring: "
+                            + values);
+                }
+            }
         }
+    }
+
+    /**
+     * Checks if the data kind allows addition of another entry (e.g. Exchange only
+     * supports two "work" phone numbers).  If not, tries to switch to one of the
+     * unused types.  If successful, returns true.
+     */
+    private static boolean adjustType(
+            ValuesDelta entry, ArrayList<ValuesDelta> entries, DataKind kind) {
+        if (kind.typeColumn == null || kind.typeList == null || kind.typeList.size() == 0) {
+            return true;
+        }
+
+        Integer typeInteger = entry.getAsInteger(kind.typeColumn);
+        int type = typeInteger != null ? typeInteger : kind.typeList.get(0).rawValue;
+
+        if (isTypeAllowed(type, entries, kind)) {
+            entry.put(kind.typeColumn, type);
+            return true;
+        }
+
+        // Specified type is not allowed - choose the first available type that is allowed
+        int size = kind.typeList.size();
+        for (int i = 0; i < size; i++) {
+            EditType editType = kind.typeList.get(i);
+            if (isTypeAllowed(editType.rawValue, entries, kind)) {
+                entry.put(kind.typeColumn, editType.rawValue);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if a new entry of the specified type can be added to the raw
+     * contact. For example, Exchange only supports two "work" phone numbers, so
+     * addition of a third would not be allowed.
+     */
+    private static boolean isTypeAllowed(int type, ArrayList<ValuesDelta> entries, DataKind kind) {
+        int max = 0;
+        int size = kind.typeList.size();
+        for (int i = 0; i < size; i++) {
+            EditType editType = kind.typeList.get(i);
+            if (editType.rawValue == type) {
+                max = editType.specificMax;
+                break;
+            }
+        }
+
+        if (max == 0) {
+            // This type is not allowed at all
+            return false;
+        }
+
+        if (max == -1) {
+            // Unlimited instances of this type are allowed
+            return true;
+        }
+
+        return getEntryCountByType(entries, kind.typeColumn, type) < max;
+    }
+
+    /**
+     * Counts occurrences of the specified type in the supplied entry list.
+     */
+    private static int getEntryCountByType(
+            ArrayList<ValuesDelta> entries, String typeColumn, int type) {
+        int count = 0;
+        int size = entries.size();
+        for (int i = 0; i < size; i++) {
+            Integer typeInteger = entries.get(i).getAsInteger(typeColumn);
+            if (typeInteger != null && typeInteger == type) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
