@@ -145,7 +145,7 @@ public class ExchangeAccountType extends FallbackAccountType {
             kind.typeList
                     .add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true).setSpecificMax(1));
             kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
-                    .setSpecificMax(1).setCustomColumn(Phone.LABEL));
+                    .setSpecificMax(1));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
