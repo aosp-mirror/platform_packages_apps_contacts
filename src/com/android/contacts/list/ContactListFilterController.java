@@ -167,8 +167,6 @@ public class ContactListFilterController
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
             mFilters.append(mNextFilterId++,
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
-            mFilters.append(mNextFilterId++,
-                    new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
         }
 
         for (int index = 0; index < count; index++) {
@@ -194,10 +192,11 @@ public class ContactListFilterController
             if (firstAndOnly) {
                 mFilters.append(mNextFilterId++,
                         new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
-                mFilters.append(mNextFilterId++,
-                        new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
             }
         }
+
+        mFilters.append(mNextFilterId++,
+                new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
 
         boolean filterChanged = false;
         if (mFilter == null  || !filterValid) {
