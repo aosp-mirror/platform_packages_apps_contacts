@@ -125,7 +125,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
     }
 
     public void setContactId(long contactId) {
-        mContactId = contactId;
+        if (contactId != mContactId) {
+            mContactId = contactId;
+            reset();
+        }
     }
 
     public void setListener(Listener listener) {
