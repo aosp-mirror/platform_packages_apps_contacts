@@ -70,6 +70,7 @@
         <item>EDIT (called for raw contact)</item>
         <item>EDIT (legacy style uri)</item>
         <item>EDIT (create new contact)</item>
+        <item>EDIT (create new contact with data)</item>
         <item>EDIT (create new raw contact)</item>
         <item>EDIT (create new legacy)</item>
 

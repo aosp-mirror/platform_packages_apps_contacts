@@ -19,11 +19,13 @@ package com.android.contacts.tests.allintents;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.tests.R;
+import com.google.android.collect.Lists;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -31,9 +33,12 @@ import android.os.Bundle;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
@@ -108,14 +113,15 @@ public class AllIntentsActivity extends ListActivity {
     private static final int EDIT_RAW_CONTACT = 45;
     private static final int EDIT_LEGACY = 46;
     private static final int EDIT_NEW_CONTACT = 47;
-    private static final int EDIT_NEW_RAW_CONTACT = 48;
-    private static final int EDIT_NEW_LEGACY = 49;
+    private static final int EDIT_NEW_CONTACT_WITH_DATA = 48;
+    private static final int EDIT_NEW_RAW_CONTACT = 49;
+    private static final int EDIT_NEW_LEGACY = 50;
 
-    private static final int VIEW_CONTACT = 50;
-    private static final int VIEW_CONTACT_LOOKUP = 51;
-    private static final int VIEW_CONTACT_LOOKUP_ID = 52;
-    private static final int VIEW_RAW_CONTACT = 53;
-    private static final int VIEW_LEGACY = 54;
+    private static final int VIEW_CONTACT = 51;
+    private static final int VIEW_CONTACT_LOOKUP = 52;
+    private static final int VIEW_CONTACT_LOOKUP_ID = 53;
+    private static final int VIEW_RAW_CONTACT = 54;
+    private static final int VIEW_LEGACY = 55;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -418,6 +424,24 @@ public class AllIntentsActivity extends ListActivity {
             }
             case EDIT_NEW_CONTACT: {
                 startActivity(new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+                break;
+            }
+            case EDIT_NEW_CONTACT_WITH_DATA: {
+                Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+
+                ContentValues row1 = new ContentValues();
+                row1.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+                row1.put(Organization.COMPANY, "Android");
+
+                ContentValues row2 = new ContentValues();
+                row2.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+                row2.put(Email.TYPE, Email.TYPE_CUSTOM);
+                row2.put(Email.LABEL, "Green Bot");
+                row2.put(Email.ADDRESS, "android@android.com");
+
+                intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
+
+                startActivity(intent);
                 break;
             }
             case EDIT_NEW_RAW_CONTACT: {
