@@ -48,14 +48,17 @@ public class ContactBadgeUtil {
      */
     public static Bitmap getPhoto(ContactLoader.Result contactData) {
         final long photoId = contactData.getPhotoId();
+        if (photoId <= 0) {
+            // No photo ID
+            return null;
+        }
 
         for (Entity entity : contactData.getEntities()) {
             for (NamedContentValues subValue : entity.getSubValues()) {
                 final ContentValues entryValues = subValue.values;
                 final long dataId = entryValues.getAsLong(Data._ID);
-                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-
                 if (dataId == photoId) {
+                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
                     // Correct Data Id but incorrect MimeType? Don't load
                     if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) return null;
                     final byte[] binaryData = entryValues.getAsByteArray(Photo.PHOTO);
@@ -69,16 +72,7 @@ public class ContactBadgeUtil {
     }
 
     /**
-     * Returns the social snippet, including the date
-     * @param status             The status of the contact. If this is either null or empty,
-     *                            no social snippet is shown
-     * @param statusTimestamp    The timestamp (retrieved via a call to
-     *                            {@link System#currentTimeMillis()}) of the last status update.
-     *                            This value can be null if it is not known.
-     * @param statusLabel        The id of a resource string that specifies the current
-     *                            status. This value can be null if no Label should be used.
-     * @param statusResPackage   The name of the resource package containing the resource string
-     *                            referenced in the parameter statusLabel.
+     * Returns the social snippet attribution, including the date
      */
     public static CharSequence getSocialDate(ContactLoader.Result contactData,
             Context context) {
