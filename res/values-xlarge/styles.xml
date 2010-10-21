@@ -62,7 +62,7 @@
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Light.Holo">
     </style>
 
-    <style name="CustomContactListFilterTheme" parent="@android:Theme.Holo.Dialog">
+    <style name="CustomContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
     </style>
 
     <style name="CustomContactListFilterView" parent="CustomContactListFilterTheme">
