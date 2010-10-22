@@ -66,6 +66,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -266,7 +267,16 @@ public class ContactEditorFragment extends Fragment implements
             } else if (Intent.ACTION_INSERT.equals(mAction)) {
                 if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
 
-                doAddAction(true);
+                final Account account = mIntentExtras == null ? null :
+                    (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+
+                if (account != null) {
+                    // Account specified in Intent
+                    createContact(account, true);
+                } else {
+                    // No Account specified. Let the user choose
+                    doAddAction(true);
+                }
             } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }

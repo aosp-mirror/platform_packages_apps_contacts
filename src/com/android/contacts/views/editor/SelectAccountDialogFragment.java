@@ -17,8 +17,7 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.util.AccountsListAdapter;
 
 import android.accounts.Account;
 import android.app.AlertDialog;
@@ -27,13 +26,6 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 /**
  * Shows a dialog asking the user which account to chose.
@@ -71,38 +63,10 @@ public class SelectAccountDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final AccountTypes sources = AccountTypes.getInstance(getActivity());
-        final ArrayList<Account> accounts =
-                AccountTypes.getInstance(getActivity()).getAccounts(true);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final LayoutInflater inflater = LayoutInflater.from(builder.getContext());
 
-        final ArrayAdapter<Account> accountAdapter = new ArrayAdapter<Account>(builder.getContext(),
-                android.R.layout.simple_list_item_2, accounts) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                final View resultView;
-                if (convertView == null) {
-                    resultView = inflater.inflate(android.R.layout.simple_list_item_2,
-                            parent, false);
-                } else {
-                    resultView = convertView;
-                }
-
-                // TODO: show icon along with title
-                final TextView text1 = (TextView)resultView.findViewById(android.R.id.text1);
-                final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
-
-                final Account account = this.getItem(position);
-                final BaseAccountType source = sources.getInflatedSource(account.type,
-                        BaseAccountType.LEVEL_SUMMARY);
-
-                text1.setText(account.name);
-                text2.setText(source.getDisplayLabel(getContext()));
-
-                return resultView;
-            }
-        };
+        final AccountsListAdapter accountAdapter = new AccountsListAdapter(builder.getContext(),
+                true);
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {

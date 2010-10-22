@@ -30,7 +30,9 @@ import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.preference.ContactsPreferenceActivity;
+import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
@@ -51,6 +53,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -59,7 +62,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -111,6 +119,8 @@ public class ContactBrowserActivity extends Activity
     private boolean mSearchInitiated;
 
     private ContactListFilterController mContactListFilterController;
+
+    private ImageView mAddContactImageView;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -180,6 +190,15 @@ public class ContactBrowserActivity extends Activity
             mActionBarAdapter.setListener(this);
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
             // TODO: request may ask for FREQUENT - set the filter accordingly
+            mAddContactImageView = new ImageView(this);
+            mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact);
+            mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
+            mAddContactImageView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createNewContact();
+                }
+            });
         }
 
         configureListFragment(true /* from request */);
@@ -585,6 +604,10 @@ public class ContactBrowserActivity extends Activity
         MenuInflater inflater = getMenuInflater();
         if (mHasActionBar) {
             inflater.inflate(R.menu.actions, menu);
+
+            // Change add contact button to button with a custom view
+            final MenuItem addContact = menu.findItem(R.id.menu_add);
+            addContact.setActionView(mAddContactImageView);
             return true;
         } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
                 mRequest.getActionCode() == ContactsRequest.ACTION_STREQUENT) {
@@ -639,6 +662,35 @@ public class ContactBrowserActivity extends Activity
             }
         }
         return false;
+    }
+
+    private void createNewContact() {
+        final ArrayList<Account> accounts =
+                AccountTypes.getInstance(this).getAccounts(true);
+        if (accounts.size() <= 1 || mAddContactImageView == null) {
+            // No account to choose or no control to anchor the popup-menu to
+            // ==> just go straight to the editor which will disambig if necessary
+            final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+            startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
+            return;
+        }
+
+        final ListPopupWindow popup = new ListPopupWindow(this, null);
+        popup.setWidth(getResources().getDimensionPixelSize(R.dimen.account_selector_popup_width));
+        popup.setAnchorView(mAddContactImageView);
+        final AccountsListAdapter adapter = new AccountsListAdapter(this, true);
+        popup.setAdapter(adapter);
+        popup.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                popup.dismiss();
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                intent.putExtra(Intents.Insert.ACCOUNT, adapter.getItem(position));
+                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
+            }
+        });
+        popup.setModal(true);
+        popup.show();
     }
 
     @Override
