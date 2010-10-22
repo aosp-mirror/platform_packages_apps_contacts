@@ -204,30 +204,30 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto contatto"</string>
     <string name="description_minus_button" msgid="387136707700230172">"meno"</string>
     <string name="description_plus_button" msgid="515164827856229880">"più"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="1432254751491952259">"Archivio condiviso non disp."</string>
+    <!-- outdated translation 1432254751491952259 -->     <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Archivio condiviso non disp."</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Nessuna scheda SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="545247788569631436">"Nessun archivio condiviso rilev."</string>
+    <!-- outdated translation 545247788569631436 -->     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Nessun archivio condiviso rilev."</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nessuna scheda SD rilevata"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Ricerca vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importa da scheda SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="7450489361553523938">"Importa da archivio cond."</string>
+    <!-- outdated translation 7450489361553523938 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importa da archivio cond."</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importa da scheda SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="2322839933356280686">"Esporta in archivio cond."</string>
+    <!-- outdated translation 2322839933356280686 -->     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Esporta in archivio cond."</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Esporta su scheda SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Condividi contatti visibili"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importa un file vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importa più file vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importa tutti i file vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="8987993391730721760">"Ricerca di dati vCard nell\'archivio condiviso"</string>
+    <!-- outdated translation 8987993391730721760 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Ricerca di dati vCard nell\'archivio condiviso"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Ricerca dati vCard su scheda SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="5451697520220712906">"Scansione dell\'archivio condiviso non riuscita"</string>
+    <!-- outdated translation 5451697520220712906 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Scansione dell\'archivio condiviso non riuscita"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Analisi scheda SD non riuscita"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="264566842682850873">"Scansione dell\'archivio condiviso non riuscita (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 264566842682850873 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Scansione dell\'archivio condiviso non riuscita (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Analisi scheda SD non riuscita (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errore I/O"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Impossibile analizzare la vCard per motivi imprevisti"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Impossibile analizzare la vCard nonostante sembri avere un formato valido perché l\'implementazione corrente non la supporta"</string>
-    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="6099852462800299180">"Nessun file vCard trovato nell\'archivio condiviso."</string>
+    <!-- outdated translation 6099852462800299180 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"Nessun file vCard trovato nell\'archivio condiviso."</string>
     <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Nessun file vCard trovato sulla scheda SD"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Impossibile importare uno o più file (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Errore sconosciuto"</string>
@@ -243,7 +243,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Esportazione dati contatti non riuscita"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Esportazione dati contatti non riuscita."\n"Motivo dell\'errore: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nessun contatto esportabile"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="6603952032405558414">"Troppi file vCard nell\'archivio condiviso"</string>
+    <!-- outdated translation 6603952032405558414 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Troppi file vCard nell\'archivio condiviso"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Troppi dati vCard sulla scheda SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Il nome file richiesto è troppo lungo (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Esportazione dati di contatto"</string>
