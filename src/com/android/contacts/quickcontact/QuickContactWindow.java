@@ -776,16 +776,18 @@ public class QuickContactWindow implements Window.Callback,
                     }
                 }
             } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
-                if (!TextUtils.isEmpty(address)) {
-                    final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
-                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
-                    // Note that this item will get a SIP-specific variant
-                    // of the "call phone" icon, rather than the standard
-                    // app icon for the Phone app (which we show for
-                    // regular phone numbers.)  That's because the phone
-                    // app explicitly specifies an android:icon attribute
-                    // for the SIP-related intent-filters in its manifest.
+                if (PhoneCapabilityTester.isSipPhone(mContext)) {
+                    final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
+                    if (!TextUtils.isEmpty(address)) {
+                        final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
+                        mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+                        // Note that this item will get a SIP-specific variant
+                        // of the "call phone" icon, rather than the standard
+                        // app icon for the Phone app (which we show for
+                        // regular phone numbers.)  That's because the phone
+                        // app explicitly specifies an android:icon attribute
+                        // for the SIP-related intent-filters in its manifest.
+                    }
                 }
             } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
                 if (PhoneCapabilityTester.isSmsIntentRegistered(mContext)) {
