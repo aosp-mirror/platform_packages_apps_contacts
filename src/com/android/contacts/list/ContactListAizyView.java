@@ -232,7 +232,7 @@ public class ContactListAizyView extends View {
 
         public ResourceValues(Resources resources) {
             mLineColor = resources.getColor(R.color.aizy_line_color);
-            mKnobDrawable = resources.getDrawable(R.drawable.temp_aizy_knob);
+            mKnobDrawable = resources.getDrawable(R.drawable.aizy_knob);
             mPreviewWidth = resources.getDimensionPixelSize(R.dimen.aizy_preview_width);
             mPreviewHeight = resources.getDimensionPixelSize(R.dimen.aizy_preview_height);
         }

@@ -198,7 +198,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
     private void setupLabelButton(boolean shouldExist) {
         if (shouldExist && mLabel == null) {
             mLabel = new Button(mContext);
-            mLabel.setBackgroundResource(R.drawable.temp_type_selector_background);
+            mLabel.setBackgroundResource(R.drawable.type_selector_background);
             final int width =
                     mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
