@@ -92,7 +92,6 @@ public class ActionBarAdapter
         mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
 
         mSearchView.setIconifiedByDefault(false);
-        mSearchView.setEnabled(false);
         mSearchView.setOnQueryChangeListener(this);
         mSearchView.setOnCloseListener(this);
         mSearchView.setQuery(mQueryString, false);
@@ -118,6 +117,9 @@ public class ActionBarAdapter
         if (mSearchMode != flag) {
             mSearchMode = flag;
             update();
+            if (mSearchMode) {
+                mSearchView.requestFocus();
+            }
             if (mListener != null) {
                 mListener.onAction();
             }
@@ -160,11 +162,7 @@ public class ActionBarAdapter
     @Override
     public boolean onQueryTextChanged(String queryString) {
         mQueryString = queryString;
-        mSearchMode = !TextUtils.isEmpty(queryString);
-        update();
-        if (mListener != null) {
-            mListener.onAction();
-        }
+        setSearchMode(!TextUtils.isEmpty(queryString));
         return true;
     }
 
