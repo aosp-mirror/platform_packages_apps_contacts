@@ -139,6 +139,11 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private boolean mHasSms;
 
     /**
+     * Device capability: Set during buildEntries and used in the long-press context menu
+     */
+    private boolean mHasSip;
+
+    /**
      * The view shown if the detail list is empty.
      * We set this to the list view when first bind the adapter, so that it won't be shown while
      * we're loading data.
@@ -277,6 +282,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private final void buildEntries() {
         mHasPhone = PhoneCapabilityTester.isPhone(mContext);
         mHasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
+        mHasSip = PhoneCapabilityTester.isSipPhone(mContext);
 
         // Clear out the old entries
         final int numSections = mSections.size();
@@ -467,8 +473,13 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     // Build SipAddress entries
                     entry.uri = null;
                     entry.maxLines = 1;
-                    entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
+                    if (mHasSip) {
+                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
+                    } else {
+                        entry.intent = null;
+                        entry.actionIcon = -1;
+                    }
                     mOtherEntries.add(entry);
                     // TODO: Consider moving the SipAddress into its own
                     // section (rather than lumping it in with mOtherEntries)

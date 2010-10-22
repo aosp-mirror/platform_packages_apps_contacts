@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.net.sip.SipManager;
 
 import java.util.List;
 
@@ -49,6 +50,13 @@ public final class PhoneCapabilityTester {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                 Uri.fromParts(Constants.SCHEME_TEL, "", null));
         return isIntentRegistered(context, intent);
+    }
+
+    /**
+     * Returns true if this device can be used to make sip calls
+     */
+    public static boolean isSipPhone(Context context) {
+        return SipManager.isVoipSupported(context);
     }
 
     /**
