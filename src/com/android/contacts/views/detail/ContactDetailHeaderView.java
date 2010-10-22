@@ -26,7 +26,9 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -34,12 +36,17 @@ import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Header for displaying a title bar with contact info. You
@@ -114,7 +121,15 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
         setCompany(contactData);
-        setPhoto(ContactBadgeUtil.getPhoto(contactData));
+        Bitmap photo = ContactBadgeUtil.getPhoto(contactData);
+        if (photo != null) {
+            setPhoto(photo);
+        } else if (contactData.getPhotoUri() != null) {
+            setPhoto(null);
+            new AsyncPhotoLoader().execute(contactData.getPhotoUri());
+        } else {
+            setPhoto(ContactBadgeUtil.loadPlaceholderPhoto(mContext));
+        }
         setStared(contactData.getStarred());
         setPresence(contactData.getPresence());
         setSocialSnippet(contactData.getSocialSnippet());
@@ -305,6 +320,46 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 performDisplayNameClick();
                 break;
             }
+        }
+    }
+
+    private class AsyncPhotoLoader extends AsyncTask<String, Void, Bitmap> {
+
+        private static final int BUFFER_SIZE = 1024*16;
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            Uri uri = Uri.parse(params[0]);
+            Bitmap bitmap = null;
+            try {
+                InputStream is = getContext().getContentResolver().openInputStream(uri);
+                if (is != null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    try {
+                        byte[] mBuffer = new byte[BUFFER_SIZE];
+
+                        int size;
+                        while ((size = is.read(mBuffer)) != -1) {
+                            baos.write(mBuffer, 0, size);
+                        }
+                        byte[] bytes = baos.toByteArray();
+                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+                    } finally {
+                        is.close();
+                    }
+                } else {
+                    Log.v(TAG, "Cannot load photo " + uri);
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Cannot load photo " + uri, e);
+            }
+
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            setPhoto(bitmap);
         }
     }
 }

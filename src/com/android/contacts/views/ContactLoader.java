@@ -87,6 +87,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final long mNameRawContactId;
         private final int mDisplayNameSource;
         private final long mPhotoId;
+        private final String mPhotoUri;
         private final String mDisplayName;
         private final String mPhoneticName;
         private final boolean mStarred;
@@ -121,6 +122,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mNameRawContactId = -1;
             mDisplayNameSource = DisplayNameSources.UNDEFINED;
             mPhotoId = -1;
+            mPhotoUri = null;
             mDisplayName = null;
             mPhoneticName = null;
             mStarred = false;
@@ -133,11 +135,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         /**
          * Constructor to call when contact was found
+         * @param photoUri TODO
          */
         private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
-                long nameRawContactId, int displayNameSource, long photoId, String displayName,
-                String phoneticName, boolean starred, Integer presence, String status,
-                Long statusTimestamp, Integer statusLabel, String statusResPackage) {
+                long nameRawContactId, int displayNameSource, long photoId, String photoUri,
+                String displayName, String phoneticName, boolean starred, Integer presence,
+                String status, Long statusTimestamp, Integer statusLabel, String statusResPackage) {
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
@@ -148,6 +151,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mNameRawContactId = nameRawContactId;
             mDisplayNameSource = displayNameSource;
             mPhotoId = photoId;
+            mPhotoUri = photoUri;
             mDisplayName = displayName;
             mPhoneticName = phoneticName;
             mStarred = starred;
@@ -190,6 +194,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
         public long getPhotoId() {
             return mPhotoId;
+        }
+        public String getPhotoUri() {
+            return mPhotoUri;
         }
         public String getDisplayName() {
             return mDisplayName;
@@ -349,7 +356,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Data.STATUS_RES_PACKAGE,
                 Data.STATUS_ICON,
                 Data.STATUS_LABEL,
-                Data.STATUS_TIMESTAMP
+                Data.STATUS_TIMESTAMP,
+
+                Contacts.PHOTO_URI,
         };
 
         public final static int NAME_RAW_CONTACT_ID = 0;
@@ -411,6 +420,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int PRESENCE = 52;
         public final static int CHAT_CAPABILITY = 53;
         public final static int STATUS = 54;
+        public final static int STATUS_RES_PACKAGE = 55;
+        public final static int STATUS_ICON = 56;
+        public final static int STATUS_LABEL = 57;
+        public final static int STATUS_TIMESTAMP = 58;
+
+        public final static int PHOTO_URI = 59;
     }
 
     private static class DirectoryQuery {
@@ -575,6 +590,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
             final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
             final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
+            final String photoUri = cursor.getString(ContactQuery.PHOTO_URI);
             final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
             final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
                     ? null
@@ -592,8 +608,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             Uri lookupUri = ContentUris.withAppendedId(
                     Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
             return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
-                    nameRawContactId, displayNameSource, photoId, displayName, phoneticName,
-                    starred, presence, status, statusTimestamp, statusLabel, statusResPackage);
+                    nameRawContactId, displayNameSource, photoId, photoUri, displayName,
+                    phoneticName, starred, presence, status, statusTimestamp, statusLabel,
+                    statusResPackage);
         }
 
         /**
@@ -770,8 +787,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
 
             mContact = result;
-            mLookupUri = result.getLookupUri();
             if (result != null) {
+                mLookupUri = result.getLookupUri();
                 unregisterObserver();
                 if (mObserver == null) {
                     mObserver = new ForceLoadContentObserver();
