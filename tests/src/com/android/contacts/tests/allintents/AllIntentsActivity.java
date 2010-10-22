@@ -21,6 +21,7 @@ import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.tests.R;
 import com.google.android.collect.Lists;
 
+import android.accounts.Account;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -53,7 +54,8 @@ import android.widget.Toast;
  * Useful for manual and scripted tests.
  */
 @SuppressWarnings("deprecation")
-public class AllIntentsActivity extends ListActivity {
+public class AllIntentsActivity extends ListActivity
+        implements SelectAccountDialogFragment.Listener {
 
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
@@ -114,14 +116,16 @@ public class AllIntentsActivity extends ListActivity {
     private static final int EDIT_LEGACY = 46;
     private static final int EDIT_NEW_CONTACT = 47;
     private static final int EDIT_NEW_CONTACT_WITH_DATA = 48;
-    private static final int EDIT_NEW_RAW_CONTACT = 49;
-    private static final int EDIT_NEW_LEGACY = 50;
+    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT = 49;
+    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA = 50;
+    private static final int EDIT_NEW_RAW_CONTACT = 51;
+    private static final int EDIT_NEW_LEGACY = 52;
 
-    private static final int VIEW_CONTACT = 51;
-    private static final int VIEW_CONTACT_LOOKUP = 52;
-    private static final int VIEW_CONTACT_LOOKUP_ID = 53;
-    private static final int VIEW_RAW_CONTACT = 54;
-    private static final int VIEW_LEGACY = 55;
+    private static final int VIEW_CONTACT = 53;
+    private static final int VIEW_CONTACT_LOOKUP = 54;
+    private static final int VIEW_CONTACT_LOOKUP_ID = 55;
+    private static final int VIEW_RAW_CONTACT = 56;
+    private static final int VIEW_LEGACY = 57;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -444,6 +448,13 @@ public class AllIntentsActivity extends ListActivity {
                 startActivity(intent);
                 break;
             }
+            case EDIT_NEW_CONTACT_FOR_ACCOUNT:
+            case EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA: {
+                final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
+                dialog.setArguments(SelectAccountDialogFragment.createBundle(position));
+                dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+                break;
+            }
             case EDIT_NEW_RAW_CONTACT: {
                 startActivity(new Intent(Intent.ACTION_INSERT, RawContacts.CONTENT_URI));
                 break;
@@ -575,5 +586,36 @@ public class AllIntentsActivity extends ListActivity {
         }
 
         return -1;
+    }
+
+    @Override
+    public void onAccountChosen(Account account, int tag) {
+        switch (tag) {
+            case EDIT_NEW_CONTACT_FOR_ACCOUNT: {
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                intent.putExtra(Insert.ACCOUNT, account);
+                startActivity(intent);
+                break;
+            }
+            case EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA: {
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+
+                intent.putExtra(Insert.ACCOUNT, account);
+                ContentValues row1 = new ContentValues();
+                row1.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+                row1.put(Organization.COMPANY, "Android");
+
+                ContentValues row2 = new ContentValues();
+                row2.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+                row2.put(Email.TYPE, Email.TYPE_CUSTOM);
+                row2.put(Email.LABEL, "Green Bot");
+                row2.put(Email.ADDRESS, "android@android.com");
+
+                intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
+
+                startActivity(intent);
+                break;
+            }
+        }
     }
 }
