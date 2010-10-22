@@ -195,8 +195,10 @@ public class ContactListFilterController
             }
         }
 
-        mFilters.append(mNextFilterId++,
-                new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
+        if (mAccountCount > 0) {
+            mFilters.append(
+                    mNextFilterId++, new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
+        }
 
         boolean filterChanged = false;
         if (mFilter == null  || !filterValid) {
