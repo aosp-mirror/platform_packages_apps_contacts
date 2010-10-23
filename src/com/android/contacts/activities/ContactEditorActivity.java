@@ -82,9 +82,19 @@ public class ContactEditorActivity extends Activity implements
     protected Dialog onCreateDialog(int id, Bundle args) {
         if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, args);
 
+        Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, args);
+        if (dialog != null) return dialog;
+
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
+        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, args)) {
+            return;
+        }
     }
 
     @Override
