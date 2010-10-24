@@ -16,7 +16,6 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.tests.R;
 import com.google.android.collect.Lists;
@@ -518,7 +517,7 @@ public class AllIntentsActivity extends ListActivity
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, "A");
         ContactsRequest request = new ContactsRequest();
         request.setActionCode(actionCode);
-        intent.putExtra(ContactsSearchManager.ORIGINAL_REQUEST_KEY, request);
+        intent.putExtra("originalRequest", request);
         return intent;
     }
 
