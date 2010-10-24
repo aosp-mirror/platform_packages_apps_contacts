@@ -8,7 +8,8 @@ LOCAL_CERTIFICATE := shared
 LOCAL_JAVA_LIBRARIES := android.test.runner
 
 # Include all test java files.
-LOCAL_SRC_FILES := $(call all-java-files-under, src)
+LOCAL_SRC_FILES := $(call all-java-files-under, src) \
+    ../src/com/android/contacts/list/ContactsRequest.java
 
 LOCAL_PACKAGE_NAME := ContactsTests
 
