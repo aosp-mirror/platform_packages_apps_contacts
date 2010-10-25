@@ -162,7 +162,15 @@ public class ActionBarAdapter
     @Override
     public boolean onQueryTextChanged(String queryString) {
         mQueryString = queryString;
-        setSearchMode(!TextUtils.isEmpty(queryString));
+        boolean searchMode = !TextUtils.isEmpty(queryString);
+        if (searchMode == mSearchMode) {
+            update();
+            if (mListener != null) {
+                mListener.onAction();
+            }
+        } else {
+            setSearchMode(searchMode);
+        }
         return true;
     }
 
