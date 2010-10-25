@@ -22,6 +22,7 @@ import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
@@ -29,8 +30,6 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.android.contacts.widget.SearchEditText;
-import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -38,20 +37,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryChangeListener;
 
 /**
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
  */
-public class ContactSelectionActivity extends Activity implements View.OnCreateContextMenuListener {
+public class ContactSelectionActivity extends Activity
+        implements View.OnCreateContextMenuListener, OnQueryChangeListener {
     private static final String TAG = "ContactSelectionActivity";
 
     private static final String KEY_ACTION_CODE = "actionCode";
+    private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
@@ -61,7 +62,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
     private boolean mSearchInitiated;
 
     private ContactsRequest mRequest;
-    private SearchEditText mSearchEditText;
+    private SearchView mSearchView;
 
     public ContactSelectionActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -100,43 +101,20 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
         }
 
         configureActivityTitle();
-        if (mRequest.isSearchMode()) {
-            setContentView(R.layout.contacts_search_content);
-            setupSearchUI();
-        } else {
-            setContentView(R.layout.contact_picker);
-        }
+
+        setContentView(R.layout.contact_picker);
+
         configureListFragment();
+
+        mSearchView = (SearchView)findViewById(R.id.search_view);
+        mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+        mSearchView.setOnQueryChangeListener(this);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_ACTION_CODE, mActionCode);
-    }
-
-    private void setupSearchUI() {
-        mSearchEditText = (SearchEditText)findViewById(R.id.search_src_text);
-        mSearchEditText.setText(mRequest.getQueryString());
-        mSearchEditText.setOnFilterTextListener(new OnFilterTextListener() {
-            @Override
-            public void onFilterChange(String queryString) {
-                mListFragment.setQueryString(queryString);
-            }
-
-            @Override
-            public void onCancelSearch() {
-                finish();
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mRequest.isSearchMode()) {
-            mSearchEditText.requestFocus();
-        }
     }
 
     private void configureActivityTitle() {
@@ -203,9 +181,7 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
                 DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
                 fragment.setEditMode(true);
                 fragment.setCreateContactEnabled(true);
-                fragment.setSearchMode(mRequest.isSearchMode());
-                fragment.setQueryString(mRequest.getQueryString());
-                fragment.setDirectorySearchEnabled(false);
+                fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_CONTACT_SHORTCUT);
                 mListFragment = fragment;
                 break;
             }
@@ -229,7 +205,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
-                fragment.setDirectorySearchEnabled(mRequest.isDirectorySearchEnabled());
                 fragment.setShortcutRequested(true);
                 mListFragment = fragment;
                 break;
@@ -253,7 +228,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
                 fragment.setShortcutAction(Intent.ACTION_SENDTO);
-                fragment.setSearchMode(mRequest.isSearchMode());
 
                 mListFragment = fragment;
                 break;
@@ -271,6 +245,10 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
 
         mListFragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
         mListFragment.setContactsRequest(mRequest);
+        mListFragment.setSearchMode(mRequest.isSearchMode());
+        mListFragment.setQueryString(mRequest.getQueryString());
+        mListFragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
+
         getFragmentManager().openTransaction()
                 .replace(R.id.list_container, mListFragment)
                 .commit();
@@ -411,82 +389,6 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        MenuInflater inflater = getMenuInflater();
-        if (!mListFragment.isSearchMode()) {
-            inflater.inflate(R.menu.search, menu);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search: {
-                onSearchRequested();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-// TODO
-//        if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
-//            return;
-//        }
-
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            mListFragment.startSearch(initialQuery);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-//            case SUBACTIVITY_NEW_CONTACT:
-//                if (resultCode == RESULT_OK) {
-//                    returnPickerResult(null, data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME),
-//                            data.getData());
-//                    setRe
-//                }
-//                break;
-
-//            case SUBACTIVITY_VIEW_CONTACT:
-//                if (resultCode == RESULT_OK) {
-//                    mAdapter.notifyDataSetChanged();
-//                }
-//                break;
-//
-//            case SUBACTIVITY_DISPLAY_GROUP:
-//                // Mark as just created so we re-run the view query
-////                mJustCreated = true;
-//                break;
-//
-            case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
-                if (resultCode == RESULT_OK) {
-                    mListFragment.onPickerResult(data);
-                }
-
-// TODO fix or remove multipicker code
-//                else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
-//                    // Finish the activity if the sub activity was canceled as back key is used
-//                    // to confirm user selection in MODE_PICK_MULTIPLE_PHONES.
-//                    finish();
-//                }
-//                break;
-        }
-    }
-
-    @Override
     public boolean onContextItemSelected(MenuItem item) {
         ContextMenuAdapter menuAdapter = mListFragment.getContextMenuAdapter();
         if (menuAdapter != null) {
@@ -496,57 +398,15 @@ public class ContactSelectionActivity extends Activity implements View.OnCreateC
         return super.onContextItemSelected(item);
     }
 
-    /**
-     * Event handler for the use case where the user starts typing without
-     * bringing up the search UI first.
-     */
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (!mSearchInitiated && !mRequest.isSearchMode()) {
-            int unicodeChar = event.getUnicodeChar();
-            if (unicodeChar != 0) {
-                mSearchInitiated = true;
-                startSearch(new String(new int[]{unicodeChar}, 0, 1), false, null, false);
-                return true;
-            }
-        }
-        return super.dispatchKeyEvent(event);
+    public boolean onQueryTextChanged(String newText) {
+        mListFragment.setQueryString(newText);
+        mListFragment.setSearchMode(!TextUtils.isEmpty(newText));
+        return false;
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO move to the fragment
-        switch (keyCode) {
-//            case KeyEvent.KEYCODE_CALL: {
-//                if (callSelection()) {
-//                    return true;
-//                }
-//                break;
-//            }
-
-            case KeyEvent.KEYCODE_DEL: {
-                if (deleteSelection()) {
-                    return true;
-                }
-                break;
-            }
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private boolean deleteSelection() {
-        // TODO move to the fragment
-//        if (mActionCode == ContactsRequest.ACTION_DEFAULT) {
-//            final int position = mListView.getSelectedItemPosition();
-//            if (position != ListView.INVALID_POSITION) {
-//                Uri contactUri = getContactUri(position);
-//                if (contactUri != null) {
-//                    doContactDelete(contactUri);
-//                    return true;
-//                }
-//            }
-//        }
+    public boolean onSubmitQuery(String query) {
         return false;
     }
 }

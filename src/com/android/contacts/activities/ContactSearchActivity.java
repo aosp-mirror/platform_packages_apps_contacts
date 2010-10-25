@@ -24,6 +24,7 @@ import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.widget.SearchEditText;
 import com.android.contacts.widget.SearchEditText.OnFilterTextListener;
@@ -99,7 +100,7 @@ public class ContactSearchActivity extends Activity {
         fragment.setOnContactListActionListener(new ContactBrowserActionListener());
         fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
         fragment.setSearchMode(true);
-        fragment.setDirectorySearchEnabled(true);
+        fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
         fragment.setEditMode(mRequest.getActionCode() ==

@@ -36,6 +36,11 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
 
     private static final String TAG = "ContactEntryListAdapter";
 
+    public static final int SEARCH_MODE_NONE = 0;
+    public static final int SEARCH_MODE_DEFAULT = 1;
+    public static final int SEARCH_MODE_CONTACT_SHORTCUT = 2;
+    public static final int SEARCH_MODE_DATA_SHORTCUT = 3;
+
     private static final class DirectoryQuery {
         public static final Uri URI = Directory.CONTENT_URI;
         public static final String ORDER_BY = Directory._ID;
@@ -71,7 +76,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         }
     };
 
-    private boolean mDirectorySearchEnabled;
+    private int mDirectorySearchMode;
     private boolean mLocalInvisibleDirectoryEnabled;
 
     private MatrixCursor mDefaultDirectoryList;
@@ -80,8 +85,8 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         super(context);
     }
 
-    public void setDirectorySearchEnabled(boolean flag) {
-        mDirectorySearchEnabled = flag;
+    public void setDirectorySearchMode(int mode) {
+        mDirectorySearchMode = mode;
     }
 
     /**
@@ -106,25 +111,43 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
 
     @Override
     public Cursor loadInBackground() {
-        if (mDirectorySearchEnabled) {
-            return loadDirectories();
-        } else {
+        if (mDirectorySearchMode == SEARCH_MODE_NONE) {
             return getDefaultDirectories();
         }
-    }
 
-    private Cursor loadDirectories() {
         MatrixCursor result = new MatrixCursor(RESULT_PROJECTION);
         Context context = getContext();
         PackageManager pm = context.getPackageManager();
-        String selection = mLocalInvisibleDirectoryEnabled
-                ? null
-                : Directory._ID + "!=" + Directory.LOCAL_INVISIBLE;
+        String selection;
+        switch (mDirectorySearchMode) {
+            case SEARCH_MODE_DEFAULT:
+                selection = mLocalInvisibleDirectoryEnabled ? null
+                        : (Directory._ID + "!=" + Directory.LOCAL_INVISIBLE);
+                break;
+
+            case SEARCH_MODE_CONTACT_SHORTCUT:
+                selection = Directory.SHORTCUT_SUPPORT + "=" + Directory.SHORTCUT_SUPPORT_FULL
+                        + (mLocalInvisibleDirectoryEnabled ? ""
+                                : (" AND " + Directory._ID + "!=" + Directory.LOCAL_INVISIBLE));
+                break;
+
+            case SEARCH_MODE_DATA_SHORTCUT:
+                selection = Directory.SHORTCUT_SUPPORT + " IN ("
+                        + Directory.SHORTCUT_SUPPORT_FULL + ", "
+                        + Directory.SHORTCUT_SUPPORT_DATA_ITEMS_ONLY + ")"
+                        + (mLocalInvisibleDirectoryEnabled ? ""
+                                : (" AND " + Directory._ID + "!=" + Directory.LOCAL_INVISIBLE));
+                break;
+
+            default:
+                throw new RuntimeException(
+                        "Unsupported directory search mode: " + mDirectorySearchMode);
+        }
+
         Cursor cursor = context.getContentResolver().query(DirectoryQuery.URI,
                 DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
         try {
             while(cursor.moveToNext()) {
-                Object[] row = new Object[RESULT_PROJECTION.length];
                 long directoryId = cursor.getLong(DirectoryQuery.ID);
                 String directoryType = null;
 
@@ -145,6 +168,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         } finally {
             cursor.close();
         }
+
         return result;
     }
 

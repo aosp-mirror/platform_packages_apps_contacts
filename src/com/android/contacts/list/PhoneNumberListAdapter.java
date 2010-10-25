@@ -22,11 +22,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.ContactCounts;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
-    private boolean mVisibleContactsOnly = true;
 
     public PhoneNumberListAdapter(Context context) {
         super(context);
@@ -71,10 +69,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected CharSequence getUnknownNameText() {
         return mUnknownNameText;
-    }
-
-    public void setVisibleContactsOnly(boolean flag) {
-        mVisibleContactsOnly = flag;
     }
 
     @Override
@@ -96,17 +90,14 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             // TODO a projection that includes the search snippet
             loader.setProjection(PHONES_PROJECTION);
         } else {
-            uri = Phone.CONTENT_URI;
-            loader.setProjection(PHONES_PROJECTION);
-        }
-
-        if (directoryId == Directory.DEFAULT) {
-            if (mVisibleContactsOnly) {
-                loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1");
-            }
+            uri = Phone.CONTENT_URI.buildUpon().appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                    .build();
             if (isSectionHeaderDisplayEnabled()) {
                 uri = buildSectionIndexerUri(uri);
             }
+
+            loader.setProjection(PHONES_PROJECTION);
         }
 
         loader.setUri(uri);

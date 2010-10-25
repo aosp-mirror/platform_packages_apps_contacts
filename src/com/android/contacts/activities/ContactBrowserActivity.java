@@ -28,6 +28,7 @@ import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.AccountTypes;
@@ -420,8 +421,11 @@ public class ContactBrowserActivity extends Activity
                 }
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
-                fragment.setDirectorySearchEnabled(
-                        mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled());
+                if (mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled()) {
+                    fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
+                } else {
+                    fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
+                }
                 fragment.setAizyEnabled(!mRequest.isSearchMode());
                 fragment.setSelectionVisible(mContactContentDisplayed);
                 fragment.setQuickContactEnabled(!mContactContentDisplayed);
@@ -475,7 +479,7 @@ public class ContactBrowserActivity extends Activity
             fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
         }
         fragment.setSearchMode(true);
-        fragment.setDirectorySearchEnabled(true);
+        fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         fragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
