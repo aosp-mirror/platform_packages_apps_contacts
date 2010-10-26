@@ -82,6 +82,15 @@
         <item>VIEW (lookup uri)</item>
         <item>VIEW (called for raw contact)</item>
         <item>VIEW (legacy style uri)</item>
+
+        <!-- Various ways to start Contacts -->
+        <item>DIAL</item>
+        <item>DIAL phone (deprecated)</item>
+        <item>DIAL person (deprecated)</item>
+        <item>DIAL voicemail</item>
+        <item>CALL BUTTON</item>
+        <item>DIAL tel</item>
+        <item>VIEW tel</item>
     </string-array>
 
     <string name="pinnedHeaderList">Pinned Headers</string>

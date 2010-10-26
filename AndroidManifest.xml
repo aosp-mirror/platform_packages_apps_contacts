@@ -65,6 +65,57 @@
             </intent-filter>
         </activity>
 
+        <!-- Intercept Dialer Intents for devices without a phone.
+        This activity should have the same intent filters as the DialtactsActivity,
+        so that its capturing the same events. Omit android.intent.category.LAUNCHER, because we
+        don't want this to show up in the Launcher. The priorities of the intent-filters
+        are set lower, so that the user does not see a disambig dialog -->
+        <activity
+            android:name=".activities.NonPhoneActivity"
+            android:theme="@style/NonPhoneActivityTheme"
+        >
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:mimeType="vnd.android.cursor.item/phone" />
+                <data android:mimeType="vnd.android.cursor.item/person" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="voicemail" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tel" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:mimeType="vnd.android.cursor.dir/calls" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.CALL_BUTTON" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
         <!-- Tab container for all tabs -->
         <activity android:name="DialtactsActivity"
             android:label="@string/launcherDialer"
@@ -73,7 +124,7 @@
             android:clearTaskOnLaunch="true"
             android:icon="@drawable/ic_launcher_phone"
             android:screenOrientation="nosensor"
-            android:enabled="@bool/dialerEnabled"
+            android:enabled="@*android:bool/config_voice_capable"
         >
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
@@ -138,32 +189,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
-
-        <!-- Main launch Intent to open the Contacts app. This will open the app in its last manual
-        state. This is the state that has been explicitly set by the user (e.g. by clicking a tab).
-        States configured via other Intents (e.g. CallLog after Call) are not considered manual
-        state. At the moment, the Intent always goes to the DialtactsActivity, but this might later
-        be changed to also include sub-activities like Edit or View if they were left open -->
-
-        <activity-alias android:name="ContactsLaunchActivity"
-            android:targetActivity="DialtactsActivity"
-        >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity-alias>
-
-        <!-- An empty activity that presents the DialtactActivity's Favorites tab -->
-        <activity-alias android:name="DialtactsFavoritesEntryActivity"
-            android:targetActivity="DialtactsActivity"
-        >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity-alias>
 
         <!-- The actual list of contacts -->
         <activity android:name=".activities.ContactBrowserActivity"
@@ -362,7 +387,7 @@
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
             android:icon="@drawable/ic_launcher_shortcut_directdial"
-            android:enabled="@bool/dialerEnabled">
+            android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -376,7 +401,7 @@
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
             android:icon="@drawable/ic_launcher_shortcut_directmessage"
-            android:enabled="@bool/dialerEnabled">
+            android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
