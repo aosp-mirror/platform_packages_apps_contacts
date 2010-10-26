@@ -1180,6 +1180,11 @@ public class QuickContactWindow implements Window.Callback,
      */
     private void handleData(Cursor cursor) {
         if (cursor == null) return;
+        if (cursor.getCount() == 0) {
+            Toast.makeText(mContext, R.string.invalidContactMessage, Toast.LENGTH_LONG).show();
+            dismiss();
+            return;
+        }
 
         if (!isMimeExcluded(Contacts.CONTENT_ITEM_TYPE)) {
             // Add the profile shortcut action
