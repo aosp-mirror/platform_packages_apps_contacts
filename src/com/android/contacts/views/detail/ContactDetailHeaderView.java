@@ -130,7 +130,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         } else {
             setPhoto(ContactBadgeUtil.loadPlaceholderPhoto(mContext));
         }
-        setStared(contactData.getStarred());
+        setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
         setPresence(contactData.getPresence());
         setSocialSnippet(contactData.getSocialSnippet());
         setSocialDate(ContactBadgeUtil.getSocialDate(contactData, getContext()));
@@ -160,8 +160,13 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     /**
      * Set the starred state of this header widget.
      */
-    private void setStared(boolean starred) {
-        mStarredView.setChecked(starred);
+    private void setStared(boolean visible, boolean starred) {
+        if (visible) {
+            mStarredView.setVisibility(View.VISIBLE);
+            mStarredView.setChecked(starred);
+        } else {
+            mStarredView.setVisibility(View.GONE);
+        }
     }
 
     /**
