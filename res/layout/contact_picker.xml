@@ -14,9 +14,26 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
-    android:id="@+id/list_container"
-    >
-</FrameLayout>
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:orientation="vertical">
+    <view
+        class="android.widget.SearchView"
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginRight="5dip"
+        android:iconifiedByDefault="false" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list_container">
+    </FrameLayout>
+</view>

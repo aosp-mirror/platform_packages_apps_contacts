@@ -62,7 +62,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private String mQueryString;
     private char[] mUpperCaseQueryString;
     private boolean mSearchMode;
-    private boolean mDirectorySearchEnabled;
+    private int mDirectorySearchMode;
     private int mDirectoryResultLimit = Integer.MAX_VALUE;
 
     private boolean mLoading = true;
@@ -150,12 +150,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         return mUpperCaseQueryString;
     }
 
-    public boolean isDirectorySearchEnabled() {
-        return mDirectorySearchEnabled;
+    public int getDirectorySearchMode() {
+        return mDirectorySearchMode;
     }
 
-    public void setDirectorySearchEnabled(boolean flag) {
-        mDirectorySearchEnabled = flag;
+    public void setDirectorySearchMode(int mode) {
+        mDirectorySearchMode = mode;
     }
 
     public int getDirectoryResultLimit() {
@@ -239,7 +239,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {
-        loader.setDirectorySearchEnabled(mDirectorySearchEnabled);
+        loader.setDirectorySearchMode(mDirectorySearchMode);
         loader.setLocalInvisibleDirectoryEnabled(LOCAL_INVISIBLE_DIRECTORY_ENABLED);
     }
 

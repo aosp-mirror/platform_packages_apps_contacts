@@ -73,12 +73,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         extends Fragment
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
                 LoaderCallbacks<Cursor> {
+    private static final String TAG = "ContactEntryListFragment";
 
     // TODO: Make this protected. This should not be used from the ContactBrowserActivity but
     // instead use the new startActivityWithResultFromFragment API
     public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
-
-    private static final String TAG = "ContactEntryListFragment";
 
     private static final String KEY_LIST_STATE = "liststate";
     private static final String KEY_SECTION_HEADER_DISPLAY_ENABLED = "sectionHeaderDisplayEnabled";
@@ -87,7 +86,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_SEARCH_MODE = "searchMode";
     private static final String KEY_AIZY_ENABLED = "aizyEnabled";
     private static final String KEY_QUERY_STRING = "queryString";
-    private static final String KEY_DIRECTORY_SEARCH_ENABLED = "directorySearchEnabled";
+    private static final String KEY_DIRECTORY_SEARCH_MODE = "directorySearchMode";
     private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
     private static final String KEY_REQUEST = "request";
     private static final String KEY_LEGACY_COMPATIBILITY = "legacyCompatibility";
@@ -100,13 +99,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final int DIRECTORY_SEARCH_DELAY_MILLIS = 300;
     private static final int DIRECTORY_SEARCH_MESSAGE = 1;
 
+    private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
+
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mQuickContactEnabled = true;
     private boolean mSearchMode;
     private boolean mAizyEnabled;
     private String mQueryString;
-    private boolean mDirectorySearchEnabled;
+    private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
     private boolean mSelectionVisible;
     private ContactsRequest mRequest;
     private boolean mLegacyCompatibility;
@@ -123,7 +124,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private int mDisplayOrder;
     private int mSortOrder;
-    private int mDirectoryResultLimit;
+    private int mDirectoryResultLimit = DEFAULT_DIRECTORY_RESULT_LIMIT;
 
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoLoader mPhotoLoader;
@@ -221,7 +222,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(KEY_AIZY_ENABLED, mAizyEnabled);
-        outState.putBoolean(KEY_DIRECTORY_SEARCH_ENABLED, mDirectorySearchEnabled);
+        outState.putInt(KEY_DIRECTORY_SEARCH_MODE, mDirectorySearchMode);
         outState.putBoolean(KEY_SELECTION_VISIBLE, mSelectionVisible);
         outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
         outState.putString(KEY_QUERY_STRING, mQueryString);
@@ -251,7 +252,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         mAizyEnabled = savedState.getBoolean(KEY_AIZY_ENABLED);
-        mDirectorySearchEnabled = savedState.getBoolean(KEY_DIRECTORY_SEARCH_ENABLED);
+        mDirectorySearchMode = savedState.getInt(KEY_DIRECTORY_SEARCH_MODE);
         mSelectionVisible = savedState.getBoolean(KEY_SELECTION_VISIBLE);
         mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
         mQueryString = savedState.getString(KEY_QUERY_STRING);
@@ -396,15 +397,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             startLoading();
         } else {
             onPartitionLoaded(loaderId, data);
-            if (isDirectorySearchEnabled()) {
-                if (mLoadDirectoryList) {
-                    mLoadDirectoryList = false;
-                    getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
-                } else {
-                    startLoading();
+            if (isSearchMode()) {
+                int directorySearchMode = getDirectorySearchMode();
+                if (directorySearchMode != DirectoryListLoader.SEARCH_MODE_NONE) {
+                    if (mLoadDirectoryList) {
+                        mLoadDirectoryList = false;
+                        getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
+                    } else {
+                        startLoading();
+                    }
                 }
             }
-
         }
 
 // TODO fix the empty view
@@ -560,12 +563,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    public boolean isDirectorySearchEnabled() {
-        return mDirectorySearchEnabled;
+    public int getDirectorySearchMode() {
+        return mDirectorySearchMode;
     }
 
-    public void setDirectorySearchEnabled(boolean flag) {
-        mDirectorySearchEnabled = flag;
+    public void setDirectorySearchMode(int mode) {
+        mDirectorySearchMode = mode;
     }
 
     public boolean isLegacyCompatibilityMode() {
@@ -711,7 +714,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         mAdapter.setQuickContactEnabled(mQuickContactEnabled);
         mAdapter.setQueryString(mQueryString);
-        mAdapter.setDirectorySearchEnabled(mDirectorySearchEnabled);
+        mAdapter.setDirectorySearchMode(mDirectorySearchMode);
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);

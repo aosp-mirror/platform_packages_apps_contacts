@@ -72,7 +72,9 @@
 
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
         <item name="android:layout_width">480dip</item>
-        <item name="android:layout_height">650dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">40dip</item>
+        <item name="android:layout_marginBottom">10dip</item>
     </style>
 
     <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">

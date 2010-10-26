@@ -35,6 +35,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public PhoneNumberPickerFragment() {
         setPhotoLoaderEnabled(true);
+        setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
     }
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {

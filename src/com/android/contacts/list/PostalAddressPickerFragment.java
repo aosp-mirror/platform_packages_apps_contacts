@@ -32,6 +32,7 @@ public class PostalAddressPickerFragment
     public PostalAddressPickerFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
+        setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
     }
 
     public void setOnPostalAddressPickerActionListener(
