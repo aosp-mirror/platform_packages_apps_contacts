@@ -51,6 +51,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
@@ -122,6 +123,8 @@ public class ContactBrowserActivity extends Activity
     private ContactListFilterController mContactListFilterController;
 
     private ImageView mAddContactImageView;
+
+    private Handler mHandler;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -354,12 +357,26 @@ public class ContactBrowserActivity extends Activity
         }
     }
 
-    private void setupContactDetailFragment(Uri contactLookupUri) {
+    private void setupContactDetailFragment(final Uri contactLookupUri) {
         if (mDetailFragment != null && contactLookupUri != null
                 && contactLookupUri.equals(mDetailFragment.getUri())) {
             return;
         }
 
+        if (mHandler == null) {
+            mHandler = new Handler();
+        }
+
+        mHandler.post(new Runnable() {
+
+            @Override
+            public void run() {
+                replaceContactDetailFragment(contactLookupUri);
+            }
+        });
+    }
+
+    public void replaceContactDetailFragment(Uri contactLookupUri) {
         if (contactLookupUri != null) {
             // Already showing? Nothing to do
             if (mDetailFragment != null) {
