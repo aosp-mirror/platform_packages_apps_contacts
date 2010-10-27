@@ -684,8 +684,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAizy.setListener(new ContactListAizyView.Listener() {
             @Override
             public void onScroll(int position) {
-                mListView.smoothScrollToPositionFromTop(position + mListView.getHeaderViewsCount(),
-                        0);
+                mListView.setSelectionFromTop(position + mListView.getHeaderViewsCount(), 0);
             }
         });
 
