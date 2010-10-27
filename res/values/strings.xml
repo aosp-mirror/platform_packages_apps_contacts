@@ -260,6 +260,9 @@
          For example, this may be used to set a phone number's label to "Vaction house" -->
     <string name="customLabelPickerTitle">Custom label name</string>
 
+    <!-- The menu item to open the list of groups to display -->
+    <string name="menu_displayGroup">Display options</string>
+
     <!-- Check box label that allows calls to the contact to be sent directly to voicemail -->
     <string name="send_to_voicemail_checkbox">Send calls directly to voicemail</string>
 
