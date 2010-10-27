@@ -23,8 +23,6 @@
     <application>
         <uses-library android:name="android.test.runner" />
         <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
-        <uses-permission android:name="android.permission.READ_CONTACTS" />
-        <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
         <activity android:name=".allintents.AllIntentsActivity"
             android:label="@string/contactsIntents"

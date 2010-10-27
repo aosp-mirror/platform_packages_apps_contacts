@@ -126,6 +126,14 @@ public class AllIntentsActivity extends ListActivity
     private static final int VIEW_RAW_CONTACT = 56;
     private static final int VIEW_LEGACY = 57;
 
+    private static final int DIAL = 58;
+    private static final int DIAL_phone = 59;
+    private static final int DIAL_person = 60;
+    private static final int DIAL_voicemail = 61;
+    private static final int CALL_BUTTON = 62;
+    private static final int DIAL_tel = 63;
+    private static final int VIEW_tel = 64;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -506,6 +514,47 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(intent);
                 break;
             }
+            case DIAL: {
+                startActivity(new Intent(Intent.ACTION_DIAL));
+                break;
+            }
+            case DIAL_phone: {
+                // This is the legacy URI (there is no >2.0 way to call a phone data item)
+                final long dataId = findArbitraryPhoneDataId();
+                if (dataId != -1) {
+                    final Uri legacyContentUri = Uri.parse("content://contacts/phones");
+                    final Uri uri = ContentUris.withAppendedId(legacyContentUri, dataId);
+                    startActivity(new Intent(Intent.ACTION_DIAL, uri));
+                }
+                break;
+            }
+            case DIAL_person: {
+                // This is the legacy URI (there is no >2.0 way to call a person)
+                final long contactId = findArbitraryContactWithPhoneNumber();
+                if (contactId != -1) {
+                    final Uri legacyContentUri = Uri.parse("content://contacts/people");
+                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                    final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
+                    startActivity(new Intent(Intent.ACTION_DIAL, uri));
+                }
+                break;
+            }
+            case DIAL_voicemail: {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("voicemail:")));
+                break;
+            }
+            case CALL_BUTTON: {
+                startActivity(new Intent(Intent.ACTION_CALL_BUTTON));
+                break;
+            }
+            case DIAL_tel: {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:555-123-4567")));
+                break;
+            }
+            case VIEW_tel: {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:555-123-4567")));
+                break;
+            }
             default: {
                 Toast.makeText(this, "Sorry, we forgot to write this...", Toast.LENGTH_LONG).show();
             }
@@ -558,6 +607,22 @@ public class AllIntentsActivity extends ListActivity
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
                 new String[] { Contacts._ID },
                 Contacts.HAS_PHONE_NUMBER + "!=0 AND " + Contacts.STARRED + "!=0" ,
+                null, "RANDOM() LIMIT 1");
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getLong(0);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return -1;
+    }
+
+    private long findArbitraryPhoneDataId() {
+        final Cursor cursor = getContentResolver().query(Data.CONTENT_URI,
+                new String[] { Data._ID },
+                Data.MIMETYPE + "=" + Phone.MIMETYPE,
                 null, "RANDOM() LIMIT 1");
         try {
             if (cursor.moveToFirst()) {

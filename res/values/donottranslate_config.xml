@@ -18,9 +18,6 @@
 -->
 
 <resources>
-    <!-- Indicates whether the dialer activity is enabled in the build -->
-    <bool name="dialerEnabled">true</bool>
-
     <!-- Flag indicating whether Contacts app is allowed to import contacts from SDCard -->
     <bool name="config_allow_import_from_sdcard">true</bool>
     <!-- If true, all vcard files are imported from SDCard without asking a user.

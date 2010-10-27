@@ -22,10 +22,19 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.net.sip.SipManager;
+import android.telephony.TelephonyManager;
 
 import java.util.List;
 
+/**
+ * Provides static functions to quickly test the capabilities of this device. The static
+ * members are not safe for threading
+ */
 public final class PhoneCapabilityTester {
+    private static boolean sIsInitialized;
+    private static boolean sIsPhone;
+    private static boolean sIsSipPhone;
+
     /**
      * Tests whether the Intent has a receiver registered. This can be used to show/hide
      * functionality (like Phone, SMS)
@@ -41,28 +50,31 @@ public final class PhoneCapabilityTester {
      * Returns true if this device can be used to make phone calls
      */
     public static boolean isPhone(Context context) {
+        if (!sIsInitialized) initialize(context);
         // Is the device physically capabable of making phone calls?
-        if (!context.getResources().getBoolean(com.android.internal.R.bool.config_voice_capable)) {
-            return false;
-        }
+        return sIsPhone;
+    }
 
-        // Is there an app registered that accepts the call intent?
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                Uri.fromParts(Constants.SCHEME_TEL, "", null));
-        return isIntentRegistered(context, intent);
+    private static void initialize(Context context) {
+        final TelephonyManager telephonyManager = new TelephonyManager(context);
+        sIsPhone = telephonyManager.isVoiceCapable();
+        sIsSipPhone = SipManager.isVoipSupported(context);
+        sIsInitialized = true;
     }
 
     /**
      * Returns true if this device can be used to make sip calls
      */
     public static boolean isSipPhone(Context context) {
-        return SipManager.isVoipSupported(context);
+        if (!sIsInitialized) initialize(context);
+        return sIsSipPhone;
     }
 
     /**
      * Returns true if the device has an SMS application installed.
      */
     public static boolean isSmsIntentRegistered(Context context) {
+        // Don't cache the result as the user might install third party apps to send SMS
         final Intent intent = new Intent(Intent.ACTION_SENDTO,
                 Uri.fromParts(Constants.SCHEME_SMSTO, "", null));
         return isIntentRegistered(context, intent);
