@@ -291,6 +291,7 @@ public class ContactBrowserActivity extends Activity
                 mListFragment = createContactSearchFragment();
             } else {
                 mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
+                mListFragment.requestSelectionOnScreen(false);
             }
         }
 
@@ -930,6 +931,15 @@ public class ContactBrowserActivity extends Activity
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mSearchMode && mActionBarAdapter != null) {
+            mActionBarAdapter.setSearchMode(false);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private boolean deleteSelection() {
