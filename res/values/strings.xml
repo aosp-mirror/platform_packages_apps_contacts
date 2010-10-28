@@ -253,8 +253,8 @@
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
     <string name="photoPickerNotFoundText">No pictures are available on the phone.</string>
 
-    <!-- Description of the activity used to set a photo in the pictures application as the icon for a contact -->
-    <string name="attachToContact">Contact icon</string>
+    <!-- Description of the dialog used to set a photo for a contact [CHAR LIMIT=50] -->
+    <string name="contact_photo_dialog_title">Contact photo</string>
 
     <!-- Title of the dialog used to set a custom label for a contact detail, like a phone number or email address.
          For example, this may be used to set a phone number's label to "Vaction house" -->
@@ -266,11 +266,8 @@
     <!-- String used to indicate that a contact doesn't have a custom ringtone -->
     <string name="default_ringtone">Default</string>
 
-    <!-- The button/menu item that allows you to change an existing contact picture -->
-    <string name="changePicture">Change icon</string>
-
-    <!-- The menu item that allows you to remove a picture from a contact -->
-    <string name="removePicture">Remove icon</string>
+    <!-- The menu item that allows you to remove a photo from a contact [CHAR LIMIT=50] -->
+    <string name="removePhoto">Remove photo</string>
 
     <!-- The text displayed when the contacts list is empty while displaying all contacts -->
     <string name="noContacts">No contacts.</string>
@@ -1194,11 +1191,17 @@
     <!-- Button displayed underneath the list of filtered visible contacts -->
     <string name="search_for_all_contacts">Search for all contacts</string>
 
-    <!-- An option in the 'change photo' or 'pick photo' dialog -->
+    <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
 
-    <!-- An option in the 'change photo' or 'pick photo' dialog -->
+    <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
+    <string name="take_new_photo">Take new photo</string>
+
+    <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="pick_photo">Select photo from Gallery</string>
+
+    <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
+    <string name="pick_new_photo">Select new photo from Gallery</string>
 
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change -->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait...</string>
