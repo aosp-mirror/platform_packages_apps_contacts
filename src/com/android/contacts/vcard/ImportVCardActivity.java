@@ -16,6 +16,19 @@
 
 package com.android.contacts.vcard;
 
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypes;
+import com.android.contacts.util.AccountSelectionUtil;
+import com.android.vcard.VCardEntryCounter;
+import com.android.vcard.VCardInterpreterCollection;
+import com.android.vcard.VCardParser;
+import com.android.vcard.VCardParser_V21;
+import com.android.vcard.VCardParser_V30;
+import com.android.vcard.VCardSourceDetector;
+import com.android.vcard.exception.VCardException;
+import com.android.vcard.exception.VCardNestedException;
+import com.android.vcard.exception.VCardVersionException;
+
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,10 +38,11 @@ import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,19 +56,6 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
-
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
-import com.android.contacts.util.AccountSelectionUtil;
-import com.android.vcard.VCardEntryCounter;
-import com.android.vcard.VCardInterpreterCollection;
-import com.android.vcard.VCardParser;
-import com.android.vcard.VCardParser_V21;
-import com.android.vcard.VCardParser_V30;
-import com.android.vcard.VCardSourceDetector;
-import com.android.vcard.exception.VCardException;
-import com.android.vcard.exception.VCardNestedException;
-import com.android.vcard.exception.VCardVersionException;
 
 import java.io.File;
 import java.io.IOException;
@@ -1009,17 +1010,17 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // This Activity should finish itself on orientation change, and give the main screen back
+        // to the caller Activity.
+        finish();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         mConnection.tryDisconnectAndFinish();
-
-        // ImportVCardActivity should not be persistent. In other words, if there's some
-        // event calling onPause(), this Activity should finish its work and give the main
-        // screen back to the caller Activity.
-        if (!isFinishing()) {
-            finish();
-        }
     }
 
     /**
