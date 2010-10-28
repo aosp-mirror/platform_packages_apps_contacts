@@ -25,6 +25,8 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"選擇聯絡人捷徑"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
+    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的最愛"</string>
@@ -73,8 +75,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"新增聯絡人"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"拼音"</string>
     <string name="label_notes" msgid="8337354953278341042">"附註"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"網路電話"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"鈴聲"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
@@ -82,24 +83,23 @@
     <string name="ghostData_title" msgid="7496735200318496110">"標題"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
-    <string name="selectLabel" msgid="4255424123394910733">"選取標籤"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"電子郵件"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"即時訊息"</string>
-    <string name="postalLabelsGroup" msgid="1618078212734693682">"郵寄地址"</string>
+    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"郵寄地址"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"機構"</item>
     <item msgid="7196592230748086755">"附註"</item>
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"手機上沒有相片 。"</string>
-    <string name="attachToContact" msgid="8820530304406066714">"聯絡人圖示"</string>
+    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自訂標籤名稱"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"顯示選項"</string>
-    <string name="displayGroups" msgid="2278964020773993336">"顯示選項"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"預設值"</string>
-    <string name="changePicture" msgid="2943329047610967714">"變更圖示"</string>
-    <string name="removePicture" msgid="3041230993155966350">"移除圖示"</string>
+    <!-- no translation found for removePhoto (4898105274130284565) -->
+    <skip />
     <string name="noContacts" msgid="8579310973261953559">"沒有聯絡人。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"找不到符合的聯絡人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
@@ -117,19 +117,20 @@
     <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"發生錯誤，無法儲存聯絡人變更。"</string>
   <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="8721111084815668845">"顯示 1 位附有電話號碼的聯絡人"</item>
-    <item quantity="other" msgid="6133262880804110289">"顯示 <xliff:g id="COUNT">%d</xliff:g> 位附有電話號碼的聯絡人"</item>
+    <item quantity="one" msgid="3015357862286673986">"1 位有電話號碼的聯絡人"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"在可顯示的聯絡人中，找不到附有電話號碼的聯絡人"</string>
   <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="1096068709488455155">"顯示 1 位聯絡人"</item>
-    <item quantity="other" msgid="2865867557378939630">"顯示 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
+    <item quantity="one" msgid="3405747744700823280">"1 位聯絡人"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"沒有可顯示的聯絡人"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"找到超過 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</string>
     <string name="listFoundAllContactsZero" msgid="777952841930508289">"找不到"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
@@ -207,39 +208,44 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"聯絡人相片"</string>
     <string name="description_minus_button" msgid="387136707700230172">"負號"</string>
     <string name="description_plus_button" msgid="515164827856229880">"加號"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"無 SD 卡"</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"未偵測到 SD 卡"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"沒有可用的 USB 儲存裝置"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"無 SD 卡"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"未偵測到 USB 儲存裝置"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"未偵測到 SD 卡"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"正在搜尋 VCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"從 SIM 卡匯入"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"從 SD 卡匯入"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"匯出至 SD 卡"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"從 USB 儲存裝置匯入"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"從 SD 卡匯入"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"匯出到 USB 儲存裝置"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"匯出至 SD 卡"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"分享正常顯示的聯絡人"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"匯入一個 vCard 檔案"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"匯入多個 vCard 檔案"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"匯入所有 vCard 檔案"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"在 SD 卡上搜尋 VCard 資料"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"無法掃描 SD 卡"</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"正在 USB 儲存裝置中搜尋 vCard 資料"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"在 SD 卡上搜尋 VCard 資料"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"掃描 USB 儲存裝置失敗"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"無法掃描 SD 卡"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"掃描 USB 儲存裝置失敗 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 錯誤"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"記憶體不足 (檔案可能過大)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"因未預期原因，無法剖析 VCard"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"VCard 格式正確，但目前的實作系統不支援此格式，因此無法剖析"</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"SD 卡上沒有 vCard 檔案"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"在 USB 儲存裝置中找不到 vCard 檔案"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"SD 卡上沒有 vCard 檔案"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"無法從指定的 vCard 檔案收集中繼資料。"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"無法匯入一或多個檔案 (%s)。"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"未知的錯誤"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"選取 VCard 檔案"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"正在將 vCard 資料快取至本機暫存空間"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"匯入工具正在將 vCard 的資料快取至本機暫存空間，隨即將啟動實際的匯入作業。"</string>
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
+    <string name="progress_notifier_message" msgid="2311011466908220528">"正在匯入第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 筆資料：<xliff:g id="NAME">%s</xliff:g>，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 筆資料"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"正在匯入 <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"無法讀取 vCard 資料"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"已取消讀取 vCard 資料"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"已結束 vCard 匯入作業"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"已取消讀取 vCard 資料"</string>
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard 匯入工具已啟動。"</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"vCard 匯入工具將於稍後匯入該 vCard。"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
@@ -248,7 +254,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"無法匯出聯絡人資料"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"匯出聯絡人資料失敗。"\n"失敗原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"沒有可匯出的聯絡人"</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"SD 卡中的 VCard 檔案過多"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"USB 儲存裝置中的 vCard 檔案過多"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 卡中的 VCard 檔案過多"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"要求的檔案名稱過長 (「<xliff:g id="FILENAME">%s</xliff:g>」)"</string>
     <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard 匯出工具已啟動。"</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"已結束 vCard 匯出作業"</string>
@@ -261,10 +268,8 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"VCard 編輯器並未正確初始化"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
-    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"取消匯入 vCard"</string>
+    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"確定要取消匯入 vCard？"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"新增 2 秒暫停功能"</string>
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>
@@ -286,6 +291,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"機構"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"網站"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"活動"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"群組"</string>
     <string name="type_short_home" msgid="7770424864090605384">"住家"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"行動"</string>
     <string name="type_short_work" msgid="4925330752504537861">"工作"</string>
@@ -301,7 +307,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"所有其他聯絡人"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"所有聯絡人"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"如果從同步處理群組中移除「<xliff:g id="GROUP">%s</xliff:g>」群組，系統也會從同步處理群組中移除所有未分組的聯絡人。"</string>
-    <string name="account_phone" msgid="4025734638492419713">"僅儲存於手機 (不會同步處理)"</string>
+    <string name="account_phone" msgid="3682950835276226870">"僅儲存於手機 (不會同步處理)"</string>
     <string name="call_custom" msgid="7756571794763171802">"去電<xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"去電住家電話"</string>
     <string name="call_mobile" msgid="7502236805487609178">"去電行動裝置"</string>
@@ -395,7 +401,11 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"搜尋聯絡人"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"搜尋所有聯絡人"</string>
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
+    <!-- no translation found for take_new_photo (7341354729436576304) -->
+    <skip />
     <string name="pick_photo" msgid="448886509158039462">"從圖片庫選取相片"</string>
+    <!-- no translation found for pick_new_photo (7962368009197147617) -->
+    <skip />
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新聯絡人清單以反映語言變更。"\n\n"請稍候..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"正在更新聯絡人清單。"\n\n"請稍候..."</string>
     <string name="upgrade_out_of_memory" msgid="6713914687111678777">"正在進行聯絡人升級。"\n\n"升級程序需要大約 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB 的手機內部儲存空間。"\n\n"請選擇下列其中一個選項："</string>
@@ -428,21 +438,48 @@
     <string name="edit_error_saving" msgid="2153949392245240166">"儲存時發生錯誤"</string>
     <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
-    <!-- no translation found for aggregation_suggestion_title:one (7676930148670768645) -->
-    <!-- no translation found for aggregation_suggestion_title:other (3744098467672876675) -->
-    <!-- no translation found for aggregation_suggestion_joined_title (5342738708069602301) -->
+  <plurals name="aggregation_suggestion_title">
+    <item quantity="one" msgid="7676930148670768645">"類似聯絡人"</item>
+    <item quantity="other" msgid="3744098467672876675">"類似聯絡人"</item>
+  </plurals>
+    <string name="aggregation_suggestion_joined_title" msgid="5342738708069602301">"已合併的聯絡人："</string>
+    <string name="aggregation_suggestion_join_button" msgid="7248325487963514260">"合併"</string>
+    <!-- no translation found for aggregation_suggestion_edit_button (6178203222699486169) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
+    <string name="menu_copyContact" msgid="4401683725471696686">"複製到我的聯絡人"</string>
+    <string name="contact_directory_description" msgid="7071885390570890999">"來自 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="contact_directory_account_description" msgid="7674700530474108835">"來自 <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"聯絡人"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"建立個人副本"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"選擇聯絡人清單"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"所有聯絡人"</string>
+    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
     <skip />
-    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z"</string>
-    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <!-- no translation found for list_filter_starred (1397038911244197750) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <!-- outdated translation 2153599870787103096 -->     <string name="list_filter_custom" msgid="8910173055702057002">"自訂清單"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"自訂..."</string>
+    <!-- no translation found for list_filter_phones (7905045603593508221) -->
     <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
+    <!-- outdated translation 8768820109827250997 -->     <string name="custom_list_filter" msgid="7836035257402013957">"自訂聯絡人清單"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
+    <string name="menu_settings" msgid="377929915873428211">"設定"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"顯示選項"</string>
+    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (1808681193458772072) -->
+    <skip />
+    <!-- no translation found for non_phone_caption (1541655052330027380) -->
+    <skip />
+    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
+    <skip />
+    <!-- no translation found for non_phone_close (7608506439725515667) -->
+    <skip />
+    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
     <skip />
 </resources>

@@ -25,6 +25,8 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Výběr zkratky kontaktu"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Výběr čísla pro hovor"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Výběr čísla pro zprávu"</string>
+    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"Označené hvězdičkou"</string>
     <string name="frequentList" msgid="7154768136473953056">"Časté"</string>
     <string name="strequentList" msgid="5640192862059373511">"Oblíbené"</string>
@@ -73,8 +75,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nový kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Foneticky"</string>
     <string name="label_notes" msgid="8337354953278341042">"Poznámky"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"Internetový hovor"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Vyzváněcí tón"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Jméno a příjmení"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Jméno (foneticky)"</string>
@@ -82,24 +83,23 @@
     <string name="ghostData_title" msgid="7496735200318496110">"Název"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt neexistuje."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Vytvořit nový kontakt"</string>
-    <string name="selectLabel" msgid="4255424123394910733">"Vyberte štítek"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
-    <string name="postalLabelsGroup" msgid="1618078212734693682">"Poštovní adresa"</string>
+    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Poštovní adresa"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizace"</item>
     <item msgid="7196592230748086755">"Poznámka"</item>
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"V telefonu nejsou žádné fotografie."</string>
-    <string name="attachToContact" msgid="8820530304406066714">"Ikona kontaktu"</string>
+    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Vlastní název štítku"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Možnosti zobrazení"</string>
-    <string name="displayGroups" msgid="2278964020773993336">"Možnosti zobrazení"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Přesměrovat hovory přímo do hlasové schránky"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Výchozí nastavení"</string>
-    <string name="changePicture" msgid="2943329047610967714">"Změnit ikonu"</string>
-    <string name="removePicture" msgid="3041230993155966350">"Odstranit ikonu"</string>
+    <!-- no translation found for removePhoto (4898105274130284565) -->
+    <skip />
     <string name="noContacts" msgid="8579310973261953559">"Žádné kontakty."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nebyly nalezeny žádné odpovídající kontakty."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Ke kontaktům nejsou přiřazena žádná telefonní čísla."</string>
@@ -117,19 +117,20 @@
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt byl uložen."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Chyba, změny kontaktu nelze uložit."</string>
   <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="8721111084815668845">"Zobrazuje se 1 kontakt s telefonním číslem"</item>
-    <item quantity="other" msgid="6133262880804110289">"Počet zobrazených kontaktů s telefonními čísly: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="one" msgid="3015357862286673986">"1 kontakt s telefonním číslem"</item>
+    <item quantity="other" msgid="3299954047880968205">"Počet kontaktů s telefonními čísly: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Žádné kontakty s telefonními čísly nejsou viditelné"</string>
   <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="1096068709488455155">"Zobrazuje se 1 kontakt"</item>
-    <item quantity="other" msgid="2865867557378939630">"Počet zobrazených kontaktů: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
+    <item quantity="other" msgid="3578469907265375314">"Počet kontaktů: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Žádné kontakty nejsou viditelné"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Počet nalezených položek: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Počet nalezených položek: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"nalezeno více položek než <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nenalezeno"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Počet nalezených položek: 1"</item>
@@ -207,39 +208,44 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"fotografie kontaktu"</string>
     <string name="description_minus_button" msgid="387136707700230172">"mínus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"Žádná karta SD"</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"Nebyla zjištěna žádná karta SD"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Úložiště USB nedostupné"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Žádná karta SD"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Úložiště USB nenalezeno"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nebyla zjištěna žádná karta SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Vyhledávání karty vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importovat z karty SIM"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"Importovat z karty SD"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"Exportovat na kartu SD"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importovat z úložiště USB"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importovat z karty SD"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Export do úložiště USB"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportovat na kartu SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Sdílet viditelné kontakty"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importovat jeden soubor vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importovat několik souborů vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importovat všechny soubory vCard"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"Vyhledávání dat karty vCard na kartě SD"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"Vyhledávání na kartě SD se nezdařilo"</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"Vyhledávání na kartě SD se nezdařilo. (Důvod: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Vyhledávání dat karty vCard v úložišti USB"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Vyhledávání dat karty vCard na kartě SD"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Vyhledávání v úložišti USB se nezdařilo"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Vyhledávání na kartě SD se nezdařilo"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Vyhledávání v úložišti USB se nezdařilo (Důvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Vyhledávání na kartě SD se nezdařilo. (Důvod: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Chyba V/V"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Není k dispozici dostatek paměti (soubor může být příliš velký)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Analýza karty vCard se z neznámého důvodu nezdařila."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Analýza karty vCard se nezdařila. Přestože se zřejmě jedná o správný formát, aktuální implementace jej nepodporuje."</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"Na kartě SD nebyl nalezen žádný soubor vCard"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"V úložišti USB nebyl nalezen žádný soubor vCard"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Na kartě SD nebyl nalezen žádný soubor vCard"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Shromáždění metainformací zadaných souborů vCard se nezdařilo."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Import jednoho nebo více souborů se nezdařil (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Neznámá chyba"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Výběr souboru vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Načítání vizitek vCard do mezipaměti místního dočasného úložiště"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Nástroj pro import načítá vizitky vCard do mezipaměti místního dočasného úložiště. Vlastní import bude zahájen v krátké době."</string>
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Probíhá import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"Probíhá import: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Čtení dat vizitky vCard se nezdařilo."</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Čtení dat vizitky vCard bylo zrušeno"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Import vizitky vCard byl dokončen"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Čtení dat vizitky vCard bylo zrušeno"</string>
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"Nástroj pro import vizitky vCard byl spuštěn."</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"Nástroj pro import vizitek vCard za okamžik importuje vizitku vCard."</string>
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
@@ -248,7 +254,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Export dat kontaktů se nezdařil"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Export dat kontaktů se nezdařil."\n"Příčina chyby: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Žádný kontakt nelze exportovat"</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"Na kartě SD je příliš mnoho souborů vCard"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"V úložišti USB je příliš mnoho souborů vCard"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Na kartě SD je příliš mnoho souborů vCard"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Požadovaný název souboru (<xliff:g id="FILENAME">%s</xliff:g>) je příliš dlouhý"</string>
     <string name="vcard_exporter_start_message" msgid="6497218576519292369">"Nástroj pro export vizitky vCard byl spuštěn."</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Export vizitky vCard byl dokončen"</string>
@@ -261,10 +268,8 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"Editor karty vCard není správně inicializován"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Soubor <xliff:g id="FILE_NAME">%s</xliff:g> nelze otevřít: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktů"</string>
-    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"Zrušení importu vizitky vCard"</string>
+    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"Opravdu chcete zrušit import vizitky vCard?"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Jména vašich kontaktů"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Přidat 2s pauzu"</string>
     <string name="add_wait" msgid="3360818652790319634">"Přidat čekání"</string>
@@ -286,6 +291,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizace"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webové stránky"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Událost"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Skupiny"</string>
     <string name="type_short_home" msgid="7770424864090605384">"D"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"P"</string>
@@ -301,7 +307,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Všechny ostatní kontakty"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Všechny kontakty"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Odebráním skupiny <xliff:g id="GROUP">%s</xliff:g> ze synchronizace odeberete ze synchronizace také všechny kontakty mimo skupinu."</string>
-    <string name="account_phone" msgid="4025734638492419713">"Pouze v telefonu (nesynchronizováno)"</string>
+    <string name="account_phone" msgid="3682950835276226870">"Pouze v telefonu, nesynchronizováno"</string>
     <string name="call_custom" msgid="7756571794763171802">"Volat kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Volat domů"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Volat mobil"</string>
@@ -395,7 +401,11 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Vyhledat kontakty"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Vyhledat všechny kontakty"</string>
     <string name="take_photo" msgid="7496128293167402354">"Vyfotit"</string>
+    <!-- no translation found for take_new_photo (7341354729436576304) -->
+    <skip />
     <string name="pick_photo" msgid="448886509158039462">"Vybrat fotografii z galerie"</string>
+    <!-- no translation found for pick_new_photo (7962368009197147617) -->
+    <skip />
     <string name="locale_change_in_progress" msgid="1124266507671178413">"V souvislosti se změnou jazyka probíhá aktualizace seznamu kontaktů."\n\n"Čekejte prosím..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Aktualizace seznamu kontaktů."\n\n"Čekejte prosím..."</string>
     <string name="upgrade_out_of_memory" msgid="6713914687111678777">"Probíhá upgrade kontaktů. "\n\n"Upgrade vyžaduje přibližně <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB vnitřní paměti telefonu. "\n\n"Zvolte jednu z následujících možností:"</string>
@@ -428,21 +438,48 @@
     <string name="edit_error_saving" msgid="2153949392245240166">"Chyba při ukládání"</string>
     <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Ostatní"</string>
-    <!-- no translation found for aggregation_suggestion_title:one (7676930148670768645) -->
-    <!-- no translation found for aggregation_suggestion_title:other (3744098467672876675) -->
-    <!-- no translation found for aggregation_suggestion_joined_title (5342738708069602301) -->
+  <plurals name="aggregation_suggestion_title">
+    <item quantity="one" msgid="7676930148670768645">"Podobný kontakt"</item>
+    <item quantity="other" msgid="3744098467672876675">"Podobné kontakty"</item>
+  </plurals>
+    <string name="aggregation_suggestion_joined_title" msgid="5342738708069602301">"Připojený kontakt:"</string>
+    <string name="aggregation_suggestion_join_button" msgid="7248325487963514260">"Spojit"</string>
+    <!-- no translation found for aggregation_suggestion_edit_button (6178203222699486169) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
+    <string name="menu_copyContact" msgid="4401683725471696686">"Zkopírovat do mých kontaktů"</string>
+    <string name="contact_directory_description" msgid="7071885390570890999">"z adresáře: <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="contact_directory_account_description" msgid="7674700530474108835">"od <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <string name="directory_search_label" msgid="1887759056597975053">"Adresář"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Kontakty"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Vytváření osobní kopie"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Vyberte seznam kontaktů"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Všechny kontakty"</string>
+    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
     <skip />
-    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;Č;D;E;F;G;H;CH;I;J;K;L;M;N;O;P;Q;R;Ř;S;Š;T;U;V;W;X;Y;Z;Ž"</string>
-    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <!-- no translation found for list_filter_starred (1397038911244197750) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <!-- outdated translation 2153599870787103096 -->     <string name="list_filter_custom" msgid="8910173055702057002">"Vlastní seznam"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Přizpůsobit..."</string>
+    <!-- no translation found for list_filter_phones (7905045603593508221) -->
     <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
+    <!-- outdated translation 8768820109827250997 -->     <string name="custom_list_filter" msgid="7836035257402013957">"Vlastní seznam kontaktů"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Nastavení"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Nastavení"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Možnosti zobrazení"</string>
+    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (1808681193458772072) -->
+    <skip />
+    <!-- no translation found for non_phone_caption (1541655052330027380) -->
+    <skip />
+    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
+    <skip />
+    <!-- no translation found for non_phone_close (7608506439725515667) -->
+    <skip />
+    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
     <skip />
 </resources>

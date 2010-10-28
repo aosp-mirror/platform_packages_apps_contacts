@@ -25,6 +25,8 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Bir kişi kısayolu seçin"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aranacak numarayı seçin"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"İleti gönderilecek bir numara seçin"</string>
+    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"Yıldızlı"</string>
     <string name="frequentList" msgid="7154768136473953056">"Sık sık"</string>
     <string name="strequentList" msgid="5640192862059373511">"Sık Kullanılanlar"</string>
@@ -32,7 +34,7 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Kişiyi görüntüle"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Kişiyi düzenle"</string>
     <string name="edit_email_caption" msgid="2401084399676154272">"E-posta adresi:"</string>
-    <string name="edit_email_type_caption" msgid="66331218163770698">"Tür: "</string>
+    <string name="edit_email_type_caption" msgid="66331218163770698">"Tür:"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Kişi oluştur"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kişileri ara"</string>
     <string name="menu_search" msgid="9147752853603483719">"Ara"</string>
@@ -73,8 +75,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Yeni kişi"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notlar"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"İnternet çağrısı"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Zil sesi"</string>
     <string name="ghostData_name" msgid="6490954238641157585">"Adı ve Soyadı"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetik adı"</string>
@@ -82,24 +83,23 @@
     <string name="ghostData_title" msgid="7496735200318496110">"Başlık"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kişi mevcut değil."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Yeni kişi oluştur"</string>
-    <string name="selectLabel" msgid="4255424123394910733">"Etiketi seç"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-posta"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
-    <string name="postalLabelsGroup" msgid="1618078212734693682">"Posta adresi"</string>
+    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Posta adresi"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Kuruluş"</item>
     <item msgid="7196592230748086755">"Not"</item>
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"Telefonda hiçbir resim yok."</string>
-    <string name="attachToContact" msgid="8820530304406066714">"Kişi simgesi"</string>
+    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Özel etiket adı"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Seçenekleri görüntüle"</string>
-    <string name="displayGroups" msgid="2278964020773993336">"Seçenekleri görüntüle"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Çağrıları doğrudan sesli mesaja gönder"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Varsayılan"</string>
-    <string name="changePicture" msgid="2943329047610967714">"Simgeyi değiştir"</string>
-    <string name="removePicture" msgid="3041230993155966350">"Simgeyi kaldır"</string>
+    <!-- no translation found for removePhoto (4898105274130284565) -->
+    <skip />
     <string name="noContacts" msgid="8579310973261953559">"Hiçbir kişi yok."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Eşleşen kişi bulunamadı."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Telefon numarası olan hiçbir kişi yok."</string>
@@ -117,19 +117,20 @@
     <string name="contactSavedToast" msgid="7152589189385441091">"Kişi kaydedildi."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Hata, kişi değişiklikleri kaydedilemiyor."</string>
   <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="8721111084815668845">"Telefon numarası olan 1 kişi görüntüleniyor"</item>
-    <item quantity="other" msgid="6133262880804110289">"Telefon numarası olan <xliff:g id="COUNT">%d</xliff:g> kişi görüntüleniyor"</item>
+    <item quantity="one" msgid="3015357862286673986">"Telefon numarası olan 1 kişi"</item>
+    <item quantity="other" msgid="3299954047880968205">"Telefon numarası olan <xliff:g id="COUNT">%d</xliff:g> kişi"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Telefon numarası olan görülebilir kişi yok"</string>
   <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="1096068709488455155">"1 kişi görüntüleniyor"</item>
-    <item quantity="other" msgid="2865867557378939630">"<xliff:g id="COUNT">%d</xliff:g> kişi görüntüleniyor"</item>
+    <item quantity="one" msgid="3405747744700823280">"1 kişi"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kişi"</item>
   </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Görülebilir kişi yok"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 kişi bulundu"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> kişi bulundu"</item>
   </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"<xliff:g id="COUNT">%d</xliff:g> kişiden fazla bulundu"</string>
     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Bulunamadı"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 kişi bulundu"</item>
@@ -207,39 +208,44 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"kişi fotoğrafı"</string>
     <string name="description_minus_button" msgid="387136707700230172">"eksi"</string>
     <string name="description_plus_button" msgid="515164827856229880">"artı"</string>
-    <string name="no_sdcard_title" msgid="5911758680339949273">"SD kart yok"</string>
-    <string name="no_sdcard_message" msgid="6019391476490445358">"Hiçbir SD kart tespit edilmedi"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"USB depl birimi kullnlmyr"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"SD kart yok"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"USB deplm birimi algılanmadı"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Hiçbir SD kart tespit edilmedi"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard aranıyor"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM karttan içe aktar"</string>
-    <string name="import_from_sdcard" msgid="8550360976693202816">"SD karttan içe aktar"</string>
-    <string name="export_to_sdcard" msgid="2597105442616166277">"SD karta dışa aktar"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"USB depl birmndn içe aktr"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"SD karttan içe aktar"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"USB deplm birmn dışa aktr"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"SD karta dışa aktar"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Görülebilir kişileri paylaş"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Bir vCard dosyasını içe aktar"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Birden fazla vCard dosyasını içe aktar"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Tüm vCard dosyalarını içe aktar"</string>
-    <string name="searching_vcard_message" msgid="6917522333561434546">"SD kartta vCard verileri aranıyor"</string>
-    <string name="scanning_sdcard_failed_title" msgid="3506782007953167180">"SD kart taranamadı"</string>
-    <string name="scanning_sdcard_failed_message" msgid="3761992500690182922">"SD kart taraması başarısız oldu (Neden: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"USB depolama birimindeki vCard verileri aranıyor"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD kartta vCard verileri aranıyor"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"USB depolama birimi taraması başarısız oldu"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD kart taranamadı"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"USB depolama birimi taraması başarısız oldu (Nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD kart taraması başarısız oldu (Neden: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"G/Ç Hatası"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Bellek yetersiz (dosya çok büyük olabilir)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Beklenmedik bir nedenden dolayı vCard ayrıştırılamadı"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Geçerli biçimde görünmesine rağmen vCard ayrıştırılamadı, çünkü şu anki uygulama vCard\'ı desteklemiyor"</string>
-    <string name="fail_reason_no_vcard_file" msgid="6376516175882881595">"SD kartta hiçbir vCard dosyası bulunamadı"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"USB depolama biriminde herhangi bir vCard dosyası bulunamadı"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"SD kartta hiçbir vCard dosyası bulunamadı"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Belirtilen vCard dosyalarının meta bilgileri toplanamıyor."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"İçe aktarılamayan bir veya birden fazla dosya (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Bilinmeyen hata"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard dosyasını seç"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard\'lar yerel geçici depolamada önbelleğe kaydediliyor"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"İçe aktarma aracı vCard\'ları yerel geçici depolama alanına önbelleğe kaydediyor. Asıl içe aktarma işlemi kısa süre içinde başlayacak."</string>
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
+    <string name="progress_notifier_message" msgid="2311011466908220528">"İçe aktarılıyor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> içe aktarılıyor"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"vCard verileri Okunamadı"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard verilerini okuma işlemi iptal edildi."</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"vCard içe aktarma işlemi tamamlandı"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"vCard verilerini okuma işlemi iptal edildi."</string>
     <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard içe aktarma aracı başlatıldı."</string>
     <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"vCard içe aktarma aracı vCard\'ı bir süre sonra içe aktaracaktır."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
@@ -248,7 +254,8 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kişi verileri dışa aktarılamadı"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Kişi verileri dışa aktarılamadı."\n"Hata nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Dışa aktarılabilen hiçbir kişi yok"</string>
-    <string name="fail_reason_too_many_vcard" msgid="7084146295639672658">"SD kartta çok fazla vCard dosyası var"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"USB depolama biriminde çok fazla vCard dosyası var"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD kartta çok fazla vCard dosyası var"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Gereken dosya adı çok uzun (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard dışa aktarma aracı başlatıldı."</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"vCard dışa aktarma işlemi tamamlandı"</string>
@@ -261,10 +268,8 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard oluşturucu doğru bir şekilde başlatılmamış"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" dosyası açılamadı: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"Toplam <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%s</xliff:g> kişi"</string>
-    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"vCard\'ı içe aktarma işlemi iptal ediliyor"</string>
+    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"vCard\'ı içe aktarma işlemini iptal etmek istediğinizden emin misiniz?"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kişilerinizin adları"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 saniyelik duraklama ekle"</string>
     <string name="add_wait" msgid="3360818652790319634">"Bekleme ekle"</string>
@@ -286,6 +291,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Kuruluş"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web sitesi"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Etkinlik"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Gruplar"</string>
     <string name="type_short_home" msgid="7770424864090605384">"E"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"İ"</string>
@@ -301,7 +307,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Diğer Tüm Kişiler"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Tüm Kişiler"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"\'<xliff:g id="GROUP">%s</xliff:g>\' grubunu senkronizasyondan kaldırmak, gruplandırılmamış tüm kişileri de senkronizasyondan kaldırır."</string>
-    <string name="account_phone" msgid="4025734638492419713">"Yalnızca telefon (senkronize edilmemiş)"</string>
+    <string name="account_phone" msgid="3682950835276226870">"Yalnızca telefon, senkronize edilmemiş"</string>
     <string name="call_custom" msgid="7756571794763171802">"Ara (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="call_home" msgid="1990519474420545392">"Çağrı yap (ev)"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Çağrı yap (mobil)"</string>
@@ -395,7 +401,11 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Kişileri ara"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Tüm kişilerde ara"</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotoğraf çek"</string>
+    <!-- no translation found for take_new_photo (7341354729436576304) -->
+    <skip />
     <string name="pick_photo" msgid="448886509158039462">"Galeri\'den fotoğraf seç"</string>
+    <!-- no translation found for pick_new_photo (7962368009197147617) -->
+    <skip />
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kişi listesi, dil değişikliğini yansıtmak üzere güncelleniyor."\n\n"Lütfen bekleyin..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Kişi listesi güncelleniyor."\n\n"Lütfen bekleyin..."</string>
     <string name="upgrade_out_of_memory" msgid="6713914687111678777">"Kişiler yeni sürüme geçiriliyor. "\n\n"Yeni sürüme geçirme işlemi yaklaşık <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB dahili telefon depolama alanı gerektirir."\n\n"Aşağıdaki seçeneklerden birini belirleyin:"</string>
@@ -405,7 +415,7 @@
     <string name="search_results_searching" msgid="7755623475227227314">"Aranıyor..."</string>
     <string name="adding_recipients" msgid="5123647646892106631">"Yükleniyor …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Seçileni göster"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Tümünü göster\n"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Tümünü göster"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Tümünü seç"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Tümünün seçimini kaldır"</string>
   <plurals name="multiple_picker_title">
@@ -428,21 +438,48 @@
     <string name="edit_error_saving" msgid="2153949392245240166">"Kaydetme hatası"</string>
     <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Diğer"</string>
-    <!-- no translation found for aggregation_suggestion_title:one (7676930148670768645) -->
-    <!-- no translation found for aggregation_suggestion_title:other (3744098467672876675) -->
-    <!-- no translation found for aggregation_suggestion_joined_title (5342738708069602301) -->
+  <plurals name="aggregation_suggestion_title">
+    <item quantity="one" msgid="7676930148670768645">"Benzer kişi"</item>
+    <item quantity="other" msgid="3744098467672876675">"Benzer kişiler"</item>
+  </plurals>
+    <string name="aggregation_suggestion_joined_title" msgid="5342738708069602301">"Birleştirilmiş kişi:"</string>
+    <string name="aggregation_suggestion_join_button" msgid="7248325487963514260">"Birleştir"</string>
+    <!-- no translation found for aggregation_suggestion_edit_button (6178203222699486169) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_join_button (7248325487963514260) -->
+    <string name="menu_copyContact" msgid="4401683725471696686">"Kişilerime kopyala"</string>
+    <string name="contact_directory_description" msgid="7071885390570890999">"Kişinin bulunduğu dizin: <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="contact_directory_account_description" msgid="7674700530474108835">"Kişinin bulunduğu dizin: <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_view_button (8232061564083962522) -->
+    <string name="directory_search_label" msgid="1887759056597975053">"Dizin"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Kişiler"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Kişisel kopya oluşturuluyor"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Kişi listesi seç"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tüm kişiler"</string>
+    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
     <skip />
-    <string name="visualScrollerAlphabet" msgid="4697722110414354767">"A;B;C;Ç;D;E;F;G;H;I;İ;J;K;L;M;N;O;Ö;P;R;S;Ş;T;U;Ü;V;Y;Z"</string>
-    <!-- no translation found for menu_copyContact (8960980032631007658) -->
+    <!-- no translation found for list_filter_starred (1397038911244197750) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
+    <!-- outdated translation 2153599870787103096 -->     <string name="list_filter_custom" msgid="8910173055702057002">"Özel liste"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Özelleştir..."</string>
+    <!-- no translation found for list_filter_phones (7905045603593508221) -->
     <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
+    <!-- outdated translation 8768820109827250997 -->     <string name="custom_list_filter" msgid="7836035257402013957">"Özel kişi listesi"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Ayarlar"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Ayarlar"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Görüntüleme seçenekleri"</string>
+    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (1808681193458772072) -->
+    <skip />
+    <!-- no translation found for non_phone_caption (1541655052330027380) -->
+    <skip />
+    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
+    <skip />
+    <!-- no translation found for non_phone_close (7608506439725515667) -->
+    <skip />
+    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
     <skip />
 </resources>
