@@ -61,6 +61,7 @@ public class SelectAccountActivity extends Activity {
         if (accountList.size() == 0) {
             Log.w(LOG_TAG, "Account does not exist");
             finish();
+            return;
         } else if (accountList.size() == 1) {
             final Account account = accountList.get(0);
             final Intent intent = new Intent();
@@ -68,6 +69,7 @@ public class SelectAccountActivity extends Activity {
             intent.putExtra(ACCOUNT_TYPE, account.type);
             setResult(RESULT_OK, intent);
             finish();
+            return;
         }
 
         // Multiple accounts. Let users to select one.
