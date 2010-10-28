@@ -1361,6 +1361,9 @@
     <!-- Contact list filter selection indicating that the list shows all contacts with phone numbers [CHAR LIMIT=64] -->
     <string name="list_filter_phones">Contacts with phone numbers</string>
 
+    <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
+    <string name="list_filter_single">Contact</string>
+
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Define custom view</string>
 

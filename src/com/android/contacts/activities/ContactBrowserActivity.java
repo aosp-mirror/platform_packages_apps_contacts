@@ -27,6 +27,7 @@ import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.CustomContactListFilterActivity;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
@@ -48,7 +49,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,7 +57,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -80,15 +79,15 @@ import java.util.ArrayList;
  */
 public class ContactBrowserActivity extends Activity
         implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
-        DialogManager.DialogShowingViewActivity {
+        DialogManager.DialogShowingViewActivity,
+        ContactListFilterController.ContactListFilterListener {
 
     private static final String TAG = "ContactBrowserActivity";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_SETTINGS = 3;
     private static final int SUBACTIVITY_EDIT_CONTACT = 4;
-
-    private static final String KEY_DEFAULT_CONTACT_URI = "defaultSelectedContactUri";
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 5;
 
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
@@ -129,6 +128,7 @@ public class ContactBrowserActivity extends Activity
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
+        mContactListFilterController.addListener(this);
     }
 
     @Override
@@ -136,9 +136,11 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            if (mListFragment instanceof DefaultContactBrowseListFragment) {
-                ((DefaultContactBrowseListFragment) mListFragment).setContactListFilterController(
-                        mContactListFilterController);
+            if (mListFragment instanceof DefaultContactBrowseListFragment
+                    && mContactListFilterController != null
+                    && mContactListFilterController.isLoaded()) {
+                ((DefaultContactBrowseListFragment) mListFragment).setFilter(
+                        mContactListFilterController.getFilter());
             }
         } else if (fragment instanceof ContactNoneFragment) {
             mEmptyFragment = (ContactNoneFragment)fragment;
@@ -216,7 +218,9 @@ public class ContactBrowserActivity extends Activity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri uri = intent.getData();
+            mRequest = mIntentResolver.resolveIntent(getIntent());
+
+            Uri uri = mRequest.getContactUri();
             if (uri == null) {
                 return;
             }
@@ -227,27 +231,20 @@ public class ContactBrowserActivity extends Activity
                     mActionBarAdapter.setSearchMode(false);
                 }
             }
-            setSelectedContactUri(uri);
-            setupContactDetailFragment(uri);
+            mListFragment.setSelectedContactUri(uri);
             mListFragment.requestSelectionOnScreen(true);
+            if (mContactContentDisplayed) {
+                setupContactDetailFragment(uri);
+            }
         }
     }
 
-    public void setSelectedContactUri(Uri contactLookupUri) {
-        mListFragment.setSelectedContactUri(contactLookupUri);
-
-        Editor editor = mPrefs.edit();
-        if (contactLookupUri == null) {
-            editor.remove(KEY_DEFAULT_CONTACT_URI);
-        } else {
-            editor.putString(KEY_DEFAULT_CONTACT_URI, contactLookupUri.toString());
+    @Override
+    protected void onStart() {
+        if (mContactListFilterController != null) {
+            mContactListFilterController.startLoading();
         }
-        editor.apply();
-    }
-
-    public Uri getDefaultSelectedContactUri() {
-        String uriString = mPrefs.getString(KEY_DEFAULT_CONTACT_URI, null);
-        return TextUtils.isEmpty(uriString) ? null : Uri.parse(uriString);
+        super.onStart();
     }
 
     private void configureListFragment(boolean fromRequest) {
@@ -315,21 +312,12 @@ public class ContactBrowserActivity extends Activity
             }
         }
 
-        Uri selectUri = null;
         if (fromRequest) {
-            selectUri = mRequest.getContactUri();
+            Uri selectUri = mRequest.getContactUri();
             if (selectUri != null) {
-                setSelectedContactUri(selectUri);
+                mListFragment.setSelectedContactUri(selectUri);
+                mListFragment.requestSelectionOnScreen(false);
             }
-        }
-
-        if (selectUri == null && mListFragment.getSelectedContactUri() == null) {
-            selectUri = getDefaultSelectedContactUri();
-        }
-
-        if (selectUri != null) {
-            mListFragment.setSelectedContactUri(selectUri);
-            mListFragment.requestSelectionOnScreen(false);
         }
 
         if (replaceList) {
@@ -355,6 +343,48 @@ public class ContactBrowserActivity extends Activity
 
             mListFragment = null;
         }
+    }
+
+    @Override
+    public void onContactListFiltersLoaded() {
+        if (mListFragment instanceof DefaultContactBrowseListFragment) {
+            DefaultContactBrowseListFragment fragment =
+                    (DefaultContactBrowseListFragment) mListFragment;
+            restoreListSelection(fragment);
+
+            // Filters have been loaded - now we can start loading the list itself
+            fragment.startLoading();
+        }
+    }
+
+    @Override
+    public void onContactListFilterChanged() {
+        // If there was a request to show a specific contact, that's no longer the case
+        // because the user has explicitly changed the filter.
+        mRequest.setContactUri(null);
+
+        if (mListFragment instanceof DefaultContactBrowseListFragment) {
+            DefaultContactBrowseListFragment fragment =
+                    (DefaultContactBrowseListFragment) mListFragment;
+            restoreListSelection(fragment);
+
+            fragment.reloadData();
+        }
+    }
+
+    private void restoreListSelection(DefaultContactBrowseListFragment fragment) {
+        fragment.setFilter(mContactListFilterController.getFilter());
+        fragment.restoreSelectedUri(mPrefs);
+        fragment.requestSelectionOnScreen(false);
+        if (mContactContentDisplayed) {
+            setupContactDetailFragment(fragment.getSelectedContactUri());
+        }
+    }
+
+    @Override
+    public void onContactListFilterCustomizationRequest() {
+        startActivityForResult(new Intent(this, CustomContactListFilterActivity.class),
+                SUBACTIVITY_CUSTOMIZE_FILTER);
     }
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
@@ -508,7 +538,8 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
             if (mContactContentDisplayed) {
-                setSelectedContactUri(contactLookupUri);
+                mListFragment.setSelectedContactUri(contactLookupUri);
+                mListFragment.saveSelectedUri(mPrefs);
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
@@ -567,6 +598,37 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onFinishAction() {
             onBackPressed();
+        }
+
+        @Override
+        public void onInvalidSelection() {
+            Uri requestedContactUri = mRequest.getContactUri();
+            if (requestedContactUri != null
+                    && mListFragment instanceof DefaultContactBrowseListFragment) {
+                // If a specific selection was requested, adjust the filter so
+                // that the requested selection is uncoditionally visible.
+                DefaultContactBrowseListFragment fragment =
+                        (DefaultContactBrowseListFragment) mListFragment;
+                ContactListFilter filter = new ContactListFilter(
+                        ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+                fragment.setFilter(filter);
+                fragment.setSelectedContactUri(requestedContactUri);
+                fragment.saveSelectedUri(mPrefs);
+                fragment.reloadData();
+                if (mContactListFilterController != null) {
+                    mContactListFilterController.setContactListFilter(filter, true);
+                }
+            } else {
+                // Otherwise, choose the first contact on the list and select it
+                requestedContactUri = mListFragment.getFirstContactUri();
+                if (requestedContactUri != null) {
+                    mListFragment.setSelectedContactUri(requestedContactUri);
+                    mListFragment.requestSelectionOnScreen(false);
+                }
+            }
+            if (mContactContentDisplayed) {
+                setupContactDetailFragment(requestedContactUri);
+            }
         }
     }
 
@@ -768,6 +830,12 @@ public class ContactBrowserActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case SUBACTIVITY_CUSTOMIZE_FILTER: {
+                if (resultCode == Activity.RESULT_OK) {
+                    mContactListFilterController.selectCustomFilter();
+                }
+                break;
+            }
             case SUBACTIVITY_EDIT_CONTACT: {
                 mListFragment.requestSelectionOnScreen(true);
                 break;
@@ -776,8 +844,15 @@ public class ContactBrowserActivity extends Activity
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContactContentDisplayed) {
                     final Uri newContactUri = data.getData();
-                    setSelectedContactUri(newContactUri);
-                    setupContactDetailFragment(newContactUri);
+                    if (mContactContentDisplayed) {
+                        setupContactDetailFragment(newContactUri);
+                    }
+
+                    mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+                    mRequest.setContactUri(newContactUri);
+                    mListFragment.setSelectedContactUri(newContactUri);
+                    mListFragment.saveSelectedUri(mPrefs);
+                    mListFragment.requestSelectionOnScreen(true);
                 }
                 break;
             }

@@ -159,6 +159,10 @@ public class ContactSearchActivity extends Activity {
         public void onFinishAction() {
             onBackPressed();
         }
+
+        @Override
+        public void onInvalidSelection() {
+        }
     }
 
     private PhoneNumberInteraction getPhoneNumberCallInteraction() {

@@ -30,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 
-import java.util.List;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
@@ -105,7 +104,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private String mSelectedContactLookupKey;
 
     private ContactListFilter mFilter;
-    private List<ContactListFilter> mAllFilters;
 
     public ContactListAdapter(Context context) {
         super(context);
@@ -118,22 +116,14 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     /**
-     * Returns a full set of all available list filters.
-     */
-    public List<ContactListFilter> getAllFilters() {
-        return mAllFilters;
-    }
-
-    /**
      * Returns the currently selected filter.
      */
     public ContactListFilter getFilter() {
         return mFilter;
     }
 
-    public void setFilter(ContactListFilter filter, List<ContactListFilter> allFilters) {
+    public void setFilter(ContactListFilter filter) {
         mFilter = filter;
-        mAllFilters = allFilters;
     }
 
     public long getSelectedContactDirectoryId() {
@@ -325,5 +315,32 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             position++;
         }
         return position;
+    }
+
+    public boolean hasValidSelection() {
+        return getSelectedContactPosition() != -1;
+    }
+
+    public Uri getFirstContactUri() {
+        int partitionCount = getPartitionCount();
+        for (int i = 0; i < partitionCount; i++) {
+            DirectoryPartition partition = (DirectoryPartition) getPartition(i);
+            if (partition.isLoading()) {
+                continue;
+            }
+
+            Cursor cursor = getCursor(i);
+            if (cursor == null) {
+                continue;
+            }
+
+            if (!cursor.moveToFirst()) {
+                continue;
+            }
+
+            return getContactUri(i, cursor);
+        }
+
+        return null;
     }
 }

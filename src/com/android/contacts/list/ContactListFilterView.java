@@ -105,6 +105,10 @@ public class ContactListFilterView extends LinearLayout {
                 bindView(0, R.string.list_filter_phones);
                 break;
             }
+            case ContactListFilter.FILTER_TYPE_SINGLE_CONTACT: {
+                bindView(0, R.string.list_filter_single);
+                break;
+            }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
                 if (mIcon != null) {
                     mIcon.setVisibility(View.VISIBLE);
