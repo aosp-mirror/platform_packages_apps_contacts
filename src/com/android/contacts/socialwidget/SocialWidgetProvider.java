@@ -107,12 +107,13 @@ public class SocialWidgetProvider extends AppWidgetProvider {
                      */
                     private void setDisplayName(RemoteViews views, CharSequence displayName,
                             CharSequence phoneticName) {
-                        views.setTextViewText(R.id.name, displayName);
                         if (TextUtils.isEmpty(phoneticName)) {
-                            views.setViewVisibility(R.id.phonetic_name, View.GONE);
+                            views.setTextViewText(R.id.name, displayName);
                         } else {
-                            views.setTextViewText(R.id.phonetic_name, phoneticName);
-                            views.setViewVisibility(R.id.phonetic_name, View.VISIBLE);
+                            final String combinedName =
+                                    context.getString(R.string.widget_name_and_phonetic,
+                                    displayName, phoneticName);
+                            views.setTextViewText(R.id.name, combinedName);
                         }
                     }
 

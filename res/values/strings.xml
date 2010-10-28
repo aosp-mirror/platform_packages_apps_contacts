@@ -1385,4 +1385,7 @@
 
     <!-- Button to close without add a phone number to contacts [CHAR LIMIT=25] -->
     <string name="non_phone_close">Close</string>
+    
+    <!-- Format string that combines the name and the phonetic name for the widget. if the phonetic name is empty, only the display name is used instead [CHAR LIMIT=25] -->
+    <string name="widget_name_and_phonetic"><xliff:g id="display_name" example="John Huber">%1$s</xliff:g> (<xliff:g id="phonetic_name">%2$s</xliff:g>)</string>
 </resources>
