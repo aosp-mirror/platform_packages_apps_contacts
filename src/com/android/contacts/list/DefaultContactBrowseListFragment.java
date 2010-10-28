@@ -35,14 +35,10 @@ import android.widget.TextView;
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         implements ContactListFilterController.ContactListFilterListener {
 
-    private static final String KEY_EDIT_MODE = "editMode";
-    private static final String KEY_CREATE_CONTACT_ENABLED = "createContactEnabled";
     private static final String KEY_FILTER_ENABLED = "filterEnabled";
 
     private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
 
-    private boolean mEditMode;
-    private boolean mCreateContactEnabled;
     private View mCounterHeaderView;
     private View mSearchHeaderView;
 
@@ -71,8 +67,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_EDIT_MODE, mEditMode);
-        outState.putBoolean(KEY_CREATE_CONTACT_ENABLED, mCreateContactEnabled);
         outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
     }
 
@@ -84,23 +78,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             return;
         }
 
-        mEditMode = savedState.getBoolean(KEY_EDIT_MODE);
-        mCreateContactEnabled = savedState.getBoolean(KEY_CREATE_CONTACT_ENABLED);
         setFilterEnabled(savedState.getBoolean(KEY_FILTER_ENABLED));
     }
 
     @Override
     protected void onItemClick(int position, long id) {
-        ContactListAdapter adapter = getAdapter();
-        if (isEditMode()) {
-            if (position == 0 && !isSearchMode() && isCreateContactEnabled()) {
-                createNewContact();
-            } else {
-                editContact(adapter.getContactUri(position));
-            }
-        } else {
-            viewContact(adapter.getContactUri(position));
-        }
+        viewContact(getAdapter().getContactUri(position));
     }
 
     @Override
@@ -197,28 +180,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
     }
 
-    public boolean isEditMode() {
-        return mEditMode;
-    }
-
-    public void setEditMode(boolean flag) {
-        mEditMode = flag;
-    }
-
     public boolean isFilterEnabled() {
         return mFilterEnabled;
     }
 
     public void setFilterEnabled(boolean flag) {
         this.mFilterEnabled = flag;
-    }
-
-    public boolean isCreateContactEnabled() {
-        return mCreateContactEnabled;
-    }
-
-    public void setCreateContactEnabled(boolean flag) {
-        this.mCreateContactEnabled = flag;
     }
 
     @Override

@@ -296,6 +296,7 @@ public class PinnedHeaderListView extends ListView
         ensurePinnedHeaderLayout(viewIndex);
 
         View child = getChildAt(position - getFirstVisiblePosition());
+        if (child == null) return;
 
         PinnedHeader header = mHeaders[viewIndex];
         header.visible = true;

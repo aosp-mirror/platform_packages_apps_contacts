@@ -316,7 +316,9 @@ public class AllIntentsActivity extends ListActivity
             }
             case ACTION_INSERT_OR_EDIT: {
                 Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                startContactListActivity(intent);
+                intent.setType(Contacts.CONTENT_ITEM_TYPE);
+                putDataExtra(intent);
+                startActivity(intent);
                 break;
             }
             case ACTION_SEARCH_CALL: {
@@ -440,17 +442,7 @@ public class AllIntentsActivity extends ListActivity
             case EDIT_NEW_CONTACT_WITH_DATA: {
                 Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
 
-                ContentValues row1 = new ContentValues();
-                row1.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
-                row1.put(Organization.COMPANY, "Android");
-
-                ContentValues row2 = new ContentValues();
-                row2.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
-                row2.put(Email.TYPE, Email.TYPE_CUSTOM);
-                row2.put(Email.LABEL, "Green Bot");
-                row2.put(Email.ADDRESS, "android@android.com");
-
-                intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
+                putDataExtra(intent);
 
                 startActivity(intent);
                 break;
@@ -665,21 +657,25 @@ public class AllIntentsActivity extends ListActivity
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
 
                 intent.putExtra(Insert.ACCOUNT, account);
-                ContentValues row1 = new ContentValues();
-                row1.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
-                row1.put(Organization.COMPANY, "Android");
-
-                ContentValues row2 = new ContentValues();
-                row2.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
-                row2.put(Email.TYPE, Email.TYPE_CUSTOM);
-                row2.put(Email.LABEL, "Green Bot");
-                row2.put(Email.ADDRESS, "android@android.com");
-
-                intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
+                putDataExtra(intent);
 
                 startActivity(intent);
                 break;
             }
         }
+    }
+
+    public void putDataExtra(final Intent intent) {
+        ContentValues row1 = new ContentValues();
+        row1.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+        row1.put(Organization.COMPANY, "Android");
+
+        ContentValues row2 = new ContentValues();
+        row2.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        row2.put(Email.TYPE, Email.TYPE_CUSTOM);
+        row2.put(Email.LABEL, "Green Bot");
+        row2.put(Email.ADDRESS, "android@android.com");
+
+        intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
     }
 }

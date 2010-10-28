@@ -24,11 +24,6 @@ import android.net.Uri;
 public interface OnContactPickerActionListener  {
 
     /**
-     * Creates a new contact and then returns it to the caller.
-     */
-    void onCreateNewContactAction();
-
-    /**
      * Returns the selected contact to the requester.
      */
     void onPickContactAction(Uri contactUri);
@@ -37,4 +32,14 @@ public interface OnContactPickerActionListener  {
      * Returns the selected contact as a shortcut intent.
      */
     void onShortcutIntentCreated(Intent intent);
+
+    /**
+     * Creates a new contact and then returns it to the caller.
+     */
+    void onCreateNewContactAction();
+
+    /**
+     * Opens the specified contact for editing.
+     */
+    void onEditContactAction(Uri contactLookupUri);
 }

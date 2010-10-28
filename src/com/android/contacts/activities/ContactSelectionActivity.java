@@ -178,10 +178,10 @@ public class ContactSelectionActivity extends Activity
         mActionCode = mRequest.getActionCode();
         switch (mActionCode) {
             case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
-                DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
-                fragment.setEditMode(true);
+                ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setCreateContactEnabled(true);
-                fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_CONTACT_SHORTCUT);
+                fragment.setEditMode(true);
+                fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
                 mListFragment = fragment;
                 break;
             }
@@ -333,6 +333,12 @@ public class ContactSelectionActivity extends Activity
         @Override
         public void onCreateNewContactAction() {
             Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+            startActivityAndForwardResult(intent);
+        }
+
+        @Override
+        public void onEditContactAction(Uri contactLookupUri) {
+            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
             startActivityAndForwardResult(intent);
         }
 

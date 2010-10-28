@@ -75,19 +75,23 @@ public class JoinContactActivity extends Activity {
         mListFragment = new JoinContactListFragment();
         mListFragment.setTargetContactId(mTargetContactId);
         mListFragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
+            @Override
             public void onPickContactAction(Uri contactUri) {
                 Intent intent = new Intent(null, contactUri);
                 setResult(RESULT_OK, intent);
                 finish();
             }
 
-            public void onSearchAllContactsAction(String string) {
-            }
-
+            @Override
             public void onShortcutIntentCreated(Intent intent) {
             }
 
+            @Override
             public void onCreateNewContactAction() {
+            }
+
+            @Override
+            public void onEditContactAction(Uri contactLookupUri) {
             }
         });
 
