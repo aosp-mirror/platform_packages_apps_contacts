@@ -103,8 +103,6 @@ public class ContactSearchActivity extends Activity {
         fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
-        fragment.setEditMode(mRequest.getActionCode() ==
-                ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT);
         return fragment;
     }
 
