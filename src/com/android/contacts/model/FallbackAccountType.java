@@ -33,6 +33,7 @@ import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
@@ -108,6 +109,10 @@ public class FallbackAccountType extends BaseAccountType {
         return new EditType(type, Event.getTypeResource(type));
     }
 
+    protected EditType buildRelationType(int type) {
+        return new EditType(type, Relation.getTypeLabelResource(type));
+    }
+
     protected DataKind inflateStructuredName(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
         if (kind == null) {
@@ -170,7 +175,6 @@ public class FallbackAccountType extends BaseAccountType {
         if (kind == null) {
             kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
                     R.string.nicknameLabelsGroup, -1, 115, true));
-            kind.secondary = true;
             kind.isList = false;
             kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
             kind.actionBody = new SimpleInflater(Nickname.NAME);
@@ -291,7 +295,6 @@ public class FallbackAccountType extends BaseAccountType {
         if (kind == null) {
             kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     android.R.drawable.sym_action_chat, 20, true));
-            kind.secondary = true;
             kind.actionHeader = new ImActionInflater();
             kind.actionBody = new SimpleInflater(Im.DATA);
         }
@@ -365,7 +368,6 @@ public class FallbackAccountType extends BaseAccountType {
             kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
                     R.string.label_notes, -1, 110, true));
             kind.isList = false;
-            kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.label_notes);
             kind.actionBody = new SimpleInflater(Note.NOTE);
         }
@@ -383,7 +385,6 @@ public class FallbackAccountType extends BaseAccountType {
         if (kind == null) {
             kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
                     R.string.websiteLabelsGroup, -1, 120, true));
-            kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
             kind.actionBody = new SimpleInflater(Website.URL);
         }
@@ -408,7 +409,6 @@ public class FallbackAccountType extends BaseAccountType {
             // then have a rigid UI and automatic formatting of the date for the sync adapter.
             kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
                     R.string.eventLabelsGroup, -1, 150, false));
-            kind.secondary = true;
             kind.actionHeader = new EventActionInflater();
             kind.actionBody = new SimpleInflater(Event.START_DATE);
 
@@ -443,7 +443,6 @@ public class FallbackAccountType extends BaseAccountType {
                     R.string.label_sip_address, android.R.drawable.sym_action_call, 130, true));
 
             kind.isList = false;
-            kind.secondary = true;
             kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
             kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
         }
@@ -660,6 +659,13 @@ public class FallbackAccountType extends BaseAccountType {
         @Override
         protected int getTypeLabelResource(Integer type) {
             return Event.getTypeResource(type);
+        }
+    }
+
+    public static class RelationActionInflater extends CommonInflater {
+        @Override
+        protected int getTypeLabelResource(Integer type) {
+            return Relation.getTypeLabelResource(type == null ? Relation.TYPE_CUSTOM : type);
         }
     }
 

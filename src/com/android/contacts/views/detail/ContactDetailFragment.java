@@ -67,6 +67,7 @@ import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
@@ -161,6 +162,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mNicknameEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
+    private ArrayList<ViewEntry> mRelationEntries = new ArrayList<ViewEntry>();
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
     private LayoutInflater mInflater;
@@ -177,6 +179,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mSections.add(mPostalEntries);
         mSections.add(mNicknameEntries);
         mSections.add(mOtherEntries);
+        mSections.add(mRelationEntries);
         mSections.add(mGroupEntries);
     }
 
@@ -491,6 +494,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     entry.data = DateUtils.formatDate(mContext, entry.data);
                     entry.uri = null;
                     mOtherEntries.add(entry);
+                } else if (Relation.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                    mRelationEntries.add(entry);
                 } else {
                     // Handle showing custom rows
                     entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);

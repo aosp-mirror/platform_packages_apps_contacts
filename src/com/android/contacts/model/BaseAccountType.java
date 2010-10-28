@@ -194,7 +194,6 @@ public abstract class BaseAccountType {
         public int iconRes;
         public int iconAltRes;
         public int weight;
-        public boolean secondary;
         public boolean editable;
 
         /**
