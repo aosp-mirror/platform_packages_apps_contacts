@@ -943,6 +943,8 @@
     <string name="websiteLabelsGroup">Website</string>
     <!-- Header that expands to list all event types when editing an event of a contact -->
     <string name="eventLabelsGroup">Event</string>
+    <!-- Header for the list of all relationships for a contact [CHAR LIMIT=15] -->
+    <string name="relationLabelsGroup">Relationship</string>
     <!-- Header for the list of all groups for a contact -->
     <string name="groupsLabel">Groups</string>
 
