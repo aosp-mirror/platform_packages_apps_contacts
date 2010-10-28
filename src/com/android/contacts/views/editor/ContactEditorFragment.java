@@ -93,9 +93,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
-        SplitContactConfirmationDialogFragment.Listener, PickPhotoDialogFragment.Listener,
-        SelectAccountDialogFragment.Listener, ModifyPhotoDialogFragment.Listener,
-        AggregationSuggestionEngine.Listener {
+        SplitContactConfirmationDialogFragment.Listener, PhotoDialogFragment.Listener,
+        SelectAccountDialogFragment.Listener, AggregationSuggestionEngine.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -467,17 +466,31 @@ public class ContactEditorFragment extends Fragment implements
                     if (!hasValidState()) return;
 
                     if (request == EditorListener.REQUEST_PICK_PHOTO) {
-                        if (editor.hasSetPhoto()) {
-                            // There is an existing photo, offer to remove, replace, or promote to
-                            // primary
-                            final ModifyPhotoDialogFragment fragment =
-                                    new ModifyPhotoDialogFragment(sourceReadOnly, rawContactId);
-                            fragment.setTargetFragment(ContactEditorFragment.this, 0);
-                            fragment.show(getFragmentManager(), ModifyPhotoDialogFragment.TAG);
-                        } else if (!sourceReadOnly) {
-                            // No photo set and not read-only, try to set the photo
-                            doPickPhotoAction(rawContactId);
+                        // Determine mode
+                        final int mode;
+                        if (sourceReadOnly) {
+                            if (editor.hasSetPhoto() && hasMoreThanOnePhoto()) {
+                                mode = PhotoDialogFragment.MODE_READ_ONLY_ALLOW_PRIMARY;
+                            } else {
+                                // Read-only and either no photo or the only photo ==> no options
+                                return;
+                            }
+                        } else {
+                            if (editor.hasSetPhoto()) {
+                                if (hasMoreThanOnePhoto()) {
+                                    mode = PhotoDialogFragment.MODE_PHOTO_ALLOW_PRIMARY;
+                                } else {
+                                    mode = PhotoDialogFragment.MODE_PHOTO_DISALLOW_PRIMARY;
+                                }
+                            } else {
+                                mode = PhotoDialogFragment.MODE_NO_PHOTO;
+                            }
                         }
+
+                        final PhotoDialogFragment fragment = new PhotoDialogFragment();
+                        fragment.setArguments(mode, rawContactId);
+                        fragment.setTargetFragment(ContactEditorFragment.this, 0);
+                        fragment.show(getFragmentManager(), PhotoDialogFragment.TAG);
                     }
                 }
 
@@ -583,20 +596,6 @@ public class ContactEditorFragment extends Fragment implements
         } else {
             if (mListener != null) mListener.onDeleteRequested(mLookupUri);
         }
-        return true;
-    }
-
-    /**
-     * Pick a specific photo to be added under the currently selected tab.
-     */
-    /* package */ boolean doPickPhotoAction(long rawContactId) {
-        if (!hasValidState()) return false;
-
-        mRawContactIdRequestingPhoto = rawContactId;
-        final PickPhotoDialogFragment dialogFragment = new PickPhotoDialogFragment();
-        dialogFragment.setTargetFragment(this, 0);
-        dialogFragment.show(getFragmentManager(), PickPhotoDialogFragment.TAG);
-
         return true;
     }
 
@@ -1505,8 +1504,24 @@ public class ContactEditorFragment extends Fragment implements
         return null;
     }
 
-    public Uri getLookupUri() {
-        return mLookupUri;
+    /**
+     * Returns true if there is currently more than one photo on screen.
+     */
+    private boolean hasMoreThanOnePhoto() {
+        int count = mContent.getChildCount();
+        int countWithPicture = 0;
+        for (int i = 0; i < count; i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseRawContactEditorView) {
+                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
+                if (editor.hasSetPhoto()) {
+                    countWithPicture++;
+                    if (countWithPicture > 1) return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -1571,55 +1586,6 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     /**
-     * Launches Camera to take a picture and store it in a file.
-     */
-    @Override
-    public void onTakePhotoChosen() {
-        try {
-            // Launch camera to take photo for selected contact
-            PHOTO_DIR.mkdirs();
-            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
-            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
-
-            startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * Launches Gallery to pick a photo.
-     */
-    @Override
-    public void onPickFromGalleryChosen() {
-        try {
-            // Launch picker to choose photo for selected contact
-            final Intent intent = getPhotoPickIntent();
-            startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * Account was chosen in the selector. Create a RawContact for this account now
-     */
-    @Override
-    public void onAccountChosen(Account account, boolean isNewContact) {
-        createContact(account, isNewContact);
-    }
-
-    /**
-     * The account selector has been aborted. If we are in "New" mode, we have to close now
-     */
-    @Override
-    public void onAccountSelectorCancelled() {
-        if (!hasValidState() && mListener != null) {
-            mListener.onAccountSelectorAborted();
-        }
-    }
-
-    /**
      * User has chosen to set the selected photo as the (super) primary photo
      */
     @Override
@@ -1657,11 +1623,53 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     /**
-     * User has chosen to change a picture
+     * Launches Camera to take a picture and store it in a file.
      */
     @Override
-    public void onChangePictureChosen(long rawContactId) {
-        // Pick a new photo for the contact
-        doPickPhotoAction(rawContactId);
+    public void onTakePhotoChosen(long rawContactId) {
+        mRawContactIdRequestingPhoto = rawContactId;
+        try {
+            // Launch camera to take photo for selected contact
+            PHOTO_DIR.mkdirs();
+            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
+            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
+
+            startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Launches Gallery to pick a photo.
+     */
+    @Override
+    public void onPickFromGalleryChosen(long rawContactId) {
+        mRawContactIdRequestingPhoto = rawContactId;
+        try {
+            // Launch picker to choose photo for selected contact
+            final Intent intent = getPhotoPickIntent();
+            startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Account was chosen in the selector. Create a RawContact for this account now
+     */
+    @Override
+    public void onAccountChosen(Account account, boolean isNewContact) {
+        createContact(account, isNewContact);
+    }
+
+    /**
+     * The account selector has been aborted. If we are in "New" mode, we have to close now
+     */
+    @Override
+    public void onAccountSelectorCancelled() {
+        if (!hasValidState() && mListener != null) {
+            mListener.onAccountSelectorAborted();
+        }
     }
 }
