@@ -221,6 +221,7 @@ public abstract class ContactBrowseListFragment extends
 
         if (adapter.hasValidSelection()) {
             mSelectionVerified = true;
+            requestSelectionOnScreenIfNeeded();
             return;
         }
 
