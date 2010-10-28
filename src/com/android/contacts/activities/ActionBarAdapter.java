@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryChangeListener;
@@ -36,8 +37,8 @@ import android.widget.TextView;
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter
-        implements OnQueryChangeListener, OnCloseListener, ContactListFilterListener {
+public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
+        ContactListFilterListener, OnFocusChangeListener {
 
     public interface Listener {
         void onAction();
@@ -94,6 +95,7 @@ public class ActionBarAdapter
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryChangeListener(this);
         mSearchView.setOnCloseListener(this);
+        mSearchView.setOnQueryTextFocusChangeListener(this);
         mSearchView.setQuery(mQueryString, false);
 
         update();
@@ -109,6 +111,13 @@ public class ActionBarAdapter
         mFilterController.addListener(this);
     }
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (v == mSearchView) {
+            setSearchMode(hasFocus);
+        }
+    }
+
     public boolean isSearchMode() {
         return mSearchMode;
     }
@@ -119,6 +128,8 @@ public class ActionBarAdapter
             update();
             if (mSearchMode) {
                 mSearchView.requestFocus();
+            } else {
+                mSearchView.setQuery(null, false);
             }
             if (mListener != null) {
                 mListener.onAction();
@@ -162,15 +173,14 @@ public class ActionBarAdapter
     @Override
     public boolean onQueryTextChanged(String queryString) {
         mQueryString = queryString;
-        boolean searchMode = !TextUtils.isEmpty(queryString);
-        if (searchMode == mSearchMode) {
-            update();
-            if (mListener != null) {
-                mListener.onAction();
+        if (!mSearchMode) {
+            if (!TextUtils.isEmpty(queryString)) {
+                setSearchMode(true);
             }
-        } else {
-            setSearchMode(searchMode);
+        } else if (mListener != null) {
+            mListener.onAction();
         }
+
         return true;
     }
 
