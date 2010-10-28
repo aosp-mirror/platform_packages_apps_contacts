@@ -928,6 +928,10 @@ public class ContactListItemView extends ViewGroup {
      * returns -1.
      */
     private int indexOfWordPrefix(CharArrayBuffer buffer, char[] prefix) {
+        if (prefix == null || prefix.length == 0) {
+            return -1;
+        }
+
         char[] string1 = buffer.data;
         int count1 = buffer.sizeCopied;
         int count2 = prefix.length;
