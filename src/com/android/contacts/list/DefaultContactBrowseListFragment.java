@@ -39,6 +39,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private static final String KEY_FILTER_ENABLED = "filterEnabled";
 
     private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
+    private static final String KEY_SEARCH_MODE_CONTACT_URI_SUFFIX = "search";
 
     private View mCounterHeaderView;
     private View mSearchHeaderView;
@@ -190,10 +191,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     public void saveSelectedUri(SharedPreferences preferences) {
-        if (isSearchMode()) {
-            return;
-        }
-
         Editor editor = preferences.edit();
         Uri uri = getSelectedContactUri();
         if (uri == null) {
@@ -206,10 +203,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     public void restoreSelectedUri(SharedPreferences preferences) {
-        if (isSearchMode()) {
-            return;
-        }
-
         String selectedUri = preferences.getString(getPersistentSelectionKey(), null);
         if (selectedUri == null) {
             setSelectedContactUri(null);
@@ -219,7 +212,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private String getPersistentSelectionKey() {
-        if (mFilter == null) {
+        if (isSearchMode()) {
+            return mPersistentSelectionPrefix + "-" + KEY_SEARCH_MODE_CONTACT_URI_SUFFIX;
+        } else if (mFilter == null) {
             return mPersistentSelectionPrefix;
         } else {
             return mPersistentSelectionPrefix + "-" + mFilter.getId();

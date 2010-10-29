@@ -146,7 +146,7 @@ public abstract class ContactBrowseListFragment extends
     }
 
     public void setSelectedContactUri(Uri uri) {
-        if (mSelectedContactUri == null
+        if ((mSelectedContactUri == null && uri != null)
                 || (mSelectedContactUri != null && !mSelectedContactUri.equals(uri))) {
             mSelectedContactUri = uri;
 
@@ -204,21 +204,21 @@ public abstract class ContactBrowseListFragment extends
     }
 
     @Override
-    protected void onPartitionLoaded(int partitionIndex, Cursor data) {
-        super.onPartitionLoaded(partitionIndex, data);
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        super.onLoadFinished(loader, data);
         checkSelection();
     }
 
     private void checkSelection() {
-        if (mSelectionVerified || isSearchMode()) {
+        if (mSelectionVerified) {
+            return;
+        }
+
+        if (isLoading()) {
             return;
         }
 
         ContactListAdapter adapter = getAdapter();
-        if (adapter.isLoading() || mLoadingLookupKey) {
-            return;
-        }
-
         if (adapter.hasValidSelection()) {
             mSelectionVerified = true;
             requestSelectionOnScreenIfNeeded();
@@ -228,13 +228,18 @@ public abstract class ContactBrowseListFragment extends
         notifyInvalidSelection();
     }
 
+    @Override
+    public boolean isLoading() {
+        return mLoadingLookupKey || super.isLoading();
+    }
+
     public Uri getFirstContactUri() {
         ContactListAdapter adapter = getAdapter();
         return adapter.getFirstContactUri();
     }
 
     @Override
-    protected void startLoading() {
+    public void startLoading() {
         mSelectionVerified = false;
         super.startLoading();
     }
