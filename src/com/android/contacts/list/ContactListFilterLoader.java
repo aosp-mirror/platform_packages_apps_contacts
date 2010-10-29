@@ -16,8 +16,8 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.BaseAccountType;
 
 import android.accounts.Account;
 import android.content.AsyncTaskLoader;
@@ -29,7 +29,6 @@ import android.provider.ContactsContract.Groups;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -44,6 +43,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
             Groups.ACCOUNT_NAME,
             Groups.TITLE,
             Groups.AUTO_ADD,
+            Groups.SOURCE_ID,
         };
 
         public static final int ID = 0;
@@ -51,6 +51,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         public static final int ACCOUNT_NAME = 2;
         public static final int TITLE = 3;
         public static final int IS_DEFAULT_GROUP = 4;       // Using the AUTO_ADD group as default
+        public static final int SOURCE_ID = 5;
 
         private static final String SELECTION =
                 Groups.DELETED + "=0 AND " + Groups.FAVORITES + "=0";
@@ -74,7 +75,6 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
             results.add(new ContactListFilter(account.type, account.name, icon, account.name));
         }
 
-        HashSet<Account> accountsWithGroups = new HashSet<Account>();
         ContentResolver resolver = context.getContentResolver();
 
         Cursor cursor = resolver.query(
@@ -82,6 +82,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         try {
             while (cursor.moveToNext()) {
                 long groupId = cursor.getLong(GroupQuery.ID);
+                String groupSourceId = cursor.getString(GroupQuery.SOURCE_ID);
                 String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
                 String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
                 boolean defaultGroup = false;
@@ -94,12 +95,14 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
                         if (filter.accountName.equals(accountName)
                                 && filter.accountType.equals(accountType)) {
                             filter.groupId = groupId;
+                            filter.groupSourceId = groupSourceId;
                             break;
                         }
                     }
                 } else {
                     String title = cursor.getString(GroupQuery.TITLE);
-                    results.add(new ContactListFilter(accountType, accountName, groupId, title));
+                    results.add(new ContactListFilter(
+                            accountType, accountName, groupId, groupSourceId, title));
                 }
             }
         } finally {

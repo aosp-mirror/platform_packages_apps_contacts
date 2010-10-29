@@ -480,7 +480,7 @@
 
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity android:name="AttachImage"
-            android:label="@string/attachToContact"
+            android:label="@string/contact_photo_dialog_title"
             android:taskAffinity="">
             <intent-filter>
                 <action android:name="android.intent.action.ATTACH_DATA" />
@@ -534,6 +534,7 @@
 
         <!-- vCard related -->
         <activity android:name=".vcard.ImportVCardActivity"
+            android:configChanges="orientation"
             android:theme="@style/BackgroundOnly">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

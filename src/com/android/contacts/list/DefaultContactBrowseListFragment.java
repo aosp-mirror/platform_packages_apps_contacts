@@ -17,9 +17,10 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,22 +29,23 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 /**
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
  */
-public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
-        implements ContactListFilterController.ContactListFilterListener {
+public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
 
     private static final String KEY_FILTER_ENABLED = "filterEnabled";
 
-    private static final int REQUEST_CODE_CUSTOMIZE_FILTER = 3;
+    private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
 
     private View mCounterHeaderView;
     private View mSearchHeaderView;
 
     private boolean mFilterEnabled;
-    private ContactListFilterController mFilterController;
+    private ContactListFilter mFilter;
+    private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -51,17 +53,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         setAizyEnabled(true);
     }
 
-    public void setContactListFilterController(ContactListFilterController filterController) {
-        mFilterController = filterController;
-        mFilterController.addListener(this);
-    }
-
-    @Override
-    public void onDetach() {
-        if (mFilterController != null) {
-            mFilterController.removeListener(this);
-        }
-        super.onDetach();
+    public void setFilter(ContactListFilter filter) {
+        mFilter = filter;
     }
 
     @Override
@@ -99,8 +92,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         super.configureAdapter();
 
         DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
-        if (adapter != null && mFilterEnabled && mFilterController != null) {
-            adapter.setFilter(mFilterController.getFilter(), mFilterController.getFilterList());
+        if (adapter != null && mFilter != null) {
+            adapter.setFilter(mFilter);
         }
     }
 
@@ -189,47 +182,47 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     }
 
     @Override
-    protected void startLoading() {
-        if (mFilterController != null && !mFilterController.isLoaded()) {
-            mFilterController.startLoading();
-        }
-
-        if (!mFilterEnabled || mFilterController == null || mFilterController.isLoaded()) {
+    public void startLoading() {
+        if (!mFilterEnabled || mFilter != null) {
             super.startLoading();
         }
     }
 
     @Override
-    protected void onPartitionLoaded(int partitionIndex, Cursor data) {
-        super.onPartitionLoaded(partitionIndex, data);
-        if (mFilterController != null) {
-            mFilterController.postDelayedRefresh();
+    public void saveSelectedUri(SharedPreferences preferences) {
+        if (isSearchMode()) {
+            return;
+        }
+
+        Editor editor = preferences.edit();
+        Uri uri = getSelectedContactUri();
+        if (uri == null) {
+            editor.remove(getPersistentSelectionKey());
+        } else {
+            editor.putString(getPersistentSelectionKey(), uri.toString());
+        }
+        editor.apply();
+    }
+
+    @Override
+    public void restoreSelectedUri(SharedPreferences preferences) {
+        if (isSearchMode()) {
+            return;
+        }
+
+        String selectedUri = preferences.getString(getPersistentSelectionKey(), null);
+        if (selectedUri == null) {
+            setSelectedContactUri(null);
+        } else {
+            setSelectedContactUri(Uri.parse(selectedUri));
         }
     }
 
-    @Override
-    public void onContactListFiltersLoaded() {
-        if (mFilterEnabled) {
-            // Filters have been loaded - now we can start loading the list itself
-            startLoading();
-        }
-    }
-
-    @Override
-    public void onContactListFilterChanged() {
-        reloadData();
-    }
-
-    @Override
-    public void onContactListFilterCustomizationRequest() {
-        startActivityForResult(new Intent(getContext(), CustomContactListFilterActivity.class),
-                REQUEST_CODE_CUSTOMIZE_FILTER);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_CUSTOMIZE_FILTER && resultCode == Activity.RESULT_OK) {
-            mFilterController.selectCustomFilter();
+    private String getPersistentSelectionKey() {
+        if (mFilter == null) {
+            return mPersistentSelectionPrefix;
+        } else {
+            return mPersistentSelectionPrefix + "-" + mFilter.getId();
         }
     }
 }

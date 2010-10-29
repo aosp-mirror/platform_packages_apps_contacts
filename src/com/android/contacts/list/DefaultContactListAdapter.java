@@ -17,6 +17,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.preference.ContactsPreferences;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.SharedPreferences;
@@ -82,11 +83,20 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     }
 
     protected void configureUri(CursorLoader loader, long directoryId, ContactListFilter filter) {
-        Uri uri;
-        if (filter != null && filter.groupId != 0) {
-            uri = Data.CONTENT_URI;
-        } else {
-            uri = Contacts.CONTENT_URI;
+        Uri uri = Contacts.CONTENT_URI;
+        if (filter != null) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_GROUP ||
+                    filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+                uri = Data.CONTENT_URI;
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                String lookupKey = getSelectedContactLookupKey();
+                if (lookupKey != null) {
+                    uri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey);
+                } else {
+                    // Non-existent contact
+                    uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 0);
+                }
+            }
         }
 
         if (directoryId == Directory.DEFAULT && isSectionHeaderDisplayEnabled()) {
@@ -94,7 +104,9 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         }
 
         // The "All accounts" filter is the same as the entire contents of Directory.DEFAULT
-        if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+        if (filter != null
+                && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM
+                && filter.filterType != ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
             uri = uri.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                     .build();
@@ -127,6 +139,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         switch (filter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
                 // We have already added directory=0 to the URI, which takes care of this
+                // filter
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_SINGLE_CONTACT: {
+                // We have already added the lookup key to the URI, which takes care of this
                 // filter
                 break;
             }

@@ -249,7 +249,9 @@ public class ContactListFilterController
     public void setContactListFilter(ContactListFilter filter, boolean persistent) {
         if (!filter.equals(mFilter)) {
             mFilter = filter;
-            ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
+            if (persistent) {
+                ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
+            }
             if (mListeners != null) {
                notifyContactListFilterChanged();
             }

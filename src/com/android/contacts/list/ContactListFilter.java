@@ -30,6 +30,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     public static final int FILTER_TYPE_CUSTOM = -3;
     public static final int FILTER_TYPE_STARRED = -4;
     public static final int FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY = -5;
+    public static final int FILTER_TYPE_SINGLE_CONTACT = -6;
 
     public static final int FILTER_TYPE_ACCOUNT = 0;
     public static final int FILTER_TYPE_GROUP = 1;
@@ -38,13 +39,16 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     private static final String KEY_ACCOUNT_NAME = "filter.accountName";
     private static final String KEY_ACCOUNT_TYPE = "filter.accountType";
     private static final String KEY_GROUP_ID = "filter.groupId";
+    private static final String KEY_GROUP_SOURCE_ID = "filter.groupSourceId";
 
     public int filterType;
     public String accountType;
     public String accountName;
     public Drawable icon;
     public long groupId;
+    public String groupSourceId;
     public String title;
+    private String mId;
 
     public ContactListFilter(int filterType) {
         this.filterType = filterType;
@@ -60,11 +64,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     }
 
     public ContactListFilter(
-            String accountType, String accountName, long groupId, String title) {
+            String accountType, String accountName, long groupId, String groupSourceId, String title) {
         this.filterType = ContactListFilter.FILTER_TYPE_GROUP;
         this.accountType = accountType;
         this.accountName = accountName;
         this.groupId = groupId;
+        this.groupSourceId = groupSourceId;
         this.title = title;
     }
 
@@ -115,7 +120,9 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
             code = code * 31 + accountType.hashCode();
             code = code * 31 + accountName.hashCode();
         }
-        if (groupId != 0) {
+        if (groupSourceId != null) {
+            code = code * 31 + groupSourceId.hashCode();
+        } else if (groupId != 0) {
             code = code * 31 + (int) groupId;
         }
         return code;
@@ -132,10 +139,17 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         }
 
         ContactListFilter otherFilter = (ContactListFilter) other;
-        return filterType == otherFilter.filterType
-                && TextUtils.equals(accountName, otherFilter.accountName)
-                && TextUtils.equals(accountType, otherFilter.accountType)
-                && groupId == otherFilter.groupId;
+        if (filterType != otherFilter.filterType
+                || !TextUtils.equals(accountName, otherFilter.accountName)
+                || !TextUtils.equals(accountType, otherFilter.accountType)) {
+            return false;
+        }
+
+        if (groupSourceId != null && otherFilter.groupSourceId != null) {
+            return groupSourceId.equals(otherFilter.groupSourceId);
+        }
+
+        return groupId == otherFilter.groupId;
     }
 
     public static void storeToPreferences(SharedPreferences prefs, ContactListFilter filter) {
@@ -144,6 +158,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
             .putString(KEY_ACCOUNT_NAME, filter == null ? null : filter.accountName)
             .putString(KEY_ACCOUNT_TYPE, filter == null ? null : filter.accountType)
             .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
+            .putString(KEY_GROUP_SOURCE_ID, filter == null ? null : filter.groupSourceId)
             .apply();
     }
 
@@ -157,6 +172,30 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         filter.accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
         filter.accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
         filter.groupId = prefs.getLong(KEY_GROUP_ID, -1);
+        filter.groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
         return filter;
+    }
+
+    /**
+     * Returns a string that can be used as a stable persistent identifier for this filter.
+     */
+    public String getId() {
+        if (mId == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(filterType);
+            if (accountType != null) {
+                sb.append('-').append(accountType);
+            }
+            if (accountName != null) {
+                sb.append('-').append(accountName.replace('-', '_'));
+            }
+            if (groupSourceId != null) {
+                sb.append('-').append(groupSourceId);
+            } else if (groupId != 0) {
+                sb.append('-').append(groupId);
+            }
+            mId = sb.toString();
+        }
+        return mId;
     }
 }

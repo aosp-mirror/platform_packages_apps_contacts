@@ -21,9 +21,7 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
-import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
@@ -58,8 +56,6 @@ public class ContactSelectionActivity extends Activity
     protected ContactEntryListFragment<?> mListFragment;
 
     private int mActionCode = -1;
-
-    private boolean mSearchInitiated;
 
     private ContactsRequest mRequest;
     private SearchView mSearchView;
@@ -255,10 +251,7 @@ public class ContactSelectionActivity extends Activity
     }
 
     public void setupActionListener() {
-        if (mListFragment instanceof DefaultContactBrowseListFragment) {
-            ((DefaultContactBrowseListFragment) mListFragment).setOnContactListActionListener(
-                    new ContactBrowserActionListener());
-        } else if (mListFragment instanceof ContactPickerFragment) {
+        if (mListFragment instanceof ContactPickerFragment) {
             ((ContactPickerFragment) mListFragment).setOnContactPickerActionListener(
                     new ContactPickerActionListener());
         } else if (mListFragment instanceof PhoneNumberPickerFragment) {
@@ -269,63 +262,6 @@ public class ContactSelectionActivity extends Activity
                     new PostalAddressPickerActionListener());
         } else {
             throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
-        }
-    }
-
-    private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
-        @Override
-        public void onViewContactAction(Uri contactLookupUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onCreateNewContactAction() {
-            Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
-            }
-            startActivity(intent);
-        }
-
-        @Override
-        public void onEditContactAction(Uri contactLookupUri) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
-            }
-            startActivity(intent);
-        }
-
-        @Override
-        public void onAddToFavoritesAction(Uri contactUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onRemoveFromFavoritesAction(Uri contactUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onCallContactAction(Uri contactUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onSmsContactAction(Uri contactUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onDeleteContactAction(Uri contactUri) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void onFinishAction() {
-            onBackPressed();
         }
     }
 

@@ -21,6 +21,7 @@ import com.android.contacts.widget.ListViewUtils;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public abstract class ContactBrowseListFragment extends
         ContactEntryListFragment<ContactListAdapter> {
 
     private static final String KEY_SELECTED_URI = "selectedUri";
+    private static final String KEY_SELECTION_VERIFIED = "selectionVerified";
 
     private static final int SELECTED_ID_LOADER = -3;
 
@@ -49,8 +51,10 @@ public abstract class ContactBrowseListFragment extends
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
     private int mSelectionVisibilityRequest;
+    private boolean mSelectionVerified;
+    private boolean mLoadingLookupKey;
 
-    private OnContactBrowserActionListener mListener;
+    protected OnContactBrowserActionListener mListener;
 
     private LoaderCallbacks<Cursor> mIdLoaderCallbacks = new LoaderCallbacks<Cursor>() {
 
@@ -66,6 +70,7 @@ public abstract class ContactBrowseListFragment extends
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            mLoadingLookupKey = false;
             String lookupKey = null;
             if (data != null) {
                 if (data.moveToFirst()) {
@@ -76,7 +81,6 @@ public abstract class ContactBrowseListFragment extends
                 mSelectedContactLookupKey = lookupKey;
                 configureContactSelection();
             }
-            return;
         }
     };
 
@@ -89,6 +93,7 @@ public abstract class ContactBrowseListFragment extends
         }
 
         mSelectedContactUri = savedState.getParcelable(KEY_SELECTED_URI);
+        mSelectionVerified = savedState.getBoolean(KEY_SELECTION_VERIFIED);
         parseSelectedContactUri();
     }
 
@@ -96,6 +101,7 @@ public abstract class ContactBrowseListFragment extends
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_SELECTED_URI, mSelectedContactUri);
+        outState.putBoolean(KEY_SELECTION_VERIFIED, mSelectionVerified);
     }
 
     @Override
@@ -109,6 +115,7 @@ public abstract class ContactBrowseListFragment extends
         if (isSelectionVisible() && mSelectedContactUri != null &&
                 (mSelectedContactDirectoryId == Directory.DEFAULT ||
                         mSelectedContactDirectoryId == Directory.LOCAL_INVISIBLE)) {
+            mLoadingLookupKey = true;
             getLoaderManager().restartLoader(SELECTED_ID_LOADER, null, mIdLoaderCallbacks);
         } else {
             getLoaderManager().stopLoader(SELECTED_ID_LOADER);
@@ -165,7 +172,7 @@ public abstract class ContactBrowseListFragment extends
             }
 
             String directoryParam =
-                mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+                    mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
             mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam)
                     ? Directory.DEFAULT
                     : Long.parseLong(directoryParam);
@@ -193,6 +200,49 @@ public abstract class ContactBrowseListFragment extends
         }
 
         adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
+        checkSelection();
+    }
+
+    @Override
+    protected void onPartitionLoaded(int partitionIndex, Cursor data) {
+        super.onPartitionLoaded(partitionIndex, data);
+        checkSelection();
+    }
+
+    private void checkSelection() {
+        if (mSelectionVerified || isSearchMode()) {
+            return;
+        }
+
+        ContactListAdapter adapter = getAdapter();
+        if (adapter.isLoading() || mLoadingLookupKey) {
+            return;
+        }
+
+        if (adapter.hasValidSelection()) {
+            mSelectionVerified = true;
+            requestSelectionOnScreenIfNeeded();
+            return;
+        }
+
+        notifyInvalidSelection();
+    }
+
+    public Uri getFirstContactUri() {
+        ContactListAdapter adapter = getAdapter();
+        return adapter.getFirstContactUri();
+    }
+
+    @Override
+    protected void startLoading() {
+        mSelectionVerified = false;
+        super.startLoading();
+    }
+
+    @Override
+    public void reloadData() {
+        mSelectionVerified = false;
+        super.reloadData();
     }
 
     public void setOnContactListActionListener(OnContactBrowserActionListener listener) {
@@ -229,6 +279,10 @@ public abstract class ContactBrowseListFragment extends
 
     public void smsContact(Uri contactUri) {
         mListener.onSmsContactAction(contactUri);
+    }
+
+    private void notifyInvalidSelection() {
+        mListener.onInvalidSelection();
     }
 
     @Override
@@ -268,5 +322,11 @@ public abstract class ContactBrowseListFragment extends
             ListViewUtils.requestPositionToScreen(
                     listView, position + listView.getHeaderViewsCount(), smooth);
         }
+    }
+
+    public void saveSelectedUri(SharedPreferences preferences) {
+    }
+
+    public void restoreSelectedUri(SharedPreferences preferences) {
     }
 }

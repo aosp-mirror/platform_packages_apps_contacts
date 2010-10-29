@@ -68,4 +68,9 @@ public interface OnContactBrowserActionListener  {
      * Closes the contact browser.
      */
     void onFinishAction();
+
+    /**
+     * Invoked if the requested selected contact is not found in the list.
+     */
+    void onInvalidSelection();
 }

@@ -260,6 +260,9 @@
          For example, this may be used to set a phone number's label to "Vaction house" -->
     <string name="customLabelPickerTitle">Custom label name</string>
 
+    <!-- The menu item to open the list of groups to display -->
+    <string name="menu_displayGroup">Display options</string>
+
     <!-- Check box label that allows calls to the contact to be sent directly to voicemail -->
     <string name="send_to_voicemail_checkbox">Send calls directly to voicemail</string>
 
@@ -940,6 +943,8 @@
     <string name="websiteLabelsGroup">Website</string>
     <!-- Header that expands to list all event types when editing an event of a contact -->
     <string name="eventLabelsGroup">Event</string>
+    <!-- Header for the list of all relationships for a contact [CHAR LIMIT=15] -->
+    <string name="relationLabelsGroup">Relationship</string>
     <!-- Header for the list of all groups for a contact -->
     <string name="groupsLabel">Groups</string>
 
@@ -1357,6 +1362,9 @@
 
     <!-- Contact list filter selection indicating that the list shows all contacts with phone numbers [CHAR LIMIT=64] -->
     <string name="list_filter_phones">Contacts with phone numbers</string>
+
+    <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
+    <string name="list_filter_single">Contact</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Define custom view</string>

@@ -125,6 +125,19 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
     }
 
+    @Override
+    public void clearPartitions() { 
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                DirectoryPartition directoryPartition = (DirectoryPartition)partition;
+                directoryPartition.setStatus(DirectoryPartition.STATUS_NOT_LOADED);
+            }
+        }
+        super.clearPartitions();
+    }
+
     public boolean isSearchMode() {
         return mSearchMode;
     }
