@@ -112,6 +112,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     private static final int LOADER_DETAILS = 1;
 
+    private static final String KEY_CONTACT_URI = "contactUri";
+
     private Context mContext;
     private View mView;
     private Uri mLookupUri;
@@ -181,6 +183,20 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mSections.add(mOtherEntries);
         mSections.add(mRelationEntries);
         mSections.add(mGroupEntries);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            mLookupUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_CONTACT_URI, mLookupUri);
     }
 
     @Override

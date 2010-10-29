@@ -135,7 +135,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
     private boolean mForceLoad;
-    private boolean mLoadDirectoryList;
+
+    private static final int STATUS_NOT_LOADED = 0;
+    private static final int STATUS_LOADING = 1;
+    private static final int STATUS_LOADED = 2;
+
+    private int mDirectoryListStatus = STATUS_NOT_LOADED;
 
     /**
      * Indicates whether we are doing the initial complete load of data (false) or
@@ -293,7 +298,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mForceLoad = false;
-        mLoadDirectoryList = true;
+        mDirectoryListStatus = STATUS_NOT_LOADED;
         mLoadPriorityDirectoriesOnly = true;
 
         startLoading();
@@ -393,6 +398,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         int loaderId = loader.getId();
         if (loaderId == DIRECTORY_LOADER_ID) {
+            mDirectoryListStatus = STATUS_LOADED;
             mAdapter.changeDirectories(data);
             startLoading();
         } else {
@@ -400,8 +406,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             if (isSearchMode()) {
                 int directorySearchMode = getDirectorySearchMode();
                 if (directorySearchMode != DirectoryListLoader.SEARCH_MODE_NONE) {
-                    if (mLoadDirectoryList) {
-                        mLoadDirectoryList = false;
+                    if (mDirectoryListStatus == STATUS_NOT_LOADED) {
+                        mDirectoryListStatus = STATUS_LOADING;
                         getLoaderManager().initLoader(DIRECTORY_LOADER_ID, null, this);
                     } else {
                         startLoading();
@@ -423,8 +429,23 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mAizy.setIndexer(mAdapter.getIndexer(), data.getCount());
         }
 
-        // TODO should probably only restore instance state after all directories are loaded
-        completeRestoreInstanceState();
+        if (!isLoading()) {
+            completeRestoreInstanceState();
+        }
+    }
+
+    public boolean isLoading() {
+        if (mAdapter != null && mAdapter.isLoading()) {
+            return true;
+        }
+
+        if (isSearchMode() && getDirectorySearchMode() != DirectoryListLoader.SEARCH_MODE_NONE
+                && (mDirectoryListStatus == STATUS_NOT_LOADED
+                        || mDirectoryListStatus == STATUS_LOADING)) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
