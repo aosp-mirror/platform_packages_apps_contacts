@@ -24,10 +24,10 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.BaseAccountType.DataKind;
 import com.android.contacts.model.BaseAccountType.EditType;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -105,7 +105,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
         OnItemClickListener, SelectAccountDialogFragment.Listener {
@@ -114,6 +113,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private static final int LOADER_DETAILS = 1;
 
     private Context mContext;
+    private View mView;
     private Uri mLookupUri;
     private Listener mListener;
 
@@ -192,23 +192,23 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        final View view = inflater.inflate(R.layout.contact_detail_fragment, container, false);
+        mView = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
         setHasOptionsMenu(true);
 
         mInflater = inflater;
 
-        mHeaderView = (ContactDetailHeaderView) view.findViewById(R.id.contact_header_widget);
+        mHeaderView = (ContactDetailHeaderView) mView.findViewById(R.id.contact_header_widget);
         mHeaderView.setListener(mHeaderViewListener);
 
-        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setOnCreateContextMenuListener(this);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
-        mEmptyView = view.findViewById(android.R.id.empty);
+        mEmptyView = mView.findViewById(android.R.id.empty);
 
-        mCopyGalToLocalButton = (Button) view.findViewById(R.id.copyLocal);
+        mCopyGalToLocalButton = (Button) mView.findViewById(R.id.copyLocal);
         mCopyGalToLocalButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,7 +216,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             }
         });
 
-        return view;
+        return mView;
     }
 
     public void setListener(Listener value) {
@@ -236,12 +236,24 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     public void loadUri(Uri lookupUri) {
         mLookupUri = lookupUri;
-        if (getActivity() != null) {
+        if (mLookupUri == null) {
+            mContactData = null;
+            bindData();
+        } else if (getActivity() != null) {
             getLoaderManager().restartLoader(LOADER_DETAILS, null, mDetailLoaderListener);
         }
     }
 
     private void bindData() {
+        if (mView == null) {
+            return;
+        }
+
+        if (mContactData == null) {
+            mView.setVisibility(View.INVISIBLE);
+            return;
+        }
+
         // Set the header
         mHeaderView.loadData(mContactData);
 
@@ -275,6 +287,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         } else {
             mCopyGalToLocalButton.setVisibility(View.GONE);
         }
+
+        mView.setVisibility(View.VISIBLE);
 
         getActivity().invalidateOptionsMenu();
     }
@@ -1199,7 +1213,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         public void onPhotoClick(View view) {
         }
     };
-
 
     public static interface Listener {
         /**

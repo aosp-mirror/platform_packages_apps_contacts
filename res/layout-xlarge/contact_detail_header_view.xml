@@ -27,7 +27,6 @@
         android:layout_marginLeft="-1dip"
         android:layout_width="96dip"
         android:layout_height="96dip"
-        android:src="@*android:drawable/ic_contact_picture"
     />
 
     <LinearLayout
@@ -141,7 +140,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/description_star"
-                style="?android:attr/starStyle" />
+                android:visibility="invisible"
+                style="?android:attr/starStyle"
+            />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

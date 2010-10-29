@@ -38,7 +38,6 @@ import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
-import com.android.contacts.views.detail.ContactNoneFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
@@ -106,8 +105,6 @@ public class ContactBrowserActivity extends Activity
     private boolean mSearchMode;
 
     private ContactBrowseListFragment mListFragment;
-    private ContactNoneFragment mEmptyFragment;
-
     private boolean mContactContentDisplayed;
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
@@ -142,8 +139,6 @@ public class ContactBrowserActivity extends Activity
                 ((DefaultContactBrowseListFragment) mListFragment).setFilter(
                         mContactListFilterController.getFilter());
             }
-        } else if (fragment instanceof ContactNoneFragment) {
-            mEmptyFragment = (ContactNoneFragment)fragment;
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -382,6 +377,36 @@ public class ContactBrowserActivity extends Activity
         }
     }
 
+    private void showDefaultSelection() {
+        Uri requestedContactUri = mRequest.getContactUri();
+        if (requestedContactUri != null
+                && mListFragment instanceof DefaultContactBrowseListFragment) {
+            // If a specific selection was requested, adjust the filter so
+            // that the requested selection is unconditionally visible.
+            DefaultContactBrowseListFragment fragment =
+                    (DefaultContactBrowseListFragment) mListFragment;
+            ContactListFilter filter = new ContactListFilter(
+                    ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+            fragment.setFilter(filter);
+            fragment.setSelectedContactUri(requestedContactUri);
+            fragment.saveSelectedUri(mPrefs);
+            fragment.reloadData();
+            if (mContactListFilterController != null) {
+                mContactListFilterController.setContactListFilter(filter, true);
+            }
+        } else {
+            // Otherwise, choose the first contact on the list and select it
+            requestedContactUri = mListFragment.getFirstContactUri();
+            if (requestedContactUri != null) {
+                mListFragment.setSelectedContactUri(requestedContactUri);
+                mListFragment.requestSelectionOnScreen(false);
+            }
+        }
+        if (mContactContentDisplayed) {
+            setupContactDetailFragment(requestedContactUri);
+        }
+    }
+
     @Override
     public void onContactListFilterCustomizationRequest() {
         startActivityForResult(new Intent(this, CustomContactListFilterActivity.class),
@@ -394,55 +419,18 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
-        if (mHandler == null) {
-            mHandler = new Handler();
-        }
-
-        mHandler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                replaceContactDetailFragment(contactLookupUri);
-            }
-        });
-    }
-
-    public void replaceContactDetailFragment(Uri contactLookupUri) {
-        if (contactLookupUri != null) {
-            // Already showing? Nothing to do
-            if (mDetailFragment != null) {
-                mDetailFragment.loadUri(contactLookupUri);
-                return;
-            }
-
-            closeEmptyFragment();
-
-            mDetailFragment = new ContactDetailFragment();
-            mDetailFragment.loadUri(contactLookupUri);
-
-            // Nothing showing yet? Create (this happens during Activity-Startup)
-            getFragmentManager().openTransaction()
-                    .replace(R.id.detail_container, mDetailFragment)
-                    .commit();
-        } else {
-            closeDetailFragment();
-
-            mEmptyFragment = new ContactNoneFragment();
-            getFragmentManager().openTransaction()
-                    .replace(R.id.detail_container, mEmptyFragment)
-                    .commit();
-        }
-    }
-
-    private void closeDetailFragment() {
+        // Already showing? Nothing to do
         if (mDetailFragment != null) {
-            mDetailFragment.setListener(null);
-            mDetailFragment = null;
+            mDetailFragment.loadUri(contactLookupUri);
+            return;
         }
-    }
 
-    private void closeEmptyFragment() {
-        mEmptyFragment = null;
+        mDetailFragment = new ContactDetailFragment();
+        mDetailFragment.loadUri(contactLookupUri);
+
+        getFragmentManager().openTransaction()
+                .replace(R.id.detail_container, mDetailFragment)
+                .commit();
     }
 
     /**
@@ -603,33 +591,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onInvalidSelection() {
-            Uri requestedContactUri = mRequest.getContactUri();
-            if (requestedContactUri != null
-                    && mListFragment instanceof DefaultContactBrowseListFragment) {
-                // If a specific selection was requested, adjust the filter so
-                // that the requested selection is uncoditionally visible.
-                DefaultContactBrowseListFragment fragment =
-                        (DefaultContactBrowseListFragment) mListFragment;
-                ContactListFilter filter = new ContactListFilter(
-                        ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-                fragment.setFilter(filter);
-                fragment.setSelectedContactUri(requestedContactUri);
-                fragment.saveSelectedUri(mPrefs);
-                fragment.reloadData();
-                if (mContactListFilterController != null) {
-                    mContactListFilterController.setContactListFilter(filter, true);
-                }
-            } else {
-                // Otherwise, choose the first contact on the list and select it
-                requestedContactUri = mListFragment.getFirstContactUri();
-                if (requestedContactUri != null) {
-                    mListFragment.setSelectedContactUri(requestedContactUri);
-                    mListFragment.requestSelectionOnScreen(false);
-                }
-            }
-            if (mContactContentDisplayed) {
-                setupContactDetailFragment(requestedContactUri);
-            }
+            showDefaultSelection();
         }
     }
 
@@ -637,6 +599,8 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onContactNotFound() {
             setupContactDetailFragment(null);
+            mRequest.setContactUri(null);
+            showDefaultSelection();
         }
 
         @Override
