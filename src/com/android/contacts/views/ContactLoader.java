@@ -605,8 +605,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final String statusResPackage = cursor.getString(
                     ContactQuery.CONTACT_STATUS_RES_PACKAGE);
 
-            Uri lookupUri = ContentUris.withAppendedId(
+            Uri lookupUri;
+            if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
+                lookupUri = ContentUris.withAppendedId(
                     Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
+            } else {
+                lookupUri = contactUri;
+            }
+
             return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
                     nameRawContactId, displayNameSource, photoId, photoUri, displayName,
                     phoneticName, starred, presence, status, statusTimestamp, statusLabel,

@@ -126,7 +126,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
-    public void clearPartitions() { 
+    public void clearPartitions() {
         int count = getPartitionCount();
         for (int i = 0; i < count; i++) {
             Partition partition = getPartition(i);

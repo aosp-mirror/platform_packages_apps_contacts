@@ -48,12 +48,9 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     private static final String EXTRA_KEY_QUERY = "navBar.query";
 
     private static final String KEY_MODE_DEFAULT = "mode_default";
-    private static final String KEY_MODE_SEARCH = "mode_search";
 
     private boolean mSearchMode;
     private String mQueryString;
-    private Bundle mSavedStateForSearchMode;
-    private Bundle mSavedStateForDefaultMode;
 
     private View mNavigationBar;
     private TextView mSearchLabel;
@@ -76,8 +73,6 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         if (savedState != null) {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-            mSavedStateForDefaultMode = savedState.getParcelable(KEY_MODE_DEFAULT);
-            mSavedStateForSearchMode = savedState.getParcelable(KEY_MODE_SEARCH);
         } else {
             mSearchMode = request.isSearchMode();
             mQueryString = request.getQueryString();
@@ -113,9 +108,21 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        if (v == mSearchView) {
-            setSearchMode(hasFocus);
+        if (v != mSearchView) {
+            return;
         }
+
+        // When we switch search mode on/off, the activity may need to change
+        // fragments, which may lead to focus temporarily leaving the search
+        // view or coming back to it, which could lead to an infinite loop.
+        // Postponing the change breaks that loop.
+        mNavigationBar.post(new Runnable() {
+
+            @Override
+            public void run() {
+                setSearchMode(mSearchView.hasFocus());
+            }
+        });
     }
 
     public boolean isSearchMode() {
@@ -195,31 +202,9 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         return false;
     }
 
-    public Bundle getSavedStateForSearchMode() {
-        return mSavedStateForSearchMode;
-    }
-
-    public void setSavedStateForSearchMode(Bundle state) {
-        mSavedStateForSearchMode = state;
-    }
-
-    public Bundle getSavedStateForDefaultMode() {
-        return mSavedStateForDefaultMode;
-    }
-
-    public void setSavedStateForDefaultMode(Bundle state) {
-        mSavedStateForDefaultMode = state;
-    }
-
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
-        if (mSavedStateForDefaultMode != null) {
-            outState.putParcelable(KEY_MODE_DEFAULT, mSavedStateForDefaultMode);
-        }
-        if (mSavedStateForSearchMode != null) {
-            outState.putParcelable(KEY_MODE_SEARCH, mSavedStateForSearchMode);
-        }
     }
 
     @Override
