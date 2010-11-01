@@ -54,6 +54,6 @@ public class SocialWidgetSettings {
         } else {
             editor.putString(getSettingsString(widgetId), contactLookupUri.toString());
         }
-        editor.commit();
+        editor.apply();
     }
 }
