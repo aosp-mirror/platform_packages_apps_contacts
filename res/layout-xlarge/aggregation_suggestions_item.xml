@@ -25,24 +25,6 @@
     android:paddingLeft="5dip"
     android:paddingRight="15dip"
 >
-    <Button
-        android:id="@+id/aggregation_suggestion_join_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aggregation_suggestion_join_button"
-        android:layout_centerInParent="true"
-        android:layout_alignParentRight="true"
-    />
-
-    <Button
-        android:id="@+id/aggregation_suggestion_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aggregation_suggestion_edit_button"
-        android:layout_centerInParent="true"
-        android:layout_alignParentRight="true"
-    />
-
     <ImageView
         android:id="@+id/aggregation_suggestion_photo"
         android:layout_width="@dimen/aggregation_suggestion_icon_size"
@@ -58,10 +40,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/aggregation_suggestion_photo"
-        android:layout_toLeftOf="@id/aggregation_suggestion_join_button"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="4dip"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="?android:attr/textColorSecondary"
     />
 
@@ -70,7 +51,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/aggregation_suggestion_photo"
-        android:layout_toLeftOf="@id/aggregation_suggestion_join_button"
         android:layout_below="@id/aggregation_suggestion_name"
         android:layout_marginLeft="10dip"
         android:textAppearance="?android:attr/textAppearanceMedium"

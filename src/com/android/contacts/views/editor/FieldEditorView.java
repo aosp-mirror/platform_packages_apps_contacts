@@ -33,6 +33,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -683,6 +684,22 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
             }
             if (!anyFieldHasFocus)
                 mFieldEditTexts[0].requestFocus();
+        }
+    }
+
+    /**
+     * Populates the bound rectangle with the bounds of the last editor field inside this view.
+     */
+    public void acquireEditorBounds(Rect bounds) {
+        if (mFieldEditTexts != null) {
+            for (int i = mFieldEditTexts.length; --i >= 0;) {
+                EditText editText = mFieldEditTexts[i];
+                if (editText.getVisibility() == View.VISIBLE) {
+                    bounds.set(editText.getLeft(), editText.getTop(), editText.getRight(),
+                            editText.getBottom());
+                    return;
+                }
+            }
         }
     }
 }

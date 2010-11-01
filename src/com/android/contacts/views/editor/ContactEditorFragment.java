@@ -34,6 +34,9 @@ import com.android.contacts.views.editor.Editor.EditorListener;
 
 import android.accounts.Account;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -47,6 +50,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
@@ -78,9 +82,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -94,7 +98,8 @@ import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
         SplitContactConfirmationDialogFragment.Listener, PhotoDialogFragment.Listener,
-        SelectAccountDialogFragment.Listener, AggregationSuggestionEngine.Listener {
+        SelectAccountDialogFragment.Listener, AggregationSuggestionEngine.Listener,
+        AggregationSuggestionView.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -1177,7 +1182,8 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
-        View rawContactView = getContactEditorView(mAggregationSuggestionsRawContactId);
+        RawContactEditorView rawContactView =
+                (RawContactEditorView)getRawContactEditorView(mAggregationSuggestionsRawContactId);
         if (rawContactView == null) {
             return;
         }
@@ -1199,11 +1205,6 @@ public class ContactEditorFragment extends Fragment implements
 
         List<Suggestion> suggestions = mAggregationSuggestionEngine.getSuggestions();
 
-        TextView title = (TextView) mAggregationSuggestionView.findViewById(
-                R.id.aggregation_suggestion_title);
-        title.setText(getActivity().getResources().getQuantityString(
-                R.plurals.aggregation_suggestion_title, count));
-
         LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
                 R.id.aggregation_suggestions);
         itemList.removeAllViews();
@@ -1218,30 +1219,12 @@ public class ContactEditorFragment extends Fragment implements
                     new LinearLayout.LayoutParams(
                             LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             suggestionView.setNewContact(mState.size() == 1 && mState.get(0).isContactInsert());
-            suggestionView.setListener(new AggregationSuggestionView.Listener() {
-
-                @Override
-                public void onJoinAction(long contactId, List<Long> rawContactIds) {
-                    mState.setJoinWithRawContacts(rawContactIds);
-                    // If we are in the edit mode (indicated by a non-zero contact ID),
-                    // join the suggested contact, save all changes, and stay in the editor.
-                    doSaveAction(SaveMode.RELOAD);
-                }
-
-                @Override
-                public void onEditAction(Uri contactLookupUri) {
-                    // Abandon the currently edited contact and switch to editing
-                    // the suggested one, transferring all the data there
-                    if (mListener != null) {
-                        mListener.onEditOtherContactRequested(
-                                contactLookupUri, mState.get(0).getContentValues());
-                    }
-                }
-            });
+            suggestionView.setListener(this);
             suggestionView.bindSuggestion(suggestion);
             itemList.addView(suggestionView);
         }
 
+        adjustAggregationSuggestionViewLayout(rawContactView);
         mAggregationSuggestionView.setVisibility(View.VISIBLE);
 
         if (requestOnScreen) {
@@ -1252,6 +1235,115 @@ public class ContactEditorFragment extends Fragment implements
                     requestAggregationSuggestionOnScreen(mAggregationSuggestionView);
                 }
             }, AGGREGATION_SUGGESTION_SCROLL_DELAY);
+        }
+    }
+
+    /**
+     * Adjusts the layout of the aggregation suggestion view so that it is placed directly
+     * underneath and have the same width as the last text editor of the contact name editor.
+     */
+    private void adjustAggregationSuggestionViewLayout(RawContactEditorView rawContactView) {
+        FieldEditorView nameEditor = rawContactView.getNameEditor();
+        Rect rect = new Rect();
+        nameEditor.acquireEditorBounds(rect);
+        MarginLayoutParams layoutParams =
+                (MarginLayoutParams) mAggregationSuggestionView.getLayoutParams();
+        layoutParams.leftMargin = rect.left;
+        layoutParams.width = rect.width();
+        mAggregationSuggestionView.setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void onJoinAction(long contactId, List<Long> rawContactIdList) {
+        long rawContactIds[] = new long[rawContactIdList.size()];
+        for (int i = 0; i < rawContactIds.length; i++) {
+            rawContactIds[i] = rawContactIdList.get(i);
+        }
+        JoinSuggestedContactDialogFragment dialog =
+                new JoinSuggestedContactDialogFragment();
+        Bundle args = new Bundle();
+        args.putLongArray("rawContactIds", rawContactIds);
+        dialog.setArguments(args);
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), "join");
+    }
+
+    public static class JoinSuggestedContactDialogFragment extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.aggregation_suggestion_join_dialog_title)
+                    .setMessage(R.string.aggregation_suggestion_join_dialog_message)
+                    .setPositiveButton(android.R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                ContactEditorFragment targetFragment =
+                                        (ContactEditorFragment) getTargetFragment();
+                                long rawContactIds[] =
+                                        getArguments().getLongArray("rawContactIds");
+                                targetFragment.doJoinSuggestedContact(rawContactIds);
+                            }
+                        }
+                    )
+                    .setNegativeButton(android.R.string.no, null)
+                    .create();
+        }
+    }
+
+    /**
+     * Joins the suggested contact (specified by the id's of constituent raw
+     * contacts), save all changes, and stay in the editor.
+     */
+    protected void doJoinSuggestedContact(long[] rawContactIds) {
+        mState.setJoinWithRawContacts(rawContactIds);
+        doSaveAction(SaveMode.RELOAD);
+    }
+
+    @Override
+    public void onEditAction(Uri contactLookupUri) {
+        SuggestionEditConfirmationDialogFragment dialog =
+                new SuggestionEditConfirmationDialogFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("contactUri", contactLookupUri);
+        dialog.setArguments(args);
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), "edit");
+    }
+
+    public static class SuggestionEditConfirmationDialogFragment extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.aggregation_suggestion_edit_dialog_title)
+                    .setMessage(R.string.aggregation_suggestion_edit_dialog_message)
+                    .setPositiveButton(android.R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                ContactEditorFragment targetFragment =
+                                        (ContactEditorFragment) getTargetFragment();
+                                Uri contactUri =
+                                        getArguments().getParcelable("contactUri");
+                                targetFragment.doEditSuggestedContact(contactUri);
+                            }
+                        }
+                    )
+                    .setNegativeButton(android.R.string.no, null)
+                    .create();
+        }
+    }
+
+    /**
+     * Abandons the currently edited contact and switches to editing the suggested
+     * one, transferring all the data there
+     */
+    protected void doEditSuggestedContact(Uri contactUri) {
+        if (mListener != null) {
+            mListener.onEditOtherContactRequested(
+                    contactUri, mState.get(0).getContentValues());
         }
     }
 
@@ -1480,7 +1572,7 @@ public class ContactEditorFragment extends Fragment implements
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
     private void setPhoto(long rawContact, Bitmap photo) {
-        BaseRawContactEditorView requestingEditor = getContactEditorView(rawContact);
+        BaseRawContactEditorView requestingEditor = getRawContactEditorView(rawContact);
         if (requestingEditor != null) {
             requestingEditor.setPhotoBitmap(photo);
         } else {
@@ -1491,7 +1583,7 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Finds raw contact editor view for the given rawContactId.
      */
-    public BaseRawContactEditorView getContactEditorView(long rawContactId) {
+    public BaseRawContactEditorView getRawContactEditorView(long rawContactId) {
         for (int i = 0; i < mContent.getChildCount(); i++) {
             final View childView = mContent.getChildAt(i);
             if (childView instanceof BaseRawContactEditorView) {
