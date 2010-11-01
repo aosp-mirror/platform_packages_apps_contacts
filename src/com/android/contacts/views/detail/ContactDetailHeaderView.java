@@ -39,6 +39,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -55,6 +57,8 @@ import java.io.InputStream;
  */
 public class ContactDetailHeaderView extends FrameLayout implements View.OnClickListener {
     private static final String TAG = "ContactDetailHeaderView";
+
+    private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
 
     private TextView mDisplayNameView;
     private TextView mPhoneticNameView;
@@ -123,12 +127,12 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         setCompany(contactData);
         Bitmap photo = ContactBadgeUtil.getPhoto(contactData);
         if (photo != null) {
-            setPhoto(photo);
+            setPhoto(photo, false);
         } else if (contactData.getPhotoUri() != null) {
-            setPhoto(null);
+            setPhoto(null, false);
             new AsyncPhotoLoader().execute(contactData.getPhotoUri());
         } else {
-            setPhoto(ContactBadgeUtil.loadPlaceholderPhoto(mContext));
+            setPhoto(ContactBadgeUtil.loadPlaceholderPhoto(mContext), false);
         }
         setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
         setPresence(contactData.getPresence());
@@ -186,9 +190,14 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
      * Set the photo to display in the header. If bitmap is null, the default placeholder
      * image is shown
      */
-    private void setPhoto(Bitmap bitmap) {
-        mPhotoView.setImageBitmap(
-                bitmap == null ? ContactBadgeUtil.loadPlaceholderPhoto(mContext) : bitmap);
+    private void setPhoto(Bitmap bitmap, boolean fadeIn) {
+        if (fadeIn) {
+            AlphaAnimation animation = new AlphaAnimation(0, 1);
+            animation.setDuration(PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS);
+            animation.setInterpolator(new AccelerateInterpolator());
+            mPhotoView.startAnimation(animation);
+        }
+        mPhotoView.setImageBitmap(bitmap);
     }
 
     /**
@@ -364,7 +373,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            setPhoto(bitmap);
+            setPhoto(bitmap == null ? ContactBadgeUtil.loadPlaceholderPhoto(mContext) : bitmap,
+                    true);
         }
     }
 }
