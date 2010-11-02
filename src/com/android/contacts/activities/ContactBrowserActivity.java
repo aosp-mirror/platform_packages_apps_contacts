@@ -878,8 +878,6 @@ public class ContactBrowserActivity extends Activity
             }
 
             case SUBACTIVITY_SETTINGS:
-                // TODO: Force the ListFragment to reload its setting and update (don't lookup
-                // directories here)
                 break;
 
             // TODO: Using the new startActivityWithResultFromFragment API this should not be needed

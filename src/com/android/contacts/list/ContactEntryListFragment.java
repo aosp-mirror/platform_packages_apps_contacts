@@ -290,14 +290,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mProviderStatusLoader = new ProviderStatusLoader(mContext);
         }
 
-        loadPreferences();
+        mForceLoad = loadPreferences();
 
         if (mListView instanceof ContactEntryListView) {
             ContactEntryListView listView = (ContactEntryListView)mListView;
             listView.setSelectionVisible(isSelectionVisible());
         }
 
-        mForceLoad = false;
         mDirectoryListStatus = STATUS_NOT_LOADED;
         mLoadPriorityDirectoriesOnly = true;
 
@@ -637,13 +636,24 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mContextMenuAdapter;
     }
 
-    protected void loadPreferences() {
-        setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
-        setSortOrder(mContactsPrefs.getSortOrder());
+    protected boolean loadPreferences() {
+        boolean changed = false;
+        if (getContactNameDisplayOrder() != mContactsPrefs.getDisplayOrder()) {
+            setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
+            changed = true;
+        }
+
+        if (getSortOrder() != mContactsPrefs.getSortOrder()) {
+            setSortOrder(mContactsPrefs.getSortOrder());
+            changed = true;
+        }
+
         if (mListView instanceof ContactEntryListView) {
             ContactEntryListView listView = (ContactEntryListView)mListView;
             listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
         }
+
+        return changed;
     }
 
     @Override
