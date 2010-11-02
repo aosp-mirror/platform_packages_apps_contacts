@@ -247,16 +247,28 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
         final AccountManager am = mAccountManager;
         final Account[] accounts = am.getAccounts();
         final ArrayList<Account> matching = Lists.newArrayList();
+        final IContentService cs = ContentResolver.getContentService();
 
         for (Account account : accounts) {
-            // Ensure we have details loaded for each account
-            final BaseAccountType accountType = getInflatedSource(account.type,
-                    BaseAccountType.LEVEL_SUMMARY);
-            final boolean hasContacts = accountType != null;
-            final boolean matchesWritable =
+            boolean syncable = false;
+            try {
+                int isSyncable = cs.getIsSyncable(account, ContactsContract.AUTHORITY);
+                if (isSyncable > 0) {
+                    syncable = true;
+                }
+            } catch (RemoteException e) {
+                Log.e(TAG, "Cannot obtain sync flag for account: " + account, e);
+            }
+            if (syncable) {
+                // Ensure we have details loaded for each account
+                final BaseAccountType accountType = getInflatedSource(account.type,
+                        BaseAccountType.LEVEL_SUMMARY);
+                final boolean hasContacts = accountType != null;
+                final boolean matchesWritable =
                     (!writableOnly || (writableOnly && !accountType.readOnly));
-            if (hasContacts && matchesWritable) {
-                matching.add(account);
+                if (hasContacts && matchesWritable) {
+                    matching.add(account);
+                }
             }
         }
         return matching;
