@@ -197,7 +197,6 @@ public class ContactEditorFragment extends Fragment implements
     private Context mContext;
     private String mAction;
     private Uri mLookupUri;
-    private String mMimeType;
     private Bundle mIntentExtras;
     private Listener mListener;
 
@@ -292,10 +291,9 @@ public class ContactEditorFragment extends Fragment implements
         super.onStart();
     }
 
-    public void load(String action, Uri lookupUri, String mimeType, Bundle intentExtras) {
+    public void load(String action, Uri lookupUri, Bundle intentExtras) {
         mAction = action;
         mLookupUri = lookupUri;
-        mMimeType = mimeType;
         mIntentExtras = intentExtras;
     }
 
@@ -782,7 +780,7 @@ public class ContactEditorFragment extends Fragment implements
                     // If this was in INSERT, we are changing into an EDIT now.
                     // If it already was an EDIT, we are changing to the new Uri now
                     mState = null;
-                    load(Intent.ACTION_EDIT, contactLookupUri, mMimeType, null);
+                    load(Intent.ACTION_EDIT, contactLookupUri, null);
                     mStatus = Status.LOADING;
                     getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }

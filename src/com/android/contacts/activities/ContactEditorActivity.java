@@ -56,8 +56,9 @@ public class ContactEditorActivity extends Activity implements
         mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
                 R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
-        mFragment.load(getIntent().getAction(), getIntent().getData(),
-                getIntent().resolveType(getContentResolver()), getIntent().getExtras());
+        String action = getIntent().getAction();
+        Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
+        mFragment.load(action, uri, getIntent().getExtras());
 
         // Depending on the use-case, this activity has Done and Revert buttons or not.
         mDoneButton = (Button) findViewById(R.id.done);
@@ -74,8 +75,6 @@ public class ContactEditorActivity extends Activity implements
                 finish();
             }
         });
-
-        Log.i(TAG, getIntent().getData().toString());
     }
 
     @Override
