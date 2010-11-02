@@ -89,7 +89,7 @@ public class AggregationSuggestionView extends RelativeLayout {
             photo.setImageBitmap(BitmapFactory.decodeByteArray(
                     suggestion.photo, 0, suggestion.photo.length));
         } else {
-            photo.setImageResource(R.drawable.ic_contact_picture_2);
+            photo.setImageResource(R.drawable.ic_contact_picture);
         }
 
         TextView name = (TextView) findViewById(R.id.aggregation_suggestion_name);
