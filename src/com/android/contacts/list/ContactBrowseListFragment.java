@@ -287,7 +287,9 @@ public abstract class ContactBrowseListFragment extends
     }
 
     private void notifyInvalidSelection() {
-        mListener.onInvalidSelection();
+        if (mListener != null) {
+            mListener.onInvalidSelection();
+        }
     }
 
     @Override
