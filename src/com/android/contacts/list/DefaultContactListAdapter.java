@@ -116,7 +116,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     protected void configureProjection(
             CursorLoader loader, long directoryId, ContactListFilter filter) {
-        if (filter != null && filter.groupId != 0) {
+        if (filter != null && (filter.groupId != 0
+                || filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT)) {
             loader.setProjection(PROJECTION_DATA);
         } else {
             loader.setProjection(PROJECTION_CONTACT);
@@ -172,8 +173,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 } else {
                     // TODO: avoid the use of private API
                     selection.append(
-                            Contacts._ID + " IN ("
-                                    + "SELECT " + RawContacts.CONTACT_ID
+                            Data.CONTACT_ID + " IN ("
+                                    + "SELECT DISTINCT " + RawContacts.CONTACT_ID
                                     + " FROM raw_contacts"
                                     + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
                                     + "   AND " + RawContacts.ACCOUNT_NAME + "=?)");
