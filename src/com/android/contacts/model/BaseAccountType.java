@@ -33,6 +33,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.view.View;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -223,6 +224,20 @@ public abstract class BaseAccountType {
 
         public Class<? extends View> editorClass;
 
+        /**
+         * If this is a date field, this specifies the format of the date when saving. The
+         * date includes year, month and day. If this is not a date field or the date field is not
+         * editable, this value should be ignored.
+         */
+        public SimpleDateFormat dateFormatWithoutYear;
+
+        /**
+         * If this is a date field, this specifies the format of the date when saving. The
+         * date includes month and day. If this is not a date field, the field is not editable or
+         * dates without year are not supported, this value should be ignored.
+         */
+        public SimpleDateFormat dateFormatWithYear;
+
         public DataKind() {
         }
 
@@ -252,8 +267,6 @@ public abstract class BaseAccountType {
     public static class EditType {
         public int rawValue;
         public int labelRes;
-//        public int actionRes;
-//        public int actionAltRes;
         public boolean secondary;
         public int specificMax;
         public String customColumn;
@@ -291,6 +304,23 @@ public abstract class BaseAccountType {
         @Override
         public int hashCode() {
             return rawValue;
+        }
+    }
+
+    public static class EventEditType extends EditType {
+        private boolean mYearOptional;
+
+        public EventEditType(int rawValue, int labelRes) {
+            super(rawValue, labelRes);
+        }
+
+        public boolean isYearOptional() {
+            return mYearOptional;
+        }
+
+        public EventEditType setYearOptional(boolean yearOptional) {
+            mYearOptional = yearOptional;
+            return this;
         }
     }
 

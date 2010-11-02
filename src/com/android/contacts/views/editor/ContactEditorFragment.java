@@ -507,7 +507,7 @@ public class ContactEditorFragment extends Fragment implements
 
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
-                final FieldEditorView nameEditor = rawContactEditor.getNameEditor();
+                final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(new EditorListener() {
 
                     @Override
@@ -1050,7 +1050,7 @@ public class ContactEditorFragment extends Fragment implements
 
 
     private void onContactNameChange(int request, final RawContactEditorView rawContactEditor,
-            FieldEditorView nameEditor) {
+            TextFieldsEditorView nameEditor) {
 
         switch (request) {
             case EditorListener.EDITOR_FORM_CHANGED:
@@ -1076,7 +1076,7 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void switchFromFullNameToStructuredName(FieldEditorView nameEditor) {
+    private void switchFromFullNameToStructuredName(LabeledEditorView nameEditor) {
         ValuesDelta values = nameEditor.getValues();
 
         String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
@@ -1108,7 +1108,7 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void switchFromStructuredNameToFullName(FieldEditorView nameEditor) {
+    private void switchFromStructuredNameToFullName(LabeledEditorView nameEditor) {
         ValuesDelta values = nameEditor.getValues();
 
         Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath(
@@ -1174,7 +1174,7 @@ public class ContactEditorFragment extends Fragment implements
 
         mAggregationSuggestionEngine.setContactId(getContactId());
 
-        FieldEditorView nameEditor = rawContactEditor.getNameEditor();
+        LabeledEditorView nameEditor = rawContactEditor.getNameEditor();
         mAggregationSuggestionEngine.onNameChange(nameEditor.getValues());
     }
 
@@ -1241,7 +1241,7 @@ public class ContactEditorFragment extends Fragment implements
      * underneath and have the same width as the last text editor of the contact name editor.
      */
     private void adjustAggregationSuggestionViewLayout(RawContactEditorView rawContactView) {
-        FieldEditorView nameEditor = rawContactView.getNameEditor();
+        TextFieldsEditorView nameEditor = rawContactView.getNameEditor();
         Rect rect = new Rect();
         nameEditor.acquireEditorBounds(rect);
         MarginLayoutParams layoutParams =

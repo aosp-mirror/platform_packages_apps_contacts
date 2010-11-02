@@ -60,4 +60,7 @@
 
     <!-- Loader ID for contact filters -->
     <item type="id" name="contact_list_filter_loader" />
+
+    <!-- Dialog ID for the date picker in event (birthday) editors -->
+    <item type="id" name="dialog_event_date_picker" />
 </resources>

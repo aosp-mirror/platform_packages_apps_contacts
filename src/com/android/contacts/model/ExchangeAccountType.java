@@ -17,11 +17,14 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.util.DateUtils;
+import com.android.contacts.views.editor.EventFieldEditorView;
 import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -281,6 +284,30 @@ public class ExchangeAccountType extends FallbackAccountType {
         if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
+        }
+
+        return kind;
+    }
+
+    protected DataKind inflateEvent(Context context, int inflateLevel) {
+        DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
+        if (kind == null) {
+            kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
+                    R.string.eventLabelsGroup, -1, 150, true));
+            kind.actionHeader = new EventActionInflater();
+            kind.actionBody = new SimpleInflater(Event.START_DATE);
+
+            kind.isList = false;
+
+            kind.typeColumn = Event.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, false).setSpecificMax(1));
+
+            kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
+            kind.editorClass = EventFieldEditorView.class;
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
         }
 
         return kind;

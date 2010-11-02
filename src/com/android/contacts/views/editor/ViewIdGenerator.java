@@ -26,7 +26,7 @@ import android.os.Parcelable;
 
 /**
  * A class that provides unique view ids for {@link ContentEditorView}, {@link KindSectionView},
- * {@link FieldEditorView} and {@link EditView} on {@link EditContactActivity}.
+ * {@link LabeledEditorView} and {@link EditView} on {@link EditContactActivity}.
  * It is used to assign a unique but consistent id to each view across {@link EditContactActivity}'s
  * lifecycle, so that we can re-construct view state (e.g. focused view) when the screen rotates.
  *

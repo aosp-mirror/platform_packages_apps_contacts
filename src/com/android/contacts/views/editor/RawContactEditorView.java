@@ -60,7 +60,7 @@ import java.util.ArrayList;
  */
 public class RawContactEditorView extends BaseRawContactEditorView {
     private View mPhotoStub;
-    private FieldEditorView mName;
+    private TextFieldsEditorView mName;
     private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
@@ -96,7 +96,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
-        mName = (FieldEditorView)findViewById(R.id.edit_name);
+        mName = (TextFieldsEditorView)findViewById(R.id.edit_name);
         mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
 
@@ -216,7 +216,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         }
     }
 
-    public FieldEditorView getNameEditor() {
+    public TextFieldsEditorView getNameEditor() {
         return mName;
     }
 

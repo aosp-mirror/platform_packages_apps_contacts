@@ -141,7 +141,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private View createEditorView(ValuesDelta entry) {
         final View view;
         if (mKind.editorClass == null) {
-            view = new FieldEditorView(mContext);
+            view = new TextFieldsEditorView(mContext);
         } else {
             try {
                 view = mKind.editorClass.getConstructor(Context.class).newInstance(
