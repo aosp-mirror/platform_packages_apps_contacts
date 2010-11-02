@@ -259,6 +259,8 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
             } catch (RemoteException e) {
                 Log.e(TAG, "Cannot obtain sync flag for account: " + account, e);
             }
+            Log.d(TAG, String.format("found account (name: %s, type: %s, syncable: %b",
+                    account.name, account.type, syncable));
             if (syncable) {
                 // Ensure we have details loaded for each account
                 final BaseAccountType accountType = getInflatedSource(account.type,
