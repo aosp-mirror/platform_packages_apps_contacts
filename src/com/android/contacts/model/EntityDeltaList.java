@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelable {
     private boolean mSplitRawContacts;
-    private List<Long> mJoinWithRawContactIds;
+    private long[] mJoinWithRawContactIds;
 
     private EntityDeltaList() {
     }
@@ -340,7 +340,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         mSplitRawContacts = true;
     }
 
-    public void setJoinWithRawContacts(List<Long> rawContactIds) {
+    public void setJoinWithRawContacts(long[] rawContactIds) {
         mJoinWithRawContactIds = rawContactIds;
     }
 
@@ -357,7 +357,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         for (EntityDelta delta : this) {
             dest.writeParcelable(delta, flags);
         }
-        dest.writeList(mJoinWithRawContactIds);
+        dest.writeLongArray(mJoinWithRawContactIds);
     }
 
     @SuppressWarnings("unchecked")
@@ -367,7 +367,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         for (int i = 0; i < size; i++) {
             this.add(source.<EntityDelta> readParcelable(loader));
         }
-        mJoinWithRawContactIds = source.readArrayList(loader);
+        mJoinWithRawContactIds = source.createLongArray();
     }
 
     public static final Parcelable.Creator<EntityDeltaList> CREATOR =
