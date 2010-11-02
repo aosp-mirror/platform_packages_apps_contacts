@@ -29,9 +29,8 @@ import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.SystemClock;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -143,21 +142,6 @@ public class ContactBadgeUtil {
     }
 
     public static Bitmap loadPlaceholderPhoto(Context context) {
-        // Set the photo with a random "no contact" image
-        final long now = SystemClock.elapsedRealtime();
-        final int num = (int) now & 0xf;
-        final int resourceId;
-        if (num < 9) {
-            // Leaning in from right, common
-            resourceId = R.drawable.ic_contact_picture;
-        } else if (num < 14) {
-            // Leaning in from left uncommon
-            resourceId = R.drawable.ic_contact_picture_2;
-        } else {
-            // Coming in from the top, rare
-            resourceId = R.drawable.ic_contact_picture_3;
-        }
-
-        return BitmapFactory.decodeResource(context.getResources(), resourceId);
+        return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_contact_picture);
     }
 }
