@@ -72,6 +72,8 @@ public class SelectAccountActivity extends Activity {
             return;
         }
 
+        Log.i(LOG_TAG, "The number of available accounts: " + accountList.size());
+
         // Multiple accounts. Let users to select one.
         mAccountSelectionListener =
                 new AccountSelectionUtil.AccountSelectedListener(
