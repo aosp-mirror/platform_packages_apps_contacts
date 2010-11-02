@@ -117,6 +117,12 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
 
     /**
+     * An intent extra that forces the editor to add the edited contact
+     * to the default group (e.g. "My Contacts").
+     */
+    public static final String INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY = "addToDefaultDirectory";
+
+    /**
      * Modes that specify what the AsyncTask has to perform after saving
      */
     private interface SaveMode {
@@ -217,6 +223,8 @@ public class ContactEditorFragment extends Fragment implements
     private long mAggregationSuggestionsRawContactId;
     private View mAggregationSuggestionView;
 
+    private boolean mAutoAddToDefaultGroup;
+
     public ContactEditorFragment() {
     }
 
@@ -295,6 +303,8 @@ public class ContactEditorFragment extends Fragment implements
         mAction = action;
         mLookupUri = lookupUri;
         mIntentExtras = intentExtras;
+        mAutoAddToDefaultGroup = mIntentExtras != null
+                && mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
     }
 
     public void setListener(Listener value) {
@@ -503,6 +513,7 @@ public class ContactEditorFragment extends Fragment implements
             });
 
             mContent.addView(editor);
+
             editor.setState(entity, source, mViewIdGenerator);
 
             if (editor instanceof RawContactEditorView) {
@@ -519,6 +530,8 @@ public class ContactEditorFragment extends Fragment implements
                     public void onDeleted(Editor removedEditor) {
                     }
                 });
+
+                rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
                 if (rawContactId == mAggregationSuggestionsRawContactId) {
                     acquireAggregationSuggestions(rawContactEditor);

@@ -18,21 +18,22 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.model.BaseAccountType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.BaseAccountType.DataKind;
 import com.android.contacts.model.BaseAccountType.EditType;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.views.GroupMetaDataLoader;
 
 import android.content.Context;
 import android.content.Entity;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -75,6 +76,10 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     private boolean mExpanded = true;
 
     private long mRawContactId = -1;
+    private boolean mAutoAddToDefaultGroup = true;
+    private Cursor mGroupMetaData;
+    private DataKind mGroupMembershipKind;
+    private EntityDelta mState;
 
     public RawContactEditorView(Context context) {
         super(context);
@@ -130,6 +135,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
      */
     @Override
     public void setState(EntityDelta state, BaseAccountType source, ViewIdGenerator vig) {
+        mState = state;
+
         // Remove any existing sections
         mFields.removeAllViews();
 
@@ -168,11 +175,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mFields.setVisibility(View.VISIBLE);
         mName.setVisibility(View.VISIBLE);
 
-        DataKind groupMembershipKind = source.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
-        if (groupMembershipKind != null) {
+        mGroupMembershipKind = source.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
+        if (mGroupMembershipKind != null) {
             mGroupMembershipView = (GroupMembershipView)mInflater.inflate(
                     R.layout.item_group_membership, mFields, false);
-            mGroupMembershipView.setKind(groupMembershipKind);
+            mGroupMembershipView.setKind(mGroupMembershipKind);
         }
 
         // Create editor sections for each possible data kind
@@ -207,13 +214,76 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         if (mGroupMembershipView != null) {
             mFields.addView(mGroupMembershipView);
         }
+
+        addToDefaultGroupIfNeeded();
     }
 
     @Override
     public void setGroupMetaData(Cursor groupMetaData) {
+        mGroupMetaData = groupMetaData;
+        addToDefaultGroupIfNeeded();
         if (mGroupMembershipView != null) {
             mGroupMembershipView.setGroupMetaData(groupMetaData);
         }
+    }
+
+    public void setAutoAddToDefaultGroup(boolean flag) {
+        this.mAutoAddToDefaultGroup = flag;
+    }
+
+    /**
+     * If automatic addition to the default group was requested (see
+     * {@link #setAutoAddToDefaultGroup}, checks if the raw contact is in any
+     * group and if it is not adds it to the default group (in case of Google
+     * contacts that's "My Contacts").
+     */
+    private void addToDefaultGroupIfNeeded() {
+        if (!mAutoAddToDefaultGroup || mGroupMetaData == null || mGroupMetaData.isClosed()
+                || mState == null) {
+            return;
+        }
+
+        boolean hasGroupMembership = false;
+        ArrayList<ValuesDelta> entries = mState.getMimeEntries(GroupMembership.CONTENT_ITEM_TYPE);
+        if (entries != null) {
+            for (ValuesDelta values : entries) {
+                Long id = values.getAsLong(GroupMembership.GROUP_ROW_ID);
+                if (id != null && id.longValue() != 0) {
+                    hasGroupMembership = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hasGroupMembership) {
+            long defaultGroupId = getDefaultGroupId();
+            if (defaultGroupId != -1) {
+                ValuesDelta entry = EntityModifier.insertChild(mState, mGroupMembershipKind);
+                entry.put(GroupMembership.GROUP_ROW_ID, defaultGroupId);
+            }
+        }
+    }
+
+    /**
+     * Returns the default group (e.g. "My Contacts") for the current raw contact's
+     * account.  Returns -1 if there is no such group.
+     */
+    private long getDefaultGroupId() {
+        String accountType = mState.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+        String accountName = mState.getValues().getAsString(RawContacts.ACCOUNT_NAME);
+        mGroupMetaData.moveToPosition(-1);
+        while (mGroupMetaData.moveToNext()) {
+            String name = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
+            String type = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
+            if (name.equals(accountName) && type.equals(accountType)) {
+                long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
+                if (!mGroupMetaData.isNull(GroupMetaDataLoader.AUTO_ADD)
+                            && mGroupMetaData.getInt(GroupMetaDataLoader.AUTO_ADD) != 0) {
+                    return groupId;
+                }
+            }
+        }
+        return -1;
     }
 
     public TextFieldsEditorView getNameEditor() {
