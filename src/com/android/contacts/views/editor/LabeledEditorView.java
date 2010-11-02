@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 The Android Open Source Project
+ * Copyright (C) 2010 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package com.android.contacts.views.editor;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.BaseAccountType.DataKind;
-import com.android.contacts.model.BaseAccountType.EditField;
 import com.android.contacts.model.BaseAccountType.EditType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -34,14 +33,7 @@ import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,18 +42,17 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import java.util.List;
 
 /**
- * Simple editor that handles labels and any {@link EditField} defined for
- * the entry. Uses {@link ValuesDelta} to read any existing
+ * Base class for editors that handles labels and values.
+ * Uses {@link ValuesDelta} to read any existing
  * {@link Entity} values, and to correctly write any changes values.
  */
-public class FieldEditorView extends ViewGroup implements Editor, DialogShowingView {
-    private static final String DIALOG_ID_KEY = "dialog_id";
+public abstract class LabeledEditorView extends ViewGroup implements Editor, DialogShowingView {
+    protected static final String DIALOG_ID_KEY = "dialog_id";
     private static final int DIALOG_ID_CUSTOM = 1;
 
     private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
@@ -69,16 +60,11 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
 
     private Button mLabel;
     private ImageButton mDelete;
-    private ImageButton mMoreOrLess;
 
     private DataKind mKind;
     private ValuesDelta mEntry;
     private EntityDelta mState;
     private boolean mReadOnly;
-    private EditText[] mFieldEditTexts = null;
-
-    private boolean mHasShortAndLongForms;
-    private boolean mHideOptional = true;
 
     private EditType mType;
     // Used only when a user tries to use custom label.
@@ -88,17 +74,15 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
     private DialogManager mDialogManager = null;
     private EditorListener mListener;
 
-
-
-    public FieldEditorView(Context context) {
+    public LabeledEditorView(Context context) {
         super(context);
     }
 
-    public FieldEditorView(Context context, AttributeSet attrs) {
+    public LabeledEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FieldEditorView(Context context, AttributeSet attrs, int defStyle) {
+    public LabeledEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -126,71 +110,24 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
                     r1 - mDelete.getMeasuredWidth(), b1 - mDelete.getMeasuredHeight(),
                     r1, b1);
         }
-
-        // MoreOrLess Button
-        final boolean hasMoreOrLess = mMoreOrLess != null;
-        if (hasMoreOrLess) {
-            mMoreOrLess.layout(
-                    r1 - mMoreOrLess.getMeasuredWidth(), b1 - mMoreOrLess.getMeasuredHeight(),
-                    r1, b1);
-        }
-
-        // Fields
-        // Subtract buttons left and right if necessary
-        final int l2 = hasLabel ? l1 + mLabel.getMeasuredWidth() : l1;
-        final int r2 = r1 - Math.max(
-                hasDelete ? mDelete.getMeasuredWidth() : 0,
-                hasMoreOrLess ? mMoreOrLess.getMeasuredWidth() : 0);
-        int y = t1;
-        if (mFieldEditTexts != null) {
-            for (EditText editText : mFieldEditTexts) {
-                if (editText.getVisibility() != View.GONE) {
-                    int height = editText.getMeasuredHeight();
-                    editText.layout(
-                            l2, t1 + y,
-                            r2, t1 + y + height);
-                    y += height;
-                }
-            }
-        }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         measureChildren(widthMeasureSpec, heightMeasureSpec);
 
-        // summarize the EditText heights
-        int totalHeight = 0;
-        int visibleFieldCount = 0;
-        EditText firstVisibleField = null;
-        if (mFieldEditTexts != null) {
-            for (EditText editText : mFieldEditTexts) {
-                if (editText.getVisibility() != View.GONE) {
-                    visibleFieldCount ++;
-                    if (firstVisibleField == null) {
-                        firstVisibleField = editText;
-                    }
-                    totalHeight += editText.getMeasuredHeight();
-                }
-            }
-        }
+        final int padding = getPaddingTop() + getPaddingBottom();
+        final int deleteHeight = mDelete != null ? mDelete.getMeasuredHeight() : 0;
+        final int labelHeight = mLabel != null ? mLabel.getMeasuredHeight() : 0;
 
-        int padding = getPaddingTop() + getPaddingBottom();
-        int minHeight = padding;
-
-        if (mMoreOrLess != null) {
-            minHeight += mMoreOrLess.getMeasuredHeight();
-        }
-
-        if (mDelete != null) {
-            minHeight += mDelete.getMeasuredHeight();
-        }
-
-        totalHeight = Math.max(minHeight, totalHeight);
+        final int height = padding +
+                Math.max(Math.max(deleteHeight, labelHeight), getEditorHeight());
 
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                resolveSize(totalHeight, heightMeasureSpec));
+                resolveSize(height, heightMeasureSpec));
     }
+
+    protected abstract int getEditorHeight();
 
     /**
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
@@ -239,11 +176,11 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
                     // Keep around in model, but mark as deleted
                     mEntry.markDeleted();
 
-                    ((ViewGroup) getParent()).removeView(FieldEditorView.this);
+                    ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
 
                     if (mListener != null) {
                         // Notify listener when present
-                        mListener.onDeleted(FieldEditorView.this);
+                        mListener.onDeleted(LabeledEditorView.this);
                     }
                 }
             });
@@ -251,52 +188,6 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         } else if (!shouldExist && mDelete != null) {
             removeView(mDelete);
             mDelete = null;
-        }
-    }
-
-    /**
-     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
-     */
-    private void setupMoreOrLessButton(boolean shouldExist, boolean collapsed) {
-        if (shouldExist) {
-            if (mMoreOrLess == null) {
-                // Unfortunately, the style passed as constructor-parameter is mostly ignored,
-                // so we have to set the Background and Image seperately. However, if it is not
-                // given, the size of the control is wrong
-                mMoreOrLess = new ImageButton(mContext, null, R.style.EmptyButton);
-                mMoreOrLess.setLayoutParams(
-                        new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                mMoreOrLess.setBackgroundResource(R.drawable.btn_circle);
-                mMoreOrLess.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Save focus
-                        final View focusedChild = getFocusedChild();
-                        final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
-
-                        // Reconfigure GUI
-                        mHideOptional = !mHideOptional;
-                        onOptionalFieldVisibilityChange();
-                        rebuildValues();
-
-                        // Restore focus
-                        View newFocusView = findViewById(focusedViewId);
-                        if (newFocusView == null || newFocusView.getVisibility() == GONE) {
-                            // find first visible child
-                            newFocusView = FieldEditorView.this;
-                        }
-                        if (newFocusView != null) {
-                            newFocusView.requestFocus();
-                        }
-                    }
-                });
-                addView(mMoreOrLess);
-            }
-            mMoreOrLess.setImageResource(
-                    collapsed ? R.drawable.ic_btn_round_more : R.drawable.ic_btn_round_less);
-        } else if (mMoreOrLess != null) {
-            removeView(mMoreOrLess);
-            mMoreOrLess = null;
         }
     }
 
@@ -320,24 +211,27 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
     public void setEnabled(boolean enabled) {
         if (mLabel != null) mLabel.setEnabled(enabled);
 
-        if (mFieldEditTexts != null) {
-            for (int index = 0; index < mFieldEditTexts.length; index++) {
-                mFieldEditTexts[index].setEnabled(enabled);
-            }
-        }
         if (mDelete != null) mDelete.setEnabled(enabled);
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
     }
 
-    /**
-     * Returns true if the editor is currently configured to show optional fields.
-     */
-    public boolean areOptionalFieldsVisible() {
-        return !mHideOptional;
+    public Button getLabel() {
+        return mLabel;
     }
 
-    public boolean hasShortAndLongForms() {
-        return mHasShortAndLongForms;
+    public ImageButton getDelete() {
+        return mDelete;
+    }
+
+    protected DataKind getKind() {
+        return mKind;
+    }
+
+    protected ValuesDelta getEntry() {
+        return mEntry;
+    }
+
+    protected EditType getType() {
+        return mType;
     }
 
     /**
@@ -375,7 +269,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         }
     }
 
-    private void rebuildValues() {
+    protected void rebuildValues() {
         setValues(mKind, mEntry, mState, mReadOnly, mViewIdGenerator);
     }
 
@@ -393,8 +287,6 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         mViewIdGenerator = vig;
         setId(vig.getId(state, kind, entry, ViewIdGenerator.NO_VIEW_INDEX));
 
-        final boolean enabled = !readOnly;
-
         if (!entry.isVisible()) {
             // Hide ourselves entirely if deleted
             setVisibility(View.GONE);
@@ -405,87 +297,11 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
         setupLabelButton(hasTypes);
-        if (mLabel != null) mLabel.setEnabled(enabled);
+        if (mLabel != null) mLabel.setEnabled(!readOnly);
         if (hasTypes) {
             mType = EntityModifier.getCurrentType(entry, kind);
             rebuildLabel();
         }
-
-        // Remove edit texts that we currently have
-        if (mFieldEditTexts != null) {
-            for (EditText fieldEditText : mFieldEditTexts) {
-                removeView(fieldEditText);
-            }
-        }
-        boolean hidePossible = false;
-
-        int fieldCount = kind.fieldList.size();
-        mFieldEditTexts = new EditText[fieldCount];
-        for (int index = 0; index < fieldCount; index++) {
-            final EditField field = kind.fieldList.get(index);
-            final EditText fieldView = new EditText(mContext);
-            fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT));
-            fieldView.setGravity(Gravity.TOP);
-            mFieldEditTexts[index] = fieldView;
-            fieldView.setId(vig.getId(state, kind, entry, index));
-            if (field.titleRes > 0) {
-                fieldView.setHint(field.titleRes);
-            }
-            int inputType = field.inputType;
-            fieldView.setInputType(inputType);
-            if (inputType == InputType.TYPE_CLASS_PHONE) {
-                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher(
-                        ContactsUtils.getCurrentCountryIso(mContext)));
-            }
-            fieldView.setMinLines(field.minLines);
-
-            // Read current value from state
-            final String column = field.column;
-            final String value = entry.getAsString(column);
-            fieldView.setText(value);
-
-            // Prepare listener for writing changes
-            fieldView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void afterTextChanged(Editable s) {
-                    // Trigger event for newly changed value
-                    onFieldChanged(column, s.toString());
-                }
-
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
-            });
-
-            fieldView.setEnabled(enabled);
-
-            if (field.shortForm) {
-                hidePossible = true;
-                mHasShortAndLongForms = true;
-                fieldView.setVisibility(mHideOptional ? View.VISIBLE : View.GONE);
-            } else if (field.longForm) {
-                hidePossible = true;
-                mHasShortAndLongForms = true;
-                fieldView.setVisibility(mHideOptional ? View.GONE : View.VISIBLE);
-            } else {
-                // Hide field when empty and optional value
-                final boolean couldHide = (!ContactsUtils.isGraphic(value) && field.optional);
-                final boolean willHide = (mHideOptional && couldHide);
-                fieldView.setVisibility(willHide ? View.GONE : View.VISIBLE);
-                hidePossible = hidePossible || couldHide;
-            }
-
-            addView(fieldView);
-        }
-
-        // When hiding fields, place expandable
-        setupMoreOrLessButton(hidePossible, mHideOptional);
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
     }
 
     public ValuesDelta getValues() {
@@ -520,6 +336,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
                     requestFocusForFirstEditField();
+                    onLabelRebuilt();
                 }
             }
         });
@@ -527,6 +344,12 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         builder.setNegativeButton(android.R.string.cancel, null);
 
         return builder.create();
+    }
+
+    /**
+     * Called after the label has changed (either chosen from the list or entered in the Dialog)
+     */
+    protected void onLabelRebuilt() {
     }
 
     /**
@@ -563,6 +386,7 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     rebuildLabel();
                     requestFocusForFirstEditField();
+                    onLabelRebuilt();
                 }
                 return true;
             }
@@ -591,76 +415,6 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         return mDialogManager;
     }
 
-    private static class SavedState extends BaseSavedState {
-        public boolean mHideOptional;
-        public int[] mVisibilities;
-
-        SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        private SavedState(Parcel in) {
-            super(in);
-            mVisibilities = new int[in.readInt()];
-            in.readIntArray(mVisibilities);
-        }
-
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
-            out.writeInt(mVisibilities.length);
-            out.writeIntArray(mVisibilities);
-        }
-
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
-    }
-
-    /**
-     * Saves the visibility of the child EditTexts, and mHideOptional.
-     */
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        Parcelable superState = super.onSaveInstanceState();
-        SavedState ss = new SavedState(superState);
-
-        ss.mHideOptional = mHideOptional;
-
-        final int numChildren = mFieldEditTexts.length;
-        ss.mVisibilities = new int[numChildren];
-        for (int i = 0; i < numChildren; i++) {
-            ss.mVisibilities[i] = mFieldEditTexts[i].getVisibility();
-        }
-
-        return ss;
-    }
-
-    /**
-     * Restores the visibility of the child EditTexts, and mHideOptional.
-     */
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        SavedState ss = (SavedState) state;
-        super.onRestoreInstanceState(ss.getSuperState());
-
-        mHideOptional = ss.mHideOptional;
-
-        int numChildren = Math.min(mFieldEditTexts.length, ss.mVisibilities.length);
-        for (int i = 0; i < numChildren; i++) {
-            mFieldEditTexts[i].setVisibility(ss.mVisibilities[i]);
-        }
-    }
-
     @Override
     public Dialog createDialog(Bundle bundle) {
         if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
@@ -673,16 +427,5 @@ public class FieldEditorView extends ViewGroup implements Editor, DialogShowingV
         }
     }
 
-    private void requestFocusForFirstEditField() {
-        if (mFieldEditTexts != null && mFieldEditTexts.length != 0) {
-            boolean anyFieldHasFocus = false;
-            for (EditText editText : mFieldEditTexts) {
-                if (editText.hasFocus()) {
-                    anyFieldHasFocus = true;
-                }
-            }
-            if (!anyFieldHasFocus)
-                mFieldEditTexts[0].requestFocus();
-        }
-    }
+    protected abstract void requestFocusForFirstEditField();
 }

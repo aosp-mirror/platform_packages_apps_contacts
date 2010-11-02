@@ -17,21 +17,17 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.RawContact;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
 import com.google.android.collect.Lists;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +38,7 @@ import java.util.List;
 /**
  * A view that contains a name, picture and other data for a contact aggregation suggestion.
  */
-public class AggregationSuggestionView extends RelativeLayout implements OnClickListener {
+public class AggregationSuggestionView extends RelativeLayout {
 
     public interface Listener {
 
@@ -67,14 +63,17 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
 
     public AggregationSuggestionView(Context context) {
         super(context);
+        setClickable(true);
     }
 
     public AggregationSuggestionView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setClickable(true);
     }
 
     public AggregationSuggestionView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setClickable(true);
     }
 
     public void setNewContact(boolean flag) {
@@ -106,15 +105,6 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
             dataText = suggestion.phoneNumber;
         }
         data.setText(dataText);
-
-        boolean canEdit = canEditSuggestedContact();
-        Button join = (Button) findViewById(R.id.aggregation_suggestion_join_button);
-        join.setOnClickListener(this);
-        join.setVisibility(canEdit ? View.GONE : View.VISIBLE);
-
-        Button edit = (Button) findViewById(R.id.aggregation_suggestion_edit_button);
-        edit.setOnClickListener(this);
-        edit.setVisibility(canEdit ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -146,17 +136,19 @@ public class AggregationSuggestionView extends RelativeLayout implements OnClick
     }
 
     @Override
-    public void onClick(View v) {
+    public boolean performClick() {
         if (mListener != null) {
-            if (v.getId() == R.id.aggregation_suggestion_join_button) {
+            if (canEditSuggestedContact()) {
+                mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
+            } else {
                 ArrayList<Long> rawContactIds = Lists.newArrayList();
                 for (RawContact rawContact : mRawContacts) {
                     rawContactIds.add(rawContact.rawContactId);
                 }
                 mListener.onJoinAction(mContactId, rawContactIds);
-            } else {
-                mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
             }
+            return true;
         }
+        return false;
     }
 }

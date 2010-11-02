@@ -27,13 +27,15 @@ import java.util.Date;
  * Utility methods for processing dates.
  */
 public class DateUtils {
-
-    private static final SimpleDateFormat NO_YEAR_DATE_FORMAT = new SimpleDateFormat("--MM-dd");
+    public static final SimpleDateFormat NO_YEAR_DATE_FORMAT = new SimpleDateFormat("--MM-dd");
+    public static final SimpleDateFormat FULL_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat DATE_AND_TIME_FORMAT =
+            new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     private static final SimpleDateFormat[] DATE_FORMATS = {
         NO_YEAR_DATE_FORMAT,
-        new SimpleDateFormat("yyyy-MM-dd"),
-        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+        FULL_DATE_FORMAT,
+        DATE_AND_TIME_FORMAT,
     };
     static {
         for (SimpleDateFormat format : DATE_FORMATS) {

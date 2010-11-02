@@ -1303,19 +1303,23 @@
     <!-- The name of the invisible local contact directory -->
     <string name="local_invisible_directory">Other</string>
 
-    <!-- The heading of the contact aggregation suggestions section in Contact editor. [CHAR LIMIT=128]-->
-    <plurals name="aggregation_suggestion_title">
-        <item quantity="one">Similar contact</item>
-        <item quantity="other">Similar contacts</item>
-    </plurals>
+    <!-- The title of a confirmation dialog shown when the user selects a
+        contact aggregation suggestion in Contact editor. [CHAR LIMIT=128]-->
+    <string name="aggregation_suggestion_join_dialog_title">Join contacts</string>
 
-    <!-- The heading of the aggregation suggestion section of the Contact editor
-        indicating the contact that will be joined with the current contact. [CHAR LIMIT=128]-->
-    <string name="aggregation_suggestion_joined_title">Joined contact:</string>
+    <!-- The message in a confirmation dialog shown when the user selects a
+        contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
+    <string name="aggregation_suggestion_join_dialog_message">Join
+        the current contact with the selected contact?</string>
 
-    <!-- The button next to a contact aggregation suggestion in Contact editor. Causes a logical
-      join with the suggested contact. [CHAR LIMIT=12]-->
-    <string name="aggregation_suggestion_join_button">Join</string>
+    <!-- The title of a confirmation dialog shown when the user selects a
+        contact aggregation suggestion in Contact editor. [CHAR LIMIT=128]-->
+    <string name="aggregation_suggestion_edit_dialog_title">Edit selected contacts</string>
+
+    <!-- The message in a confirmation dialog shown when the user selects a 
+        contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
+    <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
+        the selected contact? Information you entered so far will be copied.</string>
 
     <!-- The button next to a contact aggregation suggestion in Contact editor. Causes the UI
     to switch to the suggested contact in the editor. [CHAR LIMIT=12]-->
@@ -1393,7 +1397,10 @@
 
     <!-- Button to close without add a phone number to contacts [CHAR LIMIT=25] -->
     <string name="non_phone_close">Close</string>
-    
+
     <!-- Format string that combines the name and the phonetic name for the widget. if the phonetic name is empty, only the display name is used instead [CHAR LIMIT=25] -->
     <string name="widget_name_and_phonetic"><xliff:g id="display_name" example="John Huber">%1$s</xliff:g> (<xliff:g id="phonetic_name">%2$s</xliff:g>)</string>
+
+    <!-- Checkbox whether to provide a year for a birthday [CHAR LIMIT=30] -->
+    <string name="date_year_toggle">Provide a year</string>
 </resources>

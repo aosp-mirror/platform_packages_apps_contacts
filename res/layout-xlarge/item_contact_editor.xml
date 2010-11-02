@@ -122,7 +122,7 @@
                 ex:layout_narrowRightMargin="50dip"
                 >
 
-                <com.android.contacts.views.editor.FieldEditorView
+                <com.android.contacts.views.editor.TextFieldsEditorView
                     android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -17,39 +17,16 @@
  */
 -->
 
-<com.android.contacts.widget.InterpolatingLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="20dip">
-
+    android:orientation="vertical"
+    android:background="@drawable/aggregation_suggestions_bg_light_holo"
+    android:paddingBottom="10dip">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/aggregation_suggestions"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/aggregation_suggestions_bg_light_holo"
-        android:minWidth="100dip"
-        android:paddingBottom="10dip"
-        ex:layout_narrowParentWidth="600dip"
-        ex:layout_narrowWidth="400dip"
-        ex:layout_wideParentWidth="300dip"
-        ex:layout_wideWidth="240dip">
-        <TextView
-            android:id="@+id/aggregation_suggestion_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="5dip"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?android:attr/textColorTertiary"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/aggregation_suggestions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </LinearLayout>
-</com.android.contacts.widget.InterpolatingLayout>
+        android:orientation="vertical" />
+</LinearLayout>

@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="@drawable/group_membership_edit_background"
+        android:background="@drawable/edit_button_field_background"
         android:gravity="left"
         android:ellipsize="end"
     />

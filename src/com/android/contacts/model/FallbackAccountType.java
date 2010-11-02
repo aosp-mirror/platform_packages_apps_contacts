@@ -81,7 +81,6 @@ public class FallbackAccountType extends BaseAccountType {
         inflatePhoto(context, inflateLevel);
         inflateNote(context, inflateLevel);
         inflateWebsite(context, inflateLevel);
-        inflateEvent(context, inflateLevel);
         inflateSipAddress(context, inflateLevel);
         inflateGroupMembership(context, inflateLevel);
 
@@ -105,8 +104,8 @@ public class FallbackAccountType extends BaseAccountType {
         return new EditType(type, Im.getProtocolLabelResource(type));
     }
 
-    protected EditType buildEventType(int type) {
-        return new EditType(type, Event.getTypeResource(type));
+    protected EventEditType buildEventType(int type, boolean yearOptional) {
+        return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional);
     }
 
     protected EditType buildRelationType(int type) {
@@ -395,33 +394,6 @@ public class FallbackAccountType extends BaseAccountType {
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
-        }
-
-        return kind;
-    }
-
-    protected DataKind inflateEvent(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            // TODO make the event field editable.  The difficulty is that Google Contacts
-            // drops incorrectly formatted dates.  This means that we would
-            // need to know exactly how the sync adapter wants the date formatted and
-            // then have a rigid UI and automatic formatting of the date for the sync adapter.
-            kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
-                    R.string.eventLabelsGroup, -1, 150, false));
-            kind.actionHeader = new EventActionInflater();
-            kind.actionBody = new SimpleInflater(Event.START_DATE);
-
-            kind.typeColumn = Event.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY));
-            kind.typeList.add(buildEventType(Event.TYPE_ANNIVERSARY));
-            kind.typeList.add(buildEventType(Event.TYPE_OTHER));
-            kind.typeList.add(buildEventType(Event.TYPE_CUSTOM).setSecondary(true).setCustomColumn(
-                    Event.LABEL));
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
         }
 
         return kind;
