@@ -17,11 +17,14 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.util.DateUtils;
+import com.android.contacts.views.editor.EventFieldEditorView;
 import com.google.android.collect.Lists;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.view.inputmethod.EditorInfo;
@@ -42,6 +45,7 @@ public class GoogleAccountType extends FallbackAccountType {
         super.inflate(context, inflateLevel);
 
         inflateRelation(context, inflateLevel);
+        inflateEvent(context, inflateLevel);
     }
 
     @Override
@@ -88,7 +92,7 @@ public class GoogleAccountType extends FallbackAccountType {
         return kind;
     }
 
-    protected DataKind inflateRelation(Context context, int inflateLevel) {
+    private DataKind inflateRelation(Context context, int inflateLevel) {
         DataKind kind = getKindForMimetype(Relation.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Relation.CONTENT_ITEM_TYPE,
@@ -121,6 +125,35 @@ public class GoogleAccountType extends FallbackAccountType {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Relation.DATA, R.string.relationLabelsGroup,
                     FLAGS_RELATION));
+        }
+
+        return kind;
+    }
+
+    private DataKind inflateEvent(Context context, int inflateLevel) {
+        DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
+        if (kind == null) {
+            kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
+                    R.string.eventLabelsGroup, -1, 150, true));
+            kind.actionHeader = new EventActionInflater();
+            kind.actionBody = new SimpleInflater(Event.START_DATE);
+            kind.editorClass = EventFieldEditorView.class;
+
+            kind.typeColumn = Event.TYPE;
+            kind.typeList = Lists.newArrayList();
+            kind.dateFormatWithoutYear = DateUtils.NO_YEAR_DATE_FORMAT;
+            kind.dateFormatWithYear = DateUtils.FULL_DATE_FORMAT;
+            kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, true).setSpecificMax(1));
+            kind.typeList.add(buildEventType(Event.TYPE_ANNIVERSARY, false));
+            kind.typeList.add(buildEventType(Event.TYPE_OTHER, false));
+            kind.typeList.add(buildEventType(Event.TYPE_CUSTOM, false).setSecondary(true)
+                    .setCustomColumn(Event.LABEL));
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Event.TYPE, Event.TYPE_BIRTHDAY);
+
+            kind.fieldList = Lists.newArrayList();
+            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
         }
 
         return kind;
