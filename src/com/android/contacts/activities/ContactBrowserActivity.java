@@ -384,6 +384,10 @@ public class ContactBrowserActivity extends Activity
      * Restores filter-specific persistent selection.
      */
     private void restoreListSelection() {
+        if (mListFragment == null) {
+            return;
+        }
+
         if (mListFragment instanceof DefaultContactBrowseListFragment
                 && mContactListFilterController != null
                 && mContactListFilterController.isLoaded()) {
@@ -392,9 +396,10 @@ public class ContactBrowserActivity extends Activity
             fragment.setFilter(mContactListFilterController.getFilter());
             fragment.restoreSelectedUri(mPrefs);
             fragment.requestSelectionOnScreen(false);
-        }
-
-        if (mContactContentDisplayed) {
+            if (mContactContentDisplayed) {
+                setupContactDetailFragment(mListFragment.getSelectedContactUri());
+            }
+        } else if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
     }
