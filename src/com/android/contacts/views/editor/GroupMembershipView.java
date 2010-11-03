@@ -242,6 +242,7 @@ public class GroupMembershipView extends LinearLayout
                 if (!entry.isDelete()) {
                     Long groupId = entry.getAsLong(GroupMembership.GROUP_ROW_ID);
                     if (groupId != null && groupId != mFavoritesGroupId
+                            && (groupId != mDefaultGroupId || mDefaultGroupVisible)
                             && !isGroupChecked(groupId)) {
                         entry.markDeleted();
                     }
