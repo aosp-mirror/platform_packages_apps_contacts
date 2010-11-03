@@ -21,8 +21,14 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.android.contacts.R;
 
@@ -40,11 +46,7 @@ public class VCardService extends Service {
     /* package */ static final int IMPORT_NOTIFICATION_ID = 1000;
     /* package */ static final int EXPORT_NOTIFICATION_ID = 1001;
 
-    /**
-     * Small vCard file is imported soon, so any meassage saying "vCard import started" is
-     * not needed. We show the message when the size of vCard is larger than this constant. 
-     */
-    private static final int IMPORT_NOTIFICATION_THRESHOLD = 10;
+    /* package */ static final String CACHE_FILE_PREFIX = "import_tmp_";
 
     public class ImportRequestHandler extends Handler {
         private ImportProcessor mImportProcessor;
@@ -59,6 +61,7 @@ public class VCardService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
+                    Log.i(LOG_TAG, "Received vCard import request.");
                     if (mDoDelayedCancel) {
                         Log.i(LOG_TAG, "A cancel request came before import request. " +
                                 "Refrain current import once.");
@@ -75,15 +78,14 @@ public class VCardService extends Service {
                         }
 
                         mImportProcessor.pushRequest(parameter);
-                        if (parameter.entryCount > IMPORT_NOTIFICATION_THRESHOLD) {
-                            Toast.makeText(VCardService.this,
-                                    getString(R.string.vcard_importer_start_message),
-                                    Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(VCardService.this,
+                                getString(R.string.vcard_importer_start_message),
+                                Toast.LENGTH_LONG).show();
                     }
                     break;
                 }
                 case MSG_EXPORT_REQUEST: {
+                    Log.i(LOG_TAG, "Received vCard export request.");
                     final ExportRequest parameter = (ExportRequest)msg.obj;
                     mExportProcessor.pushRequest(parameter);
                     Toast.makeText(VCardService.this,
@@ -92,6 +94,7 @@ public class VCardService extends Service {
                     break;
                 }
                 case MSG_CANCEL_IMPORT_REQUEST: {
+                    Log.i(LOG_TAG, "Received cancel import request.");
                     if (mImportProcessor != null) {
                         mImportProcessor.cancel();
                     } else {
@@ -101,11 +104,11 @@ public class VCardService extends Service {
                     break;
                 }
                 case MSG_NOTIFY_IMPORT_FINISHED: {
-                    Log.d(LOG_TAG, "MSG_NOTIFY_IMPORT_FINISHED");
+                    Log.i(LOG_TAG, "Received vCard import finish notification.");
                     break;
                 }
                 default: {
-                    Log.e(LOG_TAG, "Unknown request type: " + msg.what);
+                    Log.w(LOG_TAG, "Received unknown request, ignoring it.");
                     super.hasMessages(msg.what);
                 }
             }
@@ -123,5 +126,27 @@ public class VCardService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return mMessenger.getBinder();
+    }
+
+    @Override
+    public void onDestroy() {
+        clearCache();
+        super.onDestroy();
+    }
+
+    private void clearCache() {
+        Log.i(LOG_TAG, "start removing cache files if exist.");
+        final String[] fileLists = fileList();
+        for (String fileName : fileLists) {
+            if (fileName.startsWith(CACHE_FILE_PREFIX)) {
+                // We don't want to keep all the caches so we remove cache files old enough.
+                // TODO: Ideally we should ask VCardService whether the file is being used or
+                // going to be used.
+                final Date now = new Date();
+                final File file = getFileStreamPath(fileName);
+                Log.i(LOG_TAG, "Remove a temporary file: " + fileName);
+                deleteFile(fileName);
+            }
+        }
     }
 }
