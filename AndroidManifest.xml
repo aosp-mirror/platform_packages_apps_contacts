@@ -242,6 +242,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
 
             <meta-data android:name="android.app.searchable"
@@ -310,24 +317,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
-
-        <!-- The contacts search/filter UI -->
-        <activity android:name=".activities.ContactSearchActivity"
-            android:theme="@style/ContactsSearchTheme"
-            android:windowSoftInputMode="stateAlwaysVisible"
-        >
-            <intent-filter>
-                <action android:name="com.android.contacts.action.FILTER_CONTACTS" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
-            </intent-filter>
-
-        </activity>
-
-        <!-- The contacts search/filter UI -->
-        <activity-alias android:name="SearchResultsActivity"
-            android:targetActivity=".activities.ContactBrowserActivity">
-        </activity-alias>
 
         <!-- Used to set options -->
         <activity
