@@ -74,9 +74,10 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         // Fields
         // Subtract buttons left and right if necessary
-        final int l2 = (getLabel() != null) ? l1 + getLabel().getMeasuredWidth() : l1;
-        final int r2 = r1 - ((getDelete() != null) ? getDelete().getMeasuredWidth() : 0);
-        if (mDateView != null) mDateView.layout(l2, t1, r2, b1);
+        final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
+        final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
+        final int r2 = r1 - deleteWidth - labelWidth;
+        if (mDateView != null) mDateView.layout(l1, t1, r2, b1);
     }
 
     @Override

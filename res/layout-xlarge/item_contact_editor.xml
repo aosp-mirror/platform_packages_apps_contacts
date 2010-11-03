@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 ex:layout_wideParentWidth="960dip"
-                ex:layout_wideLeftMargin="128dip"
+                ex:layout_wideLeftMargin="96dip"
                 ex:layout_narrowParentWidth="800dip"
                 ex:layout_narrowLeftMargin="15dip"
                 >
@@ -115,11 +115,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 ex:layout_wideParentWidth="960dip"
-                ex:layout_wideLeftMargin="230dip"
-                ex:layout_wideRightMargin="50dip"
+                ex:layout_wideLeftMargin="96dip"
+                ex:layout_wideRightMargin="96dip"
                 ex:layout_narrowParentWidth="800dip"
-                ex:layout_narrowLeftMargin="160dip"
-                ex:layout_narrowRightMargin="50dip"
+                ex:layout_narrowLeftMargin="15dip"
+                ex:layout_narrowRightMargin="15dip"
                 >
 
                 <com.android.contacts.views.editor.TextFieldsEditorView

@@ -556,7 +556,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 sb.append(groups.get(i));
             }
             entry.mimetype = GroupMembership.MIMETYPE;
-            entry.kind = mContext.getString(R.string.groupsLabel);
+            entry.kind = mContext.getString(R.string.groupsLabel).toUpperCase();
+            entry.kindAndType = entry.kind;
             entry.data = sb.toString();
             mGroupEntries.add(entry);
         }
@@ -817,7 +818,11 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             // Set the label. This is either a combination field or separate fields for kind of type
             if (views.kindAndType != null) views.kindAndType.setText(entry.kindAndType);
             if (views.kind != null) views.kind.setText(isFirstOfItsKind ? entry.kind : "");
-            if (views.type != null) views.type.setText(entry.typeString);
+            if (views.type != null) {
+                final String typeString = entry.typeString;
+                views.type.setText(typeString);
+                views.type.setVisibility(TextUtils.isEmpty(typeString) ? View.GONE : View.VISIBLE);
+            }
 
             // Set the content
             final TextView content = views.data;
