@@ -479,19 +479,15 @@ public class ContactBrowserActivity extends Activity
     }
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
-        if (mDetailFragment != null && contactLookupUri != null
-                && contactLookupUri.equals(mDetailFragment.getUri())) {
-            return;
-        }
-
         if (mDetailFragment == null) {
             mDetailFragment = new ContactDetailFragment();
+            mDetailFragment.loadUri(contactLookupUri);
             getFragmentManager().openTransaction()
                     .replace(R.id.detail_container, mDetailFragment)
                     .commit();
+        } else {
+            mDetailFragment.loadUri(contactLookupUri);
         }
-
-        mDetailFragment.loadUri(contactLookupUri);
     }
 
     /**

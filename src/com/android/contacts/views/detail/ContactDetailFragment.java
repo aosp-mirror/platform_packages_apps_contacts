@@ -108,11 +108,13 @@ import java.util.List;
 
 public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
         OnItemClickListener, SelectAccountDialogFragment.Listener {
+
     private static final String TAG = "ContactDetailFragment";
 
     private static final int LOADER_DETAILS = 1;
 
     private static final String KEY_CONTACT_URI = "contactUri";
+    private static final String LOADER_ARG_CONTACT_URI = "contactUri";
 
     private Context mContext;
     private View mView;
@@ -247,16 +249,27 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getLoaderManager().initLoader(LOADER_DETAILS, null, mDetailLoaderListener);
+        if (mLookupUri != null) {
+            Bundle args = new Bundle();
+            args.putParcelable(LOADER_ARG_CONTACT_URI, mLookupUri);
+            getLoaderManager().initLoader(LOADER_DETAILS, args, mDetailLoaderListener);
+        }
     }
 
     public void loadUri(Uri lookupUri) {
+        if ((lookupUri != null && !lookupUri.equals(mLookupUri))
+                || (lookupUri == null && mLookupUri != null)) {
+            return;
+        }
+
         mLookupUri = lookupUri;
         if (mLookupUri == null) {
             mContactData = null;
             bindData();
         } else if (getActivity() != null) {
-            getLoaderManager().restartLoader(LOADER_DETAILS, null, mDetailLoaderListener);
+            Bundle args = new Bundle();
+            args.putParcelable(LOADER_ARG_CONTACT_URI, mLookupUri);
+            getLoaderManager().restartLoader(LOADER_DETAILS, args, mDetailLoaderListener);
         }
     }
 
@@ -1208,7 +1221,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             new LoaderCallbacks<ContactLoader.Result>() {
         @Override
         public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-            return new ContactLoader(mContext, mLookupUri, true /* loadGroupMetaData */);
+            Uri lookupUri = args.getParcelable(LOADER_ARG_CONTACT_URI);
+            return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */);
         }
 
         @Override
