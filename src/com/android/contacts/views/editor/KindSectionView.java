@@ -44,6 +44,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private ViewGroup mEditors;
     private ImageButton mAddPlusButton;
     private TextView mTitle;
+    private String mTitleString;
 
     private DataKind mKind;
     private EntityDelta mState;
@@ -97,10 +98,10 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         setId(mViewIdGenerator.getId(state, kind, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // TODO: handle resources from remote packages
-        final String title = (kind.titleRes == -1 || kind.titleRes == 0)
-                ? null
+        mTitleString = (kind.titleRes == -1 || kind.titleRes == 0)
+                ? ""
                 : getResources().getString(kind.titleRes);
-        mTitle.setText(title == null ? "" : title.toUpperCase());
+        mTitle.setText(mTitleString.toUpperCase());
 
         // Only show the add button if this is a list
         mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.INVISIBLE);
@@ -110,8 +111,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         updateVisible();
     }
 
-    public CharSequence getTitle() {
-        return mTitle.getText();
+    public String getTitle() {
+        return mTitleString;
     }
 
     /**

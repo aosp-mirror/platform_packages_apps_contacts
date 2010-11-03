@@ -147,20 +147,31 @@
                 />
             </LinearLayout>
         </com.android.contacts.widget.InterpolatingLayout>
+
+        <com.android.contacts.widget.InterpolatingLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip">>
+            <Button
+                android:id="@+id/button_add_field"
+                android:text="@string/add_field"
+                ex:layout_wideParentWidth="960dip"
+                ex:layout_wideLeftMargin="240dip"
+                ex:layout_wideRightMargin="190dip"
+                ex:layout_narrowParentWidth="800dip"
+                ex:layout_narrowLeftMargin="160dip"
+                ex:layout_narrowRightMargin="102dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            />
+        </com.android.contacts.widget.InterpolatingLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/listDivider"
-        />
-
-        <Button
-            android:id="@+id/button_add_field"
-            android:text="@string/add_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dip"
         />
     </LinearLayout>
 </com.android.contacts.views.editor.RawContactEditorView>

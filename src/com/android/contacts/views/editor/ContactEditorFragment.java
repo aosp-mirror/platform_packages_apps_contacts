@@ -465,11 +465,11 @@ public class ContactEditorFragment extends Fragment implements
 
             final BaseRawContactEditorView editor;
             if (!source.readOnly) {
-                editor = (BaseRawContactEditorView) inflater.inflate(R.layout.item_contact_editor,
-                        mContent, false);
+                editor = (BaseRawContactEditorView)
+                        inflater.inflate(R.layout.raw_contact_editor_view, mContent, false);
             } else {
                 editor = (BaseRawContactEditorView) inflater.inflate(
-                        R.layout.item_read_only_contact_editor, mContent, false);
+                        R.layout.read_only_raw_contact_editor_view, mContent, false);
             }
             final PhotoEditorView photoEditor = editor.getPhotoEditor();
             final boolean sourceReadOnly = source.readOnly;

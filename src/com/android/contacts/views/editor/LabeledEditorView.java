@@ -134,8 +134,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      */
     private void setupLabelButton(boolean shouldExist) {
         if (shouldExist && mLabel == null) {
-            mLabel = new Button(mContext, null, android.R.attr.textAppearanceSmall);
-            mLabel.setBackgroundResource(R.drawable.type_selector_background);
+            mLabel = new Button(mContext, null, android.R.attr.dropDownSpinnerStyle);
             final int width =
                     mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
