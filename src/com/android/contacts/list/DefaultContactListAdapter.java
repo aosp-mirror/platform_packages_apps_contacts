@@ -85,8 +85,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     protected void configureUri(CursorLoader loader, long directoryId, ContactListFilter filter) {
         Uri uri = Contacts.CONTENT_URI;
         if (filter != null) {
-            if (filter.filterType == ContactListFilter.FILTER_TYPE_GROUP ||
-                    filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
                 uri = Data.CONTENT_URI;
             } else if (filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
                 String lookupKey = getSelectedContactLookupKey();
@@ -116,8 +115,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     protected void configureProjection(
             CursorLoader loader, long directoryId, ContactListFilter filter) {
-        if (filter != null && (filter.groupId != 0
-                || filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT)) {
+        if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
             loader.setProjection(PROJECTION_DATA);
         } else {
             loader.setProjection(PROJECTION_CONTACT);
@@ -163,24 +161,23 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 }
                 break;
             }
-            case ContactListFilter.FILTER_TYPE_ACCOUNT:
+            case ContactListFilter.FILTER_TYPE_ACCOUNT: {
+                // TODO: avoid the use of private API
+                selection.append(
+                        Contacts._ID + " IN ("
+                                + "SELECT DISTINCT " + RawContacts.CONTACT_ID
+                                + " FROM raw_contacts"
+                                + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
+                                + "   AND " + RawContacts.ACCOUNT_NAME + "=?)");
+                selectionArgs.add(filter.accountType);
+                selectionArgs.add(filter.accountName);
+                break;
+            }
             case ContactListFilter.FILTER_TYPE_GROUP: {
-                if (filter.groupId != 0) {
-                    selection.append(Data.MIMETYPE + "=?"
-                            + " AND " + GroupMembership.GROUP_ROW_ID + "=?");
-                    selectionArgs.add(GroupMembership.CONTENT_ITEM_TYPE);
-                    selectionArgs.add(String.valueOf(filter.groupId));
-                } else {
-                    // TODO: avoid the use of private API
-                    selection.append(
-                            Data.CONTACT_ID + " IN ("
-                                    + "SELECT DISTINCT " + RawContacts.CONTACT_ID
-                                    + " FROM raw_contacts"
-                                    + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
-                                    + "   AND " + RawContacts.ACCOUNT_NAME + "=?)");
-                    selectionArgs.add(filter.accountType);
-                    selectionArgs.add(filter.accountName);
-                }
+                selection.append(Data.MIMETYPE + "=?"
+                        + " AND " + GroupMembership.GROUP_ROW_ID + "=?");
+                selectionArgs.add(GroupMembership.CONTENT_ITEM_TYPE);
+                selectionArgs.add(String.valueOf(filter.groupId));
                 break;
             }
         }
