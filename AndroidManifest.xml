@@ -298,7 +298,7 @@
         />
 
         <!-- An activity for joining contacts -->
-        <activity android:name="JoinContactActivity"
+        <activity android:name=".activities.JoinContactActivity"
             android:theme="@style/JoinContactActivityTheme"
             android:clearTaskOnLaunch="true"
         >

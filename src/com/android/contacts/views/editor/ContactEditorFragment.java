@@ -16,8 +16,8 @@
 
 package com.android.contacts.views.editor;
 
-import com.android.contacts.JoinContactActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.EntityDelta;

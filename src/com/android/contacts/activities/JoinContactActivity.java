@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
 
+import com.android.contacts.R;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
@@ -54,9 +56,19 @@ public class JoinContactActivity extends Activity {
      */
     public static final String EXTRA_TARGET_CONTACT_ID = "com.android.contacts.action.CONTACT_ID";
 
+    private static final String KEY_TARGET_CONTACT_ID = "targetContactId";
+
     private long mTargetContactId;
 
     private JoinContactListFragment mListFragment;
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof JoinContactListFragment) {
+            mListFragment = (JoinContactListFragment) fragment;
+            setupActionListener();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +84,16 @@ public class JoinContactActivity extends Activity {
             return;
         }
 
+        setContentView(R.layout.join_contact_picker);
+
         mListFragment = new JoinContactListFragment();
+
+        FragmentTransaction transaction = getFragmentManager().openTransaction();
+        transaction.add(R.id.list_container, mListFragment);
+        transaction.commit();
+    }
+
+    public void setupActionListener() {
         mListFragment.setTargetContactId(mTargetContactId);
         mListFragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
             @Override
@@ -94,10 +115,18 @@ public class JoinContactActivity extends Activity {
             public void onEditContactAction(Uri contactLookupUri) {
             }
         });
+    }
 
-        FragmentTransaction transaction = getFragmentManager().openTransaction();
-        transaction.add(android.R.id.content, mListFragment);
-        transaction.commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(KEY_TARGET_CONTACT_ID, mTargetContactId);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mTargetContactId = savedInstanceState.getLong(KEY_TARGET_CONTACT_ID);
     }
 
     @Override
