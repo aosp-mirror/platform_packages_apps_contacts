@@ -198,7 +198,6 @@ public class ContactSelectionActivity extends Activity
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setQueryString(mRequest.getQueryString());
                 fragment.setShortcutRequested(true);
