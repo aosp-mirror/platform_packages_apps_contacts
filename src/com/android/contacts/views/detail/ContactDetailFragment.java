@@ -257,8 +257,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     }
 
     public void loadUri(Uri lookupUri) {
-        if ((lookupUri != null && !lookupUri.equals(mLookupUri))
-                || (lookupUri == null && mLookupUri != null)) {
+        if ((lookupUri != null && lookupUri.equals(mLookupUri))
+                || (lookupUri == null && mLookupUri == null)) {
             return;
         }
 
