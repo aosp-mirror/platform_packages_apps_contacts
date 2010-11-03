@@ -60,13 +60,14 @@ import java.util.Queue;
  * recreate multiple instances, as this holds total count of vCard entries to be imported.
  */
 public class ImportProcessor {
-    private static final String LOG_TAG = ImportProcessor.class.getSimpleName();
+    private static final String LOG_TAG = "VCardImporter";
 
     private class ImportProcessorConnection implements ServiceConnection {
         private Messenger mMessenger;
         private boolean mBound;
 
         public synchronized void tryBind() {
+            mContext.startService(new Intent(mContext, VCardService.class));
             if (!mContext.bindService(new Intent(mContext, VCardService.class),
                     this, Context.BIND_AUTO_CREATE)) {
                 throw new RuntimeException("Failed to bind to VCardService.");
@@ -77,6 +78,9 @@ public class ImportProcessor {
         public synchronized void tryUnbind() {
             if (mBound) {
                 mContext.unbindService(this);
+                // TODO: This is not appropriate. It would be better to send some "stop" request
+                // to service and let the service stop itself.
+                mContext.stopService(new Intent(mContext, VCardService.class));
             } else {
                 // TODO: Not graceful.
                 Log.w(LOG_TAG, "unbind() is tried while ServiceConnection is not bound yet");
@@ -230,8 +234,8 @@ public class ImportProcessor {
             // Instead, we show one only when there's just one created uri.
             doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
             connection.sendFinishNotification();
+            Log.i(LOG_TAG, "Finished successfully importing all vCard");
         } finally {
-            // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
             mNotifier.resetTotalCount();
             connection.tryUnbind();
@@ -278,6 +282,7 @@ public class ImportProcessor {
             readOneVCard(uri, estimatedVCardType, estimatedCharset,
                     constructor, possibleVCardVersions);
         if (successful) {
+            Log.i(LOG_TAG, "Successfully finished reading one vCard file finished: " + uri);
             List<Uri> uris = committer.getCreatedUris();
             if (uris != null) {
                 mCreatedUris.addAll(uris);
@@ -287,6 +292,7 @@ public class ImportProcessor {
                         "Created Uris is null while the creation itself is successful.");
             }
         } else {
+            Log.w(LOG_TAG, "Failed to read one vCard file: " + uri);
             mFailedUris.add(uri);
         }
 
@@ -339,6 +345,7 @@ public class ImportProcessor {
     /* package */ boolean readOneVCard(Uri uri, int vcardType, String charset,
             final VCardInterpreter interpreter,
             final int[] possibleVCardVersions) {
+        Log.i(LOG_TAG, "start importing one vCard (Uri: " + uri + ")");
         boolean successful = false;
         final int length = possibleVCardVersions.length;
         for (int i = 0; i < length; i++) {
@@ -361,6 +368,8 @@ public class ImportProcessor {
                             new VCardParser_V30(vcardType) :
                                 new VCardParser_V21(vcardType));
                     if (mCanceled) {
+                        Log.i(LOG_TAG, "ImportProcessor already recieves cancel request, so " +
+                                "send cancel request to vCard parser too.");
                         mVCardParser.cancel();
                     }
                 }
@@ -411,6 +420,7 @@ public class ImportProcessor {
     }
 
     public void cancel() {
+        Log.i(LOG_TAG, "ImportProcessor received cancel request");
         mCanceled = true;
         synchronized (this) {
             if (mVCardParser != null) {

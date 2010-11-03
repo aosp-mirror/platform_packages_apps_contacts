@@ -39,7 +39,7 @@ import com.android.contacts.R;
  * with a same Uri in the queue.
  */
 public class CancelImportActivity extends Activity {
-    private final String LOG_TAG = "CancelImportActivity";
+    private final String LOG_TAG = "VCardImporter";
 
     /* package */ final String EXTRA_TARGET_URI = "extra_target_uri";
 

@@ -54,6 +54,7 @@ import android.os.RemoteException;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
@@ -86,7 +87,7 @@ import java.util.Vector;
  * dialogs stuffs (like how onCreateDialog() is used).
  */
 public class ImportVCardActivity extends Activity {
-    private static final String LOG_TAG = "ImportVCardActivity";
+    private static final String LOG_TAG = "VCardImporter";
 
     private static final int SELECT_ACCOUNT = 0;
 
@@ -285,7 +286,6 @@ public class ImportVCardActivity extends Activity {
      */
     private class VCardCacheThread extends Thread
             implements DialogInterface.OnCancelListener {
-        private static final String CACHE_FILE_PREFIX = "import_tmp_";
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
         private VCardParser mVCardParser;
@@ -316,26 +316,35 @@ public class ImportVCardActivity extends Activity {
             String errorMessage = null;
             mWakeLock.acquire();
             final CustomConnection connection = new CustomConnection();
+            startService(new Intent(ImportVCardActivity.this, VCardService.class));
             bindService(new Intent(ImportVCardActivity.this,
                     VCardService.class), connection, Context.BIND_AUTO_CREATE);
             try {
-                clearOldCache();
-
-                final int length = mSourceUris.length;
                 // Uris given from caller applications may not be opened twice: consider when
                 // it is not from local storage (e.g. "file:///...") but from some special
                 // provider (e.g. "content://...").
                 // Thus we have to once copy the content of Uri into local storage, and read
-                // it after it. This copy is also useful fro the view of stability of the import,
-                // as we are able to restore the procedure even when it is aborted during it.
-                // Imagine the case the importer encountered memory-low situation when
-                // reading 10th entry of a vCard file.
+                // it after it.
                 //
                 // We may be able to read content of each vCard file during copying them
                 // to local storage, but currently vCard code does not allow us to do so.
-                for (int i = 0; i < length; i++) {
-                    final Uri sourceUri = mSourceUris[i];
-                    final Uri localDataUri = copyToLocal(sourceUri, i);
+                int cache_index = 0;
+                for (Uri sourceUri : mSourceUris) {
+                    String filename = null;
+                    // Note: caches are removed by VCardService.
+                    while (true) {
+                        filename = VCardService.CACHE_FILE_PREFIX + cache_index + ".vcf";
+                        final File file = context.getFileStreamPath(filename);
+                        if (!file.exists()) {
+                            break;
+                        } else {
+                            if (cache_index == Integer.MAX_VALUE) {
+                                throw new RuntimeException("Exceeded cache limit");
+                            }
+                            cache_index++;
+                        }
+                    }
+                    final Uri localDataUri = copyTo(sourceUri, filename);
                     if (mCanceled) {
                         break;
                     }
@@ -351,8 +360,6 @@ public class ImportVCardActivity extends Activity {
                 }
             } catch (OutOfMemoryError e) {
                 Log.e(LOG_TAG, "OutOfMemoryError");
-                // We should take care of this case since Android devices may have
-                // smaller memory than we usually expect.
                 System.gc();
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_low_memory_during_import)));
@@ -368,36 +375,33 @@ public class ImportVCardActivity extends Activity {
         }
 
         /**
-         * Copy the content of sourceUri to local storage. 
+         * Copy the content of sourceUri to the destination.
          */
-        private Uri copyToLocal(final Uri sourceUri, int i) throws IOException {
+        private Uri copyTo(final Uri sourceUri, String filename) throws IOException {
+            Log.i(LOG_TAG, String.format("Copy a Uri to app local storage (%s -> %s)",
+                    sourceUri, filename));
             final Context context = ImportVCardActivity.this;
             final ContentResolver resolver = context.getContentResolver();
             ReadableByteChannel inputChannel = null;
             WritableByteChannel outputChannel = null;
-            Uri destUri;
+            Uri destUri = null;
             try {
-                // XXX: better way to copy stream?
-                {
-                    inputChannel = Channels.newChannel(resolver.openInputStream(mSourceUris[i]));
-                    final String filename = CACHE_FILE_PREFIX + i + ".vcf";
-                    destUri = Uri.parse(context.getFileStreamPath(filename).toURI().toString());
-                    outputChannel =
-                            context.openFileOutput(filename, Context.MODE_PRIVATE).getChannel();
-                    final ByteBuffer buffer = ByteBuffer.allocateDirect(8192);
-                    while (inputChannel.read(buffer) != -1) {
-                        if (mCanceled) {
-                            Log.d(LOG_TAG, "Canceled during caching " + mSourceUris[i]);
-                            return null;
-                        }
-                        buffer.flip();
-                        outputChannel.write(buffer);
-                        buffer.compact();
+                inputChannel = Channels.newChannel(resolver.openInputStream(sourceUri));
+                destUri = Uri.parse(context.getFileStreamPath(filename).toURI().toString());
+                outputChannel = context.openFileOutput(filename, Context.MODE_PRIVATE).getChannel();
+                final ByteBuffer buffer = ByteBuffer.allocateDirect(8192);
+                while (inputChannel.read(buffer) != -1) {
+                    if (mCanceled) {
+                        Log.d(LOG_TAG, "Canceled during caching " + sourceUri);
+                        return null;
                     }
                     buffer.flip();
-                    while (buffer.hasRemaining()) {
-                        outputChannel.write(buffer);
-                    }
+                    outputChannel.write(buffer);
+                    buffer.compact();
+                }
+                buffer.flip();
+                while (buffer.hasRemaining()) {
+                    outputChannel.write(buffer);
                 }
             } finally {
                 if (inputChannel != null) {
@@ -485,22 +489,6 @@ public class ImportVCardActivity extends Activity {
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
                     vcardVersion, counter.getCount());
-        }
-
-        /**
-         * We (currently) don't have any way to clean up cache files used in the previous
-         * import process,
-         * TODO(dmiyakawa): Can we do it after Service being done?
-         */
-        private void clearOldCache() {
-            final Context context = ImportVCardActivity.this;
-            final String[] fileLists = context.fileList();
-            for (String fileName : fileLists) {
-                if (fileName.startsWith(CACHE_FILE_PREFIX)) {
-                    Log.d(LOG_TAG, "Remove temporary file: " + fileName);
-                    context.deleteFile(fileName);
-                }
-            }
         }
 
         public Uri[] getSourceUris() {
@@ -873,11 +861,11 @@ public class ImportVCardActivity extends Activity {
     }
 
     private void startImport(String action, Uri uri) {
-        Log.d(LOG_TAG, "action = " + action + " ; path = " + uri);
-
         if (uri != null) {
+            Log.i(LOG_TAG, "Starting vCard import using Uri " + uri);
             importVCard(uri);
         } else {
+            Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
             doScanExternalStorageAndImportVCard();
         }
     }
