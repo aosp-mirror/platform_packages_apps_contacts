@@ -34,12 +34,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-
-import java.util.Random;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 
 /**
  * Constructs shortcut intents.
@@ -217,13 +215,8 @@ public class ShortcutIntentBuilder {
         if (bitmapData != null) {
             bitmap = BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length, null);
         } else {
-            final int[] fallbacks = {
-                R.drawable.ic_contact_picture,
-                R.drawable.ic_contact_picture_2,
-                R.drawable.ic_contact_picture_3
-            };
             bitmap = BitmapFactory.decodeResource(mContext.getResources(),
-                    fallbacks[new Random().nextInt(fallbacks.length)]);
+                    R.drawable.ic_contact_picture);
         }
 
         Intent shortcutIntent;

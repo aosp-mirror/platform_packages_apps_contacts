@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="124dip"
+            ex:layout_wideLeftMargin="80dip"
             ex:layout_wideRightMargin="64dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowLeftMargin="32dip"

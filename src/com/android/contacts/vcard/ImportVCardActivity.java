@@ -133,11 +133,6 @@ public class ImportVCardActivity extends Activity {
         private boolean mNeedToCallFinish = false;
         private boolean mDisconnectAndFinishDone = false;
 
-        public void doBindService() {
-            bindService(new Intent(ImportVCardActivity.this,
-                    VCardService.class), this, Context.BIND_AUTO_CREATE);
-        }
-
         /**
          * Tries to unbind this connection and call {@link ImportVCardActivity#finish()}.
          * When timing is not appropriate, this object remembers this call and
@@ -226,8 +221,6 @@ public class ImportVCardActivity extends Activity {
             mMessenger = null;
         }
     }
-
-    private final CustomConnection mConnection = new CustomConnection();
 
     private static class VCardFile {
         private final String mName;
@@ -322,9 +315,11 @@ public class ImportVCardActivity extends Activity {
             final ContentResolver resolver = context.getContentResolver();
             String errorMessage = null;
             mWakeLock.acquire();
+            final CustomConnection connection = new CustomConnection();
+            bindService(new Intent(ImportVCardActivity.this,
+                    VCardService.class), connection, Context.BIND_AUTO_CREATE);
             try {
                 clearOldCache();
-                mConnection.doBindService();
 
                 final int length = mSourceUris.length;
                 // Uris given from caller applications may not be opened twice: consider when
@@ -352,7 +347,7 @@ public class ImportVCardActivity extends Activity {
                     if (mCanceled) {
                         return;
                     }
-                    mConnection.requestSend(parameter);
+                    connection.requestSend(parameter);
                 }
             } catch (OutOfMemoryError e) {
                 Log.e(LOG_TAG, "OutOfMemoryError");
@@ -368,7 +363,7 @@ public class ImportVCardActivity extends Activity {
             } finally {
                 mWakeLock.release();
                 mProgressDialogForCacheVCard.dismiss();
-                mConnection.tryDisconnectAndFinish();
+                connection.tryDisconnectAndFinish();
             }
         }
 
@@ -1015,12 +1010,6 @@ public class ImportVCardActivity extends Activity {
         // This Activity should finish itself on orientation change, and give the main screen back
         // to the caller Activity.
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mConnection.tryDisconnectAndFinish();
     }
 
     /**

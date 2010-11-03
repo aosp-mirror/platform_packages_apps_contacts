@@ -97,7 +97,10 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         setId(mViewIdGenerator.getId(state, kind, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // TODO: handle resources from remote packages
-        mTitle.setText(kind.titleRes);
+        final String title = (kind.titleRes == -1 || kind.titleRes == 0)
+                ? null
+                : getResources().getString(kind.titleRes);
+        mTitle.setText(title == null ? "" : title.toUpperCase());
 
         // Only show the add button if this is a list
         mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.INVISIBLE);

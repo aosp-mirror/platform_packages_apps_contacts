@@ -34,6 +34,7 @@ import android.content.Entity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,27 +90,26 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         // Subtract padding from the borders ==> x1 variables
-        int l1 = getPaddingLeft();
         int t1 = getPaddingTop();
         int r1 = getMeasuredWidth() - getPaddingRight();
         int b1 = getMeasuredHeight() - getPaddingBottom();
 
-        // Label Button
-        final boolean hasLabel = mLabel != null;
-
-        if (hasLabel) {
-            mLabel.layout(
-                    l1, t1,
-                    l1 + mLabel.getMeasuredWidth(), t1 + mLabel.getMeasuredHeight());
-        }
-
-        // Delete Button
-        final boolean hasDelete = mDelete != null;
-        if (hasDelete) {
+        final int r2;
+        if (mDelete != null) {
+            r2 = r1 - mDelete.getMeasuredWidth();
             mDelete.layout(
-                    r1 - mDelete.getMeasuredWidth(), b1 - mDelete.getMeasuredHeight(),
+                    r2, b1 - mDelete.getMeasuredHeight(),
                     r1, b1);
+        } else {
+            r2 = r1;
         }
+
+        if (mLabel != null) {
+            mLabel.layout(
+                    r2 - mLabel.getMeasuredWidth(), t1,
+                    r2, t1 + mLabel.getMeasuredHeight());
+        }
+
     }
 
     @Override
@@ -134,11 +134,13 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      */
     private void setupLabelButton(boolean shouldExist) {
         if (shouldExist && mLabel == null) {
-            mLabel = new Button(mContext);
+            mLabel = new Button(mContext, null, android.R.attr.textAppearanceSmall);
             mLabel.setBackgroundResource(R.drawable.type_selector_background);
             final int width =
                     mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
+            mLabel.setGravity(Gravity.RIGHT);
+            mLabel.setTextColor(getResources().getColor(R.color.editor_label_text_color));
             mLabel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

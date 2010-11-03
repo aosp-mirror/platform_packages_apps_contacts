@@ -68,7 +68,7 @@ public class ImportProcessor {
 
         public synchronized void tryBind() {
             if (!mContext.bindService(new Intent(mContext, VCardService.class),
-                    mConnection, Context.BIND_AUTO_CREATE)) {
+                    this, Context.BIND_AUTO_CREATE)) {
                 throw new RuntimeException("Failed to bind to VCardService.");
             }
             mBound = true;
@@ -76,7 +76,7 @@ public class ImportProcessor {
 
         public synchronized void tryUnbind() {
             if (mBound) {
-                mContext.unbindService(mConnection);
+                mContext.unbindService(this);
             } else {
                 // TODO: Not graceful.
                 Log.w(LOG_TAG, "unbind() is tried while ServiceConnection is not bound yet");
@@ -105,9 +105,6 @@ public class ImportProcessor {
     }
 
     private final Context mContext;
-
-    private final ImportProcessorConnection mConnection = new ImportProcessorConnection();
-
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
 
@@ -157,8 +154,6 @@ public class ImportProcessor {
 
     public ImportProcessor(final Context context) {
         mContext = context;
-
-        mConnection.tryBind();
     }
 
     /**
@@ -210,12 +205,13 @@ public class ImportProcessor {
      */
     private void process() {
         if (!mReadyForRequest) {
-            mConnection.tryUnbind();
             throw new RuntimeException(
                     "process() is called before request being pushed "
                     + "or after this object's finishing its processing.");
         }
 
+        final ImportProcessorConnection connection = new ImportProcessorConnection();
+        connection.tryBind();
         try {
             while (!mCanceled) {
                 final ImportRequest parameter;
@@ -233,12 +229,12 @@ public class ImportProcessor {
             // Currenty we don't have an appropriate way to let users see all URIs imported.
             // Instead, we show one only when there's just one created uri.
             doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
-            mConnection.sendFinishNotification();
+            connection.sendFinishNotification();
         } finally {
             // TODO: verify this works fine.
             mReadyForRequest = false;  // Just in case.
             mNotifier.resetTotalCount();
-            mConnection.tryUnbind();
+            connection.tryUnbind();
         }
     }
 

@@ -69,29 +69,27 @@ public class TextFieldsEditorView extends LabeledEditorView {
         int l1 = getPaddingLeft();
         int t1 = getPaddingTop();
         int r1 = getMeasuredWidth() - getPaddingRight();
-        int b1 = getMeasuredHeight() - getPaddingBottom();
 
-        // MoreOrLess Button
-        final boolean hasMoreOrLess = mMoreOrLess != null;
-        if (hasMoreOrLess) {
+        if ((mMoreOrLess != null)) {
             mMoreOrLess.layout(
-                    r1 - mMoreOrLess.getMeasuredWidth(), b1 - mMoreOrLess.getMeasuredHeight(),
-                    r1, b1);
+                    r1 - mMoreOrLess.getMeasuredWidth(), t1,
+                    r1, t1 + mMoreOrLess.getMeasuredHeight());
         }
 
-        // Fields
-        // Subtract buttons left and right if necessary
-        final int l2 = (getLabel() != null) ? l1 + getLabel().getMeasuredWidth() : l1;
-        final int r2 = r1 - Math.max(
-                (getDelete() != null) ? getDelete().getMeasuredWidth() : 0,
-                hasMoreOrLess ? mMoreOrLess.getMeasuredWidth() : 0);
+        // Subtract buttons if necessary
+        final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
+        final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
+        final int moreOrLessWidth = mMoreOrLess != null ? mMoreOrLess.getMeasuredWidth() : 0;
+        final int r2 = r1 - Math.max(deleteWidth, moreOrLessWidth) - labelWidth;
+
+        // Layout text fields
         int y = t1;
         if (mFieldEditTexts != null) {
             for (EditText editText : mFieldEditTexts) {
                 if (editText.getVisibility() != View.GONE) {
                     int height = editText.getMeasuredHeight();
                     editText.layout(
-                            l2, t1 + y,
+                            l1, t1 + y,
                             r2, t1 + y + height);
                     y += height;
                 }
@@ -110,10 +108,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 }
             }
         }
-        // Ensure there is enough space for the minus button
-        if (mMoreOrLess != null) {
-            result = Math.max(mMoreOrLess.getMeasuredHeight(), result);
-        }
+        // Ensure there is enough space for the minus and more/less button
+        final int deleteHeight = (getDelete() != null) ? getDelete().getMeasuredHeight() : 0;
+        final int moreOrLessHeight = mMoreOrLess != null ? mMoreOrLess.getMeasuredHeight() : 0;
+        result = Math.max(deleteHeight + moreOrLessHeight, result);
         return result;
     }
 
@@ -160,9 +158,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                             // find first visible child
                             newFocusView = TextFieldsEditorView.this;
                         }
-                        if (newFocusView != null) {
-                            newFocusView.requestFocus();
-                        }
+                        newFocusView.requestFocus();
                     }
                 });
                 addView(mMoreOrLess);
@@ -359,6 +355,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             out.writeIntArray(mVisibilities);
         }
 
+        @SuppressWarnings({"unused", "hiding" })
         public static final Parcelable.Creator<SavedState> CREATOR
                 = new Parcelable.Creator<SavedState>() {
             @Override

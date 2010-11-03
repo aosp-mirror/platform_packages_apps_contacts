@@ -164,6 +164,7 @@ public class ContactEditorActivity extends Activity implements
             Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
             intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                     | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            intent.putExtra(ContactEditorFragment.INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY, "");
 
             // Pass on all the data that has been entered so far
             if (values != null && values.size() != 0) {

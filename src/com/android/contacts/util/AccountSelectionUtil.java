@@ -90,6 +90,8 @@ public class AccountSelectionUtil {
         final AccountTypes sources = AccountTypes.getInstance(context);
         final List<Account> writableAccountList = sources.getAccounts(true);
 
+        Log.i(LOG_TAG, "The number of available accounts: " + writableAccountList.size());
+
         // Assume accountList.size() > 1
 
         // Wrap our context to inflate list items using correct theme

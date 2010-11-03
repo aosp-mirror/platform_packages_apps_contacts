@@ -100,7 +100,7 @@ public class GroupMembershipView extends LinearLayout
     public void setKind(DataKind kind) {
         mKind = kind;
         TextView kindTitle = (TextView) findViewById(R.id.kind_title);
-        kindTitle.setText(kind.titleRes);
+        kindTitle.setText(getResources().getString(kind.titleRes).toUpperCase());
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {
@@ -242,6 +242,7 @@ public class GroupMembershipView extends LinearLayout
                 if (!entry.isDelete()) {
                     Long groupId = entry.getAsLong(GroupMembership.GROUP_ROW_ID);
                     if (groupId != null && groupId != mFavoritesGroupId
+                            && (groupId != mDefaultGroupId || mDefaultGroupVisible)
                             && !isGroupChecked(groupId)) {
                         entry.markDeleted();
                     }
