@@ -70,6 +70,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
@@ -837,6 +838,7 @@ public class ContactEditorFragment extends Fragment implements
                 RawContacts._ID,
                 RawContacts.CONTACT_ID,
                 RawContacts.NAME_VERIFIED,
+                RawContacts.DISPLAY_NAME_SOURCE,
         };
 
         String SELECTION = RawContacts.CONTACT_ID + "=? OR " + RawContacts.CONTACT_ID + "=?";
@@ -844,6 +846,7 @@ public class ContactEditorFragment extends Fragment implements
         int _ID = 0;
         int CONTACT_ID = 1;
         int NAME_VERIFIED = 2;
+        int DISPLAY_NAME_SOURCE = 3;
     }
 
     /**
@@ -862,15 +865,31 @@ public class ContactEditorFragment extends Fragment implements
         long rawContactIds[];
         long verifiedNameRawContactId = -1;
         try {
+            int maxDisplayNameSource = -1;
             rawContactIds = new long[c.getCount()];
             for (int i = 0; i < rawContactIds.length; i++) {
-                c.moveToNext();
+                c.moveToPosition(i);
                 long rawContactId = c.getLong(JoinContactQuery._ID);
                 rawContactIds[i] = rawContactId;
-                if (c.getLong(JoinContactQuery.CONTACT_ID) == mContactIdForJoin) {
-                    if (verifiedNameRawContactId == -1
-                            || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0) {
-                        verifiedNameRawContactId = rawContactId;
+                int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
+                if (nameSource > maxDisplayNameSource) {
+                    maxDisplayNameSource = nameSource;
+                }
+            }
+
+            // Find an appropriate display name for the joined contact:
+            // if should have a higher DisplayNameSource or be the name
+            // of the original contact that we are joining with another.
+            if (isContactWritable()) {
+                for (int i = 0; i < rawContactIds.length; i++) {
+                    c.moveToPosition(i);
+                    if (c.getLong(JoinContactQuery.CONTACT_ID) == mContactIdForJoin) {
+                        int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
+                        if (nameSource == maxDisplayNameSource
+                                && (verifiedNameRawContactId == -1
+                                        || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0)) {
+                            verifiedNameRawContactId = c.getLong(JoinContactQuery._ID);
+                        }
                     }
                 }
             }
@@ -890,10 +909,12 @@ public class ContactEditorFragment extends Fragment implements
 
         // Mark the original contact as "name verified" to make sure that the contact
         // display name does not change as a result of the join
-        Builder builder = ContentProviderOperation.newUpdate(
+        if (verifiedNameRawContactId != -1) {
+            Builder builder = ContentProviderOperation.newUpdate(
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, verifiedNameRawContactId));
-        builder.withValue(RawContacts.NAME_VERIFIED, 1);
-        operations.add(builder.build());
+            builder.withValue(RawContacts.NAME_VERIFIED, 1);
+            operations.add(builder.build());
+        }
 
         boolean success = false;
         // Apply all aggregation exceptions as one batch
@@ -912,6 +933,24 @@ public class ContactEditorFragment extends Fragment implements
         if (success) {
             onSaveCompleted(true, SaveMode.RELOAD, mLookupUri);
         }
+    }
+
+    /**
+     * Returns true if there is at least one writable raw contact in the current contact.
+     */
+    private boolean isContactWritable() {
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        int size = mState.size();
+        for (int i = 0; i < size; i++) {
+            ValuesDelta values = mState.get(i).getValues();
+            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            final BaseAccountType source = sources.getInflatedSource(accountType,
+                    BaseAccountType.LEVEL_CONSTRAINTS);
+            if (!source.readOnly) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
