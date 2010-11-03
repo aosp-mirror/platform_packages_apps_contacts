@@ -60,8 +60,6 @@ public class AllIntentsActivity extends ListActivity
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
             "com.android.contacts.activities.ContactBrowserActivity";
-    private static final String SEARCH_RESULTS_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.SearchResultsActivity";
     private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
             "com.android.contacts.MultiplePhonePickerActivity";
 
@@ -331,19 +329,16 @@ public class AllIntentsActivity extends ListActivity
             case ACTION_SEARCH_CONTACT: {
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
                 intent.putExtra(SearchManager.QUERY, "a");
+                intent.setType(Contacts.CONTENT_TYPE);
                 startSearchResultActivity(intent);
                 break;
             }
             case ACTION_SEARCH_EMAIL: {
-                Intent intent = new Intent(Intent.ACTION_SEARCH);
-                intent.putExtra(Insert.EMAIL, "a");
-                startSearchResultActivity(intent);
+                Toast.makeText(this, "Unsupported", Toast.LENGTH_SHORT).show();
                 break;
             }
             case ACTION_SEARCH_PHONE: {
-                Intent intent = new Intent(Intent.ACTION_SEARCH);
-                intent.putExtra(Insert.PHONE, "800");
-                startSearchResultActivity(intent);
+                Toast.makeText(this, "Unsupported", Toast.LENGTH_SHORT).show();
                 break;
             }
             case SEARCH_SUGGESTION_CLICKED_CALL_BUTTON: {
@@ -574,8 +569,6 @@ public class AllIntentsActivity extends ListActivity
     }
 
     private void startSearchResultActivity(Intent intent) {
-        intent.setComponent(
-                new ComponentName(ANDROID_CONTACTS_PACKAGE, SEARCH_RESULTS_ACTIVITY_CLASS_NAME));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
