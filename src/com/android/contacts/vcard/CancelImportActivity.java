@@ -45,10 +45,6 @@ public class CancelImportActivity extends Activity {
 
     private class CustomConnection implements ServiceConnection {
         private Messenger mMessenger;
-        public void doBindService() {
-            bindService(new Intent(CancelImportActivity.this,
-                    VCardService.class), this, Context.BIND_AUTO_CREATE);
-        }
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             mMessenger = new Messenger(service);
@@ -61,6 +57,8 @@ public class CancelImportActivity extends Activity {
             } catch (RemoteException e) {
                 Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
                 CancelImportActivity.this.showDialog(R.string.fail_reason_unknown);
+            } finally {
+                CancelImportActivity.this.unbindService(this);
             }
         }
         @Override
@@ -72,7 +70,8 @@ public class CancelImportActivity extends Activity {
     private class RequestCancelImportListener implements DialogInterface.OnClickListener {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            mConnection.doBindService();
+            bindService(new Intent(CancelImportActivity.this,
+                    VCardService.class), mConnection, Context.BIND_AUTO_CREATE);
         }
     }
 
