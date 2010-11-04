@@ -91,6 +91,7 @@
         <item>CALL BUTTON</item>
         <item>DIAL tel</item>
         <item>VIEW tel</item>
+        <item>VIEW calls (call-log after a phone call)</item>
     </string-array>
 
     <string name="pinnedHeaderList">Pinned Headers</string>

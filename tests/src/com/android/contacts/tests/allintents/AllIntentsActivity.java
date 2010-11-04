@@ -131,6 +131,7 @@ public class AllIntentsActivity extends ListActivity
     private static final int CALL_BUTTON = 62;
     private static final int DIAL_tel = 63;
     private static final int VIEW_tel = 64;
+    private static final int VIEW_calllog = 65;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -540,6 +541,12 @@ public class AllIntentsActivity extends ListActivity
             }
             case VIEW_tel: {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:555-123-4567")));
+                break;
+            }
+            case VIEW_calllog: {
+                final Intent intent = new Intent(Intent.ACTION_VIEW, null);
+                intent.setType("vnd.android.cursor.dir/calls");
+                startActivity(intent);
                 break;
             }
             default: {
