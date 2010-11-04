@@ -17,13 +17,13 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.BaseAccountType;
+import com.google.android.collect.Sets;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -31,10 +31,13 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Contacts.Entity;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
-// TODO: This should respect the lookup element. The Id might by now refer to a different contact
+import java.util.HashSet;
+
 /**
  * An interaction invoked to delete a contact.
  */
@@ -48,18 +51,21 @@ public class ContactDeletionInteraction {
     private static final String[] RAW_CONTACTS_PROJECTION = new String[] {
         RawContacts._ID, //0
         RawContacts.ACCOUNT_TYPE, //1
+        Contacts._ID, // 2
+        Contacts.LOOKUP_KEY, // 3
     };
+
+    private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
+    private static final int COLUMN_INDEX_ACCOUNT_TYPE = 1;
+    private static final int COLUMN_INDEX_CONTACT_ID = 2;
+    private static final int COLUMN_INDEX_LOOKUP_KEY = 3;
 
     private final class RawContactLoader extends CursorLoader {
         private final Uri mContactUri;
 
         private RawContactLoader(Context context, Uri contactUri) {
-            super(context,
-                    RawContacts.CONTENT_URI,
-                    RAW_CONTACTS_PROJECTION,
-                    RawContacts.CONTACT_ID + "=?",
-                    new String[] { String.valueOf(ContentUris.parseId(contactUri)) },
-                    null);
+            super(context, Uri.withAppendedPath(contactUri, Entity.CONTENT_DIRECTORY),
+                    RAW_CONTACTS_PROJECTION, null, null, null);
             this.mContactUri = contactUri;
         }
 
@@ -70,7 +76,7 @@ public class ContactDeletionInteraction {
                 return;
             }
 
-            showConfirmationDialog(data, mContactUri);
+            showConfirmationDialog(data);
         }
     }
 
@@ -106,22 +112,28 @@ public class ContactDeletionInteraction {
         startLoading(mLoader);
     }
 
-    protected void showConfirmationDialog(Cursor cursor, Uri contactUri) {
-        int  writableSourcesCnt = 0;
-        int  readOnlySourcesCnt = 0;
+    protected void showConfirmationDialog(Cursor cursor) {
+        long contactId = 0;
+        String lookupKey = null;
+
+        // This cursor may contain duplicate raw contacts, so we need to de-dupe them first
+        HashSet<Long>  readOnlyRawContacts = Sets.newHashSet();
+        HashSet<Long>  writableRawContacts = Sets.newHashSet();
 
         AccountTypes sources = getSources();
         try {
             while (cursor.moveToNext()) {
-                final long rawContactId = cursor.getLong(0);
-                final String accountType = cursor.getString(1);
+                final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
+                final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
+                contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
+                lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
                 BaseAccountType contactsSource = sources.getInflatedSource(accountType,
                         BaseAccountType.LEVEL_SUMMARY);
                 boolean readonly = contactsSource != null && contactsSource.readOnly;
                 if (readonly) {
-                    readOnlySourcesCnt ++;
+                    readOnlyRawContacts.add(rawContactId);
                 } else {
-                    writableSourcesCnt ++;
+                    writableRawContacts.add(rawContactId);
                 }
             }
         } finally {
@@ -129,18 +141,20 @@ public class ContactDeletionInteraction {
         }
 
         int messageId;
-        if (readOnlySourcesCnt > 0 && writableSourcesCnt > 0) {
+        int readOnlyCount = readOnlyRawContacts.size();
+        int writableCount = writableRawContacts.size();
+        if (readOnlyCount > 0 && writableCount > 0) {
             messageId = R.string.readOnlyContactDeleteConfirmation;
-        } else if (readOnlySourcesCnt > 0 && writableSourcesCnt == 0) {
+        } else if (readOnlyCount > 0 && writableCount == 0) {
             messageId = R.string.readOnlyContactWarning;
-        } else if (readOnlySourcesCnt == 0 && writableSourcesCnt > 1) {
+        } else if (readOnlyCount == 0 && writableCount > 1) {
             messageId = R.string.multipleContactDeleteConfirmation;
         } else {
             messageId = R.string.deleteConfirmation;
         }
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_KEY_CONTACT_URI, contactUri);
+        bundle.putParcelable(EXTRA_KEY_CONTACT_URI, Contacts.getLookupUri(contactId, lookupKey));
         bundle.putInt(EXTRA_KEY_MESSAGE_ID, messageId);
 
         showDialog(bundle);
