@@ -241,7 +241,7 @@
     <string name="postalLabelsGroup">Address</string>
 
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
-    <skip/>
+    <skip />
     <!-- The labels that are under the otherLabelsGroup when editing a contact. [CHAR LIMIT=20] -->
     <string-array name="otherLabels">
         <!-- An organization associated with a contact -->
@@ -251,7 +251,9 @@
     </string-array>
 
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
-    <string name="photoPickerNotFoundText">No pictures are available on the phone.</string>
+    <string name="photoPickerNotFoundText" product="tablet">No pictures are available on the tablet.</string>
+    <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
+    <string name="photoPickerNotFoundText" product="default">No pictures are available on the phone.</string>
 
     <!-- Description of the dialog used to set a photo for a contact [CHAR LIMIT=50] -->
     <string name="contact_photo_dialog_title">Contact photo</string>
@@ -431,14 +433,27 @@
     <string name="noContactsHelpTextForCreateShortcut">"You don't have any contacts to display."</string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
-    <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
+    <string name="noContactsHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
-    <string name="noContactsHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
+    <string name="noContactsHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
@@ -446,14 +461,27 @@
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
-    <string name="noContactsNoSimHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsNoSimHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
+    <string name="noContactsNoSimHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
-    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
+    <string name="noContactsNoSimHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
@@ -861,7 +889,11 @@
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
          contacts from being exported to outside world via vcard exporter, etc. -->
-    <string name="composer_has_no_exportable_contact">There is no exportable contact. If you have actualy have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data provider.</string>
+    <string name="composer_has_no_exportable_contact" product="tablet">There are no exportable contacts. If you actually have contacts on your tablet, all the contacts may be prohibited from being exported to outside the tablet by some data providers.</string>
+    <!-- This error message shown when the user actually have no contact
+         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
+         contacts from being exported to outside world via vcard exporter, etc. -->
+    <string name="composer_has_no_exportable_contact" product="default">There are no exportable contacts. If you actually have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data providers.</string>
 
     <!-- The error reason the vCard composer may emit when vCard composer is not initialized
          even when needed.
@@ -987,7 +1019,11 @@
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
-    <string name="account_phone">Phone-only, unsynced</string>
+    <string name="account_phone" product="tablet">Tablet-only, unsynced</string>
+    <!-- Title for data source when creating or editing a contact that doesn't
+         belong to a specific account.  This contact will only exist on the phone
+         and will not be synced. -->
+    <string name="account_phone" product="default">Phone-only, unsynced</string>
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
@@ -1215,7 +1251,11 @@
     <string name="upgrade_in_progress">Contact list is being updated.\n\nPlease wait...</string>
 
     <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
-    <string name="upgrade_out_of_memory">Contacts are in the process of being upgraded.
+    <string name="upgrade_out_of_memory" product="tablet">Contacts are in the process of being upgraded.
+    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
+    Mb of internal tablet storage.\n\nChoose one of the following options:</string>
+    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
+    <string name="upgrade_out_of_memory" product="default">Contacts are in the process of being upgraded.
     \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
     Mb of internal phone storage.\n\nChoose one of the following options:</string>
 
