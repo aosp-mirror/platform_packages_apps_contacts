@@ -38,7 +38,7 @@
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="11dip"
+        android:paddingBottom="6dip"
         ex:layout_narrowParentWidth="800dip"
         ex:layout_narrowRightMargin="0dip"
         ex:layout_wideParentWidth="1280dip"

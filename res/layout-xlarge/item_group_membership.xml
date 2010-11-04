@@ -42,4 +42,26 @@
         android:gravity="left"
         android:ellipsize="end"
     />
+
+    <!-- Plus/Minus button only for layout. This makes the editor lay out nicely with the other fields -->
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/editor_round_button_padding_left"
+        android:paddingRight="@dimen/editor_round_button_padding_right"
+        android:paddingTop="@dimen/editor_round_button_padding_top"
+        android:paddingBottom="@dimen/editor_round_button_padding_bottom"
+        android:src="@drawable/btn_plus"
+        android:background="@null"
+        android:visibility="invisible" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/editor_round_button_padding_left"
+        android:paddingRight="@dimen/editor_round_button_padding_right"
+        android:paddingTop="@dimen/editor_round_button_padding_top"
+        android:paddingBottom="@dimen/editor_round_button_padding_bottom"
+        android:src="@drawable/btn_minus"
+        android:background="@null"
+        android:visibility="invisible" />
 </com.android.contacts.views.editor.GroupMembershipView>

@@ -298,7 +298,7 @@
         />
 
         <!-- An activity for joining contacts -->
-        <activity android:name="JoinContactActivity"
+        <activity android:name=".activities.JoinContactActivity"
             android:theme="@style/JoinContactActivityTheme"
             android:clearTaskOnLaunch="true"
         >
@@ -558,7 +558,7 @@
 
         <!-- The widget that shows details and the social stream of a contact -->
         <receiver android:name=".socialwidget.SocialWidgetProvider"
-            android:label="Contact Social Stream" >
+            android:label="@string/social_widget_label" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -568,7 +568,7 @@
 
         <activity
             android:name=".socialwidget.SocialWidgetConfigureActivity"
-            android:theme="@style/SocialWidgetConfigureTheme">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.APPWIDGET_PICK" />
             </intent-filter>

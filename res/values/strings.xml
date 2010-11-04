@@ -1260,8 +1260,8 @@
     <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
     <string name="no_contacts_selected">"No contacts selected."</string>
 
-    <!-- The add field button shown in the editor under each editable Raw Contact -->
-    <string name="add_field">Add information</string>
+    <!-- The add field button shown in the editor under each editable Raw Contact [CHAR LIMIT=30] -->
+    <string name="add_field">Add another field</string>
 
     <!-- Attbution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
@@ -1403,4 +1403,7 @@
 
     <!-- Checkbox whether to provide a year for a birthday [CHAR LIMIT=30] -->
     <string name="date_year_toggle">Provide a year</string>
+
+    <!-- Label for the widget that shows picture and social status of a contact [CHAR LIMIT=20] -->
+    <string name="social_widget_label">Contact</string>
 </resources>

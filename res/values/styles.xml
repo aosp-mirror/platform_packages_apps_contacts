@@ -173,9 +173,6 @@
         <item name="list_item_header_checkbox_margin">5dip</item>
     </style>
 
-    <style name="SocialWidgetConfigureTheme" parent="ContactPickerTheme">
-    </style>
-
     <style name="JoinContactActivityTheme" parent="ContactPickerTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
