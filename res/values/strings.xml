@@ -71,12 +71,6 @@
          editing a contact. This string represents the built in way to edit the contact. -->
     <string name="editContactDescription">Edit contact</string>
 
-    <!-- The caption in the edit-email screen -->
-    <string name="edit_email_caption">Email address:</string>
-
-    <!-- The caption of the custom type -->
-    <string name="edit_email_type_caption">Type:</string>
-
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
@@ -130,9 +124,6 @@
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
-
-    <!-- Toast shown after a contact has been split from an aggregate by a user action -->
-    <string name="contactsSplitMessage">Contacts separated</string>
 
     <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
     <string name="splitConfirmation_title">Separate Contact</string>
@@ -208,9 +199,6 @@
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
 
-    <!-- Hint text for the contact name when editing -->
-    <string name="ghostData_name">First and Last</string>
-
     <!-- Hint text for the phonetic reading of the contact name when editing -->
     <string name="ghostData_phonetic_name">Phonetic name</string>
 
@@ -241,7 +229,7 @@
     <string name="postalLabelsGroup">Address</string>
 
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
-    <skip />
+    <skip/>
     <!-- The labels that are under the otherLabelsGroup when editing a contact. [CHAR LIMIT=20] -->
     <string-array name="otherLabels">
         <!-- An organization associated with a contact -->
@@ -495,9 +483,6 @@
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
 
-    <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
-
-
     <!-- Live folder label for all contacts -->
     <string name="liveFolder_all_label">All contacts</string>
 
@@ -560,9 +545,6 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
-
-    <!-- Label for the all data tab in the view and edit card -->
-    <string name="all_tab_label">All</string>
 
     <!-- String describing the image on ImageButton one
 
@@ -991,14 +973,6 @@
     <!-- Single-character overlay for other phone numbers when creating desktop shortcuts -->
     <string name="type_short_other">O</string>
 
-    <!-- In edit dialog, shown if the contact is marked as being read-only -->
-    <string name="edit_read_only">This contact is read-only</string>
-
-    <!-- Shown as the header title over a collapsible section that, by default, hides
-         secondary contact detail edit fields, such as birthday. -->
-    <string name="edit_secondary_collapse">More</string>
-
-    <string name="dialog_primary_name">Primary name</string>
     <string name="dialog_new_contact_account">Create contact under account</string>
 
     <string name="menu_sync_remove">Remove sync group</string>
@@ -1196,9 +1170,6 @@
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format">from <xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
-    <!-- String describing both account type and account name -->
-    <string name="account_type_and_name"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact from <xliff:g id="source" example="user@gmail.com">%2$s</xliff:g></string>
-
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>
 
@@ -1265,14 +1236,8 @@
     <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage -->
     <string name="upgrade_out_of_memory_retry">Retry upgrade</string>
 
-    <!-- Title shown in the search result activity of contacts app -->
-    <string name="search_results_for">Search results for: <xliff:g id="query">%s</xliff:g></string>
-
     <!-- Title shown in the search result activity of contacts app while searching -->
     <string name="search_results_searching">Searching...</string>
-
-    <!-- Message of progress dialog for multiple picker -->
-    <string name="adding_recipients">"Loading \u2026"</string>
 
     <!-- Label to display only selection in multiple picker -->
     <string name="menu_display_selected">"Show selected"</string>
@@ -1294,9 +1259,6 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g>" recipients selected"</item>
     </plurals>
 
-    <!-- Separator label to display unknown recipients in multiple picker -->
-    <string name="unknown_contacts_separator">"Unknown contacts"</string>
-
     <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
     <string name="no_contacts_selected">"No contacts selected."</string>
 
@@ -1308,12 +1270,6 @@
 
     <!-- Attbution of a contact status update, when the time of update is known -->
     <string name="contact_status_update_attribution_with_date"><xliff:g id="date" example="3 hours ago">%1$s</xliff:g> via <xliff:g id="source" example="Google Talk">%2$s</xliff:g></string>
-
-    <!-- String describing the Edit push button
-
-         Used by AccessibilityService to announce the purpose of the view.
-    -->
-    <string name="description_edit">edit</string>
 
     <!-- String describing the Star/Favorite checkbox
 
@@ -1330,15 +1286,6 @@
         <item quantity="one">not merged</item>
         <item quantity="other">merged from <xliff:g id="count">%0$d</xliff:g> sources</item>
     </plurals>
-
-    <!-- Command to delete a RawContact (a Fragment of a Contact) -->
-    <string name="edit_delete_rawcontact">Delete</string>
-
-    <!-- Shown in a Toast to indicate an error while trying to save the Data -->
-    <string name="edit_error_saving">Error saving</string>
-
-    <!-- Text in the editor to show the structured editor -->
-    <string name="edit_structured_editor_button">...</string>
 
     <!-- The name of the invisible local contact directory -->
     <string name="local_invisible_directory">Other</string>
@@ -1360,10 +1307,6 @@
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
         the selected contact? Information you entered so far will be copied.</string>
-
-    <!-- The button next to a contact aggregation suggestion in Contact editor. Causes the UI
-    to switch to the suggested contact in the editor. [CHAR LIMIT=12]-->
-    <string name="aggregation_suggestion_edit_button">Edit</string>
 
     <!-- The menu item (or button) that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
     <string name="menu_copyContact">Copy to my contacts</string>
@@ -1394,9 +1337,6 @@
 
     <!-- Contact list filter label indicating that the list is showing all starred contacts [CHAR LIMIT=64] -->
     <string name="list_filter_all_starred">Starred</string>
-
-    <!-- Contact list filter label indicating that the list is showing starred contacts for the account [CHAR LIMIT=64] -->
-    <string name="list_filter_starred">Starred</string>
 
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_custom">Custom</string>

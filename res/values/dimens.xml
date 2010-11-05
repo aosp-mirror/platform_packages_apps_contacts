@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <dimen name="quickcontact_shadow_horiz">30dip</dimen>
     <dimen name="quickcontact_shadow_vert">37dip</dimen>
@@ -31,9 +30,7 @@
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
     <dimen name="account_selector_popup_width">400dip</dimen>
-
-    <!-- Size of the text in the aizy visual scroll control -->
-    <dimen name="aizy_text_size">13dip</dimen>
+    
     <dimen name="aizy_preview_width">80dip</dimen>
     <dimen name="aizy_preview_height">80dip</dimen>
     
