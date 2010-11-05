@@ -14,10 +14,12 @@
      limitations under the License.
 -->
 
+ <!-- It is enough to update once per day, as the widget watches the database for changes -->
+ 
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="220dip"
     android:minHeight="72dip"
-    android:updatePeriodMillis="3600000"
+    android:updatePeriodMillis="86400000"
     android:initialLayout="@layout/social_widget"
     android:configure="com.android.contacts.socialwidget.SocialWidgetConfigureActivity" >
 </appwidget-provider>
