@@ -70,14 +70,13 @@ public class EventFieldEditorView extends LabeledEditorView {
         int l1 = getPaddingLeft();
         int t1 = getPaddingTop();
         int r1 = getMeasuredWidth() - getPaddingRight();
-        int b1 = getMeasuredHeight() - getPaddingBottom();
 
         // Fields
         // Subtract buttons left and right if necessary
         final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
         final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
         final int r2 = r1 - deleteWidth - labelWidth;
-        if (mDateView != null) mDateView.layout(l1, t1, r2, b1);
+        if (mDateView != null) mDateView.layout(l1, t1, r2, t1 + mDateView.getMeasuredHeight());
     }
 
     @Override
@@ -104,9 +103,8 @@ public class EventFieldEditorView extends LabeledEditorView {
         super.setValues(kind, entry, state, readOnly, vig);
 
         if (mDateView == null) {
-            mDateView = new TextView(getContext(), null, android.R.attr.textAppearanceMedium);
+            mDateView = new TextView(getContext(), null, android.R.attr.dropDownSpinnerStyle);
             mDateView.setFocusable(true);
-            mDateView.setBackgroundResource(R.drawable.edit_button_field_background);
             mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             mDateView.setEnabled(!readOnly);

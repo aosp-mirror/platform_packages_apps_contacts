@@ -33,12 +33,12 @@
         android:ellipsize="marquee" />
 
     <TextView
+        style="?android:attr/dropDownSpinnerStyle"
         android:id="@+id/group_list"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="@drawable/edit_button_field_background"
         android:gravity="left"
         android:ellipsize="end"
     />

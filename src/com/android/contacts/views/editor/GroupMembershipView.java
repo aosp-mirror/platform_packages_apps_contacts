@@ -165,7 +165,7 @@ public class GroupMembershipView extends LinearLayout
 
         if (mGroupList == null) {
             mGroupList = (TextView) findViewById(R.id.group_list);
-            setOnClickListener(this);
+            mGroupList.setOnClickListener(this);
         }
 
         mGroupList.setText(sb);
