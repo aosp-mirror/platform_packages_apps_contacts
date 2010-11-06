@@ -16,17 +16,17 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_window_focused="false" android:state_enabled="true"
-        android:drawable="@drawable/btn_minus_normal" />
+        android:drawable="@drawable/btn_plus_normal_holo_light" />
     <item android:state_window_focused="false" android:state_enabled="false"
-        android:drawable="@drawable/btn_minus_disabled" />
+        android:drawable="@drawable/btn_plus_disabled_holo_light" />
     <item android:state_pressed="true" 
-        android:drawable="@drawable/btn_minus_pressed" />
+        android:drawable="@drawable/btn_plus_pressed_holo_light" />
     <item android:state_focused="true" android:state_enabled="true"
-        android:drawable="@drawable/btn_minus_focused" />
+        android:drawable="@drawable/btn_plus_focused_holo_light" />
     <item android:state_enabled="true"
-        android:drawable="@drawable/btn_minus_normal" />
+        android:drawable="@drawable/btn_plus_normal_holo_light" />
     <item android:state_focused="true"
-        android:drawable="@drawable/btn_minus_disabled_focused" />
+        android:drawable="@drawable/btn_plus_disabled_focused_holo_light" />
     <item
-         android:drawable="@drawable/btn_minus_disabled" />
+         android:drawable="@drawable/btn_plus_disabled_holo_light" />
 </selector>
