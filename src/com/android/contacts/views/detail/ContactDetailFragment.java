@@ -278,6 +278,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             return;
         }
 
+        if (isAdded()) {
+            getActivity().invalidateOptionsMenu();
+        }
+
         if (mContactData == null) {
             mView.setVisibility(View.INVISIBLE);
             return;
@@ -971,22 +975,23 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        boolean isDirectoryEntry = mContactData != null && mContactData.isDirectoryEntry();
+        boolean isEmpty = mContactData == null;
+        boolean isDirectoryEntry = !isEmpty && mContactData.isDirectoryEntry();
 
         // Options only shows telephony-related settings (ringtone, send to voicemail).
         // ==> Hide if we don't have a telephone
         final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
         final boolean deviceHasPhone = PhoneCapabilityTester.isPhone(mContext);
-        optionsMenu.setVisible(!isDirectoryEntry && deviceHasPhone);
+        optionsMenu.setVisible(!isEmpty && !isDirectoryEntry && deviceHasPhone);
 
         final MenuItem editMenu = menu.findItem(R.id.menu_edit);
-        editMenu.setVisible(!isDirectoryEntry);
+        editMenu.setVisible(!isEmpty && !isDirectoryEntry);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
-        deleteMenu.setVisible(!isDirectoryEntry);
+        deleteMenu.setVisible(!isEmpty && !isDirectoryEntry);
 
         final MenuItem shareMenu = menu.findItem(R.id.menu_share);
-        shareMenu.setVisible(!isDirectoryEntry && !mAllRestricted);
+        shareMenu.setVisible(!isEmpty && !isDirectoryEntry && !mAllRestricted);
     }
 
     @Override
