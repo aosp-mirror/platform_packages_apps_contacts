@@ -160,7 +160,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         if (shouldExist && mDelete == null) {
             mDelete = new ImageButton(mContext);
             mDelete.setBackgroundDrawable(null);
-            mDelete.setImageResource(R.drawable.btn_minus);
+            mDelete.setImageResource(R.drawable.btn_minus_holo_light);
             final Resources resources = mContext.getResources();
             mDelete.setPadding(
                     resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_left),

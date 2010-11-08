@@ -46,10 +46,10 @@ public class SocialWidgetConfigureActivity extends Activity {
 
             // Save the setting
             final SocialWidgetConfigureActivity context = SocialWidgetConfigureActivity.this;
-            SocialWidgetSettings.setContactUri(context, widgetId, data.getData());
+            SocialWidgetSettings.getInstance().setContactUri(context, widgetId, data.getData());
 
             // Update the widget
-            SocialWidgetProvider.startLoading(context, widgetId);
+            SocialWidgetProvider.loadWidgetData(context, widgetId);
 
             // Return OK so that the system won't remove the widget
             final Intent resultValue = new Intent();

@@ -71,12 +71,6 @@
          editing a contact. This string represents the built in way to edit the contact. -->
     <string name="editContactDescription">Edit contact</string>
 
-    <!-- The caption in the edit-email screen -->
-    <string name="edit_email_caption">Email address:</string>
-
-    <!-- The caption of the custom type -->
-    <string name="edit_email_type_caption">Type:</string>
-
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
@@ -130,9 +124,6 @@
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
-
-    <!-- Toast shown after a contact has been split from an aggregate by a user action -->
-    <string name="contactsSplitMessage">Contacts separated</string>
 
     <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
     <string name="splitConfirmation_title">Separate Contact</string>
@@ -208,9 +199,6 @@
     <!-- The label describing the custom ringtone for a contact -->
     <string name="label_ringtone">Ringtone</string>
 
-    <!-- Hint text for the contact name when editing -->
-    <string name="ghostData_name">First and Last</string>
-
     <!-- Hint text for the phonetic reading of the contact name when editing -->
     <string name="ghostData_phonetic_name">Phonetic name</string>
 
@@ -251,7 +239,9 @@
     </string-array>
 
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
-    <string name="photoPickerNotFoundText">No pictures are available on the phone.</string>
+    <string name="photoPickerNotFoundText" product="tablet">No pictures are available on the tablet.</string>
+    <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
+    <string name="photoPickerNotFoundText" product="default">No pictures are available on the phone.</string>
 
     <!-- Description of the dialog used to set a photo for a contact [CHAR LIMIT=50] -->
     <string name="contact_photo_dialog_title">Contact photo</string>
@@ -431,14 +421,27 @@
     <string name="noContactsHelpTextForCreateShortcut">"You don't have any contacts to display."</string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
-    <string name="noContactsHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled -->
+    <string name="noContactsHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
-    <string name="noContactsHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled -->
+    <string name="noContactsHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
@@ -446,14 +449,27 @@
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
-    <string name="noContactsNoSimHelpText">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsNoSimHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma)-->
+    <string name="noContactsNoSimHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
     </string>
 
     <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
-    <string name="noContactsNoSimHelpTextWithSync">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
+        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the tablet\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
+        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
+    </string>
+    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma) -->
+    <string name="noContactsNoSimHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, press <font fgcolor="#ffffffff"><b>Menu</b></font> and touch:\n
         \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or configure an account with contacts you can sync to the phone\n</li>
         \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
         \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
@@ -466,9 +482,6 @@
         \n<li>Touch the contact you want to add to your favorites\n</li>
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
-
-    <!-- Activity title for the activity that lets the user choose which groups of contacts to sync from the server -->
-
 
     <!-- Live folder label for all contacts -->
     <string name="liveFolder_all_label">All contacts</string>
@@ -532,9 +545,6 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
-
-    <!-- Label for the all data tab in the view and edit card -->
-    <string name="all_tab_label">All</string>
 
     <!-- String describing the image on ImageButton one
 
@@ -861,7 +871,11 @@
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
          contacts from being exported to outside world via vcard exporter, etc. -->
-    <string name="composer_has_no_exportable_contact">There is no exportable contact. If you have actualy have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data provider.</string>
+    <string name="composer_has_no_exportable_contact" product="tablet">There are no exportable contacts. If you actually have contacts on your tablet, all the contacts may be prohibited from being exported to outside the tablet by some data providers.</string>
+    <!-- This error message shown when the user actually have no contact
+         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
+         contacts from being exported to outside world via vcard exporter, etc. -->
+    <string name="composer_has_no_exportable_contact" product="default">There are no exportable contacts. If you actually have contacts on your phone, all the contacts may be prohibited from being exported to outside the phone by some data providers.</string>
 
     <!-- The error reason the vCard composer may emit when vCard composer is not initialized
          even when needed.
@@ -959,14 +973,6 @@
     <!-- Single-character overlay for other phone numbers when creating desktop shortcuts -->
     <string name="type_short_other">O</string>
 
-    <!-- In edit dialog, shown if the contact is marked as being read-only -->
-    <string name="edit_read_only">This contact is read-only</string>
-
-    <!-- Shown as the header title over a collapsible section that, by default, hides
-         secondary contact detail edit fields, such as birthday. -->
-    <string name="edit_secondary_collapse">More</string>
-
-    <string name="dialog_primary_name">Primary name</string>
     <string name="dialog_new_contact_account">Create contact under account</string>
 
     <string name="menu_sync_remove">Remove sync group</string>
@@ -987,7 +993,11 @@
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
-    <string name="account_phone">Phone-only, unsynced</string>
+    <string name="account_phone" product="tablet">Tablet-only, unsynced</string>
+    <!-- Title for data source when creating or editing a contact that doesn't
+         belong to a specific account.  This contact will only exist on the phone
+         and will not be synced. -->
+    <string name="account_phone" product="default">Phone-only, unsynced</string>
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call <xliff:g id="custom">%s</xliff:g></string>
@@ -1160,9 +1170,6 @@
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format">from <xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
-    <!-- String describing both account type and account name -->
-    <string name="account_type_and_name"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact from <xliff:g id="source" example="user@gmail.com">%2$s</xliff:g></string>
-
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>
 
@@ -1215,7 +1222,11 @@
     <string name="upgrade_in_progress">Contact list is being updated.\n\nPlease wait...</string>
 
     <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
-    <string name="upgrade_out_of_memory">Contacts are in the process of being upgraded.
+    <string name="upgrade_out_of_memory" product="tablet">Contacts are in the process of being upgraded.
+    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
+    Mb of internal tablet storage.\n\nChoose one of the following options:</string>
+    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
+    <string name="upgrade_out_of_memory" product="default">Contacts are in the process of being upgraded.
     \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
     Mb of internal phone storage.\n\nChoose one of the following options:</string>
 
@@ -1225,14 +1236,8 @@
     <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage -->
     <string name="upgrade_out_of_memory_retry">Retry upgrade</string>
 
-    <!-- Title shown in the search result activity of contacts app -->
-    <string name="search_results_for">Search results for: <xliff:g id="query">%s</xliff:g></string>
-
     <!-- Title shown in the search result activity of contacts app while searching -->
     <string name="search_results_searching">Searching...</string>
-
-    <!-- Message of progress dialog for multiple picker -->
-    <string name="adding_recipients">"Loading \u2026"</string>
 
     <!-- Label to display only selection in multiple picker -->
     <string name="menu_display_selected">"Show selected"</string>
@@ -1254,9 +1259,6 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g>" recipients selected"</item>
     </plurals>
 
-    <!-- Separator label to display unknown recipients in multiple picker -->
-    <string name="unknown_contacts_separator">"Unknown contacts"</string>
-
     <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
     <string name="no_contacts_selected">"No contacts selected."</string>
 
@@ -1268,12 +1270,6 @@
 
     <!-- Attbution of a contact status update, when the time of update is known -->
     <string name="contact_status_update_attribution_with_date"><xliff:g id="date" example="3 hours ago">%1$s</xliff:g> via <xliff:g id="source" example="Google Talk">%2$s</xliff:g></string>
-
-    <!-- String describing the Edit push button
-
-         Used by AccessibilityService to announce the purpose of the view.
-    -->
-    <string name="description_edit">edit</string>
 
     <!-- String describing the Star/Favorite checkbox
 
@@ -1290,15 +1286,6 @@
         <item quantity="one">not merged</item>
         <item quantity="other">merged from <xliff:g id="count">%0$d</xliff:g> sources</item>
     </plurals>
-
-    <!-- Command to delete a RawContact (a Fragment of a Contact) -->
-    <string name="edit_delete_rawcontact">Delete</string>
-
-    <!-- Shown in a Toast to indicate an error while trying to save the Data -->
-    <string name="edit_error_saving">Error saving</string>
-
-    <!-- Text in the editor to show the structured editor -->
-    <string name="edit_structured_editor_button">...</string>
 
     <!-- The name of the invisible local contact directory -->
     <string name="local_invisible_directory">Other</string>
@@ -1320,10 +1307,6 @@
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
         the selected contact? Information you entered so far will be copied.</string>
-
-    <!-- The button next to a contact aggregation suggestion in Contact editor. Causes the UI
-    to switch to the suggested contact in the editor. [CHAR LIMIT=12]-->
-    <string name="aggregation_suggestion_edit_button">Edit</string>
 
     <!-- The menu item (or button) that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
     <string name="menu_copyContact">Copy to my contacts</string>
@@ -1354,9 +1337,6 @@
 
     <!-- Contact list filter label indicating that the list is showing all starred contacts [CHAR LIMIT=64] -->
     <string name="list_filter_all_starred">Starred</string>
-
-    <!-- Contact list filter label indicating that the list is showing starred contacts for the account [CHAR LIMIT=64] -->
-    <string name="list_filter_starred">Starred</string>
 
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_custom">Custom</string>
@@ -1406,4 +1386,7 @@
 
     <!-- Label for the widget that shows picture and social status of a contact [CHAR LIMIT=20] -->
     <string name="social_widget_label">Contact</string>
+
+    <!-- Message of widget while it is loading data [CHAR LIMIT=20] -->
+    <string name="social_widget_loading">Loading \u2026</string>
 </resources>

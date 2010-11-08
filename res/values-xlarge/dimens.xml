@@ -13,10 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <!-- Size of the text in the aizy visual scroll control -->
-    <dimen name="aizy_text_size">12sp</dimen>
+    
 
     <dimen name="edit_photo_size">96dip</dimen>
 

@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
         <item name="pressedBackground">@drawable/list_item_pressed_bg</item>
@@ -53,8 +52,7 @@
         <item name="list_item_photo_size">64dip</item>
     </style>
     
-    <style name="ContactsSearchTheme" parent="ContactPickerTheme">
-    </style>
+    
 
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Light.Holo">
     </style>

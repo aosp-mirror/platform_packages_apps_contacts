@@ -26,16 +26,30 @@ public class SocialWidgetSettings {
     private static final String TAG = "SocialWidgetSettings";
 
     private static final String PREFS_NAME = "WidgetSettings";
-    private static final String CONTACT_URI = "CONTACT_URI_%";
+    private static final String CONTACT_URI_PREFIX = "CONTACT_URI_";
 
-    private static String getSettingsString(int widgetId) {
-        return CONTACT_URI.replace("%", Integer.toString(widgetId));
+    private static final SocialWidgetSettings sInstance = new SocialWidgetSettings();
+
+    public static SocialWidgetSettings getInstance() {
+        return sInstance;
     }
 
-    // TODO: Think about how to remove not-used Ids...we need a way to detect removed
-    // widgets
+    private final String getSettingsString(int widgetId) {
+        return CONTACT_URI_PREFIX + Integer.toString(widgetId);
+    }
 
-    public static Uri getContactUri(Context context, int widgetId) {
+    public void remove(Context context, int[] widgetIds) {
+        final SharedPreferences settings =
+            context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        final Editor editor = settings.edit();
+        for (int widgetId : widgetIds) {
+            Log.d(TAG, "remove(" + widgetId + ")");
+            editor.remove(getSettingsString(widgetId));
+        }
+        editor.apply();
+    }
+
+    public Uri getContactUri(Context context, int widgetId) {
         final SharedPreferences settings =
                 context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         final String resultString = settings.getString(getSettingsString(widgetId), null);
@@ -44,7 +58,7 @@ public class SocialWidgetSettings {
         return result;
     }
 
-    public static void setContactUri(Context context, int widgetId, Uri contactLookupUri) {
+    public void setContactUri(Context context, int widgetId, Uri contactLookupUri) {
         Log.d(TAG, "setContactUri(" + widgetId + ", " + contactLookupUri + ")");
         final SharedPreferences settings =
                 context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

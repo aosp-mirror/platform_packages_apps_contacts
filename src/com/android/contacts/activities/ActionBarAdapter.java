@@ -23,6 +23,7 @@ import com.android.contacts.list.ContactListFilterView;
 import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -78,8 +79,12 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
             mQueryString = request.getQueryString();
         }
 
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+
         mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
-        actionBar.setCustomNavigationMode(mNavigationBar);
+        LayoutParams layoutParams = new LayoutParams(
+                LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        actionBar.setCustomView(mNavigationBar, layoutParams);
 
         mFilterContainer = mNavigationBar.findViewById(R.id.filter_container);
         mFilterView = (ContactListFilterView) mNavigationBar.findViewById(R.id.filter_view);

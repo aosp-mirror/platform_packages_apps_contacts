@@ -67,8 +67,13 @@ import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Intents;
@@ -427,9 +432,15 @@ public class ContactEditorFragment extends Fragment implements
         EntityModifier.parseExtras(mContext, source, insert,
                 prefillFromIntent ? mIntentExtras : null);
 
-        // Ensure we have some default fields
+        // Ensure we have some default fields (if the source does not supper a field,
+        // ensureKind will not add it, so it is safe to add e.g. Event)
         EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, Note.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, Organization.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, Event.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, Website.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, source, StructuredPostal.CONTENT_ITEM_TYPE);
 
         if (mState == null) {
             // Create state if none exists yet

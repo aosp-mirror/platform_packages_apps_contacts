@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="7dip"
         android:layout_marginRight="7dip"
-        android:background="@drawable/cab_divider_holo_light" />
+        android:background="@*android:drawable/cab_divider_holo_light" />
     <view
         class="android.widget.SearchView"
         android:id="@+id/search_view"

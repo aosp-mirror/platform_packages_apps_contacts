@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/social_bubble"
+                android:background="@drawable/statusbox_landscape_holo_light"
                 android:layout_marginTop="30dip"
                 android:paddingLeft="64dip"
                 android:paddingTop="16dip"
