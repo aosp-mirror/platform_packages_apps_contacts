@@ -15,98 +15,63 @@
  */
 package com.android.contacts.vcard;
 
+import com.android.contacts.R;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.android.contacts.R;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 
 /**
- * The class responsible for importing vCard from one ore multiple Uris.
+ * The class responsible for handling vCard import/export requests.
+ *
+ * This Service creates one ImportRequest/ExportRequest object (as Runnable) per request and push
+ * it to {@link ExecutorService} with single thread executor. The executor handles each request
+ * one by one, and notifies users when needed.
  */
+// TODO: Using IntentService looks simpler than using Service + ServiceConnection though this
+// works fine enough. Investigate the feasibility.
 public class VCardService extends Service {
-    private final static String LOG_TAG = VCardService.class.getSimpleName();
+    private final static String LOG_TAG = "VCardService";
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
     /* package */ static final int MSG_EXPORT_REQUEST = 2;
     /* package */ static final int MSG_CANCEL_IMPORT_REQUEST = 3;
-    /* package */ static final int MSG_NOTIFY_IMPORT_FINISHED = 5;
 
     /* package */ static final int IMPORT_NOTIFICATION_ID = 1000;
     /* package */ static final int EXPORT_NOTIFICATION_ID = 1001;
 
     /* package */ static final String CACHE_FILE_PREFIX = "import_tmp_";
 
-    public class ImportRequestHandler extends Handler {
-        private ImportProcessor mImportProcessor;
-        private ExportProcessor mExportProcessor = new ExportProcessor(VCardService.this);
-        private boolean mDoDelayedCancel = false;
-
-        public ImportRequestHandler() {
-            super();
-        }
-
+    public class RequestHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
-                    Log.i(LOG_TAG, "Received vCard import request.");
-                    if (mDoDelayedCancel) {
-                        Log.i(LOG_TAG, "A cancel request came before import request. " +
-                                "Refrain current import once.");
-                        mDoDelayedCancel = false;
-                    } else {
-                        final ImportRequest parameter = (ImportRequest)msg.obj;
-
-                        if (mImportProcessor == null || !mImportProcessor.isReadyForRequest()) {
-                            mImportProcessor = new ImportProcessor(VCardService.this);
-                        } else if (mImportProcessor.isCanceled()) {
-                            Log.i(LOG_TAG,
-                                    "Existing ImporterProcessor is canceled. create another.");
-                            mImportProcessor = new ImportProcessor(VCardService.this);
-                        }
-
-                        mImportProcessor.pushRequest(parameter);
-                        Toast.makeText(VCardService.this,
-                                getString(R.string.vcard_importer_start_message),
-                                Toast.LENGTH_LONG).show();
-                    }
+                    handleImportRequest((ImportRequest)msg.obj);
                     break;
                 }
                 case MSG_EXPORT_REQUEST: {
-                    Log.i(LOG_TAG, "Received vCard export request.");
-                    final ExportRequest parameter = (ExportRequest)msg.obj;
-                    mExportProcessor.pushRequest(parameter);
-                    Toast.makeText(VCardService.this,
-                            getString(R.string.vcard_exporter_start_message),
-                            Toast.LENGTH_LONG).show();
+                    handleExportRequest((ExportRequest)msg.obj);
                     break;
                 }
                 case MSG_CANCEL_IMPORT_REQUEST: {
-                    Log.i(LOG_TAG, "Received cancel import request.");
-                    if (mImportProcessor != null) {
-                        mImportProcessor.cancel();
-                    } else {
-                        Log.w(LOG_TAG, "ImportProcessor isn't ready. Delay the cancel request.");
-                        mDoDelayedCancel = true;
-                    }
+                    handleCancelAllImportRequest();
                     break;
                 }
-                case MSG_NOTIFY_IMPORT_FINISHED: {
-                    Log.i(LOG_TAG, "Received vCard import finish notification.");
-                    break;
-                }
+                // TODO: add cancel capability for export..
                 default: {
                     Log.w(LOG_TAG, "Received unknown request, ignoring it.");
                     super.hasMessages(msg.what);
@@ -115,8 +80,17 @@ public class VCardService extends Service {
         }
     }
 
-    private ImportRequestHandler mHandler = new ImportRequestHandler();
-    private Messenger mMessenger = new Messenger(mHandler);
+    private final Handler mHandler = new RequestHandler();
+    private final Messenger mMessenger = new Messenger(mHandler);
+    // Should be single thread, as we don't want to simultaneously handle import and export
+    // requests.
+    private ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
+
+    private int mCurrentJobId;
+    private final Map<Integer, ImportProcessor> mRunningJobMapForImport =
+            new HashMap<Integer, ImportProcessor>();
+    private final Map<Integer, ExportProcessor> mRunningJobMapForExport =
+            new HashMap<Integer, ExportProcessor>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int id) {
@@ -130,10 +104,123 @@ public class VCardService extends Service {
 
     @Override
     public void onDestroy() {
+        Log.i(LOG_TAG, "VCardService is finishing()");
+        cancelRequestsAndshutdown();
         clearCache();
         super.onDestroy();
     }
 
+    private synchronized void handleImportRequest(ImportRequest request) {
+        Log.i(LOG_TAG, String.format("Received vCard import request. id: %d", mCurrentJobId));
+        final ImportProcessor importProcessor =
+                new ImportProcessor(this, request, mCurrentJobId);
+        try {
+            mExecutorService.submit(importProcessor);
+        } catch (RejectedExecutionException e) {
+            Log.w(LOG_TAG, "vCard import request is rejected.", e);
+            // TODO: a little unkind to show Toast in this case, which is shown just a moment.
+            // Ideally we should show some persistent something users can notice more easily.
+            Toast.makeText(this, getString(R.string.vcard_import_request_rejected_message),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        mRunningJobMapForImport.put(mCurrentJobId, importProcessor);
+        mCurrentJobId++;
+        // TODO: Ideally we should detect the current status of import/export and show "started"
+        // when we can import right now and show "will start" when we cannot.
+        Toast.makeText(this, getString(R.string.vcard_import_will_start_message),
+                Toast.LENGTH_LONG).show();
+    }
+
+    private synchronized void handleExportRequest(ExportRequest request) {
+        Log.i(LOG_TAG, String.format("Received vCard export request. id: %d", mCurrentJobId));
+        final ExportProcessor exportProcessor =
+                new ExportProcessor(this, request, mCurrentJobId);
+        try {
+            mExecutorService.submit(exportProcessor);
+        } catch (RejectedExecutionException e) {
+            Log.w(LOG_TAG, "vCard export request is rejected.", e);
+            Toast.makeText(this, getString(R.string.vcard_export_request_rejected_message),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        mRunningJobMapForExport.put(mCurrentJobId, exportProcessor);
+        mCurrentJobId++;
+        // See the comment in handleImportRequest()
+        Toast.makeText(this, getString(R.string.vcard_export_will_start_message),
+                Toast.LENGTH_LONG).show();
+    }
+
+    private synchronized void handleCancelAllImportRequest() {
+        Log.i(LOG_TAG, "Received cancel import request.");
+        cancelAllImportRequest();
+        mRunningJobMapForImport.clear();
+    }
+
+    private void cancelAllImportRequest() {
+        for (final Map.Entry<Integer, ImportProcessor> entry :
+                mRunningJobMapForImport.entrySet()) {
+            final int jobId = entry.getKey();
+            final ImportProcessor importProcessor = entry.getValue();
+            importProcessor.cancel();
+            Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
+        }
+    }
+
+    private void cancelAllExportRequest() {
+        for (final Map.Entry<Integer, ExportProcessor> entry :
+                mRunningJobMapForExport.entrySet()) {
+            final int jobId = entry.getKey();
+            final ExportProcessor exportProcessor = entry.getValue();
+            exportProcessor.cancel();
+            Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
+        }
+    }
+
+    /* package */ synchronized void handleFinishImportNotification(
+            int jobId, boolean successful) {
+        Log.i(LOG_TAG, String.format("Received vCard import finish notification (id: %d). "
+                + "Result: %b", jobId, (successful ? "success" : "failure")));
+        if (mRunningJobMapForImport.remove(jobId) == null) {
+            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
+        }
+    }
+
+    /* package */ synchronized void handleFinishExportNotification(
+            int jobId, boolean successful) {
+        Log.i(LOG_TAG, String.format("Received vCard export finish notification (id: %d). "
+                + "Result: %b", jobId, (successful ? "success" : "failure")));
+        if (mRunningJobMapForExport.remove(jobId) == null) {
+            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
+        }
+    }
+
+    /**
+     * Cancels all the import/export requests and call {@link ExecutorService#shutdown()}, which
+     * means this Service becomes no longer ready for import/export requests. Mainly used in
+     * onDestroy().
+     */
+    private synchronized void cancelRequestsAndshutdown() {
+        synchronized (this) {
+            if (mRunningJobMapForImport.size() > 0) {
+                Log.i(LOG_TAG,
+                        String.format("Cancel existing all import requests (remains: ",
+                                mRunningJobMapForImport.size()));
+                cancelAllImportRequest();
+            }
+            if (mRunningJobMapForExport.size() > 0) {
+                Log.i(LOG_TAG,
+                        String.format("Cancel existing all import requests (remains: ",
+                                mRunningJobMapForExport.size()));
+                cancelAllExportRequest();
+            }
+            mExecutorService.shutdown();
+        }
+    }
+
+    /**
+     * Removes import caches stored locally.
+     */
     private void clearCache() {
         Log.i(LOG_TAG, "start removing cache files if exist.");
         final String[] fileLists = fileList();
