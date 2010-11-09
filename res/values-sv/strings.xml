@@ -66,7 +66,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Om du tar bort den här kontakten tar du bort information från flera konton."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kontakten kommer att tas bort."</string>
     <string name="menu_done" msgid="796017761764190697">"Färdig"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Återgå"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"Tillbaka"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Redigera kontakt"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Ny kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetiskt"</string>
@@ -169,7 +169,7 @@
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Stjärnmärkt"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoner"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Använda tonvalstelefon"</string>
-    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Återgå till pågående samtal"</string>
+    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Återvänd till pågående samtal"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Lägg t. samt."</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Samtalsinfo"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Det gick inte att läsa information om samtalet."</string>
