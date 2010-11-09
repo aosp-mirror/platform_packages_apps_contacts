@@ -98,6 +98,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -476,9 +477,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                         entry.intent = imActions.getPrimaryIntent();
                         entry.secondaryIntent = imActions.getSecondaryIntent();
                     }
-                    if (TextUtils.isEmpty(entry.kindAndType)) {
-                        entry.kindAndType = mContext.getString(R.string.chat).toLowerCase();
-                    }
 
                     // Apply presence and status details when available
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
@@ -574,7 +572,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             }
             entry.mimetype = GroupMembership.MIMETYPE;
             entry.kind = mContext.getString(R.string.groupsLabel).toUpperCase();
-            entry.kindAndType = entry.kind;
             entry.data = sb.toString();
             mGroupEntries.add(entry);
         }
@@ -628,7 +625,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
      */
     private static class ViewEntry implements Collapsible<ViewEntry> {
         public int type = -1;
-        public String kindAndType;
         public String kind;
         public String typeString;
         public String data;
@@ -664,7 +660,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             entry.id = dataId;
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             entry.mimetype = mimeType;
-            entry.kindAndType = buildActionString(kind, values, context);
             entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
                     : context.getString(kind.titleRes).toUpperCase();
             entry.data = buildDataString(kind, values, context);
@@ -726,7 +721,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             if (TypePrecedence.getTypePrecedence(mimetype, type)
                     > TypePrecedence.getTypePrecedence(entry.mimetype, entry.type)) {
                 type = entry.type;
-                kindAndType = entry.kindAndType;
                 kind = entry.kind;
                 typeString = entry.typeString;
             }
@@ -775,7 +769,9 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
     /** Cache of the children views of a row */
     private static class ViewCache {
-        public TextView kindAndType;
+        public View kindDivider;
+        public View inKindDivider;
+        public View lineBelowLast;
         public TextView kind;
         public TextView type;
         public TextView data;
@@ -804,8 +800,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
                 // Cache the children
                 viewCache = new ViewCache();
-                viewCache.kindAndType = (TextView) v.findViewById(R.id.kind_and_type);
                 viewCache.kind = (TextView) v.findViewById(R.id.kind);
+                viewCache.kindDivider = v.findViewById(R.id.kind_divider);
+                viewCache.lineBelowLast = v.findViewById(R.id.line_below_last);
+                viewCache.inKindDivider = v.findViewById(R.id.in_kind_divider);
                 viewCache.type = (TextView) v.findViewById(R.id.type);
                 viewCache.data = (TextView) v.findViewById(R.id.data);
                 viewCache.footer = (TextView) v.findViewById(R.id.footer);
@@ -822,24 +820,28 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             final ViewEntry previousEntry = position == 0 ? null : getEntry(position - 1);
             final boolean isFirstOfItsKind =
                     previousEntry == null ? true : !previousEntry.kind.equals(entry.kind);
+            final boolean isLast = position == getCount() - 1;
 
             // Bind the data to the view
-            bindView(v, entry, isFirstOfItsKind);
+            bindView(v, entry, isFirstOfItsKind, isLast);
             return v;
         }
 
-        protected void bindView(View view, ViewEntry entry, boolean isFirstOfItsKind) {
+        protected void bindView(View view, ViewEntry entry, boolean isFirstOfItsKind,
+                boolean isLast) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
 
-            // Set the label. This is either a combination field or separate fields for kind of type
-            if (views.kindAndType != null) views.kindAndType.setText(entry.kindAndType);
-            if (views.kind != null) views.kind.setText(isFirstOfItsKind ? entry.kind : "");
-            if (views.type != null) {
-                final String typeString = entry.typeString;
-                views.type.setText(typeString);
-                views.type.setVisibility(TextUtils.isEmpty(typeString) ? View.GONE : View.VISIBLE);
+            views.kind.setText(isFirstOfItsKind ? entry.kind : "");
+            views.kindDivider.setVisibility(isFirstOfItsKind ? View.VISIBLE : View.GONE);
+            views.inKindDivider.setVisibility(isFirstOfItsKind ? View.GONE : View.VISIBLE);
+            if (views.lineBelowLast != null) {
+                views.lineBelowLast.setVisibility(isLast ? View.VISIBLE : View.GONE);
             }
+
+            views.type.setText(entry.typeString);
+            views.type.setVisibility(
+                    TextUtils.isEmpty(entry.typeString) ? View.GONE : View.VISIBLE);
 
             // Set the content
             final TextView content = views.data;

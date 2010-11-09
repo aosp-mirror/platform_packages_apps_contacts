@@ -26,7 +26,8 @@
     <!-- Header View (including social status) -->
     <com.android.contacts.widget.InterpolatingLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dip">
         <com.android.contacts.views.detail.ContactDetailHeaderView
             android:id="@+id/contact_header_widget"
             android:layout_width="match_parent"
@@ -51,7 +52,7 @@
             android:textSize="20sp"
             android:textColor="?android:attr/textColorSecondary"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="144dip"
+            ex:layout_wideLeftMargin="64dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowLeftMargin="42dip"
             android:paddingTop="10dip"
@@ -68,17 +69,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="80dip"
-            ex:layout_wideRightMargin="64dip"
+            ex:layout_wideLeftMargin="64dip"
+            ex:layout_wideRightMargin="48dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowLeftMargin="32dip"
             ex:layout_narrowRightMargin="0dip"
             android:cacheColorHint="#00000000"
-            android:divider="#ffe5e5e5"
-            android:dividerHeight="1px"
+            android:divider="@android:color/transparent"
         />
     </com.android.contacts.widget.InterpolatingLayout>
-    
+
     <!-- "Copy to my contacts"- button -->
     <Button
         android:id="@+id/copyLocal"
