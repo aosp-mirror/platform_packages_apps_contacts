@@ -19,7 +19,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <com.android.contacts.views.detail.ContactDetailHeaderView
         android:id="@+id/contact_header_widget"
         android:layout_width="match_parent"

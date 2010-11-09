@@ -30,7 +30,7 @@ import junit.framework.Assert;
  * A {@link LoaderManager} that performs synchronous loading on demand for unit
  * testing.
  */
-public class TestLoaderManager implements LoaderManager {
+public class TestLoaderManager extends LoaderManager {
 
     // Using a linked hash map to get all loading done in a predictable order.
     private LinkedHashMap<Integer, Loader<?>> mStartedLoaders = new LinkedHashMap<
