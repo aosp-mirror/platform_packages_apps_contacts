@@ -238,8 +238,9 @@ public class ContactBrowserActivity extends Activity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        setIntent(intent);
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            mRequest = mIntentResolver.resolveIntent(getIntent());
+            mRequest = mIntentResolver.resolveIntent(intent);
 
             Uri uri = mRequest.getContactUri();
             if (uri == null) {
@@ -248,6 +249,10 @@ public class ContactBrowserActivity extends Activity
 
             if (mHasActionBar) {
                 mActionBarAdapter.setSearchMode(false);
+
+                // onNewIntent is called when the activity is paused, so it is not
+                // registered as a listener of the action bar adapter. Simulate the listener call.
+                onAction();
             }
 
             mListFragment.setSelectedContactUri(uri);

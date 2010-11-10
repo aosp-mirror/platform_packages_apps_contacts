@@ -315,6 +315,16 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     }
                 }
             }
+
+            // If the photo was loaded using the URI, create an entry for the photo
+            // binary data.
+            if (mPhotoId == 0 && mPhotoBinaryData != null) {
+                ContentValues photo = new ContentValues();
+                photo.put(Data.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
+                photo.put(Photo.PHOTO, mPhotoBinaryData);
+                result.add(photo);
+            }
+
             return result;
         }
 

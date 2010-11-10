@@ -18,7 +18,6 @@ package com.android.contacts.list;
 
 import com.android.contacts.CallContactActivity;
 import com.android.contacts.ContactsSearchManager;
-import com.android.contacts.R;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -28,10 +27,10 @@ import android.os.Bundle;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
@@ -139,6 +138,9 @@ public class ContactsIntentResolver {
                 request.setQueryString(intent.getStringExtra(SearchManager.QUERY));
                 request.setSearchMode(true);
             }
+        } else if (Intent.ACTION_VIEW.equals(action)) {
+            request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+            request.setContactUri(intent.getData());
         } else if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             // When we get a FILTER_CONTACTS_ACTION, it represents search in the context
             // of some other action. Let's retrieve the original action to provide proper
