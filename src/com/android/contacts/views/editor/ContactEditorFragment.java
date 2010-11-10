@@ -75,7 +75,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
@@ -103,9 +102,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
-        SplitContactConfirmationDialogFragment.Listener, PhotoDialogFragment.Listener,
-        SelectAccountDialogFragment.Listener, AggregationSuggestionEngine.Listener,
-        AggregationSuggestionView.Listener {
+        SplitContactConfirmationDialogFragment.Listener, SelectAccountDialogFragment.Listener,
+        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -483,51 +481,13 @@ public class ContactEditorFragment extends Fragment implements
                 editor = (BaseRawContactEditorView) inflater.inflate(
                         R.layout.read_only_raw_contact_editor_view, mContent, false);
             }
-            final PhotoEditorView photoEditor = editor.getPhotoEditor();
-            final boolean sourceReadOnly = source.readOnly;
-            photoEditor.setEditorListener(new EditorListener() {
-                @Override
-                public void onRequest(int request) {
-                    if (!hasValidState()) return;
-
-                    if (request == EditorListener.REQUEST_PICK_PHOTO) {
-                        // Determine mode
-                        final int mode;
-                        if (sourceReadOnly) {
-                            if (editor.hasSetPhoto() && hasMoreThanOnePhoto()) {
-                                mode = PhotoDialogFragment.MODE_READ_ONLY_ALLOW_PRIMARY;
-                            } else {
-                                // Read-only and either no photo or the only photo ==> no options
-                                return;
-                            }
-                        } else {
-                            if (editor.hasSetPhoto()) {
-                                if (hasMoreThanOnePhoto()) {
-                                    mode = PhotoDialogFragment.MODE_PHOTO_ALLOW_PRIMARY;
-                                } else {
-                                    mode = PhotoDialogFragment.MODE_PHOTO_DISALLOW_PRIMARY;
-                                }
-                            } else {
-                                mode = PhotoDialogFragment.MODE_NO_PHOTO;
-                            }
-                        }
-
-                        final PhotoDialogFragment fragment = new PhotoDialogFragment();
-                        fragment.setArguments(mode, rawContactId);
-                        fragment.setTargetFragment(ContactEditorFragment.this, 0);
-                        fragment.show(getFragmentManager(), PhotoDialogFragment.TAG);
-                    }
-                }
-
-                @Override
-                public void onDeleted(Editor removedEditor) {
-                }
-            });
 
             mContent.addView(editor);
 
             editor.setState(entity, source, mViewIdGenerator);
 
+            editor.getPhotoEditor().setEditorListener(
+                    new PhotoEditorListener(editor, source.readOnly));
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
@@ -1739,76 +1699,6 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     /**
-     * User has chosen to set the selected photo as the (super) primary photo
-     */
-    @Override
-    public void onUseAsPrimaryChosen(long rawContactId) {
-        // Set the IsSuperPrimary for each editor
-        int count = mContent.getChildCount();
-        for (int i = 0; i < count; i++) {
-            final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseRawContactEditorView) {
-                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
-                final PhotoEditorView photoEditor = editor.getPhotoEditor();
-                photoEditor.setSuperPrimary(editor.getRawContactId() == rawContactId);
-            }
-        }
-    }
-
-    /**
-     * User has chosen to remove a picture
-     */
-    @Override
-    public void onRemovePictureChose(long rawContactId) {
-        // find the correct editor and remove it's photo
-        final int editorCount = mContent.getChildCount();
-        for (int i = 0; i < editorCount; i++) {
-            final View child = mContent.getChildAt(i);
-            if (child instanceof BaseRawContactEditorView) {
-                final BaseRawContactEditorView editor =
-                    (BaseRawContactEditorView) child;
-                if (editor.getRawContactId() == rawContactId) {
-                    editor.setPhotoBitmap(null);
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * Launches Camera to take a picture and store it in a file.
-     */
-    @Override
-    public void onTakePhotoChosen(long rawContactId) {
-        mRawContactIdRequestingPhoto = rawContactId;
-        try {
-            // Launch camera to take photo for selected contact
-            PHOTO_DIR.mkdirs();
-            mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
-            final Intent intent = getTakePickIntent(mCurrentPhotoFile);
-
-            startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * Launches Gallery to pick a photo.
-     */
-    @Override
-    public void onPickFromGalleryChosen(long rawContactId) {
-        mRawContactIdRequestingPhoto = rawContactId;
-        try {
-            // Launch picker to choose photo for selected contact
-            final Intent intent = getPhotoPickIntent();
-            startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
      * Account was chosen in the selector. Create a RawContact for this account now
      */
     @Override
@@ -1823,6 +1713,111 @@ public class ContactEditorFragment extends Fragment implements
     public void onAccountSelectorCancelled() {
         if (!hasValidState() && mListener != null) {
             mListener.onAccountSelectorAborted();
+        }
+    }
+
+    private final class PhotoEditorListener
+            implements EditorListener, PhotoActionPopup.Listener {
+        private final BaseRawContactEditorView mEditor;
+        private final boolean mSourceReadOnly;
+
+        private PhotoEditorListener(BaseRawContactEditorView editor, boolean sourceReadOnly) {
+            mEditor = editor;
+            mSourceReadOnly = sourceReadOnly;
+        }
+
+        @Override
+        public void onRequest(int request) {
+            if (!hasValidState()) return;
+
+            if (request == EditorListener.REQUEST_PICK_PHOTO) {
+                // Determine mode
+                final int mode;
+                if (mSourceReadOnly) {
+                    if (mEditor.hasSetPhoto() && hasMoreThanOnePhoto()) {
+                        mode = PhotoActionPopup.MODE_READ_ONLY_ALLOW_PRIMARY;
+                    } else {
+                        // Read-only and either no photo or the only photo ==> no options
+                        return;
+                    }
+                } else {
+                    if (mEditor.hasSetPhoto()) {
+                        if (hasMoreThanOnePhoto()) {
+                            mode = PhotoActionPopup.MODE_PHOTO_ALLOW_PRIMARY;
+                        } else {
+                            mode = PhotoActionPopup.MODE_PHOTO_DISALLOW_PRIMARY;
+                        }
+                    } else {
+                        mode = PhotoActionPopup.MODE_NO_PHOTO;
+                    }
+                }
+                PhotoActionPopup.createPopupMenu(mContext, mEditor.getPhotoEditor(), this, mode)
+                        .show();
+            }
+        }
+
+        @Override
+        public void onDeleted(Editor removedEditor) {
+        }
+
+        /**
+         * User has chosen to set the selected photo as the (super) primary photo
+         */
+        @Override
+        public void onUseAsPrimaryChosen() {
+            // Set the IsSuperPrimary for each editor
+            int count = mContent.getChildCount();
+            for (int i = 0; i < count; i++) {
+                final View childView = mContent.getChildAt(i);
+                if (childView instanceof BaseRawContactEditorView) {
+                    final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
+                    final PhotoEditorView photoEditor = editor.getPhotoEditor();
+                    photoEditor.setSuperPrimary(editor == mEditor);
+                }
+            }
+        }
+
+        /**
+         * User has chosen to remove a picture
+         */
+        @Override
+        public void onRemovePictureChose() {
+            mEditor.setPhotoBitmap(null);
+        }
+
+        /**
+         * Launches Camera to take a picture and store it in a file.
+         */
+        @Override
+        public void onTakePhotoChosen() {
+            mRawContactIdRequestingPhoto = mEditor.getRawContactId();
+            try {
+                // Launch camera to take photo for selected contact
+                PHOTO_DIR.mkdirs();
+                mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
+                final Intent intent = getTakePickIntent(mCurrentPhotoFile);
+
+                startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(mContext, R.string.photoPickerNotFoundText,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
+        /**
+         * Launches Gallery to pick a photo.
+         */
+        @Override
+        public void onPickFromGalleryChosen() {
+            mRawContactIdRequestingPhoto = mEditor.getRawContactId();
+            try {
+                // Launch picker to choose photo for selected contact
+                final Intent intent = getPhotoPickIntent();
+                startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(mContext, R.string.photoPickerNotFoundText,
+                        Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

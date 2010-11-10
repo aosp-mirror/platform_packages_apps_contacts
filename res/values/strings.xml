@@ -243,8 +243,8 @@
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
     <string name="photoPickerNotFoundText" product="default">No pictures are available on the phone.</string>
 
-    <!-- Description of the dialog used to set a photo for a contact [CHAR LIMIT=50] -->
-    <string name="contact_photo_dialog_title">Contact photo</string>
+    <!-- Description used in the attach photo Intent from third party apps [CHAR LIMIT=50] -->
+    <string name="attach_photo_dialog_title">Contact photo</string>
 
     <!-- Title of the dialog used to set a custom label for a contact detail, like a phone number or email address.
          For example, this may be used to set a phone number's label to "Vaction house" -->
