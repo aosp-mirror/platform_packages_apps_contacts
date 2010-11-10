@@ -30,10 +30,12 @@
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
     <dimen name="account_selector_popup_width">400dip</dimen>
-    
+
+    <dimen name="photo_action_popup_width">400dip</dimen>
+
     <dimen name="aizy_preview_width">80dip</dimen>
     <dimen name="aizy_preview_height">80dip</dimen>
-    
+
     <!-- Padding of the rounded plus/minus buttons in the editor (the minus button is created
     in code) -->
     <dimen name="editor_round_button_padding_left">5dip</dimen>

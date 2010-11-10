@@ -242,7 +242,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
             </intent-filter>
 
             <intent-filter>
@@ -470,7 +469,7 @@
 
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity android:name="AttachImage"
-            android:label="@string/contact_photo_dialog_title"
+            android:label="@string/attach_photo_dialog_title"
             android:taskAffinity="">
             <intent-filter>
                 <action android:name="android.intent.action.ATTACH_DATA" />

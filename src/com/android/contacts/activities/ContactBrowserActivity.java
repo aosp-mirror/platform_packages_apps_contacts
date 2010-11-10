@@ -165,7 +165,7 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            restoreListSelection();
+            configureListSelection(false);
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -364,7 +364,7 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public void onContactListFiltersLoaded() {
-        restoreListSelection();
+        configureListSelection(mRequest.getContactUri() == null);
 
         // Filters have been loaded - now we can start loading the list itself
         mListFragment.startLoading();
@@ -372,18 +372,15 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public void onContactListFilterChanged() {
-        // If there was a request to show a specific contact, that's no longer the case
-        // because the user has explicitly changed the filter.
-        mRequest.setContactUri(null);
-
-        restoreListSelection();
+        resetContactSelectionInIntent();
+        configureListSelection(true);
         mListFragment.reloadData();
     }
 
     /**
-     * Restores filter-specific persistent selection.
+     * Configures filter-specific persistent selection.
      */
-    private void restoreListSelection() {
+    private void configureListSelection(boolean restoreSelectedUri) {
         if (mListFragment == null) {
             return;
         }
@@ -394,7 +391,9 @@ public class ContactBrowserActivity extends Activity
             DefaultContactBrowseListFragment fragment =
                     (DefaultContactBrowseListFragment) mListFragment;
             fragment.setFilter(mContactListFilterController.getFilter());
-            fragment.restoreSelectedUri(mPrefs);
+            if (restoreSelectedUri) {
+                fragment.restoreSelectedUri(mPrefs);
+            }
             fragment.requestSelectionOnScreen(false);
             if (mContactContentDisplayed) {
                 setupContactDetailFragment(mListFragment.getSelectedContactUri());
@@ -402,6 +401,17 @@ public class ContactBrowserActivity extends Activity
         } else if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
+    }
+
+    /**
+     * Removes the selected contact URI that was supplied with the intent (if any),
+     * because the user has explicitly changed the selection.
+     */
+    private void resetContactSelectionInIntent() {
+        mRequest.setContactUri(null);
+
+        getIntent().setAction(Intent.ACTION_DEFAULT);
+        getIntent().setData(null);
     }
 
     private void showDefaultSelection() {
@@ -583,6 +593,8 @@ public class ContactBrowserActivity extends Activity
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
             if (mContactContentDisplayed) {
+                resetContactSelectionInIntent();
+
                 mListFragment.setSelectedContactUri(contactLookupUri);
                 mListFragment.saveSelectedUri(mPrefs);
                 setupContactDetailFragment(contactLookupUri);
@@ -654,8 +666,8 @@ public class ContactBrowserActivity extends Activity
     private class DetailFragmentListener implements ContactDetailFragment.Listener {
         @Override
         public void onContactNotFound() {
+            resetContactSelectionInIntent();
             setupContactDetailFragment(null);
-            mRequest.setContactUri(null);
             showDefaultSelection();
         }
 
@@ -864,13 +876,14 @@ public class ContactBrowserActivity extends Activity
 
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContactContentDisplayed) {
+                    resetContactSelectionInIntent();
+
                     final Uri newContactUri = data.getData();
                     if (mContactContentDisplayed) {
                         setupContactDetailFragment(newContactUri);
                     }
 
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mRequest.setContactUri(newContactUri);
                     mListFragment.setSelectedContactUri(newContactUri);
                     mListFragment.saveSelectedUri(mPrefs);
                     mListFragment.requestSelectionOnScreen(true);
