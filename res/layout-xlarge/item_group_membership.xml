@@ -51,7 +51,7 @@
         android:paddingRight="@dimen/editor_round_button_padding_right"
         android:paddingTop="@dimen/editor_round_button_padding_top"
         android:paddingBottom="@dimen/editor_round_button_padding_bottom"
-        android:src="@drawable/btn_plus_holo_light"
+        android:src="@drawable/ic_menu_add_field_holo_light"
         android:background="@null"
         android:visibility="invisible" />
     <ImageButton
@@ -61,7 +61,7 @@
         android:paddingRight="@dimen/editor_round_button_padding_right"
         android:paddingTop="@dimen/editor_round_button_padding_top"
         android:paddingBottom="@dimen/editor_round_button_padding_bottom"
-        android:src="@drawable/btn_minus_holo_light"
+        android:src="@drawable/ic_menu_remove_field_holo_light"
         android:background="@null"
         android:visibility="invisible" />
 </com.android.contacts.views.editor.GroupMembershipView>

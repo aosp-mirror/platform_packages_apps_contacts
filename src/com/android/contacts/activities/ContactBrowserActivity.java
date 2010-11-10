@@ -218,7 +218,7 @@ public class ContactBrowserActivity extends Activity
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
             // TODO: request may ask for FREQUENT - set the filter accordingly
             mAddContactImageView = new ImageView(this);
-            mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact);
+            mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
             mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
             mAddContactImageView.setOnClickListener(new OnClickListener() {
                 @Override

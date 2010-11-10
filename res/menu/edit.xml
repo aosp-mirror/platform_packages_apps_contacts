@@ -18,33 +18,34 @@
     <item
         android:id="@+id/menu_done"
         android:alphabeticShortcut="\n"
-        android:icon="@drawable/ic_menu_done"
+        android:icon="@drawable/ic_menu_done_holo_light"
         android:title="@string/menu_done"
         android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_discard"
         android:alphabeticShortcut="q"
-        android:icon="@drawable/ic_menu_cancel"
-        android:title="@string/menu_doNotSave" />
+        android:icon="@drawable/ic_menu_cancel_holo_light"
+        android:title="@string/menu_doNotSave"
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_add_raw_contact"
-        android:icon="@drawable/ic_menu_add_contact"
+        android:icon="@drawable/ic_menu_add_contact_holo_light"
         android:title="@string/menu_newContact" />
 
     <item
         android:id="@+id/menu_delete"
-        android:icon="@drawable/ic_menu_trash"
+        android:icon="@drawable/ic_menu_trash_holo_light"
         android:title="@string/menu_deleteContact" />
 
     <item
         android:id="@+id/menu_split"
-        android:icon="@drawable/ic_menu_split"
+        android:icon="@drawable/ic_menu_split_holo_light"
         android:title="@string/menu_splitAggregate" />
 
     <item
         android:id="@+id/menu_join"
-        android:icon="@drawable/ic_menu_merge"
+        android:icon="@drawable/ic_menu_merge_holo_light"
         android:title="@string/menu_joinAggregate" />
 </menu>

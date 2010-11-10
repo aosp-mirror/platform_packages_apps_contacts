@@ -25,6 +25,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.content.Context;
 import android.content.Entity;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -133,13 +134,20 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private void setupMoreOrLessButton(boolean shouldExist, boolean collapsed) {
         if (shouldExist) {
             if (mMoreOrLess == null) {
-                // Unfortunately, the style passed as constructor-parameter is mostly ignored,
-                // so we have to set the Background and Image seperately. However, if it is not
-                // given, the size of the control is wrong
-                mMoreOrLess = new ImageButton(mContext, null, R.style.EmptyButton);
+                mMoreOrLess = new ImageButton(mContext);
+                mMoreOrLess.setBackgroundDrawable(null);
+                final Resources resources = mContext.getResources();
+                mMoreOrLess.setPadding(
+                        resources.getDimensionPixelOffset(
+                                R.dimen.editor_round_button_padding_left),
+                        resources.getDimensionPixelOffset(
+                                R.dimen.editor_round_button_padding_top),
+                        resources.getDimensionPixelOffset(
+                                R.dimen.editor_round_button_padding_right),
+                        resources.getDimensionPixelOffset(
+                                R.dimen.editor_round_button_padding_bottom));
                 mMoreOrLess.setLayoutParams(
                         new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                mMoreOrLess.setBackgroundResource(R.drawable.btn_circle);
                 mMoreOrLess.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -163,8 +171,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 });
                 addView(mMoreOrLess);
             }
-            mMoreOrLess.setImageResource(
-                    collapsed ? R.drawable.ic_btn_round_more : R.drawable.ic_btn_round_less);
+            mMoreOrLess.setImageResource(collapsed
+                    ? R.drawable.ic_menu_expander_minimized_holo_light
+                    : R.drawable.ic_menu_expander_maximized_holo_light);
         } else if (mMoreOrLess != null) {
             removeView(mMoreOrLess);
             mMoreOrLess = null;

@@ -48,7 +48,7 @@
         android:paddingRight="@dimen/editor_round_button_padding_right"
         android:paddingTop="@dimen/editor_round_button_padding_top"
         android:paddingBottom="@dimen/editor_round_button_padding_bottom"
-        android:src="@drawable/btn_plus_holo_light"
         android:background="@null"
+        android:src="@drawable/ic_menu_add_field_holo_light"
         android:contentDescription="@string/description_plus_button" />
 </com.android.contacts.views.editor.KindSectionView>

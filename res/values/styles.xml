@@ -19,20 +19,6 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    
-
-    <!-- TODO: Once there are assets for More/Less buttons, remove these styles -->
-    <style name="EmptyButton">
-        <item name="android:background">@drawable/btn_circle</item>
-    </style>
-
-    <style name="MoreButton">
-        <item name="android:background">@drawable/btn_circle</item>
-        <item name="android:src">@drawable/ic_btn_round_more</item>
-    </style>
-
-    
-
     <style name="CallDetailActivityTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>
