@@ -25,16 +25,13 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"연락처 바로가기 선택"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"전화번호 선택"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"메시지를 보낼 번호 선택"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"연락처 선택"</string>
     <string name="starredList" msgid="4817256136413959463">"중요주소록"</string>
     <string name="frequentList" msgid="7154768136473953056">"자주 사용하는 연락처"</string>
     <string name="strequentList" msgid="5640192862059373511">"즐겨찾기"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"연락처 세부정보"</string>
     <string name="viewContactDesription" msgid="214186610887547860">"연락처 보기"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"연락처 수정"</string>
-    <string name="edit_email_caption" msgid="2401084399676154272">"이메일 주소:"</string>
-    <string name="edit_email_type_caption" msgid="66331218163770698">"유형:"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"연락처 만들기"</string>
     <string name="searchHint" msgid="8482945356247760701">"주소록 검색"</string>
     <string name="menu_search" msgid="9147752853603483719">"검색"</string>
@@ -52,7 +49,6 @@
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"기본 번호로 설정"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"기본 이메일로 설정"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
-    <string name="contactsSplitMessage" msgid="5253490235863170269">"연락처가 분할되었습니다."</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"연락처 분리"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"연락처 하나를 여러 주소록으로 분리하시겠습니까? 가입된 연락처 정보 세트마다 하나씩 만드시겠습니까?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"통합"</string>
@@ -77,7 +73,6 @@
     <string name="label_notes" msgid="8337354953278341042">"메모"</string>
     <string name="label_sip_address" msgid="124073911714324974">"인터넷 통화"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"벨소리"</string>
-    <string name="ghostData_name" msgid="6490954238641157585">"이름"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"이름(소리나는 대로)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"회사"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"제목"</string>
@@ -91,7 +86,8 @@
     <item msgid="8287841928119937597">"조직"</item>
     <item msgid="7196592230748086755">"메모"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" msgid="431331662154342581">"휴대전화에 사진이 없습니다."</string>
+    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"휴대전화에 사진이 없습니다."</string>
+    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"휴대전화에 사진이 없습니다."</string>
     <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"라벨 이름 맞춤 설정"</string>
@@ -164,10 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"SIM 카드 주소록"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"표시할 연락처가 없습니다."</string>
-    <string name="noContactsHelpText" msgid="7633826236417884130">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsHelpTextWithSync" msgid="3017521127042216243">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpText" msgid="467658807711582876">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="9040060730467973050">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <!-- outdated translation 7633826236417884130 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <!-- outdated translation 3017521127042216243 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <!-- outdated translation 467658807711582876 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"즐겨찾기가 없습니다. "\n\n"즐겨찾기 목록에 연락처를 추가하려면 "\n\n<li><b>"주소록"</b>" 탭을 터치하고"\n</li>" "\n<li>"즐겨찾기에 추가할 연락처를 터치하고"\n</li>" "\n<li>"연락처 이름 옆의 별표를 터치합니다."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"모든 연락처"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"중요 주소록"</string>
@@ -188,7 +188,6 @@
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"자주 연락하는 사람들의 연락처"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"연락처 추가"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 주소록에 추가하겠습니까?"</string>
-    <string name="all_tab_label" msgid="4003124364397916826">"모두"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"3"</string>
@@ -264,7 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"내보내기를 초기화하지 못했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"내보내는 중에 오류가 발생했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"데이터베이스 정보를 가져오지 못했습니다."</string>
-    <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
+    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
+    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 작성기가 바르게 초기화되지 않았습니다."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
@@ -291,15 +291,14 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"조직"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"웹사이트"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"일정"</string>
+    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
+    <skip />
     <string name="groupsLabel" msgid="8573535366319059326">"그룹"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
-    <string name="edit_read_only" msgid="8158629550655830981">"연락처가 읽기 전용입니다."</string>
-    <string name="edit_secondary_collapse" msgid="5371618426594477103">"더보기"</string>
-    <string name="dialog_primary_name" msgid="5521591005692614833">"기본 이름"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"계정에서 연락처 만들기"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"동기화 그룹 삭제"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"동기화 그룹 추가"</string>
@@ -307,7 +306,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"다른 모든 연락처"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"모든 연락처"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"\'<xliff:g id="GROUP">%s</xliff:g>\'을(를) 동기화에서 제거하면 그룹화되지 않은 연락처도 동기화에서 제거됩니다."</string>
-    <string name="account_phone" msgid="3682950835276226870">"휴대전화 전용(동기화되지 않음)"</string>
+    <!-- outdated translation 3682950835276226870 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"휴대전화 전용(동기화되지 않음)"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"휴대전화 전용(동기화되지 않음)"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>(으)로 전화걸기"</string>
     <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
     <string name="call_mobile" msgid="7502236805487609178">"휴대전화로 전화걸기"</string>
@@ -388,7 +388,6 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"성(소리나는 대로)"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 연락처"</string>
     <string name="from_account_format" msgid="687567483928582084">"출처: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="account_type_and_name" msgid="2876220035411512934">"<xliff:g id="SOURCE_1">%2$s</xliff:g>에서 가져온 <xliff:g id="SOURCE_0">%1$s</xliff:g> 연락처"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"사진 사용"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> 연락처 정보는 이 기기에서 수정할 수 없습니다."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"연락처에 대한 추가 정보가 없습니다."</string>
@@ -408,12 +407,11 @@
     <skip />
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다."\n\n"잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"연락처 목록을 업데이트하고 있습니다."\n\n"잠시 기다려 주세요..."</string>
-    <string name="upgrade_out_of_memory" msgid="6713914687111678777">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB의 휴대전화 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
+    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB의 휴대전화 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
+    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB의 휴대전화 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 애플리케이션 제거"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"업그레이드 다시 시도"</string>
-    <string name="search_results_for" msgid="8705490885073188513">"<xliff:g id="QUERY">%s</xliff:g>에 대한 검색결과"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"검색 중..."</string>
-    <string name="adding_recipients" msgid="5123647646892106631">"로드 중..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"선택한 항목 표시"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"모두 표시"</string>
     <string name="menu_select_all" msgid="621719255150713545">"모두 선택"</string>
@@ -422,64 +420,55 @@
     <item quantity="one" msgid="4761009734586319101">"수신자 1명이 선택됨"</item>
     <item quantity="other" msgid="4608837420986126229">"수신자 <xliff:g id="COUNT">%d</xliff:g>명이 선택됨"</item>
   </plurals>
-    <string name="unknown_contacts_separator" msgid="2490675836664397214">"알 수 없는 연락처"</string>
     <string name="no_contacts_selected" msgid="5877803471037324613">"선택한 연락처가 없습니다."</string>
-    <string name="add_field" msgid="5257149039253569615">"정보 추가"</string>
+    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"정보 추가"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"출처: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>(출처: <xliff:g id="SOURCE">%2$s</xliff:g>)"</string>
-    <string name="description_edit" msgid="1601490950771217014">"수정"</string>
     <string name="description_star" msgid="2605854427360036550">"즐겨찾기"</string>
     <string name="edit_contact" msgid="7529281274005689512">"연락처 수정"</string>
   <plurals name="merge_info">
     <item quantity="one" msgid="148365587896371969">"병합되지 않았습니다."</item>
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>개 출처에서 병합했습니다."</item>
   </plurals>
-    <string name="edit_delete_rawcontact" msgid="5054644778227879148">"삭제"</string>
-    <string name="edit_error_saving" msgid="2153949392245240166">"저장하는 중에 오류가 발생했습니다."</string>
-    <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"기타"</string>
-  <plurals name="aggregation_suggestion_title">
-    <item quantity="one" msgid="7676930148670768645">"유사 연락처"</item>
-    <item quantity="other" msgid="3744098467672876675">"유사 연락처"</item>
-  </plurals>
-    <string name="aggregation_suggestion_joined_title" msgid="5342738708069602301">"통합된 연락처:"</string>
-    <string name="aggregation_suggestion_join_button" msgid="7248325487963514260">"통합"</string>
-    <!-- no translation found for aggregation_suggestion_edit_button (6178203222699486169) -->
+    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
     <skip />
     <string name="menu_copyContact" msgid="4401683725471696686">"내 주소록에 복사"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"연락처 출처: <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"연락처 출처: <xliff:g id="TYPE">%1$s</xliff:g>(<xliff:g id="NAME">%2$s</xliff:g>)"</string>
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
+    <string name="search_label" msgid="6789295859496641042">"모든 주소록 검색"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"디렉토리"</string>
     <string name="local_search_label" msgid="1686089693064201315">"주소록"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"개인 사본 작성 중"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"연락처 목록 선택"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"모든 연락처"</string>
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_starred (1397038911244197750) -->
-    <skip />
-    <!-- outdated translation 2153599870787103096 -->     <string name="list_filter_custom" msgid="8910173055702057002">"맞춤 목록"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"맞춤설정"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"맞춤설정..."</string>
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
+    <string name="list_filter_phones" msgid="7905045603593508221">"전화번호가 포함된 주소록"</string>
     <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
-    <!-- outdated translation 8768820109827250997 -->     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 연락처 목록"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="menu_settings" msgid="377929915873428211">"설정"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"표시 옵션"</string>
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"주소록 찾기"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"전화번호"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"주소록에 추가"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"닫기"</string>
     <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
+    <skip />
+    <!-- no translation found for date_year_toggle (7356532842767854606) -->
+    <skip />
+    <!-- no translation found for social_widget_label (6378905543028924592) -->
+    <skip />
+    <!-- no translation found for social_widget_loading (3697996166985327861) -->
     <skip />
 </resources>
