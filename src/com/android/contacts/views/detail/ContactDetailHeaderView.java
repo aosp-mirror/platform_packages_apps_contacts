@@ -28,7 +28,6 @@ import android.content.Entity.NamedContentValues;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -36,7 +35,6 @@ import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -45,10 +43,6 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Header for displaying a title bar with contact info. You
@@ -130,7 +124,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         } else {
             byte[] photo = contactData.getPhotoBinaryData();
             setPhoto(photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
-                    : ContactBadgeUtil.loadPlaceholderPhoto(mContext), false);
+                            : ContactBadgeUtil.loadPlaceholderPhoto(mContext),
+                    contactData.isDirectoryEntry());
         }
 
         setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
