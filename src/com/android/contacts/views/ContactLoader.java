@@ -801,7 +801,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 }
                 Log.i(TAG, "Registering content observer for " + mLookupUri);
 
-                if (result != Result.ERROR && result != Result.NOT_FOUND) {
+                if (result != Result.ERROR && result != Result.NOT_FOUND
+                        && !result.isDirectoryEntry()) {
                     getContext().getContentResolver().registerContentObserver(mLookupUri, true,
                             mObserver);
                 }
