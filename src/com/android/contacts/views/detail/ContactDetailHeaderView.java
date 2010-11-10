@@ -125,15 +125,14 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
         setCompany(contactData);
-        Bitmap photo = ContactBadgeUtil.getPhoto(contactData);
-        if (photo != null) {
-            setPhoto(photo, false);
-        } else if (contactData.getPhotoUri() != null) {
+        if (contactData.isLoadingPhoto()) {
             setPhoto(null, false);
-            new AsyncPhotoLoader().execute(contactData.getPhotoUri());
         } else {
-            setPhoto(ContactBadgeUtil.loadPlaceholderPhoto(mContext), false);
+            byte[] photo = contactData.getPhotoBinaryData();
+            setPhoto(photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
+                    : ContactBadgeUtil.loadPlaceholderPhoto(mContext), false);
         }
+
         setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
         setPresence(contactData.getPresence());
         setSocialSnippet(contactData.getSocialSnippet());
@@ -334,47 +333,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 performDisplayNameClick();
                 break;
             }
-        }
-    }
-
-    private class AsyncPhotoLoader extends AsyncTask<String, Void, Bitmap> {
-
-        private static final int BUFFER_SIZE = 1024*16;
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            Uri uri = Uri.parse(params[0]);
-            Bitmap bitmap = null;
-            try {
-                InputStream is = getContext().getContentResolver().openInputStream(uri);
-                if (is != null) {
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    try {
-                        byte[] mBuffer = new byte[BUFFER_SIZE];
-
-                        int size;
-                        while ((size = is.read(mBuffer)) != -1) {
-                            baos.write(mBuffer, 0, size);
-                        }
-                        byte[] bytes = baos.toByteArray();
-                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
-                    } finally {
-                        is.close();
-                    }
-                } else {
-                    Log.v(TAG, "Cannot load photo " + uri);
-                }
-            } catch (IOException e) {
-                Log.e(TAG, "Cannot load photo " + uri, e);
-            }
-
-            return bitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            setPhoto(bitmap == null ? ContactBadgeUtil.loadPlaceholderPhoto(mContext) : bitmap,
-                    true);
         }
     }
 }

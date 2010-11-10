@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
@@ -42,6 +43,9 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,6 +111,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private ArrayList<GroupMetaData> mGroups;
 
+        private boolean mLoadingPhoto;
+        private byte[] mPhotoBinaryData;
+
         /**
          * Constructor for case "no contact found". This must only be used for the
          * final {@link Result#NOT_FOUND} singleton
@@ -135,7 +142,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         /**
          * Constructor to call when contact was found
-         * @param photoUri TODO
          */
         private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
                 long nameRawContactId, int displayNameSource, long photoId, String photoUri,
@@ -174,57 +180,82 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mDirectoryExportSupport = exportSupport;
         }
 
+        private void setLoadingPhoto(boolean flag) {
+            mLoadingPhoto = flag;
+        }
+
+        private void setPhotoBinaryData(byte[] photoBinaryData) {
+            mPhotoBinaryData = photoBinaryData;
+        }
+
         public Uri getLookupUri() {
             return mLookupUri;
         }
+
         public String getLookupKey() {
             return mLookupKey;
         }
+
         public Uri getUri() {
             return mUri;
         }
+
         public long getId() {
             return mId;
         }
+
         public long getNameRawContactId() {
             return mNameRawContactId;
         }
+
         public int getDisplayNameSource() {
             return mDisplayNameSource;
         }
+
         public long getPhotoId() {
             return mPhotoId;
         }
+
         public String getPhotoUri() {
             return mPhotoUri;
         }
+
         public String getDisplayName() {
             return mDisplayName;
         }
+
         public String getPhoneticName() {
             return mPhoneticName;
         }
+
         public boolean getStarred() {
             return mStarred;
         }
+
         public Integer getPresence() {
             return mPresence;
         }
+
         public String getSocialSnippet() {
             return mStatus;
         }
+
         public Long getStatusTimestamp() {
             return mStatusTimestamp;
         }
+
         public Integer getStatusLabel() {
             return mStatusLabel;
         }
+
         public String getStatusResPackage() {
             return mStatusResPackage;
         }
+
         public ArrayList<Entity> getEntities() {
             return mEntities;
         }
+
         public HashMap<Long, DataStatus> getStatuses() {
             return mStatuses;
         }
@@ -256,6 +287,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public String getDirectoryAccountName() {
             return mDirectoryAccountName;
+        }
+
+        public boolean isLoadingPhoto() {
+            return mLoadingPhoto;
+        }
+
+        public byte[] getPhotoBinaryData() {
+            return mPhotoBinaryData;
         }
 
         public ArrayList<ContentValues> getContentValues() {
@@ -479,6 +518,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     } else if (mLoadGroupMetaData) {
                         loadGroupMetaData(result);
                     }
+                    loadPhotoBinaryData(result);
                 }
                 return result;
             } catch (Exception e) {
@@ -571,6 +611,34 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 return result;
             } finally {
                 cursor.close();
+            }
+        }
+
+        /**
+         * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
+         * not found, returns null
+         */
+        private void loadPhotoBinaryData(Result contactData) {
+            final long photoId = contactData.getPhotoId();
+            if (photoId <= 0) {
+                // No photo ID
+                return;
+            }
+
+            for (Entity entity : contactData.getEntities()) {
+                for (NamedContentValues subValue : entity.getSubValues()) {
+                    final ContentValues entryValues = subValue.values;
+                    final long dataId = entryValues.getAsLong(Data._ID);
+                    if (dataId == photoId) {
+                        final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+                        // Correct Data Id but incorrect MimeType? Don't load
+                        if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                            return;
+                        }
+                        contactData.setPhotoBinaryData(entryValues.getAsByteArray(Photo.PHOTO));
+                        break;
+                    }
+                }
             }
         }
 
@@ -806,8 +874,55 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     getContext().getContentResolver().registerContentObserver(mLookupUri, true,
                             mObserver);
                 }
-                deliverResult(result);
+
+                if (mContact.getPhotoBinaryData() == null && mContact.getPhotoUri() != null) {
+                    mContact.setLoadingPhoto(true);
+                    new AsyncPhotoLoader().execute(mContact.getPhotoUri());
+                }
+
+                deliverResult(mContact);
             }
+        }
+    }
+
+    private class AsyncPhotoLoader extends AsyncTask<String, Void, byte[]> {
+
+        private static final int BUFFER_SIZE = 1024*16;
+
+        @Override
+        protected byte[] doInBackground(String... params) {
+            Uri uri = Uri.parse(params[0]);
+            byte[] data = null;
+            try {
+                InputStream is = getContext().getContentResolver().openInputStream(uri);
+                if (is != null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    try {
+                        byte[] mBuffer = new byte[BUFFER_SIZE];
+
+                        int size;
+                        while ((size = is.read(mBuffer)) != -1) {
+                            baos.write(mBuffer, 0, size);
+                        }
+                        data = baos.toByteArray();
+                    } finally {
+                        is.close();
+                    }
+                } else {
+                    Log.v(TAG, "Cannot load photo " + uri);
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Cannot load photo " + uri, e);
+            }
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(byte[] data) {
+            mContact.setPhotoBinaryData(data);
+            mContact.setLoadingPhoto(false);
+            deliverResult(mContact);
         }
     }
 
