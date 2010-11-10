@@ -25,16 +25,13 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elegir un acceso directo para el contacto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir un número para la llamada"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elegir un número para el mensaje"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Selección de un contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacados"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuentes"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoritos"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalles del contacto"</string>
     <string name="viewContactDesription" msgid="214186610887547860">"Ver contacto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Editar contacto"</string>
-    <string name="edit_email_caption" msgid="2401084399676154272">"Correo electrónico:"</string>
-    <string name="edit_email_type_caption" msgid="66331218163770698">"Tipo:"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crear contacto"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_search" msgid="9147752853603483719">"Buscar"</string>
@@ -47,12 +44,11 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar un mensaje de texto al contacto"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar mensaje de correo electrónico"</string>
+    <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Dirección en mapa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Convertir en número predeterminado"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de correo electrónico predeterminada"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dividir"</string>
-    <string name="contactsSplitMessage" msgid="5253490235863170269">"Contactos divididos"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Dividir contacto"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"¿Estás seguro de que quieres dividir este contacto único en varios contactos (uno para cada conjunto de información que se añadió a él)?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Agrupar"</string>
@@ -77,7 +73,6 @@
     <string name="label_notes" msgid="8337354953278341042">"Notas"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Llamada por Internet"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Tono"</string>
-    <string name="ghostData_name" msgid="6490954238641157585">"Nombre y apellido"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Transcripción fonética del nombre"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Título"</string>
@@ -91,7 +86,8 @@
     <item msgid="8287841928119937597">"Organización"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" msgid="431331662154342581">"No hay ninguna imagen disponible en el teléfono."</string>
+    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hay ninguna imagen disponible en el teléfono."</string>
+    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hay ninguna imagen disponible en el teléfono."</string>
     <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre de etiqueta personalizada"</string>
@@ -164,10 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contactos de tarjeta SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"No tienes ningún contacto que mostrar. (Si acabas de añadir una cuenta, es posible que la sincronización de contactos tarde algunos minutos)."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"No tienes ningún contacto que mostrar."</string>
-    <string name="noContactsHelpText" msgid="7633826236417884130">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
-    <string name="noContactsHelpTextWithSync" msgid="3017521127042216243">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
-    <string name="noContactsNoSimHelpText" msgid="467658807711582876">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
-    <string name="noContactsNoSimHelpTextWithSync" msgid="9040060730467973050">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
+    <!-- outdated translation 7633826236417884130 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
+    <!-- outdated translation 3017521127042216243 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SIM o SD"\n</li>"."</string>
+    <!-- outdated translation 467658807711582876 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"No tienes contactos."\n\n"Para añadir uno, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con los contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
+    <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"No tienes contactos. Si acabas de añadir una cuenta, la sincronización puede tardar."\n\n"Para añadir contactos, pulsa la tecla de menú"<font fgcolor="#ffffffff"><b></b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para añadir o configurar una cuenta con contactos que puedes sincronizar,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opciones de visualización"</b></font>" para modificar los contactos visibles,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear un nuevo contacto,"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/exportar"</b></font>" para importar contactos desde la tarjeta SD"\n</li>"."</string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"No tienes favoritos."\n\n"Para añadir un contacto a tu lista de favoritos, sigue estos pasos:"\n\n"        "<li>"Toca en la pestaña "<b>"Contactos"</b>"."\n</li>" "\n<li>"Selecciona el contacto que quieras añadir a tus favoritos."\n</li>" "\n<li>"Toca la estrella situada junto al nombre del contacto."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Todos los contactos"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Destacados"</string>
@@ -188,7 +188,6 @@
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contactos frecuentes"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Añadir contacto"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"¿Deseas añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
-    <string name="all_tab_label" msgid="4003124364397916826">"Todo"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"uno"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"dos"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"tres"</string>
@@ -264,7 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"No se ha podido inicializar el exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Se ha producido un error durante la exportación: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Error al obtener información de la base de datos"</string>
-    <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"No hay contactos que exportar. Si ya tienes contactos en el teléfono, es posible que algunos proveedores de datos no permitan que se exporten todos los contactos a otros dispositivos."</string>
+    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"No hay contactos que exportar. Si ya tienes contactos en el teléfono, es posible que algunos proveedores de datos no permitan que se exporten todos los contactos a otros dispositivos."</string>
+    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"No hay contactos que exportar. Si ya tienes contactos en el teléfono, es posible que algunos proveedores de datos no permitan que se exporten todos los contactos a otros dispositivos."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"El redactor de vCard no se ha inicializado correctamente."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"No se ha podido abrir el archivo \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
@@ -291,15 +291,14 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organización"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Sitio web"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Evento"</string>
+    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
+    <skip />
     <string name="groupsLabel" msgid="8573535366319059326">"Grupos"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
-    <string name="edit_read_only" msgid="8158629550655830981">"Este contacto se encuentra en modo de solo lectura."</string>
-    <string name="edit_secondary_collapse" msgid="5371618426594477103">"Más"</string>
-    <string name="dialog_primary_name" msgid="5521591005692614833">"Nombre principal"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear contacto en la cuenta"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminar grupo de sincronización"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Añadir grupo de sincronización"</string>
@@ -307,7 +306,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Todos los demás contactos"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Todos los contactos"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Si eliminas \"<xliff:g id="GROUP">%s</xliff:g>\" de la sincronización, también se eliminarán todos los contactos no agrupados."</string>
-    <string name="account_phone" msgid="3682950835276226870">"Solo en el teléfono, no sincronizado"</string>
+    <!-- outdated translation 3682950835276226870 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Solo en el teléfono, no sincronizado"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"Solo en el teléfono, no sincronizado"</string>
     <string name="call_custom" msgid="7756571794763171802">"Llamar a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Llamar a casa"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Llamar al móvil"</string>
@@ -355,7 +355,7 @@
     <string name="email_work" msgid="2807430017302722689">"Enviar email a trabajo"</string>
     <string name="email_other" msgid="3454004077967657109">"Enviar email"</string>
     <string name="email_custom" msgid="7548003991586214105">"Correo electrónico <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Correo electrónico"</string>
+    <string name="email" msgid="5668400997660065897">"Email"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección de casa"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver dirección del trabajo"</string>
     <string name="map_other" msgid="3817820803587012641">"Ver dirección"</string>
@@ -388,7 +388,6 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Apellido fonético"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="from_account_format" msgid="687567483928582084">"de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="account_type_and_name" msgid="2876220035411512934">"Contacto de <xliff:g id="SOURCE_0">%1$s</xliff:g> de <xliff:g id="SOURCE_1">%2$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizar esta foto"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"No se puede editar la información del contacto de <xliff:g id="SOURCE">%1$s</xliff:g> en este dispositivo."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"No hay información adicional para este contacto."</string>
@@ -408,12 +407,11 @@
     <skip />
     <string name="locale_change_in_progress" msgid="1124266507671178413">"La lista de contactos se está actualizando para reflejar el cambio de idioma."\n\n"Por favor, espera..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"La lista de contactos se está actualizando."\n\n"Por favor, espera..."</string>
-    <string name="upgrade_out_of_memory" msgid="6713914687111678777">"Los contactos se están actualizando. "\n\n"El proceso de actualización necesita aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB de almacenamiento interno."\n\n"Selecciona una de las siguientes opciones:"</string>
+    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Los contactos se están actualizando. "\n\n"El proceso de actualización necesita aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB de almacenamiento interno."\n\n"Selecciona una de las siguientes opciones:"</string>
+    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"Los contactos se están actualizando. "\n\n"El proceso de actualización necesita aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB de almacenamiento interno."\n\n"Selecciona una de las siguientes opciones:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar algunas aplicaciones"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Reintentar actualización"</string>
-    <string name="search_results_for" msgid="8705490885073188513">"Resultados de la búsqueda de: <xliff:g id="QUERY">%s</xliff:g>"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Buscando..."</string>
-    <string name="adding_recipients" msgid="5123647646892106631">"Cargando..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostrar seleccionados"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Mostrar todos"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Seleccionar todo"</string>
@@ -422,64 +420,55 @@
     <item quantity="one" msgid="4761009734586319101">"Un destinatario seleccionado"</item>
     <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> destinatarios seleccionados"</item>
   </plurals>
-    <string name="unknown_contacts_separator" msgid="2490675836664397214">"Contactos desconocidos"</string>
     <string name="no_contacts_selected" msgid="5877803471037324613">"No hay ningún contacto seleccionado."</string>
-    <string name="add_field" msgid="5257149039253569615">"Añadir información"</string>
+    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Añadir información"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"con <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> con <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
-    <string name="description_edit" msgid="1601490950771217014">"editar"</string>
     <string name="description_star" msgid="2605854427360036550">"favoritos"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editar contacto"</string>
   <plurals name="merge_info">
     <item quantity="one" msgid="148365587896371969">"sin fusionar"</item>
     <item quantity="other" msgid="425683718017380845">"fusionados desde <xliff:g id="COUNT">%0$d</xliff:g> fuentes"</item>
   </plurals>
-    <string name="edit_delete_rawcontact" msgid="5054644778227879148">"Eliminar"</string>
-    <string name="edit_error_saving" msgid="2153949392245240166">"Error al guardar"</string>
-    <string name="edit_structured_editor_button" msgid="3830078388142808106">"..."</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Otro"</string>
-  <plurals name="aggregation_suggestion_title">
-    <item quantity="one" msgid="7676930148670768645">"Contacto similar"</item>
-    <item quantity="other" msgid="3744098467672876675">"Contactos similares"</item>
-  </plurals>
-    <string name="aggregation_suggestion_joined_title" msgid="5342738708069602301">"Contacto añadido:"</string>
-    <string name="aggregation_suggestion_join_button" msgid="7248325487963514260">"Agrupar"</string>
-    <!-- no translation found for aggregation_suggestion_edit_button (6178203222699486169) -->
+    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
+    <skip />
+    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
     <skip />
     <string name="menu_copyContact" msgid="4401683725471696686">"Copiar a mis contactos"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"de <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"de <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
+    <string name="search_label" msgid="6789295859496641042">"Buscando todos los contactos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directorio"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contactos"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Creando una copia personal"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Seleccionar lista de contactos"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Todos los contactos"</string>
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_starred (1397038911244197750) -->
-    <skip />
-    <!-- outdated translation 2153599870787103096 -->     <string name="list_filter_custom" msgid="8910173055702057002">"Lista personalizada"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacados"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Personalizar"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Personalizar..."</string>
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
+    <string name="list_filter_phones" msgid="7905045603593508221">"Contactos con números de teléfono"</string>
     <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
-    <!-- outdated translation 8768820109827250997 -->     <string name="custom_list_filter" msgid="7836035257402013957">"Personalizar lista de contactos"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Definición de vista personalizada"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ajustes"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ajustes"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opciones de visualización"</string>
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Buscar contactos"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Número de teléfono"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Añadir a contactos"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Cerrar"</string>
     <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
+    <skip />
+    <!-- no translation found for date_year_toggle (7356532842767854606) -->
+    <skip />
+    <!-- no translation found for social_widget_label (6378905543028924592) -->
+    <skip />
+    <!-- no translation found for social_widget_loading (3697996166985327861) -->
     <skip />
 </resources>
