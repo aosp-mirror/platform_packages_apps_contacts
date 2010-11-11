@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract.QuickContact;
 import android.text.TextUtils;
@@ -101,9 +102,11 @@ public class SocialWidgetProvider extends AppWidgetProvider {
 
                             setDisplayName(views, contactData.getDisplayName(),
                                     contactData.getPhoneticName());
-                            final Bitmap bitmap = ContactBadgeUtil.getPhoto(contactData);
-                            setPhoto(views, bitmap == null
-                                    ? ContactBadgeUtil.loadPlaceholderPhoto(context) : bitmap);
+
+                            byte[] photo = contactData.getPhotoBinaryData();
+                            setPhoto(views, photo != null
+                                    ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
+                                    : ContactBadgeUtil.loadPlaceholderPhoto(context));
                             setSocialSnippet(views, contactData.getSocialSnippet());
                             setStatusAttribution(views, ContactBadgeUtil.getSocialDate(
                                     contactData, context));

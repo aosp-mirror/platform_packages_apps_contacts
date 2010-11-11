@@ -19,18 +19,13 @@ package com.android.contacts.util;
 import com.android.contacts.R;
 import com.android.contacts.views.ContactLoader;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -40,35 +35,6 @@ import android.util.Log;
  */
 public class ContactBadgeUtil {
     private static final String TAG = "ContactBadgeUtil";
-
-    /**
-     * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
-     * not found, returns null
-     */
-    public static Bitmap getPhoto(ContactLoader.Result contactData) {
-        final long photoId = contactData.getPhotoId();
-        if (photoId <= 0) {
-            // No photo ID
-            return null;
-        }
-
-        for (Entity entity : contactData.getEntities()) {
-            for (NamedContentValues subValue : entity.getSubValues()) {
-                final ContentValues entryValues = subValue.values;
-                final long dataId = entryValues.getAsLong(Data._ID);
-                if (dataId == photoId) {
-                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-                    // Correct Data Id but incorrect MimeType? Don't load
-                    if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) return null;
-                    final byte[] binaryData = entryValues.getAsByteArray(Photo.PHOTO);
-                    if (binaryData == null) return null;
-                    return BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length);
-                }
-            }
-        }
-
-        return null;
-    }
 
     /**
      * Returns the social snippet attribution, including the date
