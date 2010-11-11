@@ -43,7 +43,7 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar un mensaje de texto al contacto"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar mensaje de correo electrónico"</string>
+    <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Dirección en mapa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Convertir en número predeterminado"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de correo electrónico predeterminada"</string>
@@ -338,7 +338,7 @@
     <string name="email_work" msgid="2807430017302722689">"Enviar email a trabajo"</string>
     <string name="email_other" msgid="3454004077967657109">"Enviar email"</string>
     <string name="email_custom" msgid="7548003991586214105">"Correo electrónico <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Correo electrónico"</string>
+    <string name="email" msgid="5668400997660065897">"Email"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección de casa"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver dirección del trabajo"</string>
     <string name="map_other" msgid="3817820803587012641">"Ver dirección"</string>
