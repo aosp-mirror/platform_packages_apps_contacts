@@ -14,15 +14,28 @@
      limitations under the License.
 -->
 
-<com.android.contacts.views.editor.PhotoEditorView
+<view
+    class="com.android.contacts.views.editor.PhotoEditorView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/edit_photo_size"
     android:layout_height="@dimen/edit_photo_size"
-    android:clickable="true"
-    android:focusable="true"
-    android:src="@drawable/ic_menu_add_picture"
-    android:cropToPadding="true"
-    android:scaleType="center"
-    android:background="@drawable/btn_contact_picture"
-    android:contentDescription="@string/description_contact_photo"
-    android:gravity="center" />
+    >
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="@dimen/edit_photo_size"
+        android:layout_height="@dimen/edit_photo_size"
+        android:src="@drawable/ic_contact_picture"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        android:gravity="center"
+    />
+    <View
+        android:id="@+id/frame"
+        android:layout_width="@dimen/edit_photo_size"
+        android:layout_height="@dimen/edit_photo_size"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/description_contact_photo"
+        android:background="@drawable/change_photo_box_holo_light"
+    />
+</view>

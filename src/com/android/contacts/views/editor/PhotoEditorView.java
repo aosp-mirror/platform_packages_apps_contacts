@@ -28,7 +28,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -37,8 +37,11 @@ import java.io.IOException;
 /**
  * Simple editor for {@link Photo}.
  */
-public class PhotoEditorView extends ImageView implements Editor, OnClickListener {
+public class PhotoEditorView extends FrameLayout implements Editor {
     private static final String TAG = "PhotoEditorView";
+
+    private ImageView mPhotoImageView;
+    private View mFrameView;
 
     private ValuesDelta mEntry;
     private EditorListener mListener;
@@ -58,22 +61,26 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.setOnClickListener(this);
+        mPhotoImageView = (ImageView) findViewById(R.id.photo);
+        mFrameView = findViewById(R.id.frame);
+        mFrameView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onRequest(EditorListener.REQUEST_PICK_PHOTO);
+                }
+            }
+        });
     }
 
     /** {@inheritDoc} */
-    public void onClick(View v) {
-        if (mListener != null) {
-            mListener.onRequest(EditorListener.REQUEST_PICK_PHOTO);
-        }
-    }
-
-    /** {@inheritDoc} */
+    @Override
     public void onFieldChanged(String column, String value) {
         throw new UnsupportedOperationException("Photos don't support direct field changes");
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         mEntry = values;
@@ -88,8 +95,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
                 final Bitmap photo = BitmapFactory.decodeByteArray(photoBytes, 0,
                         photoBytes.length);
 
-                setScaleType(ImageView.ScaleType.CENTER_CROP);
-                setImageBitmap(photo);
+                mPhotoImageView.setImageBitmap(photo);
                 setEnabled(true);
                 mHasSetPhoto = true;
                 mEntry.setFromTemplate(false);
@@ -129,7 +135,7 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
             out.close();
 
             mEntry.put(Photo.PHOTO, out.toByteArray());
-            setImageBitmap(photo);
+            mPhotoImageView.setImageBitmap(photo);
             setEnabled(true);
             mHasSetPhoto = true;
             mEntry.setFromTemplate(false);
@@ -150,19 +156,14 @@ public class PhotoEditorView extends ImageView implements Editor, OnClickListene
 
     protected void resetDefault() {
         // Invalid photo, show default "add photo" place-holder
-        setScaleType(ImageView.ScaleType.CENTER);
-        if (mReadOnly) {
-            setImageResource(R.drawable.ic_contact_picture);
-            setEnabled(false);
-        } else {
-            setImageResource(R.drawable.ic_menu_add_picture);
-            setEnabled(true);
-        }
+        mPhotoImageView.setImageResource(R.drawable.ic_contact_picture);
+        setEnabled(!mReadOnly);
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
     }
