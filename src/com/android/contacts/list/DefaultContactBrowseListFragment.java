@@ -191,13 +191,20 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     public void saveSelectedUri(SharedPreferences preferences) {
-        Editor editor = preferences.edit();
         Uri uri = getSelectedContactUri();
         if (uri == null) {
-            editor.remove(getPersistentSelectionKey());
+            eraseSelectedUri(preferences);
         } else {
+            Editor editor = preferences.edit();
             editor.putString(getPersistentSelectionKey(), uri.toString());
+            editor.apply();
         }
+    }
+
+    @Override
+    public void eraseSelectedUri(SharedPreferences preferences) {
+        Editor editor = preferences.edit();
+        editor.remove(getPersistentSelectionKey());
         editor.apply();
     }
 
