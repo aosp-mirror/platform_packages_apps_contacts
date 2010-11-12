@@ -35,6 +35,7 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.GroupMetaData;
 import com.android.contacts.views.editor.SelectAccountDialogFragment;
+import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 
 import android.accounts.Account;
@@ -98,7 +99,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,6 +133,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
+    private boolean mContactDataDisplayed;
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -171,6 +172,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
     private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
     private LayoutInflater mInflater;
+
+    private boolean mTransitionAnimationRequested;
 
     public ContactDetailFragment() {
         // Explicit constructor for inflation
@@ -264,6 +267,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         }
 
         mLookupUri = lookupUri;
+        mTransitionAnimationRequested = mContactDataDisplayed;
+        mContactDataDisplayed = true;
         if (mLookupUri == null) {
             mContactData = null;
             bindData();
@@ -281,6 +286,11 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
         if (isAdded()) {
             getActivity().invalidateOptionsMenu();
+        }
+
+        if (mTransitionAnimationRequested) {
+            TransitionAnimationView.startAnimation(mView, mContactData == null);
+            mTransitionAnimationRequested = false;
         }
 
         if (mContactData == null) {
@@ -323,8 +333,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         }
 
         mView.setVisibility(View.VISIBLE);
-
-        getActivity().invalidateOptionsMenu();
     }
 
     /**

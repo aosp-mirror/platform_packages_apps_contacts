@@ -185,6 +185,16 @@
         <attr name="layout_wideRightMargin" format="dimension"/>
     </declare-styleable>
     
+    <declare-styleable name="TransitionAnimationView">
+        <attr name="clipMarginLeft" format="dimension"/>
+        <attr name="clipMarginRight" format="dimension"/>
+        <attr name="clipMarginTop" format="dimension"/>
+        <attr name="clipMarginBottom" format="dimension"/>
+        <attr name="enterAnimation" format="reference"/>
+        <attr name="exitAnimation" format="reference"/>
+        <attr name="animationDuration" format="integer"/>
+    </declare-styleable>
+    
     <style name="DirectoryHeader" parent="ContactBrowserTheme">
         <item name="android:background">@drawable/directory_bg</item>
     </style>

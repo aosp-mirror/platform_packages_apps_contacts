@@ -33,16 +33,27 @@
         ex:layout_wideWidth="430dip"
     />
 
-    <!--  Holder for detail- or editor-fragment. -->
-    <FrameLayout
-        android:id="@+id/detail_container"
+    <view
+        class="com.android.contacts.widget.TransitionAnimationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="6dip"
         ex:layout_narrowParentWidth="800dip"
         ex:layout_narrowRightMargin="0dip"
         ex:layout_wideParentWidth="1280dip"
         ex:layout_wideRightMargin="48dip"
+        ex:clipMarginLeft="3dip"
+        ex:clipMarginTop="3dip"
+        ex:clipMarginRight="3dip"
+        ex:clipMarginBottom="9dip"
+        ex:enterAnimation="@android:anim/animator_fade_in"
+        ex:exitAnimation="@android:anim/animator_fade_out"
+        ex:animationDuration="80">
+        <FrameLayout
+            android:id="@+id/detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="6dip"
         />
+    </view>
 
 </com.android.contacts.widget.InterpolatingLayout>
