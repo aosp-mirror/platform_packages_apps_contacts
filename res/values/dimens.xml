@@ -36,10 +36,9 @@
     <dimen name="aizy_preview_width">80dip</dimen>
     <dimen name="aizy_preview_height">80dip</dimen>
 
-    <!-- Padding of the rounded plus/minus buttons in the editor (the minus button is created
-    in code) -->
-    <dimen name="editor_round_button_padding_left">5dip</dimen>
-    <dimen name="editor_round_button_padding_right">5dip</dimen>
+    <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
+    <dimen name="editor_round_button_padding_left">10dip</dimen>
+    <dimen name="editor_round_button_padding_right">10dip</dimen>
     <dimen name="editor_round_button_padding_top">10dip</dimen>
     <dimen name="editor_round_button_padding_bottom">10dip</dimen>
 

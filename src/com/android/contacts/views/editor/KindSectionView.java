@@ -24,6 +24,7 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.views.editor.Editor.EditorListener;
 
 import android.content.Context;
+import android.os.Handler;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -70,8 +71,15 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         mAddPlusButton = (ImageButton) findViewById(R.id.kind_plus);
         mAddPlusButton.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                addItem();
+                // defer action so that the pressed state of the button is visible shortly
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        addItem();
+                    }
+                });
             }
         });
 
@@ -79,12 +87,14 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onDeleted(Editor editor) {
         updateAddEnabled();
         updateVisible();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onRequest(int request) {
         // Ignore requests
     }

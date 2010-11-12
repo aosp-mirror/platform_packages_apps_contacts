@@ -207,6 +207,7 @@ public abstract class ContactBrowseListFragment extends
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         super.onLoadFinished(loader, data);
         checkSelection();
+        requestSelectionOnScreenIfNeeded();
     }
 
     private void checkSelection() {
@@ -221,11 +222,9 @@ public abstract class ContactBrowseListFragment extends
         ContactListAdapter adapter = getAdapter();
         if (adapter.hasValidSelection()) {
             mSelectionVerified = true;
-            requestSelectionOnScreenIfNeeded();
-            return;
+        } else {
+            notifyInvalidSelection();
         }
-
-        notifyInvalidSelection();
     }
 
     @Override
@@ -317,7 +316,7 @@ public abstract class ContactBrowseListFragment extends
         }
 
         ContactListAdapter adapter = getAdapter();
-        if (adapter == null) {
+        if (adapter == null || adapter.isLoading()) {
             return;
         }
 
@@ -335,5 +334,8 @@ public abstract class ContactBrowseListFragment extends
     }
 
     public void restoreSelectedUri(SharedPreferences preferences) {
+    }
+
+    public void eraseSelectedUri(SharedPreferences preferences) {
     }
 }

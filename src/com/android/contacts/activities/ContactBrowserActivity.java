@@ -36,6 +36,7 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -165,7 +166,7 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            configureListSelection(false);
+            configureListSelection();
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -219,6 +220,8 @@ public class ContactBrowserActivity extends Activity
             // TODO: request may ask for FREQUENT - set the filter accordingly
             mAddContactImageView = new ImageView(this);
             mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
+            mAddContactImageView.setBackgroundResource(
+                    ThemeUtils.getSelectableItemBackground(getTheme()));
             mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
             mAddContactImageView.setOnClickListener(new OnClickListener() {
                 @Override
@@ -228,11 +231,7 @@ public class ContactBrowserActivity extends Activity
             });
         }
 
-        configureListFragment(true /* from request */);
-
-        if (mContactContentDisplayed) {
-            setupContactDetailFragment(mListFragment.getSelectedContactUri());
-        }
+        configureFragments(true /* from request */);
     }
 
     @Override
@@ -256,6 +255,7 @@ public class ContactBrowserActivity extends Activity
             }
 
             mListFragment.setSelectedContactUri(uri);
+            mListFragment.saveSelectedUri(mPrefs);
             mListFragment.requestSelectionOnScreen(true);
             if (mContactContentDisplayed) {
                 setupContactDetailFragment(uri);
@@ -281,13 +281,11 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected void onStart() {
-        if (mContactListFilterController != null) {
-            mContactListFilterController.startLoading();
-        }
+        mContactListFilterController.startLoading();
         super.onStart();
     }
 
-    private void configureListFragment(boolean fromRequest) {
+    private void configureFragments(boolean fromRequest) {
         boolean searchMode = mSearchMode;
         if (fromRequest) {
             ContactListFilter filter = null;
@@ -317,59 +315,45 @@ public class ContactBrowserActivity extends Activity
                 mContactListFilterController.setContactListFilter(new ContactListFilter(
                         ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), false);
             }
-        } else {
-            if (mHasActionBar) {
-                searchMode = mActionBarAdapter.isSearchMode();
-            }
+        } else if (mHasActionBar) {
+            searchMode = mActionBarAdapter.isSearchMode();
         }
 
         boolean replaceList = mListFragment == null || (mSearchMode != searchMode);
         if (replaceList) {
-            closeListFragment();
+            if (mListFragment != null) {
+                mListFragment.setOnContactListActionListener(null);
+            }
+
             mSearchMode = searchMode;
+
             if (mSearchMode) {
                 mListFragment = createContactSearchFragment();
                 // When switching to the search mode, erase previous state of the search UI
-                mListFragment.saveSelectedUri(mPrefs);
+                mListFragment.eraseSelectedUri(mPrefs);
             } else {
                 mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
-                mListFragment.requestSelectionOnScreen(false);
             }
         }
 
-        if (mHasActionBar && mSearchMode) {
-            mListFragment.setQueryString(mActionBarAdapter.getQueryString());
-        }
-
-        if (fromRequest) {
-            Uri selectUri = mRequest.getContactUri();
-            if (selectUri != null) {
-                mListFragment.setSelectedContactUri(selectUri);
-                mListFragment.requestSelectionOnScreen(false);
+        if (mSearchMode) {
+            if (mHasActionBar) {
+                mListFragment.setQueryString(mActionBarAdapter.getQueryString());
             }
+        } else {
+            configureListSelection();
         }
 
         if (replaceList) {
             getFragmentManager().openTransaction()
                     .replace(R.id.list_container, mListFragment)
                     .commit();
-
-            if (mContactContentDisplayed) {
-                setupContactDetailFragment(mListFragment.getSelectedContactUri());
-            }
-        }
-    }
-
-    private void closeListFragment() {
-        if (mListFragment != null) {
-            mListFragment.setOnContactListActionListener(null);
-            mListFragment = null;
         }
     }
 
     @Override
     public void onContactListFiltersLoaded() {
-        configureListSelection(mRequest.getContactUri() == null);
+        configureListSelection();
 
         // Filters have been loaded - now we can start loading the list itself
         mListFragment.startLoading();
@@ -378,14 +362,28 @@ public class ContactBrowserActivity extends Activity
     @Override
     public void onContactListFilterChanged() {
         resetContactSelectionInIntent();
-        configureListSelection(true);
-        mListFragment.reloadData();
+
+        if (mListFragment == null) {
+            return;
+        }
+
+        DefaultContactBrowseListFragment fragment =
+                (DefaultContactBrowseListFragment) mListFragment;
+        ContactListFilter filter = mContactListFilterController.getFilter();
+        fragment.setFilter(filter);
+        fragment.reloadData();
+        fragment.restoreSelectedUri(mPrefs);
+        fragment.requestSelectionOnScreen(false);
+
+        if (mContactContentDisplayed) {
+            setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        }
     }
 
     /**
      * Configures filter-specific persistent selection.
      */
-    private void configureListSelection(boolean restoreSelectedUri) {
+    private void configureListSelection() {
         if (mListFragment == null) {
             return;
         }
@@ -395,8 +393,12 @@ public class ContactBrowserActivity extends Activity
                 && mContactListFilterController.isLoaded()) {
             DefaultContactBrowseListFragment fragment =
                     (DefaultContactBrowseListFragment) mListFragment;
-            fragment.setFilter(mContactListFilterController.getFilter());
-            if (restoreSelectedUri) {
+            ContactListFilter filter = mContactListFilterController.getFilter();
+            fragment.setFilter(filter);
+            if (mRequest.getContactUri() != null) {
+                fragment.setSelectedContactUri(mRequest.getContactUri());
+                fragment.saveSelectedUri(mPrefs);
+            } else {
                 fragment.restoreSelectedUri(mPrefs);
             }
             fragment.requestSelectionOnScreen(false);
@@ -446,6 +448,7 @@ public class ContactBrowserActivity extends Activity
             requestedContactUri = mListFragment.getFirstContactUri();
             if (requestedContactUri != null) {
                 mListFragment.setSelectedContactUri(requestedContactUri);
+                mListFragment.eraseSelectedUri(mPrefs);
                 mListFragment.requestSelectionOnScreen(false);
             }
         }
@@ -482,6 +485,8 @@ public class ContactBrowserActivity extends Activity
         }
 
         mListFragment.setSelectedContactUri(selectedUri);
+        mListFragment.eraseSelectedUri(mPrefs);
+        mListFragment.requestSelectionOnScreen(true);
         if (mContactContentDisplayed) {
             setupContactDetailFragment(selectedUri);
         }
@@ -510,7 +515,7 @@ public class ContactBrowserActivity extends Activity
      */
     @Override
     public void onAction() {
-        configureListFragment(false /* from request */);
+        configureFragments(false /* from request */);
     }
 
     /**

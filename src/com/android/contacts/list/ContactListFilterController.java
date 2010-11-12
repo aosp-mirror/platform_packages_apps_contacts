@@ -124,7 +124,9 @@ public class ContactListFilterController
     public void startLoading() {
         // Set the "ready" flag right away - we only want to start the loader once
         mFiltersLoaded = false;
-        mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
+        if (mFilter == null) {
+            mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
+        }
         loadFilters();
     }
 

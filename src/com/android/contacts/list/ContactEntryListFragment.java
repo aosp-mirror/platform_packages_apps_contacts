@@ -305,6 +305,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void startLoading() {
+        if (mAdapter == null) {
+            // The method was called before the fragment was started
+            return;
+        }
+
         configureAdapter();
         int partitionCount = mAdapter.getPartitionCount();
         for (int i = 0; i < partitionCount; i++) {
