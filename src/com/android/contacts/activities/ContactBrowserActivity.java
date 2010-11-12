@@ -166,7 +166,7 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            configureListSelection(false);
+            configureListSelection();
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -374,7 +374,7 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public void onContactListFiltersLoaded() {
-        configureListSelection(mRequest.getContactUri() == null);
+        configureListSelection();
 
         // Filters have been loaded - now we can start loading the list itself
         mListFragment.startLoading();
@@ -383,14 +383,24 @@ public class ContactBrowserActivity extends Activity
     @Override
     public void onContactListFilterChanged() {
         resetContactSelectionInIntent();
-        configureListSelection(true);
-        mListFragment.reloadData();
+
+        DefaultContactBrowseListFragment fragment =
+                (DefaultContactBrowseListFragment) mListFragment;
+        ContactListFilter filter = mContactListFilterController.getFilter();
+        fragment.setFilter(filter);
+        fragment.reloadData();
+        fragment.restoreSelectedUri(mPrefs);
+        fragment.requestSelectionOnScreen(false);
+
+        if (mContactContentDisplayed) {
+            setupContactDetailFragment(mListFragment.getSelectedContactUri());
+        }
     }
 
     /**
      * Configures filter-specific persistent selection.
      */
-    private void configureListSelection(boolean restoreSelectedUri) {
+    private void configureListSelection() {
         if (mListFragment == null) {
             return;
         }
@@ -400,8 +410,9 @@ public class ContactBrowserActivity extends Activity
                 && mContactListFilterController.isLoaded()) {
             DefaultContactBrowseListFragment fragment =
                     (DefaultContactBrowseListFragment) mListFragment;
-            fragment.setFilter(mContactListFilterController.getFilter());
-            if (restoreSelectedUri) {
+            ContactListFilter filter = mContactListFilterController.getFilter();
+            fragment.setFilter(filter);
+            if (mRequest.getContactUri() == null) {
                 fragment.restoreSelectedUri(mPrefs);
             }
             fragment.requestSelectionOnScreen(false);
