@@ -1660,6 +1660,7 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             mStatus = Status.EDITING;
+            mLookupUri = data.getLookupUri();
             final long setDataStartTime = SystemClock.elapsedRealtime();
             setData(data);
             final long setDataEndTime = SystemClock.elapsedRealtime();
