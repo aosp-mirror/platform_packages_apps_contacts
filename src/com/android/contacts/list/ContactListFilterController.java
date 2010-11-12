@@ -301,6 +301,10 @@ public class ContactListFilterController
         notifyContactListFilterChanged();
     }
 
+    public int getAccountCount() {
+        return mAccountCount;
+    }
+
     private ContactListFilter getDefaultFilter() {
         return mFilters.size() > 0 ? mFilters.valueAt(0) : null;
     }
