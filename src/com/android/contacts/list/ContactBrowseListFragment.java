@@ -336,4 +336,7 @@ public abstract class ContactBrowseListFragment extends
 
     public void restoreSelectedUri(SharedPreferences preferences) {
     }
+
+    public void eraseSelectedUri(SharedPreferences preferences) {
+    }
 }

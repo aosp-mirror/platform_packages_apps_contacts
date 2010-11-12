@@ -259,6 +259,7 @@ public class ContactBrowserActivity extends Activity
             }
 
             mListFragment.setSelectedContactUri(uri);
+            mListFragment.saveSelectedUri(mPrefs);
             mListFragment.requestSelectionOnScreen(true);
             if (mContactContentDisplayed) {
                 setupContactDetailFragment(uri);
@@ -333,7 +334,7 @@ public class ContactBrowserActivity extends Activity
             if (mSearchMode) {
                 mListFragment = createContactSearchFragment();
                 // When switching to the search mode, erase previous state of the search UI
-                mListFragment.saveSelectedUri(mPrefs);
+                mListFragment.eraseSelectedUri(mPrefs);
             } else {
                 mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
                 mListFragment.requestSelectionOnScreen(false);
@@ -344,10 +345,11 @@ public class ContactBrowserActivity extends Activity
             mListFragment.setQueryString(mActionBarAdapter.getQueryString());
         }
 
-        if (fromRequest) {
+        if (fromRequest && !mSearchMode) {
             Uri selectUri = mRequest.getContactUri();
             if (selectUri != null) {
                 mListFragment.setSelectedContactUri(selectUri);
+                mListFragment.saveSelectedUri(mPrefs);
                 mListFragment.requestSelectionOnScreen(false);
             }
         }
@@ -449,6 +451,7 @@ public class ContactBrowserActivity extends Activity
             requestedContactUri = mListFragment.getFirstContactUri();
             if (requestedContactUri != null) {
                 mListFragment.setSelectedContactUri(requestedContactUri);
+                mListFragment.eraseSelectedUri(mPrefs);
                 mListFragment.requestSelectionOnScreen(false);
             }
         }
@@ -485,6 +488,8 @@ public class ContactBrowserActivity extends Activity
         }
 
         mListFragment.setSelectedContactUri(selectedUri);
+        mListFragment.eraseSelectedUri(mPrefs);
+        mListFragment.requestSelectionOnScreen(true);
         if (mContactContentDisplayed) {
             setupContactDetailFragment(selectedUri);
         }
