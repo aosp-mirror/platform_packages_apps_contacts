@@ -32,7 +32,7 @@ public class ContactListFilterView extends LinearLayout {
 
     private ImageView mIcon;
     private TextView mLabel;
-    private TextView mIndentedLabel;
+    private View mIndent;
     private View mGroupView;
     private ContactListFilter mFilter;
     private boolean mMultipleAccounts;
@@ -63,7 +63,7 @@ public class ContactListFilterView extends LinearLayout {
         if (mLabel == null) {
             mIcon = (ImageView) findViewById(R.id.icon);
             mLabel = (TextView) findViewById(R.id.label);
-            mIndentedLabel = (TextView) findViewById(R.id.indented_label);
+            mIndent = findViewById(R.id.indent);
             mGroupView = findViewById(R.id.group);
             mGroupLabel = (TextView) findViewById(R.id.group_label);
             mAccountLabel = (TextView) findViewById(R.id.account_label);
@@ -71,7 +71,6 @@ public class ContactListFilterView extends LinearLayout {
 
         if (mFilter == null) {
             mLabel.setText(R.string.contactsList);
-            mLabel.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -83,62 +82,54 @@ public class ContactListFilterView extends LinearLayout {
                 mLabel.setVisibility(View.VISIBLE);
                 mGroupView.setVisibility(View.GONE);
             }
+        } else {
+            mLabel.setVisibility(View.VISIBLE);
         }
 
         switch (mFilter.filterType) {
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
-                bindView(R.drawable.ic_contact_list_filter_all,
-                        R.string.list_filter_all_accounts);
+                bindView(R.drawable.ic_menu_contacts_holo_light, R.string.list_filter_all_accounts,
+                        dropdown);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_STARRED: {
-                bindView(R.drawable.ic_contact_list_filter_starred,
-                        R.string.list_filter_all_starred);
+                bindView(R.drawable.ic_menu_star_holo_light, R.string.list_filter_all_starred,
+                        dropdown);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_CUSTOM: {
-                bindView(R.drawable.ic_contact_list_filter_custom,
-                        dropdown ? R.string.list_filter_customize : R.string.list_filter_custom);
+                bindView(R.drawable.ic_menu_settings_holo_light,
+                        dropdown ? R.string.list_filter_customize : R.string.list_filter_custom,
+                        dropdown);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY: {
-                bindView(0, R.string.list_filter_phones);
+                bindView(0, R.string.list_filter_phones, dropdown);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_SINGLE_CONTACT: {
-                bindView(0, R.string.list_filter_single);
+                bindView(0, R.string.list_filter_single, dropdown);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                if (mIcon != null) {
-                    mIcon.setVisibility(View.VISIBLE);
-                    if (mFilter.icon != null) {
-                        mIcon.setImageDrawable(mFilter.icon);
-                    } else {
-                        mIcon.setImageResource(R.drawable.unknown_source);
-                    }
+                mIcon.setVisibility(View.VISIBLE);
+                if (mFilter.icon != null) {
+                    mIcon.setImageDrawable(mFilter.icon);
+                } else {
+                    mIcon.setImageResource(R.drawable.unknown_source);
                 }
                 mLabel.setText(mFilter.accountName);
-                mLabel.setVisibility(View.VISIBLE);
                 if (dropdown) {
-                    mIndentedLabel.setVisibility(View.GONE);
+                    mIndent.setVisibility(View.GONE);
                 }
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
-                if (mIcon != null) {
-                    mIcon.setVisibility(View.INVISIBLE);
-                }
+                mIcon.setVisibility(View.VISIBLE);
+                mIcon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
                 if (dropdown) {
-                    if (mMultipleAccounts) {
-                        mLabel.setVisibility(View.GONE);
-                        mIndentedLabel.setText(mFilter.title);
-                        mIndentedLabel.setVisibility(View.VISIBLE);
-                    } else {
-                        mLabel.setText(mFilter.title);
-                        mLabel.setVisibility(View.VISIBLE);
-                        mIndentedLabel.setVisibility(View.GONE);
-                    }
+                    mLabel.setText(mFilter.title);
+                    mIndent.setVisibility(mMultipleAccounts ? View.VISIBLE : View.GONE);
                 } else {
                     if (mMultipleAccounts) {
                         mGroupLabel.setText(mFilter.title);
@@ -152,21 +143,18 @@ public class ContactListFilterView extends LinearLayout {
         }
     }
 
-    private void bindView(int iconResource, int textResource) {
-        if (mIcon != null) {
-            if (iconResource != 0) {
-                mIcon.setVisibility(View.VISIBLE);
-                mIcon.setImageResource(iconResource);
-            } else {
-                mIcon.setVisibility(View.INVISIBLE);
-            }
+    private void bindView(int iconResource, int textResource, boolean dropdown) {
+        if (iconResource != 0) {
+            mIcon.setVisibility(View.VISIBLE);
+            mIcon.setImageResource(iconResource);
+        } else {
+            mIcon.setVisibility(dropdown ? View.INVISIBLE : View.GONE);
         }
 
         mLabel.setText(textResource);
-        mLabel.setVisibility(View.VISIBLE);
 
-        if (mIndentedLabel != null) {
-            mIndentedLabel.setVisibility(View.GONE);
+        if (mIndent != null) {
+            mIndent.setVisibility(View.GONE);
         }
     }
 }

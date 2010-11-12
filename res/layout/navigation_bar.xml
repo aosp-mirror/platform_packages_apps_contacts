@@ -45,7 +45,17 @@
                 class="com.android.contacts.list.ContactListFilterView"
                 android:id="@+id/filter_view"
                 android:layout_height="match_parent"
-                android:layout_width="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dip">
+                <ImageView
+                    android:id="@+id/icon"
+                    android:scaleType="fitCenter"
+                    android:layout_width="24dip"
+                    android:layout_height="24dip"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_gravity="center_vertical" />
+
                 <FrameLayout
                     android:layout_height="match_parent"
                     android:layout_width="wrap_content">

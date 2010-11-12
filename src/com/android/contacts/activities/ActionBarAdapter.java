@@ -174,6 +174,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
                 mFilterController.setEnabled(true);
                 if (mFilterController.isLoaded()) {
                     mFilterView.setContactListFilter(mFilterController.getFilter());
+                    mFilterView.setMultipleAccounts(mFilterController.getAccountCount() > 1);
                     mFilterView.bindView(false);
                     showIndicator = mFilterController.getFilterList().size() > 1;
                 }
