@@ -35,7 +35,7 @@ public class ContactListFilterView extends LinearLayout {
     private View mIndent;
     private View mGroupView;
     private ContactListFilter mFilter;
-    private boolean mMultipleAccounts;
+    private boolean mSingleAccount;
     private TextView mGroupLabel;
     private TextView mAccountLabel;
 
@@ -55,8 +55,8 @@ public class ContactListFilterView extends LinearLayout {
         return mFilter;
     }
 
-    public void setMultipleAccounts(boolean flag) {
-        this.mMultipleAccounts = flag;
+    public void setSingleAccount(boolean flag) {
+        this.mSingleAccount = flag;
     }
 
     public void bindView(boolean dropdown) {
@@ -75,7 +75,7 @@ public class ContactListFilterView extends LinearLayout {
         }
 
         if (!dropdown) {
-            if (mFilter.filterType == ContactListFilter.FILTER_TYPE_GROUP && mMultipleAccounts) {
+            if (mFilter.filterType == ContactListFilter.FILTER_TYPE_GROUP && !mSingleAccount) {
                 mLabel.setVisibility(View.GONE);
                 mGroupView.setVisibility(View.VISIBLE);
             } else {
@@ -129,13 +129,13 @@ public class ContactListFilterView extends LinearLayout {
                 mIcon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
                 if (dropdown) {
                     mLabel.setText(mFilter.title);
-                    mIndent.setVisibility(mMultipleAccounts ? View.VISIBLE : View.GONE);
+                    mIndent.setVisibility(mSingleAccount ? View.GONE : View.VISIBLE);
                 } else {
-                    if (mMultipleAccounts) {
+                    if (mSingleAccount) {
+                        mLabel.setText(mFilter.title);
+                    } else {
                         mGroupLabel.setText(mFilter.title);
                         mAccountLabel.setText(mFilter.accountName);
-                    } else {
-                        mLabel.setText(mFilter.title);
                     }
                 }
                 break;

@@ -69,7 +69,6 @@ public class ContactListFilterController
     private ListPopupWindow mPopup;
     private int mPopupWidth = -1;
     private SparseArray<ContactListFilter> mFilters;
-    private ArrayList<ContactListFilter> mFilterList;
     private int mNextFilterId = 1;
     private View mAnchor;
     private FilterListAdapter mFilterListAdapter;
@@ -113,8 +112,8 @@ public class ContactListFilterController
         return mFilter;
     }
 
-    public List<ContactListFilter> getFilterList() {
-        return mFilterList;
+    public int getFilterCount() {
+        return mFilters != null ? mFilters.size() : 0;
     }
 
     public boolean isLoaded() {
@@ -148,10 +147,8 @@ public class ContactListFilterController
             Loader<List<ContactListFilter>> loader, List<ContactListFilter> filters) {
         if (mFilters == null) {
             mFilters = new SparseArray<ContactListFilter>(filters.size());
-            mFilterList = new ArrayList<ContactListFilter>();
         } else {
             mFilters.clear();
-            mFilterList.clear();
         }
 
         boolean filterValid = mFilter != null && !mFilter.isValidationRequired();
@@ -164,7 +161,7 @@ public class ContactListFilterController
             }
         }
 
-        if (mAccountCount > 1) {
+        if (mAccountCount != 1) {
             mFilters.append(mNextFilterId++,
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
             mFilters.append(mNextFilterId++,
@@ -183,7 +180,6 @@ public class ContactListFilterController
             }
 
             mFilters.append(mNextFilterId++, filter);
-            mFilterList.add(filter);
 
             if (filter.equals(mFilter)) {
                 // Refresh the filter in case the title got changed
@@ -357,7 +353,7 @@ public class ContactListFilterController
                 view = (ContactListFilterView) mLayoutInflater.inflate(
                         R.layout.filter_spinner_item, parent, false);
             }
-            view.setMultipleAccounts(mAccountCount > 1);
+            view.setSingleAccount(mAccountCount == 1);
             view.setContactListFilter(mFilters.valueAt(position));
             view.bindView(true);
             return view;
