@@ -25,6 +25,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -344,9 +345,9 @@ public class PinnedHeaderListView extends ListView
         if (view.isLayoutRequested()) {
             int widthSpec = MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY);
             int heightSpec;
-            int lpHeight = view.getLayoutParams().height;
-            if (lpHeight > 0) {
-                heightSpec = MeasureSpec.makeMeasureSpec(lpHeight, MeasureSpec.EXACTLY);
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams != null && layoutParams.height > 0) {
+                heightSpec = MeasureSpec.makeMeasureSpec(layoutParams.height, MeasureSpec.EXACTLY);
             } else {
                 heightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
             }

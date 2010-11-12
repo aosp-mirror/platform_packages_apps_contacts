@@ -103,9 +103,11 @@
         <attr name="list_item_call_button_padding" format="dimension"/>
         <attr name="list_item_vertical_divider_margin" format="dimension"/>
         <attr name="list_item_presence_icon_margin" format="dimension"/>
-        <attr name="list_item_header_text_width" format="dimension"/>
         <attr name="list_item_photo_size" format="dimension"/>
         <attr name="list_item_prefix_highlight_color" format="color"/>
+        <attr name="list_item_header_text_indent" format="dimension" />
+        <attr name="list_item_header_text_color" format="color" />
+        <attr name="list_item_header_text_size" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="MultiplePhonePickerItemView">
@@ -127,9 +129,11 @@
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">5dip</item>
-        <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
+        <item name="list_item_header_text_indent">56dip</item>
+        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
@@ -145,12 +149,14 @@
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">5dip</item>
-        <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
         <item name="list_item_header_chip_width">4dip</item>
         <item name="list_item_header_chip_right_margin">4dip</item>
         <item name="list_item_header_checkbox_margin">5dip</item>
+        <item name="list_item_header_text_indent">56dip</item>
+        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_size">14sp</item>
     </style>
 
     <style name="JoinContactActivityTheme" parent="ContactPickerTheme">

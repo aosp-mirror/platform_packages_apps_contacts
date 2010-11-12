@@ -30,9 +30,11 @@
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">5dip</item>
-        <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
+        <item name="list_item_header_text_indent">77dip</item>
+        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
@@ -48,11 +50,11 @@
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">5dip</item>
-        <item name="list_item_header_text_width">56dip</item>
         <item name="list_item_photo_size">64dip</item>
+        <item name="list_item_header_text_indent">77dip</item>
+        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_size">14sp</item>
     </style>
-    
-    
 
     <style name="ContactsPreferencesTheme" parent="@android:Theme.Light.Holo">
     </style>
