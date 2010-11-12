@@ -36,6 +36,7 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -219,6 +220,8 @@ public class ContactBrowserActivity extends Activity
             // TODO: request may ask for FREQUENT - set the filter accordingly
             mAddContactImageView = new ImageView(this);
             mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
+            mAddContactImageView.setBackgroundResource(
+                    ThemeUtils.getSelectableItemBackground(getTheme()));
             mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
             mAddContactImageView.setOnClickListener(new OnClickListener() {
                 @Override
