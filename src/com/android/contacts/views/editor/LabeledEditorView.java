@@ -24,6 +24,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.util.DialogManager.DialogShowingView;
 
 import android.app.AlertDialog;
@@ -33,6 +34,7 @@ import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.Menu;
@@ -160,7 +162,8 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         if (shouldExist && mDelete == null) {
             mDelete = new ImageButton(mContext);
             mDelete.setImageResource(R.drawable.ic_menu_remove_field_holo_light);
-            mDelete.setBackgroundDrawable(null);
+            mDelete.setBackgroundResource(
+                    ThemeUtils.getSelectableItemBackground(mContext.getTheme()));
             final Resources resources = mContext.getResources();
             mDelete.setPadding(
                     resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_left),
@@ -174,15 +177,21 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             mDelete.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Keep around in model, but mark as deleted
-                    mEntry.markDeleted();
+                    // defer removal of this button so that the pressed state is visible shortly
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Keep around in model, but mark as deleted
+                            mEntry.markDeleted();
 
-                    ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
+                            ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
 
-                    if (mListener != null) {
-                        // Notify listener when present
-                        mListener.onDeleted(LabeledEditorView.this);
-                    }
+                            if (mListener != null) {
+                                // Notify listener when present
+                                mListener.onDeleted(LabeledEditorView.this);
+                            }
+                        }
+                    });
                 }
             });
             addView(mDelete);

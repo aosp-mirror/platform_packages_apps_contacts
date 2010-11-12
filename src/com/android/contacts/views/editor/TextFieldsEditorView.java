@@ -22,11 +22,13 @@ import com.android.contacts.model.BaseAccountType.DataKind;
 import com.android.contacts.model.BaseAccountType.EditField;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.ThemeUtils;
 
 import android.content.Context;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -135,7 +137,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
         if (shouldExist) {
             if (mMoreOrLess == null) {
                 mMoreOrLess = new ImageButton(mContext);
-                mMoreOrLess.setBackgroundDrawable(null);
+                mMoreOrLess.setBackgroundResource(
+                        ThemeUtils.getSelectableItemBackground(mContext.getTheme()));
                 final Resources resources = mContext.getResources();
                 mMoreOrLess.setPadding(
                         resources.getDimensionPixelOffset(
