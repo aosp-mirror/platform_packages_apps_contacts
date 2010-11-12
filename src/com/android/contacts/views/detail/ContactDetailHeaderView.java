@@ -185,7 +185,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
      * image is shown
      */
     private void setPhoto(Bitmap bitmap, boolean fadeIn) {
-        if (fadeIn) {
+        if (mPhotoView.getDrawable() == null && fadeIn) {
             AlphaAnimation animation = new AlphaAnimation(0, 1);
             animation.setDuration(PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS);
             animation.setInterpolator(new AccelerateInterpolator());
