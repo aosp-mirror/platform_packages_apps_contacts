@@ -28,7 +28,6 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;

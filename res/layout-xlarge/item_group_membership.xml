@@ -41,6 +41,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="left"
         android:ellipsize="end"
+        android:focusable="true"
     />
 
     <!-- Plus/Minus button only for layout. This makes the editor lay out nicely with the other fields -->

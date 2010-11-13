@@ -142,6 +142,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
             mLabel.setGravity(Gravity.RIGHT);
             mLabel.setTextColor(getResources().getColor(R.color.editor_label_text_color));
+            mLabel.setFocusable(true);
             mLabel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
