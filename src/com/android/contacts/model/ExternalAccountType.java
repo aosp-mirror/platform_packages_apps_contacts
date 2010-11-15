@@ -141,8 +141,9 @@ public class ExternalAccountType extends FallbackAccountType {
             final int depth = parser.getDepth();
             while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                     && type != XmlPullParser.END_DOCUMENT) {
+                String tag = parser.getName();
                 if (type == XmlPullParser.END_TAG
-                        || !InflateTags.CONTACTS_DATA_KIND.equals(rootTag)) {
+                        || !InflateTags.CONTACTS_DATA_KIND.equals(tag)) {
                     continue;
                 }
 
