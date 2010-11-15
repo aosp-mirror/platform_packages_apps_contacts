@@ -218,26 +218,11 @@ public class ExchangeAccountType extends FallbackAccountType {
         final DataKind kind = super.inflateIm(context, BaseAccountType.LEVEL_MIMETYPES);
 
         if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+            // Types are not supported for IM. There can be 3 IMs, but OWA only shows only the first
             kind.typeOverallMax = 3;
-
-            // NOTE: even though a traditional "type" exists, for editing
-            // purposes we're using the protocol to pick labels
 
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
-
-            kind.typeColumn = Im.PROTOCOL;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildImType(Im.PROTOCOL_AIM));
-            kind.typeList.add(buildImType(Im.PROTOCOL_MSN));
-            kind.typeList.add(buildImType(Im.PROTOCOL_YAHOO));
-            kind.typeList.add(buildImType(Im.PROTOCOL_SKYPE));
-            kind.typeList.add(buildImType(Im.PROTOCOL_QQ));
-            kind.typeList.add(buildImType(Im.PROTOCOL_GOOGLE_TALK));
-            kind.typeList.add(buildImType(Im.PROTOCOL_ICQ));
-            kind.typeList.add(buildImType(Im.PROTOCOL_JABBER));
-            kind.typeList.add(buildImType(Im.PROTOCOL_CUSTOM).setSecondary(true).setCustomColumn(
-                    Im.CUSTOM_PROTOCOL));
 
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
