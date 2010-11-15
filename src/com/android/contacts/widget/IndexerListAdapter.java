@@ -16,7 +16,6 @@
 package com.android.contacts.widget;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -28,15 +27,11 @@ import android.widget.TextView;
  */
 public abstract class IndexerListAdapter extends PinnedHeaderListAdapter implements SectionIndexer {
 
-    private final int mSectionHeaderTextViewId;
-    private final int mSectionHeaderLayoutResId;
-
     protected Context mContext;
     private SectionIndexer mIndexer;
     private int mIndexedPartition = 0;
     private boolean mSectionHeaderDisplayEnabled;
     private View mHeader;
-    private TextView mTitleView;
 
     /**
      * An item view is displayed differently depending on whether it is placed
@@ -59,18 +54,22 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
 
     /**
      * Constructor.
-     *
-     * @param context
-     * @param sectionHeaderLayoutResourceId section header layout resource ID
-     * @param sectionHeaderTextViewId section header text view ID
      */
-    public IndexerListAdapter(Context context, int sectionHeaderLayoutResourceId,
-            int sectionHeaderTextViewId) {
+    public IndexerListAdapter(Context context) {
         super(context);
         mContext = context;
-        mSectionHeaderLayoutResId = sectionHeaderLayoutResourceId;
-        mSectionHeaderTextViewId = sectionHeaderTextViewId;
     }
+
+    /**
+     * Creates a section header view that will be pinned at the top of the list
+     * as the user scrolls.
+     */
+    protected abstract View createPinnedSectionHeaderView(Context context, ViewGroup parent);
+
+    /**
+     * Sets the title in the pinned header as the user scrolls.
+     */
+    protected abstract void setPinnedSectionTitle(View pinnedHeaderView, String title);
 
     public boolean isSectionHeaderDisplayEnabled() {
         return mSectionHeaderDisplayEnabled;
@@ -140,9 +139,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
     public View getPinnedHeaderView(int viewIndex, View convertView, ViewGroup parent) {
         if (isSectionHeaderDisplayEnabled() && viewIndex == getPinnedHeaderCount() - 1) {
             if (mHeader == null) {
-                mHeader = LayoutInflater.from(mContext).
-                        inflate(mSectionHeaderLayoutResId, parent, false);
-                mTitleView = (TextView)mHeader.findViewById(mSectionHeaderTextViewId);
+                mHeader = createPinnedSectionHeaderView(mContext, parent);
             }
             return mHeader;
         } else {
@@ -177,8 +174,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
             if (section == -1) {
                 listView.setHeaderInvisible(index, false);
             } else {
-                String title = (String)mIndexer.getSections()[section];
-                mTitleView.setText(title);
+                setPinnedSectionTitle(mHeader, (String)mIndexer.getSections()[section]);
 
                 // Compute the item position where the current partition begins
                 int partitionStart = getPositionForPartition(mIndexedPartition);

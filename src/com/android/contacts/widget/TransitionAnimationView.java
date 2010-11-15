@@ -93,6 +93,7 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
             throw new IllegalArgumentException("Invalid enter animation: " + mEnterAnimationId);
         }
         mEnterAnimation.addListener(this);
+        mEnterAnimation.setDuration(mAnimationDuration);
 
         mExitAnimation = AnimatorInflater.loadAnimator(getContext(), mExitAnimationId);
         if (mExitAnimation == null) {
@@ -150,19 +151,17 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
             mPreviousStateView.setVisibility(View.VISIBLE);
 
             mEnterAnimation.setTarget(view);
-            mEnterAnimation.setDuration(mAnimationDuration);
             mEnterAnimation.start();
         }
     }
 
     @Override
-    public void onAnimationCancel(Animator animation) {
+    public void onAnimationEnd(Animator animation) {
         mPreviousStateView.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void onAnimationEnd(Animator animation) {
-        mPreviousStateView.setVisibility(View.INVISIBLE);
+    public void onAnimationCancel(Animator animation) {
     }
 
     @Override

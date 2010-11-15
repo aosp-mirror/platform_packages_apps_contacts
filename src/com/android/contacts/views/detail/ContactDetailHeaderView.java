@@ -32,7 +32,6 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -59,7 +58,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private TextView mOrganizationTextView;
     private CheckBox mStarredView;
     private ImageView mPhotoView;
-    private ImageView mPresenceView;
     private View mStatusContainerView;
     private TextView mStatusView;
     private TextView mStatusDateView;
@@ -102,7 +100,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
 
         mPhotoView = (ImageView) findViewById(R.id.photo);
 
-        mPresenceView = (ImageView) findViewById(R.id.presence);
         mStatusContainerView = findViewById(R.id.status_container);
         mStatusView = (TextView)findViewById(R.id.status);
         mStatusDateView = (TextView)findViewById(R.id.status_date);
@@ -129,7 +126,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         }
 
         setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
-        setPresence(contactData.getPresence());
         setSocialSnippet(contactData.getSocialSnippet());
         setSocialDate(ContactBadgeUtil.getSocialDate(contactData, getContext()));
         setDirectoryName(contactData.isDirectoryEntry(), contactData.getDirectoryDisplayName(),
@@ -164,19 +160,6 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
             mStarredView.setChecked(starred);
         } else {
             mStarredView.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     * Set the presence. If presence is null, it is hidden.
-     */
-    private void setPresence(Integer presence) {
-        if (presence == null) {
-            mPresenceView.setVisibility(View.GONE);
-        } else {
-            mPresenceView.setVisibility(View.VISIBLE);
-            mPresenceView.setImageResource(StatusUpdates.getPresenceIconResourceId(
-                    presence.intValue()));
         }
     }
 

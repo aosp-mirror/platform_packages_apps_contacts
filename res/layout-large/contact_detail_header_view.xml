@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/banner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="40dip"
+    android:paddingRight="5dip">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView android:id="@+id/photo"
+            android:layout_marginRight="16dip"
+            android:layout_marginLeft="16dip"
+            android:layout_width="96dip"
+            android:layout_height="96dip"
+        />
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <!-- Star -->
+                <CheckBox
+                    android:id="@+id/star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/description_star"
+                    android:visibility="invisible"
+                    style="?android:attr/starStyle"
+                />
+
+                <!-- Name, PhoneticName, Directory -->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dip"
+                    android:orientation="vertical" >
+
+                    <TextView android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textSize="26sp"
+                    />
+
+                    <TextView android:id="@+id/phonetic_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:layout_marginTop="-2dip"
+                        android:visibility="gone"
+                    />
+
+                    <TextView android:id="@+id/organization"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-2dip"
+                        android:visibility="gone"
+                        android:textColor="#999999"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                    <TextView android:id="@+id/directory_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:layout_marginTop="-2dip"
+                        android:visibility="gone"
+                    />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Status info -->
+    <LinearLayout
+        android:id="@+id/status_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/statusbox_portrait_holo_light"
+        android:layout_marginLeft="24dip"
+        android:layout_marginRight="24dip"
+        android:paddingLeft="32dip"
+        android:paddingTop="40dip"
+        android:paddingRight="16dip"
+        android:paddingBottom="16dip"
+        android:visibility="gone">
+
+        <TextView android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#66666666"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone"
+        />
+
+        <TextView android:id="@+id/status_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#66666666"
+            android:visibility="gone"
+        />
+    </LinearLayout>
+</LinearLayout>

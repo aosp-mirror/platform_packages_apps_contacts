@@ -25,6 +25,11 @@
     android:paddingBottom="2dip"
     android:gravity="left">
 
+    <View
+        android:id="@+id/indent"
+        android:layout_width="40dip"
+        android:layout_height="fill_parent" />
+
     <ImageView
         android:id="@+id/icon"
         android:scaleType="fitCenter"
@@ -41,14 +46,5 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center_vertical"
         android:ellipsize="end" />
-
-    <TextView
-        android:id="@+id/indented_label"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="center_vertical"
-        android:ellipsize="end"
-        android:paddingLeft="40dip" />
 </view>
 

@@ -66,8 +66,10 @@ public class ContactListItemView extends ViewGroup {
     private final int mGapBetweenLabelAndData;
     private final int mCallButtonPadding;
     private final int mPresenceIconMargin;
-    private final int mHeaderTextWidth;
     private final int mPrefixHightlightColor;
+    private final int mHeaderTextColor;
+    private final int mHeaderTextIndent;
+    private final int mHeaderTextSize;
 
     private Drawable mPressedBackgroundDrawable;
     private Drawable mActivatedBackgroundDrawable;
@@ -151,7 +153,7 @@ public class ContactListItemView extends ViewGroup {
                 a.getDimensionPixelSize(android.R.styleable.Theme_listPreferredItemHeight, 0);
         a.recycle();
 
-        a = getContext().obtainStyledAttributes(attrs,R.styleable.ContactListItemView);
+        a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
         mPressedBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_pressedBackground);
         mHeaderBackgroundDrawable = a.getDrawable(
@@ -176,12 +178,16 @@ public class ContactListItemView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_call_button_padding, 0);
         mPresenceIconMargin = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_presence_icon_margin, 0);
-        mHeaderTextWidth = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_header_text_width, 0);
         mDefaultPhotoViewSize = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_photo_size, 0);
         mPrefixHightlightColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
+        mHeaderTextIndent = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_header_text_indent, 0);
+        mHeaderTextColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_header_text_color, Color.BLACK);
+        mHeaderTextSize = a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_header_text_size, 12);
 
         a.recycle();
 
@@ -268,7 +274,7 @@ public class ContactListItemView extends ViewGroup {
 
         if (mHeaderVisible) {
             mHeaderTextView.measure(
-                    MeasureSpec.makeMeasureSpec(mHeaderTextWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             height += mHeaderBackgroundHeight;
         }
@@ -291,7 +297,7 @@ public class ContactListItemView extends ViewGroup {
                     0,
                     width,
                     mHeaderBackgroundHeight);
-            mHeaderTextView.layout(0, 0, width, mHeaderBackgroundHeight);
+            mHeaderTextView.layout(mHeaderTextIndent, 0, width, mHeaderBackgroundHeight);
             topBound += mHeaderBackgroundHeight;
         }
 
@@ -519,11 +525,10 @@ public class ContactListItemView extends ViewGroup {
         if (!TextUtils.isEmpty(title)) {
             if (mHeaderTextView == null) {
                 mHeaderTextView = new TextView(mContext);
+                mHeaderTextView.setTextColor(mHeaderTextColor);
+                mHeaderTextView.setTextSize(mHeaderTextSize);
                 mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
-                mHeaderTextView.setTextColor(mContext.getResources()
-                        .getColor(R.color.section_header_text_color));
-                mHeaderTextView.setTextSize(14);
-                mHeaderTextView.setGravity(Gravity.CENTER);
+                mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
                 addView(mHeaderTextView);
             }
             mHeaderTextView.setText(title);

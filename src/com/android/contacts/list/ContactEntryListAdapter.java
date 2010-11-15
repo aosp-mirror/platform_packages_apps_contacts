@@ -71,8 +71,18 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mSelectionVisible;
 
     public ContactEntryListAdapter(Context context) {
-        super(context, R.layout.list_section, R.id.header_text);
+        super(context);
         addPartitions();
+    }
+
+    @Override
+    protected View createPinnedSectionHeaderView(Context context, ViewGroup parent) {
+        return new ContactListPinnedHeaderView(context, null);
+    }
+
+    @Override
+    protected void setPinnedSectionTitle(View pinnedHeaderView, String title) {
+        ((ContactListPinnedHeaderView)pinnedHeaderView).setSectionHeader(title);
     }
 
     protected void addPartitions() {
