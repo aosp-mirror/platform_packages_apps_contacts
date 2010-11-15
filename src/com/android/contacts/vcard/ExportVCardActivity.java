@@ -51,7 +51,7 @@ import java.util.Set;
  * dialogs stuffs (like how onCreateDialog() is used).
  */
 public class ExportVCardActivity extends Activity {
-    private static final String LOG_TAG = "ExportVCardActivity";
+    private static final String LOG_TAG = "VCardExport";
 
     // If true, VCardExporter is able to emits files longer than 8.3 format.
     private static final boolean ALLOW_LONG_FILE_NAME = false;
@@ -75,8 +75,7 @@ public class ExportVCardActivity extends Activity {
         private Queue<ExportRequest> mPendingRequests = new LinkedList<ExportRequest>();
 
         public void doBindService() {
-            bindService(new Intent(ExportVCardActivity.this,
-                    VCardService.class), this, Context.BIND_AUTO_CREATE);
+
         }
 
         public synchronized void requestSend(final ExportRequest parameter) {
@@ -174,7 +173,10 @@ public class ExportVCardActivity extends Activity {
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                mConnection.doBindService();
+                // We don't want the service finishes itself just after this connection.
+                startService(new Intent(ExportVCardActivity.this, VCardService.class));
+                bindService(new Intent(ExportVCardActivity.this, VCardService.class),
+                        mConnection, Context.BIND_AUTO_CREATE);
 
                 final ExportRequest request = new ExportRequest(mDestUri);
 

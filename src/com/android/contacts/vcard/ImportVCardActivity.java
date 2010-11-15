@@ -54,7 +54,6 @@ import android.os.RemoteException;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
@@ -71,9 +70,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.Vector;
 
@@ -87,7 +84,7 @@ import java.util.Vector;
  * dialogs stuffs (like how onCreateDialog() is used).
  */
 public class ImportVCardActivity extends Activity {
-    private static final String LOG_TAG = "VCardImporter";
+    private static final String LOG_TAG = "VCardImport";
 
     private static final int SELECT_ACCOUNT = 0;
 
@@ -113,115 +110,15 @@ public class ImportVCardActivity extends Activity {
     private Uri mUri;
 
     private ProgressDialog mProgressDialogForScanVCard;
-    private ProgressDialog mProgressDialogForCacheVCard;
+    private ProgressDialog mProgressDialogForCachingVCard;
 
     private List<VCardFile> mAllVCardFileList;
     private VCardScanThread mVCardScanThread;
 
     private VCardCacheThread mVCardCacheThread;
+    private ImportRequestConnection mConnection;
 
     private String mErrorMessage;
-
-    private class CustomConnection implements ServiceConnection {
-        private Messenger mMessenger;
-        /**
-         * Stores {@link ImportRequest} objects until actual connection is established.
-         */
-        private Queue<ImportRequest> mPendingRequests =
-                new LinkedList<ImportRequest>();
-
-        private boolean mConnected = false;
-        private boolean mNeedToCallFinish = false;
-        private boolean mDisconnectAndFinishDone = false;
-
-        /**
-         * Tries to unbind this connection and call {@link ImportVCardActivity#finish()}.
-         * When timing is not appropriate, this object remembers this call and
-         * call {@link ImportVCardActivity#unbindService(ServiceConnection)} and
-         * {@link ImportVCardActivity#finish()} afterwards.
-         */
-        public void tryDisconnectAndFinish() {
-            synchronized (this) {
-                if (!mDisconnectAndFinishDone) {
-                    mNeedToCallFinish = true;
-                    if (mConnected) {
-                        // onServiceConnected() is already finished and we need to
-                        // "manually" call unbindService() here.
-                        unbindService(this);
-                        mConnected = false;
-                        mDisconnectAndFinishDone = true;
-                        finish();
-                    } else {
-                        // If not connected, finish() must be called when connected, as
-                        // We cannot call finish() now.
-                    }
-                }
-            }
-        }
-
-        public void requestSend(final ImportRequest parameter) {
-            synchronized (mPendingRequests) {
-                if (mMessenger != null) {
-                    sendMessage(parameter);
-                } else {
-                    mPendingRequests.add(parameter);
-                }
-            }
-        }
-
-        private void sendMessage(final ImportRequest request) {
-            try {
-                mMessenger.send(Message.obtain(null,
-                        VCardService.MSG_IMPORT_REQUEST,
-                        request));
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-                runOnUiThread(new DialogDisplayer(
-                        getString(R.string.fail_reason_unknown)));
-            }
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            synchronized (mPendingRequests) {
-                mMessenger = new Messenger(service);
-
-                // Send pending requests thrown from this Activity before an actual connection
-                // is established.
-                while (!mPendingRequests.isEmpty()) {
-                    final ImportRequest parameter = mPendingRequests.poll();
-                    if (parameter == null) {
-                        throw new NullPointerException();
-                    }
-                    sendMessage(parameter);
-                }
-            }
-
-            synchronized (this) {
-                if (!mDisconnectAndFinishDone) {
-                    mConnected = true;
-                    if (mNeedToCallFinish) {
-                        mDisconnectAndFinishDone = true;
-                        finish();
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            synchronized (mPendingRequests) {
-                if (!mPendingRequests.isEmpty()) {
-                    Log.w(LOG_TAG, "Some request(s) are dropped.");
-                }
-            }
-
-            // Set to null so that we can detect inappropriate re-connection toward
-            // the Service via NullPointerException;
-            mPendingRequests = null;
-            mMessenger = null;
-        }
-    }
 
     private static class VCardFile {
         private final String mName;
@@ -275,25 +172,53 @@ public class ImportVCardActivity extends Activity {
 
     private CancelListener mCancelListener = new CancelListener();
 
+    private class ImportRequestConnection implements ServiceConnection {
+        private Messenger mMessenger;
+
+        public void sendImportRequest(final ImportRequest request) {
+            Log.i(LOG_TAG, String.format("Send an import request (Uri: %s)", request.uri));
+            try {
+                mMessenger.send(Message.obtain(null,
+                        VCardService.MSG_IMPORT_REQUEST,
+                        request));
+            } catch (RemoteException e) {
+                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
+                runOnUiThread(new DialogDisplayer(getString(R.string.fail_reason_unknown)));
+            }
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mMessenger = new Messenger(service);
+            Log.i(LOG_TAG,
+                    String.format("Connected to VCardService. Kick a vCard cache thread (uri: %s)",
+                            Arrays.toString(mVCardCacheThread.getSourceUris())));
+            mVCardCacheThread.start();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.i(LOG_TAG, "Disconnected from VCardService");
+        }
+    }
+
     /**
-     * Caches all vCard data into local data directory so that we allow
-     * {@link VCardService} to access all the contents in given Uris, some of
-     * which may not be accessible from other components due to permission problem.
-     * (Activity which gives the Uri may allow only this Activity to access that content,
-     * not the other components like {@link VCardService}.
+     * Caches given vCard files into a local directory, and sends actual import request to
+     * {@link VCardService}.
      *
-     * We also allow the Service to happen to exit during the vCard import procedure.
+     * We need to cache given files into local storage. One of reasons is that some data (as Uri)
+     * may have special permissions. Callers may allow only this Activity to access that content,
+     * not what this Activity launched (like {@link VCardService}).
      */
     private class VCardCacheThread extends Thread
             implements DialogInterface.OnCancelListener {
         private boolean mCanceled;
         private PowerManager.WakeLock mWakeLock;
         private VCardParser mVCardParser;
-        private final Uri[] mSourceUris;
+        private final Uri[] mSourceUris;  // Given from a caller.
 
         public VCardCacheThread(final Uri[] sourceUris) {
             mSourceUris = sourceUris;
-            final int length = sourceUris.length;
             final Context context = ImportVCardActivity.this;
             final PowerManager powerManager =
                     (PowerManager)context.getSystemService(Context.POWER_SERVICE);
@@ -305,21 +230,27 @@ public class ImportVCardActivity extends Activity {
         @Override
         public void finalize() {
             if (mWakeLock != null && mWakeLock.isHeld()) {
+                Log.w(LOG_TAG, "WakeLock is being held.");
                 mWakeLock.release();
             }
         }
 
         @Override
         public void run() {
-            final Context context = ImportVCardActivity.this;
-            final ContentResolver resolver = context.getContentResolver();
-            String errorMessage = null;
+            Log.i(LOG_TAG, "vCard cache thread starts running.");
+            if (mConnection == null) {
+                throw new NullPointerException("vCard cache thread must be launched "
+                        + "after a service connection is established");
+            }
+
             mWakeLock.acquire();
-            final CustomConnection connection = new CustomConnection();
-            startService(new Intent(ImportVCardActivity.this, VCardService.class));
-            bindService(new Intent(ImportVCardActivity.this,
-                    VCardService.class), connection, Context.BIND_AUTO_CREATE);
             try {
+                if (mCanceled == true) {
+                    Log.i(LOG_TAG, "vCard cache operation is canceled.");
+                    return;
+                }
+
+                final Context context = ImportVCardActivity.this;
                 // Uris given from caller applications may not be opened twice: consider when
                 // it is not from local storage (e.g. "file:///...") but from some special
                 // provider (e.g. "content://...").
@@ -346,31 +277,36 @@ public class ImportVCardActivity extends Activity {
                     }
                     final Uri localDataUri = copyTo(sourceUri, filename);
                     if (mCanceled) {
+                        Log.i(LOG_TAG, "vCard cache operation is canceled.");
                         break;
                     }
                     if (localDataUri == null) {
                         Log.w(LOG_TAG, "destUri is null");
                         break;
                     }
-                    final ImportRequest parameter = constructRequestParameter(localDataUri);
+                    final ImportRequest parameter = constructImportRequest(localDataUri);
                     if (mCanceled) {
+                        Log.i(LOG_TAG, "vCard cache operation is canceled.");
                         return;
                     }
-                    connection.requestSend(parameter);
+                    mConnection.sendImportRequest(parameter);
                 }
             } catch (OutOfMemoryError e) {
-                Log.e(LOG_TAG, "OutOfMemoryError");
+                Log.e(LOG_TAG, "OutOfMemoryError occured during caching vCard");
                 System.gc();
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_low_memory_during_import)));
             } catch (IOException e) {
-                Log.e(LOG_TAG, e.getMessage());
+                Log.e(LOG_TAG, "IOException during caching vCard", e);
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error)));
             } finally {
+                Log.i(LOG_TAG, "Finished caching vCard.");
                 mWakeLock.release();
-                mProgressDialogForCacheVCard.dismiss();
-                connection.tryDisconnectAndFinish();
+                unbindService(mConnection);
+                mProgressDialogForCachingVCard.dismiss();
+                mProgressDialogForCachingVCard = null;
+                finish();
             }
         }
 
@@ -423,28 +359,27 @@ public class ImportVCardActivity extends Activity {
         }
 
         /**
-         * Reads the Uri once (or twice) and constructs {@link ImportRequest} from
+         * Reads the Uri (possibly multiple times) and constructs {@link ImportRequest} from
          * its content.
+         *
+         * Uri should be local one, as we cannot guarantee other types of Uris can be read
+         * multiple times.
          */
-        private ImportRequest constructRequestParameter(final Uri uri) {
-            final ContentResolver resolver =
-                    ImportVCardActivity.this.getContentResolver();
+        private ImportRequest constructImportRequest(final Uri localDataUri) {
+            final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
             VCardSourceDetector detector = null;
             VCardInterpreterCollection interpreter = null;
             int vcardVersion = VCARD_VERSION_V21;
             try {
                 boolean shouldUseV30 = false;
-                InputStream is;
-
-                is = resolver.openInputStream(uri);
+                InputStream is = resolver.openInputStream(localDataUri);
                 mVCardParser = new VCardParser_V21();
                 try {
                     counter = new VCardEntryCounter();
                     detector = new VCardSourceDetector();
-                    interpreter =
-                            new VCardInterpreterCollection(
-                                    Arrays.asList(counter, detector));
+                    interpreter = new VCardInterpreterCollection(
+                            Arrays.asList(counter, detector));
                     mVCardParser.parse(is, interpreter);
                 } catch (VCardVersionException e1) {
                     try {
@@ -453,14 +388,13 @@ public class ImportVCardActivity extends Activity {
                     }
 
                     shouldUseV30 = true;
-                    is = resolver.openInputStream(uri);
+                    is = resolver.openInputStream(localDataUri);
                     mVCardParser = new VCardParser_V30();
                     try {
                         counter = new VCardEntryCounter();
                         detector = new VCardSourceDetector();
-                        interpreter =
-                                new VCardInterpreterCollection(
-                                        Arrays.asList(counter, detector));
+                        interpreter = new VCardInterpreterCollection(
+                                Arrays.asList(counter, detector));
                         mVCardParser.parse(is, interpreter);
                     } catch (VCardVersionException e2) {
                         throw new VCardException("vCard with unspported version.");
@@ -479,13 +413,13 @@ public class ImportVCardActivity extends Activity {
                 Log.w(LOG_TAG, "Nested Exception is found (it may be false-positive).");
                 // Go through without returning null.
             } catch (VCardException e) {
-                Log.e(LOG_TAG, e.getMessage());
+                Log.e(LOG_TAG, "VCardException during constructing ImportRequest", e);
                 return null;
             } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
+                Log.e(LOG_TAG, "IOException during constructing ImportRequest", e);
                 return null;
             }
-            return new ImportRequest(mAccount, uri,
+            return new ImportRequest(mAccount, localDataUri,
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
                     vcardVersion, counter.getCount());
@@ -502,7 +436,9 @@ public class ImportVCardActivity extends Activity {
             }
         }
 
+        @Override
         public void onCancel(DialogInterface dialog) {
+            Log.i(LOG_TAG, "Cancel request has come. Abort caching vCard.");
             cancel();
         }
     }
@@ -921,17 +857,23 @@ public class ImportVCardActivity extends Activity {
                 return getVCardFileSelectDialog(false);
             }
             case R.id.dialog_cache_vcard: {
-                if (mProgressDialogForCacheVCard == null) {
+                if (mProgressDialogForCachingVCard == null) {
                     final String title = getString(R.string.caching_vcard_title);
                     final String message = getString(R.string.caching_vcard_message);
-                    mProgressDialogForCacheVCard = new ProgressDialog(this);
-                    mProgressDialogForCacheVCard.setTitle(title);
-                    mProgressDialogForCacheVCard.setMessage(message);
-                    mProgressDialogForCacheVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    mProgressDialogForCacheVCard.setOnCancelListener(mVCardCacheThread);
-                    mVCardCacheThread.start();
+                    mProgressDialogForCachingVCard = new ProgressDialog(this);
+                    mProgressDialogForCachingVCard.setTitle(title);
+                    mProgressDialogForCachingVCard.setMessage(message);
+                    mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
+                    mConnection = new ImportRequestConnection();
+
+                    Log.i(LOG_TAG, "Bind to VCardService.");
+                    // We don't want the service finishes itself just after this connection.
+                    startService(new Intent(this, VCardService.class));
+                    bindService(new Intent(this, VCardService.class),
+                            mConnection, Context.BIND_AUTO_CREATE);
                 }
-                return mProgressDialogForCacheVCard;
+                return mProgressDialogForCachingVCard;
             }
             case R.id.dialog_io_exception: {
                 String message = (getString(R.string.scanning_sdcard_failed_message,
@@ -964,31 +906,11 @@ public class ImportVCardActivity extends Activity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (mVCardCacheThread != null) {
-            final Uri[] uris = mVCardCacheThread.getSourceUris();
-            final int length = uris.length;
-            final String[] uriStrings = new String[length];
-            for (int i = 0; i < length; i++) {
-                    uriStrings[i] = uris[i].toString();
-            }
-            outState.putStringArray(CACHED_URIS, uriStrings);
-
-            mVCardCacheThread.cancel();
-        }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle inState) {
-        final String[] uriStrings = inState.getStringArray(CACHED_URIS);
-        if (uriStrings != null && uriStrings.length > 0) {
-            final int length = uriStrings.length;
-            final Uri[] uris = new Uri[length];
-            for (int i = 0; i < length; i++) {
-                uris[i] = Uri.parse(uriStrings[i]);
-            }
-
-            mVCardCacheThread = new VCardCacheThread(uris);
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (mProgressDialogForCachingVCard != null) {
+            Log.i(LOG_TAG, "Cache thread is still running. Show progress dialog again.");
+            showDialog(R.id.dialog_cache_vcard);
         }
     }
 

@@ -15,25 +15,6 @@
  */
 package com.android.contacts.vcard;
 
-import android.accounts.Account;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.net.Uri;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
-
 import com.android.contacts.R;
 import com.android.vcard.VCardEntryCommitter;
 import com.android.vcard.VCardEntryConstructor;
@@ -46,210 +27,73 @@ import com.android.vcard.exception.VCardNestedException;
 import com.android.vcard.exception.VCardNotSupportedException;
 import com.android.vcard.exception.VCardVersionException;
 
+import android.accounts.Account;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
- * Class for processing incoming import request from {@link ImportVCardActivity}.
- *
- * This class is designed so that a user ({@link Service}) does not need to (and should not)
- * recreate multiple instances, as this holds total count of vCard entries to be imported.
+ * Class for processing one import request from a user. Dropped after importing requested Uri(s).
+ * {@link VCardService} will create another object when there is another import request.
  */
-public class ImportProcessor {
-    private static final String LOG_TAG = "VCardImporter";
+public class ImportProcessor implements Runnable {
+    private static final String LOG_TAG = "VCardImport";
 
-    private class ImportProcessorConnection implements ServiceConnection {
-        private Messenger mMessenger;
-        private boolean mBound;
-
-        public synchronized void tryBind() {
-            mContext.startService(new Intent(mContext, VCardService.class));
-            if (!mContext.bindService(new Intent(mContext, VCardService.class),
-                    this, Context.BIND_AUTO_CREATE)) {
-                throw new RuntimeException("Failed to bind to VCardService.");
-            }
-            mBound = true;
-        }
-
-        public synchronized void tryUnbind() {
-            if (mBound) {
-                mContext.unbindService(this);
-                // TODO: This is not appropriate. It would be better to send some "stop" request
-                // to service and let the service stop itself.
-                mContext.stopService(new Intent(mContext, VCardService.class));
-            } else {
-                // TODO: Not graceful.
-                Log.w(LOG_TAG, "unbind() is tried while ServiceConnection is not bound yet");
-            }
-            mBound = false;
-        }
-
-        public void sendFinishNotification() {
-            try {
-                mMessenger.send(Message.obtain(null,
-                        VCardService.MSG_NOTIFY_IMPORT_FINISHED,
-                        null));
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-            }
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mMessenger = new Messenger(service);
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mMessenger = null;
-        }
-    }
-
-    private final Context mContext;
-    private ContentResolver mResolver;
-    private NotificationManager mNotificationManager;
+    private final VCardService mService;
+    private final ContentResolver mResolver;
+    private final NotificationManager mNotificationManager;
 
     private final List<Uri> mFailedUris = new ArrayList<Uri>();
-    private final List<Uri> mCreatedUris = new ArrayList<Uri>();
     private final ImportProgressNotifier mNotifier = new ImportProgressNotifier();
 
     private VCardParser mVCardParser;
 
-    /**
-     * Meaning a controller of this object requests the operation should be canceled
-     * or not, which implies {@link #mReadyForRequest} should be set to false soon, but
-     * it does not meaning cancel request is able to immediately stop this object,
-     * so we have two variables.
-     */
+    private ImportRequest mImportRequest;
+    private int mJobId;
+
     private boolean mCanceled;
 
-    /**
-     * Meaning that this object is able to accept import requests.
-     */
-    private boolean mReadyForRequest;
-    private final Queue<ImportRequest> mPendingRequests =
-            new LinkedList<ImportRequest>();
-
-    // For testability.
-    /* package */ ThreadStarter mThreadStarter = new ThreadStarter() {
-        public void start() {
-            final Thread thread = new Thread(new Runnable() {
-                public void run() {
-                    process();
-                }
-            });
-            thread.start();
-        }
-    };
-    /* package */ interface CommitterGenerator {
-        public VCardEntryCommitter generate(ContentResolver resolver);
-    }
-    /* package */ class DefaultCommitterGenerator implements CommitterGenerator {
-        public VCardEntryCommitter generate(ContentResolver resolver) {
-            return new VCardEntryCommitter(mResolver);
-        }
+    public ImportProcessor(final VCardService service, final ImportRequest request,
+            int jobId) {
+        mService = service;
+        mResolver = mService.getContentResolver();
+        mNotificationManager = (NotificationManager)
+                mService.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifier.init(mService, mNotificationManager);
+        mImportRequest = request;
+        mJobId = jobId;
     }
 
-    private CommitterGenerator mCommitterGenerator =
-        new DefaultCommitterGenerator();
 
-    public ImportProcessor(final Context context) {
-        mContext = context;
-    }
-
-    /**
-     * Checks this object and initialize it if not.
-     *
-     * This method is needed since {@link VCardService} is not ready when this object is
-     * created and we need to delay this initialization, while we want to initialize
-     * this object soon in tests.
-     */
-    /* package */ void ensureInit() {
-        if (mResolver == null) {
-            // Service object may not ready at the construction time
-            // (e.g. ContentResolver may be null).
-            mResolver = mContext.getContentResolver();
-            mNotificationManager =
-                    (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        }
-    }
-
-    public synchronized void pushRequest(final ImportRequest request) {
-        ensureInit();
-
-        final boolean needThreadStart;
-        if (!mReadyForRequest) {
-            mFailedUris.clear();
-            mCreatedUris.clear();
-
-            mNotifier.init(mContext, mNotificationManager);
-            needThreadStart = true;
-        } else {
-            needThreadStart = false;
-        }
-        final int count = request.entryCount;
-        if (count > 0) {
-            mNotifier.addTotalCount(count);
-        }
-        mPendingRequests.add(request);
-        if (needThreadStart) {
-            mThreadStarter.start();
-        }
-
-        mReadyForRequest = true;
-    }
-
-    /**
-     * Starts processing import requests. Never stops until all given requests are
-     * processed or some error happens, assuming this method is called from a
-     * {@link Thread} object.
-     */
-    private void process() {
-        if (!mReadyForRequest) {
-            throw new RuntimeException(
-                    "process() is called before request being pushed "
-                    + "or after this object's finishing its processing.");
-        }
-
-        final ImportProcessorConnection connection = new ImportProcessorConnection();
-        connection.tryBind();
+    @Override
+    public void run() {
+        // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
-            while (!mCanceled) {
-                final ImportRequest parameter;
-                synchronized (this) {
-                    if (mPendingRequests.size() == 0) {
-                        mReadyForRequest = false;
-                        break;
-                    } else {
-                        parameter = mPendingRequests.poll();
-                    }
-                }  // synchronized (this)
-                handleOneRequest(parameter);
-            }
-
-            // Currenty we don't have an appropriate way to let users see all URIs imported.
-            // Instead, we show one only when there's just one created uri.
-            doFinishNotification(mCreatedUris.size() > 0 ? mCreatedUris.get(0) : null);
-            connection.sendFinishNotification();
-            Log.i(LOG_TAG, "Finished successfully importing all vCard");
-        } finally {
-            mReadyForRequest = false;  // Just in case.
-            mNotifier.resetTotalCount();
-            connection.tryUnbind();
+            runInternal();
+        } catch (RuntimeException e) {
+            Log.e(LOG_TAG, "RuntimeException thrown during import", e);
+            throw e;
         }
     }
 
-    /**
-     * Would be run inside synchronized block.
-     */
-    /* package */ boolean handleOneRequest(final ImportRequest request) {
+    private void runInternal() {
+        Log.i(LOG_TAG, String.format("vCard import (id: %d) has started.", mJobId));
+        final ImportRequest request = mImportRequest;
         if (mCanceled) {
-            Log.i(LOG_TAG, "Canceled before actually handling parameter ("
-                    + request.uri + ")");
-            return false;
+            Log.i(LOG_TAG, "Canceled before actually handling parameter (" + request.uri + ")");
+            return;
         }
         final int[] possibleVCardVersions;
         if (request.vcardVersion == ImportVCardActivity.VCARD_VERSION_AUTO_DETECT) {
@@ -274,29 +118,32 @@ public class ImportProcessor {
 
         final VCardEntryConstructor constructor =
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
-        final VCardEntryCommitter committer = mCommitterGenerator.generate(mResolver);
+        final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
         constructor.addEntryHandler(committer);
         constructor.addEntryHandler(mNotifier);
 
         final boolean successful =
             readOneVCard(uri, estimatedVCardType, estimatedCharset,
                     constructor, possibleVCardVersions);
+
+        mService.handleFinishImportNotification(mJobId, successful);
+
         if (successful) {
-            Log.i(LOG_TAG, "Successfully finished reading one vCard file finished: " + uri);
+            Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
             List<Uri> uris = committer.getCreatedUris();
-            if (uris != null) {
-                mCreatedUris.addAll(uris);
+            if (uris != null && uris.size() > 0) {
+                doFinishNotification(uris.get(0));
             } else {
                 // Not critical, but suspicious.
                 Log.w(LOG_TAG,
-                        "Created Uris is null while the creation itself is successful.");
+                        "Created Uris is null or 0 length " +
+                        "though the creation itself is successful.");
+                doFinishNotification(null);
             }
         } else {
             Log.w(LOG_TAG, "Failed to read one vCard file: " + uri);
             mFailedUris.add(uri);
         }
-
-        return successful;
     }
 
     /*
@@ -319,10 +166,10 @@ public class ImportProcessor {
 
         if (isCanceled()) {
             notification.icon = android.R.drawable.stat_notify_error;
-            title = mContext.getString(R.string.importing_vcard_canceled_title);
+            title = mService.getString(R.string.importing_vcard_canceled_title);
         } else {
             notification.icon = android.R.drawable.stat_sys_download_done;
-            title = mContext.getString(R.string.importing_vcard_finished_title);
+            title = mService.getString(R.string.importing_vcard_finished_title);
         }
 
         final Intent intent;
@@ -336,8 +183,8 @@ public class ImportProcessor {
             intent = null;
         }
 
-        notification.setLatestEventInfo(mContext, title, "",
-                PendingIntent.getActivity(mContext, 0, intent, 0));
+        notification.setLatestEventInfo(mService, title, "",
+                PendingIntent.getActivity(mService, 0, intent, 0));
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
@@ -411,10 +258,6 @@ public class ImportProcessor {
         return successful;
     }
 
-    public synchronized boolean isReadyForRequest() {
-        return mReadyForRequest;
-    }
-
     public boolean isCanceled() {
         return mCanceled;
     }
@@ -427,22 +270,5 @@ public class ImportProcessor {
                 mVCardParser.cancel();
             }
         }
-    }
-
-    public List<Uri> getCreatedUrisForTest() {
-        return mCreatedUris;
-    }
-
-    public List<Uri> getFailedUrisForTest() {
-        return mFailedUris;
-    }
-
-    public void injectCommitterGeneratorForTest(
-            final CommitterGenerator generator) {
-        mCommitterGenerator = generator;
-    }
-
-    public void initNotifierForTest() {
-        mNotifier.init(mContext, mNotificationManager);
     }
 }

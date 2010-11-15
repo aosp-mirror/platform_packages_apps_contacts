@@ -15,6 +15,11 @@
  */
 package com.android.contacts.vcard;
 
+import com.android.contacts.R;
+import com.android.contacts.activities.ContactBrowserActivity;
+import com.android.vcard.VCardComposer;
+import com.android.vcard.VCardConfig;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -26,126 +31,78 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.R;
-import com.android.contacts.activities.ContactBrowserActivity;
-import com.android.vcard.VCardComposer;
-import com.android.vcard.VCardConfig;
-
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class ExportProcessor {
-    private static final String LOG_TAG = "ExportProcessor";
+/**
+ * Class for processing one export request from a user. Dropped after exporting requested Uri(s).
+ * {@link VCardService} will create another object when there is another export request.
+ */
+public class ExportProcessor implements Runnable {
+    private static final String LOG_TAG = "VCardExport";
 
-    private final Context mContext;
+    private final VCardService mService;
 
     private ContentResolver mResolver;
     private NotificationManager mNotificationManager;
 
-    boolean mCanceled;
+    private volatile boolean mCanceled;
 
-    boolean mReadyForRequest;
-    private final Queue<ExportRequest> mPendingRequests =
-        new LinkedList<ExportRequest>();
+    private ExportRequest mExportRequest; 
+    private int mJobId;
 
-    public ExportProcessor(Context context) {
-        mContext = context;
+    public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId) {
+        mService = service;
+        mResolver = service.getContentResolver();
+        mNotificationManager =
+                (NotificationManager)mService.getSystemService(Context.NOTIFICATION_SERVICE);
+        mExportRequest = exportRequest;
+        mJobId = jobId;
     }
 
-    /* package */ ThreadStarter mThreadStarter = new ThreadStarter() {
-        public void start() {
-            final Thread thread = new Thread(new Runnable() {
-                public void run() {
-                    process();
-                }
-            });
-            thread.start();
-        }
-    };
-
-    public synchronized void pushRequest(ExportRequest parameter) {
-        if (mResolver == null) {
-            // Service object may not ready at the construction time
-            // (e.g. ContentResolver may be null).
-            mResolver = mContext.getContentResolver();
-            mNotificationManager =
-                    (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        }
-
-        final boolean needThreadStart;
-        if (!mReadyForRequest) {
-            needThreadStart = true;
-        } else {
-            needThreadStart = false;
-        }
-        mPendingRequests.add(parameter);
-        if (needThreadStart) {
-            mThreadStarter.start();
-        }
-
-        mReadyForRequest = true;
-    }
-
-    /* package */ void process() {
-        if (!mReadyForRequest) {
-            throw new RuntimeException(
-                    "process() is called before request being pushed "
-                    + "or after this object's finishing its processing.");
-        }
-
+    @Override
+    public void run() {
+        // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
-            while (!mCanceled) {
-                final ExportRequest parameter;
-                synchronized (this) {
-                    if (mPendingRequests.size() == 0) {
-                        mReadyForRequest = false;
-                        break;
-                    } else {
-                        parameter = mPendingRequests.poll();
-                    }
-                }  // synchronized (this)
-                handleOneRequest(parameter);
-            }
-
-            doFinishNotification(mContext.getString(R.string.exporting_vcard_finished_title),
-                    "");
-        } finally {
-            // Not thread safe. Just in case.
-            // TODO: verify this works fine.
-            mReadyForRequest = false;
+            runInternal();
+        } catch (RuntimeException e) {
+            Log.e(LOG_TAG, "RuntimeException thrown during export", e);
+            throw e;
         }
     }
 
-    /* package */ void handleOneRequest(ExportRequest request) {
-        boolean shouldCallFinish = true;
+    private void runInternal() {
+        Log.i(LOG_TAG, String.format("vCard export (id: %d) has started.", mJobId));
+        final ExportRequest request = mExportRequest;
         VCardComposer composer = null;
+        boolean successful = false;
         try {
             final Uri uri = request.destUri;
             final OutputStream outputStream;
             try {
                 outputStream = mResolver.openOutputStream(uri);
             } catch (FileNotFoundException e) {
+                Log.w(LOG_TAG, "FileNotFoundException thrown", e);
                 // Need concise title.
 
                 final String errorReason =
-                    mContext.getString(R.string.fail_reason_could_not_open_file,
+                    mService.getString(R.string.fail_reason_could_not_open_file,
                             uri, e.getMessage());
-                shouldCallFinish = false;
+                Log.i(LOG_TAG, "failed to export (could not open output stream)");
                 doFinishNotification(errorReason, "");
                 return;
             }
+
             final String exportType = request.exportType;
             final int vcardType;
             if (TextUtils.isEmpty(exportType)) {
                 vcardType = VCardConfig.getVCardTypeFromString(
-                        mContext.getString(R.string.config_export_vcard_type));
+                        mService.getString(R.string.config_export_vcard_type));
             } else {
                 vcardType = VCardConfig.getVCardTypeFromString(exportType);
             }
 
-            composer = new VCardComposer(mContext, vcardType, true);
+            composer = new VCardComposer(mService, vcardType, true);
 
             // for test
             // int vcardType = (VCardConfig.VCARD_TYPE_V21_GENERIC |
@@ -155,12 +112,13 @@ public class ExportProcessor {
             composer.addHandler(composer.new HandlerForOutputStream(outputStream));
 
             if (!composer.init()) {
+                Log.w(LOG_TAG, "vCard composer init failed");
                 final String errorReason = composer.getErrorReason();
                 Log.e(LOG_TAG, "initialization of vCard composer failed: " + errorReason);
                 final String translatedErrorReason =
                         translateComposerError(errorReason);
                 final String title =
-                        mContext.getString(R.string.fail_reason_could_not_initialize_exporter,
+                        mService.getString(R.string.fail_reason_could_not_initialize_exporter,
                                 translatedErrorReason);
                 doFinishNotification(title, "");
                 return;
@@ -169,7 +127,7 @@ public class ExportProcessor {
             final int total = composer.getCount();
             if (total == 0) {
                 final String title =
-                        mContext.getString(R.string.fail_reason_no_exportable_contact);
+                        mService.getString(R.string.fail_reason_no_exportable_contact);
                 doFinishNotification(title, "");
                 return;
             }
@@ -185,7 +143,7 @@ public class ExportProcessor {
                     final String translatedErrorReason =
                             translateComposerError(errorReason);
                     final String title =
-                            mContext.getString(R.string.fail_reason_error_occurred_during_export,
+                            mService.getString(R.string.fail_reason_error_occurred_during_export,
                                     translatedErrorReason);
                     doFinishNotification(title, "");
                     return;
@@ -193,15 +151,21 @@ public class ExportProcessor {
                 doProgressNotification(uri, total, current);
                 current++;
             }
+            Log.i(LOG_TAG, "Successfully finished exporting vCard " + request.destUri);
+
+            successful = true;
+            // TODO: Show "successful"
         } finally {
             if (composer != null) {
                 composer.terminate();
             }
+
+            mService.handleFinishExportNotification(mJobId, successful);
         }
     }
 
     private String translateComposerError(String errorMessage) {
-        final Resources resources = mContext.getResources();
+        final Resources resources = mService.getResources();
         if (VCardComposer.FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO.equals(errorMessage)) {
             return resources.getString(R.string.composer_failed_to_get_database_infomation);
         } else if (VCardComposer.FAILURE_REASON_NO_ENTRY.equals(errorMessage)) {
@@ -214,11 +178,11 @@ public class ExportProcessor {
     }
 
     private void doProgressNotification(Uri uri, int total, int current) {
-        final String title = mContext.getString(R.string.exporting_contact_list_title);
+        final String title = mService.getString(R.string.exporting_contact_list_title);
         final String description =
-                mContext.getString(R.string.exporting_contact_list_message, uri);
+                mService.getString(R.string.exporting_contact_list_message, uri);
 
-        /* TODO: fix this
+        /* TODO: we should show more informative Notification to users.
         final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
         remoteViews.setTextViewText(R.id.status_description, message);
@@ -244,7 +208,7 @@ public class ExportProcessor {
                 description,
                 when);
 
-        final Context context = mContext.getApplicationContext();
+        final Context context = mService.getApplicationContext();
         final PendingIntent pendingIntent =
                 PendingIntent.getActivity(context, 0,
                         new Intent(context, ContactBrowserActivity.class),
@@ -258,10 +222,15 @@ public class ExportProcessor {
         final Notification notification = new Notification();
         notification.icon = android.R.drawable.stat_sys_upload_done;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.setLatestEventInfo(mContext, title, message, null);
-        final Intent intent = new Intent(mContext, ContactBrowserActivity.class);
+        notification.setLatestEventInfo(mService, title, message, null);
+        final Intent intent = new Intent(mService, ContactBrowserActivity.class);
         notification.contentIntent =
-                PendingIntent.getActivity(mContext, 0, intent, 0);
+                PendingIntent.getActivity(mService, 0, intent, 0);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
+    }
+
+    public void cancel() {
+        Log.i(LOG_TAG, "received cancel request");
+        mCanceled = true;
     }
 }
