@@ -89,23 +89,28 @@ public class FallbackAccountType extends AccountType {
     }
 
     protected EditType buildPhoneType(int type) {
-        return new EditType(type, Phone.getTypeLabelResource(type));
+        return new EditType(type, Phone.getTypeLabelResource(type))
+                .setUnspecifiedType(type == Phone.TYPE_OTHER);
     }
 
     protected EditType buildEmailType(int type) {
-        return new EditType(type, Email.getTypeLabelResource(type));
+        return new EditType(type, Email.getTypeLabelResource(type))
+                .setUnspecifiedType(type == Email.TYPE_OTHER);
     }
 
     protected EditType buildPostalType(int type) {
-        return new EditType(type, StructuredPostal.getTypeLabelResource(type));
+        return new EditType(type, StructuredPostal.getTypeLabelResource(type))
+                .setUnspecifiedType(type == StructuredPostal.TYPE_OTHER);
     }
 
     protected EditType buildImType(int type) {
-        return new EditType(type, Im.getProtocolLabelResource(type));
+        return new EditType(type, Im.getProtocolLabelResource(type))
+                .setUnspecifiedType(type == Im.TYPE_OTHER);
     }
 
-    protected EventEditType buildEventType(int type, boolean yearOptional) {
-        return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional);
+    protected EditType buildEventType(int type, boolean yearOptional) {
+        return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional)
+                .setUnspecifiedType(type == Event.TYPE_OTHER);
     }
 
     protected EditType buildRelationType(int type) {
