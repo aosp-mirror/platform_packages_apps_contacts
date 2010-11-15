@@ -48,8 +48,6 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
     private static final String EXTRA_KEY_QUERY = "navBar.query";
 
-    private static final String KEY_MODE_DEFAULT = "mode_default";
-
     private boolean mSearchMode;
     private String mQueryString;
 

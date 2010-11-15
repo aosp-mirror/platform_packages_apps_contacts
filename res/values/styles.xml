@@ -110,12 +110,6 @@
         <attr name="list_item_header_text_size" format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="MultiplePhonePickerItemView">
-        <attr name="list_item_header_chip_width" format="dimension"/>
-        <attr name="list_item_header_chip_right_margin" format="dimension"/>
-        <attr name="list_item_header_checkbox_margin" format="dimension"/>
-    </declare-styleable>
-
     <style name="ContactBrowserTheme" parent="@android:Theme">
         <item name="pressedBackground">@*android:drawable/list_selector_background</item>
         <item name="section_header_background">@drawable/section_header</item>
@@ -151,9 +145,6 @@
         <item name="list_item_presence_icon_margin">5dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
-        <item name="list_item_header_chip_width">4dip</item>
-        <item name="list_item_header_chip_right_margin">4dip</item>
-        <item name="list_item_header_checkbox_margin">5dip</item>
         <item name="list_item_header_text_indent">56dip</item>
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>
