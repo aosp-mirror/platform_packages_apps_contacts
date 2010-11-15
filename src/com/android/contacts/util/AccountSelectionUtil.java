@@ -32,7 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
 
 import java.util.List;
@@ -118,9 +118,9 @@ public class AccountSelectionUtil {
                         (TextView)convertView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
-                final BaseAccountType source =
+                final AccountType source =
                     sources.getInflatedSource(account.type,
-                            BaseAccountType.LEVEL_SUMMARY);
+                            AccountType.LEVEL_SUMMARY);
                 final Context context = getContext();
 
                 text1.setText(account.name);

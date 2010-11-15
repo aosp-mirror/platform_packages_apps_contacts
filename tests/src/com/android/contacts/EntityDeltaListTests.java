@@ -22,7 +22,7 @@ import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
 import com.android.contacts.EntityModifierTests.MockContactsSource;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntityDeltaList;
@@ -81,12 +81,12 @@ public class EntityDeltaListTests extends AndroidTestCase {
     }
 
     /**
-     * Build a {@link BaseAccountType} that has various odd constraints for
+     * Build a {@link AccountType} that has various odd constraints for
      * testing purposes.
      */
-    protected BaseAccountType getSource() {
-        final BaseAccountType source = new MockContactsSource();
-        source.ensureInflated(getContext(), BaseAccountType.LEVEL_CONSTRAINTS);
+    protected AccountType getSource() {
+        final AccountType source = new MockContactsSource();
+        source.ensureInflated(getContext(), AccountType.LEVEL_CONSTRAINTS);
         return source;
     }
 
@@ -571,7 +571,7 @@ public class EntityDeltaListTests extends AndroidTestCase {
                 buildEmail(EMAIL_YELLOW)));
 
         // Ensure we have at least one phone
-        final BaseAccountType source = getSource();
+        final AccountType source = getSource();
         final EntityDelta bobContact = first.getByRawContactId(CONTACT_BOB);
         EntityModifier.ensureKindExists(bobContact, source, Phone.CONTENT_ITEM_TYPE);
         final ValuesDelta bobPhone = bobContact.getSuperPrimaryEntry(Phone.CONTENT_ITEM_TYPE, true);

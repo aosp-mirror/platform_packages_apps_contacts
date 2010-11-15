@@ -40,7 +40,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.view.inputmethod.EditorInfo;
 
-public class FallbackAccountType extends BaseAccountType {
+public class FallbackAccountType extends AccountType {
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     protected static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
@@ -121,7 +121,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
                     R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
@@ -179,7 +179,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Nickname.NAME);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
 
@@ -202,7 +202,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Phone.NUMBER);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
@@ -245,7 +245,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Email.DATA);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Email.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildEmailType(Email.TYPE_HOME));
@@ -271,7 +271,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = StructuredPostal.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
@@ -298,7 +298,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Im.DATA);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             // NOTE: even though a traditional "type" exists, for editing
             // purposes we're using the protocol to pick labels
 
@@ -334,7 +334,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Organization.TITLE);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
 
             kind.fieldList = Lists.newArrayList();
@@ -353,7 +353,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true));
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
         }
@@ -371,7 +371,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Note.NOTE);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
         }
@@ -388,7 +388,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(Website.URL);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.defaultValues = new ContentValues();
             kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
 
@@ -419,7 +419,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
                                              R.string.label_sip_address, FLAGS_SIP_ADDRESS));
@@ -437,7 +437,7 @@ public class FallbackAccountType extends BaseAccountType {
             kind.isList = false;
         }
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
             kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
         }

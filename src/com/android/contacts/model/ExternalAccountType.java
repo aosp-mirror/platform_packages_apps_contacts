@@ -87,7 +87,7 @@ public class ExternalAccountType extends FallbackAccountType {
     }
 
     /**
-     * Ensure that the constraint rules behind this {@link BaseAccountType} have
+     * Ensure that the constraint rules behind this {@link AccountType} have
      * been inflated. Because this may involve parsing meta-data from
      * {@link PackageManager}, it shouldn't be called from a UI thread.
      */
@@ -113,7 +113,7 @@ public class ExternalAccountType extends FallbackAccountType {
     }
 
     /**
-     * Inflate this {@link BaseAccountType} from the given parser. This may only
+     * Inflate this {@link AccountType} from the given parser. This may only
      * load details matching the publicly-defined schema.
      */
     protected void inflate(Context context, XmlPullParser parser) {

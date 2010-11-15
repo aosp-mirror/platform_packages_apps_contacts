@@ -18,7 +18,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.model.AccountTypes;
@@ -569,8 +569,8 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            final BaseAccountType source = mSources.getInflatedSource(account.mType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            final AccountType source = mSources.getInflatedSource(account.mType,
+                    AccountType.LEVEL_SUMMARY);
 
             text1.setText(account.mName);
             text2.setText(source.getDisplayLabel(mContext));

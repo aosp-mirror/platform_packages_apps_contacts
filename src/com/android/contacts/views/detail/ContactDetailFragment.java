@@ -25,9 +25,9 @@ import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.model.BaseAccountType;
-import com.android.contacts.model.BaseAccountType.DataKind;
-import com.android.contacts.model.BaseAccountType.EditType;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountType.DataKind;
+import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -378,8 +378,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
             }
-            BaseAccountType contactsSource = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            AccountType contactsSource = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_SUMMARY);
             if (contactsSource == null || !contactsSource.readOnly) {
                 mWritableRawContactIds.add(rawContactId);
             }
@@ -401,7 +401,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 }
 
                 final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                        BaseAccountType.LEVEL_CONSTRAINTS);
+                        AccountType.LEVEL_CONSTRAINTS);
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
@@ -458,7 +458,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = sources.getKindOrFallback(accountType,
-                                imMime, mContext, BaseAccountType.LEVEL_MIMETYPES);
+                                imMime, mContext, AccountType.LEVEL_MIMETYPES);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
                         final ImActions imActions = ContactsUtils.buildImActions(entryValues);

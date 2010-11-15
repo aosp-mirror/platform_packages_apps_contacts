@@ -19,9 +19,9 @@ package com.android.contacts.interactions;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
-import com.android.contacts.model.BaseAccountType.DataKind;
-import com.android.contacts.model.BaseAccountType.StringInflater;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountType.DataKind;
+import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypes;
 
 import android.app.Activity;
@@ -140,8 +140,8 @@ public class PhoneNumberInteraction
             View view = super.getView(position, convertView, parent);
 
             PhoneItem item = getItem(position);
-            BaseAccountType source = mSources.getInflatedSource(item.accountType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            AccountType source = mSources.getInflatedSource(item.accountType,
+                    AccountType.LEVEL_SUMMARY);
 
             // Obtain a string representation of the phone type specific to the
             // ContactSource associated with that phone number

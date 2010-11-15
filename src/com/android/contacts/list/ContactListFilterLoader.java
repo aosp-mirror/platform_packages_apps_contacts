@@ -17,7 +17,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 
 import android.accounts.Account;
 import android.content.AsyncTaskLoader;
@@ -69,8 +69,8 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         final AccountTypes sources = AccountTypes.getInstance(context);
         ArrayList<Account> accounts = sources.getAccounts(false);
         for (Account account : accounts) {
-            BaseAccountType source = sources.getInflatedSource(
-                    account.type, BaseAccountType.LEVEL_SUMMARY);
+            AccountType source = sources.getInflatedSource(
+                    account.type, AccountType.LEVEL_SUMMARY);
             Drawable icon = source != null ? source.getDisplayIcon(getContext()) : null;
             results.add(new ContactListFilter(account.type, account.name, icon, account.name));
         }

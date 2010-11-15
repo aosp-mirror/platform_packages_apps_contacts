@@ -21,7 +21,7 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
-import com.android.contacts.tests.mocks.MockSources;
+import com.android.contacts.tests.mocks.MockAccountTypes;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentUris;
@@ -67,7 +67,7 @@ public class ContactDeletionInteractionTest extends InstrumentationTestCase {
 
         @Override
         AccountTypes getSources() {
-            return new MockSources();
+            return new MockAccountTypes();
         }
     }
 
@@ -82,26 +82,26 @@ public class ContactDeletionInteractionTest extends InstrumentationTestCase {
     }
 
     public void testSingleWritableRawContact() {
-        expectQuery().returnRow(1, MockSources.WRITABLE_ACCOUNT_TYPE);
+        expectQuery().returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE);
         assertWithMessageId(R.string.deleteConfirmation);
     }
 
     public void testReadOnlyRawContacts() {
-        expectQuery().returnRow(1, MockSources.READONLY_ACCOUNT_TYPE);
+        expectQuery().returnRow(1, MockAccountTypes.READONLY_ACCOUNT_TYPE);
         assertWithMessageId(R.string.readOnlyContactWarning);
     }
 
     public void testMixOfWritableAndReadOnlyRawContacts() {
         expectQuery()
-                .returnRow(1, MockSources.WRITABLE_ACCOUNT_TYPE)
-                .returnRow(2, MockSources.READONLY_ACCOUNT_TYPE);
+                .returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE)
+                .returnRow(2, MockAccountTypes.READONLY_ACCOUNT_TYPE);
         assertWithMessageId(R.string.readOnlyContactDeleteConfirmation);
     }
 
     public void testMultipleWritableRawContacts() {
         expectQuery()
-                .returnRow(1, MockSources.WRITABLE_ACCOUNT_TYPE)
-                .returnRow(2, MockSources.WRITABLE_ACCOUNT_TYPE);
+                .returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE)
+                .returnRow(2, MockAccountTypes.WRITABLE_ACCOUNT_TYPE);
         assertWithMessageId(R.string.multipleContactDeleteConfirmation);
     }
 
