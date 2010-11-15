@@ -60,8 +60,6 @@ public class AllIntentsActivity extends ListActivity
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
             "com.android.contacts.activities.ContactBrowserActivity";
-    private static final String MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.MultiplePhonePickerActivity";
 
     private static final int LIST_DEFAULT = 0;
     private static final int LIST_ALL_CONTACTS_ACTION = 1;
@@ -104,34 +102,33 @@ public class AllIntentsActivity extends ListActivity
     private static final int SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED = 38;
     private static final int SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED = 39;
     private static final int JOIN_CONTACT = 40;
-    private static final int ACTION_GET_MULTIPLE_PHONES = 41;
 
-    private static final int EDIT_CONTACT = 42;
-    private static final int EDIT_CONTACT_LOOKUP = 43;
-    private static final int EDIT_CONTACT_LOOKUP_ID = 44;
-    private static final int EDIT_RAW_CONTACT = 45;
-    private static final int EDIT_LEGACY = 46;
-    private static final int EDIT_NEW_CONTACT = 47;
-    private static final int EDIT_NEW_CONTACT_WITH_DATA = 48;
-    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT = 49;
-    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA = 50;
-    private static final int EDIT_NEW_RAW_CONTACT = 51;
-    private static final int EDIT_NEW_LEGACY = 52;
+    private static final int EDIT_CONTACT = 41;
+    private static final int EDIT_CONTACT_LOOKUP = 42;
+    private static final int EDIT_CONTACT_LOOKUP_ID = 43;
+    private static final int EDIT_RAW_CONTACT = 44;
+    private static final int EDIT_LEGACY = 45;
+    private static final int EDIT_NEW_CONTACT = 46;
+    private static final int EDIT_NEW_CONTACT_WITH_DATA = 47;
+    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT = 48;
+    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA = 49;
+    private static final int EDIT_NEW_RAW_CONTACT = 50;
+    private static final int EDIT_NEW_LEGACY = 51;
 
-    private static final int VIEW_CONTACT = 53;
-    private static final int VIEW_CONTACT_LOOKUP = 54;
-    private static final int VIEW_CONTACT_LOOKUP_ID = 55;
-    private static final int VIEW_RAW_CONTACT = 56;
-    private static final int VIEW_LEGACY = 57;
+    private static final int VIEW_CONTACT = 52;
+    private static final int VIEW_CONTACT_LOOKUP = 53;
+    private static final int VIEW_CONTACT_LOOKUP_ID = 54;
+    private static final int VIEW_RAW_CONTACT = 55;
+    private static final int VIEW_LEGACY = 56;
 
-    private static final int DIAL = 58;
-    private static final int DIAL_phone = 59;
-    private static final int DIAL_person = 60;
-    private static final int DIAL_voicemail = 61;
-    private static final int CALL_BUTTON = 62;
-    private static final int DIAL_tel = 63;
-    private static final int VIEW_tel = 64;
-    private static final int VIEW_calllog = 65;
+    private static final int DIAL = 57;
+    private static final int DIAL_phone = 58;
+    private static final int DIAL_person = 59;
+    private static final int DIAL_voicemail = 60;
+    private static final int CALL_BUTTON = 61;
+    private static final int DIAL_tel = 62;
+    private static final int VIEW_tel = 63;
+    private static final int VIEW_calllog = 64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -379,15 +376,6 @@ public class AllIntentsActivity extends ListActivity
                 // TODO
                 break;
             }
-            case ACTION_GET_MULTIPLE_PHONES: {
-                Intent intent = new Intent(Intents.ACTION_GET_MULTIPLE_PHONES);
-                intent.setType(Phone.CONTENT_TYPE);
-                intent.putExtra(Intents.EXTRA_PHONE_URIS, new Uri[] {
-                        Uri.parse("tel:555-1212"), Uri.parse("tel:555-2121")
-                });
-                startMultiplePhoneSelectionActivityForResult(intent);
-                break;
-            }
             case EDIT_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
@@ -578,13 +566,6 @@ public class AllIntentsActivity extends ListActivity
     private void startSearchResultActivity(Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    private void startMultiplePhoneSelectionActivityForResult(Intent intent) {
-        intent.setComponent(
-                new ComponentName(ANDROID_CONTACTS_PACKAGE,
-                        MULTIPLE_PHONE_PICKER_ACTIVITY_CLASS_NAME));
-        startActivityForResult(intent, 13);
     }
 
     @Override

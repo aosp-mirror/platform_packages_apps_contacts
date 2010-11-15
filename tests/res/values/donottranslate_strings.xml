@@ -61,7 +61,6 @@
         <item>SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED</item>
         <item>SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED</item>
         <item>TODO: JOIN_CONTACT</item>
-        <item>ACTION_GET_MULTIPLE_PHONES</item>
 
         <!-- Edit Contact -->
         <item>EDIT (content uri with only id)</item>
