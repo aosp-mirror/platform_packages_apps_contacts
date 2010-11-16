@@ -215,6 +215,11 @@ public final class ShowOrCreateActivity extends Activity implements
                                 new IntentClickListener(this, createIntent))
                         .setNegativeButton(android.R.string.cancel,
                                 new IntentClickListener(this, null))
+                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                @Override
+                                public void onCancel(DialogInterface dialog) {
+                                    finish(); // Close the activity.
+                                }})
                         .create();
         }
 	return super.onCreateDialog(id);
