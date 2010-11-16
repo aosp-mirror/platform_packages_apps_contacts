@@ -20,9 +20,12 @@ import com.android.contacts.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * Layout similar to LinearLayout that allows a child to specify examples of
@@ -34,6 +37,9 @@ import android.view.ViewGroup;
  * space.
  */
 public class InterpolatingLayout extends ViewGroup {
+
+    private Rect mInRect = new Rect();
+    private Rect mOutRect = new Rect();
 
     public InterpolatingLayout(Context context) {
         super(context);
@@ -47,7 +53,7 @@ public class InterpolatingLayout extends ViewGroup {
         super(context, attrs, defStyle);
     }
 
-    public final static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    public final static class LayoutParams extends LinearLayout.LayoutParams {
 
         public int narrowParentWidth;
         public int narrowWidth;
@@ -156,8 +162,8 @@ public class InterpolatingLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int mode = MeasureSpec.getMode(widthMeasureSpec);
-        int parentSize = MeasureSpec.getSize(widthMeasureSpec);
+        int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
 
         int width = 0;
         int height = 0;
@@ -171,7 +177,6 @@ public class InterpolatingLayout extends ViewGroup {
             }
 
             LayoutParams params = (LayoutParams) child.getLayoutParams();
-
             if (params.width == LayoutParams.MATCH_PARENT) {
                 if (fillChild != null) {
                     throw new RuntimeException(
@@ -180,20 +185,43 @@ public class InterpolatingLayout extends ViewGroup {
                 }
                 fillChild = child;
             } else {
-                int childWidth = params.resolveWidth(parentSize);
-                int childMeasureSpec = (childWidth == LayoutParams.WRAP_CONTENT)
-                        ? MeasureSpec.UNSPECIFIED
-                        : MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY);
-                child.measure(childMeasureSpec, heightMeasureSpec);
+                int childWidth = params.resolveWidth(parentWidth);
+                int childWidthMeasureSpec;
+                switch (childWidth) {
+                    case LayoutParams.WRAP_CONTENT:
+                        childWidthMeasureSpec = MeasureSpec.UNSPECIFIED;
+                        break;
+                    default:
+                        childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(
+                                childWidth, MeasureSpec.EXACTLY);
+                        break;
+                }
+
+                int childHeightMeasureSpec;
+                switch (params.height) {
+                    case LayoutParams.WRAP_CONTENT:
+                        childHeightMeasureSpec = MeasureSpec.UNSPECIFIED;
+                        break;
+                    case LayoutParams.MATCH_PARENT:
+                        childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
+                                parentHeight, MeasureSpec.EXACTLY);
+                        break;
+                    default:
+                        childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
+                                params.height, MeasureSpec.EXACTLY);
+                        break;
+                }
+
+                child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
                 width += child.getMeasuredWidth();
                 height = Math.max(child.getMeasuredHeight(), height);
             }
 
-            width += params.resolveLeftMargin(parentSize) + params.resolveRightMargin(parentSize);
+            width += params.resolveLeftMargin(parentWidth) + params.resolveRightMargin(parentWidth);
         }
 
         if (fillChild != null) {
-            int remainder = parentSize - width;
+            int remainder = parentWidth - width;
             int childMeasureSpec = remainder > 0
                     ? MeasureSpec.makeMeasureSpec(remainder, MeasureSpec.EXACTLY)
                     : MeasureSpec.UNSPECIFIED;
@@ -210,18 +238,28 @@ public class InterpolatingLayout extends ViewGroup {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int offset = 0;
         int width = right - left;
-        int height = bottom - top;
         int count = getChildCount();
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
 
             LayoutParams params = (LayoutParams) child.getLayoutParams();
-            offset += params.resolveLeftMargin(width);
-            int childWidth = child.getMeasuredWidth();
-            int childTop = params.topMargin;
-            child.layout(offset, params.topMargin, offset + childWidth,
-                    params.topMargin + child.getMeasuredHeight());
-            offset += childWidth + params.resolveRightMargin(width);
+            int gravity = params.gravity;
+            if (gravity == -1) {
+                gravity = Gravity.LEFT | Gravity.TOP;
+            }
+
+            int leftMargin = params.resolveLeftMargin(width);
+            int rightMargin = params.resolveRightMargin(width);
+
+            mInRect.set(offset + leftMargin, params.topMargin,
+                    right - left - offset - rightMargin,
+                    bottom - top - params.bottomMargin);
+
+            Gravity.apply(gravity, child.getMeasuredWidth(), child.getMeasuredHeight(),
+                    mInRect, mOutRect);
+            child.layout(mOutRect.left, mOutRect.top, mOutRect.right, mOutRect.bottom);
+
+            offset = mOutRect.right + rightMargin;
         }
     }
 }
