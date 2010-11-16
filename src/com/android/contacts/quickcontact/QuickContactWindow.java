@@ -1670,8 +1670,14 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
-    public ActionMode onStartActionMode(ActionMode.Callback callback) {
+    public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
         return null;
+    }
+
+    public void onActionModeStarted(ActionMode mode) {
+    }
+
+    public void onActionModeFinished(ActionMode mode) {
     }
 
     private interface DataQuery {
