@@ -115,6 +115,8 @@ public class ImportProcessor implements Runnable {
         final Account account = request.account;
         final int estimatedVCardType = request.estimatedVCardType;
         final String estimatedCharset = request.estimatedCharset;
+        final int entryCount = request.entryCount;
+        mNotifier.addTotalCount(entryCount);
 
         final VCardEntryConstructor constructor =
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);

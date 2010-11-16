@@ -69,7 +69,7 @@ TODO: This is copied from DownloadProvider, and looks similar to Bluetooth's.
                 <TextView android:id="@+id/status_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#ff000000"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:singleLine="true"
                     android:textSize="18sp"
                     android:paddingLeft="5dp" />

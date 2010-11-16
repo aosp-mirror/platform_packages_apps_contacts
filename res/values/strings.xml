@@ -850,7 +850,7 @@
          mention it here. -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
 
-    <!-- The title shown when reading vCard is canceled (probably by a user) -->
+    <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
     <string name="exporting_vcard_finished_title">Finished exporting vCard</string>
 
     <!-- Dialog title shown when the application is exporting contact data outside -->
