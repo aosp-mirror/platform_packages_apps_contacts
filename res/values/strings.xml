@@ -806,11 +806,17 @@
          [CHAR LIMIT=40] -->
     <string name="importing_vcard_canceled_title">Reading vCard data was canceled</string>
 
-    <!-- The message shown when vCard importer started running. -->
-    <string name="vcard_importer_start_message">vCard importer started.</string>
+    <!-- The message shown when vCard import request is accepted. The system may start that work soon, or do it later
+         when there are already other import/export requests. [CHAR LIMIT=30] -->
+    <string name="vcard_import_will_start_message">vCard importer will start shortly.</string>
+    <!-- The message shown when a given vCard import request is rejected by the system. [CHAR LIMIT=NONE] -->
+    <string name="vcard_import_request_rejected_message">vCard import request is rejected. Please try later.</string>
+    <!-- The message shown when vCard export request is accepted. The system may start that work soon, or do it later
+         when there are already other import/export requests. [CHAR LIMIT=30] -->
+    <string name="vcard_export_will_start_message">vCard exporter will start shortly.</string>
+    <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
+    <string name="vcard_export_request_rejected_message">vCard export request is rejected. Please try later.</string>
 
-    <!-- The message shown when additional vCard to be imported is given during the import for others -->
-    <string name="vcard_importer_will_start_message">vCard importer will import the vCard after a while.</string>
 
     <!-- The percentage, used for expressing the progress of vCard import/export. -->
     <string name="percentage">%s%%</string>
@@ -843,9 +849,6 @@
          The length limit of each file is different in each Android device, so we don't need to
          mention it here. -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
-
-    <!-- The message shown when vCard importer started running. -->
-    <string name="vcard_exporter_start_message">vCard exporter started.</string>
 
     <!-- The title shown when reading vCard is canceled (probably by a user) -->
     <string name="exporting_vcard_finished_title">Finished exporting vCard</string>

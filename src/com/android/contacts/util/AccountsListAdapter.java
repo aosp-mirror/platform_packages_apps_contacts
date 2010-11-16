@@ -18,7 +18,7 @@ package com.android.contacts.util;
 
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 
 import android.accounts.Account;
 import android.content.Context;
@@ -57,8 +57,8 @@ public final class AccountsListAdapter extends BaseAdapter {
         final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
 
         final Account account = mAccounts.get(position);
-        final BaseAccountType source = mSources.getInflatedSource(account.type,
-                BaseAccountType.LEVEL_SUMMARY);
+        final AccountType source = mSources.getInflatedSource(account.type,
+                AccountType.LEVEL_SUMMARY);
 
         text1.setText(account.name);
         text2.setText(source.getDisplayLabel(mContext));

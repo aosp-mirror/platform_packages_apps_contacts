@@ -307,16 +307,6 @@
             </intent-filter>
         </activity>
 
-        <!-- An activity for selecting multiple phone numbers -->
-        <activity android:name="MultiplePhonePickerActivity"
-            android:enabled="false">
-            <intent-filter>
-                <action android:name="com.android.contacts.action.GET_MULTIPLE_PHONES" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/phone_v2" android:host="com.android.contacts" />
-            </intent-filter>
-        </activity>
-
         <!-- Used to set options -->
         <activity
             android:name=".preference.ContactsPreferenceActivity"

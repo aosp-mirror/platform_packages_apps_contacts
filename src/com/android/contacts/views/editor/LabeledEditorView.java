@@ -18,8 +18,8 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType.DataKind;
-import com.android.contacts.model.BaseAccountType.EditType;
+import com.android.contacts.model.AccountType.DataKind;
+import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
@@ -142,6 +142,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
             mLabel.setGravity(Gravity.RIGHT);
             mLabel.setTextColor(getResources().getColor(R.color.editor_label_text_color));
+            mLabel.setFocusable(true);
             mLabel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

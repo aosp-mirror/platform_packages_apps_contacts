@@ -17,7 +17,7 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
@@ -89,7 +89,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     /** {@inheritDoc} */
     @Override
     public void onDeleted(Editor editor) {
-        updateAddEnabled();
+        updateAddVisible();
         updateVisible();
     }
 
@@ -113,11 +113,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 : getResources().getString(kind.titleRes);
         mTitle.setText(mTitleString.toUpperCase());
 
-        // Only show the add button if this is a list
-        mAddPlusButton.setVisibility(mKind.isList ? View.VISIBLE : View.INVISIBLE);
-
         rebuildFromState();
-        updateAddEnabled();
+        updateAddVisible();
         updateVisible();
     }
 
@@ -195,11 +192,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
 
-    protected void updateAddEnabled() {
-        // Set enabled state on the "add" view
-        final boolean canInsert = EntityModifier.canInsert(mState, mKind);
-        final boolean isEnabled = !mReadOnly && canInsert;
-        mAddPlusButton.setEnabled(isEnabled);
+    protected void updateAddVisible() {
+        final boolean isVisible;
+        if (!mKind.isList) {
+            isVisible = false;
+        } else {
+            // Set enabled state on the "add" view
+            final boolean canInsert = EntityModifier.canInsert(mState, mKind);
+            isVisible = !mReadOnly && canInsert;
+        }
+        mAddPlusButton.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void addItem() {
@@ -214,7 +216,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         // For non-lists (e.g. Notes we can only have one field. in that case we need to disable
         // the add button
-        updateAddEnabled();
+        updateAddVisible();
 
         // Ensure we are visible
         updateVisible();

@@ -132,6 +132,12 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
     }
 
     private void start(View view, boolean closing) {
+        if (mEnterAnimation.isRunning()) {
+            mEnterAnimation.end();
+        }
+        if (mExitAnimation.isRunning()) {
+            mExitAnimation.end();
+        }
         if (view.getVisibility() != View.VISIBLE) {
             if (!closing) {
                 mEnterAnimation.setTarget(view);

@@ -16,7 +16,7 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.AccountType.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
@@ -44,7 +44,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Singleton holder for all parsed {@link BaseAccountType} available on the
+ * Singleton holder for all parsed {@link AccountType} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
 public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateListener {
@@ -54,9 +54,9 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
     private Context mApplicationContext;
     private AccountManager mAccountManager;
 
-    private BaseAccountType mFallbackSource = null;
+    private AccountType mFallbackSource = null;
 
-    private HashMap<String, BaseAccountType> mSources = Maps.newHashMap();
+    private HashMap<String, AccountType> mSources = Maps.newHashMap();
     private HashSet<String> mKnownPackages = Sets.newHashSet();
 
     private static SoftReference<AccountTypes> sInstance = null;
@@ -107,13 +107,13 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
     }
 
     /** @hide exposed for unit tests */
-    public AccountTypes(BaseAccountType... sources) {
-        for (BaseAccountType source : sources) {
+    public AccountTypes(AccountType... sources) {
+        for (AccountType source : sources) {
             addSource(source);
         }
     }
 
-    protected void addSource(BaseAccountType source) {
+    protected void addSource(AccountType source) {
         mSources.put(source.accountType, source);
         mKnownPackages.add(source.resPackageName);
     }
@@ -155,7 +155,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
     }
 
     protected void invalidateCache(String packageName) {
-        for (BaseAccountType source : mSources.values()) {
+        for (AccountType source : mSources.values()) {
             if (TextUtils.equals(packageName, source.resPackageName)) {
                 // Invalidate any cache for the changed package
                 source.invalidateCache();
@@ -165,7 +165,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
 
     protected void invalidateAllCache() {
         mFallbackSource.invalidateCache();
-        for (BaseAccountType source : mSources.values()) {
+        for (AccountType source : mSources.values()) {
             source.invalidateCache();
         }
     }
@@ -201,7 +201,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
                 final String accountType = sync.accountType;
                 final AuthenticatorDescription auth = findAuthenticator(auths, accountType);
 
-                BaseAccountType source;
+                AccountType source;
                 if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)) {
                     source = new GoogleAccountType(auth.packageName);
                 } else if (ExchangeAccountType.ACCOUNT_TYPE.equals(accountType)) {
@@ -240,7 +240,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
     }
 
     /**
-     * Return list of all known, writable {@link BaseAccountType}. AccountTypes
+     * Return list of all known, writable {@link AccountType}. AccountTypes
      * returned may require inflation before they can be used.
      */
     public ArrayList<Account> getAccounts(boolean writableOnly) {
@@ -263,8 +263,8 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
             // account.name, account.type, syncable));
             if (syncable) {
                 // Ensure we have details loaded for each account
-                final BaseAccountType accountType = getInflatedSource(account.type,
-                        BaseAccountType.LEVEL_SUMMARY);
+                final AccountType accountType = getInflatedSource(account.type,
+                        AccountType.LEVEL_SUMMARY);
                 final boolean hasContacts = accountType != null;
                 final boolean matchesWritable =
                     (!writableOnly || (writableOnly && !accountType.readOnly));
@@ -278,7 +278,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
 
     /**
      * Find the best {@link DataKind} matching the requested
-     * {@link BaseAccountType#accountType} and {@link DataKind#mimeType}. If no
+     * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
      * direct match found, we try searching {@link #mFallbackSource}.
      * When fourceRefresh is set to true, cache is refreshed and inflation of each
      * EditField will occur.
@@ -288,7 +288,7 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
         DataKind kind = null;
 
         // Try finding source and kind matching request
-        final BaseAccountType source = mSources.get(accountType);
+        final AccountType source = mSources.get(accountType);
         if (source != null) {
             source.ensureInflated(context, inflateLevel);
             kind = source.getKindForMimetype(mimeType);
@@ -308,11 +308,11 @@ public class AccountTypes extends BroadcastReceiver implements OnAccountsUpdateL
     }
 
     /**
-     * Return {@link BaseAccountType} for the given account type.
+     * Return {@link AccountType} for the given account type.
      */
-    public BaseAccountType getInflatedSource(String accountType, int inflateLevel) {
+    public AccountType getInflatedSource(String accountType, int inflateLevel) {
         // Try finding specific source, otherwise use fallback
-        BaseAccountType source = mSources.get(accountType);
+        AccountType source = mSources.get(accountType);
         if (source == null) source = mFallbackSource;
 
         if (source.isInflated(inflateLevel)) {

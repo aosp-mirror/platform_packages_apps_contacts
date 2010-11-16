@@ -17,7 +17,7 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.BaseAccountType.DataKind;
+import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 import android.os.Bundle;

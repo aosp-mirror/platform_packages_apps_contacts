@@ -18,7 +18,7 @@ package com.android.contacts.preference;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.model.AccountTypes;

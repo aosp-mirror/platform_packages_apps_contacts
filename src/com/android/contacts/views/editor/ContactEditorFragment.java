@@ -19,7 +19,7 @@ package com.android.contacts.views.editor;
 import com.android.contacts.R;
 import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -372,8 +372,8 @@ public class ContactEditorFragment extends Fragment implements
             final AccountTypes sources = AccountTypes.getInstance(mContext);
             for (EntityDelta state : mState) {
                 final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-                final BaseAccountType source = sources.getInflatedSource(accountType,
-                        BaseAccountType.LEVEL_CONSTRAINTS);
+                final AccountType source = sources.getInflatedSource(accountType,
+                        AccountType.LEVEL_CONSTRAINTS);
                 if (!source.readOnly) {
                     // Apply extras to the first writable raw contact only
                     EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
@@ -424,9 +424,9 @@ public class ContactEditorFragment extends Fragment implements
 
         // Parse any values from incoming intent
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-        final BaseAccountType source = sources.getInflatedSource(
+        final AccountType source = sources.getInflatedSource(
                 account != null ? account.type : null,
-                BaseAccountType.LEVEL_CONSTRAINTS);
+                AccountType.LEVEL_CONSTRAINTS);
         EntityModifier.parseExtras(mContext, source, insert,
                 prefillFromIntent ? mIntentExtras : null);
 
@@ -469,8 +469,8 @@ public class ContactEditorFragment extends Fragment implements
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final BaseAccountType source = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_CONSTRAINTS);
+            final AccountType source = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_CONSTRAINTS);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
@@ -915,8 +915,8 @@ public class ContactEditorFragment extends Fragment implements
         for (int i = 0; i < size; i++) {
             ValuesDelta values = mState.get(i).getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final BaseAccountType source = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_CONSTRAINTS);
+            final AccountType source = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_CONSTRAINTS);
             if (!source.readOnly) {
                 return true;
             }
@@ -997,11 +997,11 @@ public class ContactEditorFragment extends Fragment implements
 
             final AccountTypes sources = AccountTypes.getInstance(mContext);
             String accountType = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final BaseAccountType oneSource = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            final AccountType oneSource = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_SUMMARY);
             accountType = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final BaseAccountType twoSource = sources.getInflatedSource(accountType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            final AccountType twoSource = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_SUMMARY);
 
             // Check read-only
             if (oneSource.readOnly && !twoSource.readOnly) {

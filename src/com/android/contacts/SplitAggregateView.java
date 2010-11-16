@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
 
 import android.content.Context;
@@ -247,8 +247,8 @@ public class SplitAggregateView extends ListView {
             cache.additionalData.setText(info.getAdditionalData());
 
             Drawable icon = null;
-            BaseAccountType source = mSources.getInflatedSource(info.accountType,
-                    BaseAccountType.LEVEL_SUMMARY);
+            AccountType source = mSources.getInflatedSource(info.accountType,
+                    AccountType.LEVEL_SUMMARY);
             if (source != null) {
                 icon = source.getDisplayIcon(getContext());
             }

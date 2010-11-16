@@ -47,7 +47,7 @@ import java.util.List;
  * <p>
  * In the future this may be inflated from XML defined by a data source.
  */
-public abstract class BaseAccountType {
+public abstract class AccountType {
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
@@ -92,7 +92,7 @@ public abstract class BaseAccountType {
     }
 
     /**
-     * Ensure that this {@link BaseAccountType} has been inflated to the
+     * Ensure that this {@link AccountType} has been inflated to the
      * requested level.
      */
     public synchronized void ensureInflated(Context context, int inflateLevel) {
@@ -108,7 +108,7 @@ public abstract class BaseAccountType {
     protected abstract void inflate(Context context, int inflateLevel);
 
     /**
-     * Invalidate any cache for this {@link BaseAccountType}, removing all
+     * Invalidate any cache for this {@link AccountType}, removing all
      * inflated data. Calling {@link #ensureInflated(Context, int)} will
      * populate again from scratch.
      */
@@ -271,6 +271,11 @@ public abstract class BaseAccountType {
         public int specificMax;
         public String customColumn;
 
+        /**
+         * True if this type may be shown as blank.
+         */
+        public boolean unspecifiedType;
+
         public EditType(int rawValue, int labelRes) {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
@@ -289,6 +294,11 @@ public abstract class BaseAccountType {
 
         public EditType setCustomColumn(String customColumn) {
             this.customColumn = customColumn;
+            return this;
+        }
+
+        public EditType setUnspecifiedType(boolean unspecifiedType) {
+            this.unspecifiedType = unspecifiedType;
             return this;
         }
 

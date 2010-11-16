@@ -18,7 +18,7 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.AccountType;
 import com.google.android.collect.Sets;
 
 import android.app.Activity;
@@ -127,8 +127,8 @@ public class ContactDeletionInteraction {
                 final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
                 contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
                 lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
-                BaseAccountType contactsSource = sources.getInflatedSource(accountType,
-                        BaseAccountType.LEVEL_SUMMARY);
+                AccountType contactsSource = sources.getInflatedSource(accountType,
+                        AccountType.LEVEL_SUMMARY);
                 boolean readonly = contactsSource != null && contactsSource.readOnly;
                 if (readonly) {
                     readOnlyRawContacts.add(rawContactId);

@@ -50,9 +50,9 @@ public class GoogleAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflatePhone(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhone(context, BaseAccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhone(context, AccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
@@ -74,9 +74,9 @@ public class GoogleAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateEmail(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateEmail(context, BaseAccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateEmail(context, AccountType.LEVEL_MIMETYPES);
 
-        if (inflateLevel >= BaseAccountType.LEVEL_CONSTRAINTS) {
+        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Email.TYPE;
             kind.typeList = Lists.newArrayList();
             kind.typeList.add(buildEmailType(Email.TYPE_HOME));
