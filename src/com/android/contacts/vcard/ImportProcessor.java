@@ -48,22 +48,24 @@ import java.util.List;
  * Class for processing one import request from a user. Dropped after importing requested Uri(s).
  * {@link VCardService} will create another object when there is another import request.
  */
-public class ImportProcessor implements Runnable {
+public class ImportProcessor extends ProcessorBase {
     private static final String LOG_TAG = "VCardImport";
 
     private final VCardService mService;
     private final ContentResolver mResolver;
     private final NotificationManager mNotificationManager;
+    private final ImportRequest mImportRequest;
+    private final int mJobId;
 
-    private final List<Uri> mFailedUris = new ArrayList<Uri>();
     private final ImportProgressNotifier mNotifier = new ImportProgressNotifier();
+
+    // TODO: remove and show appropriate message instead.
+    private final List<Uri> mFailedUris = new ArrayList<Uri>();
 
     private VCardParser mVCardParser;
 
-    private ImportRequest mImportRequest;
-    private int mJobId;
-
-    private boolean mCanceled;
+    private volatile boolean mCancelled;
+    private volatile boolean mDone;
 
     public ImportProcessor(final VCardService service, final ImportRequest request,
             int jobId) {
@@ -76,6 +78,10 @@ public class ImportProcessor implements Runnable {
         mJobId = jobId;
     }
 
+    @Override
+    public final int getType() {
+        return PROCESSOR_TYPE_IMPORT;
+    }
 
     @Override
     public void run() {
@@ -85,13 +91,17 @@ public class ImportProcessor implements Runnable {
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "RuntimeException thrown during import", e);
             throw e;
+        } finally {
+            synchronized (this) {
+                mDone = true;
+            }
         }
     }
 
     private void runInternal() {
         Log.i(LOG_TAG, String.format("vCard import (id: %d) has started.", mJobId));
         final ImportRequest request = mImportRequest;
-        if (mCanceled) {
+        if (mCancelled) {
             Log.i(LOG_TAG, "Canceled before actually handling parameter (" + request.uri + ")");
             return;
         }
@@ -131,7 +141,13 @@ public class ImportProcessor implements Runnable {
         mService.handleFinishImportNotification(mJobId, successful);
 
         if (successful) {
-            Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
+            // TODO: successful becomes true even when cancelled. Should return more appropriate
+            // value
+            if (isCancelled()) {
+                Log.i(LOG_TAG, "vCard import has been canceled (uri: " + uri + ")");
+            } else {
+                Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
+            }
             List<Uri> uris = committer.getCreatedUris();
             if (uris != null && uris.size() > 0) {
                 doFinishNotification(uris.get(0));
@@ -166,7 +182,7 @@ public class ImportProcessor implements Runnable {
         final String title;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        if (isCanceled()) {
+        if (isCancelled()) {
             notification.icon = android.R.drawable.stat_notify_error;
             title = mService.getString(R.string.importing_vcard_canceled_title);
         } else {
@@ -190,8 +206,7 @@ public class ImportProcessor implements Runnable {
         mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
     }
 
-    // Make package private for testing use.
-    /* package */ boolean readOneVCard(Uri uri, int vcardType, String charset,
+    private boolean readOneVCard(Uri uri, int vcardType, String charset,
             final VCardInterpreter interpreter,
             final int[] possibleVCardVersions) {
         Log.i(LOG_TAG, "start importing one vCard (Uri: " + uri + ")");
@@ -216,7 +231,7 @@ public class ImportProcessor implements Runnable {
                     mVCardParser = (vcardVersion == ImportVCardActivity.VCARD_VERSION_V30 ?
                             new VCardParser_V30(vcardType) :
                                 new VCardParser_V21(vcardType));
-                    if (mCanceled) {
+                    if (mCancelled) {
                         Log.i(LOG_TAG, "ImportProcessor already recieves cancel request, so " +
                                 "send cancel request to vCard parser too.");
                         mVCardParser.cancel();
@@ -260,17 +275,29 @@ public class ImportProcessor implements Runnable {
         return successful;
     }
 
-    public boolean isCanceled() {
-        return mCanceled;
-    }
-
-    public void cancel() {
+    @Override
+    public synchronized boolean cancel(boolean mayInterruptIfRunning) {
         Log.i(LOG_TAG, "ImportProcessor received cancel request");
-        mCanceled = true;
+        if (mDone || mCancelled) {
+            return false;
+        }
+        mCancelled = true;
         synchronized (this) {
             if (mVCardParser != null) {
                 mVCardParser.cancel();
             }
         }
+        return true;
+    }
+
+    @Override
+    public synchronized boolean isCancelled() {
+        return mCancelled;
+    }
+
+
+    @Override
+    public synchronized boolean isDone() {
+        return mDone;
     }
 }
