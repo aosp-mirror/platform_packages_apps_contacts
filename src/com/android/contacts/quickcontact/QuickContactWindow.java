@@ -57,7 +57,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.StatusUpdates;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -137,9 +136,8 @@ public class QuickContactWindow implements Window.Callback,
             if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
                 mQuickContactWindow.onBackPressed();
                 return true;
-            } else {
-                return super.dispatchKeyEventPreIme(event);
             }
+            return super.dispatchKeyEventPreIme(event);
         }
     }
 
@@ -302,6 +300,7 @@ public class QuickContactWindow implements Window.Callback,
         // Prepare track entrance animation
         mTrackAnim = AnimationUtils.loadAnimation(mContext, R.anim.quickcontact);
         mTrackAnim.setInterpolator(new Interpolator() {
+            @Override
             public float getInterpolation(float t) {
                 // Pushes past the target area, then snaps back into place.
                 // Equation for graphing: 1.2-((x*1.6)-1.1)^2
@@ -507,6 +506,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onGlobalLayout() {
         layoutInScreen();
     }
@@ -614,6 +614,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
         // Bail early when query is stale
         if (cookie != mLookupUri) return;
@@ -655,32 +656,6 @@ public class QuickContactWindow implements Window.Callback,
             ((ImageView)view).setImageDrawable(drawable);
             view.setVisibility(drawable == null ? View.GONE : View.VISIBLE);
         }
-    }
-
-    /**
-     * Find the QuickContact-specific presence icon for showing in chiclets.
-     */
-    private Drawable getTrackPresenceIcon(int status) {
-        int resId;
-        switch (status) {
-            case StatusUpdates.AVAILABLE:
-                resId = R.drawable.quickcontact_slider_presence_active;
-                break;
-            case StatusUpdates.IDLE:
-            case StatusUpdates.AWAY:
-                resId = R.drawable.quickcontact_slider_presence_away;
-                break;
-            case StatusUpdates.DO_NOT_DISTURB:
-                resId = R.drawable.quickcontact_slider_presence_busy;
-                break;
-            case StatusUpdates.INVISIBLE:
-                resId = R.drawable.quickcontact_slider_presence_inactive;
-                break;
-            case StatusUpdates.OFFLINE:
-            default:
-                resId = R.drawable.quickcontact_slider_presence_inactive;
-        }
-        return mContext.getResources().getDrawable(resId);
     }
 
     /** Read {@link String} from the given {@link Cursor}. */
@@ -863,31 +838,37 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        @Override
         public CharSequence getHeader() {
             return mHeader;
         }
 
         /** {@inheritDoc} */
+        @Override
         public CharSequence getBody() {
             return mBody;
         }
 
         /** {@inheritDoc} */
+        @Override
         public String getMimeType() {
             return mMimeType;
         }
 
         /** {@inheritDoc} */
+        @Override
         public Uri getDataUri() {
             return mDataUri;
         }
 
         /** {@inheritDoc} */
+        @Override
         public Boolean isPrimary() {
             return mIsPrimary;
         }
 
         /** {@inheritDoc} */
+        @Override
         public Drawable getFallbackIcon() {
             // Bail early if no valid resources
             final String resPackageName = mKind.resPackageName;
@@ -904,11 +885,13 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        @Override
         public Intent getIntent() {
             return mIntent;
         }
 
         /** {@inheritDoc} */
+        @Override
         public boolean collapseWith(Action other) {
             if (!shouldCollapseWith(other)) {
                 return false;
@@ -917,6 +900,7 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        @Override
         public boolean shouldCollapseWith(Action t) {
             if (t == null) {
                 return false;
@@ -955,26 +939,31 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        @Override
         public CharSequence getHeader() {
             return null;
         }
 
         /** {@inheritDoc} */
+        @Override
         public CharSequence getBody() {
             return null;
         }
 
         /** {@inheritDoc} */
+        @Override
         public String getMimeType() {
             return Contacts.CONTENT_ITEM_TYPE;
         }
 
         /** {@inheritDoc} */
+        @Override
         public Drawable getFallbackIcon() {
             return mContext.getResources().getDrawable(R.drawable.ic_contacts_details);
         }
 
         /** {@inheritDoc} */
+        @Override
         public Intent getIntent() {
             final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -982,21 +971,25 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         /** {@inheritDoc} */
+        @Override
         public Boolean isPrimary() {
             return null;
         }
 
         /** {@inheritDoc} */
+        @Override
         public Uri getDataUri() {
             return null;
         }
 
         /** {@inheritDoc} */
+        @Override
         public boolean collapseWith(Action t) {
             return false; // Never dup.
         }
 
         /** {@inheritDoc} */
+        @Override
         public boolean shouldCollapseWith(Action t) {
             return false; // Never dup.
         }
@@ -1397,6 +1390,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Pass list item clicks along so that Intents are handled uniformly
         onClick(view);
@@ -1438,6 +1432,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onClick(View view) {
         final boolean isActionView = (view instanceof CheckableImageView);
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
@@ -1475,35 +1470,36 @@ public class QuickContactWindow implements Window.Callback,
 
             mResolveList.setOnItemClickListener(this);
             mResolveList.setAdapter(new BaseAdapter() {
+                @Override
                 public int getCount() {
                     return children.size();
                 }
 
+                @Override
                 public Object getItem(int position) {
                     return children.get(position);
                 }
 
+                @Override
                 public long getItemId(int position) {
                     return position;
                 }
 
+                @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = mInflater.inflate(
-                                R.layout.quickcontact_resolve_item, parent, false);
-                    }
-
+                    final View result = convertView != null ? convertView : mInflater.inflate(
+                            R.layout.quickcontact_resolve_item, parent, false);
                     // Set action title based on summary value
                     final Action action = (Action)getItem(position);
 
-                    TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+                    TextView text1 = (TextView)result.findViewById(android.R.id.text1);
+                    TextView text2 = (TextView)result.findViewById(android.R.id.text2);
 
                     text1.setText(action.getHeader());
                     text2.setText(action.getBody());
 
-                    convertView.setTag(action);
-                    return convertView;
+                    result.setTag(action);
+                    return result;
                 }
             });
 
@@ -1514,6 +1510,7 @@ public class QuickContactWindow implements Window.Callback,
         }
     }
 
+    @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mMakePrimary = isChecked;
     }
@@ -1531,6 +1528,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (mWindow.superDispatchKeyEvent(event)) {
             return true;
@@ -1540,6 +1538,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             event.startTracking();
@@ -1550,6 +1549,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
                 && !event.isCanceled()) {
@@ -1561,16 +1561,19 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // TODO: make this window accessible
         return false;
@@ -1595,60 +1598,70 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         detectEventOutside(event);
         if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             dismiss();
             return true;
-        } else {
-            return mWindow.superDispatchTouchEvent(event);
         }
+        return mWindow.superDispatchTouchEvent(event);
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean dispatchTrackballEvent(MotionEvent event) {
         return mWindow.superDispatchTrackballEvent(event);
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onContentChanged() {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public View onCreatePanelView(int featureId) {
         return null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onPanelClosed(int featureId, Menu menu) {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onPreparePanel(int featureId, View view, Menu menu) {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean onSearchRequested() {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onWindowAttributesChanged(android.view.WindowManager.LayoutParams attrs) {
         if (mDecor != null) {
             mWindowManager.updateViewLayout(mDecor, attrs);
@@ -1656,27 +1669,33 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onAttachedToWindow() {
         // No actions
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onDetachedFromWindow() {
         // No actions
     }
 
     /** {@inheritDoc} */
+    @Override
     public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
         return null;
     }
 
+    @Override
     public void onActionModeStarted(ActionMode mode) {
     }
 
+    @Override
     public void onActionModeFinished(ActionMode mode) {
     }
 
