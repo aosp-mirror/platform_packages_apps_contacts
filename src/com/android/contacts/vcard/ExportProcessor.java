@@ -30,6 +30,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
@@ -38,18 +39,17 @@ import java.io.OutputStream;
  * Class for processing one export request from a user. Dropped after exporting requested Uri(s).
  * {@link VCardService} will create another object when there is another export request.
  */
-public class ExportProcessor implements Runnable {
+public class ExportProcessor extends ProcessorBase {
     private static final String LOG_TAG = "VCardExport";
 
     private final VCardService mService;
+    private final ContentResolver mResolver;
+    private final NotificationManager mNotificationManager;
+    private final ExportRequest mExportRequest;
+    private final int mJobId;
 
-    private ContentResolver mResolver;
-    private NotificationManager mNotificationManager;
-
-    private volatile boolean mCanceled;
-
-    private ExportRequest mExportRequest; 
-    private int mJobId;
+    private volatile boolean mCancelled;
+    private volatile boolean mDone;
 
     public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId) {
         mService = service;
@@ -61,6 +61,11 @@ public class ExportProcessor implements Runnable {
     }
 
     @Override
+    public final int getType() {
+        return PROCESSOR_TYPE_EXPORT;
+    }
+
+    @Override
     public void run() {
         // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
@@ -68,6 +73,10 @@ public class ExportProcessor implements Runnable {
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "RuntimeException thrown during export", e);
             throw e;
+        } finally {
+            synchronized (this) {
+                mDone = true;
+            }
         }
     }
 
@@ -77,6 +86,10 @@ public class ExportProcessor implements Runnable {
         VCardComposer composer = null;
         boolean successful = false;
         try {
+            if (mCancelled) {
+                Log.i(LOG_TAG, "Export request is cancelled before handling the request");
+                return;
+            }
             final Uri uri = request.destUri;
             final OutputStream outputStream;
             try {
@@ -134,7 +147,8 @@ public class ExportProcessor implements Runnable {
 
             int current = 1;  // 1-origin
             while (!composer.isAfterLast()) {
-                if (mCanceled) {
+                if (mCancelled) {
+                    Log.i(LOG_TAG, "Export request is cancelled during composing vCard");
                     return;
                 }
                 if (!composer.createOneEntry()) {
@@ -148,13 +162,19 @@ public class ExportProcessor implements Runnable {
                     doFinishNotification(title, "");
                     return;
                 }
-                doProgressNotification(uri, total, current);
+
+                // vCard export is quite fast (compared to import), and frequent notifications
+                // bother notification bar too much.
+                if (current % 100 == 1) {
+                    doProgressNotification(uri, total, current);
+                }
                 current++;
             }
             Log.i(LOG_TAG, "Successfully finished exporting vCard " + request.destUri);
 
             successful = true;
-            // TODO: Show "successful"
+            final String title = mService.getString(R.string.exporting_vcard_finished_title);
+            doFinishNotification(title, "");
         } finally {
             if (composer != null) {
                 composer.terminate();
@@ -179,13 +199,13 @@ public class ExportProcessor implements Runnable {
 
     private void doProgressNotification(Uri uri, int total, int current) {
         final String title = mService.getString(R.string.exporting_contact_list_title);
+        final String filename = uri.getLastPathSegment();
         final String description =
-                mService.getString(R.string.exporting_contact_list_message, uri);
+                mService.getString(R.string.exporting_contact_list_message, filename);
 
-        /* TODO: we should show more informative Notification to users.
         final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
                 R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.status_description, message);
+        remoteViews.setTextViewText(R.id.status_description, description);
         remoteViews.setProgressBar(R.id.status_progress_bar, total, current, (total == -1));
 
         final String percentage = mService.getString(R.string.percentage,
@@ -200,21 +220,8 @@ public class ExportProcessor implements Runnable {
         notification.contentView = remoteViews;
         notification.contentIntent =
                 PendingIntent.getActivity(mService, 0,
-                        new Intent(mService, ContactBrowserActivity.class), 0);*/
+                        new Intent(mService, ContactBrowserActivity.class), 0);
 
-        final long when = System.currentTimeMillis();
-        final Notification notification = new Notification(
-                android.R.drawable.stat_sys_upload,
-                description,
-                when);
-
-        final Context context = mService.getApplicationContext();
-        final PendingIntent pendingIntent =
-                PendingIntent.getActivity(context, 0,
-                        new Intent(context, ContactBrowserActivity.class),
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notification.setLatestEventInfo(context, title, description, pendingIntent);
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 
@@ -229,8 +236,23 @@ public class ExportProcessor implements Runnable {
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 
-    public void cancel() {
+    @Override
+    public synchronized boolean cancel(boolean mayInterruptIfRunning) {
         Log.i(LOG_TAG, "received cancel request");
-        mCanceled = true;
+        if (mDone || mCancelled) {
+            return false;
+        }
+        mCancelled = true;
+        return true;
+    }
+
+    @Override
+    public synchronized boolean isCancelled() {
+        return mCancelled;
+    }
+
+    @Override
+    public synchronized boolean isDone() {
+        return mDone;
     }
 }
