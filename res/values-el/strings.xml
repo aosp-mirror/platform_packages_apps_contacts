@@ -88,14 +88,13 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Δεν υπάρχουν διαθέσιμες εικόνες στο τηλέφωνο."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Δεν υπάρχουν διαθέσιμες εικόνες στο τηλέφωνο."</string>
-    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Προσαρμοσμένο όνομα ετικέτας"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Επιλογές προβολής"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Αποστολή κλήσεων απευθείας στον αυτόματο τηλεφωνητή"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Προεπιλογή"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="8579310973261953559">"Δεν υπάρχουν επαφές."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Δεν βρέθηκαν επαφές που να αντιστοιχούν."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Δεν υπάρχουν επαφές με αριθμούς τηλεφώνου."</string>
@@ -245,8 +244,14 @@
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Η ανάγνωση των δεδομένων vCard ακυρώθηκε"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Η εισαγωγή vCard ολοκληρώθηκε"</string>
     <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Η ανάγνωση των δεδομένων vCard ακυρώθηκε"</string>
-    <string name="vcard_importer_start_message" msgid="5520549352987753320">"Έγινε εκκίνηση του προγράμματος εισαγωγής vCard."</string>
-    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"Το πρόγραμμα εισαγωγής vCard θα εισαγάγει την vCard μετά από λίγο."</string>
+    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση εξαγωγής"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Είστε σίγουροι ότι θέλετε να εξαγάγετε τη λίστα των επαφών σας στο \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\";"</string>
@@ -256,7 +261,6 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Υπερβολικά μεγάλος όγκος αρχείων VCard στον αποθηκευτικό χώρο USB"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Υπερβολικά μεγάλος όγκος αρχείων VCard στην κάρτα SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Το απαιτούμενο όνομα αρχείου είναι υπερβολικά μεγάλο (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"Εκκινήθηκε το πρόγραμμα εξαγωγής vCard."</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Η εξαγωγή της vCard ολοκληρώθηκε"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Εξαγωγή δεδομένων επαφών"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Εξαγωγή δεδομένων επαφών προς \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
@@ -291,8 +295,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Οργανισμός"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Ιστότοπος"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Συμβάν"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Σχέση"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Ομάδες"</string>
     <string name="type_short_home" msgid="7770424864090605384">"Ο"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"Κ"</string>
@@ -400,11 +403,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Αναζήτηση επαφών"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Αναζήτηση σε όλες τις επαφές"</string>
     <string name="take_photo" msgid="7496128293167402354">"Λήψη φωτογραφίας"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Λήψη νέας φωτογραφίας"</string>
     <string name="pick_photo" msgid="448886509158039462">"Επιλογή φωτογραφίας από τη συλλογή"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Επιλογή νέας φωτογραφίας από το Gallery"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Η λίστα επαφών ενημερώνεται ώστε να αντικατοπτρίζει την αλλαγή γλώσσας."\n\n"Περιμένετε..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Γίνεται ενημέρωση της λίστας επαφών."\n\n"Περιμένετε..."</string>
     <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Γίνεται αναβάθμιση των επαφών. "\n\n"Η διαδικασία αναβάθμισης απαιτεί περίπου <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb από τον εσωτερικό χώρο αποθήκευσης του τηλεφώνου."\n\n"Ορίστε μία από τις παρακάτω επιλογές:"</string>
@@ -431,14 +432,10 @@
     <item quantity="other" msgid="425683718017380845">"συγχώνευση από <xliff:g id="COUNT">%0$d</xliff:g> προελεύσεις"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Άλλο"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Ένωση επαφών"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Να γίνει ένωση της τρέχουσας επαφής με την επιλεγμένη επαφή;"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Επεξεργασία επιλεγμένων επαφών"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Να γίνει μετάβαση σε επεξεργασία της επιλεγμένης επαφής; Θα γίνει αντιγραφή των στοιχείων που έχετε εισαγάγει μέχρι τώρα."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Αντιγραφή στις επαφές μου"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"από <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"από <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
@@ -452,8 +449,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Προσαρμοσμένη"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Προσαρμογή..."</string>
     <string name="list_filter_phones" msgid="7905045603593508221">"Επαφές με αριθμούς τηλεφώνου"</string>
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
+    <string name="list_filter_single" msgid="5871400283515893087">"Επαφή"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Ορισμός προσαρμοσμένης προβολής"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ρυθμίσεις"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ρυθμίσεις"</string>
@@ -463,10 +459,8 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"Αριθμός τηλεφώνου"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Προσθήκη στις επαφές"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Κλείσιμο"</string>
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Εισαγάγετε έτος"</string>
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->

@@ -89,7 +89,7 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nagin maletg disponibel sin il telefon."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nagin maletg disponibel sin il telefon."</string>
-    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Num da l\'etichetta persunalisada"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Opziuns da vista"</string>
@@ -247,8 +247,14 @@
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Interrut la lectura da datas vCard"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Terminà l\'import da la datoteca vCard"</string>
     <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Stizzà vCard en il process d\'importaziun"</string>
-    <string name="vcard_importer_start_message" msgid="5520549352987753320">"Avià il program d\'importaziun da datotecas vCard"</string>
-    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"La datoteca vCard vegn importada en pauc temp."</string>
+    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confermar l\'export"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vulais Vus propi exportar la glista da contacts en «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
@@ -258,7 +264,6 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Il num da datoteca necessari è memia lung («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
-    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"Avià il program d\'exportaziun da datotecas vCard"</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Terminà l\'export da la datoteca vCard"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Datas da contact vegnan exportadas."</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exportaziun da las datas da contact en «<xliff:g id="FILE_NAME">%s</xliff:g>»"</string>

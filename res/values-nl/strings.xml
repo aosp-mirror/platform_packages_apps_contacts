@@ -88,14 +88,13 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
-    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Aangepaste labelnaam"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Weergaveopties"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Oproepen rechtstreeks naar voicemail verzenden"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standaard"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Foto verwijderen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Geen contacten."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Kan geen overeenkomende contacten vinden."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Geen contacten met telefoonnummers."</string>
@@ -245,8 +244,14 @@
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lezen van vCard-gegevens is geannuleerd"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Importeren van vCard voltooid"</string>
     <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Lezen van vCard-gegevens is geannuleerd"</string>
-    <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard-importer gestart."</string>
-    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"Na enige tijd wordt de vCard geïmporteerd door de vCard-importer."</string>
+    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Exporteren bevestigen"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Weet u zeker dat u uw lijst met contacten wilt exporteren naar \'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'?"</string>
@@ -256,7 +261,6 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Te veel vCard-bestanden in de USB-opslag"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Te veel vCard-gegevens op de SD-kaart"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Vereiste bestandsnaam is te lang (\'<xliff:g id="FILENAME">%s</xliff:g>\')"</string>
-    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard-exporter gestart."</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Exporteren van vCard voltooid"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Contactgegevens exporteren"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Contactgegevens exporteren naar \'<xliff:g id="FILE_NAME">%s</xliff:g>\'"</string>
@@ -291,8 +295,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisatie"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Website"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Afspraak"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Relatie"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Groepen"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
@@ -400,11 +403,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Contacten zoeken"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Alle contacten zoeken"</string>
     <string name="take_photo" msgid="7496128293167402354">"Foto maken"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Nieuwe foto nemen"</string>
     <string name="pick_photo" msgid="448886509158039462">"Foto selecteren in Galerij"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Nieuwe foto selecteren in Galerij"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Lijst met contacten wordt bijgewerkt om de gewijzigde taal te weerspiegelen."\n\n"Een ogenblik geduld..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Lijst met contacten wordt bijgewerkt."\n\n"Een ogenblik geduld..."</string>
     <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Contacten worden bijgewerkt. "\n\n"Voor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB interne telefoonopslag vereist."\n\n"Kies een van de volgende opties:"</string>
@@ -431,14 +432,10 @@
     <item quantity="other" msgid="425683718017380845">"samengevoegd uit <xliff:g id="COUNT">%0$d</xliff:g> bronnen"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Overig"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Contacten samenvoegen"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Wilt u het huidige contact samenvoegen met het geselecteerde contact?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Geselecteerde contacten bewerken"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wilt u overschakelen naar het bewerken van het geselecteerde contact? Gegevens die u tot nu toe heeft ingevoerd, worden gekopieerd."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopiëren naar mijn contacten"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"van <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"van <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
@@ -452,8 +449,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Aangepast"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Aanpassen..."</string>
     <string name="list_filter_phones" msgid="7905045603593508221">"Contacten met telefoonnummers"</string>
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
+    <string name="list_filter_single" msgid="5871400283515893087">"Contacten"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Aangepaste weergave definiëren"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Instellingen"</string>
     <string name="menu_settings" msgid="377929915873428211">"Instellingen"</string>
@@ -463,10 +459,8 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefoonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Toevoegen aan contacten"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Sluiten"</string>
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Een jaar opgeven"</string>
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
