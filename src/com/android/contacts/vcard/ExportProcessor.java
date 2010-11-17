@@ -39,18 +39,17 @@ import java.io.OutputStream;
  * Class for processing one export request from a user. Dropped after exporting requested Uri(s).
  * {@link VCardService} will create another object when there is another export request.
  */
-public class ExportProcessor implements Runnable {
+public class ExportProcessor extends ProcessorBase {
     private static final String LOG_TAG = "VCardExport";
 
     private final VCardService mService;
+    private final ContentResolver mResolver;
+    private final NotificationManager mNotificationManager;
+    private final ExportRequest mExportRequest;
+    private final int mJobId;
 
-    private ContentResolver mResolver;
-    private NotificationManager mNotificationManager;
-
-    private volatile boolean mCanceled;
-
-    private ExportRequest mExportRequest; 
-    private int mJobId;
+    private volatile boolean mCancelled;
+    private volatile boolean mDone;
 
     public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId) {
         mService = service;
@@ -62,6 +61,11 @@ public class ExportProcessor implements Runnable {
     }
 
     @Override
+    public final int getType() {
+        return PROCESSOR_TYPE_EXPORT;
+    }
+
+    @Override
     public void run() {
         // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
@@ -69,6 +73,10 @@ public class ExportProcessor implements Runnable {
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "RuntimeException thrown during export", e);
             throw e;
+        } finally {
+            synchronized (this) {
+                mDone = true;
+            }
         }
     }
 
@@ -78,6 +86,10 @@ public class ExportProcessor implements Runnable {
         VCardComposer composer = null;
         boolean successful = false;
         try {
+            if (mCancelled) {
+                Log.i(LOG_TAG, "Export request is cancelled before handling the request");
+                return;
+            }
             final Uri uri = request.destUri;
             final OutputStream outputStream;
             try {
@@ -135,7 +147,8 @@ public class ExportProcessor implements Runnable {
 
             int current = 1;  // 1-origin
             while (!composer.isAfterLast()) {
-                if (mCanceled) {
+                if (mCancelled) {
+                    Log.i(LOG_TAG, "Export request is cancelled during composing vCard");
                     return;
                 }
                 if (!composer.createOneEntry()) {
@@ -223,8 +236,23 @@ public class ExportProcessor implements Runnable {
         mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
     }
 
-    public void cancel() {
+    @Override
+    public synchronized boolean cancel(boolean mayInterruptIfRunning) {
         Log.i(LOG_TAG, "received cancel request");
-        mCanceled = true;
+        if (mDone || mCancelled) {
+            return false;
+        }
+        mCancelled = true;
+        return true;
+    }
+
+    @Override
+    public synchronized boolean isCancelled() {
+        return mCancelled;
+    }
+
+    @Override
+    public synchronized boolean isDone() {
+        return mDone;
     }
 }
