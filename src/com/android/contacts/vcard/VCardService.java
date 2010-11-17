@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 
 /**
@@ -86,11 +87,24 @@ public class VCardService extends Service {
     // requests.
     private ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
 
+    // Three types of map for remembering on-going jobs. Key is jobId. JobIds for import and export
+    // are never overlapped each other.
+    //
+    // Note:
+    // We don't use Future#cancel() but cancel() method in ImportProcessor/ExportProcessor,
+    // so Future#isCanceled() should never be refered. Future objects in mFutureMap is used
+    // just for checking each job is already finished or not (See Future#isDone()).
+    //
+    // Reason:
+    // Future#cancel() doesn't halt the running thread. The thread keeps running even after Service
+    // is stopped, while cancel() in ImporterProcessor/ExporterProcesser is expected to
+    // stop the work and exit the thread appropriately.
     private int mCurrentJobId;
     private final Map<Integer, ImportProcessor> mRunningJobMapForImport =
             new HashMap<Integer, ImportProcessor>();
     private final Map<Integer, ExportProcessor> mRunningJobMapForExport =
             new HashMap<Integer, ExportProcessor>();
+    private final Map<Integer, Future<?>> mFutureMap = new HashMap<Integer, Future<?>>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int id) {
@@ -104,7 +118,7 @@ public class VCardService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(LOG_TAG, "VCardService is finishing()");
+        Log.i(LOG_TAG, "VCardService is finishing.");
         cancelRequestsAndshutdown();
         clearCache();
         super.onDestroy();
@@ -114,8 +128,9 @@ public class VCardService extends Service {
         Log.i(LOG_TAG, String.format("Received vCard import request. id: %d", mCurrentJobId));
         final ImportProcessor importProcessor =
                 new ImportProcessor(this, request, mCurrentJobId);
+        final Future<?> future;
         try {
-            mExecutorService.submit(importProcessor);
+            future = mExecutorService.submit(importProcessor);
         } catch (RejectedExecutionException e) {
             Log.w(LOG_TAG, "vCard import request is rejected.", e);
             // TODO: a little unkind to show Toast in this case, which is shown just a moment.
@@ -125,6 +140,7 @@ public class VCardService extends Service {
             return;
         }
         mRunningJobMapForImport.put(mCurrentJobId, importProcessor);
+        mFutureMap.put(mCurrentJobId, future);
         mCurrentJobId++;
         // TODO: Ideally we should detect the current status of import/export and show "started"
         // when we can import right now and show "will start" when we cannot.
@@ -136,8 +152,9 @@ public class VCardService extends Service {
         Log.i(LOG_TAG, String.format("Received vCard export request. id: %d", mCurrentJobId));
         final ExportProcessor exportProcessor =
                 new ExportProcessor(this, request, mCurrentJobId);
+        final Future<?> future;
         try {
-            mExecutorService.submit(exportProcessor);
+            future = mExecutorService.submit(exportProcessor);
         } catch (RejectedExecutionException e) {
             Log.w(LOG_TAG, "vCard export request is rejected.", e);
             Toast.makeText(this, getString(R.string.vcard_export_request_rejected_message),
@@ -145,36 +162,75 @@ public class VCardService extends Service {
             return;
         }
         mRunningJobMapForExport.put(mCurrentJobId, exportProcessor);
+        mFutureMap.put(mCurrentJobId, future);
         mCurrentJobId++;
         // See the comment in handleImportRequest()
         Toast.makeText(this, getString(R.string.vcard_export_will_start_message),
                 Toast.LENGTH_LONG).show();
     }
 
-    private synchronized void handleCancelAllImportRequest() {
+    private void handleCancelAllImportRequest() {
         Log.i(LOG_TAG, "Received cancel import request.");
         cancelAllImportRequest();
-        mRunningJobMapForImport.clear();
     }
 
-    private void cancelAllImportRequest() {
+    private synchronized void cancelAllImportRequest() {
         for (final Map.Entry<Integer, ImportProcessor> entry :
                 mRunningJobMapForImport.entrySet()) {
             final int jobId = entry.getKey();
             final ImportProcessor importProcessor = entry.getValue();
             importProcessor.cancel();
+            if (mFutureMap.remove(jobId) == null) {
+                Log.w(LOG_TAG, "Tried to remove unknown Future object with id: " + jobId);
+            }
             Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
         }
+        mRunningJobMapForImport.clear();
+        stopServiceWhenNoJob();
     }
 
-    private void cancelAllExportRequest() {
+    private synchronized void cancelAllExportRequest() {
         for (final Map.Entry<Integer, ExportProcessor> entry :
                 mRunningJobMapForExport.entrySet()) {
             final int jobId = entry.getKey();
             final ExportProcessor exportProcessor = entry.getValue();
             exportProcessor.cancel();
+            if (mFutureMap.remove(jobId) == null) {
+                Log.w(LOG_TAG, "Tried to remove unknown Future object with id: " + jobId);
+            }
             Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
         }
+        mRunningJobMapForExport.clear();
+        stopServiceWhenNoJob();
+    }
+
+    /**
+     * Checks job list and call {@link #stopSelf()} when there's no job now.
+     * A new job cannot be submitted any more after this call.
+     */
+    private synchronized void stopServiceWhenNoJob() {
+        // Log.v(LOG_TAG, "shutdownWhenNoJob() called");
+        if (mFutureMap.size() > 0) {
+            Log.v(LOG_TAG, "We have future tasks not removed from cache. Check their status.");
+            for (final Map.Entry<Integer, Future<?>> entry : mFutureMap.entrySet()) {
+                final int jobId = entry.getKey();
+                final Future<?> future = entry.getValue();
+                if (future.isDone()) {
+                    // This shouldn't happen. The other methods shold handle this case correctly.
+                    Log.w(LOG_TAG,
+                            String.format("Cache has already finished job (id: %d). Remove it",
+                                    jobId));
+                    mFutureMap.remove(jobId);
+                } else {
+                    Log.i(LOG_TAG, String.format("Found unfinished job (id: %d)", jobId));
+                    return;
+                }
+            }
+        }
+
+        Log.i(LOG_TAG, "No unfinished job. Stop this service.");
+        mExecutorService.shutdown();
+        stopSelf();
     }
 
     /* package */ synchronized void handleFinishImportNotification(
@@ -184,6 +240,10 @@ public class VCardService extends Service {
         if (mRunningJobMapForImport.remove(jobId) == null) {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
+        if (mFutureMap.remove(jobId) == null) {
+            Log.w(LOG_TAG, "Tried to remove unknown Future object with id: " + jobId);
+        }
+        stopServiceWhenNoJob();
     }
 
     /* package */ synchronized void handleFinishExportNotification(
@@ -193,29 +253,32 @@ public class VCardService extends Service {
         if (mRunningJobMapForExport.remove(jobId) == null) {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
+        if (mFutureMap.remove(jobId) == null) {
+            Log.w(LOG_TAG, "Tried to remove unknown Future object with id: " + jobId);
+        }
+        stopServiceWhenNoJob();
     }
 
     /**
      * Cancels all the import/export requests and call {@link ExecutorService#shutdown()}, which
-     * means this Service becomes no longer ready for import/export requests. Mainly used in
-     * onDestroy().
+     * means this Service becomes no longer ready for import/export requests.
+     *
+     * Mainly called from onDestroy().
      */
     private synchronized void cancelRequestsAndshutdown() {
-        synchronized (this) {
-            if (mRunningJobMapForImport.size() > 0) {
-                Log.i(LOG_TAG,
-                        String.format("Cancel existing all import requests (remains: ",
-                                mRunningJobMapForImport.size()));
-                cancelAllImportRequest();
-            }
-            if (mRunningJobMapForExport.size() > 0) {
-                Log.i(LOG_TAG,
-                        String.format("Cancel existing all import requests (remains: ",
-                                mRunningJobMapForExport.size()));
-                cancelAllExportRequest();
-            }
-            mExecutorService.shutdown();
+        if (mRunningJobMapForImport.size() > 0) {
+            Log.i(LOG_TAG,
+                    String.format("Cancel existing all import requests (remains: ",
+                            mRunningJobMapForImport.size()));
+            cancelAllImportRequest();
         }
+        if (mRunningJobMapForExport.size() > 0) {
+            Log.i(LOG_TAG,
+                    String.format("Cancel existing all import requests (remains: ",
+                            mRunningJobMapForExport.size()));
+            cancelAllExportRequest();
+        }
+        mExecutorService.shutdown();
     }
 
     /**
