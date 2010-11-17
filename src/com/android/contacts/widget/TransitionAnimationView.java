@@ -106,12 +106,19 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         if (changed) {
-            mPreviousStateBitmap = Bitmap.createBitmap(
-                    right - left, bottom - top, Bitmap.Config.ARGB_8888);
-            mPreviousStateView.setBackgroundDrawable(
-                    new BitmapDrawable(getContext().getResources(), mPreviousStateBitmap));
-            mClipRect.set(mClipMargins.left, mClipMargins.top,
-                    right - left - mClipMargins.right, bottom - top - mClipMargins.bottom);
+            int width = right - left;
+            int height = bottom - top;
+            if (width > 0 && height > 0) {
+                mPreviousStateBitmap = Bitmap.createBitmap(
+                        width, height, Bitmap.Config.ARGB_8888);
+                mPreviousStateView.setBackgroundDrawable(
+                        new BitmapDrawable(getContext().getResources(), mPreviousStateBitmap));
+                mClipRect.set(mClipMargins.left, mClipMargins.top,
+                        width - mClipMargins.right, height - mClipMargins.bottom);
+            } else {
+                mPreviousStateBitmap = null;
+                mPreviousStateView = null;
+            }
         }
     }
 
@@ -147,6 +154,10 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
             mExitAnimation.setTarget(view);
             mExitAnimation.start();
         } else {
+            if (mPreviousStateBitmap == null) {
+                return;
+            }
+
             Canvas canvas = new Canvas(mPreviousStateBitmap);
             Paint paint = new Paint();
             paint.setColor(Color.TRANSPARENT);
