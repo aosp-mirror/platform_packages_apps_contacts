@@ -63,6 +63,8 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     private ContactListFilterController mFilterController;
     private View mFilterContainer;
 
+    private boolean mEnabled;
+
     public ActionBarAdapter(Context context) {
         mContext = context;
     }
@@ -96,6 +98,11 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         mSearchView.setOnQueryTextFocusChangeListener(this);
         mSearchView.setQuery(mQueryString, false);
 
+        update();
+    }
+
+    public void setEnabled(boolean enabled) {
+        mEnabled = enabled;
         update();
     }
 
@@ -157,7 +164,10 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     }
 
     public void update() {
-        if (mSearchMode) {
+        if (!mEnabled) {
+            mNavigationBar.setVisibility(View.GONE);
+        } else if (mSearchMode) {
+            mNavigationBar.setVisibility(View.VISIBLE);
             mSearchLabel.setVisibility(View.VISIBLE);
             mFilterView.setVisibility(View.GONE);
             mFilterIndicator.setVisibility(View.INVISIBLE);
@@ -165,6 +175,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
                 mFilterController.setEnabled(false);
             }
         } else {
+            mNavigationBar.setVisibility(View.VISIBLE);
             mSearchLabel.setVisibility(View.GONE);
             mFilterView.setVisibility(View.VISIBLE);
             boolean showIndicator = false;

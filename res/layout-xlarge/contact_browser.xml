@@ -14,46 +14,69 @@
      limitations under the License.
 -->
 
-<com.android.contacts.widget.InterpolatingLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    android:id="@+id/two_pane_activity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:splitMotionEvents="true">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/list_container"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:minWidth="100dip"
-        ex:layout_narrowParentWidth="800dip"
-        ex:layout_narrowWidth="310dip"
-        ex:layout_wideParentWidth="1280dip"
-        ex:layout_wideWidth="430dip"
-    />
-
-    <view
-        class="com.android.contacts.widget.TransitionAnimationView"
+    <com.android.contacts.widget.InterpolatingLayout
+        android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ex:layout_narrowParentWidth="800dip"
-        ex:layout_narrowRightMargin="0dip"
-        ex:layout_wideParentWidth="1280dip"
-        ex:layout_wideRightMargin="48dip"
-        ex:clipMarginLeft="3dip"
-        ex:clipMarginTop="3dip"
-        ex:clipMarginRight="3dip"
-        ex:clipMarginBottom="9dip"
-        ex:enterAnimation="@android:anim/animator_fade_in"
-        ex:exitAnimation="@android:anim/animator_fade_out"
-        ex:animationDuration="80">
+        android:splitMotionEvents="true">
+
         <FrameLayout
-            android:id="@+id/detail_container"
+            android:id="@+id/list_container"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:minWidth="100dip"
+            ex:layout_narrowParentWidth="800dip"
+            ex:layout_narrowWidth="310dip"
+            ex:layout_wideParentWidth="1280dip"
+            ex:layout_wideWidth="430dip" />
+
+        <view
+            class="com.android.contacts.widget.TransitionAnimationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="6dip"
-        />
-    </view>
+            ex:layout_narrowParentWidth="800dip"
+            ex:layout_narrowRightMargin="0dip"
+            ex:layout_wideParentWidth="1280dip"
+            ex:layout_wideRightMargin="48dip"
+            ex:clipMarginLeft="3dip"
+            ex:clipMarginTop="3dip"
+            ex:clipMarginRight="3dip"
+            ex:clipMarginBottom="9dip"
+            ex:enterAnimation="@android:anim/animator_fade_in"
+            ex:exitAnimation="@android:anim/animator_fade_out"
+            ex:animationDuration="80">
+            <FrameLayout
+                android:id="@+id/detail_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="6dip" />
+        </view>
 
-</com.android.contacts.widget.InterpolatingLayout>
+    </com.android.contacts.widget.InterpolatingLayout>
+
+    <com.android.contacts.widget.InterpolatingLayout
+        android:id="@+id/contacts_unavailable_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/contacts_unavailable_container"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            ex:layout_narrowParentWidth="800dip"
+            ex:layout_narrowLeftMargin="80dip"
+            ex:layout_narrowRightMargin="80dip"
+            ex:layout_wideParentWidth="1280dip"
+            ex:layout_wideLeftMargin="200dip"
+            ex:layout_wideRightMargin="200dip"
+            android:paddingBottom="20dip" />
+
+    </com.android.contacts.widget.InterpolatingLayout>
+</FrameLayout>

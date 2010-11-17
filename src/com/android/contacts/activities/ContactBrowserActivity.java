@@ -27,13 +27,18 @@ import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.CustomContactListFilterActivity;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.list.OnContactsUnavailableActionListener;
+import com.android.contacts.list.ProviderStatusLoader;
+import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.preference.ContactsPreferenceActivity;
+import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.ThemeUtils;
@@ -57,6 +62,7 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -81,7 +87,7 @@ import java.util.ArrayList;
 public class ContactBrowserActivity extends Activity
         implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
-        ContactListFilterController.ContactListFilterListener {
+        ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
 
     private static final String TAG = "ContactBrowserActivity";
 
@@ -141,10 +147,15 @@ public class ContactBrowserActivity extends Activity
 
     private Handler mHandler;
 
+    private ContactsUnavailableFragment mContactsUnavailableFragment;
+    private ProviderStatusLoader mProviderStatusLoader;
+    private int mProviderStatus = -1;
+
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
         mContactListFilterController.addListener(this);
+        mProviderStatusLoader = new ProviderStatusLoader(this);
     }
 
     private Handler getHandler() {
@@ -161,6 +172,10 @@ public class ContactBrowserActivity extends Activity
         return mHandler;
     }
 
+    public boolean areContactsAvailable() {
+        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
+    }
+
     @Override
     public void onAttachFragment(Fragment fragment) {
         if (fragment instanceof ContactBrowseListFragment) {
@@ -170,6 +185,11 @@ public class ContactBrowserActivity extends Activity
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
+        } else if (fragment instanceof ContactsUnavailableFragment) {
+            mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
+            mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
+            mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
+                    new ContactsUnavailableFragmentListener());
         }
     }
 
@@ -268,6 +288,7 @@ public class ContactBrowserActivity extends Activity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(null);
         }
+        mProviderStatusLoader.setProviderStatusListener(null);
         super.onPause();
     }
 
@@ -277,6 +298,8 @@ public class ContactBrowserActivity extends Activity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(this);
         }
+        mProviderStatusLoader.setProviderStatusListener(this);
+        updateFragmentVisibility();
     }
 
     @Override
@@ -596,7 +619,58 @@ public class ContactBrowserActivity extends Activity
         fragment.setAizyEnabled(false);
         fragment.setSelectionVisible(true);
         fragment.setQuickContactEnabled(!mContactContentDisplayed);
+        invalidateOptionsMenu();
         return fragment;
+    }
+
+    @Override
+    public void onProviderStatusChange() {
+        updateFragmentVisibility();
+    }
+
+    private void updateFragmentVisibility() {
+        int providerStatus = mProviderStatusLoader.getProviderStatus();
+        if (providerStatus == mProviderStatus) {
+            return;
+        }
+
+        mProviderStatus = providerStatus;
+
+        View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
+        View mainView = findViewById(R.id.main_view);
+
+        if (mProviderStatus == ProviderStatus.STATUS_NORMAL) {
+            if (mHasActionBar) {
+                mActionBarAdapter.setEnabled(true);
+            }
+            if (mListFragment != null) {
+                mListFragment.setEnabled(true);
+            }
+            contactsUnavailableView.setVisibility(View.GONE);
+            mainView.setVisibility(View.VISIBLE);
+        } else {
+            if (mHasActionBar) {
+                mActionBarAdapter.setEnabled(false);
+            }
+            if (mListFragment != null) {
+                mListFragment.setEnabled(false);
+            }
+            if (mContactsUnavailableFragment == null) {
+                mContactsUnavailableFragment = new ContactsUnavailableFragment();
+                mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
+                mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
+                        new ContactsUnavailableFragmentListener());
+                getFragmentManager().openTransaction()
+                        .replace(R.id.contacts_unavailable_container, mContactsUnavailableFragment)
+                        .commit();
+            } else {
+                mContactsUnavailableFragment.update();
+            }
+            contactsUnavailableView.setVisibility(View.VISIBLE);
+            mainView.setVisibility(View.INVISIBLE);
+        }
+
+        invalidateOptionsMenu();
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
@@ -711,6 +785,33 @@ public class ContactBrowserActivity extends Activity
         }
     }
 
+    private class ContactsUnavailableFragmentListener
+            implements OnContactsUnavailableActionListener {
+
+        @Override
+        public void onCreateNewContactAction() {
+            startActivity(new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+        }
+
+        @Override
+        public void onAddAccountAction() {
+            Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+            intent.putExtra(Settings.EXTRA_AUTHORITIES,
+                    new String[] { ContactsContract.AUTHORITY });
+            startActivity(intent);
+        }
+
+        @Override
+        public void onImportContactsFromFileAction() {
+            AccountSelectionUtil.doImportFromSdCard(ContactBrowserActivity.this, null);
+        }
+
+        @Override
+        public void onFreeInternalStorageAction() {
+            startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+        }
+    }
+
     public void startActivityAndForwardResult(final Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 
@@ -724,7 +825,31 @@ public class ContactBrowserActivity extends Activity
     }
 
     @Override
+    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+        // No menu if contacts are unavailable
+        if (!areContactsAvailable()) {
+            return false;
+        }
+
+        return super.onCreatePanelMenu(featureId, menu);
+    }
+
+    @Override
+    public boolean onPreparePanel(int featureId, View view, Menu menu) {
+        // No menu if contacts are unavailable
+        if (!areContactsAvailable()) {
+            return false;
+        }
+
+        return super.onPreparePanel(featureId, view, menu);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if (!areContactsAvailable()) {
+            return false;
+        }
+
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
@@ -749,6 +874,10 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (!areContactsAvailable()) {
+            return false;
+        }
+
         MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
         if (displayGroups != null) {
             displayGroups.setVisible(
@@ -822,11 +951,6 @@ public class ContactBrowserActivity extends Activity
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
-// TODO
-//        if (mProviderStatus != ProviderStatus.STATUS_NORMAL) {
-//            return;
-//        }
-
         if (globalSearch) {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         } else {

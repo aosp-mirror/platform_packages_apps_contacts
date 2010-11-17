@@ -15,197 +15,112 @@
  */
 package com.android.contacts.list;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.os.Handler;
 import android.provider.ContactsContract.ProviderStatus;
 
 /**
  * Checks provider status and configures a list adapter accordingly.
  */
-public class ProviderStatusLoader {
+public class ProviderStatusLoader extends ContentObserver {
+
+    /**
+     * Callback interface invoked when the provider status changes.
+     */
+    public interface ProviderStatusListener {
+        public void onProviderStatusChange();
+    }
+
+    private static final String[] PROJECTION = new String[] {
+        ProviderStatus.STATUS,
+        ProviderStatus.DATA1
+    };
+
+    private static final int UNKNOWN = -1;
 
     private final Context mContext;
+    private int mProviderStatus = UNKNOWN;
+    private String mProviderData;
+    private ProviderStatusListener mListener;
+    private Handler mHandler = new Handler();
 
     public ProviderStatusLoader(Context context) {
+        super(null);
         this.mContext = context;
     }
 
     public int getProviderStatus() {
+        if (mProviderStatus == UNKNOWN) {
+            loadProviderStatus();
+        }
+
+        return mProviderStatus;
+    }
+
+    public String getProviderStatusData() {
+        if (mProviderStatus == UNKNOWN) {
+            loadProviderStatus();
+        }
+
+        return mProviderData;
+    }
+
+    protected void loadProviderStatus() {
+
+        // Default to normal status
+        mProviderStatus = ProviderStatus.STATUS_NORMAL;
+
         // This query can be performed on the UI thread because
         // the API explicitly allows such use.
-        Cursor cursor = mContext.getContentResolver().query(
-                ProviderStatus.CONTENT_URI,
-                new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
+        Cursor cursor = mContext.getContentResolver().query(ProviderStatus.CONTENT_URI,
+                PROJECTION, null, null, null);
         if (cursor != null) {
             try {
                 if (cursor.moveToFirst()) {
-                    return cursor.getInt(0);
+                    mProviderStatus = cursor.getInt(0);
+                    mProviderData = cursor.getString(1);
                 }
             } finally {
                 cursor.close();
             }
         }
-
-        return ProviderStatus.STATUS_NORMAL;
     }
 
+    public void setProviderStatusListener(ProviderStatusListener listener) {
+        mListener = listener;
 
-//  View importFailureView = findViewById(R.id.import_failure);
-//  if (importFailureView == null) {
-//      return true;
-//  }
-//
-//  TextView messageView = (TextView) findViewById(R.id.emptyText);
-//
-//  // This query can be performed on the UI thread because
-//  // the API explicitly allows such use.
-//  Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI,
-//          new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
-//  if (cursor != null) {
-//      try {
-//          if (cursor.moveToFirst()) {
-//              int status = cursor.getInt(0);
-//              if (status != mProviderStatus) {
-//                  mProviderStatus = status;
-//                  switch (status) {
-//                      case ProviderStatus.STATUS_NORMAL:
-//                          mAdapter.notifyDataSetInvalidated();
-//                          if (loadData) {
-//                              startQuery();
-//                          }
-//                          break;
-//
-//                      case ProviderStatus.STATUS_CHANGING_LOCALE:
-//                          messageView.setText(R.string.locale_change_in_progress);
-//                          mAdapter.changeCursor(null);
-//                          mAdapter.notifyDataSetInvalidated();
-//                          break;
-//
-//                      case ProviderStatus.STATUS_UPGRADING:
-//                          messageView.setText(R.string.upgrade_in_progress);
-//                          mAdapter.changeCursor(null);
-//                          mAdapter.notifyDataSetInvalidated();
-//                          break;
-//
-//                      case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
-//                          long size = cursor.getLong(1);
-//                          String message = getResources().getString(
-//                                  R.string.upgrade_out_of_memory, new Object[] {size});
-//                          messageView.setText(message);
-//                          configureImportFailureView(importFailureView);
-//                          mAdapter.changeCursor(null);
-//                          mAdapter.notifyDataSetInvalidated();
-//                          break;
-//                  }
-//              }
-//          }
-//      } finally {
-//          cursor.close();
-//      }
-//  }
-//
-//  importFailureView.setVisibility(
-//          mProviderStatus == ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY
-//                  ? View.VISIBLE
-//                  : View.GONE);
-//  return mProviderStatus == ProviderStatus.STATUS_NORMAL;
-//}
+        ContentResolver resolver = mContext.getContentResolver();
+        if (listener != null) {
+            resolver.registerContentObserver(ProviderStatus.CONTENT_URI, false, this);
+        } else {
+            resolver.unregisterContentObserver(this);
+        }
+    }
 
-//
-//    /**
-//     * Obtains the contacts provider status and configures the UI accordingly.
-//     *
-//     * @param loadData true if the method needs to start a query when the
-//     *            provider is in the normal state
-//     * @return true if the provider status is normal
-//     */
-//    private boolean checkProviderState(boolean loadData) {
-//        View importFailureView = findViewById(R.id.import_failure);
-//        if (importFailureView == null) {
-//            return true;
-//        }
-//
-//        TextView messageView = (TextView) findViewById(R.id.emptyText);
-//
-//        // This query can be performed on the UI thread because
-//        // the API explicitly allows such use.
-//        Cursor cursor = getContentResolver().query(ProviderStatus.CONTENT_URI,
-//                new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
-//        if (cursor != null) {
-//            try {
-//                if (cursor.moveToFirst()) {
-//                    int status = cursor.getInt(0);
-//                    if (status != mProviderStatus) {
-//                        mProviderStatus = status;
-//                        switch (status) {
-//                            case ProviderStatus.STATUS_NORMAL:
-//                                mAdapter.notifyDataSetInvalidated();
-//                                if (loadData) {
-//                                    startQuery();
-//                                }
-//                                break;
-//
-//                            case ProviderStatus.STATUS_CHANGING_LOCALE:
-//                                messageView.setText(R.string.locale_change_in_progress);
-//                                mAdapter.changeCursor(null);
-//                                mAdapter.notifyDataSetInvalidated();
-//                                break;
-//
-//                            case ProviderStatus.STATUS_UPGRADING:
-//                                messageView.setText(R.string.upgrade_in_progress);
-//                                mAdapter.changeCursor(null);
-//                                mAdapter.notifyDataSetInvalidated();
-//                                break;
-//
-//                            case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
-//                                long size = cursor.getLong(1);
-//                                String message = getResources().getString(
-//                                        R.string.upgrade_out_of_memory, new Object[] {size});
-//                                messageView.setText(message);
-//                                configureImportFailureView(importFailureView);
-//                                mAdapter.changeCursor(null);
-//                                mAdapter.notifyDataSetInvalidated();
-//                                break;
-//                        }
-//                    }
-//                }
-//            } finally {
-//                cursor.close();
-//            }
-//        }
-//
-//        importFailureView.setVisibility(
-//                mProviderStatus == ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY
-//                        ? View.VISIBLE
-//                        : View.GONE);
-//        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
-//    }
-//
-//    private void configureImportFailureView(View importFailureView) {
-//
-//        OnClickListener listener = new OnClickListener(){
-//
-//            public void onClick(View v) {
-//                switch(v.getId()) {
-//                    case R.id.import_failure_uninstall_apps: {
-//                        startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-//                        break;
-//                    }
-//                    case R.id.import_failure_retry_upgrade: {
-//                        // Send a provider status update, which will trigger a retry
-//                        ContentValues values = new ContentValues();
-//                        values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
-//                        getContentResolver().update(ProviderStatus.CONTENT_URI, values, null, null);
-//                        break;
-//                    }
-//                }
-//            }};
-//
-//        Button uninstallApps = (Button) findViewById(R.id.import_failure_uninstall_apps);
-//        uninstallApps.setOnClickListener(listener);
-//
-//        Button retryUpgrade = (Button) findViewById(R.id.import_failure_retry_upgrade);
-//        retryUpgrade.setOnClickListener(listener);
-//    }
+    @Override
+    public void onChange(boolean selfChange) {
+        // Deliver a notification on the UI thread
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (mListener != null) {
+                    mProviderStatus = UNKNOWN;
+                    mListener.onProviderStatusChange();
+                }
+            }
+        });
+    }
 
+    /**
+     * Sends a provider status update, which will trigger a retry of database upgrade
+     */
+    public void retryUpgrade() {
+        ContentValues values = new ContentValues();
+        values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
+        mContext.getContentResolver().update(ProviderStatus.CONTENT_URI, values, null, null);
+    }
 }

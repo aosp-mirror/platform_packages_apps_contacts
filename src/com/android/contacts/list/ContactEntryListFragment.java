@@ -30,13 +30,11 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.IContentService;
 import android.content.Intent;
 import android.content.Loader;
-import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,15 +43,12 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.ProviderStatus;
-import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
@@ -62,7 +57,6 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -112,6 +106,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContactsRequest mRequest;
     private boolean mLegacyCompatibility;
 
+    private boolean mEnabled = true;
+
     private T mAdapter;
     private View mView;
     private ListView mListView;
@@ -131,8 +127,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContactListEmptyView mEmptyView;
     private ProviderStatusLoader mProviderStatusLoader;
     private ContactsPreferences mContactsPrefs;
-
-    private int mProviderStatus = ProviderStatus.STATUS_NORMAL;
 
     private boolean mForceLoad;
 
@@ -188,6 +182,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public Context getContext() {
         return mContext;
+    }
+
+    public void setEnabled(boolean enabled) {
+        if (mEnabled != enabled) {
+            mEnabled = enabled;
+            if (mEnabled && mAdapter != null) {
+                reloadData();
+            }
+        }
     }
 
     /**
@@ -393,7 +396,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (!checkProviderStatus(false)) {
+        if (!mEnabled) {
             if (data != null) {
                 data.close();
             }
@@ -793,8 +796,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void onResume() {
         super.onResume();
 
-        registerProviderStatusObserver();
-
         if (isPhotoLoaderEnabled()) {
             mPhotoLoader.resume();
         }
@@ -847,7 +848,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void onPause() {
         super.onPause();
         removePendingDirectorySearchRequests();
-        unregisterProviderStatusObserver();
     }
 
     /**
@@ -866,128 +866,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.onRestoreInstanceState(mListState);
             mListState = null;
         }
-    }
-
-    private ContentObserver mProviderStatusObserver = new ContentObserver(new Handler()) {
-        @Override
-        public void onChange(boolean selfChange) {
-            checkProviderStatus(true);
-        }
-    };
-
-    /**
-     * Register an observer for provider status changes - we will need to
-     * reflect them in the UI.
-     */
-    private void registerProviderStatusObserver() {
-        mContext.getContentResolver().registerContentObserver(ProviderStatus.CONTENT_URI,
-                false, mProviderStatusObserver);
-    }
-
-    /**
-     * Register an observer for provider status changes - we will need to
-     * reflect them in the UI.
-     */
-    private void unregisterProviderStatusObserver() {
-        mContext.getContentResolver().unregisterContentObserver(mProviderStatusObserver);
-    }
-
-    /**
-     * Obtains the contacts provider status and configures the UI accordingly.
-     *
-     * @param loadData true if the method needs to start a query when the
-     *            provider is in the normal state
-     * @return true if the provider status is normal
-     */
-    private boolean checkProviderStatus(boolean loadData) {
-        View importFailureView = findViewById(R.id.import_failure);
-        if (importFailureView == null) {
-            return true;
-        }
-
-        // This query can be performed on the UI thread because
-        // the API explicitly allows such use.
-        Cursor cursor = mContext.getContentResolver().query(ProviderStatus.CONTENT_URI,
-                new String[] { ProviderStatus.STATUS, ProviderStatus.DATA1 }, null, null, null);
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    int status = cursor.getInt(0);
-                    if (status != mProviderStatus) {
-                        mProviderStatus = status;
-                        switch (status) {
-                            case ProviderStatus.STATUS_NORMAL:
-                                mAdapter.notifyDataSetInvalidated();
-                                if (loadData) {
-                                    reloadData();
-                                }
-                                break;
-
-                            case ProviderStatus.STATUS_CHANGING_LOCALE:
-                                setEmptyText(R.string.locale_change_in_progress);
-                                mAdapter.changeCursor(null);
-                                mAdapter.notifyDataSetInvalidated();
-                                break;
-
-                            case ProviderStatus.STATUS_UPGRADING:
-                                setEmptyText(R.string.upgrade_in_progress);
-                                mAdapter.changeCursor(null);
-                                mAdapter.notifyDataSetInvalidated();
-                                break;
-
-                            case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
-                                long size = cursor.getLong(1);
-                                String message = mContext.getResources().getString(
-                                        R.string.upgrade_out_of_memory, new Object[] {size});
-                                TextView messageView = (TextView) findViewById(R.id.emptyText);
-                                messageView.setText(message);
-                                messageView.setVisibility(View.VISIBLE);
-                                configureImportFailureView(importFailureView);
-                                mAdapter.changeCursor(null);
-                                mAdapter.notifyDataSetInvalidated();
-                                break;
-                        }
-                    }
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-
-        importFailureView.setVisibility(
-                mProviderStatus == ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY
-                        ? View.VISIBLE
-                        : View.GONE);
-        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
-    }
-
-    private void configureImportFailureView(View importFailureView) {
-
-        OnClickListener listener = new OnClickListener(){
-
-            public void onClick(View v) {
-                switch(v.getId()) {
-                    case R.id.import_failure_uninstall_apps: {
-                        // TODO break into a separate method
-                        startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-                        break;
-                    }
-                    case R.id.import_failure_retry_upgrade: {
-                        // Send a provider status update, which will trigger a retry
-                        ContentValues values = new ContentValues();
-                        values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
-                        mContext.getContentResolver().update(ProviderStatus.CONTENT_URI,
-                                values, null, null);
-                        break;
-                    }
-                }
-            }};
-
-        Button uninstallApps = (Button) findViewById(R.id.import_failure_uninstall_apps);
-        uninstallApps.setOnClickListener(listener);
-
-        Button retryUpgrade = (Button) findViewById(R.id.import_failure_retry_upgrade);
-        retryUpgrade.setOnClickListener(listener);
     }
 
     private View findViewById(int id) {
