@@ -53,8 +53,6 @@
             android:scrollingCache="false"
         />
 
-        <include layout="@layout/contacts_list_empty"/>
-
         <ViewStub android:id="@+id/footer_stub"
             android:layout="@layout/footer_panel"
             android:layout_width="fill_parent"

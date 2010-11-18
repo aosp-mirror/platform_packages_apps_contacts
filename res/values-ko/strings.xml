@@ -88,14 +88,13 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"휴대전화에 사진이 없습니다."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"휴대전화에 사진이 없습니다."</string>
-    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"라벨 이름 맞춤 설정"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"표시 옵션"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"수신전화를 바로 음성사서함으로 보내기"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"기본값"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
     <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"전화번호가 포함된 주소록이 없습니다."</string>
@@ -245,8 +244,14 @@
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard 데이터 읽기가 취소되었습니다."</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"vCard 가져오기 완료됨"</string>
     <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"vCard 데이터 읽기가 취소되었습니다."</string>
-    <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard 가져오기 도구가 시작되었습니다."</string>
-    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"잠시 후에 vCard 가져오기 도구가 vCard를 가져옵니다."</string>
+    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"내보내기 확인"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"\'<xliff:g id="VCARD_FILENAME">%s</xliff:g>\'(으)로 연락처 목록을 내보내시겠습니까?"</string>
@@ -256,7 +261,6 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"USB 저장소에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 카드에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
-    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard 내보내기 도구가 시작되었습니다."</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"vCard 내보내기 완료됨"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"연락처 데이터 내보내기"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"연락처 데이터를 \'<xliff:g id="FILE_NAME">%s</xliff:g>\'(으)로 내보내는 중"</string>
@@ -291,8 +295,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"조직"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"웹사이트"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"일정"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"관계"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"그룹"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
@@ -400,11 +403,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"연락처 검색"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"모든 연락처 검색"</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"새 사진 가져오기"</string>
     <string name="pick_photo" msgid="448886509158039462">"갤러리에서 사진 선택"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"갤러리에서 새 사진 선택"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다."\n\n"잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"연락처 목록을 업데이트하고 있습니다."\n\n"잠시 기다려 주세요..."</string>
     <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB의 휴대전화 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
@@ -431,14 +432,10 @@
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>개 출처에서 병합했습니다."</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"기타"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"연락처 통합"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"현재 연락처를 선택한 주소록에 통합하시겠습니까?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"선택한 주소록 수정"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"내 주소록에 복사"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"연락처 출처: <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"연락처 출처: <xliff:g id="TYPE">%1$s</xliff:g>(<xliff:g id="NAME">%2$s</xliff:g>)"</string>
@@ -452,8 +449,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"맞춤설정"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"맞춤설정..."</string>
     <string name="list_filter_phones" msgid="7905045603593508221">"전화번호가 포함된 주소록"</string>
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
+    <string name="list_filter_single" msgid="5871400283515893087">"연락처"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="menu_settings" msgid="377929915873428211">"설정"</string>
@@ -463,10 +459,8 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"전화번호"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"주소록에 추가"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"닫기"</string>
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g>(<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"출생연도 입력 선택"</string>
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->

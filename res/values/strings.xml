@@ -1219,19 +1219,15 @@
     <string name="pick_new_photo">Select new photo from Gallery</string>
 
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change -->
-    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait...</string>
+    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.</string>
 
     <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade -->
-    <string name="upgrade_in_progress">Contact list is being updated.\n\nPlease wait...</string>
+    <string name="upgrade_in_progress">Contact list is being updated.</string>
 
     <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
-    <string name="upgrade_out_of_memory" product="tablet">Contacts are in the process of being upgraded.
-    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
-    Mb of internal tablet storage.\n\nChoose one of the following options:</string>
-    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
-    <string name="upgrade_out_of_memory" product="default">Contacts are in the process of being upgraded.
-    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%d</xliff:g>
-    Mb of internal phone storage.\n\nChoose one of the following options:</string>
+    <string name="upgrade_out_of_memory">Contacts are in the process of being upgraded.
+    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%s</xliff:g>
+    Mb of internal storage.\n\nChoose one of the following options:</string>
 
     <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage -->
     <string name="upgrade_out_of_memory_uninstall">Uninstall some applications</string>
@@ -1392,4 +1388,17 @@
 
     <!-- Message of widget while it is loading data [CHAR LIMIT=20] -->
     <string name="social_widget_loading">Loading \u2026</string>
+
+    <!-- Button shown on the main contacts screen when there are no contacts on the device.
+    Creates a new contact. [CHAR LIMIT=128] -->
+    <string name="contacts_unavailable_create_contact">Create a new contact</string>
+
+    <!-- Button shown on the main contacts screen when there are no contacts on the device.
+    Navigates to account setup [CHAR LIMIT=128] -->
+    <string name="contacts_unavailable_add_account">Sign in to an account</string>
+
+    <!-- Button shown on the main contacts screen when there are no contacts on the device.
+    Initiates a contact import dialog [CHAR LIMIT=128] -->
+    <string name="contacts_unavailable_import_contacts">Import contacts from a file</string>
+
 </resources>

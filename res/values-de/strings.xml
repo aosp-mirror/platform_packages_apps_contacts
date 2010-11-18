@@ -88,14 +88,13 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Auf dem Telefon sind keine Bilder verfügbar."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Auf dem Telefon sind keine Bilder verfügbar."</string>
-    <!-- no translation found for contact_photo_dialog_title (7278034771040497884) -->
+    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Name des benutzerdef. Labels"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Anzeigeoptionen"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Anrufe direkt an Mailbox senden"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Keine Kontakte"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Keine passenden Kontakte gefunden"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Keine Kontakte mit Telefonnummern"</string>
@@ -245,8 +244,14 @@
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lesen von vCard-Daten abgebrochen"</string>
     <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Import der vCard abgeschlossen"</string>
     <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Lesen von vCard-Daten abgebrochen"</string>
-    <string name="vcard_importer_start_message" msgid="5520549352987753320">"vCard-Importprogramm gestartet"</string>
-    <string name="vcard_importer_will_start_message" msgid="2055145402481822160">"Das vCard-Importprogramm importiert nach kurzer Zeit die vCard."</string>
+    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Export bestätigen"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Soll Ihre Kontaktliste wirklich an \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" exportiert werden?"</string>
@@ -256,7 +261,6 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Zu viele vCard-Dateien im USB-Speicher"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Zu viele vCard-Dateien auf der SD-Karte"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Erforderlicher Dateiname ist zu lang (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="vcard_exporter_start_message" msgid="6497218576519292369">"vCard-Exportprogramm gestartet"</string>
     <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Export der vCard abgeschlossen"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Kontaktdaten werden exportiert."</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert."</string>
@@ -291,8 +295,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisation"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Website"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Termin"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Beziehung"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Gruppen"</string>
     <string name="type_short_home" msgid="7770424864090605384">"P"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
@@ -400,11 +403,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Kontakte durchsuchen"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"In allen Kontakten suchen"</string>
     <string name="take_photo" msgid="7496128293167402354">"Foto machen"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Neues Foto aufnehmen"</string>
     <string name="pick_photo" msgid="448886509158039462">"Foto aus Galerie auswählen"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Neues Foto aus Galerie auswählen"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Die Kontaktliste wird an die geänderte Sprache angepasst."\n\n"Bitte warten..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Die Kontaktliste wird aktualisiert."\n\n"Bitte warten..."</string>
     <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Kontakte werden gerade aktualisiert. "\n\n"Das Upgrade erfordert etwa <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB des internen Telefonspeichers."\n\n"Wählen Sie eine der folgenden Optionen:"</string>
@@ -431,14 +432,10 @@
     <item quantity="other" msgid="425683718017380845">"aus <xliff:g id="COUNT">%0$d</xliff:g> Quellen zusammengeführt"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Sonstige"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Kontakte zusammenführen"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Aktuellen Kontakt mit ausgewähltem Kontakt zusammenführen?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Ausgewählte Kontakte bearbeiten"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Zur Bearbeitung des ausgewählten Kontakts wechseln? Die bisher eingegebenen Informationen werden kopiert."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"In meine Kontakte kopieren"</string>
     <string name="contact_directory_description" msgid="7071885390570890999">"von <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="contact_directory_account_description" msgid="7674700530474108835">"von <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
@@ -452,8 +449,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Benutzerdefiniert"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Wird angepasst..."</string>
     <string name="list_filter_phones" msgid="7905045603593508221">"Kontakte mit Telefonnummern"</string>
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
+    <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Benutzerdefinierte Ansicht festlegen"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Einstellungen"</string>
     <string name="menu_settings" msgid="377929915873428211">"Einstellungen"</string>
@@ -463,10 +459,8 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Zu Kontakten hinzufügen"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Schließen"</string>
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Jahr angeben"</string>
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
