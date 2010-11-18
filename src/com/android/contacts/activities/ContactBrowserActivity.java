@@ -640,14 +640,14 @@ public class ContactBrowserActivity extends Activity
         View mainView = findViewById(R.id.main_view);
 
         if (mProviderStatus == ProviderStatus.STATUS_NORMAL) {
-            if (mHasActionBar) {
-                mActionBarAdapter.setEnabled(true);
-            }
+            contactsUnavailableView.setVisibility(View.GONE);
+            mainView.setVisibility(View.VISIBLE);
             if (mListFragment != null) {
                 mListFragment.setEnabled(true);
             }
-            contactsUnavailableView.setVisibility(View.GONE);
-            mainView.setVisibility(View.VISIBLE);
+            if (mHasActionBar) {
+                mActionBarAdapter.setEnabled(true);
+            }
         } else {
             if (mHasActionBar) {
                 mActionBarAdapter.setEnabled(false);

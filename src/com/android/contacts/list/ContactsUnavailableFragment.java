@@ -79,11 +79,22 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
 
     public void update() {
         int providerStatus = mProviderStatusLoader.getProviderStatus();
-        System.out.println("PROVIDER STATUS: " + providerStatus);
         switch (providerStatus) {
+            case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
+                mMessageView.setGravity(Gravity.LEFT);
+                mMessageView.setVisibility(View.GONE);
+                mCreateContactButton.setVisibility(View.VISIBLE);
+                mAddAccountButton.setVisibility(View.VISIBLE);
+                mImportContactsButton.setVisibility(View.VISIBLE);
+                mUninstallAppsButton.setVisibility(View.GONE);
+                mRetryUpgradeButton.setVisibility(View.GONE);
+                mProgress.setVisibility(View.GONE);
+                break;
+
             case ProviderStatus.STATUS_CHANGING_LOCALE:
                 mMessageView.setText(R.string.locale_change_in_progress);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                mMessageView.setVisibility(View.VISIBLE);
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);
                 mImportContactsButton.setVisibility(View.GONE);
@@ -91,9 +102,11 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mRetryUpgradeButton.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
                 break;
+
             case ProviderStatus.STATUS_UPGRADING:
                 mMessageView.setText(R.string.upgrade_in_progress);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                mMessageView.setVisibility(View.VISIBLE);
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);
                 mImportContactsButton.setVisibility(View.GONE);
@@ -101,11 +114,13 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mRetryUpgradeButton.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
                 break;
+
             case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
                 String message = getResources().getString(R.string.upgrade_out_of_memory,
                         new Object[] { mProviderStatusLoader.getProviderStatusData() });
                 mMessageView.setText(message);
                 mMessageView.setGravity(Gravity.LEFT);
+                mMessageView.setVisibility(View.VISIBLE);
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);
                 mImportContactsButton.setVisibility(View.GONE);

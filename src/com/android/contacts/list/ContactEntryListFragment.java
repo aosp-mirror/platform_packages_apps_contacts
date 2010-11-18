@@ -187,8 +187,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public void setEnabled(boolean enabled) {
         if (mEnabled != enabled) {
             mEnabled = enabled;
-            if (mEnabled && mAdapter != null) {
-                reloadData();
+            if (mAdapter != null) {
+                if (mEnabled) {
+                    reloadData();
+                } else {
+                    mAdapter.clearPartitions();
+                }
             }
         }
     }

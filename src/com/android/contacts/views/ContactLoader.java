@@ -865,33 +865,34 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         @Override
         protected void onPostExecute(Result result) {
+            unregisterObserver();
+
             // The creator isn't interested in any further updates
-            if (mDestroyed) {
+            if (mDestroyed || result == null) {
                 return;
             }
 
             mContact = result;
-            if (result != null) {
-                mLookupUri = result.getLookupUri();
-                unregisterObserver();
-                if (mObserver == null) {
-                    mObserver = new ForceLoadContentObserver();
-                }
-                Log.i(TAG, "Registering content observer for " + mLookupUri);
 
-                if (result != Result.ERROR && result != Result.NOT_FOUND
-                        && !result.isDirectoryEntry()) {
-                    getContext().getContentResolver().registerContentObserver(mLookupUri, true,
-                            mObserver);
+            if (result != Result.ERROR && result != Result.NOT_FOUND) {
+                mLookupUri = result.getLookupUri();
+
+                if (!result.isDirectoryEntry()) {
+                    Log.i(TAG, "Registering content observer for " + mLookupUri);
+                    if (mObserver == null) {
+                        mObserver = new ForceLoadContentObserver();
+                    }
+                    getContext().getContentResolver().registerContentObserver(
+                            mLookupUri, true, mObserver);
                 }
 
                 if (mContact.getPhotoBinaryData() == null && mContact.getPhotoUri() != null) {
                     mContact.setLoadingPhoto(true);
                     new AsyncPhotoLoader().execute(mContact.getPhotoUri());
                 }
-
-                deliverResult(mContact);
             }
+
+            deliverResult(mContact);
         }
     }
 
@@ -930,9 +931,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         @Override
         protected void onPostExecute(byte[] data) {
-            mContact.setPhotoBinaryData(data);
-            mContact.setLoadingPhoto(false);
-            deliverResult(mContact);
+            if (mContact != null) {
+                mContact.setPhotoBinaryData(data);
+                mContact.setLoadingPhoto(false);
+                deliverResult(mContact);
+            }
         }
     }
 

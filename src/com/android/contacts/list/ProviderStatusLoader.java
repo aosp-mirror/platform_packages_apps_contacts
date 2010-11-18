@@ -95,6 +95,7 @@ public class ProviderStatusLoader extends ContentObserver {
 
         ContentResolver resolver = mContext.getContentResolver();
         if (listener != null) {
+            mProviderStatus = UNKNOWN;
             resolver.registerContentObserver(ProviderStatus.CONTENT_URI, false, this);
         } else {
             resolver.unregisterContentObserver(this);
