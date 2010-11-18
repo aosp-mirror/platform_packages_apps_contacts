@@ -254,47 +254,45 @@ public abstract class ContactBrowseListFragment extends
     }
 
     public void createNewContact() {
-        mListener.onCreateNewContactAction();
+        if (mListener != null) mListener.onCreateNewContactAction();
     }
 
     public void viewContact(Uri contactUri) {
-        mListener.onViewContactAction(contactUri);
+        if (mListener != null) mListener.onViewContactAction(contactUri);
     }
 
     public void editContact(Uri contactUri) {
-        mListener.onEditContactAction(contactUri);
+        if (mListener != null) mListener.onEditContactAction(contactUri);
     }
 
     public void deleteContact(Uri contactUri) {
-        mListener.onDeleteContactAction(contactUri);
+        if (mListener != null) mListener.onDeleteContactAction(contactUri);
     }
 
     public void addToFavorites(Uri contactUri) {
-        mListener.onAddToFavoritesAction(contactUri);
+        if (mListener != null) mListener.onAddToFavoritesAction(contactUri);
     }
 
     public void removeFromFavorites(Uri contactUri) {
-        mListener.onRemoveFromFavoritesAction(contactUri);
+        if (mListener != null) mListener.onRemoveFromFavoritesAction(contactUri);
     }
 
     public void callContact(Uri contactUri) {
-        mListener.onCallContactAction(contactUri);
+        if (mListener != null) mListener.onCallContactAction(contactUri);
     }
 
     public void smsContact(Uri contactUri) {
-        mListener.onSmsContactAction(contactUri);
+        if (mListener != null) mListener.onSmsContactAction(contactUri);
     }
 
     private void notifyInvalidSelection() {
-        if (mListener != null) {
-            mListener.onInvalidSelection();
-        }
+        if (mListener != null) mListener.onInvalidSelection();
     }
 
     @Override
     protected void finish() {
         super.finish();
-        mListener.onFinishAction();
+        if (mListener != null) mListener.onFinishAction();
     }
 
     public void requestSelectionOnScreen(boolean smooth) {
