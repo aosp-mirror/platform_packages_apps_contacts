@@ -18,6 +18,8 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.interactions.GroupRenamingDialogFragment;
 import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
@@ -401,6 +403,8 @@ public class ContactBrowserActivity extends Activity
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -431,6 +435,8 @@ public class ContactBrowserActivity extends Activity
         } else if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -478,6 +484,8 @@ public class ContactBrowserActivity extends Activity
         if (mContactContentDisplayed) {
             setupContactDetailFragment(requestedContactUri);
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -883,6 +891,26 @@ public class ContactBrowserActivity extends Activity
             displayGroups.setVisible(
                     mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT);
         }
+
+        boolean groupSelected = false;
+        if (mListFragment instanceof DefaultContactBrowseListFragment) {
+            ContactListFilter filter =
+                    ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+            if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
+                groupSelected = true;
+            }
+        }
+
+        MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
+        if (renameGroup != null) {
+            renameGroup.setVisible(groupSelected);
+        }
+
+        MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
+        if (deleteGroup != null) {
+            deleteGroup.setVisible(groupSelected);
+        }
+
         return true;
     }
 
@@ -913,6 +941,20 @@ public class ContactBrowserActivity extends Activity
                     ContactsContract.AUTHORITY
                 });
                 startActivity(intent);
+                return true;
+            }
+            case R.id.menu_rename_group: {
+                ContactListFilter filter =
+                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                GroupRenamingDialogFragment.show(getFragmentManager(), filter.groupId,
+                        filter.title);
+                return true;
+            }
+            case R.id.menu_delete_group: {
+                ContactListFilter filter =
+                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                GroupDeletionDialogFragment.show(getFragmentManager(), filter.groupId,
+                        filter.title);
                 return true;
             }
         }
