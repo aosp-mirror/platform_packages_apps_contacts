@@ -17,13 +17,19 @@ package com.android.contacts.vcard;
 
 import com.android.contacts.R;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -46,10 +52,14 @@ public class VCardService extends Service {
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
     /* package */ static final int MSG_EXPORT_REQUEST = 2;
-    /* package */ static final int MSG_CANCEL_IMPORT_REQUEST = 3;
+    /* package */ static final int MSG_CANCEL_REQUEST = 3;
 
-    /* package */ static final int IMPORT_NOTIFICATION_ID = 1000;
-    /* package */ static final int EXPORT_NOTIFICATION_ID = 1001;
+    /**
+     * Specifies the type of operation. Used when constructing a {@link Notification}, canceling
+     * some operation, etc.
+     */
+    /* package */ static final int TYPE_IMPORT = 1;
+    /* package */ static final int TYPE_EXPORT = 2;
 
     /* package */ static final String CACHE_FILE_PREFIX = "import_tmp_";
 
@@ -65,8 +75,8 @@ public class VCardService extends Service {
                     handleExportRequest((ExportRequest)msg.obj);
                     break;
                 }
-                case MSG_CANCEL_IMPORT_REQUEST: {
-                    handleCancelAllImportRequest();
+                case MSG_CANCEL_REQUEST: {
+                    handleCancelRequest((CancelRequest)msg.obj);
                     break;
                 }
                 // TODO: add cancel capability for export..
@@ -78,6 +88,8 @@ public class VCardService extends Service {
         }
     });
 
+    private NotificationManager mNotificationManager;
+
     // Should be single thread, as we don't want to simultaneously handle import and export
     // requests.
     private final ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
@@ -88,6 +100,12 @@ public class VCardService extends Service {
     // Key is jobId.
     private final Map<Integer, ProcessorBase> mRunningJobMap =
             new HashMap<Integer, ProcessorBase>();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int id) {
@@ -108,66 +126,74 @@ public class VCardService extends Service {
     }
 
     private synchronized void handleImportRequest(ImportRequest request) {
-        tryExecute(new ImportProcessor(this, request, mCurrentJobId),
-                R.string.vcard_import_will_start_message,
-                R.string.vcard_import_request_rejected_message);
+        if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
+            final String displayName = request.originalUri.getLastPathSegment(); 
+            final String message = getString(R.string.vcard_import_will_start_message,
+                    displayName);
+            // TODO: Ideally we should detect the current status of import/export and show
+            // "started" when we can import right now and show "will start" when we cannot.
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+            final Notification notification =
+                    constructProgressNotification(
+                            this, TYPE_IMPORT, message, message, mCurrentJobId,
+                            displayName, -1, 0);
+            mNotificationManager.notify(mCurrentJobId, notification);
+            mCurrentJobId++;
+        } else {
+            // TODO: a little unkind to show Toast in this case, which is shown just a moment.
+            // Ideally we should show some persistent something users can notice more easily.
+            Toast.makeText(this, getString(R.string.vcard_import_request_rejected_message),
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     private synchronized void handleExportRequest(ExportRequest request) {
-        tryExecute(new ExportProcessor(this, request, mCurrentJobId),
-                R.string.vcard_export_will_start_message,
-                R.string.vcard_export_request_rejected_message);
+        if (tryExecute(new ExportProcessor(this, request, mCurrentJobId))) {
+            final String displayName = request.destUri.getLastPathSegment();
+            final String message = getString(R.string.vcard_export_will_start_message,
+                    displayName);
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            final Notification notification =
+                    constructProgressNotification(this, TYPE_EXPORT, message, message,
+                            mCurrentJobId, displayName, -1, 0);
+            mNotificationManager.notify(mCurrentJobId, notification);
+            mCurrentJobId++;
+        } else {
+            Toast.makeText(this, getString(R.string.vcard_export_request_rejected_message),
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
-     * Tries to call {@link ExecutorService#execute(Runnable)} toward a given processor and
-     * shows appropriate Toast using given resource ids.
-     * Updates relevant instances when successful.
+     * Tries to call {@link ExecutorService#execute(Runnable)} toward a given processor.
+     * @return true when successful.
      */
-    private synchronized void tryExecute(ProcessorBase processor,
-            int successfulMessageId, int rejectedMessageId) {
+    private synchronized boolean tryExecute(ProcessorBase processor) {
         try {
             mExecutorService.execute(processor);
             mRunningJobMap.put(mCurrentJobId, processor);
-            mCurrentJobId++;
-            // TODO: Ideally we should detect the current status of import/export and show
-            // "started" when we can import right now and show "will start" when we cannot.
-            Toast.makeText(this, getString(successfulMessageId), Toast.LENGTH_LONG).show();
+            return true;
         } catch (RejectedExecutionException e) {
             Log.w(LOG_TAG, "Failed to excetute a job.", e);
-            // TODO: a little unkind to show Toast in this case, which is shown just a moment.
-            // Ideally we should show some persistent something users can notice more easily.
-            Toast.makeText(this, getString(rejectedMessageId), Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 
-    private void handleCancelAllImportRequest() {
-        Log.i(LOG_TAG, "Received cancel import request.");
-        cancelAllImportRequests();
-    }
+    private void handleCancelRequest(CancelRequest request) {
+        final int jobId = request.jobId;
+        Log.i(LOG_TAG, String.format("Received cancel request. (id: %d)", jobId));
+        final ProcessorBase processor = mRunningJobMap.remove(jobId);
 
-    private synchronized void cancelAllImportRequests() {
-        for (final Map.Entry<Integer, ProcessorBase> entry : mRunningJobMap.entrySet()) {
-            final ProcessorBase processor = entry.getValue();
-            if (processor.getType() == ProcessorBase.PROCESSOR_TYPE_IMPORT) {
-                final int jobId = entry.getKey();
-                processor.cancel(true);
-                mRunningJobMap.remove(jobId);
-                Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
-            }
-        }
-        stopServiceWhenNoJob();
-    }
-
-    private synchronized void cancelAllExportRequests() {
-        for (final Map.Entry<Integer, ProcessorBase> entry : mRunningJobMap.entrySet()) {
-            final ProcessorBase processor = entry.getValue();
-            if (processor.getType() == ProcessorBase.PROCESSOR_TYPE_EXPORT) {
-                final int jobId = entry.getKey();
-                processor.cancel(true);
-                mRunningJobMap.remove(jobId);
-                Log.i(LOG_TAG, String.format("Canceling job %d", jobId));
-            }
+        if (processor != null) {
+            processor.cancel(true);
+            final String description = processor.getType() == TYPE_IMPORT ?
+                    getString(R.string.importing_vcard_canceled_title, request.displayName) :
+                            getString(R.string.exporting_vcard_canceled_title, request.displayName);
+            final Notification notification = constructCancelNotification(this, description);
+            mNotificationManager.notify(jobId, notification);
+        } else {
+            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
         stopServiceWhenNoJob();
     }
@@ -240,5 +266,101 @@ public class VCardService extends Service {
                 deleteFile(fileName);
             }
         }
+    }
+
+    /**
+     * Constructs a {@link Notification} showing the current status of import/export.
+     * Users can cancel the process with the Notification.
+     *
+     * @param context
+     * @param type import/export
+     * @param description Content of the Notification.
+     * @param tickerText
+     * @param jobId
+     * @param displayName Name to be shown to the Notification (e.g. "finished importing XXXX").
+     * Typycally a file name.
+     * @param totalCount The number of vCard entries to be imported. Used to show progress bar.
+     * -1 lets the system show the progress bar with "indeterminate" state.
+     * @param currentCount The index of current vCard. Used to show progress bar.
+     */
+    /* package */ static Notification constructProgressNotification(
+            Context context, int type, String description, String tickerText,
+            int jobId, String displayName, int totalCount, int currentCount) {
+        final RemoteViews remoteViews =
+                new RemoteViews(context.getPackageName(),
+                        R.layout.status_bar_ongoing_event_progress_bar);
+        remoteViews.setTextViewText(R.id.status_description, description);
+        remoteViews.setProgressBar(R.id.status_progress_bar, totalCount, currentCount,
+                totalCount == -1);
+        final String percentage;
+        if (totalCount > 0) {
+            percentage = context.getString(R.string.percentage,
+                    String.valueOf(currentCount * 100/totalCount));
+        } else {
+            percentage = "";
+        }
+        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
+        final int icon = (type == TYPE_IMPORT ? android.R.drawable.stat_sys_download :
+                android.R.drawable.stat_sys_upload);
+        remoteViews.setImageViewResource(R.id.status_icon, icon);
+
+        final Notification notification = new Notification();
+        notification.icon = icon;
+        notification.tickerText = tickerText;
+        notification.contentView = remoteViews;
+        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+        // Note: We cannot use extra values here (like setIntExtra()), as PendingIntent doesn't
+        // preserve them across multiple Notifications. PendingIntent preserves the first extras
+        // (when flag is not set), or update them when PendingIntent#getActivity() is called
+        // (See PendingIntent#FLAG_UPDATE_CURRENT). In either case, we cannot preserve extras as we
+        // expect (for each vCard import/export request).
+        //
+        // We use query parameter in Uri instead.
+        // Scheme and Authority is arbitorary, assuming CancelActivity never refers them.
+        final Intent intent = new Intent(context, CancelActivity.class);
+        final Uri uri = (new Uri.Builder())
+                .scheme("invalidscheme")
+                .authority("invalidauthority")
+                .appendQueryParameter(CancelActivity.JOB_ID, String.valueOf(jobId))
+                .appendQueryParameter(CancelActivity.DISPLAY_NAME, displayName)
+                .appendQueryParameter(CancelActivity.TYPE, String.valueOf(type)).build();
+        intent.setData(uri);
+
+        notification.contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        return notification;
+    }
+
+    /**
+     * Constructs a Notification telling users the process is canceled.
+     *
+     * @param context
+     * @param description Content of the Notification
+     */
+    /* package */ static Notification constructCancelNotification(
+            Context context, String description) {
+        final Notification notification = new Notification();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.icon = android.R.drawable.stat_notify_error;
+        notification.setLatestEventInfo(context, description, description,
+                PendingIntent.getActivity(context, 0, null, 0));
+        return notification;
+    }
+
+    /**
+     * Constructs a Notification telling users the process is finished.
+     *
+     * @param context
+     * @param description Content of the Notification
+     * @param intent Intent to be launched when the Notification is clicked. Can be null.
+     */
+    /* package */ static Notification constructFinishNotification(
+            Context context, String description, Intent intent) {
+        final Notification notification = new Notification();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.icon = android.R.drawable.stat_sys_download_done;
+        notification.setLatestEventInfo(context, description, description,
+                PendingIntent.getActivity(context, 0, intent, 0));
+        return notification;
     }
 }

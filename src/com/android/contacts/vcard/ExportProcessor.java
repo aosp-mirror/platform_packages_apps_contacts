@@ -48,7 +48,7 @@ public class ExportProcessor extends ProcessorBase {
     private final ExportRequest mExportRequest;
     private final int mJobId;
 
-    private volatile boolean mCancelled;
+    private volatile boolean mCanceled;
     private volatile boolean mDone;
 
     public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId) {
@@ -62,7 +62,7 @@ public class ExportProcessor extends ProcessorBase {
 
     @Override
     public final int getType() {
-        return PROCESSOR_TYPE_EXPORT;
+        return VCardService.TYPE_EXPORT;
     }
 
     @Override
@@ -70,6 +70,13 @@ public class ExportProcessor extends ProcessorBase {
         // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
             runInternal();
+
+            if (isCancelled()) {
+                doCancelNotification();
+            }
+        } catch (OutOfMemoryError e) {
+            Log.e(LOG_TAG, "OutOfMemoryError thrown during import", e);
+            throw e;
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "RuntimeException thrown during export", e);
             throw e;
@@ -86,7 +93,7 @@ public class ExportProcessor extends ProcessorBase {
         VCardComposer composer = null;
         boolean successful = false;
         try {
-            if (mCancelled) {
+            if (isCancelled()) {
                 Log.i(LOG_TAG, "Export request is cancelled before handling the request");
                 return;
             }
@@ -147,7 +154,7 @@ public class ExportProcessor extends ProcessorBase {
 
             int current = 1;  // 1-origin
             while (!composer.isAfterLast()) {
-                if (mCancelled) {
+                if (isCancelled()) {
                     Log.i(LOG_TAG, "Export request is cancelled during composing vCard");
                     return;
                 }
@@ -173,7 +180,9 @@ public class ExportProcessor extends ProcessorBase {
             Log.i(LOG_TAG, "Successfully finished exporting vCard " + request.destUri);
 
             successful = true;
-            final String title = mService.getString(R.string.exporting_vcard_finished_title);
+            final String filename = uri.getLastPathSegment();
+            final String title = mService.getString(R.string.exporting_vcard_finished_title,
+                    filename);
             doFinishNotification(title, "");
         } finally {
             if (composer != null) {
@@ -197,58 +206,46 @@ public class ExportProcessor extends ProcessorBase {
         }
     }
 
-    private void doProgressNotification(Uri uri, int total, int current) {
-        final String title = mService.getString(R.string.exporting_contact_list_title);
-        final String filename = uri.getLastPathSegment();
+    private void doProgressNotification(Uri uri, int totalCount, int currentCount) {
+        final String displayName = uri.getLastPathSegment();
         final String description =
-                mService.getString(R.string.exporting_contact_list_message, filename);
-
-        final RemoteViews remoteViews = new RemoteViews(mService.getPackageName(),
-                R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.status_description, description);
-        remoteViews.setProgressBar(R.id.status_progress_bar, total, current, (total == -1));
-
-        final String percentage = mService.getString(R.string.percentage,
-                String.valueOf((current * 100)/total));
-        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
-        remoteViews.setImageViewResource(R.id.status_icon, android.R.drawable.stat_sys_upload);
-
-        final Notification notification = new Notification();
-        notification.icon = android.R.drawable.stat_sys_upload;
-        notification.flags |= Notification.FLAG_ONGOING_EVENT;
-        notification.tickerText = title;
-        notification.contentView = remoteViews;
-        notification.contentIntent =
-                PendingIntent.getActivity(mService, 0,
-                        new Intent(mService, ContactBrowserActivity.class), 0);
-
-        mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
+                mService.getString(R.string.exporting_contact_list_message, displayName);
+        final String tickerText =
+                mService.getString(R.string.exporting_contact_list_title);
+        final Notification notification =
+                VCardService.constructProgressNotification(mService, VCardService.TYPE_EXPORT,
+                        description, tickerText, mJobId, displayName, totalCount, currentCount);
+        mNotificationManager.notify(mJobId, notification);
     }
 
-    private void doFinishNotification(final String title, final String message) {
-        final Notification notification = new Notification();
-        notification.icon = android.R.drawable.stat_sys_upload_done;
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.setLatestEventInfo(mService, title, message, null);
+    private void doCancelNotification() {
+        final String description = mService.getString(R.string.exporting_vcard_canceled_title,
+                mExportRequest.destUri.getLastPathSegment());
+        final Notification notification =
+                VCardService.constructCancelNotification(mService, description);
+        mNotificationManager.notify(mJobId, notification);
+    }
+
+    private void doFinishNotification(final String title, final String description) {
         final Intent intent = new Intent(mService, ContactBrowserActivity.class);
-        notification.contentIntent =
-                PendingIntent.getActivity(mService, 0, intent, 0);
-        mNotificationManager.notify(VCardService.EXPORT_NOTIFICATION_ID, notification);
+        final Notification notification =
+                VCardService.constructFinishNotification(mService, description, intent);
+        mNotificationManager.notify(mJobId, notification);
     }
 
     @Override
     public synchronized boolean cancel(boolean mayInterruptIfRunning) {
         Log.i(LOG_TAG, "received cancel request");
-        if (mDone || mCancelled) {
+        if (mDone || mCanceled) {
             return false;
         }
-        mCancelled = true;
+        mCanceled = true;
         return true;
     }
 
     @Override
     public synchronized boolean isCancelled() {
-        return mCancelled;
+        return mCanceled;
     }
 
     @Override

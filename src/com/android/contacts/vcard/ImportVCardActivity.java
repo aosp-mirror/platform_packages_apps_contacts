@@ -284,7 +284,8 @@ public class ImportVCardActivity extends Activity {
                         Log.w(LOG_TAG, "destUri is null");
                         break;
                     }
-                    final ImportRequest parameter = constructImportRequest(localDataUri);
+                    final ImportRequest parameter = constructImportRequest(
+                            localDataUri, sourceUri);
                     if (mCanceled) {
                         Log.i(LOG_TAG, "vCard cache operation is canceled.");
                         return;
@@ -359,13 +360,17 @@ public class ImportVCardActivity extends Activity {
         }
 
         /**
-         * Reads the Uri (possibly multiple times) and constructs {@link ImportRequest} from
+         * Reads localDataUri (possibly multiple times) and constructs {@link ImportRequest} from
          * its content.
          *
-         * Uri should be local one, as we cannot guarantee other types of Uris can be read
-         * multiple times.
+         * @arg localDataUri Uri actually used for the import. Should be stored in
+         * app local storage, as we cannot guarantee other types of Uris can be read
+         * multiple times. This variable populates {@link ImportRequest#uri}.
+         * @arg originalUri Uri requested to be imported. Used mainly for displaying
+         * information. This variable populates {@link ImportRequest#originalUri}.
          */
-        private ImportRequest constructImportRequest(final Uri localDataUri) {
+        private ImportRequest constructImportRequest(
+                final Uri localDataUri, final Uri originalUri) {
             final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
             VCardSourceDetector detector = null;
@@ -419,7 +424,8 @@ public class ImportVCardActivity extends Activity {
                 Log.e(LOG_TAG, "IOException during constructing ImportRequest", e);
                 return null;
             }
-            return new ImportRequest(mAccount, localDataUri,
+            return new ImportRequest(mAccount,
+                    localDataUri, originalUri,
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
                     vcardVersion, counter.getCount());

@@ -805,21 +805,28 @@
          [CHAR LIMIT=40] -->
     <string name="reading_vcard_canceled_title">Reading vCard data was canceled</string>
 
-    <!-- The title shown when reading vCard finished -->
-    <string name="importing_vcard_finished_title">Finished importing vCard</string>
+    <!-- The title shown when reading vCard finished
+         The argument is file name the user imported.
+         [CHAR LIMIT=40] -->
+    <string name="importing_vcard_finished_title">Finished importing vCard <xliff:g id="filename" example="import.vcf">%s</xliff:g></string>
 
     <!-- The title shown when importing vCard is canceled (probably by a user)
+         The argument is file name the user canceled importing.
          [CHAR LIMIT=40] -->
-    <string name="importing_vcard_canceled_title">Reading vCard data was canceled</string>
+    <string name="importing_vcard_canceled_title">Importing <xliff:g id="filename" example="import.vcf">%s</xliff:g> was canceled</string>
 
     <!-- The message shown when vCard import request is accepted. The system may start that work soon, or do it later
-         when there are already other import/export requests. [CHAR LIMIT=30] -->
-    <string name="vcard_import_will_start_message">vCard importer will start shortly.</string>
+         when there are already other import/export requests.
+         The argument is file name the user imported.
+         [CHAR LIMIT=40] -->
+    <string name="vcard_import_will_start_message"><xliff:g id="filename" example="import.vcf">%s</xliff:g> will be imported shortly.</string>
     <!-- The message shown when a given vCard import request is rejected by the system. [CHAR LIMIT=NONE] -->
     <string name="vcard_import_request_rejected_message">vCard import request is rejected. Please try later.</string>
     <!-- The message shown when vCard export request is accepted. The system may start that work soon, or do it later
-         when there are already other import/export requests. [CHAR LIMIT=30] -->
-    <string name="vcard_export_will_start_message">vCard exporter will start shortly.</string>
+         when there are already other import/export requests.
+         The argument is file name the user exported.
+         [CHAR LIMIT=40] -->
+    <string name="vcard_export_will_start_message"><xliff:g id="filename" example="import.vcf">%s</xliff:g> will be exported shortly.</string>
     <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_request_rejected_message">vCard export request is rejected. Please try later.</string>
 
@@ -857,7 +864,12 @@
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\")</string>
 
     <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
-    <string name="exporting_vcard_finished_title">Finished exporting vCard</string>
+    <string name="exporting_vcard_finished_title">Finished exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g></string>
+
+    <!-- The title shown when exporting vCard is canceled (probably by a user)
+         The argument is file name the user canceled importing.
+         [CHAR LIMIT=40] -->
+    <string name="exporting_vcard_canceled_title">Exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g> was canceled</string>
 
     <!-- Dialog title shown when the application is exporting contact data outside -->
     <string name="exporting_contact_list_title">Exporting contact data</string>
@@ -899,13 +911,23 @@
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
 
     <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard import. [CHAR LIMIT=40] -->
-    <string name="cancel_import_confirmation_title">Canceling import vCard</string>
+    <string name="cancel_import_confirmation_title">Canceling vCard import</string>
 
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
-         The argument is the Uri for the vCard import the user wants to cancel.
-         [CHAR LIMIT=70]
-      -->
-    <string name="cancel_import_confirmation_message">Are you sure to cancel importing vCard?</string>
+         The argument is file name for the vCard import the user wants to cancel.
+         [CHAR LIMIT=128] -->
+    <string name="cancel_import_confirmation_message">Are you sure to cancel importing <xliff:g id="filename" example="import.vcf">%s</xliff:g>?</string>
+
+    <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard export. [CHAR LIMIT=128] -->
+    <string name="cancel_export_confirmation_title">Canceling vCard export</string>
+
+    <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard export.
+         The argument is file name for the vCard export the user wants to cancel.
+         [CHAR LIMIT=128] -->
+    <string name="cancel_export_confirmation_message">Are you sure to cancel exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>?</string>
+
+    <!-- Title shown in a Dialog telling users cancel vCard import/export operation is failed. [CHAR LIMIT=40] -->
+    <string name="cancel_vcard_import_or_export_failed">Failed to cancel vCard import/export</string>
 
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>

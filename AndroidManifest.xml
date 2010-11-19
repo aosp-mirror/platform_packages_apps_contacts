@@ -544,7 +544,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".vcard.CancelImportActivity"
+        <activity android:name=".vcard.CancelActivity"
             android:theme="@style/BackgroundOnly" />
 
         <activity android:name=".vcard.SelectAccountActivity"

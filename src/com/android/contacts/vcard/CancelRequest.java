@@ -15,14 +15,18 @@
  */
 package com.android.contacts.vcard;
 
-import android.net.Uri;
-
 /**
- * Class representing one request for canceling vCard import (given as a Uri).
+ * Class representing one request for canceling vCard import/export.
  */
-public class CancelImportRequest {
-    public final Uri uri;
-    public CancelImportRequest(Uri uri) {
-        this.uri = uri;
+public class CancelRequest {
+    public final int jobId;
+    /**
+     * Name used for showing users some useful info. Typically a file name.
+     * Must not be used to do some actual operations.
+     */
+    public final String displayName;
+    public CancelRequest(int jobId, String displayName) {
+        this.jobId = jobId;
+        this.displayName = displayName;
     }
 }

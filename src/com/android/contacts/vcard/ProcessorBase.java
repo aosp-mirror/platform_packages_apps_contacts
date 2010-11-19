@@ -33,12 +33,9 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class ProcessorBase implements RunnableFuture<Object> {
 
-    public static final int PROCESSOR_TYPE_IMPORT = 1;
-    public static final int PROCESSOR_TYPE_EXPORT = 2;
-
     /**
-     * @return the type of the processor. Must be {@link #PROCESSOR_TYPE_IMPORT} or
-     * {@link #PROCESSOR_TYPE_EXPORT}.
+     * @return the type of the processor. Must be {@link VCardService#TYPE_IMPORT} or
+     * {@link VCardService#TYPE_EXPORT}.
      */
     public abstract int getType();
 
