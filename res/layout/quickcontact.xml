@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,13 +15,11 @@
 
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.quickcontact.QuickContactWindow$RootLayout"
+    class="com.android.contacts.quickcontact.QuickContactRootLayout"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/quickcontact_shadow_horiz"
-    android:paddingRight="@dimen/quickcontact_shadow_horiz"
-    android:background="@drawable/quickcontact_drop_shadow">
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/header"
@@ -57,46 +54,24 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header"
+        android:layout_marginTop="5dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginBottom="10dip"
         android:fadingEdgeLength="0dip"
-        android:background="@drawable/quickcontact_slider_background"
         android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/quickcontact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="4dip"
-            android:paddingBottom="4dip"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/quickcontact_slider_grip_left" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/quickcontact_slider_grip_right" />
-
-        </LinearLayout>
-
+            android:orientation="horizontal" />
     </HorizontalScrollView>
-
-    <FrameLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scroll"
-        android:background="@drawable/quickcontact_bottom_frame" />
 
     <LinearLayout
         android:id="@+id/footer_disambig"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scroll"
-        android:background="@drawable/quickcontact_disambig_bottom_bg"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -105,8 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="@color/quickcontact_disambig"
-            android:divider="@drawable/quickcontact_disambig_divider"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
             android:cacheColorHint="@null" />
 
         <CheckBox
@@ -119,32 +94,7 @@
             android:textColor="#f000"
             android:textStyle="bold"
             android:text="@string/quickcontact_remember_choice"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse"
-            android:button="@drawable/quickcontact_disambig_checkbox" />
+            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/arrow_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/quickcontact_arrow_up" />
-
-    <ImageView
-        android:id="@+id/arrow_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-1dip"
-        android:layout_below="@id/footer"
-        android:src="@drawable/quickcontact_arrow_down" />
-
-    <ImageView
-        android:id="@+id/arrow_down_stub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-1dip"
-        android:layout_below="@id/footer_disambig"
-        android:visibility="invisible"
-        android:src="@drawable/quickcontact_arrow_down" />
-
 </view>

@@ -53,6 +53,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".quickcontact.QuickContactTestsActivity"
+            android:label="@string/quickContactTests"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"

@@ -20,7 +20,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="51dip"
-    android:background="@drawable/quickcontact_top_frame"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 

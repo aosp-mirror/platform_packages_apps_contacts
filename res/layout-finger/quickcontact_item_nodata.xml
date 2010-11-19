@@ -24,6 +24,5 @@
     android:focusable="false"
     android:clickable="false"
     android:gravity="center_vertical"
-    android:background="@drawable/quickcontact_slider_btn_normal"
     android:textColor="@android:color/black"
     android:text="@string/quickcontact_no_data" />

@@ -14,10 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <!-- Size of the text in the aizy visual scroll control -->
-    
-
     <dimen name="edit_photo_size">96dip</dimen>
-
     <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
 </resources>

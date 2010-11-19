@@ -50,7 +50,8 @@
         <item name="android:windowAnimationStyle">@style/DummyAnimation</item>
     </style>
 
-    <style name="QuickContact">
+    <style name="QuickContact" parent="@android:Theme.Light.Holo">
+        <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
