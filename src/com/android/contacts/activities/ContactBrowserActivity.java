@@ -43,7 +43,6 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -76,7 +75,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
@@ -145,7 +144,7 @@ public class ContactBrowserActivity extends Activity
 
     private ContactListFilterController mContactListFilterController;
 
-    private ImageView mAddContactImageView;
+    private ImageButton mAddContactImageView;
 
     private Handler mHandler;
 
@@ -240,10 +239,9 @@ public class ContactBrowserActivity extends Activity
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
             // TODO: request may ask for FREQUENT - set the filter accordingly
-            mAddContactImageView = new ImageView(this);
+            mAddContactImageView = new ImageButton(this, null,
+                    com.android.internal.R.attr.actionButtonStyle);
             mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
-            mAddContactImageView.setBackgroundResource(
-                    ThemeUtils.getSelectableItemBackground(getTheme()));
             mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
             mAddContactImageView.setOnClickListener(new OnClickListener() {
                 @Override
