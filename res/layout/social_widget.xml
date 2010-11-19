@@ -20,11 +20,21 @@
     android:layout_height="fill_parent"
     android:background="#00000000"
 >
-    <ImageView
-        android:id="@+id/image"
-        android:background="@drawable/photo_frame_widget_holo_light"
+    <FrameLayout
         android:layout_width="96dip"
-        android:layout_height="96dip" />
+        android:layout_height="96dip">
+        <ImageView
+            android:id="@+id/image"
+            android:padding="10dip"
+            android:focusable="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/border"
+            android:background="@drawable/photo_frame_widget_holo_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="90dip"

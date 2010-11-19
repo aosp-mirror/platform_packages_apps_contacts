@@ -18,6 +18,8 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.interactions.GroupRenamingDialogFragment;
 import com.android.contacts.interactions.ImportExportInteraction;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
@@ -41,7 +43,6 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -74,7 +75,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
@@ -143,7 +144,7 @@ public class ContactBrowserActivity extends Activity
 
     private ContactListFilterController mContactListFilterController;
 
-    private ImageView mAddContactImageView;
+    private ImageButton mAddContactImageView;
 
     private Handler mHandler;
 
@@ -238,10 +239,9 @@ public class ContactBrowserActivity extends Activity
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
             // TODO: request may ask for FREQUENT - set the filter accordingly
-            mAddContactImageView = new ImageView(this);
+            mAddContactImageView = new ImageButton(this, null,
+                    com.android.internal.R.attr.actionButtonStyle);
             mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
-            mAddContactImageView.setBackgroundResource(
-                    ThemeUtils.getSelectableItemBackground(getTheme()));
             mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
             mAddContactImageView.setOnClickListener(new OnClickListener() {
                 @Override
@@ -401,6 +401,8 @@ public class ContactBrowserActivity extends Activity
         if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -431,6 +433,8 @@ public class ContactBrowserActivity extends Activity
         } else if (mContactContentDisplayed) {
             setupContactDetailFragment(mListFragment.getSelectedContactUri());
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -478,6 +482,8 @@ public class ContactBrowserActivity extends Activity
         if (mContactContentDisplayed) {
             setupContactDetailFragment(requestedContactUri);
         }
+
+        invalidateOptionsMenu();
     }
 
     /**
@@ -883,6 +889,26 @@ public class ContactBrowserActivity extends Activity
             displayGroups.setVisible(
                     mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT);
         }
+
+        boolean groupSelected = false;
+        if (mListFragment instanceof DefaultContactBrowseListFragment) {
+            ContactListFilter filter =
+                    ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+            if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
+                groupSelected = true;
+            }
+        }
+
+        MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
+        if (renameGroup != null) {
+            renameGroup.setVisible(groupSelected);
+        }
+
+        MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
+        if (deleteGroup != null) {
+            deleteGroup.setVisible(groupSelected);
+        }
+
         return true;
     }
 
@@ -913,6 +939,20 @@ public class ContactBrowserActivity extends Activity
                     ContactsContract.AUTHORITY
                 });
                 startActivity(intent);
+                return true;
+            }
+            case R.id.menu_rename_group: {
+                ContactListFilter filter =
+                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                GroupRenamingDialogFragment.show(getFragmentManager(), filter.groupId,
+                        filter.title);
+                return true;
+            }
+            case R.id.menu_delete_group: {
+                ContactListFilter filter =
+                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                GroupDeletionDialogFragment.show(getFragmentManager(), filter.groupId,
+                        filter.title);
                 return true;
             }
         }

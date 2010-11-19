@@ -14,18 +14,14 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="quickcontact_shadow_horiz">30dip</dimen>
-    <dimen name="quickcontact_shadow_vert">37dip</dimen>
-    <dimen name="quickcontact_shadow_touch">20dip</dimen>
-
     <dimen name="edit_photo_size">76dip</dimen>
 
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>
     <dimen name="account_name_height">25dip</dimen>
 
-    <dimen name="contact_shortcut_frame_width">50dip</dimen>    
-    <dimen name="contact_shortcut_frame_height">56dip</dimen>    
+    <dimen name="contact_shortcut_frame_width">50dip</dimen>
+    <dimen name="contact_shortcut_frame_height">56dip</dimen>
 
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
@@ -35,6 +31,11 @@
 
     <dimen name="aizy_preview_width">80dip</dimen>
     <dimen name="aizy_preview_height">80dip</dimen>
+
+    <!-- Width of the quick contact popup. This size is chosen so that the last icon is clipped
+    to indicate horizontal scrollability. Also, this size is the same as the widget to make them
+    aligned -->
+    <dimen name="quick_contact_width">352dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">10dip</dimen>

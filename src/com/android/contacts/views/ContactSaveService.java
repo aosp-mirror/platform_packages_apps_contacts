@@ -16,7 +16,6 @@
 
 package com.android.contacts.views;
 
-import com.android.contacts.activities.ContactBrowserActivity;
 import com.google.android.collect.Sets;
 
 import android.accounts.Account;
@@ -25,6 +24,7 @@ import android.app.IntentService;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.OperationApplicationException;
@@ -33,6 +33,7 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
@@ -51,6 +52,11 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CALLBACK_INTENT = "callbackIntent";
 
     public static final String EXTRA_OPERATIONS = "Operations";
+
+    public static final String ACTION_RENAME_GROUP = "renameGroup";
+    public static final String ACTION_DELETE_GROUP = "deleteGroup";
+    public static final String EXTRA_GROUP_ID = "groupId";
+    public static final String EXTRA_GROUP_LABEL = "groupLabel";
 
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
@@ -82,6 +88,10 @@ public class ContactSaveService extends IntentService {
         String action = intent.getAction();
         if (ACTION_NEW_RAW_CONTACT.equals(action)) {
             createRawContact(intent);
+        } else if (ACTION_RENAME_GROUP.equals(action)) {
+            renameGroup(intent);
+        } else if (ACTION_DELETE_GROUP.equals(action)) {
+            deleteGroup(intent);
         } else {
             performContentProviderOperations(intent);
         }
@@ -167,6 +177,53 @@ public class ContactSaveService extends IntentService {
         callbackIntent.setFlags(
                 Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        return serviceIntent;
+    }
+
+    private void renameGroup(Intent intent) {
+        long groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
+        String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+
+        if (groupId == -1) {
+            Log.e(TAG, "Invalid arguments for renameGroup request");
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(Groups.TITLE, label);
+        getContentResolver().update(
+                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), values, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to rename a group.
+     */
+    public static Intent createGroupRenameIntent(Activity activity, long groupId, String newLabel) {
+        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_RENAME_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, newLabel);
+        return serviceIntent;
+    }
+
+    private void deleteGroup(Intent intent) {
+        long groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
+        if (groupId == -1) {
+            Log.e(TAG, "Invalid arguments for deleteGroup request");
+            return;
+        }
+
+        getContentResolver().delete(
+                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to delete a group.
+     */
+    public static Intent createGroupDeletionIntent(Activity activity, long groupId) {
+        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
         return serviceIntent;
     }
 }

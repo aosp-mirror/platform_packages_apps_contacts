@@ -16,16 +16,15 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
     android:dither="true">
-
+    <!-- TODO: We should be using framework resources here once they are finished -->
     <item android:state_checked="true"
         android:drawable="@drawable/quickcontact_slider_btn_on" />
     <item android:state_window_focused="false"
-        android:drawable="@drawable/quickcontact_slider_btn_normal" />
+        android:drawable="@android:color/transparent" />
     <item android:state_pressed="true"
         android:drawable="@drawable/quickcontact_slider_btn_pressed" />
     <item android:state_focused="true"
         android:drawable="@drawable/quickcontact_slider_btn_selected" />
     <item
-        android:drawable="@drawable/quickcontact_slider_btn_normal" />
-
+        android:drawable="@android:color/transparent" />
 </selector>

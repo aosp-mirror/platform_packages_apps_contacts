@@ -94,6 +94,8 @@
     </string-array>
 
     <string name="pinnedHeaderList">Pinned Headers</string>
+    <string name="quickContactTests">Quick Contact modes</string>
+    <string name="pickContact">Pick contact</string>
 
     <string-array name="pinnedHeaderUseCases">
         <item>One short section - no headers</item>

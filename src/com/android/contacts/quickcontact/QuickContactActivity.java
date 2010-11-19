@@ -103,6 +103,7 @@ public final class QuickContactActivity extends Activity implements
     }
 
     /** {@inheritDoc} */
+    @Override
     public void onDismiss(QuickContactWindow dialog) {
         if (LOGV) Log.d(TAG, "onDismiss");
 

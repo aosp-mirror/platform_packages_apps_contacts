@@ -30,6 +30,9 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Sets;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -39,13 +42,13 @@ import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -58,7 +61,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextThemeWrapper;
@@ -75,9 +77,6 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -85,8 +84,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,7 +104,7 @@ import java.util.Set;
 public class QuickContactWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
         AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener, KeyEvent.Callback,
-        OnGlobalLayoutListener {
+        OnGlobalLayoutListener, QuickContactRootLayout.Listener {
     private static final String TAG = "QuickContactWindow";
 
     /**
@@ -116,30 +115,10 @@ public class QuickContactWindow implements Window.Callback,
         public void onDismiss(QuickContactWindow dialog);
     }
 
-    /**
-     * Custom layout the sole purpose of which is to intercept the BACK key and
-     * close QC even when the soft keyboard is open.
-     */
-    public static class RootLayout extends RelativeLayout {
-
-        QuickContactWindow mQuickContactWindow;
-
-        public RootLayout(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        /**
-         * Intercepts the BACK key event and dismisses QuickContact window.
-         */
-        @Override
-        public boolean dispatchKeyEventPreIme(KeyEvent event) {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                mQuickContactWindow.onBackPressed();
-                return true;
-            }
-            return super.dispatchKeyEventPreIme(event);
-        }
-    }
+    private final static int ANIMATION_FADE_IN_TIME = 100;
+    private final static int ANIMATION_FADE_OUT_TIME = 100;
+    private final static int ANIMATION_EXPAND_TIME = 100;
+    private final static int ANIMATION_COLLAPSE_TIME = 100;
 
     private final Context mContext;
     private final LayoutInflater mInflater;
@@ -159,29 +138,21 @@ public class QuickContactWindow implements Window.Callback,
     private Uri mLookupUri;
     private Rect mAnchor;
 
-    private int mShadowHoriz;
-    private int mShadowVert;
-    private int mShadowTouch;
-
     private int mScreenWidth;
-    private int mScreenHeight;
+    private int mUseableScreenHeight;
     private int mRequestedY;
 
     private boolean mHasValidSocial = false;
     private boolean mMakePrimary = false;
 
-    private ImageView mArrowUp;
-    private ImageView mArrowDown;
-
     private int mMode;
-    private RootLayout mRootView;
+    private QuickContactRootLayout mRootView;
+    private QuickContactBackgroundDrawable mBackground;
     private View mHeader;
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
-    private Animation mTrackAnim;
 
-    private View mFooter;
-    private View mFooterDisambig;
+    private LinearLayout mFooterDisambig;
     private ListView mResolveList;
     private CheckableImageView mLastAction;
     private CheckBox mSetPrimaryCheckBox;
@@ -268,46 +239,31 @@ public class QuickContactWindow implements Window.Callback,
 
         mWindow.setContentView(R.layout.quickcontact);
 
-        mRootView = (RootLayout)mWindow.findViewById(R.id.root);
-        mRootView.mQuickContactWindow = this;
+        mRootView = (QuickContactRootLayout)mWindow.findViewById(R.id.root);
+        mRootView.setListener(this);
         mRootView.setFocusable(true);
         mRootView.setFocusableInTouchMode(true);
-        mRootView.setDescendantFocusability(RootLayout.FOCUS_AFTER_DESCENDANTS);
+        mRootView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
 
-        mArrowUp = (ImageView)mWindow.findViewById(R.id.arrow_up);
-        mArrowDown = (ImageView)mWindow.findViewById(R.id.arrow_down);
+        mBackground = new QuickContactBackgroundDrawable();
+        mRootView.setBackgroundDrawable(mBackground);
 
         mResolveCache = new ResolveCache(mContext);
 
-        final Resources res = mContext.getResources();
-        mShadowHoriz = res.getDimensionPixelSize(R.dimen.quickcontact_shadow_horiz);
-        mShadowVert = res.getDimensionPixelSize(R.dimen.quickcontact_shadow_vert);
-        mShadowTouch = res.getDimensionPixelSize(R.dimen.quickcontact_shadow_touch);
-
         mScreenWidth = mWindowManager.getDefaultDisplay().getWidth();
-        mScreenHeight = mWindowManager.getDefaultDisplay().getHeight();
+        // Status bar height
+        int screenMarginBottom = context.getResources().getDimensionPixelSize(
+                com.android.internal.R.dimen.screen_margin_bottom);
+        mUseableScreenHeight = mWindowManager.getDefaultDisplay().getHeight() - screenMarginBottom;
 
-        mTrack = (ViewGroup)mWindow.findViewById(R.id.quickcontact);
-        mTrackScroll = (HorizontalScrollView)mWindow.findViewById(R.id.scroll);
+        mTrack = (ViewGroup) mWindow.findViewById(R.id.quickcontact);
+        mTrackScroll = (HorizontalScrollView) mWindow.findViewById(R.id.scroll);
 
-        mFooter = mWindow.findViewById(R.id.footer);
-        mFooterDisambig = mWindow.findViewById(R.id.footer_disambig);
-        mResolveList = (ListView)mWindow.findViewById(android.R.id.list);
-        mSetPrimaryCheckBox = (CheckBox)mWindow.findViewById(android.R.id.checkbox);
+        mFooterDisambig = (LinearLayout) mWindow.findViewById(R.id.footer_disambig);
+        mResolveList = (ListView) mWindow.findViewById(android.R.id.list);
+        mSetPrimaryCheckBox = (CheckBox) mWindow.findViewById(android.R.id.checkbox);
 
         mSetPrimaryCheckBox.setOnCheckedChangeListener(this);
-
-        // Prepare track entrance animation
-        mTrackAnim = AnimationUtils.loadAnimation(mContext, R.anim.quickcontact);
-        mTrackAnim.setInterpolator(new Interpolator() {
-            @Override
-            public float getInterpolation(float t) {
-                // Pushes past the target area, then snaps back into place.
-                // Equation for graphing: 1.2-((x*1.6)-1.1)^2
-                final float inner = (t * 1.55f) - 1.1f;
-                return 1.2f - inner * inner;
-            }
-        });
 
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
     }
@@ -437,19 +393,10 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Show the correct call-out arrow based on a {@link R.id} reference.
+     * Creates and configures the background resource
      */
-    private void showArrow(int whichArrow, int requestedX) {
-        final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
-        final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
-
-        final int arrowWidth = mArrowUp.getMeasuredWidth();
-
-        showArrow.setVisibility(View.VISIBLE);
-        ViewGroup.MarginLayoutParams param = (ViewGroup.MarginLayoutParams)showArrow.getLayoutParams();
-        param.leftMargin = requestedX - arrowWidth / 2;
-
-        hideArrow.setVisibility(View.INVISIBLE);
+    private void configureBackground(boolean arrowUp, int requestedX) {
+        mBackground.configure(mContext.getResources(), arrowUp, requestedX);
     }
 
     /**
@@ -459,44 +406,54 @@ public class QuickContactWindow implements Window.Callback,
     private void showInternal() {
         mDecor = mWindow.getDecorView();
         mDecor.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        WindowManager.LayoutParams l = mWindow.getAttributes();
+        WindowManager.LayoutParams layoutParams = mWindow.getAttributes();
 
-        l.width = mScreenWidth + mShadowHoriz + mShadowHoriz;
-        l.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        layoutParams.width = mContext.getResources().getDimensionPixelSize(
+                R.dimen.quick_contact_width);
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        // Force layout measuring pass so we have baseline numbers
-        mDecor.measure(l.width, l.height);
-        final int blockHeight = mDecor.getMeasuredHeight();
-
-        l.gravity = Gravity.TOP | Gravity.LEFT;
-        l.x = -mShadowHoriz;
-
-        if (mAnchor.top > blockHeight) {
-            // Show downwards callout when enough room, aligning bottom block
-            // edge with top of anchor area, and adjusting to inset arrow.
-            showArrow(R.id.arrow_down, mAnchor.centerX());
-            l.y = mAnchor.top - blockHeight + mShadowVert;
-            l.windowAnimations = R.style.QuickContactAboveAnimation;
-
+        // Try to left align with the anchor control
+        if (mAnchor.left + layoutParams.width <= mScreenWidth) {
+            layoutParams.x = mAnchor.left;
         } else {
-            // Otherwise show upwards callout, aligning block top with bottom of
-            // anchor area, and adjusting to inset arrow.
-            showArrow(R.id.arrow_up, mAnchor.centerX());
-            l.y = mAnchor.bottom - mShadowVert;
-            l.windowAnimations = R.style.QuickContactBelowAnimation;
-
+            // Not enough space. Try to right align to the anchor
+            if (mAnchor.right - layoutParams.width >= 0) {
+                layoutParams.x = mAnchor.right - layoutParams.width;
+            } else {
+                // Also not enough space. Use the whole screen width available
+                layoutParams.x = 0;
+                layoutParams.width = mScreenWidth;
+            }
         }
 
-        l.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+        // Force layout measuring pass so we have baseline numbers
+        mDecor.measure(layoutParams.width, layoutParams.height);
+        final int blockHeight = mDecor.getMeasuredHeight();
+
+        layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
+
+        if (mUseableScreenHeight - mAnchor.bottom > blockHeight) {
+            // Show downwards callout when enough room, aligning block top with bottom of
+            // anchor area, and adjusting to inset arrow.
+            configureBackground(true, mAnchor.centerX() - layoutParams.x);
+            layoutParams.y = mAnchor.bottom;
+            layoutParams.windowAnimations = R.style.QuickContactBelowAnimation;
+        } else {
+            // Show upwards callout, aligning bottom block
+            // edge with top of anchor area, and adjusting to inset arrow.
+            configureBackground(false, mAnchor.centerX() - layoutParams.x);
+            layoutParams.y = mAnchor.top - blockHeight;
+            layoutParams.windowAnimations = R.style.QuickContactAboveAnimation;
+        }
+
+        layoutParams.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                 | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
 
-        mRequestedY = l.y;
-        mWindowManager.addView(mDecor, l);
+        mRequestedY = layoutParams.y;
+        mWindowManager.addView(mDecor, layoutParams);
         mShowing = true;
         mQuerying = false;
         mDismissed = false;
-
-        mTrack.startAnimation(mTrackAnim);
 
         if (TRACE_LAUNCH) {
             android.os.Debug.stopMethodTracing();
@@ -524,9 +481,9 @@ public class QuickContactWindow implements Window.Callback,
         final int blockHeight = mDecor.getHeight();
 
         l.y = mRequestedY;
-        if (mRequestedY + blockHeight > mScreenHeight) {
+        if (mRequestedY + blockHeight > mUseableScreenHeight) {
             // Shift up from bottom when overflowing
-            l.y = mScreenHeight - blockHeight;
+            l.y = mUseableScreenHeight - blockHeight;
         }
 
         if (originalY != l.y) {
@@ -573,6 +530,9 @@ public class QuickContactWindow implements Window.Callback,
      * Reset track to initial state, recycling any chiclets.
      */
     private void resetTrack() {
+        // Clear background height-animation override
+        mBackground.clearBottomOverride();
+
         // Release reference to last chiclet
         mLastAction = null;
 
@@ -581,19 +541,19 @@ public class QuickContactWindow implements Window.Callback,
         mActions.clear();
 
         // Recycle any chiclets in use
-        while (mTrack.getChildCount() > 2) {
-            this.releaseView(mTrack.getChildAt(1));
-            mTrack.removeViewAt(1);
+        for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
+            releaseView(mTrack.getChildAt(i));
+            mTrack.removeViewAt(i);
         }
 
         mTrackScroll.fullScroll(View.FOCUS_LEFT);
-        mWasDownArrow = false;
 
         // Clear any primary requests
         mMakePrimary = false;
         mSetPrimaryCheckBox.setChecked(false);
 
-        setResolveVisible(false, null);
+        setNewActionViewChecked(null);
+        mFooterDisambig.setVisibility(View.GONE);
     }
 
     /**
@@ -1008,7 +968,7 @@ public class QuickContactWindow implements Window.Callback,
          */
         private static class Entry {
             public ResolveInfo bestResolve;
-            public SoftReference<Drawable> icon;
+            public Drawable icon;
         }
 
         private HashMap<String, Entry> mCache = new HashMap<String, Entry>();
@@ -1045,7 +1005,7 @@ public class QuickContactWindow implements Window.Callback,
                     final Drawable icon = bestResolve.loadIcon(mPackageManager);
 
                     entry.bestResolve = bestResolve;
-                    entry.icon = new SoftReference<Drawable>(icon);
+                    entry.icon = icon;
                 }
             }
 
@@ -1122,8 +1082,7 @@ public class QuickContactWindow implements Window.Callback,
          * {@link PackageManager} query.
          */
         public Drawable getIcon(Action action) {
-            final SoftReference<Drawable> iconRef = getEntry(action).icon;
-            return (iconRef == null) ? null : iconRef.get();
+            return getEntry(action).icon;
         }
 
         public void clear() {
@@ -1397,38 +1356,65 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Flag indicating if {@link #mArrowDown} was visible during the last call
-     * to {@link #setResolveVisible(boolean, CheckableImageView)}. Used to
-     * decide during a later call if the arrow should be restored.
+     * Helper for showing and hiding {@link #mFooterDisambig}
      */
-    private boolean mWasDownArrow = false;
-
-    /**
-     * Helper for showing and hiding {@link #mFooterDisambig}, which will
-     * correctly manage {@link #mArrowDown} as needed.
-     */
-    private void setResolveVisible(boolean visible, CheckableImageView actionView) {
-        // Show or hide the resolve list if needed
-        boolean visibleNow = mFooterDisambig.getVisibility() == View.VISIBLE;
-
+    private void setNewActionViewChecked(CheckableImageView actionView) {
         if (mLastAction != null) mLastAction.setChecked(false);
         if (actionView != null) actionView.setChecked(true);
         mLastAction = actionView;
+    }
 
-        // Bail early if already in desired state
-        if (visible == visibleNow) return;
+    /**
+     * Animates collpasing of the disambig area. When done, it expands again to the new size
+     */
+    private void animateCollapse(final Runnable whenDone) {
+        final int oldBottom = mBackground.getBounds().bottom;
+        mBackground.setBottomOverride(oldBottom);
 
-        mFooter.setVisibility(visible ? View.GONE : View.VISIBLE);
-        mFooterDisambig.setVisibility(visible ? View.VISIBLE : View.GONE);
+        final ObjectAnimator fadeOutAnimator = ObjectAnimator.ofFloat(mFooterDisambig, "alpha",
+                1.0f, 0.0f);
+        fadeOutAnimator.setDuration(ANIMATION_FADE_OUT_TIME);
+        fadeOutAnimator.start();
 
-        if (visible) {
-            // If showing list, then hide and save state of down arrow
-            mWasDownArrow = mWasDownArrow || (mArrowDown.getVisibility() == View.VISIBLE);
-            mArrowDown.setVisibility(View.INVISIBLE);
-        } else {
-            // If hiding list, restore any down arrow state
-            mArrowDown.setVisibility(mWasDownArrow ? View.VISIBLE : View.INVISIBLE);
-        }
+        final ObjectAnimator collapseAnimator = ObjectAnimator.ofInt(mBackground,
+                "bottomOverride", oldBottom, oldBottom - mFooterDisambig.getHeight());
+        collapseAnimator.setDuration(ANIMATION_COLLAPSE_TIME);
+        collapseAnimator.setStartDelay(ANIMATION_FADE_OUT_TIME);
+        collapseAnimator.start();
+
+        collapseAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFooterDisambig.setVisibility(View.GONE);
+                new Handler().post(whenDone);
+            }
+        });
+    }
+
+    /**
+     * Animates expansion of the disambig area.
+     */
+    private void animateExpand() {
+        mFooterDisambig.setVisibility(View.VISIBLE);
+        final int oldBottom = mBackground.getBounds().bottom;
+        mBackground.setBottomOverride(oldBottom);
+        mFooterDisambig.setAlpha(0.0f);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                final int newBottom = mBackground.getBounds().bottom;
+                final ObjectAnimator expandAnimator = ObjectAnimator.ofInt(mBackground,
+                        "bottomOverride", oldBottom, newBottom);
+                expandAnimator.setDuration(ANIMATION_EXPAND_TIME);
+                expandAnimator.start();
+
+                final ObjectAnimator fadeInAnimator = ObjectAnimator.ofFloat(mFooterDisambig,
+                        "alpha", 0.0f, 1.0f);
+                fadeInAnimator.setDuration(ANIMATION_FADE_IN_TIME);
+                fadeInAnimator.setStartDelay(ANIMATION_EXPAND_TIME);
+                fadeInAnimator.start();
+            }
+        });
     }
 
     /** {@inheritDoc} */
@@ -1438,75 +1424,106 @@ public class QuickContactWindow implements Window.Callback,
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
         final Object tag = view.getTag();
         if (tag instanceof Action) {
-            // Incoming tag is concrete intent, so try launching
-            final Action action = (Action)tag;
-            final boolean makePrimary = mMakePrimary;
+            final Runnable startAppRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    // Incoming tag is concrete intent, so try launching
+                    final Action action = (Action)tag;
+                    try {
+                        mContext.startActivity(action.getIntent());
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(mContext, R.string.quickcontact_missing_app,
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-            try {
-                mContext.startActivity(action.getIntent());
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(mContext, R.string.quickcontact_missing_app, Toast.LENGTH_SHORT)
-                        .show();
-            }
+                    // Hide the resolution list, if present
+                    setNewActionViewChecked(null);
+                    dismiss();
+                    mFooterDisambig.setVisibility(View.GONE);
 
-            // Hide the resolution list, if present
-            setResolveVisible(false, null);
-            this.dismiss();
-
-            if (makePrimary) {
-                ContentValues values = new ContentValues(1);
-                values.put(Data.IS_SUPER_PRIMARY, 1);
-                final Uri dataUri = action.getDataUri();
-                if (dataUri != null) {
-                    mContext.getContentResolver().update(dataUri, values, null, null);
+                    if (mMakePrimary) {
+                        ContentValues values = new ContentValues(1);
+                        values.put(Data.IS_SUPER_PRIMARY, 1);
+                        final Uri dataUri = action.getDataUri();
+                        if (dataUri != null) {
+                            mContext.getContentResolver().update(dataUri, values, null, null);
+                        }
+                    }
                 }
+            };
+            if (isActionView && mFooterDisambig.getVisibility() == View.VISIBLE) {
+                // If the expansion list is currently opened, animate its collapse and then
+                // execute the target app
+                animateCollapse(startAppRunnable);
+            } else {
+                // Defer the action to make the window properly repaint
+                new Handler().post(startAppRunnable);
             }
         } else if (tag instanceof ActionList) {
-            // Incoming tag is a MIME-type, so show resolution list
-            final ActionList children = (ActionList)tag;
+            // Don't do anything if already open
+            if (actionView != mLastAction) {
+                final Runnable configureListRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Show resolution list and set adapter
+                        setNewActionViewChecked(actionView);
 
-            // Show resolution list and set adapter
-            setResolveVisible(true, actionView);
+                        // Incoming tag is a MIME-type, so show resolution list
+                        final ActionList children = (ActionList)tag;
 
-            mResolveList.setOnItemClickListener(this);
-            mResolveList.setAdapter(new BaseAdapter() {
-                @Override
-                public int getCount() {
-                    return children.size();
+                        mResolveList.setOnItemClickListener(QuickContactWindow.this);
+                        mResolveList.setAdapter(new BaseAdapter() {
+                            @Override
+                            public int getCount() {
+                                return children.size();
+                            }
+
+                            @Override
+                            public Object getItem(int position) {
+                                return children.get(position);
+                            }
+
+                            @Override
+                            public long getItemId(int position) {
+                                return position;
+                            }
+
+                            @Override
+                            public View getView(int position, View convertView, ViewGroup parent) {
+                                final View result = convertView != null ? convertView :
+                                        mInflater.inflate(R.layout.quickcontact_resolve_item,
+                                        parent, false);
+                                // Set action title based on summary value
+                                final Action action = (Action)getItem(position);
+
+                                TextView text1 = (TextView)result.findViewById(android.R.id.text1);
+                                TextView text2 = (TextView)result.findViewById(android.R.id.text2);
+
+                                text1.setText(action.getHeader());
+                                text2.setText(action.getBody());
+
+                                result.setTag(action);
+                                return result;
+                            }
+                        });
+
+                        animateExpand();
+                        // Make sure we resize to make room for ListView
+                        if (mDecor != null) {
+                            mDecor.forceLayout();
+                            mDecor.invalidate();
+                        }
+                    }
+                };
+                if (mFooterDisambig.getVisibility() == View.VISIBLE) {
+                    // If the expansion list is currently opened, animate its collapse and then
+                    // execute the target app
+                    animateCollapse(configureListRunnable);
+                } else {
+                    // Defer the action to make the window properly repaint
+                    configureListRunnable.run();
                 }
-
-                @Override
-                public Object getItem(int position) {
-                    return children.get(position);
-                }
-
-                @Override
-                public long getItemId(int position) {
-                    return position;
-                }
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    final View result = convertView != null ? convertView : mInflater.inflate(
-                            R.layout.quickcontact_resolve_item, parent, false);
-                    // Set action title based on summary value
-                    final Action action = (Action)getItem(position);
-
-                    TextView text1 = (TextView)result.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView)result.findViewById(android.R.id.text2);
-
-                    text1.setText(action.getHeader());
-                    text2.setText(action.getBody());
-
-                    result.setTag(action);
-                    return result;
-                }
-            });
-
-            // Make sure we resize to make room for ListView
-            mDecor.forceLayout();
-            mDecor.invalidate();
-
+            }
         }
     }
 
@@ -1515,16 +1532,9 @@ public class QuickContactWindow implements Window.Callback,
         mMakePrimary = isChecked;
     }
 
-    private void onBackPressed() {
-        // Back key will first dismiss any expanded resolve list, otherwise
-        // it will close the entire dialog.
-        if (mFooterDisambig.getVisibility() == View.VISIBLE) {
-            setResolveVisible(false, null);
-            mDecor.forceLayout();
-            mDecor.invalidate();
-        } else {
-            dismiss();
-        }
+    @Override
+    public void onBackPressed() {
+        dismiss();
     }
 
     /** {@inheritDoc} */
@@ -1587,8 +1597,6 @@ public class QuickContactWindow implements Window.Callback,
         if (event.getAction() == MotionEvent.ACTION_DOWN && mDecor != null) {
             // Only try detecting outside events on down-press
             mDecor.getHitRect(mRect);
-            mRect.top = mRect.top + mShadowTouch;
-            mRect.bottom = mRect.bottom - mShadowTouch;
             final int x = (int)event.getX();
             final int y = (int)event.getY();
             if (!mRect.contains(x, y)) {
