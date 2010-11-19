@@ -122,7 +122,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
 
                             final PendingIntent pendingIntent = PendingIntent.getActivity(context,
                                     0, intent, 0);
-                            views.setOnClickPendingIntent(R.id.image, pendingIntent);
+                            views.setOnClickPendingIntent(R.id.border, pendingIntent);
 
                             // Configure Ui
                             widgetManager.updateAppWidget(widgetId, views);

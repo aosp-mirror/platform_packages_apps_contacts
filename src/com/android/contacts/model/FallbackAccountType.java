@@ -245,7 +245,7 @@ public class FallbackAccountType extends AccountType {
         DataKind kind = getKindForMimetype(Email.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE,
-                    R.string.emailLabelsGroup, R.drawable.sym_action_email, 15, true));
+                    R.string.emailLabelsGroup, R.drawable.sym_action_email_holo_light, 15, true));
             kind.actionHeader = new EmailActionInflater();
             kind.actionBody = new SimpleInflater(Email.DATA);
         }
@@ -271,7 +271,8 @@ public class FallbackAccountType extends AccountType {
         DataKind kind = getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
-                    R.string.postalLabelsGroup, R.drawable.sym_action_map, 25, true));
+                    R.string.postalLabelsGroup, R.drawable.sym_action_show_map_holo_light, 25,
+                    true));
             kind.actionHeader = new PostalActionInflater();
             kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
         }
@@ -388,7 +389,8 @@ public class FallbackAccountType extends AccountType {
         DataKind kind = getKindForMimetype(Website.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
-                    R.string.websiteLabelsGroup, -1, 120, true));
+                    R.string.websiteLabelsGroup, R.drawable.sym_action_goto_website_holo_light, 120,
+                    true));
             kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
             kind.actionBody = new SimpleInflater(Website.URL);
         }
@@ -398,7 +400,8 @@ public class FallbackAccountType extends AccountType {
             kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
 
             kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
+            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup,
+                    FLAGS_WEBSITE));
         }
 
         return kind;
