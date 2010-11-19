@@ -58,6 +58,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mFilter = filter;
     }
 
+    public ContactListFilter getFilter() {
+        return mFilter;
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
