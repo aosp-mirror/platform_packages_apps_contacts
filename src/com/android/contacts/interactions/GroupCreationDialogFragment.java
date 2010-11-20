@@ -18,47 +18,44 @@ package com.android.contacts.interactions;
 import com.android.contacts.R;
 import com.android.contacts.views.ContactSaveService;
 
+import android.accounts.Account;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.EditText;
 
 /**
- * A dialog for renaming a group.
+ * A dialog for creating a new group.
  */
-public class GroupRenamingDialogFragment extends GroupNameDialogFragment {
+public class GroupCreationDialogFragment extends GroupNameDialogFragment {
+    private static final String ARG_ACCOUNT_TYPE = "accountType";
+    private static final String ARG_ACCOUNT_NAME = "accountName";
 
-    private static final String ARG_GROUP_ID = "groupId";
-    private static final String ARG_LABEL = "label";
-
-    public static void show(FragmentManager fragmentManager, long groupId, String label) {
-        GroupRenamingDialogFragment dialog = new GroupRenamingDialogFragment();
+    public static void show(
+            FragmentManager fragmentManager, String accountType, String accountName) {
+        GroupCreationDialogFragment dialog = new GroupCreationDialogFragment();
         Bundle args = new Bundle();
-        args.putLong(ARG_GROUP_ID, groupId);
-        args.putString(ARG_LABEL, label);
+        args.putString(ARG_ACCOUNT_TYPE, accountType);
+        args.putString(ARG_ACCOUNT_NAME, accountName);
         dialog.setArguments(args);
-        dialog.show(fragmentManager, "renameGroup");
+        dialog.show(fragmentManager, "createGroup");
     }
 
     @Override
     protected void initializeGroupLabelEditText(EditText editText) {
-        String label = getArguments().getString(ARG_LABEL);
-        editText.setText(label);
-        if (label != null) {
-            editText.setSelection(label.length());
-        }
     }
 
     @Override
     protected int getTitleResourceId() {
-        return R.string.rename_group_dialog_title;
+        return R.string.create_group_dialog_title;
     }
 
     @Override
     protected void onCompleted(String groupLabel) {
         Bundle arguments = getArguments();
-        long groupId = arguments.getLong(ARG_GROUP_ID);
+        String accountType = arguments.getString(ARG_ACCOUNT_TYPE);
+        String accountName = arguments.getString(ARG_ACCOUNT_NAME);
 
-        getActivity().startService(ContactSaveService.createGroupRenameIntent(
-                getActivity(), groupId, groupLabel));
+        getActivity().startService(ContactSaveService.createNewGroupIntent(
+                getActivity(), new Account(accountName, accountType), groupLabel));
     }
 }

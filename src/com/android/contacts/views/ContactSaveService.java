@@ -16,6 +16,7 @@
 
 package com.android.contacts.views;
 
+import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
 import android.accounts.Account;
@@ -32,6 +33,7 @@ import android.net.Uri;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
@@ -53,6 +55,7 @@ public class ContactSaveService extends IntentService {
 
     public static final String EXTRA_OPERATIONS = "Operations";
 
+    public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
     public static final String ACTION_DELETE_GROUP = "deleteGroup";
     public static final String EXTRA_GROUP_ID = "groupId";
@@ -88,6 +91,8 @@ public class ContactSaveService extends IntentService {
         String action = intent.getAction();
         if (ACTION_NEW_RAW_CONTACT.equals(action)) {
             createRawContact(intent);
+        } else if (ACTION_CREATE_GROUP.equals(action)) {
+            createGroup(intent);
         } else if (ACTION_RENAME_GROUP.equals(action)) {
             renameGroup(intent);
         } else if (ACTION_DELETE_GROUP.equals(action)) {
@@ -127,7 +132,6 @@ public class ContactSaveService extends IntentService {
             throw new RuntimeException("Failed to store new contact", e);
         }
 
-        Uri result = ContactsContract.Directory.CONTENT_URI;
         Uri rawContactUri = results[0].uri;
         callbackIntent.setData(RawContacts.getContactLookupUri(resolver, rawContactUri));
 
@@ -174,6 +178,52 @@ public class ContactSaveService extends IntentService {
         // the callback intent.
         Intent callbackIntent = new Intent(activity, activity.getClass());
         callbackIntent.setAction(Intent.ACTION_VIEW);
+        callbackIntent.setFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        return serviceIntent;
+    }
+
+    private void createGroup(Intent intent) {
+        String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
+        String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
+        String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+
+        ContentValues values = new ContentValues();
+        values.put(Groups.ACCOUNT_TYPE, accountType);
+        values.put(Groups.ACCOUNT_NAME, accountName);
+        values.put(Groups.TITLE, label);
+
+        Uri groupUri = getContentResolver().insert(Groups.CONTENT_URI, values);
+        if (groupUri == null) {
+            return;
+        }
+
+        values.clear();
+        values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+        values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(groupUri));
+
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        callbackIntent.putExtra(ContactsContract.Intents.Insert.DATA, Lists.newArrayList(values));
+
+        startActivity(callbackIntent);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to create a new group.
+     */
+    public static Intent createNewGroupIntent(Activity activity, Account account, String label) {
+        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, label);
+
+        // Callback intent will be invoked by the service once the new group is
+        // created.  The service will put a group membership row in the extras
+        // of the callback intent.
+        Intent callbackIntent = new Intent(activity, activity.getClass());
+        callbackIntent.setAction(Intent.ACTION_EDIT);
         callbackIntent.setFlags(
                 Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
