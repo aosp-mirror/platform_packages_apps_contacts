@@ -16,8 +16,8 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
 
 import android.accounts.Account;
 import android.content.AsyncTaskLoader;
@@ -25,6 +25,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 
 import java.util.ArrayList;
@@ -56,6 +57,10 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         private static final String SELECTION =
                 Groups.DELETED + "=0 AND " + Groups.FAVORITES + "=0";
     }
+
+    private boolean mStopped;
+    private ForceLoadContentObserver mObserver;
+    private ArrayList<ContactListFilter> mResults;
 
     public ContactListFilterLoader(Context context) {
         super(context);
@@ -111,22 +116,53 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
 
         Collections.sort(results);
 
+        mResults = results;
         return results;
+    }
+
+    /* Runs on the UI thread */
+    @Override
+    public void deliverResult(List<ContactListFilter> results) {
+        if (!mStopped) {
+            super.deliverResult(results);
+        }
+    }
+
+    @Override
+    public void startLoading() {
+        if (mObserver == null) {
+            mObserver = new ForceLoadContentObserver();
+            getContext().getContentResolver().registerContentObserver(
+                    Contacts.CONTENT_URI, true, mObserver);
+        }
+
+        mStopped = false;
+
+        if (mResults != null) {
+            deliverResult(mResults);
+        } else {
+            forceLoad();
+        }
+    }
+
+    @Override
+    public void stopLoading() {
+        if (mObserver != null) {
+            getContext().getContentResolver().unregisterContentObserver(mObserver);
+            mObserver = null;
+        }
+
+        mResults = null;
+
+        // Attempt to cancel the current load task if possible.
+        cancelLoad();
+
+        // Make sure that any outstanding loads clean themselves up properly
+        mStopped = true;
     }
 
     @Override
     public void destroy() {
         stopLoading();
-    }
-
-    @Override
-    public void startLoading() {
-        cancelLoad();
-        forceLoad();
-    }
-
-    @Override
-    public void stopLoading() {
-        cancelLoad();
     }
 }

@@ -25,9 +25,8 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,37 +52,19 @@ public class ContactListFilterController
         void onContactListFilterCustomizationRequest();
     }
 
-    private static final int MESSAGE_REFRESH_FILTERS = 0;
-
-    /**
-     * The delay before the contact filter list is refreshed. This is needed because
-     * during contact sync we will get lots of notifications in rapid succession. This
-     * delay will prevent the slowly changing list of filters from reloading too often.
-     */
-    private static final int FILTER_SPINNER_REFRESH_DELAY_MILLIS = 5000;
-
     private Context mContext;
     private LoaderManager mLoaderManager;
     private boolean mEnabled = true;
     private List<ContactListFilterListener> mListeners = new ArrayList<ContactListFilterListener>();
     private ListPopupWindow mPopup;
     private int mPopupWidth = -1;
+    private List<ContactListFilter> mCachedFilters;
     private SparseArray<ContactListFilter> mFilters;
     private int mNextFilterId = 1;
     private View mAnchor;
     private FilterListAdapter mFilterListAdapter;
     private ContactListFilter mFilter;
     private boolean mFiltersLoaded;
-    private final Handler mHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == MESSAGE_REFRESH_FILTERS) {
-                loadFilters();
-            }
-        }
-    };
-
     private int mAccountCount;
 
     public ContactListFilterController(Activity activity) {
@@ -121,20 +102,14 @@ public class ContactListFilterController
     }
 
     public void startLoading() {
-        // Set the "ready" flag right away - we only want to start the loader once
-        mFiltersLoaded = false;
         if (mFilter == null) {
             mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
         }
-        loadFilters();
+        mLoaderManager.initLoader(R.id.contact_list_filter_loader, null, this);
     }
 
     private SharedPreferences getSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(mContext);
-    }
-
-    private void loadFilters() {
-        mLoaderManager.restartLoader(R.id.contact_list_filter_loader, null, this);
     }
 
     @Override
@@ -145,6 +120,34 @@ public class ContactListFilterController
     @Override
     public void onLoadFinished(
             Loader<List<ContactListFilter>> loader, List<ContactListFilter> filters) {
+        int count = filters.size();
+        if (mCachedFilters != null && mCachedFilters.size() == count) {
+            boolean changed = false;
+            for (int i = 0; i < filters.size(); i++) {
+                ContactListFilter filter1 = mCachedFilters.get(i);
+                ContactListFilter filter2 = filters.get(i);
+                if (!filter1.equals(filter2)) {
+                    changed = true;
+                    break;
+                }
+
+                // Group title is intentionally not included in the "equals" algorithm for
+                // ContactListFilter, because we want stability of filter identity
+                // across label changes.  However, here we do care about the label changes.
+                if (filter1.filterType == ContactListFilter.FILTER_TYPE_GROUP &&
+                        !TextUtils.equals(filter1.title, filter2.title)) {
+                    changed = true;
+                    break;
+                }
+            }
+
+            if (!changed) {
+                return;
+            }
+        }
+
+        mCachedFilters = filters;
+
         if (mFilters == null) {
             mFilters = new SparseArray<ContactListFilter>(filters.size());
         } else {
@@ -154,7 +157,6 @@ public class ContactListFilterController
         boolean filterValid = mFilter != null && !mFilter.isValidationRequired();
 
         mAccountCount = 0;
-        int count = filters.size();
         for (int index = 0; index < count; index++) {
             if (filters.get(index).filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
                 mAccountCount++;
@@ -210,19 +212,11 @@ public class ContactListFilterController
             mFilterListAdapter.notifyDataSetChanged();
         }
 
-        if (filterChanged) {
-            mFiltersLoaded = true;
-            notifyContactListFilterChanged();
-        } else if (!mFiltersLoaded) {
-            mFiltersLoaded = true;
-            notifyContacListFiltersLoaded();
-        }
-    }
+        mFiltersLoaded = true;
+        notifyContacListFiltersLoaded();
 
-    public void postDelayedRefresh() {
-        if (!mHandler.hasMessages(MESSAGE_REFRESH_FILTERS)) {
-            mHandler.sendEmptyMessageDelayed(
-                    MESSAGE_REFRESH_FILTERS, FILTER_SPINNER_REFRESH_DELAY_MILLIS);
+        if (filterChanged) {
+            notifyContactListFilterChanged();
         }
     }
 
