@@ -46,6 +46,8 @@ public abstract class GroupNameDialogFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.group_name_dialog, null);
         mEdit = (EditText) view.findViewById(R.id.group_label);
+        initializeGroupLabelEditText(mEdit);
+
         mEdit.addTextChangedListener(this);
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
