@@ -890,23 +890,25 @@ public class ContactBrowserActivity extends Activity
                     mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT);
         }
 
-        boolean groupSelected = false;
+        boolean groupActionsEnabled = false;
         if (mListFragment instanceof DefaultContactBrowseListFragment) {
             ContactListFilter filter =
                     ((DefaultContactBrowseListFragment)mListFragment).getFilter();
-            if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
-                groupSelected = true;
+            if (filter != null
+                    && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP
+                    && !filter.groupReadOnly) {
+                groupActionsEnabled = true;
             }
         }
 
         MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
         if (renameGroup != null) {
-            renameGroup.setVisible(groupSelected);
+            renameGroup.setVisible(groupActionsEnabled);
         }
 
         MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
         if (deleteGroup != null) {
-            deleteGroup.setVisible(groupSelected);
+            deleteGroup.setVisible(groupActionsEnabled);
         }
 
         return true;
