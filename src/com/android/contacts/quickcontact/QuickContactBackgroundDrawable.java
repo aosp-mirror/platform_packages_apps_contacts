@@ -108,8 +108,23 @@ public class QuickContactBackgroundDrawable extends Drawable {
         if (!mBoundsSet) return;
 
         final Rect bounds = getBounds();
-        final int middleLeft = mRequestedX - mMiddleDrawable.getIntrinsicWidth() / 2;
-        final int middleRight = mRequestedX + mMiddleDrawable.getIntrinsicWidth() / 2;
+        int middleLeft = mRequestedX - mMiddleDrawable.getIntrinsicWidth() / 2;
+        int middleRight = mRequestedX + mMiddleDrawable.getIntrinsicWidth() / 2;
+
+        // ensure left drawable is not smaller than its Intrinsic Width
+        final int leftExtra =  (middleLeft - bounds.left) - mLeftDrawable.getIntrinsicWidth();
+        if (leftExtra < 0) {
+            middleLeft -= leftExtra;
+            middleRight -= leftExtra;
+        }
+
+        // ensure right drawable is not smaller than its Intrinsic Width
+        final int rightExtra =  (bounds.right - middleRight) - mRightDrawable.getIntrinsicWidth();
+        if (rightExtra < 0) {
+            middleLeft += rightExtra;
+            middleRight += rightExtra;
+        }
+
         final int bottom = mBottomOverride == Integer.MIN_VALUE ? bounds.bottom : mBottomOverride;
         mLeftDrawable.setBounds(bounds.left, bounds.top, middleLeft, bottom);
         mMiddleDrawable.setBounds(middleLeft, bounds.top, middleRight, bottom);
