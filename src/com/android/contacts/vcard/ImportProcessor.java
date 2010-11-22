@@ -30,7 +30,6 @@ import com.android.vcard.exception.VCardVersionException;
 import android.accounts.Account;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -38,7 +37,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,6 +49,7 @@ import java.util.List;
  */
 public class ImportProcessor extends ProcessorBase {
     private static final String LOG_TAG = "VCardImport";
+    private static final boolean DEBUG = VCardService.DEBUG;
 
     private final VCardService mService;
     private final ContentResolver mResolver;
@@ -160,6 +159,7 @@ public class ImportProcessor extends ProcessorBase {
                 Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
                 List<Uri> uris = committer.getCreatedUris();
                 if (uris != null && uris.size() > 0) {
+                    // TODO: construct intent showing a list of imported contact list.
                     doFinishNotification(uris.get(0));
                 } else {
                     // Not critical, but suspicious.
@@ -197,7 +197,8 @@ public class ImportProcessor extends ProcessorBase {
             intent = null;
         }
         final Notification notification =
-                   VCardService.constructFinishNotification(mService, description, intent);
+                   VCardService.constructFinishNotification(mService,
+                           description, description, intent);
         mNotificationManager.notify(mJobId, notification);
     }
 
@@ -272,7 +273,7 @@ public class ImportProcessor extends ProcessorBase {
 
     @Override
     public synchronized boolean cancel(boolean mayInterruptIfRunning) {
-        Log.i(LOG_TAG, "ImportProcessor received cancel request");
+        if (DEBUG) Log.d(LOG_TAG, "ImportProcessor received cancel request");
         if (mDone || mCanceled) {
             return false;
         }

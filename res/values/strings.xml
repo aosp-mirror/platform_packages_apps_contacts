@@ -758,12 +758,14 @@
          is rarely needed in the actual vCard...). -->
     <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
-    <!-- The failed reason shown when the system could not find any vCard file
-         (with extension ".vcf" in SDCard.) [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_no_vcard_file" product="nosdcard">No vCard file found in the USB storage</string>
-    <!-- The failed reason shown when the system could not find any vCard file
-         (with extension ".vcf" in SDCard.) -->
-    <string name="fail_reason_no_vcard_file" product="default">No vCard file found on the SD card</string>
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in USB storage.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="nosdcard">No vCard file found in the USB storage</string>
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in SDCard.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card</string>
 
     <!-- Fail reason shown when vCard importer failed to look over meta information stored in vCard file(s). -->
     <string name="fail_reason_failed_to_collect_vcard_meta_info">Failed to collect meta information of given vCard file(s).</string>

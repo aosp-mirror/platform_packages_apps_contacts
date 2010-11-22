@@ -23,17 +23,23 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -49,10 +55,13 @@ import java.util.concurrent.RejectedExecutionException;
 // works fine enough. Investigate the feasibility.
 public class VCardService extends Service {
     private final static String LOG_TAG = "VCardService";
+    /* package */ final static boolean DEBUG = true;
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
     /* package */ static final int MSG_EXPORT_REQUEST = 2;
     /* package */ static final int MSG_CANCEL_REQUEST = 3;
+    /* package */ static final int MSG_REQUEST_AVAILABLE_EXPORT_DESTINATION = 4;
+    /* package */ static final int MSG_SET_AVAILABLE_EXPORT_DESTINATION = 5;
 
     /**
      * Specifies the type of operation. Used when constructing a {@link Notification}, canceling
@@ -79,6 +88,10 @@ public class VCardService extends Service {
                     handleCancelRequest((CancelRequest)msg.obj);
                     break;
                 }
+                case MSG_REQUEST_AVAILABLE_EXPORT_DESTINATION: {
+                    handleRequestAvailableExportDestination(msg);
+                    break;
+                }
                 // TODO: add cancel capability for export..
                 default: {
                     Log.w(LOG_TAG, "Received unknown request, ignoring it.");
@@ -101,10 +114,53 @@ public class VCardService extends Service {
     private final Map<Integer, ProcessorBase> mRunningJobMap =
             new HashMap<Integer, ProcessorBase>();
 
+    /* ** vCard exporter params ** */
+    // If true, VCardExporter is able to emits files longer than 8.3 format.
+    private static final boolean ALLOW_LONG_FILE_NAME = false;
+    private String mTargetDirectory;
+    private String mFileNamePrefix;
+    private String mFileNameSuffix;
+    private int mFileIndexMinimum;
+    private int mFileIndexMaximum;
+    private String mFileNameExtension;
+    private Set<String> mExtensionsToConsider;
+    private String mErrorReason;
+
+    // File names currently reserved by some export job.
+    private final Set<String> mReservedDestination = new HashSet<String>();
+    /* ** end of vCard exporter params ** */
+
     @Override
     public void onCreate() {
         super.onCreate();
+        if (DEBUG) Log.d(LOG_TAG, "vCard Service is being created.");
         mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        initExporterParams();
+    }
+
+    private void initExporterParams() {
+        mTargetDirectory = getString(R.string.config_export_dir);
+        mFileNamePrefix = getString(R.string.config_export_file_prefix);
+        mFileNameSuffix = getString(R.string.config_export_file_suffix);
+        mFileNameExtension = getString(R.string.config_export_file_extension);
+
+        mExtensionsToConsider = new HashSet<String>();
+        mExtensionsToConsider.add(mFileNameExtension);
+
+        final String additionalExtensions =
+            getString(R.string.config_export_extensions_to_consider);
+        if (!TextUtils.isEmpty(additionalExtensions)) {
+            for (String extension : additionalExtensions.split(",")) {
+                String trimed = extension.trim();
+                if (trimed.length() > 0) {
+                    mExtensionsToConsider.add(trimed);
+                }
+            }
+        }
+
+        final Resources resources = getResources();
+        mFileIndexMinimum = resources.getInteger(R.integer.config_export_file_min_index);
+        mFileIndexMaximum = resources.getInteger(R.integer.config_export_file_max_index);
     }
 
     @Override
@@ -119,13 +175,18 @@ public class VCardService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(LOG_TAG, "VCardService is being destroyed.");
+        if (DEBUG) Log.d(LOG_TAG, "VCardService is being destroyed.");
         cancelAllRequestsAndShutdown();
         clearCache();
         super.onDestroy();
     }
 
     private synchronized void handleImportRequest(ImportRequest request) {
+        if (DEBUG) {
+            Log.d(LOG_TAG,
+                    String.format("received import request (uri: %s, originalUri: %s)",
+                            request.uri, request.originalUri));
+        }
         if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
             final String displayName = request.originalUri.getLastPathSegment(); 
             final String message = getString(R.string.vcard_import_will_start_message,
@@ -153,6 +214,18 @@ public class VCardService extends Service {
             final String displayName = request.destUri.getLastPathSegment();
             final String message = getString(R.string.vcard_export_will_start_message,
                     displayName);
+
+            final String path = request.destUri.getEncodedPath();
+            if (DEBUG) Log.d(LOG_TAG, "Reserve the path " + path);
+            if (!mReservedDestination.add(path)) {
+                Log.w(LOG_TAG,
+                        String.format("The path %s is already reserved. Reject export request",
+                                path));
+                Toast.makeText(this, getString(R.string.vcard_export_request_rejected_message),
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             final Notification notification =
                     constructProgressNotification(this, TYPE_EXPORT, message, message,
@@ -180,9 +253,9 @@ public class VCardService extends Service {
         }
     }
 
-    private void handleCancelRequest(CancelRequest request) {
+    private synchronized void handleCancelRequest(CancelRequest request) {
         final int jobId = request.jobId;
-        Log.i(LOG_TAG, String.format("Received cancel request. (id: %d)", jobId));
+        if (DEBUG) Log.d(LOG_TAG, String.format("Received cancel request. (id: %d)", jobId));
         final ProcessorBase processor = mRunningJobMap.remove(jobId);
 
         if (processor != null) {
@@ -192,10 +265,39 @@ public class VCardService extends Service {
                             getString(R.string.exporting_vcard_canceled_title, request.displayName);
             final Notification notification = constructCancelNotification(this, description);
             mNotificationManager.notify(jobId, notification);
+            if (processor.getType() == TYPE_EXPORT) {
+                final String path =
+                        ((ExportProcessor)processor).getRequest().destUri.getEncodedPath();
+                Log.i(LOG_TAG,
+                        String.format("Cancel reservation for the path %s if appropriate", path));
+                if (!mReservedDestination.remove(path)) {
+                    Log.w(LOG_TAG, "Not reserved.");
+                }
+            }
         } else {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
         stopServiceWhenNoJob();
+    }
+
+    private synchronized void handleRequestAvailableExportDestination(Message msg) {
+        if (DEBUG) Log.d(LOG_TAG, "Received available export destination request.");
+        final Messenger messenger = msg.replyTo;
+        final String path = getAppropriateDestination(mTargetDirectory);
+        final Message message;
+        if (path != null) {
+            message = Message.obtain(null,
+                    VCardService.MSG_SET_AVAILABLE_EXPORT_DESTINATION, 0, 0, path);
+        } else {
+            message = Message.obtain(null,
+                    VCardService.MSG_SET_AVAILABLE_EXPORT_DESTINATION,
+                    R.id.dialog_fail_to_export_with_reason, 0, mErrorReason);
+        }
+        try {
+            messenger.send(message);
+        } catch (RemoteException e) {
+            Log.w(LOG_TAG, "Failed to send reply for available export destination request.", e);
+        }
     }
 
     /**
@@ -223,8 +325,10 @@ public class VCardService extends Service {
 
     /* package */ synchronized void handleFinishImportNotification(
             int jobId, boolean successful) {
-        Log.v(LOG_TAG, String.format("Received vCard import finish notification (id: %d). "
-                + "Result: %b", jobId, (successful ? "success" : "failure")));
+        if (DEBUG) {
+            Log.d(LOG_TAG, String.format("Received vCard import finish notification (id: %d). "
+                    + "Result: %b", jobId, (successful ? "success" : "failure")));
+        }
         if (mRunningJobMap.remove(jobId) == null) {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
@@ -233,11 +337,22 @@ public class VCardService extends Service {
 
     /* package */ synchronized void handleFinishExportNotification(
             int jobId, boolean successful) {
-        Log.v(LOG_TAG, String.format("Received vCard export finish notification (id: %d). "
-                + "Result: %b", jobId, (successful ? "success" : "failure")));
-        if (mRunningJobMap.remove(jobId) == null) {
-            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
+        if (DEBUG) {
+            Log.d(LOG_TAG, String.format("Received vCard export finish notification (id: %d). "
+                    + "Result: %b", jobId, (successful ? "success" : "failure")));
         }
+        final ProcessorBase job = mRunningJobMap.remove(jobId);
+        if (job == null) {
+            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
+        } else if (!(job instanceof ExportProcessor)) {
+            Log.w(LOG_TAG,
+                    String.format("Removed job (id: %s) isn't ExportProcessor", jobId));
+        } else {
+            final String path = ((ExportProcessor)job).getRequest().destUri.getEncodedPath();
+            if (DEBUG) Log.d(LOG_TAG, "Remove reserved path " + path);
+            mReservedDestination.remove(path);
+        }
+
         stopServiceWhenNoJob();
     }
 
@@ -339,12 +454,13 @@ public class VCardService extends Service {
      */
     /* package */ static Notification constructCancelNotification(
             Context context, String description) {
-        final Notification notification = new Notification();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.icon = android.R.drawable.stat_notify_error;
-        notification.setLatestEventInfo(context, description, description,
-                PendingIntent.getActivity(context, 0, null, 0));
-        return notification;
+        return new Notification.Builder(context)
+                .setAutoCancel(true)
+                .setSmallIcon(android.R.drawable.stat_notify_error)
+                .setContentTitle(description)
+                .setContentText(description)
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(), 0))
+                .getNotification();
     }
 
     /**
@@ -355,12 +471,94 @@ public class VCardService extends Service {
      * @param intent Intent to be launched when the Notification is clicked. Can be null.
      */
     /* package */ static Notification constructFinishNotification(
-            Context context, String description, Intent intent) {
-        final Notification notification = new Notification();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.icon = android.R.drawable.stat_sys_download_done;
-        notification.setLatestEventInfo(context, description, description,
-                PendingIntent.getActivity(context, 0, intent, 0));
-        return notification;
+            Context context, String title, String description, Intent intent) {
+        return new Notification.Builder(context)
+                .setAutoCancel(true)
+                .setSmallIcon(android.R.drawable.stat_sys_download_done)
+                .setContentTitle(title)
+                .setContentText(description)
+                .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+                .getNotification();
+    }
+
+    /**
+     * Returns an appropriate file name for vCard export. Returns null when impossible.
+     *
+     * @return destination path for a vCard file to be exported. null on error and mErrorReason
+     * is correctly set.
+     */
+    private String getAppropriateDestination(final String destDirectory) {
+        /*
+         * Here, file names have 5 parts: directory, prefix, index, suffix, and extension.
+         * e.g. "/mnt/sdcard/prfx00001sfx.vcf" -> "/mnt/sdcard", "prfx", "00001", "sfx", and ".vcf"
+         *      (In default, prefix and suffix is empty, so usually the destination would be
+         *       /mnt/sdcard/00001.vcf.)
+         *
+         * This method increments "index" part from 1 to maximum, and checks whether any file name
+         * following naming rule is available. If there's no file named /mnt/sdcard/00001.vcf, the
+         * name will be returned to a caller. If there are 00001.vcf 00002.vcf, 00003.vcf is
+         * returned.
+         *
+         * There may not be any appropriate file name. If there are 99999 vCard files in the
+         * storage, for example, there's no appropriate name, so this method returns
+         * null.
+         */
+
+        // Count the number of digits of mFileIndexMaximum
+        // e.g. When mFileIndexMaximum is 99999, fileIndexDigit becomes 5, as we will count the
+        int fileIndexDigit = 0;
+        {
+            // Calling Math.Log10() is costly.
+            int tmp;
+            for (fileIndexDigit = 0, tmp = mFileIndexMaximum; tmp > 0;
+                fileIndexDigit++, tmp /= 10) {
+            }
+        }
+
+        // %s05d%s (e.g. "p00001s")
+        final String bodyFormat = "%s%0" + fileIndexDigit + "d%s";
+
+        if (!ALLOW_LONG_FILE_NAME) {
+            final String possibleBody =
+                    String.format(bodyFormat, mFileNamePrefix, 1, mFileNameSuffix);
+            if (possibleBody.length() > 8 || mFileNameExtension.length() > 3) {
+                Log.e(LOG_TAG, "This code does not allow any long file name.");
+                mErrorReason = getString(R.string.fail_reason_too_long_filename,
+                        String.format("%s.%s", possibleBody, mFileNameExtension));
+                Log.w(LOG_TAG, "File name becomes too long.");
+                return null;
+            }
+        }
+
+        for (int i = mFileIndexMinimum; i <= mFileIndexMaximum; i++) {
+            boolean numberIsAvailable = true;
+            String body = null;
+            for (String possibleExtension : mExtensionsToConsider) {
+                body = String.format(bodyFormat, mFileNamePrefix, i, mFileNameSuffix);
+                final String path =
+                        String.format("%s/%s.%s", destDirectory, body, possibleExtension);
+                synchronized (this) {
+                    if (mReservedDestination.contains(path)) {
+                        if (DEBUG) {
+                            Log.d(LOG_TAG, String.format("The path %s is reserved.", path));
+                        }
+                        numberIsAvailable = false;
+                        break;
+                    }
+                }
+                final File file = new File(path);
+                if (file.exists()) {
+                    numberIsAvailable = false;
+                    break;
+                }
+            }
+            if (numberIsAvailable) {
+                return String.format("%s/%s.%s", destDirectory, body, mFileNameExtension);
+            }
+        }
+
+        Log.w(LOG_TAG, "Reached vCard number limit. Maybe there are too many vCard in the storage");
+        mErrorReason = getString(R.string.fail_reason_too_many_vcard);
+        return null;
     }
 }

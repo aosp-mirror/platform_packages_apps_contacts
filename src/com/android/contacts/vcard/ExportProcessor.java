@@ -41,6 +41,7 @@ import java.io.OutputStream;
  */
 public class ExportProcessor extends ProcessorBase {
     private static final String LOG_TAG = "VCardExport";
+    private static final boolean DEBUG = VCardService.DEBUG;
 
     private final VCardService mService;
     private final ContentResolver mResolver;
@@ -88,7 +89,7 @@ public class ExportProcessor extends ProcessorBase {
     }
 
     private void runInternal() {
-        Log.i(LOG_TAG, String.format("vCard export (id: %d) has started.", mJobId));
+        if (DEBUG) Log.d(LOG_TAG, String.format("vCard export (id: %d) has started.", mJobId));
         final ExportRequest request = mExportRequest;
         VCardComposer composer = null;
         boolean successful = false;
@@ -108,7 +109,6 @@ public class ExportProcessor extends ProcessorBase {
                 final String errorReason =
                     mService.getString(R.string.fail_reason_could_not_open_file,
                             uri, e.getMessage());
-                Log.i(LOG_TAG, "failed to export (could not open output stream)");
                 doFinishNotification(errorReason, "");
                 return;
             }
@@ -132,7 +132,6 @@ public class ExportProcessor extends ProcessorBase {
             composer.addHandler(composer.new HandlerForOutputStream(outputStream));
 
             if (!composer.init()) {
-                Log.w(LOG_TAG, "vCard composer init failed");
                 final String errorReason = composer.getErrorReason();
                 Log.e(LOG_TAG, "initialization of vCard composer failed: " + errorReason);
                 final String translatedErrorReason =
@@ -219,6 +218,7 @@ public class ExportProcessor extends ProcessorBase {
     }
 
     private void doCancelNotification() {
+        if (DEBUG) Log.d(LOG_TAG, "send cancel notification");
         final String description = mService.getString(R.string.exporting_vcard_canceled_title,
                 mExportRequest.destUri.getLastPathSegment());
         final Notification notification =
@@ -227,15 +227,16 @@ public class ExportProcessor extends ProcessorBase {
     }
 
     private void doFinishNotification(final String title, final String description) {
+        if (DEBUG) Log.d(LOG_TAG, "send finish notification: " + title + ", " + description);
         final Intent intent = new Intent(mService, ContactBrowserActivity.class);
         final Notification notification =
-                VCardService.constructFinishNotification(mService, description, intent);
+                VCardService.constructFinishNotification(mService, title, description, intent);
         mNotificationManager.notify(mJobId, notification);
     }
 
     @Override
     public synchronized boolean cancel(boolean mayInterruptIfRunning) {
-        Log.i(LOG_TAG, "received cancel request");
+        if (DEBUG) Log.d(LOG_TAG, "received cancel request");
         if (mDone || mCanceled) {
             return false;
         }
@@ -251,5 +252,9 @@ public class ExportProcessor extends ProcessorBase {
     @Override
     public synchronized boolean isDone() {
         return mDone;
+    }
+
+    public ExportRequest getRequest() {
+        return mExportRequest;
     }
 }

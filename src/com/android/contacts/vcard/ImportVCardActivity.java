@@ -844,13 +844,12 @@ public class ImportVCardActivity extends Activity {
                 return builder.create();
             }
             case R.id.dialog_vcard_not_found: {
-                String message = (getString(R.string.scanning_sdcard_failed_message,
-                        getString(R.string.fail_reason_no_vcard_file)));
+                final String message = getString(R.string.import_failure_no_vcard_file);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(R.string.scanning_sdcard_failed_title)
-                    .setMessage(message)
-                    .setOnCancelListener(mCancelListener)
-                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                        .setTitle(R.string.scanning_sdcard_failed_title)
+                        .setMessage(message)
+                        .setOnCancelListener(mCancelListener)
+                        .setPositiveButton(android.R.string.ok, mCancelListener);
                 return builder.create();
             }
             case R.id.dialog_select_import_type: {
