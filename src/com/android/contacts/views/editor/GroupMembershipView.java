@@ -17,12 +17,14 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.interactions.GroupCreationDialogFragment;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.views.GroupMetaDataLoader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -46,6 +48,8 @@ import java.util.ArrayList;
  */
 public class GroupMembershipView extends LinearLayout
         implements OnClickListener, OnItemClickListener {
+
+    private static final int CREATE_NEW_GROUP_GROUP_ID = 133;
 
     public static final class GroupSelectionItem {
         private final long mGroupId;
@@ -203,6 +207,9 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
+        mAdapter.add(new GroupSelectionItem(CREATE_NEW_GROUP_GROUP_ID,
+                getContext().getString(R.string.create_group_item_label), false));
+
         mPopup = new ListPopupWindow(getContext(), null);
         mPopup.setAnchorView(mGroupList);
         mPopup.setAdapter(mAdapter);
@@ -224,6 +231,7 @@ public class GroupMembershipView extends LinearLayout
         super.onDetachedFromWindow();
         if (mPopup != null) {
             mPopup.dismiss();
+            mPopup = null;
         }
     }
 
@@ -231,6 +239,13 @@ public class GroupMembershipView extends LinearLayout
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ListView list = (ListView) parent;
         int count = mAdapter.getCount();
+
+        if (list.isItemChecked(count - 1)) {
+            list.setItemChecked(count - 1, false);
+            createNewGroup();
+            return;
+        }
+
         for (int i = 0; i < count; i++) {
             mAdapter.getItem(i).setChecked(list.isItemChecked(i));
         }
@@ -291,5 +306,15 @@ public class GroupMembershipView extends LinearLayout
             }
         }
         return false;
+    }
+
+    private void createNewGroup() {
+        if (mPopup != null) {
+            mPopup.dismiss();
+            mPopup = null;
+        }
+
+        GroupCreationDialogFragment.show(
+                ((Activity) getContext()).getFragmentManager(), mAccountType, mAccountName);
     }
 }

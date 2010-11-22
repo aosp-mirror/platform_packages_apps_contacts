@@ -17,12 +17,13 @@
 */
 -->
 
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-        android:interpolator="@android:anim/accelerate_interpolator">
-    <scale android:fromXScale="1.0" android:toXScale=".5"
-            android:fromYScale="1.0" android:toYScale=".5"
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale android:interpolator="@android:anim/accelerate_quint_interpolator"
+            android:fromXScale="1.0" android:toXScale="1.0"
+            android:fromYScale="1.0" android:toYScale="0.8"
             android:pivotX="50%" android:pivotY="0%"
             android:duration="@android:integer/config_shortAnimTime" />
-    <alpha android:fromAlpha="1.0" android:toAlpha="0"
+    <alpha android:interpolator="@android:anim/accelerate_cubic_interpolator"
+            android:fromAlpha="1.0" android:toAlpha="0"
             android:duration="@android:integer/config_shortAnimTime" />
 </set>

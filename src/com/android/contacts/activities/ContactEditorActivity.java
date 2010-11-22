@@ -28,7 +28,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Intents.Insert;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,6 +75,15 @@ public class ContactEditorActivity extends Activity implements
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (Intent.ACTION_EDIT.equals(intent.getAction()) && mFragment != null){
+            mFragment.setIntentExtras(intent.getExtras());
+        }
     }
 
     @Override
@@ -168,7 +177,7 @@ public class ContactEditorActivity extends Activity implements
 
             // Pass on all the data that has been entered so far
             if (values != null && values.size() != 0) {
-                intent.putParcelableArrayListExtra(Insert.DATA, values);
+                intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, values);
             }
 
             startActivity(intent);

@@ -366,24 +366,31 @@ public class ContactEditorFragment extends Fragment implements
         sb.append(")");
         mQuerySelection = sb.toString();
         mState = EntityDeltaList.fromIterator(entities.iterator());
-
-        // Merge in Extras from Intent
-        if (mIntentExtras != null && mIntentExtras.size() > 0) {
-            final AccountTypes sources = AccountTypes.getInstance(mContext);
-            for (EntityDelta state : mState) {
-                final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-                final AccountType source = sources.getInflatedSource(accountType,
-                        AccountType.LEVEL_CONSTRAINTS);
-                if (!source.readOnly) {
-                    // Apply extras to the first writable raw contact only
-                    EntityModifier.parseExtras(mContext, source, state, mIntentExtras);
-                    mIntentExtras = null;
-                    break;
-                }
-            }
-        }
+        setIntentExtras(mIntentExtras);
+        mIntentExtras = null;
 
         bindEditors();
+    }
+
+    /**
+     * Merges extras from the intent.
+     */
+    public void setIntentExtras(Bundle extras) {
+        if (extras == null || extras.size() == 0) {
+            return;
+        }
+
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        for (EntityDelta state : mState) {
+            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountType source = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_CONSTRAINTS);
+            if (!source.readOnly) {
+                // Apply extras to the first writable raw contact only
+                EntityModifier.parseExtras(mContext, source, state, extras);
+                break;
+            }
+        }
     }
 
     private void selectAccountAndCreateContact(boolean isNewContact) {

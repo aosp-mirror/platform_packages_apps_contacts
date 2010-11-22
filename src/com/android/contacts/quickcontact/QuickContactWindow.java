@@ -18,7 +18,6 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
@@ -26,9 +25,7 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.policy.PolicyManager;
-import com.google.android.collect.Sets;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,11 +34,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -89,10 +82,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -133,7 +124,6 @@ public class QuickContactWindow implements Window.Callback,
 
     private NotifyingAsyncQueryHandler mHandler;
     private OnDismissListener mDismissListener;
-    private ResolveCache mResolveCache;
 
     private Uri mLookupUri;
     private Rect mAnchor;
@@ -163,9 +153,9 @@ public class QuickContactWindow implements Window.Callback,
     /**
      * Set of {@link Action} that are associated with the aggregate currently
      * displayed by this dialog, represented as a map from {@link String}
-     * MIME-type to {@link ActionList}.
+     * MIME-type to a list of {@link Action}.
      */
-    private ActionMap mActions = new ActionMap();
+    private ActionMultiMap mActions = new ActionMultiMap();
 
     /**
      * Pool of unused {@link CheckableImageView} that have previously been
@@ -202,24 +192,7 @@ public class QuickContactWindow implements Window.Callback,
             Website.CONTENT_ITEM_TYPE,
     };
 
-    /**
-     * Specific list {@link ApplicationInfo#packageName} of apps that are
-     * prefered <strong>only</strong> for the purposes of default icons when
-     * multiple {@link ResolveInfo} are found to match. This only happens when
-     * the user has not selected a default app yet, and they will still be
-     * presented with the system disambiguation dialog.
-     */
-    private static final HashSet<String> sPreferResolve = Sets.newHashSet(
-            "com.android.email",
-            "com.android.calendar",
-            "com.android.contacts",
-            "com.android.mms",
-            "com.android.phone",
-            "com.android.browser");
-
     private static final int TOKEN_DATA = 1;
-
-    static final boolean LOGD = false;
 
     static final boolean TRACE_LAUNCH = false;
     static final String TRACE_TAG = "quickcontact";
@@ -248,11 +221,9 @@ public class QuickContactWindow implements Window.Callback,
         mBackground = new QuickContactBackgroundDrawable();
         mRootView.setBackgroundDrawable(mBackground);
 
-        mResolveCache = new ResolveCache(mContext);
-
         mScreenWidth = mWindowManager.getDefaultDisplay().getWidth();
         // Status bar height
-        int screenMarginBottom = context.getResources().getDimensionPixelSize(
+        final int screenMarginBottom = context.getResources().getDimensionPixelSize(
                 com.android.internal.R.dimen.screen_margin_bottom);
         mUseableScreenHeight = mWindowManager.getDefaultDisplay().getHeight() - screenMarginBottom;
 
@@ -537,7 +508,6 @@ public class QuickContactWindow implements Window.Callback,
         mLastAction = null;
 
         // Clear track actions and scroll to hard left
-        mResolveCache.clear();
         mActions.clear();
 
         // Recycle any chiclets in use
@@ -618,501 +588,6 @@ public class QuickContactWindow implements Window.Callback,
         }
     }
 
-    /** Read {@link String} from the given {@link Cursor}. */
-    private static String getAsString(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getString(index);
-    }
-
-    /** Read {@link Integer} from the given {@link Cursor}. */
-    private static int getAsInt(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getInt(index);
-    }
-
-    /**
-     * Abstract definition of an action that could be performed, along with
-     * string description and icon.
-     */
-    private interface Action extends Collapser.Collapsible<Action> {
-        public CharSequence getHeader();
-        public CharSequence getBody();
-
-        public String getMimeType();
-        public Drawable getFallbackIcon();
-
-        /**
-         * Build an {@link Intent} that will perform this action.
-         */
-        public Intent getIntent();
-
-        /**
-         * Checks if the contact data for this action is primary.
-         */
-        public Boolean isPrimary();
-
-        /**
-         * Returns a lookup (@link Uri) for the contact data item.
-         */
-        public Uri getDataUri();
-    }
-
-    /**
-     * Description of a specific {@link Data#_ID} item, with style information
-     * defined by a {@link DataKind}.
-     */
-    private static class DataAction implements Action {
-        private final Context mContext;
-        private final DataKind mKind;
-        private final String mMimeType;
-
-        private CharSequence mHeader;
-        private CharSequence mBody;
-        private Intent mIntent;
-
-        private boolean mAlternate;
-        private Uri mDataUri;
-        private boolean mIsPrimary;
-
-        /**
-         * Create an action from common {@link Data} elements.
-         */
-        public DataAction(Context context, String mimeType, DataKind kind,
-                long dataId, Cursor cursor) {
-            mContext = context;
-            mKind = kind;
-            mMimeType = mimeType;
-
-            // Inflate strings from cursor
-            mAlternate = Constants.MIME_SMS_ADDRESS.equals(mimeType);
-            if (mAlternate && mKind.actionAltHeader != null) {
-                mHeader = mKind.actionAltHeader.inflateUsing(context, cursor);
-            } else if (mKind.actionHeader != null) {
-                mHeader = mKind.actionHeader.inflateUsing(context, cursor);
-            }
-
-            if (getAsInt(cursor, Data.IS_SUPER_PRIMARY) != 0) {
-                mIsPrimary = true;
-            }
-
-            if (mKind.actionBody != null) {
-                mBody = mKind.actionBody.inflateUsing(context, cursor);
-            }
-
-            mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
-
-            // Handle well-known MIME-types with special care
-            if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                if (PhoneCapabilityTester.isPhone(mContext)) {
-                    final String number = getAsString(cursor, Phone.NUMBER);
-                    if (!TextUtils.isEmpty(number)) {
-                        final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
-                        mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
-                    }
-                }
-            } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                if (PhoneCapabilityTester.isSipPhone(mContext)) {
-                    final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
-                    if (!TextUtils.isEmpty(address)) {
-                        final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
-                        mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
-                        // Note that this item will get a SIP-specific variant
-                        // of the "call phone" icon, rather than the standard
-                        // app icon for the Phone app (which we show for
-                        // regular phone numbers.)  That's because the phone
-                        // app explicitly specifies an android:icon attribute
-                        // for the SIP-related intent-filters in its manifest.
-                    }
-                }
-            } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
-                if (PhoneCapabilityTester.isSmsIntentRegistered(mContext)) {
-                    final String number = getAsString(cursor, Phone.NUMBER);
-                    if (!TextUtils.isEmpty(number)) {
-                        final Uri smsUri = Uri.fromParts(Constants.SCHEME_SMSTO, number, null);
-                        mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
-                    }
-                }
-            } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final String address = getAsString(cursor, Email.DATA);
-                if (!TextUtils.isEmpty(address)) {
-                    final Uri mailUri = Uri.fromParts(Constants.SCHEME_MAILTO, address, null);
-                    mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
-                }
-
-            } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final String url = getAsString(cursor, Website.URL);
-                if (!TextUtils.isEmpty(url)) {
-                    mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                }
-
-            } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
-                        getAsString(cursor, Data.MIMETYPE));
-                if (isEmail || isProtocolValid(cursor)) {
-                    final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
-                            getAsInt(cursor, Im.PROTOCOL);
-
-                    if (isEmail) {
-                        // Use Google Talk string when using Email, and clear data
-                        // Uri so we don't try saving Email as primary.
-                        mHeader = context.getText(R.string.chat_gtalk);
-                        mDataUri = null;
-                    }
-
-                    String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
-                    String data = getAsString(cursor, isEmail ? Email.DATA : Im.DATA);
-                    if (protocol != Im.PROTOCOL_CUSTOM) {
-                        // Try bringing in a well-known host for specific protocols
-                        host = ContactsUtils.lookupProviderNameFromId(protocol);
-                    }
-
-                    if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
-                        final String authority = host.toLowerCase();
-                        final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
-                                authority).appendPath(data).build();
-                        mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
-                    }
-                }
-            }
-
-            if (mIntent == null) {
-                // Otherwise fall back to default VIEW action
-                mIntent = new Intent(Intent.ACTION_VIEW, mDataUri);
-            }
-
-            // Always launch as new task, since we're like a launcher
-            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }
-
-        private boolean isProtocolValid(Cursor cursor) {
-            final int columnIndex = cursor.getColumnIndex(Im.PROTOCOL);
-            if (cursor.isNull(columnIndex)) {
-                return false;
-            }
-            try {
-                Integer.valueOf(cursor.getString(columnIndex));
-            } catch (NumberFormatException e) {
-                return false;
-            }
-            return true;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public CharSequence getHeader() {
-            return mHeader;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public CharSequence getBody() {
-            return mBody;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public String getMimeType() {
-            return mMimeType;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Uri getDataUri() {
-            return mDataUri;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Boolean isPrimary() {
-            return mIsPrimary;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Drawable getFallbackIcon() {
-            // Bail early if no valid resources
-            final String resPackageName = mKind.resPackageName;
-            if (resPackageName == null) return null;
-
-            final PackageManager pm = mContext.getPackageManager();
-            if (mAlternate && mKind.iconAltRes != -1) {
-                return pm.getDrawable(resPackageName, mKind.iconAltRes, null);
-            } else if (mKind.iconRes != -1) {
-                return pm.getDrawable(resPackageName, mKind.iconRes, null);
-            } else {
-                return null;
-            }
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Intent getIntent() {
-            return mIntent;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public boolean collapseWith(Action other) {
-            if (!shouldCollapseWith(other)) {
-                return false;
-            }
-            return true;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public boolean shouldCollapseWith(Action t) {
-            if (t == null) {
-                return false;
-            }
-            if (!(t instanceof DataAction)) {
-                Log.e(TAG, "t must be DataAction");
-                return false;
-            }
-            DataAction other = (DataAction)t;
-            if (!ContactsUtils.areObjectsEqual(mKind, other.mKind)) {
-                return false;
-            }
-            if (!ContactsUtils.shouldCollapse(mContext, mMimeType, mBody, other.mMimeType,
-                    other.mBody)) {
-                return false;
-            }
-            if (!TextUtils.equals(mMimeType, other.mMimeType)
-                    || !ContactsUtils.areIntentActionEqual(mIntent, other.mIntent)
-                    ) {
-                return false;
-            }
-            return true;
-        }
-    }
-
-    /**
-     * Specific action that launches the profile card.
-     */
-    private static class ProfileAction implements Action {
-        private final Context mContext;
-        private final Uri mLookupUri;
-
-        public ProfileAction(Context context, Uri lookupUri) {
-            mContext = context;
-            mLookupUri = lookupUri;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public CharSequence getHeader() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public CharSequence getBody() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public String getMimeType() {
-            return Contacts.CONTENT_ITEM_TYPE;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Drawable getFallbackIcon() {
-            return mContext.getResources().getDrawable(R.drawable.ic_contacts_details);
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Intent getIntent() {
-            final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            return intent;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Boolean isPrimary() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public Uri getDataUri() {
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public boolean collapseWith(Action t) {
-            return false; // Never dup.
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public boolean shouldCollapseWith(Action t) {
-            return false; // Never dup.
-        }
-    }
-
-    /**
-     * Internally hold a cache of scaled icons based on {@link PackageManager}
-     * queries, keyed internally on MIME-type.
-     */
-    private static class ResolveCache {
-        private PackageManager mPackageManager;
-
-        /**
-         * Cached entry holding the best {@link ResolveInfo} for a specific
-         * MIME-type, along with a {@link SoftReference} to its icon.
-         */
-        private static class Entry {
-            public ResolveInfo bestResolve;
-            public Drawable icon;
-        }
-
-        private HashMap<String, Entry> mCache = new HashMap<String, Entry>();
-
-        public ResolveCache(Context context) {
-            mPackageManager = context.getPackageManager();
-        }
-
-        /**
-         * Get the {@link Entry} best associated with the given {@link Action},
-         * or create and populate a new one if it doesn't exist.
-         */
-        protected Entry getEntry(Action action) {
-            final String mimeType = action.getMimeType();
-            Entry entry = mCache.get(mimeType);
-            if (entry != null) return entry;
-            entry = new Entry();
-
-            final Intent intent = action.getIntent();
-            if (intent != null) {
-                final List<ResolveInfo> matches = mPackageManager.queryIntentActivities(intent,
-                        PackageManager.MATCH_DEFAULT_ONLY);
-
-                // Pick first match, otherwise best found
-                ResolveInfo bestResolve = null;
-                final int size = matches.size();
-                if (size == 1) {
-                    bestResolve = matches.get(0);
-                } else if (size > 1) {
-                    bestResolve = getBestResolve(intent, matches);
-                }
-
-                if (bestResolve != null) {
-                    final Drawable icon = bestResolve.loadIcon(mPackageManager);
-
-                    entry.bestResolve = bestResolve;
-                    entry.icon = icon;
-                }
-            }
-
-            mCache.put(mimeType, entry);
-            return entry;
-        }
-
-        /**
-         * Best {@link ResolveInfo} when multiple found. Ties are broken by
-         * selecting first from the {QuickContactWindow#sPreferResolve} list of
-         * preferred packages, second by apps that live on the system partition,
-         * otherwise the app from the top of the list. This is
-         * <strong>only</strong> used for selecting a default icon for
-         * displaying in the track, and does not shortcut the system
-         * {@link Intent} disambiguation dialog.
-         */
-        protected ResolveInfo getBestResolve(Intent intent, List<ResolveInfo> matches) {
-            // Try finding preferred activity, otherwise detect disambig
-            final ResolveInfo foundResolve = mPackageManager.resolveActivity(intent,
-                    PackageManager.MATCH_DEFAULT_ONLY);
-            final boolean foundDisambig = (foundResolve.match &
-                    IntentFilter.MATCH_CATEGORY_MASK) == 0;
-
-            if (!foundDisambig) {
-                // Found concrete match, so return directly
-                return foundResolve;
-            }
-
-            // Accept any package from prefer list, otherwise first system app
-            ResolveInfo firstSystem = null;
-            for (ResolveInfo info : matches) {
-                final boolean isSystem = (info.activityInfo.applicationInfo.flags
-                        & ApplicationInfo.FLAG_SYSTEM) != 0;
-                final boolean isPrefer = QuickContactWindow.sPreferResolve
-                        .contains(info.activityInfo.applicationInfo.packageName);
-
-
-
-                if (isPrefer) return info;
-                if (isSystem && firstSystem == null) firstSystem = info;
-            }
-
-            // Return first system found, otherwise first from list
-            return firstSystem != null ? firstSystem : matches.get(0);
-        }
-
-        /**
-         * Check {@link PackageManager} to see if any apps offer to handle the
-         * given {@link Action}.
-         */
-        public boolean hasResolve(Action action) {
-            return getEntry(action).bestResolve != null;
-        }
-
-        /**
-         * Find the best description for the given {@link Action}, usually used
-         * for accessibility purposes.
-         */
-        public CharSequence getDescription(Action action) {
-            final CharSequence actionHeader = action.getHeader();
-            final ResolveInfo info = getEntry(action).bestResolve;
-            if (!TextUtils.isEmpty(actionHeader)) {
-                return actionHeader;
-            } else if (info != null) {
-                return info.loadLabel(mPackageManager);
-            } else {
-                return null;
-            }
-        }
-
-        /**
-         * Return the best icon for the given {@link Action}, which is usually
-         * based on the {@link ResolveInfo} found through a
-         * {@link PackageManager} query.
-         */
-        public Drawable getIcon(Action action) {
-            return getEntry(action).icon;
-        }
-
-        public void clear() {
-            mCache.clear();
-        }
-    }
-
-    /**
-     * Provide a strongly-typed {@link LinkedList} that holds a list of
-     * {@link Action} objects.
-     */
-    private class ActionList extends ArrayList<Action> {
-    }
-
-    /**
-     * Provide a simple way of collecting one or more {@link Action} objects
-     * under a MIME-type key.
-     */
-    private class ActionMap extends HashMap<String, ActionList> {
-        private void collect(String mimeType, Action info) {
-            // Create list for this MIME-type when needed
-            ActionList collectList = get(mimeType);
-            if (collectList == null) {
-                collectList = new ActionList();
-                put(mimeType, collectList);
-            }
-            collectList.add(info);
-        }
-    }
-
     /**
      * Check if the given MIME-type appears in the list of excluded MIME-types
      * that the most-recent caller requested.
@@ -1131,6 +606,7 @@ public class QuickContactWindow implements Window.Callback,
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
+        final ResolveCache cache = ResolveCache.getInstance(mContext.getPackageManager());
         if (cursor == null) return;
         if (cursor.getCount() == 0) {
             Toast.makeText(mContext, R.string.invalidContactMessage, Toast.LENGTH_LONG).show();
@@ -1141,7 +617,7 @@ public class QuickContactWindow implements Window.Callback,
         if (!isMimeExcluded(Contacts.CONTENT_ITEM_TYPE)) {
             // Add the profile shortcut action
             final Action action = new ProfileAction(mContext, mLookupUri);
-            mActions.collect(Contacts.CONTENT_ITEM_TYPE, action);
+            mActions.put(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
         final DataStatus status = new DataStatus();
@@ -1178,14 +654,14 @@ public class QuickContactWindow implements Window.Callback,
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
                 final Action action = new DataAction(mContext, mimeType, kind, dataId, cursor);
-                considerAdd(action, mimeType);
+                considerAdd(action, mimeType, cache);
             }
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
                 final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
                         kind, dataId, cursor);
-                considerAdd(action, Constants.MIME_SMS_ADDRESS);
+                considerAdd(action, Constants.MIME_SMS_ADDRESS, cache);
             }
 
             // Handle Email rows with presence data as Im entry
@@ -1196,7 +672,7 @@ public class QuickContactWindow implements Window.Callback,
                 if (imKind != null) {
                     final Action action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);
-                    considerAdd(action, Im.CONTENT_ITEM_TYPE);
+                    considerAdd(action, Im.CONTENT_ITEM_TYPE, cache);
                 }
             }
         }
@@ -1238,7 +714,7 @@ public class QuickContactWindow implements Window.Callback,
         for (String mimeType : PRECEDING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType), index++);
+                mTrack.addView(inflateAction(mimeType, cache), index++);
                 containedTypes.remove(mimeType);
             }
         }
@@ -1250,7 +726,7 @@ public class QuickContactWindow implements Window.Callback,
         for (String mimeType : FOLLOWING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType), index++);
+                mTrack.addView(inflateAction(mimeType, cache), index++);
                 containedTypes.remove(mimeType);
             }
         }
@@ -1261,7 +737,7 @@ public class QuickContactWindow implements Window.Callback,
         if (remainingTypes.length > 0) hasData = true;
         Arrays.sort(remainingTypes);
         for (String mimeType : remainingTypes) {
-            mTrack.addView(inflateAction(mimeType), index++);
+            mTrack.addView(inflateAction(mimeType, cache), index++);
         }
 
         // When there is no data to display, add a TextView to show the user there's no data
@@ -1276,9 +752,9 @@ public class QuickContactWindow implements Window.Callback,
      * {@link PackageManager} finds an application to handle
      * {@link Action#getIntent()}.
      */
-    private void considerAdd(Action action, String mimeType) {
-        if (mResolveCache.hasResolve(action)) {
-            mActions.collect(mimeType, action);
+    private void considerAdd(Action action, String mimeType, ResolveCache resolveCache) {
+        if (resolveCache.hasResolve(action)) {
+            mActions.put(mimeType, action);
         }
     }
 
@@ -1313,12 +789,12 @@ public class QuickContactWindow implements Window.Callback,
      * Inflate the in-track view for the action of the given MIME-type, collapsing duplicate values.
      * Will use the icon provided by the {@link DataKind}.
      */
-    private View inflateAction(String mimeType) {
+    private View inflateAction(String mimeType, ResolveCache resolveCache) {
         final CheckableImageView view = (CheckableImageView)obtainView();
         boolean isActionSet = false;
 
         // Add direct intent if single child, otherwise flag for multiple
-        ActionList children = mActions.get(mimeType);
+        List<Action> children = mActions.get(mimeType);
         if (children.size() > 1) {
             Collapser.collapseList(children);
         }
@@ -1339,8 +815,8 @@ public class QuickContactWindow implements Window.Callback,
         }
 
         // Set icon and listen for clicks
-        final CharSequence descrip = mResolveCache.getDescription(firstInfo);
-        final Drawable icon = mResolveCache.getIcon(firstInfo);
+        final CharSequence descrip = resolveCache.getDescription(firstInfo);
+        final Drawable icon = resolveCache.getIcon(firstInfo);
         view.setChecked(false);
         view.setContentDescription(descrip);
         view.setImageDrawable(icon);
@@ -1459,7 +935,7 @@ public class QuickContactWindow implements Window.Callback,
                 // Defer the action to make the window properly repaint
                 new Handler().post(startAppRunnable);
             }
-        } else if (tag instanceof ActionList) {
+        } else if (tag instanceof ArrayList<?>) {
             // Don't do anything if already open
             if (actionView != mLastAction) {
                 final Runnable configureListRunnable = new Runnable() {
@@ -1469,7 +945,7 @@ public class QuickContactWindow implements Window.Callback,
                         setNewActionViewChecked(actionView);
 
                         // Incoming tag is a MIME-type, so show resolution list
-                        final ActionList children = (ActionList)tag;
+                        final ArrayList<?> children = (ArrayList<?>)tag;
 
                         mResolveList.setOnItemClickListener(QuickContactWindow.this);
                         mResolveList.setAdapter(new BaseAdapter() {
