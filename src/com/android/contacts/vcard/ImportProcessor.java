@@ -38,6 +38,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,30 +58,32 @@ public class ImportProcessor extends ProcessorBase {
     private final ImportRequest mImportRequest;
     private final int mJobId;
 
-    private final ImportProgressNotifier mNotifier = new ImportProgressNotifier();
+    private final ImportProgressNotifier mNotifier;
 
     // TODO: remove and show appropriate message instead.
     private final List<Uri> mFailedUris = new ArrayList<Uri>();
 
     private VCardParser mVCardParser;
 
-    private volatile boolean mCancelled;
+    private volatile boolean mCanceled;
     private volatile boolean mDone;
 
     public ImportProcessor(final VCardService service, final ImportRequest request,
-            int jobId) {
+            final int jobId) {
         mService = service;
         mResolver = mService.getContentResolver();
         mNotificationManager = (NotificationManager)
                 mService.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifier.init(mService, mNotificationManager);
+
         mImportRequest = request;
         mJobId = jobId;
+        mNotifier = new ImportProgressNotifier(service, mNotificationManager, jobId,
+                request.originalUri.getLastPathSegment());
     }
 
     @Override
     public final int getType() {
-        return PROCESSOR_TYPE_IMPORT;
+        return VCardService.TYPE_IMPORT;
     }
 
     @Override
@@ -88,6 +91,13 @@ public class ImportProcessor extends ProcessorBase {
         // ExecutorService ignores RuntimeException, so we need to show it here.
         try {
             runInternal();
+
+            if (isCancelled()) {
+                doCancelNotification();
+            }
+        } catch (OutOfMemoryError e) {
+            Log.e(LOG_TAG, "OutOfMemoryError thrown during import", e);
+            throw e;
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "RuntimeException thrown during import", e);
             throw e;
@@ -101,7 +111,7 @@ public class ImportProcessor extends ProcessorBase {
     private void runInternal() {
         Log.i(LOG_TAG, String.format("vCard import (id: %d) has started.", mJobId));
         final ImportRequest request = mImportRequest;
-        if (mCancelled) {
+        if (isCancelled()) {
             Log.i(LOG_TAG, "Canceled before actually handling parameter (" + request.uri + ")");
             return;
         }
@@ -145,18 +155,19 @@ public class ImportProcessor extends ProcessorBase {
             // value
             if (isCancelled()) {
                 Log.i(LOG_TAG, "vCard import has been canceled (uri: " + uri + ")");
+                // Cancel notification will be done outside this method.
             } else {
                 Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
-            }
-            List<Uri> uris = committer.getCreatedUris();
-            if (uris != null && uris.size() > 0) {
-                doFinishNotification(uris.get(0));
-            } else {
-                // Not critical, but suspicious.
-                Log.w(LOG_TAG,
-                        "Created Uris is null or 0 length " +
-                        "though the creation itself is successful.");
-                doFinishNotification(null);
+                List<Uri> uris = committer.getCreatedUris();
+                if (uris != null && uris.size() > 0) {
+                    doFinishNotification(uris.get(0));
+                } else {
+                    // Not critical, but suspicious.
+                    Log.w(LOG_TAG,
+                            "Created Uris is null or 0 length " +
+                            "though the creation itself is successful.");
+                    doFinishNotification(null);
+                }
             }
         } else {
             Log.w(LOG_TAG, "Failed to read one vCard file: " + uri);
@@ -164,32 +175,17 @@ public class ImportProcessor extends ProcessorBase {
         }
     }
 
-    /*
-    private void doErrorNotification(int id) {
-        final Notification notification = new Notification();
-        notification.icon = android.R.drawable.stat_sys_download_done;
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        final String title = mService.getString(R.string.reading_vcard_failed_title);
-        final PendingIntent intent =
-                PendingIntent.getActivity(mService, 0, new Intent(), 0);
-        notification.setLatestEventInfo(mService, title, "", intent);
-        mNotificationManager.notify(MESSAGE_ID, notification);
+    private void doCancelNotification() {
+        final String description = mService.getString(R.string.importing_vcard_canceled_title,
+                mImportRequest.originalUri.getLastPathSegment());
+        final Notification notification =
+                VCardService.constructCancelNotification(mService, description);
+        mNotificationManager.notify(mJobId, notification);
     }
-    */
 
     private void doFinishNotification(final Uri createdUri) {
-        final Notification notification = new Notification();
-        final String title;
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        if (isCancelled()) {
-            notification.icon = android.R.drawable.stat_notify_error;
-            title = mService.getString(R.string.importing_vcard_canceled_title);
-        } else {
-            notification.icon = android.R.drawable.stat_sys_download_done;
-            title = mService.getString(R.string.importing_vcard_finished_title);
-        }
-
+        final String description = mService.getString(R.string.importing_vcard_finished_title,
+                mImportRequest.originalUri.getLastPathSegment());
         final Intent intent;
         if (createdUri != null) {
             final long rawContactId = ContentUris.parseId(createdUri);
@@ -200,10 +196,9 @@ public class ImportProcessor extends ProcessorBase {
         } else {
             intent = null;
         }
-
-        notification.setLatestEventInfo(mService, title, "",
-                PendingIntent.getActivity(mService, 0, intent, 0));
-        mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
+        final Notification notification =
+                   VCardService.constructFinishNotification(mService, description, intent);
+        mNotificationManager.notify(mJobId, notification);
     }
 
     private boolean readOneVCard(Uri uri, int vcardType, String charset,
@@ -231,7 +226,7 @@ public class ImportProcessor extends ProcessorBase {
                     mVCardParser = (vcardVersion == ImportVCardActivity.VCARD_VERSION_V30 ?
                             new VCardParser_V30(vcardType) :
                                 new VCardParser_V21(vcardType));
-                    if (mCancelled) {
+                    if (isCancelled()) {
                         Log.i(LOG_TAG, "ImportProcessor already recieves cancel request, so " +
                                 "send cancel request to vCard parser too.");
                         mVCardParser.cancel();
@@ -278,10 +273,10 @@ public class ImportProcessor extends ProcessorBase {
     @Override
     public synchronized boolean cancel(boolean mayInterruptIfRunning) {
         Log.i(LOG_TAG, "ImportProcessor received cancel request");
-        if (mDone || mCancelled) {
+        if (mDone || mCanceled) {
             return false;
         }
-        mCancelled = true;
+        mCanceled = true;
         synchronized (this) {
             if (mVCardParser != null) {
                 mVCardParser.cancel();
@@ -292,7 +287,7 @@ public class ImportProcessor extends ProcessorBase {
 
     @Override
     public synchronized boolean isCancelled() {
-        return mCancelled;
+        return mCanceled;
     }
 
 

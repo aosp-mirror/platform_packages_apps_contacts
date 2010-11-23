@@ -21,27 +21,30 @@ import com.android.vcard.VCardEntryHandler;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.widget.RemoteViews;
 
 /**
- * {@link VCardEntryHandler} implementation which lets the system update
- * the current status of vCard import.
+ * {@link VCardEntryHandler} implementation letting the system update the current status of
+ * vCard import.
  */
 public class ImportProgressNotifier implements VCardEntryHandler {
     private static final String LOG_TAG = "VCardImport";
 
-    private Context mContext;
-    private NotificationManager mNotificationManager;
+    private final Context mContext;
+    private final NotificationManager mNotificationManager;
+    private final int mJobId;
+    private final String mDisplayName;
 
     private int mCurrentCount;
     private int mTotalCount;
 
-    public void init(Context context, NotificationManager notificationManager) {
+    public ImportProgressNotifier(
+            Context context, NotificationManager notificationManager,
+            int jobId, String displayName) {
         mContext = context;
         mNotificationManager = notificationManager;
+        mJobId = jobId;
+        mDisplayName = displayName;
     }
 
     public void onStart() {
@@ -53,12 +56,6 @@ public class ImportProgressNotifier implements VCardEntryHandler {
             return;
         }
 
-        // We don't use onStart() since:
-        // - We cannot know name there but here.
-        // - There's high probability where name comes soon after the beginning of entry, so
-        //   we don't need to hurry to show something.
-
-
         final String totalCountString;
         synchronized (this) {
             totalCountString = String.valueOf(mTotalCount);
@@ -68,50 +65,17 @@ public class ImportProgressNotifier implements VCardEntryHandler {
                         String.valueOf(mCurrentCount),
                         totalCountString,
                         contactStruct.getDisplayName());
-
-
-        final Context context = mContext.getApplicationContext();
-
         final String description = mContext.getString(R.string.importing_vcard_description,
                 contactStruct.getDisplayName());
-        final RemoteViews remoteViews =
-                new RemoteViews(context.getPackageName(),
-                R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.status_description, description);
-        remoteViews.setProgressBar(R.id.status_progress_bar, mTotalCount, mCurrentCount,
-                mTotalCount == -1);
-        final String percentage;
-        if (mTotalCount > 0) {
-            percentage = context.getString(R.string.percentage,
-                    String.valueOf(mCurrentCount * 100/mTotalCount));
-        } else {
-            percentage = "";
-        }
-        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
-        remoteViews.setImageViewResource(R.id.status_icon, android.R.drawable.stat_sys_download);
 
-        final Notification notification = new Notification();
-        notification.icon = android.R.drawable.stat_sys_download;
-        notification.tickerText = tickerText;
-        notification.contentView = remoteViews;
-        notification.flags |= Notification.FLAG_ONGOING_EVENT;
-
-        final PendingIntent pendingIntent =
-                PendingIntent.getActivity(context, 0,
-                        new Intent(context, CancelImportActivity.class),
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notification.contentIntent = pendingIntent;
-        // notification.setLatestEventInfo(context, title, description, pendingIntent);
-        mNotificationManager.notify(VCardService.IMPORT_NOTIFICATION_ID, notification);
+        final Notification notification = VCardService.constructProgressNotification(
+                mContext.getApplicationContext(), VCardService.TYPE_IMPORT, description, tickerText,
+                mJobId, mDisplayName, mTotalCount, mCurrentCount);
+        mNotificationManager.notify(mJobId, notification);
     }
 
     public synchronized void addTotalCount(int additionalCount) {
         mTotalCount += additionalCount;
-    }
-
-    public synchronized void resetTotalCount() {
-        mTotalCount = 0;
     }
 
     public void onEnd() {

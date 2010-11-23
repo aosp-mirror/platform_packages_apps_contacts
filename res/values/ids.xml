@@ -31,8 +31,9 @@
     <item type="id" name="dialog_io_exception"/>
     <item type="id" name="dialog_error_with_message"/>
 
-    <!-- For vcard.CancelImportActivity -->
-    <item type="id" name="dialog_cancel_import_confirmation"/>
+    <!-- For vcard.CancelActivity -->
+    <item type="id" name="dialog_cancel_confirmation"/>
+    <item type="id" name="dialog_cancel_failed"/>
 
     <!-- For ContactDeletionInteraction -->
     <item type="id" name="dialog_delete_contact_confirmation"/>

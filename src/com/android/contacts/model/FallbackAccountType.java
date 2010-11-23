@@ -299,7 +299,7 @@ public class FallbackAccountType extends AccountType {
         DataKind kind = getKindForMimetype(Im.CONTENT_ITEM_TYPE);
         if (kind == null) {
             kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
-                    android.R.drawable.sym_action_chat, 20, true));
+                    R.drawable.sym_action_talk_holo_light, 20, true));
             kind.actionHeader = new ImActionInflater();
             kind.actionBody = new SimpleInflater(Im.DATA);
         }

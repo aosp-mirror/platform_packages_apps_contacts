@@ -35,7 +35,22 @@ public class ImportRequest {
      * Can be null (typically when there's no Account available in the system).
      */
     public final Account account;
+    /**
+     * Uri to be imported. May have different content than originally given from users, so
+     * when displaying user-friendly information (e.g. "importing xxx.vcf"), use
+     * {@link #originalUri} instead.
+     */
     public final Uri uri;
+
+    /**
+     * Original uri given from users.
+     * Useful when showing user-friendly information ("importing xxx.vcf"), as
+     * {@link #uri} may have different name than the original (like "import_tmp_1.vcf").
+     *
+     * This variable must not be used for doing actual processing like re-import, as the app
+     * may not have right permission to do so.
+     */
+    public final Uri originalUri;
     /**
      * Can be {@link VCardSourceDetector#PARSE_TYPE_UNKNOWN}.
      */
@@ -74,10 +89,11 @@ public class ImportRequest {
      */
     public final int entryCount;
     public ImportRequest(Account account,
-            Uri uri, int estimatedType, String estimatedCharset,
+            Uri uri, Uri originalUri, int estimatedType, String estimatedCharset,
             int vcardVersion, int entryCount) {
         this.account = account;
         this.uri = uri;
+        this.originalUri = originalUri;
         this.estimatedVCardType = estimatedType;
         this.estimatedCharset = estimatedCharset;
         this.vcardVersion = vcardVersion;

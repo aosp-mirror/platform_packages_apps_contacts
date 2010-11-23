@@ -40,6 +40,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     private static final String KEY_ACCOUNT_TYPE = "filter.accountType";
     private static final String KEY_GROUP_ID = "filter.groupId";
     private static final String KEY_GROUP_SOURCE_ID = "filter.groupSourceId";
+    private static final String KEY_GROUP_READ_ONLY = "filter.groupReadOnly";
 
     public int filterType;
     public String accountType;
@@ -47,6 +48,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     public Drawable icon;
     public long groupId;
     public String groupSourceId;
+    public boolean groupReadOnly;
     public String title;
     private String mId;
 
@@ -63,13 +65,14 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         this.title = title;
     }
 
-    public ContactListFilter(
-            String accountType, String accountName, long groupId, String groupSourceId, String title) {
+    public ContactListFilter(String accountType, String accountName, long groupId,
+            String groupSourceId, boolean groupReadOnly, String title) {
         this.filterType = ContactListFilter.FILTER_TYPE_GROUP;
         this.accountType = accountType;
         this.accountName = accountName;
         this.groupId = groupId;
         this.groupSourceId = groupSourceId;
+        this.groupReadOnly = groupReadOnly;
         this.title = title;
     }
 
@@ -159,6 +162,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
             .putString(KEY_ACCOUNT_TYPE, filter == null ? null : filter.accountType)
             .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
             .putString(KEY_GROUP_SOURCE_ID, filter == null ? null : filter.groupSourceId)
+            .putBoolean(KEY_GROUP_READ_ONLY, filter == null ? false : filter.groupReadOnly)
             .apply();
     }
 
@@ -173,6 +177,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         filter.accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
         filter.groupId = prefs.getLong(KEY_GROUP_ID, -1);
         filter.groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
+        filter.groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
         return filter;
     }
 

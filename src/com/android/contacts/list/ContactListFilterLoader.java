@@ -45,6 +45,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
             Groups.TITLE,
             Groups.AUTO_ADD,
             Groups.SOURCE_ID,
+            Groups.GROUP_IS_READ_ONLY,
         };
 
         public static final int ID = 0;
@@ -53,6 +54,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         public static final int TITLE = 3;
         public static final int IS_DEFAULT_GROUP = 4;       // Using the AUTO_ADD group as default
         public static final int SOURCE_ID = 5;
+        public static final int GROUP_IS_READ_ONLY = 6;
 
         private static final String SELECTION =
                 Groups.DELETED + "=0 AND " + Groups.FAVORITES + "=0";
@@ -88,6 +90,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
             while (cursor.moveToNext()) {
                 long groupId = cursor.getLong(GroupQuery.ID);
                 String groupSourceId = cursor.getString(GroupQuery.SOURCE_ID);
+                boolean groupReadOnly = cursor.getInt(GroupQuery.GROUP_IS_READ_ONLY) != 0;
                 String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
                 String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
                 boolean defaultGroup = false;
@@ -106,8 +109,8 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
                     }
                 } else {
                     String title = cursor.getString(GroupQuery.TITLE);
-                    results.add(new ContactListFilter(
-                            accountType, accountName, groupId, groupSourceId, title));
+                    results.add(new ContactListFilter(accountType, accountName, groupId,
+                            groupSourceId, groupReadOnly, title));
                 }
             }
         } finally {

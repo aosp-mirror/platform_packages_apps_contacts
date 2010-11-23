@@ -16,15 +16,15 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
     android:dither="true">
-    <!-- TODO: We should be using framework resources here once they are finished -->
+    <!-- TODO Still a hack. This needs a default from the framework instead for the checked state -->
     <item android:state_checked="true"
-        android:drawable="@drawable/quickcontact_slider_btn_on" />
+        android:drawable="@drawable/quickactions_icon_activated" />
     <item android:state_window_focused="false"
         android:drawable="@android:color/transparent" />
     <item android:state_pressed="true"
-        android:drawable="@drawable/quickcontact_slider_btn_pressed" />
+        android:drawable="@drawable/quickactions_icon_activated" />
     <item android:state_focused="true"
-        android:drawable="@drawable/quickcontact_slider_btn_selected" />
+        android:drawable="@drawable/quickactions_icon_activated" />
     <item
         android:drawable="@android:color/transparent" />
 </selector>
