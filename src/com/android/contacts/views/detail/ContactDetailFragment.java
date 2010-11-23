@@ -271,6 +271,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mTransitionAnimationRequested = mContactDataDisplayed;
         mContactDataDisplayed = true;
         if (mLookupUri == null) {
+            getLoaderManager().stopLoader(LOADER_DETAILS);
             mContactData = null;
             bindData();
         } else if (getActivity() != null) {
@@ -1245,14 +1246,18 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
 
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
-            if (data == ContactLoader.Result.NOT_FOUND || data == ContactLoader.Result.ERROR) {
-                // Item has been deleted
-                Log.i(TAG, "No contact found. Closing activity");
-                if (mListener != null) mListener.onContactNotFound();
-                return;
+            if (data != ContactLoader.Result.NOT_FOUND && data != ContactLoader.Result.ERROR) {
+                mContactData = data;
+            } else {
+                Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
+                mContactData = null;
             }
-            mContactData = data;
+
             bindData();
+
+            if (mContactData == null && mListener != null) {
+                mListener.onContactNotFound();
+            }
         }
     };
 

@@ -956,6 +956,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         mLoadGroupMetaData = loadGroupMetaData;
     }
 
+    public Uri getLookupUri() {
+        return mLookupUri;
+    }
+
     @Override
     public void startLoading() {
         if (mContact != null) {
