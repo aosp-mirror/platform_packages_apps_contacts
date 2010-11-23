@@ -65,7 +65,7 @@ public class FallbackAccountType extends AccountType {
     public FallbackAccountType() {
         this.accountType = null;
         this.titleRes = R.string.account_phone;
-        this.iconRes = R.drawable.ic_launcher_contacts;
+        this.iconRes = R.mipmap.ic_launcher_contacts;
     }
 
     @Override
