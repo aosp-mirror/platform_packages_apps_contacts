@@ -872,10 +872,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    private View findViewById(int id) {
-        return mView.findViewById(id);
-    }
-
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
     public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
         if (count == 0) {

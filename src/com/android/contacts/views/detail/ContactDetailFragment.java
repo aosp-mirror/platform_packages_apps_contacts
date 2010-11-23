@@ -238,6 +238,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             }
         });
 
+        mView.setVisibility(View.INVISIBLE);
         return mView;
     }
 

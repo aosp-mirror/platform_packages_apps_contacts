@@ -141,6 +141,8 @@ public class ContactsIntentResolver {
         } else if (Intent.ACTION_VIEW.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
             request.setContactUri(intent.getData());
+            intent.setAction(Intent.ACTION_DEFAULT);
+            intent.setData(null);
         } else if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             // When we get a FILTER_CONTACTS_ACTION, it represents search in the context
             // of some other action. Let's retrieve the original action to provide proper
@@ -155,10 +157,6 @@ public class ContactsIntentResolver {
                 if (originalRequest != null) {
                     request.copyFrom(originalRequest);
                 }
-            }
-
-            if (request == null) {
-                request = new ContactsRequest();
             }
 
             request.setSearchMode(true);
@@ -176,6 +174,8 @@ public class ContactsIntentResolver {
             } else {
                 request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                 request.setContactUri(data);
+                intent.setAction(Intent.ACTION_DEFAULT);
+                intent.setData(null);
             }
         } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
             request.setRedirectIntent(new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData()));
