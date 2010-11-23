@@ -17,10 +17,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,17 +33,8 @@ import android.widget.TextView;
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
 
-    private static final String KEY_FILTER_ENABLED = "filterEnabled";
-
-    private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
-    private static final String KEY_SEARCH_MODE_CONTACT_URI_SUFFIX = "search";
-
     private View mCounterHeaderView;
     private View mSearchHeaderView;
-
-    private boolean mFilterEnabled;
-    private ContactListFilter mFilter;
-    private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -54,18 +42,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setAizyEnabled(true);
     }
 
-    public void setFilter(ContactListFilter filter) {
-        mFilter = filter;
-    }
-
-    public ContactListFilter getFilter() {
-        return mFilter;
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
     }
 
     @Override
@@ -76,7 +56,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             return;
         }
 
-        setFilterEnabled(savedState.getBoolean(KEY_FILTER_ENABLED));
     }
 
     @Override
@@ -90,16 +69,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         adapter.setDisplayPhotos(true);
         return adapter;
-    }
-
-    @Override
-    protected void configureAdapter() {
-        super.configureAdapter();
-
-        DefaultContactListAdapter adapter = (DefaultContactListAdapter)getAdapter();
-        if (adapter != null && mFilter != null) {
-            adapter.setFilter(mFilter);
-        }
     }
 
     @Override
@@ -175,60 +144,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 }
                 mSearchHeaderView.setVisibility(View.VISIBLE);
             }
-        }
-    }
-
-    public boolean isFilterEnabled() {
-        return mFilterEnabled;
-    }
-
-    public void setFilterEnabled(boolean flag) {
-        this.mFilterEnabled = flag;
-    }
-
-    @Override
-    public void startLoading() {
-        if (!mFilterEnabled || mFilter != null) {
-            super.startLoading();
-        }
-    }
-
-    @Override
-    public void saveSelectedUri(SharedPreferences preferences) {
-        Uri uri = getSelectedContactUri();
-        if (uri == null) {
-            eraseSelectedUri(preferences);
-        } else {
-            Editor editor = preferences.edit();
-            editor.putString(getPersistentSelectionKey(), uri.toString());
-            editor.apply();
-        }
-    }
-
-    @Override
-    public void eraseSelectedUri(SharedPreferences preferences) {
-        Editor editor = preferences.edit();
-        editor.remove(getPersistentSelectionKey());
-        editor.apply();
-    }
-
-    @Override
-    public void restoreSelectedUri(SharedPreferences preferences) {
-        String selectedUri = preferences.getString(getPersistentSelectionKey(), null);
-        if (selectedUri == null) {
-            setSelectedContactUri(null);
-        } else {
-            setSelectedContactUri(Uri.parse(selectedUri));
-        }
-    }
-
-    private String getPersistentSelectionKey() {
-        if (isSearchMode()) {
-            return mPersistentSelectionPrefix + "-" + KEY_SEARCH_MODE_CONTACT_URI_SUFFIX;
-        } else if (mFilter == null) {
-            return mPersistentSelectionPrefix;
-        } else {
-            return mPersistentSelectionPrefix + "-" + mFilter.getId();
         }
     }
 }
