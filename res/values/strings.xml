@@ -1447,4 +1447,10 @@
       (Contacts themselves will not be deleted.)
     </string>
 
+    <!-- Toast displayed when the user creates a new contact and attempts to join it
+      with another before entering any data  [CHAR LIMIT=256] -->
+    <string name="toast_join_with_empty_contact">Please enter contact name before joining
+      with another contact.
+    </string>
+
 </resources>
