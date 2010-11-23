@@ -604,6 +604,22 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean doJoinContactAction() {
+        if (!hasValidState()) {
+            return false;
+        }
+
+        // If we just started creating a new contact and haven't added any data, it's too
+        // early to do a join
+        if (mState.size() == 1 && mState.get(0).isContactInsert()) {
+            final AccountTypes sources = AccountTypes.getInstance(mContext);
+            EntityModifier.trimEmpty(mState, sources);
+            if (mState.buildDiff().isEmpty()) {
+                Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
+                                Toast.LENGTH_LONG).show();
+                return true;
+            }
+        }
+
         return doSaveAction(SaveMode.JOIN);
     }
 
