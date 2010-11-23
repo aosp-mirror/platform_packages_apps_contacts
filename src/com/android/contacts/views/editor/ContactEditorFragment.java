@@ -18,8 +18,8 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.JoinContactActivity;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -93,7 +93,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1420,8 +1419,7 @@ public class ContactEditorFragment extends Fragment implements
         private static final int RESULT_FAILURE = 2;
 
         private final Context mContext;
-
-        private WeakReference<ProgressDialog> mProgress;
+        private ProgressDialog mProgress;
 
         private int mSaveMode;
         private Uri mContactLookupUri = null;
@@ -1435,8 +1433,13 @@ public class ContactEditorFragment extends Fragment implements
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(ContactEditorFragment target) {
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target.getActivity(),
-                    null, target.getActivity().getText(R.string.savingContact)));
+            try {
+                mProgress = ProgressDialog.show(target.getActivity(), null,
+                        target.getActivity().getText(R.string.savingContact));
+            } catch (Exception e) {
+                // this can happen if our view has already been closed. this can safely be
+                // ignored
+            }
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -1527,10 +1530,9 @@ public class ContactEditorFragment extends Fragment implements
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            final ProgressDialog progress = mProgress.get();
-            if (progress != null && progress.isShowing()) {
+            if (mProgress != null && mProgress.isShowing()) {
                 try {
-                    progress.dismiss();
+                    mProgress.dismiss();
                 } catch (Exception e) {
                     // this can happen if our view has already been closed. this can safely be
                     // ignored
