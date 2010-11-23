@@ -293,7 +293,7 @@ public class ContactsUtils {
                 return new ImActions(
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call")),
-                        android.R.drawable.sym_action_chat,
+                        R.drawable.sym_action_talk_holo_light,
                         R.drawable.sym_action_videochat
                         );
             } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
@@ -301,14 +301,14 @@ public class ContactsUtils {
                 return new ImActions(
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call")),
-                        android.R.drawable.sym_action_chat,
+                        R.drawable.sym_action_talk_holo_light,
                         R.drawable.sym_action_audiochat
                         );
             } else {
                 return new ImActions(
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
                         null,
-                        android.R.drawable.sym_action_chat,
+                        R.drawable.sym_action_talk_holo_light,
                         -1
                         );
             }
@@ -328,7 +328,7 @@ public class ContactsUtils {
                 return new ImActions(
                         new Intent(Intent.ACTION_SENDTO, imUri),
                         null,
-                        android.R.drawable.sym_action_chat,
+                        R.drawable.sym_action_talk_holo_light,
                         -1
                         );
             } else {
