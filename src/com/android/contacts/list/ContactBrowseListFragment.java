@@ -289,19 +289,17 @@ public abstract class ContactBrowseListFragment extends
 
     private void parseSelectedContactUri() {
         if (mSelectedContactUri != null) {
-            if (!mSelectedContactUri.toString()
-                    .startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
-                throw new IllegalStateException(
-                        "Contact list contains a non-lookup URI: " + mSelectedContactUri);
+            String directoryParam =
+                mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+            mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam) ? Directory.DEFAULT
+                    : Long.parseLong(directoryParam);
+            if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
+                mSelectedContactLookupKey = Uri.encode(
+                        mSelectedContactUri.getPathSegments().get(2));
+            } else {
+                mSelectedContactLookupKey = null;
             }
 
-            String directoryParam =
-                    mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
-            mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam)
-                    ? Directory.DEFAULT
-                    : Long.parseLong(directoryParam);
-            mSelectedContactLookupKey =
-                    Uri.encode(mSelectedContactUri.getPathSegments().get(2));
         } else {
             mSelectedContactDirectoryId = Directory.DEFAULT;
             mSelectedContactLookupKey = null;

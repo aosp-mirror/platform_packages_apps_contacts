@@ -178,20 +178,21 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
-        setTitle(mRequest.getActivityTitle());
         setContentView(R.layout.contact_browser);
-
-        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         mContactContentDisplayed = findViewById(R.id.detail_container) != null;
 
-        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
-            if (!mContactContentDisplayed) {
-                startActivity(new Intent(Intent.ACTION_VIEW, mRequest.getContactUri()));
-                finish();
-                return;
-            }
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
+                && !mContactContentDisplayed) {
+            redirect = new Intent(this, ContactDetailActivity.class);
+            redirect.setAction(Intent.ACTION_VIEW);
+            redirect.setData(mRequest.getContactUri());
+            startActivity(redirect);
+            finish();
+            return;
         }
 
+        setTitle(mRequest.getActivityTitle());
+        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         if (mHasActionBar) {
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());

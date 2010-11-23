@@ -30,7 +30,10 @@ public class ContactsFrontDoor extends Activity {
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
+        Intent originalIntent = getIntent();
         Intent intent = new Intent();
+        intent.setAction(originalIntent.getAction());
+        intent.setDataAndType(originalIntent.getData(), originalIntent.getType());
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra(EXTRA_FRONT_DOOR, true);
