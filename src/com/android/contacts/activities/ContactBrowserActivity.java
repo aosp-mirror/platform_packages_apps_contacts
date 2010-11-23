@@ -724,6 +724,9 @@ public class ContactBrowserActivity extends Activity
             return false;
         }
 
+        MenuItem settings = menu.findItem(R.id.menu_settings);
+        settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
+
         MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
         if (displayGroups != null) {
             displayGroups.setVisible(
