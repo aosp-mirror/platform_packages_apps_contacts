@@ -1078,7 +1078,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                     return;  // Don't show a dialog.
                 }
 
-                final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(true);
+                final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
                 dialog.setTargetFragment(this, 0);
                 dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
                 break;
@@ -1091,7 +1091,7 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     }
 
     @Override
-    public void onAccountChosen(Account account, boolean isNewContact) {
+    public void onAccountChosen(Account account) {
         createCopy(account);
     }
 

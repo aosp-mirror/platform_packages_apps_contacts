@@ -36,29 +36,8 @@ import android.os.Bundle;
  */
 public class SelectAccountDialogFragment extends DialogFragment {
     public static final String TAG = "SelectAccountDialogFragment";
-    private static final String IS_NEW_CONTACT = "IS_NEW_CONTACT";
-
-    private boolean mIsNewContact;
 
     public SelectAccountDialogFragment() {
-    }
-
-    public SelectAccountDialogFragment(boolean isNewContact) {
-        mIsNewContact = isNewContact;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            mIsNewContact = savedInstanceState.getBoolean(IS_NEW_CONTACT);
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(IS_NEW_CONTACT, mIsNewContact);
     }
 
     @Override
@@ -75,7 +54,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
                 dialog.dismiss();
 
                 final Listener target = (Listener) getTargetFragment();
-                target.onAccountChosen(accountAdapter.getItem(which), mIsNewContact);
+                target.onAccountChosen(accountAdapter.getItem(which));
             }
         };
 
@@ -93,7 +72,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
     }
 
     public interface Listener {
-        void onAccountChosen(Account account, boolean isNewContact);
+        void onAccountChosen(Account account);
         void onAccountSelectorCancelled();
     }
 }
