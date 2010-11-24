@@ -130,7 +130,8 @@ public class ContactDetailActivity extends Activity {
             Toast.makeText(ContactDetailActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    ContactDetailActivity.this, values, account);
+                    ContactDetailActivity.this, values, account,
+                    ContactDetailActivity.class, Intent.ACTION_VIEW);
             startService(serviceIntent);
 
         }

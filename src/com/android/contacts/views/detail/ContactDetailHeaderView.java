@@ -20,16 +20,17 @@ import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.views.ContactLoader;
 import com.android.contacts.views.ContactLoader.Result;
+import com.android.contacts.views.ContactSaveService;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.text.TextUtils;
@@ -296,10 +297,9 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 // Toggle "starred" state
                 // Make sure there is a contact
                 if (mContactUri != null) {
-                    // TODO: This should be done in the background
-                    final ContentValues values = new ContentValues(1);
-                    values.put(Contacts.STARRED, mStarredView.isChecked());
-                    mContext.getContentResolver().update(mContactUri, values, null, null);
+                    Intent intent = ContactSaveService.createSetStarredIntent(
+                            getContext(), mContactUri, mStarredView.isChecked());
+                    getContext().startService(intent);
                 }
                 break;
             }

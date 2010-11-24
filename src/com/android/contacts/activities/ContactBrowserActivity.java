@@ -626,7 +626,8 @@ public class ContactBrowserActivity extends Activity
             Toast.makeText(ContactBrowserActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    ContactBrowserActivity.this, values, account);
+                    ContactBrowserActivity.this, values, account,
+                    ContactBrowserActivity.class, Intent.ACTION_VIEW);
             startService(serviceIntent);
         }
     }
