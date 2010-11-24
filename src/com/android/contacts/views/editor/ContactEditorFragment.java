@@ -1215,6 +1215,10 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
+        if (!isAdded()) {
+            return;
+        }
+
         RawContactEditorView rawContactView =
                 (RawContactEditorView)getRawContactEditorView(mAggregationSuggestionsRawContactId);
         if (rawContactView == null) {

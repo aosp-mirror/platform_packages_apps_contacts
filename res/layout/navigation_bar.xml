@@ -111,7 +111,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:maxWidth="300dip" />
+        android:maxWidth="300dip"
+        android:iconifiedByDefault="false" />
     />
 
 </LinearLayout>
