@@ -79,7 +79,7 @@ public class ContactPhotoLoader implements Callback {
         private static final int NEEDED = 0;
         private static final int LOADING = 1;
         private static final int LOADED = 2;
-        private static final int REFRESH_CACHE = 3;
+        private static final int LOADED_NEEDS_RELOAD = 3;
 
         int state;
         SoftReference<Bitmap> bitmapRef;
@@ -183,8 +183,8 @@ public class ContactPhotoLoader implements Callback {
      */
     public void refreshCache() {
         for (BitmapHolder holder : mBitmapCache.values()) {
-            if (holder.state == BitmapHolder.LOADED && holder.bitmapRef.get() != null) {
-                holder.state = BitmapHolder.REFRESH_CACHE;
+            if (holder.state == BitmapHolder.LOADED) {
+                holder.state = BitmapHolder.LOADED_NEEDS_RELOAD;
             }
         }
     }
@@ -200,23 +200,23 @@ public class ContactPhotoLoader implements Callback {
             holder = new BitmapHolder();
             mBitmapCache.put(key, holder);
         } else {
-            boolean freshCache = true;
-            if (holder.state == BitmapHolder.REFRESH_CACHE) {
-                freshCache = false;
+            boolean loaded = (holder.state == BitmapHolder.LOADED);
+            boolean loadedNeedsReload = (holder.state == BitmapHolder.LOADED_NEEDS_RELOAD);
+            if (loadedNeedsReload) {
                 holder.state = BitmapHolder.NEEDED;
             }
 
-            if (holder.state == BitmapHolder.LOADED || freshCache) {
+            if (loaded || loadedNeedsReload) {
                 // Null bitmap reference means that database contains no bytes for the photo
                 if (holder.bitmapRef == null) {
                     view.setImageResource(mDefaultResourceId);
-                    return freshCache;
+                    return loaded;
                 }
 
                 Bitmap bitmap = holder.bitmapRef.get();
                 if (bitmap != null) {
                     view.setImageBitmap(bitmap);
-                    return freshCache;
+                    return loaded;
                 }
 
                 // Null bitmap means that the soft reference was released by the GC
