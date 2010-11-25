@@ -19,6 +19,7 @@ package com.android.contacts.interactions;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.views.ContactSaveService;
 import com.google.android.collect.Sets;
 
 import android.app.Activity;
@@ -222,7 +223,7 @@ public class ContactDeletionInteraction extends Fragment
     }
 
     protected void doDeleteContact(Uri contactUri) {
-        getActivity().getContentResolver().delete(contactUri, null, null);
+        mContext.startService(ContactSaveService.createDeleteContactIntent(mContext, contactUri));
     }
 
     /* Visible for testing */

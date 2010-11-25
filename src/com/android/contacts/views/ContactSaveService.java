@@ -60,6 +60,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_GROUP_LABEL = "groupLabel";
 
     public static final String ACTION_SET_STARRED = "setStarred";
+    public static final String ACTION_DELETE_CONTACT = "delete";
     public static final String EXTRA_CONTACT_URI = "contactUri";
     public static final String EXTRA_STARRED_FLAG = "starred";
 
@@ -109,6 +110,8 @@ public class ContactSaveService extends IntentService {
             setSuperPrimary(intent);
         } else if (ACTION_CLEAR_PRIMARY.equals(action)) {
             clearPrimary(intent);
+        } else if (ACTION_DELETE_CONTACT.equals(action)) {
+            deleteContact(intent);
         }
     }
 
@@ -294,7 +297,6 @@ public class ContactSaveService extends IntentService {
         final ContentValues values = new ContentValues(1);
         values.put(Contacts.STARRED, value);
         getContentResolver().update(contactUri, values, null, null);
-
     }
 
     /**
@@ -349,5 +351,25 @@ public class ContactSaveService extends IntentService {
 
         getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
                 values, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to delete a contact.
+     */
+    public static Intent createDeleteContactIntent(Context context, Uri contactUri) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_CONTACT);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_URI, contactUri);
+        return serviceIntent;
+    }
+
+    private void deleteContact(Intent intent) {
+        Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
+        if (contactUri == null) {
+            Log.e(TAG, "Invalid arguments for deleteContact request");
+            return;
+        }
+
+        getContentResolver().delete(contactUri, null, null);
     }
 }
