@@ -114,7 +114,6 @@ public class ContactBrowserActivity extends Activity
 
     private PhoneNumberInteraction mPhoneNumberCallInteraction;
     private PhoneNumberInteraction mSendTextMessageInteraction;
-    private ContactDeletionInteraction mContactDeletionInteraction;
     private ImportExportInteraction mImportExportInteraction;
 
     private boolean mSearchInitiated;
@@ -578,7 +577,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            getContactDeletionInteraction().deleteContact(contactUri);
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
         }
 
         @Override
@@ -617,8 +616,8 @@ public class ContactBrowserActivity extends Activity
         }
 
         @Override
-        public void onDeleteRequested(Uri contactLookupUri) {
-            getContactDeletionInteraction().deleteContact(contactLookupUri);
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
         }
 
         @Override
@@ -845,10 +844,7 @@ public class ContactBrowserActivity extends Activity
     protected Dialog onCreateDialog(int id, Bundle bundle) {
         if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, bundle);
 
-        Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-
-        dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
+        Dialog dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
         if (dialog != null) return dialog;
 
         dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
@@ -862,10 +858,6 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected void onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
-        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, bundle)) {
-            return;
-        }
-
         if (getPhoneNumberCallInteraction().onPrepareDialog(id, dialog, bundle)) {
             return;
         }
@@ -1014,14 +1006,6 @@ public class ContactBrowserActivity extends Activity
             mSendTextMessageInteraction = new PhoneNumberInteraction(this, true, null);
         }
         return mSendTextMessageInteraction;
-    }
-
-    private ContactDeletionInteraction getContactDeletionInteraction() {
-        if (mContactDeletionInteraction == null) {
-            mContactDeletionInteraction = new ContactDeletionInteraction();
-            mContactDeletionInteraction.attachToActivity(this);
-        }
-        return mContactDeletionInteraction;
     }
 
     private ImportExportInteraction getImportExportInteraction() {
