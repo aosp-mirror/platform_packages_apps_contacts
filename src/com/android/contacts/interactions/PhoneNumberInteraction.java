@@ -23,11 +23,11 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.views.ContactSaveService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -338,11 +338,8 @@ public class PhoneNumberInteraction
      * Makes the selected phone number primary.
      */
     void makePrimary(long id) {
-        // TODO use a Saver
-        ContentValues values = new ContentValues(1);
-        values.put(Data.IS_SUPER_PRIMARY, 1);
-        Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, id);
-        mContext.getContentResolver().update(uri, values, null, null);
+        final Intent intent = ContactSaveService.createSetSuperPrimaryIntent(mContext, id);
+        mContext.startService(intent);
     }
 
     /* Visible for testing */

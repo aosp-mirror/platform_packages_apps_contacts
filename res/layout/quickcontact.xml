@@ -68,33 +68,69 @@
             android:orientation="horizontal" />
     </HorizontalScrollView>
 
-    <LinearLayout
-        android:id="@+id/footer_disambig"
+    <FrameLayout
+        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:visibility="gone">
-
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:cacheColorHint="@null" />
-
-        <CheckBox
-            android:id="@android:id/checkbox"
+        <LinearLayout
+            android:id="@+id/footer_disambig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="19dip"
-            android:layout_marginRight="19dip"
-            android:minHeight="60dip"
-            android:textColor="#f000"
-            android:textStyle="bold"
-            android:text="@string/quickcontact_remember_choice"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:cacheColorHint="@null" />
+
+            <CheckBox
+                android:id="@android:id/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dip"
+                android:layout_marginRight="19dip"
+                android:minHeight="60dip"
+                android:textColor="#f000"
+                android:textStyle="bold"
+                android:text="@string/quickcontact_remember_choice"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_clear_defaults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="5dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/quickcontact_clear_defaults_caption" />
+            <ListView
+                android:id="@+id/defaults_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:cacheColorHint="@null" />
+            <Button
+                android:id="@+id/clear_defaults_button"
+                android:layout_marginLeft="20dip"
+                android:layout_marginBottom="20dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quickcontact_clear_defaults_button" />
+        </LinearLayout>
+    </FrameLayout>
 </view>

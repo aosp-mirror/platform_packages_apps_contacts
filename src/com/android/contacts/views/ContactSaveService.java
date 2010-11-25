@@ -63,6 +63,10 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTACT_URI = "contactUri";
     public static final String EXTRA_STARRED_FLAG = "starred";
 
+    public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
+    public static final String ACTION_CLEAR_PRIMARY = "clearPrimary";
+    public static final String EXTRA_DATA_ID = "dataId";
+
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
         Data.IS_PRIMARY,
@@ -101,6 +105,10 @@ public class ContactSaveService extends IntentService {
             deleteGroup(intent);
         } else if (ACTION_SET_STARRED.equals(action)) {
             setStarred(intent);
+        } else if (ACTION_SET_SUPER_PRIMARY.equals(action)) {
+            setSuperPrimary(intent);
+        } else if (ACTION_CLEAR_PRIMARY.equals(action)) {
+            clearPrimary(intent);
         }
     }
 
@@ -287,5 +295,59 @@ public class ContactSaveService extends IntentService {
         values.put(Contacts.STARRED, value);
         getContentResolver().update(contactUri, values, null, null);
 
+    }
+
+    /**
+     * Creates an intent that sets the selected data item as super primary (default)
+     */
+    public static Intent createSetSuperPrimaryIntent(Context context, long dataId) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SET_SUPER_PRIMARY);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_ID, dataId);
+        return serviceIntent;
+    }
+
+    private void setSuperPrimary(Intent intent) {
+        long dataId = intent.getLongExtra(EXTRA_DATA_ID, -1);
+        if (dataId == -1) {
+            Log.e(TAG, "Invalid arguments for setSuperPrimary request");
+            return;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(1);
+        values.put(Data.IS_SUPER_PRIMARY, 1);
+        values.put(Data.IS_PRIMARY, 1);
+
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
+                values, null, null);
+    }
+
+    /**
+     * Creates an intent that clears the primary flag of all data items that belong to the same
+     * raw_contact as the given data item. Will only clear, if the data item was primary before
+     * this call
+     */
+    public static Intent createClearPrimaryIntent(Context context, long dataId) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_CLEAR_PRIMARY);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_ID, dataId);
+        return serviceIntent;
+    }
+
+    private void clearPrimary(Intent intent) {
+        long dataId = intent.getLongExtra(EXTRA_DATA_ID, -1);
+        if (dataId == -1) {
+            Log.e(TAG, "Invalid arguments for clearPrimary request");
+            return;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(1);
+        values.put(Data.IS_SUPER_PRIMARY, 0);
+        values.put(Data.IS_PRIMARY, 0);
+
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
+                values, null, null);
     }
 }

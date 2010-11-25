@@ -33,6 +33,7 @@ import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.GroupMetaData;
 import com.android.contacts.views.editor.SelectAccountDialogFragment;
 import com.android.contacts.widget.TransitionAnimationView;
@@ -610,17 +611,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         }
     }
 
-    private static String buildActionString(DataKind kind, ContentValues values, Context context) {
-        if (kind.actionHeader == null) {
-            return null;
-        }
-        CharSequence actionHeader = kind.actionHeader.inflateUsing(context, values);
-        if (actionHeader == null) {
-            return null;
-        }
-        return actionHeader.toString();
-    }
-
     private static String buildDataString(DataKind kind, ContentValues values,
             Context context) {
         if (kind.actionBody == null) {
@@ -790,7 +780,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         public TextView footer;
         public ImageView actionIcon;
         public ImageView presenceIcon;
-        public ImageView primaryIcon;
         public ImageView secondaryActionButton;
         public View secondaryActionDivider;
     }
@@ -820,7 +809,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
                 viewCache.data = (TextView) v.findViewById(R.id.data);
                 viewCache.footer = (TextView) v.findViewById(R.id.footer);
                 viewCache.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
-                viewCache.primaryIcon = (ImageView) v.findViewById(R.id.primary_icon);
                 viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
                 viewCache.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
@@ -869,9 +857,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             } else {
                 views.footer.setVisibility(View.GONE);
             }
-
-            // Set the primary icon
-            views.primaryIcon.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
 
             // Set the action icon
             final ImageView action = views.actionIcon;
@@ -1102,46 +1087,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return;
-        }
-
-        // This can be null sometimes, don't crash...
-        if (info == null) {
-            Log.e(TAG, "bad menuInfo");
-            return;
-        }
-
-        final ViewEntry entry = mAdapter.getEntry(info.position);
-        menu.setHeaderTitle(R.string.contactOptionsTitle);
-        if (entry.mimetype.equals(CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
-            if (mHasPhone) {
-                menu.add(0, 0, 0, R.string.menu_call).setIntent(entry.intent);
-            }
-            if (mHasSms) {
-                // If there is no Phone, SMS is the primary intent
-                final Intent intent = mHasPhone ? entry.secondaryIntent : entry.intent;
-                menu.add(0, 0, 0, R.string.menu_sendSMS).setIntent(intent);
-            }
-            if (!entry.isPrimary && mHasPhone) {
-                menu.add(0, R.id.menu_detail_makeDefault, 0, R.string.menu_makeDefaultNumber);
-            }
-        } else if (entry.mimetype.equals(CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
-            menu.add(0, 0, 0, R.string.menu_sendEmail).setIntent(entry.intent);
-            if (!entry.isPrimary) {
-                menu.add(0, R.id.menu_detail_makeDefault, 0, R.string.menu_makeDefaultEmail);
-            }
-        } else if (entry.mimetype.equals(CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)) {
-            menu.add(0, 0, 0, R.string.menu_viewAddress).setIntent(entry.intent);
-        }
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return;
         final ViewEntry entry = mAdapter.getEntry(position);
@@ -1149,47 +1094,6 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         final Intent intent = entry.intent;
         if (intent == null) return;
         mListener.onItemClicked(intent);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_detail_makeDefault: {
-                if (makeItemDefault(item)) {
-                    return true;
-                }
-                break;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean makeItemDefault(MenuItem item) {
-        ViewEntry entry = getViewEntryForMenuItem(item);
-        if (entry == null) {
-            return false;
-        }
-
-        // Update the primary values in the data record.
-        ContentValues values = new ContentValues(1);
-        values.put(Data.IS_SUPER_PRIMARY, 1);
-
-        mContext.getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, entry.id),
-                values, null, null);
-        return true;
-    }
-
-    private ViewEntry getViewEntryForMenuItem(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfo", e);
-            return null;
-        }
-
-        return mAdapter.getEntry(info.position);
     }
 
     public boolean handleKeyDown(int keyCode) {
