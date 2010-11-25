@@ -76,28 +76,12 @@
             android:gravity="center_vertical"
         >
 
-            <LinearLayout
+            <TextView android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-            >
-
-                <TextView android:id="@+id/data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                />
-
-                <ImageView android:id="@+id/primary_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="3dip"
-                    android:src="@drawable/ic_default_number"
-                />
-
-            </LinearLayout>
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+            />
 
             <TextView android:id="@+id/type"
                 android:layout_width="wrap_content"

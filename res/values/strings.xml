@@ -108,16 +108,6 @@
     <!-- Menu item used to send an SMS or MMS message to a specific phone number or a contacts default phone number -->
     <string name="menu_sendSMS">Text contact</string>
 
-    <!-- Menu item used to send an email message to a specific email address -->
-    <string name="menu_sendEmail">Send email</string>
-
-    <!-- Menu item used to view a contact's address on a map -->
-    <string name="menu_viewAddress">Map address</string>
-
-    <!-- Menu item that makes a phone the default for a contact. The default number used when you
-         try to call a contact without specifying a specific number. -->
-    <string name="menu_makeDefaultNumber">Make default number</string>
-
     <!-- Menu item that makes an email address the default for a contact. The default email used
          when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
@@ -162,9 +152,6 @@
 
     <!-- Menu item that opens the Options activity for a given contact -->
     <string name="menu_contactOptions">Options</string>
-
-    <!-- Title for the Options activity for a given contact -->
-    <string name="contactOptionsTitle">Options</string>
 
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
@@ -962,6 +949,17 @@
     <!-- Text that is shown in the Badge, when there is no data to display -->
     <string name="quickcontact_no_data">No data</string>
 
+    <!-- Accessibility description for the button in QuickContacts that allows the user to clear
+    defaults of a contact (like primary email). [CHAR LIMIT=100] -->
+    <string name="quickcontact_clear_defaults_description">Clear defaults</string>
+
+    <!-- Caption that shows above the list of defaults (like primary email). [CHAR LIMIT=40] -->
+    <string name="quickcontact_clear_defaults_caption">Defaults set for this contact:</string>
+
+    <!-- Button caption that allows the user to clear the defaults  (like primary email) of one
+    contact. [CHAR LIMIT=15] -->
+    <string name="quickcontact_clear_defaults_button">Clear</string>
+    
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
@@ -1454,5 +1452,4 @@
     <string name="toast_join_with_empty_contact">Please enter contact name before joining
       with another contact.
     </string>
-
 </resources>

@@ -25,15 +25,17 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
+import com.android.contacts.views.ContactSaveService;
 import com.android.internal.policy.PolicyManager;
+import com.google.android.collect.Lists;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -64,6 +66,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -73,8 +76,9 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,6 +88,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -94,8 +99,8 @@ import java.util.Set;
  */
 public class QuickContactWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
-        AbsListView.OnItemClickListener, CompoundButton.OnCheckedChangeListener, KeyEvent.Callback,
-        OnGlobalLayoutListener, QuickContactRootLayout.Listener {
+        AbsListView.OnItemClickListener, KeyEvent.Callback, OnGlobalLayoutListener,
+        QuickContactRootLayout.Listener {
     private static final String TAG = "QuickContactWindow";
 
     /**
@@ -133,7 +138,6 @@ public class QuickContactWindow implements Window.Callback,
     private int mRequestedY;
 
     private boolean mHasValidSocial = false;
-    private boolean mMakePrimary = false;
 
     private int mMode;
     private QuickContactRootLayout mRootView;
@@ -142,10 +146,19 @@ public class QuickContactWindow implements Window.Callback,
     private HorizontalScrollView mTrackScroll;
     private ViewGroup mTrack;
 
+    private FrameLayout mFooter;
     private LinearLayout mFooterDisambig;
+    private LinearLayout mFooterClearDefaults;
     private ListView mResolveList;
     private CheckableImageView mLastAction;
     private CheckBox mSetPrimaryCheckBox;
+    private ListView mDefaultsListView;
+    private Button mClearDefaultsButton;
+
+    /**
+     * Keeps the default action per mimetype. Empty if no default actions are set
+     */
+    private HashMap<String, Action> mDefaultsMap = new HashMap<String, Action>();
 
     private int mWindowRecycled = 0;
     private int mActionRecycled = 0;
@@ -161,7 +174,7 @@ public class QuickContactWindow implements Window.Callback,
      * Pool of unused {@link CheckableImageView} that have previously been
      * inflated, and are ready to be recycled through {@link #obtainView()}.
      */
-    private LinkedList<View> mActionPool = new LinkedList<View>();
+    private LinkedList<CheckableImageView> mActionPool = new LinkedList<CheckableImageView>();
 
     private String[] mExcludeMimes;
 
@@ -192,6 +205,13 @@ public class QuickContactWindow implements Window.Callback,
             Website.CONTENT_ITEM_TYPE,
     };
 
+    /**
+     * List of MIMETYPES that do not represent real data rows and can therefore not be set
+     * as defaults
+     */
+    private static final ArrayList<String> VIRTUAL_MIMETYPES = Lists.newArrayList(new String[] {
+            Im.CONTENT_ITEM_TYPE, Constants.MIME_SMS_ADDRESS
+    });
     private static final int TOKEN_DATA = 1;
 
     static final boolean TRACE_LAUNCH = false;
@@ -230,11 +250,22 @@ public class QuickContactWindow implements Window.Callback,
         mTrack = (ViewGroup) mWindow.findViewById(R.id.quickcontact);
         mTrackScroll = (HorizontalScrollView) mWindow.findViewById(R.id.scroll);
 
+        mFooter = (FrameLayout) mWindow.findViewById(R.id.footer);
         mFooterDisambig = (LinearLayout) mWindow.findViewById(R.id.footer_disambig);
+        mFooterClearDefaults = (LinearLayout) mWindow.findViewById(R.id.footer_clear_defaults);
         mResolveList = (ListView) mWindow.findViewById(android.R.id.list);
         mSetPrimaryCheckBox = (CheckBox) mWindow.findViewById(android.R.id.checkbox);
 
-        mSetPrimaryCheckBox.setOnCheckedChangeListener(this);
+        mDefaultsListView = (ListView) mWindow.findViewById(R.id.defaults_list);
+        mClearDefaultsButton = (Button) mWindow.findViewById(R.id.clear_defaults_button);
+        mClearDefaultsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDefaults();
+            }
+        });
+
+        mResolveList.setOnItemClickListener(QuickContactWindow.this);
 
         mHandler = new NotifyingAsyncQueryHandler(mContext, this);
     }
@@ -512,18 +543,17 @@ public class QuickContactWindow implements Window.Callback,
 
         // Recycle any chiclets in use
         for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
-            releaseView(mTrack.getChildAt(i));
+            releaseView((CheckableImageView)mTrack.getChildAt(i));
             mTrack.removeViewAt(i);
         }
 
         mTrackScroll.fullScroll(View.FOCUS_LEFT);
 
         // Clear any primary requests
-        mMakePrimary = false;
         mSetPrimaryCheckBox.setChecked(false);
 
         setNewActionViewChecked(null);
-        mFooterDisambig.setVisibility(View.GONE);
+        mFooter.setVisibility(View.GONE);
     }
 
     /**
@@ -620,6 +650,8 @@ public class QuickContactWindow implements Window.Callback,
             mActions.put(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
+        mDefaultsMap.clear();
+
         final DataStatus status = new DataStatus();
         final AccountTypes sources = AccountTypes.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
@@ -629,6 +661,8 @@ public class QuickContactWindow implements Window.Callback,
             final long dataId = cursor.getLong(DataQuery._ID);
             final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
             final String mimeType = cursor.getString(DataQuery.MIMETYPE);
+            final boolean isPrimary = cursor.getInt(DataQuery.IS_PRIMARY) != 0;
+            final boolean isSuperPrimary = cursor.getInt(DataQuery.IS_SUPER_PRIMARY) != 0;
 
             // Handle any social status updates from this row
             status.possibleUpdate(cursor);
@@ -654,14 +688,20 @@ public class QuickContactWindow implements Window.Callback,
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
                 final Action action = new DataAction(mContext, mimeType, kind, dataId, cursor);
-                considerAdd(action, mimeType, cache);
+                final boolean wasAdded = considerAdd(action, cache);
+                if (wasAdded) {
+                    // Remember the default
+                    if (isSuperPrimary || (isPrimary && (mDefaultsMap.get(mimeType) == null))) {
+                        mDefaultsMap.put(mimeType, action);
+                    }
+                }
             }
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final Action action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
+                final DataAction action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
                         kind, dataId, cursor);
-                considerAdd(action, Constants.MIME_SMS_ADDRESS, cache);
+                considerAdd(action, cache);
             }
 
             // Handle Email rows with presence data as Im entry
@@ -670,11 +710,16 @@ public class QuickContactWindow implements Window.Callback,
                 final DataKind imKind = sources.getKindOrFallback(accountType,
                         Im.CONTENT_ITEM_TYPE, mContext, AccountType.LEVEL_MIMETYPES);
                 if (imKind != null) {
-                    final Action action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
+                    final DataAction action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);
-                    considerAdd(action, Im.CONTENT_ITEM_TYPE, cache);
+                    considerAdd(action, cache);
                 }
             }
+        }
+
+        if (mDefaultsMap.size() != 0) {
+            final Action action = new ClearDefaultsAction();
+            mActions.put(action.getMimeType(), action);
         }
 
         if (cursor.moveToLast()) {
@@ -702,9 +747,6 @@ public class QuickContactWindow implements Window.Callback,
 
         // Turn our list of actions into UI elements
 
-        // Index where we start adding child views.
-        int index = mTrack.getChildCount() - 1;
-
         // All the mime-types to add.
         final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
 
@@ -714,25 +756,41 @@ public class QuickContactWindow implements Window.Callback,
         for (String mimeType : PRECEDING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType, cache), index++);
+                mTrack.addView(inflateAction(mimeType, cache));
                 containedTypes.remove(mimeType);
             }
         }
 
         // Keep the current index to append non PRECEDING/FOLLOWING items.
-        final int indexAfterPreceding = index;
+        final int indexAfterPreceding = mTrack.getChildCount() - 1;
 
         // Then, add FOLLOWING_MIMETYPES, which are least common.
         for (String mimeType : FOLLOWING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType, cache), index++);
+                mTrack.addView(inflateAction(mimeType, cache));
                 containedTypes.remove(mimeType);
             }
         }
 
+        // Show the clear-defaults button? If yes, it goes to the end of the list
+        if (containedTypes.contains(ClearDefaultsAction.PSEUDO_MIME_TYPE)) {
+            final ClearDefaultsAction action = (ClearDefaultsAction) mActions.get(
+                    ClearDefaultsAction.PSEUDO_MIME_TYPE).get(0);
+            final CheckableImageView view = obtainView();
+            view.setChecked(false);
+            final String description = mContext.getResources().getString(
+                    R.string.quickcontact_clear_defaults_description);
+            view.setContentDescription(description);
+            view.setImageResource(R.drawable.badge_action_clear_defaults_holo_light);
+            view.setOnClickListener(this);
+            view.setTag(action);
+            mTrack.addView(view);
+            containedTypes.remove(ClearDefaultsAction.PSEUDO_MIME_TYPE);
+        }
+
         // Go back to just after PRECEDING_MIMETYPES, and append the rest.
-        index = indexAfterPreceding;
+        int index = indexAfterPreceding;
         final String[] remainingTypes = containedTypes.toArray(new String[containedTypes.size()]);
         if (remainingTypes.length > 0) hasData = true;
         Arrays.sort(remainingTypes);
@@ -740,34 +798,72 @@ public class QuickContactWindow implements Window.Callback,
             mTrack.addView(inflateAction(mimeType, cache), index++);
         }
 
-        // When there is no data to display, add a TextView to show the user there's no data
         if (!hasData) {
+            // When there is no data to display, add a TextView to show the user there's no data
             View view = mInflater.inflate(R.layout.quickcontact_item_nodata, mTrack, false);
             mTrack.addView(view, index++);
         }
     }
 
     /**
+     * Clears the defaults currently set on the Contact
+     */
+    private void clearDefaults() {
+        final Set<String> mimeTypesKeySet = mDefaultsMap.keySet();
+        // Copy to array so that we can modify the HashMap below
+        final String[] mimeTypes = new String[mimeTypesKeySet.size()];
+        mimeTypesKeySet.toArray(mimeTypes);
+
+        // Send clear default Intents, one by one
+        for (String mimeType : mimeTypes) {
+            final Action action = mDefaultsMap.get(mimeType);
+            final Intent intent =
+                    ContactSaveService.createClearPrimaryIntent(mContext, action.getDataId());
+            mContext.startService(intent);
+            mDefaultsMap.remove(mimeType);
+        }
+
+        // Close up and remove the configure default button
+        animateCollapse(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
+                    final CheckableImageView button = (CheckableImageView) mTrack.getChildAt(i);
+                    if (button.getTag() instanceof ClearDefaultsAction) {
+                        releaseView(button);
+                        mTrack.removeViewAt(i);
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    /**
      * Consider adding the given {@link Action}, which will only happen if
      * {@link PackageManager} finds an application to handle
      * {@link Action#getIntent()}.
+     * @return true if action has been added
      */
-    private void considerAdd(Action action, String mimeType, ResolveCache resolveCache) {
+    private boolean considerAdd(Action action, ResolveCache resolveCache) {
         if (resolveCache.hasResolve(action)) {
-            mActions.put(mimeType, action);
+            mActions.put(action.getMimeType(), action);
+            return true;
         }
+        return false;
     }
 
     /**
      * Obtain a new {@link CheckableImageView} for a new chiclet, either by
      * recycling one from {@link #mActionPool}, or by inflating a new one. When
-     * finished, use {@link #releaseView(View)} to return back into the pool for
+     * finished, use {@link #releaseView(CheckableImageView)} to return back into the pool for
      * later recycling.
      */
-    private synchronized View obtainView() {
-        View view = mActionPool.poll();
+    private synchronized CheckableImageView obtainView() {
+        CheckableImageView view = mActionPool.poll();
         if (view == null || QuickContactActivity.FORCE_CREATE) {
-            view = mInflater.inflate(R.layout.quickcontact_item, mTrack, false);
+            view = (CheckableImageView) mInflater.inflate(R.layout.quickcontact_item, mTrack,
+                    false);
         }
         return view;
     }
@@ -776,11 +872,7 @@ public class QuickContactWindow implements Window.Callback,
      * Return the given {@link CheckableImageView} into our internal pool for
      * possible recycling during another pass.
      */
-    private synchronized void releaseView(View view) {
-        // Only add CheckableImageViews
-        if (!(view instanceof CheckableImageView)) {
-            return;
-        }
+    private synchronized void releaseView(CheckableImageView view) {
         mActionPool.offer(view);
         mActionRecycled++;
     }
@@ -790,29 +882,15 @@ public class QuickContactWindow implements Window.Callback,
      * Will use the icon provided by the {@link DataKind}.
      */
     private View inflateAction(String mimeType, ResolveCache resolveCache) {
-        final CheckableImageView view = (CheckableImageView)obtainView();
-        boolean isActionSet = false;
+        final CheckableImageView view = obtainView();
 
         // Add direct intent if single child, otherwise flag for multiple
         List<Action> children = mActions.get(mimeType);
         if (children.size() > 1) {
             Collapser.collapseList(children);
         }
-        Action firstInfo = children.get(0);
-        if (children.size() == 1) {
-            view.setTag(firstInfo);
-        } else {
-            for (Action action : children) {
-                if (action.isPrimary()) {
-                    view.setTag(action);
-                    isActionSet = true;
-                    break;
-                }
-            }
-            if (!isActionSet) {
-                view.setTag(children);
-            }
-        }
+        view.setTag(mimeType);
+        final Action firstInfo = children.get(0);
 
         // Set icon and listen for clicks
         final CharSequence descrip = resolveCache.getDescription(firstInfo);
@@ -832,7 +910,7 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Helper for showing and hiding {@link #mFooterDisambig}
+     * Helper for checking an action view
      */
     private void setNewActionViewChecked(CheckableImageView actionView) {
         if (mLastAction != null) mLastAction.setChecked(false);
@@ -847,13 +925,13 @@ public class QuickContactWindow implements Window.Callback,
         final int oldBottom = mBackground.getBounds().bottom;
         mBackground.setBottomOverride(oldBottom);
 
-        final ObjectAnimator fadeOutAnimator = ObjectAnimator.ofFloat(mFooterDisambig, "alpha",
+        final ObjectAnimator fadeOutAnimator = ObjectAnimator.ofFloat(mFooter, "alpha",
                 1.0f, 0.0f);
         fadeOutAnimator.setDuration(ANIMATION_FADE_OUT_TIME);
         fadeOutAnimator.start();
 
         final ObjectAnimator collapseAnimator = ObjectAnimator.ofInt(mBackground,
-                "bottomOverride", oldBottom, oldBottom - mFooterDisambig.getHeight());
+                "bottomOverride", oldBottom, oldBottom - mFooter.getHeight());
         collapseAnimator.setDuration(ANIMATION_COLLAPSE_TIME);
         collapseAnimator.setStartDelay(ANIMATION_FADE_OUT_TIME);
         collapseAnimator.start();
@@ -861,7 +939,7 @@ public class QuickContactWindow implements Window.Callback,
         collapseAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                mFooterDisambig.setVisibility(View.GONE);
+                mFooter.setVisibility(View.GONE);
                 new Handler().post(whenDone);
             }
         });
@@ -869,12 +947,15 @@ public class QuickContactWindow implements Window.Callback,
 
     /**
      * Animates expansion of the disambig area.
+     * @param showClearDefaults true to expand to clear defaults. false to expand to intent disambig
      */
-    private void animateExpand() {
-        mFooterDisambig.setVisibility(View.VISIBLE);
+    private void animateExpand(boolean showClearDefaults) {
+        mFooter.setVisibility(View.VISIBLE);
+        mFooterDisambig.setVisibility(showClearDefaults ? View.GONE : View.VISIBLE);
+        mFooterClearDefaults.setVisibility(showClearDefaults ? View.VISIBLE : View.GONE);
         final int oldBottom = mBackground.getBounds().bottom;
         mBackground.setBottomOverride(oldBottom);
-        mFooterDisambig.setAlpha(0.0f);
+        mFooter.setAlpha(0.0f);
         new Handler().post(new Runnable() {
             @Override
             public void run() {
@@ -884,7 +965,7 @@ public class QuickContactWindow implements Window.Callback,
                 expandAnimator.setDuration(ANIMATION_EXPAND_TIME);
                 expandAnimator.start();
 
-                final ObjectAnimator fadeInAnimator = ObjectAnimator.ofFloat(mFooterDisambig,
+                final ObjectAnimator fadeInAnimator = ObjectAnimator.ofFloat(mFooter,
                         "alpha", 0.0f, 1.0f);
                 fadeInAnimator.setDuration(ANIMATION_FADE_IN_TIME);
                 fadeInAnimator.setStartDelay(ANIMATION_EXPAND_TIME);
@@ -899,12 +980,116 @@ public class QuickContactWindow implements Window.Callback,
         final boolean isActionView = (view instanceof CheckableImageView);
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
         final Object tag = view.getTag();
+        if (tag instanceof ClearDefaultsAction) {
+            // Do nothing if already open
+            if (actionView == mLastAction) return;
+            // collapse any disambig that may already be open. the open clearing-defaults
+            final Runnable expandClearDefaultsRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    // Show resolution list and set adapter
+                    setNewActionViewChecked(actionView);
+                    final Action[] actions = new Action[mDefaultsMap.size()];
+                    mDefaultsMap.values().toArray(actions);
+
+                    mDefaultsListView.setAdapter(new BaseAdapter() {
+                        @Override
+                        public int getCount() {
+                            return actions.length;
+                        }
+
+                        @Override
+                        public Object getItem(int position) {
+                            return actions[position];
+                        }
+
+                        @Override
+                        public long getItemId(int position) {
+                            return position;
+                        }
+
+                        @Override
+                        public boolean areAllItemsEnabled() {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean isEnabled(int position) {
+                            return false;
+                        }
+
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
+                            final View result = convertView != null ? convertView :
+                                    mInflater.inflate(R.layout.quickcontact_default_item,
+                                    parent, false);
+                            // Set action title based on summary value
+                            final Action defaultAction = actions[position];
+
+                            TextView text1 = (TextView)result.findViewById(android.R.id.text1);
+                            TextView text2 = (TextView)result.findViewById(android.R.id.text2);
+
+                            text1.setText(defaultAction.getHeader());
+                            text2.setText(defaultAction.getBody());
+
+                            result.setTag(defaultAction);
+                            return result;
+                        }
+                    });
+
+                    animateExpand(true);
+                    // Make sure we resize to make room for ListView
+                    if (mDecor != null) {
+                        mDecor.forceLayout();
+                        mDecor.invalidate();
+                    }
+                }
+            };
+            if (mFooter.getVisibility() == View.VISIBLE) {
+                animateCollapse(expandClearDefaultsRunnable);
+            } else {
+                new Handler().post(expandClearDefaultsRunnable);
+            }
+            return;
+        }
+
+        // Determine whether to launch a specific Action or show a disambig-List
+        final Action action;
+        final List<Action> actionList;
+        final boolean fromDisambigList;
+        final String mimeType;
         if (tag instanceof Action) {
+            action = (Action) tag;
+            actionList = null;
+            fromDisambigList = true;
+            mimeType = action.getMimeType();
+        } else if (tag instanceof String) {
+            mimeType = (String) tag;
+            actionList = mActions.get(mimeType);
+
+            if (actionList.size() == 1) {
+                // Just one item? Pick that one
+                action = actionList.get(0);
+            } else if (mDefaultsMap.containsKey(mimeType)) {
+                // Default item? pick that one
+                action = mDefaultsMap.get(mimeType);
+            } else {
+                // Several actions and none is default.
+                action = null;
+            }
+            fromDisambigList = false;
+        } else {
+            throw new IllegalStateException("tag is neither Action nor (mimetype-) String");
+        }
+
+        if (action != null) {
+            final boolean isVirtual = VIRTUAL_MIMETYPES.contains(mimeType);
+            final boolean makePrimary = fromDisambigList && mSetPrimaryCheckBox.isChecked() &&
+                    !isVirtual;
             final Runnable startAppRunnable = new Runnable() {
                 @Override
                 public void run() {
                     // Incoming tag is concrete intent, so try launching
-                    final Action action = (Action)tag;
                     try {
                         mContext.startActivity(action.getIntent());
                     } catch (ActivityNotFoundException e) {
@@ -915,97 +1100,92 @@ public class QuickContactWindow implements Window.Callback,
                     // Hide the resolution list, if present
                     setNewActionViewChecked(null);
                     dismiss();
-                    mFooterDisambig.setVisibility(View.GONE);
+                    mFooter.setVisibility(View.GONE);
 
-                    if (mMakePrimary) {
-                        ContentValues values = new ContentValues(1);
-                        values.put(Data.IS_SUPER_PRIMARY, 1);
-                        final Uri dataUri = action.getDataUri();
-                        if (dataUri != null) {
-                            mContext.getContentResolver().update(dataUri, values, null, null);
-                        }
+                    // Set default?
+                    final long dataId = action.getDataId();
+                    if (makePrimary && dataId != -1) {
+                        Intent serviceIntent = ContactSaveService.createSetSuperPrimaryIntent(
+                                mContext, dataId);
+                        mContext.startService(serviceIntent);
                     }
                 }
             };
-            if (isActionView && mFooterDisambig.getVisibility() == View.VISIBLE) {
-                // If the expansion list is currently opened, animate its collapse and then
+            if (isActionView && mFooter.getVisibility() == View.VISIBLE) {
+                // If the footer is currently opened, animate its collapse and then
                 // execute the target app
                 animateCollapse(startAppRunnable);
             } else {
                 // Defer the action to make the window properly repaint
                 new Handler().post(startAppRunnable);
             }
-        } else if (tag instanceof ArrayList<?>) {
-            // Don't do anything if already open
-            if (actionView != mLastAction) {
-                final Runnable configureListRunnable = new Runnable() {
+            return;
+        }
+
+        // This was not a specific Action. Expand the disambig-list
+        if (actionList == null) throw new IllegalStateException();
+
+        // Don't do anything if already open
+        if (actionView == mLastAction) return;
+        final Runnable configureListRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Show resolution list and set adapter
+                setNewActionViewChecked(actionView);
+                final boolean isVirtual = VIRTUAL_MIMETYPES.contains(mimeType);
+                mSetPrimaryCheckBox.setVisibility(isVirtual ? View.GONE : View.VISIBLE);
+
+                mResolveList.setAdapter(new BaseAdapter() {
                     @Override
-                    public void run() {
-                        // Show resolution list and set adapter
-                        setNewActionViewChecked(actionView);
-
-                        // Incoming tag is a MIME-type, so show resolution list
-                        final ArrayList<?> children = (ArrayList<?>)tag;
-
-                        mResolveList.setOnItemClickListener(QuickContactWindow.this);
-                        mResolveList.setAdapter(new BaseAdapter() {
-                            @Override
-                            public int getCount() {
-                                return children.size();
-                            }
-
-                            @Override
-                            public Object getItem(int position) {
-                                return children.get(position);
-                            }
-
-                            @Override
-                            public long getItemId(int position) {
-                                return position;
-                            }
-
-                            @Override
-                            public View getView(int position, View convertView, ViewGroup parent) {
-                                final View result = convertView != null ? convertView :
-                                        mInflater.inflate(R.layout.quickcontact_resolve_item,
-                                        parent, false);
-                                // Set action title based on summary value
-                                final Action action = (Action)getItem(position);
-
-                                TextView text1 = (TextView)result.findViewById(android.R.id.text1);
-                                TextView text2 = (TextView)result.findViewById(android.R.id.text2);
-
-                                text1.setText(action.getHeader());
-                                text2.setText(action.getBody());
-
-                                result.setTag(action);
-                                return result;
-                            }
-                        });
-
-                        animateExpand();
-                        // Make sure we resize to make room for ListView
-                        if (mDecor != null) {
-                            mDecor.forceLayout();
-                            mDecor.invalidate();
-                        }
+                    public int getCount() {
+                        return actionList.size();
                     }
-                };
-                if (mFooterDisambig.getVisibility() == View.VISIBLE) {
-                    // If the expansion list is currently opened, animate its collapse and then
-                    // execute the target app
-                    animateCollapse(configureListRunnable);
-                } else {
-                    // Defer the action to make the window properly repaint
-                    configureListRunnable.run();
+
+                    @Override
+                    public Object getItem(int position) {
+                        return actionList.get(position);
+                    }
+
+                    @Override
+                    public long getItemId(int position) {
+                        return position;
+                    }
+
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        final View result = convertView != null ? convertView :
+                                mInflater.inflate(R.layout.quickcontact_resolve_item,
+                                parent, false);
+                        // Set action title based on summary value
+                        final Action listAction = actionList.get(position);
+
+                        TextView text1 = (TextView)result.findViewById(android.R.id.text1);
+                        TextView text2 = (TextView)result.findViewById(android.R.id.text2);
+
+                        text1.setText(listAction.getHeader());
+                        text2.setText(listAction.getBody());
+
+                        result.setTag(listAction);
+                        return result;
+                    }
+                });
+
+                animateExpand(false);
+                // Make sure we resize to make room for ListView
+                if (mDecor != null) {
+                    mDecor.forceLayout();
+                    mDecor.invalidate();
                 }
             }
+        };
+        if (mFooter.getVisibility() == View.VISIBLE) {
+            // If the expansion list is currently opened, animate its collapse and then
+            // execute the target app
+            animateCollapse(configureListRunnable);
+        } else {
+            // Defer the action to make the window properly repaint
+            configureListRunnable.run();
         }
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        mMakePrimary = isChecked;
     }
 
     @Override

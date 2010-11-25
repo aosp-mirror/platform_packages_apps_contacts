@@ -39,6 +39,7 @@ public class DataAction implements Action {
 
     private boolean mAlternate;
     private Uri mDataUri;
+    private long mDataId;
     private boolean mIsPrimary;
 
     /**
@@ -66,6 +67,7 @@ public class DataAction implements Action {
             mBody = mKind.actionBody.inflateUsing(context, cursor);
         }
 
+        mDataId = dataId;
         mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
 
         // Handle well-known MIME-types with special care
@@ -199,6 +201,12 @@ public class DataAction implements Action {
     @Override
     public Uri getDataUri() {
         return mDataUri;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getDataId() {
+        return mDataId;
     }
 
     /** {@inheritDoc} */
