@@ -175,8 +175,9 @@ public class AttachImage extends Activity {
     /**
      * Inserts a photo on the raw contact.
      * @param values the photo values
-     * @param assertAccount if true, will check to verify if the account is Google or exchange,
-     *     no photos exist (Google and exchange only take one picture)
+     * @param assertAccount if true, will check to verify that no photos exist for Google,
+     *     Exchange and unsynced phone account types. These account types only take one picture,
+     *     so if one exists, the account will be updated with the new photo.
      */
     private void insertPhoto(ContentValues values, Uri rawContactDataUri,
             boolean assertAccount) {
@@ -185,10 +186,11 @@ public class AttachImage extends Activity {
             new ArrayList<ContentProviderOperation>();
 
         if (assertAccount) {
-            // make sure for Google and exchange, no pictures exist
+            // Make sure no pictures exist for Google, Exchange and unsynced phone accounts.
             operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
-                    .withSelection(Photo.MIMETYPE + "=? AND "
-                            + RawContacts.ACCOUNT_TYPE + " IN (?,?)",
+                    .withSelection(Photo.MIMETYPE + "=? AND ("
+                            + RawContacts.ACCOUNT_TYPE + " IN (?,?) OR "
+                            + RawContacts.ACCOUNT_TYPE + " IS NULL)",
                             new String[] {Photo.CONTENT_ITEM_TYPE, GoogleSource.ACCOUNT_TYPE,
                             ExchangeSource.ACCOUNT_TYPE})
                             .withExpectedCount(0).build());
