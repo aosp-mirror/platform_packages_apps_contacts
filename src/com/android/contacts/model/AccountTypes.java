@@ -47,6 +47,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Singleton holder for all parsed {@link AccountType} available on the
@@ -67,11 +68,15 @@ public class AccountTypes extends BroadcastReceiver
     private HashMap<String, AccountType> mSources = Maps.newHashMap();
     private HashSet<String> mKnownPackages = Sets.newHashSet();
 
-    private static final int MESSAGE_PROCESS_BROADCAST_INTENT = 0;
-    private static final int MESSAGE_SYNC_STATUS_CHANGED = 1;
+    private static final int MESSAGE_LOAD_DATA = 0;
+    private static final int MESSAGE_PROCESS_BROADCAST_INTENT = 1;
+    private static final int MESSAGE_SYNC_STATUS_CHANGED = 2;
 
     private HandlerThread mListenerThread;
     private Handler mListenerHandler;
+
+    /* A latch that ensures that asynchronous initialization completes before data is used */
+    private CountDownLatch mInitializationLatch;
 
     private static AccountTypes sInstance = null;
 
@@ -102,6 +107,8 @@ public class AccountTypes extends BroadcastReceiver
      * Internal constructor that only performs initial parsing.
      */
     private AccountTypes(Context context) {
+        mInitializationLatch = new CountDownLatch(1);
+
         mContext = context;
         mApplicationContext = context.getApplicationContext();
         mAccountManager = AccountManager.get(mApplicationContext);
@@ -109,19 +116,20 @@ public class AccountTypes extends BroadcastReceiver
         // Create fallback contacts source for on-phone contacts
         mFallbackSource = new FallbackAccountType();
 
-        queryAccounts();
-
         mListenerThread = new HandlerThread("AccountChangeListener");
         mListenerThread.start();
         mListenerHandler = new Handler(mListenerThread.getLooper()) {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
+                    case MESSAGE_LOAD_DATA:
+                        loadAccountsInBackground();
+                        break;
                     case MESSAGE_PROCESS_BROADCAST_INTENT:
                         processBroadcastIntent((Intent) msg.obj);
                         break;
                     case MESSAGE_SYNC_STATUS_CHANGED:
-                        queryAccounts();
+                        loadAccountsInBackground();
                         break;
                 }
             }
@@ -146,6 +154,8 @@ public class AccountTypes extends BroadcastReceiver
         mAccountManager.addOnAccountsUpdatedListener(this, mListenerHandler, false);
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
+
+        mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
     }
 
     /** @hide exposed for unit tests */
@@ -196,7 +206,7 @@ public class AccountTypes extends BroadcastReceiver
                         invalidateCache(packageName);
                     } else {
                         // Unknown source, so reload from scratch
-                        queryAccounts();
+                        loadAccountsInBackground();
                     }
                 }
             }
@@ -224,13 +234,33 @@ public class AccountTypes extends BroadcastReceiver
     /* This notification will arrive on the background thread */
     public void onAccountsUpdated(Account[] accounts) {
         // Refresh to catch any changed accounts
-        queryAccounts();
+        loadAccountsInBackground();
     }
 
     /**
-     * Loads all {@link AuthenticatorDescription} known by the {@link AccountManager} on the system.
+     * Returns instantly if accounts and account types have already been loaded.
+     * Otherwise waits for the background thread to complete the loading.
      */
-    protected synchronized void queryAccounts() {
+    void ensureAccountsLoaded() {
+        CountDownLatch latch = mInitializationLatch;
+        if (latch == null) {
+            return;
+        }
+        while (true) {
+            try {
+                latch.await();
+                return;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    /**
+     * Loads account list and corresponding account types. Always called on a
+     * background thread.
+     */
+    protected void loadAccountsInBackground() {
         mSources.clear();
         mKnownPackages.clear();
         mAccounts.clear();
@@ -291,7 +321,7 @@ public class AccountTypes extends BroadcastReceiver
 
             if (syncable) {
                 // Ensure we have details loaded for each account
-                final AccountType accountType = getInflatedSource(
+                final AccountType accountType = getAccountType(
                         account.type, AccountType.LEVEL_SUMMARY);
                 if (accountType != null) {
                     mAccounts.add(account);
@@ -304,6 +334,10 @@ public class AccountTypes extends BroadcastReceiver
 
         Collections.sort(mAccounts, ACCOUNT_COMPARATOR);
         Collections.sort(mWritableAccounts, ACCOUNT_COMPARATOR);
+        if (mInitializationLatch != null) {
+            mInitializationLatch.countDown();
+            mInitializationLatch = null;
+        }
     }
 
     /**
@@ -323,7 +357,8 @@ public class AccountTypes extends BroadcastReceiver
     /**
      * Return list of all known, writable {@link Account}'s.
      */
-    public synchronized ArrayList<Account> getAccounts(boolean writableOnly) {
+    public ArrayList<Account> getAccounts(boolean writableOnly) {
+        ensureAccountsLoaded();
         return writableOnly ? mWritableAccounts : mAccounts;
     }
 
@@ -336,6 +371,7 @@ public class AccountTypes extends BroadcastReceiver
      */
     public DataKind getKindOrFallback(String accountType, String mimeType, Context context,
             int inflateLevel) {
+        ensureAccountsLoaded();
         DataKind kind = null;
 
         // Try finding source and kind matching request
@@ -362,6 +398,11 @@ public class AccountTypes extends BroadcastReceiver
      * Return {@link AccountType} for the given account type.
      */
     public AccountType getInflatedSource(String accountType, int inflateLevel) {
+        ensureAccountsLoaded();
+        return getAccountType(accountType, inflateLevel);
+    }
+
+    AccountType getAccountType(String accountType, int inflateLevel) {
         // Try finding specific source, otherwise use fallback
         AccountType source = mSources.get(accountType);
         if (source == null) source = mFallbackSource;
