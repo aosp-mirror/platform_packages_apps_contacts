@@ -22,14 +22,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
 >
-    <!-- Longer seperating line (between kinds) -->
+    <!-- Longer separating line (between kinds) -->
     <View
         android:id="@+id/kind_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@drawable/list_item_divider_holo"
     />
-    <!-- Shorter seperating line if there was no kind-seperator -->
+    <!-- Shorter separating line if there was no kind-separator -->
     <View
         android:id="@+id/in_kind_divider"
         android:layout_width="match_parent"
@@ -116,7 +116,7 @@
             android:background="@android:drawable/list_selector_background"
         />
     </LinearLayout>
-    <!-- Longer seperating line (only for the last row) -->
+    <!-- Longer separating line (only for the last row) -->
     <View
         android:id="@+id/line_below_last"
         android:layout_width="match_parent"
