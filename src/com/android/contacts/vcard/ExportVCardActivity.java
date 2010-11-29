@@ -15,6 +15,9 @@
  */
 package com.android.contacts.vcard;
 
+import com.android.contacts.R;
+import com.android.vcard.VCardComposer;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,9 +26,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -33,35 +36,82 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.R;
-import com.android.vcard.VCardComposer;
-
 import java.io.File;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
 
 /**
- * Class for exporting vCard.
+ * Shows a dialog confirming the export and asks actual vCard export to {@link VCardService}
  *
- * Note that this Activity assumes that the instance is a "one-shot Activity", which will be
- * finished (with the method {@link Activity#finish()}) after the export and never reuse
- * any Dialog in the instance. So this code is careless about the management around managed
- * dialogs stuffs (like how onCreateDialog() is used).
+ * This Activity first connects to VCardService and ask an available file name and shows it to
+ * a user. After the user's confirmation, it send export request with the file name, assuming the
+ * file name is not reserved yet.
  */
-public class ExportVCardActivity extends Activity {
+public class ExportVCardActivity extends Activity implements ServiceConnection,
+        DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private static final String LOG_TAG = "VCardExport";
+    private static final boolean DEBUG = VCardService.DEBUG;
 
-    // If true, VCardExporter is able to emits files longer than 8.3 format.
-    private static final boolean ALLOW_LONG_FILE_NAME = false;
-    private String mTargetDirectory;
-    private String mFileNamePrefix;
-    private String mFileNameSuffix;
-    private int mFileIndexMinimum;
-    private int mFileIndexMaximum;
-    private String mFileNameExtension;
-    private Set<String> mExtensionsToConsider;
+    /**
+     * Handler used when some Message has come from {@link VCardService}.
+     */
+    private class IncomingHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            if (DEBUG) Log.d(LOG_TAG, "IncomingHandler received message.");
+
+            if (msg.arg1 != 0) {
+                Log.i(LOG_TAG, "Message returned from vCard server contains error code.");
+                if (msg.obj != null) {
+                    mErrorReason = (String)msg.obj;
+                }
+                showDialog(msg.arg1);
+                return;
+            }
+
+            switch (msg.what) {
+            case VCardService.MSG_SET_AVAILABLE_EXPORT_DESTINATION:
+                if (msg.obj == null) {
+                    Log.w(LOG_TAG, "Message returned from vCard server doesn't contain valid path");
+                    mErrorReason = getString(R.string.fail_reason_unknown);
+                    showDialog(R.id.dialog_fail_to_export_with_reason);
+                } else {
+                    mTargetFileName = (String)msg.obj;
+                    if (TextUtils.isEmpty(mTargetFileName)) {
+                        Log.w(LOG_TAG, "Destination file name coming from vCard service is empty.");
+                        mErrorReason = getString(R.string.fail_reason_unknown);
+                        showDialog(R.id.dialog_fail_to_export_with_reason);
+                    } else {
+                        if (DEBUG) {
+                            Log.d(LOG_TAG,
+                                    String.format("Target file name is set (%s). " +
+                                            "Show confirmation dialog", mTargetFileName));
+                        }
+                        showDialog(R.id.dialog_export_confirmation);
+                    }
+                }
+                break;
+            default:
+                Log.w(LOG_TAG, "Unknown message type: " + msg.what);
+                super.handleMessage(msg);
+            }
+        }
+    }
+
+    /**
+     * True when this Activity is connected to {@link VCardService}.
+     *
+     * Should be touched inside synchronized block.
+     */
+    private boolean mConnected;
+
+    /**
+     * True when users need to do something and this Activity should not disconnect from
+     * VCardService. False when all necessary procedures are done (including sending export request)
+     * or there's some error occured.
+     */
+    private volatile boolean mProcessOngoing = true;
+
+    private Messenger mOutgoingMessenger;
+    private final Messenger mIncomingMessenger = new Messenger(new IncomingHandler());
 
     // Used temporarily when asking users to confirm the file name
     private String mTargetFileName;
@@ -69,133 +119,30 @@ public class ExportVCardActivity extends Activity {
     // String for storing error reason temporarily.
     private String mErrorReason;
 
-
-    private class CustomConnection implements ServiceConnection {
-        private Messenger mMessenger;
-        private Queue<ExportRequest> mPendingRequests = new LinkedList<ExportRequest>();
-
-        public void doBindService() {
-
-        }
-
-        public synchronized void requestSend(final ExportRequest parameter) {
-            if (mMessenger != null) {
-                sendMessage(parameter);
-            } else {
-                mPendingRequests.add(parameter);
-            }
-        }
-
-        private void sendMessage(final ExportRequest request) {
-            try {
-                mMessenger.send(Message.obtain(null,
-                        VCardService.MSG_EXPORT_REQUEST,
-                        request));
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-                runOnUiThread(new ErrorReasonDisplayer(
-                        getString(R.string.fail_reason_unknown)));
-            }
-        }
-
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            synchronized (this) {
-                mMessenger = new Messenger(service);
-                // Send pending requests thrown from this Activity before an actual connection
-                // is established.
-                while (!mPendingRequests.isEmpty()) {
-                    final ExportRequest parameter = mPendingRequests.poll();
-                    if (parameter == null) {
-                        throw new NullPointerException();
-                    }
-                    sendMessage(parameter);
-                }
-
-                unbindService(this);
-                finish();
-            }
-        }
-
-        public void onServiceDisconnected(ComponentName name) {
-            synchronized (this) {
-                if (!mPendingRequests.isEmpty()) {
-                    Log.w(LOG_TAG, "Some request(s) are dropped.");
-                }
-                // Set to null so that we can detect inappropriate re-connection toward
-                // the Service via NullPointerException;
-                mPendingRequests = null;
-                mMessenger = null;
-            }
-        }
-    }
-
-    private final CustomConnection mConnection = new CustomConnection();
-
-    private class CancelListener
-            implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
-        public void onClick(DialogInterface dialog, int which) {
-            finish();
-        }
-        public void onCancel(DialogInterface dialog) {
-            finish();
-        }
-    }
-
-    private CancelListener mCancelListener = new CancelListener();
-
-    private class ErrorReasonDisplayer implements Runnable {
-        private final int mResId;
-        public ErrorReasonDisplayer(int resId) {
-            mResId = resId;
-        }
-        public ErrorReasonDisplayer(String errorReason) {
-            mResId = R.id.dialog_fail_to_export_with_reason;
-            mErrorReason = errorReason;
-        }
-        public void run() {
-            // Show the Dialog only when the parent Activity is still alive.
-            if (!ExportVCardActivity.this.isFinishing()) {
-                showDialog(mResId);
-            }
-        }
-    }
-
     private class ExportConfirmationListener implements DialogInterface.OnClickListener {
-        private final Uri mDestUri;
+        private final Uri mDestinationUri;
 
-        public ExportConfirmationListener(String fileName) {
-            this(Uri.parse("file://" + fileName));
+        public ExportConfirmationListener(String path) {
+            this(Uri.parse("file://" + path));
         }
 
         public ExportConfirmationListener(Uri uri) {
-            mDestUri = uri;
+            mDestinationUri = uri;
         }
 
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                // We don't want the service finishes itself just after this connection.
-                startService(new Intent(ExportVCardActivity.this, VCardService.class));
-                bindService(new Intent(ExportVCardActivity.this, VCardService.class),
-                        mConnection, Context.BIND_AUTO_CREATE);
-
-                final ExportRequest request = new ExportRequest(mDestUri);
-
+                if (DEBUG) {
+                    Log.d(LOG_TAG,
+                            String.format("Try sending export request (uri: %s)", mDestinationUri));
+                }
+                final ExportRequest request = new ExportRequest(mDestinationUri);
                 // The connection object will call finish().
-                mConnection.requestSend(request);
+                if (trySend(Message.obtain(null, VCardService.MSG_EXPORT_REQUEST, request))) {
+                    Log.i(LOG_TAG, "Successfully sent export request. Finish itself");
+                    unbindAndFinish();
+                }
             }
-        }
-    }
-
-    private String translateComposerError(String errorMessage) {
-        Resources resources = getResources();
-        if (VCardComposer.FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO.equals(errorMessage)) {
-            return resources.getString(R.string.composer_failed_to_get_database_infomation);
-        } else if (VCardComposer.FAILURE_REASON_NO_ENTRY.equals(errorMessage)) {
-            return resources.getString(R.string.composer_has_no_exportable_contact);
-        } else if (VCardComposer.FAILURE_REASON_NOT_INITIALIZED.equals(errorMessage)) {
-            return resources.getString(R.string.composer_not_initialized);
-        } else {
-            return errorMessage;
         }
     }
 
@@ -203,56 +150,97 @@ public class ExportVCardActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        mTargetDirectory = getString(R.string.config_export_dir);
-        mFileNamePrefix = getString(R.string.config_export_file_prefix);
-        mFileNameSuffix = getString(R.string.config_export_file_suffix);
-        mFileNameExtension = getString(R.string.config_export_file_extension);
-
-        mExtensionsToConsider = new HashSet<String>();
-        mExtensionsToConsider.add(mFileNameExtension);
-
-        final String additionalExtensions =
-            getString(R.string.config_export_extensions_to_consider);
-        if (!TextUtils.isEmpty(additionalExtensions)) {
-            for (String extension : additionalExtensions.split(",")) {
-                String trimed = extension.trim();
-                if (trimed.length() > 0) {
-                    mExtensionsToConsider.add(trimed);
-                }
-            }
+        // Check directory is available.
+        final File targetDirectory = new File(getString(R.string.config_export_dir));
+        if (!(targetDirectory.exists() &&
+                targetDirectory.isDirectory() &&
+                targetDirectory.canRead()) &&
+                !targetDirectory.mkdirs()) {
+            showDialog(R.id.dialog_sdcard_not_found);
+            return;
         }
 
-        final Resources resources = getResources();
-        mFileIndexMinimum = resources.getInteger(R.integer.config_export_file_min_index);
-        mFileIndexMaximum = resources.getInteger(R.integer.config_export_file_max_index);
+        if (startService(new Intent(this, VCardService.class)) == null) {
+            Log.e(LOG_TAG, "Failed to start vCard service");
+            mErrorReason = getString(R.string.fail_reason_unknown);
+            showDialog(R.id.dialog_fail_to_export_with_reason);
+            return;
+        }
 
-        startExportVCardToSdCard();
+        if (!bindService(new Intent(this, VCardService.class), this, Context.BIND_AUTO_CREATE)) {
+            Log.e(LOG_TAG, "Failed to connect to vCard service.");
+            mErrorReason = getString(R.string.fail_reason_unknown);
+            showDialog(R.id.dialog_fail_to_export_with_reason);
+        }
+        // Continued to onServiceConnected()
+    }
+
+    @Override
+    public synchronized void onServiceConnected(ComponentName name, IBinder service) {
+        if (DEBUG) Log.d(LOG_TAG, "connected to service, requesting a destination file name");
+        mConnected = true;
+        mOutgoingMessenger = new Messenger(service);
+        final Message message =
+                Message.obtain(null, VCardService.MSG_REQUEST_AVAILABLE_EXPORT_DESTINATION);
+        message.replyTo = mIncomingMessenger;
+        trySend(message);
+        // Wait until MSG_SET_AVAILABLE_EXPORT_DESTINATION message is available.
+    }
+
+    // Use synchronized since we don't want to call unbindAndFinish() just after this call.
+    @Override
+    public synchronized void onServiceDisconnected(ComponentName name) {
+        if (DEBUG) Log.d(LOG_TAG, "onServiceDisconnected()");
+        mOutgoingMessenger = null;
+        mConnected = false;
+        if (mProcessOngoing) {
+            // Unexpected disconnect event.
+            Log.w(LOG_TAG, "Disconnected from service during the process ongoing.");
+            mErrorReason = getString(R.string.fail_reason_unknown);
+            showDialog(R.id.dialog_fail_to_export_with_reason);
+        }
     }
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case R.id.dialog_export_confirmation: {
-                return getExportConfirmationDialog();
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.confirm_export_title)
+                        .setMessage(getString(R.string.confirm_export_message, mTargetFileName))
+                        .setPositiveButton(android.R.string.ok,
+                                new ExportConfirmationListener(mTargetFileName))
+                        .setNegativeButton(android.R.string.cancel, this)
+                        .setOnCancelListener(this)
+                        .create();
             }
             case R.string.fail_reason_too_many_vcard: {
+                mProcessOngoing = false;
                 return new AlertDialog.Builder(this)
-                    .setTitle(R.string.exporting_contact_failed_title)
-                    .setMessage(getString(R.string.exporting_contact_failed_message,
+                        .setTitle(R.string.exporting_contact_failed_title)
+                        .setMessage(getString(R.string.exporting_contact_failed_message,
                                 getString(R.string.fail_reason_too_many_vcard)))
-                                .setPositiveButton(android.R.string.ok, mCancelListener)
-                                .create();
+                        .setPositiveButton(android.R.string.ok, this)
+                        .create();
             }
             case R.id.dialog_fail_to_export_with_reason: {
-                return getErrorDialogWithReason();
+                mProcessOngoing = false;
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.exporting_contact_failed_title)
+                        .setMessage(getString(R.string.exporting_contact_failed_message,
+                                mErrorReason != null ? mErrorReason :
+                                        getString(R.string.fail_reason_unknown)))
+                        .setPositiveButton(android.R.string.ok, this)
+                        .setOnCancelListener(this)
+                        .create();
             }
             case R.id.dialog_sdcard_not_found: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(R.string.no_sdcard_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage(R.string.no_sdcard_message)
-                .setPositiveButton(android.R.string.ok, mCancelListener);
-                return builder.create();
+                mProcessOngoing = false;
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.no_sdcard_title)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(R.string.no_sdcard_message)
+                        .setPositiveButton(android.R.string.ok, this).create();
             }
         }
         return super.onCreateDialog(id, bundle);
@@ -261,7 +249,7 @@ public class ExportVCardActivity extends Activity {
     @Override
     protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
         if (id == R.id.dialog_fail_to_export_with_reason) {
-            ((AlertDialog)dialog).setMessage(getErrorReason());
+            ((AlertDialog)dialog).setMessage(mErrorReason);
         } else if (id == R.id.dialog_export_confirmation) {
             ((AlertDialog)dialog).setMessage(
                     getString(R.string.confirm_export_message, mTargetFileName));
@@ -275,119 +263,47 @@ public class ExportVCardActivity extends Activity {
         super.onStop();
 
         if (!isFinishing()) {
-            finish();
+            unbindAndFinish();
         }
     }
 
-    /**
-     * Tries to start exporting VCard. If there's no SDCard available,
-     * an error dialog is shown.
-     */
-    public void startExportVCardToSdCard() {
-        File targetDirectory = new File(mTargetDirectory);
-
-        if (!(targetDirectory.exists() &&
-                targetDirectory.isDirectory() &&
-                targetDirectory.canRead()) &&
-                !targetDirectory.mkdirs()) {
-            showDialog(R.id.dialog_sdcard_not_found);
-        } else {
-            mTargetFileName = getAppropriateFileName(mTargetDirectory);
-            if (TextUtils.isEmpty(mTargetFileName)) {
-                mTargetFileName = null;
-                // finish() is called via the error dialog. Do not call the method here.
-                return;
-            }
-
-            showDialog(R.id.dialog_export_confirmation);
-        }
-    }
-
-    /**
-     * Tries to get an appropriate filename. Returns null if it fails.
-     */
-    private String getAppropriateFileName(final String destDirectory) {
-        int fileNumberStringLength = 0;
-        {
-            // Calling Math.Log10() is costly.
-            int tmp;
-            for (fileNumberStringLength = 0, tmp = mFileIndexMaximum; tmp > 0;
-                fileNumberStringLength++, tmp /= 10) {
-            }
-        }
-        String bodyFormat = "%s%0" + fileNumberStringLength + "d%s";
-
-        if (!ALLOW_LONG_FILE_NAME) {
-            String possibleBody = String.format(bodyFormat,mFileNamePrefix, 1, mFileNameSuffix);
-            if (possibleBody.length() > 8 || mFileNameExtension.length() > 3) {
-                Log.e(LOG_TAG, "This code does not allow any long file name.");
-                mErrorReason = getString(R.string.fail_reason_too_long_filename,
-                        String.format("%s.%s", possibleBody, mFileNameExtension));
-                showDialog(R.id.dialog_fail_to_export_with_reason);
-                // finish() is called via the error dialog. Do not call the method here.
-                return null;
-            }
-        }
-
-        // Note that this logic assumes that the target directory is case insensitive.
-        // As of 2009-07-16, it is true since the external storage is only sdcard, and
-        // it is formated as FAT/VFAT.
-        // TODO: fix this.
-        for (int i = mFileIndexMinimum; i <= mFileIndexMaximum; i++) {
-            boolean numberIsAvailable = true;
-            // SD Association's specification seems to require this feature, though we cannot
-            // have the specification since it is proprietary...
-            String body = null;
-            for (String possibleExtension : mExtensionsToConsider) {
-                body = String.format(bodyFormat, mFileNamePrefix, i, mFileNameSuffix);
-                File file = new File(String.format("%s/%s.%s",
-                        destDirectory, body, possibleExtension));
-                if (file.exists()) {
-                    numberIsAvailable = false;
-                    break;
-                }
-            }
-            if (numberIsAvailable) {
-                return String.format("%s/%s.%s", destDirectory, body, mFileNameExtension);
-            }
-        }
-        showDialog(R.string.fail_reason_too_many_vcard);
-        return null;
-    }
-
-    public Dialog getExportConfirmationDialog() {
-        if (TextUtils.isEmpty(mTargetFileName)) {
-            Log.e(LOG_TAG, "Target file name is empty, which must not be!");
-            // This situation is not acceptable (probably a bug!), but we don't have no reason to
-            // show...
-            mErrorReason = null;
-            return getErrorDialogWithReason();
-        }
-
-        return new AlertDialog.Builder(this)
-            .setTitle(R.string.confirm_export_title)
-            .setMessage(getString(R.string.confirm_export_message, mTargetFileName))
-            .setPositiveButton(android.R.string.ok,
-                    new ExportConfirmationListener(mTargetFileName))
-            .setNegativeButton(android.R.string.cancel, mCancelListener)
-            .setOnCancelListener(mCancelListener)
-            .create();
-    }
-
-    public Dialog getErrorDialogWithReason() {
-        if (mErrorReason == null) {
-            Log.e(LOG_TAG, "Error reason must have been set.");
+    private boolean trySend(Message message) {
+        try {
+            mOutgoingMessenger.send(message);
+            return true;
+        } catch (RemoteException e) {
+            Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
+            unbindService(this);
             mErrorReason = getString(R.string.fail_reason_unknown);
+            showDialog(R.id.dialog_fail_to_export_with_reason);
+            return false;
         }
-        return new AlertDialog.Builder(this)
-            .setTitle(R.string.exporting_contact_failed_title)
-                .setMessage(getString(R.string.exporting_contact_failed_message, mErrorReason))
-            .setPositiveButton(android.R.string.ok, mCancelListener)
-            .setOnCancelListener(mCancelListener)
-            .create();
     }
 
-    public String getErrorReason() {
-        return mErrorReason;
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        if (DEBUG) Log.d(LOG_TAG, "ExportVCardActivity#onClick() is called");
+        unbindAndFinish();
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        if (DEBUG) Log.d(LOG_TAG, "ExportVCardActivity#onCancel() is called");
+        mProcessOngoing = false;
+        unbindAndFinish();
+    }
+
+    @Override
+    public void unbindService(ServiceConnection conn) {
+        mProcessOngoing = false;
+        super.unbindService(conn);
+    }
+
+    private synchronized void unbindAndFinish() {
+        if (mConnected) {
+            unbindService(this);
+            mConnected = false;
+        }
+        finish();
     }
 }

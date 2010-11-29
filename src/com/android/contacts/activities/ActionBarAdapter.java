@@ -92,7 +92,6 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         mFilterIndicator = mNavigationBar.findViewById(R.id.filter_indicator);
         mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
 
-        mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryChangeListener(this);
         mSearchView.setOnCloseListener(this);
         mSearchView.setOnQueryTextFocusChangeListener(this);

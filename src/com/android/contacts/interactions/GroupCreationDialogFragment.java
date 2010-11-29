@@ -19,7 +19,9 @@ import com.android.contacts.R;
 import com.android.contacts.views.ContactSaveService;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -55,7 +57,9 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
         String accountType = arguments.getString(ARG_ACCOUNT_TYPE);
         String accountName = arguments.getString(ARG_ACCOUNT_NAME);
 
-        getActivity().startService(ContactSaveService.createNewGroupIntent(
-                getActivity(), new Account(accountName, accountType), groupLabel));
+        Activity activity = getActivity();
+        activity.startService(ContactSaveService.createNewGroupIntent(activity,
+                new Account(accountName, accountType), groupLabel,
+                activity.getClass(), Intent.ACTION_EDIT));
     }
 }

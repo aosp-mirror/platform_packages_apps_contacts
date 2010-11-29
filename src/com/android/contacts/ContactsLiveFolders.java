@@ -39,7 +39,7 @@ public class ContactsLiveFolders {
             if (LiveFolders.ACTION_CREATE_LIVE_FOLDER.equals(action)) {
                 setResult(RESULT_OK, createLiveFolder(this, CONTENT_URI,
                         getString(R.string.liveFolder_favorites_label),
-                        R.drawable.ic_launcher_folder_live_contacts_starred));
+                        R.mipmap.ic_launcher_folder_live_contacts_starred));
             } else {
                 setResult(RESULT_CANCELED);
             }
@@ -62,7 +62,7 @@ public class ContactsLiveFolders {
             if (LiveFolders.ACTION_CREATE_LIVE_FOLDER.equals(action)) {
                 setResult(RESULT_OK, createLiveFolder(this, CONTENT_URI,
                         getString(R.string.liveFolder_phones_label),
-                        R.drawable.ic_launcher_folder_live_contacts_phone));
+                        R.mipmap.ic_launcher_folder_live_contacts_phone));
             } else {
                 setResult(RESULT_CANCELED);
             }
@@ -85,7 +85,7 @@ public class ContactsLiveFolders {
             if (LiveFolders.ACTION_CREATE_LIVE_FOLDER.equals(action)) {
                 setResult(RESULT_OK, createLiveFolder(this, CONTENT_URI,
                         getString(R.string.liveFolder_all_label),
-                        R.drawable.ic_launcher_folder_live_contacts));
+                        R.mipmap.ic_launcher_folder_live_contacts));
             } else {
                 setResult(RESULT_CANCELED);
             }

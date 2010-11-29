@@ -72,14 +72,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
         />
 
-        <ImageView android:id="@+id/primary_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="3dip"
-            android:src="@drawable/ic_default_number"
-        />
-
         <TextView
             android:id="@+id/footer"
             android:layout_width="wrap_content"

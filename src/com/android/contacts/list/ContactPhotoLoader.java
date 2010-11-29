@@ -79,6 +79,7 @@ public class ContactPhotoLoader implements Callback {
         private static final int NEEDED = 0;
         private static final int LOADING = 1;
         private static final int LOADED = 2;
+        private static final int LOADED_NEEDS_RELOAD = 3;
 
         int state;
         SoftReference<Bitmap> bitmapRef;
@@ -176,6 +177,19 @@ public class ContactPhotoLoader implements Callback {
     }
 
     /**
+     * Mark all cached photos for reloading.  We can continue using cache but should
+     * also make sure the photos haven't changed in the background and notify the views
+     * if so.
+     */
+    public void refreshCache() {
+        for (BitmapHolder holder : mBitmapCache.values()) {
+            if (holder.state == BitmapHolder.LOADED) {
+                holder.state = BitmapHolder.LOADED_NEEDS_RELOAD;
+            }
+        }
+    }
+
+    /**
      * Checks if the photo is present in cache.  If so, sets the photo on the view,
      * otherwise sets the state of the photo to {@link BitmapHolder#NEEDED} and
      * temporarily set the image to the default resource ID.
@@ -185,22 +199,30 @@ public class ContactPhotoLoader implements Callback {
         if (holder == null) {
             holder = new BitmapHolder();
             mBitmapCache.put(key, holder);
-        } else if (holder.state == BitmapHolder.LOADED) {
-            // Null bitmap reference means that database contains no bytes for the photo
-            if (holder.bitmapRef == null) {
-                view.setImageResource(mDefaultResourceId);
-                return true;
+        } else {
+            boolean loaded = (holder.state == BitmapHolder.LOADED);
+            boolean loadedNeedsReload = (holder.state == BitmapHolder.LOADED_NEEDS_RELOAD);
+            if (loadedNeedsReload) {
+                holder.state = BitmapHolder.NEEDED;
             }
 
-            Bitmap bitmap = holder.bitmapRef.get();
-            if (bitmap != null) {
-                view.setImageBitmap(bitmap);
-                return true;
-            }
+            if (loaded || loadedNeedsReload) {
+                // Null bitmap reference means that database contains no bytes for the photo
+                if (holder.bitmapRef == null) {
+                    view.setImageResource(mDefaultResourceId);
+                    return loaded;
+                }
 
-            // Null bitmap means that the soft reference was released by the GC
-            // and we need to reload the photo.
-            holder.bitmapRef = null;
+                Bitmap bitmap = holder.bitmapRef.get();
+                if (bitmap != null) {
+                    view.setImageBitmap(bitmap);
+                    return loaded;
+                }
+
+                // Null bitmap means that the soft reference was released by the GC
+                // and we need to reload the photo.
+                holder.bitmapRef = null;
+            }
         }
 
         // The bitmap has not been loaded - should display the placeholder image.

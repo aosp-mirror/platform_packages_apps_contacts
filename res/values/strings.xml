@@ -108,16 +108,6 @@
     <!-- Menu item used to send an SMS or MMS message to a specific phone number or a contacts default phone number -->
     <string name="menu_sendSMS">Text contact</string>
 
-    <!-- Menu item used to send an email message to a specific email address -->
-    <string name="menu_sendEmail">Send email</string>
-
-    <!-- Menu item used to view a contact's address on a map -->
-    <string name="menu_viewAddress">Map address</string>
-
-    <!-- Menu item that makes a phone the default for a contact. The default number used when you
-         try to call a contact without specifying a specific number. -->
-    <string name="menu_makeDefaultNumber">Make default number</string>
-
     <!-- Menu item that makes an email address the default for a contact. The default email used
          when you try to email a contact without specifying a specific address. -->
     <string name="menu_makeDefaultEmail">Make default email</string>
@@ -125,10 +115,10 @@
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
 
-    <!-- Menu item that renames the currently selected group -->
+    <!-- Menu item that renames the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_renameGroup">Rename group</string>
 
-    <!-- Menu item that deletes the currently selected group -->
+    <!-- Menu item that deletes the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete group</string>
 
     <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
@@ -162,9 +152,6 @@
 
     <!-- Menu item that opens the Options activity for a given contact -->
     <string name="menu_contactOptions">Options</string>
-
-    <!-- Title for the Options activity for a given contact -->
-    <string name="contactOptionsTitle">Options</string>
 
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
@@ -758,12 +745,14 @@
          is rarely needed in the actual vCard...). -->
     <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
 
-    <!-- The failed reason shown when the system could not find any vCard file
-         (with extension ".vcf" in SDCard.) [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_no_vcard_file" product="nosdcard">No vCard file found in the USB storage</string>
-    <!-- The failed reason shown when the system could not find any vCard file
-         (with extension ".vcf" in SDCard.) -->
-    <string name="fail_reason_no_vcard_file" product="default">No vCard file found on the SD card</string>
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in USB storage.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="nosdcard">No vCard file found in the USB storage</string>
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in SDCard.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card</string>
 
     <!-- Fail reason shown when vCard importer failed to look over meta information stored in vCard file(s). -->
     <string name="fail_reason_failed_to_collect_vcard_meta_info">Failed to collect meta information of given vCard file(s).</string>
@@ -960,6 +949,17 @@
     <!-- Text that is shown in the Badge, when there is no data to display -->
     <string name="quickcontact_no_data">No data</string>
 
+    <!-- Accessibility description for the button in QuickContacts that allows the user to clear
+    defaults of a contact (like primary email). [CHAR LIMIT=100] -->
+    <string name="quickcontact_clear_defaults_description">Clear defaults</string>
+
+    <!-- Caption that shows above the list of defaults (like primary email). [CHAR LIMIT=40] -->
+    <string name="quickcontact_clear_defaults_caption">Defaults set for this contact:</string>
+
+    <!-- Button caption that allows the user to clear the defaults  (like primary email) of one
+    contact. [CHAR LIMIT=15] -->
+    <string name="quickcontact_clear_defaults_button">Clear</string>
+    
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
@@ -969,7 +969,7 @@
     <!-- Dialog title when selecting the bulk operation to perform from a list. -->
     <string name="dialog_import_export">Import/Export contacts</string>
 
-    <!-- The menu item to share the currently viewed contact -->
+    <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share contact</string>
 
     <!-- Dialog title when picking the application to share a contact with. -->
@@ -1246,21 +1246,21 @@
     <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
     <string name="pick_new_photo">Select new photo from Gallery</string>
 
-    <!-- Text shown in the contacts app while the background process updates contacts after a locale change -->
+    <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=300] -->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.</string>
 
-    <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade -->
+    <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade [CHAR LIMIT=300] -->
     <string name="upgrade_in_progress">Contact list is being updated.</string>
 
-    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage -->
+    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=300] -->
     <string name="upgrade_out_of_memory">Contacts are in the process of being upgraded.
     \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%s</xliff:g>
     Mb of internal storage.\n\nChoose one of the following options:</string>
 
-    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage -->
+    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=50] -->
     <string name="upgrade_out_of_memory_uninstall">Uninstall some applications</string>
 
-    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage -->
+    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=50] -->
     <string name="upgrade_out_of_memory_retry">Retry upgrade</string>
 
     <!-- Title shown in the search result activity of contacts app while searching -->
@@ -1447,4 +1447,9 @@
       (Contacts themselves will not be deleted.)
     </string>
 
+    <!-- Toast displayed when the user creates a new contact and attempts to join it
+      with another before entering any data  [CHAR LIMIT=256] -->
+    <string name="toast_join_with_empty_contact">Please enter contact name before joining
+      with another contact.
+    </string>
 </resources>

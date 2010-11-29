@@ -105,7 +105,11 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (changed) {
+        if (changed || mPreviousStateBitmap == null) {
+            if (mPreviousStateBitmap != null) {
+                mPreviousStateBitmap.recycle();
+                mPreviousStateBitmap = null;
+            }
             int width = right - left;
             int height = bottom - top;
             if (width > 0 && height > 0) {
@@ -117,8 +121,18 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
                         width - mClipMargins.right, height - mClipMargins.bottom);
             } else {
                 mPreviousStateBitmap = null;
-                mPreviousStateView = null;
+                mPreviousStateView.setBackgroundDrawable(null);
             }
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mPreviousStateView.setBackgroundDrawable(null);
+        if (mPreviousStateBitmap != null) {
+            mPreviousStateBitmap.recycle();
+            mPreviousStateBitmap = null;
         }
     }
 

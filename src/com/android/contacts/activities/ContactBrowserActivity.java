@@ -54,12 +54,8 @@ import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
@@ -99,31 +95,12 @@ public class ContactBrowserActivity extends Activity
 
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
-    /**
-     * The id for a delayed message that triggers automatic selection of the first
-     * found contact in search mode.
-     */
-    private static final int MESSAGE_AUTOSELECT_FIRST_FOUND_CONTACT = 1;
-
-    /**
-     * The delay that is used for automatically selecting the first found contact.
-     */
-    private static final int DELAY_AUTOSELECT_FIRST_FOUND_CONTACT_MILLIS = 500;
-
-    /**
-     * The minimum number of characters in the search query that is required
-     * before we automatically select the first found contact.
-     */
-    private static final int AUTOSELECT_FIRST_FOUND_CONTACT_MIN_QUERY_LENGTH = 2;
-
     private static final String KEY_SEARCH_MODE = "searchMode";
 
     private DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
-
-    private SharedPreferences mPrefs;
 
     private boolean mHasActionBar;
     private ActionBarAdapter mActionBarAdapter;
@@ -137,7 +114,6 @@ public class ContactBrowserActivity extends Activity
 
     private PhoneNumberInteraction mPhoneNumberCallInteraction;
     private PhoneNumberInteraction mSendTextMessageInteraction;
-    private ContactDeletionInteraction mContactDeletionInteraction;
     private ImportExportInteraction mImportExportInteraction;
 
     private boolean mSearchInitiated;
@@ -145,8 +121,6 @@ public class ContactBrowserActivity extends Activity
     private ContactListFilterController mContactListFilterController;
 
     private ImageButton mAddContactImageView;
-
-    private Handler mHandler;
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusLoader mProviderStatusLoader;
@@ -159,20 +133,6 @@ public class ContactBrowserActivity extends Activity
         mProviderStatusLoader = new ProviderStatusLoader(this);
     }
 
-    private Handler getHandler() {
-        if (mHandler == null) {
-            mHandler = new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    if (msg.what == MESSAGE_AUTOSELECT_FIRST_FOUND_CONTACT) {
-                        selectFirstFoundContact();
-                    }
-                }
-            };
-        }
-        return mHandler;
-    }
-
     public boolean areContactsAvailable() {
         return mProviderStatus == ProviderStatus.STATUS_NORMAL;
     }
@@ -182,7 +142,6 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            configureListSelection();
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -218,22 +177,21 @@ public class ContactBrowserActivity extends Activity
             return;
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        setTitle(mRequest.getActivityTitle());
         setContentView(R.layout.contact_browser);
-
-        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         mContactContentDisplayed = findViewById(R.id.detail_container) != null;
 
-        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
-            if (!mContactContentDisplayed) {
-                startActivity(new Intent(Intent.ACTION_VIEW, mRequest.getContactUri()));
-                finish();
-                return;
-            }
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
+                && !mContactContentDisplayed) {
+            redirect = new Intent(this, ContactDetailActivity.class);
+            redirect.setAction(Intent.ACTION_VIEW);
+            redirect.setData(mRequest.getContactUri());
+            startActivity(redirect);
+            finish();
+            return;
         }
 
+        setTitle(mRequest.getActivityTitle());
+        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         if (mHasActionBar) {
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
@@ -268,18 +226,10 @@ public class ContactBrowserActivity extends Activity
 
             if (mHasActionBar) {
                 mActionBarAdapter.setSearchMode(false);
-
-                // onNewIntent is called when the activity is paused, so it is not
-                // registered as a listener of the action bar adapter. Simulate the listener call.
-                onAction();
+                configureFragments(false /* from request */);
             }
 
             mListFragment.setSelectedContactUri(uri);
-            mListFragment.saveSelectedUri(mPrefs);
-            mListFragment.requestSelectionOnScreen(true);
-            if (mContactContentDisplayed) {
-                setupContactDetailFragment(uri);
-            }
         }
     }
 
@@ -338,6 +288,11 @@ public class ContactBrowserActivity extends Activity
                 mContactListFilterController.setContactListFilter(new ContactListFilter(
                         ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), false);
             }
+
+            if (mRequest.getContactUri() != null) {
+                searchMode = false;
+            }
+
         } else if (mHasActionBar) {
             searchMode = mActionBarAdapter.isSearchMode();
         }
@@ -352,19 +307,17 @@ public class ContactBrowserActivity extends Activity
 
             if (mSearchMode) {
                 mListFragment = createContactSearchFragment();
-                // When switching to the search mode, erase previous state of the search UI
-                mListFragment.eraseSelectedUri(mPrefs);
             } else {
                 mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
+                if (mRequest.getContactUri() != null) {
+                    mListFragment.setSelectedContactUri(mRequest.getContactUri());
+
+                }
             }
         }
 
-        if (mSearchMode) {
-            if (mHasActionBar) {
-                mListFragment.setQueryString(mActionBarAdapter.getQueryString());
-            }
-        } else {
-            configureListSelection();
+        if (mSearchMode && mHasActionBar) {
+            mListFragment.setQueryString(mActionBarAdapter.getQueryString());
         }
 
         if (replaceList) {
@@ -372,153 +325,38 @@ public class ContactBrowserActivity extends Activity
                     .replace(R.id.list_container, mListFragment)
                     .commit();
         }
+
+        if (mContactContentDisplayed && mDetailFragment == null) {
+            mDetailFragment = new ContactDetailFragment();
+            getFragmentManager().openTransaction()
+                    .replace(R.id.detail_container, mDetailFragment)
+                    .commit();
+        }
     }
 
     @Override
     public void onContactListFiltersLoaded() {
-        configureListSelection();
+        if (mListFragment == null) {
+            return;
+        }
+
+        mListFragment.setFilter(mContactListFilterController.getFilter());
 
         // Filters have been loaded - now we can start loading the list itself
         mListFragment.startLoading();
+
+        invalidateOptionsMenu();
     }
 
     @Override
     public void onContactListFilterChanged() {
-        resetContactSelectionInIntent();
-
         if (mListFragment == null) {
             return;
         }
 
-        DefaultContactBrowseListFragment fragment =
-                (DefaultContactBrowseListFragment) mListFragment;
-        ContactListFilter filter = mContactListFilterController.getFilter();
-        fragment.setFilter(filter);
-        fragment.reloadData();
-        fragment.restoreSelectedUri(mPrefs);
-        fragment.requestSelectionOnScreen(false);
-
-        if (mContactContentDisplayed) {
-            setupContactDetailFragment(mListFragment.getSelectedContactUri());
-        }
+        mListFragment.setFilter(mContactListFilterController.getFilter());
 
         invalidateOptionsMenu();
-    }
-
-    /**
-     * Configures filter-specific persistent selection.
-     */
-    private void configureListSelection() {
-        if (mListFragment == null) {
-            return;
-        }
-
-        if (mListFragment instanceof DefaultContactBrowseListFragment
-                && mContactListFilterController != null
-                && mContactListFilterController.isLoaded()) {
-            DefaultContactBrowseListFragment fragment =
-                    (DefaultContactBrowseListFragment) mListFragment;
-            ContactListFilter filter = mContactListFilterController.getFilter();
-            fragment.setFilter(filter);
-            if (mRequest.getContactUri() != null) {
-                fragment.setSelectedContactUri(mRequest.getContactUri());
-                fragment.saveSelectedUri(mPrefs);
-            } else {
-                fragment.restoreSelectedUri(mPrefs);
-            }
-            fragment.requestSelectionOnScreen(false);
-            if (mContactContentDisplayed) {
-                setupContactDetailFragment(mListFragment.getSelectedContactUri());
-            }
-        } else if (mContactContentDisplayed) {
-            setupContactDetailFragment(mListFragment.getSelectedContactUri());
-        }
-
-        invalidateOptionsMenu();
-    }
-
-    /**
-     * Removes the selected contact URI that was supplied with the intent (if any),
-     * because the user has explicitly changed the selection.
-     */
-    private void resetContactSelectionInIntent() {
-        mRequest.setContactUri(null);
-
-        getIntent().setAction(Intent.ACTION_DEFAULT);
-        getIntent().setData(null);
-    }
-
-    private void showDefaultSelection() {
-        if (mSearchMode) {
-            selectFirstFoundContactAfterDelay();
-            return;
-        }
-
-        Uri requestedContactUri = mRequest.getContactUri();
-        if (requestedContactUri != null
-                && mListFragment instanceof DefaultContactBrowseListFragment) {
-            // If a specific selection was requested, adjust the filter so
-            // that the requested selection is unconditionally visible.
-            DefaultContactBrowseListFragment fragment =
-                    (DefaultContactBrowseListFragment) mListFragment;
-            ContactListFilter filter =
-                    new ContactListFilter(ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-            fragment.setFilter(filter);
-            fragment.setSelectedContactUri(requestedContactUri);
-            fragment.saveSelectedUri(mPrefs);
-            fragment.reloadData();
-            if (mContactListFilterController != null) {
-                mContactListFilterController.setContactListFilter(filter, true);
-            }
-        } else {
-            // Otherwise, choose the first contact on the list and select it
-            requestedContactUri = mListFragment.getFirstContactUri();
-            if (requestedContactUri != null) {
-                mListFragment.setSelectedContactUri(requestedContactUri);
-                mListFragment.eraseSelectedUri(mPrefs);
-                mListFragment.requestSelectionOnScreen(false);
-            }
-        }
-        if (mContactContentDisplayed) {
-            setupContactDetailFragment(requestedContactUri);
-        }
-
-        invalidateOptionsMenu();
-    }
-
-    /**
-     * Automatically selects the first found contact in search mode.  The selection
-     * is updated after a delay to allow the user to type without to much UI churn
-     * and to save bandwidth on directory queries.
-     */
-    public void selectFirstFoundContactAfterDelay() {
-        Handler handler = getHandler();
-        handler.removeMessages(MESSAGE_AUTOSELECT_FIRST_FOUND_CONTACT);
-        handler.sendEmptyMessageDelayed(MESSAGE_AUTOSELECT_FIRST_FOUND_CONTACT,
-                DELAY_AUTOSELECT_FIRST_FOUND_CONTACT_MILLIS);
-    }
-
-    /**
-     * Selects the first contact in the list in search mode.
-     */
-    protected void selectFirstFoundContact() {
-        if (!mSearchMode) {
-            return;
-        }
-
-        Uri selectedUri = null;
-        String queryString = mListFragment.getQueryString();
-        if (queryString != null
-                && queryString.length() >= AUTOSELECT_FIRST_FOUND_CONTACT_MIN_QUERY_LENGTH) {
-            selectedUri = mListFragment.getFirstContactUri();
-        }
-
-        mListFragment.setSelectedContactUri(selectedUri);
-        mListFragment.eraseSelectedUri(mPrefs);
-        mListFragment.requestSelectionOnScreen(true);
-        if (mContactContentDisplayed) {
-            setupContactDetailFragment(selectedUri);
-        }
     }
 
     @Override
@@ -528,15 +366,7 @@ public class ContactBrowserActivity extends Activity
     }
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
-        if (mDetailFragment == null) {
-            mDetailFragment = new ContactDetailFragment();
-            mDetailFragment.loadUri(contactLookupUri);
-            getFragmentManager().openTransaction()
-                    .replace(R.id.detail_container, mDetailFragment)
-                    .commit();
-        } else {
-            mDetailFragment.loadUri(contactLookupUri);
-        }
+        mDetailFragment.loadUri(contactLookupUri);
     }
 
     /**
@@ -571,6 +401,10 @@ public class ContactBrowserActivity extends Activity
                 fragment.setSelectionVisible(mContactContentDisplayed);
                 fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 fragment.setFilterEnabled(!mRequest.isSearchMode());
+                fragment.setPersistentSelectionEnabled(!mRequest.isSearchMode());
+                if (mContactListFilterController.isLoaded()) {
+                    fragment.setFilter(mContactListFilterController.getFilter());
+                }
                 return fragment;
             }
 
@@ -680,13 +514,17 @@ public class ContactBrowserActivity extends Activity
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
+
+        @Override
+        public void onSelectionChange() {
+            if (mContactContentDisplayed) {
+                setupContactDetailFragment(mListFragment.getSelectedContactUri());
+            }
+        }
+
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
             if (mContactContentDisplayed) {
-                resetContactSelectionInIntent();
-
-                mListFragment.setSelectedContactUri(contactLookupUri);
-                mListFragment.saveSelectedUri(mPrefs);
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
@@ -739,7 +577,7 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            getContactDeletionInteraction().deleteContact(contactUri);
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
         }
 
         @Override
@@ -749,16 +587,17 @@ public class ContactBrowserActivity extends Activity
 
         @Override
         public void onInvalidSelection() {
-            showDefaultSelection();
+            ContactListFilter filter =
+                    new ContactListFilter(ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+            mContactListFilterController.setContactListFilter(filter, true);
+            mListFragment.setFilter(filter);
         }
     }
 
     private class DetailFragmentListener implements ContactDetailFragment.Listener {
         @Override
         public void onContactNotFound() {
-            resetContactSelectionInIntent();
-            setupContactDetailFragment(null);
-            showDefaultSelection();
+            // Nothing needs to be done here
         }
 
         @Override
@@ -777,8 +616,8 @@ public class ContactBrowserActivity extends Activity
         }
 
         @Override
-        public void onDeleteRequested(Uri contactLookupUri) {
-            getContactDeletionInteraction().deleteContact(contactLookupUri);
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
         }
 
         @Override
@@ -786,7 +625,8 @@ public class ContactBrowserActivity extends Activity
             Toast.makeText(ContactBrowserActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    ContactBrowserActivity.this, values, account);
+                    ContactBrowserActivity.this, values, account,
+                    ContactBrowserActivity.class, Intent.ACTION_VIEW);
             startService(serviceIntent);
         }
     }
@@ -884,6 +724,9 @@ public class ContactBrowserActivity extends Activity
             return false;
         }
 
+        MenuItem settings = menu.findItem(R.id.menu_settings);
+        settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
+
         MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
         if (displayGroups != null) {
             displayGroups.setVisible(
@@ -891,9 +734,8 @@ public class ContactBrowserActivity extends Activity
         }
 
         boolean groupActionsEnabled = false;
-        if (mListFragment instanceof DefaultContactBrowseListFragment) {
-            ContactListFilter filter =
-                    ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+        if (mListFragment != null) {
+            ContactListFilter filter = mListFragment.getFilter();
             if (filter != null
                     && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP
                     && !filter.groupReadOnly) {
@@ -944,15 +786,13 @@ public class ContactBrowserActivity extends Activity
                 return true;
             }
             case R.id.menu_rename_group: {
-                ContactListFilter filter =
-                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                ContactListFilter filter = mListFragment.getFilter();
                 GroupRenamingDialogFragment.show(getFragmentManager(), filter.groupId,
                         filter.title);
                 return true;
             }
             case R.id.menu_delete_group: {
-                ContactListFilter filter =
-                        ((DefaultContactBrowseListFragment)mListFragment).getFilter();
+                ContactListFilter filter = mListFragment.getFilter();
                 GroupDeletionDialogFragment.show(getFragmentManager(), filter.groupId,
                         filter.title);
                 return true;
@@ -1004,10 +844,7 @@ public class ContactBrowserActivity extends Activity
     protected Dialog onCreateDialog(int id, Bundle bundle) {
         if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, bundle);
 
-        Dialog dialog = getContactDeletionInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-
-        dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
+        Dialog dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
         if (dialog != null) return dialog;
 
         dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
@@ -1021,10 +858,6 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected void onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
-        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, bundle)) {
-            return;
-        }
-
         if (getPhoneNumberCallInteraction().onPrepareDialog(id, dialog, bundle)) {
             return;
         }
@@ -1045,24 +878,12 @@ public class ContactBrowserActivity extends Activity
                 }
                 break;
             }
-            case SUBACTIVITY_EDIT_CONTACT: {
-                mListFragment.requestSelectionOnScreen(true);
-                break;
-            }
 
+            case SUBACTIVITY_EDIT_CONTACT:
             case SUBACTIVITY_NEW_CONTACT: {
-                if (resultCode == RESULT_OK && mContactContentDisplayed) {
-                    resetContactSelectionInIntent();
-
-                    final Uri newContactUri = data.getData();
-                    if (mContactContentDisplayed) {
-                        setupContactDetailFragment(newContactUri);
-                    }
-
+                if (resultCode == RESULT_OK) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mListFragment.setSelectedContactUri(newContactUri);
-                    mListFragment.saveSelectedUri(mPrefs);
-                    mListFragment.requestSelectionOnScreen(true);
+                    mListFragment.setSelectedContactUri(data.getData());
                 }
                 break;
             }
@@ -1185,14 +1006,6 @@ public class ContactBrowserActivity extends Activity
             mSendTextMessageInteraction = new PhoneNumberInteraction(this, true, null);
         }
         return mSendTextMessageInteraction;
-    }
-
-    private ContactDeletionInteraction getContactDeletionInteraction() {
-        if (mContactDeletionInteraction == null) {
-            mContactDeletionInteraction = new ContactDeletionInteraction();
-            mContactDeletionInteraction.attachToActivity(this);
-        }
-        return mContactDeletionInteraction;
     }
 
     private ImportExportInteraction getImportExportInteraction() {

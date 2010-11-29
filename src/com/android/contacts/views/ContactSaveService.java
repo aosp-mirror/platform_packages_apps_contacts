@@ -20,20 +20,18 @@ import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
 import android.accounts.Account;
-import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
-import android.content.OperationApplicationException;
 import android.net.Uri;
-import android.os.Parcelable;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
@@ -60,6 +58,15 @@ public class ContactSaveService extends IntentService {
     public static final String ACTION_DELETE_GROUP = "deleteGroup";
     public static final String EXTRA_GROUP_ID = "groupId";
     public static final String EXTRA_GROUP_LABEL = "groupLabel";
+
+    public static final String ACTION_SET_STARRED = "setStarred";
+    public static final String ACTION_DELETE_CONTACT = "delete";
+    public static final String EXTRA_CONTACT_URI = "contactUri";
+    public static final String EXTRA_STARRED_FLAG = "starred";
+
+    public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
+    public static final String ACTION_CLEAR_PRIMARY = "clearPrimary";
+    public static final String EXTRA_DATA_ID = "dataId";
 
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
@@ -97,9 +104,43 @@ public class ContactSaveService extends IntentService {
             renameGroup(intent);
         } else if (ACTION_DELETE_GROUP.equals(action)) {
             deleteGroup(intent);
-        } else {
-            performContentProviderOperations(intent);
+        } else if (ACTION_SET_STARRED.equals(action)) {
+            setStarred(intent);
+        } else if (ACTION_SET_SUPER_PRIMARY.equals(action)) {
+            setSuperPrimary(intent);
+        } else if (ACTION_CLEAR_PRIMARY.equals(action)) {
+            clearPrimary(intent);
+        } else if (ACTION_DELETE_CONTACT.equals(action)) {
+            deleteContact(intent);
         }
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to create a new raw contact
+     * using data presented as a set of ContentValues.
+     */
+    public static Intent createNewRawContactIntent(Context context,
+            ArrayList<ContentValues> values, Account account, Class<?> callbackActivity,
+            String callbackAction) {
+        Intent serviceIntent = new Intent(
+                context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_NEW_RAW_CONTACT);
+        if (account != null) {
+            serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
+            serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
+        }
+        serviceIntent.putParcelableArrayListExtra(
+                ContactSaveService.EXTRA_CONTENT_VALUES, values);
+
+        // Callback intent will be invoked by the service once the new contact is
+        // created.  The service will put the URI of the new contact as "data" on
+        // the callback intent.
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.setAction(callbackAction);
+        callbackIntent.setFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        return serviceIntent;
     }
 
     private void createRawContact(Intent intent) {
@@ -138,49 +179,26 @@ public class ContactSaveService extends IntentService {
         startActivity(callbackIntent);
     }
 
-    private void performContentProviderOperations(Intent intent) {
-        final Parcelable[] operationsArray = intent.getParcelableArrayExtra(EXTRA_OPERATIONS);
-
-        // We have to cast each item individually here
-        final ArrayList<ContentProviderOperation> operations =
-                new ArrayList<ContentProviderOperation>(operationsArray.length);
-        for (Parcelable p : operationsArray) {
-            operations.add((ContentProviderOperation) p);
-        }
-
-        try {
-            getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Error saving", e);
-        } catch (OperationApplicationException e) {
-            Log.e(TAG, "Error saving", e);
-        }
-    }
-
     /**
-     * Creates an intent that can be sent to this service to create a new raw contact
-     * using data presented as a set of ContentValues.
+     * Creates an intent that can be sent to this service to create a new group.
      */
-    public static Intent createNewRawContactIntent(
-            Activity activity, ArrayList<ContentValues> values, Account account) {
-        Intent serviceIntent = new Intent(
-                activity, ContactSaveService.class);
-        serviceIntent.setAction(ContactSaveService.ACTION_NEW_RAW_CONTACT);
-        if (account != null) {
-            serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
-            serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
-        }
-        serviceIntent.putParcelableArrayListExtra(
-                ContactSaveService.EXTRA_CONTENT_VALUES, values);
+    public static Intent createNewGroupIntent(Context context, Account account, String label,
+            Class<?> callbackActivity, String callbackAction) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, label);
 
-        // Callback intent will be invoked by the service once the new contact is
-        // created.  The service will put the URI of the new contact as "data" on
-        // the callback intent.
-        Intent callbackIntent = new Intent(activity, activity.getClass());
-        callbackIntent.setAction(Intent.ACTION_VIEW);
+        // Callback intent will be invoked by the service once the new group is
+        // created.  The service will put a group membership row in the extras
+        // of the callback intent.
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.setAction(callbackAction);
         callbackIntent.setFlags(
                 Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+
         return serviceIntent;
     }
 
@@ -210,23 +228,13 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Creates an intent that can be sent to this service to create a new group.
+     * Creates an intent that can be sent to this service to rename a group.
      */
-    public static Intent createNewGroupIntent(Activity activity, Account account, String label) {
-        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
-        serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, label);
-
-        // Callback intent will be invoked by the service once the new group is
-        // created.  The service will put a group membership row in the extras
-        // of the callback intent.
-        Intent callbackIntent = new Intent(activity, activity.getClass());
-        callbackIntent.setAction(Intent.ACTION_EDIT);
-        callbackIntent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+    public static Intent createGroupRenameIntent(Context context, long groupId, String newLabel) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_RENAME_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, newLabel);
         return serviceIntent;
     }
 
@@ -246,13 +254,12 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Creates an intent that can be sent to this service to rename a group.
+     * Creates an intent that can be sent to this service to delete a group.
      */
-    public static Intent createGroupRenameIntent(Activity activity, long groupId, String newLabel) {
-        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
-        serviceIntent.setAction(ContactSaveService.ACTION_RENAME_GROUP);
+    public static Intent createGroupDeletionIntent(Context context, long groupId) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, newLabel);
         return serviceIntent;
     }
 
@@ -268,12 +275,101 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Creates an intent that can be sent to this service to delete a group.
+     * Creates an intent that can be sent to this service to star or un-star a contact.
      */
-    public static Intent createGroupDeletionIntent(Activity activity, long groupId) {
-        Intent serviceIntent = new Intent(activity, ContactSaveService.class);
-        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_GROUP);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
+    public static Intent createSetStarredIntent(Context context, Uri contactUri, boolean value) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SET_STARRED);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_URI, contactUri);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_STARRED_FLAG, value);
+
         return serviceIntent;
+    }
+
+    private void setStarred(Intent intent) {
+        Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
+        boolean value = intent.getBooleanExtra(EXTRA_STARRED_FLAG, false);
+        if (contactUri == null) {
+            Log.e(TAG, "Invalid arguments for setStarred request");
+            return;
+        }
+
+        final ContentValues values = new ContentValues(1);
+        values.put(Contacts.STARRED, value);
+        getContentResolver().update(contactUri, values, null, null);
+    }
+
+    /**
+     * Creates an intent that sets the selected data item as super primary (default)
+     */
+    public static Intent createSetSuperPrimaryIntent(Context context, long dataId) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SET_SUPER_PRIMARY);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_ID, dataId);
+        return serviceIntent;
+    }
+
+    private void setSuperPrimary(Intent intent) {
+        long dataId = intent.getLongExtra(EXTRA_DATA_ID, -1);
+        if (dataId == -1) {
+            Log.e(TAG, "Invalid arguments for setSuperPrimary request");
+            return;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(1);
+        values.put(Data.IS_SUPER_PRIMARY, 1);
+        values.put(Data.IS_PRIMARY, 1);
+
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
+                values, null, null);
+    }
+
+    /**
+     * Creates an intent that clears the primary flag of all data items that belong to the same
+     * raw_contact as the given data item. Will only clear, if the data item was primary before
+     * this call
+     */
+    public static Intent createClearPrimaryIntent(Context context, long dataId) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_CLEAR_PRIMARY);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_ID, dataId);
+        return serviceIntent;
+    }
+
+    private void clearPrimary(Intent intent) {
+        long dataId = intent.getLongExtra(EXTRA_DATA_ID, -1);
+        if (dataId == -1) {
+            Log.e(TAG, "Invalid arguments for clearPrimary request");
+            return;
+        }
+
+        // Update the primary values in the data record.
+        ContentValues values = new ContentValues(1);
+        values.put(Data.IS_SUPER_PRIMARY, 0);
+        values.put(Data.IS_PRIMARY, 0);
+
+        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
+                values, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to delete a contact.
+     */
+    public static Intent createDeleteContactIntent(Context context, Uri contactUri) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_CONTACT);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_URI, contactUri);
+        return serviceIntent;
+    }
+
+    private void deleteContact(Intent intent) {
+        Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
+        if (contactUri == null) {
+            Log.e(TAG, "Invalid arguments for deleteContact request");
+            return;
+        }
+
+        getContentResolver().delete(contactUri, null, null);
     }
 }

@@ -56,9 +56,6 @@
     <item type="id" name="dialog_manager_id_1"/>
     <item type="id" name="dialog_manager_id_2"/>
 
-    <!-- ContactDetailFragment ContextMenu Ids -->
-    <item type="id" name="menu_detail_makeDefault" />
-
     <!-- Loader ID for contact filters -->
     <item type="id" name="contact_list_filter_loader" />
 

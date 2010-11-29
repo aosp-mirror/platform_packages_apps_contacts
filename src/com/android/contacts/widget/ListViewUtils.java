@@ -37,6 +37,12 @@ public final class ListViewUtils {
      */
     public static void requestPositionToScreen(
             final ListView listView, final int position, boolean smoothScroll) {
+        int firstPosition = listView.getFirstVisiblePosition() + 1;
+        int lastPosition = listView.getLastVisiblePosition();
+        if (position >= firstPosition && position <= lastPosition) {
+            return; // Already on screen
+        }
+
         if (!smoothScroll) {
             final int offset = (int) (listView.getHeight() * PREFERRED_SELECTION_OFFSET_FROM_TOP);
             listView.setSelectionFromTop(position, offset);

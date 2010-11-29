@@ -24,7 +24,6 @@ import com.android.contacts.views.detail.ContactDetailFragment;
 
 import android.accounts.Account;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -40,7 +39,6 @@ public class ContactDetailActivity extends Activity {
     private static final String TAG = "ContactDetailActivity";
 
     private ContactDetailFragment mFragment;
-    private ContactDeletionInteraction mContactDeletionInteraction;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -54,23 +52,6 @@ public class ContactDetailActivity extends Activity {
         mFragment.loadUri(getIntent().getData());
 
         Log.i(TAG, getIntent().getData().toString());
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id, Bundle args) {
-        final Dialog deletionDialog = getContactDeletionInteraction().onCreateDialog(id, args);
-        if (deletionDialog != null) return deletionDialog;
-
-        // Nobody knows about the Dialog
-        Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
-        return null;
-    }
-
-    @Override
-    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
-        if (getContactDeletionInteraction().onPrepareDialog(id, dialog, args)) {
-            return;
-        }
     }
 
     @Override
@@ -88,14 +69,6 @@ public class ContactDetailActivity extends Activity {
         if (mFragment.handleKeyDown(keyCode)) return true;
 
         return super.onKeyDown(keyCode, event);
-    }
-
-    private ContactDeletionInteraction getContactDeletionInteraction() {
-        if (mContactDeletionInteraction == null) {
-            mContactDeletionInteraction = new ContactDeletionInteraction();
-            mContactDeletionInteraction.attachToActivity(this);
-        }
-        return mContactDeletionInteraction;
     }
 
     private final ContactDetailFragment.Listener mFragmentListener =
@@ -120,8 +93,8 @@ public class ContactDetailActivity extends Activity {
         }
 
         @Override
-        public void onDeleteRequested(Uri lookupUri) {
-            getContactDeletionInteraction().deleteContact(lookupUri);
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(ContactDetailActivity.this, contactUri);
         }
 
         @Override
@@ -130,7 +103,8 @@ public class ContactDetailActivity extends Activity {
             Toast.makeText(ContactDetailActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    ContactDetailActivity.this, values, account);
+                    ContactDetailActivity.this, values, account,
+                    ContactDetailActivity.class, Intent.ACTION_VIEW);
             startService(serviceIntent);
 
         }

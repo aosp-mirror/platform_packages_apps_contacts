@@ -16,85 +16,67 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.R;
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract.Contacts;
 
 /**
- * Specific action that launches the profile card.
+ * Action that expands to show and allow clearing the currently selected defaults.
  */
-public class ProfileAction implements Action {
-    private final Context mContext;
-    private final Uri mLookupUri;
+public class ClearDefaultsAction implements Action {
+    /**
+     * This is a pseudo-mimetype that is only needed for the action list. It has to be
+     * different from the real mime-types used
+     */
+    public static final String PSEUDO_MIME_TYPE = "__clear_defaults_mime_type";
 
-    public ProfileAction(Context context, Uri lookupUri) {
-        mContext = context;
-        mLookupUri = lookupUri;
+    @Override
+    public boolean collapseWith(Action t) {
+        return false;
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public boolean shouldCollapseWith(Action t) {
+        return false;
+    }
+
     @Override
     public CharSequence getHeader() {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CharSequence getBody() {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getMimeType() {
-        return Contacts.CONTENT_ITEM_TYPE;
+        return PSEUDO_MIME_TYPE;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Drawable getFallbackIcon() {
-        return mContext.getResources().getDrawable(R.drawable.ic_contacts_details);
+        return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Intent getIntent() {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        return intent;
+        return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Boolean isPrimary() {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Uri getDataUri() {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public long getDataId() {
         return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean collapseWith(Action t) {
-        return false; // Never dup.
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean shouldCollapseWith(Action t) {
-        return false; // Never dup.
     }
 }

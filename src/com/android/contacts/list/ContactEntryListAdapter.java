@@ -324,6 +324,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             ((DirectoryPartition)partition).setStatus(DirectoryPartition.STATUS_LOADED);
         }
 
+        if (mDisplayPhotos && mPhotoLoader != null && isPhotoSupported(partitionIndex)) {
+            mPhotoLoader.refreshCache();
+        }
+
         super.changeCursor(partitionIndex, cursor);
 
         if (isSectionHeaderDisplayEnabled() && partitionIndex == getIndexedPartition()) {

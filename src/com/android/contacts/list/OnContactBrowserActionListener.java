@@ -23,6 +23,12 @@ import android.net.Uri;
 public interface OnContactBrowserActionListener  {
 
     /**
+     * Notification of selection change, invoked when the selection of activated
+     * item(s) is change by either a user action or some other event, e.g. sync.
+     */
+    void onSelectionChange();
+
+    /**
      * Opens the specified contact for viewing.
      *
      * @param contactLookupUri The lookup-uri of the Contact that should be opened

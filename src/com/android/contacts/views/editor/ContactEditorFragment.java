@@ -18,8 +18,8 @@ package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.JoinContactActivity;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -93,7 +93,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -287,10 +286,11 @@ public class ContactEditorFragment extends Fragment implements
 
                 if (account != null) {
                     // Account specified in Intent
-                    createContact(account, true);
+                    createContact(account);
                 } else {
                     // No Account specified. Let the user choose
-                    doAddAction(true);
+                    // Load Accounts async so that we can present them
+                    selectAccountAndCreateContact();
                 }
             } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
@@ -393,22 +393,22 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void selectAccountAndCreateContact(boolean isNewContact) {
+    private void selectAccountAndCreateContact() {
         final ArrayList<Account> accounts = AccountTypes.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
-            createContact(null, isNewContact);
+            createContact(null);
             return;  // Don't show a dialog.
         }
 
         // In the common case of a single account being writable, auto-select
         // it without showing a dialog.
         if (accounts.size() == 1) {
-            createContact(accounts.get(0), isNewContact);
+            createContact(accounts.get(0));
             return;  // Don't show a dialog.
         }
 
-        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(isNewContact);
+        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
         dialog.setTargetFragment(this, 0);
         dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
     }
@@ -416,9 +416,8 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * @param account may be null to signal a device-local contact should
      *     be created.
-     * @param prefillFromIntent If this is set, the intent extras will be used to prefill the fields
      */
-    private void createContact(Account account, boolean prefillFromIntent) {
+    private void createContact(Account account) {
         final AccountTypes sources = AccountTypes.getInstance(mContext);
         final ContentValues values = new ContentValues();
         if (account != null) {
@@ -434,8 +433,7 @@ public class ContactEditorFragment extends Fragment implements
         final AccountType source = sources.getInflatedSource(
                 account != null ? account.type : null,
                 AccountType.LEVEL_CONSTRAINTS);
-        EntityModifier.parseExtras(mContext, source, insert,
-                prefillFromIntent ? mIntentExtras : null);
+        EntityModifier.parseExtras(mContext, source, insert, mIntentExtras);
 
         // Ensure we have some default fields (if the source does not supper a field,
         // ensureKind will not add it, so it is safe to add e.g. Event)
@@ -558,8 +556,6 @@ public class ContactEditorFragment extends Fragment implements
                 return doSaveAction(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return doRevertAction();
-            case R.id.menu_add_raw_contact:
-                return doAddAction(false);
             case R.id.menu_delete:
                 return doDeleteAction();
             case R.id.menu_split:
@@ -568,13 +564,6 @@ public class ContactEditorFragment extends Fragment implements
                 return doJoinContactAction();
         }
         return false;
-    }
-
-    private boolean doAddAction(boolean isNewContact) {
-        // Load Accounts async so that we can present them
-        selectAccountAndCreateContact(isNewContact);
-
-        return true;
     }
 
     /**
@@ -605,6 +594,22 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean doJoinContactAction() {
+        if (!hasValidState()) {
+            return false;
+        }
+
+        // If we just started creating a new contact and haven't added any data, it's too
+        // early to do a join
+        if (mState.size() == 1 && mState.get(0).isContactInsert()) {
+            final AccountTypes sources = AccountTypes.getInstance(mContext);
+            EntityModifier.trimEmpty(mState, sources);
+            if (mState.buildDiff().isEmpty()) {
+                Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
+                                Toast.LENGTH_LONG).show();
+                return true;
+            }
+        }
+
         return doSaveAction(SaveMode.JOIN);
     }
 
@@ -1210,6 +1215,10 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
+        if (!isAdded()) {
+            return;
+        }
+
         RawContactEditorView rawContactView =
                 (RawContactEditorView)getRawContactEditorView(mAggregationSuggestionsRawContactId);
         if (rawContactView == null) {
@@ -1420,8 +1429,7 @@ public class ContactEditorFragment extends Fragment implements
         private static final int RESULT_FAILURE = 2;
 
         private final Context mContext;
-
-        private WeakReference<ProgressDialog> mProgress;
+        private ProgressDialog mProgress;
 
         private int mSaveMode;
         private Uri mContactLookupUri = null;
@@ -1435,8 +1443,13 @@ public class ContactEditorFragment extends Fragment implements
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(ContactEditorFragment target) {
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(target.getActivity(),
-                    null, target.getActivity().getText(R.string.savingContact)));
+            try {
+                mProgress = ProgressDialog.show(target.getActivity(), null,
+                        target.getActivity().getText(R.string.savingContact));
+            } catch (Exception e) {
+                // this can happen if our view has already been closed. this can safely be
+                // ignored
+            }
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -1527,10 +1540,9 @@ public class ContactEditorFragment extends Fragment implements
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            final ProgressDialog progress = mProgress.get();
-            if (progress != null && progress.isShowing()) {
+            if (mProgress != null && mProgress.isShowing()) {
                 try {
-                    progress.dismiss();
+                    mProgress.dismiss();
                 } catch (Exception e) {
                     // this can happen if our view has already been closed. this can safely be
                     // ignored
@@ -1710,8 +1722,8 @@ public class ContactEditorFragment extends Fragment implements
      * Account was chosen in the selector. Create a RawContact for this account now
      */
     @Override
-    public void onAccountChosen(Account account, boolean isNewContact) {
-        createContact(account, isNewContact);
+    public void onAccountChosen(Account account) {
+        createContact(account);
     }
 
     /**

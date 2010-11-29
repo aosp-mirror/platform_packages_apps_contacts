@@ -38,7 +38,7 @@
 
     <application
         android:label="@string/contactsList"
-        android:icon="@drawable/ic_launcher_contacts"
+        android:icon="@mipmap/ic_launcher_contacts"
         android:process="android.process.acore"
         android:taskAffinity="android.task.contacts"
         android:hardwareAccelerated="true"
@@ -123,7 +123,7 @@
             android:theme="@style/DialtactsTheme"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
-            android:icon="@drawable/ic_launcher_phone"
+            android:icon="@mipmap/ic_launcher_phone"
             android:screenOrientation="nosensor"
             android:enabled="@*android:bool/config_voice_capable"
         >
@@ -173,7 +173,7 @@
         <!-- Front door proxy that picks the right UI based on the screen config -->
         <activity android:name=".activities.ContactsFrontDoor"
             android:label="@string/contactsList"
-            android:icon="@drawable/ic_launcher_contacts"
+            android:icon="@mipmap/ic_launcher_contacts"
             android:theme="@android:style/Theme.NoTitleBar"
         >
             <intent-filter>
@@ -188,6 +188,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" android:host="contacts" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
+                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
@@ -373,7 +376,7 @@
         <activity-alias android:name="ContactShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutContact"
-            android:icon="@drawable/ic_launcher_shortcut_contact">
+            android:icon="@mipmap/ic_launcher_shortcut_contact">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -385,7 +388,7 @@
         <activity-alias android:name="alias.DialShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
-            android:icon="@drawable/ic_launcher_shortcut_directdial"
+            android:icon="@mipmap/ic_launcher_shortcut_directdial"
             android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
@@ -399,7 +402,7 @@
         <activity-alias android:name="alias.MessageShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
-            android:icon="@drawable/ic_launcher_shortcut_directmessage"
+            android:icon="@mipmap/ic_launcher_shortcut_directmessage"
             android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
@@ -428,9 +431,6 @@
             <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" android:host="contacts" />
-                <data android:mimeType="vnd.android.cursor.item/contact" android:host="com.android.contacts" />
-                <data android:mimeType="vnd.android.cursor.item/raw_contact" android:host="com.android.contacts" />
             </intent-filter>
         </activity>
 
@@ -504,7 +504,7 @@
         <activity
             android:name=".ContactsLiveFolders$AllContacts"
             android:label="@string/liveFolderAll"
-            android:icon="@drawable/ic_launcher_folder_live_contacts">
+            android:icon="@mipmap/ic_launcher_folder_live_contacts">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -514,7 +514,7 @@
         <activity
             android:name=".ContactsLiveFolders$StarredContacts"
             android:label="@string/liveFolderFavorites"
-            android:icon="@drawable/ic_launcher_folder_live_contacts_starred">
+            android:icon="@mipmap/ic_launcher_folder_live_contacts_starred">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -524,7 +524,7 @@
         <activity
             android:name=".ContactsLiveFolders$PhoneContacts"
             android:label="@string/liveFolderPhone"
-            android:icon="@drawable/ic_launcher_folder_live_contacts_phone">
+            android:icon="@mipmap/ic_launcher_folder_live_contacts_phone">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
                 <category android:name="android.intent.category.DEFAULT" />

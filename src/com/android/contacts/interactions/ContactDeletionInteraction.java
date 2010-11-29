@@ -17,42 +17,47 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
+import com.android.contacts.views.ContactSaveService;
 import com.google.android.collect.Sets;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
-import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
 
 import java.util.HashSet;
 
 /**
  * An interaction invoked to delete a contact.
  */
-public class ContactDeletionInteraction {
+public class ContactDeletionInteraction extends Fragment
+        implements LoaderCallbacks<Cursor>, OnDismissListener {
 
-    private static final String TAG = "ContactDeletionInteraction";
+    private static final String FRAGMENT_TAG = "deleteContact";
 
-    public static final String EXTRA_KEY_CONTACT_URI = "contactUri";
-    public static final String EXTRA_KEY_MESSAGE_ID = "messageId";
+    private static final String KEY_ACTIVE = "active";
+    public static final String ARG_CONTACT_URI = "contactUri";
 
-    private static final String[] RAW_CONTACTS_PROJECTION = new String[] {
-        RawContacts._ID, //0
-        RawContacts.ACCOUNT_TYPE, //1
-        Contacts._ID, // 2
-        Contacts.LOOKUP_KEY, // 3
+    private static final int LOADER_ID = 0;
+
+    private static final String[] ENTITY_PROJECTION = new String[] {
+        Entity.RAW_CONTACT_ID, //0
+        Entity.ACCOUNT_TYPE, //1
+        Entity.CONTACT_ID, // 2
+        Entity.LOOKUP_KEY, // 3
     };
 
     private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
@@ -60,42 +65,28 @@ public class ContactDeletionInteraction {
     private static final int COLUMN_INDEX_CONTACT_ID = 2;
     private static final int COLUMN_INDEX_LOOKUP_KEY = 3;
 
-    private final class RawContactLoader extends CursorLoader {
-        private final Uri mContactUri;
-
-        private RawContactLoader(Context context, Uri contactUri) {
-            super(context, Uri.withAppendedPath(contactUri, Entity.CONTENT_DIRECTORY),
-                    RAW_CONTACTS_PROJECTION, null, null, null);
-            this.mContactUri = contactUri;
-        }
-
-        @Override
-        public void deliverResult(Cursor data) {
-            if (data == null || data.getCount() == 0) {
-                Log.e(TAG, "No such contact: " + mContactUri);
-                return;
-            }
-
-            showConfirmationDialog(data);
-        }
-    }
-
-    private final class ConfirmationDialogClickListener implements DialogInterface.OnClickListener {
-        private final Uri mContactUri;
-
-        public ConfirmationDialogClickListener(Uri contactUri) {
-            this.mContactUri = contactUri;
-        }
-
-        public void onClick(DialogInterface dialog, int which) {
-            doDeleteContact(mContactUri);
-        }
-    }
-
+    private boolean mActive;
+    private Uri mContactUri;
     private Context mContext;
-    private CursorLoader mLoader;
 
-    public void attachToActivity(Activity activity) {
+    private AlertDialog mDialog;
+
+    public static void start(Activity activity, Uri contactUri) {
+        FragmentManager fragmentManager = activity.getFragmentManager();
+        ContactDeletionInteraction fragment =
+                (ContactDeletionInteraction) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
+        if (fragment == null) {
+            fragment = new ContactDeletionInteraction();
+            fragment.setContactUri(contactUri);
+            fragmentManager.openTransaction().add(fragment, FRAGMENT_TAG).commit();
+        } else {
+            fragment.setContactUri(contactUri);
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         setContext(activity);
     }
 
@@ -104,15 +95,50 @@ public class ContactDeletionInteraction {
         mContext = context;
     }
 
-    public void deleteContact(Uri contactUri) {
-        if (mLoader != null) {
-            mLoader.destroy();
+    public void setContactUri(Uri contactUri) {
+        mContactUri = contactUri;
+        mActive = true;
+        if (isStarted()) {
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_CONTACT_URI, mContactUri);
+            getLoaderManager().restartLoader(LOADER_ID, args, this);
         }
-        mLoader = new RawContactLoader(mContext, contactUri);
-        startLoading(mLoader);
     }
 
-    protected void showConfirmationDialog(Cursor cursor) {
+    /* Visible for testing */
+    boolean isStarted() {
+        return isAdded();
+    }
+
+    @Override
+    public void onStart() {
+        if (mActive) {
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_CONTACT_URI, mContactUri);
+            getLoaderManager().initLoader(LOADER_ID, args, this);
+        }
+        super.onStart();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Uri contactUri = args.getParcelable(ARG_CONTACT_URI);
+        return new CursorLoader(mContext,
+                Uri.withAppendedPath(contactUri, Entity.CONTENT_DIRECTORY), ENTITY_PROJECTION,
+                null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
+
+        if (!mActive) {
+            return;
+        }
+
         long contactId = 0;
         String lookupKey = null;
 
@@ -121,23 +147,20 @@ public class ContactDeletionInteraction {
         HashSet<Long>  writableRawContacts = Sets.newHashSet();
 
         AccountTypes sources = getSources();
-        try {
-            while (cursor.moveToNext()) {
-                final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
-                final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
-                contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
-                lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
-                AccountType contactsSource = sources.getInflatedSource(accountType,
-                        AccountType.LEVEL_SUMMARY);
-                boolean readonly = contactsSource != null && contactsSource.readOnly;
-                if (readonly) {
-                    readOnlyRawContacts.add(rawContactId);
-                } else {
-                    writableRawContacts.add(rawContactId);
-                }
+        cursor.moveToPosition(-1);
+        while (cursor.moveToNext()) {
+            final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
+            final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
+            contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
+            lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
+            AccountType contactsSource = sources.getInflatedSource(accountType,
+                    AccountType.LEVEL_SUMMARY);
+            boolean readonly = contactsSource != null && contactsSource.readOnly;
+            if (readonly) {
+                readOnlyRawContacts.add(rawContactId);
+            } else {
+                writableRawContacts.add(rawContactId);
             }
-        } finally {
-            cursor.close();
         }
 
         int messageId;
@@ -153,63 +176,58 @@ public class ContactDeletionInteraction {
             messageId = R.string.deleteConfirmation;
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_KEY_CONTACT_URI, Contacts.getLookupUri(contactId, lookupKey));
-        bundle.putInt(EXTRA_KEY_MESSAGE_ID, messageId);
-
-        showDialog(bundle);
-    }
-
-    /**
-     * Creates a delete confirmation dialog and returns it.  Returns null if the
-     * id is not for a deletion confirmation.
-     */
-    public Dialog onCreateDialog(int id, Bundle bundle) {
-        if (id != R.id.dialog_delete_contact_confirmation) {
-            return null;
-        }
-
-        return new AlertDialog.Builder(mContext)
-                .setTitle(R.string.deleteConfirmation_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage(R.string.deleteConfirmation)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok, null)
-                .create();
-    }
-
-    public boolean onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
-        if (id != R.id.dialog_delete_contact_confirmation) {
-            return false;
-        }
-
-        Uri contactUri = bundle.getParcelable(EXTRA_KEY_CONTACT_URI);
-        int messageId = bundle.getInt(EXTRA_KEY_MESSAGE_ID, R.string.deleteConfirmation);
-
-        ((AlertDialog)dialog).setMessage(mContext.getText(messageId));
-        ((AlertDialog)dialog).setButton(DialogInterface.BUTTON_POSITIVE,
-                mContext.getText(android.R.string.ok),
-                new ConfirmationDialogClickListener(contactUri));
-
-        return true;
-    }
-
-    protected void doDeleteContact(Uri contactUri) {
-        mContext.getContentResolver().delete(contactUri, null, null);
+        final Uri contactUri = Contacts.getLookupUri(contactId, lookupKey);
+        showDialog(messageId, contactUri);
     }
 
     /* Visible for testing */
-    void startLoading(Loader<Cursor> loader) {
-        loader.startLoading();
+    void showDialog(int messageId, final Uri contactUri) {
+        mDialog = new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.deleteConfirmation_title)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setMessage(messageId)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            doDeleteContact(contactUri);
+                        }
+                    }
+                )
+                .create();
+
+        mDialog.setOnDismissListener(this);
+        mDialog.show();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        mActive = false;
+        mDialog = null;
+        getLoaderManager().stopLoader(LOADER_ID);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_ACTIVE, mActive);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            mActive = savedInstanceState.getBoolean(KEY_ACTIVE);
+        }
+    }
+
+    protected void doDeleteContact(Uri contactUri) {
+        mContext.startService(ContactSaveService.createDeleteContactIntent(mContext, contactUri));
     }
 
     /* Visible for testing */
     AccountTypes getSources() {
-        return AccountTypes.getInstance(mContext);
-    }
-
-    /* Visible for testing */
-    void showDialog(Bundle bundle) {
-        ((Activity)mContext).showDialog(R.id.dialog_delete_contact_confirmation, bundle);
+        return AccountTypes.getInstance(getActivity());
     }
 }

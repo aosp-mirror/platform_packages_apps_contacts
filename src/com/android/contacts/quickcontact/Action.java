@@ -44,7 +44,14 @@ public interface Action extends Collapser.Collapsible<Action> {
     public Boolean isPrimary();
 
     /**
-     * Returns a lookup (@link Uri) for the contact data item.
+     * Returns a lookup (@link Uri) for the contact data item or null if there is no data item
+     * corresponding to this row
      */
     public Uri getDataUri();
+
+    /**
+     * Returns the id of the contact data item or -1 of there is no data item corresponding to this
+     * row
+     */
+    public long getDataId();
 }
