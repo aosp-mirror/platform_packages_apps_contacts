@@ -153,6 +153,9 @@
     <!-- Menu item that opens the Options activity for a given contact -->
     <string name="menu_contactOptions">Options</string>
 
+    <!-- Title for the Options activity for a given contact -->
+    <string name="contactOptionsTitle">Options</string>
+
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 
