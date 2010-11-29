@@ -16,6 +16,7 @@
 
 package com.android.contacts.views.editor;
 
+import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.EntityDelta;
@@ -30,14 +31,13 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 /**
  * Base view that provides common code for the editor interaction for a specific
- * RawContact represented through an {@link EntityDelta}. Callers can
- * reuse this view and quickly rebuild its contents through
- * {@link #setState(EntityDelta, AccountType)}.
+ * RawContact represented through an {@link EntityDelta}.
  * <p>
  * Internal updates are performed against {@link ValuesDelta} so that the
  * source {@link Entity} can be swapped out. Any state-based changes, such as
@@ -45,10 +45,14 @@ import android.widget.LinearLayout;
  * {@link EntityModifier} to ensure that {@link AccountType} are enforced.
  */
 public abstract class BaseRawContactEditorView extends LinearLayout {
-    protected LayoutInflater mInflater;
 
-    protected PhotoEditorView mPhoto;
-    protected boolean mHasPhotoEditor = false;
+    private PhotoEditorView mPhoto;
+    private boolean mHasPhotoEditor = false;
+
+    private View mHeader;
+    private View mBody;
+
+    private boolean mExpanded = true;
 
     public BaseRawContactEditorView(Context context) {
         super(context);
@@ -56,6 +60,22 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     public BaseRawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        mHeader = findViewById(R.id.header);
+        mBody = findViewById(R.id.body);
+        mHeader.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setExpanded(!mExpanded);
+            }
+        });
+
+        mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {
@@ -67,6 +87,11 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
      */
     public void setPhotoBitmap(Bitmap bitmap) {
         mPhoto.setPhotoBitmap(bitmap);
+    }
+
+    protected void setHasPhotoEditor(boolean hasPhotoEditor) {
+        mHasPhotoEditor = hasPhotoEditor;
+        mPhoto.setVisibility(hasPhotoEditor ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -99,4 +124,18 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
      * apply to that state.
      */
     public abstract void setState(EntityDelta state, AccountType source, ViewIdGenerator vig);
+
+    /* package */ void setExpanded(boolean value) {
+        // only allow collapsing if we are one of several children
+        final boolean newValue;
+        if (getParent() instanceof ViewGroup && ((ViewGroup) getParent()).getChildCount() == 1) {
+            newValue = true;
+        } else {
+            newValue = value;
+        }
+
+        if (newValue == mExpanded) return;
+        mExpanded = newValue;
+        mBody.setVisibility(newValue ? View.VISIBLE : View.GONE);
+    }
 }

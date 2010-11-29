@@ -14,13 +14,12 @@
      limitations under the License.
 -->
 
-<com.android.contacts.views.editor.RawContactEditorView
+<com.android.contacts.views.editor.ReadOnlyRawContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
->
+    android:orientation="vertical">
 
     <include
         layout="@layout/raw_contact_editor_header"
@@ -31,16 +30,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="10dip"
-        >
+        android:paddingTop="10dip">
 
         <include
             layout="@layout/raw_contact_editor_photo"
-            android:id="@+id/stub_photo"/>
+            android:id="@+id/stub_photo" />
 
         <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,58 +49,46 @@
                 ex:layout_wideRightMargin="96dip"
                 ex:layout_narrowParentWidth="800dip"
                 ex:layout_narrowLeftMargin="15dip"
-                ex:layout_narrowRightMargin="15dip"
-                >
+                ex:layout_narrowRightMargin="15dip">
 
-                <com.android.contacts.views.editor.TextFieldsEditorView
-                    android:id="@+id/edit_name"
+                <TextView
+                    android:id="@+id/read_only_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                    android:layout_marginTop="6dip"
-                    android:layout_marginBottom="4dip" />
+                    android:layout_marginTop="12dip"
+                    android:layout_marginBottom="6dip"
+                    android:layout_marginLeft="6dip"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <ViewStub android:id="@+id/aggregation_suggestion_stub"
-                    android:inflatedId="@+id/aggregation_suggestion"
-                    android:layout="@layout/aggregation_suggestions"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/read_only_warning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"/>
+                    android:layout_marginTop="13dip"
+                    android:layout_marginBottom="13dip"
+                    android:layout_marginLeft="13dip"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:drawableLeft="@android:drawable/ic_dialog_alert"
+                    android:drawablePadding="10dip"
+                    android:gravity="center_vertical" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="?android:attr/listDivider" />
 
                 <LinearLayout
-                    android:id="@+id/sect_fields"
+                    android:id="@+id/sect_general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                />
+                    android:orientation="vertical" />
             </LinearLayout>
         </com.android.contacts.widget.InterpolatingLayout>
-
-        <com.android.contacts.widget.InterpolatingLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip">>
-            <Button
-                android:id="@+id/button_add_field"
-                android:text="@string/add_field"
-                ex:layout_wideParentWidth="960dip"
-                ex:layout_wideLeftMargin="240dip"
-                ex:layout_wideRightMargin="190dip"
-                ex:layout_narrowParentWidth="800dip"
-                ex:layout_narrowLeftMargin="160dip"
-                ex:layout_narrowRightMargin="102dip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-            />
-        </com.android.contacts.widget.InterpolatingLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="?android:attr/listDivider"
-        />
     </LinearLayout>
-</com.android.contacts.views.editor.RawContactEditorView>
+</com.android.contacts.views.editor.ReadOnlyRawContactEditorView>
