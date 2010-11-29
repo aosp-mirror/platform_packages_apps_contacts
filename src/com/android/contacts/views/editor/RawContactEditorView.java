@@ -60,20 +60,18 @@ import java.util.ArrayList;
  * {@link EntityModifier} to ensure that {@link AccountType} are enforced.
  */
 public class RawContactEditorView extends BaseRawContactEditorView {
-    private View mPhotoStub;
+    private LayoutInflater mInflater;
+
     private TextFieldsEditorView mName;
     private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
 
-    private View mHeader;
-    private View mBody;
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
 
     private Button mAddFieldButton;
-    private boolean mExpanded = true;
 
     private long mRawContactId = -1;
     private boolean mAutoAddToDefaultGroup = true;
@@ -89,15 +87,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         super(context, attrs);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
         mInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
-        mPhotoStub = findViewById(R.id.stub_photo);
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
@@ -107,14 +101,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mHeader = findViewById(R.id.header);
-        mBody = findViewById(R.id.body);
-        mHeader.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setExpanded(!mExpanded);
-            }
-        });
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
         mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
@@ -166,9 +152,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
-        mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
-        mPhoto.setVisibility(mHasPhotoEditor ? View.VISIBLE : View.GONE);
-        mPhoto.setEnabled(true);
+        setHasPhotoEditor((source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
+        getPhotoEditor().setEnabled(true);
         mName.setEnabled(true);
 
         // Show and hide the appropriate views
@@ -195,8 +180,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mPhoto.setValues(kind, primary, state, false, vig);
-                mPhotoStub.setVisibility(View.VISIBLE);
+                getPhotoEditor().setValues(kind, primary, state, false, vig);
             } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 if (mGroupMembershipView != null) {
                     mGroupMembershipView.setState(state);
@@ -293,20 +277,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     @Override
     public long getRawContactId() {
         return mRawContactId;
-    }
-
-    /* package */ void setExpanded(boolean value) {
-        // only allow collapsing if we are one of several children
-        final boolean newValue;
-        if (getParent() instanceof ViewGroup && ((ViewGroup) getParent()).getChildCount() == 1) {
-            newValue = true;
-        } else {
-            newValue = value;
-        }
-
-        if (newValue == mExpanded) return;
-        mExpanded = newValue;
-        mBody.setVisibility(newValue ? View.VISIBLE : View.GONE);
     }
 
     private void showAddInformationPopupWindow() {
