@@ -44,11 +44,12 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Ta bort kontakt"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring upp kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Skicka SMS till kontakt"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Skicka e-post"</string>
-    <string name="menu_viewAddress" msgid="1814744325763202024">"Visa adress på karta"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Använd som standardnummer"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Använd som standardadress"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dela upp"</string>
+    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <skip />
+    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Dela upp kontakt"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Vill du dela upp den här kontakten i flera kontakter, en för varje uppsättning kontaktinformation som kombinerats i den?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Slå ihop"</string>
@@ -59,7 +60,6 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Deltagande kontakter"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Alternativ"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Alternativ"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ta bort"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Det går inte att ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistan."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Den här kontakten har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
@@ -230,8 +230,10 @@
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Det finns för lite minne (filen kan vara för stor)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Det gick inte att analysera vCard av okänd anledning"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Det gick inte att analysera vCard trots att formatet verkar vara giltigt. Den aktuella implementeringen stöder inte det."</string>
-    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"Det finns ingen vCard-fil i USB-lagringsenheten"</string>
-    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Ingen vCard-fil hittades på SD-kortet"</string>
+    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
+    <skip />
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Det går inte att samla in metainformation för den eller de givna vCard-filerna."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"En eller flera filer kunde inte importeras: (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Okänt fel"</string>
@@ -242,13 +244,15 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importerar <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Det går inte att läsa vCard-data"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Läsning av vCard-data avbröts"</string>
-    <string name="importing_vcard_finished_title" msgid="3213257229785702182">"vCard-importen har slutförts"</string>
-    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Läsning av vCard-data avbröts"</string>
-    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
+    <skip />
+    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
@@ -261,7 +265,10 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"För många vCard-filer på USB-lagringsenheten"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"För många vCard-filer på SD-kortet"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Det obligatoriska filnamnet är för långt (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"vCard-exporten har slutförts"</string>
+    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
+    <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exporterar kontaktuppgifter"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exporterar kontaktuppgifter till: <xliff:g id="FILE_NAME">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Det gick inte att starta exportverktyget: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
@@ -272,8 +279,15 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard-kompositören är inte korrekt initierad"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Det gick inte att öppna <xliff:g id="FILE_NAME">%s</xliff:g>: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
-    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"Importen av vCard avbryts"</string>
-    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"Vill du avbryta importen av vCard?"</string>
+    <!-- outdated translation 1311741984719347665 -->     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Importen av vCard avbryts"</string>
+    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Lägg till en paus på 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Lägg till väntetid"</string>
@@ -284,10 +298,16 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Kom ihåg det här valet"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Okänd"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Inga data"</string>
+    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Konton"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importera/exportera"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importera/exportera kontakter"</string>
-    <string name="menu_share" msgid="943789700636542260">"Dela"</string>
+    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Dela"</string>
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
     <string name="share_error" msgid="4374508848981697170">"Den här kontakten kan inte delas."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Namn"</string>
@@ -406,10 +426,16 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ta ny bild"</string>
     <string name="pick_photo" msgid="448886509158039462">"Välj ett foto från galleriet"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Välj nytt foto från galleriet"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlistan uppdateras så att språkändringen visas."\n\n"Vänta..."</string>
-    <string name="upgrade_in_progress" msgid="7530893673211750223">"Kontaktlistan uppdateras."\n\n"Vänta..."</string>
-    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Kontakter håller på att uppgraderas. "\n\n"Uppgraderingen kräver ungefär <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB av telefonens internminne."\n\n"Välj något av följande alternativ:"</string>
-    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"Kontakter håller på att uppgraderas. "\n\n"Uppgraderingen kräver ungefär <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB av telefonens internminne."\n\n"Välj något av följande alternativ:"</string>
+    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
+    <skip />
+    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstallera några program"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Försök uppgradera igen"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Söker..."</string>
@@ -464,5 +490,23 @@
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
+    <skip />
+    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
+    <skip />
+    <!-- no translation found for create_group_item_label (5218022006186243310) -->
+    <skip />
+    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
+    <skip />
+    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
 </resources>
