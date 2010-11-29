@@ -97,12 +97,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
 
     @Override
     public int compareTo(ContactListFilter another) {
-        int res = accountType.compareTo(another.accountType);
+        int res = accountName.compareTo(another.accountName);
         if (res != 0) {
             return res;
         }
 
-        res = accountName.compareTo(another.accountName);
+        res = accountType.compareTo(another.accountType);
         if (res != 0) {
             return res;
         }
