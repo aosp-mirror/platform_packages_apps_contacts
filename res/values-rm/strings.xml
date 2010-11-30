@@ -45,11 +45,12 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Stizzar il contact"</string>
     <string name="menu_call" msgid="3992595586042260618">"Telefonar al contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trametter in SMS al contact"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Trametter in e-mail"</string>
-    <string name="menu_viewAddress" msgid="1814744325763202024">"Adressa sin la charta"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Numer da telefon da standard"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"E-mail predefinì"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Divider"</string>
+    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <skip />
+    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Divider il contact"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Vulais Vus propi divider quest contact en plirs contacts (in per mintga detagl da contact)?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
@@ -60,7 +61,6 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tut ils contacts"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacts unids"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opziuns"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Opziuns"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Stizzar"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"\"Impussibel da stizzar contacts da contos mo per lectura, ma Vus als pudais zuppentar en la glista da contacts.\""</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"\"Quest contact cuntegna infurmaziuns da plirs contos. Infurmaziuns da contos mo per lectura vegnan betg stizzadas, mabain zuppentadas en Vossas glistas da contacts.\""</string>
@@ -113,15 +113,9 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Las opziuns da vista vegnan memorisadas…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact memorisà."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errur: impussibel da memorisar las modificaziuns dal contact"</string>
-  <plurals name="listTotalPhoneContacts">
-    <!-- outdated translation 8721111084815668845 -->     <item quantity="one" msgid="3015357862286673986">"1 contact cun numer da telefon vegn mussà"</item>
-    <!-- outdated translation 6133262880804110289 -->     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contacts cun numer da telefon vegnan mussads"</item>
-  </plurals>
+    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Nagins contacts visibels cun numer da telefon"</string>
-  <plurals name="listTotalAllContacts">
-    <!-- outdated translation 1096068709488455155 -->     <item quantity="one" msgid="3405747744700823280">"1 contact vegn mussà"</item>
-    <!-- outdated translation 2865867557378939630 -->     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contacts vegnan mussads."</item>
-  </plurals>
+    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Nagins contacts visibels"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
@@ -227,14 +221,17 @@
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Tschertgar datas vCard sin la carta SD"</string>
     <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Errur cun leger la carta SD"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Errur cun leger la carta SD"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Errur cun leger la carta SD. Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Errur cun leger la carta SD. Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errur I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insuffizienta (probablamain è la datoteca memia gronda)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"L\'analisa da las datas vCard n\'è betg reussida per motiv nunenconuschent."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"\"Durant l\'analisa da las datas vCard è cumparida ina errur. Schebain che la vCard para dad esser d\'in format valid, na la sustegna l\'implementaziun actuala betg.\""</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"Chattà nagina datoteca vCard sin la carta SD"</string>
-    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Chattà nagina datoteca vCard sin la carta SD"</string>
+    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
+    <skip />
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Betg reussì da leger las metadatas cuntegnidas en la(s) datoteca(s) vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Errur cun importar ina u pliras datotecas (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Errur nunenconuschenta"</string>
@@ -245,13 +242,15 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importar <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Errur cun leger las datas vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Interrut la lectura da datas vCard"</string>
-    <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Terminà l\'import da la datoteca vCard"</string>
-    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Stizzà vCard en il process d\'importaziun"</string>
-    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
+    <skip />
+    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
@@ -264,7 +263,10 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Il num da datoteca necessari è memia lung («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
-    <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Terminà l\'export da la datoteca vCard"</string>
+    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
+    <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Datas da contact vegnan exportadas."</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exportaziun da las datas da contact en «<xliff:g id="FILE_NAME">%s</xliff:g>»"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Errur cun inizialisar il program d\'export: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
@@ -275,8 +277,15 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"Il program per crear la vCard n\'è betg inizialisà correctamain."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Impussibel dad avrir «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> da <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacts"</string>
-    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"Interrumper l\'import da datas vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"Vulais Vus propi interrumper l\'import da datas vCard?"</string>
+    <!-- outdated translation 1311741984719347665 -->     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Interrumper l\'import da datas vCard"</string>
+    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Num da Voss contacts"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Agiuntar ina pausa da 2 secundas"</string>
     <string name="add_wait" msgid="3360818652790319634">"Agiuntar Spetgar"</string>
@@ -287,10 +296,16 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Memorisar questa tscherna"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Nunenconuschent"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Naginas datas"</string>
+    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Contos"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/exportar ils contacts"</string>
-    <string name="menu_share" msgid="943789700636542260">"Cundivider"</string>
+    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Cundivider"</string>
     <string name="share_via" msgid="563121028023030093">"Cundivider in contact sur"</string>
     <string name="share_error" msgid="4374508848981697170">"Quest contact na po betg vegnir cundividì."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Num"</string>
@@ -413,10 +428,16 @@
     <string name="pick_photo" msgid="448886509158039462">"Tscherner ina foto ord il catalog"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"La glista da contacts vegn adattada a la midada da lingua."\n\n"Spetgai per plaschair…"</string>
-    <string name="upgrade_in_progress" msgid="7530893673211750223">"La glista da contacts vegn actualisada. "\n\n"Spetgai per plaschair…"</string>
-    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Il contacts vegnan actualmain actualisads. "\n\n"Il process d\'actualisaziun dovra radund <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB memoria interna dal telefon."\n\n"Tscherni ina da las suandantas opziuns:"</string>
-    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"Il contacts vegnan actualmain actualisads. "\n\n"Il process d\'actualisaziun dovra radund <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>MB memoria interna dal telefon."\n\n"Tscherni ina da las suandantas opziuns:"</string>
+    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
+    <skip />
+    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deinstallar in pèr applicaziuns"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Empruvar anc ina giada d\'actualisar"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Tschertgar…"</string>
@@ -500,5 +521,23 @@
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
+    <skip />
+    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
+    <skip />
+    <!-- no translation found for create_group_item_label (5218022006186243310) -->
+    <skip />
+    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
+    <skip />
+    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
 </resources>

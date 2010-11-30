@@ -46,11 +46,12 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"מחק איש קשר"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"שלח דוא\"ל"</string>
-    <string name="menu_viewAddress" msgid="1814744325763202024">"הצג כתובת במפה"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"הגדר מספר כברירת מחדל"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"הגדר דוא\"ל כברירת מחדל"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"הפרד"</string>
+    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <skip />
+    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"הפרדת איש קשר"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"האם אתה בטוח שברצונך להפריד איש קשר יחיד זה לאנשי קשר מרובים: אחד לכל קבוצת פרטי קשר שצורפה אליו?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"הצטרף"</string>
@@ -61,7 +62,6 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"כל אנשי הקשר"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"אנשי קשר שולבו"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"אפשרויות"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"אפשרויות"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"מחק"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה בלבד, אך ניתן להסתיר אותם ברשימות אנשי הקשר."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"איש קשר זה מכיל מידע מחשבונות מרובים. מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר, לא יימחק."</string>
@@ -115,27 +115,15 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"שומר אפשרויות תצוגה..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"איש הקשר נשמר."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"שגיאה, אין אפשרות לשמור שינויים באיש הקשר."</string>
-  <plurals name="listTotalPhoneContacts">
-    <!-- outdated translation 8721111084815668845 -->     <item quantity="one" msgid="3015357862286673986">"מציג איש קשר אחד עם מספר טלפון"</item>
-    <!-- outdated translation 6133262880804110289 -->     <item quantity="other" msgid="3299954047880968205">"מציג <xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון"</item>
-  </plurals>
+    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"אין אנשי קשר גלויים עם מספרי טלפון."</string>
-  <plurals name="listTotalAllContacts">
-    <!-- outdated translation 1096068709488455155 -->     <item quantity="one" msgid="3405747744700823280">"מציג איש קשר אחד"</item>
-    <!-- outdated translation 2865867557378939630 -->     <item quantity="other" msgid="3578469907265375314">"מציג <xliff:g id="COUNT">%d</xliff:g> אנשי קשר"</item>
-  </plurals>
+    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"אין אנשי קשר גלויים"</string>
-  <plurals name="listFoundAllContacts">
-    <!-- outdated translation 2830107332033967280 -->     <item quantity="one" msgid="5517063038754171134">"נמצא איש קשר אחד"</item>
-    <!-- outdated translation 7752927996850263152 -->     <item quantity="other" msgid="3852668542926965042">"נמצאו <xliff:g id="COUNT">%d</xliff:g> אנשי קשר"</item>
-  </plurals>
+    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
     <!-- no translation found for foundTooManyContacts (2548148047461758967) -->
     <skip />
     <!-- outdated translation 5554368784319460828 -->     <string name="listFoundAllContactsZero" msgid="777952841930508289">"איש הקשר לא נמצא"</string>
-  <plurals name="searchFoundContacts">
-    <!-- outdated translation 916648718690661777 -->     <item quantity="one" msgid="4826918429708286628">"איש קשר אחד"</item>
-    <!-- outdated translation 5660384247071761844 -->     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר"</item>
-  </plurals>
+    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
     <string name="contactsIconLabel" msgid="7666609097606552806">"אנשי קשר"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"מועדפים"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"טלפון"</string>
@@ -229,15 +217,18 @@
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"מחפש נתוני vCard בכרטיס SD"</string>
     <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"נכשלה סריקת כרטיס SD"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"נכשלה סריקת כרטיס SD"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"נכשלה סריקת כרטיס SD (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"נכשלה סריקת כרטיס SD (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"שגיאת קלט/פלט"</string>
     <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
     <skip />
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"נכשל ניתוח vCard עקב סיבה לא צפויה"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"נכשל ניתוח vCard אף שנראה שהוא בפורמט תקין, כיוון שהיישום הנוכחי אינו תומך בו"</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"לא נמצא קובץ vCard בכרטיס ה-SD"</string>
-    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"לא נמצא קובץ vCard בכרטיס ה-SD"</string>
+    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
+    <skip />
     <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
     <skip />
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"נכשל הייבוא של קובץ אחד או יותר (%s)."</string>
@@ -254,15 +245,15 @@
     <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"קריאת נתוני vCard נכשלה"</string>
     <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
     <skip />
-    <!-- no translation found for importing_vcard_finished_title (3213257229785702182) -->
+    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
     <skip />
-    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
+    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
     <skip />
-    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
@@ -276,7 +267,9 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"קובצי vCard רבים מדי בכרטיס ה-SD"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"קובצי vCard רבים מדי בכרטיס ה-SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"שם הקובץ הדרוש ארוך מדי (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <!-- no translation found for exporting_vcard_finished_title (1268425436375550862) -->
+    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
     <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"מייצא נתונים של אנשי קשר"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"מייצא נתוני אנשי קשר אל \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
@@ -288,9 +281,15 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"מחבר ה- vCard אינו מאותחל כראוי"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"לא הייתה אפשרות לפתוח את \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> מתוך <xliff:g id="TOTAL_NUMBER">%s</xliff:g> אנשי קשר"</string>
-    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
+    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
     <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
+    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
     <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"השמות של אנשי הקשר"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"הוסף השהיה של 2 שניות"</string>
@@ -303,10 +302,16 @@
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"לא ידוע"</string>
     <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
     <skip />
+    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"חשבונות"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"ייבוא/ייצוא"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ייבא/יצא אנשי קשר"</string>
-    <string name="menu_share" msgid="943789700636542260">"שתף"</string>
+    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"שתף"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="share_error" msgid="4374508848981697170">"אין אפשרות לשתף איש קשר זה."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"שם"</string>
@@ -431,10 +436,16 @@
     <string name="pick_photo" msgid="448886509158039462">"בחר תמונה מהגלריה"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"רשימת אנשי הקשר מתעדכנת כדי לשקף את שינוי השפה."\n\n"נא המתן..."</string>
-    <string name="upgrade_in_progress" msgid="7530893673211750223">"רשימת אנשי הקשר מתעדכנת."\n\n"נא המתן..."</string>
-    <!-- outdated translation 492151063059824962 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"מתבצע שדרוג של אנשי הקשר. "\n\n"תהליך השדרוג דורש ‎<xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb בקירוב של שטח אחסון פנימי בטלפון."\n\n"בחר אחת מהאפשרויות הבאות:"</string>
-    <!-- outdated translation 492151063059824962 -->     <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"מתבצע שדרוג של אנשי הקשר. "\n\n"תהליך השדרוג דורש ‎<xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb בקירוב של שטח אחסון פנימי בטלפון."\n\n"בחר אחת מהאפשרויות הבאות:"</string>
+    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
+    <skip />
+    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"הסר התקנה של יישומים מסוימים"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"נסה שוב לשדרג"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"מחפש..."</string>
@@ -525,5 +536,23 @@
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
+    <skip />
+    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
+    <skip />
+    <!-- no translation found for create_group_item_label (5218022006186243310) -->
+    <skip />
+    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
+    <skip />
+    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
 </resources>

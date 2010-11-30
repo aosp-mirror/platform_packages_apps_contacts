@@ -45,11 +45,12 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Delete contact"</string>
     <string name="menu_call" msgid="3992595586042260618">"Call contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Text contact"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Send email"</string>
-    <string name="menu_viewAddress" msgid="1814744325763202024">"Map address"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Make default number"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Make default email"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separate"</string>
+    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <skip />
+    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separate Contact"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Are you sure that you want to separate this single contact into multiple contacts: one for each set of contact information that was joined into it?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Join"</string>
@@ -60,7 +61,6 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"All contacts"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacts joined"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Options"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Options"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Delete"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"You cannot delete contacts from read-only accounts, but you can hide them in your contacts lists."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
@@ -114,15 +114,9 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Saving display options…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact saved."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Error, unable to save contact changes."</string>
-  <plurals name="listTotalPhoneContacts">
-    <!-- outdated translation 8721111084815668845 -->     <item quantity="one" msgid="3015357862286673986">"Displaying 1 contact with phone number"</item>
-    <!-- outdated translation 6133262880804110289 -->     <item quantity="other" msgid="3299954047880968205">"Displaying <xliff:g id="COUNT">%d</xliff:g> contacts with phone numbers"</item>
-  </plurals>
+    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"No visible contacts with phone numbers"</string>
-  <plurals name="listTotalAllContacts">
-    <!-- outdated translation 1096068709488455155 -->     <item quantity="one" msgid="3405747744700823280">"Displaying 1 contact"</item>
-    <!-- outdated translation 2865867557378939630 -->     <item quantity="other" msgid="3578469907265375314">"Displaying <xliff:g id="COUNT">%d</xliff:g> contacts"</item>
-  </plurals>
+    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"No visible contacts"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 found"</item>
@@ -228,36 +222,38 @@
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Searching for vCard data on SD card"</string>
     <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Scanning SD card failed"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Scanning SD card failed"</string>
-    <!-- outdated translation 3761992500690182922 -->     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Scanning SD card failed (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Scanning SD card failed (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O Error"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memory is insufficient (the file may be too large)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Failed to parse vCard for unexpected reason"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Failed to parse vCard, though it seems in valid format, since the current implementation does not support it"</string>
-    <!-- outdated translation 6376516175882881595 -->     <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"No vCard file found on the SD card"</string>
-    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"No vCard file found on the SD card"</string>
+    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
+    <skip />
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Failed to collect meta information of given vCard file(s)."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"One or more files failed to be imported (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Unknown error"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Select vCard file"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Caching vCard(s) to local temporary storage"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Importer is caching vCard(s) to local temporary storage. Actual import will start soon."</string>
-    <!-- unknown placeholder FILENAME in progress_notifier_message -->
-    <skip />
     <!-- no translation found for progress_notifier_message (2311011466908220528) -->
     <skip />
     <!-- no translation found for importing_vcard_description (4245275224298571351) -->
     <skip />
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Failed to Read vCard data"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Reading vCard data was cancelled"</string>
-    <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Finished importing vCard"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2963132079200382269) -->
+    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
     <skip />
-    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
@@ -270,7 +266,10 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Too many vCard files on the SD card"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Too many vCard files on the SD card"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Required filename is too long (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Finished exporting vCard"</string>
+    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
+    <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exporting contact data"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exporting contact data to \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Could not initialise the exporter. \"<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
@@ -281,9 +280,15 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"The vCard composer is not initialised correctly"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Could not open \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> of <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacts"</string>
-    <!-- no translation found for cancel_import_confirmation_title (1311741984719347665) -->
+    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
     <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3737315228484332088) -->
+    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
     <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Names of your contacts"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Add 2-sec pause"</string>
@@ -295,10 +300,16 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Remember this choice"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Unknown"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"No data"</string>
+    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Accounts"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import/Export"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Import/Export contacts"</string>
-    <string name="menu_share" msgid="943789700636542260">"Share"</string>
+    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Share"</string>
     <string name="share_via" msgid="563121028023030093">"Share contact via"</string>
     <string name="share_error" msgid="4374508848981697170">"This contact cannot be shared."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
@@ -423,10 +434,16 @@
     <string name="pick_photo" msgid="448886509158039462">"Select photo from Gallery"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Contact list is being updated to reflect the change of language."\n\n"Please wait..."</string>
-    <string name="upgrade_in_progress" msgid="7530893673211750223">"Contact list is being updated."\n\n"Please wait..."</string>
-    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Contacts are in the process of being upgraded. "\n\n"The upgrade process requires approximately <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb of internal phone storage."\n\n"Choose one of the following options:"</string>
-    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"Contacts are in the process of being upgraded. "\n\n"The upgrade process requires approximately <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb of internal phone storage."\n\n"Choose one of the following options:"</string>
+    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
+    <skip />
+    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Uninstall some applications"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Retry upgrade"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Searching..."</string>
@@ -513,5 +530,23 @@
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
+    <skip />
+    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
+    <skip />
+    <!-- no translation found for create_group_item_label (5218022006186243310) -->
+    <skip />
+    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
+    <skip />
+    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
 </resources>
