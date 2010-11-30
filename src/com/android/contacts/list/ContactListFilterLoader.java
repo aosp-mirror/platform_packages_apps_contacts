@@ -57,7 +57,10 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         public static final int GROUP_IS_READ_ONLY = 6;
 
         private static final String SELECTION =
-                Groups.DELETED + "=0 AND " + Groups.FAVORITES + "=0";
+                Groups.DELETED + "=0" +
+                " AND " + Groups.FAVORITES + "=0" +
+                " AND " + Groups.ACCOUNT_TYPE + " NOT NULL" +
+                " AND " + Groups.ACCOUNT_NAME + " NOT NULL";
     }
 
     private boolean mStopped;
