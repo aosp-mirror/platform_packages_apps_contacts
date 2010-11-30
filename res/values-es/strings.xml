@@ -46,7 +46,7 @@
     <string name="menu_sendEmail" msgid="7293508859242926187">"Enviar email"</string>
     <string name="menu_viewAddress" msgid="1814744325763202024">"Dirección en mapa"</string>
     <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Convertir en número predeterminado"</string>
-    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de correo electrónico predeterminada"</string>
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de email predeterminada"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dividir"</string>
     <string name="contactsSplitMessage" msgid="5253490235863170269">"Contactos divididos"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Dividir contacto"</string>
@@ -81,7 +81,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear contacto nuevo"</string>
     <string name="selectLabel" msgid="4255424123394910733">"Seleccionar etiqueta"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo electrónico"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"MI"</string>
     <string name="postalLabelsGroup" msgid="1618078212734693682">"Dirección postal"</string>
   <string-array name="otherLabels">
@@ -335,9 +335,9 @@
     <string name="sms_mms" msgid="4069352461380762677">"Enviar un mensaje de texto a MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Enviar email a casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar email al móvil"</string>
-    <string name="email_work" msgid="2807430017302722689">"Enviar email a trabajo"</string>
+    <string name="email_work" msgid="2807430017302722689">"Enviar email al trabajo"</string>
     <string name="email_other" msgid="3454004077967657109">"Enviar email"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Correo electrónico <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Enviar email a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Email"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección de casa"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver dirección del trabajo"</string>
