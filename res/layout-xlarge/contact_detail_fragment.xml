@@ -73,10 +73,10 @@
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="800dip"
             ex:layout_wideLeftMargin="64dip"
-            ex:layout_wideRightMargin="48dip"
+            ex:layout_wideRightPadding="48dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowLeftMargin="32dip"
-            ex:layout_narrowRightMargin="0dip"
+            ex:layout_narrowRightPadding="0dip"
             android:cacheColorHint="#00000000"
             android:divider="@android:color/transparent"
         />
