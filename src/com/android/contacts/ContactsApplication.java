@@ -16,15 +16,12 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountTypes;
+
 import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
-
-import java.util.Locale;
-
-import com.android.contacts.model.AccountTypes;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 public final class ContactsApplication extends Application {
 
@@ -35,7 +32,6 @@ public final class ContactsApplication extends Application {
         // Priming caches to placate the StrictMode police
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
-        PhoneNumberUtil.getInstance().getAsYouTypeFormatter(Locale.getDefault().getCountry());
         AccountTypes.getInstance(context);
 
         StrictMode.setThreadPolicy(

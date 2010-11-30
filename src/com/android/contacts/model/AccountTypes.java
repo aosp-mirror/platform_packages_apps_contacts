@@ -20,6 +20,7 @@ import com.android.contacts.model.AccountType.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -47,6 +48,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -334,6 +336,11 @@ public class AccountTypes extends BroadcastReceiver
 
         Collections.sort(mAccounts, ACCOUNT_COMPARATOR);
         Collections.sort(mWritableAccounts, ACCOUNT_COMPARATOR);
+
+        // The UI will need a phone number formatter.  We can preload meta data for the
+        // current locale to prevent a delay later on.
+        PhoneNumberUtil.getInstance().getAsYouTypeFormatter(Locale.getDefault().getCountry());
+
         if (mInitializationLatch != null) {
             mInitializationLatch.countDown();
             mInitializationLatch = null;
