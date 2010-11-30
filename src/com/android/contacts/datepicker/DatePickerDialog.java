@@ -104,7 +104,7 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
             int dayOfMonth,
             boolean yearOptional) {
         this(context, context.getApplicationInfo().targetSdkVersion >= Build.VERSION_CODES.HONEYCOMB
-                        ? com.android.internal.R.style.Theme_Holo_Dialog_Alert
+                        ? com.android.internal.R.style.Theme_Holo_Light_Dialog_Alert
                         : com.android.internal.R.style.Theme_Dialog_Alert,
                 callBack, year, monthOfYear, dayOfMonth, yearOptional);
     }
