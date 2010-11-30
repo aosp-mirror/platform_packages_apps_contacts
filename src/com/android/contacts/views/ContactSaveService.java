@@ -16,26 +16,33 @@
 
 package com.android.contacts.views;
 
+import com.android.contacts.R;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
 import android.accounts.Account;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderOperation.Builder;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -67,6 +74,11 @@ public class ContactSaveService extends IntentService {
     public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
     public static final String ACTION_CLEAR_PRIMARY = "clearPrimary";
     public static final String EXTRA_DATA_ID = "dataId";
+
+    public static final String ACTION_JOIN_CONTACTS = "joinContacts";
+    public static final String EXTRA_CONTACT_ID1 = "contactId1";
+    public static final String EXTRA_CONTACT_ID2 = "contactId2";
+    public static final String EXTRA_CONTACT_WRITABLE = "contactWritable";
 
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
@@ -112,6 +124,8 @@ public class ContactSaveService extends IntentService {
             clearPrimary(intent);
         } else if (ACTION_DELETE_CONTACT.equals(action)) {
             deleteContact(intent);
+        } else if (ACTION_JOIN_CONTACTS.equals(action)) {
+            joinContacts(intent);
         }
     }
 
@@ -371,5 +385,152 @@ public class ContactSaveService extends IntentService {
         }
 
         getContentResolver().delete(contactUri, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to join two contacts.
+     */
+    public static Intent createJoinContactsIntent(Context context, long contactId1,
+            long contactId2, boolean contactWritable,
+            Class<?> callbackActivity, String callbackAction) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_JOIN_CONTACTS);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_ID1, contactId1);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_ID2, contactId2);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_WRITABLE, contactWritable);
+
+        // Callback intent will be invoked by the service once the contacts are joined.
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.setAction(callbackAction);
+        callbackIntent.setFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+
+        return serviceIntent;
+    }
+
+
+    private interface JoinContactQuery {
+        String[] PROJECTION = {
+                RawContacts._ID,
+                RawContacts.CONTACT_ID,
+                RawContacts.NAME_VERIFIED,
+                RawContacts.DISPLAY_NAME_SOURCE,
+        };
+
+        String SELECTION = RawContacts.CONTACT_ID + "=? OR " + RawContacts.CONTACT_ID + "=?";
+
+        int _ID = 0;
+        int CONTACT_ID = 1;
+        int NAME_VERIFIED = 2;
+        int DISPLAY_NAME_SOURCE = 3;
+    }
+
+    private void joinContacts(Intent intent) {
+        long contactId1 = intent.getLongExtra(EXTRA_CONTACT_ID1, -1);
+        long contactId2 = intent.getLongExtra(EXTRA_CONTACT_ID2, -1);
+        boolean writable = intent.getBooleanExtra(EXTRA_CONTACT_WRITABLE, false);
+        if (contactId1 == -1 || contactId2 == -1) {
+            Log.e(TAG, "Invalid arguments for joinContacts request");
+            return;
+        }
+
+        final ContentResolver resolver = getContentResolver();
+
+        // Load raw contact IDs for all raw contacts involved - currently edited and selected
+        // in the join UIs
+        Cursor c = resolver.query(RawContacts.CONTENT_URI,
+                JoinContactQuery.PROJECTION,
+                JoinContactQuery.SELECTION,
+                new String[]{String.valueOf(contactId1), String.valueOf(contactId2)}, null);
+
+        long rawContactIds[];
+        long verifiedNameRawContactId = -1;
+        try {
+            int maxDisplayNameSource = -1;
+            rawContactIds = new long[c.getCount()];
+            for (int i = 0; i < rawContactIds.length; i++) {
+                c.moveToPosition(i);
+                long rawContactId = c.getLong(JoinContactQuery._ID);
+                rawContactIds[i] = rawContactId;
+                int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
+                if (nameSource > maxDisplayNameSource) {
+                    maxDisplayNameSource = nameSource;
+                }
+            }
+
+            // Find an appropriate display name for the joined contact:
+            // if should have a higher DisplayNameSource or be the name
+            // of the original contact that we are joining with another.
+            if (writable) {
+                for (int i = 0; i < rawContactIds.length; i++) {
+                    c.moveToPosition(i);
+                    if (c.getLong(JoinContactQuery.CONTACT_ID) == contactId1) {
+                        int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
+                        if (nameSource == maxDisplayNameSource
+                                && (verifiedNameRawContactId == -1
+                                        || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0)) {
+                            verifiedNameRawContactId = c.getLong(JoinContactQuery._ID);
+                        }
+                    }
+                }
+            }
+        } finally {
+            c.close();
+        }
+
+        // For each pair of raw contacts, insert an aggregation exception
+        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
+        for (int i = 0; i < rawContactIds.length; i++) {
+            for (int j = 0; j < rawContactIds.length; j++) {
+                if (i != j) {
+                    buildJoinContactDiff(operations, rawContactIds[i], rawContactIds[j]);
+                }
+            }
+        }
+
+        // Mark the original contact as "name verified" to make sure that the contact
+        // display name does not change as a result of the join
+        if (verifiedNameRawContactId != -1) {
+            Builder builder = ContentProviderOperation.newUpdate(
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, verifiedNameRawContactId));
+            builder.withValue(RawContacts.NAME_VERIFIED, 1);
+            operations.add(builder.build());
+        }
+
+        boolean success = false;
+        // Apply all aggregation exceptions as one batch
+        try {
+            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+            success = true;
+        } catch (RemoteException e) {
+            Log.e(TAG, "Failed to apply aggregation exception batch", e);
+            Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+        } catch (OperationApplicationException e) {
+            Log.e(TAG, "Failed to apply aggregation exception batch", e);
+            Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+        }
+
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        if (success) {
+            Uri uri = RawContacts.getContactLookupUri(resolver,
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
+            callbackIntent.setData(uri);
+        }
+        startActivity(callbackIntent);
+    }
+
+    /**
+     * Construct a {@link AggregationExceptions#TYPE_KEEP_TOGETHER} ContentProviderOperation.
+     */
+    private void buildJoinContactDiff(ArrayList<ContentProviderOperation> operations,
+            long rawContactId1, long rawContactId2) {
+        Builder builder =
+                ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
+        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_TOGETHER);
+        builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
+        builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
+        operations.add(builder.build());
     }
 }
