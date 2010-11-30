@@ -782,7 +782,7 @@ public class QuickContactWindow implements Window.Callback,
             final String description = mContext.getResources().getString(
                     R.string.quickcontact_clear_defaults_description);
             view.setContentDescription(description);
-            view.setImageResource(R.drawable.badge_action_clear_defaults_holo_light);
+            view.setImageResource(R.drawable.ic_menu_settings_holo_light);
             view.setOnClickListener(this);
             view.setTag(action);
             mTrack.addView(view);
