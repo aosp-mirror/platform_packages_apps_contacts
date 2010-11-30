@@ -36,7 +36,7 @@
     <string name="menu_search" msgid="9147752853603483719">"Ara"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Yeni kişi"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kişiyi görüntüle"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"Şunu sesli ara: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_callNumber" msgid="5142851348489387516">"Ara: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Sık kullanılanlara ekle"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Sık kullanılanlardan kaldır"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Kişiyi düzenle"</string>
@@ -140,7 +140,7 @@
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Yıldızlı kişiler"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Telefon numarası olan kişiler"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Kısa mesaj gönder"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Şunu sesli ara: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Ara: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Önce numarayı düzenle"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Kişilere ekle"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Çağrı kaydından kaldır"</string>
