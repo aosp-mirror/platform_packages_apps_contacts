@@ -153,6 +153,9 @@
     <!-- Menu item that opens the Options activity for a given contact -->
     <string name="menu_contactOptions">Options</string>
 
+    <!-- Title for the Options activity for a given contact -->
+    <string name="contactOptionsTitle">Options</string>
+
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 
@@ -1339,10 +1342,7 @@
     <string name="menu_copyContact">Copy to my contacts</string>
 
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
-    <string name="contact_directory_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
-
-    <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
-    <string name="contact_directory_account_description">from <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g> (<xliff:g id="name" example="me@acme.com">%2$s</xliff:g>)</string>
+    <string name="contact_directory_description">Directory <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
 
     <!-- The label displayed in the Contacts action bar when in search mode [CHAR LIMIT=64] -->
     <string name="search_label">Searching all contacts</string>
@@ -1452,4 +1452,7 @@
     <string name="toast_join_with_empty_contact">Please enter contact name before joining
       with another contact.
     </string>
+
+    <!-- Joined contact indicator displayed in the contact detail [CHAR LIMIT=64] -->
+    <string name="indicator_joined_contact">Joined contact</string>
 </resources>

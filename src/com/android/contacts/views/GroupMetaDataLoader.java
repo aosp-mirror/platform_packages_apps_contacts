@@ -41,6 +41,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int FAVORITES = 5;
 
     public GroupMetaDataLoader(Context context) {
-        super(context, Groups.CONTENT_URI, COLUMNS, null, null, null);
+        super(context, Groups.CONTENT_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
+                + Groups.ACCOUNT_NAME + " NOT NULL", null, null);
     }
 }

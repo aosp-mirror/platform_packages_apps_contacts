@@ -58,17 +58,25 @@ public class InterpolatingLayout extends ViewGroup {
         public int narrowParentWidth;
         public int narrowWidth;
         public int narrowLeftMargin;
+        public int narrowLeftPadding;
         public int narrowRightMargin;
+        public int narrowRightPadding;
         public int wideParentWidth;
         public int wideWidth;
         public int wideLeftMargin;
+        public int wideLeftPadding;
         public int wideRightMargin;
+        public int wideRightPadding;
         private float widthMultiplier;
         private int widthConstant;
         private float leftMarginMultiplier;
         private int leftMarginConstant;
+        private float leftPaddingMultiplier;
+        private int leftPaddingConstant;
         private float rightMarginMultiplier;
         private int rightMarginConstant;
+        private float rightPaddingMultiplier;
+        private int rightPaddingConstant;
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
@@ -80,16 +88,24 @@ public class InterpolatingLayout extends ViewGroup {
                     R.styleable.InterpolatingLayout_Layout_layout_narrowWidth, -1);
             narrowLeftMargin = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_narrowLeftMargin, -1);
+            narrowLeftPadding = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowLeftPadding, -1);
             narrowRightMargin = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_narrowRightMargin, -1);
+            narrowRightPadding = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowRightPadding, -1);
             wideParentWidth = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideParentWidth, -1);
             wideWidth = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideWidth, -1);
             wideLeftMargin = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideLeftMargin, -1);
+            wideLeftPadding = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_wideLeftPadding, -1);
             wideRightMargin = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideRightMargin, -1);
+            wideRightPadding = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_wideRightPadding, -1);
 
             a.recycle();
 
@@ -106,11 +122,25 @@ public class InterpolatingLayout extends ViewGroup {
                         * leftMarginMultiplier);
             }
 
+            if (narrowLeftPadding != -1) {
+                leftPaddingMultiplier = (float) (wideLeftPadding - narrowLeftPadding)
+                        / (wideParentWidth - narrowParentWidth);
+                leftPaddingConstant = (int) (narrowLeftPadding - narrowParentWidth
+                        * leftPaddingMultiplier);
+            }
+
             if (narrowRightMargin != -1) {
                 rightMarginMultiplier = (float) (wideRightMargin - narrowRightMargin)
                         / (wideParentWidth - narrowParentWidth);
                 rightMarginConstant = (int) (narrowRightMargin - narrowParentWidth
                         * rightMarginMultiplier);
+            }
+
+            if (narrowRightPadding != -1) {
+                rightPaddingMultiplier = (float) (wideRightPadding - narrowRightPadding)
+                        / (wideParentWidth - narrowParentWidth);
+                rightPaddingConstant = (int) (narrowRightPadding - narrowParentWidth
+                        * rightPaddingMultiplier);
             }
         }
 
@@ -140,6 +170,11 @@ public class InterpolatingLayout extends ViewGroup {
             }
         }
 
+        public int resolveLeftPadding(int parentSize) {
+            int w = (int) (parentSize * leftPaddingMultiplier) + leftPaddingConstant;
+            return w < 0 ? 0 : w;
+        }
+
         public int resolveRightMargin(int parentSize) {
             if (narrowRightMargin == -1) {
                 return rightMargin;
@@ -147,6 +182,11 @@ public class InterpolatingLayout extends ViewGroup {
                 int w = (int) (parentSize * rightMarginMultiplier) + rightMarginConstant;
                 return w < 0 ? 0 : w;
             }
+        }
+
+        public int resolveRightPadding(int parentSize) {
+            int w = (int) (parentSize * rightPaddingMultiplier) + rightPaddingConstant;
+            return w < 0 ? 0 : w;
         }
     }
 
@@ -246,6 +286,15 @@ public class InterpolatingLayout extends ViewGroup {
             int gravity = params.gravity;
             if (gravity == -1) {
                 gravity = Gravity.LEFT | Gravity.TOP;
+            }
+
+            if (params.narrowLeftPadding != -1 || params.narrowRightPadding != -1) {
+                int leftPadding = params.narrowLeftPadding == -1 ? child.getPaddingLeft()
+                        : params.resolveLeftPadding(width);
+                int rightPadding = params.narrowRightPadding == -1 ? child.getPaddingRight()
+                        : params.resolveRightPadding(width);
+                child.setPadding(
+                        leftPadding, child.getPaddingTop(), rightPadding, child.getPaddingBottom());
             }
 
             int leftMargin = params.resolveLeftMargin(width);

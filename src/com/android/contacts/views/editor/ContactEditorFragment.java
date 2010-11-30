@@ -17,6 +17,7 @@
 package com.android.contacts.views.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
@@ -28,6 +29,7 @@ import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
 import com.android.contacts.views.ContactLoader;
+import com.android.contacts.views.ContactSaveService;
 import com.android.contacts.views.GroupMetaDataLoader;
 import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.views.editor.Editor.EditorListener;
@@ -43,7 +45,6 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
-import android.content.ContentProviderOperation.Builder;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -65,7 +66,6 @@ import android.os.Environment;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Note;
@@ -737,7 +737,11 @@ public class ContactEditorFragment extends Fragment implements
         return true;
     }
 
-    private void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
+    public void onJoinCompleted(Uri uri) {
+        onSaveCompleted(uri != null, SaveMode.RELOAD, uri);
+    }
+
+    public void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
         Log.d(TAG, "onSaveCompleted(" + success + ", " + saveMode + ", " + contactLookupUri);
         switch (saveMode) {
             case SaveMode.CLOSE:
@@ -816,106 +820,14 @@ public class ContactEditorFragment extends Fragment implements
         startActivityForResult(intent, REQUEST_CODE_JOIN);
     }
 
-    private interface JoinContactQuery {
-        String[] PROJECTION = {
-                RawContacts._ID,
-                RawContacts.CONTACT_ID,
-                RawContacts.NAME_VERIFIED,
-                RawContacts.DISPLAY_NAME_SOURCE,
-        };
-
-        String SELECTION = RawContacts.CONTACT_ID + "=? OR " + RawContacts.CONTACT_ID + "=?";
-
-        int _ID = 0;
-        int CONTACT_ID = 1;
-        int NAME_VERIFIED = 2;
-        int DISPLAY_NAME_SOURCE = 3;
-    }
-
     /**
      * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
      */
     private void joinAggregate(final long contactId) {
-        final ContentResolver resolver = mContext.getContentResolver();
-
-        // Load raw contact IDs for all raw contacts involved - currently edited and selected
-        // in the join UIs
-        Cursor c = resolver.query(RawContacts.CONTENT_URI,
-                JoinContactQuery.PROJECTION,
-                JoinContactQuery.SELECTION,
-                new String[]{String.valueOf(contactId), String.valueOf(mContactIdForJoin)}, null);
-
-        long rawContactIds[];
-        long verifiedNameRawContactId = -1;
-        try {
-            int maxDisplayNameSource = -1;
-            rawContactIds = new long[c.getCount()];
-            for (int i = 0; i < rawContactIds.length; i++) {
-                c.moveToPosition(i);
-                long rawContactId = c.getLong(JoinContactQuery._ID);
-                rawContactIds[i] = rawContactId;
-                int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
-                if (nameSource > maxDisplayNameSource) {
-                    maxDisplayNameSource = nameSource;
-                }
-            }
-
-            // Find an appropriate display name for the joined contact:
-            // if should have a higher DisplayNameSource or be the name
-            // of the original contact that we are joining with another.
-            if (isContactWritable()) {
-                for (int i = 0; i < rawContactIds.length; i++) {
-                    c.moveToPosition(i);
-                    if (c.getLong(JoinContactQuery.CONTACT_ID) == mContactIdForJoin) {
-                        int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
-                        if (nameSource == maxDisplayNameSource
-                                && (verifiedNameRawContactId == -1
-                                        || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0)) {
-                            verifiedNameRawContactId = c.getLong(JoinContactQuery._ID);
-                        }
-                    }
-                }
-            }
-        } finally {
-            c.close();
-        }
-
-        // For each pair of raw contacts, insert an aggregation exception
-        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
-        for (int i = 0; i < rawContactIds.length; i++) {
-            for (int j = 0; j < rawContactIds.length; j++) {
-                if (i != j) {
-                    buildJoinContactDiff(operations, rawContactIds[i], rawContactIds[j]);
-                }
-            }
-        }
-
-        // Mark the original contact as "name verified" to make sure that the contact
-        // display name does not change as a result of the join
-        if (verifiedNameRawContactId != -1) {
-            Builder builder = ContentProviderOperation.newUpdate(
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, verifiedNameRawContactId));
-            builder.withValue(RawContacts.NAME_VERIFIED, 1);
-            operations.add(builder.build());
-        }
-
-        boolean success = false;
-        // Apply all aggregation exceptions as one batch
-        try {
-            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-            Toast.makeText(mContext, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
-            success = true;
-        } catch (RemoteException e) {
-            Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
-        } catch (OperationApplicationException e) {
-            Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
-        }
-
-        if (success) {
-            onSaveCompleted(true, SaveMode.RELOAD, mLookupUri);
-        }
+        Intent intent = ContactSaveService.createJoinContactsIntent(mContext, mContactIdForJoin,
+                contactId, isContactWritable(),
+                ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
+        mContext.startService(intent);
     }
 
     /**
@@ -934,19 +846,6 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
         return false;
-    }
-
-    /**
-     * Construct a {@link AggregationExceptions#TYPE_KEEP_TOGETHER} ContentProviderOperation.
-     */
-    private void buildJoinContactDiff(ArrayList<ContentProviderOperation> operations,
-            long rawContactId1, long rawContactId2) {
-        Builder builder =
-                ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
-        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_TOGETHER);
-        builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
-        builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
-        operations.add(builder.build());
     }
 
     public static interface Listener {

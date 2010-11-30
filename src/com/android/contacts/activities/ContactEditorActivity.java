@@ -40,6 +40,8 @@ public class ContactEditorActivity extends Activity implements
         DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
 
+    public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
+
     private ContactEditorFragment mFragment;
     private Button mDoneButton;
     private Button mRevertButton;
@@ -80,8 +82,15 @@ public class ContactEditorActivity extends Activity implements
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        if (Intent.ACTION_EDIT.equals(intent.getAction()) && mFragment != null){
+        if (mFragment == null) {
+            return;
+        }
+
+        String action = intent.getAction();
+        if (Intent.ACTION_EDIT.equals(action)) {
             mFragment.setIntentExtras(intent.getExtras());
+        } else if (ACTION_JOIN_COMPLETED.equals(action)) {
+            mFragment.onJoinCompleted(intent.getData());
         }
     }
 

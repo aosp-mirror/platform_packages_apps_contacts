@@ -44,15 +44,14 @@ import java.util.ArrayList;
 /**
  * Custom view that displays read-only contacts in the edit screen.
  */
-class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
+public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
+    private LayoutInflater mInflater;
 
     private View mPhotoStub;
     private TextView mName;
     private TextView mReadOnlyWarning;
     private ViewGroup mGeneral;
 
-    private View mHeaderColorBar;
-    private View mSideBar;
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
@@ -75,15 +74,12 @@ class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
         mInflater = (LayoutInflater)getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
-        mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
         mPhotoStub = findViewById(R.id.stub_photo);
 
         mName = (TextView) findViewById(R.id.read_only_name);
         mReadOnlyWarning = (TextView) findViewById(R.id.read_only_warning);
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
 
-        mHeaderColorBar = findViewById(R.id.header_color_bar);
-        mSideBar = findViewById(R.id.color_bar);
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
         mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
         mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
@@ -129,10 +125,11 @@ class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
         DataKind kind = source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
         if (kind != null) {
             EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
-            mHasPhotoEditor = (source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null);
+            boolean hasPhotoEditor = source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null;
+            setHasPhotoEditor(hasPhotoEditor);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-            mPhoto.setValues(kind, primary, state, source.readOnly, vig);
-            if (!mHasPhotoEditor || !mPhoto.hasSetPhoto()) {
+            getPhotoEditor().setValues(kind, primary, state, source.readOnly, vig);
+            if (!hasPhotoEditor || !getPhotoEditor().hasSetPhoto()) {
                 mPhotoStub.setVisibility(View.GONE);
             } else {
                 mPhotoStub.setVisibility(View.VISIBLE);

@@ -62,7 +62,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
     private View mStatusContainerView;
     private TextView mStatusView;
     private TextView mStatusDateView;
-    private TextView mDirectoryNameView;
+    private TextView mAttributionView;
 
     private Uri mContactUri;
     private Listener mListener;
@@ -105,7 +105,7 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         mStatusView = (TextView)findViewById(R.id.status);
         mStatusDateView = (TextView)findViewById(R.id.status_date);
 
-        mDirectoryNameView = (TextView) findViewById(R.id.directory_name);
+        mAttributionView = (TextView) findViewById(R.id.attribution);
     }
 
     /**
@@ -129,8 +129,8 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         setStared(!contactData.isDirectoryEntry(), contactData.getStarred());
         setSocialSnippet(contactData.getSocialSnippet());
         setSocialDate(ContactBadgeUtil.getSocialDate(contactData, getContext()));
-        setDirectoryName(contactData.isDirectoryEntry(), contactData.getDirectoryDisplayName(),
-                contactData.getDirectoryType(), contactData.getDirectoryAccountName());
+        setAttribution(contactData.getEntities().size() > 1, contactData.isDirectoryEntry(),
+                contactData.getDirectoryDisplayName(), contactData.getDirectoryType());
     }
 
     /**
@@ -269,25 +269,36 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         }
     }
 
-    private void setDirectoryName(boolean isDirectoryEntry, String directoryDisplayName,
-            String directoryType, String directoryAccountName) {
-        if (isDirectoryEntry) {
-            String name = TextUtils.isEmpty(directoryDisplayName)
-                    ? directoryAccountName
-                    : directoryDisplayName;
-            String text;
-            if (TextUtils.isEmpty(name)) {
-                text = getContext().getString(
-                        R.string.contact_directory_description, directoryType);
-            } else {
-                text = getContext().getString(
-                        R.string.contact_directory_account_description, directoryType, name);
-            }
-            mDirectoryNameView.setText(text);
-            mDirectoryNameView.setVisibility(View.VISIBLE);
+    private void setAttribution(boolean isJoinedContact, boolean isDirectoryEntry,
+            String directoryDisplayName, String directoryType) {
+        if (isJoinedContact) {
+            mAttributionView.setText(R.string.indicator_joined_contact);
+            mAttributionView.setVisibility(View.VISIBLE);
+        } else if (isDirectoryEntry) {
+            String text = getContext().getString(R.string.contact_directory_description,
+                    buildDirectoryName(directoryType, directoryDisplayName));
+            mAttributionView.setText(text);
+            mAttributionView.setVisibility(View.VISIBLE);
         } else {
-            mDirectoryNameView.setVisibility(View.GONE);
+            mAttributionView.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private CharSequence buildDirectoryName(String directoryType, String directoryName) {
+        String title;
+        if (!TextUtils.isEmpty(directoryName)) {
+            title = directoryName;
+            // TODO: STOPSHIP - remove this once this is done by both directory providers
+            int atIndex = title.indexOf('@');
+            if (atIndex != -1 && atIndex < title.length() - 2) {
+                final char firstLetter = Character.toUpperCase(title.charAt(atIndex + 1));
+                title = firstLetter + title.substring(atIndex + 2);
+            }
+        } else {
+            title = directoryType;
+        }
+
+        return title;
     }
 
     @Override

@@ -36,4 +36,7 @@
 
     <!-- Color used for the label (type) in the editor -->
     <color name="editor_label_text_color">#FF7F7F7F</color>
+
+    <!-- Color of the line above the contact photo in the contact detail header -->
+    <color name="contact_detail_header_divider_color">#FF999999</color>
 </resources>

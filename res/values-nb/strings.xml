@@ -44,11 +44,12 @@
     <string name="menu_deleteContact" msgid="1916555454274101750">"Slett kontakt"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
-    <string name="menu_sendEmail" msgid="7293508859242926187">"Send e-post"</string>
-    <string name="menu_viewAddress" msgid="1814744325763202024">"Se i kart"</string>
-    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Gjør til foretrukket nummer"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Bruk som standard e-post"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Del"</string>
+    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <skip />
+    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Del opp kontakt"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Er du sikker på at du ønsker å dele opp denne kontakten i flere, en for hvert sett med kontaktinformasjon som den er satt sammen av?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Foren"</string>
@@ -59,7 +60,6 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontaktene er forent"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Alternativer"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Alternativer"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Slett"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Du kan ikke slette kontoer fra skrivebeskyttede kontoer, men du kan skjule dem i kontaktlistene."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakten inneholder informasjon fra flere kontoer. Informasjon fra skrivebeskyttede kontoer vil bli skjult i kontaktlistene, ikke slettet."</string>
@@ -159,12 +159,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontakter å vise. (Hvis du nettopp har lagt til en konto, kan det ta noen minutter å synkronisere kontaktene.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontakter å vise."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:346 in java.io.StringReader@9f436f5)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@4413ee)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:346 in java.io.StringReader@766e3d60)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@3f7fa65e)  -->
     <!-- outdated translation 3017521127042216243 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:350 in java.io.StringReader@766e3d60)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@3f7fa65e)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:350 in java.io.StringReader@558385e3)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@2dcb25f1)  -->
     <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
@@ -230,8 +230,10 @@
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Ikke tilstrekkelig minne (filen kan være for stor)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Kan ikke analysere VCard av uventet årsak"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Kan ikke analysere VCard selv om det ser ut til å være i riktig format, fordi den aktuelle implementeringen ikke støtter det."</string>
-    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"Finner ingen vCard-filer i USB-lagring"</string>
-    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"Fant ingen VCard-filer på minnekortet"</string>
+    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
+    <skip />
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Kan ikke hente inn metainformasjon for de(n) aktuelle vCard-filen(e)."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Importeringen av én eller flere filer mislyktes (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Ukjent feil"</string>
@@ -242,13 +244,15 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importerer <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Kan ikke lese vCard-data"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lesing av vCard-data ble avbrutt"</string>
-    <string name="importing_vcard_finished_title" msgid="3213257229785702182">"Import av vCard-fil fullført"</string>
-    <string name="importing_vcard_canceled_title" msgid="2963132079200382269">"Lesing av vCard-data ble avbrutt"</string>
-    <!-- no translation found for vcard_import_will_start_message (3676975052103703482) -->
+    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
+    <skip />
+    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (7029604268822049249) -->
+    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
@@ -261,7 +265,10 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"For mange vCard-filer på USB-lagring"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"For mange VCard-datafiler på minnekortet"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"For langt filnavn kreves («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
-    <string name="exporting_vcard_finished_title" msgid="1268425436375550862">"Eksport av vCard-fil fullført"</string>
+    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
+    <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Eksporterer kontaktdata til «<xliff:g id="FILE_NAME">%s</xliff:g>»"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Kunne ikke starte eksporteringen: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
@@ -272,8 +279,15 @@
     <string name="composer_not_initialized" msgid="8041534450748388843">"Objektet for vCard-redigering er ikke riktig initialisert"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kunne ikke åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
-    <string name="cancel_import_confirmation_title" msgid="1311741984719347665">"Avbryter import av vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="3737315228484332088">"Er du sikker på at du vil avbryte import av vCard?"</string>
+    <!-- outdated translation 1311741984719347665 -->     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Avbryter import av vCard"</string>
+    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
+    <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Legg til pause på 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Legg til Vent"</string>
@@ -284,10 +298,16 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Husk dette valget"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Ukjent"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Ingen data"</string>
+    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
+    <skip />
+    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Kontoer"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importér/eksportér kontakter"</string>
-    <string name="menu_share" msgid="943789700636542260">"Del"</string>
+    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
     <string name="share_error" msgid="4374508848981697170">"Kan ikke dele kontakten."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Navn"</string>
@@ -406,10 +426,16 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
     <string name="pick_photo" msgid="448886509158039462">"Velg bilde fra galleriet"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Velg nytt bilde fra galleriet"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlisten er oppdatert med nytt språk."\n\n"Vent litt ..."</string>
-    <string name="upgrade_in_progress" msgid="7530893673211750223">"Kontaktlisten oppdateres."\n\n"Vent litt ..."</string>
-    <!-- outdated translation 6713914687111678777 -->     <string name="upgrade_out_of_memory" product="tablet" msgid="3601759703058685675">"Oppgradering av kontakter pågår. "\n\n"Oppgraderingsprosessen krever cirka <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB internt minne på telefonen."\n\n"Velg ett av følgende alternativer:"</string>
-    <string name="upgrade_out_of_memory" product="default" msgid="6713914687111678777">"Oppgradering av kontakter pågår. "\n\n"Oppgraderingsprosessen krever cirka <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB internt minne på telefonen."\n\n"Velg ett av følgende alternativer:"</string>
+    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
+    <skip />
+    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
+    <skip />
+    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
+    <skip />
+    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
+    <skip />
+    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstaller noen programmer"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv å oppgradere på nytt"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Søker ..."</string>
@@ -464,5 +490,23 @@
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
+    <skip />
+    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
+    <skip />
+    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
+    <skip />
+    <!-- no translation found for create_group_item_label (5218022006186243310) -->
+    <skip />
+    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
+    <skip />
+    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
+    <skip />
+    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
 </resources>
