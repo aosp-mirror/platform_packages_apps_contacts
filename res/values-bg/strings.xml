@@ -62,6 +62,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Всички контакти"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Контактите са слети"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Опции"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Опции"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Изтриване"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Не можете да изтриете контакти от профили само за четене, но можете да ги скриете в списъците си с контакти."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Този контакт съдържа информация от няколко профила. Тази от профили само за четене ще бъде скрита, а не изтрита."</string>
@@ -485,9 +486,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
-    <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
     <skip />
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
@@ -554,5 +553,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

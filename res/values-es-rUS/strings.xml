@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Unión de contactos"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opciones"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Opciones"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Suprimir"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"No puedes borrar contactos desde cuentas de solo lectura, pero puedes ocultar tus listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en tus listas de contactos, pero no se eliminará."</string>
@@ -88,8 +89,7 @@
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hay imágenes disponibles en el teléfono."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hay imágenes disponibles en el teléfono."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre personalizado de etiqueta"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Mostrar opciones"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al correo de voz"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"La solicitud para exportar la vCard se rechazó. Inténtalo nuevamente más tarde."</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"La solicitud para exportar la vCard se rechazó. Inténtalo nuevamente más tarde."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmar exportación"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"¿Estás seguro de que deseas exportar tu lista de contactos a \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> destinatarios seleccionados"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"No hay contactos seleccionados."</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Agregar información"</string>
+    <string name="add_field" msgid="2384260056674995230">"Agregar otro campo"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"a través de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> a través de <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Modificar contactos seleccionados"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Optar por modificar contacto seleccionado? Se copiará la información que ingresaste hasta ahora."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Copiar a mis contactos"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"de <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"de <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"Buscando todos los contactos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directorio"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contactos"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"Cerrar"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Brindar un año"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"Contacto"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Cargando …"</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

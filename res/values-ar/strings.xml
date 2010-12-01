@@ -62,6 +62,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"جميع جهات الاتصال"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"جهات الاتصال المنضمة"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"الخيارات"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"الخيارات"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"حذف"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"لا يمكنك حذف جهات الاتصال من الحسابات للقراءة فقط، ولكن يمكنك إخفاؤها في قوائم جهات الاتصال."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"تحتوي جهة الاتصال هذه على معلومات من عدة حسابات. وسيتم إخفاء المعلومات من الحسابات التي للقراءة فقط في قوائم جهات الاتصال، وليس حذفها."</string>
@@ -485,9 +486,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
-    <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
     <skip />
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
@@ -554,5 +553,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>
