@@ -121,6 +121,9 @@
     <!-- Menu item that deletes the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete group</string>
 
+    <!-- Menu item (in the action bar) that creates a new contacts [CHAR LIMIT=12] -->
+    <string name="menu_new_contact_action_bar">New</string>
+
     <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
     <string name="splitConfirmation_title">Separate Contact</string>
 
@@ -174,8 +177,8 @@
     <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
     <string name="menu_done">Done</string>
 
-    <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made -->
-    <string name="menu_doNotSave">Revert</string>
+    <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
+    <string name="menu_doNotSave">Cancel</string>
 
     <!-- The title of the activity that edits and existing contact -->
     <string name="editContact_title_edit">Edit contact</string>
