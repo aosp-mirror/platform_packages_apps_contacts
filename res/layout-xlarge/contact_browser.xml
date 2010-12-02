@@ -44,13 +44,13 @@
             ex:layout_narrowRightMargin="0dip"
             ex:layout_wideParentWidth="1280dip"
             ex:layout_wideRightMargin="48dip"
-            ex:clipMarginLeft="3dip"
+            ex:clipMarginLeft="0dip"
             ex:clipMarginTop="3dip"
             ex:clipMarginRight="3dip"
             ex:clipMarginBottom="9dip"
             ex:enterAnimation="@android:anim/animator_fade_in"
             ex:exitAnimation="@android:anim/animator_fade_out"
-            ex:animationDuration="80">
+            ex:animationDuration="200">
             <FrameLayout
                 android:id="@+id/detail_container"
                 android:layout_width="match_parent"

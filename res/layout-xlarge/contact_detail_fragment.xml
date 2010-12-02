@@ -21,7 +21,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/panel_message">
+    android:background="@drawable/panel_content">
 
     <!-- Header View (including social status) -->
     <com.android.contacts.widget.InterpolatingLayout
