@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contatos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contatos unificados"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opções"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Opções"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Excluir"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Não é possível excluir os contatos das contas somente de leitura, mas você pode ocultá-los nas suas listas de contatos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contato contém informações de diversas contas. As informações de contas somente de leitura ficarão ocultas nas suas listas de contatos, mas não serão excluídas."</string>
@@ -81,15 +82,14 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefone"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Mensagem instantânea"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Endereço postal"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Endereço"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organização"</item>
     <item msgid="7196592230748086755">"Observação"</item>
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nenhuma imagem disponível no telefone."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nenhuma imagem disponível no telefone."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto do contato"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Personalizar nome do marcador"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Opções de exibição"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar chamadas diretamente para o correio de voz"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"A solicitação de importação do vCard foi rejeitada. Tente novamente mais tarde."</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"A solicitação de exportação do vCard foi rejeitada. Tente novamente mais tarde."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmar exportação"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Tem certeza de que deseja exportar a sua lista de contatos para \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> destinatários selecionados"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nenhum contato selecionado."</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Adicionar informações"</string>
+    <string name="add_field" msgid="2384260056674995230">"Adicionar outro campo"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"por meio de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editar contatos selecionados"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Alternar para a edição do contato selecionado? As informações inseridas até agora serão copiadas."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Copiar para meus contatos"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"de <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"de <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"Pesquisando todos os contatos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Diretório"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contatos"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"Fechar"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Informe um ano"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"Contato"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Carregando…"</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

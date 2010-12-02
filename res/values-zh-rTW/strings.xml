@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"選項"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"選項"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"刪除"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"您無法從唯讀帳戶中刪除聯絡人，但可在您的聯絡人清單中隱藏他們。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
@@ -81,15 +82,14 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"電子郵件"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"即時訊息"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"郵寄地址"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"地址"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"機構"</item>
     <item msgid="7196592230748086755">"附註"</item>
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"手機上沒有相片 。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"手機上沒有相片 。"</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"聯絡人相片"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自訂標籤名稱"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"顯示選項"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard 匯入要求遭到拒絕，請稍後再試。"</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard 匯出要求遭到拒絕，請稍後再試。"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"確認匯出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"確定要將聯絡人清單匯出至「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」嗎？"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"已選取 <xliff:g id="COUNT">%d</xliff:g> 位收件者"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"未選取任何聯絡人。"</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"新增資訊"</string>
+    <string name="add_field" msgid="2384260056674995230">"新增其他欄位"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"透過 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> (透過 <xliff:g id="SOURCE">%2$s</xliff:g>)"</string>
     <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"編輯所選聯絡人"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？系統會為您複製目前已輸入的資訊。"</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"複製到我的聯絡人"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"來自 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"來自 <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"正在搜尋所有聯絡人"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
     <string name="local_search_label" msgid="1686089693064201315">"聯絡人"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"關閉"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"提供年份"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"聯絡人"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"載入中..."</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

@@ -15,16 +15,18 @@
 -->
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
-        <item name="pressedBackground">@drawable/list_item_pressed_bg</item>
+        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="background">@drawable/list_selector</item>
+        <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
         <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
-        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
-        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
@@ -39,12 +41,14 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
+        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="background">@drawable/list_selector</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
         <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
-        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
-        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>

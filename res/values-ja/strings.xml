@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"すべての連絡先"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"連絡先を結合しました"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"オプション"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"オプション"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"削除"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"読み取り専用アカウントの連絡先は削除できませんが、連絡先リストで非表示にすることができます。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
@@ -81,15 +82,14 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話番号"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"メール"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"チャット"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"住所"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"住所"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"所属"</item>
     <item msgid="7196592230748086755">"メモ"</item>
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"画像がありません。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"画像がありません。"</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"連絡先の写真"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"新しいラベル名"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"表示オプション"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ボイスメールに自動転送する"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCardのインポートリクエストが拒否されました。しばらくしてからもう一度お試しください。"</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCardのエクスポートリクエストが拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"エクスポートの確認"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"連絡先リストを「<xliff:g id="VCARD_FILENAME">%s</xliff:g>」にエクスポートしますか？"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g>件の宛先を選択済み"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"連絡先が選択されていません。"</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"情報を追加"</string>
+    <string name="add_field" msgid="2384260056674995230">"別のフィールドを追加"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g>経由"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>、<xliff:g id="SOURCE">%2$s</xliff:g>経由"</string>
     <string name="description_star" msgid="2605854427360036550">"お気に入り"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"選択した連絡先の編集"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Myコンタクトにコピー"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"<xliff:g id="TYPE">%1$s</xliff:g>内にあります"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"<xliff:g id="TYPE">%1$s</xliff:g>内にあります（<xliff:g id="NAME">%2$s</xliff:g>）"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"すべての連絡先を検索中"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"ディレクトリ"</string>
     <string name="local_search_label" msgid="1686089693064201315">"連絡先"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"閉じる"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g>（<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>）"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"年を入力する"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"連絡先"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"読み込み中..."</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

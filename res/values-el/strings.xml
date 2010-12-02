@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Οι επαφές συνδέθηκαν"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Επιλογές"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Επιλογές"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Διαγραφή"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι είναι μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
@@ -81,15 +82,14 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Τηλέφωνο"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Διεύθυνση ηλεκτρονικού ταχυδρομείου"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Ανταλ.άμεσων μην.(IM)"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Ταχυδρομική διεύθυνση"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Διεύθυνση"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Εταιρεία"</item>
     <item msgid="7196592230748086755">"Σημείωση"</item>
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Δεν υπάρχουν διαθέσιμες εικόνες στο τηλέφωνο."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Δεν υπάρχουν διαθέσιμες εικόνες στο τηλέφωνο."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Φωτογραφία επαφής"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Προσαρμοσμένο όνομα ετικέτας"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Επιλογές προβολής"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Αποστολή κλήσεων απευθείας στον αυτόματο τηλεφωνητή"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Το αίτημα εισαγωγής vCard απορρίφθηκε. Δοκιμάστε αργότερα."</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Το αίτημα εξαγωγής vCard απορρίφθηκε. Δοκιμάστε αργότερα."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση εξαγωγής"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Είστε σίγουροι ότι θέλετε να εξαγάγετε τη λίστα των επαφών σας στο \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\";"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"επιλέχθηκαν <xliff:g id="COUNT">%d</xliff:g> παραλήπτες"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Δεν έχουν επιλεγεί επαφές."</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Προσθήκη πληροφοριών"</string>
+    <string name="add_field" msgid="2384260056674995230">"Προσθήκη άλλου πεδίου"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"μέσω <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> μέσω <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Επεξεργασία επιλεγμένων επαφών"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Να γίνει μετάβαση σε επεξεργασία της επιλεγμένης επαφής; Θα γίνει αντιγραφή των στοιχείων που έχετε εισαγάγει μέχρι τώρα."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Αντιγραφή στις επαφές μου"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"από <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"από <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"Αναζήτηση όλων των επαφών"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Κατάλογος"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Επαφές"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"Κλείσιμο"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Εισαγάγετε έτος"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"Επαφή"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Φόρτωση …"</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

@@ -27,6 +27,7 @@ import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -41,15 +42,20 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.SelectionBoundsAdjuster;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 /**
  * A custom view for an item in the contact list.
  */
-public class ContactListItemView extends ViewGroup {
+public class ContactListItemView extends ViewGroup
+        implements SelectionBoundsAdjuster
+{
 
     private static final int QUICK_CONTACT_BADGE_STYLE =
             com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
@@ -71,7 +77,6 @@ public class ContactListItemView extends ViewGroup {
     private final int mHeaderTextIndent;
     private final int mHeaderTextSize;
 
-    private Drawable mPressedBackgroundDrawable;
     private Drawable mActivatedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
@@ -122,6 +127,8 @@ public class ContactListItemView extends ViewGroup {
 
     private ForegroundColorSpan mPrefixColorSpan;
 
+    private Rect mBoundsWithoutHeader = new Rect();
+
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
      * This way the line of a tab can be pressed, but the image itself is not.
@@ -147,15 +154,11 @@ public class ContactListItemView extends ViewGroup {
         super(context, attrs);
         mContext = context;
 
-        // Obtain preferred item height from the current theme
-        TypedArray a = context.obtainStyledAttributes(null, com.android.internal.R.styleable.Theme);
-        mPreferredHeight =
-                a.getDimensionPixelSize(android.R.styleable.Theme_listPreferredItemHeight, 0);
-        a.recycle();
-
-        a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
-        mPressedBackgroundDrawable = a.getDrawable(
-                R.styleable.ContactListItemView_pressedBackground);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
+        mPreferredHeight = a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_height, 0);
+        mActivatedBackgroundDrawable = a.getDrawable(
+                R.styleable.ContactListItemView_activated_background);
         mHeaderBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_section_header_background);
         mHorizontalDividerDrawable = a.getDrawable(
@@ -182,6 +185,7 @@ public class ContactListItemView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_photo_size, 0);
         mPrefixHightlightColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
+
         mHeaderTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_header_text_indent, 0);
         mHeaderTextColor = a.getColor(
@@ -193,6 +197,10 @@ public class ContactListItemView extends ViewGroup {
 
         mHeaderBackgroundHeight = mHeaderBackgroundDrawable.getIntrinsicHeight();
         mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
+
+        if (mActivatedBackgroundDrawable != null) {
+            mActivatedBackgroundDrawable.setCallback(this);
+        }
     }
 
     /**
@@ -310,13 +318,10 @@ public class ContactListItemView extends ViewGroup {
             bottomBound -= mHorizontalDividerHeight;
         }
 
-        if (isActivated()) {
-            ensureActivatedBackgroundDrawable();
-            mActivatedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
-        }
+        mBoundsWithoutHeader.set(0, topBound, width, bottomBound);
 
-        if (mPressedBackgroundDrawable != null) {
-            mPressedBackgroundDrawable.setBounds(0, topBound, width, bottomBound);
+        if (mActivatedStateSupported) {
+            mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
         }
 
         topBound += mPaddingTop;
@@ -434,19 +439,14 @@ public class ContactListItemView extends ViewGroup {
         return rightBound;
     }
 
-    protected boolean isVisible(View view) {
-        return view != null && view.getVisibility() == View.VISIBLE;
+    @Override
+    public void adjustListItemSelectionBounds(Rect bounds) {
+        bounds.top += mBoundsWithoutHeader.top;
+        bounds.bottom = bounds.top + mBoundsWithoutHeader.height();
     }
 
-    /**
-     * Loads the drawable for the item background used when the item is checked.
-     */
-    private void ensureActivatedBackgroundDrawable() {
-        if (mActivatedBackgroundDrawable == null) {
-            mActivatedBackgroundDrawable = mContext.getResources().getDrawable(
-                    R.drawable.list_item_activated_bg);
-            mActivatedBackgroundDrawable.setBounds(0, 0, getWidth(), getHeight());
-        }
+    protected boolean isVisible(View view) {
+        return view != null && view.getVisibility() == View.VISIBLE;
     }
 
     /**
@@ -485,17 +485,27 @@ public class ContactListItemView extends ViewGroup {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        if (mPressedBackgroundDrawable != null) {
-            mPressedBackgroundDrawable.setState(getDrawableState());
-            invalidate();
+        if (mActivatedStateSupported) {
+            mActivatedBackgroundDrawable.setState(getDrawableState());
+        }
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable who) {
+        return who == mActivatedBackgroundDrawable || super.verifyDrawable(who);
+    }
+
+    @Override
+    public void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        if (mActivatedStateSupported) {
+            mActivatedBackgroundDrawable.jumpToCurrentState();
         }
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (isPressed() && mPressedBackgroundDrawable != null) {
-            mPressedBackgroundDrawable.draw(canvas);
-        } else if (isActivated()) {
+        if (mActivatedStateSupported) {
             mActivatedBackgroundDrawable.draw(canvas);
         }
         if (mHeaderVisible) {
@@ -507,6 +517,7 @@ public class ContactListItemView extends ViewGroup {
         if (mVerticalDividerVisible) {
             mVerticalDividerDrawable.draw(canvas);
         }
+
         super.dispatchDraw(canvas);
     }
 

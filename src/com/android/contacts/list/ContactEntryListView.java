@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.R;
 import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
@@ -40,8 +41,6 @@ public class ContactEntryListView extends PinnedHeaderListView {
             new ContactNameHighlightingAnimation(this, TEXT_HIGHLIGHTING_ANIMATION_DURATION);
 
     private boolean mHighlightNamesWhenScrolling;
-    private Drawable mDefaultSelector;
-    private boolean mSelectionVisible;
 
     public ContactEntryListView(Context context) {
         this(context, null);
@@ -53,7 +52,7 @@ public class ContactEntryListView extends PinnedHeaderListView {
 
     public ContactEntryListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        mDefaultSelector = getSelector();
+        setSelector(getContext().getResources().getDrawable(R.drawable.list_selector));
     }
 
     public TextHighlightingAnimation getTextHighlightingAnimation() {
@@ -66,19 +65,6 @@ public class ContactEntryListView extends PinnedHeaderListView {
 
     public void setHighlightNamesWhenScrolling(boolean flag) {
         mHighlightNamesWhenScrolling = flag;
-    }
-
-    public void setSelectionVisible(boolean selectionVisible) {
-        if (selectionVisible != mSelectionVisible) {
-            mSelectionVisible = selectionVisible;
-            if (selectionVisible) {
-                // When a persistent selection is handled by the adapter,
-                // we want to disable the standard selection drawing.
-                setSelector(new EmptyDrawable());
-            } else {
-                setSelector(mDefaultSelector);
-            }
-        }
     }
 
     @Override
@@ -99,30 +85,6 @@ public class ContactEntryListView extends PinnedHeaderListView {
             } else {
                 mHighlightingAnimation.stopHighlighting();
             }
-        }
-    }
-
-    /**
-     * A drawable that is ignored.  We have to use an empty drawable instead
-     * of null, because ListView does not allow selection to be null.
-     */
-    private class EmptyDrawable extends Drawable {
-
-        @Override
-        public void draw(Canvas canvas) {
-        }
-
-        @Override
-        public int getOpacity() {
-            return PixelFormat.OPAQUE;
-        }
-
-        @Override
-        public void setAlpha(int alpha) {
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter cf) {
         }
     }
 }

@@ -62,6 +62,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Visi adresatai"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Sujungti adresatai"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Parinktys"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Parinktys"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ištrinti"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Negalite ištrinti adresatų iš tik skaitomų paskyrų, bet galite paslėpti juos savo adresatų sąrašuose."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Šiam adresatui priskirta kelių paskyrų informacija. Tik skaitomų paskyrų informacija bus paslėpta adresatų sąrašuose; ji nebus ištrinta."</string>
@@ -485,9 +486,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (7071885390570890999) -->
-    <skip />
-    <!-- no translation found for contact_directory_account_description (7674700530474108835) -->
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
     <skip />
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
@@ -554,5 +553,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>

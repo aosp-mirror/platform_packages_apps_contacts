@@ -60,6 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Deltagande kontakter"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Alternativ"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Alternativ"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ta bort"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Det går inte att ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistan."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Den här kontakten har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
@@ -81,15 +82,14 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-post"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Chatt"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Postadress"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Adress"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisation"</item>
     <item msgid="7196592230748086755">"Anteckning"</item>
   </string-array>
     <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Det finns inga bilder på telefonen."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Det finns inga bilder på telefonen."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktbild"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Anpassat etikettsnamn"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Visningsalternativ"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Skicka samtal direkt till röstbrevlåda"</string>
@@ -250,12 +250,10 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekräfta export"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vill du exportera kontaktlistan till \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
@@ -448,7 +446,7 @@
     <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> mottagare har markerats"</item>
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Inga kontakter har markerats."</string>
-    <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Lägg till information"</string>
+    <string name="add_field" msgid="2384260056674995230">"Lägg till ett fält"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
@@ -463,8 +461,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Redigera valda kontakter"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vill du fortsätta att redigera den markerade kontakten? Information som du har angett hittills kommer att kopieras."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopiera till mina kontakter"</string>
-    <string name="contact_directory_description" msgid="7071885390570890999">"från <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="contact_directory_account_description" msgid="7674700530474108835">"från <xliff:g id="TYPE">%1$s</xliff:g> (<xliff:g id="NAME">%2$s</xliff:g>)"</string>
+    <!-- no translation found for contact_directory_description (683398073603909119) -->
+    <skip />
     <string name="search_label" msgid="6789295859496641042">"Söker bland alla kontakter"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Kontakter"</string>
@@ -487,10 +485,8 @@
     <string name="non_phone_close" msgid="7608506439725515667">"Stäng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Ange ett år"</string>
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Läser in..."</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
     <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
@@ -508,5 +504,7 @@
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
+    <skip />
+    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
 </resources>
