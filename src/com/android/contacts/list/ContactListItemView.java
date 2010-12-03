@@ -77,6 +77,7 @@ public class ContactListItemView extends ViewGroup
     private final int mHeaderTextIndent;
     private final int mHeaderTextSize;
 
+    private Drawable mBackgroundDrawable;
     private Drawable mActivatedBackgroundDrawable;
 
     private boolean mHorizontalDividerVisible = true;
@@ -157,6 +158,8 @@ public class ContactListItemView extends ViewGroup
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
         mPreferredHeight = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_height, 0);
+        mBackgroundDrawable = a.getDrawable(
+                R.styleable.ContactListItemView_background);
         mActivatedBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_activated_background);
         mHeaderBackgroundDrawable = a.getDrawable(
@@ -319,6 +322,8 @@ public class ContactListItemView extends ViewGroup
         }
 
         mBoundsWithoutHeader.set(0, topBound, width, bottomBound);
+
+        mBackgroundDrawable.setBounds(0, topBound, width, height);
 
         if (mActivatedStateSupported) {
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
@@ -505,6 +510,9 @@ public class ContactListItemView extends ViewGroup
 
     @Override
     public void dispatchDraw(Canvas canvas) {
+        if (!isActivated()) {
+            mBackgroundDrawable.draw(canvas);
+        }
         if (mActivatedStateSupported) {
             mActivatedBackgroundDrawable.draw(canvas);
         }

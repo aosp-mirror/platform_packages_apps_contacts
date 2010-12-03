@@ -16,7 +16,7 @@
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
-        <item name="background">@drawable/list_selector</item>
+        <item name="background">@drawable/list_normal_holo</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -42,7 +42,7 @@
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
-        <item name="background">@drawable/list_selector</item>
+        <item name="background">@drawable/list_normal_holo</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
         <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
