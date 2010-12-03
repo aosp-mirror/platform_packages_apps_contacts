@@ -74,7 +74,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dip"
-        android:src="@drawable/quickcontact_slider_presence_active"
         android:scaleType="centerInside" />
 
 </LinearLayout>
