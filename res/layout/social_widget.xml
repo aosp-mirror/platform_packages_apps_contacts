@@ -38,7 +38,7 @@
         android:layout_width="0dip"
         android:layout_height="90dip"
         android:layout_weight="1"
-        android:background="@drawable/status_balloon_widget_holo_light"
+        android:background="@drawable/statusbox_widget_holo_light"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="-8dip"
         android:paddingLeft="24dip">
