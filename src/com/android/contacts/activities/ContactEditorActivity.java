@@ -21,7 +21,9 @@ import com.android.contacts.R;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.views.editor.ContactEditorFragment;
+import com.android.contacts.views.editor.ContactEditorFragment.SaveMode;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -30,6 +32,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -54,6 +57,13 @@ public class ContactEditorActivity extends Activity implements
 
         setContentView(R.layout.contact_editor_activity);
 
+        // This Activity will always fall back to the "top" Contacts screen when touched on the
+        // app up icon, regardless of launch context.
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+        }
+
         mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
                 R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
@@ -67,7 +77,7 @@ public class ContactEditorActivity extends Activity implements
         if (mDoneButton != null) mDoneButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFragment.save(true);
+                mFragment.save(SaveMode.CLOSE);
             }
         });
         if (mRevertButton != null) mRevertButton.setOnClickListener(new OnClickListener() {
@@ -115,7 +125,18 @@ public class ContactEditorActivity extends Activity implements
 
     @Override
     public void onBackPressed() {
-        mFragment.save(true);
+        mFragment.save(SaveMode.CLOSE);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                mFragment.save(SaveMode.HOME);
+                return true;
+            }
+        }
+        return false;
     }
 
     private final ContactEditorFragment.Listener mFragmentListener =
@@ -126,8 +147,14 @@ public class ContactEditorActivity extends Activity implements
         }
 
         @Override
-        public void onSaveFinished(int resultCode, Intent resultIntent) {
+        public void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome) {
             setResult(resultCode, resultIntent);
+            if (navigateHome) {
+                Intent intent = new Intent(ContactEditorActivity.this,
+                        ContactBrowserActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
             finish();
         }
 
