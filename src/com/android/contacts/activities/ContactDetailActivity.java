@@ -16,11 +16,11 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.views.ContactSaveService;
-import com.android.contacts.views.detail.ContactDetailFragment;
 
 import android.accounts.Account;
 import android.app.Activity;

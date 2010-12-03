@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
+import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.interactions.GroupCreationDialogFragment;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.views.GroupMetaDataLoader;
 
 import android.app.Activity;
 import android.content.Context;

@@ -16,7 +16,7 @@
 
 <!-- the body surrounding all editors for a specific kind -->
 
-<com.android.contacts.views.editor.KindSectionView
+<com.android.contacts.editor.KindSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -51,4 +51,4 @@
         android:background="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_menu_add_field_holo_light"
         android:contentDescription="@string/description_plus_button" />
-</com.android.contacts.views.editor.KindSectionView>
+</com.android.contacts.editor.KindSectionView>

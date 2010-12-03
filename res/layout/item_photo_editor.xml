@@ -15,7 +15,7 @@
 -->
 
 <view
-    class="com.android.contacts.views.editor.PhotoEditorView"
+    class="com.android.contacts.editor.PhotoEditorView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/edit_photo_size"
     android:layout_height="@dimen/edit_photo_size"

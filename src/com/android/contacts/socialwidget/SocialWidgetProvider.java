@@ -16,9 +16,9 @@
 
 package com.android.contacts.socialwidget;
 
+import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.views.ContactLoader;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

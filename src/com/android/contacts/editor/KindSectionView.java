@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
-import com.android.contacts.views.editor.Editor.EditorListener;
 
 import android.content.Context;
 import android.os.Handler;

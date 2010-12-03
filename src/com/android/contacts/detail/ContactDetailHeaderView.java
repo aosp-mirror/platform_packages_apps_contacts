@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.contacts.views.detail;
+package com.android.contacts.detail;
 
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.ContactLoader.Result;
-import com.android.contacts.views.ContactSaveService;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -47,7 +47,7 @@ import android.widget.TextView;
 /**
  * Header for displaying a title bar with contact info. You
  * can bind specific values by calling
- * {@link ContactDetailHeaderView#loadData(com.android.contacts.views.ContactLoader.Result)}
+ * {@link ContactDetailHeaderView#loadData(com.android.contacts.ContactLoader.Result)}
  */
 public class ContactDetailHeaderView extends FrameLayout implements View.OnClickListener {
     private static final String TAG = "ContactDetailHeaderView";

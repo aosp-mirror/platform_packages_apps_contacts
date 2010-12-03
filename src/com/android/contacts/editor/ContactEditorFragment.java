@@ -14,11 +14,16 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta;
@@ -28,11 +33,6 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.ContactSaveService;
-import com.android.contacts.views.GroupMetaDataLoader;
-import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.views.editor.Editor.EditorListener;
 
 import android.accounts.Account;
 import android.app.Activity;

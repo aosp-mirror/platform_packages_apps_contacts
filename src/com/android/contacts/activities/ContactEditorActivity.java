@@ -18,10 +18,10 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.views.editor.ContactEditorFragment;
-import com.android.contacts.views.editor.ContactEditorFragment.SaveMode;
 
 import android.app.ActionBar;
 import android.app.Activity;

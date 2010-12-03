@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
 import com.android.contacts.R;
 import com.android.contacts.util.AccountsListAdapter;
