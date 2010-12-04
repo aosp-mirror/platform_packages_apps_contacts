@@ -465,7 +465,7 @@
 
         <!-- Service to save a contact -->
         <service
-            android:name=".views.ContactSaveService"
+            android:name=".ContactSaveService"
             android:exported="false" />
 
         <!-- Views the details of a single contact -->
