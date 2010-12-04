@@ -28,12 +28,9 @@
         android:state_focused="false"
         android:state_pressed="true"
         android:drawable="@drawable/list_pressed_holo" />
-
-    <!-- TODO: need a focused state asset -->
     <item
         android:state_focused="true"
-        android:drawable="@drawable/list_pressed_holo" />
-
+        android:drawable="@drawable/list_focused_holo" />
     <item
         android:drawable="@android:color/transparent" />
 </selector>

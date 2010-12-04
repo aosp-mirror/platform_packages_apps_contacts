@@ -1201,7 +1201,11 @@ public class ContactEditorFragment extends Fragment implements
         args.putLongArray("rawContactIds", rawContactIds);
         dialog.setArguments(args);
         dialog.setTargetFragment(this, 0);
-        dialog.show(getFragmentManager(), "join");
+        try {
+            dialog.show(getFragmentManager(), "join");
+        } catch (Exception ex) {
+            // No problem - the activity is no longer available to display the dialog
+        }
     }
 
     public static class JoinSuggestedContactDialogFragment extends DialogFragment {

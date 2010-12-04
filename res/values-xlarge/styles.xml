@@ -16,7 +16,7 @@
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
-        <item name="background">@drawable/list_selector</item>
+        <item name="background">@drawable/list_normal_holo</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -31,7 +31,7 @@
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
-        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">30dip</item>
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
         <item name="list_item_header_text_indent">77dip</item>
@@ -42,7 +42,7 @@
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
-        <item name="background">@drawable/list_selector</item>
+        <item name="background">@drawable/list_normal_holo</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
         <item name="list_item_divider">@drawable/list_item_divider_holo</item>
         <item name="list_item_padding_top">0dip</item>
@@ -53,7 +53,7 @@
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
-        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">30dip</item>
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_header_text_indent">77dip</item>
         <item name="list_item_header_text_color">?color/section_header_text_color</item>

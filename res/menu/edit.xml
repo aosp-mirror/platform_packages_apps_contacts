@@ -20,14 +20,13 @@
         android:alphabeticShortcut="\n"
         android:icon="@drawable/ic_menu_done_holo_light"
         android:title="@string/menu_done"
-        android:showAsAction="always" />
+        android:showAsAction="always|withText" />
 
     <item
         android:id="@+id/menu_discard"
         android:alphabeticShortcut="q"
-        android:icon="@drawable/ic_menu_cancel_holo_light"
         android:title="@string/menu_doNotSave"
-        android:showAsAction="always" />
+        android:showAsAction="always|withText" />
 
     <item
         android:id="@+id/menu_delete"
