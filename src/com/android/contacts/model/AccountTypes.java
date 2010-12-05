@@ -285,6 +285,10 @@ public class AccountTypes extends BroadcastReceiver
                 // adapter, using the authenticator to find general resources.
                 final String accountType = sync.accountType;
                 final AuthenticatorDescription auth = findAuthenticator(auths, accountType);
+                if (auth == null) {
+                    Log.w(TAG, "No authenticator found for type=" + accountType + ", ignoring it.");
+                    continue;
+                }
 
                 AccountType source;
                 if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)) {
@@ -358,7 +362,7 @@ public class AccountTypes extends BroadcastReceiver
                 return auth;
             }
         }
-        throw new IllegalStateException("Couldn't find authenticator for specific account type");
+        return null;
     }
 
     /**
