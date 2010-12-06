@@ -44,6 +44,7 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
+import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -93,6 +94,7 @@ import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -104,8 +106,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ContactDetailFragment extends Fragment implements OnCreateContextMenuListener,
-        OnItemClickListener, SelectAccountDialogFragment.Listener {
+public class ContactDetailFragment extends Fragment implements
+        OnItemClickListener, OnItemLongClickListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";
 
@@ -221,9 +223,10 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         mHeaderView.setListener(mHeaderViewListener);
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
-        mListView.setOnCreateContextMenuListener(this);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
+
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = mView.findViewById(android.R.id.empty);
 
@@ -839,12 +842,8 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
             views.type.setVisibility(
                     TextUtils.isEmpty(entry.typeString) ? View.GONE : View.VISIBLE);
 
-            // Set the content
-            final TextView content = views.data;
-            if (content != null) {
-                content.setText(entry.data);
-                setMaxLines(content, entry.maxLines);
-            }
+            views.data.setText(entry.data);
+            setMaxLines(views.data, entry.maxLines);
 
             // Set the footer
             if (!TextUtils.isEmpty(entry.footerLine)) {
@@ -1090,6 +1089,21 @@ public class ContactDetailFragment extends Fragment implements OnCreateContextMe
         final Intent intent = entry.intent;
         if (intent == null) return;
         mListener.onItemClicked(intent);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mListener == null) return false;
+        final ViewCache cache = (ViewCache) view.getTag();
+        if (cache == null) return false;
+        CharSequence text = cache.data.getText();
+        if (TextUtils.isEmpty(text)) return false;
+
+        ClipboardManager cm = (ClipboardManager) getActivity().getSystemService(
+                Context.CLIPBOARD_SERVICE);
+        cm.setText(text);
+        Toast.makeText(getActivity(), R.string.toast_text_copied, Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     public boolean handleKeyDown(int keyCode) {
