@@ -61,6 +61,25 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         super(context, attrs);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (mEditors != null) {
+            int childCount = mEditors.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                mEditors.getChildAt(i).setEnabled(enabled);
+            }
+        }
+
+        if (mAddPlusButton != null) {
+            mAddPlusButton.setEnabled(enabled && !mReadOnly);
+        }
+    }
+
+    public boolean isReadOnly() {
+        return mReadOnly;
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -162,6 +181,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                         "Cannot allocate editor for " + mKind.editorClass);
             }
         }
+
+        view.setEnabled(isEnabled());
 
         if (view instanceof Editor) {
             Editor editor = (Editor) view;

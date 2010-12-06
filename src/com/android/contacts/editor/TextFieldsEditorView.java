@@ -123,10 +123,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         if (mFieldEditTexts != null) {
             for (int index = 0; index < mFieldEditTexts.length; index++) {
-                mFieldEditTexts[index].setEnabled(enabled);
+                mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled);
             }
         }
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(enabled);
+        if (mMoreOrLess != null) mMoreOrLess.setEnabled(!isReadOnly() && enabled);
     }
 
     /**
@@ -257,7 +257,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 }
             });
 
-            fieldView.setEnabled(!readOnly);
+            fieldView.setEnabled(isEnabled() && !readOnly);
 
             if (field.shortForm) {
                 hidePossible = true;
@@ -280,7 +280,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         // When hiding fields, place expandable
         setupMoreOrLessButton(hidePossible, mHideOptional);
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(!readOnly);
+        if (mMoreOrLess != null) mMoreOrLess.setEnabled(!readOnly && isEnabled());
     }
 
     /**

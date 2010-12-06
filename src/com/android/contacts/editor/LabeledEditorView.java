@@ -89,6 +89,10 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         super(context, attrs, defStyle);
     }
 
+    public boolean isReadOnly() {
+        return mReadOnly;
+    }
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         // Subtract padding from the borders ==> x1 variables
@@ -149,6 +153,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
                     showLabelPopupMenu();
                 }
             });
+            mLabel.setEnabled(!mReadOnly && isEnabled());
             addView(mLabel);
         } else if (!shouldExist && mLabel != null) {
             removeView(mLabel);
@@ -195,6 +200,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
                     });
                 }
             });
+            mDelete.setEnabled(!mReadOnly && isEnabled());
             addView(mDelete);
         } else if (!shouldExist && mDelete != null) {
             removeView(mDelete);
@@ -220,9 +226,9 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
 
     @Override
     public void setEnabled(boolean enabled) {
-        if (mLabel != null) mLabel.setEnabled(enabled);
-
-        if (mDelete != null) mDelete.setEnabled(enabled);
+        super.setEnabled(enabled);
+        if (mLabel != null) mLabel.setEnabled(!mReadOnly && enabled);
+        if (mDelete != null) mDelete.setEnabled(!mReadOnly && enabled);
     }
 
     public Button getLabel() {
@@ -308,7 +314,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
         setupLabelButton(hasTypes);
-        if (mLabel != null) mLabel.setEnabled(!readOnly);
+        if (mLabel != null) mLabel.setEnabled(!readOnly && isEnabled());
         if (hasTypes) {
             mType = EntityModifier.getCurrentType(entry, kind);
             rebuildLabel();

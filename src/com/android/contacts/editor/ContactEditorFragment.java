@@ -42,7 +42,6 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
@@ -118,6 +117,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_QUERY_SELECTION = "queryselection";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
+    private static final String KEY_ENABLED = "enabled";
 
     /**
      * An intent extra that forces the editor to add the edited contact
@@ -233,7 +233,23 @@ public class ContactEditorFragment extends Fragment implements
 
     private boolean mAutoAddToDefaultGroup;
 
+    private boolean mEnabled = true;
+
     public ContactEditorFragment() {
+    }
+
+    public void setEnabled(boolean enabled) {
+        if (mEnabled != enabled) {
+            mEnabled = enabled;
+            if (mContent != null) {
+                int count = mContent.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    mContent.getChildAt(i).setEnabled(enabled);
+                }
+            }
+            final Activity activity = getActivity();
+            if (activity != null) activity.invalidateOptionsMenu();
+        }
     }
 
     @Override
@@ -347,6 +363,7 @@ public class ContactEditorFragment extends Fragment implements
             mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
+            mEnabled = savedState.getBoolean(KEY_ENABLED);
             mStatus = Status.EDITING;
         }
     }
@@ -357,6 +374,8 @@ public class ContactEditorFragment extends Fragment implements
             Log.v(TAG, "Ignoring background change. This will have to be rebased later");
             return;
         }
+
+        setEnabled(true);
 
         // Build Filter mQuerySelection
         final ArrayList<Entity> entities = data.getEntities();
@@ -491,6 +510,7 @@ public class ContactEditorFragment extends Fragment implements
                 editor = (BaseRawContactEditorView) inflater.inflate(
                         R.layout.read_only_raw_contact_editor_view, mContent, false);
             }
+            editor.setEnabled(mEnabled);
 
             mContent.addView(editor);
 
@@ -552,6 +572,10 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
+        int size = menu.size();
+        for (int i = 0; i < size; i++) {
+            menu.getItem(i).setEnabled(mEnabled);
+        }
     }
 
     @Override
@@ -786,6 +810,7 @@ public class ContactEditorFragment extends Fragment implements
                 }
                 break;
             case SaveMode.SPLIT:
+                setEnabled(true);
                 if (mListener != null) {
                     mListener.onContactSplit(contactLookupUri);
                 } else {
@@ -795,6 +820,7 @@ public class ContactEditorFragment extends Fragment implements
                 break;
 
             case SaveMode.JOIN:
+                setEnabled(true);
                 if (success) {
                     showJoinAggregateActivity(contactLookupUri);
                 }
@@ -1331,7 +1357,6 @@ public class ContactEditorFragment extends Fragment implements
         private static final int RESULT_FAILURE = 2;
 
         private final Context mContext;
-        private ProgressDialog mProgress;
 
         private int mSaveMode;
         private Uri mContactLookupUri = null;
@@ -1345,13 +1370,7 @@ public class ContactEditorFragment extends Fragment implements
         /** {@inheritDoc} */
         @Override
         protected void onPreExecute(ContactEditorFragment target) {
-            try {
-                mProgress = ProgressDialog.show(target.getActivity(), null,
-                        target.getActivity().getText(R.string.savingContact));
-            } catch (Exception e) {
-                // this can happen if our view has already been closed. this can safely be
-                // ignored
-            }
+            target.setEnabled(false);
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -1442,15 +1461,6 @@ public class ContactEditorFragment extends Fragment implements
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
 
-            if (mProgress != null && mProgress.isShowing()) {
-                try {
-                    mProgress.dismiss();
-                } catch (Exception e) {
-                    // this can happen if our view has already been closed. this can safely be
-                    // ignored
-                }
-            }
-
             // Stop the service that was protecting us
             mContext.stopService(new Intent(mContext, EmptyService.class));
 
@@ -1476,6 +1486,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putString(KEY_QUERY_SELECTION, mQuerySelection);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
+        outState.putBoolean(KEY_ENABLED, mEnabled);
         super.onSaveInstanceState(outState);
     }
 
