@@ -76,6 +76,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
         });
 
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
+        mPhoto.setEnabled(isEnabled());
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {

@@ -93,7 +93,7 @@ public class EventFieldEditorView extends LabeledEditorView {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        if (mDateView != null) mDateView.setEnabled(enabled);
+        if (mDateView != null) mDateView.setEnabled(!isReadOnly() && enabled);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class EventFieldEditorView extends LabeledEditorView {
             mDateView.setFocusable(true);
             mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
-            mDateView.setEnabled(!readOnly);
+            mDateView.setEnabled(isEnabled() && !readOnly);
             mDateView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
