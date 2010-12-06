@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <com.android.contacts.views.detail.ContactDetailHeaderView
+        <com.android.contacts.detail.ContactDetailHeaderView
             android:id="@+id/contact_header_widget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

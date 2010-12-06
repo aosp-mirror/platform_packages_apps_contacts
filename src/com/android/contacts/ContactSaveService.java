@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.views;
+package com.android.contacts;
 
 import com.android.contacts.R;
 import com.google.android.collect.Lists;
@@ -48,6 +48,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * A service responsible for saving changes to the content provider.
+ */
 public class ContactSaveService extends IntentService {
     private static final String TAG = "ContactSaveService";
 

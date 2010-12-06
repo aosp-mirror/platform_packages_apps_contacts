@@ -18,7 +18,6 @@ package com.android.contacts;
 
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
-import com.android.contacts.views.ContactLoader;
 
 import android.content.ContentUris;
 import android.net.Uri;

@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<com.android.contacts.views.editor.RawContactEditorView
+<com.android.contacts.editor.RawContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
 
         </FrameLayout>
 
-        <com.android.contacts.views.editor.TextFieldsEditorView
+        <com.android.contacts.editor.TextFieldsEditorView
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,4 +135,4 @@
             android:layout_marginTop="10dip"
         />
     </LinearLayout>
-</com.android.contacts.views.editor.RawContactEditorView>
+</com.android.contacts.editor.RawContactEditorView>

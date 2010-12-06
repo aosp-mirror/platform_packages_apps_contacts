@@ -18,6 +18,7 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
@@ -25,7 +26,6 @@ import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
-import com.android.contacts.views.ContactSaveService;
 import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Lists;
 

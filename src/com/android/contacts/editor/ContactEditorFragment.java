@@ -14,11 +14,16 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta;
@@ -28,11 +33,6 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.WeakAsyncTask;
-import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.ContactSaveService;
-import com.android.contacts.views.GroupMetaDataLoader;
-import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.views.editor.Editor.EditorListener;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -128,7 +128,7 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Modes that specify what the AsyncTask has to perform after saving
      */
-    private interface SaveMode {
+    public interface SaveMode {
         /**
          * Close the editor after saving
          */
@@ -148,6 +148,11 @@ public class ContactEditorFragment extends Fragment implements
          * Join another contact after saving
          */
         public static final int JOIN = 3;
+
+        /**
+         * Navigate to Contacts Home activity after saving.
+         */
+        public static final int HOME = 4;
     }
 
     private interface Status {
@@ -245,7 +250,7 @@ public class ContactEditorFragment extends Fragment implements
         }
         // If anything was left unsaved, save it now but keep the editor open.
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(false);
+            save(SaveMode.RELOAD);
         }
     }
 
@@ -553,7 +558,7 @@ public class ContactEditorFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_done:
-                return doSaveAction(SaveMode.CLOSE);
+                return save(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return doRevertAction();
             case R.id.menu_delete:
@@ -610,7 +615,7 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
 
-        return doSaveAction(SaveMode.JOIN);
+        return save(SaveMode.JOIN);
     }
 
     /**
@@ -694,7 +699,7 @@ public class ContactEditorFragment extends Fragment implements
      * Saves or creates the contact based on the mode, and if successful
      * finishes the activity.
      */
-    private boolean doSaveAction(int saveMode) {
+    public boolean save(int saveMode) {
         if (!hasValidState()) {
             return false;
         }
@@ -721,14 +726,6 @@ public class ContactEditorFragment extends Fragment implements
         return true;
     }
 
-    /**
-     * Asynchronously saves the changes made by the user. This can be called even if nothing
-     * has changed
-     */
-    public void save(boolean closeAfterSave) {
-        doSaveAction(closeAfterSave ? SaveMode.CLOSE : SaveMode.RELOAD);
-    }
-
     private boolean doRevertAction() {
         // When this Fragment is closed we don't want it to auto-save
         mStatus = Status.CLOSING;
@@ -745,6 +742,7 @@ public class ContactEditorFragment extends Fragment implements
         Log.d(TAG, "onSaveCompleted(" + success + ", " + saveMode + ", " + contactLookupUri);
         switch (saveMode) {
             case SaveMode.CLOSE:
+            case SaveMode.HOME:
                 final Intent resultIntent;
                 final int resultCode;
                 if (success && contactLookupUri != null) {
@@ -774,7 +772,8 @@ public class ContactEditorFragment extends Fragment implements
                 }
                 // It is already saved, so prevent that it is saved again
                 mStatus = Status.CLOSING;
-                if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent);
+                if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent,
+                        saveMode == SaveMode.HOME);
                 break;
             case SaveMode.RELOAD:
                 if (success && contactLookupUri != null) {
@@ -880,7 +879,7 @@ public class ContactEditorFragment extends Fragment implements
         /**
          * Contact was saved and the Fragment can now be closed safely.
          */
-        void onSaveFinished(int resultCode, Intent resultIntent);
+        void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome);
 
         /**
          * User decided to delete the contact.
@@ -1238,7 +1237,7 @@ public class ContactEditorFragment extends Fragment implements
      */
     protected void doJoinSuggestedContact(long[] rawContactIds) {
         mState.setJoinWithRawContacts(rawContactIds);
-        doSaveAction(SaveMode.RELOAD);
+        save(SaveMode.RELOAD);
     }
 
     @Override
@@ -1618,7 +1617,7 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onSplitContactConfirmed() {
         mState.markRawContactsForSplitting();
-        doSaveAction(SaveMode.SPLIT);
+        save(SaveMode.SPLIT);
     }
 
     /**

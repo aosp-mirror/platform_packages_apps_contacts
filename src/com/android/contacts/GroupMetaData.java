@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.contacts.views;
+package com.android.contacts;
 
 /**
  * Meta-data for a contact group.  We load all groups associated with the contact's
@@ -29,6 +29,8 @@ public final class GroupMetaData {
 
     public GroupMetaData(String accountName, String accountType, long groupId, String title,
             boolean defaultGroup, boolean favorites) {
+        this.mAccountName = accountName;
+        this.mAccountType = accountType;
         this.mGroupId = groupId;
         this.mTitle = title;
         this.mDefaultGroup = defaultGroup;

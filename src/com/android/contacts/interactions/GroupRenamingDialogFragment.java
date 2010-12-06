@@ -15,8 +15,8 @@
  */
 package com.android.contacts.interactions;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.views.ContactSaveService;
 
 import android.app.FragmentManager;
 import android.os.Bundle;

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.contacts.views.editor;
+package com.android.contacts.editor;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.editor.AggregationSuggestionEngine.RawContact;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.views.editor.AggregationSuggestionEngine.RawContact;
-import com.android.contacts.views.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.model.AccountTypes;
 import com.google.android.collect.Lists;
 
 import android.content.Context;

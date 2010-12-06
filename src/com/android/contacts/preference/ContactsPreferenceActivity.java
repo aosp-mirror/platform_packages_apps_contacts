@@ -17,9 +17,14 @@
 package com.android.contacts.preference;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactBrowserActivity;
 
+import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.view.MenuItem;
 
 import java.util.List;
 
@@ -27,6 +32,18 @@ import java.util.List;
  * Contacts settings.
  */
 public final class ContactsPreferenceActivity extends PreferenceActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // This Activity will always fall back to the "top" Contacts screen when touched on the
+        // app up icon, regardless of launch context.
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+        }
+    }
 
     /**
      * Populate the activity with the top-level headers.
@@ -43,5 +60,19 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
     public static boolean isEmpty(Context context) {
         return !context.getResources().getBoolean(R.bool.config_sort_order_user_changeable)
                 && !context.getResources().getBoolean(R.bool.config_display_order_user_changeable);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                Intent intent = new Intent(this, ContactBrowserActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -17,8 +17,8 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.util.DateUtils;
-import com.android.contacts.views.editor.EventFieldEditorView;
 import com.google.android.collect.Lists;
 
 import android.content.ContentValues;

@@ -16,8 +16,8 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
-import com.android.contacts.views.ContactLoader;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.views;
+package com.android.contacts;
 
 import com.android.contacts.util.DataStatus;
 

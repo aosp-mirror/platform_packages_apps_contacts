@@ -14,28 +14,27 @@
  * limitations under the License
  */
 
-package com.android.contacts.views.detail;
+package com.android.contacts.detail;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
+import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.ContactsUtils.ImActions;
+import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.views.ContactLoader;
-import com.android.contacts.views.ContactSaveService;
-import com.android.contacts.views.GroupMetaData;
-import com.android.contacts.views.editor.SelectAccountDialogFragment;
 import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 
@@ -60,7 +59,6 @@ import android.net.WebAddress;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -84,8 +82,6 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;

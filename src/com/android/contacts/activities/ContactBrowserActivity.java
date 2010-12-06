@@ -16,7 +16,9 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.interactions.GroupRenamingDialogFragment;
@@ -43,8 +45,6 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.views.ContactSaveService;
-import com.android.contacts.views.detail.ContactDetailFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;

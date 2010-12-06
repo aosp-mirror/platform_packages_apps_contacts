@@ -18,12 +18,12 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypes;
-import com.android.contacts.views.ContactSaveService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
