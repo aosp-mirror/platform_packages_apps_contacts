@@ -57,6 +57,12 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         super(context, attrs);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        mFrameView.setEnabled(enabled);
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {
@@ -96,7 +102,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
                         photoBytes.length);
 
                 mPhotoImageView.setImageBitmap(photo);
-                setEnabled(true);
+                mFrameView.setEnabled(isEnabled());
                 mHasSetPhoto = true;
                 mEntry.setFromTemplate(false);
             } else {
@@ -136,7 +142,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
 
             mEntry.put(Photo.PHOTO, out.toByteArray());
             mPhotoImageView.setImageBitmap(photo);
-            setEnabled(true);
+            mFrameView.setEnabled(isEnabled());
             mHasSetPhoto = true;
             mEntry.setFromTemplate(false);
 
@@ -157,7 +163,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
     protected void resetDefault() {
         // Invalid photo, show default "add photo" place-holder
         mPhotoImageView.setImageResource(R.drawable.ic_contact_picture);
-        setEnabled(!mReadOnly);
+        mFrameView.setEnabled(!mReadOnly && isEnabled());
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);
     }

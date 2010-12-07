@@ -47,16 +47,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
             <TextView
                 android:id="@+id/kind"
                 android:layout_width="164dip"
-                android:layout_height="wrap_content"
+                android:layout_height="?android:attr/listPreferredItemHeight"
                 android:paddingLeft="19dip"
                 android:textColor="#7F7F7F"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:singleLine="true"
                 android:ellipsize="marquee"
+                android:gravity="center_vertical"
             />
 
             <TextView
@@ -72,17 +74,17 @@
             <TextView
                 android:id="@+id/type"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="?android:attr/listPreferredItemHeight"
                 android:maxWidth="150dip"
                 android:textColor="#999999"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:textAppearance="?android:attr/textAppearanceSmall"
             />
 
             <ImageView
                 android:id="@+id/presence_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="?android:attr/listPreferredItemHeight"
                 android:layout_marginLeft="5dip"
                 android:gravity="center"
                 android:scaleType="centerInside"
@@ -91,10 +93,10 @@
             <ImageView
                 android:id="@+id/action_icon"
                 android:layout_width="30dip"
-                android:layout_height="30dip"
+                android:layout_height="?android:attr/listPreferredItemHeight"
                 android:layout_marginLeft="14dip"
                 android:layout_marginRight="14dip"
-                android:gravity="center"
+                android:layout_gravity="center_vertical"
                 android:scaleType="centerInside"
             />
 

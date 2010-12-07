@@ -101,6 +101,14 @@ public class GroupMembershipView extends LinearLayout
         super(context, attrs);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (mGroupList != null) {
+            mGroupList.setEnabled(enabled);
+        }
+    }
+
     public void setKind(DataKind kind) {
         mKind = kind;
         TextView kindTitle = (TextView) findViewById(R.id.kind_title);
@@ -172,6 +180,7 @@ public class GroupMembershipView extends LinearLayout
             mGroupList.setOnClickListener(this);
         }
 
+        mGroupList.setEnabled(isEnabled());
         mGroupList.setText(sb);
         setVisibility(VISIBLE);
 

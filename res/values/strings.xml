@@ -1458,4 +1458,7 @@
 
     <!-- Joined contact indicator displayed in the contact detail [CHAR LIMIT=64] -->
     <string name="indicator_joined_contact">Joined contact</string>
+
+    <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
+    <string name="toast_text_copied">Text copied</string>
 </resources>

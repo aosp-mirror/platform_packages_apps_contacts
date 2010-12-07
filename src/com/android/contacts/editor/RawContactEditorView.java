@@ -88,6 +88,33 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     }
 
     @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+
+        View view = getPhotoEditor();
+        if (view != null) {
+            view.setEnabled(isEnabled());
+        }
+
+        if (mName != null) {
+            mName.setEnabled(isEnabled());
+        }
+
+        if (mFields != null) {
+            int count = mFields.getChildCount();
+            for (int i = 0; i < count; i++) {
+                mFields.getChildAt(i).setEnabled(enabled);
+            }
+        }
+
+        if (mGroupMembershipView != null) {
+            mGroupMembershipView.setEnabled(enabled);
+        }
+
+        mAddFieldButton.setEnabled(isEnabled());
+    }
+
+    @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
@@ -153,8 +180,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
         setHasPhotoEditor((source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
-        getPhotoEditor().setEnabled(true);
-        mName.setEnabled(true);
+        getPhotoEditor().setEnabled(isEnabled());
+        mName.setEnabled(isEnabled());
 
         // Show and hide the appropriate views
         mFields.setVisibility(View.VISIBLE);
@@ -165,6 +192,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             mGroupMembershipView = (GroupMembershipView)mInflater.inflate(
                     R.layout.item_group_membership, mFields, false);
             mGroupMembershipView.setKind(mGroupMembershipKind);
+            mGroupMembershipView.setEnabled(isEnabled());
         }
 
         // Create editor sections for each possible data kind
@@ -190,6 +218,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 if (kind.fieldList == null) continue;
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, mFields, false);
+                section.setEnabled(isEnabled());
                 section.setState(kind, state, false, vig);
                 mFields.addView(section);
             }
@@ -200,6 +229,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         }
 
         addToDefaultGroupIfNeeded();
+
+        mAddFieldButton.setEnabled(isEnabled());
     }
 
     @Override
