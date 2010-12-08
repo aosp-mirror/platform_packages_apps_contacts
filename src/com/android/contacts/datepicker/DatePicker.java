@@ -37,7 +37,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnChangedListener;
+import android.widget.NumberPicker.OnChangeListener;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -106,9 +106,9 @@ public class DatePicker extends FrameLayout {
 
         mDayPicker = (NumberPicker) findViewById(R.id.day);
         mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
-        mDayPicker.setSpeed(100);
-        mDayPicker.setOnChangeListener(new OnChangedListener() {
-            public void onChanged(NumberPicker picker, int oldVal, int newVal) {
+        mDayPicker.setOnLongPressUpdateInterval(100);
+        mDayPicker.setOnChangeListener(new OnChangeListener() {
+            public void onChange(NumberPicker picker, int oldVal, int newVal) {
                 mDay = newVal;
                 notifyDateChanged();
             }
@@ -132,9 +132,9 @@ public class DatePicker extends FrameLayout {
             mMonthPicker.setRange(1, 12, months);
         }
 
-        mMonthPicker.setSpeed(200);
-        mMonthPicker.setOnChangeListener(new OnChangedListener() {
-            public void onChanged(NumberPicker picker, int oldVal, int newVal) {
+        mMonthPicker.setOnLongPressUpdateInterval(200);
+        mMonthPicker.setOnChangeListener(new OnChangeListener() {
+            public void onChange(NumberPicker picker, int oldVal, int newVal) {
 
                 /* We display the month 1-12 but store it 0-11 so always
                  * subtract by one to ensure our internal state is always 0-11
@@ -147,9 +147,9 @@ public class DatePicker extends FrameLayout {
             }
         });
         mYearPicker = (NumberPicker) findViewById(R.id.year);
-        mYearPicker.setSpeed(100);
-        mYearPicker.setOnChangeListener(new OnChangedListener() {
-            public void onChanged(NumberPicker picker, int oldVal, int newVal) {
+        mYearPicker.setOnLongPressUpdateInterval(100);
+        mYearPicker.setOnChangeListener(new OnChangeListener() {
+            public void onChange(NumberPicker picker, int oldVal, int newVal) {
                 mYear = newVal;
                 // Adjust max day for leap years if needed
                 adjustMaxDay();
