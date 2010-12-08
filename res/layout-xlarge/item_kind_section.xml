@@ -25,7 +25,8 @@
     <TextView
         android:id="@+id/kind_title"
         android:layout_width="150dip"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/editor_min_line_item_height"
+        android:gravity="center_vertical"
         android:textColor="#7F7F7F"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
@@ -39,16 +40,21 @@
         android:layout_gravity="bottom"
         android:orientation="vertical" />
 
-    <ImageButton
-        android:id="@+id/kind_plus"
+    <FrameLayout
+        android:id="@+id/kind_plus_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:paddingLeft="@dimen/editor_round_button_padding_left"
-        android:paddingRight="@dimen/editor_round_button_padding_right"
-        android:paddingTop="@dimen/editor_round_button_padding_top"
-        android:paddingBottom="@dimen/editor_round_button_padding_bottom"
-        android:background="?android:attr/selectableItemBackground"
-        android:src="@drawable/ic_menu_add_field_holo_light"
-        android:contentDescription="@string/description_plus_button" />
+        android:layout_height="@dimen/editor_min_line_item_height">
+        <ImageButton
+            android:id="@+id/kind_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/editor_round_button_padding_left"
+            android:paddingRight="@dimen/editor_round_button_padding_right"
+            android:paddingTop="@dimen/editor_round_button_padding_top"
+            android:paddingBottom="@dimen/editor_round_button_padding_bottom"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_menu_add_field_holo_light"
+            android:contentDescription="@string/description_plus_button" />
+    </FrameLayout>
 </com.android.contacts.editor.KindSectionView>

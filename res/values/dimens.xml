@@ -38,11 +38,14 @@
     <dimen name="quick_contact_width">352dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
-    <dimen name="editor_round_button_padding_left">10dip</dimen>
-    <dimen name="editor_round_button_padding_right">10dip</dimen>
-    <dimen name="editor_round_button_padding_top">10dip</dimen>
-    <dimen name="editor_round_button_padding_bottom">10dip</dimen>
+    <dimen name="editor_round_button_padding_left">8dip</dimen>
+    <dimen name="editor_round_button_padding_right">8dip</dimen>
+    <dimen name="editor_round_button_padding_top">8dip</dimen>
+    <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">180dip</dimen>
+    
+    <!-- Minimum height of a row in the Editor -->
+    <dimen name="editor_min_line_item_height">48dip</dimen>
 </resources>

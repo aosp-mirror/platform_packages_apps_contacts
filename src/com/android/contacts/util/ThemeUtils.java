@@ -8,7 +8,7 @@ import android.util.TypedValue;
  */
 public class ThemeUtils {
     /**
-     * Resolves the given attribute id of the theme to a ressource id
+     * Resolves the given attribute id of the theme to a resource id
      */
     public static int getAttribute(Theme theme, int attrId) {
         final TypedValue outValue = new TypedValue();
@@ -17,7 +17,7 @@ public class ThemeUtils {
     }
 
     /**
-     * Returns the ressource id of the background used for buttons to show pressed and focused state
+     * Returns the resource id of the background used for buttons to show pressed and focused state
      */
     public static int getSelectableItemBackground(Theme theme) {
         return getAttribute(theme, android.R.attr.selectableItemBackground);

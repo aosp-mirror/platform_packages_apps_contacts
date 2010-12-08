@@ -19,21 +19,22 @@
 <com.android.contacts.editor.GroupMembershipView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_height="@dimen/editor_min_line_item_height"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/kind_title"
         android:layout_width="150dip"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/editor_min_line_item_height"
+        android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
         android:textColor="@color/editor_label_text_color"
         android:ellipsize="marquee" />
 
+    <!-- TODO: Change to android.R.attr.spinnerTextStyle when available-->
     <TextView
-        style="?android:attr/dropDownSpinnerStyle"
+        style="?android:attr/editTextStyle"
         android:id="@+id/group_list"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
         android:ellipsize="end"
         android:focusable="true"
     />
-
+    
     <!-- Plus/Minus button only for layout. This makes the editor lay out nicely with the other fields -->
     <ImageButton
         android:layout_width="wrap_content"
